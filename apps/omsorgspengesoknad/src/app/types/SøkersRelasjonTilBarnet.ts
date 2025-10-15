@@ -4,5 +4,3 @@ export enum SøkersRelasjonTilBarnet {
     'ADOPTIVFORELDER' = 'adoptivforelder',
     'FOSTERFORELDER' = 'fosterforelder',
 }
-
-export type SøkersRelasjonTilBarnetKeys = keyof typeof SøkersRelasjonTilBarnet;

@@ -47,8 +47,5 @@
         "vite-plugin-checker": "0.11.0",
         "vitest": "3.2.4"
     },
-    "peerDependencies": {
-        "react": "18.2.0"
-    },
     "packageManager": "yarn@4.5.3"
 }

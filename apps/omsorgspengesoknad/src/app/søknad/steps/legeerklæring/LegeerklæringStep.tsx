@@ -2,11 +2,11 @@ import { getUploadedVedlegg } from '@navikt/sif-common-core-ds/src';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { FormikValuesObserver, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useMellomlagring } from '../../../hooks/useMellomlagring';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -25,6 +25,7 @@ const LegeerklæringStep = () => {
 
     const stepId = StepId.LEGEERKLÆRING;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const { lagreMellomlagring } = useMellomlagring();
 
     const { goBack } = useStepNavigation(step);
 
@@ -43,7 +44,7 @@ const LegeerklæringStep = () => {
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
-            return lagreSøknadState(state);
+            return lagreMellomlagring(state);
         },
     );
 

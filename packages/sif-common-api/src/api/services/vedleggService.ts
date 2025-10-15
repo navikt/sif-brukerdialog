@@ -1,7 +1,7 @@
 import { getCommonEnv } from '@navikt/sif-common-env';
 import { AxiosResponse } from 'axios';
 
-import { axiosMultipartConfig, k9BrukerdialogApiClient } from '../apiClient';
+import { axiosMultipartConfig, getK9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
 
 const servicePath = '/vedlegg';
 
@@ -9,7 +9,7 @@ export const uploadVedlegg = async (file: File): Promise<AxiosResponse<any, any>
     const formData = new FormData();
     formData.append('vedlegg', file);
     try {
-        return k9BrukerdialogApiClient.post(servicePath, formData, axiosMultipartConfig);
+        return getK9BrukerdialogApiClient().post(servicePath, formData, axiosMultipartConfig);
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
@@ -24,7 +24,7 @@ export const uploadVedlegg = async (file: File): Promise<AxiosResponse<any, any>
  */
 export const deleteVedlegg = async (id: string): Promise<AxiosResponse<any, any>> => {
     const url = `${servicePath}/${id}`;
-    return k9BrukerdialogApiClient.delete(url);
+    return getK9BrukerdialogApiClient().delete(url);
 };
 
 /**
