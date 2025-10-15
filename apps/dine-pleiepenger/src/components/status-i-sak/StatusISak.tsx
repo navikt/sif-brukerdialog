@@ -1,15 +1,14 @@
-import { Alert, BodyLong, BodyShort, Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Link, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
 import { AppText, useAppIntl } from '../../i18n';
 import { Sak } from '../../server/api-models/SakSchema';
-import { formatSakshendelseTidspunkt, getAlleHendelserISak } from '../../utils/sakUtils';
+import { getAlleHendelserISak } from '../../utils/sakUtils';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
-import { Process } from '../process';
-import ProcessStep from '../process/ProcessStep';
 import StatusISakHeading from './parts/StatusISakHeading';
 import { getProcessStepsFraSakshendelser } from './statusISakUtils';
+import StatusISakSteps from './StatusISakSteps';
 
 interface Props {
     sak: Sak;
@@ -61,31 +60,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
                 </Box>
             ) : null}
             <Box className="bg-white p-6 pb-4 pt-4">
-                <Process>
-                    {visibleSteps.map((step, idx) => {
-                        const headingId = `process-heading-${idx}`;
-                        return (
-                            <ProcessStep
-                                key={idx}
-                                completed={step.completed}
-                                current={step.current}
-                                isLastStep={step.isLastStep}
-                                isContinuation={finnnesFlereHendelser && idx === 0}>
-                                <VStack gap="1">
-                                    <Heading size="small" level="3" id={headingId} aria-hidden={true}>
-                                        {step.title}{' '}
-                                        {step.timestamp ? (
-                                            <BodyShort className="mb-2">
-                                                {formatSakshendelseTidspunkt(step.timestamp)}
-                                            </BodyShort>
-                                        ) : null}
-                                    </Heading>
-                                    <div>{step.content}</div>
-                                </VStack>
-                            </ProcessStep>
-                        );
-                    })}
-                </Process>
+                <StatusISakSteps steps={visibleSteps} />
             </Box>
             {finnnesFlereHendelser && visAlleHendelser === undefined ? (
                 <Box className="ml-4 mb-4">
