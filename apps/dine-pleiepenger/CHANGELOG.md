@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.10.19
+
+### Patch Changes
+
+- Erstatte egen Process komponent med Aksel komponent
+
 ## 1.10.18
 
 ### Patch Changes
