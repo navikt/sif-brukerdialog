@@ -1,12 +1,12 @@
 import { Edit } from '@navikt/ds-icons';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
-import SnarveiLinkPanel from './SnarveiLinkPanel';
+import SnarveiLinkCard from './SnarveiLinkCard';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-const meta: Meta<typeof SnarveiLinkPanel> = {
-    component: SnarveiLinkPanel,
-    title: 'Components/SnarveiLinkPanel',
+const meta: Meta<typeof SnarveiLinkCard> = {
+    component: SnarveiLinkCard,
+    title: 'Components/SnarveiLinkCard',
     parameters: {
         layout: 'centered',
     },
@@ -14,7 +14,7 @@ const meta: Meta<typeof SnarveiLinkPanel> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof SnarveiLinkPanel>;
+type Story = StoryObj<typeof SnarveiLinkCard>;
 
 export const Default: Story = {
     args: {

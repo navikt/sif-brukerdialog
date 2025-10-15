@@ -1,7 +1,6 @@
-import { BodyShort, Box, Heading, LinkPanel, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, LinkCard, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
-import Link from 'next/link';
 import { AppText, useAppIntl } from '../../i18n';
 import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
 import { personaliaUtils } from '../../utils/personaliaUtils';
@@ -32,18 +31,14 @@ const VelgSakPage = ({ saker }: Props) => {
                         const status = getBehandlingsstatusISak(sak.sak);
                         const { pleietrengende } = sak;
                         return (
-                            <LinkPanel
-                                as={Link}
-                                border={false}
-                                href={`/sak/${sak.sak.saksnummer}`}
-                                key={sak.sak.saksnummer}>
-                                <LinkPanel.Title className="w-full">
-                                    <Heading as="span" size="small">
+                            <LinkCard key={sak.sak.saksnummer}>
+                                <LinkCard.Title className="w-full">
+                                    <LinkCard.Anchor href={`/innsyn/sak/${sak.sak.saksnummer}`}>
                                         {personaliaUtils.navn(pleietrengende, text)}
-                                    </Heading>
-                                </LinkPanel.Title>
+                                    </LinkCard.Anchor>
+                                </LinkCard.Title>
                                 {status || pleietrengende.anonymisert === false ? (
-                                    <LinkPanel.Description>
+                                    <LinkCard.Description>
                                         <BodyShort spacing={true}>
                                             <AppText
                                                 id="velgSak.barn.fdato"
@@ -52,11 +47,10 @@ const VelgSakPage = ({ saker }: Props) => {
                                                 }}
                                             />
                                         </BodyShort>
-
                                         {status ? <StatusTag {...status} /> : null}
-                                    </LinkPanel.Description>
+                                    </LinkCard.Description>
                                 ) : null}
-                            </LinkPanel>
+                            </LinkCard>
                         );
                     })}
                 </VStack>
