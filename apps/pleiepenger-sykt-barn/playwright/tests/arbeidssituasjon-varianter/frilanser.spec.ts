@@ -78,7 +78,12 @@ test.describe('Omsorgsstønad', () => {
 test.describe('Frilanser', () => {
     test('Er ikke frilanser og mottar ikke omsorgsstønad', async ({ page }) => {
         await page.getByTestId('arbeidssituasjonFrilanser').getByText('Nei', { exact: true }).nth(1).click();
-        await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobbet du').fill('33');
+        const frilansTimerInput = page
+            .getByTestId('arbeidssituasjonFrilanser')
+            .getByLabel('Hvor mange timer jobbet du');
+        if (await frilansTimerInput.isVisible()) {
+            await frilansTimerInput.fill('33');
+        }
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Er ikke frilanser og får ikke')).toBeVisible();
     });
