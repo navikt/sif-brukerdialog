@@ -1,5 +1,6 @@
 import { Process } from '@navikt/ds-react';
-import { ProcessStepData } from '../process/ProcessStep';
+
+import { ProcessStepData } from '../../types/ProcessStepData';
 import { formatSakshendelseTidspunkt } from '../../utils/sakUtils';
 
 interface Props {
