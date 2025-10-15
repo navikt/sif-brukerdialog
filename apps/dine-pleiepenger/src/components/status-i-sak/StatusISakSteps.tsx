@@ -1,7 +1,7 @@
 import { Process } from '@navikt/ds-react';
 import { ProcessStepData } from '../process/ProcessStep';
 import { formatSakshendelseTidspunkt } from '../../utils/sakUtils';
-import { CheckmarkHeavyIcon, CircleFillIcon } from '@navikt/aksel-icons';
+import { CheckmarkHeavyIcon } from '@navikt/aksel-icons';
 
 interface Props {
     steps: ProcessStepData[];
@@ -16,11 +16,7 @@ const getStatusISakStepStatus = (step: ProcessStepData): 'completed' | 'active' 
     return 'uncompleted';
 };
 const getBullet = (step: ProcessStepData): React.ReactNode | undefined => {
-    if (step.current) {
-        return <CircleFillIcon style={{ width: '1rem', height: '1rem' }} />;
-    } else if (step.completed) {
-        return <CheckmarkHeavyIcon />;
-    } else return '';
+    return step.completed ? <CheckmarkHeavyIcon /> : undefined;
 };
 
 const StatusISakSteps = ({ steps }: Props) => {
