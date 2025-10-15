@@ -23,6 +23,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 
 interface Props {
     submitButtonLabel?: string;
+    submitPending?: boolean;
     onValidSubmit: () => void;
 }
 
@@ -52,7 +53,7 @@ export const SamtykkeFormPart = () => {
     );
 };
 
-const SamtykkeForm = ({ onValidSubmit, submitButtonLabel }: Props) => {
+const SamtykkeForm = ({ onValidSubmit, submitPending, submitButtonLabel }: Props) => {
     const { text } = useSoknadIntl();
     const intl = useIntl();
     return (
@@ -62,6 +63,7 @@ const SamtykkeForm = ({ onValidSubmit, submitButtonLabel }: Props) => {
             renderForm={() => (
                 <Form
                     includeButtons={true}
+                    submitPending={submitPending}
                     submitButtonLabel={submitButtonLabel || text('@soknad.samtykkeform.submitButtonLabel')}
                     includeValidationSummary={true}
                     formErrorHandler={getIntlFormErrorHandler(intl, '@soknad.samtykkeForm')}>

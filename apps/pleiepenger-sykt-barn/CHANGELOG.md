@@ -1,5 +1,12 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.20
+
+### Patch Changes
+
+- Updated dependencies [ea18e6b]
+    - @navikt/sif-common-soknad-ds@26.1.0
+
 ## 4.11.19
 
 ### Patch Changes
