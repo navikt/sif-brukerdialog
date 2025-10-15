@@ -1,7 +1,7 @@
 import { Box, Heading, List, VStack } from '@navikt/ds-react';
+import { AppText } from '@shared/i18n';
+import getLenker from '@shared/utils/lenker';
 
-import { AppText } from '../../../i18n';
-import getLenker from '../../../utils/lenker';
 import ExternalLink from './external-link/ExternalLink';
 
 const BehandlingAvPersonopplysningerContent = () => {

@@ -1,4 +1,4 @@
-import { getScenarioMockData } from '../scenarios/scenarioMap';
+import { getScenarioMockData } from '../scenarios/scenarioer';
 import { ScenarioData, ScenarioType } from '../scenarios/types';
 
 const STORAGE_KEY = 'MOCK_DATA';
@@ -18,7 +18,13 @@ export const localStorageStore = {
 
     getScenario: (): ScenarioType => {
         const current = localStorage.getItem(SCENARIO_KEY);
-        return current ? (current as ScenarioType) : ScenarioType.harSøkt;
+
+        // Sjekk om current er en gyldig ScenarioType
+        if (current && Object.values(ScenarioType).includes(current as ScenarioType)) {
+            return current as ScenarioType;
+        }
+
+        return ScenarioType.søknad;
     },
 
     get: () => {

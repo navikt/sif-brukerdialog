@@ -1,11 +1,12 @@
-import { Box, Button, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { Add } from '@navikt/ds-icons';
-import { DateRange } from '@navikt/sif-common-formik-ds';
+import { DateRange, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { FieldArray, useFormikContext } from 'formik';
 import { AppText } from '../../../../i18n';
 import { KursFormValues } from '../KursStep';
-import KursperiodeQuestions from './KursperiodeQuestions';
+import KursperiodeQuestions, { KursperiodeFormFields } from './KursperiodeQuestions';
+import { startOgSluttErSammeHelg } from '../kursStepUtils';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
@@ -15,6 +16,12 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
     const { kursperioder } = values;
     const harFlerePerioder = kursperioder && kursperioder.length > 1;
+
+    const harPerioderMedKunHelg = kursperioder.some((p) => {
+        const startdato = ISOStringToDate(p[KursperiodeFormFields.fom]);
+        const sluttdato = ISOStringToDate(p[KursperiodeFormFields.tom]);
+        return startdato && sluttdato && startOgSluttErSammeHelg(startdato, sluttdato);
+    });
 
     return (
         <VStack gap="4">
@@ -61,6 +68,11 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                     <AppText id="steg.kurs.kursperioder.leggTil.label" />
                                 </Button>
                             </Box>
+                            {harPerioderMedKunHelg && (
+                                <Alert variant="warning">
+                                    <AppText id="kursperiode.form.validation.startOgSluttErSammeHelg.info" />
+                                </Alert>
+                            )}
                         </VStack>
                     );
                 }}

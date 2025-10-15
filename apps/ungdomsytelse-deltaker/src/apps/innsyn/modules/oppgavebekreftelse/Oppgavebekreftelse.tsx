@@ -5,7 +5,7 @@ import { useAppIntl } from '@shared/i18n';
 import { BekreftelseOppgave } from '@shared/types/Oppgave';
 import { useMemo, useState } from 'react';
 
-import { OppgavebekreftelseContext, useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
+import { OppgavebekreftelseContext } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 
 interface Props {
@@ -20,7 +20,12 @@ const Oppgavebekreftelse = ({ oppgave, deltakerNavn, children, initialVisKvitter
     const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
 
     const contextValue = useMemo(
-        () => ({ oppgave, deltakerNavn, visKvittering, setVisKvittering }),
+        () => ({
+            oppgave,
+            deltakerNavn,
+            visKvittering,
+            setVisKvittering,
+        }),
         [oppgave, deltakerNavn, visKvittering, setVisKvittering],
     );
 
@@ -46,5 +51,4 @@ Oppgavebekreftelse.Ubesvart = Ubesvart;
 Oppgavebekreftelse.Besvart = Besvart;
 Oppgavebekreftelse.Kvittering = Kvittering;
 
-export { Oppgavebekreftelse, useOppgavebekreftelse };
 export default Oppgavebekreftelse;

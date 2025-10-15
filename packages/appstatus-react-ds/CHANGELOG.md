@@ -1,5 +1,67 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.50
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.6
+
+## 2.20.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.6
+
+## 2.20.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.6
+
+## 2.20.46
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.6
+
+## 2.20.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.6
+
+## 2.20.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.6
+
+## 2.20.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.42
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+
 ## 2.20.41
 
 ### Patch Changes

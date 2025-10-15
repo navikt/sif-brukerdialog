@@ -1,5 +1,47 @@
 # config
 
+## 0.11.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.32
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
+## 0.11.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+
 ## 0.11.28
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 import ForsideLenkeButton from '@innsyn/atoms/forside-lenke-button/ForsideLenkeButton';
 import OppgaveStatusInfo from '@innsyn/components/oppgave-status-info/OppgaveStatusInfo';
-import UtalelseForm from '@innsyn/modules/forms/uttalelse-form/UtalelseForm';
+import UtalelseForm, { UttalelseSvaralternativer } from '@innsyn/modules/forms/uttalelse-form/UtalelseForm';
 import { Alert, Box, BoxNew, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
@@ -10,17 +10,22 @@ import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
+import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {
     beskjedFraNav: React.ReactNode;
     spørsmål: string;
+    svaralternativer: UttalelseSvaralternativer;
     bekreftelse: BekreftelseDto;
 }
 
-const OppgaveOgTilbakemelding = ({ beskjedFraNav, spørsmål, bekreftelse }: OppgaveOgTilbakemeldingProps) => {
-    const { text } = useAppIntl();
+const OppgaveOgTilbakemelding = ({
+    beskjedFraNav,
+    spørsmål,
+    svaralternativer,
+    bekreftelse,
+}: OppgaveOgTilbakemeldingProps) => {
     return (
         <section aria-labelledby="summaryHeading">
             <FormSummary>
@@ -44,7 +49,11 @@ const OppgaveOgTilbakemelding = ({ beskjedFraNav, spørsmål, bekreftelse }: Opp
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>{spørsmål}</FormSummary.Label>
-                        <FormSummary.Value>{bekreftelse.harUttalelse ? text('Ja') : text('Nei')}</FormSummary.Value>
+                        <FormSummary.Value>
+                            {bekreftelse.harUttalelse
+                                ? svaralternativer.harUttalelseLabel
+                                : svaralternativer.harIkkeUttalelseLabel}
+                        </FormSummary.Value>
                     </FormSummary.Answer>
                 </FormSummary.Answers>
                 {bekreftelse.harUttalelse && bekreftelse.uttalelseFraBruker && (
@@ -76,22 +85,27 @@ const Ubesvart = ({ children }: UbesvartProps) => {
     if (oppgave.status !== OppgaveStatus.ULØST || visKvittering) return null;
 
     return (
-        <VStack gap="4">
-            <GuidePanel>
-                <VStack gap="4">
-                    <Heading level="2" size="medium">
-                        <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ deltakerNavn }} />
-                    </Heading>
-                    <Box maxWidth="90%">{children}</Box>
-                </VStack>
-            </GuidePanel>
-            <UtalelseForm
-                harTilbakemeldingSpørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
-                tilbakemeldingLabel={getTilbakemeldingFritekstLabel(oppgave, appIntl)}
-                oppgaveReferanse={oppgave.oppgaveReferanse}
-                onSuccess={() => setVisKvittering(true)}
-                onCancel={() => navigate(AppRoutes.innsyn)}
-            />
+        <VStack gap="8">
+            <section aria-label={appIntl.text('oppgavebekreftelse.oppgavetekst.ariaLabel')}>
+                <GuidePanel>
+                    <VStack gap="4">
+                        <Heading level="2" size="medium">
+                            <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ deltakerNavn }} />
+                        </Heading>
+                        <Box maxWidth="90%">{children}</Box>
+                    </VStack>
+                </GuidePanel>
+            </section>
+            <section aria-label={appIntl.text('oppgavebekreftelse.uttalelseform.ariaLabel')}>
+                <UtalelseForm
+                    svaralternativer={getSvaralternativer(oppgave, appIntl)}
+                    spørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
+                    uttalelseLabel={getTilbakemeldingFritekstLabel(oppgave, appIntl)}
+                    oppgaveReferanse={oppgave.oppgaveReferanse}
+                    onSuccess={() => setVisKvittering(true)}
+                    onCancel={() => navigate(AppRoutes.innsyn)}
+                />
+            </section>
         </VStack>
     );
 };
@@ -145,6 +159,7 @@ const Besvart = ({ children }: BesvartProps) => {
             return (
                 <OppgaveOgTilbakemelding
                     beskjedFraNav={children}
+                    svaralternativer={getSvaralternativer(oppgave, appIntl)}
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
                     bekreftelse={oppgave.bekreftelse}
                 />

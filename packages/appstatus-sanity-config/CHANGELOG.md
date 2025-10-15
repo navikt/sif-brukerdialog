@@ -1,5 +1,41 @@
 # appstatus-sanity-config
 
+## 1.2.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.2.39
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
+## 1.2.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.2.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.2.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+
+## 1.2.35
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+
 ## 1.2.34
 
 ### Patch Changes

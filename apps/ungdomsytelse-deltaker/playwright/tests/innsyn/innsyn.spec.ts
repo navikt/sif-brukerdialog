@@ -12,7 +12,7 @@ test.beforeEach(async ({ page, context }) => {
 });
 
 test('Innsyn - har søkt', async ({ page }) => {
-    memoryStore.setScenario(ScenarioType.harSøkt);
+    memoryStore.setScenario(ScenarioType.søknadSendt);
 
     await page.goto(`./`);
     await expect(page.getByRole('heading', { name: 'Din ungdomsprogramytelse' })).toBeVisible();

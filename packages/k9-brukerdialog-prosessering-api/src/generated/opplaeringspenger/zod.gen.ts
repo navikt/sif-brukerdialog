@@ -72,6 +72,12 @@ export const zKursholder = z.object({
     navn: z.string().min(1),
 });
 
+export const zKursDag = z.object({
+    dato: z.iso.date(),
+    tidKurs: z.string(),
+    tidReise: z.optional(z.string()),
+});
+
 export const zReise = z.object({
     reiserUtenforKursdager: z.boolean(),
     reisedager: z.optional(z.array(z.iso.date())),
@@ -80,8 +86,10 @@ export const zReise = z.object({
 
 export const zKurs = z.object({
     kursholder: zKursholder,
-    kursperioder: z.array(z.string()).min(1),
-    reise: zReise,
+    enkeltdagEllerPeriode: z.enum(['ENKELTDAG', 'PERIODE']),
+    kursperioder: z.optional(z.array(z.string())),
+    kursdager: z.optional(z.array(zKursDag)),
+    reise: z.optional(zReise),
 });
 
 export const zLand = z.object({

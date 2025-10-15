@@ -4,13 +4,14 @@
     "license": "MIT",
     "name": "@navikt/sif-brukerdialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
+    "type": "module",
     "version": "0.0.1",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "dependencies": {
         "@changesets/cli": "2.29.7",
-        "tailwindcss": "4.1.13",
+        "tailwindcss": "4.1.14",
         "turbo": "2.5.8"
     },
     "devDependencies": {
@@ -18,9 +19,9 @@
         "config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "16.2.0",
+        "lint-staged": "16.2.4",
         "prettier": "3.6.2",
-        "typescript": "5.9.2"
+        "typescript": "5.9.3"
     },
     "lint-staged": {
         "apps/**/*.{ts,tsx,js,jsx, css}": [
@@ -55,7 +56,7 @@
         "glob-parent": ">=5.1.2"
     },
     "private": true,
-    "packageManager": "yarn@4.5.3",
+    "packageManager": "yarn@4.10.3",
     "resolutions": {
         "@swc/core": "1.5.7",
         "react": "19.1.0",

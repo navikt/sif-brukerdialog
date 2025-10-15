@@ -45,6 +45,7 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
                             openDrawer(<DrawerArticles />);
                         }}>
                         <InformationSquareIcon fontSize="1.5rem" title="Informasjonikon" />
+                        Hjelpeartikler
                     </InternalHeader.Button>
                 </ActionMenu.Trigger>
             </ActionMenu>

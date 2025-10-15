@@ -1,5 +1,4 @@
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { harSøktMock } from '@shared/mock/scenarios/data/harSøkt';
 import { withDeltakerContext } from '@shared/storybook/decorators/withDeltakerContext';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
@@ -8,6 +7,7 @@ import { DeltakelsePeriode, deltakelsePeriodeSchema } from '@shared/types/Deltak
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
+import { scenarioer } from '../../../../../mock/scenarios/scenarioer';
 import OppgaveIkkeFunnetPage from '../../pages/OppgaveIkkeFunnetPage';
 import DeltakelseContent from './DeltakelseContent';
 
@@ -26,7 +26,9 @@ export default meta;
 
 type Story = StoryObj<typeof DeltakelseContent>;
 
-const deltakelsePeriode: DeltakelsePeriode = deltakelsePeriodeSchema.parse(harSøktMock.deltakelser[0]);
+const deltakelsePeriode: DeltakelsePeriode = deltakelsePeriodeSchema.parse(
+    scenarioer.rapporterInntekt.data.deltakelser[0],
+);
 
 export const AktivDeltakelse: Story = {
     name: 'Aktiv deltakelse',

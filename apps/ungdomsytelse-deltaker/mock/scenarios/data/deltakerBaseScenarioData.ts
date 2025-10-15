@@ -1,6 +1,6 @@
 import { ScenarioData } from '../types';
 
-export const ikkeMeldtInnMock: ScenarioData = {
+export const deltakerBaseScenarioData: ScenarioData = {
     søker: {
         aktørId: '2320509955297',
         fødselsdato: '2005-06-02',

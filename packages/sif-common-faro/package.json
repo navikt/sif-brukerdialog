@@ -1,17 +1,17 @@
 {
     "name": "@navikt/sif-common-faro",
     "main": "src/index.ts",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "private": true,
     "type": "module",
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "typescript": "5.9.2"
+        "typescript": "5.9.3"
     },
     "dependencies": {
         "@grafana/faro-web-sdk": "1.19.0",
         "constate": "3.3.3",
-        "react": "19.1.1"
+        "react": "19.2.0"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

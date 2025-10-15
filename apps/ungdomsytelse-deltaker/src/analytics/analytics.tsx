@@ -51,7 +51,6 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
             });
             return Promise.race([timeoutPromise, logPromise]);
         }
-        return Promise.resolve();
     }
 
     async function logSkjemaStartet(skjemanavn: string) {

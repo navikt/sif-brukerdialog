@@ -1,5 +1,171 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.26.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.41
+    - @navikt/sif-common-formik-ds@2.5.16
+    - @navikt/sif-common-soknad-ds@26.0.18
+    - @navikt/sif-common-forms-ds@21.0.18
+    - @navikt/sif-common-core-ds@10.3.17
+    - @navikt/sif-common-utils@3.49.39
+    - @navikt/sif-common-ui@0.11.18
+    - @navikt/sif-common-api@0.4.59
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-hooks@0.3.6
+    - @navikt/sif-common-sentry@0.28.42
+    - @navikt/sif-validation@1.0.6
+
+## 1.26.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.40
+    - @navikt/sif-common-formik-ds@2.5.15
+    - @navikt/sif-common-soknad-ds@26.0.17
+    - @navikt/sif-common-forms-ds@21.0.17
+    - @navikt/sif-common-core-ds@10.3.16
+    - @navikt/sif-common-sentry@0.28.42
+    - @navikt/sif-common-utils@3.49.38
+    - @navikt/sif-common-api@0.4.58
+    - @navikt/sif-common-ui@0.11.17
+
+## 1.26.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.39
+    - @navikt/sif-common-formik-ds@2.5.14
+    - @navikt/sif-common-soknad-ds@26.0.16
+    - @navikt/sif-common-forms-ds@21.0.16
+    - @navikt/sif-common-core-ds@10.3.15
+    - @navikt/sif-common-sentry@0.28.41
+    - @navikt/sif-common-utils@3.49.37
+    - @navikt/sif-common-api@0.4.57
+    - @navikt/sif-common-ui@0.11.16
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-hooks@0.3.6
+    - @navikt/sif-validation@1.0.6
+
+## 1.26.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.13
+    - @navikt/sif-common-soknad-ds@26.0.15
+    - @navikt/sif-common-forms-ds@21.0.15
+    - @navikt/sif-common-core-ds@10.3.14
+    - @navikt/sif-common-sentry@0.28.40
+    - @navikt/sif-common-api@0.4.56
+    - @navikt/sif-common-ui@0.11.15
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-amplitude@2.28.38
+    - @navikt/sif-common-hooks@0.3.6
+    - @navikt/sif-common-utils@3.49.36
+    - @navikt/sif-validation@1.0.6
+
+## 1.26.15
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+- Updated dependencies [52d9b9e]
+    - @navikt/sif-common-amplitude@2.28.38
+    - @navikt/sif-common-formik-ds@2.5.12
+    - @navikt/sif-common-soknad-ds@26.0.14
+    - @navikt/sif-common-forms-ds@21.0.14
+    - @navikt/sif-common-core-ds@10.3.13
+    - @navikt/sif-common-sentry@0.28.39
+    - @navikt/sif-common-utils@3.49.36
+    - @navikt/sif-common-api@0.4.55
+    - @navikt/sif-common-ui@0.11.14
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-hooks@0.3.6
+    - @navikt/sif-validation@1.0.6
+
+## 1.26.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.37
+    - @navikt/sif-common-formik-ds@2.5.11
+    - @navikt/sif-common-soknad-ds@26.0.13
+    - @navikt/sif-common-forms-ds@21.0.13
+    - @navikt/sif-common-core-ds@10.3.12
+    - @navikt/sif-common-utils@3.49.35
+    - @navikt/sif-common-api@0.4.54
+    - @navikt/sif-common-ui@0.11.13
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-hooks@0.3.6
+    - @navikt/sif-common-sentry@0.28.38
+    - @navikt/sif-validation@1.0.6
+
+## 1.26.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.36
+    - @navikt/sif-common-formik-ds@2.5.10
+    - @navikt/sif-common-soknad-ds@26.0.12
+    - @navikt/sif-common-forms-ds@21.0.12
+    - @navikt/sif-common-core-ds@10.3.11
+    - @navikt/sif-common-sentry@0.28.38
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-hooks@0.3.6
+    - @navikt/sif-common-utils@3.49.34
+    - @navikt/sif-common-api@0.4.53
+    - @navikt/sif-common-env@0.1.7
+    - @navikt/sif-validation@1.0.6
+    - @navikt/sif-common-ui@0.11.12
+
+## 1.26.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.35
+    - @navikt/sif-common-formik-ds@2.5.9
+    - @navikt/sif-common-soknad-ds@26.0.11
+    - @navikt/sif-common-forms-ds@21.0.11
+    - @navikt/sif-common-core-ds@10.3.10
+    - @navikt/sif-common-sentry@0.28.37
+    - @navikt/sif-common-utils@3.49.33
+    - @navikt/sif-common-api@0.4.52
+    - @navikt/sif-common-ui@0.11.11
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-hooks@0.3.5
+    - @navikt/sif-validation@1.0.5
+
+## 1.26.11
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.34
+    - @navikt/sif-common-formik-ds@2.5.8
+    - @navikt/sif-common-soknad-ds@26.0.10
+    - @navikt/sif-common-forms-ds@21.0.10
+    - @navikt/sif-common-core-ds@10.3.9
+    - @navikt/sif-common-sentry@0.28.36
+    - @navikt/sif-common-utils@3.49.32
+    - @navikt/sif-common-api@0.4.51
+    - @navikt/sif-common-ui@0.11.10
+
 ## 1.26.10
 
 ### Patch Changes
