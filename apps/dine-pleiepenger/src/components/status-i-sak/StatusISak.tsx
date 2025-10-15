@@ -59,17 +59,19 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
                     </Switch>
                 </Box>
             ) : null}
-            <Box className="bg-white p-6 pb-4 pt-4">
-                <StatusISakSteps steps={visibleSteps} />
+            <Box className="bg-white p-6 pb-4 pt-6 rounded-large">
+                <VStack gap="8">
+                    <StatusISakSteps steps={visibleSteps} />
+                    {finnnesFlereHendelser && visAlleHendelser === undefined ? (
+                        <Box className="ml-4 mb-4">
+                            <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
+                                Se alle hendelser
+                                <ChevronRightIcon role="presentation" />
+                            </Link>
+                        </Box>
+                    ) : null}
+                </VStack>
             </Box>
-            {finnnesFlereHendelser && visAlleHendelser === undefined ? (
-                <Box className="ml-4 mb-4">
-                    <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
-                        Se alle hendelser
-                        <ChevronRightIcon role="presentation" />
-                    </Link>
-                </Box>
-            ) : null}
         </VStack>
     );
 };
