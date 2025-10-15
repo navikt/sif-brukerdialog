@@ -128,7 +128,7 @@ const AnnetBarnPart = ({ formValues, søkersFødselsnummer, fødselsattester, ha
                             }
                             return dateError;
                         }}
-                        title="abc"
+                        title={text('steg.omBarnet.fødselsdato')}
                         minDate={nYearsAgo(18)}
                         maxDate={getDateToday()}
                         dropdownCaption={true}

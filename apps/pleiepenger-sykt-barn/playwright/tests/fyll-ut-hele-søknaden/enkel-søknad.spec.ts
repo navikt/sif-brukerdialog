@@ -38,6 +38,10 @@ test('Fyll ut enkel søknad', async ({ page }) => {
     await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
     await page.getByRole('group', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
     await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Nei').check();
+    const frilansTimerInput = page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobbet du');
+    if (await frilansTimerInput.isVisible()) {
+        await frilansTimerInput.fill('33');
+    }
     await page.getByTestId('arbeidssituasjonSelvstendig').getByLabel('Nei').check();
     await page.getByTestId('arbeidssituasjonOpptjeningUtland').getByLabel('Nei').check();
     await page.getByTestId('arbeidssituasjonUtenlandskNæring').getByLabel('Nei').check();
