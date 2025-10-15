@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.4.7
+
+### Patch Changes
+
+- Erstatte LinkPanel med LinkCard
+
 ## 1.4.6
 
 ### Patch Changes
