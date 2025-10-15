@@ -1,5 +1,5 @@
 import UngdomsprogrammetBanner from '@innsyn/atoms/ungdomsprogrammet-banner/UngdomsprogrammetBanner';
-import { BodyLong, HGrid, LinkPanel, VStack } from '@navikt/ds-react';
+import { BodyLong, HGrid, LinkCard, VStack } from '@navikt/ds-react';
 import { AppText } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
 
@@ -14,15 +14,20 @@ const ForsidePageFooter = () => {
                 </BodyLong>
 
                 <HGrid columns={{ sm: '1fr 1fr' }} gap="4">
-                    <LinkPanel
-                        border={false}
-                        style={{ borderRadius: '0.5rem' }}
-                        href={getLenker().omUngdomsprogramytelsen}>
-                        <AppText id="forsidePageFooter.omUngdomsprogrammetLenke" />
-                    </LinkPanel>
-                    <LinkPanel border={false} style={{ borderRadius: '0.5rem' }} href={getLenker().skrivtilOss}>
-                        <AppText id="forsidePageFooter.kontaktOssLenke" />
-                    </LinkPanel>
+                    <LinkCard>
+                        <LinkCard.Title>
+                            <LinkCard.Anchor href={getLenker().omUngdomsprogramytelsen}>
+                                <AppText id="forsidePageFooter.omUngdomsprogrammetLenke" />
+                            </LinkCard.Anchor>
+                        </LinkCard.Title>
+                    </LinkCard>
+                    <LinkCard>
+                        <LinkCard.Title>
+                            <LinkCard.Anchor href={getLenker().skrivtilOss}>
+                                <AppText id="forsidePageFooter.kontaktOssLenke" />
+                            </LinkCard.Anchor>
+                        </LinkCard.Title>
+                    </LinkCard>
                 </HGrid>
             </VStack>
         </HGrid>
