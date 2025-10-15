@@ -1,5 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { useState } from 'react';
 
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 import SamtykkeForm from '../../modules/samtykke-form/SamtykkeForm';
@@ -26,6 +27,8 @@ interface Props {
 
 const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, children }: Props) => {
     const { text } = useSoknadIntl();
+    const [submitPending, setSubmitPending] = useState(false);
+
     return (
         <Page title={title} className="soknad-velkommen-page">
             <VStack gap="8">
@@ -37,7 +40,14 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, 
 
                 <div>{children}</div>
 
-                <SamtykkeForm onValidSubmit={onStartSøknad} submitButtonLabel={submitButtonLabel} />
+                <SamtykkeForm
+                    onValidSubmit={() => {
+                        setSubmitPending(true);
+                        onStartSøknad();
+                    }}
+                    submitButtonLabel={submitButtonLabel}
+                    submitPending={submitPending}
+                />
             </VStack>
         </Page>
     );

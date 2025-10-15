@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.1.0
+
+### Minor Changes
+
+- ea18e6b: Viser spinner i knapp når bruker velger å starte søknad
+
 ## 26.0.18
 
 ### Patch Changes

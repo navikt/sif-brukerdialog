@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Box, Heading, Link, LinkPanel, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Heading, Link, LinkCard, VStack } from '@navikt/ds-react';
 import { AppText, useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
@@ -74,12 +74,20 @@ const IngenSakEllerSøknadPage = () => {
                             <Heading level="2" size="medium">
                                 <AppText id="ingeSakPage.snarveier.tittel" />
                             </Heading>
-                            <LinkPanel href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_INFO_URL}>
-                                <AppText id="snarveier.omPleiepenger" />
-                            </LinkPanel>
-                            <LinkPanel href={browserEnv.NEXT_PUBLIC_SKJEMA_PLEIEPENGER_URL}>
-                                <AppText id="snarveier.søkOmPleiepenger" />
-                            </LinkPanel>
+                            <LinkCard>
+                                <LinkCard.Title>
+                                    <LinkCard.Anchor href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_INFO_URL}>
+                                        <AppText id="snarveier.omPleiepenger" />
+                                    </LinkCard.Anchor>
+                                </LinkCard.Title>
+                            </LinkCard>
+                            <LinkCard>
+                                <LinkCard.Title>
+                                    <LinkCard.Anchor href={browserEnv.NEXT_PUBLIC_SKJEMA_PLEIEPENGER_URL}>
+                                        <AppText id="snarveier.søkOmPleiepenger" />
+                                    </LinkCard.Anchor>
+                                </LinkCard.Title>
+                            </LinkCard>
                         </VStack>
                     </div>
                 </Box>

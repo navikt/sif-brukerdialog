@@ -31,7 +31,7 @@ const Dokumenter = ({ dokumenter, tittel }: Props) => {
     return (
         <Box>
             {tittel ? (
-                <Heading size="xsmall" level="4" spacing={true}>
+                <Heading size="xsmall" level="3" spacing={true}>
                     {tittel}
                 </Heading>
             ) : null}
