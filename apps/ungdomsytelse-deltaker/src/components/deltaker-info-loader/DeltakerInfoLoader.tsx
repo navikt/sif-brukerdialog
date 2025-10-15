@@ -1,12 +1,13 @@
 import { ApiError } from '@navikt/ung-common';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
+import SkyraTestPage from '../../apps/innsyn/pages/SkyraTestPage';
 import SøknadApp from '../../apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
@@ -24,13 +25,23 @@ const getErrorInfoToLog = (error: ApiError | null) => {
     return { context, message, type };
 };
 
+const OppgaveRedirect = () => {
+    const { oppgaveId } = useParams<{ oppgaveId: string }>();
+    return <Navigate to={`${AppRoutes.innsyn}/oppgave/${oppgaveId}`} replace />;
+};
+
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
+    const { logApiError, logHendelse } = useAnalyticsInstance();
+
+    // Sjekk om URL inneholder skyra/test - dette er en midlertidig testside for å teste skyra-integrasjon
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage />;
+    }
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
     const error = søker.isError || deltakelsePerioder.isError;
-    const { logApiError, logHendelse } = useAnalyticsInstance();
 
     if (isLoading) {
         return <UngLoadingPage />;
@@ -98,6 +109,7 @@ const DeltakerInfoLoader = () => {
                 <Routes>
                     <Route path={`${AppRoutes.soknad}/*`} element={<SøknadApp />} />
                     <Route path={`${AppRoutes.innsyn}/*`} element={<InnsynApp />} />
+                    <Route path="/oppgave/:oppgaveId" element={<OppgaveRedirect />} />
                     {/* Fallback for andre routes */}
                     <Route path="*" element={<Navigate to={aktivPathBasertPåDeltaker} />} />
                 </Routes>

@@ -467,9 +467,9 @@ export type InnsendelserISakDto = {
 };
 
 export type Innsending = {
-    mottattDato?: string;
     versjon?: string;
     søker?: Søker;
+    mottattDato?: string;
     søknadId?: string;
 };
 
@@ -511,6 +511,7 @@ export type SakDto = {
     saksbehandlingsFrist?: string;
     /**
      * bruk ytelseType
+     *
      * @deprecated
      */
     fagsakYtelseType:

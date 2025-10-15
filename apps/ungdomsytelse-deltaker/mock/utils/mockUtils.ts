@@ -1,11 +1,8 @@
-// import { OppgaveStatus } from '@navikt/ung-common';
-
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 import { RapporterInntektOppgave } from '../../src/types/Oppgave';
 import { store } from '../state/store';
-// import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api';
 
 function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
     const state = store.get();

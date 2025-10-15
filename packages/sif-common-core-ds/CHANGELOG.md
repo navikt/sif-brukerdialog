@@ -1,5 +1,87 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.39
+    - @navikt/sif-common-api@0.4.59
+
+## 10.3.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.38
+    - @navikt/sif-common-api@0.4.58
+
+## 10.3.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.37
+    - @navikt/sif-common-api@0.4.57
+
+## 10.3.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.56
+    - @navikt/sif-common-utils@3.49.36
+
+## 10.3.13
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+- Updated dependencies [52d9b9e]
+    - @navikt/sif-common-utils@3.49.36
+    - @navikt/sif-common-api@0.4.55
+
+## 10.3.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.35
+    - @navikt/sif-common-api@0.4.54
+
+## 10.3.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.34
+    - @navikt/sif-common-api@0.4.53
+    - @navikt/sif-common-env@0.1.7
+
+## 10.3.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.33
+    - @navikt/sif-common-api@0.4.52
+
+## 10.3.9
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.32
+    - @navikt/sif-common-api@0.4.51
+
 ## 10.3.8
 
 ### Patch Changes

@@ -28,11 +28,11 @@ const OppgaveStatusTag = ({
         );
     }
     const ikon =
-        variant !== 'tag-uten-ikon' ? (
+        variant === 'tag-uten-ikon' ? null : (
             <Box marginBlock="1">
                 <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
             </Box>
-        ) : null;
+        );
 
     const text = <Box paddingInline="1">{oppgaveStatusTekst}</Box>;
     switch (oppgaveStatus) {

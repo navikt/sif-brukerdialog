@@ -2,17 +2,17 @@ import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
+import { AppText, useAppIntl } from '@shared/i18n';
+import { DeltakerSkjemaId } from '@shared/types/DeltakerSkjemaId';
+import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
+import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
+import { useSendSøknad } from '@søknad/hooks/api/useSendSøknad';
+import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
+import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
+import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
 import { useAnalyticsInstance } from '../../../../analytics/analytics';
-import { AppText, useAppIntl } from '../../../../i18n';
-import { DeltakerSkjemaId } from '../../../../types/DeltakerSkjemaId';
-import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
-import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
-import { useSendSøknad } from '../../hooks/api/useSendSøknad';
-import { useSøknadContext } from '../../hooks/context/useSøknadContext';
-import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
 import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
 

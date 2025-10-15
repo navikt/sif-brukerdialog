@@ -1,9 +1,8 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-
-import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
-import { SøkYtelseOppgave } from '../../../types/Oppgave';
+import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
+import { SøkYtelseOppgave } from '@shared/types/Oppgave';
 
 export enum Steg {
     'KONTONUMMER' = 'kontonummer',

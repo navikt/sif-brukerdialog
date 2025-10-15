@@ -1,11 +1,13 @@
-import { getScenarioMockData } from '../scenarios/scenarioMap';
+import { getScenarioMockData } from '../scenarios/scenarioer';
 import { ScenarioData, ScenarioType } from '../scenarios/types';
 
-let currentScenario: ScenarioType = ScenarioType.harSøkt;
-let currentData: ScenarioData = getScenarioMockData(currentScenario);
+let currentScenario: ScenarioType;
+let currentData: ScenarioData;
 
 export const memoryStore = {
     init: (scenario: ScenarioType) => {
+        currentScenario = ScenarioType.søknad;
+        currentData = getScenarioMockData(currentScenario);
         memoryStore.setScenario(scenario);
     },
     setScenario: (scenario: ScenarioType) => {

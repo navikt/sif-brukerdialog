@@ -257,6 +257,7 @@ export type PleiepengerSyktBarnSøknad = {
     frilans: Frilans;
     /**
      * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
      * @deprecated
      */
     stønadGodtgjørelse?: StønadGodtgjørelse;
@@ -566,8 +567,16 @@ export type FrilansOlp = {
 
 export type Kurs = {
     kursholder: Kursholder;
-    kursperioder: string[];
-    reise: Reise;
+    enkeltdagEllerPeriode: 'ENKELTDAG' | 'PERIODE';
+    kursperioder?: string[];
+    kursdager?: KursDag[];
+    reise?: Reise;
+};
+
+export type KursDag = {
+    dato: string;
+    tidKurs: string;
+    tidReise?: string;
 };
 
 export type Kursholder = {

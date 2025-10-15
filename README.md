@@ -32,17 +32,6 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 -   PR merges til main og ny PR med oppdaterte versjoner lages automatisk
 -   PR med versjoner merges inn og en publiserer til npmjs
 
-#### Detaljert
-
-1. Lag PR med oppdatert kode, samt en changeset fil:
-    - Kjør `yarn changeset`
-    - Velg pakker som skal oppdateres
-    - Velg riktig bump for pakken
-    - Skriv en kort oppsummering på hva som er gjort
-    - commit og push
-2. Når PR merges inn på main, kan en kjøre action `Changeset release - build PR` som lager en pull request med oppdaterte versjonsnumre. NB! Se over at PR'en ikke inneholder noen bumps som er feil - der hvor det er peerDeps så bumper den major, selv om det ikke er en major endring.Korriger dersom det er feil. Denne kan også kjøres lokalt via `yarn changeset version`.
-3. Når `Changeset version` er merget til main, kan en hente ned `main`-branchen bygg alle pakker `yarn bp` og kjøre `yarn changeset publish`. Da vil alle versjoner som er oppdatert pushes til npmjs.
-
 ## Kode generert av GitHub Copilot
 
 Dette repoet bruker GitHub Copilot til å generere kode.

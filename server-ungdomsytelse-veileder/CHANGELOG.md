@@ -1,5 +1,37 @@
 # @navikt/sif-server
 
+## 0.0.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.36
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
+## 0.0.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.7
+
+## 0.0.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+
 ## 0.0.33
 
 ### Patch Changes

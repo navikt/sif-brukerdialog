@@ -3,7 +3,7 @@ import { BodyLong, Button, HGrid } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import { useState } from 'react';
 
-import { AppText, useAppIntl } from '../../../../i18n';
+import { AppText, useAppIntl } from '@shared/i18n';
 
 interface Props {
     slett?: {
