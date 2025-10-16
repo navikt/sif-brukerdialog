@@ -11,7 +11,7 @@ interface Props {
 }
 
 const MeldingHeading = ({ children }: { children: ReactNode }) => (
-    <Heading level="2" size="small" className="text-gray-900">
+    <Heading level="2" size="small">
         {children}
     </Heading>
 );
