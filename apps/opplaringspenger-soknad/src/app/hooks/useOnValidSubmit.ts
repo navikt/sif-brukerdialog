@@ -61,7 +61,9 @@ export const useOnValidSubmit = <T>(
                 ...submitHandler(values),
             ];
             Promise.all([...actions.map(dispatchAction)]).then(() => setSubmitted(true));
-        } catch {
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.error(e);
             setIsSubmitting(false);
         }
     };

@@ -2,12 +2,14 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { Næringstype, OpptjeningAktivitet, UtenlandskNæringstype } from '@navikt/sif-common-forms-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/kursStepUtils';
+import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/utils/kursStepUtils';
 import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { Kursperiode } from '../../app/types/Kursperiode';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { SøknadRoutes } from '../../app/types/SøknadRoutes';
 import { institusjonerMock } from './institusjonerMock';
+import { Kursdag } from '../../app/types/Kursdag';
+import { EnkeltdagEllerPeriode } from '../../app/søknad/steps/kurs/KursStep';
 
 const kursperioder: Kursperiode[] = [
     {
@@ -18,6 +20,8 @@ const kursperioder: Kursperiode[] = [
         },
     },
 ];
+
+const kursdager: Kursdag[] = [];
 
 const barn1: RegistrertBarn = {
     fornavn: 'ALFABETISK',
@@ -72,7 +76,9 @@ export const søknadContextMock: SøknadContextState = {
                 reisedagerBeskrivelse: 'Kombinerer med ferie',
             },
             kursholder: '',
+            enkeltdagEllerPeriode: EnkeltdagEllerPeriode.PERIODE,
             kursperioder,
+            kursdager,
         },
         arbeidssituasjon: {
             arbeidsgivere: {

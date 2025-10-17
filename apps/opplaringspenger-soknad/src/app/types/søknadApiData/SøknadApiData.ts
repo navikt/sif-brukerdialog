@@ -4,12 +4,19 @@ import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTyp
 import { VedleggType } from '../../søknad/steps/legeerklæring/LegeerklæringForm';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { OmBarnetApiData } from './OmBarnetApiData';
+import { EnkeltdagEllerPeriode } from '../../søknad/steps/kurs/KursStep';
 
 export * from './OmBarnetApiData';
 
 interface KursholderApiData {
     uuid?: string;
     navn: string;
+}
+
+export interface KursdagApiData {
+    dato: ISODate;
+    tidKurs: ISODuration;
+    tidReise?: ISODuration;
 }
 
 export interface KursApiData {
@@ -20,8 +27,11 @@ export interface KursApiData {
               reisedager: ISODate[];
               reisedagerBeskrivelse?: string;
           }
-        | { reiserUtenforKursdager: false };
+        | { reiserUtenforKursdager: false }
+        | undefined;
+    enkeltdagEllerPeriode: EnkeltdagEllerPeriode;
     kursperioder: ISODateRange[];
+    kursdager: KursdagApiData[];
 }
 
 export interface TidEnkeltdagApiData {
@@ -155,7 +165,7 @@ export interface SøknadApiData {
         skalEttersendeVedlegg: boolean;
         vedleggSomSkalEttersendes?: VedleggType[];
     };
-    ferieuttakIPerioden: FerieuttakIPeriodenApiData;
-    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
+    ferieuttakIPerioden?: FerieuttakIPeriodenApiData;
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }

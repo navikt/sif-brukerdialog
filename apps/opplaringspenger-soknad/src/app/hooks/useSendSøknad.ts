@@ -12,6 +12,7 @@ import { KvitteringInfo } from '../types/KvitteringInfo';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
+import { EnkeltdagEllerPeriode } from '../søknad/steps/kurs/KursStep';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
@@ -58,15 +59,19 @@ export const useSendSøknad = () => {
 };
 
 interface SendtSøknadMetadata {
+    enkeltdagEllerPeriode: EnkeltdagEllerPeriode;
+    antallEnkeltdager: number;
     antallPerioder: number;
-    antallReisedager: number;
+    antallReisedager?: number;
     antallFerieperioder: number;
 }
 
 const getSendtSøknadMetadata = (apiData: SøknadApiData): SendtSøknadMetadata => {
     return {
+        enkeltdagEllerPeriode: apiData.kurs.enkeltdagEllerPeriode,
+        antallEnkeltdager: apiData.kurs.kursdager.length,
         antallPerioder: apiData.kurs.kursperioder.length,
-        antallReisedager: apiData.kurs.reise.reiserUtenforKursdager ? apiData.kurs.reise.reisedager.length : 0,
+        antallReisedager: apiData.kurs.reise?.reiserUtenforKursdager ? apiData.kurs.reise.reisedager.length : 0,
         antallFerieperioder: apiData.ferieuttakIPerioden?.skalTaUtFerieIPerioden
             ? apiData.ferieuttakIPerioden.ferieuttak.length
             : 0,

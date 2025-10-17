@@ -45,7 +45,7 @@ body.sif-ds-theme {
     display: block;
 }
 
-p:not(.aksel-error-message):not(.aksel-textarea__counter) {
+p:not(.aksel-error-message):not(.aksel-textarea__counter):not(.noPadding) {
     margin: 1rem 0;
     padding: unset;
 }

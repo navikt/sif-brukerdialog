@@ -50,6 +50,11 @@
             flex: 1;
         }
     }
+    &--wide {
+        .timeInput__inputWrapper {
+            max-width: 5rem;
+        }
+    }
     &--compact {
         *:focus {
             z-index: 10;

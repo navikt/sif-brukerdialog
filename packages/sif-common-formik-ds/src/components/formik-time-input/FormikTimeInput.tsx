@@ -21,6 +21,7 @@ interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'onChange'> 
 }
 
 export type FormikTimeInputProps<FieldName, ErrorType> = OwnProps<FieldName> &
+    TimeInputLayoutProps &
     TypedFormInputValidationProps<FieldName, ErrorType> &
     UseFastFieldProps &
     TimeInputRefProps &

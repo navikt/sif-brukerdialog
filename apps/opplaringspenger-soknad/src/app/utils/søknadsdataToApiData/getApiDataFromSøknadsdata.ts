@@ -67,8 +67,12 @@ export const getApiDataFromSøknadsdata = (
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs, institusjoner),
-        ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
-        utenlandsoppholdIPerioden: getUtenlansoppholdApiDataFromSøknadsdata(språk, kurs.utenlandsopphold),
+        ferieuttakIPerioden: kurs.ferieuttakIPerioden
+            ? getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden)
+            : undefined,
+        utenlandsoppholdIPerioden: kurs.utenlandsopphold
+            ? getUtenlansoppholdApiDataFromSøknadsdata(språk, kurs.utenlandsopphold)
+            : undefined,
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,

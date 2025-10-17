@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { BostedUtlandApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import './utenlandsoppholdSummaryItem.css';
 
@@ -7,8 +7,8 @@ export const renderUtenlandsoppholdIPeriodenSummary = (opphold: BostedUtlandApiD
     return (
         <div className="utenlandsoppholdSummaryItem">
             <span className="utenlandsoppholdSummaryItem__dates">
-                {prettifyDateExtended(ISODateToDate(opphold.fraOgMed))} -{' '}
-                {prettifyDateExtended(ISODateToDate(opphold.tilOgMed))}
+                {dateFormatter.full(ISODateToDate(opphold.fraOgMed))} -{' '}
+                {dateFormatter.full(ISODateToDate(opphold.tilOgMed))}
             </span>
             <span>{opphold.landnavn}</span>
         </div>
