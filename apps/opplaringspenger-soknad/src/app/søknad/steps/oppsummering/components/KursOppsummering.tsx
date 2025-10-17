@@ -56,6 +56,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                         const periodeString = dateRangeFormatter.getDateRangeText(
                                             ISODateRangeToDateRange(kursperiode),
                                             locale,
+                                            { compact: false },
                                         );
                                         return <List.Item key={periodeString}>{periodeString}</List.Item>;
                                     })}
@@ -72,7 +73,10 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                     {kursdager.map((kursdag) => {
                                         return (
                                             <List.Item key={kursdag.dato}>
-                                                {dateFormatter.compact(ISODateToDate(kursdag.dato))}. Kurstid:{' '}
+                                                <div>
+                                                    <span>{dateFormatter.full(ISODateToDate(kursdag.dato))}</span>
+                                                </div>{' '}
+                                                Kurs:{' '}
                                                 <DurationText
                                                     fullText={false}
                                                     duration={ISODurationToDuration(kursdag.tidKurs)}
@@ -80,7 +84,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                                 {kursdag.tidReise ? (
                                                     <>
                                                         {' '}
-                                                        Reisetid:{' '}
+                                                        Reise:{' '}
                                                         <DurationText
                                                             fullText={false}
                                                             duration={ISODurationToDuration(kursdag.tidReise)}
@@ -114,7 +118,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                                 return (
                                                     <List.Item key={reisedag}>
                                                         {capsFirstCharacter(
-                                                            dateFormatter.dayCompactDate(ISODateToDate(reisedag)),
+                                                            dateFormatter.full(ISODateToDate(reisedag)),
                                                         )}
                                                     </List.Item>
                                                 );
@@ -154,8 +158,8 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                         <List>
                                             {ferieuttakIPerioden.ferieuttak.map((ferieuttak) => (
                                                 <List.Item key={ferieuttak.fraOgMed}>
-                                                    {dateFormatter.compact(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
-                                                    {dateFormatter.compact(ISODateToDate(ferieuttak.tilOgMed))}
+                                                    {dateFormatter.full(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
+                                                    {dateFormatter.full(ISODateToDate(ferieuttak.tilOgMed))}
                                                 </List.Item>
                                             ))}
                                         </List>
@@ -188,8 +192,8 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                                 <List.Item key={opphold.fraOgMed}>
                                                     <HStack gap="2">
                                                         <div>
-                                                            {dateFormatter.compact(ISODateToDate(opphold.fraOgMed))} -{' '}
-                                                            {dateFormatter.compact(ISODateToDate(opphold.tilOgMed))}
+                                                            {dateFormatter.full(ISODateToDate(opphold.fraOgMed))} -{' '}
+                                                            {dateFormatter.full(ISODateToDate(opphold.tilOgMed))}:
                                                         </div>
                                                         <div>{opphold.landnavn}</div>
                                                     </HStack>
