@@ -3,7 +3,7 @@ import Article from './components/Article';
 import { articleList } from './InfoInnhold';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
-const INFORMER_OM_DEMO = false;
+const INFORMER_OM_DEMO = true;
 
 const DrawerArticles = () => {
     return (
@@ -199,8 +199,9 @@ const DrawerArticles = () => {
                     <VStack gap="6">
                         <BodyLong>
                             Du kan prøve ut en demoversjon av deltakersidene for å se hvordan funksjonaliteten og
-                            informasjonen fremstår for deltakerne. I demoen kan du se både søknadsskjemaet og siden
-                            deltakerne får tilgang til etter at de har blitt med i ungdomsprogrammet.
+                            informasjonen fremstår for deltakerne. I demoen kan du se både søknadsskjemaet,
+                            oversiktssiden og oppgavene deltakerne får tilgang til etter at de har blitt med i
+                            ungdomsprogrammet.
                         </BodyLong>
                         <BodyLong>Mer informasjon om bruk av demoversjonen finner du i selve demoen.</BodyLong>
                         <BodyLong>
