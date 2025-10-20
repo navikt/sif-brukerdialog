@@ -7,6 +7,7 @@ import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import StatusTag from '../status-tag/StatusTag';
+import { browserEnv } from '../../utils/env';
 
 interface Props {
     saker: PleietrengendeMedSak[];
@@ -33,7 +34,8 @@ const VelgSakPage = ({ saker }: Props) => {
                         return (
                             <LinkCard key={sak.sak.saksnummer}>
                                 <LinkCard.Title className="w-full">
-                                    <LinkCard.Anchor href={`/innsyn/sak/${sak.sak.saksnummer}`}>
+                                    <LinkCard.Anchor
+                                        href={`${browserEnv.NEXT_PUBLIC_BASE_PATH}/sak/${sak.sak.saksnummer}`}>
                                         {personaliaUtils.navn(pleietrengende, text)}
                                     </LinkCard.Anchor>
                                 </LinkCard.Title>
