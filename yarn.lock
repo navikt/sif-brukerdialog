@@ -4641,7 +4641,7 @@ __metadata:
     next: "npm:15.5.5"
     next-logger: "npm:5.0.2"
     node-fetch: "npm:3.3.2"
-    pino: "npm:10.0.0"
+    pino: "npm:10.1.0"
     playwright-core: "npm:1.56.0"
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
@@ -7054,6 +7054,13 @@ __metadata:
     "@parcel/watcher-win32-x64":
       optional: true
   checksum: 10/2cc1405166fb3016b34508661902ab08b6dec59513708165c633c84a4696fff64f9b99ea116e747c121215e09619f1decab6f0350d1cb26c9210b98eb28a6a56
+  languageName: node
+  linkType: hard
+
+"@pinojs/redact@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@pinojs/redact@npm:0.4.0"
+  checksum: 10/2210ffb6b38357853d47239fd0532cc9edb406325270a81c440a35cece22090127c30c2ead3eefa3e608f2244087485308e515c431f4f69b6bd2e16cbd32812b
   languageName: node
   linkType: hard
 
@@ -24015,10 +24022,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:10.0.0":
-  version: 10.0.0
-  resolution: "pino@npm:10.0.0"
+"pino@npm:10.1.0":
+  version: 10.1.0
+  resolution: "pino@npm:10.1.0"
   dependencies:
+    "@pinojs/redact": "npm:^0.4.0"
     atomic-sleep: "npm:^1.0.0"
     on-exit-leak-free: "npm:^2.1.0"
     pino-abstract-transport: "npm:^2.0.0"
@@ -24027,12 +24035,11 @@ __metadata:
     quick-format-unescaped: "npm:^4.0.3"
     real-require: "npm:^0.2.0"
     safe-stable-stringify: "npm:^2.3.1"
-    slow-redact: "npm:^0.3.0"
     sonic-boom: "npm:^4.0.1"
     thread-stream: "npm:^3.0.0"
   bin:
     pino: bin.js
-  checksum: 10/32c7da274526706a2f1ad329bd44f2e2d2f0e0484e63dc290f8fb6986ed23e97ba5f30e6a80af3fa5f30a58e70a46d40a08b5731e1dfcb6f17a465f595fa361d
+  checksum: 10/6f9c86572669842950887cf1cd45fc977903ce1be0a6e32b98918c87d1914ff8854395dc64388d75a583672439997422975977275ed92c14a2f6ee1a26b07ccf
   languageName: node
   linkType: hard
 
@@ -26965,13 +26972,6 @@ __metadata:
     ansi-styles: "npm:^6.2.1"
     is-fullwidth-code-point: "npm:^5.0.0"
   checksum: 10/75f61e1285c294b18c88521a0cdb22cdcbe9b0fd5e8e26f649be804cc43122aa7751bd960a968e3ed7f5aa7f3c67ac605c939019eae916870ec288e878b6fafb
-  languageName: node
-  linkType: hard
-
-"slow-redact@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "slow-redact@npm:0.3.0"
-  checksum: 10/01eb2652922b95e3cf1494a7e750f951d74e89b32e816fc42812aa00715be36d70f1cd0d8973c21292b3c772ad4277f6461560eeb28814491786c5904e6eaf08
   languageName: node
   linkType: hard
 
