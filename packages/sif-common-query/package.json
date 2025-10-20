@@ -10,7 +10,7 @@
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@tanstack/react-query": "5.90.3",
+        "@tanstack/react-query": "5.90.5",
         "axios": "1.12.2",
         "dayjs": "1.11.18",
         "object-hash": "3.0.0"
