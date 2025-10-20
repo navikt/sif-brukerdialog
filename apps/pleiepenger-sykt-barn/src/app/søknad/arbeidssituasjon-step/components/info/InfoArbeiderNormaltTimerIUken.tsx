@@ -1,5 +1,5 @@
 import { useAppIntl } from '@i18n/index';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 import { AppText } from '../../../../i18n';
@@ -100,6 +100,23 @@ export const InfoArbeiderNormaltTimerFrilanser = ({
                 )}
             </ExpandableInfo>
         </>
+    );
+};
+
+export const InfoArbeidetNormaltTimerFrilanserAvsluttet = () => {
+    const { text } = useAppIntl();
+    return (
+        <VStack gap="2">
+            <div>
+                <ExpandableInfo title={text('arbeidsforhold.frilanser.avsluttet.info.tittel')}>
+                    <AppText id="arbeidsforhold.frilanser.avsluttet.info.tekst" />
+                </ExpandableInfo>
+                <InfoArbeiderNormaltTimerFrilanser
+                    frilanstype={Frilanstype.FRILANS}
+                    mottarOmsorgsstønadFosterhjemsgodtgjørelse={false}
+                />
+            </div>
+        </VStack>
     );
 };
 
