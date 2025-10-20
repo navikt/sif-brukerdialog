@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.10.21
+
+### Patch Changes
+
+- Korrigere lenke fra VelgSak siden
+
 ## 1.10.20
 
 ### Patch Changes
