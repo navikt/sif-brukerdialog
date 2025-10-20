@@ -39,11 +39,6 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'infoForFarVedNyttBarn.info.2':
         'Uavhengig av kva situasjonen din er, kan du fortsette å fylle ut søknaden og sende han inn.',
 
-    'infoSøskensaker.tittel': 'Nye retningsliner viss du pleier fleire barn',
-    'infoSøskensaker.info.1':
-        'Viss du pleier fleire barn samstundes, er det no nye retningsliner for korleis du søkjer.',
-    'infoSøskensaker.lenke': 'Les meir om korleis du søkjer her.',
-
     'validation.barnetSøknadenGjelder.noValue': 'Du må velje kva for eit barn søknaden gjeld.',
     'validation.barnetsNavn.stringHasNoValue': 'Du må skrive inn namnet på barnet.',
     'validation.barnetsNavn.stringIsTooLong': 'Namnet på barnet kan ikkje innehalde fleire enn {maks} teikn.',
