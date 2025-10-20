@@ -33,7 +33,7 @@ const VelgSakPage = ({ saker }: Props) => {
                         return (
                             <LinkCard key={sak.sak.saksnummer}>
                                 <LinkCard.Title className="w-full">
-                                    <LinkCard.Anchor href={`/innsyn/sak/${sak.sak.saksnummer}`}>
+                                    <LinkCard.Anchor href={`/sak/${sak.sak.saksnummer}`}>
                                         {personaliaUtils.navn(pleietrengende, text)}
                                     </LinkCard.Anchor>
                                 </LinkCard.Title>
