@@ -62,7 +62,7 @@
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "5.0.4",
         "busboy": "1.6.0",
-        "eslint": "9.37.0",
+        "eslint": "9.38.0",
         "eslint-plugin-storybook": "9.1.10",
         "eslint-plugin-vitest": "0.5.4",
         "helmet": "8.1.0",
