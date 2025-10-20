@@ -1,5 +1,24 @@
 # @navikt/sif-demo-app
 
+## 0.4.70
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.1
+    - @navikt/sif-common-forms-ds@21.0.19
+    - @navikt/sif-common-core-ds@10.3.18
+    - @navikt/sif-common-api@0.4.60
+    - @navikt/sif-common-ui@0.11.19
+
+## 0.4.69
+
+### Patch Changes
+
+- Updated dependencies [ea18e6b]
+    - @navikt/sif-common-soknad-ds@26.1.0
+
 ## 0.4.68
 
 ### Patch Changes

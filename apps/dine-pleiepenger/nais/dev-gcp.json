@@ -31,7 +31,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
 
         "NEXT_PUBLIC_SKJEMA_PLEIEPENGER_URL": "https://pleiepengesoknad.intern.dev.nav.no/soknad",
-        "NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL": "https://endringsmelding-pleiepenger.intern.dev.nav.no/",
+        "NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL": "https://endringsmelding-pleiepenger.intern.dev.nav.no/familie/sykdom-i-familien/soknad/ettersending/pleiepenger",
         "NEXT_PUBLIC_SKJEMA_ETTERSENDELSE_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/",
 
         "NEXT_PUBLIC_DINE_UTBETALINGER_URL": "https://tjenester.nav.no/utbetalingsoversikt/",

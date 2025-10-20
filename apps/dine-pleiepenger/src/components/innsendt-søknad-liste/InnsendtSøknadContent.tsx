@@ -76,7 +76,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
     return (
         <>
             <Box>
-                <Heading size="xsmall" level="4" spacing={true}>
+                <Heading size="xsmall" level="3" spacing={true}>
                     <AppText id={`dokumenterTittel.${søknad.søknadstype}`} />
                 </Heading>
                 {søknad.dokumenter && søknad.dokumenter.length > 0 && (
@@ -89,7 +89,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
 
             {søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN && harArbeidsgiver() && (
                 <Box className="mt-8">
-                    <Heading size="xsmall" level="4" spacing={true}>
+                    <Heading size="xsmall" level="3" spacing={true}>
                         <AppText id="bekreftelseTilArbeidsgiver.title" />
                     </Heading>
                     <p>

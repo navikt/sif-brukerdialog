@@ -1,10 +1,10 @@
 import { Box } from '@navikt/ds-react';
-import { AppText, IntlTextFn as IntlTextFn } from '../../i18n';
+import { AppText, IntlTextFn } from '../../i18n';
 import { Innsendelse } from '../../server/api-models/InnsendelseSchema';
 import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
 import { Ettersendelsestype } from '../../types/EttersendelseType';
+import { ProcessStepData } from '../../types/ProcessStepData';
 import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
-import { ProcessStepData } from '../process/ProcessStep';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 import EttersendelseStatusContent from './parts/EttersendelseStatusContent';
 import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';

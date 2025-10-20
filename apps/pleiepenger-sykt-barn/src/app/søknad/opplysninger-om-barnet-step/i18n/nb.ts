@@ -37,10 +37,6 @@ export const omBarnetMessages_nb = {
     'infoForFarVedNyttBarn.info.2':
         'Uavhengig av hva som er situasjonen din, kan du fortsette å fylle ut søknaden og sende den inn.',
 
-    'infoSøskensaker.tittel': 'Nye retningslinjer hvis du pleier flere barn',
-    'infoSøskensaker.info.1': 'Hvis du pleier flere barn samtidig, er det nå nye retningslinjer for hvordan du søker.',
-    'infoSøskensaker.lenke': 'Les mer om hvordan du søker her.',
-
     'validation.barnetSøknadenGjelder.noValue': 'Du må velge hvilket barn søknaden gjelder.',
     'validation.barnetsNavn.stringHasNoValue': 'Du må skrive inn navnet på barnet.',
     'validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks} tegn.',

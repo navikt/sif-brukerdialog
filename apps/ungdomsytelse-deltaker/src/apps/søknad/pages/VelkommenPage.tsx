@@ -17,10 +17,12 @@ const VelkommenPage = () => {
 
     const [infoStemmer, setInfoStemmer] = useState<boolean>(svar[Spørsmål.FORSTÅR_PLIKTER] || false);
     const [error, setError] = useState<string | undefined>(undefined);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
         if (infoStemmer) {
+            setLoading(true);
             startSøknad(infoStemmer);
         } else {
             setError(text('velkommenPage.validering.bekrefterIkkeValgt'));
@@ -64,7 +66,11 @@ const VelkommenPage = () => {
                             </CheckboxGroup>
                         </Box>
 
-                        <Button variant="primary" icon={<ArrowRightIcon aria-hidden />} iconPosition="right">
+                        <Button
+                            variant="primary"
+                            icon={<ArrowRightIcon aria-hidden />}
+                            iconPosition="right"
+                            loading={loading}>
                             <AppText id="velkommenPage.startSøknad" />
                         </Button>
                     </form>

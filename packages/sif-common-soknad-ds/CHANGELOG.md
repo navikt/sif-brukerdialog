@@ -1,5 +1,26 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.1.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.17
+    - @navikt/sif-common-forms-ds@21.0.19
+    - @navikt/sif-common-core-ds@10.3.18
+    - @navikt/sif-common-sentry@0.28.43
+    - @navikt/sif-common-utils@3.49.40
+    - @navikt/sif-common-ui@0.11.19
+    - @navikt/sif-common-hooks@0.3.6
+    - @navikt/sif-validation@1.0.6
+
+## 26.1.0
+
+### Minor Changes
+
+- ea18e6b: Viser spinner i knapp når bruker velger å starte søknad
+
 ## 26.0.18
 
 ### Patch Changes

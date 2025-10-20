@@ -2,7 +2,7 @@ import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { Dialog } from '@navikt/ds-icons';
 import { useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
-import SnarveiLinkPanel from '../snarvei-link-panel/SnarveiLinkPanel';
+import SnarveiLinkCard from '../snarvei-link-card/SnarveiLinkCard';
 
 const SkrivTilOssLenker = () => {
     const { text } = useAppIntl();
@@ -13,7 +13,7 @@ const SkrivTilOssLenker = () => {
                     Har du spørsmål om saken din?
                 </Heading>
                 <HGrid gap="4" columns={{ sm: 1, md: 2 }}>
-                    <SnarveiLinkPanel
+                    <SnarveiLinkCard
                         href={browserEnv.NEXT_PUBLIC_SKRIV_TIL_OSS_URL}
                         icon={<Dialog role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                         title={text('snarveier.skrivTilOss.tittel')}
