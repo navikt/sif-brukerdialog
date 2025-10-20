@@ -2844,6 +2844,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/js@npm:9.38.0":
+  version: 9.38.0
+  resolution: "@eslint/js@npm:9.38.0"
+  checksum: 10/08ba53e3e631e2815ff33e0f48dccf87daf3841eb5605fa5980d18b88cd6dd4cd63b5829ac015e97eeb85807bf91efe7d4e1d4eaf6beb586bc01549b7660c4a2
+  languageName: node
+  linkType: hard
+
 "@eslint/object-schema@npm:^2.1.6":
   version: 2.1.6
   resolution: "@eslint/object-schema@npm:2.1.6"
@@ -5188,7 +5195,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.10.2"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.37.0"
+    "@eslint/js": "npm:9.38.0"
     "@navikt/ds-css": "npm:7.32.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.32.1"
@@ -5973,7 +5980,7 @@ __metadata:
   resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
   dependencies:
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.37.0"
+    "@eslint/js": "npm:9.38.0"
     "@hookform/resolvers": "npm:5.2.2"
     "@navikt/aksel-icons": "npm:7.32.1"
     "@navikt/ds-css": "npm:7.32.1"
@@ -6224,7 +6231,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.10.2"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.37.0"
+    "@eslint/js": "npm:9.38.0"
     "@grafana/faro-react": "npm:1.19.0"
     "@navikt/aksel-icons": "npm:7.32.1"
     "@navikt/ds-css": "npm:7.32.1"
@@ -6304,7 +6311,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.10.2"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.37.0"
+    "@eslint/js": "npm:9.38.0"
     "@grafana/faro-react": "npm:1.19.0"
     "@navikt/aksel-icons": "npm:7.32.1"
     "@navikt/ds-css": "npm:7.32.1"
@@ -8566,7 +8573,7 @@ __metadata:
   resolution: "@sif/eslint-config@workspace:packages/eslint-config-sif"
   dependencies:
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.37.0"
+    "@eslint/js": "npm:9.38.0"
     eslint: "npm:9.37.0"
     eslint-config-prettier: "npm:10.1.8"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
