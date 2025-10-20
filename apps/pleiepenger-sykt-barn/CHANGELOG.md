@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.22
+
+### Patch Changes
+
+- Fjerne informasjon om endringer rundt søskensaker
+
 ## 4.11.21
 
 ### Patch Changes
