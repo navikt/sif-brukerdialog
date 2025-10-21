@@ -26,9 +26,7 @@ export const Default: Story = {
 
 export const UtenFristMedBehandlingstid: Story = {
     name: 'Ingen frist',
-    args: {
-        saksbehandlingstidUker: 3,
-    },
+    args: {},
 };
 
 export const FristIGår: Story = {

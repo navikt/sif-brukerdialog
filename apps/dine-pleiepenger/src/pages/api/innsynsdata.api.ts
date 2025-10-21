@@ -14,9 +14,6 @@ import { fetchAppStatus } from './appStatus.api';
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const logger = getLogger(req);
     logger.info(`Henter innsynsdata`, {
-        mellomlagring: Feature.HENT_MELLOMLAGRING,
-        saker: Feature.HENT_SAKER,
-        behandlingstid: Feature.HENT_BEHANDLINGSTID,
         appstatus: Feature.HENT_APPSTATUS,
     });
     try {
@@ -26,7 +23,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         /** Bruker har tilgang, hent resten av informasjonen */
         const [søknaderReq, sakerReq, appStatus] = await Promise.allSettled([
             fetchSøknader(req),
-            Feature.HENT_SAKER ? fetchSaker(req) : Promise.resolve([]),
+            fetchSaker(req),
             Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
         ]);
         logger.info(`Hentet innsynsdata`);

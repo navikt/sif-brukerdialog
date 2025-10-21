@@ -94,11 +94,6 @@ export const nb = {
     'hvaSkjerInfo.utbetaling.2': 'oversikt over utbetalingene dine her',
     'hvaSkjerInfo.utbetaling.3': '.',
 
-    'påbegyntSøknad.info.title': 'Gå til påbegynt søknad',
-    'påbegyntSøknad.info': 'Lagres til og med {datoNårSlettes}',
-    'påbegyntEndring.info.title': 'Gå til påbegynt endringsmelding',
-    'påbegyntEndring.info': 'Lagres til og med {datoNårSlettes}',
-
     'dineInnsendteSøknader.tittel': 'Dine søknader, endringer og ettersendelser',
 
     'innsendtSøknadListe.ingenSøknader':
