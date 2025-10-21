@@ -4614,7 +4614,6 @@ __metadata:
     "@storybook/nextjs": "npm:9.1.13"
     "@tailwindcss/postcss": "npm:4.1.14"
     "@tailwindcss/vite": "npm:4.1.14"
-    "@tanstack/react-query": "npm:5.90.5"
     "@types/react": "npm:19.2.2"
     axios: "npm:1.12.2"
     classnames: "npm:2.5.1"
