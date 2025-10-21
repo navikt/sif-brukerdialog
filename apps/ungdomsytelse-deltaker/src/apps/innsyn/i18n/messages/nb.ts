@@ -51,7 +51,7 @@ export const innsynMessages_nb = {
     'deltakelseIkkeStartetInfo.tekst2':
         'På denne siden får du oppgaver mens du er i ungdomsprogrammet. Du trenger ikke gjøre noe med oppgavene før du får et varsel på SMS om det.',
     'deltakelsePågåendeInfo.tekst':
-        'Husk å melde fra senest 7. hver måned hvis du jobbet og fikk lønn måneden før. Du får et varsel på SMS når du skal melde fra.',
+        'Husk å melde fra senest 7. hver måned hvis du fikk utbetalt lønn måneden før. Du får et varsel på SMS når du skal melde fra.',
 
     'oppgaveOgTilbakemelding.header': 'Beskjed og ditt svar',
     'oppgaveOgTilbakemelding.beskjedFraNav': 'Beskjed fra Nav',
