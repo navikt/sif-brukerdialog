@@ -1,3 +1,9 @@
 /// <reference types="vite/client" />
 
-declare const INJECT_DECORATOR: boolean;
+interface ImportMetaEnv {
+    readonly INJECT_DECORATOR: boolean;
+}
+
+interface ImportMeta {
+    readonly env: ImportMetaEnv;
+}
