@@ -9,7 +9,6 @@ export const withInnsynsdata = (Story) => (
             saker: [{ sak: { saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() } } as any],
             harSak: true,
             søker: mockSøker as any as Søker,
-            brukerprofil: {} as any,
         }}>
         <Story />
     </InnsynsdataContextProvider>

@@ -11,20 +11,28 @@ import HvaSkjer from '../hva-skjer/HvaSkjer';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { browserEnv } from '../../utils/env';
 import Saksbehandlingstid from '../saksbehandlingstid/Saksbehandlingstid';
+import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
+import appSentryLogger from '../../utils/appSentryLogger';
 
-const søknaderFetcher = async (url: string): Promise<InnsendtSøknad[]> => axios.get(url).then((res) => res.data);
+const søknaderFetcher = async (url: string): Promise<InnsendtSøknad[]> =>
+    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
-const IngenSakFallback = () => {
+const SøknaderEllerIngenSakFalback = () => {
     const { text } = useAppIntl();
 
-    const { data: innsendteSøknader, isLoading } = useSWR<InnsendtSøknad[]>(
-        `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknader`,
-        søknaderFetcher,
-        {
-            revalidateOnFocus: false,
-            shouldRetryOnError: false,
-        },
-    );
+    const {
+        data: innsendteSøknader,
+        isLoading,
+        error,
+    } = useSWR<InnsendtSøknad[]>(`${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknader`, søknaderFetcher, {
+        revalidateOnFocus: false,
+        shouldRetryOnError: false,
+    });
+
+    if (error) {
+        appSentryLogger.logError('fetch-søknader-failed', JSON.stringify(error));
+        return <IngenSakEllerSøknadPage />;
+    }
 
     if (!isLoading && (!innsendteSøknader || innsendteSøknader.length === 0)) {
         return <IngenSakEllerSøknadPage />;
@@ -59,4 +67,4 @@ const IngenSakFallback = () => {
     );
 };
 
-export default IngenSakFallback;
+export default SøknaderEllerIngenSakFalback;

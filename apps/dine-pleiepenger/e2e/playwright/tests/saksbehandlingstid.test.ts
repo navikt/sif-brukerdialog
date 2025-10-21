@@ -10,7 +10,6 @@ const defaultInnsynsdata: Innsynsdata = {
     saker: sakerMock,
     harSak: true,
     søker: søkerMockData,
-    brukerprofil: {} as any,
 };
 
 const pleietrengende = sakerMock[0].pleietrengende;

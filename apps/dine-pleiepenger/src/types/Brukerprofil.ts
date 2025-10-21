@@ -1,11 +1,4 @@
 export type Brukerprofil = {
-    profilVersjon: '1.0';
-    antallSøknader: number;
-    antallEttersendelser: number;
-    antallEndringsmeldinger: number;
+    profilVersjon: '2.0';
     antallSaker: number;
-    sisteSøknad: Date | undefined;
-    sisteEndring: Date | undefined;
-    sisteEttersendelse: Date | undefined;
-    dagerSidenSøknad: number | undefined;
 };
