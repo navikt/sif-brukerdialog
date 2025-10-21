@@ -23,11 +23,10 @@ import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 interface Props {
     pleietrengende: Pleietrengende;
     sak: Sak;
-    saksbehandlingstidUker?: number;
     antallSaker: number;
 }
 
-const SakPage = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }: Props) => {
+const SakPage = ({ sak, pleietrengende, antallSaker }: Props) => {
     const router = useRouter();
     useLogSaksprofil(sak, antallSaker);
 
@@ -69,7 +68,6 @@ const SakPage = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }: P
                             <VStack gap="5">
                                 <Saksbehandlingstid
                                     frist={sak.utledetStatus.saksbehandlingsFrist}
-                                    saksbehandlingstidUker={saksbehandlingstidUker}
                                     venteårsak={statusISak?.venteårsak}
                                 />
                             </VStack>

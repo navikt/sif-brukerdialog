@@ -4,7 +4,6 @@ export type Brukerprofil = {
     antallEttersendelser: number;
     antallEndringsmeldinger: number;
     antallSaker: number;
-    harSaksbehandlingstid: boolean;
     sisteSøknad: Date | undefined;
     sisteEndring: Date | undefined;
     sisteEttersendelse: Date | undefined;

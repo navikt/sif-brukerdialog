@@ -2,13 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { HttpStatusCode } from 'axios';
 import dayjs from 'dayjs';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import {
-    fetchMellomlagringer,
-    fetchSaker,
-    fetchSaksbehandlingstid,
-    fetchSøker,
-    fetchSøknader,
-} from '../../server/apiService';
+import { fetchSaker, fetchSøker, fetchSøknader } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
 import { isSakerParseError } from '../../types/SakerParseError';
 import { getBrukerprofil } from '../../utils/amplitude/getBrukerprofil';
@@ -30,13 +24,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const søker = await fetchSøker(req);
 
         /** Bruker har tilgang, hent resten av informasjonen */
-        const [søknaderReq, mellomlagringReq, sakerReq, saksbehandlingstidReq, appStatus] = await Promise.allSettled([
+        const [søknaderReq, sakerReq, appStatus] = await Promise.allSettled([
             fetchSøknader(req),
-            Feature.HENT_MELLOMLAGRING ? fetchMellomlagringer(req) : Promise.resolve({}),
             Feature.HENT_SAKER ? fetchSaker(req) : Promise.resolve([]),
-            Feature.HENT_BEHANDLINGSTID
-                ? fetchSaksbehandlingstid(req)
-                : Promise.resolve({ saksbehandlingstidUker: undefined }),
             Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
         ]);
         logger.info(`Hentet innsynsdata`);
@@ -56,12 +46,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const innsendteSøknader =
             søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
 
-        const saksbehandlingstidUker =
-            saksbehandlingstidReq.status === 'fulfilled'
-                ? saksbehandlingstidReq.value.saksbehandlingstidUker
-                : undefined;
-
-        const brukerprofil = getBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
+        const brukerprofil = getBrukerprofil(innsendteSøknader, saker);
         logger.info(`Innsynsdata parset`, brukerprofil);
 
         if (brukerprofil.antallSaker === 0 && brukerprofil.antallSøknader > 0) {
@@ -81,8 +66,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             søker,
             innsendteSøknader: harSak ? [] : innsendteSøknader,
             brukerprofil,
-            mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
-            saksbehandlingstidUker,
             saker,
             harSak,
             sakerParseError:

@@ -11,7 +11,6 @@ const defaultInnsynsdata: Innsynsdata = {
     saker: sakerMock,
     harSak: true,
     søker: søkerMockData,
-    mellomlagring: {},
     brukerprofil: {} as any,
     innsendteSøknader: søknaderMockData as any,
 };
@@ -115,7 +114,6 @@ test('Hverken Saksbehandlingstid eller behandlingstid', async ({ page }) => {
                     sak: { ...sak, utledetStatus: { ...sak.utledetStatus, saksbehandlingsFrist: undefined } },
                 },
             ],
-            saksbehandlingstidUker: undefined,
             harSak: true,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
@@ -129,7 +127,6 @@ test('Sak er ikke under behandling - ikke vis saksbehandlingstid', async ({ page
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
             saker: [{ pleietrengende, sak: { ...avsluttetSak } }],
-            saksbehandlingstidUker: undefined,
             harSak: true,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });

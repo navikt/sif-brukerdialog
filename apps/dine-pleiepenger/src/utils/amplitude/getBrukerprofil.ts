@@ -4,11 +4,7 @@ import { Brukerprofil } from '../../types/Brukerprofil';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from '../innsendtSøknadUtils';
 
-export const getBrukerprofil = (
-    søknader: InnsendtSøknad[],
-    saker: PleietrengendeMedSak[],
-    saksbehandlingstidUker: number | undefined,
-): Brukerprofil => {
+export const getBrukerprofil = (søknader: InnsendtSøknad[], saker: PleietrengendeMedSak[]): Brukerprofil => {
     const ppSøknader = getPleiepengesøknader(søknader);
     const ppEndringer = getEndringsmeldinger(søknader);
     const ppEttersendelser = getEttersendelser(søknader);
@@ -28,7 +24,6 @@ export const getBrukerprofil = (
         sisteEndring,
         sisteEttersendelse,
         antallSaker: saker.length,
-        harSaksbehandlingstid: !!saksbehandlingstidUker,
         dagerSidenSøknad,
     };
 };

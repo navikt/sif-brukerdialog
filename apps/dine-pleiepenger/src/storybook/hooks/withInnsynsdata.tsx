@@ -11,7 +11,6 @@ export const withInnsynsdata = (Story) => (
             saker: [{ sak: { saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() } } as any],
             harSak: true,
             søker: mockSøker as any as Søker,
-            mellomlagring: {},
             brukerprofil: {} as any,
             innsendteSøknader: mockSøknader as any as InnsendtSøknad[],
         }}>

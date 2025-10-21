@@ -19,7 +19,6 @@ export const setupMockRoutes = async (page: any) => {
             saker: sakerMock,
             harSak: true,
             søker: søkerMockData as any,
-            mellomlagring: {},
             brukerprofil: {} as any,
             innsendteSøknader: søknaderMockData as any,
         };

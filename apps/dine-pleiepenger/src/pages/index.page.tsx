@@ -42,7 +42,7 @@ const søkerIdFetcher = async (): Promise<string> => {
 
 function DinePleiepengerPage(): ReactElement {
     const {
-        innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker, brukerprofil, søker },
+        innsynsdata: { innsendteSøknader, saker, brukerprofil, søker },
     } = useInnsynsdataContext();
 
     useLogBrukerprofil(brukerprofil);
@@ -51,14 +51,7 @@ function DinePleiepengerPage(): ReactElement {
     const { text } = useAppIntl();
 
     if (saker.length === 1) {
-        return (
-            <SakPage
-                sak={saker[0].sak}
-                antallSaker={1}
-                pleietrengende={saker[0].pleietrengende}
-                saksbehandlingstidUker={saksbehandlingstidUker}
-            />
-        );
+        return <SakPage sak={saker[0].sak} antallSaker={1} pleietrengende={saker[0].pleietrengende} />;
     }
 
     if (saker.length > 1) {
@@ -77,10 +70,7 @@ function DinePleiepengerPage(): ReactElement {
                         <DineInnsendteSøknader søknader={innsendteSøknader} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        <Saksbehandlingstid
-                            frist={getSaksbehandlingsfrist(innsendteSøknader, saker)}
-                            saksbehandlingstidUker={saksbehandlingstidUker}
-                        />
+                        <Saksbehandlingstid frist={getSaksbehandlingsfrist(innsendteSøknader, saker)} />
                     </div>
                 </Box>
                 <Box>
