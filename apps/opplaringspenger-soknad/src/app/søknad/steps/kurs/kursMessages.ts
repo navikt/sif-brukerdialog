@@ -10,11 +10,11 @@ const nb = {
         'Hvis du ikke får treff på den institusjonen du har fått opplæring hos, trykker du på "Legg til" når du har skrevet navnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
 
-    'steg.kurs.enkeltdagEllerPeriode.spm': 'Gjelder søknaden enkeltdag eller periode?',
+    'steg.kurs.enkeltdagEllerPeriode.spm': 'Gjelder søknaden enkeltdag eller sammenhengende periode?',
     'steg.kurs.enkeltdagEllerPeriode.description':
         'Du kan legge til flere enkeltdager eller perioder etter du har valgt.',
     'steg.kurs.enkeltdagEllerPeriode.enkeltdag': 'Enkeltdag',
-    'steg.kurs.enkeltdagEllerPeriode.periode': 'Periode',
+    'steg.kurs.enkeltdagEllerPeriode.periode': 'Sammenhengende periode',
 
     'steg.kurs.enkeltdager.tittel': 'Hvilke dager søker du opplæringspenger?',
     'steg.kurs.enkeltdager.tekst':
@@ -118,15 +118,15 @@ const nn: Record<keyof typeof nb, string> = {
         'Viss du ikkje finn institusjonen der du har fått opplæring, trykk på "Legg til" etter at du har skrive inn namnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
 
-    'steg.kurs.enkeltdagEllerPeriode.spm': 'Gjeld søknaden enkeltdag eller periode?',
+    'steg.kurs.enkeltdagEllerPeriode.spm': 'Gjeld søknaden enkeltdag eller samanhengande periode?',
     'steg.kurs.enkeltdagEllerPeriode.description':
-        'Du kan legge til flere enkeltdager eller perioder etter du har valgt.',
+        'Du kan leggje til fleire enkeltdagar eller periodar etter du har valt.',
     'steg.kurs.enkeltdagEllerPeriode.enkeltdag': 'Enkeltdag',
-    'steg.kurs.enkeltdagEllerPeriode.periode': 'Periode',
+    'steg.kurs.enkeltdagEllerPeriode.periode': 'Samanhengande periode',
 
     'steg.kurs.enkeltdager.tittel': 'Kva dagar søkjer du opplæringspengar?',
     'steg.kurs.enkeltdager.tekst':
-        'Legg til dag og antall timer du er på opplæring, og eventuell reisetid til og fra opplæringen. Hvis du ikke reiser, trenger du ikke fylle ut timer med reise.',
+        'Legg til dag og talet timar du er på opplæring, og eventuell reisetid til og frå opplæringa. Viss du ikkje reiser, treng du ikkje fylle ut timar med reise.',
     'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
     'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
 
