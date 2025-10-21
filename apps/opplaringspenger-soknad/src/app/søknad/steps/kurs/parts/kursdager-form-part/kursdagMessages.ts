@@ -58,7 +58,55 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    'kursdag.form.dag.label': 'Dag {harFlereDager, select, true { {dagNr}} other{}} med opplæring',
+    'kursdag.form.dato.label': 'Vel dato',
+    'kursdag.form.tidKurs.label': 'Timar med opplæring',
+    'kursdag.form.tidReise.label': 'Timar med reise',
+    'kursdag.form.dato.validation.dateHasNoValue':
+        '{harFlereDager, select, true { Dag {dagNr}: } other{}}Du må velje dato. Skriv inn eller vel dato frå datoveljaren.',
+    'kursdag.form.dato.validation.dateHasInvalidFormat':
+        '{harFlereDager, select, true { Dag {dagNr}: } other{}}Du må oppgje dato i eit gyldig format. Gyldig format er dd.mm.åååå.',
+    'kursdag.form.dato.validation.likeKursdager':
+        '{harFlereDager, select, true { Dag {dagNr}: } other{}}Du har oppgjeve same dato fleire gongar.',
+    'kursdag.form.dato.validation.erHelgedag':
+        '{harFlereDager, select, true { Dag {dagNr}: } other{}}Du kan ikkje velje ein laurdag eller sundag.',
+    'kursdag.form.tidKurs.validation.timeHasNoValue':
+        'Du må fylle kor lenge kurset varer{harFlereDager, select, true { (dag {dagNr}, {dato})} other{}}.',
+    'kursdag.form.tidKurs.validation.hoursAreInvalid':
+        'Talet på timar er ikkje eit gyldig tal{harFlereDager, select, true { ({dato})} other{}}.',
+    'kursdag.form.tidKurs.validation.minutesAreInvalid':
+        'Talet på minutt er ikkje eit gyldig tal{harFlereDager, select, true { ({dato})} other{}}.',
+    'kursdag.form.tidKurs.validation.tooManyHours':
+        'Talet på timar kan ikkje overstige 24 timar{harFlereDager, select, true { ({dato})} other{}}.',
+    'kursdag.form.tidKurs.validation.tooManyMinutes':
+        'Talet på minutt kan ikkje overstige 59 minutt{harFlereDager, select, true { ({dato})} other{}}.',
+    'kursdag.form.tidKurs.validation.durationIsTooLong':
+        'Talet på timar og minutt registrert er for høgt. Tida kan ikkje overstige 24 timar{harFlereDager, select, true { ({dato})} other{}}.',
+    'kursdag.form.tidKurs.validation.durationIsTooShort':
+        'Talet på timar og minutt kan ikkje vere mindre enn 1 time{harFlereDager, select, true { ({dato})} other{}}.',
+    'kursdag.form.tidKurs.validation.minutesAreNegative':
+        'Talet på timar og minutt kan ikkje vere mindre enn 1 time{harFlereDager, select, true { ({dato})} other{}}.',
+    'kursdag.form.tidKurs.validation.hoursAreNegative':
+        'Talet på timar og minutt kan ikkje vere mindre enn 1 time{harFlereDager, select, true { ({dato})} other{}}.',
+    'kursdag.form.tidReise.validation.timeHasNoValue':
+        'Du må fylle ut kor lenge reisa varer{harFlereDager, select, true { {dato}} other{}}.',
+    'kursdag.form.tidReise.validation.hoursAreInvalid':
+        'Talet på timar med reise er ikkje eit gyldig tal{harFlereDager, select, true { {dato}} other{}}.',
+    'kursdag.form.tidReise.validation.minutesAreInvalid':
+        'Talet på minutt med reise er ikkje eit gyldig tal{harFlereDager, select, true { {dato}} other{}}.',
+    'kursdag.form.tidReise.validation.tooManyHours':
+        'Talet på timar med reise kan ikkje overstige 24 timar{harFlereDager, select, true { {dato}} other{}}.',
+    'kursdag.form.tidReise.validation.tooManyMinutes':
+        'Talet på minutt med reise kan ikkje overstige 59 minutt{harFlereDager, select, true { {dato}} other{}}.',
+    'kursdag.form.tidReise.validation.durationIsTooLong':
+        'Talet på timar og minutt registrert med reise er for høgt. Tida kan ikkje overstige 24 timar{harFlereDager, select, true { {dato}} other{}}.',
+    'kursdag.form.tidReise.validation.durationIsTooShort':
+        'Talet på timar og minutt med reise kan ikkje vere mindre enn 30 minutt{harFlereDager, select, true { {dato}} other{}}. Viss du ikkje har reisetid må du setje timar og minutt til 0.',
+    'kursdag.form.tidReise.validation.minutesAreNegative':
+        'Talet på timar og minutt med reise kan ikkje vere mindre enn 30 minutt{harFlereDager, select, true { {dato}} other{}}. Viss du ikkje har reisetid må du setje timar og minutt til 0.',
+    'kursdag.form.tidReise.validation.hoursAreNegative':
+        'Talet på timar og minutt med reise kan ikkje vere mindre enn 30 minutt{harFlereDager, select, true { {dato}} other{}}. Viss du ikkje har reisetid må du setje timar og minutt til 0.',
+    'kursdag.fjern.label': 'Fjern dag {harFlereDager, select, true { {dagNr}} other{}}',
 };
 
 export type KursdagMessageKeys = keyof typeof nb;
