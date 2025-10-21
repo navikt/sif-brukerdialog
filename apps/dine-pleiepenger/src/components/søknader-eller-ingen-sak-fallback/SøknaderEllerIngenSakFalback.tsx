@@ -11,11 +11,11 @@ import HvaSkjer from '../hva-skjer/HvaSkjer';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { browserEnv } from '../../utils/env';
 import Saksbehandlingstid from '../saksbehandlingstid/Saksbehandlingstid';
-import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import appSentryLogger from '../../utils/appSentryLogger';
+import { InnsendtSøknaderSchema } from '../../server/api-models/InnsendtSøknadSchema';
 
 const søknaderFetcher = async (url: string): Promise<InnsendtSøknad[]> =>
-    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
+    axios.get(url).then((res) => InnsendtSøknaderSchema.parse(res.data));
 
 const SøknaderEllerIngenSakFalback = () => {
     const { text } = useAppIntl();
