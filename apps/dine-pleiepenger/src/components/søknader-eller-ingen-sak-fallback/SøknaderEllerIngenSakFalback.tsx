@@ -11,7 +11,6 @@ import HvaSkjer from '../hva-skjer/HvaSkjer';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { browserEnv } from '../../utils/env';
 import Saksbehandlingstid from '../saksbehandlingstid/Saksbehandlingstid';
-import appSentryLogger from '../../utils/appSentryLogger';
 import { InnsendtSøknaderSchema } from '../../server/api-models/InnsendtSøknadSchema';
 
 const søknaderFetcher = async (url: string): Promise<InnsendtSøknad[]> =>
@@ -30,7 +29,6 @@ const SøknaderEllerIngenSakFalback = () => {
     });
 
     if (error) {
-        appSentryLogger.logError('fetch-søknader-failed', JSON.stringify(error));
         return <IngenSakEllerSøknadPage />;
     }
 
