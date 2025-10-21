@@ -33,7 +33,7 @@ export default defineConfig({
         },
     ],
     define: {
-        INJECT_DECORATOR: true,
+        INJECT_DECORATOR: false,
     },
     server: {
         port: 8080,
