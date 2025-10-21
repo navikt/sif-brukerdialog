@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Skeleton, VStack } from '@navikt/ds-react';
 import axios from 'axios';
 import useSWR from 'swr';
