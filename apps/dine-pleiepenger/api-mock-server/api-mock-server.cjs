@@ -41,7 +41,7 @@ const startServer = () => {
     });
 
     server.get('/soknad', (req, res) => {
-        res.send([]);
+        res.send(søknader);
     });
 
     server.get('/soknad/:soknadId/dokument', (req, res) => {
@@ -49,7 +49,7 @@ const startServer = () => {
     });
 
     server.get('/saker', (req, res) => {
-        res.send(saker);
+        res.send([]);
     });
 
     server.get('/saker/saksbehandlingstid', (req, res) => {

@@ -61,7 +61,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const innsynsdata: Innsynsdata = {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             søker,
-            innsendteSøknader: harSak ? [] : innsendteSøknader,
             brukerprofil,
             saker,
             harSak,

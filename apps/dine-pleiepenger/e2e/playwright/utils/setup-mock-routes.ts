@@ -1,7 +1,6 @@
 import { Innsynsdata } from '../../../src/types/InnsynData';
 import { sakerMock } from '../mockdata/saker.mock';
 import { søkerMockData } from '../mockdata/søker.mock';
-import { søknaderMockData } from '../mockdata/søknader.mock';
 
 export const setupMockRoutes = async (page: any) => {
     await page.route('https://login.nav.no/**', async (route) => {
@@ -20,7 +19,6 @@ export const setupMockRoutes = async (page: any) => {
             harSak: true,
             søker: søkerMockData as any,
             brukerprofil: {} as any,
-            innsendteSøknader: søknaderMockData as any,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });

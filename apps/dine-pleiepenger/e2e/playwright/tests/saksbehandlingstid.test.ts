@@ -4,7 +4,6 @@ import { Innsynsdata } from '../../../src/types/InnsynData';
 import { sakerAvsluttetMock } from '../mockdata/saker-avsluttet.mock';
 import { sakerMock } from '../mockdata/saker.mock';
 import { søkerMockData } from '../mockdata/søker.mock';
-import { søknaderMockData } from '../mockdata/søknader.mock';
 import { setupMockRoutes } from '../utils/setup-mock-routes';
 
 const defaultInnsynsdata: Innsynsdata = {
@@ -12,7 +11,6 @@ const defaultInnsynsdata: Innsynsdata = {
     harSak: true,
     søker: søkerMockData,
     brukerprofil: {} as any,
-    innsendteSøknader: søknaderMockData as any,
 };
 
 const pleietrengende = sakerMock[0].pleietrengende;
