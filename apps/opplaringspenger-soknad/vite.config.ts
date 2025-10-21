@@ -17,6 +17,9 @@ export default defineConfig({
             },
         },
     ],
+    define: {
+        'import.meta.env.INJECT_DECORATOR': false,
+    },
     resolve: {},
     build: {
         sourcemap: true,

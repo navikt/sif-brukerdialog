@@ -4,7 +4,7 @@ import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
 
-if (INJECT_DECORATOR) {
+if (import.meta.env.INJECT_DECORATOR) {
     injectDecoratorClientSide({
         env: 'dev',
         params: {
