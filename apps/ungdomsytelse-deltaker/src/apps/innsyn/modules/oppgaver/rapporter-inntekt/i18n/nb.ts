@@ -10,9 +10,9 @@ export const rapporterInntektMessages_nb = {
     'rapporterInntektOppgavePart.tittel': 'Inntekt i {månedOgÅr}',
     'rapporterInntektOppgavePart.oppsummering': 'Oppsummering',
     'rapporterInntektOppgavePart.haddeInntekt': 'Hadde du inntekt i {måned}?',
-    'rapporterInntektOppgavePart.inntektFørSkatt': 'Inntekt (før skatt)',
+    'rapporterInntektOppgavePart.inntektFørSkatt': 'Inntekt før skatt',
     'rapporterInntektOppgavePart.løst.utenInfo':
-        'Vi har fått svaret ditt, men informasjonen i denne siden er ikke oppdatert enda.',
+        'Vi har fått svaret ditt, men informasjonen på denne siden er ikke oppdatert enda. Du kan prøve å laste inn siden på nytt.',
 
     'rapporterInntektKvittering.tittel': 'Svaret ditt er sendt inn',
     'rapporterInntektKvittering.harHattInntekt':

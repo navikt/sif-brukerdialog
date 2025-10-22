@@ -130,7 +130,7 @@ test.describe('Innsyn - oppgaver', () => {
             const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
             await tidligereOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i september' }).click();
             await expect(page.getByText('Hadde du inntekt i september?Ja')).toBeVisible();
-            await expect(page.getByText('Inntekt (før skatt)2 350')).toBeVisible();
+            await expect(page.getByText('Inntekt før skatt2 350')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
         });
     });

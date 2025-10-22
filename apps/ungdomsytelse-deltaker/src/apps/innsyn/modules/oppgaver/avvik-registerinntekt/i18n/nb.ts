@@ -6,7 +6,7 @@ export const avvikRegisterinntektMessages_nb = {
         'Vi har fått disse opplysningene fra arbeidsgiver om inntekten din i {rapporteringsmåned}:',
 
     'inntektTabell.totalt': 'Totalt',
-    'inntektTabell.inntekt': 'Inntekt (før skatt)',
+    'inntektTabell.inntekt': 'Inntekt før skatt',
 
     'avvikRegisterinntektOppgavetekst.navYtelse':
         'Vi har fått disse opplysningene om ytelse fra Nav for {rapporteringsmåned}:',
