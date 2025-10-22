@@ -1,5 +1,5 @@
 import { Status, StatusMessage } from '@navikt/appstatus-react-ds';
-import { BodyShort, BoxNew, HStack, Theme, VStack } from '@navikt/ds-react';
+import { BodyShort, HStack, Theme, VStack } from '@navikt/ds-react';
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { configureLogger } from '@navikt/next-logger';
@@ -56,14 +56,11 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         return (
             <EmptyPage>
                 <Head>Henter informasjon - Dine pleiepenger for sykt barn</Head>
-
                 <HStack align={'center'} justify={'center'} marginBlock={'8 0'}>
-                    <BoxNew background="info-moderateA" padding={'10'} borderRadius={'8'}>
-                        <VStack gap={'4'}>
-                            <ComponentLoader />
-                            <BodyShort size="large">Henter informasjon...</BodyShort>
-                        </VStack>
-                    </BoxNew>
+                    <VStack gap={'4'}>
+                        <ComponentLoader />
+                        <BodyShort size="large">Henter informasjon...</BodyShort>
+                    </VStack>
                 </HStack>
             </EmptyPage>
         );
