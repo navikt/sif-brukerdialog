@@ -45,7 +45,7 @@
         "zod": "4.1.12"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.2",
+        "@axe-core/playwright": "4.11.0",
         "@navikt/ds-css": "7.32.2",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.32.2",

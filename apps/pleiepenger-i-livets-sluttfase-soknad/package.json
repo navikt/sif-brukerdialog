@@ -44,7 +44,7 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.2",
+        "@axe-core/playwright": "4.11.0",
         "@playwright/test": "1.56.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "9.1.13",

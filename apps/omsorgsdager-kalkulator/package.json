@@ -34,7 +34,7 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.2",
+        "@axe-core/playwright": "4.11.0",
         "@playwright/test": "1.56.1",
         "@tailwindcss/postcss": "4.1.14",
         "@tailwindcss/vite": "4.1.14",

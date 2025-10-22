@@ -41,7 +41,7 @@
         "react-router-dom": "7.9.4"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.2",
+        "@axe-core/playwright": "4.11.0",
         "@mswjs/data": "0.16.2",
         "@navikt/ds-tailwind": "7.32.2",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
