@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const server = express();
 const søknader = require('./mockdata/soknader.json');
 const saker = require('./mockdata/saker.json');
+const flereSaker = require('./mockdata/flere-saker.json');
 
 server.use(express.json());
 
@@ -49,7 +50,7 @@ const startServer = () => {
     });
 
     server.get('/saker', (req, res) => {
-        res.send([]);
+        res.send(flereSaker);
     });
 
     server.get('/saker/saksbehandlingstid', (req, res) => {
