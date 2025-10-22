@@ -20,6 +20,11 @@ const Saksbehandlingstid = ({ frist, venteårsak }: Props) => {
     const { data, isLoading } = useSWR(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/saksbehandlingstid`,
         saksbehandlingstidFetcher,
+        {
+            revalidateOnFocus: false,
+            revalidateOnReconnect: false,
+            dedupingInterval: 60000, // Cache i 1 minutt
+        },
     );
     const saksbehandlingstidUker = data?.saksbehandlingstidUker ?? 7;
     return (
