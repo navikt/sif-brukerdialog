@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.11.0
+
+### Minor Changes
+
+- Legge til tre moduler i outputFileTracingIncludes. De kom ikke med i bygget server feilet med melding om manglende filer.
+
 ## 1.10.21
 
 ### Patch Changes
