@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.10.22
+
+### Patch Changes
+
+- Remerge av endringer på velg sak side
+
 ## 1.10.21
 
 ### Patch Changes
