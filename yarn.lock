@@ -2031,7 +2031,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/autocomplete@npm:^6.0.0, @codemirror/autocomplete@npm:^6.18.7":
+"@codemirror/autocomplete@npm:^6.0.0, @codemirror/autocomplete@npm:^6.19.0":
   version: 6.19.0
   resolution: "@codemirror/autocomplete@npm:6.19.0"
   dependencies:
@@ -2043,7 +2043,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/commands@npm:^6.0.0, @codemirror/commands@npm:^6.1.0, @codemirror/commands@npm:^6.8.1":
+"@codemirror/commands@npm:^6.0.0, @codemirror/commands@npm:^6.1.0, @codemirror/commands@npm:^6.9.0":
   version: 6.9.0
   resolution: "@codemirror/commands@npm:6.9.0"
   dependencies:
@@ -2127,7 +2127,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/view@npm:^6.0.0, @codemirror/view@npm:^6.17.0, @codemirror/view@npm:^6.23.0, @codemirror/view@npm:^6.27.0, @codemirror/view@npm:^6.35.0, @codemirror/view@npm:^6.38.2":
+"@codemirror/view@npm:^6.0.0, @codemirror/view@npm:^6.17.0, @codemirror/view@npm:^6.23.0, @codemirror/view@npm:^6.27.0, @codemirror/view@npm:^6.35.0, @codemirror/view@npm:^6.38.6":
   version: 6.38.6
   resolution: "@codemirror/view@npm:6.38.6"
   dependencies:
@@ -8143,17 +8143,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:4.10.3":
-  version: 4.10.3
-  resolution: "@sanity/vision@npm:4.10.3"
+"@sanity/vision@npm:4.11.0":
+  version: 4.11.0
+  resolution: "@sanity/vision@npm:4.11.0"
   dependencies:
-    "@codemirror/autocomplete": "npm:^6.18.7"
-    "@codemirror/commands": "npm:^6.8.1"
+    "@codemirror/autocomplete": "npm:^6.19.0"
+    "@codemirror/commands": "npm:^6.9.0"
     "@codemirror/lang-javascript": "npm:^6.2.4"
     "@codemirror/language": "npm:^6.11.3"
     "@codemirror/search": "npm:^6.5.11"
     "@codemirror/state": "npm:^6.5.2"
-    "@codemirror/view": "npm:^6.38.2"
+    "@codemirror/view": "npm:^6.38.6"
     "@juggle/resize-observer": "npm:^3.4.0"
     "@lezer/highlight": "npm:^1.2.1"
     "@rexxars/react-json-inspector": "npm:^9.0.1"
@@ -8170,13 +8170,13 @@ __metadata:
     quick-lru: "npm:^5.1.1"
     react-compiler-runtime: "npm:19.1.0-rc.3"
     react-fast-compare: "npm:^3.2.2"
-    react-rx: "npm:^4.2.1"
+    react-rx: "npm:^4.2.2"
     rxjs: "npm:^7.8.2"
     use-effect-event: "npm:^2.0.3"
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1.15
-  checksum: 10/91534338adeed98b61dca0cef3dbc3f1df98ea8e6c7d6b665efcf6de322111f85d81c7a6dc71ad9d1ec0c9f19b1db6a5520ea002ae176fb14d8da70cdc3aa9e0
+  checksum: 10/577675ee1681fc7ac54f781b68d51eeba514949ab77eb5a32e05c726a6f6d39786662b801d7ed1ef670a6e8f1b8d244f1346c081e0c6e126bc5bebc2675ddc2d
   languageName: node
   linkType: hard
 
@@ -11346,7 +11346,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:4.10.3"
+    "@sanity/vision": "npm:4.11.0"
     "@types/react": "npm:19.2.2"
     dayjs: "npm:1.11.18"
     eslint: "npm:9.38.0"
@@ -24748,6 +24748,20 @@ __metadata:
     react: ^18.3 || >=19.0.0-0
     rxjs: ^7
   checksum: 10/1975288e7e7d36bc3c8860b88f44ba36ff128570c3007e75ba292f6090696605407fe5e23ef63cae8745419fa99074bf74b17a30f4248d89b7d29c6ca62d3e02
+  languageName: node
+  linkType: hard
+
+"react-rx@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "react-rx@npm:4.2.2"
+  dependencies:
+    observable-callback: "npm:^1.0.3"
+    react-compiler-runtime: "npm:1.0.0"
+    use-effect-event: "npm:^2.0.3"
+  peerDependencies:
+    react: ^18.3 || >=19.0.0-0
+    rxjs: ^7
+  checksum: 10/40f8c335729433570764a35527fb53c4a59bdb05e7be4ee681c050b12dbd42704028f4f10f0cbf560b80a93a470f2945faedbdbb36d4229231adbbcb9baa5d8a
   languageName: node
   linkType: hard
 
