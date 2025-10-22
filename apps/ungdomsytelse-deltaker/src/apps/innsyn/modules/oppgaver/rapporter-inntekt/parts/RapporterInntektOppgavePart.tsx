@@ -82,7 +82,7 @@ const RapporterInntektOppgavePart = ({
                                 {arbeidstakerOgFrilansInntekt > 0 && (
                                     <FormSummary.Answer>
                                         <FormSummary.Label>
-                                            <AppText id="rapporterInntektOppgavePart.lønnFørSkatt" />
+                                            <AppText id="rapporterInntektOppgavePart.inntektFørSkatt" />
                                         </FormSummary.Label>
                                         <FormSummary.Value>
                                             <TallSvar verdi={arbeidstakerOgFrilansInntekt} />

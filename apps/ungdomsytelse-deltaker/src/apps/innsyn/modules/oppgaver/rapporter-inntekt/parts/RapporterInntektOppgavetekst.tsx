@@ -29,7 +29,7 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
                     />
                 </BodyLong>
                 <BodyLong spacing>
-                    <AppText id="rapporterInntektOppgavetekst.ingenLønn" values={{ måned }} />
+                    <AppText id="rapporterInntektOppgavetekst.ingenInntekt" values={{ måned }} />
                 </BodyLong>
             </Box>
         </VStack>

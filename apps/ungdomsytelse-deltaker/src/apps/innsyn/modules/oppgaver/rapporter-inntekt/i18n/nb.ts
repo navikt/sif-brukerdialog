@@ -1,15 +1,16 @@
 export const rapporterInntektMessages_nb = {
     'rapporterInntektOppgavetekst.tittel': 'Hei {deltakerNavn}',
-    'rapporterInntektOppgavetekst.intro': 'Gi oss beskjed hvis du fikk utbetalt lønn i {måned}.',
+    'rapporterInntektOppgavetekst.intro':
+        'Gi oss beskjed hvis du hadde inntekt og fikk utbetalt lønn fra en arbeidsgiver i {måned}.',
     'rapporterInntektOppgavetekst.instruks':
-        'Kryss av på “Ja”, skriv inn lønnen du fikk (før skatt) og send inn svaret ditt <strong>senest {frist}</strong>.',
-    'rapporterInntektOppgavetekst.ingenLønn':
-        'Du kan la være å svare eller krysse av på ”Nei” hvis du ikke hadde lønn i {måned}.',
+        'Kryss av på “Ja”, skriv inn inntekten din og send inn svaret ditt <strong>senest {frist}</strong>.',
+    'rapporterInntektOppgavetekst.ingenInntekt':
+        'Du kan la være å svare eller krysse av på ”Nei” hvis du ikke hadde inntekt i {måned}.',
 
-    'rapporterInntektOppgavePart.tittel': 'Lønn i {månedOgÅr}',
+    'rapporterInntektOppgavePart.tittel': 'Inntekt i {månedOgÅr}',
     'rapporterInntektOppgavePart.oppsummering': 'Oppsummering',
-    'rapporterInntektOppgavePart.fikkUtbetaltLønn': 'Fikk du utbetalt lønn i {måned}?',
-    'rapporterInntektOppgavePart.lønnFørSkatt': 'Lønn (før skatt)',
+    'rapporterInntektOppgavePart.fikkUtbetaltLønn': 'Hadde du inntekt i {måned}?',
+    'rapporterInntektOppgavePart.inntektFørSkatt': 'Inntekt (før skatt)',
     'rapporterInntektOppgavePart.løst.utenInfo':
         'Vi har fått svaret ditt, men informasjonen i denne siden er ikke oppdatert enda.',
 
