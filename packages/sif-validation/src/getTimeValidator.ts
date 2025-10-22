@@ -100,7 +100,9 @@ const getTimeValidator =
         }
 
         if (min) {
-            if (getMinutes(hours || 0, minutes || 0) < getMinutes(min.hours, min.minutes)) {
+            const minTotal = getMinutes(hours || 0, minutes || 0);
+            /** Valider på min hvis det er registrert tid og/eller required er satt */
+            if ((minTotal > 0 || required) && minTotal < getMinutes(min.hours, min.minutes)) {
                 return ValidateTimeError.durationIsTooShort;
             }
         }

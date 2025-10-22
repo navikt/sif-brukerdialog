@@ -1,5 +1,5 @@
 import { Heading, ReadMore } from '@navikt/ds-react';
-import { AppText, useAppIntl } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 const GodkjentHelseinstitusjonInfo = () => {
     const { text } = useAppIntl();

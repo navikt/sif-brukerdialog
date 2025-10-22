@@ -7,7 +7,8 @@ import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbe
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
+import { kursdagMessages } from '../søknad/steps/kurs/parts/kursdager-form-part/kursdagMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/parts/kursperioder-form-part/kursperiodeMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
@@ -27,6 +28,7 @@ const nb = {
     ...kursperiodeMessages.nb,
     ...arbeidstidMessages.nb,
     ...omBarnetFormIntlMessages.nb,
+    ...kursdagMessages.nb,
 
     'application.title': 'Søknad om opplæringspenger',
 
@@ -227,6 +229,7 @@ const nn: Record<keyof typeof nb, string> = {
     ...oppsummeringMessages.nn,
     ...validateApiDataMessages.nn,
     ...velkommenPageMessages.nn,
+    ...kursdagMessages.nn,
 
     'application.title': 'Søknad om opplæringspengar',
 

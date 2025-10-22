@@ -25,12 +25,12 @@ export const fyllUtAnnetBarn = async (page: Page) => {
 export const kontrollerRegistrertBarnOppsummering = async (page: Page) => {
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
     await expect(page.getByText('NavnALFABETISK FAGGOTT')).toBeVisible();
-    await expect(page.getByText('Fødselsdato08.06.2019')).toBeVisible();
+    await expect(page.getByText('Fødselsdato8. juni 2019')).toBeVisible();
 };
 
 export const kontrollerAnnetBarnOppsummering = async (page: Page) => {
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
-    await expect(page.getByText('Fødselsdato08.12.2022')).toBeVisible();
+    await expect(page.getByText('Fødselsdato8. desember 2022')).toBeVisible();
     await expect(page.getByText('NavnErik')).toBeVisible();
     await expect(page.getByText('Uten fødselsnummer/D-nummerBarnet bor i utlandet')).toBeVisible();
     await expect(page.getByText('FødselsattestIkonnavlogopng.')).toBeVisible();
