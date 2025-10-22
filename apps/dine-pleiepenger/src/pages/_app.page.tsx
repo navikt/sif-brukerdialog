@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
 
                 <HStack align={'center'} justify={'center'} marginBlock={'8 0'}>
                     <BoxNew background="info-moderateA" padding={'10'} borderRadius={'8'}>
-                        <VStack spacing={'4'}>
+                        <VStack gap={'4'}>
                             <ComponentLoader />
                             <BodyShort size="large">Henter informasjon...</BodyShort>
                         </VStack>

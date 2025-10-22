@@ -2768,9 +2768,9 @@ __metadata:
   linkType: hard
 
 "@eslint-community/regexpp@npm:^4.10.0, @eslint-community/regexpp@npm:^4.12.1":
-  version: 4.12.1
-  resolution: "@eslint-community/regexpp@npm:4.12.1"
-  checksum: 10/c08f1dd7dd18fbb60bdd0d85820656d1374dd898af9be7f82cb00451313402a22d5e30569c150315b4385907cdbca78c22389b2a72ab78883b3173be317620cc
+  version: 4.12.2
+  resolution: "@eslint-community/regexpp@npm:4.12.2"
+  checksum: 10/049b280fddf71dd325514e0a520024969431dc3a8b02fa77476e6820e9122f28ab4c9168c11821f91a27982d2453bcd7a66193356ea84e84fb7c8d793be1ba0c
   languageName: node
   linkType: hard
 
@@ -7124,25 +7124,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/block-tools@npm:^3.5.10, @portabletext/block-tools@npm:^3.5.11":
-  version: 3.5.11
-  resolution: "@portabletext/block-tools@npm:3.5.11"
+"@portabletext/block-tools@npm:^3.5.10, @portabletext/block-tools@npm:^3.5.12":
+  version: 3.5.12
+  resolution: "@portabletext/block-tools@npm:3.5.12"
   dependencies:
-    "@portabletext/sanity-bridge": "npm:^1.1.14"
+    "@portabletext/sanity-bridge": "npm:^1.1.15"
     "@portabletext/schema": "npm:^1.2.0"
     get-random-values-esm: "npm:1.0.2"
     lodash: "npm:^4.17.21"
   peerDependencies:
-    "@sanity/types": ^4.10.3
-  checksum: 10/cf948289c27a8c1e84d9102af3671b43933e7ff4f635d626486c1aa113ce97ccb7f052ab778568b77f7da0491b5b3a8d9ffa7b34c5043c80dad8df3439827e68
+    "@sanity/types": ^4.11.0
+  checksum: 10/a464b424d040d7b6239d7b191956e7b3e64aa73ffb50a6195747ab71c5ff63d2e2c894001ea0567597d8ee51d144da744069b3141a5f56942b1882a6ed810409
   languageName: node
   linkType: hard
 
 "@portabletext/editor@npm:^2.13.7":
-  version: 2.14.4
-  resolution: "@portabletext/editor@npm:2.14.4"
+  version: 2.15.1
+  resolution: "@portabletext/editor@npm:2.15.1"
   dependencies:
-    "@portabletext/block-tools": "npm:^3.5.11"
+    "@portabletext/block-tools": "npm:^3.5.12"
     "@portabletext/keyboard-shortcuts": "npm:^1.1.1"
     "@portabletext/patches": "npm:^1.1.8"
     "@portabletext/schema": "npm:^1.2.0"
@@ -7159,12 +7159,12 @@ __metadata:
     slate-react: "npm:0.117.4"
     xstate: "npm:^5.23.0"
   peerDependencies:
-    "@portabletext/sanity-bridge": ^1.1.14
-    "@sanity/schema": ^4.10.3
-    "@sanity/types": ^4.10.3
+    "@portabletext/sanity-bridge": ^1.1.15
+    "@sanity/schema": ^4.11.0
+    "@sanity/types": ^4.11.0
     react: ^18.3 || ^19
     rxjs: ^7.8.2
-  checksum: 10/5dc961a3fd961ae0761e2a9a86536c3293670a7a3a824d37dd1ec85fa437050b74440cfbd5e5bcdc9ddb5447265543eaea188f3dc2b5699033503a67a56a8f74
+  checksum: 10/15e2453702063a15e67584ff9593d6272c1ac5a4ca6152c12c65c0487c1a3505d3c0f400334e434a232ae969c5ebc7afbe7927c3d18eb087c4e00d2ec03d4616
   languageName: node
   linkType: hard
 
@@ -7197,17 +7197,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/sanity-bridge@npm:^1.1.14":
-  version: 1.1.14
-  resolution: "@portabletext/sanity-bridge@npm:1.1.14"
+"@portabletext/sanity-bridge@npm:^1.1.15":
+  version: 1.1.15
+  resolution: "@portabletext/sanity-bridge@npm:1.1.15"
   dependencies:
     "@portabletext/schema": "npm:^1.2.0"
     get-random-values-esm: "npm:^1.0.2"
     lodash.startcase: "npm:^4.4.0"
   peerDependencies:
-    "@sanity/schema": ^4.10.3
-    "@sanity/types": ^4.10.3
-  checksum: 10/ec2c2ca5cf6afc773bef505540d3a6ba859e2b9786590651baadfdd589aa1932a9a2a60ffc5d4a261651b957a738224baacd8eee7d4937776a9f16ed2b5b5b3d
+    "@sanity/schema": ^4.11.0
+    "@sanity/types": ^4.11.0
+  checksum: 10/0aac4294b9c307306328e7af26e1f3955a0051bb713c9b752cf461875f208b384bcd165559ceb505ef9a0226effd50d4fce830e5de9c38279ab9eef842c51ca2
   languageName: node
   linkType: hard
 
@@ -7862,11 +7862,11 @@ __metadata:
   linkType: hard
 
 "@sanity/message-protocol@npm:^0.17.2":
-  version: 0.17.2
-  resolution: "@sanity/message-protocol@npm:0.17.2"
+  version: 0.17.3
+  resolution: "@sanity/message-protocol@npm:0.17.3"
   dependencies:
-    "@sanity/comlink": "npm:^3.0.9"
-  checksum: 10/59cce7f74cbafa7f6a088d5611d9535fc40c811227878649c279b1b6ed635d2c44de3ddefb0200681c12536c6d1ce4075b5bb2ca5d194cf422bde829a287e68f
+    "@sanity/comlink": "npm:^3.1.1"
+  checksum: 10/dd71508a5f1455bccba504427ed01602601cd31f6c4b8e16bf0db6c899542bb7e9c928ca482cf28b2790412a4f005fd39ca1db523b0e1ba17cc0f81ee3e0b535
   languageName: node
   linkType: hard
 
@@ -8345,74 +8345,74 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/cli-darwin@npm:2.56.1":
-  version: 2.56.1
-  resolution: "@sentry/cli-darwin@npm:2.56.1"
+"@sentry/cli-darwin@npm:2.57.0":
+  version: 2.57.0
+  resolution: "@sentry/cli-darwin@npm:2.57.0"
   conditions: os=darwin
   languageName: node
   linkType: hard
 
-"@sentry/cli-linux-arm64@npm:2.56.1":
-  version: 2.56.1
-  resolution: "@sentry/cli-linux-arm64@npm:2.56.1"
+"@sentry/cli-linux-arm64@npm:2.57.0":
+  version: 2.57.0
+  resolution: "@sentry/cli-linux-arm64@npm:2.57.0"
   conditions: (os=linux | os=freebsd | os=android) & cpu=arm64
   languageName: node
   linkType: hard
 
-"@sentry/cli-linux-arm@npm:2.56.1":
-  version: 2.56.1
-  resolution: "@sentry/cli-linux-arm@npm:2.56.1"
+"@sentry/cli-linux-arm@npm:2.57.0":
+  version: 2.57.0
+  resolution: "@sentry/cli-linux-arm@npm:2.57.0"
   conditions: (os=linux | os=freebsd | os=android) & cpu=arm
   languageName: node
   linkType: hard
 
-"@sentry/cli-linux-i686@npm:2.56.1":
-  version: 2.56.1
-  resolution: "@sentry/cli-linux-i686@npm:2.56.1"
+"@sentry/cli-linux-i686@npm:2.57.0":
+  version: 2.57.0
+  resolution: "@sentry/cli-linux-i686@npm:2.57.0"
   conditions: (os=linux | os=freebsd | os=android) & (cpu=x86 | cpu=ia32)
   languageName: node
   linkType: hard
 
-"@sentry/cli-linux-x64@npm:2.56.1":
-  version: 2.56.1
-  resolution: "@sentry/cli-linux-x64@npm:2.56.1"
+"@sentry/cli-linux-x64@npm:2.57.0":
+  version: 2.57.0
+  resolution: "@sentry/cli-linux-x64@npm:2.57.0"
   conditions: (os=linux | os=freebsd | os=android) & cpu=x64
   languageName: node
   linkType: hard
 
-"@sentry/cli-win32-arm64@npm:2.56.1":
-  version: 2.56.1
-  resolution: "@sentry/cli-win32-arm64@npm:2.56.1"
+"@sentry/cli-win32-arm64@npm:2.57.0":
+  version: 2.57.0
+  resolution: "@sentry/cli-win32-arm64@npm:2.57.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@sentry/cli-win32-i686@npm:2.56.1":
-  version: 2.56.1
-  resolution: "@sentry/cli-win32-i686@npm:2.56.1"
+"@sentry/cli-win32-i686@npm:2.57.0":
+  version: 2.57.0
+  resolution: "@sentry/cli-win32-i686@npm:2.57.0"
   conditions: os=win32 & (cpu=x86 | cpu=ia32)
   languageName: node
   linkType: hard
 
-"@sentry/cli-win32-x64@npm:2.56.1":
-  version: 2.56.1
-  resolution: "@sentry/cli-win32-x64@npm:2.56.1"
+"@sentry/cli-win32-x64@npm:2.57.0":
+  version: 2.57.0
+  resolution: "@sentry/cli-win32-x64@npm:2.57.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
 "@sentry/cli@npm:^2.51.0":
-  version: 2.56.1
-  resolution: "@sentry/cli@npm:2.56.1"
+  version: 2.57.0
+  resolution: "@sentry/cli@npm:2.57.0"
   dependencies:
-    "@sentry/cli-darwin": "npm:2.56.1"
-    "@sentry/cli-linux-arm": "npm:2.56.1"
-    "@sentry/cli-linux-arm64": "npm:2.56.1"
-    "@sentry/cli-linux-i686": "npm:2.56.1"
-    "@sentry/cli-linux-x64": "npm:2.56.1"
-    "@sentry/cli-win32-arm64": "npm:2.56.1"
-    "@sentry/cli-win32-i686": "npm:2.56.1"
-    "@sentry/cli-win32-x64": "npm:2.56.1"
+    "@sentry/cli-darwin": "npm:2.57.0"
+    "@sentry/cli-linux-arm": "npm:2.57.0"
+    "@sentry/cli-linux-arm64": "npm:2.57.0"
+    "@sentry/cli-linux-i686": "npm:2.57.0"
+    "@sentry/cli-linux-x64": "npm:2.57.0"
+    "@sentry/cli-win32-arm64": "npm:2.57.0"
+    "@sentry/cli-win32-i686": "npm:2.57.0"
+    "@sentry/cli-win32-x64": "npm:2.57.0"
     https-proxy-agent: "npm:^5.0.0"
     node-fetch: "npm:^2.6.7"
     progress: "npm:^2.0.3"
@@ -8437,7 +8437,7 @@ __metadata:
       optional: true
   bin:
     sentry-cli: bin/sentry-cli
-  checksum: 10/d2729286d2904de0448bfc72e003bd9b76af6b7fe502bc53344048b95dfece75565a15fa74dcb0e9fa71c39a5786e361f083d7be6bf17bab8a14d137394e5c54
+  checksum: 10/f73049676c210040fc704965d93668c2e56fb4347c378a3d418c1965457e28ac250cab3a042dd230730636de04df9a7c735789487baf7714f75385589733ef66
   languageName: node
   linkType: hard
 
@@ -12140,14 +12140,14 @@ __metadata:
   linkType: hard
 
 "bare-events@npm:^2.7.0":
-  version: 2.8.0
-  resolution: "bare-events@npm:2.8.0"
+  version: 2.8.1
+  resolution: "bare-events@npm:2.8.1"
   peerDependencies:
     bare-abort-controller: "*"
   peerDependenciesMeta:
     bare-abort-controller:
       optional: true
-  checksum: 10/3b3330593daa5bcbae9d62696cc6b77883c99f551412bd03cc7aee6ff5e5a8ea1a442069642b3c45c3dcdadbb732028f173ea2aaf9d418a19df3262b681bf9b6
+  checksum: 10/004a61f3b872563deb5d80a6dd4a835078f59eaf05a7b6fd52430bff1c593ca4d94551cfc64b3058e91276b5b98b336132b9641b799eb38c1c9168d6b286dcee
   languageName: node
   linkType: hard
 
@@ -12165,7 +12165,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"baseline-browser-mapping@npm:^2.8.9":
+"baseline-browser-mapping@npm:^2.8.19":
   version: 2.8.19
   resolution: "baseline-browser-mapping@npm:2.8.19"
   bin:
@@ -12415,17 +12415,17 @@ __metadata:
   linkType: hard
 
 "browserslist@npm:^4.24.0, browserslist@npm:^4.26.3":
-  version: 4.26.3
-  resolution: "browserslist@npm:4.26.3"
+  version: 4.27.0
+  resolution: "browserslist@npm:4.27.0"
   dependencies:
-    baseline-browser-mapping: "npm:^2.8.9"
-    caniuse-lite: "npm:^1.0.30001746"
-    electron-to-chromium: "npm:^1.5.227"
-    node-releases: "npm:^2.0.21"
-    update-browserslist-db: "npm:^1.1.3"
+    baseline-browser-mapping: "npm:^2.8.19"
+    caniuse-lite: "npm:^1.0.30001751"
+    electron-to-chromium: "npm:^1.5.238"
+    node-releases: "npm:^2.0.26"
+    update-browserslist-db: "npm:^1.1.4"
   bin:
     browserslist: cli.js
-  checksum: 10/49add06fd753a2514d84c75a7de8d9fb3d70be675e53b72981d87f0c0ff40d8a8cd0bd92f77400381704be0bf1c9c5c65aef95d03843d69475ff55188aa12124
+  checksum: 10/56db4cdb98b5c93797a47e5a60decb144f73a2ae41c60a16c41b75516fabcb0db0116b8cfcf3a26c960cc6c9ab1c4f4801d8d3a743ec72f27acfe5380153ba2f
   languageName: node
   linkType: hard
 
@@ -12670,7 +12670,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001579, caniuse-lite@npm:^1.0.30001746":
+"caniuse-lite@npm:^1.0.30001579, caniuse-lite@npm:^1.0.30001751":
   version: 1.0.30001751
   resolution: "caniuse-lite@npm:1.0.30001751"
   checksum: 10/608f7e1248b7023020382c7dbb0ef389693b3fc98193c3ccea2d44126306d6ac905a5061cf9e62bf640535a86e7a98e563b34c02f909296cfe228f41627a4dc7
@@ -14736,10 +14736,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.5.227":
-  version: 1.5.237
-  resolution: "electron-to-chromium@npm:1.5.237"
-  checksum: 10/d21837cfc70038f547d8bf2328e5139f5e4143e365d64633fca568772dd68ceac2cf0d802f0d16921e6df925efb3527f2ba664dbcfa7ddd75e21465d2b0d4a6c
+"electron-to-chromium@npm:^1.5.238":
+  version: 1.5.238
+  resolution: "electron-to-chromium@npm:1.5.238"
+  checksum: 10/5f1a9c260388e7d22a54525807e9b8c356b113c1f05004ad8a4af56afd330f6fbbc438c28ad5156f4ad782dd713d9ed35a931937b5b9df1886a8e11579779790
   languageName: node
   linkType: hard
 
@@ -16975,11 +16975,11 @@ __metadata:
   linkType: hard
 
 "get-tsconfig@npm:^4.10.0":
-  version: 4.12.0
-  resolution: "get-tsconfig@npm:4.12.0"
+  version: 4.13.0
+  resolution: "get-tsconfig@npm:4.13.0"
   dependencies:
     resolve-pkg-maps: "npm:^1.0.0"
-  checksum: 10/1bce6263de6da11c747e804aad1d2d2c1cd893ea4b34a135c3bc1da94f7a8a29d4b23c47e73fd0b1b812650ad48956db5415430f56d7c73670a337a5c4fe4559
+  checksum: 10/3603c6da30e312636e4c20461e779114c9126601d1eca70ee4e36e3e3c00e3c21892d2d920027333afa2cc9e20998a436b14abe03a53cde40742581cb0e9ceb2
   languageName: node
   linkType: hard
 
@@ -18812,12 +18812,12 @@ __metadata:
   linkType: hard
 
 "isomorphic-dompurify@npm:^2.26.0":
-  version: 2.30.0
-  resolution: "isomorphic-dompurify@npm:2.30.0"
+  version: 2.30.1
+  resolution: "isomorphic-dompurify@npm:2.30.1"
   dependencies:
     dompurify: "npm:^3.3.0"
     jsdom: "npm:^27.0.1"
-  checksum: 10/8a486e8426e2d12e96f27c32b6404ee3f4c727e32695fe8932f6600978b442659e66039e586ef0cc489ca8944c00a254fb0ebf0f373dccb5c833a42077bf9d82
+  checksum: 10/3819379828b89fb30613994e64d93e5600be6ab73cee79d0c58bdc68767fa1e6b61640df0a000575d913b1f1c0bd479330a7820e23e46910dc1cb0182ce1f114
   languageName: node
   linkType: hard
 
@@ -22591,7 +22591,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-releases@npm:^2.0.21":
+"node-releases@npm:^2.0.26":
   version: 2.0.26
   resolution: "node-releases@npm:2.0.26"
   checksum: 10/6aa120cbf6b0e0986dfa2ee168c8357bdc79b9d9b088b9c643b5e47a28471a2aa4c55e25808e4b43140c6a1398ceab05ea9673ec1d630112f631795e4f7ceb99
@@ -28762,9 +28762,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"update-browserslist-db@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "update-browserslist-db@npm:1.1.3"
+"update-browserslist-db@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "update-browserslist-db@npm:1.1.4"
   dependencies:
     escalade: "npm:^3.2.0"
     picocolors: "npm:^1.1.1"
@@ -28772,7 +28772,7 @@ __metadata:
     browserslist: ">= 4.21.0"
   bin:
     update-browserslist-db: cli.js
-  checksum: 10/87af2776054ffb9194cf95e0201547d041f72ee44ce54b144da110e65ea7ca01379367407ba21de5c9edd52c74d95395366790de67f3eb4cc4afa0fe4424e76f
+  checksum: 10/79b2c0a31e9b837b49dc55d5cb7b77f44a69502847c7be352a44b1d35ac2032bf0e1bb7543f992809ed427bf9d32aa3f7ad41cef96198fa959c1666870174c06
   languageName: node
   linkType: hard
 
