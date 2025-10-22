@@ -30,6 +30,13 @@ const nextConfig = {
     pageExtensions: ['page.tsx', 'api.ts'],
     transpilePackages: ['tailwind-merge'],
     outputFileTracingRoot: path.join(__dirname, '../..'),
+    outputFileTracingIncludes: {
+        '/*': [
+            '../../node_modules/async-function/**/*',
+            '../../node_modules/async-generator-function/**/*',
+            '../../node_modules/generator-function/**/*',
+        ],
+    },
 
     experimental: {
         optimizePackageImports: ['@navikt/aksel-icons', '@navikt/ds-react'],

@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.13.0
+
+### Minor Changes
+
+- Legge til tre moduler i outputFileTracingIncludes. De kom ikke med i bygget server feilet med melding om manglende filer.
+
 ## 3.12.55
 
 ### Patch Changes
