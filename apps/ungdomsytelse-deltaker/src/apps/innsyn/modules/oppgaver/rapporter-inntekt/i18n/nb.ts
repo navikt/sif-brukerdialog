@@ -16,6 +16,6 @@ export const rapporterInntektMessages_nb = {
 
     'rapporterInntektKvittering.tittel': 'Svaret ditt er sendt inn',
     'rapporterInntektKvittering.harHattInntekt':
-        'Vi får også opplysninger om lønnen din fra arbeidsgiver. Hvis det er forskjell på lønnen du har sendt inn, og lønnen vi får fra arbeidsgiveren din, får du beskjed om det.',
+        'Vi får også opplysninger om inntekten din fra arbeidsgiver. Hvis det er forskjell på inntekten du har sendt inn, og inntekten vi får fra arbeidsgiveren din, får du beskjed om det.',
     'rapporterInntektKvittering.harIkkeHattInntekt': 'Takk for at du ga oss beskjed.',
 };
