@@ -73,7 +73,7 @@ const RapporterInntektOppgavePart = ({
                             <FormSummary.Answers>
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
-                                        <AppText id="rapporterInntektOppgavePart.fikkUtbetaltLønn" values={{ måned }} />
+                                        <AppText id="rapporterInntektOppgavePart.haddeInntekt" values={{ måned }} />
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         {arbeidstakerOgFrilansInntekt > 0 ? <AppText id="Ja" /> : <AppText id="Nei" />}
