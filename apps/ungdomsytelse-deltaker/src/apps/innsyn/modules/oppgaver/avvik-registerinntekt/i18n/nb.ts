@@ -15,7 +15,7 @@ export const avvikRegisterinntektMessages_nb = {
     'avvikRegisterinntektOppgavetekst.ingenOpplysninger':
         'Du har gitt oss beskjed om at du hadde inntekt i {rapporteringsmåned}, men vi har ikke fått inn opplysninger fra arbeidsgiver om at du hadde inntekt i {rapporteringsmåned}.',
     'avvikRegisterinntektOppgavetekst.ingenInntekt':
-        'Vi bruker opplysningene fra arbeidsgiver når vi vurdere hvor mye du får utbetalt. Når vi ikke har mottatt noe fra arbeidsgiver, vil vi basere oss på at du ikke hadde inntekt i {rapporteringsmåned}.',
+        'Vi bruker opplysningene fra arbeidsgiver når vi vurderer hvor mye du får utbetalt. Når vi ikke har mottatt noe fra arbeidsgiver, vil vi basere oss på at du ikke hadde inntekt i {rapporteringsmåned}.',
     'avvikRegisterinntektOppgavetekst.1.harInntekt':
         'Vi bruker denne inntekten fra arbeidsgiver til å vurdere hvor mye du får utbetalt.',
     'avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse':
@@ -31,7 +31,7 @@ export const avvikRegisterinntektMessages_nb = {
     'avvikRegisterinntektOppgavetekst.7':
         'Hvis vi ikke hører fra deg innen svarfristen, bruker vi inntekten som arbeidsgiver har oppgitt.',
     'avvikRegisterinntektOppgavetekst.7.kunYtelse':
-        'Hvis vi ikke hører fra deg innen svarfristen, bruker vi inntekten vi har fått har oppgitt.',
+        'Hvis vi ikke hører fra deg innen svarfristen, bruker vi inntekten vi har fått oppgitt.',
 
     'regelverkOgInnsyn.readMore.tittel': 'Regelverk og innsyn',
     'regelverkOgInnsyn.readMore.tekst.1': 'Se regelverket for ungdomsprogramytelsen:',
