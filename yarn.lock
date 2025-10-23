@@ -7662,11 +7662,11 @@ __metadata:
   linkType: hard
 
 "@sanity/message-protocol@npm:^0.17.2":
-  version: 0.17.3
-  resolution: "@sanity/message-protocol@npm:0.17.3"
+  version: 0.17.4
+  resolution: "@sanity/message-protocol@npm:0.17.4"
   dependencies:
     "@sanity/comlink": "npm:^3.1.1"
-  checksum: 10/dd71508a5f1455bccba504427ed01602601cd31f6c4b8e16bf0db6c899542bb7e9c928ca482cf28b2790412a4f005fd39ca1db523b0e1ba17cc0f81ee3e0b535
+  checksum: 10/54015c30686c11763c635c4426c774347b677bc53fac7b8a206028f121bd1a2aaeff6d9e51cadcb9967b86ded4578af87f8ca688f92fbf0673769891816c63b9
   languageName: node
   linkType: hard
 
