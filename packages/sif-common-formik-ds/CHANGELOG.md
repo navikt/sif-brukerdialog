@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.19
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+
 ## 2.5.18
 
 ### Patch Changes

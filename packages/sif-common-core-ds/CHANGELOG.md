@@ -1,5 +1,12 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.20
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+    - @navikt/sif-common-api@0.4.62
+
 ## 10.3.19
 
 ### Patch Changes
