@@ -3,7 +3,7 @@
     "description": "En kalkulator for beregning av omsorgsdager.",
     "license": "MIT",
     "name": "@navikt/omsorgsdager-kalkulator",
-    "version": "3.13.0",
+    "version": "3.13.1",
     "private": true,
     "scripts": {
         "dev": "next dev -p 8080",
@@ -13,10 +13,10 @@
         "test": "jest"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.32.2",
+        "@navikt/ds-css": "7.32.3",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.32.2",
-        "@navikt/ds-tailwind": "7.32.2",
+        "@navikt/ds-react": "7.32.3",
+        "@navikt/ds-tailwind": "7.32.3",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "classnames": "2.5.1",
         "csp-header": "6.2.0",
@@ -34,11 +34,11 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.2",
+        "@axe-core/playwright": "4.11.0",
         "@playwright/test": "1.56.1",
-        "@tailwindcss/postcss": "4.1.14",
-        "@tailwindcss/vite": "4.1.14",
-        "@types/node": "24.8.1",
+        "@tailwindcss/postcss": "4.1.15",
+        "@tailwindcss/vite": "4.1.15",
+        "@types/node": "24.9.1",
         "@types/react": "19.2.2",
         "@types/react-dom": "19.2.2",
         "config": "workspace:*",
@@ -48,7 +48,7 @@
         "jest-environment-jsdom": "30.2.0",
         "playwright-core": "1.56.1",
         "postcss": "8.5.6",
-        "tailwindcss": "4.1.14",
+        "tailwindcss": "4.1.15",
         "typescript": "5.9.3"
     }
 }
