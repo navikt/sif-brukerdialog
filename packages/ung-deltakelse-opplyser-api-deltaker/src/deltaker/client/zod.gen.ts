@@ -27,6 +27,8 @@ export const zDeltakerDto = z.object({
     deltakerIdent: z.string(),
 });
 
+export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT', 'LUKKET']);
+
 export const zOppgavetype = z.enum([
     'BEKREFT_ENDRET_STARTDATO',
     'BEKREFT_ENDRET_SLUTTDATO',
@@ -65,6 +67,12 @@ export const zInntektsrapporteringOppgavetypeDataDto = zOppgavetypeDataDto.and(
     }),
 );
 
+export const zSøkYtelseOppgavetypeDataDto = zOppgavetypeDataDto.and(
+    z.object({
+        fomDato: z.iso.date(),
+    }),
+);
+
 export const zYtelseType = z.enum([
     'SYKEPENGER',
     'OMSORGSPENGER',
@@ -93,14 +101,6 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.
         registerinntekt: zRegisterinntektDto,
     }),
 );
-
-export const zSøkYtelseOppgavetypeDataDto = zOppgavetypeDataDto.and(
-    z.object({
-        fomDato: z.iso.date(),
-    }),
-);
-
-export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT', 'LUKKET']);
 
 export const zOppgaveDto = z.object({
     oppgaveReferanse: z.uuid(),
