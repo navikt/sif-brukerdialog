@@ -79,7 +79,7 @@
         "style-loader": "4.0.0",
         "typescript": "5.9.3",
         "uuid": "13.0.0",
-        "vite": "7.1.11",
+        "vite": "7.1.12",
         "vite-plugin-checker": "0.11.0",
         "vitest": "4.0.1"
     },
