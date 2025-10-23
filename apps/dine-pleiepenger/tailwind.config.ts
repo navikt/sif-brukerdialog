@@ -1,8 +1,7 @@
-module.exports = {
-    content: ['src/**/*.{tsx,ts}'],
-    theme: {
-        extend: {},
-    },
-    plugins: [],
-    presets: [require('@navikt/ds-tailwind')],
-};
+import dsTailwind from '@navikt/ds-tailwind';
+import type { Config } from 'tailwindcss';
+
+export default {
+    presets: [dsTailwind],
+    content: ['./src/**', './storybook/**'],
+} satisfies Config;
