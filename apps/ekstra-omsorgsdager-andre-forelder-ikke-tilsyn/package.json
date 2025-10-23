@@ -13,9 +13,9 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.32.2",
-        "@navikt/ds-react": "7.32.2",
-        "@navikt/ds-tailwind": "7.32.2",
+        "@navikt/ds-css": "7.32.3",
+        "@navikt/ds-react": "7.32.3",
+        "@navikt/ds-tailwind": "7.32.3",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -43,7 +43,7 @@
         "react-router-dom": "7.9.4"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.2",
+        "@axe-core/playwright": "4.11.0",
         "@playwright/test": "1.56.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "9.1.13",
@@ -64,7 +64,7 @@
         "typescript": "5.9.3",
         "vite": "7.1.11",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "3.2.4"
+        "vitest": "4.0.1"
     },
     "eslintConfig": {
         "overrides": [

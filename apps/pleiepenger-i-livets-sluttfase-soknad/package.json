@@ -8,10 +8,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.32.2",
+        "@navikt/ds-css": "7.32.3",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.32.2",
-        "@navikt/ds-tailwind": "7.32.2",
+        "@navikt/ds-react": "7.32.3",
+        "@navikt/ds-tailwind": "7.32.3",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-api": "workspace:*",
@@ -44,7 +44,7 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.2",
+        "@axe-core/playwright": "4.11.0",
         "@playwright/test": "1.56.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "9.1.13",
