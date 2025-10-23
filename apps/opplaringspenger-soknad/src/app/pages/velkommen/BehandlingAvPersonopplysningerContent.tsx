@@ -40,6 +40,9 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                 </List>
             </div>
             <div>
+                <p>
+                    <AppText id="personopplysninger.5" />
+                </p>
                 <AppText
                     id="personopplysninger.6"
                     values={{
