@@ -15,7 +15,7 @@ export const setupMockRoutes = async (page: any) => {
 
     await page.route('**/innsynsdata', async (route: any) => {
         const response: Innsynsdata = {
-            saker: sakerMock,
+            saker: sakerMock as any,
             harSak: true,
             søker: søkerMockData as any,
         };

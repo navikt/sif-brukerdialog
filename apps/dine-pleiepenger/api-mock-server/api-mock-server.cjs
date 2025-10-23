@@ -55,7 +55,7 @@ const startServer = () => {
 
     server.get('/saker/saksbehandlingstid', (req, res) => {
         res.send({
-            saksbehandlingstidUker: 5,
+            saksbehandlingstidUker: 7,
         });
     });
 
