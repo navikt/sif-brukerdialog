@@ -104,7 +104,7 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
                 };
                 throw sakerParseError;
             }
-        } else {
+        } else if (typeof error === 'string') {
             logger.error(error, 'Ukjent feil ved parsing saker');
         }
         throw error;

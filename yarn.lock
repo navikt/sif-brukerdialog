@@ -4415,6 +4415,7 @@ __metadata:
     "@storybook/nextjs": "npm:9.1.13"
     "@tailwindcss/postcss": "npm:4.1.15"
     "@tailwindcss/vite": "npm:4.1.15"
+    "@types/lodash.sortby": "npm:4.7.9"
     "@types/react": "npm:19.2.2"
     axios: "npm:1.12.2"
     classnames: "npm:2.5.1"
@@ -9642,6 +9643,15 @@ __metadata:
   dependencies:
     "@types/lodash": "npm:*"
   checksum: 10/b8310a9f89badc42a504887ca0b9619c2a284b3fec8dc505cf72508eb6beba47b822df939c7d57c0f69bc685f51ff5a232e0480ecad6b18b7ab76fecc1d74691
+  languageName: node
+  linkType: hard
+
+"@types/lodash.sortby@npm:4.7.9":
+  version: 4.7.9
+  resolution: "@types/lodash.sortby@npm:4.7.9"
+  dependencies:
+    "@types/lodash": "npm:*"
+  checksum: 10/b5f0159d51ff2928b9d54ab8ed5f95be8d4d4d7ff24a46eef24654e5523ec3e9b371125ed9a24e9e88abb4a337bbff05379a51c3c174ca424d68714151cbe158
   languageName: node
   linkType: hard
 

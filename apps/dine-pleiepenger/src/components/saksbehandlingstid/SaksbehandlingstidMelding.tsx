@@ -23,7 +23,7 @@ export const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingst
                     id="svarfrist.forTidligSoknad.fristPassert"
                     values={{
                         frist: dateFormatter.full(frist),
-                        dato: (chunk) => <strong>{chunk}</strong>,
+                        dato: (chunk: string) => <strong>{chunk}</strong>,
                         saksbehandlingstidUker,
                     }}
                 />
@@ -48,14 +48,20 @@ export const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingst
             return (
                 <AppText
                     id="svarfrist.dokumenterManglerFrist"
-                    values={{ frist: dateFormatter.full(frist), dato: (chunk) => <strong>{chunk}</strong> }}
+                    values={{
+                        frist: dateFormatter.full(frist),
+                        dato: (chunk: string) => <strong>{chunk}</strong>,
+                    }}
                 />
             );
         case Venteårsak.FOR_TIDLIG_SOKNAD:
             return (
                 <AppText
                     id="svarfrist.forTidligSoknad"
-                    values={{ frist: dateFormatter.full(frist), dato: (chunk) => <strong>{chunk}</strong> }}
+                    values={{
+                        frist: dateFormatter.full(frist),
+                        dato: (chunk: string) => <strong>{chunk}</strong>,
+                    }}
                 />
             );
         default:
@@ -64,7 +70,7 @@ export const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingst
                     id="svarfrist.generellFrist"
                     values={{
                         frist: dateFormatter.full(frist),
-                        dato: (chunk) => <strong>{chunk}</strong>,
+                        dato: (chunk: string) => <strong>{chunk}</strong>,
                     }}
                 />
             );

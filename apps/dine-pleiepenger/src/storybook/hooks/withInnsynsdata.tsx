@@ -1,10 +1,11 @@
+import type { Decorator } from '@storybook/react';
 import dayjs from 'dayjs';
 
 import mockSøker from '../../../api-mock-server/mockdata/soker.json';
 import { InnsynsdataContextProvider } from '../../context/InnsynsdataContextProvider';
 import { Søker } from '../../server/api-models/SøkerSchema';
 
-export const withInnsynsdata = (Story) => (
+export const withInnsynsdata: Decorator = (Story) => (
     <InnsynsdataContextProvider
         innsynsdata={{
             saker: [{ sak: { saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() } } as any],

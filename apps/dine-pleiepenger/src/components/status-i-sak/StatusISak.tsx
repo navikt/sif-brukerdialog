@@ -31,7 +31,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
                     <AppText
                         id="statusISak.ingenHendelser"
                         values={{
-                            p: (txt) => <BodyLong>{txt}</BodyLong>,
+                            p: (txt: string) => <BodyLong>{txt}</BodyLong>,
                             lenke: <SkrivTilOssLenke tekst={text('statusISak.ingenHendelser.skrivTilOssLenkeTekst')} />,
                         }}
                     />

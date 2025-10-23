@@ -32,9 +32,9 @@ const getAudienceAndServerUrl = (
 
 export const exchangeTokenAndPrepRequest = async (
     service: ApiService,
-    context,
-    path,
-    contentType,
+    context: any,
+    path: string,
+    contentType: string,
 ): Promise<{
     headers: any;
     url: string;

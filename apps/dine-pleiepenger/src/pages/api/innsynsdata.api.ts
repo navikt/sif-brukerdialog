@@ -1,4 +1,4 @@
-import { HttpStatusCode } from 'axios';
+import { HttpStatusCode, isAxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
@@ -40,8 +40,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     } catch (err) {
         logger.error(`Hent innsynsdata feilet: ${err}`);
         if (
-            err.response.status === HttpStatusCode.Forbidden ||
-            err.response.status === HttpStatusCode.UnavailableForLegalReasons
+            isAxiosError(err) &&
+            (err.response?.status === HttpStatusCode.Forbidden ||
+                err.response?.status === HttpStatusCode.UnavailableForLegalReasons)
         ) {
             res.status(403).json({ error: 'Ikke tilgang' });
         } else {
