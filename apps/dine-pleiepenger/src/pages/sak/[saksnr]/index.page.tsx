@@ -1,6 +1,7 @@
 import { Alert, Box } from '@navikt/ds-react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+
 import { withAuthenticatedPage } from '../../../auth/withAuthentication';
 import DefaultPageLayout from '../../../components/page-layout/default-page-layout/DefaultPageLayout';
 import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';

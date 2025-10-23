@@ -1,11 +1,12 @@
 'use client';
 import { Box, Heading, Link, Skeleton } from '@navikt/ds-react';
+import axios from 'axios';
+import useSWR from 'swr';
+
 import { AppText } from '../../i18n';
+import { Saksbehandlingstid as SaksbehandlingstidSchema } from '../../server/api-models/SaksbehandlingstidSchema';
 import { Venteårsak } from '../../types/Venteårsak';
 import { browserEnv } from '../../utils/env';
-import useSWR from 'swr';
-import { Saksbehandlingstid as SaksbehandlingstidSchema } from '../../server/api-models/SaksbehandlingstidSchema';
-import axios from 'axios';
 import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
 
 interface Props {
@@ -35,7 +36,7 @@ const Saksbehandlingstid = ({ frist, venteårsak }: Props) => {
             {isLoading ? (
                 <Skeleton height="6rem" variant="rounded" />
             ) : (
-                <Box.New paddingBlock="4 6" paddingInline={'6'} borderRadius="large" background="info-moderateA">
+                <Box.New paddingBlock="4 6" paddingInline="6" borderRadius="large" background="info-moderateA">
                     <Box className="mb-4">
                         <SaksbehandlingstidMelding
                             frist={frist}

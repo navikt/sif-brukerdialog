@@ -2,10 +2,13 @@ import { logger } from '@navikt/next-logger';
 import { getToken, validateToken } from '@navikt/oasis';
 import { IncomingHttpHeaders } from 'http';
 import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, NextApiResponse } from 'next';
+
 import { RequestContext } from '../types/RequestContext';
 import { browserEnv, isLocal } from '../utils/env';
 import { getSessionId } from '../utils/userSessionId';
+import fakeLocalAuthTokenSet from './fakeLocalAuthTokenSet.json';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface ServerSidePropsResult {}
 
 type ApiHandler = (req: NextApiRequest, res: NextApiResponse) => Promise<unknown> | unknown;
@@ -20,8 +23,8 @@ export interface TokenPayload {
     client_id: string;
     acr: string;
     scope: string;
-    exp: string;
-    iat: string;
+    exp: number;
+    iat: number;
     client_orgno: string;
     jti: string;
     consumer: {
@@ -158,7 +161,7 @@ export function createDemoRequestContext(req: GetServerSidePropsContext['req'] |
     }
 
     return {
-        ...require('./fakeLocalAuthTokenSet.json'),
+        ...fakeLocalAuthTokenSet,
         requestId: 'not set',
         sessionId: getSessionId(req),
     };

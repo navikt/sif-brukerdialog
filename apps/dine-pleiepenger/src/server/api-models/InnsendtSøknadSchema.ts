@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
 import { InnsendtSøknadArbeidsgivereSchema } from './ArbeidsgivereSchema';
 

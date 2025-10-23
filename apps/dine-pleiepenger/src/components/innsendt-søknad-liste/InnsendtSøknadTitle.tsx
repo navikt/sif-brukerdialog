@@ -1,5 +1,6 @@
-import { BodyShort, HStack, VStack } from '@navikt/ds-react';
 import { Task } from '@navikt/ds-icons';
+import { BodyShort, HStack, VStack } from '@navikt/ds-react';
+
 import { AppText } from '../../i18n';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { formatInnsendtSøknadOpprettetDato } from '../../utils/innsendtSøknadUtils';

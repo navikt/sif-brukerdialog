@@ -1,17 +1,18 @@
 import { Box, Skeleton, VStack } from '@navikt/ds-react';
 import axios from 'axios';
 import useSWR from 'swr';
-import IngenSakEllerSøknadPage from '../ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
+
 import { useAppIntl } from '../../i18n';
-import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
-import DineInnsendteSøknader from '../dine-innsendte-søknader/DineInnsendteSøknader';
-import OppdatereSakLenker from '../oppdatere-sak-lenker/OppdatereSakLenker';
-import SkrivTilOssLenker from '../skriv-til-oss-lenker/SkrivTilOssLenker';
-import HvaSkjer from '../hva-skjer/HvaSkjer';
+import { InnsendtSøknaderSchema } from '../../server/api-models/InnsendtSøknadSchema';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { browserEnv } from '../../utils/env';
+import DineInnsendteSøknader from '../dine-innsendte-søknader/DineInnsendteSøknader';
+import HvaSkjer from '../hva-skjer/HvaSkjer';
+import IngenSakEllerSøknadPage from '../ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
+import OppdatereSakLenker from '../oppdatere-sak-lenker/OppdatereSakLenker';
+import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import Saksbehandlingstid from '../saksbehandlingstid/Saksbehandlingstid';
-import { InnsendtSøknaderSchema } from '../../server/api-models/InnsendtSøknadSchema';
+import SkrivTilOssLenker from '../skriv-til-oss-lenker/SkrivTilOssLenker';
 
 const søknaderFetcher = async (url: string): Promise<InnsendtSøknad[]> =>
     axios.get(url).then((res) => InnsendtSøknaderSchema.parse(res.data));

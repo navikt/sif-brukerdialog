@@ -1,7 +1,8 @@
+import { Add } from '@navikt/ds-icons';
 import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { Add } from '@navikt/ds-icons';
+
 import { AppText } from '../../i18n';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import InnsendtSøknadContent from './InnsendtSøknadContent';

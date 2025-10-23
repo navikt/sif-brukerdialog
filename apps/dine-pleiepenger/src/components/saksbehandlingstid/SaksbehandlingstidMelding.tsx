@@ -1,8 +1,9 @@
-import { erSaksbehandlingsfristPassert } from '../../utils/sakUtils';
+import { BodyShort } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../i18n';
 import { Venteårsak } from '../../types/Venteårsak';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { BodyShort } from '@navikt/ds-react';
+import { erSaksbehandlingsfristPassert } from '../../utils/sakUtils';
 
 interface Props {
     frist?: Date;

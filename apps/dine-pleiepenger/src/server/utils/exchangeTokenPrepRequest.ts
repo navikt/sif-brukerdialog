@@ -1,5 +1,6 @@
 import { createChildLogger } from '@navikt/next-logger';
 import { requestOboToken } from '@navikt/oasis';
+
 import { browserEnv, getServerEnv, isLocal, ServerEnv } from '../../utils/env';
 import { ApiService } from '../apiService';
 

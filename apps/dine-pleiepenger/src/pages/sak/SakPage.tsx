@@ -2,6 +2,7 @@ import { Box, VStack } from '@navikt/ds-react';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
 import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';

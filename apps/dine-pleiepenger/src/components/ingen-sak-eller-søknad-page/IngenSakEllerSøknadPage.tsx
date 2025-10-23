@@ -1,4 +1,5 @@
 import { Alert, BodyLong, Box, Heading, Link, LinkCard, VStack } from '@navikt/ds-react';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';

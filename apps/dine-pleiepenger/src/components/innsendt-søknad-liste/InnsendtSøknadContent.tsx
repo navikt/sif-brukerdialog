@@ -1,7 +1,8 @@
-import { Box, Heading, Link, List } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { File } from '@navikt/ds-icons';
+import { Box, Heading, Link, List } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useIntl } from 'react-intl';
+
 import { AppText } from '../../i18n';
 import { InnsendtSøknadArbeidsgiver } from '../../server/api-models/ArbeidsgivereSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/InnsendtSøknad';

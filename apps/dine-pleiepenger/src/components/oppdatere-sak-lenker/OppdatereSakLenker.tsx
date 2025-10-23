@@ -1,6 +1,7 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { PencilWritingIcon } from '@navikt/aksel-icons';
 import { File, Task } from '@navikt/ds-icons';
+import { Heading, HGrid, VStack } from '@navikt/ds-react';
+
 import { useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 import SnarveiLinkCard from '../snarvei-link-card/SnarveiLinkCard';

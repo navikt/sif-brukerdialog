@@ -1,7 +1,8 @@
+import 'react-loading-skeleton/dist/skeleton.css';
+import '../style/global.css';
+
 import { Status, StatusMessage } from '@navikt/appstatus-react-ds';
 import { BodyShort, HStack, Theme, VStack } from '@navikt/ds-react';
-import { ReactElement } from 'react';
-import { IntlProvider } from 'react-intl';
 import { configureLogger } from '@navikt/next-logger';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
@@ -9,7 +10,10 @@ import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/
 import axios, { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { ReactElement } from 'react';
+import { IntlProvider } from 'react-intl';
 import useSWR from 'swr';
+
 import ComponentLoader from '../components/component-loader/ComponentLoader';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInnsynsdataFeilet';
@@ -22,8 +26,6 @@ import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
 import { Feature } from '../utils/features';
 import UnavailablePage from './unavailable.page';
-import 'react-loading-skeleton/dist/skeleton.css';
-import '../style/global.css';
 
 export const AMPLITUDE_APPLICATION_KEY = 'sif-innsyn';
 
@@ -56,8 +58,8 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         return (
             <EmptyPage>
                 <Head>Henter informasjon - Dine pleiepenger for sykt barn</Head>
-                <HStack align={'center'} justify={'center'} marginBlock={'8 0'}>
-                    <VStack gap={'4'}>
+                <HStack align="center" justify="center" marginBlock="8 0">
+                    <VStack gap="4">
                         <ComponentLoader />
                         <BodyShort size="large">Henter informasjon...</BodyShort>
                     </VStack>

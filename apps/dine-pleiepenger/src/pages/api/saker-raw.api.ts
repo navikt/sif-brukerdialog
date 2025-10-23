@@ -1,5 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { isAxiosError } from 'axios';
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSaker } from '../../server/apiService';
 import { getLogger } from '../../utils/getLogCorrelationID';

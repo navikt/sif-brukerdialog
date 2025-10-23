@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { DokumentSchema } from './DokumenetSchema';
 import { Innsendelsestype } from './Innsendelsestype';
 import { K9FormatEttersendelseSchema } from './k9FormatEttersendelseSchema';

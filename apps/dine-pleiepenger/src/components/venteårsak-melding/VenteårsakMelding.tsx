@@ -1,6 +1,7 @@
 import { Alert, BodyLong, Box, Button, Heading } from '@navikt/ds-react';
-import { ReactNode } from 'react';
 import Link from 'next/link';
+import { ReactNode } from 'react';
+
 import { AppText } from '../../i18n';
 import { Venteårsak } from '../../types/Venteårsak';
 import { browserEnv } from '../../utils/env';

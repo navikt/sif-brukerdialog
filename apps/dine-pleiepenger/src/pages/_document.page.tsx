@@ -1,8 +1,10 @@
-import { ReactElement } from 'react';
-import { DecoratorComponentsReact, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 // This is imported to allow the Output File Tracing feature of Next.js to work correctly with the log patcher
 import 'next-logger';
+
+import { DecoratorComponentsReact, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
+import { ReactElement } from 'react';
+
 import { browserEnv, getServerEnv } from '../utils/env';
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)

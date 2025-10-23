@@ -1,5 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { HttpStatusCode } from 'axios';
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSaker, fetchSøker } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
@@ -10,9 +11,7 @@ import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const logger = getLogger(req);
-    logger.info(`Henter innsynsdata`, {
-        appstatus: Feature.HENT_APPSTATUS,
-    });
+    logger.info(`Henter innsynsdata`);
     try {
         /** Hent søker først for å se om bruker har tilgang */
         const søker = await fetchSøker(req);
