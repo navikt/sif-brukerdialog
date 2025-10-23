@@ -1,5 +1,16 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.1.3
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.19
+    - @navikt/sif-common-forms-ds@21.0.21
+    - @navikt/sif-common-core-ds@10.3.20
+    - @navikt/sif-common-ui@0.11.21
+
 ## 26.1.2
 
 ### Patch Changes
