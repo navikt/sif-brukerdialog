@@ -129,12 +129,10 @@ export const innsynMessages_nb = {
     'inntektForm.inntektDescription':
         'Se på lønnsslippen din hva inntekten din var før det ble trukket skatt av den. Du skal ikke ta med ungdomsprogramytelsen som en del av inntekten din. ',
 
-    'inntektForm.hvordanFinnerDuUtInntekt.tittel': 'Hva er inntekt, og hvor finner jeg den?',
+    'inntektForm.hvordanFinnerDuUtInntekt.tittel': 'Hvor finner jeg inntekten min før skatt?',
     'inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.1':
         'Når du jobber og har en inntekt, får du alltid en lønnsslipp fra arbeidsgiveren din. På lønnsslippen står det hva inntekten din er før det blir trukket skatt av den.',
     'inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.2':
-        'Inntekt er pengene du får utbetalt fra arbeidsgiveren din. I tillegg til lønn, kan det for eksempel være feriepenger, kvelds- og helgetillegg, honorarer og så videre. Les mer om hva inntekt er i skatteloven § 5.10-15 (LENKE).',
-    'inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.3':
         'Spør arbeidsgiveren din hvis du er usikker på hvor du finner lønnsslippen.',
 
     'inntektForm.feilInntekt.tittel': 'Hva skjer hvis jeg melder inn feil inntekt?',

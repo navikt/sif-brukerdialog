@@ -112,9 +112,6 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
                                                 <BodyLong spacing>
                                                     <AppText id="inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.2" />
                                                 </BodyLong>
-                                                <BodyLong spacing>
-                                                    <AppText id="inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.3" />
-                                                </BodyLong>
                                             </ReadMore>
                                             <ReadMore header={text('inntektForm.feilInntekt.tittel')}>
                                                 <BodyLong spacing>

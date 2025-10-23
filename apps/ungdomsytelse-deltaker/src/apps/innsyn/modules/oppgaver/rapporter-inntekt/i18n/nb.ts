@@ -1,7 +1,9 @@
 export const rapporterInntektMessages_nb = {
     'rapporterInntektOppgavetekst.tittel': 'Hei {deltakerNavn}',
-    'rapporterInntektOppgavetekst.intro':
+    'rapporterInntektOppgavetekst.intro.1':
         'Gi oss beskjed hvis du hadde inntekt og fikk utbetalt lønn fra en arbeidsgiver i {måned}.',
+    'rapporterInntektOppgavetekst.intro.2':
+        'Inntekt er pengene du får utbetalt fra arbeidsgiveren din. I tillegg til lønn, kan det for eksempel være feriepenger, kvelds- og helgetillegg, honorarer og så videre. Les mer om hva inntekt er i <link>skatteloven § 5.10-15</link>.',
     'rapporterInntektOppgavetekst.instruks':
         'Kryss av på “Ja”, skriv inn inntekten din og send inn svaret ditt <strong>senest {frist}</strong>.',
     'rapporterInntektOppgavetekst.ingenInntekt':

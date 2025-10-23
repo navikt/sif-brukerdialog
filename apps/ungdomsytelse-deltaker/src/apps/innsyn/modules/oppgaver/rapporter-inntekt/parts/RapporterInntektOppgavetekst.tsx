@@ -1,8 +1,10 @@
-import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Heading, Link, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '@shared/i18n';
 import dayjs from 'dayjs';
+
+import getLenker from '../../../../../../utils/lenker';
 
 interface Props {
     deltakerNavn: string;
@@ -23,7 +25,24 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
             </Heading>
             <Box maxWidth="90%">
                 <BodyLong spacing>
-                    <AppText id="rapporterInntektOppgavetekst.intro" values={{ måned }} />
+                    <AppText
+                        id="rapporterInntektOppgavetekst.intro.1"
+                        values={{
+                            måned,
+                        }}
+                    />
+                </BodyLong>
+                <BodyLong spacing>
+                    <AppText
+                        id="rapporterInntektOppgavetekst.intro.2"
+                        values={{
+                            link: (value) => (
+                                <Link href={getLenker().lovdataInntekt} target="_blank">
+                                    {value}
+                                </Link>
+                            ),
+                        }}
+                    />
                 </BodyLong>
                 <BodyLong spacing>
                     <AppText

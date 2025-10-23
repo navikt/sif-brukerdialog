@@ -27,7 +27,7 @@ const rapporterInntektOppgave: OppgaveDto = {
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.ULØST,
     opprettetDato: '2025-10-01T10:32:47.664066Z',
-    frist: '2025-10-07T00:00:00.492347Z',
+    frist: '2025-10-08T00:00:00.492347Z',
     oppgavetypeData: {
         fraOgMed: '2025-09-01',
         tilOgMed: '2025-09-30',
@@ -39,7 +39,7 @@ const rapporterInntektOppgaveLøst: OppgaveDto = {
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.LØST,
     opprettetDato: '2025-10-01T10:32:47.664066Z',
-    frist: '2025-10-07T00:00:00.492347Z',
+    frist: '2025-10-08T00:00:00.492347Z',
     løstDato: '2025-10-04T12:47:47.492347Z',
     oppgavetypeData: {
         fraOgMed: '2025-09-01',
