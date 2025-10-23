@@ -51,6 +51,15 @@ export const zBarnOppslagListe = z.object({
     barn: z.array(zBarnOppslag),
 });
 
+export const zFrilansoppdragDto = z.object({
+    type: z.string(),
+    organisasjonsnummer: z.optional(z.string()),
+    navn: z.optional(z.string()),
+    offentligIdent: z.optional(z.string()),
+    ansattFom: z.optional(z.iso.date()),
+    ansattTom: z.optional(z.iso.date()),
+});
+
 export const zOrganisasjonDto = z.object({
     organisasjonsnummer: z.string(),
     navn: z.optional(z.string()),
@@ -60,15 +69,6 @@ export const zOrganisasjonDto = z.object({
 
 export const zPrivatArbeidsgiverDto = z.object({
     offentligIdent: z.string(),
-    ansattFom: z.optional(z.iso.date()),
-    ansattTom: z.optional(z.iso.date()),
-});
-
-export const zFrilansoppdragDto = z.object({
-    type: z.string(),
-    organisasjonsnummer: z.optional(z.string()),
-    navn: z.optional(z.string()),
-    offentligIdent: z.optional(z.string()),
     ansattFom: z.optional(z.iso.date()),
     ansattTom: z.optional(z.iso.date()),
 });

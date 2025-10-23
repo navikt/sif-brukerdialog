@@ -3,13 +3,13 @@
     "main": "src/index.ts",
     "types": "src/index.ts",
     "type": "module",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "private": true,
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.9.3",
-        "vitest": "3.2.4"
+        "vitest": "4.0.1"
     },
     "peerDependencies": {
         "@navikt/fnrvalidator": "2.1.5",

@@ -68,6 +68,38 @@ export const zDataBruktTilUtledning = z.object({
     annetData: z.optional(z.string()),
 });
 
+export const zFrilanser = z.object({
+    startdato: z.iso.date(),
+    sluttdato: z.optional(z.iso.date()),
+});
+
+export const zInfoFraPunsj = z.object({
+    søknadenInneholderInfomasjonSomIkkeKanPunsjes: z.optional(z.boolean()),
+    inneholderMedisinskeOpplysninger: z.optional(z.boolean()),
+});
+
+export const zLovbestemtFeriePeriodeInfo = z.object({
+    skalHaFerie: z.optional(z.boolean()),
+});
+
+export const zLovbestemtFerie = z.object({
+    perioder: z.record(z.string(), zLovbestemtFeriePeriodeInfo),
+});
+
+export const zNattevåkPeriodeInfo = z.object({
+    tilleggsinformasjon: z.string().min(0).max(4000),
+});
+
+export const zNattevåk = z.object({
+    perioder: z.record(z.string(), zNattevåkPeriodeInfo),
+    perioderSomSkalSlettes: z.record(z.string(), zNattevåkPeriodeInfo),
+});
+
+export const zOmsorg = z.object({
+    relasjonTilBarnet: z.optional(z.enum(['MOR', 'MEDMOR', 'FAR', 'FOSTERFORELDER', 'ANNET'])),
+    beskrivelseAvOmsorgsrollen: z.optional(z.string()),
+});
+
 export const zSelvstendigNæringsdrivendePeriodeInfo = z.object({
     virksomhetstyper: z.array(z.enum(['DAGMAMMA', 'FISKE', 'JORDBRUK_SKOGBRUK', 'ANNEN', '-'])).min(1),
     regnskapsførerNavn: z.optional(z.string()),
@@ -89,9 +121,12 @@ export const zSelvstendigNæringsdrivende = z.object({
     virksomhetNavn: z.optional(z.string()),
 });
 
-export const zFrilanser = z.object({
-    startdato: z.iso.date(),
-    sluttdato: z.optional(z.iso.date()),
+export const zTilsynPeriodeInfo = z.object({
+    etablertTilsynTimerPerDag: z.string(),
+});
+
+export const zTilsynsordning = z.object({
+    perioder: z.record(z.string(), zTilsynPeriodeInfo),
 });
 
 export const zUtenlandskArbeidsforhold = z.object({
@@ -105,11 +140,6 @@ export const zOpptjeningAktivitet = z.object({
     frilanser: z.optional(zFrilanser),
     utenlandskeArbeidsforhold: z.array(zUtenlandskArbeidsforhold),
     andreAktiviteter: z.array(zAnnenAktivitet),
-});
-
-export const zInfoFraPunsj = z.object({
-    søknadenInneholderInfomasjonSomIkkeKanPunsjes: z.optional(z.boolean()),
-    inneholderMedisinskeOpplysninger: z.optional(z.boolean()),
 });
 
 export const zUtenlandsoppholdPeriodeInfo = z.object({
@@ -128,42 +158,12 @@ export const zUtenlandsopphold = z.object({
     perioderSomSkalSlettes: z.optional(z.record(z.string(), zUtenlandsoppholdPeriodeInfo)),
 });
 
-export const zNattevåkPeriodeInfo = z.object({
-    tilleggsinformasjon: z.string().min(0).max(4000),
-});
-
-export const zNattevåk = z.object({
-    perioder: z.record(z.string(), zNattevåkPeriodeInfo),
-    perioderSomSkalSlettes: z.record(z.string(), zNattevåkPeriodeInfo),
-});
-
-export const zTilsynPeriodeInfo = z.object({
-    etablertTilsynTimerPerDag: z.string(),
-});
-
-export const zTilsynsordning = z.object({
-    perioder: z.record(z.string(), zTilsynPeriodeInfo),
-});
-
-export const zLovbestemtFeriePeriodeInfo = z.object({
-    skalHaFerie: z.optional(z.boolean()),
-});
-
-export const zLovbestemtFerie = z.object({
-    perioder: z.record(z.string(), zLovbestemtFeriePeriodeInfo),
-});
-
 export const zUttakPeriodeInfo = z.object({
     timerPleieAvBarnetPerDag: z.string(),
 });
 
 export const zUttak = z.object({
     perioder: z.record(z.string(), zUttakPeriodeInfo),
-});
-
-export const zOmsorg = z.object({
-    relasjonTilBarnet: z.optional(z.enum(['MOR', 'MEDMOR', 'FAR', 'FOSTERFORELDER', 'ANNET'])),
-    beskrivelseAvOmsorgsrollen: z.optional(z.string()),
 });
 
 export const zPleiepengerSyktBarn = z.object({
@@ -218,6 +218,15 @@ export const zBarnOppslagListe = z.object({
     barn: z.array(zBarnOppslag),
 });
 
+export const zFrilansoppdragDto = z.object({
+    type: z.string(),
+    organisasjonsnummer: z.optional(z.string()),
+    navn: z.optional(z.string()),
+    offentligIdent: z.optional(z.string()),
+    ansattFom: z.optional(z.iso.date()),
+    ansattTom: z.optional(z.iso.date()),
+});
+
 export const zOrganisasjonDto = z.object({
     organisasjonsnummer: z.string(),
     navn: z.optional(z.string()),
@@ -227,15 +236,6 @@ export const zOrganisasjonDto = z.object({
 
 export const zPrivatArbeidsgiverDto = z.object({
     offentligIdent: z.string(),
-    ansattFom: z.optional(z.iso.date()),
-    ansattTom: z.optional(z.iso.date()),
-});
-
-export const zFrilansoppdragDto = z.object({
-    type: z.string(),
-    organisasjonsnummer: z.optional(z.string()),
-    navn: z.optional(z.string()),
-    offentligIdent: z.optional(z.string()),
     ansattFom: z.optional(z.iso.date()),
     ansattTom: z.optional(z.iso.date()),
 });
