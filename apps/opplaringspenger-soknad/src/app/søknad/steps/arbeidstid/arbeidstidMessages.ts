@@ -1,6 +1,8 @@
 const nb = {
     'arbeidIPeriode.StepInfo.1':
         'Her fyller du ut om du har hatt fullt fravær eller jobber noe de dagene du er på kurs eller har opplæring.',
+    'arbeidIPeriode.StepInfo.2':
+        'Hvis du søker for første gang, eller du har hatt et opphold i minst fire uker, vil vi kontakte arbeidsgivere som du har helt eller delvis fravær fra for å innhente inntektsmelding.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
     'arbeidIPeriode.jobberIPerioden.spm': 'Jobber du noe {hvor} i søknadsperioden?',
@@ -39,6 +41,8 @@ const nb = {
 const nn: Record<keyof typeof nb, string> = {
     'arbeidIPeriode.StepInfo.1':
         'Her fyller du ut om du har hatt fullt fråvær eller jobbar noko dei dagane du er på kurs eller har opplæring.',
+    'arbeidIPeriode.StepInfo.2':
+        'Viss du søkjer for fyrste gong, eller du har hatt eit opphald i minst fire veker, vil vi kontakte arbeidsgjevarar som du har heilt eller delvis fråvær frå for å innhente inntektsmelding.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
     'arbeidIPeriode.jobberIPerioden.spm': 'Jobbar du noko {hvor} i søknadsperioden?',
