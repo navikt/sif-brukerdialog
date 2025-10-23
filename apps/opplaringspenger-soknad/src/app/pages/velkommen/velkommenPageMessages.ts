@@ -76,7 +76,7 @@ const nn: Record<keyof typeof nb, string> = {
     'personopplysninger.4.5':
         'trygdeordningar du kan ha rett til i andre land. Me kan også sende opplysningar om deg til trygdemyndigheiter i andre land.',
     'personopplysninger.5':
-        'Me lagrar opplysningane me får inn om barnet du søkjer opplæringspengar for. Dette gjer vi for å kunne bruke opplysningane om att viss andre omsorgspersonar søkjer opplæringspengar for same barn.',
+        'Me lagrar opplysningane me får inn om barnet du søkjer opplæringspengar for. Dette gjer me for å kunne bruke opplysningane om att viss andre omsorgspersonar søkjer opplæringspengar for same barn.',
     'personopplysninger.6':
         'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };
