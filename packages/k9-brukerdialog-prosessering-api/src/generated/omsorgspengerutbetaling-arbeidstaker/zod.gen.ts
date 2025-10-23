@@ -11,38 +11,6 @@ export const zProblemDetail = z.object({
     properties: z.optional(z.record(z.string(), z.unknown())),
 });
 
-export const zUtbetalingsperiode = z.object({
-    fraOgMed: z.optional(z.iso.date()),
-    tilOgMed: z.optional(z.iso.date()),
-    antallTimerBorte: z.optional(z.string()),
-    antallTimerPlanlagt: z.optional(z.string()),
-    årsak: z.optional(z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR'])),
-    aktivitetFravær: z.optional(z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET']))),
-});
-
-export const zArbeidsgiver = z.object({
-    navn: z.optional(z.string()),
-    organisasjonsnummer: z.optional(z.string()),
-    utbetalingsårsak: z.optional(
-        z.enum(['ARBEIDSGIVER_KONKURS', 'NYOPPSTARTET_HOS_ARBEIDSGIVER', 'KONFLIKT_MED_ARBEIDSGIVER']),
-    ),
-    perioder: z.optional(z.array(zUtbetalingsperiode)),
-    konfliktForklaring: z.optional(z.string()),
-    årsakNyoppstartet: z.optional(
-        z.enum([
-            'JOBBET_HOS_ANNEN_ARBEIDSGIVER',
-            'VAR_FRILANSER',
-            'VAR_SELVSTENDIGE',
-            'SØKTE_ANDRE_UTBETALINGER',
-            'ARBEID_I_UTLANDET',
-            'UTØVDE_VERNEPLIKT',
-            'ANNET',
-        ]),
-    ),
-    arbeidsgiverHarUtbetaltLønn: z.optional(z.boolean()),
-    harHattFraværHosArbeidsgiver: z.optional(z.boolean()),
-});
-
 export const zBarn = z.object({
     identitetsnummer: z.optional(z.string()),
     aktørId: z.optional(z.string()),
@@ -77,6 +45,38 @@ export const zOmsorgspengerutbetalingArbeidstakerSøknad = z.object({
     opphold: z.array(z.unknown()),
 });
 
+export const zUtbetalingsperiode = z.object({
+    fraOgMed: z.optional(z.iso.date()),
+    tilOgMed: z.optional(z.iso.date()),
+    antallTimerBorte: z.optional(z.string()),
+    antallTimerPlanlagt: z.optional(z.string()),
+    årsak: z.optional(z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR'])),
+    aktivitetFravær: z.optional(z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET']))),
+});
+
+export const zArbeidsgiver = z.object({
+    navn: z.optional(z.string()),
+    organisasjonsnummer: z.optional(z.string()),
+    utbetalingsårsak: z.optional(
+        z.enum(['ARBEIDSGIVER_KONKURS', 'NYOPPSTARTET_HOS_ARBEIDSGIVER', 'KONFLIKT_MED_ARBEIDSGIVER']),
+    ),
+    perioder: z.optional(z.array(zUtbetalingsperiode)),
+    konfliktForklaring: z.optional(z.string()),
+    årsakNyoppstartet: z.optional(
+        z.enum([
+            'JOBBET_HOS_ANNEN_ARBEIDSGIVER',
+            'VAR_FRILANSER',
+            'VAR_SELVSTENDIGE',
+            'SØKTE_ANDRE_UTBETALINGER',
+            'ARBEID_I_UTLANDET',
+            'UTØVDE_VERNEPLIKT',
+            'ANNET',
+        ]),
+    ),
+    arbeidsgiverHarUtbetaltLønn: z.optional(z.boolean()),
+    harHattFraværHosArbeidsgiver: z.optional(z.boolean()),
+});
+
 export const zSøker = z.object({
     aktørId: z.string(),
     fødselsdato: z.iso.date(),
@@ -98,6 +98,15 @@ export const zBarnOppslagListe = z.object({
     barn: z.array(zBarnOppslag),
 });
 
+export const zFrilansoppdragDto = z.object({
+    type: z.string(),
+    organisasjonsnummer: z.optional(z.string()),
+    navn: z.optional(z.string()),
+    offentligIdent: z.optional(z.string()),
+    ansattFom: z.optional(z.iso.date()),
+    ansattTom: z.optional(z.iso.date()),
+});
+
 export const zOrganisasjonDto = z.object({
     organisasjonsnummer: z.string(),
     navn: z.optional(z.string()),
@@ -107,15 +116,6 @@ export const zOrganisasjonDto = z.object({
 
 export const zPrivatArbeidsgiverDto = z.object({
     offentligIdent: z.string(),
-    ansattFom: z.optional(z.iso.date()),
-    ansattTom: z.optional(z.iso.date()),
-});
-
-export const zFrilansoppdragDto = z.object({
-    type: z.string(),
-    organisasjonsnummer: z.optional(z.string()),
-    navn: z.optional(z.string()),
-    offentligIdent: z.optional(z.string()),
     ansattFom: z.optional(z.iso.date()),
     ansattTom: z.optional(z.iso.date()),
 });

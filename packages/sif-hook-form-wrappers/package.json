@@ -5,9 +5,6 @@
     "type": "module",
     "types": "index.ts",
     "scripts": {
-        "test": "vitest run",
-        "test:watch": "vitest --watch=true",
-        "test:coverage": "vitest --coverage",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:tsc": "tsc --noEmit",
         "lint:fix": "eslint --fix './src/**/*.{js,ts,tsx}' --color",
@@ -17,10 +14,10 @@
     },
     "dependencies": {
         "@hookform/error-message": "2.0.1",
-        "@navikt/aksel-icons": "7.32.2",
-        "@navikt/ds-css": "7.32.2",
+        "@navikt/aksel-icons": "7.32.3",
+        "@navikt/ds-css": "7.32.3",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.32.2",
+        "@navikt/ds-react": "7.32.3",
         "@navikt/sif-common-utils": "workspace:*",
         "@types/react": "19.2.2",
         "@types/react-dom": "19.2.2",
@@ -43,9 +40,9 @@
         "storybook": "9.1.13",
         "storybook-react-intl": "4.0.7",
         "typescript": "5.9.3",
-        "vite": "7.1.11",
+        "vite": "7.1.12",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "3.2.4"
+        "vitest": "4.0.1"
     },
     "peerDependencies": {
         "react": "18.2.0"

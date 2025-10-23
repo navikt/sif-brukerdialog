@@ -1,5 +1,27 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.21
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.19
+    - @navikt/sif-common-core-ds@10.3.20
+    - @navikt/sif-common-ui@0.11.21
+
+## 21.0.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.18
+    - @navikt/sif-common-core-ds@10.3.19
+    - @navikt/sif-common-utils@3.49.41
+    - @navikt/sif-validation@1.0.7
+    - @navikt/sif-common-ui@0.11.20
+
 ## 21.0.19
 
 ### Patch Changes

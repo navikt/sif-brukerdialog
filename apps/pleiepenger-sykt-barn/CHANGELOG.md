@@ -1,5 +1,36 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.24
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.19
+    - @navikt/sif-common-soknad-ds@26.1.3
+    - @navikt/sif-common-forms-ds@21.0.21
+    - @navikt/sif-common-core-ds@10.3.20
+    - @navikt/sif-common-ui@0.11.21
+
+## 4.11.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.43
+    - @navikt/sif-common-formik-ds@2.5.18
+    - @navikt/sif-common-soknad-ds@26.1.2
+    - @navikt/sif-common-forms-ds@21.0.20
+    - @navikt/appstatus-react-ds@2.20.52
+    - @navikt/sif-common-core-ds@10.3.19
+    - @navikt/sif-common-sentry@0.28.44
+    - @navikt/sif-common-utils@3.49.41
+    - @navikt/sif-validation@1.0.7
+    - @navikt/sif-common-ui@0.11.20
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-hooks@0.3.6
+
 ## 4.11.22
 
 ### Patch Changes

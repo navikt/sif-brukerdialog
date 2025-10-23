@@ -1,5 +1,31 @@
 # @navikt/sif-demo-app
 
+## 0.9.13
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.19
+    - @navikt/sif-common-core-ds@10.3.20
+    - @navikt/sif-common-api@0.4.62
+    - @navikt/sif-common-ui@0.11.21
+    - @navikt/ung-common@0.0.62
+
+## 0.9.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.18
+    - @navikt/sif-common-core-ds@10.3.19
+    - @navikt/sif-common-api@0.4.61
+    - @navikt/sif-validation@1.0.7
+    - @navikt/sif-common-ui@0.11.20
+    - @navikt/ung-common@0.0.61
+    - @navikt/sif-common-faro@0.2.7
+
 ## 0.9.11
 
 ### Patch Changes
