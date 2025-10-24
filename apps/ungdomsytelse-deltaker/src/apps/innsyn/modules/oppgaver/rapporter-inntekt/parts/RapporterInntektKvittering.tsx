@@ -1,3 +1,4 @@
+import ForsideLenkeButton from '@innsyn/atoms/forside-lenke-button/ForsideLenkeButton';
 import UXRapportertInntekt from '@innsyn/ux-signals/UXRapportertInntekt';
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import Skyra, { Slug } from '@shared/components/skyra/Skyra';
@@ -5,7 +6,6 @@ import { useSkyraReloader } from '@shared/hooks/useSkyraReloader';
 import { AppText } from '@shared/i18n';
 import { forwardRef } from 'react';
 
-import ForsideLenkeButton from '../../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
 
 interface Props {

@@ -1,4 +1,6 @@
+import ForsideLenkeButton from '@innsyn/atoms/forside-lenke-button/ForsideLenkeButton';
 import OppgaveStatusTag from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag';
+import OppgaveStatusInfo from '@innsyn/components/oppgave-status-info/OppgaveStatusInfo';
 import { getOppgaveStatusText } from '@innsyn/utils/textUtils';
 import { Alert, Heading, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
@@ -8,8 +10,6 @@ import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { AppText } from '@shared/i18n';
 import { useEffect, useRef, useState } from 'react';
 
-import ForsideLenkeButton from '../../../../atoms/forside-lenke-button/ForsideLenkeButton';
-import OppgaveStatusInfo from '../../../../components/oppgave-status-info/OppgaveStatusInfo';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
 import RapporterInntektKvittering from './RapporterInntektKvittering';
 import RapporterInntektUbesvart from './RapporterInntektUbesvart';

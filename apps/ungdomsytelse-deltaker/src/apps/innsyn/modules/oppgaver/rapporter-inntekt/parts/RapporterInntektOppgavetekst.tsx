@@ -2,9 +2,8 @@ import { BodyLong, Box, Heading, Link, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '@shared/i18n';
+import getLenker from '@shared/utils/lenker';
 import dayjs from 'dayjs';
-
-import getLenker from '../../../../../../utils/lenker';
 
 interface Props {
     deltakerNavn: string;
