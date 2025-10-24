@@ -55,7 +55,7 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
     'personopplysninger.4.6':
         'trygdeordningar du kan ha rett til i andre land. Me kan òg senda opplysningar om deg til trygdestyresmakter i andre land.',
     'personopplysninger.4b':
-        'Me lagrar opplysningane me får inn om barnet du søkjer pleiepengar for. Dette gjer vi for å kunne bruke opplysningane om att viss andre omsorgspersonar søkjer pleiepengar for same barn.',
+        'Me lagrar opplysningane me får inn om barnet du søkjer pleiepengar for. Dette gjer me for å kunne bruke opplysningane om att viss andre omsorgspersonar søkjer pleiepengar for same barn.',
     'personopplysninger.5':
         'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav handsamar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };

@@ -1,7 +1,9 @@
-import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Heading, Link, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '@shared/i18n';
+import getLenker from '@shared/utils/lenker';
+import dayjs from 'dayjs';
 
 interface Props {
     deltakerNavn: string;
@@ -10,7 +12,9 @@ interface Props {
 }
 
 const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Props) => {
-    const frist = dateFormatter.full(svarfrist);
+    /** Finn datoen før fristen, i og med teksten er "senest [dato]" */
+    const senestDato = dayjs(svarfrist).subtract(1, 'day').toDate();
+    const frist = dateFormatter.full(senestDato);
     const måned = dateFormatter.month(periode.from);
 
     return (
@@ -20,7 +24,24 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
             </Heading>
             <Box maxWidth="90%">
                 <BodyLong spacing>
-                    <AppText id="rapporterInntektOppgavetekst.intro" values={{ måned }} />
+                    <AppText
+                        id="rapporterInntektOppgavetekst.intro.1"
+                        values={{
+                            måned,
+                        }}
+                    />
+                </BodyLong>
+                <BodyLong spacing>
+                    <AppText
+                        id="rapporterInntektOppgavetekst.intro.2"
+                        values={{
+                            link: (value) => (
+                                <Link href={getLenker().lovdataInntekt} target="_blank">
+                                    {value}
+                                </Link>
+                            ),
+                        }}
+                    />
                 </BodyLong>
                 <BodyLong spacing>
                     <AppText
@@ -29,7 +50,7 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
                     />
                 </BodyLong>
                 <BodyLong spacing>
-                    <AppText id="rapporterInntektOppgavetekst.ingenLønn" values={{ måned }} />
+                    <AppText id="rapporterInntektOppgavetekst.ingenInntekt" values={{ måned }} />
                 </BodyLong>
             </Box>
         </VStack>

@@ -202,6 +202,9 @@ const ArbeidstidStep = () => {
                                     <p>
                                         <AppText id="arbeidIPeriode.StepInfo.1" />
                                     </p>
+                                    <p>
+                                        <AppText id="arbeidIPeriode.StepInfo.2" />
+                                    </p>
                                 </FormLayout.Guide>
                                 <FormLayout.Sections>
                                     {ansattArbeidstid && (
