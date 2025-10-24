@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.0
+
+### Minor Changes
+
+- Oppdatere tekster til Rapporter inntekt oppgaven + refactor av logikk på samme oppgave
+
 ## 1.4.10
 
 ### Patch Changes
