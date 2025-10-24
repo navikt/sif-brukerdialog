@@ -1,7 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import { TallSvar } from '@navikt/sif-common-ui';
-
-import { AppText } from '../../../../../../i18n';
+import { AppText } from '@shared/i18n';
 
 interface Props {
     måned: string;
