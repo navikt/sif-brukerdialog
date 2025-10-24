@@ -130,14 +130,12 @@ const Kvittering = ({ children }: KvitteringProps) => {
 
     return (
         <>
-            <VStack gap="4">
-                <Alert variant="success" tabIndex={-1} ref={alertRef}>
-                    <Heading level="2" size="small" spacing>
-                        <AppText id="oppgavebekreftelse.kvittering.tittel" />
-                    </Heading>
-                    {children}
-                </Alert>
-            </VStack>
+            <Alert variant="success" tabIndex={-1} ref={alertRef}>
+                <Heading level="2" size="small" spacing>
+                    <AppText id="oppgavebekreftelse.kvittering.tittel" />
+                </Heading>
+                {children}
+            </Alert>
             <div>
                 <ForsideLenkeButton />
             </div>
