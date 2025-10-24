@@ -48,10 +48,10 @@ const VeilederScenarioHeader = () => {
                             Endret sluttdato
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.rapporterInntekt)}>
-                            Månedlig melde fra om lønn
+                            Månedlig melde fra om inntekt
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntekt)}>
-                            Sjekke lønn ved avvik fra register
+                            Sjekke inntekt ved avvik fra register
                         </ActionMenu.Item>
                     </ActionMenu.Group>
                     <ActionMenu.Divider />

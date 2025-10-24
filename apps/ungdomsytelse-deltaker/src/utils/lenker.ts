@@ -9,6 +9,7 @@ interface Lenker {
     personopplysninger: string;
     minSide: string;
     skatteetaten: string;
+    lovdataInntekt: string;
     endreKontonummer: string;
     skrivtilOss: string;
     dokumentarkiv: string;
@@ -21,6 +22,7 @@ const getLenkerBokmål = (): Lenker => ({
     personopplysninger: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_PERSONOPPLYSNINGER),
     minSide: getRequiredEnv(AppEnvKey.SIF_PUBLIC_MINSIDE_URL),
     skatteetaten: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKATTEETATEN),
+    lovdataInntekt: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_LOVDATA_INNTEKT),
     endreKontonummer: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER),
     skrivtilOss: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKRIV_TIL_OSS),
     dokumentarkiv: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_DOKUMENTARKIV),

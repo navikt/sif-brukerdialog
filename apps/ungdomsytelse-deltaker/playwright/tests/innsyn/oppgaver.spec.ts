@@ -106,35 +106,31 @@ test.describe('Innsyn - oppgaver', () => {
         });
         test('Ingen inntekt', async ({ page }) => {
             const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
-            await nyeOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i september' }).click();
-            await expect(page.getByRole('heading', { name: 'Lønn i september' })).toBeVisible();
+            await nyeOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i september' }).click();
+            await expect(page.getByRole('heading', { name: 'Inntekt i september' })).toBeVisible();
             await page.getByText('Nei', { exact: true }).click();
             await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
             await expect(page.getByText('Svaret ditt er sendt innTakk')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
 
             const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
-            await tidligereOppgaver
-                .getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i september' })
-                .click();
-            await expect(page.getByText('Fikk du utbetalt lønn i september?Nei')).toBeVisible();
+            await tidligereOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i september' }).click();
+            await expect(page.getByText('Hadde du inntekt i september?Nei')).toBeVisible();
         });
         test('Med inntekt', async ({ page }) => {
             const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
-            await nyeOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i september' }).click();
-            await expect(page.getByRole('heading', { name: 'Lønn i september' })).toBeVisible();
+            await nyeOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i september' }).click();
+            await expect(page.getByRole('heading', { name: 'Inntekt i september' })).toBeVisible();
             await page.getByRole('radio', { name: 'Ja' }).click();
-            await page.getByRole('textbox', { name: 'Hvor mye fikk du i lønn før' }).fill('2350');
+            await page.getByRole('textbox', { name: 'Hvor mye hadde du i inntekt før' }).fill('2350');
             await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
             await expect(page.getByText('Svaret ditt er sendt innVi får')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
 
             const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
-            await tidligereOppgaver
-                .getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i september' })
-                .click();
-            await expect(page.getByText('Fikk du utbetalt lønn i september?Ja')).toBeVisible();
-            await expect(page.getByText('Lønn (før skatt)2 350')).toBeVisible();
+            await tidligereOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i september' }).click();
+            await expect(page.getByText('Hadde du inntekt i september?Ja')).toBeVisible();
+            await expect(page.getByText('Inntekt før skatt2 350')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
         });
     });
@@ -143,49 +139,55 @@ test.describe('Innsyn - oppgaver', () => {
             memoryStore.setScenario(ScenarioType.avvikInntekt);
             await page.goto(`./`);
         });
-        test('Ingen tilbakemelding/stemmer lønnen', async ({ page }) => {
+        test('Ingen tilbakemelding/stemmer inntekten', async ({ page }) => {
             const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
-            await nyeOppgaver.getByRole('link', { name: 'Sjekk lønn i september 2025' }).click();
-            await expect(page.getByRole('heading', { name: 'Tilbakemelding på lønn i september 2025' })).toBeVisible();
+            await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i september 2025' }).click();
+            await expect(
+                page.getByRole('heading', { name: 'Tilbakemelding på inntekt i september 2025' }),
+            ).toBeVisible();
             await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
             await expect(page.getByText('30. oktober 2025', { exact: true })).toBeVisible();
-            await page.getByRole('radio', { name: 'Ja, lønnen stemmer' }).check();
+            await page.getByRole('radio', { name: 'Ja, inntekten stemmer' }).check();
             await page.getByTestId('typedFormikForm-submitButton').click();
             // Kvittering
             await expect(page.getByText('Svaret ditt er sendt innVi')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
 
             const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
-            await tidligereOppgaver.getByRole('link', { name: 'Sjekk lønn i september 2025' }).click();
+            await tidligereOppgaver.getByRole('link', { name: 'Sjekk inntekten din i september 2025' }).click();
             await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' }).getByRole('cell')).toBeVisible();
-            await expect(page.getByText('Stemmer lønnen vi har fått oppgitt?Ja')).toBeVisible();
+            await expect(page.getByText('Stemmer inntekten vi har fått oppgitt?Ja')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
             await expect(page.getByText('Din ungdomsprogramytelseStartdato 1. august')).toBeVisible();
         });
-        test('Med tilbakemelding/er lønnen feil', async ({ page }) => {
+        test('Med tilbakemelding/er inntekten feil', async ({ page }) => {
             const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
-            await nyeOppgaver.getByRole('link', { name: 'Sjekk lønn i september 2025' }).click();
-            await expect(page.getByRole('heading', { name: 'Tilbakemelding på lønn i september 2025' })).toBeVisible();
+            await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i september 2025' }).click();
+            await expect(
+                page.getByRole('heading', { name: 'Tilbakemelding på inntekt i september 2025' }),
+            ).toBeVisible();
             await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
             await expect(page.getByText('30. oktober 2025', { exact: true })).toBeVisible();
             await page.getByRole('radio', { name: 'Nei' }).check();
-            await page.getByRole('textbox', { name: 'Tilbakemelding' }).fill('Lønnen fra SJOKKERENDE');
+            await page.getByRole('textbox', { name: 'Tilbakemelding' }).fill('Inntekten fra SJOKKERENDE');
             await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
 
             // Kvittering
-            await expect(page.getByRole('heading', { name: 'Tilbakemelding på lønn i september 2025' })).toBeVisible();
+            await expect(
+                page.getByRole('heading', { name: 'Tilbakemelding på inntekt i september 2025' }),
+            ).toBeVisible();
             await testAccessibility(page);
             await expect(page.getByText('Svaret ditt er sendt innVi')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
 
             // Forside
             const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
-            await tidligereOppgaver.getByRole('link', { name: 'Sjekk lønn i september 2025' }).click();
+            await tidligereOppgaver.getByRole('link', { name: 'Sjekk inntekten din i september 2025' }).click();
 
             // Oppsummering
             await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' }).getByRole('cell')).toBeVisible();
-            await expect(page.getByText('Stemmer lønnen vi har fått oppgitt?Nei')).toBeVisible();
-            await expect(page.getByText('TilbakemeldingLønnen fra')).toBeVisible();
+            await expect(page.getByText('Stemmer inntekten vi har fått oppgitt?Nei')).toBeVisible();
+            await expect(page.getByText('TilbakemeldingInntekten fra')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
 
             // Forside
