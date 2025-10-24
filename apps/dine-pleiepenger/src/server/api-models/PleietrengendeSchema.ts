@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
 
 export type Pleietrengende = z.infer<typeof PleietrengendeSchema> | z.infer<typeof PleietrengendeAnonymisertSchema>;

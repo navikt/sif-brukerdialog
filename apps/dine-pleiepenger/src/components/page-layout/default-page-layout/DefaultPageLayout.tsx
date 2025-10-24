@@ -1,5 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import React from 'react';
+
 import PageHeader from '../page-header/PageHeader';
 
 interface Props {

@@ -1,9 +1,6 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Behandlingsstatus } from '../../../src/server/api-models/Behandlingsstatus';
-import { Innsendelsestype } from '../../../src/server/api-models/Innsendelsestype';
-import { PleietrengendeMedSak } from '../../../src/server/api-models/PleietrengendeMedSakSchema';
 
-export const sakerMock: PleietrengendeMedSak[] = [
+export const sakerMock = [
     {
         pleietrengende: {
             identitetsnummer: '27870899799',
@@ -19,17 +16,17 @@ export const sakerMock: PleietrengendeMedSak[] = [
             utledetStatus: {
                 saksbehandlingsFrist: ISODateToDate('2024-03-26'),
                 aksjonspunkter: [],
-                status: Behandlingsstatus.UNDER_BEHANDLING,
+                status: 'UNDER_BEHANDLING',
             },
             behandlinger: [
                 {
-                    status: Behandlingsstatus.UNDER_BEHANDLING,
+                    status: 'UNDER_BEHANDLING',
                     opprettetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     avsluttetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     innsendelser: [
                         {
                             søknadId: 'af5088f4-7739-4c47-8665-ee1397200e8f',
-                            innsendelsestype: Innsendelsestype.ENDRINGSMELDING,
+                            innsendelsestype: 'ENDRINGSMELDING',
                             k9FormatInnsendelse: {
                                 søknadId: 'af5088f4-7739-4c47-8665-ee1397200e8f',
                                 mottattDato: new Date('2024-02-14T11:59:40.061Z'),

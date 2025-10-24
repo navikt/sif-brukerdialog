@@ -1,5 +1,6 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { Dialog } from '@navikt/ds-icons';
+import { Heading, HGrid, VStack } from '@navikt/ds-react';
+
 import { useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 import SnarveiLinkCard from '../snarvei-link-card/SnarveiLinkCard';

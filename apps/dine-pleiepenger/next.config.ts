@@ -1,9 +1,8 @@
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
 //     enabled: process.env.ANALYZE === 'true',
 // });
-import * as path from 'path';
-
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
+import * as path from 'path';
 
 const appDirectives = {
     'default-src': ["'self'"],
@@ -74,4 +73,4 @@ const nextConfig = {
     productionBrowserSourceMaps: true,
 };
 
-module.exports = nextConfig;
+export default nextConfig;

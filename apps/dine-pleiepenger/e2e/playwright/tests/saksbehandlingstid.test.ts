@@ -1,19 +1,16 @@
 import { expect, test } from '@playwright/test';
 import dayjs from 'dayjs';
+
 import { Innsynsdata } from '../../../src/types/InnsynData';
-import { sakerAvsluttetMock } from '../mockdata/saker-avsluttet.mock';
 import { sakerMock } from '../mockdata/saker.mock';
+import { sakerAvsluttetMock } from '../mockdata/saker-avsluttet.mock';
 import { søkerMockData } from '../mockdata/søker.mock';
-import { søknaderMockData } from '../mockdata/søknader.mock';
 import { setupMockRoutes } from '../utils/setup-mock-routes';
 
 const defaultInnsynsdata: Innsynsdata = {
-    saker: sakerMock,
+    saker: sakerMock as any,
     harSak: true,
     søker: søkerMockData,
-    mellomlagring: {},
-    brukerprofil: {} as any,
-    innsendteSøknader: søknaderMockData as any,
 };
 
 const pleietrengende = sakerMock[0].pleietrengende;
@@ -34,7 +31,7 @@ test('Saksbehandlingstid er i fremtid', async ({ page }) => {
                     sak: {
                         ...sak,
                         utledetStatus: { ...sak.utledetStatus, saksbehandlingsFrist: dayjs().add(1, 'day').toDate() },
-                    },
+                    } as any,
                 },
             ],
             harSak: true,
@@ -53,7 +50,7 @@ test('Saksbehandlingstid er i dag', async ({ page }) => {
                 {
                     pleietrengende,
                     sak: { ...sak, utledetStatus: { ...sak.utledetStatus, saksbehandlingsFrist: dayjs().toDate() } },
-                },
+                } as any,
             ],
             harSak: true,
         };
@@ -76,7 +73,7 @@ test('Saksbehandlingstid er i fortid', async ({ page }) => {
                             ...sak.utledetStatus,
                             saksbehandlingsFrist: dayjs().subtract(1, 'day').toDate(),
                         },
-                    },
+                    } as any,
                 },
             ],
             harSak: true,
@@ -95,7 +92,7 @@ test('Ingen Saksbehandlingstid, men behandlingstid', async ({ page }) => {
                 {
                     pleietrengende,
                     sak: { ...sak, utledetStatus: { ...sak.utledetStatus, saksbehandlingsFrist: dayjs().toDate() } },
-                },
+                } as any,
             ],
             harSak: true,
         };
@@ -113,9 +110,8 @@ test('Hverken Saksbehandlingstid eller behandlingstid', async ({ page }) => {
                 {
                     pleietrengende,
                     sak: { ...sak, utledetStatus: { ...sak.utledetStatus, saksbehandlingsFrist: undefined } },
-                },
+                } as any,
             ],
-            saksbehandlingstidUker: undefined,
             harSak: true,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
@@ -128,8 +124,7 @@ test('Sak er ikke under behandling - ikke vis saksbehandlingstid', async ({ page
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
-            saker: [{ pleietrengende, sak: { ...avsluttetSak } }],
-            saksbehandlingstidUker: undefined,
+            saker: [{ pleietrengende, sak: { ...avsluttetSak } as any }],
             harSak: true,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });

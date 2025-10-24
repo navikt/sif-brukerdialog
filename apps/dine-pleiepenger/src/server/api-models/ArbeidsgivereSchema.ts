@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { InnsendtSøknadArbeidsgiverSchema } from './InnsendtSøknadArbeidsgiverSchema';
 import { OrganisasjonSchema } from './OrganisasjonSchema';
 

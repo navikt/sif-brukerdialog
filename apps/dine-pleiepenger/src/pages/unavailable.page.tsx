@@ -1,6 +1,7 @@
-import type { NextPage } from 'next';
 import { BodyShort, GuidePanel, Heading } from '@navikt/ds-react';
+import type { NextPage } from 'next';
 import Head from 'next/head';
+
 import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 
 const UnavailablePage: NextPage = () => {

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { Kildesystem } from '../../types/Kildesystem';
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
 import { YtelseSchema } from './YtelseSchema';

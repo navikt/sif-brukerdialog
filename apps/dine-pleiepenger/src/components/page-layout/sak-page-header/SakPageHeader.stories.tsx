@@ -1,11 +1,11 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { Behandlingsstatus } from '../../../server/api-models/Behandlingsstatus';
 import { withEmptyPage } from '../../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../../storybook/hooks/withIntl';
 import StatusTag from '../../status-tag/StatusTag';
 import SakPageHeader from './SakPageHeader';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof SakPageHeader> = {
     component: SakPageHeader,
     title: 'Components/SakPageHeader',

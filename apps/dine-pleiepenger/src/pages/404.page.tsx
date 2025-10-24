@@ -1,5 +1,7 @@
-import type { NextPage } from 'next';
+/* eslint-disable max-len */
 import { BodyShort, Box, Heading, HGrid, Link, List } from '@navikt/ds-react';
+import type { NextPage } from 'next';
+
 import { browserEnv } from '../utils/env';
 
 const NotFoundPage: NextPage = () => {

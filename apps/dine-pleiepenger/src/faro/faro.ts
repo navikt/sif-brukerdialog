@@ -1,4 +1,5 @@
 import { Faro, getWebInstrumentations, initializeFaro, LogLevel } from '@grafana/faro-web-sdk';
+
 import nais from '../../nais.js';
 import { browserEnv } from '../utils/env';
 

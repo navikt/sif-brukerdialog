@@ -1,4 +1,5 @@
 import { createChildLogger } from '@navikt/next-logger';
+
 import { RequestContext } from '../types/RequestContext';
 import { ApiService } from './apiService';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';

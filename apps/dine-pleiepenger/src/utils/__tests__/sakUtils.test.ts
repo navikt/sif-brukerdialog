@@ -1,4 +1,5 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
+
 import { Behandling } from '../../server/api-models/BehandlingSchema';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import {

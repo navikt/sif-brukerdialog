@@ -1,4 +1,5 @@
 import { Alert, BodyLong, Box, Heading, Link, LinkCard, VStack } from '@navikt/ds-react';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
@@ -35,12 +36,12 @@ const IngenSakEllerSøknadPage = () => {
                                                     <AppText
                                                         id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.2"
                                                         values={{
-                                                            lenkeMinSide: (children) => (
+                                                            lenkeMinSide: (children: any) => (
                                                                 <Link href={browserEnv.NEXT_PUBLIC_MIN_SIDE_URL}>
                                                                     {children}
                                                                 </Link>
                                                             ),
-                                                            lenkeInnboksen: (children) => (
+                                                            lenkeInnboksen: (children: any) => (
                                                                 <Link href={browserEnv.NEXT_PUBLIC_INNBOKS_URL}>
                                                                     {children}
                                                                 </Link>
@@ -54,7 +55,7 @@ const IngenSakEllerSøknadPage = () => {
                                                     <AppText
                                                         id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.3"
                                                         values={{
-                                                            Lenke: (children) => (
+                                                            Lenke: (children: any) => (
                                                                 <Link href={browserEnv.NEXT_PUBLIC_NAV_URL}>
                                                                     {children}
                                                                 </Link>
@@ -69,7 +70,7 @@ const IngenSakEllerSøknadPage = () => {
                             </Box>
                         </VStack>
                     </div>
-                    <div className="md:mb-none shrink-0 md:w-128">
+                    <div className="md:mb-none shrink-0 md:w-lg">
                         <VStack gap="4">
                             <Heading level="2" size="medium">
                                 <AppText id="ingeSakPage.snarveier.tittel" />

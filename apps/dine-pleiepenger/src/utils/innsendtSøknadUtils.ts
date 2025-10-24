@@ -1,6 +1,9 @@
+import 'dayjs/locale/nb';
+
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+
 import {
     InnsendtPleiepengerEndringsmelding,
     InnsendtPleiepengerEttersendelse,
@@ -8,8 +11,6 @@ import {
     InnsendtSøknad,
     InnsendtSøknadstype,
 } from '../types/InnsendtSøknad';
-
-require('dayjs/locale/nb');
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

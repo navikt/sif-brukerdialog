@@ -1,5 +1,6 @@
 import { Tag } from '@navikt/ds-react';
 import { useRef } from 'react';
+
 import { browserEnv, getServerEnv } from '../../utils/env';
 
 const DevBranchInfo = () => {

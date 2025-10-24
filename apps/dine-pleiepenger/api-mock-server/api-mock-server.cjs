@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const server = express();
 const søknader = require('./mockdata/soknader.json');
 const saker = require('./mockdata/saker.json');
+const flereSaker = require('./mockdata/flere-saker.json');
 
 server.use(express.json());
 
@@ -16,7 +17,7 @@ server.use(
 );
 
 server.use(function (req, res, next) {
-    setTimeout(next, 50);
+    setTimeout(next, 350);
 });
 
 const søker = {
@@ -41,7 +42,7 @@ const startServer = () => {
     });
 
     server.get('/soknad', (req, res) => {
-        res.send([]);
+        res.send(søknader);
     });
 
     server.get('/soknad/:soknadId/dokument', (req, res) => {
@@ -54,7 +55,7 @@ const startServer = () => {
 
     server.get('/saker/saksbehandlingstid', (req, res) => {
         res.send({
-            saksbehandlingstidUker: 5,
+            saksbehandlingstidUker: 7,
         });
     });
 
@@ -80,22 +81,6 @@ const startServer = () => {
 
     server.get('/soknad/:soknadId/arbeidsgivermelding', (req, res) => {
         res.download('./api-mock-server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
-    });
-
-    server.get('/mellomlagring/PLEIEPENGER_SYKT_BARN', (req, res) => {
-        res.send({
-            metadata: {
-                lastStepID: 'tidsrom',
-                version: '6.1',
-                updatedTimestemp: '2022-12-20T14:18:01.060Z',
-            },
-        });
-    });
-
-    server.get('/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
-        res.send({
-            metadata: { lastStepID: 'tidsrom', version: '6.1', updatedTimestamp: '2023-07-01T20:54:12.060Z' },
-        });
     });
 
     server.listen(port, () => {

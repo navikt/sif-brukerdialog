@@ -1,4 +1,5 @@
 import { Box, Heading, List } from '@navikt/ds-react';
+
 import { AppText } from '../../../i18n';
 import { Dokument } from '../../../server/api-models/DokumenetSchema';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const nb = {
     'velgSak.dokumentTittel': 'Dine pleiepenger for sykt barn - velg sak',
     'velgSak.tittel': 'Dine pleiepengesaker',
@@ -93,11 +94,6 @@ export const nb = {
         'Hvis du skal få pleiepengene direkte fra Nav, utbetaler vi innen den 25. i måneden. Hvis du skal ha etterbetalt pleiepenger for måneder bakover i tid, er de vanligvis på konto innen 5 virkedager fra du fikk svar på søknaden. Du finner ',
     'hvaSkjerInfo.utbetaling.2': 'oversikt over utbetalingene dine her',
     'hvaSkjerInfo.utbetaling.3': '.',
-
-    'påbegyntSøknad.info.title': 'Gå til påbegynt søknad',
-    'påbegyntSøknad.info': 'Lagres til og med {datoNårSlettes}',
-    'påbegyntEndring.info.title': 'Gå til påbegynt endringsmelding',
-    'påbegyntEndring.info': 'Lagres til og med {datoNårSlettes}',
 
     'dineInnsendteSøknader.tittel': 'Dine søknader, endringer og ettersendelser',
 

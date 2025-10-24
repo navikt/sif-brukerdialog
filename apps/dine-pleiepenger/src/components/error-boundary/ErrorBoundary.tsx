@@ -1,6 +1,7 @@
 import { Page } from '@navikt/ds-react';
-import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';
 import { createChildLogger } from '@navikt/next-logger';
+import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';
+
 import { getUserRequestId } from '../../utils/userRequestId';
 import ErrorFallback from './ErrorFallback';
 

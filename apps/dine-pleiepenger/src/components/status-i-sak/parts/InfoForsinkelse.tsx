@@ -1,4 +1,5 @@
 import { Alert } from '@navikt/ds-react';
+
 import { AppText } from '../../../i18n';
 
 const InfoForsinkelse = () => {

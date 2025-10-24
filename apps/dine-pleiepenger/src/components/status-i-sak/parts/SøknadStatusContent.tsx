@@ -1,4 +1,5 @@
 import { ReadMore, VStack } from '@navikt/ds-react';
+
 import { useAppIntl } from '../../../i18n';
 import { Pleiepengesøknad } from '../../../server/api-models/InnsendelseSchema';
 import { getArbeidsgiverinfoFraSøknad } from '../../../utils/sakUtils';

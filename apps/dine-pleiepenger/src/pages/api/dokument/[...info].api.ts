@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { withAuthenticatedApi } from '../../../auth/withAuthentication';
 import { ApiService } from '../../../server/apiService';
 import { fetchDocument } from '../../../server/fetchDocument';
