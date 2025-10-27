@@ -62,7 +62,7 @@
         "@types/react-document-title": "2.0.10",
         "@types/react-dom": "19.2.2",
         "@types/react-router-dom": "5.3.3",
-        "@vitejs/plugin-react": "5.0.4",
+        "@vitejs/plugin-react": "5.1.0",
         "axe-core": "4.11.0",
         "compression": "1.8.1",
         "express": "5.1.0",
