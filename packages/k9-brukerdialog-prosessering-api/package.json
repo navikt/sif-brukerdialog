@@ -6,11 +6,11 @@
     "type": "module",
     "version": "0.2.2",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.86.2",
+        "@hey-api/openapi-ts": "0.86.6",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.9.3",
-        "vitest": "4.0.1",
+        "vitest": "4.0.3",
         "zod": "4.1.12"
     },
     "peerDependencies": {
