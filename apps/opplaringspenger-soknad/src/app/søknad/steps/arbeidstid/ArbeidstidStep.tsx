@@ -23,10 +23,7 @@ import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/for
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
-import {
-    harValgtRedusertEllerFulltFraværIPerioden,
-    søkerKunEnEnkeltdagArbeiderRedusertMenOppgirFullArbeidsdag,
-} from './form-parts/arbeidstidUtils';
+import { harFraværAlleEnkeltdager, harFraværIPeriode } from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
 import { EnkeltdagEllerPeriode } from '../kurs/KursStep';
 
@@ -83,29 +80,15 @@ const ArbeidstidStep = () => {
     const { clearStepFormValues } = useStepFormValuesContext();
 
     const onBeforeValidSubmit = (values: ArbeidstidFormValues) => {
-        const { ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid } = values;
+        const søkerEnkeltdager = søknadsdata.kurs?.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.ENKELTDAG;
         return new Promise((resolve) => {
-            /** Hvis en søker om enkeltdager, sjekk at bruker faktisk oppgir fravær  */
-            const harEnkeltdagUtenFravær =
-                søknadsdata.kurs?.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.ENKELTDAG
-                    ? søkerKunEnEnkeltdagArbeiderRedusertMenOppgirFullArbeidsdag(søknadsdata.kurs, {
-                          frilansArbeidstid,
-                          selvstendigArbeidstid,
-                          ansattArbeidstid,
-                      })
-                    : false;
+            /** Hvis en søker om enkeltdager, sjekk at bruker faktisk oppgir fravær alle dager  */
+            const harEnkeltdagUtenFravær = søkerEnkeltdager && harFraværAlleEnkeltdager(values) === false;
 
-            /** Hvis en søker om perioder, sjekk at bruker faktisk oppgir fravær for periodene  */
-            const harPerioderUtenFravær =
-                søknadsdata.kurs?.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.PERIODE
-                    ? harValgtRedusertEllerFulltFraværIPerioden({
-                          frilansArbeidstid,
-                          selvstendigArbeidstid,
-                          ansattArbeidstid,
-                      }) === false
-                    : false;
+            /** Hvis en søker om perioder, sjekk at bruker faktisk oppgir fravær for periodene */
+            const harPeriodeUtenFravær = !søkerEnkeltdager && harFraværIPeriode(values) === false;
 
-            if (harEnkeltdagUtenFravær || harPerioderUtenFravær) {
+            if (harEnkeltdagUtenFravær || harPeriodeUtenFravær) {
                 setTimeout(() => {
                     setConfirmationDialog({
                         title: text('ingenFraværConfirmation.title'),

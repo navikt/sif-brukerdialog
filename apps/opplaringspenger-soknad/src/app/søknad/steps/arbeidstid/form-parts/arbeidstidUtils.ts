@@ -1,6 +1,4 @@
 import { Duration, durationToDecimalDuration } from '@navikt/sif-common-utils';
-import { KursSøknadsdata } from '../../../../types/søknadsdata/KursSøknadsdata';
-import { EnkeltdagEllerPeriode } from '../../kurs/KursStep';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../ArbeidstidStep';
 import { ArbeidIPeriode, JobberIPeriodeSvar } from '../ArbeidstidTypes';
 
@@ -12,22 +10,23 @@ type ArbeidFormValues = Pick<
 >;
 
 /**
- * Sjekker om det er valgt redusert eller fullt fravær i perioden
- * @param values ArbeidstidFormValues
- * @returns
+ * Sjekker om det er valgt redusert eller fullt fravær i perioden for minst ett arbeidsforhold
  */
-export const harValgtRedusertEllerFulltFraværIPerioden = ({
+export const harFraværIPeriode = ({
     frilansArbeidstid,
     selvstendigArbeidstid,
     ansattArbeidstid,
 }: ArbeidFormValues): boolean => {
-    const harFraværSomAnsatt = ansattArbeidstid?.some((forhold) => harValgtFravær(forhold.arbeidIPeriode));
-    const harFraværSomFrilanser = harValgtFravær(frilansArbeidstid?.arbeidIPeriode);
-    const harFraværSomSelvstendig = harValgtFravær(selvstendigArbeidstid?.arbeidIPeriode);
+    const harFraværSomAnsatt = ansattArbeidstid?.some((forhold) => harRedusertEllerHeltFravær(forhold.arbeidIPeriode));
+    const harFraværSomFrilanser = harRedusertEllerHeltFravær(frilansArbeidstid?.arbeidIPeriode);
+    const harFraværSomSelvstendig = harRedusertEllerHeltFravær(selvstendigArbeidstid?.arbeidIPeriode);
     return harFraværSomAnsatt || harFraværSomFrilanser || harFraværSomSelvstendig;
 };
 
-const harValgtFravær = (arbeidIPeriode?: ArbeidIPeriode) => {
+/**
+ * Sjekker om en arbeidIPeriode har redusert arbeidstid eller helt fravær
+ */
+const harRedusertEllerHeltFravær = (arbeidIPeriode?: ArbeidIPeriode) => {
     return arbeidIPeriode
         ? arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert ||
               arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær
@@ -35,51 +34,50 @@ const harValgtFravær = (arbeidIPeriode?: ArbeidIPeriode) => {
 };
 
 /**
- * Legg all arbeidstid i perioden i en Array, og returner denne
- * @param values ArbeidstidFormValues
- * @returns ArbeidIPeriode[]
+ * Samler alle arbeidIPerioder fra alle arbeidsforhold i en liste
  */
-const getAltArbeidIPeriode = ({
+const getAlleArbeidIPerioder = ({
     ansattArbeidstid,
     frilansArbeidstid,
     selvstendigArbeidstid,
 }: ArbeidFormValues): ArbeidIPeriode[] => {
-    const arbeidIPeriode: ArbeidIPeriode[] = [];
-    ansattArbeidstid?.forEach(
-        (forhold) => forhold.arbeidIPeriode !== undefined && arbeidIPeriode.push(forhold.arbeidIPeriode),
-    );
-    if (frilansArbeidstid?.arbeidIPeriode) {
-        arbeidIPeriode.push(frilansArbeidstid.arbeidIPeriode);
-    }
-    if (selvstendigArbeidstid?.arbeidIPeriode) {
-        arbeidIPeriode.push(selvstendigArbeidstid.arbeidIPeriode);
-    }
-    return arbeidIPeriode;
+    return [
+        ...(ansattArbeidstid?.map((forhold) => forhold.arbeidIPeriode).filter(Boolean) || []),
+        frilansArbeidstid?.arbeidIPeriode,
+        selvstendigArbeidstid?.arbeidIPeriode,
+    ].filter((periode): periode is ArbeidIPeriode => periode !== undefined);
 };
 
-export const søkerKunEnEnkeltdagArbeiderRedusertMenOppgirFullArbeidsdag = (
-    kurs: KursSøknadsdata | undefined,
-    values: ArbeidFormValues,
-): boolean => {
-    const kunEnkeltdag = kurs?.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.ENKELTDAG;
-    if (!kunEnkeltdag) {
+/**
+ * Sjekker om alle enkeltdager har redusert arbeidstid i arbeidsforholdene med redusert periode
+ */
+export const harFraværAlleEnkeltdager = ({
+    ansattArbeidstid,
+    frilansArbeidstid,
+    selvstendigArbeidstid,
+}: ArbeidFormValues): boolean => {
+    const redusertePerioder = getAlleArbeidIPerioder({
+        ansattArbeidstid,
+        frilansArbeidstid,
+        selvstendigArbeidstid,
+    }).filter((periode) => periode.jobberIPerioden === JobberIPeriodeSvar.redusert);
+
+    // Hvis ingen reduserte perioder, returner false
+    if (redusertePerioder.length === 0) {
         return false;
     }
-    const alleEnkeltdager: Duration[] = [];
-    getAltArbeidIPeriode(values)
-        .filter((arbeidIPeriode) => arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert)
-        .forEach((arbeidIPeriode) => {
-            if (arbeidIPeriode.enkeltdager) {
-                Object.values(arbeidIPeriode.enkeltdager).forEach((duration) => alleEnkeltdager.push(duration));
-            }
-        });
-    return alleEnkeltdager.some((dag) => erRedusertArbeidstid(dag) === false);
+
+    // Sjekk at alle reduserte perioder har enkeltdager hvor ALLE dager har redusert arbeidstid
+    return redusertePerioder.every(
+        (periode) =>
+            periode.enkeltdager &&
+            Object.values(periode.enkeltdager).length > 0 &&
+            Object.values(periode.enkeltdager).every(erRedusertArbeidstid),
+    );
 };
 
 /**
  * Sjekker om arbeidstiden er mindre enn en full arbeidsdag (7.5 timer)
- * @param duration Arbeidstid
- * @returns true hvis arbeidstiden er mindre enn en full arbeidsdag (7.5 timer)
  */
 export const erRedusertArbeidstid = (duration: Duration): boolean => {
     return duration ? durationToDecimalDuration(duration) < 7.5 : false;
