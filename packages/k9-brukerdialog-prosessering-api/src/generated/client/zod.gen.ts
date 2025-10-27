@@ -851,6 +851,12 @@ export const zVirksomhetWritable = z.object({
     harFlereAktiveVirksomheter: z.boolean(),
 });
 
+export const zSelvstendigNæringsdrivendeWritable = z.object({
+    harInntektSomSelvstendig: z.boolean(),
+    virksomhet: z.optional(zVirksomhetWritable),
+    arbeidsforhold: z.optional(zArbeidsforhold),
+});
+
 export const zPleiepengerILivetsSluttfaseSøknadWritable = z.object({
     språk: z.string(),
     fraOgMed: z.iso.date(),
@@ -881,6 +887,37 @@ export const zArbeidsgiverOlpWritable = z.object({
     navn: z.optional(z.string()),
     erAnsatt: z.optional(z.boolean()),
     arbeidsforhold: z.optional(zArbeidsforholdOlp),
+});
+
+export const zOpplæringspengerSøknadWritable = z.object({
+    newVersion: z.optional(z.boolean()),
+    apiDataVersjon: z.optional(z.string()),
+    språk: z.enum(['nb', 'nn']),
+    søkerNorskIdent: z.optional(z.string()),
+    barn: zBarnDetaljer,
+    arbeidsgivere: z.array(zArbeidsgiverOlpWritable),
+    vedlegg: z.array(z.string()),
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
+    medlemskap: zMedlemskap,
+    utenlandsoppholdIPerioden: z.optional(zUtenlandsoppholdIPerioden),
+    ferieuttakIPerioden: z.optional(zFerieuttakIPerioden),
+    opptjeningIUtlandet: z.array(zOpptjeningIUtlandet),
+    utenlandskNæring: z.array(zUtenlandskNæring),
+    harBekreftetOpplysninger: z.boolean(),
+    harForståttRettigheterOgPlikter: z.boolean(),
+    frilans: z.optional(zFrilansOlp),
+    selvstendigNæringsdrivende: z.optional(zSelvstendigNæringsdrivendeOlp),
+    stønadGodtgjørelse: z.optional(zStønadGodtgjørelse),
+    harVærtEllerErVernepliktig: z.optional(z.boolean()),
+    dataBruktTilUtledningAnnetData: z.optional(z.string()),
+    ettersendingAvVedlegg: z.optional(zEttersendingAvVedlegg),
+    kurs: zKurs,
+});
+
+export const zSelvstendigNæringsdrivendeOlpWritable = z.object({
+    virksomhet: zVirksomhetWritable,
+    arbeidsforhold: zArbeidsforholdOlp,
 });
 
 export const zOmsorgspengerutbetalingSnfSøknadWritable = z.object({

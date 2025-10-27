@@ -255,11 +255,50 @@ export const zArbeidIPeriodeWritable = z.object({
     enkeltdager: z.optional(z.array(zEnkeltdag)),
 });
 
+export const zArbeidsforholdOlpWritable = z.object({
+    jobberNormaltTimer: z.number(),
+    arbeidIPeriode: zArbeidIPeriodeWritable,
+});
+
 export const zArbeidsgiverOlpWritable = z.object({
     organisasjonsnummer: z.optional(z.string()),
     navn: z.optional(z.string()),
     erAnsatt: z.optional(z.boolean()),
-    arbeidsforhold: z.optional(zArbeidsforholdOlp),
+    arbeidsforhold: z.optional(zArbeidsforholdOlpWritable),
+});
+
+export const zFrilansOlpWritable = z.object({
+    startdato: z.iso.date(),
+    sluttdato: z.optional(z.iso.date()),
+    jobberFortsattSomFrilans: z.boolean(),
+    arbeidsforhold: z.optional(zArbeidsforholdOlpWritable),
+    harHattInntektSomFrilanser: z.boolean(),
+});
+
+export const zOpplæringspengerSøknadWritable = z.object({
+    newVersion: z.optional(z.boolean()),
+    apiDataVersjon: z.optional(z.string()),
+    språk: z.enum(['nb', 'nn']),
+    søkerNorskIdent: z.optional(z.string()),
+    barn: zBarnDetaljer,
+    arbeidsgivere: z.array(zArbeidsgiverOlpWritable),
+    vedlegg: z.array(z.string()),
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
+    medlemskap: zMedlemskap,
+    utenlandsoppholdIPerioden: z.optional(zUtenlandsoppholdIPerioden),
+    ferieuttakIPerioden: z.optional(zFerieuttakIPerioden),
+    opptjeningIUtlandet: z.array(zOpptjeningIUtlandet),
+    utenlandskNæring: z.array(zUtenlandskNæring),
+    harBekreftetOpplysninger: z.boolean(),
+    harForståttRettigheterOgPlikter: z.boolean(),
+    frilans: z.optional(zFrilansOlpWritable),
+    selvstendigNæringsdrivende: z.optional(zSelvstendigNæringsdrivendeOlp),
+    stønadGodtgjørelse: z.optional(zStønadGodtgjørelse),
+    harVærtEllerErVernepliktig: z.optional(z.boolean()),
+    dataBruktTilUtledningAnnetData: z.optional(z.string()),
+    ettersendingAvVedlegg: z.optional(zEttersendingAvVedlegg),
+    kurs: zKurs,
 });
 
 export const zVirksomhetWritable = z.object({
@@ -277,6 +316,11 @@ export const zVirksomhetWritable = z.object({
     regnskapsfører: z.optional(zRegnskapsfører),
     erNyoppstartet: z.boolean(),
     harFlereAktiveVirksomheter: z.boolean(),
+});
+
+export const zSelvstendigNæringsdrivendeOlpWritable = z.object({
+    virksomhet: zVirksomhetWritable,
+    arbeidsforhold: zArbeidsforholdOlpWritable,
 });
 
 export const zDeleteMellomlagringData = z.object({
