@@ -25,7 +25,7 @@ export const harFraværIPeriode = ({
 
 /**
  * Sjekker om en arbeidIPeriode har redusert arbeidstid eller helt fravær.
- * For redusert periode med kun én dag, sjekkes også om det faktisk er fravær på den dagen.
+ * For redusert periode med enkeltdager, sjekkes også om alle dager faktisk har fravær.
  */
 const harRedusertEllerHeltFravær = (arbeidIPeriode?: ArbeidIPeriode) => {
     if (!arbeidIPeriode) {
@@ -39,12 +39,11 @@ const harRedusertEllerHeltFravær = (arbeidIPeriode?: ArbeidIPeriode) => {
 
     // For redusert periode
     if (arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert) {
-        // Hvis det kun er én enkeltdag, sjekk om det faktisk er fravær på den dagen
-        if (arbeidIPeriode.enkeltdager && Object.values(arbeidIPeriode.enkeltdager).length === 1) {
-            const enkeltdag = Object.values(arbeidIPeriode.enkeltdager)[0];
-            return erRedusertArbeidstid(enkeltdag);
+        // Hvis det er enkeltdager, sjekk om alle dager faktisk har fravær
+        if (arbeidIPeriode.enkeltdager && Object.values(arbeidIPeriode.enkeltdager).length > 0) {
+            return Object.values(arbeidIPeriode.enkeltdager).every(erRedusertArbeidstid);
         }
-        // For flere dager eller ingen enkeltdager, returner true (redusert periode er valgt)
+        // Hvis ingen enkeltdager er spesifisert, returner true (redusert periode er valgt)
         return true;
     }
 

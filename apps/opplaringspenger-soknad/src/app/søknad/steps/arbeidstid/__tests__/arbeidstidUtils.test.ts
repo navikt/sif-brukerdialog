@@ -532,7 +532,7 @@ describe('arbeidstidUtils', () => {
             expect(harFraværIPeriode(values)).toBe(true);
         });
 
-        it('returnerer true når redusert periode med flere enkeltdager (uavhengig av faktisk arbeidstid)', () => {
+        it('returnerer false når redusert periode med flere enkeltdager hvor ikke alle har fravær', () => {
             const values: TestArbeidFormValues = {
                 [ArbeidstidFormFields.ansattArbeidstid]: [
                     {
@@ -542,9 +542,46 @@ describe('arbeidstidUtils', () => {
                         arbeidIPeriode: {
                             jobberIPerioden: JobberIPeriodeSvar.redusert,
                             enkeltdager: {
-                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag
+                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag - ikke fravær
                                 '2024-01-02': { hours: '6', minutes: '0' }, // Redusert dag
                             },
+                        },
+                    },
+                ],
+            };
+            expect(harFraværIPeriode(values)).toBe(false);
+        });
+
+        it('returnerer true når redusert periode med flere enkeltdager hvor alle har fravær', () => {
+            const values: TestArbeidFormValues = {
+                [ArbeidstidFormFields.ansattArbeidstid]: [
+                    {
+                        organisasjonsnummer: '123456789',
+                        navn: 'Test AS',
+                        jobberNormaltTimer: 7.5,
+                        arbeidIPeriode: {
+                            jobberIPerioden: JobberIPeriodeSvar.redusert,
+                            enkeltdager: {
+                                '2024-01-01': { hours: '5', minutes: '0' }, // Redusert dag
+                                '2024-01-02': { hours: '6', minutes: '0' }, // Redusert dag
+                            },
+                        },
+                    },
+                ],
+            };
+            expect(harFraværIPeriode(values)).toBe(true);
+        });
+
+        it('returnerer true når redusert periode uten enkeltdager (gammel funksjonalitet)', () => {
+            const values: TestArbeidFormValues = {
+                [ArbeidstidFormFields.ansattArbeidstid]: [
+                    {
+                        organisasjonsnummer: '123456789',
+                        navn: 'Test AS',
+                        jobberNormaltTimer: 7.5,
+                        arbeidIPeriode: {
+                            jobberIPerioden: JobberIPeriodeSvar.redusert,
+                            // Ingen enkeltdager spesifisert
                         },
                     },
                 ],
