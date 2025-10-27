@@ -24,13 +24,31 @@ export const harFraværIPeriode = ({
 };
 
 /**
- * Sjekker om en arbeidIPeriode har redusert arbeidstid eller helt fravær
+ * Sjekker om en arbeidIPeriode har redusert arbeidstid eller helt fravær.
+ * For redusert periode med kun én dag, sjekkes også om det faktisk er fravær på den dagen.
  */
 const harRedusertEllerHeltFravær = (arbeidIPeriode?: ArbeidIPeriode) => {
-    return arbeidIPeriode
-        ? arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert ||
-              arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær
-        : false;
+    if (!arbeidIPeriode) {
+        return false;
+    }
+
+    // Helt fravær er alltid fravær
+    if (arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær) {
+        return true;
+    }
+
+    // For redusert periode
+    if (arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert) {
+        // Hvis det kun er én enkeltdag, sjekk om det faktisk er fravær på den dagen
+        if (arbeidIPeriode.enkeltdager && Object.values(arbeidIPeriode.enkeltdager).length === 1) {
+            const enkeltdag = Object.values(arbeidIPeriode.enkeltdager)[0];
+            return erRedusertArbeidstid(enkeltdag);
+        }
+        // For flere dager eller ingen enkeltdager, returner true (redusert periode er valgt)
+        return true;
+    }
+
+    return false;
 };
 
 /**

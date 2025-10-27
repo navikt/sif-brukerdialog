@@ -88,6 +88,8 @@ const ArbeidstidStep = () => {
             /** Hvis en søker om perioder, sjekk at bruker faktisk oppgir fravær for periodene */
             const harPeriodeUtenFravær = !søkerEnkeltdager && harFraværIPeriode(values) === false;
 
+            const antallDagerSøktFor = søknadsdata.kurs?.søknadsdatoer.length;
+
             if (harEnkeltdagUtenFravær || harPeriodeUtenFravær) {
                 setTimeout(() => {
                     setConfirmationDialog({
@@ -96,10 +98,10 @@ const ArbeidstidStep = () => {
                         cancelLabel: text('ingenFraværConfirmation.cancelLabel'),
                         content: (
                             <div style={{ maxWidth: '35rem' }}>
-                                {harEnkeltdagUtenFravær ? (
+                                {harEnkeltdagUtenFravær || antallDagerSøktFor === 1 ? (
                                     <AppText
                                         id="ingenFraværConfirmation.enkeltdag.content"
-                                        values={{ antallDager: søknadsdata.kurs?.kursdager.length }}
+                                        values={{ antallDager: antallDagerSøktFor }}
                                     />
                                 ) : (
                                     <AppText id="ingenFraværConfirmation.content" />

@@ -493,5 +493,63 @@ describe('arbeidstidUtils', () => {
             };
             expect(harFraværIPeriode(values)).toBe(false);
         });
+
+        it('returnerer false når redusert periode med kun én enkeltdag har full arbeidstid', () => {
+            const values: TestArbeidFormValues = {
+                [ArbeidstidFormFields.ansattArbeidstid]: [
+                    {
+                        organisasjonsnummer: '123456789',
+                        navn: 'Test AS',
+                        jobberNormaltTimer: 7.5,
+                        arbeidIPeriode: {
+                            jobberIPerioden: JobberIPeriodeSvar.redusert,
+                            enkeltdager: {
+                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag
+                            },
+                        },
+                    },
+                ],
+            };
+            expect(harFraværIPeriode(values)).toBe(false);
+        });
+
+        it('returnerer true når redusert periode med kun én enkeltdag har redusert arbeidstid', () => {
+            const values: TestArbeidFormValues = {
+                [ArbeidstidFormFields.ansattArbeidstid]: [
+                    {
+                        organisasjonsnummer: '123456789',
+                        navn: 'Test AS',
+                        jobberNormaltTimer: 7.5,
+                        arbeidIPeriode: {
+                            jobberIPerioden: JobberIPeriodeSvar.redusert,
+                            enkeltdager: {
+                                '2024-01-01': { hours: '6', minutes: '0' }, // Redusert dag
+                            },
+                        },
+                    },
+                ],
+            };
+            expect(harFraværIPeriode(values)).toBe(true);
+        });
+
+        it('returnerer true når redusert periode med flere enkeltdager (uavhengig av faktisk arbeidstid)', () => {
+            const values: TestArbeidFormValues = {
+                [ArbeidstidFormFields.ansattArbeidstid]: [
+                    {
+                        organisasjonsnummer: '123456789',
+                        navn: 'Test AS',
+                        jobberNormaltTimer: 7.5,
+                        arbeidIPeriode: {
+                            jobberIPerioden: JobberIPeriodeSvar.redusert,
+                            enkeltdager: {
+                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag
+                                '2024-01-02': { hours: '6', minutes: '0' }, // Redusert dag
+                            },
+                        },
+                    },
+                ],
+            };
+            expect(harFraværIPeriode(values)).toBe(true);
+        });
     });
 });
