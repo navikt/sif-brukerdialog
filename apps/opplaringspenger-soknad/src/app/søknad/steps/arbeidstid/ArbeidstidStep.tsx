@@ -23,8 +23,12 @@ import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/for
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
-import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
+import {
+    harValgtRedusertEllerFulltFraværIPerioden,
+    søkerKunEnEnkeltdagArbeiderRedusertMenOppgirFullArbeidsdag,
+} from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
+import { EnkeltdagEllerPeriode } from '../kurs/KursStep';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -81,7 +85,27 @@ const ArbeidstidStep = () => {
     const onBeforeValidSubmit = (values: ArbeidstidFormValues) => {
         const { ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid } = values;
         return new Promise((resolve) => {
-            if (harFraværIPerioden(frilansArbeidstid, selvstendigArbeidstid, ansattArbeidstid) === false) {
+            /** Hvis en søker om enkeltdager, sjekk at bruker faktisk oppgir fravær  */
+            const harEnkeltdagUtenFravær =
+                søknadsdata.kurs?.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.ENKELTDAG
+                    ? søkerKunEnEnkeltdagArbeiderRedusertMenOppgirFullArbeidsdag(søknadsdata.kurs, {
+                          frilansArbeidstid,
+                          selvstendigArbeidstid,
+                          ansattArbeidstid,
+                      })
+                    : false;
+
+            /** Hvis en søker om perioder, sjekk at bruker faktisk oppgir fravær for periodene  */
+            const harPerioderUtenFravær =
+                søknadsdata.kurs?.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.PERIODE
+                    ? harValgtRedusertEllerFulltFraværIPerioden({
+                          frilansArbeidstid,
+                          selvstendigArbeidstid,
+                          ansattArbeidstid,
+                      }) === false
+                    : false;
+
+            if (harEnkeltdagUtenFravær || harPerioderUtenFravær) {
                 setTimeout(() => {
                     setConfirmationDialog({
                         title: text('ingenFraværConfirmation.title'),
@@ -89,7 +113,14 @@ const ArbeidstidStep = () => {
                         cancelLabel: text('ingenFraværConfirmation.cancelLabel'),
                         content: (
                             <div style={{ maxWidth: '35rem' }}>
-                                <AppText id="ingenFraværConfirmation.content" />
+                                {harEnkeltdagUtenFravær ? (
+                                    <AppText
+                                        id="ingenFraværConfirmation.enkeltdag.content"
+                                        values={{ antallDager: søknadsdata.kurs?.kursdager.length }}
+                                    />
+                                ) : (
+                                    <AppText id="ingenFraværConfirmation.content" />
+                                )}
                             </div>
                         ),
                         onCancel: () => {

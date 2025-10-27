@@ -212,6 +212,8 @@ const nb = {
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikke',
     'ingenFraværConfirmation.content':
         'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring, eller er borte fra jobb på grunn av reise til opplæringsstedet. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
+    'ingenFraværConfirmation.enkeltdag.content':
+        'Du har oppgitt at du jobber 7,5 timer eller mer på {antallDager, plural, one {dagen} other {dager}} du har opplæring. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring. Stemmer det at du ikke har fravær fra jobb {antallDager, plural, one {dagen} other {alle dagene}} du søker for?',
     'ingenFraværConfirmation.heading': 'Fravær fra jobb',
 };
 
@@ -415,6 +417,8 @@ const nn: Record<keyof typeof nb, string> = {
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikkje',
     'ingenFraværConfirmation.content':
         'Du har oppgitt at du jobbar som normalt og ikkje har fråvær dei dagane du søkjer for. For å ha rett til opplæringspengar må du ha fråvær frå jobb fordi du skal delta på opplæring, eller vere borte frå jobb på grunn av reise til opplæringsstaden. Stemmer det at du ikkje har fråvær frå jobb dei dagane du søkjer for?',
+    'ingenFraværConfirmation.enkeltdag.content':
+        'Du har oppgitt at du jobbar 7,5 timar eller meir på {antallDager, plural, one {dagen} other {dagar}} du har opplæring.For å ha rett til opplæringspengar må du ha fråvær frå jobb fordi du skal delta på opplæring, eller vere borte frå jobb på grunn av reise til opplæringsstaden. Stemmer det at du ikkje har fråvær frå jobb {antallDager, plural, one {dagen} other {alle dagane}} du søkjer for?',
     'ingenFraværConfirmation.heading': 'Fråvær frå jobb',
 };
 
