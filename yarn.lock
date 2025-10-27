@@ -4403,7 +4403,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.32.3"
     "@navikt/ds-tailwind": "npm:7.32.3"
     "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
-    "@navikt/next-logger": "npm:4.3.3"
+    "@navikt/next-logger": "npm:4.4.1"
     "@navikt/oasis": "npm:3.8.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
@@ -4710,19 +4710,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/next-logger@npm:4.3.3":
-  version: 4.3.3
-  resolution: "@navikt/next-logger@npm:4.3.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnext-logger%2F4.3.3%2Faa1c32684f7aad80ab7614e4122dadbb02b83cdf"
+"@navikt/next-logger@npm:4.4.1":
+  version: 4.4.1
+  resolution: "@navikt/next-logger@npm:4.4.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnext-logger%2F4.4.1%2Fad036ed76a3c856de885e680e243a8c847787706"
   dependencies:
-    "@navikt/pino-logger": "npm:^4.3.3"
+    "@navikt/pino-logger": "npm:^4.4.1"
     pino-roll: "npm:3"
   peerDependencies:
-    next: 14 || 15
+    next: 14 || 15 || 16
     pino: 8 || 9 || 10
   dependenciesMeta:
     pino-roll:
       optional: true
-  checksum: 10/32d302104bca5f46d9ec7e7e518b1574273f66ae0202347992a00b912f7f5580691554175626927c2635944711c9bfb6d17dc2fcef22302c6da0adb0ac6a7b20
+  checksum: 10/7ff09d6cd7bf67c9b61ca4a3b336984b63659816de3be8840c3c445d5408a2ab999bb815fbdc5cb63cf59db76bf33c40b68c4edb3686f9a8fa377de1b4257e8c
   languageName: node
   linkType: hard
 
@@ -5120,10 +5120,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/pino-logger@npm:^4.3.3":
-  version: 4.3.3
-  resolution: "@navikt/pino-logger@npm:4.3.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fpino-logger%2F4.3.3%2Fc67b3263e9eb9d1b4dccaf45b21bcfe3c0acb8d4"
+"@navikt/pino-logger@npm:^4.4.1":
+  version: 4.4.1
+  resolution: "@navikt/pino-logger@npm:4.4.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fpino-logger%2F4.4.1%2F8fd55667f2e3180e5157641d0bac10dafe4c3613"
   dependencies:
+    "@opentelemetry/api": "npm:^1.9.0"
     pino-roll: "npm:3"
     pino-socket: "npm:7"
   peerDependencies:
@@ -5133,7 +5134,7 @@ __metadata:
       optional: true
     pino-socket:
       optional: true
-  checksum: 10/4c0b6090f467e5878e940fe4ce461fdc5457c3719f0e5a0bfb9c2c401670a0c2b9bc151f3b55434fcace9ba44711daef08ed979e4ed00e72e4ac23a8f80efc7c
+  checksum: 10/04dc7c4723209ae95a0035b33c0febca5ce31ee0ad46fdc13d1f2f2f977e9fe23ff0f34a44dcc08de873058b9057b2d79b770e11fbdeb59094566d2ce5530475
   languageName: node
   linkType: hard
 
