@@ -821,6 +821,12 @@ export type PleiepengerSyktBarnSøknadWritable = {
     dataBruktTilUtledningAnnetData?: string;
 };
 
+export type SelvstendigNæringsdrivendeWritable = {
+    harInntektSomSelvstendig: boolean;
+    virksomhet?: VirksomhetWritable;
+    arbeidsforhold?: Arbeidsforhold;
+};
+
 export type VirksomhetWritable = {
     fraOgMed: string;
     tilOgMed?: string;
@@ -868,6 +874,37 @@ export type ArbeidsgiverOlpWritable = {
     navn?: string;
     erAnsatt?: boolean;
     arbeidsforhold?: ArbeidsforholdOlp;
+};
+
+export type OpplæringspengerSøknadWritable = {
+    newVersion?: boolean;
+    apiDataVersjon?: string;
+    språk: 'nb' | 'nn';
+    søkerNorskIdent?: string;
+    barn: BarnDetaljer;
+    arbeidsgivere: ArbeidsgiverOlpWritable[];
+    vedlegg: string[];
+    fraOgMed: string;
+    tilOgMed: string;
+    medlemskap: Medlemskap;
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPerioden;
+    ferieuttakIPerioden?: FerieuttakIPerioden;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    frilans?: FrilansOlp;
+    selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlp;
+    stønadGodtgjørelse?: StønadGodtgjørelse;
+    harVærtEllerErVernepliktig?: boolean;
+    dataBruktTilUtledningAnnetData?: string;
+    ettersendingAvVedlegg?: EttersendingAvVedlegg;
+    kurs: Kurs;
+};
+
+export type SelvstendigNæringsdrivendeOlpWritable = {
+    virksomhet: VirksomhetWritable;
+    arbeidsforhold: ArbeidsforholdOlp;
 };
 
 export type OmsorgspengerutbetalingSnfSøknadWritable = {
