@@ -493,5 +493,69 @@ describe('arbeidstidUtils', () => {
             };
             expect(harFraværIPeriode(values)).toBe(false);
         });
+
+        it('returnerer false når redusert periode med 3 eller færre dager hvor ikke alle har fravær', () => {
+            const values: TestArbeidFormValues = {
+                [ArbeidstidFormFields.ansattArbeidstid]: [
+                    {
+                        organisasjonsnummer: '123456789',
+                        navn: 'Test AS',
+                        jobberNormaltTimer: 7.5,
+                        arbeidIPeriode: {
+                            jobberIPerioden: JobberIPeriodeSvar.redusert,
+                            enkeltdager: {
+                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag - ikke fravær
+                                '2024-01-02': { hours: '6', minutes: '0' }, // Redusert dag
+                                '2024-01-03': { hours: '5', minutes: '0' }, // Redusert dag
+                            },
+                        },
+                    },
+                ],
+            };
+            expect(harFraværIPeriode(values)).toBe(false);
+        });
+
+        it('returnerer true når redusert periode med 3 eller færre dager hvor alle har fravær', () => {
+            const values: TestArbeidFormValues = {
+                [ArbeidstidFormFields.ansattArbeidstid]: [
+                    {
+                        organisasjonsnummer: '123456789',
+                        navn: 'Test AS',
+                        jobberNormaltTimer: 7.5,
+                        arbeidIPeriode: {
+                            jobberIPerioden: JobberIPeriodeSvar.redusert,
+                            enkeltdager: {
+                                '2024-01-01': { hours: '5', minutes: '0' }, // Redusert dag
+                                '2024-01-02': { hours: '6', minutes: '0' }, // Redusert dag
+                                '2024-01-03': { hours: '4', minutes: '0' }, // Redusert dag
+                            },
+                        },
+                    },
+                ],
+            };
+            expect(harFraværIPeriode(values)).toBe(true);
+        });
+
+        it('returnerer true når redusert periode med mer enn 3 dager (uavhengig av faktisk arbeidstid)', () => {
+            const values: TestArbeidFormValues = {
+                [ArbeidstidFormFields.ansattArbeidstid]: [
+                    {
+                        organisasjonsnummer: '123456789',
+                        navn: 'Test AS',
+                        jobberNormaltTimer: 7.5,
+                        arbeidIPeriode: {
+                            jobberIPerioden: JobberIPeriodeSvar.redusert,
+                            enkeltdager: {
+                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag
+                                '2024-01-02': { hours: '6', minutes: '0' }, // Redusert dag
+                                '2024-01-03': { hours: '8', minutes: '0' }, // Over full dag
+                                '2024-01-04': { hours: '5', minutes: '0' }, // Redusert dag
+                            },
+                        },
+                    },
+                ],
+            };
+            expect(harFraværIPeriode(values)).toBe(true);
+        });
     });
 });
