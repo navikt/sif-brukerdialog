@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "module",
     "private": true,
-    "version": "0.9.14",
+    "version": "0.9.15",
     "scripts": {
         "dev": "vite --base=/sif-brukerdialog/ungdomsytelse-veileder --config vite.dev.config.ts --port 8088",
         "dev:debug": "vite --debug",
@@ -36,7 +36,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-common": "workspace:*",
-        "axios": "1.12.2",
+        "axios": "1.13.0",
         "clsx": "2.1.1",
         "csp-header": "6.2.0",
         "date-fns": "4.1.0",
@@ -69,8 +69,8 @@
         "@types/react-dom": "19.2.2",
         "@typescript-eslint/parser": "8.46.2",
         "@vitejs/plugin-react": "5.1.0",
-        "@vitest/browser": "4.0.3",
-        "@vitest/coverage-v8": "4.0.3",
+        "@vitest/browser": "4.0.4",
+        "@vitest/coverage-v8": "4.0.4",
         "compression": "1.8.1",
         "eslint": "9.38.0",
         "eslint-plugin-prettier": "5.5.4",
@@ -96,7 +96,7 @@
         "typescript-eslint": "8.46.2",
         "vite": "7.1.12",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.3"
+        "vitest": "4.0.4"
     },
     "msw": {
         "workerDirectory": [

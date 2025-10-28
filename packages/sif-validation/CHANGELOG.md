@@ -1,5 +1,11 @@
 # @navikt/sif-validation
 
+## 1.0.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 1.0.8
 
 ### Patch Changes
