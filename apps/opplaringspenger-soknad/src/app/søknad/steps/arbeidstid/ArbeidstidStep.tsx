@@ -24,6 +24,7 @@ import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import {
+    cleanArbeidIPerioder,
     getAlleArbeidIPerioder,
     getDagerMedArbeidstid,
     harFraværAlleDager,
@@ -85,7 +86,7 @@ const ArbeidstidStep = () => {
 
     const onBeforeValidSubmit = (values: ArbeidstidFormValues) => {
         return new Promise((resolve) => {
-            const perioderMedArbeid = getAlleArbeidIPerioder(values);
+            const perioderMedArbeid = cleanArbeidIPerioder(getAlleArbeidIPerioder(values));
             const jobberKunSomNormalt = harKunValgtJobberSomNormalt(perioderMedArbeid);
             const jobberNormaltEnkeltdager =
                 !jobberKunSomNormalt && harFraværAlleDager(getDagerMedArbeidstid(perioderMedArbeid)) === false;

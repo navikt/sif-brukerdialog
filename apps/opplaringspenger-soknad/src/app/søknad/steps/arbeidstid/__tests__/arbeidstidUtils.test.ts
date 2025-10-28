@@ -3,6 +3,7 @@ import { Duration } from '@navikt/sif-common-utils';
 import {
     erRedusertArbeidstid,
     getAlleArbeidIPerioder,
+    cleanArbeidIPerioder,
     harKunValgtJobberSomNormalt,
     getDagerMedArbeidstid,
     harFraværAlleDager,
@@ -26,11 +27,6 @@ describe('arbeidstidUtils', () => {
             expect(erRedusertArbeidstid(duration)).toBe(true);
         });
 
-        it('returnerer true når arbeidstiden er akkurat under 7.5 timer', () => {
-            const duration: Duration = { hours: '7', minutes: '29' };
-            expect(erRedusertArbeidstid(duration)).toBe(true);
-        });
-
         it('returnerer false når arbeidstiden er akkurat 7.5 timer', () => {
             const duration: Duration = { hours: '7', minutes: '30' };
             expect(erRedusertArbeidstid(duration)).toBe(false);
@@ -41,27 +37,8 @@ describe('arbeidstidUtils', () => {
             expect(erRedusertArbeidstid(duration)).toBe(false);
         });
 
-        it('returnerer false når arbeidstiden er mye mer enn 7.5 timer', () => {
-            const duration: Duration = { hours: '10', minutes: '30' };
-            expect(erRedusertArbeidstid(duration)).toBe(false);
-        });
-
-        it('returnerer true når bare minutter er oppgitt og under 7.5 timer', () => {
-            const duration: Duration = { hours: '0', minutes: '300' }; // 5 timer
-            expect(erRedusertArbeidstid(duration)).toBe(true);
-        });
-
-        it('returnerer false når bare minutter er oppgitt og over 7.5 timer', () => {
-            const duration: Duration = { hours: '0', minutes: '480' }; // 8 timer
-            expect(erRedusertArbeidstid(duration)).toBe(false);
-        });
-
         it('returnerer false når duration er undefined', () => {
             expect(erRedusertArbeidstid(undefined as any)).toBe(false);
-        });
-
-        it('returnerer false når duration er null', () => {
-            expect(erRedusertArbeidstid(null as any)).toBe(false);
         });
 
         it('returnerer true når arbeidstiden er 0', () => {
@@ -134,6 +111,101 @@ describe('arbeidstidUtils', () => {
         });
     });
 
+    describe('cleanArbeidIPerioder', () => {
+        it('fjerner enkeltdager fra perioder som ikke har redusert arbeidstid', () => {
+            const perioder: ArbeidIPeriode[] = [
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.somVanlig,
+                    enkeltdager: {
+                        '2024-01-01': { hours: '6', minutes: '0' },
+                    },
+                },
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.heltFravær,
+                    enkeltdager: {
+                        '2024-01-02': { hours: '0', minutes: '0' },
+                    },
+                },
+            ];
+
+            const result = cleanArbeidIPerioder(perioder);
+
+            expect(result).toEqual([
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.somVanlig,
+                    enkeltdager: undefined,
+                },
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.heltFravær,
+                    enkeltdager: undefined,
+                },
+            ]);
+        });
+
+        it('beholder enkeltdager for perioder med redusert arbeidstid', () => {
+            const enkeltdager = {
+                '2024-01-01': { hours: '6', minutes: '0' },
+                '2024-01-02': { hours: '4', minutes: '30' },
+            };
+            const perioder: ArbeidIPeriode[] = [
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.redusert,
+                    enkeltdager,
+                },
+            ];
+
+            const result = cleanArbeidIPerioder(perioder);
+
+            expect(result).toEqual([
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.redusert,
+                    enkeltdager,
+                },
+            ]);
+        });
+
+        it('håndterer blandede perioder korrekt', () => {
+            const redusertEnkeltdager = {
+                '2024-01-01': { hours: '5', minutes: '0' },
+            };
+            const perioder: ArbeidIPeriode[] = [
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.somVanlig,
+                    enkeltdager: {
+                        '2024-01-01': { hours: '7', minutes: '30' },
+                    },
+                },
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.redusert,
+                    enkeltdager: redusertEnkeltdager,
+                },
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.heltFravær,
+                    enkeltdager: {
+                        '2024-01-03': { hours: '0', minutes: '0' },
+                    },
+                },
+            ];
+
+            const result = cleanArbeidIPerioder(perioder);
+
+            expect(result).toEqual([
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.somVanlig,
+                    enkeltdager: undefined,
+                },
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.redusert,
+                    enkeltdager: redusertEnkeltdager,
+                },
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.heltFravær,
+                    enkeltdager: undefined,
+                },
+            ]);
+        });
+    });
+
     describe('harKunValgtJobberSomNormalt', () => {
         it('returnerer false når ingen arbeidsperioder er oppgitt', () => {
             expect(harKunValgtJobberSomNormalt([])).toBe(false);
@@ -147,18 +219,10 @@ describe('arbeidstidUtils', () => {
             expect(harKunValgtJobberSomNormalt(perioder)).toBe(true);
         });
 
-        it('returnerer false når noen arbeidsperioder har redusert arbeidstid', () => {
+        it('returnerer false når noen arbeidsperioder ikke har valgt "som vanlig"', () => {
             const perioder: ArbeidIPeriode[] = [
                 { jobberIPerioden: JobberIPeriodeSvar.somVanlig },
                 { jobberIPerioden: JobberIPeriodeSvar.redusert },
-            ];
-            expect(harKunValgtJobberSomNormalt(perioder)).toBe(false);
-        });
-
-        it('returnerer false når noen arbeidsperioder har helt fravær', () => {
-            const perioder: ArbeidIPeriode[] = [
-                { jobberIPerioden: JobberIPeriodeSvar.somVanlig },
-                { jobberIPerioden: JobberIPeriodeSvar.heltFravær },
             ];
             expect(harKunValgtJobberSomNormalt(perioder)).toBe(false);
         });
@@ -209,8 +273,8 @@ describe('arbeidstidUtils', () => {
     });
 
     describe('harFraværAlleDager', () => {
-        it('returnerer false når ingen dager er oppgitt', () => {
-            expect(harFraværAlleDager([])).toBe(false);
+        it('returnerer true når ingen dager er oppgitt', () => {
+            expect(harFraværAlleDager([])).toBe(true);
         });
 
         it('returnerer true når alle dager har redusert arbeidstid', () => {

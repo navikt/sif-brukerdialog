@@ -24,6 +24,18 @@ export const getAlleArbeidIPerioder = ({
     ].filter((periode): periode is ArbeidIPeriode => periode !== undefined);
 };
 
+export const cleanArbeidIPerioder = (arbeidIPerioder: ArbeidIPeriode[]): ArbeidIPeriode[] => {
+    return arbeidIPerioder.map((periode) => {
+        if (periode.jobberIPerioden !== JobberIPeriodeSvar.redusert) {
+            return {
+                ...periode,
+                enkeltdager: undefined,
+            };
+        }
+        return periode;
+    });
+};
+
 /**
  * Sjekker om det er valgt "som vanlig" for alle arbeidsforhold som har arbeidIPeriode
  */
@@ -50,7 +62,7 @@ export const getDagerMedArbeidstid = (arbeidIPerioder: ArbeidIPeriode[]): Durati
  * Sjekker om det er fravær (redusert arbeidstid) for alle dager
  */
 export const harFraværAlleDager = (dagerMedArbeid: Duration[]): boolean => {
-    return dagerMedArbeid.length > 0 && dagerMedArbeid.every(erRedusertArbeidstid);
+    return dagerMedArbeid.length === 0 || (dagerMedArbeid.length > 0 && dagerMedArbeid.every(erRedusertArbeidstid));
 };
 
 /**
