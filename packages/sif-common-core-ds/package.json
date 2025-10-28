@@ -37,7 +37,7 @@
         "@types/react": "19.2.2",
         "@types/react-dom": "19.2.2",
         "@vitejs/plugin-react": "5.1.0",
-        "axios": "1.12.2",
+        "axios": "1.13.0",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "formik": "2.4.6",
@@ -56,7 +56,7 @@
         "uuid": "13.0.0",
         "vite": "7.1.12",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.3"
+        "vitest": "4.0.4"
     },
     "overrides": {
         "react-refresh": "0.11.0"

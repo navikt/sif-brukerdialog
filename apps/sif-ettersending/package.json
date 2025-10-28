@@ -25,7 +25,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
-        "axios": "1.12.2",
+        "axios": "1.13.0",
         "classnames": "2.5.1",
         "csp-header": "6.2.0",
         "date-fns": "4.1.0",
@@ -67,7 +67,7 @@
         "uuid": "13.0.0",
         "vite": "7.1.12",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.3",
+        "vitest": "4.0.4",
         "zod": "4.1.12"
     },
     "scripts": {

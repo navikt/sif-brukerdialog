@@ -29,7 +29,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@testing-library/react": "16.3.0",
-        "axios": "1.12.2",
+        "axios": "1.13.0",
         "csp-header": "6.2.0",
         "dayjs": "1.11.18",
         "formik": "2.4.6",
@@ -64,7 +64,7 @@
         "typescript": "5.9.3",
         "vite": "7.1.12",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.3"
+        "vitest": "4.0.4"
     },
     "eslintConfig": {
         "overrides": [
