@@ -1,6 +1,12 @@
 import { vi } from 'vitest';
 import { Duration } from '@navikt/sif-common-utils';
-import { erRedusertArbeidstid, harFraværAlleEnkeltdager, harFraværIPeriode } from '../form-parts/arbeidstidUtils';
+import {
+    erRedusertArbeidstid,
+    getAlleArbeidIPerioder,
+    harKunValgtJobberSomNormalt,
+    getDagerMedArbeidstid,
+    harFraværAlleDager,
+} from '../form-parts/arbeidstidUtils';
 import { JobberIPeriodeSvar, ArbeidIPeriode } from '../ArbeidstidTypes';
 import { ArbeidstidFormFields, ArbeidsaktivitetType } from '../ArbeidstidStep';
 
@@ -12,25 +18,6 @@ vi.mock('@navikt/sif-common-env', () => {
         getK9SakInnsynEnv: () => ({}),
     };
 });
-
-type TestArbeidFormValues = {
-    [ArbeidstidFormFields.ansattArbeidstid]?: Array<{
-        organisasjonsnummer: string;
-        navn: string;
-        jobberNormaltTimer: number;
-        arbeidIPeriode?: ArbeidIPeriode;
-    }>;
-    [ArbeidstidFormFields.frilansArbeidstid]?: {
-        type: ArbeidsaktivitetType;
-        jobberNormaltTimer: number;
-        arbeidIPeriode?: ArbeidIPeriode;
-    };
-    [ArbeidstidFormFields.selvstendigArbeidstid]?: {
-        type: ArbeidsaktivitetType;
-        jobberNormaltTimer: number;
-        arbeidIPeriode?: ArbeidIPeriode;
-    };
-};
 
 describe('arbeidstidUtils', () => {
     describe('erRedusertArbeidstid', () => {
@@ -83,383 +70,57 @@ describe('arbeidstidUtils', () => {
         });
     });
 
-    describe('harFraværAlleEnkeltdager', () => {
-        it('returnerer false når ingen arbeidstid er oppgitt', () => {
-            const values: TestArbeidFormValues = {};
-            expect(harFraværAlleEnkeltdager(values)).toBe(false);
+    describe('getAlleArbeidIPerioder', () => {
+        it('returnerer tom array når ingen arbeidstid er oppgitt', () => {
+            const values = {};
+            expect(getAlleArbeidIPerioder(values)).toEqual([]);
         });
 
-        it('returnerer false når arbeidstid ikke har redusert periode', () => {
-            const values: TestArbeidFormValues = {
+        it('returnerer arbeidsperioder fra ansatt arbeidsforhold', () => {
+            const arbeidIPeriode: ArbeidIPeriode = { jobberIPerioden: JobberIPeriodeSvar.somVanlig };
+            const values = {
                 [ArbeidstidFormFields.ansattArbeidstid]: [
                     {
                         organisasjonsnummer: '123456789',
                         navn: 'Test AS',
                         jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.somVanlig,
-                        },
+                        arbeidIPeriode,
                     },
                 ],
             };
-            expect(harFraværAlleEnkeltdager(values)).toBe(false);
+            expect(getAlleArbeidIPerioder(values)).toEqual([arbeidIPeriode]);
         });
 
-        it('returnerer false når redusert periode ikke har enkeltdager', () => {
-            const values: TestArbeidFormValues = {
+        it('returnerer arbeidsperioder fra alle typer arbeidsforhold', () => {
+            const ansattPeriode: ArbeidIPeriode = { jobberIPerioden: JobberIPeriodeSvar.somVanlig };
+            const frilansPeriode: ArbeidIPeriode = { jobberIPerioden: JobberIPeriodeSvar.redusert };
+            const selvstendigPeriode: ArbeidIPeriode = { jobberIPerioden: JobberIPeriodeSvar.heltFravær };
+
+            const values = {
                 [ArbeidstidFormFields.ansattArbeidstid]: [
                     {
                         organisasjonsnummer: '123456789',
                         navn: 'Test AS',
                         jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                        },
-                    },
-                ],
-            };
-            expect(harFraværAlleEnkeltdager(values)).toBe(false);
-        });
-
-        it('returnerer true når alle enkeltdager har redusert arbeidstid i ansatt forhold', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                            enkeltdager: {
-                                '2024-01-01': { hours: '6', minutes: '0' }, // Redusert
-                                '2024-01-02': { hours: '5', minutes: '30' }, // Redusert
-                            },
-                        },
-                    },
-                ],
-            };
-            expect(harFraværAlleEnkeltdager(values)).toBe(true);
-        });
-
-        it('returnerer false når noen enkeltdager har full arbeidstid', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                            enkeltdager: {
-                                '2024-01-01': { hours: '6', minutes: '0' }, // Redusert
-                                '2024-01-02': { hours: '7', minutes: '30' }, // Full dag
-                            },
-                        },
-                    },
-                ],
-            };
-            expect(harFraværAlleEnkeltdager(values)).toBe(false);
-        });
-
-        it('returnerer false når alle enkeltdager har full arbeidstid', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                            enkeltdager: {
-                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag
-                                '2024-01-02': { hours: '8', minutes: '0' }, // Over full dag
-                            },
-                        },
-                    },
-                ],
-            };
-            expect(harFraværAlleEnkeltdager(values)).toBe(false);
-        });
-
-        it('returnerer true når frilanser har enkeltdager med redusert arbeidstid', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.frilansArbeidstid]: {
-                    type: ArbeidsaktivitetType.frilanser,
-                    jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.redusert,
-                        enkeltdager: {
-                            '2024-01-01': { hours: '5', minutes: '0' }, // Redusert
-                        },
-                    },
-                },
-            };
-            expect(harFraværAlleEnkeltdager(values)).toBe(true);
-        });
-
-        it('returnerer true når selvstendig har enkeltdager med redusert arbeidstid', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.selvstendigArbeidstid]: {
-                    type: ArbeidsaktivitetType.selvstendigNæringsdrivende,
-                    jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.redusert,
-                        enkeltdager: {
-                            '2024-01-01': { hours: '4', minutes: '0' }, // Redusert
-                        },
-                    },
-                },
-            };
-            expect(harFraværAlleEnkeltdager(values)).toBe(true);
-        });
-
-        it('returnerer true når alle arbeidsforhold har alle enkeltdager med redusert arbeidstid', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                            enkeltdager: {
-                                '2024-01-01': { hours: '6', minutes: '0' }, // Redusert
-                            },
-                        },
+                        arbeidIPeriode: ansattPeriode,
                     },
                 ],
                 [ArbeidstidFormFields.frilansArbeidstid]: {
                     type: ArbeidsaktivitetType.frilanser,
                     jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.redusert,
-                        enkeltdager: {
-                            '2024-01-01': { hours: '3', minutes: '0' }, // Redusert
-                        },
-                    },
-                },
-            };
-            expect(harFraværAlleEnkeltdager(values)).toBe(true);
-        });
-
-        it('returnerer false når ett arbeidsforhold har full arbeidsdag', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                            enkeltdager: {
-                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag
-                            },
-                        },
-                    },
-                ],
-                [ArbeidstidFormFields.frilansArbeidstid]: {
-                    type: ArbeidsaktivitetType.frilanser,
-                    jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.redusert,
-                        enkeltdager: {
-                            '2024-01-01': { hours: '3', minutes: '0' }, // Redusert
-                        },
-                    },
-                },
-            };
-            expect(harFraværAlleEnkeltdager(values)).toBe(false);
-        });
-
-        it('returnerer true når enkeltdag har 0 timer (helt fravær)', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                            enkeltdager: {
-                                '2024-01-01': { hours: '0', minutes: '0' }, // Helt fravær
-                            },
-                        },
-                    },
-                ],
-            };
-            expect(harFraværAlleEnkeltdager(values)).toBe(true);
-        });
-    });
-
-    describe('harFraværIPeriode', () => {
-        it('returnerer false når ingen arbeidstid er oppgitt', () => {
-            const values: TestArbeidFormValues = {};
-            expect(harFraværIPeriode(values)).toBe(false);
-        });
-
-        it('returnerer false når alle arbeidsforhold jobber som vanlig', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.somVanlig,
-                        },
-                    },
-                ],
-                [ArbeidstidFormFields.frilansArbeidstid]: {
-                    type: ArbeidsaktivitetType.frilanser,
-                    jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.somVanlig,
-                    },
-                },
-            };
-            expect(harFraværIPeriode(values)).toBe(false);
-        });
-
-        it('returnerer true når ansatt har redusert arbeidstid', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                        },
-                    },
-                ],
-            };
-            expect(harFraværIPeriode(values)).toBe(true);
-        });
-
-        it('returnerer true når ansatt har helt fravær', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.heltFravær,
-                        },
-                    },
-                ],
-            };
-            expect(harFraværIPeriode(values)).toBe(true);
-        });
-
-        it('returnerer true når frilanser har redusert arbeidstid', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.frilansArbeidstid]: {
-                    type: ArbeidsaktivitetType.frilanser,
-                    jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.redusert,
-                    },
-                },
-            };
-            expect(harFraværIPeriode(values)).toBe(true);
-        });
-
-        it('returnerer true når frilanser har helt fravær', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.frilansArbeidstid]: {
-                    type: ArbeidsaktivitetType.frilanser,
-                    jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.heltFravær,
-                    },
-                },
-            };
-            expect(harFraværIPeriode(values)).toBe(true);
-        });
-
-        it('returnerer true når selvstendig har redusert arbeidstid', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.selvstendigArbeidstid]: {
-                    type: ArbeidsaktivitetType.selvstendigNæringsdrivende,
-                    jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.redusert,
-                    },
-                },
-            };
-            expect(harFraværIPeriode(values)).toBe(true);
-        });
-
-        it('returnerer true når selvstendig har helt fravær', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.selvstendigArbeidstid]: {
-                    type: ArbeidsaktivitetType.selvstendigNæringsdrivende,
-                    jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.heltFravær,
-                    },
-                },
-            };
-            expect(harFraværIPeriode(values)).toBe(true);
-        });
-
-        it('returnerer true når flere ansatte arbeidsforhold og ett har fravær', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.somVanlig,
-                        },
-                    },
-                    {
-                        organisasjonsnummer: '987654321',
-                        navn: 'Annet AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                        },
-                    },
-                ],
-            };
-            expect(harFraværIPeriode(values)).toBe(true);
-        });
-
-        it('returnerer true når flere typer arbeidsforhold og ett har fravær', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.somVanlig,
-                        },
-                    },
-                ],
-                [ArbeidstidFormFields.frilansArbeidstid]: {
-                    type: ArbeidsaktivitetType.frilanser,
-                    jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.heltFravær,
-                    },
+                    arbeidIPeriode: frilansPeriode,
                 },
                 [ArbeidstidFormFields.selvstendigArbeidstid]: {
                     type: ArbeidsaktivitetType.selvstendigNæringsdrivende,
                     jobberNormaltTimer: 7.5,
-                    arbeidIPeriode: {
-                        jobberIPerioden: JobberIPeriodeSvar.somVanlig,
-                    },
+                    arbeidIPeriode: selvstendigPeriode,
                 },
             };
-            expect(harFraværIPeriode(values)).toBe(true);
+            expect(getAlleArbeidIPerioder(values)).toEqual([ansattPeriode, frilansPeriode, selvstendigPeriode]);
         });
 
-        it('returnerer false når ansatt arbeidsforhold ikke har arbeidIPeriode', () => {
-            const values: TestArbeidFormValues = {
+        it('filtrerer bort arbeidsforhold uten arbeidIPeriode', () => {
+            const values = {
                 [ArbeidstidFormFields.ansattArbeidstid]: [
                     {
                         organisasjonsnummer: '123456789',
@@ -469,93 +130,113 @@ describe('arbeidstidUtils', () => {
                     },
                 ],
             };
-            expect(harFraværIPeriode(values)).toBe(false);
+            expect(getAlleArbeidIPerioder(values)).toEqual([]);
+        });
+    });
+
+    describe('harKunValgtJobberSomNormalt', () => {
+        it('returnerer false når ingen arbeidsperioder er oppgitt', () => {
+            expect(harKunValgtJobberSomNormalt([])).toBe(false);
         });
 
-        it('returnerer false når frilanser ikke har arbeidIPeriode', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.frilansArbeidstid]: {
-                    type: ArbeidsaktivitetType.frilanser,
-                    jobberNormaltTimer: 7.5,
-                    // Ingen arbeidIPeriode
+        it('returnerer true når alle arbeidsperioder har valgt "som vanlig"', () => {
+            const perioder: ArbeidIPeriode[] = [
+                { jobberIPerioden: JobberIPeriodeSvar.somVanlig },
+                { jobberIPerioden: JobberIPeriodeSvar.somVanlig },
+            ];
+            expect(harKunValgtJobberSomNormalt(perioder)).toBe(true);
+        });
+
+        it('returnerer false når noen arbeidsperioder har redusert arbeidstid', () => {
+            const perioder: ArbeidIPeriode[] = [
+                { jobberIPerioden: JobberIPeriodeSvar.somVanlig },
+                { jobberIPerioden: JobberIPeriodeSvar.redusert },
+            ];
+            expect(harKunValgtJobberSomNormalt(perioder)).toBe(false);
+        });
+
+        it('returnerer false når noen arbeidsperioder har helt fravær', () => {
+            const perioder: ArbeidIPeriode[] = [
+                { jobberIPerioden: JobberIPeriodeSvar.somVanlig },
+                { jobberIPerioden: JobberIPeriodeSvar.heltFravær },
+            ];
+            expect(harKunValgtJobberSomNormalt(perioder)).toBe(false);
+        });
+    });
+
+    describe('getDagerMedArbeidstid', () => {
+        it('returnerer tom array når ingen arbeidsperioder har enkeltdager', () => {
+            const perioder: ArbeidIPeriode[] = [{ jobberIPerioden: JobberIPeriodeSvar.redusert }];
+            expect(getDagerMedArbeidstid(perioder)).toEqual([]);
+        });
+
+        it('returnerer enkeltdager fra arbeidsperioder', () => {
+            const dag1: Duration = { hours: '6', minutes: '0' };
+            const dag2: Duration = { hours: '4', minutes: '30' };
+            const perioder: ArbeidIPeriode[] = [
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.redusert,
+                    enkeltdager: {
+                        '2024-01-01': dag1,
+                        '2024-01-02': dag2,
+                    },
                 },
-            };
-            expect(harFraværIPeriode(values)).toBe(false);
+            ];
+            expect(getDagerMedArbeidstid(perioder)).toEqual([dag1, dag2]);
         });
 
-        it('returnerer false når selvstendig ikke har arbeidIPeriode', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.selvstendigArbeidstid]: {
-                    type: ArbeidsaktivitetType.selvstendigNæringsdrivende,
-                    jobberNormaltTimer: 7.5,
-                    // Ingen arbeidIPeriode
+        it('flater ut enkeltdager fra flere arbeidsperioder', () => {
+            const dag1: Duration = { hours: '6', minutes: '0' };
+            const dag2: Duration = { hours: '4', minutes: '30' };
+            const dag3: Duration = { hours: '5', minutes: '0' };
+            const perioder: ArbeidIPeriode[] = [
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.redusert,
+                    enkeltdager: {
+                        '2024-01-01': dag1,
+                        '2024-01-02': dag2,
+                    },
                 },
-            };
-            expect(harFraværIPeriode(values)).toBe(false);
+                {
+                    jobberIPerioden: JobberIPeriodeSvar.redusert,
+                    enkeltdager: {
+                        '2024-01-03': dag3,
+                    },
+                },
+            ];
+            expect(getDagerMedArbeidstid(perioder)).toEqual([dag1, dag2, dag3]);
+        });
+    });
+
+    describe('harFraværAlleDager', () => {
+        it('returnerer false når ingen dager er oppgitt', () => {
+            expect(harFraværAlleDager([])).toBe(false);
         });
 
-        it('returnerer false når redusert periode med 3 eller færre dager hvor ikke alle har fravær', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                            enkeltdager: {
-                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag - ikke fravær
-                                '2024-01-02': { hours: '6', minutes: '0' }, // Redusert dag
-                                '2024-01-03': { hours: '5', minutes: '0' }, // Redusert dag
-                            },
-                        },
-                    },
-                ],
-            };
-            expect(harFraværIPeriode(values)).toBe(false);
+        it('returnerer true når alle dager har redusert arbeidstid', () => {
+            const dager: Duration[] = [
+                { hours: '6', minutes: '0' },
+                { hours: '5', minutes: '30' },
+                { hours: '4', minutes: '0' },
+            ];
+            expect(harFraværAlleDager(dager)).toBe(true);
         });
 
-        it('returnerer true når redusert periode med 3 eller færre dager hvor alle har fravær', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                            enkeltdager: {
-                                '2024-01-01': { hours: '5', minutes: '0' }, // Redusert dag
-                                '2024-01-02': { hours: '6', minutes: '0' }, // Redusert dag
-                                '2024-01-03': { hours: '4', minutes: '0' }, // Redusert dag
-                            },
-                        },
-                    },
-                ],
-            };
-            expect(harFraværIPeriode(values)).toBe(true);
+        it('returnerer false når noen dager har full arbeidstid', () => {
+            const dager: Duration[] = [
+                { hours: '6', minutes: '0' },
+                { hours: '7', minutes: '30' }, // Full dag
+                { hours: '4', minutes: '0' },
+            ];
+            expect(harFraværAlleDager(dager)).toBe(false);
         });
 
-        it('returnerer true når redusert periode med mer enn 3 dager (uavhengig av faktisk arbeidstid)', () => {
-            const values: TestArbeidFormValues = {
-                [ArbeidstidFormFields.ansattArbeidstid]: [
-                    {
-                        organisasjonsnummer: '123456789',
-                        navn: 'Test AS',
-                        jobberNormaltTimer: 7.5,
-                        arbeidIPeriode: {
-                            jobberIPerioden: JobberIPeriodeSvar.redusert,
-                            enkeltdager: {
-                                '2024-01-01': { hours: '7', minutes: '30' }, // Full dag
-                                '2024-01-02': { hours: '6', minutes: '0' }, // Redusert dag
-                                '2024-01-03': { hours: '8', minutes: '0' }, // Over full dag
-                                '2024-01-04': { hours: '5', minutes: '0' }, // Redusert dag
-                            },
-                        },
-                    },
-                ],
-            };
-            expect(harFraværIPeriode(values)).toBe(true);
+        it('returnerer true når alle dager har 0 timer (helt fravær)', () => {
+            const dager: Duration[] = [
+                { hours: '0', minutes: '0' },
+                { hours: '0', minutes: '0' },
+            ];
+            expect(harFraværAlleDager(dager)).toBe(true);
         });
     });
 });

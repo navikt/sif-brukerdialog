@@ -23,9 +23,13 @@ import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/for
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
-import { harFraværAlleEnkeltdager, harFraværIPeriode } from './form-parts/arbeidstidUtils';
+import {
+    getAlleArbeidIPerioder,
+    getDagerMedArbeidstid,
+    harFraværAlleDager,
+    harKunValgtJobberSomNormalt,
+} from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
-import { EnkeltdagEllerPeriode } from '../kurs/KursStep';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -80,17 +84,14 @@ const ArbeidstidStep = () => {
     const { clearStepFormValues } = useStepFormValuesContext();
 
     const onBeforeValidSubmit = (values: ArbeidstidFormValues) => {
-        const søkerEnkeltdager = søknadsdata.kurs?.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.ENKELTDAG;
         return new Promise((resolve) => {
-            /** Hvis en søker om enkeltdager, sjekk at bruker faktisk oppgir fravær alle dager  */
-            const harEnkeltdagUtenFravær = søkerEnkeltdager && harFraværAlleEnkeltdager(values) === false;
+            const perioderMedArbeid = getAlleArbeidIPerioder(values);
+            const jobberKunSomNormalt = harKunValgtJobberSomNormalt(perioderMedArbeid);
+            const jobberNormaltEnkeltdager =
+                !jobberKunSomNormalt && harFraværAlleDager(getDagerMedArbeidstid(perioderMedArbeid)) === false;
 
-            /** Hvis en søker om perioder, sjekk at bruker faktisk oppgir fravær for periodene */
-            const harPeriodeUtenFravær = !søkerEnkeltdager && harFraværIPeriode(values) === false;
-
-            const antallDagerSøktFor = søknadsdata.kurs?.søknadsdatoer.length;
-
-            if (harEnkeltdagUtenFravær || harPeriodeUtenFravær) {
+            if (jobberKunSomNormalt || jobberNormaltEnkeltdager) {
+                const antallDagerSøktFor = søknadsdata.kurs?.søknadsdatoer.length;
                 setTimeout(() => {
                     setConfirmationDialog({
                         title: text('ingenFraværConfirmation.title'),
@@ -98,13 +99,13 @@ const ArbeidstidStep = () => {
                         cancelLabel: text('ingenFraværConfirmation.cancelLabel'),
                         content: (
                             <div style={{ maxWidth: '35rem' }}>
-                                {harEnkeltdagUtenFravær || antallDagerSøktFor === 1 ? (
+                                {jobberKunSomNormalt ? (
+                                    <AppText id="ingenFraværConfirmation.content" />
+                                ) : (
                                     <AppText
                                         id="ingenFraværConfirmation.enkeltdag.content"
                                         values={{ antallDager: antallDagerSøktFor }}
                                     />
-                                ) : (
-                                    <AppText id="ingenFraværConfirmation.content" />
                                 )}
                             </div>
                         ),
