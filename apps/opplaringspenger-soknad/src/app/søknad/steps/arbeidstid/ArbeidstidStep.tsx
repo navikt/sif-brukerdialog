@@ -95,7 +95,9 @@ const ArbeidstidStep = () => {
                 const antallDagerSøktFor = søknadsdata.kurs?.søknadsdatoer.length;
                 setTimeout(() => {
                     setConfirmationDialog({
-                        title: text('ingenFraværConfirmation.title'),
+                        title: jobberKunSomNormalt
+                            ? text('ingenFraværConfirmation.title')
+                            : text('ingenFraværConfirmation.enkeltdag.title'),
                         okLabel: text('ingenFraværConfirmation.okLabel'),
                         cancelLabel: text('ingenFraværConfirmation.cancelLabel'),
                         content: (

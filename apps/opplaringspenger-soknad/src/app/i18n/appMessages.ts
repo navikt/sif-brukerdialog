@@ -208,6 +208,7 @@ const nb = {
     'frilansoppdragInfo.tekst':
         'Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om opplæringspenger. Hvis informasjonen ikke stemmer, må du ta kontakt med oppdragsgiver og be de oppdatere informasjonen i AA-registeret.',
     'ingenFraværConfirmation.title': 'Ingen fravær registrert',
+    'ingenFraværConfirmation.enkeltdag.title': 'Dag uten fravær registrert',
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikke',
     'ingenFraværConfirmation.content':
@@ -413,6 +414,7 @@ const nn: Record<keyof typeof nb, string> = {
     'frilansoppdragInfo.tekst':
         'Dette er frilansoppdrag registrerte i AA-registeret i perioden du søkjer om opplæringspengar. Dersom informasjonen ikkje stemmer, må du ta kontakt med oppdragsgivar og be dei oppdatere informasjonen i AA-registeret.',
     'ingenFraværConfirmation.title': 'Ingen fråvær registrert',
+    'ingenFraværConfirmation.enkeltdag.title': 'Dag utan fråvær registrert',
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikkje',
     'ingenFraværConfirmation.content':
