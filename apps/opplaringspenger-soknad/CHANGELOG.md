@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.0
+
+### Minor Changes
+
+- Legge til kontroll av arbeidstid på dager en søker om. Hvis en oppgir 7.5 timer eller mer på én eller flere av dagene en søker for, får en opp en melding som spør om dette er riktig eller ikke, når en går videre.
+
 ## 1.3.26
 
 ### Patch Changes
