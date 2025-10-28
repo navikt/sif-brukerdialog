@@ -36,7 +36,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-common": "workspace:*",
-        "axios": "1.12.2",
+        "axios": "1.13.0",
         "clsx": "2.1.1",
         "csp-header": "6.2.0",
         "date-fns": "4.1.0",
