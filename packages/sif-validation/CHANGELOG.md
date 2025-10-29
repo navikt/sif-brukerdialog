@@ -1,5 +1,11 @@
 # @navikt/sif-validation
 
+## 1.0.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
 ## 1.0.9
 
 ### Patch Changes

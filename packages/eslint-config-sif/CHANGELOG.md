@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.69
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
 ## 1.1.68
 
 ### Patch Changes
