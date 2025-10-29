@@ -5,7 +5,6 @@ import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
-import ExternalLink from '@søknad/components/external-link/ExternalLink';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
 import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
@@ -14,6 +13,7 @@ import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
 import BarnInfo from './BarnInfo';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 const BarnSteg = () => {
     const { text } = useAppIntl();
@@ -81,7 +81,9 @@ const BarnSteg = () => {
                                         id="barnSteg.opplysninger.info.text"
                                         values={{
                                             Lenke: (children) => (
-                                                <ExternalLink href={getLenker().skatteetaten}>{children}</ExternalLink>
+                                                <ExternalLinkIcon href={getLenker().skatteetaten}>
+                                                    {children}
+                                                </ExternalLinkIcon>
                                             ),
                                         }}
                                     />

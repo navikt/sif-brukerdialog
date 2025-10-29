@@ -4,7 +4,7 @@ import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
 
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
-import ExternalLink from './external-link/ExternalLink';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 interface Props {
     fornavn: string;
@@ -37,7 +37,9 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                             id="velkommenMelding.søknadBeskrivelse"
                             values={{
                                 Lenke: (children) => (
-                                    <ExternalLink href={getLenker().omUngdomsprogramytelsen}>{children}</ExternalLink>
+                                    <ExternalLinkIcon href={getLenker().omUngdomsprogramytelsen}>
+                                        {children}
+                                    </ExternalLinkIcon>
                                 ),
                             }}
                         />

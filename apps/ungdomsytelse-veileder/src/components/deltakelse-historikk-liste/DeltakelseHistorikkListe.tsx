@@ -1,9 +1,9 @@
 import { Box, Button, HStack, Table, VStack } from '@navikt/ds-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Add } from '@navikt/ds-icons';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { DeltakelseHistorikkInnslag } from '../../types';
+import { PlusIcon } from '@navikt/aksel-icons';
 
 interface Props {
     historikkInnslag?: DeltakelseHistorikkInnslag[];
@@ -75,7 +75,7 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlerehistorikkInnslag}>
                         <HStack gap="2" align="center" wrap={false}>
-                            <Add aria-hidden="true" />
+                            <PlusIcon aria-hidden="true" />
                             Vis flere
                         </HStack>
                     </Button>

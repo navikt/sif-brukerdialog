@@ -1,4 +1,3 @@
-import { Office1 } from '@navikt/ds-icons';
 import { Alert, VStack } from '@navikt/ds-react';
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
@@ -36,6 +35,7 @@ import {
     getSituasjonSøknadsdataFromFormValues,
     getSituasjonStepInitialValues,
 } from './SituasjonStepUtils';
+import { Buildings3Icon } from '@navikt/aksel-icons';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -164,7 +164,7 @@ const SituasjonStep = () => {
                                                 key={forhold.organisasjonsnummer}
                                                 data-testid={`arbeidsforhold-liste-${index}`}
                                                 title={forhold.navn || forhold.organisasjonsnummer}
-                                                titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
+                                                titleIcon={<Buildings3Icon role="presentation" aria-hidden={true} />}>
                                                 <FormLayout.Questions>
                                                     <ArbeidsforholdSituasjon
                                                         arbeidsforhold={forhold}
