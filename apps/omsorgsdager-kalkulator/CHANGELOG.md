@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.13.5
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+
 ## 3.13.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.24
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+
 ## 2.5.23
 
 ### Patch Changes
