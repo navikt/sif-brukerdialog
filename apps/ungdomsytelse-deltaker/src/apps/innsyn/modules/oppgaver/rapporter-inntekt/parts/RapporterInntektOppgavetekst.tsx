@@ -3,7 +3,6 @@ import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
-import dayjs from 'dayjs';
 
 interface Props {
     deltakerNavn: string;
@@ -12,9 +11,7 @@ interface Props {
 }
 
 const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Props) => {
-    /** Finn datoen før fristen, i og med teksten er "senest [dato]" */
-    const senestDato = dayjs(svarfrist).subtract(1, 'day').toDate();
-    const frist = dateFormatter.full(senestDato);
+    const frist = dateFormatter.full(svarfrist);
     const måned = dateFormatter.month(periode.from);
 
     const { text } = useAppIntl();

@@ -2,8 +2,8 @@ import Oppgavebekreftelse from '@innsyn/modules/oppgavebekreftelse/Oppgavebekref
 import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
-import { EndretStartdatoOppgave } from '@shared/types/Oppgave';
 import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
+import { EndretStartdatoOppgave } from '@shared/types/Oppgave';
 
 import EndretStartdatoOppgavetekst from './parts/EndretStartdatoOppgavetekst';
 
@@ -27,7 +27,7 @@ const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
                 initialVisKvittering={initialVisKvittering}>
                 <Oppgavebekreftelse.Ubesvart>
                     <EndretStartdatoOppgavetekst
-                        frist={oppgave.frist}
+                        frist={oppgave.sisteDatoEnKanSvare}
                         startdato={oppgave.oppgavetypeData.nyStartdato}
                     />
                 </Oppgavebekreftelse.Ubesvart>

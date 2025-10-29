@@ -18,7 +18,7 @@ export const getUtbetalingsmånedForAvvikRegisterinntektOppgave = (oppgaveFraOgM
 
 const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
     const intl = useAppIntl();
-    const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
+    const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.sisteDatoEnKanSvare)}</span>;
 
     const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);
     const rapporteringsmånedOgÅr = dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed);
