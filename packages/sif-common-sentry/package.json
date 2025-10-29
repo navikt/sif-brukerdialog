@@ -22,6 +22,7 @@
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "gh-pages": "6.3.0",
+        "postcss": "8.5.6",
         "react": "19.2.0",
         "react-dom": "19.2.0",
         "rimraf": "6.0.1",

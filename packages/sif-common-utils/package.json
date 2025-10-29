@@ -20,6 +20,7 @@
         "config": "workspace:*",
         "globals": "16.4.0",
         "intl": "1.2.5",
+        "postcss": "8.5.6",
         "react": "19.2.0",
         "react-dom": "19.2.0",
         "react-intl": "7.1.14",
