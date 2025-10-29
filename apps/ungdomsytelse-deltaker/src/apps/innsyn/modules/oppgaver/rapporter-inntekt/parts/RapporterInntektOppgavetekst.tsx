@@ -1,10 +1,9 @@
 import { Bleed, BodyLong, Box, Heading, List, ReadMore, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
-
-import ExternalLink from '../../../../../søknad/components/external-link/ExternalLink';
 
 interface Props {
     deltakerNavn: string;
