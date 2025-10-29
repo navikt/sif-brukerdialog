@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.50
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.5
+    - @navikt/k9-sak-innsyn-api@0.1.5
+    - @navikt/sif-common-utils@3.49.44
+
 ## 0.1.49
 
 ### Patch Changes

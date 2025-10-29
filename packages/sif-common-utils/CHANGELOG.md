@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.44
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
 ## 3.49.43
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @navikt/sif-common-ui
 
+## 0.0.68
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.22
+    - @navikt/sif-common-core-ds@10.3.23
+    - @navikt/sif-common-utils@3.49.44
+    - @navikt/sif-validation@1.0.9
+
 ## 0.0.67
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.39
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.65
+
 ## 0.1.38
 
 ### Patch Changes

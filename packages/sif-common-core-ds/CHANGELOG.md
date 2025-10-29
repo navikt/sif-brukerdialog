@@ -1,5 +1,14 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.23
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.44
+    - @navikt/sif-common-api@0.4.65
+
 ## 10.3.22
 
 ### Patch Changes

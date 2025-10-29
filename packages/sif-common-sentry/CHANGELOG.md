@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.47
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
 ## 0.28.46
 
 ### Patch Changes
