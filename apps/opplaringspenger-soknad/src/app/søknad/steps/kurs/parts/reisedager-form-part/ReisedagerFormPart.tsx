@@ -50,7 +50,7 @@ const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, k
                                     {capsFirstCharacter(dateFormatter.dayCompactDate(dato.dato))}
                                     <BodyShort className="text-red-500" as="span">
                                         <Tooltip content="Reisedag er utenfor søknadsperioden">
-                                            <ExclamationmarkTriangleFillIcon style={{ color: '#FF9100' }} />
+                                            <ExclamationmarkTriangleFillIcon style={{ color: '#C30000' }} />
                                         </Tooltip>
                                     </BodyShort>
                                 </HStack>
