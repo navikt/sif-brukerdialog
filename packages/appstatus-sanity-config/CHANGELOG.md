@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
 ## 1.2.43
 
 ### Patch Changes

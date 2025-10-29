@@ -1,5 +1,13 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.7
+
 ## 2.20.53
 
 ### Patch Changes

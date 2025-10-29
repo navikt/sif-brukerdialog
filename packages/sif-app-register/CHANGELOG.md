@@ -1,5 +1,11 @@
 # @navikt/sif-app-register
 
+## 0.1.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
 ## 0.1.10
 
 ### Patch Changes

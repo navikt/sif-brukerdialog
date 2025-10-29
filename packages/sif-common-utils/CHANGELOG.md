@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
 ## 3.49.44
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.3.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
 ## 0.3.6
 
 ### Patch Changes

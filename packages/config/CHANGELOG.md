@@ -1,5 +1,11 @@
 # config
 
+## 0.11.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
 ## 0.11.39
 
 ### Patch Changes
