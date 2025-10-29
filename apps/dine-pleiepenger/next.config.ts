@@ -29,7 +29,7 @@ const nextConfig = {
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
     pageExtensions: ['page.tsx', 'api.ts'],
     transpilePackages: ['tailwind-merge'],
-    outputFileTracingRoot: path.join(__dirname, '../..'),
+    outputFileTracingRoot: path.resolve(__dirname, '../..'),
     outputFileTracingIncludes: {
         '/*': [
             '../../node_modules/async-function/**/*',
