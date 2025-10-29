@@ -72,7 +72,7 @@
         "react-day-picker": "9.11.1",
         "react-dom": "19.2.0",
         "react-intl": "7.1.14",
-        "storybook": "9.1.15",
+        "storybook": "10.0.0",
         "tailwindcss": "4.1.16",
         "typescript": "5.9.3",
         "uuid": "13.0.0",

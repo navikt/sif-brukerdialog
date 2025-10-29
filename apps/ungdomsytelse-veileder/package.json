@@ -89,7 +89,7 @@
         "postcss-import": "16.1.1",
         "postcss-styled-syntax": "0.7.1",
         "prettier": "3.6.2",
-        "storybook": "9.1.15",
+        "storybook": "10.0.0",
         "stylelint": "16.25.0",
         "tailwindcss": "4.1.16",
         "typescript": "5.9.3",
