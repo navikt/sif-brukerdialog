@@ -42,7 +42,9 @@ const VelkommenPage = () => {
                                 id="velkommenPage.infoStemmer"
                                 values={{
                                     Lenke: (children: string) => (
-                                        <ExternalLinkIcon href={getLenker().rettOgPlikt}>{children}</ExternalLinkIcon>
+                                        <ExternalLinkIcon role="presentation" href={getLenker().rettOgPlikt}>
+                                            {children}
+                                        </ExternalLinkIcon>
                                     ),
                                 }}
                             />

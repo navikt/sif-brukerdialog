@@ -1,3 +1,4 @@
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { FormLayout, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
@@ -13,7 +14,6 @@ import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
 import BarnInfo from './BarnInfo';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 const BarnSteg = () => {
     const { text } = useAppIntl();
@@ -81,7 +81,7 @@ const BarnSteg = () => {
                                         id="barnSteg.opplysninger.info.text"
                                         values={{
                                             Lenke: (children) => (
-                                                <ExternalLinkIcon href={getLenker().skatteetaten}>
+                                                <ExternalLinkIcon role="presentation" href={getLenker().skatteetaten}>
                                                     {children}
                                                 </ExternalLinkIcon>
                                             ),
