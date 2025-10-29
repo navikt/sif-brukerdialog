@@ -1,11 +1,11 @@
 import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { Add } from '@navikt/ds-icons';
 import { AppText } from '../../i18n';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import InnsendtSøknadContent from './InnsendtSøknadContent';
 import InnsendtSøknadTitle from './InnsendtSøknadTitle';
+import { PlusIcon } from '@navikt/aksel-icons';
 
 interface Props {
     søknader: InnsendtSøknad[];
@@ -64,7 +64,7 @@ const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSøknader}>
                         <HStack gap="2" align="center" wrap={false}>
-                            <Add role="presentation" />
+                            <PlusIcon role="presentation" />
                             <AppText id="innsendtSøknadListe.visFlereInnsendinger" />
                         </HStack>
                     </Button>

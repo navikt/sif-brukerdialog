@@ -1,5 +1,19 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.5
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.8
+    - @navikt/sif-common-forms-ds@21.0.26
+    - @navikt/sif-common-core-ds@10.3.25
+    - @navikt/sif-common-api@0.4.67
+    - @navikt/sif-common-ui@0.11.26
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.41
+    - @navikt/ung-common@0.0.67
+
 ## 1.5.4
 
 ### Patch Changes

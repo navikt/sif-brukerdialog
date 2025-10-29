@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.55
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+
 ## 2.20.54
 
 ### Patch Changes

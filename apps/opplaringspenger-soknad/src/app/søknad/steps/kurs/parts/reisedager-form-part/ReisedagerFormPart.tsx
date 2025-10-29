@@ -1,5 +1,4 @@
 import { BodyShort, HStack, Tooltip } from '@navikt/ds-react';
-import { WarningFilled } from '@navikt/ds-icons';
 import { isValidationErrorsVisible } from '@navikt/sif-common-formik-ds';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import EnkeltdatoListAndDialog from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/EnkeltdatoListAndDialog';
@@ -10,6 +9,7 @@ import { useFormikContext } from 'formik';
 import { useAppIntl } from '../../../../../i18n';
 import { KursFormComponents, KursFormFields } from '../../KursStep';
 import { getDatoerUtenforSøknadsperioder, getReisedagerValidator } from '../../utils/kursStepUtils';
+import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 
 interface Props {
     reisedager: Enkeltdato[];
@@ -50,7 +50,7 @@ const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, k
                                     {capsFirstCharacter(dateFormatter.dayCompactDate(dato.dato))}
                                     <BodyShort className="text-red-500" as="span">
                                         <Tooltip content="Reisedag er utenfor søknadsperioden">
-                                            <WarningFilled />
+                                            <ExclamationmarkTriangleFillIcon style={{ color: '#C30000' }} />
                                         </Tooltip>
                                     </BodyShort>
                                 </HStack>

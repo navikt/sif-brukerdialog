@@ -27,7 +27,7 @@ export default defineConfig({
                     router: ['react-router-dom'],
                     forms: ['formik'],
                     utils: ['lodash', 'date-fns', 'dayjs', 'axios', 'uuid', 'zod'],
-                    navikt: ['@navikt/ds-react', '@navikt/ds-icons'],
+                    navikt: ['@navikt/ds-react', '@navikt/aksel-icons'],
                 },
             },
         },

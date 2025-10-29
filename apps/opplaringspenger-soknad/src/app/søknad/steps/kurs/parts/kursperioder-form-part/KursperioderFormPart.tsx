@@ -1,5 +1,4 @@
 import { Alert, BodyShort, Box, Button, Hide, VStack } from '@navikt/ds-react';
-import { Add } from '@navikt/ds-icons';
 import { DateRange, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { FieldArray, useFormikContext } from 'formik';
@@ -8,6 +7,7 @@ import { KursFormValues } from '../../KursStep';
 import KursperiodeQuestions, { KursperiodeFormFields } from './KursperiodeQuestions';
 import { startOgSluttErSammeHelg } from '../../utils/kursStepUtils';
 import { useFocusManagement } from '../../hooks/useFocusManagement';
+import { PlusIcon } from '@navikt/aksel-icons';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
@@ -71,7 +71,7 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                 type="button"
                                 variant="secondary"
                                 size="small"
-                                icon={<Add aria-hidden={true} />}
+                                icon={<PlusIcon aria-hidden={true} />}
                                 onClick={() => {
                                     arrayHelpers.push({});
                                     setTimeout(() => {

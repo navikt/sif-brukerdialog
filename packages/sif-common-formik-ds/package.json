@@ -4,13 +4,12 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
-    "version": "2.5.23",
+    "version": "2.5.24",
     "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
     },
     "dependencies": {
-        "@navikt/ds-icons": "3.4.3",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
@@ -21,6 +20,7 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
+        "@navikt/aksel-icons": "7.32.4",
         "@navikt/ds-css": "7.32.4",
         "@navikt/ds-react": "7.32.4",
         "@navikt/fnrvalidator": "2.1.5",

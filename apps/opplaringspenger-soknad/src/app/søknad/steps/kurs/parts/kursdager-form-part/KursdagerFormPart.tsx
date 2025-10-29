@@ -3,10 +3,10 @@ import { DateRange } from '@navikt/sif-common-utils';
 import { BodyShort, Box, Button, Hide, VStack } from '@navikt/ds-react';
 import { KursFormValues } from '../../KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { Add } from '@navikt/ds-icons';
 import KursdagQuestions from './KursdagQuestions';
 import { AppText } from '../../../../../i18n';
 import { useFocusManagement } from '../../hooks/useFocusManagement';
+import { PlusIcon } from '@navikt/aksel-icons';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
@@ -66,7 +66,7 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                     type="button"
                                     variant="secondary"
                                     size="small"
-                                    icon={<Add aria-hidden={true} />}
+                                    icon={<PlusIcon aria-hidden={true} />}
                                     onClick={() => {
                                         arrayHelpers.push({});
                                         setTimeout(() => {

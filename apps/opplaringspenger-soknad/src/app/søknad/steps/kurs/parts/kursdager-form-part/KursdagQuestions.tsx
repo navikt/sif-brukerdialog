@@ -1,5 +1,4 @@
 import { Box, Button, HGrid, VStack } from '@navikt/ds-react';
-import { Delete } from '@navikt/ds-icons';
 import { getTypedFormComponents, InputTime, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
@@ -13,6 +12,7 @@ import { AppText, useAppIntl } from '../../../../../i18n';
 import { KursFormFields } from '../../KursStep';
 import { getDateValidator, getTimeValidator } from '@navikt/sif-validation';
 import kursperiodeOgDagUtils from '../../utils/kursperiodeOgDagUtils';
+import { TrashIcon } from '@navikt/aksel-icons';
 
 export enum KursdagFormFields {
     dato = 'dato',
@@ -138,7 +138,7 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
                         type="button"
                         variant="tertiary"
                         iconPosition="left"
-                        icon={<Delete aria-hidden={true} />}
+                        icon={<TrashIcon aria-hidden={true} />}
                         onClick={onRemove}
                         size="small">
                         <AppText id="kursdag.fjern.label" values={{ dagNr, harFlereDager }} />

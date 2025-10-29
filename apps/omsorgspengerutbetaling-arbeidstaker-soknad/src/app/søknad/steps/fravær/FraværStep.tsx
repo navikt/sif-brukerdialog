@@ -1,4 +1,3 @@
-import { Office1 } from '@navikt/ds-icons';
 import { BodyLong } from '@navikt/ds-react';
 import {
     DateRange,
@@ -44,6 +43,7 @@ import {
     getFraværStepInitialValues,
     getOrganisasjonsnummerKey,
 } from './fraværStepUtils';
+import { Buildings3Icon } from '@navikt/aksel-icons';
 
 export enum FraværStepFormFields {
     fravær = 'fravær',
@@ -189,7 +189,10 @@ const FraværStep: React.FC = () => {
                                                         <FormLayout.Section
                                                             title={forhold.navn || forhold.organisasjonsnummer}
                                                             titleIcon={
-                                                                <Office1 role="presentation" aria-hidden={true} />
+                                                                <Buildings3Icon
+                                                                    role="presentation"
+                                                                    aria-hidden={true}
+                                                                />
                                                             }>
                                                             <ArbeidsforholdFraværSpørsmål
                                                                 fravær={

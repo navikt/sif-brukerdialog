@@ -1,5 +1,14 @@
 # @navikt/dine-pleiepenger
 
+## 1.11.7
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.55
+    - @navikt/sif-common-core-ds@10.3.25
+
 ## 1.11.6
 
 ### Patch Changes

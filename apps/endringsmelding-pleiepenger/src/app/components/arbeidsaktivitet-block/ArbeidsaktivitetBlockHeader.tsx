@@ -1,6 +1,5 @@
 import './arbeidsaktivitetBlockHeader.scss';
 
-import { Office1 } from '@navikt/ds-icons';
 import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
@@ -9,6 +8,7 @@ import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
 import TagsContainer from '../tags/tags-container/TagsContainer';
+import { Buildings3Icon } from '@navikt/aksel-icons';
 
 interface Props {
     navn: string;
@@ -25,7 +25,7 @@ const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjen
         <Box marginBlock={type !== ArbeidsaktivitetType.arbeidstaker ? '4 0' : undefined}>
             <div className="arbeidsaktivitetBlockHeader">
                 <div className="arbeidsaktivitetBlockHeader__icon">
-                    <Office1 role="presentation" aria-hidden={true} />
+                    <Buildings3Icon role="presentation" aria-hidden={true} />
                 </div>
                 <div className="arbeidsaktivitetBlockHeader__content">
                     <Heading level="2" size="medium">

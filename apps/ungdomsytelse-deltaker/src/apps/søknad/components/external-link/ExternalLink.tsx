@@ -6,7 +6,7 @@ const ExternalLink = ({ children, ...rest }: LinkProps) => {
         <Link style={{ display: 'inline' }} {...rest} target={rest.target || '_blank'}>
             <span>{children}</span>
             <span className="inline-block pl-1">
-                <ExternalLinkIcon aria-hidden="true" />
+                <ExternalLinkIcon role="presentation" />
             </span>
         </Link>
     );
