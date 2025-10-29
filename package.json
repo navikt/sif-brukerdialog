@@ -56,5 +56,10 @@
         "glob-parent": ">=5.1.2"
     },
     "private": true,
-    "packageManager": "yarn@4.10.3"
+    "packageManager": "yarn@4.10.3",
+    "resolutions": {
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+        "@types/react": "19.2.0"
+    }
 }
