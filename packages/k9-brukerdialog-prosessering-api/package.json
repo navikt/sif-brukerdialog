@@ -6,7 +6,7 @@
     "type": "module",
     "version": "0.2.4",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.86.7",
+        "@hey-api/openapi-ts": "0.86.8",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.9.3",

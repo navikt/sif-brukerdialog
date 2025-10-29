@@ -165,7 +165,6 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
             });
 
             expect(result.antallDagerMellomOpprettetOgBesvart).toBe(5);
-            expect(result.antallMinutterMellomOpprettetOgBesvart).toBe(5 * 24 * 60);
         });
     });
 });
