@@ -52,7 +52,7 @@
         "@navikt/ds-tailwind": "7.32.3",
         "@playwright/test": "1.56.1",
         "@sif/eslint-config": "workspace:*",
-        "@storybook/nextjs": "9.1.15",
+        "@storybook/nextjs": "10.0.0",
         "@tailwindcss/postcss": "4.1.16",
         "@tailwindcss/vite": "4.1.16",
         "@types/react": "19.2.2",
