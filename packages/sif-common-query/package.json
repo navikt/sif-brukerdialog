@@ -13,7 +13,8 @@
         "@tanstack/react-query": "5.90.5",
         "axios": "1.13.1",
         "dayjs": "1.11.18",
-        "object-hash": "3.0.0"
+        "object-hash": "3.0.0",
+        "uuid": "13.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
