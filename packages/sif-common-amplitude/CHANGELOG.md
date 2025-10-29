@@ -1,5 +1,23 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 2.28.45
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 2.28.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 2.28.43
 
 ### Patch Changes

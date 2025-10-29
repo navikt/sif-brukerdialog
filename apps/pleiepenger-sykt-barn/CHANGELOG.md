@@ -1,5 +1,78 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.54
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-amplitude@2.28.46
+    - @navikt/sif-common-core-ds@10.3.24
+    - @navikt/sif-common-env@0.1.8
+    - @navikt/sif-common-formik-ds@2.5.23
+    - @navikt/sif-common-forms-ds@21.0.25
+    - @navikt/sif-common-hooks@0.3.7
+    - @navikt/sif-common-sentry@0.28.48
+    - @navikt/sif-common-soknad-ds@26.1.7
+    - @navikt/sif-common-ui@0.11.25
+    - @navikt/sif-common-utils@3.49.45
+    - @navikt/sif-validation@1.0.10
+
+## 4.11.27
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.45
+    - @navikt/sif-common-formik-ds@2.5.22
+    - @navikt/sif-common-soknad-ds@26.1.6
+    - @navikt/sif-common-forms-ds@21.0.24
+    - @navikt/appstatus-react-ds@2.20.53
+    - @navikt/sif-common-core-ds@10.3.23
+    - @navikt/sif-common-sentry@0.28.47
+    - @navikt/sif-common-utils@3.49.44
+    - @navikt/sif-common-ui@0.11.24
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-hooks@0.3.6
+    - @navikt/sif-validation@1.0.9
+
+## 4.11.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.21
+    - @navikt/sif-common-soknad-ds@26.1.5
+    - @navikt/sif-common-forms-ds@21.0.23
+    - @navikt/sif-common-core-ds@10.3.22
+    - @navikt/sif-common-sentry@0.28.46
+    - @navikt/sif-common-utils@3.49.43
+    - @navikt/sif-validation@1.0.9
+    - @navikt/sif-common-ui@0.11.23
+
+## 4.11.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.44
+    - @navikt/sif-common-formik-ds@2.5.20
+    - @navikt/sif-common-soknad-ds@26.1.4
+    - @navikt/sif-common-forms-ds@21.0.22
+    - @navikt/sif-common-core-ds@10.3.21
+    - @navikt/sif-common-sentry@0.28.45
+    - @navikt/sif-common-utils@3.49.42
+    - @navikt/sif-validation@1.0.8
+    - @navikt/sif-common-ui@0.11.22
+    - @navikt/appstatus-react-ds@2.20.52
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-hooks@0.3.6
+
 ## 4.11.24
 
 ### Patch Changes

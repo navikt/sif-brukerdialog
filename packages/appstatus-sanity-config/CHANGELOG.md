@@ -1,5 +1,17 @@
 # appstatus-sanity-config
 
+## 1.2.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 1.2.43
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
 ## 1.2.42
 
 ### Patch Changes

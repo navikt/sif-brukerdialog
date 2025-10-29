@@ -1,5 +1,29 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.2.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.2.5
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.2.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.2.2
 
 ### Patch Changes

@@ -431,6 +431,12 @@ export const zVirksomhetWritable = z.object({
     harFlereAktiveVirksomheter: z.boolean(),
 });
 
+export const zSelvstendigNæringsdrivendeWritable = z.object({
+    harInntektSomSelvstendig: z.boolean(),
+    virksomhet: z.optional(zVirksomhetWritable),
+    arbeidsforhold: z.optional(zArbeidsforhold),
+});
+
 export const zDeleteMellomlagringData = z.object({
     body: z.optional(z.never()),
     path: z.object({

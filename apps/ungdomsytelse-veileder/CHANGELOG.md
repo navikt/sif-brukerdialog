@@ -1,5 +1,61 @@
 # @navikt/sif-demo-app
 
+## 0.9.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.66
+    - @navikt/sif-common-core-ds@10.3.24
+    - @navikt/sif-common-env@0.1.8
+    - @navikt/sif-common-faro@0.2.8
+    - @navikt/sif-common-formik-ds@2.5.23
+    - @navikt/sif-common-ui@0.11.25
+    - @navikt/sif-validation@1.0.10
+    - @navikt/ung-common@0.0.66
+
+## 0.9.16
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.22
+    - @navikt/sif-common-core-ds@10.3.23
+    - @navikt/sif-common-api@0.4.65
+    - @navikt/sif-common-ui@0.11.24
+    - @navikt/ung-common@0.0.65
+    - @navikt/sif-common-faro@0.2.7
+    - @navikt/sif-validation@1.0.9
+
+## 0.9.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.21
+    - @navikt/sif-common-core-ds@10.3.22
+    - @navikt/sif-common-api@0.4.64
+    - @navikt/sif-validation@1.0.9
+    - @navikt/ung-common@0.0.64
+    - @navikt/sif-common-ui@0.11.23
+
+## 0.9.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.20
+    - @navikt/sif-common-core-ds@10.3.21
+    - @navikt/sif-common-api@0.4.63
+    - @navikt/sif-validation@1.0.8
+    - @navikt/sif-common-ui@0.11.22
+    - @navikt/ung-common@0.0.63
+    - @navikt/sif-common-faro@0.2.7
+
 ## 0.9.13
 
 ### Patch Changes

@@ -382,6 +382,12 @@ export type PleiepengerSyktBarnSøknadWritable = {
     dataBruktTilUtledningAnnetData?: string;
 };
 
+export type SelvstendigNæringsdrivendeWritable = {
+    harInntektSomSelvstendig: boolean;
+    virksomhet?: VirksomhetWritable;
+    arbeidsforhold?: Arbeidsforhold;
+};
+
 export type VirksomhetWritable = {
     fraOgMed: string;
     tilOgMed?: string;

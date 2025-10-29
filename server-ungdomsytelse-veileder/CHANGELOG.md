@@ -1,5 +1,31 @@
 # @navikt/sif-server
 
+## 0.0.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.8
+
+## 0.0.43
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.0.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.0.40
 
 ### Patch Changes

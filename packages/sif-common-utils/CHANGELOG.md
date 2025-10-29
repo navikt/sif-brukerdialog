@@ -1,5 +1,29 @@
 # @navikt/sif-common-utils
 
+## 3.49.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 3.49.44
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 3.49.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 3.49.41
 
 ### Patch Changes

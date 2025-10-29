@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "@changesets/cli": "2.29.7",
-        "tailwindcss": "4.1.15",
+        "tailwindcss": "4.1.16",
         "turbo": "2.5.8"
     },
     "devDependencies": {
@@ -56,11 +56,9 @@
         "glob-parent": ">=5.1.2"
     },
     "private": true,
-    "packageManager": "yarn@4.10.3",
     "resolutions": {
-        "@swc/core": "1.5.7",
-        "react": "19.1.0",
-        "react-dom": "19.1.0",
-        "@types/react": "19.1.7"
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+        "@types/react": "19.2.0"
     }
 }

@@ -1,5 +1,20 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.7
+
+## 2.20.53
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+    - @navikt/sif-common-hooks@0.3.6
+
 ## 2.20.52
 
 ### Patch Changes

@@ -59,11 +59,13 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
     'kvitteringPage.tittel': 'Søknaden er sendt!',
     'kvitteringPage.beskrivelse': 'Vi har fått søknaden din om pengar gjennom ungdomsprogramytelsen.',
     'kvitteringPage.hvaSkjerVidere': 'Kva skjer vidare?',
+
     'kvitteringPage.hvaSkjerVidere.1':
-        'Du får ein SMS når søknaden din er ferdig handsama. Då kan du logge inn på Min side på nav.no og sjå svaret på søknaden (vedtaksbrevet).',
-    'kvitteringPage.hvaSkjerVidere.2': 'Pengane mottek du som regel den 12. kvar månad.',
+        'Svaret på søknaden (vedtaksbrevet) får du når vi har behandlet den. Da får du en SMS av oss, og så logger du inn på <Lenke>Min side</Lenke> på nav.no for å se vedtaksbrevet ditt.',
+    'kvitteringPage.hvaSkjerVidere.2': 'Pengene får du som regel den 12. hver måned.',
     'kvitteringPage.hvaSkjerVidere.3':
-        'Viss du tener pengar medan du er i ungdomsprogrammet, må du seie frå om dette. Du får ein SMS den 1. kvar månad, og så loggar du inn på Min side på nav.no og seier frå om kva du tente månaden før.',
+        'Hvis du jobber og får lønn mens du er i ungdomsprogrammet, må du melde fra om dette. Du får en SMS den 1. hver måned, og så logger du inn på <Lenke>Min side</Lenke> på nav.no og melder fra om hva du fikk i lønn måneden før.',
+
     'kvitteringPage.lykkeTil': 'Vi ønskjer deg lukke til vidare!',
     'kvitteringPage.gåTilMinSide': 'Gå til Min side',
 

@@ -1,5 +1,41 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.45
+    - @navikt/sif-validation@1.0.10
+
+## 2.5.22
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.44
+    - @navikt/sif-validation@1.0.9
+
+## 2.5.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.43
+    - @navikt/sif-validation@1.0.9
+
+## 2.5.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.42
+    - @navikt/sif-validation@1.0.8
+
 ## 2.5.19
 
 ### Patch Changes
