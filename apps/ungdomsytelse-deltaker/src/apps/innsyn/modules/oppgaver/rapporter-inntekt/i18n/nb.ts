@@ -16,7 +16,7 @@ export const rapporterInntektMessages_nb = {
     'rapporterInntektOppgave.readMore.tekst.2':
         'Pengene du får fra ungdomsprogramytelsen, skal du ikke gi beskjed om her.',
     'rapporterInntektOppgave.readMore.tekst.3':
-        '<link>Du kan lese mer om hva som regnes som inntekt i skatteloven §§ 5.10 til 5.15</link>.',
+        '<link>Du kan lese mer om hva som regnes som inntekt i skatteloven §§ 5.10 til 5.15.</link>',
     'rapporterInntektOppgave.intro.3':
         'Hvis du hadde inntekt, krysser du av for <strong>Ja og sender inn svaret ditt senest {frist}</strong>.',
     'rapporterInntektOppgave.intro.4':

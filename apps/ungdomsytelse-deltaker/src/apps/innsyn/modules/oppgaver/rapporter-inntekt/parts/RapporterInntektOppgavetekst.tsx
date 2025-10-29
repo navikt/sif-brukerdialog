@@ -1,8 +1,10 @@
-import { Bleed, BodyLong, Box, Heading, Link, List, ReadMore, VStack } from '@navikt/ds-react';
+import { Bleed, BodyLong, Box, Heading, List, ReadMore, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
+
+import ExternalLink from '../../../../../søknad/components/external-link/ExternalLink';
 
 interface Props {
     deltakerNavn: string;
@@ -35,32 +37,34 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
                     </BodyLong>
                     <Bleed marginBlock="2 0">
                         <ReadMore header={text('rapporterInntektOppgave.readMore.tittel')}>
-                            <BodyLong spacing>
+                            <BodyLong>
                                 <AppText id="rapporterInntektOppgave.readMore.tekst.1" />
                             </BodyLong>
-                            <List>
-                                <List.Item>
-                                    <AppText id="rapporterInntektOppgave.readMore.liste.1" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="rapporterInntektOppgave.readMore.liste.2" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="rapporterInntektOppgave.readMore.liste.3" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="rapporterInntektOppgave.readMore.liste.4" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="rapporterInntektOppgave.readMore.liste.5" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="rapporterInntektOppgave.readMore.liste.6" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="rapporterInntektOppgave.readMore.liste.7" />
-                                </List.Item>
-                            </List>
+                            <Box marginBlock="2 6">
+                                <List>
+                                    <List.Item>
+                                        <AppText id="rapporterInntektOppgave.readMore.liste.1" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="rapporterInntektOppgave.readMore.liste.2" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="rapporterInntektOppgave.readMore.liste.3" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="rapporterInntektOppgave.readMore.liste.4" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="rapporterInntektOppgave.readMore.liste.5" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="rapporterInntektOppgave.readMore.liste.6" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="rapporterInntektOppgave.readMore.liste.7" />
+                                    </List.Item>
+                                </List>
+                            </Box>
                             <BodyLong spacing>
                                 <AppText id="rapporterInntektOppgave.readMore.tekst.2" />
                             </BodyLong>
@@ -69,9 +73,9 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
                                     id="rapporterInntektOppgave.readMore.tekst.3"
                                     values={{
                                         link: (value) => (
-                                            <Link href={getLenker().lovdataInntekt} target="_blank">
+                                            <ExternalLink href={getLenker().lovdataInntekt} target="_blank">
                                                 {value}
-                                            </Link>
+                                            </ExternalLink>
                                         ),
                                     }}
                                 />
