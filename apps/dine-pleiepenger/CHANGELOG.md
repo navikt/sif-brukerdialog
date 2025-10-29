@@ -1,5 +1,18 @@
 # @navikt/dine-pleiepenger
 
+## 1.11.5
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.45
+    - @navikt/appstatus-react-ds@2.20.53
+    - @navikt/sif-common-core-ds@10.3.23
+    - @navikt/sif-common-sentry@0.28.47
+    - @navikt/sif-common-utils@3.49.44
+    - @navikt/sif-app-register@0.1.10
+
 ## 1.11.4
 
 ### Patch Changes

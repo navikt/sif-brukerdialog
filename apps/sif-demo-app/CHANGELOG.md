@@ -1,5 +1,17 @@
 # @navikt/sif-demo-app
 
+## 0.4.75
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.6
+    - @navikt/sif-common-forms-ds@21.0.24
+    - @navikt/sif-common-core-ds@10.3.23
+    - @navikt/sif-common-api@0.4.65
+    - @navikt/sif-common-ui@0.11.24
+
 ## 0.4.74
 
 ### Patch Changes

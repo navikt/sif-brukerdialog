@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.4.44
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
 ## 0.4.43
 
 ### Patch Changes

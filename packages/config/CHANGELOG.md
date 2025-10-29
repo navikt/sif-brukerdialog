@@ -1,5 +1,11 @@
 # config
 
+## 0.11.39
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
 ## 0.11.38
 
 ### Patch Changes

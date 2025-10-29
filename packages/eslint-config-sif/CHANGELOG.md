@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.68
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
 ## 1.1.67
 
 ### Patch Changes

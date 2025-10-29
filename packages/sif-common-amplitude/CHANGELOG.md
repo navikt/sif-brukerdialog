@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.45
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
 ## 2.28.44
 
 ### Patch Changes
