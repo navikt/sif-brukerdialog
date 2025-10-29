@@ -14,7 +14,6 @@ export interface OppgaveBase
     opprettetDato: Date;
     status: OppgaveStatus;
     løstDato?: Date;
-    // frist: Date;
     sisteDatoEnKanSvare: Date /** Siste dag for innlevering */;
     åpnetDato?: Date;
     lukketDato?: Date;
