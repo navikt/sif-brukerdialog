@@ -18,6 +18,7 @@
         "@navikt/sif-validation": "workspace:*"
     },
     "dependencies": {
+        "@navikt/fnrvalidator": "2.1.5",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "classnames": "2.5.1",
         "csp-header": "6.2.0",

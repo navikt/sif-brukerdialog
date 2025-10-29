@@ -12,8 +12,8 @@
         "vitest": "4.0.4"
     },
     "peerDependencies": {
-        "@navikt/fnrvalidator": "2.1.5",
-        "dayjs": "1.11.13"
+        "@navikt/fnrvalidator": "2",
+        "dayjs": "1"
     },
     "repository": {
         "type": "git",

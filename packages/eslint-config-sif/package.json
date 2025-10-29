@@ -24,5 +24,9 @@
         "typescript": "5.9.3",
         "typescript-eslint": "8.46.2"
     },
+    "devDependencies": {
+        "prettier": "3.6.2",
+        "storybook": "10.0.0"
+    },
     "packageManager": "yarn@4.3.1"
 }
