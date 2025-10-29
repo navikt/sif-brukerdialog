@@ -16,6 +16,7 @@
         "axios": "1.13.1",
         "config": "workspace:*",
         "dayjs": "1.11.18",
+        "postcss": "8.5.6",
         "typescript": "5.9.3",
         "uuid": "13.0.0",
         "vitest": "4.0.4",
