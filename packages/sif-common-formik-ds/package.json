@@ -21,8 +21,8 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
-        "@navikt/ds-css": "7.32.3",
-        "@navikt/ds-react": "7.32.3",
+        "@navikt/ds-css": "7.32.4",
+        "@navikt/ds-react": "7.32.4",
         "@navikt/fnrvalidator": "2.1.5",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.0.0",
@@ -31,7 +31,7 @@
         "@storybook/jest": "0.2.3",
         "@storybook/preset-scss": "1.0.3",
         "@storybook/react-vite": "10.0.0",
-        "@storybook/test-runner": "0.24.0",
+        "@storybook/test-runner": "0.24.1",
         "@storybook/testing-library": "0.2.2",
         "@types/jest": "30.0.0",
         "@types/node": "24.9.2",

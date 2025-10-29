@@ -20,8 +20,8 @@
     },
     "devDependencies": {
         "@formatjs/intl-pluralrules": "5.4.6",
-        "@navikt/ds-css": "7.32.3",
-        "@navikt/ds-react": "7.32.3",
+        "@navikt/ds-css": "7.32.4",
+        "@navikt/ds-react": "7.32.4",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",

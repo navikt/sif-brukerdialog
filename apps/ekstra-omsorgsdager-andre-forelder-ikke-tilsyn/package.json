@@ -13,9 +13,9 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.32.3",
-        "@navikt/ds-react": "7.32.3",
-        "@navikt/ds-tailwind": "7.32.3",
+        "@navikt/ds-css": "7.32.4",
+        "@navikt/ds-react": "7.32.4",
+        "@navikt/ds-tailwind": "7.32.4",
         "@navikt/fnrvalidator": "2.1.5",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",

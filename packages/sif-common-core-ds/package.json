@@ -21,10 +21,10 @@
     },
     "devDependencies": {
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-css": "7.32.3",
+        "@navikt/ds-css": "7.32.4",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.32.3",
-        "@navikt/ds-tailwind": "7.32.3",
+        "@navikt/ds-react": "7.32.4",
+        "@navikt/ds-tailwind": "7.32.4",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@playwright/test": "1.56.1",
