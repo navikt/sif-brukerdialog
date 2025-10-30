@@ -4891,7 +4891,7 @@ __metadata:
     eslint-plugin-storybook: "npm:10.0.0"
     eslint-plugin-vitest: "npm:0.5.4"
     express: "npm:5.1.0"
-    express-rate-limit: "npm:8.1.0"
+    express-rate-limit: "npm:8.2.0"
     formik: "npm:2.4.6"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.7"
@@ -15240,14 +15240,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-rate-limit@npm:8.1.0":
-  version: 8.1.0
-  resolution: "express-rate-limit@npm:8.1.0"
+"express-rate-limit@npm:8.2.0":
+  version: 8.2.0
+  resolution: "express-rate-limit@npm:8.2.0"
   dependencies:
     ip-address: "npm:10.0.1"
   peerDependencies:
     express: ">= 4.11"
-  checksum: 10/ddd5deb3b66f2b0c39c2188041c7e8951c697b3ec964b987144eb1832f823b683c0d1c8f0a9d00176dd13eccdb492a214e8908ad03467d41ca43e0b492b9738e
+  checksum: 10/dc33d6ee4e6c2aee404837652b8f83b694517d1c80884e5c71379e279f9ae0653418cec89ea832b2de8b50f3d958567317ca2b9cc661b88db2aad20f2a9e1ee4
   languageName: node
   linkType: hard
 
