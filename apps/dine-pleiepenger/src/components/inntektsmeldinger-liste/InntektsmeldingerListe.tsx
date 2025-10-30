@@ -6,9 +6,10 @@ import InntektsmeldingLinkCard from '../inntektsmelding-link-card/Inntektsmeldin
 
 interface Props {
     inntektsmeldinger: Inntektsmelding[];
+    saksnummer: string;
 }
 
-const InntektsmeldingerListe = ({ inntektsmeldinger }: Props) => {
+const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
     const [visIkkeIBruk, setVisIkkeIBruk] = useState(false);
 
     const filterteInntektsmeldinger = visIkkeIBruk
@@ -34,10 +35,10 @@ const InntektsmeldingerListe = ({ inntektsmeldinger }: Props) => {
             {filterteInntektsmeldinger.map((inntektsmelding) => {
                 const iBruk = inntektsmelding.status === InntektsmeldingStatus.I_BRUK;
                 return iBruk ? (
-                    <InntektsmeldingLinkCard inntektsmelding={inntektsmelding} />
+                    <InntektsmeldingLinkCard inntektsmelding={inntektsmelding} saksnummer={saksnummer} />
                 ) : (
                     <BoxNew key={inntektsmelding.journalpostId} marginBlock="0 4" marginInline="6 0">
-                        <InntektsmeldingLinkCard inntektsmelding={inntektsmelding} />
+                        <InntektsmeldingLinkCard saksnummer={saksnummer} inntektsmelding={inntektsmelding} />
                     </BoxNew>
                 );
             })}

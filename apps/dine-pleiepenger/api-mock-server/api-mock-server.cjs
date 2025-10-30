@@ -18,7 +18,7 @@ server.use(
 );
 
 server.use(function (req, res, next) {
-    setTimeout(next, 350);
+    setTimeout(next, 5);
 });
 
 const søker = {

@@ -2,15 +2,17 @@ import { Buildings3Icon } from '@navikt/aksel-icons';
 import { Box, HStack, LinkCard, Show, Tag } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import Link from 'next/link';
 
 import { Inntektsmelding, InntektsmeldingStatus } from '../../server/api-models/InntektsmeldingSchema';
 import { InntektsmeldingStatusTag } from '../inntektsmeldinger-liste/InntektsmeldingerListe';
 
 interface Props {
     inntektsmelding: Inntektsmelding;
+    saksnummer: string;
 }
 
-const InntektsmeldingLinkCard = ({ inntektsmelding }: Props) => {
+const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
     const startdato = inntektsmelding.startDatoPermisjon
         ? dayjs.utc(inntektsmelding.startDatoPermisjon).toDate()
         : undefined;
@@ -34,7 +36,17 @@ const InntektsmeldingLinkCard = ({ inntektsmelding }: Props) => {
                     </LinkCard.Icon>
                 </Box>
             </Show>
-            <LinkCard.Title>{inntektsmelding.arbeidsgiver.navn}</LinkCard.Title>
+            <LinkCard.Title>
+                <LinkCard.Anchor asChild>
+                    <Link
+                        href={{
+                            pathname: `inntektsmelding/${inntektsmelding.journalpostId}`,
+                            query: { saksnr: saksnummer },
+                        }}>
+                        {inntektsmelding.arbeidsgiver.navn}
+                    </Link>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
             <LinkCard.Description>
                 Første fraværsdato: {startdato ? dateFormatter.full(startdato) : 'Ukjent'}. ID:{' '}
                 {inntektsmelding.journalpostId}

@@ -2,11 +2,11 @@ import { Alert, Box } from '@navikt/ds-react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { withAuthenticatedPage } from '../../../auth/withAuthentication';
-import DefaultPageLayout from '../../../components/page-layout/default-page-layout/DefaultPageLayout';
-import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
-import { PleietrengendeMedSak } from '../../../server/api-models/PleietrengendeMedSakSchema';
-import InntektsmeldingerPage from '../InntektsmeldingerPage';
+import { withAuthenticatedPage } from '../../../../auth/withAuthentication';
+import DefaultPageLayout from '../../../../components/page-layout/default-page-layout/DefaultPageLayout';
+import { useInnsynsdataContext } from '../../../../hooks/useInnsynsdataContext';
+import { PleietrengendeMedSak } from '../../../../server/api-models/PleietrengendeMedSakSchema';
+import InntektsmeldingerPage from '../../InntektsmeldingerPage';
 
 const getSakFromSaksnr = (
     saker: PleietrengendeMedSak[],

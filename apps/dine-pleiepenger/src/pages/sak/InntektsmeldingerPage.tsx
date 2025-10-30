@@ -43,9 +43,9 @@ const InntektsmeldingerPage = ({ sak, harFlereSaker, pleietrengende }: Props) =>
         getAllBreadcrumbs(
             [
                 {
-                    url: `/sak/${sak.saksnummer}`,
+                    url: `/innsyn/sak/${sak.saksnummer}`,
                     title: 'Din pleiepengesak for sykt barn',
-                    handleInApp: true,
+                    handleInApp: false,
                 },
                 { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' },
             ],
@@ -79,7 +79,10 @@ const InntektsmeldingerPage = ({ sak, harFlereSaker, pleietrengende }: Props) =>
         }
         const inntektsmeldinger = data;
         return inntektsmeldinger && inntektsmeldinger.inntektsmeldinger.length > 0 ? (
-            <InntektsmeldingerListe inntektsmeldinger={inntektsmeldinger?.inntektsmeldinger} />
+            <InntektsmeldingerListe
+                saksnummer={sak.saksnummer}
+                inntektsmeldinger={inntektsmeldinger?.inntektsmeldinger}
+            />
         ) : (
             <Alert variant="info">Det er ingen inntektsmeldinger knyttet til denne saken.</Alert>
         );
