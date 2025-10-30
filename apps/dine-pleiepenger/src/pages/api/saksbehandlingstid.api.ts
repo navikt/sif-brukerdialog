@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSaksbehandlingstid } from '../../server/apiService';
 import { getLogger } from '../../utils/getLogCorrelationID';

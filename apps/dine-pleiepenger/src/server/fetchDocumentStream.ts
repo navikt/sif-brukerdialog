@@ -1,5 +1,6 @@
 import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
+
 import { RequestContext } from '../types/RequestContext';
 import { ApiService } from './apiService';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';

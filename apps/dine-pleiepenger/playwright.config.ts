@@ -64,8 +64,6 @@ export default defineConfig({
             NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: 'https://www.nav.no/arbeidsgiver/pleiepenger-barn',
             NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: 'https://www.dev.nav.no/dokumentarkiv/tema/OMS',
             NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: 'https://tjenester.nav.no/utbetalingsoversikt',
-            NEXT_PUBLIC_FEATURE_HENT_SAKER: 'on',
-            NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: 'off',
             NEXT_PUBLIC_TELEMETRY_URL: 'http://localhost:12347/collect',
         },
     },

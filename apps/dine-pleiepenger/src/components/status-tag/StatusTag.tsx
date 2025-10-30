@@ -1,5 +1,6 @@
 import { Tag } from '@navikt/ds-react';
 import React from 'react';
+
 import { AppText } from '../../i18n';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Venteårsak } from '../../types/Venteårsak';

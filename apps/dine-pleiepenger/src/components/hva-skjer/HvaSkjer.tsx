@@ -1,4 +1,5 @@
 import { Heading, Link, Process } from '@navikt/ds-react';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 

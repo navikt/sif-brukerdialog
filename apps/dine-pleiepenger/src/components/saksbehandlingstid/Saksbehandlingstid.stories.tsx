@@ -1,10 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
+
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
 import { Venteårsak } from '../../types/Venteårsak';
 import Saksbehandlingstid from './Saksbehandlingstid';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof Saksbehandlingstid> = {
     component: Saksbehandlingstid,
     title: 'Content/Saksbehandlingstid',
@@ -26,9 +26,7 @@ export const Default: Story = {
 
 export const UtenFristMedBehandlingstid: Story = {
     name: 'Ingen frist',
-    args: {
-        saksbehandlingstidUker: 3,
-    },
+    args: {},
 };
 
 export const FristIGår: Story = {

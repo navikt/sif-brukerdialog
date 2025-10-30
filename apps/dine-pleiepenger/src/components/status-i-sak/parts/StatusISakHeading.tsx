@@ -1,4 +1,5 @@
 import { Box, Heading } from '@navikt/ds-react';
+
 import InfoForsinkelse from './InfoForsinkelse';
 
 interface Props {

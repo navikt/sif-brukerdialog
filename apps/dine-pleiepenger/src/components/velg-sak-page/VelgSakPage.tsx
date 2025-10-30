@@ -1,13 +1,14 @@
 import { BodyShort, Box, Heading, LinkCard, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
+import { browserEnv } from '../../utils/env';
 import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import StatusTag from '../status-tag/StatusTag';
-import { browserEnv } from '../../utils/env';
 
 interface Props {
     saker: PleietrengendeMedSak[];
