@@ -29,7 +29,7 @@ const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
                 <Oppgavebekreftelse.Ubesvart>
                     <EndretSluttdatoOppgavetekst
                         endretDato={oppgave.oppgavetypeData.nySluttdato}
-                        svarfrist={oppgave.frist}
+                        svarfrist={oppgave.sisteDatoEnKanSvare}
                     />
                 </Oppgavebekreftelse.Ubesvart>
                 <Oppgavebekreftelse.Besvart>

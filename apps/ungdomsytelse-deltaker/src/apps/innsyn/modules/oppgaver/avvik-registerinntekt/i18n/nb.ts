@@ -27,7 +27,7 @@ export const avvikRegisterinntektMessages_nb = {
         'Hvis du mener at inntekten er feil, krysser du av på <strong>Nei, inntekten stemmer ikke</strong> og sender en tilbakemelding til oss om det.',
 
     'avvikRegisterinntektOppgavetekst.5': 'Jo fortere du svarer, jo fortere får du pengene utbetalt.',
-    'avvikRegisterinntektOppgavetekst.6': 'Fristen for å svare er {formatertFrist}.',
+    'avvikRegisterinntektOppgavetekst.6': 'Fristen for å svare er senest {formatertFrist}.',
     'avvikRegisterinntektOppgavetekst.7':
         'Hvis vi ikke hører fra deg innen svarfristen, bruker vi inntekten som arbeidsgiver har oppgitt.',
     'avvikRegisterinntektOppgavetekst.7.kunYtelse':

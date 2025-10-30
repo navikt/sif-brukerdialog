@@ -6,7 +6,7 @@ export const endretSluttdatoMessages_nb = {
         'Ingen tilbakemelding? Kryss av på “Nei” med en gang og send inn svaret ditt. Jo fortere du svarer, jo fortere får vi behandlet saken din.',
     'endretSluttdato.oppgavetekst.4':
         'Har du en tilbakemelding? Ta kontakt med veilederen din først. Når dere har snakket sammen, sender du inn svaret ditt her.',
-    'endretSluttdato.oppgavetekst.svarfrist': 'Fristen for å svare er {formatertFrist}.',
+    'endretSluttdato.oppgavetekst.svarfrist': 'Fristen for å svare er senest {formatertFrist}.',
     'endretSluttdato.oppgavetekst.5':
         'Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som sluttdato når vi behandler saken din.',
     'endretSluttdato.oppsummering.endret':
@@ -21,7 +21,7 @@ export const endretSluttdatoMessages_nb = {
         'Ingen tilbakemelding? Kryss av på “Nei” med en gang og send inn svaret ditt. Jo fortere du svarer, jo fortere får vi behandlet saken din.',
     'endretSluttdato.meldUtOppgavetekst.4':
         'Har du en tilbakemelding? Ta kontakt med veilederen din først. Når dere har snakket sammen, sender du inn svaret ditt her.',
-    'endretSluttdato.meldUtOppgavetekst.svarfrist': 'Fristen for å svare er {formatertFrist}.',
+    'endretSluttdato.meldUtOppgavetekst.svarfrist': 'Fristen for å svare er senest {formatertFrist}.',
     'endretSluttdato.meldUtOppgavetekst.5':
         'Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som sluttdato når vi behandler saken din.',
 };

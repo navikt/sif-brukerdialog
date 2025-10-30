@@ -19,7 +19,11 @@ const RapporterInntektUbesvart = ({ oppgave, deltakerNavn, periode, måned, setK
     return (
         <VStack gap="10">
             <GuidePanel>
-                <RapporterInntektOppgavetekst deltakerNavn={deltakerNavn} periode={periode} svarfrist={oppgave.frist} />
+                <RapporterInntektOppgavetekst
+                    deltakerNavn={deltakerNavn}
+                    periode={periode}
+                    svarfrist={oppgave.sisteDatoEnKanSvare}
+                />
             </GuidePanel>
             <RapporterInntektForm
                 måned={måned}
