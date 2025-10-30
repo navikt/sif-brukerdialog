@@ -1,9 +1,9 @@
-import { Star } from '@navikt/ds-icons';
 import { TagProps } from '@navikt/ds-react';
 import React from 'react';
 
 import { useAppIntl } from '../../i18n';
 import IconTag from './icon-tag/IconTag';
+import { StarIcon } from '@navikt/aksel-icons';
 
 interface Props extends Omit<TagProps, 'variant' | 'children'> {
     children?: React.ReactNode;
@@ -13,7 +13,7 @@ const NyTag = (props: Props) => {
     const { children, visIkon, ...rest } = props;
     const { text } = useAppIntl();
     return (
-        <IconTag {...rest} variant="warning" icon={visIkon ? <Star /> : undefined}>
+        <IconTag {...rest} variant="warning" icon={visIkon ? <StarIcon /> : undefined}>
             {children || text('tags.nytt')}
         </IconTag>
     );

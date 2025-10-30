@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.25
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.67
+
 ## 10.3.24
 
 ### Patch Changes

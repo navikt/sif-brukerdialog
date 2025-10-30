@@ -1,3 +1,4 @@
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { FormLayout, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
@@ -5,7 +6,6 @@ import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
-import ExternalLink from '@søknad/components/external-link/ExternalLink';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
 import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
@@ -81,7 +81,9 @@ const BarnSteg = () => {
                                         id="barnSteg.opplysninger.info.text"
                                         values={{
                                             Lenke: (children) => (
-                                                <ExternalLink href={getLenker().skatteetaten}>{children}</ExternalLink>
+                                                <ExternalLinkIcon role="presentation" href={getLenker().skatteetaten}>
+                                                    {children}
+                                                </ExternalLinkIcon>
                                             ),
                                         }}
                                     />

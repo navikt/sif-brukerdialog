@@ -1,4 +1,3 @@
-import { Settings } from '@navikt/ds-icons';
 import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useState } from 'react';
@@ -6,6 +5,7 @@ import { useState } from 'react';
 import { defaultScenario, Scenario, scenarioer } from '../../mock/scenarios/scenarioer';
 import { store } from '../../mock/state/store';
 import { getAppEnv } from '../utils/appEnv';
+import { CogIcon } from '@navikt/aksel-icons';
 
 const DevFooter = () => {
     const [showModal, setShowModal] = useState(false);
@@ -41,7 +41,7 @@ const DevFooter = () => {
                     variant="secondary"
                     onClick={() => setShowModal(true)}
                     className="bg-white"
-                    icon={<Settings aria-hidden={true} />}>
+                    icon={<CogIcon aria-hidden={true} />}>
                     {scenario.name}
                 </Button>
             </div>

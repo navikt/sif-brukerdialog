@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "1.11.6",
+    "version": "1.11.7",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "@grafana/faro-web-sdk": "1.19.0",
+        "@navikt/aksel-icons": "7.32.4",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@navikt/next-logger": "4.4.1",
@@ -48,8 +49,8 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.11.0",
+        "@navikt/aksel-icons": "7.32.4",
         "@navikt/ds-css": "7.32.4",
-        "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.32.4",
         "@navikt/ds-tailwind": "7.32.4",
         "@playwright/test": "1.56.1",

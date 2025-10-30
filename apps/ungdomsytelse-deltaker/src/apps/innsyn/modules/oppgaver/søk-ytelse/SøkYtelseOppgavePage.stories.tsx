@@ -29,7 +29,7 @@ const oppgave: SøkYtelseOppgave = {
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs.utc('2025-05-31T03:58:01.779214Z').toDate(),
-    frist: dayjs.utc('2025-06-14T03:58:01.779214Z').toDate(),
+    sisteDatoEnKanSvare: dayjs.utc('2025-06-14T03:58:01.779214Z').toDate(),
 };
 
 const besvartOppgave: SøkYtelseOppgave = {

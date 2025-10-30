@@ -1,7 +1,6 @@
-import { ExternalLink } from '@navikt/ds-icons';
 import { Link } from '@navikt/ds-react';
-
 import { browserEnv } from '../../utils/env';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 interface Props {
     tekst: string;
@@ -9,7 +8,7 @@ interface Props {
 
 const DokumentarkivLenke = ({ tekst }: Props) => (
     <Link href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}>
-        {tekst} <ExternalLink className="ml-1" role="presentation" />
+        {tekst} <ExternalLinkIcon className="ml-1" role="presentation" />
     </Link>
 );
 

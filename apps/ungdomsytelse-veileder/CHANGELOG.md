@@ -1,5 +1,17 @@
 # @navikt/sif-demo-app
 
+## 0.9.18
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.24
+    - @navikt/sif-common-core-ds@10.3.25
+    - @navikt/sif-common-api@0.4.67
+    - @navikt/sif-common-ui@0.11.26
+    - @navikt/ung-common@0.0.67
+
 ## 0.9.17
 
 ### Patch Changes

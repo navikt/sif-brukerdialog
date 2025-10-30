@@ -1,5 +1,16 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.1.8
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.24
+    - @navikt/sif-common-forms-ds@21.0.26
+    - @navikt/sif-common-core-ds@10.3.25
+    - @navikt/sif-common-ui@0.11.26
+
 ## 26.1.7
 
 ### Patch Changes

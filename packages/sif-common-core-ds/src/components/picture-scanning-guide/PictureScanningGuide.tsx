@@ -1,6 +1,5 @@
 import './pictureScanningGuide.scss';
 
-import { ExternalLink } from '@navikt/ds-icons';
 import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 
 import ExpandableInfo from '../../components/expandable-info/ExpandableInfo';
@@ -9,6 +8,7 @@ import bemUtils from '../../utils/bemUtils';
 import { getChildHeadingLevel, HeadingLevel } from '../../utils/headingLevelUtils';
 import ScanningIcon from './scanning-icon/ScanningIcon';
 import PictureScanningExample from './storybook/PictureScanningExample';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 const bem = bemUtils('pictureScanningGuide');
 interface Props {
@@ -108,7 +108,7 @@ const PictureScanningGuide = ({ headingLevel = '2' }: Props) => {
                             </div>
                             <Link target="_blank" href={text('@core.psg.lenkepanel.url')}>
                                 <CoreText id="@core.psg.lenkepanel.text" />
-                                <ExternalLink role="presentation" aria-hidden={true} />
+                                <ExternalLinkIcon role="presentation" aria-hidden={true} />
                             </Link>
                         </div>
                     </VStack>

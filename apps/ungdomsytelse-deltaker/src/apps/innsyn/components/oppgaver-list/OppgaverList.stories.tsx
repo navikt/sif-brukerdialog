@@ -32,7 +32,7 @@ const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    frist: dayjs().add(14, 'days').toDate(),
+    sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
 };
 
 export const EndretSluttdato: Story = {
@@ -76,7 +76,7 @@ const endretStartdatoOppgave: EndretStartdatoOppgave = {
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    frist: dayjs().add(14, 'days').toDate(),
+    sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
 };
 
 export const EndretStartdato: Story = {
@@ -120,7 +120,7 @@ const rapporterInntektOppgave: RapporterInntektOppgave = {
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs('2025-06-01').toDate(),
-    frist: dayjs('2025-06-06').startOf('day').toDate(),
+    sisteDatoEnKanSvare: dayjs('2025-06-06').startOf('day').toDate(),
 };
 
 export const RapporterInntekt: Story = {

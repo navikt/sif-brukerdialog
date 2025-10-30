@@ -1,5 +1,18 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.29
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.24
+    - @navikt/sif-common-soknad-ds@26.1.8
+    - @navikt/sif-common-forms-ds@21.0.26
+    - @navikt/appstatus-react-ds@2.20.55
+    - @navikt/sif-common-core-ds@10.3.25
+    - @navikt/sif-common-ui@0.11.26
+
 ## 4.11.28
 
 ### Patch Changes

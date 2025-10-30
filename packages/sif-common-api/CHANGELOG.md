@@ -1,5 +1,13 @@
 # @navikt/sif-common-ui
 
+## 0.4.67
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.24
+
 ## 0.4.66
 
 ### Patch Changes

@@ -9,12 +9,12 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "1.26.27",
+    "version": "1.26.28",
     "private": true,
     "type": "module",
     "dependencies": {
+        "@navikt/aksel-icons": "7.32.4",
         "@navikt/ds-css": "7.32.4",
-        "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.32.4",
         "@navikt/ds-tailwind": "7.32.4",
         "@navikt/fnrvalidator": "2.1.5",

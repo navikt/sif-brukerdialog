@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "2.28.27",
+    "version": "2.28.28",
     "private": true,
     "type": "module",
     "scripts": {
@@ -24,6 +24,7 @@
         "pw:start": "vite preview --base / --config vite.playwright.config.ts"
     },
     "dependencies": {
+        "@navikt/aksel-icons": "7.32.4",
         "@navikt/ds-css": "7.32.4",
         "@navikt/ds-react": "7.32.4",
         "@navikt/ds-tailwind": "7.32.4",

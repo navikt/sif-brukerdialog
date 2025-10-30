@@ -26,7 +26,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         status: OppgaveStatus.ULØST,
         opprettetDato: dayjs().subtract(1, 'day').toDate(),
         oppgaveReferanse: 'test-ref',
-        frist: dayjs().add(7, 'days').toDate(),
+        sisteDatoEnKanSvare: dayjs().add(7, 'days').toDate(),
         oppgavetypeData: {
             fomDato: dayjs().subtract(10, 'days').toDate(),
         },

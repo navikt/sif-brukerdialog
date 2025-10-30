@@ -2,7 +2,7 @@
     "author": "navikt",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-core-ds",
-    "version": "10.3.24",
+    "version": "10.3.25",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -20,9 +20,9 @@
         "tailwindcss": "4.1.16"
     },
     "devDependencies": {
+        "@navikt/aksel-icons": "7.32.4",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "7.32.4",
-        "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.32.4",
         "@navikt/ds-tailwind": "7.32.4",
         "@navikt/sif-common-formik-ds": "workspace:*",

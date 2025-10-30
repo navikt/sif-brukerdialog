@@ -47,7 +47,7 @@ const getOppgaveBaseProps = (oppgave: OppgaveDto): Omit<OppgaveBase, 'oppgavetyp
         oppgaveReferanse: oppgave.oppgaveReferanse,
         status: getOppgaveStatusEnum(oppgave.status),
         opprettetDato,
-        frist: svarfrist,
+        sisteDatoEnKanSvare: dayjs(svarfrist).startOf('day').subtract(1, 'day').toDate(),
         løstDato,
         åpnetDato,
     };

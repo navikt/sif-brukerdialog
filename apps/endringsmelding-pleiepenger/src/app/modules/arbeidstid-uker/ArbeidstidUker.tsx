@@ -1,6 +1,5 @@
 import './arbeidstidUker.scss';
 
-import { AddCircle } from '@navikt/ds-icons';
 import { Button, HStack, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { getDateRangeText } from '@navikt/sif-common-utils';
@@ -16,6 +15,7 @@ import ArbeidstidUkeTabell from './components/ArbeidstidUkeTabell';
 import EndreUkerFooter from './components/EndreUkerFooter';
 import EndreUkerHeader from './components/EndreUkerHeader';
 import { ArbeidstidUkerItem } from './types/ArbeidstidUkerItem';
+import { PlusCircleIcon } from '@navikt/aksel-icons';
 
 interface Props {
     listItems: ArbeidstidUkerItem[];
@@ -114,14 +114,14 @@ const ArbeidstidUker = ({
                 <HStack gap="2">
                     <Button
                         variant="tertiary"
-                        icon={<AddCircle role="presentation" aria-hidden={true} />}
+                        icon={<PlusCircleIcon role="presentation" aria-hidden={true} />}
                         type="button"
                         onClick={showMoreItems}>
                         <AppText id="arbeidstidUker.visMer.visFlereUker.label" />
                     </Button>
                     <Button
                         variant="tertiary"
-                        icon={<AddCircle role="presentation" aria-hidden={true} />}
+                        icon={<PlusCircleIcon role="presentation" aria-hidden={true} />}
                         type="button"
                         onClick={showAllItems}>
                         <AppText id="arbeidstidUker.visMer.visAlleUker.label" />
