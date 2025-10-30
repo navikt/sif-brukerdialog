@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.12.0
+
+### Minor Changes
+
+- Endre på hvordan data lastes inn i applikasjonen, slik at den ikke laster mer enn den trenger, og laster i riktig rekkefølge.
+
 ## 1.11.7
 
 ### Patch Changes
