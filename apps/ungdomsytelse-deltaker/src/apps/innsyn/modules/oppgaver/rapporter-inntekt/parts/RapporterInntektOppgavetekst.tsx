@@ -65,9 +65,6 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
                                 </List>
                             </Box>
                             <BodyLong spacing>
-                                <AppText id="rapporterInntektOppgave.readMore.tekst.2" />
-                            </BodyLong>
-                            <BodyLong spacing>
                                 <AppText
                                     id="rapporterInntektOppgave.readMore.tekst.3"
                                     values={{
