@@ -18,7 +18,7 @@ export const rapporterInntektMessages_nb = {
     'rapporterInntektOppgave.readMore.tekst.3':
         '<link>Du kan lese mer om hva som regnes som inntekt i skatteloven §§ 5.10 til 5.15.</link>',
     'rapporterInntektOppgave.intro.3':
-        'Hvis du hadde inntekt, krysser du av for <strong>Ja og sender inn svaret ditt senest {frist}</strong>.',
+        'Hvis du hadde inntekt, krysser du av for <strong>Ja</strong> og sender inn svaret ditt senest {frist}.',
     'rapporterInntektOppgave.intro.4':
         'Hvis du ikke hadde inntekt, krysser du av på <strong>Nei</strong> eller lar være å svare.',
 
