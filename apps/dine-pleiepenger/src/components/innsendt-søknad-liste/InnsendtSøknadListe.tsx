@@ -1,11 +1,12 @@
+import { PlusIcon } from '@navikt/aksel-icons';
 import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+
 import { AppText } from '../../i18n';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import InnsendtSøknadContent from './InnsendtSøknadContent';
 import InnsendtSøknadTitle from './InnsendtSøknadTitle';
-import { PlusIcon } from '@navikt/aksel-icons';
 
 interface Props {
     søknader: InnsendtSøknad[];

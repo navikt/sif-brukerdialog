@@ -1,14 +1,18 @@
 import { Heading, HGrid, LinkCard } from '@navikt/ds-react';
+import Link from 'next/link';
 
 import { AppText } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 
-const SnarveierSak = () => (
+interface Props {
+    saksnummer?: string;
+}
+const SnarveierSak = ({ saksnummer }: Props) => (
     <>
         <Heading size="medium" level="2" spacing={true}>
             <AppText id="snarveierSak.tittel" />
         </Heading>
-        <HGrid gap="2" columns={{ xs: 1, md: 3 }}>
+        <HGrid gap="2" columns={{ xs: 1, md: 2 }}>
             <LinkCard>
                 <LinkCard.Title>
                     <LinkCard.Anchor href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}>
@@ -16,6 +20,16 @@ const SnarveierSak = () => (
                     </LinkCard.Anchor>
                 </LinkCard.Title>
             </LinkCard>
+            <LinkCard>
+                <LinkCard.Title>
+                    <LinkCard.Anchor
+                        asChild
+                        href={`${browserEnv.NEXT_PUBLIC_BASE_PATH}/sak/${saksnummer}/inntektsmelding`}>
+                        <Link href={`/sak/${saksnummer}/inntektsmelding`}>Rapportert inntekt</Link>
+                    </LinkCard.Anchor>
+                </LinkCard.Title>
+            </LinkCard>
+
             <LinkCard>
                 <LinkCard.Title>
                     <LinkCard.Anchor href={browserEnv.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL}>

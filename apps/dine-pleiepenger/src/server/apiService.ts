@@ -1,3 +1,4 @@
+import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { ZodError } from 'zod';
@@ -10,6 +11,7 @@ import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 import { Innsendelse } from './api-models/InnsendelseSchema';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
+import { Inntektsmeldinger, InntektsmeldingerSchema } from './api-models/InntektsmeldingSchema';
 import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
 import {
     Saksbehandlingstid as Saksbehandlingstid,
@@ -35,6 +37,8 @@ export enum ApiEndpointK9SakInnsyn {
     'saker' = 'saker',
     /** Gjeldende behandlingsstid i antall uker*/
     'behandlingstid' = 'saker/saksbehandlingstid',
+    /** Inntektsmeldinger for en sak */
+    'inntektsmeldinger' = 'inntektsmeldinger',
 }
 
 export enum SifApiErrorType {
@@ -148,6 +152,26 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
     const response = await axios.get(url, { headers });
     logger.info(`Behandlingstid fetched`);
     return await SaksbehandlingstidSchema.parse(response.data);
+};
+
+/**
+ * Henter inntektsmeldinger for en sak
+ * @param req
+ * @returns
+ */
+export const fetchInntektsmeldinger = async (req: NextApiRequest): Promise<Inntektsmeldinger> => {
+    const context = getContextForApiHandler(req);
+    const { url, headers } = await exchangeTokenAndPrepRequest(
+        ApiService.k9SakInnsyn,
+        context,
+        ApiEndpointK9SakInnsyn.inntektsmeldinger,
+        'application/json',
+    );
+    const logger = getLogger(req);
+    logger.info(`Fetching inntektsmeldinger from url: ${url}`);
+    const response = await axios.get(url, { headers, transformResponse: storageParser });
+    logger.info(`Inntektsmeldinger fetched`);
+    return await InntektsmeldingerSchema.parse(response.data);
 };
 
 export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøknad[]> => {

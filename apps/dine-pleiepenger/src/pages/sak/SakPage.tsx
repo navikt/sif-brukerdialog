@@ -82,7 +82,7 @@ const SakPage = ({ sak, pleietrengende, antallSaker }: Props) => {
                     <SkrivTilOssLenker />
                 </Box>
                 <Box className="mb-10">
-                    <SnarveierSak />
+                    <SnarveierSak saksnummer={sak.saksnummer} />
                 </Box>
             </VStack>
             <DevBranchInfo />
