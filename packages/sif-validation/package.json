@@ -10,7 +10,7 @@
         "config": "workspace:*",
         "postcss": "8.5.6",
         "typescript": "5.9.3",
-        "vitest": "4.0.4"
+        "vitest": "4.0.5"
     },
     "peerDependencies": {
         "@navikt/fnrvalidator": "2",
