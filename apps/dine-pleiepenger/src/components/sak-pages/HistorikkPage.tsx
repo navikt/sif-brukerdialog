@@ -1,17 +1,15 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Box, Heading, Link, VStack } from '@navikt/ds-react';
-import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
-import { useRouter } from 'next/router';
 
-import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
-import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
-import StatusISak from '../../components/status-i-sak/StatusISak';
+import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
-import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
+import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
+import SakPageHeader from '../page-layout/sak-page-header/SakPageHeader';
+import StatusISak from '../status-i-sak/StatusISak';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -20,23 +18,16 @@ interface Props {
 }
 
 const HistorikkPage = ({ sak, harFlereSaker, pleietrengende }: Props) => {
-    const router = useRouter();
-    setBreadcrumbs(
-        getAllBreadcrumbs(
-            [
-                {
-                    url: `/sak/${sak.saksnummer}`,
-                    title: 'Din pleiepengesak for sykt barn',
-                    handleInApp: true,
-                },
-                { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Historikk' },
-            ],
-            harFlereSaker,
-        ),
-    );
-
-    onBreadcrumbClick((breadcrumb) => {
-        router.push(breadcrumb.url);
+    useBreadcrumbs({
+        breadcrumbs: [
+            {
+                url: `/sak/${sak.saksnummer}`,
+                title: 'Din pleiepengesak for sykt barn',
+                handleInApp: true,
+            },
+            { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Historikk' },
+        ],
+        harFlereSaker,
     });
 
     return (

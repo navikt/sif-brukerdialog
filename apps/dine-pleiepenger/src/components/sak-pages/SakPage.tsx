@@ -1,7 +1,5 @@
 import { Box, VStack } from '@navikt/ds-react';
-import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
 import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
@@ -13,11 +11,11 @@ import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
 import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
+import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { useLogSaksprofil } from '../../hooks/useLogSaksprofil';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
-import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 
@@ -28,18 +26,11 @@ interface Props {
 }
 
 const SakPage = ({ sak, pleietrengende, antallSaker }: Props) => {
-    const router = useRouter();
     useLogSaksprofil(sak, antallSaker);
 
-    setBreadcrumbs(
-        getAllBreadcrumbs(
-            [{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak for sykt barn' }],
-            antallSaker > 1,
-        ),
-    );
-
-    onBreadcrumbClick((breadcrumb) => {
-        router.push(breadcrumb.url);
+    useBreadcrumbs({
+        breadcrumbs: [{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak for sykt barn' }],
+        harFlereSaker: antallSaker > 1,
     });
 
     const statusISak = getBehandlingsstatusISak(sak);

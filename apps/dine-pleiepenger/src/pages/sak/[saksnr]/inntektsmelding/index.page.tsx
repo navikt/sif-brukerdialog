@@ -1,43 +1,18 @@
-import { Alert, Box } from '@navikt/ds-react';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-
 import { withAuthenticatedPage } from '../../../../auth/withAuthentication';
-import DefaultPageLayout from '../../../../components/page-layout/default-page-layout/DefaultPageLayout';
+import InntektsmeldingerPage from '../../../../components/sak-pages/InntektsmeldingerPage';
+import SakIkkeFunnetPage from '../../../../components/sak-pages/SakIkkeFunnetPage';
 import { useInnsynsdataContext } from '../../../../hooks/useInnsynsdataContext';
-import { PleietrengendeMedSak } from '../../../../server/api-models/PleietrengendeMedSakSchema';
-import InntektsmeldingerPage from '../../InntektsmeldingerPage';
-
-const getSakFromSaksnr = (
-    saker: PleietrengendeMedSak[],
-    saksnr?: string | string[],
-): PleietrengendeMedSak | undefined => {
-    if (!saksnr || typeof saksnr !== 'string' || saker.length === 0) {
-        return undefined;
-    }
-    return saker.find((sak) => sak.sak.saksnummer === saksnr);
-};
+import { usePleietrengendeMedSakFromRoute } from '../../../../hooks/usePleietrengendeMedSakFromRoute';
 
 export default function InntektsmeldingerRoutePage() {
     const {
         innsynsdata: { saker },
     } = useInnsynsdataContext();
-    const router = useRouter();
 
-    const { saksnr } = router.query;
-    const pleietrengendeMedSak = getSakFromSaksnr(saker, saksnr);
+    const { pleietrengendeMedSak, saksnr } = usePleietrengendeMedSakFromRoute();
 
     if (!pleietrengendeMedSak) {
-        return (
-            <DefaultPageLayout>
-                <Head>
-                    <title>Sak ikke funnet</title>
-                </Head>
-                <Box className="mb-10">
-                    <Alert variant="error">Kunne ikke finne sak med saksnr &quot;{router.query.saksnr}&quot;</Alert>
-                </Box>
-            </DefaultPageLayout>
-        );
+        return <SakIkkeFunnetPage saksnr={saksnr} />;
     }
 
     return (

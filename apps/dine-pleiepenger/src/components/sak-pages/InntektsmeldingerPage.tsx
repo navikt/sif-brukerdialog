@@ -1,22 +1,20 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, Box, Heading, Link, VStack } from '@navikt/ds-react';
-import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import axios, { AxiosError } from 'axios';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
-import { useRouter } from 'next/router';
 import Skeleton from 'react-loading-skeleton';
 import useSWR from 'swr';
 
-import InntektsmeldingerListe from '../../components/inntektsmeldinger-liste/InntektsmeldingerListe';
-import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
-import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
+import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { Inntektsmeldinger } from '../../server/api-models/InntektsmeldingSchema';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
-import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
+import InntektsmeldingerListe from '../inntektsmeldinger-liste/InntektsmeldingerListe';
+import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
+import SakPageHeader from '../page-layout/sak-page-header/SakPageHeader';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -38,23 +36,16 @@ const InntektsmeldingerPage = ({ sak, harFlereSaker, pleietrengende }: Props) =>
         },
     );
 
-    const router = useRouter();
-    setBreadcrumbs(
-        getAllBreadcrumbs(
-            [
-                {
-                    url: `/innsyn/sak/${sak.saksnummer}`,
-                    title: 'Din pleiepengesak for sykt barn',
-                    handleInApp: false,
-                },
-                { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' },
-            ],
-            harFlereSaker,
-        ),
-    );
-
-    onBreadcrumbClick((breadcrumb) => {
-        router.push(breadcrumb.url);
+    useBreadcrumbs({
+        breadcrumbs: [
+            {
+                url: `/innsyn/sak/${sak.saksnummer}`,
+                title: 'Din pleiepengesak for sykt barn',
+                handleInApp: false,
+            },
+            { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' },
+        ],
+        harFlereSaker,
     });
 
     const renderContent = () => {

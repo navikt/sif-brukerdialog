@@ -2,13 +2,13 @@ import axios from 'axios';
 import { ReactElement } from 'react';
 
 import { withAuthenticatedPage } from '../auth/withAuthentication';
+import SakPage from '../components/sak-pages/SakPage';
 import SøknaderEllerIngenSakFalback from '../components/søknader-eller-ingen-sak-fallback/SøknaderEllerIngenSakFalback';
 import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useVerifyUserOnWindowFocus } from '../hooks/useVerifyUserOnWindowFocus';
 import { Søker } from '../server/api-models/SøkerSchema';
 import { browserEnv } from '../utils/env';
-import SakPage from './sak/SakPage';
 
 const søkerIdFetcher = async (): Promise<string> => {
     const url = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soker`;
