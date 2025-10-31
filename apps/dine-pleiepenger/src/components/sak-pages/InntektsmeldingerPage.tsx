@@ -10,23 +10,20 @@ import useSWR, { useSWRConfig } from 'swr';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { Inntektsmeldinger } from '../../server/api-models/InntektsmeldingSchema';
-import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
 import { browserEnv } from '../../utils/env';
 import InntektsmeldingerListe from '../inntektsmeldinger-liste/InntektsmeldingerListe';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
-import SakPageHeader from '../page-layout/sak-page-header/SakPageHeader';
+import PageHeader from '../page-layout/page-header/PageHeader';
 
 interface Props {
-    pleietrengende: Pleietrengende;
     sak: Sak;
-    harFlereSaker: boolean;
 }
 
 const inntektsmeldingerFetcher = async (url: string): Promise<Inntektsmeldinger> =>
     axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
-const InntektsmeldingerPage = ({ sak, harFlereSaker, pleietrengende }: Props) => {
+const InntektsmeldingerPage = ({ sak }: Props) => {
     const { mutate } = useSWRConfig();
     const { data, error, isLoading } = useSWR<Inntektsmeldinger, AxiosError>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmeldinger`,
@@ -59,7 +56,6 @@ const InntektsmeldingerPage = ({ sak, harFlereSaker, pleietrengende }: Props) =>
             },
             { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' },
         ],
-        harFlereSaker,
     });
 
     const renderContent = () => {
@@ -93,15 +89,7 @@ const InntektsmeldingerPage = ({ sak, harFlereSaker, pleietrengende }: Props) =>
         );
     };
     return (
-        <DefaultPageLayout
-            pageHeader={
-                <SakPageHeader
-                    tittel="Inntektsmeldinger"
-                    pleietrengende={pleietrengende}
-                    saksnr={sak.saksnummer}
-                    hidePleiepengerIcon={true}
-                />
-            }>
+        <DefaultPageLayout pageHeader={<PageHeader title="Inntektsmeldinger" hidePleiepengerIcon={true} />}>
             <Head>
                 <title>Inntektsmeldinger - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>

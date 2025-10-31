@@ -30,7 +30,6 @@ const SakPage = ({ sak, pleietrengende, antallSaker }: Props) => {
 
     useBreadcrumbs({
         breadcrumbs: [{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak for sykt barn' }],
-        harFlereSaker: antallSaker > 1,
     });
 
     const statusISak = getBehandlingsstatusISak(sak);

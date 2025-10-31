@@ -4,20 +4,17 @@ import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
 import { browserEnv } from '../../utils/env';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
-import SakPageHeader from '../page-layout/sak-page-header/SakPageHeader';
+import PageHeader from '../page-layout/page-header/PageHeader';
 import StatusISak from '../status-i-sak/StatusISak';
 
 interface Props {
-    pleietrengende: Pleietrengende;
     sak: Sak;
-    harFlereSaker: boolean;
 }
 
-const HistorikkPage = ({ sak, harFlereSaker, pleietrengende }: Props) => {
+const HistorikkPage = ({ sak }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [
             {
@@ -27,12 +24,10 @@ const HistorikkPage = ({ sak, harFlereSaker, pleietrengende }: Props) => {
             },
             { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Historikk' },
         ],
-        harFlereSaker,
     });
 
     return (
-        <DefaultPageLayout
-            pageHeader={<SakPageHeader tittel="Historikk" pleietrengende={pleietrengende} saksnr={sak.saksnummer} />}>
+        <DefaultPageLayout pageHeader={<PageHeader title="Historikk" hidePleiepengerIcon={true} />}>
             <Head>
                 <title>Historikk - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>

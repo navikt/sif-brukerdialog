@@ -1,6 +1,7 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Box, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Heading, Link, VStack } from '@navikt/ds-react';
 import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import axios, { AxiosError } from 'axios';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
@@ -10,23 +11,15 @@ import useSWR from 'swr';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { Inntektsmelding } from '../../server/api-models/InntektsmeldingSchema';
-import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
-import { Sak } from '../../server/api-models/SakSchema';
 import { browserEnv } from '../../utils/env';
-import InntektsmeldingDetaljer from '../inntektsmelding/Inntektsmelding';
+import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/InntektsmeldingDetaljer';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';
 
 const fetcher = async (url: string): Promise<Inntektsmelding> =>
     axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
-interface Props {
-    pleietrengende: Pleietrengende;
-    sak: Sak;
-    harFlereSaker: boolean;
-}
-
-const InntektsmeldingDetaljerPage = ({ pleietrengende, sak, harFlereSaker }: Props) => {
+const InntektsmeldingDetaljerPage = () => {
     const router = useRouter();
     const { saksnr, journalpostId } = router.query;
 
@@ -45,11 +38,10 @@ const InntektsmeldingDetaljerPage = ({ pleietrengende, sak, harFlereSaker }: Pro
 
     useBreadcrumbs({
         breadcrumbs: [
-            { url: `/sak/${saksnr}`, title: 'Din pleiepengesak', handleInApp: true },
+            { url: `/sak/${saksnr}`, title: 'Din pleiepengesak for sykt barn', handleInApp: true },
             { url: `/sak/${saksnr}/inntektsmelding`, title: 'Inntektsmeldinger', handleInApp: true },
             { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Detaljer' },
         ],
-        harFlereSaker,
     });
 
     const renderContent = () => {
@@ -84,10 +76,18 @@ const InntektsmeldingDetaljerPage = ({ pleietrengende, sak, harFlereSaker }: Pro
             pageHeader={
                 <PageHeader
                     title={`Inntektsmelding ${innteksmelding ? `fra ${innteksmelding.arbeidsgiver.navn}` : ''}`}
+                    hidePleiepengerIcon={true}
+                    byline={
+                        innteksmelding ? (
+                            <BodyShort>
+                                Sendt inn av {dateFormatter.compactWithTime(innteksmelding.mottattDato)}
+                            </BodyShort>
+                        ) : undefined
+                    }
                 />
             }>
             <Head>
-                <title>Inntektsmelding - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
+                <title>Inntektsmelding - Din pleiepengesak for sykt barn - {saksnr}</title>
             </Head>
             <VStack gap="12">
                 <Box className="md:flex md:gap-6 mb-10">
@@ -98,9 +98,9 @@ const InntektsmeldingDetaljerPage = ({ pleietrengende, sak, harFlereSaker }: Pro
                             </Heading>
                             {renderContent()}
                             <Box className="ml-4 mt-4">
-                                <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
+                                <Link as={NextLink} href={`/sak/${saksnr}/inntektsmelding`}>
                                     <ChevronLeftIcon role="presentation" />
-                                    Tilbake til sak
+                                    Tilbake til alle inntektsmeldinger
                                 </Link>
                             </Box>
                         </VStack>
