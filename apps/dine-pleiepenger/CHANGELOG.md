@@ -1,5 +1,24 @@
 # @navikt/dine-pleiepenger
 
+## 1.12.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.47
+    - @navikt/appstatus-react-ds@2.20.56
+    - @navikt/sif-common-core-ds@10.3.26
+    - @navikt/sif-common-sentry@0.28.49
+    - @navikt/sif-common-utils@3.49.46
+    - @navikt/sif-app-register@0.1.11
+
+## 1.12.0
+
+### Minor Changes
+
+- Endre på hvordan data lastes inn i applikasjonen, slik at den ikke laster mer enn den trenger, og laster i riktig rekkefølge.
+
 ## 1.11.7
 
 ### Patch Changes
