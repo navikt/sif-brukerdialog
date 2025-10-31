@@ -25,6 +25,7 @@ export interface AvvikRegisterinntektOppgave extends OppgaveBase {
         fraOgMed: Date;
         tilOgMed: Date;
         registerinntekt: RegisterinntektDto;
+        gjelderSisteMåned: boolean;
     };
 }
 

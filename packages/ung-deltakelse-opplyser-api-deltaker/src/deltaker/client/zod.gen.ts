@@ -99,6 +99,7 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.
         fraOgMed: z.iso.date(),
         tilOgMed: z.iso.date(),
         registerinntekt: zRegisterinntektDto,
+        gjelderSisteMåned: z.boolean(),
     }),
 );
 

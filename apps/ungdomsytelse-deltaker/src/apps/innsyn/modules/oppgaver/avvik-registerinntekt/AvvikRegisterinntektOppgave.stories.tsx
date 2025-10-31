@@ -59,6 +59,7 @@ const oppgave: AvvikRegisterinntektOppgave = {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-01').toDate(),
         registerinntekt: registerInntektEnArbeidsgiver,
+        gjelderSisteMåned: false,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
@@ -68,6 +69,7 @@ const oppgave: AvvikRegisterinntektOppgave = {
 const getOppgaveMedInntekt = (
     arbeidOgFrilansInntekter: ArbeidOgFrilansRegisterInntektDto[] = [],
     ytelseInntekter: YtelseRegisterInntektDto[] = [],
+    gjelderSisteMåned: boolean = false,
 ): AvvikRegisterinntektOppgave => {
     const totalInntektArbeidOgFrilans = arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
     const totalInntektYtelse = ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
@@ -77,6 +79,7 @@ const getOppgaveMedInntekt = (
         ...oppgave,
         oppgavetypeData: {
             ...(oppgave.oppgavetypeData as any),
+            gjelderSisteMåned,
             registerinntekt: {
                 arbeidOgFrilansInntekter,
                 ytelseInntekter,
@@ -161,10 +164,20 @@ export const UbesvartOppgaveKombinasjon: Story = {
         />
     ),
 };
+
 export const IngenInntekt: Story = {
     name: 'Ingen inntekt',
     render: () => (
         <AvvikRegisterinntektOppgavePage oppgave={getOppgaveMedInntekt([], [])} deltakerNavn="SNODIG VAFFEL" />
+    ),
+};
+export const OppgaveSisteMåned: Story = {
+    name: 'Siste måned',
+    render: () => (
+        <AvvikRegisterinntektOppgavePage
+            oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1], [], true)}
+            deltakerNavn="SNODIG VAFFEL"
+        />
     ),
 };
 

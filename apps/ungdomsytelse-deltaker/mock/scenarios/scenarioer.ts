@@ -127,6 +127,15 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
             mockOppgaver.bekreftAvvikOppgave,
         ]),
     },
+    [ScenarioType.avvikInntektSisteMåned]: {
+        type: ScenarioType.avvikInntektSisteMåned,
+        name: 'Oppgave for å sjekke inntekt (avvik). Siste måned',
+        data: createSøktDeltakelse([
+            mockOppgaver.søkYtelseOppgaveLøst,
+            mockOppgaver.rapporterInntektOppgaveLøst,
+            mockOppgaver.bekreftAvvikOppgaveSisteMåned,
+        ]),
+    },
     [ScenarioType.avsluttet]: {
         type: ScenarioType.avvikInntekt,
         name: 'Avsluttet deltakelse',

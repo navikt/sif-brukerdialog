@@ -60,6 +60,7 @@ export type KontrollerRegisterinntektOppgavetypeDataDto = OppgavetypeDataDto & {
     fraOgMed: string;
     tilOgMed: string;
     registerinntekt: RegisterinntektDto;
+    gjelderSisteMåned: boolean;
 };
 
 export type OppgaveDto = {
