@@ -96,7 +96,7 @@
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-        "clean": "rm -rf node_modules .dist",
+        "clean": "rm -rf node_modules dist",
         "dev": "vite --config vite.dev.config.ts",
         "lint:eslint": "npx eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "npx eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",

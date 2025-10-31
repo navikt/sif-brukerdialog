@@ -6,6 +6,7 @@
     "scripts": {
         "build": "vite build --base=/ungdomsprogrammet/ytelsen",
         "check:types": "tsc --noemit",
+        "clean": "rm -rf node_modules dist dist-demo",
         "demo:build": "run-s demo:build-app demo:copy-app-files",
         "demo:build-app": "vite build --config vite.demo.config.ts",
         "demo:copy-app-files": "cp ./dist-demo/demo/index.html ./dist-demo/index.html && rm -rf ./dist-demo/demo && cp ./mockServiceWorker.js ./dist-demo/",

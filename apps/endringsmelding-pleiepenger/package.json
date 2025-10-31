@@ -87,7 +87,7 @@
     "scripts": {
         "build-storybook": "storybook build",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-        "clean": "rm -rf node_modules .dist",
+        "clean": "rm -rf node_modules dist",
         "dev": "vite --config vite.dev.config.ts",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",
