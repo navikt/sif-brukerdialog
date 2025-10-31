@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-server",
-    "version": "0.4.45",
+    "version": "0.4.46",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -16,7 +16,7 @@
         "express": "5.1.0",
         "html-react-parser": "5.2.7",
         "http-proxy-middleware": "3.0.5",
-        "jsdom": "27.0.1",
+        "jsdom": "27.1.0",
         "react": "19.2.0",
         "zod": "4.1.12"
     },
