@@ -6,8 +6,8 @@ on:
         branches:
             - main
         paths:
-            - 'apps/ungdomsytelse-deltaker/**/*'
-            - 'server/**/*'
+            - "apps/ungdomsytelse-deltaker/**/*"
+            - "server/**/*"
     workflow_dispatch:
 
 jobs:
@@ -20,6 +20,8 @@ jobs:
     deploy-to-prod:
         name: Deploy ungdomsytelse-deltaker to prod
         needs: [run-tests]
+        # Skip deploy on push commits containing [skip-prod-deploy]; always run via manual dispatch
+        if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]') }}
         uses: ./.github/workflows/.deploy-app-to-prod.yml
         secrets: inherit
         permissions:
@@ -28,5 +30,5 @@ jobs:
             id-token: write
             actions: read
         with:
-            app-name: 'ungdomsytelse-deltaker'
-            working-directory: 'apps/ungdomsytelse-deltaker'
+            app-name: "ungdomsytelse-deltaker"
+            working-directory: "apps/ungdomsytelse-deltaker"
