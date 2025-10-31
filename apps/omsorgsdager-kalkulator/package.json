@@ -8,6 +8,7 @@
     "scripts": {
         "dev": "next dev -p 8080",
         "build": "next build",
+        "clean": "rm -rf node_modules",
         "playwright-test": "playwright test",
         "start": "next start -p 8080",
         "test": "jest"
