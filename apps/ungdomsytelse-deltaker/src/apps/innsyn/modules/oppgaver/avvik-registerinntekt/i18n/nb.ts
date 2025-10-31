@@ -3,15 +3,17 @@ export const avvikRegisterinntektMessages_nb = {
     'avvikRegisterinntekt.inntekskilde.arbeidsgiver': 'Arbeidsgiver',
     'avvikRegisterinntekt.inntekskilde.navytelse': 'Nav-ytelse',
     'avvikRegisterinntektOppsummering.intro':
-        'Vi har fått disse opplysningene fra arbeidsgiver om inntekten din i {rapporteringsmåned}:',
+        'Vi har fått disse opplysningene fra arbeidsgiver om inntekten din i {rapporteringsmåned}.',
 
     'inntektTabell.totalt': 'Totalt',
     'inntektTabell.inntekt': 'Inntekt før skatt',
 
     'avvikRegisterinntektOppgavetekst.navYtelse':
-        'Vi har fått disse opplysningene om ytelse fra Nav for {rapporteringsmåned}:',
+        'Vi har fått disse opplysningene om ytelse fra Nav for {rapporteringsmåned}.',
+    'avvikRegisterinntektOppgavetekst.sisteMåned':
+        'Siden du gikk ut av ungdomsprogrammet i {rapporteringsmåned}, bruker vi kun deler av inntekten din. Dette tallet kan derfor avvike noe fra den totale bruttoinntekten din i {rapporteringsmåned}.',
     'avvikRegisterinntektOppgavetekst.generell':
-        'Vi har fått disse opplysningene fra arbeidsgiver om inntekten din for {rapporteringsmåned}:',
+        'Vi har fått disse opplysningene fra arbeidsgiver om inntekten din for {rapporteringsmåned}.',
     'avvikRegisterinntektOppgavetekst.ingenOpplysninger':
         'Du har gitt oss beskjed om at du hadde inntekt i {rapporteringsmåned}, men vi har ikke fått inn opplysninger fra arbeidsgiver om at du hadde inntekt i {rapporteringsmåned}.',
     'avvikRegisterinntektOppgavetekst.ingenInntekt':
