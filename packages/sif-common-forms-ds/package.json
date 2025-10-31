@@ -57,7 +57,7 @@
         "react-intl": "7.1.14",
         "react-json-view": "1.21.3",
         "react-router-dom": "7.9.4",
-        "rimraf": "6.0.1",
+        "rimraf": "6.1.0",
         "storybook": "10.0.0",
         "typescript": "5.9.3",
         "vite": "7.1.12",

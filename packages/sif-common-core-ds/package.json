@@ -52,7 +52,7 @@
         "react-dom": "19.2.0",
         "react-intl": "7.1.14",
         "react-responsive": "10.0.1",
-        "rimraf": "6.0.1",
+        "rimraf": "6.1.0",
         "storybook": "10.0.0",
         "typescript": "5.9.3",
         "uuid": "13.0.0",

@@ -4168,7 +4168,7 @@ __metadata:
     prop-types: "npm:15.8.1"
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
-    rimraf: "npm:6.0.1"
+    rimraf: "npm:6.1.0"
     sass: "npm:1.93.2"
   languageName: unknown
   linkType: soft
@@ -4328,7 +4328,7 @@ __metadata:
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
-    rimraf: "npm:6.0.1"
+    rimraf: "npm:6.1.0"
     storybook: "npm:10.0.0"
     typescript: "npm:5.9.3"
     vite: "npm:7.1.12"
@@ -5142,7 +5142,7 @@ __metadata:
     constate: "npm:3.3.3"
     gh-pages: "npm:6.3.0"
     react: "npm:19.2.0"
-    rimraf: "npm:6.0.1"
+    rimraf: "npm:6.1.0"
     typescript: "npm:5.9.3"
   languageName: unknown
   linkType: soft
@@ -5231,7 +5231,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-intl: "npm:7.1.14"
     react-responsive: "npm:10.0.1"
-    rimraf: "npm:6.0.1"
+    rimraf: "npm:6.1.0"
     storybook: "npm:10.0.0"
     tailwindcss: "npm:4.1.16"
     typescript: "npm:5.9.3"
@@ -5304,7 +5304,7 @@ __metadata:
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
     react-syntax-highlighter: "npm:16.1.0"
-    rimraf: "npm:6.0.1"
+    rimraf: "npm:6.1.0"
     sass-loader: "npm:16.0.6"
     storybook: "npm:10.0.0"
     style-loader: "npm:4.0.0"
@@ -5364,7 +5364,7 @@ __metadata:
     react-intl: "npm:7.1.14"
     react-json-view: "npm:1.21.3"
     react-router-dom: "npm:7.9.4"
-    rimraf: "npm:6.0.1"
+    rimraf: "npm:6.1.0"
     storybook: "npm:10.0.0"
     typescript: "npm:5.9.3"
     vite: "npm:7.1.12"
@@ -5427,7 +5427,7 @@ __metadata:
     postcss: "npm:8.5.6"
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
-    rimraf: "npm:6.0.1"
+    rimraf: "npm:6.1.0"
     typescript: "npm:5.9.3"
     vitest: "npm:4.0.4"
   peerDependencies:
@@ -5492,7 +5492,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
-    rimraf: "npm:6.0.1"
+    rimraf: "npm:6.1.0"
     sass-loader: "npm:16.0.6"
     storybook: "npm:10.0.0"
     style-loader: "npm:4.0.0"
@@ -16356,7 +16356,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^11.0.0":
+"glob@npm:^11.0.0, glob@npm:^11.0.3":
   version: 11.0.3
   resolution: "glob@npm:11.0.3"
   dependencies:
@@ -22007,7 +22007,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"package-json-from-dist@npm:^1.0.0":
+"package-json-from-dist@npm:^1.0.0, package-json-from-dist@npm:^1.0.1":
   version: 1.0.1
   resolution: "package-json-from-dist@npm:1.0.1"
   checksum: 10/58ee9538f2f762988433da00e26acc788036914d57c71c246bf0be1b60cdbd77dd60b6a3e1a30465f0b248aeb80079e0b34cb6050b1dfa18c06953bb1cbc7602
@@ -24276,15 +24276,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:6.0.1, rimraf@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "rimraf@npm:6.0.1"
+"rimraf@npm:6.1.0":
+  version: 6.1.0
+  resolution: "rimraf@npm:6.1.0"
   dependencies:
-    glob: "npm:^11.0.0"
-    package-json-from-dist: "npm:^1.0.0"
+    glob: "npm:^11.0.3"
+    package-json-from-dist: "npm:^1.0.1"
   bin:
     rimraf: dist/esm/bin.mjs
-  checksum: 10/0eb7edf08aa39017496c99ba675552dda11a20811ba78f8232da2ba945308c91e9cd673f95998b1a8202bc7436d33390831d23ea38ae52751038d56373ad99e2
+  checksum: 10/ce376c041ef4212dce2b30690dff3c09fc34253ec21821dffec77731061241888c04c3baf0b052bc5a1698b9f348c08ef83bddbd6e2553e79bf939bedb1a31a9
   languageName: node
   linkType: hard
 
@@ -24307,6 +24307,18 @@ __metadata:
   bin:
     rimraf: dist/esm/bin.mjs
   checksum: 10/f3b8ce81eecbde4628b07bdf9e2fa8b684e0caea4999acb1e3b0402c695cd41f28cd075609a808e61ce2672f528ca079f675ab1d8e8d5f86d56643a03e0b8d2e
+  languageName: node
+  linkType: hard
+
+"rimraf@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "rimraf@npm:6.0.1"
+  dependencies:
+    glob: "npm:^11.0.0"
+    package-json-from-dist: "npm:^1.0.0"
+  bin:
+    rimraf: dist/esm/bin.mjs
+  checksum: 10/0eb7edf08aa39017496c99ba675552dda11a20811ba78f8232da2ba945308c91e9cd673f95998b1a8202bc7436d33390831d23ea38ae52751038d56373ad99e2
   languageName: node
   linkType: hard
 
