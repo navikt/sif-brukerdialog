@@ -48,8 +48,7 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
                 </LinkCard.Anchor>
             </LinkCard.Title>
             <LinkCard.Description>
-                Første fraværsdato: {startdato ? dateFormatter.full(startdato) : 'Ukjent'}. ID:{' '}
-                {inntektsmelding.journalpostId}
+                Første fraværsdato: {startdato ? dateFormatter.full(startdato) : 'Ukjent'}.
             </LinkCard.Description>
             <LinkCard.Footer>
                 <HStack gap="2">
