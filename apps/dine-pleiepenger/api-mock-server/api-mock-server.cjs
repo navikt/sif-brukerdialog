@@ -54,6 +54,10 @@ const startServer = () => {
         res.send(saker);
     });
 
+    server.post('/inntektsmeldinger', (req, res) => {
+        res.send(inntektsmeldinger);
+    });
+
     server.get('/inntektsmeldinger', (req, res) => {
         res.send(inntektsmeldinger);
     });

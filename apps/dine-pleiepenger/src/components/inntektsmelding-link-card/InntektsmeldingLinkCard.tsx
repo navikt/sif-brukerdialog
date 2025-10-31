@@ -38,11 +38,7 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
             </Show>
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
-                    <Link
-                        href={{
-                            pathname: `inntektsmelding/${inntektsmelding.journalpostId}`,
-                            query: { saksnr: saksnummer },
-                        }}>
+                    <Link href={`/sak/${saksnummer}/inntektsmelding/${inntektsmelding.journalpostId}`}>
                         {inntektsmelding.arbeidsgiver.navn}
                     </Link>
                 </LinkCard.Anchor>

@@ -146,37 +146,26 @@ export type UtsettelsePeriode = z.infer<typeof UtsettelsePeriodeSchema>;
 export const InntektsmeldingSchema = z.object({
     status: InntektsmeldingStatusSchema,
     saksnummer: z.string(),
+    arbeidsgiver: ArbeidsgiverSchema,
+    startDatoPermisjon: ApiDate.optional().nullable(),
+    journalpostId: JournalpostIdSchema,
+    mottattDato: ApiDate,
+    inntektBeløp: BeløpSchema,
+    innsendingstidspunkt: ApiDate,
+    kildesystem: z.string(), // merket required i JSON
+    erstattetAv: z.array(JournalpostIdSchema),
 
+    inntektsmeldingType: InntektsmeldingType,
     graderinger: z.array(GraderingSchema),
     naturalYtelser: z.array(NaturalYtelseSchema),
     utsettelsePerioder: z.array(UtsettelsePeriodeSchema),
-
-    arbeidsgiver: ArbeidsgiverSchema,
-
-    startDatoPermisjon: ApiDate.optional().nullable(),
-
     oppgittFravær: z.array(PeriodeAndelSchema),
-
     nærRelasjon: z.boolean(),
-
-    journalpostId: JournalpostIdSchema,
-    mottattDato: ApiDate,
-
-    inntektBeløp: BeløpSchema,
     refusjonBeløpPerMnd: BeløpSchema,
     refusjonOpphører: ApiDate,
-
-    innsendingstidspunkt: ApiDate,
-
-    kildesystem: z.string(), // merket required i JSON
-    inntektsmeldingType: InntektsmeldingType,
-
     endringerRefusjon: z.array(RefusjonSchema),
-
     innsendingsårsak: InntektsmeldingInnsendingsårsak,
     ytelseType: FagsakYtelseType,
-
-    erstattetAv: z.array(JournalpostIdSchema),
 });
 export type Inntektsmelding = z.infer<typeof InntektsmeldingSchema>;
 

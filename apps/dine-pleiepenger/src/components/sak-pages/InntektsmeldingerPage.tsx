@@ -4,8 +4,9 @@ import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/
 import axios, { AxiosError } from 'axios';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
+import { useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { Inntektsmeldinger } from '../../server/api-models/InntektsmeldingSchema';
@@ -26,6 +27,7 @@ const inntektsmeldingerFetcher = async (url: string): Promise<Inntektsmeldinger>
     axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
 const InntektsmeldingerPage = ({ sak, harFlereSaker, pleietrengende }: Props) => {
+    const { mutate } = useSWRConfig();
     const { data, error, isLoading } = useSWR<Inntektsmeldinger, AxiosError>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmeldinger`,
         inntektsmeldingerFetcher,
@@ -35,6 +37,18 @@ const InntektsmeldingerPage = ({ sak, harFlereSaker, pleietrengende }: Props) =>
             errorRetryCount: 0,
         },
     );
+
+    // Pre-cache hver inntektsmelding i SWR for rask navigering til detaljside
+    useEffect(() => {
+        if (data?.inntektsmeldinger) {
+            data.inntektsmeldinger.forEach((im) => {
+                const cacheKey = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmelding/${im.journalpostId}`;
+                // Populer SWR cache med enkelt-inntektsmelding data
+                // Dette gjør at detaljsiden kan laste umiddelbart fra cache
+                mutate(cacheKey, im, { revalidate: false });
+            });
+        }
+    }, [data, mutate, sak.saksnummer]);
 
     useBreadcrumbs({
         breadcrumbs: [

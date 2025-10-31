@@ -159,7 +159,7 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
  * @param req
  * @returns
  */
-export const fetchInntektsmeldinger = async (req: NextApiRequest): Promise<Inntektsmeldinger> => {
+export const fetchInntektsmeldinger = async (req: NextApiRequest, saksnr: string): Promise<Inntektsmeldinger> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
@@ -169,7 +169,7 @@ export const fetchInntektsmeldinger = async (req: NextApiRequest): Promise<Innte
     );
     const logger = getLogger(req);
     logger.info(`Fetching inntektsmeldinger from url: ${url}`);
-    const response = await axios.get(url, { headers, transformResponse: storageParser });
+    const response = await axios.post(url, { saksnr }, { headers, transformResponse: storageParser });
     logger.info(`Inntektsmeldinger fetched`);
     return await InntektsmeldingerSchema.parse(response.data);
 };
