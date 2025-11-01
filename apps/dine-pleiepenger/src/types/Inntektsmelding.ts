@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { SakInntektsmeldingDtoSchema } from '../server/api-models/SakInntektsmeldingDtoSchema';
+import { parseMaybeDateStringToDate } from '../utils/jsonParseUtils';
 
 /* ====================== Hjelpere for dato/tid/number ====================== */
 
@@ -110,21 +111,21 @@ export type UtsettelsePeriode = z.infer<typeof UtsettelsePeriodeSchema>;
 
 export const InntektsmeldingSchema = SakInntektsmeldingDtoSchema.extend({
     status: InntektsmeldingStatusSchema.optional(),
-    startDatoPermisjon: ApiDate.optional().nullable(),
-    mottattDato: ApiDate,
+    startDatoPermisjon: z.preprocess(parseMaybeDateStringToDate, z.date()),
+    mottattDato: z.preprocess(parseMaybeDateStringToDate, z.date()),
     innsendingstidspunkt: ApiDate,
 
-    inntektsmeldingType: InntektsmeldingType,
-    graderinger: z.array(GraderingSchema),
-    naturalYtelser: z.array(NaturalYtelseSchema),
-    utsettelsePerioder: z.array(UtsettelsePeriodeSchema),
-    oppgittFravær: z.array(PeriodeAndelSchema),
-    nærRelasjon: z.boolean(),
-    refusjonBeløpPerMnd: z.number(),
-    refusjonOpphører: ApiDate,
-    endringerRefusjon: z.array(RefusjonSchema),
-    innsendingsårsak: InntektsmeldingInnsendingsårsak,
-    ytelseType: FagsakYtelseType,
+    inntektsmeldingType: InntektsmeldingType.optional(),
+    graderinger: z.array(GraderingSchema).optional(),
+    naturalYtelser: z.array(NaturalYtelseSchema).optional(),
+    utsettelsePerioder: z.array(UtsettelsePeriodeSchema).optional(),
+    oppgittFravær: z.array(PeriodeAndelSchema).optional(),
+    nærRelasjon: z.boolean().optional(),
+    refusjonBeløpPerMnd: z.number().optional(),
+    refusjonOpphører: ApiDate.optional(),
+    endringerRefusjon: z.array(RefusjonSchema).optional(),
+    innsendingsårsak: InntektsmeldingInnsendingsårsak.optional(),
+    ytelseType: FagsakYtelseType.optional(),
 });
 export type Inntektsmelding = z.infer<typeof InntektsmeldingSchema>;
 

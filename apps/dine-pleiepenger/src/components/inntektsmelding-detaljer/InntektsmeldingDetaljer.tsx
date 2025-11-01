@@ -11,7 +11,7 @@ interface Props {
 const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
     const { startDatoPermisjon, inntektBeløp, refusjonBeløpPerMnd, endringerRefusjon, naturalYtelser } =
         inntektsmelding;
-    const harEndringerIRefusjon = endringerRefusjon.length > 0;
+    const harEndringerIRefusjon = endringerRefusjon && endringerRefusjon.length > 0;
     const harNaturalytelser = naturalYtelser && naturalYtelser.length > 0;
     return (
         <VStack gap="4">
@@ -53,35 +53,44 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     <FormSummary.Heading level="2">Refusjon</FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
-                    <FormSummary.Answer>
-                        <FormSummary.Label>Refusjonsbeløp per måned</FormSummary.Label>
-                        <FormSummary.Value>
-                            <FormattedNumber value={refusjonBeløpPerMnd} style="currency" currency="NOK" />
-                        </FormSummary.Value>
-                    </FormSummary.Answer>
-                    <FormSummary.Answer>
-                        <FormSummary.Label>
-                            Vil det være endringer eller opphør av refusjon i løpet av fraværsperioden?
-                        </FormSummary.Label>
-                        <FormSummary.Value>{harEndringerIRefusjon ? 'Ja' : 'Nei'}</FormSummary.Value>
-                    </FormSummary.Answer>
-                    {harEndringerIRefusjon && (
+                    {endringerRefusjon && refusjonBeløpPerMnd !== undefined ? (
+                        <>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>Refusjonsbeløp per måned</FormSummary.Label>
+                                <FormSummary.Value>
+                                    <FormattedNumber value={refusjonBeløpPerMnd} style="currency" currency="NOK" />
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>
+                                    Vil det være endringer eller opphør av refusjon i løpet av fraværsperioden?
+                                </FormSummary.Label>
+                                <FormSummary.Value>{harEndringerIRefusjon ? 'Ja' : 'Nei'}</FormSummary.Value>
+                            </FormSummary.Answer>
+                            {harEndringerIRefusjon && (
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>Endringer</FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <List>
+                                            {endringerRefusjon.map((e) => (
+                                                <List.Item key={e.fom.toDateString()}>
+                                                    {dateFormatter.compact(e.fom)}:{' '}
+                                                    <FormattedNumber
+                                                        value={e.refusjonsbeløpMnd}
+                                                        style="currency"
+                                                        currency="NOK"
+                                                    />
+                                                </List.Item>
+                                            ))}
+                                        </List>
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            )}
+                        </>
+                    ) : (
                         <FormSummary.Answer>
-                            <FormSummary.Label>Endringer</FormSummary.Label>
-                            <FormSummary.Value>
-                                <List>
-                                    {endringerRefusjon.map((e) => (
-                                        <List.Item key={e.fom.toDateString()}>
-                                            {dateFormatter.compact(e.fom)}:{' '}
-                                            <FormattedNumber
-                                                value={e.refusjonsbeløpMnd}
-                                                style="currency"
-                                                currency="NOK"
-                                            />
-                                        </List.Item>
-                                    ))}
-                                </List>
-                            </FormSummary.Value>
+                            <FormSummary.Label>Informasjon om refusjon</FormSummary.Label>
+                            <FormSummary.Value>Mangler</FormSummary.Value>
                         </FormSummary.Answer>
                     )}
                 </FormSummary.Answers>
