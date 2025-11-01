@@ -11,6 +11,23 @@ export const zProblemDetail = z.object({
     properties: z.optional(z.record(z.string(), z.unknown())),
 });
 
+export const zArbeidsgiverDto = z.object({
+    navn: z.optional(z.string()),
+    arbeidsgiverOrgnr: z.string(),
+});
+
+export const zSakInntektsmeldingDto = z.object({
+    saksnummer: z.string(),
+    journalpostId: z.string(),
+    arbeidsgiver: zArbeidsgiverDto,
+    startDatoPermisjon: z.optional(z.iso.date()),
+    mottattDato: z.iso.date(),
+    inntektBeløp: z.number(),
+    innsendingstidspunkt: z.iso.datetime(),
+    kildesystem: z.optional(z.string()),
+    erstattetAv: z.array(z.string()),
+});
+
 export const zAdressebeskyttelse = z.object({
     gradering: z.enum(['STRENGT_FORTROLIG_UTLAND', 'STRENGT_FORTROLIG', 'FORTROLIG', 'UGRADERT']),
 });
@@ -444,9 +461,9 @@ export const zAksjonspunktDto = z.object({
 });
 
 export const zInnsending = z.object({
+    mottattDato: z.optional(z.iso.datetime()),
     versjon: z.optional(z.string()),
     søker: z.optional(zSøker),
-    mottattDato: z.optional(z.iso.datetime()),
     søknadId: z.optional(z.string()),
 });
 
@@ -581,6 +598,19 @@ export const zFraværPeriodeWritable = z.object({
     arbeidsforholdId: z.optional(z.string()),
     arbeidsgiverOrgNr: z.optional(z.string()),
 });
+
+export const zHentInntektsmeldingerPåSakData = z.object({
+    body: z.optional(z.never()),
+    path: z.object({
+        saksnummer: z.string(),
+    }),
+    query: z.optional(z.never()),
+});
+
+/**
+ * OK
+ */
+export const zHentInntektsmeldingerPåSakResponse = z.array(zSakInntektsmeldingDto);
 
 export const zHentSøknaderData = z.object({
     body: z.optional(z.never()),

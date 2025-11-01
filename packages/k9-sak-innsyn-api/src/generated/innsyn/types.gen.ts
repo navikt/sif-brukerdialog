@@ -15,6 +15,23 @@ export type ProblemDetail = {
     };
 };
 
+export type ArbeidsgiverDto = {
+    navn?: string;
+    arbeidsgiverOrgnr: string;
+};
+
+export type SakInntektsmeldingDto = {
+    saksnummer: string;
+    journalpostId: string;
+    arbeidsgiver: ArbeidsgiverDto;
+    startDatoPermisjon?: string;
+    mottattDato: string;
+    inntektBeløp: number;
+    innsendingstidspunkt: string;
+    kildesystem?: string;
+    erstattetAv: string[];
+};
+
 export type Adressebeskyttelse = {
     gradering: 'STRENGT_FORTROLIG_UTLAND' | 'STRENGT_FORTROLIG' | 'FORTROLIG' | 'UGRADERT';
 };
@@ -467,9 +484,9 @@ export type InnsendelserISakDto = {
 };
 
 export type Innsending = {
+    mottattDato?: string;
     versjon?: string;
     søker?: Søker;
-    mottattDato?: string;
     søknadId?: string;
 };
 
@@ -558,6 +575,46 @@ export type FraværPeriodeWritable = {
     arbeidsforholdId?: string;
     arbeidsgiverOrgNr?: string;
 };
+
+export type HentInntektsmeldingerPåSakData = {
+    body?: never;
+    path: {
+        saksnummer: string;
+    };
+    query?: never;
+    url: '/{saksnummer}/inntektsmeldinger';
+};
+
+export type HentInntektsmeldingerPåSakErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentInntektsmeldingerPåSakError = HentInntektsmeldingerPåSakErrors[keyof HentInntektsmeldingerPåSakErrors];
+
+export type HentInntektsmeldingerPåSakResponses = {
+    /**
+     * OK
+     */
+    200: SakInntektsmeldingDto[];
+};
+
+export type HentInntektsmeldingerPåSakResponse =
+    HentInntektsmeldingerPåSakResponses[keyof HentInntektsmeldingerPåSakResponses];
 
 export type HentSøknaderData = {
     body?: never;
