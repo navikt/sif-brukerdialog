@@ -126,7 +126,7 @@ export const SakInntektsmeldingDtoSchema = z.object({
 });
 
 export const InntektsmeldingSchema = SakInntektsmeldingDtoSchema.extend({
-    status: InntektsmeldingStatusSchema,
+    status: InntektsmeldingStatusSchema.optional(),
     startDatoPermisjon: ApiDate.optional().nullable(),
     mottattDato: ApiDate,
     innsendingstidspunkt: ApiDate,

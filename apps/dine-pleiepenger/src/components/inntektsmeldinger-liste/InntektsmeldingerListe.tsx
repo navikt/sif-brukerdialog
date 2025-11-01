@@ -46,7 +46,7 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
     );
 };
 
-export const InntektsmeldingStatusTag = ({ status }: { status: InntektsmeldingStatus }) => {
+export const InntektsmeldingStatusTag = ({ status }: { status?: InntektsmeldingStatus }) => {
     switch (status) {
         case InntektsmeldingStatus.I_BRUK:
             return (
@@ -73,7 +73,11 @@ export const InntektsmeldingStatusTag = ({ status }: { status: InntektsmeldingSt
                 </Tag>
             );
         default:
-            return null;
+            return (
+                <Tag variant="warning" size="small">
+                    [TODO]
+                </Tag>
+            );
     }
 };
 

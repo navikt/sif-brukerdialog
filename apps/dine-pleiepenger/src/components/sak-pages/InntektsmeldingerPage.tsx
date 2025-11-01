@@ -1,5 +1,5 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Box, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, Box, BoxNew, Heading, Link, VStack } from '@navikt/ds-react';
 import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import axios, { AxiosError } from 'axios';
 import Head from 'next/head';
@@ -91,23 +91,20 @@ const InntektsmeldingerPage = ({ sak }: Props) => {
                 <title>Inntektsmeldinger - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>
             <VStack gap="12">
-                <Box className="md:flex md:gap-6 mb-10">
-                    <div className="md:grow mb-10 md:mb-0">
-                        <VStack gap="4">
-                            <Heading level="2" size="medium" className="mb-2">
-                                Inntektsmeldinger vi har mottatt
-                            </Heading>
-                            {renderContent()}
-                            <Box className="ml-4 mt-4">
-                                <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
-                                    <ChevronLeftIcon role="presentation" />
-                                    Tilbake til sak
-                                </Link>
-                            </Box>
-                        </VStack>
-                    </div>
-                    <div className="md:mb-none shrink-0 md:w-72"></div>
-                </Box>
+                <BoxNew maxWidth="52rem">
+                    <VStack gap="4">
+                        <Heading level="2" size="medium" className="mb-2">
+                            Inntektsmeldinger vi har mottatt
+                        </Heading>
+                        {renderContent()}
+                        <Box className="ml-4 mt-4">
+                            <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
+                                <ChevronLeftIcon role="presentation" />
+                                Tilbake til sak
+                            </Link>
+                        </Box>
+                    </VStack>
+                </BoxNew>
             </VStack>
         </DefaultPageLayout>
     );
