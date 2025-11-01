@@ -4,7 +4,6 @@ import axios from 'axios';
 import useSWR from 'swr';
 
 import { AppText } from '../../i18n';
-import { Saksbehandlingstid as SaksbehandlingstidSchema } from '../../server/api-models/SaksbehandlingstidSchema';
 import { Venteårsak } from '../../types/Venteårsak';
 import { browserEnv } from '../../utils/env';
 import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
@@ -14,13 +13,10 @@ interface Props {
     venteårsak?: Venteårsak;
 }
 
-const saksbehandlingstidFetcher = async (url: string): Promise<SaksbehandlingstidSchema> =>
-    axios.get(url).then((res) => res.data);
-
 const Saksbehandlingstid = ({ frist, venteårsak }: Props) => {
     const { data, isLoading } = useSWR(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/saksbehandlingstid`,
-        saksbehandlingstidFetcher,
+        (url) => axios.get(url).then((res) => res.data),
         {
             revalidateOnFocus: false,
             revalidateOnReconnect: false,

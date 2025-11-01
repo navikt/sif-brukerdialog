@@ -14,9 +14,6 @@ import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLay
 import Saksbehandlingstid from '../saksbehandlingstid/Saksbehandlingstid';
 import SkrivTilOssLenker from '../skriv-til-oss-lenker/SkrivTilOssLenker';
 
-const søknaderFetcher = async (url: string): Promise<InnsendtSøknad[]> =>
-    axios.get(url).then((res) => InnsendtSøknaderSchema.parse(res.data));
-
 const SøknaderEllerIngenSakFalback = () => {
     const { text } = useAppIntl();
 
@@ -24,10 +21,14 @@ const SøknaderEllerIngenSakFalback = () => {
         data: innsendteSøknader,
         isLoading,
         error,
-    } = useSWR<InnsendtSøknad[]>(`${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknader`, søknaderFetcher, {
-        revalidateOnFocus: false,
-        shouldRetryOnError: false,
-    });
+    } = useSWR<InnsendtSøknad[]>(
+        `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknader`,
+        (url) => axios.get(url).then((res) => InnsendtSøknaderSchema.parse(res.data)),
+        {
+            revalidateOnFocus: false,
+            shouldRetryOnError: false,
+        },
+    );
 
     if (error) {
         return <IngenSakEllerSøknadPage />;

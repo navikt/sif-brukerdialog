@@ -16,9 +16,6 @@ import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/Inntektsmelding
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';
 
-const fetcher = async (url: string): Promise<Inntektsmelding> =>
-    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
-
 const InntektsmeldingDetaljerPage = () => {
     const router = useRouter();
     const { saksnr, journalpostId } = router.query;
@@ -29,7 +26,7 @@ const InntektsmeldingDetaljerPage = () => {
         isLoading,
     } = useSWR<Inntektsmelding, AxiosError>(
         journalpostId ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${saksnr}/inntektsmelding/${journalpostId}` : null,
-        fetcher,
+        (url) => axios.get(url, { transformResponse: storageParser }).then((res) => res.data),
         {
             revalidateOnFocus: false,
             shouldRetryOnError: false,

@@ -20,14 +20,11 @@ interface Props {
     sak: Sak;
 }
 
-const inntektsmeldingerFetcher = async (url: string): Promise<Inntektsmeldinger> =>
-    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
-
 const InntektsmeldingerPage = ({ sak }: Props) => {
     const { mutate } = useSWRConfig();
     const { data, error, isLoading } = useSWR<Inntektsmeldinger, AxiosError>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmeldinger`,
-        inntektsmeldingerFetcher,
+        (url) => axios.get(url, { transformResponse: storageParser }).then((res) => res.data),
         {
             revalidateOnFocus: false,
             shouldRetryOnError: false,
