@@ -37,8 +37,6 @@ export enum ApiEndpointK9SakInnsyn {
     'saker' = 'saker',
     /** Gjeldende behandlingsstid i antall uker*/
     'behandlingstid' = 'saker/saksbehandlingstid',
-    /** Inntektsmeldinger for en sak */
-    'inntektsmeldinger' = 'inntektsmeldinger',
 }
 
 export enum SifApiErrorType {
@@ -161,15 +159,16 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
  */
 export const fetchInntektsmeldinger = async (req: NextApiRequest, saksnr: string): Promise<Inntektsmeldinger> => {
     const context = getContextForApiHandler(req);
+    const inntektsmeldingerUrl = `${saksnr}/inntektsmeldinger`;
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        ApiEndpointK9SakInnsyn.inntektsmeldinger,
+        inntektsmeldingerUrl,
         'application/json',
     );
     const logger = getLogger(req);
     logger.info(`Fetching inntektsmeldinger from url: ${url}`);
-    const response = await axios.post(url, { saksnr }, { headers, transformResponse: storageParser });
+    const response = await axios.get(url, { headers, transformResponse: storageParser });
     logger.info(`Inntektsmeldinger fetched`);
     return await InntektsmeldingerSchema.parse(response.data);
 };
