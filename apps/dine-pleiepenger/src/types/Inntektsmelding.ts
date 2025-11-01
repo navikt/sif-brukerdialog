@@ -113,7 +113,7 @@ export const InntektsmeldingSchema = SakInntektsmeldingDtoSchema.extend({
     status: InntektsmeldingStatusSchema.optional(),
     startDatoPermisjon: z.preprocess(parseMaybeDateStringToDate, z.date()),
     mottattDato: z.preprocess(parseMaybeDateStringToDate, z.date()),
-    innsendingstidspunkt: ApiDate,
+    innsendingstidspunkt: z.preprocess(parseMaybeDateStringToDate, z.date()),
 
     inntektsmeldingType: InntektsmeldingType.optional(),
     graderinger: z.array(GraderingSchema).optional(),
