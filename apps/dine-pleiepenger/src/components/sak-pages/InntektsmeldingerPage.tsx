@@ -9,8 +9,8 @@ import Skeleton from 'react-loading-skeleton';
 import useSWR, { useSWRConfig } from 'swr';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { Inntektsmeldinger } from '../../server/api-models/InntektsmeldingSchema';
 import { Sak } from '../../server/api-models/SakSchema';
+import { Inntektsmeldinger } from '../../types/Inntektsmelding';
 import { browserEnv } from '../../utils/env';
 import InntektsmeldingerListe from '../inntektsmeldinger-liste/InntektsmeldingerListe';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';

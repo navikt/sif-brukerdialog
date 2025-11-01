@@ -4,7 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
-import { Inntektsmelding, InntektsmeldingStatus } from '../../server/api-models/InntektsmeldingSchema';
+import { Inntektsmelding, InntektsmeldingStatus } from '../../types/Inntektsmelding';
 import { InntektsmeldingStatusTag } from '../inntektsmeldinger-liste/InntektsmeldingerListe';
 
 interface Props {

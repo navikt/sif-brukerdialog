@@ -73,41 +73,11 @@ const Periode = z.object({
 
 /* ====================== Domeneobjekter ====================== */
 
-export const BeløpSchema = z.object({
-    verdi: z.number(),
+export const ArbeidsgiverSchema = z.object({
+    navn: z.string().optional(),
+    arbeidsgiverOrgnr: z.string(),
 });
 
-export type Beløp = z.infer<typeof BeløpSchema>;
-
-export const JournalpostIdSchema = z
-    .string()
-    .min(3)
-    .max(50)
-    .regex(/^[A-Za-z0-9]+$/, 'Kun bokstaver og tall er tillatt');
-export type JournalpostId = z.infer<typeof JournalpostIdSchema>;
-
-export const ArbeidsgiverSchema = z
-    .object({
-        navn: z.string(),
-        arbeidsgiverOrgnr: z
-            .string()
-            .max(20)
-            .regex(/^\d+$/, 'Må bestå av sifre')
-            .optional()
-            .nullable()
-            .transform((v) => (v === null ? undefined : v)),
-        arbeidsgiverAktørId: z
-            .string()
-            .max(20)
-            .regex(/^\d+$/, 'Må bestå av sifre')
-            .optional()
-            .nullable()
-            .transform((v) => (v === null ? undefined : v)),
-    })
-    .refine(
-        (v) => Boolean(v.arbeidsgiverOrgnr) !== Boolean(v.arbeidsgiverAktørId),
-        "Akkurat ett av 'arbeidsgiverOrgnr' eller 'arbeidsgiverAktørId' må være satt",
-    );
 export type Arbeidsgiver = z.infer<typeof ArbeidsgiverSchema>;
 
 export const GraderingSchema = z.object({
@@ -118,7 +88,7 @@ export type Gradering = z.infer<typeof GraderingSchema>;
 
 export const NaturalYtelseSchema = z.object({
     periode: Periode,
-    beloepPerMnd: BeløpSchema,
+    beloepPerMnd: z.number(),
     type: NaturalYtelseType,
 });
 export type NaturalYtelse = z.infer<typeof NaturalYtelseSchema>;
@@ -130,7 +100,7 @@ export const PeriodeAndelSchema = z.object({
 export type PeriodeAndel = z.infer<typeof PeriodeAndelSchema>;
 
 export const RefusjonSchema = z.object({
-    refusjonsbeløpMnd: BeløpSchema,
+    refusjonsbeløpMnd: z.number(),
     fom: ApiDate,
 });
 export type Refusjon = z.infer<typeof RefusjonSchema>;
@@ -143,17 +113,23 @@ export type UtsettelsePeriode = z.infer<typeof UtsettelsePeriodeSchema>;
 
 /* ====================== Inntektsmelding(er) ====================== */
 
-export const InntektsmeldingSchema = z.object({
-    status: InntektsmeldingStatusSchema,
+export const SakInntektsmeldingDtoSchema = z.object({
     saksnummer: z.string(),
+    journalpostId: z.string(),
     arbeidsgiver: ArbeidsgiverSchema,
+    startDatoPermisjon: z.string().optional(),
+    mottattDato: z.string(),
+    inntektBeløp: z.number(),
+    innsendingstidspunkt: z.string(),
+    kildesystem: z.string().optional(),
+    erstattetAv: z.array(z.string()),
+});
+
+export const InntektsmeldingSchema = SakInntektsmeldingDtoSchema.extend({
+    status: InntektsmeldingStatusSchema,
     startDatoPermisjon: ApiDate.optional().nullable(),
-    journalpostId: JournalpostIdSchema,
     mottattDato: ApiDate,
-    inntektBeløp: BeløpSchema,
     innsendingstidspunkt: ApiDate,
-    kildesystem: z.string(), // merket required i JSON
-    erstattetAv: z.array(JournalpostIdSchema),
 
     inntektsmeldingType: InntektsmeldingType,
     graderinger: z.array(GraderingSchema),
@@ -161,7 +137,7 @@ export const InntektsmeldingSchema = z.object({
     utsettelsePerioder: z.array(UtsettelsePeriodeSchema),
     oppgittFravær: z.array(PeriodeAndelSchema),
     nærRelasjon: z.boolean(),
-    refusjonBeløpPerMnd: BeløpSchema,
+    refusjonBeløpPerMnd: z.number(),
     refusjonOpphører: ApiDate,
     endringerRefusjon: z.array(RefusjonSchema),
     innsendingsårsak: InntektsmeldingInnsendingsårsak,

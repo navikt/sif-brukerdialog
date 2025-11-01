@@ -1,7 +1,7 @@
 import { Box, BoxNew, Switch, Tag, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
-import { Inntektsmelding, InntektsmeldingStatus } from '../../server/api-models/InntektsmeldingSchema';
+import { Inntektsmelding, InntektsmeldingStatus } from '../../types/Inntektsmelding';
 import InntektsmeldingLinkCard from '../inntektsmelding-link-card/InntektsmeldingLinkCard';
 
 interface Props {

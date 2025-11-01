@@ -10,7 +10,7 @@ import Skeleton from 'react-loading-skeleton';
 import useSWR from 'swr';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { Inntektsmelding } from '../../server/api-models/InntektsmeldingSchema';
+import { Inntektsmelding } from '../../types/Inntektsmelding';
 import { browserEnv } from '../../utils/env';
 import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/InntektsmeldingDetaljer';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';

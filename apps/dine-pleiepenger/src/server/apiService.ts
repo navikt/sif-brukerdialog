@@ -4,6 +4,7 @@ import { NextApiRequest } from 'next';
 import { ZodError } from 'zod';
 
 import { InnsendtSøknad } from '../types/InnsendtSøknad';
+import { Inntektsmeldinger, InntektsmeldingerSchema } from '../types/Inntektsmelding';
 import { SakerParseError } from '../types/SakerParseError';
 import { getContextForApiHandler } from '../utils/apiUtils';
 import { getLogger } from '../utils/getLogCorrelationID';
@@ -11,7 +12,6 @@ import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 import { Innsendelse } from './api-models/InnsendelseSchema';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
-import { Inntektsmeldinger, InntektsmeldingerSchema } from './api-models/InntektsmeldingSchema';
 import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
 import {
     Saksbehandlingstid as Saksbehandlingstid,

@@ -2,7 +2,7 @@ import { FormSummary, List, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
-import { Inntektsmelding } from '../../server/api-models/InntektsmeldingSchema';
+import { Inntektsmelding } from '../../types/Inntektsmelding';
 
 interface Props {
     inntektsmelding: Inntektsmelding;
@@ -43,7 +43,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     <FormSummary.Answer>
                         <FormSummary.Label>Beregnet månedslønn</FormSummary.Label>
                         <FormSummary.Value>
-                            <FormattedNumber value={inntektBeløp.verdi} style="currency" currency="NOK" />
+                            <FormattedNumber value={inntektBeløp} style="currency" currency="NOK" />
                         </FormSummary.Value>
                     </FormSummary.Answer>
                 </FormSummary.Answers>
@@ -56,7 +56,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     <FormSummary.Answer>
                         <FormSummary.Label>Refusjonsbeløp per måned</FormSummary.Label>
                         <FormSummary.Value>
-                            <FormattedNumber value={refusjonBeløpPerMnd.verdi} style="currency" currency="NOK" />
+                            <FormattedNumber value={refusjonBeløpPerMnd} style="currency" currency="NOK" />
                         </FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
@@ -74,7 +74,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                                         <List.Item key={e.fom.toDateString()}>
                                             {dateFormatter.compact(e.fom)}:{' '}
                                             <FormattedNumber
-                                                value={e.refusjonsbeløpMnd.verdi}
+                                                value={e.refusjonsbeløpMnd}
                                                 style="currency"
                                                 currency="NOK"
                                             />
@@ -99,19 +99,14 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     </FormSummary.Answer>
                     {harNaturalytelser && (
                         <FormSummary.Answer>
-                            <FormSummary.Label>Naturalytelser</FormSummary.Label>
+                            <FormSummary.Label>Naturalytelser per måned</FormSummary.Label>
                             <FormSummary.Value>
                                 <List>
                                     {naturalYtelser.map((n, index) => (
                                         <List.Item key={index}>
                                             {dateFormatter.compact(n.periode.fraOgMed)} -{' '}
                                             {dateFormatter.compact(n.periode.tilOgMed)}: {n.type} -{' '}
-                                            <FormattedNumber
-                                                value={n.beloepPerMnd.verdi}
-                                                style="currency"
-                                                currency="NOK"
-                                            />{' '}
-                                            per måned
+                                            <FormattedNumber value={n.beloepPerMnd} style="currency" currency="NOK" />
                                         </List.Item>
                                     ))}
                                 </List>
