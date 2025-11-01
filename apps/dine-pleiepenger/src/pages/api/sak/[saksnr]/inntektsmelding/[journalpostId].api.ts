@@ -8,7 +8,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { saksnr, journalpostId } = req.query;
 
     try {
-        const { inntektsmeldinger } = await fetchInntektsmeldinger(req, saksnr as string);
+        const inntektsmeldinger = await fetchInntektsmeldinger(req, saksnr as string);
         const inntektsmelding = inntektsmeldinger.find((im) => im.journalpostId === journalpostId);
 
         if (!inntektsmelding) {

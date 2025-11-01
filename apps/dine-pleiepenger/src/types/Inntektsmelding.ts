@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { SakInntektsmeldingDtoSchema } from '../server/api-models/SakInntektsmeldingDtoSchema';
+
 /* ====================== Hjelpere for dato/tid/number ====================== */
 
 /* ====================== Enums fra PR'en ====================== */
@@ -73,13 +75,6 @@ const Periode = z.object({
 
 /* ====================== Domeneobjekter ====================== */
 
-export const ArbeidsgiverSchema = z.object({
-    navn: z.string().optional(),
-    arbeidsgiverOrgnr: z.string(),
-});
-
-export type Arbeidsgiver = z.infer<typeof ArbeidsgiverSchema>;
-
 export const GraderingSchema = z.object({
     periode: Periode,
     arbeidstidProsent: z.number().min(0).max(500),
@@ -113,18 +108,6 @@ export type UtsettelsePeriode = z.infer<typeof UtsettelsePeriodeSchema>;
 
 /* ====================== Inntektsmelding(er) ====================== */
 
-export const SakInntektsmeldingDtoSchema = z.object({
-    saksnummer: z.string(),
-    journalpostId: z.string(),
-    arbeidsgiver: ArbeidsgiverSchema,
-    startDatoPermisjon: z.string().optional(),
-    mottattDato: z.string(),
-    inntektBeløp: z.number(),
-    innsendingstidspunkt: z.string(),
-    kildesystem: z.string().optional(),
-    erstattetAv: z.array(z.string()),
-});
-
 export const InntektsmeldingSchema = SakInntektsmeldingDtoSchema.extend({
     status: InntektsmeldingStatusSchema.optional(),
     startDatoPermisjon: ApiDate.optional().nullable(),
@@ -145,7 +128,6 @@ export const InntektsmeldingSchema = SakInntektsmeldingDtoSchema.extend({
 });
 export type Inntektsmelding = z.infer<typeof InntektsmeldingSchema>;
 
-export const InntektsmeldingerSchema = z.object({
-    inntektsmeldinger: z.array(InntektsmeldingSchema),
-});
+export const InntektsmeldingerSchema = z.array(InntektsmeldingSchema);
+
 export type Inntektsmeldinger = z.infer<typeof InntektsmeldingerSchema>;

@@ -22,7 +22,11 @@ interface Props {
 
 const InntektsmeldingerPage = ({ sak }: Props) => {
     const { mutate } = useSWRConfig();
-    const { data, error, isLoading } = useSWR<Inntektsmeldinger, AxiosError>(
+    const {
+        data: inntektsmeldinger,
+        error,
+        isLoading,
+    } = useSWR<Inntektsmeldinger, AxiosError>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmeldinger`,
         (url) => axios.get(url, { transformResponse: storageParser }).then((res) => res.data),
         {
@@ -34,15 +38,15 @@ const InntektsmeldingerPage = ({ sak }: Props) => {
 
     // Pre-cache hver inntektsmelding i SWR for rask navigering til detaljside
     useEffect(() => {
-        if (data?.inntektsmeldinger) {
-            data.inntektsmeldinger.forEach((im) => {
+        if (inntektsmeldinger) {
+            inntektsmeldinger.forEach((im) => {
                 const cacheKey = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmelding/${im.journalpostId}`;
                 // Populer SWR cache med enkelt-inntektsmelding data
                 // Dette gjør at detaljsiden kan laste umiddelbart fra cache
                 mutate(cacheKey, im, { revalidate: false });
             });
         }
-    }, [data, mutate, sak.saksnummer]);
+    }, [inntektsmeldinger, mutate, sak.saksnummer]);
 
     useBreadcrumbs({
         breadcrumbs: [
@@ -75,12 +79,9 @@ const InntektsmeldingerPage = ({ sak }: Props) => {
                 </Alert>
             );
         }
-        const inntektsmeldinger = data;
-        return inntektsmeldinger && inntektsmeldinger.inntektsmeldinger.length > 0 ? (
-            <InntektsmeldingerListe
-                saksnummer={sak.saksnummer}
-                inntektsmeldinger={inntektsmeldinger?.inntektsmeldinger}
-            />
+
+        return inntektsmeldinger && inntektsmeldinger.length > 0 ? (
+            <InntektsmeldingerListe saksnummer={sak.saksnummer} inntektsmeldinger={inntektsmeldinger} />
         ) : (
             <Alert variant="info">Det er ingen inntektsmeldinger knyttet til denne saken.</Alert>
         );
