@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { SakInntektsmeldingDtoSchema } from '../server/api-models/SakInntektsmeldingDtoSchema';
-import { parseMaybeDateStringToDate } from '../utils/jsonParseUtils';
+import { parseMaybeDateStringToDate, parseMaybeDateStringToDateEndOfDay } from '../utils/jsonParseUtils';
 
 /* ====================== Hjelpere for dato/tid/number ====================== */
 
@@ -112,7 +112,7 @@ export type UtsettelsePeriode = z.infer<typeof UtsettelsePeriodeSchema>;
 export const InntektsmeldingSchema = SakInntektsmeldingDtoSchema.extend({
     status: InntektsmeldingStatusSchema,
     startDatoPermisjon: z.preprocess(parseMaybeDateStringToDate, z.date()),
-    mottattDato: z.preprocess(parseMaybeDateStringToDate, z.date()),
+    mottattDato: z.preprocess(parseMaybeDateStringToDateEndOfDay, z.date()),
     innsendingstidspunkt: z.preprocess(parseMaybeDateStringToDate, z.date()),
 
     inntektsmeldingType: InntektsmeldingType.optional(),
