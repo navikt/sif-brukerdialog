@@ -134,7 +134,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                             </Box>
                         ),
                         completed: true,
-                        date: hendelse.dato,
+                        timestamp: hendelse.inntektsmelding.innsendingstidspunkt,
                     };
                 case Sakshendelser.FORVENTET_SVAR: {
                     const titleContent = getForventetSvarTitleContent(hendelse, text);
