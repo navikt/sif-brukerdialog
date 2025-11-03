@@ -29,7 +29,7 @@ const SakPage = ({ sak, pleietrengende, antallSaker }: Props) => {
     useLogSaksprofil(sak, antallSaker);
 
     useBreadcrumbs({
-        breadcrumbs: [{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak for sykt barn' }],
+        breadcrumbs: [{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din sak' }],
     });
 
     const statusISak = getBehandlingsstatusISak(sak);

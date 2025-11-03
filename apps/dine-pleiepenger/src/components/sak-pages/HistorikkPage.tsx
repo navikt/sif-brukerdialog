@@ -19,7 +19,7 @@ const HistorikkPage = ({ sak }: Props) => {
         breadcrumbs: [
             {
                 url: `/sak/${sak.saksnummer}`,
-                title: 'Din pleiepengesak for sykt barn',
+                title: 'Din sak',
                 handleInApp: true,
             },
             { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Historikk' },

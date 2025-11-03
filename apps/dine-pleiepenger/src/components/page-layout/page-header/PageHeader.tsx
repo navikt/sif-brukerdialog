@@ -1,4 +1,4 @@
-import { BodyShort, Heading, Hide, HStack, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, HStack, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 
 import PleiepengerSVG from '../../../svg/pleiepenger';
@@ -27,11 +27,11 @@ const PageHeader = ({
             ) : null}
             <div className="text-left">
                 <HStack gap="6" align="center">
-                    <Hide hidden={hidePleiepengerIcon}>
+                    {hidePleiepengerIcon ? null : (
                         <div className="hidden md:block">
                             <PleiepengerSVG />
                         </div>
-                    </Hide>
+                    )}
                     <VStack gap="2">
                         {titleTag ? (
                             <HStack gap="4" align="center">

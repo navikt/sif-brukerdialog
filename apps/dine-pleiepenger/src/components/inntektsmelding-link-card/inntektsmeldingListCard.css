@@ -2,10 +2,10 @@
     border-radius: 0.5rem !important;
 }
 
-/* .inntektsmeldingLinkCard--ikkeIBruk {
+.inntektsmeldingLinkCard--ikkeIBruk {
     --ax-bg-raised: var(--ax-bg-sunken);
 }
 
 .inntektsmeldingLinkCard--ikkeIBruk:hover {
     border-color: var(--ax-border-accent) !important;
-} */
+}

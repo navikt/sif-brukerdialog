@@ -52,7 +52,7 @@ const InntektsmeldingerPage = ({ sak }: Props) => {
         breadcrumbs: [
             {
                 url: `/innsyn/sak/${sak.saksnummer}`,
-                title: 'Din pleiepengesak for sykt barn',
+                title: 'Din sak',
                 handleInApp: false,
             },
             { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' },

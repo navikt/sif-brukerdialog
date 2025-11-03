@@ -35,9 +35,9 @@ const InntektsmeldingDetaljerPage = () => {
 
     useBreadcrumbs({
         breadcrumbs: [
-            { url: `/sak/${saksnr}`, title: 'Din pleiepengesak for sykt barn', handleInApp: true },
+            { url: `/sak/${saksnr}`, title: 'Din sak', handleInApp: true },
             { url: `/sak/${saksnr}/inntektsmelding`, title: 'Inntektsmeldinger', handleInApp: true },
-            { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Detaljer' },
+            { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' },
         ],
     });
 

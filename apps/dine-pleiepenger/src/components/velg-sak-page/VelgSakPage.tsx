@@ -3,6 +3,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { AppText, useAppIntl } from '../../i18n';
 import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
 import { personaliaUtils } from '../../utils/personaliaUtils';
@@ -16,6 +17,9 @@ interface Props {
 
 const VelgSakPage = ({ saker }: Props) => {
     const { text } = useAppIntl();
+    useBreadcrumbs({
+        breadcrumbs: [],
+    });
     return (
         <DefaultPageLayout>
             <Head>
