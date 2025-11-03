@@ -18,16 +18,19 @@ import PageHeader from '../page-layout/page-header/PageHeader';
 
 interface Props {
     sak: Sak;
+    inntektsmeldinger?: Inntektsmeldinger;
 }
 
-const InntektsmeldingerPage = ({ sak }: Props) => {
+const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }: Props) => {
     const { mutate } = useSWRConfig();
     const {
-        data: inntektsmeldinger,
+        data: inntektsmeldingerFetched,
         error,
         isLoading,
     } = useSWR<Inntektsmeldinger, AxiosError>(
-        `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmeldinger`,
+        inntektsmeldingerProp
+            ? null
+            : `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmeldinger`,
         (url) => axios.get(url, { transformResponse: storageParser }).then((res) => res.data),
         {
             revalidateOnFocus: false,
@@ -35,6 +38,8 @@ const InntektsmeldingerPage = ({ sak }: Props) => {
             errorRetryCount: 0,
         },
     );
+
+    const inntektsmeldinger = inntektsmeldingerProp || inntektsmeldingerFetched;
 
     // Pre-cache hver inntektsmelding i SWR for rask navigering til detaljside
     useEffect(() => {
@@ -60,7 +65,7 @@ const InntektsmeldingerPage = ({ sak }: Props) => {
     });
 
     const renderContent = () => {
-        if (isLoading) {
+        if (!inntektsmeldingerProp && isLoading) {
             return (
                 <Skeleton
                     height="6rem"
@@ -72,7 +77,7 @@ const InntektsmeldingerPage = ({ sak }: Props) => {
                 />
             );
         }
-        if (error) {
+        if (!inntektsmeldingerProp && error) {
             return (
                 <Alert variant="error">
                     Noe gikk galt ved henting av inntektsmeldinger. Vennligst prøv igjen senere.

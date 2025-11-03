@@ -10,7 +10,12 @@ export default function InntektsmeldingerRoutePage() {
         return <SakIkkeFunnetPage saksnr={saksnr} />;
     }
 
-    return <InntektsmeldingerPage sak={pleietrengendeMedSak.sak} />;
+    return (
+        <InntektsmeldingerPage
+            sak={pleietrengendeMedSak.sak}
+            inntektsmeldinger={pleietrengendeMedSak.inntektsmeldinger}
+        />
+    );
 }
 
 export const getServerSideProps = withAuthenticatedPage();

@@ -121,15 +121,30 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
         return Promise.reject(new Error('Antall saker før og etter parsing stemmer ikke overens.'));
     }
 
-    return saker.map((ps): PleietrengendeMedSak => {
-        return {
-            pleietrengende: ps.pleietrengende,
-            sak: {
-                ...ps.sak,
-                behandlinger: sortBehandlingerNyesteFørst(ps.sak.behandlinger),
-            },
-        };
-    });
+    /** Hent inntektsmeldinger for hver sak */
+    const sakerMedInntektsmeldinger = await Promise.all(
+        saker.map(async (ps): Promise<PleietrengendeMedSak> => {
+            let inntektsmeldinger: Inntektsmeldinger = [];
+            try {
+                logger.info('Henter inntektsmeldinger for sak', { saksnummer: ps.sak.saksnummer });
+                inntektsmeldinger = await fetchInntektsmeldinger(req, ps.sak.saksnummer);
+                logger.info(`Hentet ${inntektsmeldinger.length} inntektsmeldinger for sak ${ps.sak.saksnummer}`);
+            } catch (error) {
+                logger.warn(`Kunne ikke hente inntektsmeldinger for sak ${ps.sak.saksnummer}`, { error });
+            }
+
+            return {
+                pleietrengende: ps.pleietrengende,
+                sak: {
+                    ...ps.sak,
+                    behandlinger: sortBehandlingerNyesteFørst(ps.sak.behandlinger),
+                },
+                inntektsmeldinger,
+            };
+        }),
+    );
+
+    return sakerMedInntektsmeldinger;
 };
 
 /**
