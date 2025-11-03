@@ -9,6 +9,7 @@ export enum Sakshendelser {
     'FERDIG_BEHANDLET' = 'FERDIG_BEHANDLET',
     'FORVENTET_SVAR' = 'FORVENTET_SVAR',
     'ETTERSENDELSE' = 'ETTERSENDELSE',
+    'INNTEKTSMELDING' = 'INNTEKTSMELDING',
 }
 
 interface SakshendelseBase {

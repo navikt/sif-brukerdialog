@@ -32,6 +32,7 @@ test('Saksbehandlingstid er i fremtid', async ({ page }) => {
                         ...sak,
                         utledetStatus: { ...sak.utledetStatus, saksbehandlingsFrist: dayjs().add(1, 'day').toDate() },
                     } as any,
+                    inntektsmeldinger: [],
                 },
             ],
             harSak: true,
@@ -74,6 +75,7 @@ test('Saksbehandlingstid er i fortid', async ({ page }) => {
                             saksbehandlingsFrist: dayjs().subtract(1, 'day').toDate(),
                         },
                     } as any,
+                    inntektsmeldinger: [],
                 },
             ],
             harSak: true,
@@ -124,7 +126,7 @@ test('Sak er ikke under behandling - ikke vis saksbehandlingstid', async ({ page
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
-            saker: [{ pleietrengende, sak: { ...avsluttetSak } as any }],
+            saker: [{ pleietrengende, sak: { ...avsluttetSak } as any, inntektsmeldinger: [] }],
             harSak: true,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });

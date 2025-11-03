@@ -1,4 +1,5 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
+
 import { Behandlingsstatus } from '../../src/server/api-models/Behandlingsstatus';
 import { Innsendelsestype } from '../../src/server/api-models/Innsendelsestype';
 import { PleietrengendeMedSak } from '../../src/server/api-models/PleietrengendeMedSakSchema';
@@ -70,6 +71,7 @@ export const flereSakerMock: PleietrengendeMedSak[] = [
                 },
             ],
         },
+        inntektsmeldinger: [],
     },
     {
         pleietrengende: {
@@ -135,5 +137,6 @@ export const flereSakerMock: PleietrengendeMedSak[] = [
                 },
             ],
         },
+        inntektsmeldinger: [],
     },
 ];
