@@ -4,7 +4,7 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.68",
+    "version": "0.0.69",
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
@@ -19,7 +19,7 @@
         "postcss": "8.5.6",
         "typescript": "5.9.3",
         "uuid": "13.0.0",
-        "vitest": "4.0.5",
+        "vitest": "4.0.6",
         "zod": "4.1.12"
     },
     "peerDependencies": {

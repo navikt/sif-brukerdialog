@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-sykt-barn",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "4.11.30",
+    "version": "4.11.31",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -61,7 +61,7 @@
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "dayjs": "1.11.19",
-        "eslint": "9.38.0",
+        "eslint": "9.39.0",
         "eslint-plugin-storybook": "10.0.2",
         "express": "5.1.0",
         "helmet": "8.1.0",
@@ -77,7 +77,7 @@
         "typescript": "5.9.3",
         "vite": "7.1.12",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.5"
+        "vitest": "4.0.6"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
