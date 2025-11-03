@@ -2,6 +2,7 @@ import { Box, VStack } from '@navikt/ds-react';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
 import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
@@ -23,11 +24,10 @@ import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 interface Props {
     pleietrengende: Pleietrengende;
     sak: Sak;
-    saksbehandlingstidUker?: number;
     antallSaker: number;
 }
 
-const SakPage = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }: Props) => {
+const SakPage = ({ sak, pleietrengende, antallSaker }: Props) => {
     const router = useRouter();
     useLogSaksprofil(sak, antallSaker);
 
@@ -69,7 +69,6 @@ const SakPage = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }: P
                             <VStack gap="5">
                                 <Saksbehandlingstid
                                     frist={sak.utledetStatus.saksbehandlingsFrist}
-                                    saksbehandlingstidUker={saksbehandlingstidUker}
                                     venteårsak={statusISak?.venteårsak}
                                 />
                             </VStack>

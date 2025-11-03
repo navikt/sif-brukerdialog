@@ -1,14 +1,15 @@
-import { Alert, BodyLong, Box, Link, Switch, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
+import { Alert, BodyLong, Box, Link, Switch, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
+import { useState } from 'react';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { Sak } from '../../server/api-models/SakSchema';
 import { getAlleHendelserISak } from '../../utils/sakUtils';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 import StatusISakHeading from './parts/StatusISakHeading';
-import { getProcessStepsFraSakshendelser } from './statusISakUtils';
 import StatusISakSteps from './StatusISakSteps';
+import { getProcessStepsFraSakshendelser } from './statusISakUtils';
 
 interface Props {
     sak: Sak;
@@ -30,7 +31,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
                     <AppText
                         id="statusISak.ingenHendelser"
                         values={{
-                            p: (txt) => <BodyLong>{txt}</BodyLong>,
+                            p: (txt: string) => <BodyLong>{txt}</BodyLong>,
                             lenke: <SkrivTilOssLenke tekst={text('statusISak.ingenHendelser.skrivTilOssLenkeTekst')} />,
                         }}
                     />

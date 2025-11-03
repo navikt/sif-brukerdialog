@@ -1,9 +1,10 @@
-import { Box, Heading, Link, VStack } from '@navikt/ds-react';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
+import { Box, Heading, Link, VStack } from '@navikt/ds-react';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
+
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
 import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
 import StatusISak from '../../components/status-i-sak/StatusISak';

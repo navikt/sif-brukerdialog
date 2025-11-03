@@ -1,6 +1,4 @@
-import { Søker } from '../../../src/server/api-models/SøkerSchema';
-
-export const søkerMockData: Søker = {
+export const søkerMockData = {
     aktørId: '2534326051524',
     fødselsdato: new Date('1981-02-06'),
     fødselsnummer: '06828199151',

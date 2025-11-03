@@ -4,7 +4,7 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.67",
+    "version": "0.0.69",
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
@@ -15,11 +15,11 @@
         "@sif/eslint-config": "workspace:*",
         "axios": "1.13.1",
         "config": "workspace:*",
-        "dayjs": "1.11.18",
+        "dayjs": "1.11.19",
         "postcss": "8.5.6",
         "typescript": "5.9.3",
         "uuid": "13.0.0",
-        "vitest": "4.0.4",
+        "vitest": "4.0.6",
         "zod": "4.1.12"
     },
     "peerDependencies": {
