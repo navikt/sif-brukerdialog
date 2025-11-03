@@ -29,7 +29,7 @@
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.19",
-        "globals": "16.4.0",
+        "globals": "16.5.0",
         "intl": "1.2.5",
         "less": "4.4.2",
         "postcss": "8.5.6",

@@ -35,7 +35,7 @@
         "@testing-library/dom": "10.4.1",
         "@testing-library/react": "16.3.0",
         "@testing-library/user-event": "14.6.1",
-        "@types/node": "24.9.2",
+        "@types/node": "24.10.0",
         "@types/react": "19.2.2",
         "@types/react-dom": "19.2.2",
         "@vitejs/plugin-react": "5.1.0",
@@ -43,7 +43,7 @@
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.19",
-        "eslint": "9.38.0",
+        "eslint": "9.39.0",
         "eslint-plugin-storybook": "10.0.2",
         "flat": "6.0.1",
         "formik": "2.4.6",
@@ -55,14 +55,13 @@
         "react-day-picker": "9.11.1",
         "react-dom": "19.2.0",
         "react-intl": "7.1.14",
-        "react-json-view": "1.21.3",
         "react-router-dom": "7.9.5",
         "rimraf": "6.1.0",
         "storybook": "10.0.2",
         "typescript": "5.9.3",
         "vite": "7.1.12",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.5"
+        "vitest": "4.0.6"
     },
     "scripts": {
         "build-storybook": "storybook build",
