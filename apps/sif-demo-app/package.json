@@ -2,7 +2,7 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.78",
+    "version": "0.4.79",
     "scripts": {
         "clean": "rm -rf node_modules dist",
         "dev": "node ./dev-server.cjs",
