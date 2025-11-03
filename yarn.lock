@@ -2660,6 +2660,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/js@npm:9.39.0":
+  version: 9.39.0
+  resolution: "@eslint/js@npm:9.39.0"
+  checksum: 10/5858c2468f68e9204ec0a3a07cbb22352e8de89eb51bc83ac9754e2365b9c2d2aa0e0a3da46b98ea5d98a484c77111537f2a565b867bbdfe0448a0222404ef6b
+  languageName: node
+  linkType: hard
+
 "@eslint/object-schema@npm:^2.1.7":
   version: 2.1.7
   resolution: "@eslint/object-schema@npm:2.1.7"
@@ -4791,7 +4798,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.38.0"
+    "@eslint/js": "npm:9.39.0"
     "@navikt/aksel-icons": "npm:7.32.5"
     "@navikt/ds-css": "npm:7.32.5"
     "@navikt/ds-react": "npm:7.32.5"
@@ -5595,7 +5602,7 @@ __metadata:
   resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
   dependencies:
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.38.0"
+    "@eslint/js": "npm:9.39.0"
     "@hookform/resolvers": "npm:5.2.2"
     "@navikt/aksel-icons": "npm:7.32.5"
     "@navikt/ds-css": "npm:7.32.5"
@@ -5871,7 +5878,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.38.0"
+    "@eslint/js": "npm:9.39.0"
     "@grafana/faro-react": "npm:1.19.0"
     "@navikt/aksel-icons": "npm:7.32.5"
     "@navikt/ds-css": "npm:7.32.5"
@@ -5951,7 +5958,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.38.0"
+    "@eslint/js": "npm:9.39.0"
     "@grafana/faro-react": "npm:1.19.0"
     "@navikt/aksel-icons": "npm:7.32.5"
     "@navikt/ds-css": "npm:7.32.5"
@@ -8162,7 +8169,7 @@ __metadata:
   resolution: "@sif/eslint-config@workspace:packages/eslint-config-sif"
   dependencies:
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.38.0"
+    "@eslint/js": "npm:9.39.0"
     eslint: "npm:9.38.0"
     eslint-config-prettier: "npm:10.1.8"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
