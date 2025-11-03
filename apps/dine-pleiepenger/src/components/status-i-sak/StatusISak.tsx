@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { AppText, useAppIntl } from '../../i18n';
 import { Sak } from '../../server/api-models/SakSchema';
+import { Inntektsmelding } from '../../types/Inntektsmelding';
 import { getAlleHendelserISak } from '../../utils/sakUtils';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 import StatusISakHeading from './parts/StatusISakHeading';
@@ -15,13 +16,14 @@ interface Props {
     sak: Sak;
     tittel?: string;
     visAlleHendelser?: boolean;
+    inntektsmeldinger: Inntektsmelding[];
 }
 
-const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
+const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props) => {
     const [reverseDirection, setReverseDirection] = useState(false);
     const { text } = useAppIntl();
-    const hendelser = getAlleHendelserISak(sak);
-    const processSteps = getProcessStepsFraSakshendelser(text, hendelser);
+    const sakshendelser = getAlleHendelserISak(sak, inntektsmeldinger);
+    const processSteps = getProcessStepsFraSakshendelser(text, sakshendelser);
 
     if (processSteps.length === 0) {
         return (

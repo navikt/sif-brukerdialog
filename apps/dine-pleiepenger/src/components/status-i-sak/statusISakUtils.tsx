@@ -1,4 +1,5 @@
-import { Box } from '@navikt/ds-react';
+import { Box, Link } from '@navikt/ds-react';
+import { default as NextLink } from 'next/link';
 
 import { AppText, IntlTextFn } from '../../i18n';
 import { Innsendelse } from '../../server/api-models/InnsendelseSchema';
@@ -92,6 +93,21 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         timestamp: hendelse.dato,
                     };
 
+                case Sakshendelser.INNTEKTSMELDING:
+                    return {
+                        title: `Inntektsmelding fra ${hendelse.inntektsmelding.arbeidsgiver.navn}`,
+                        content: (
+                            <Box className="mt-2">
+                                <Link
+                                    as={NextLink}
+                                    href={`/sak/${hendelse.inntektsmelding.saksnummer}/inntektsmelding/${hendelse.inntektsmelding.journalpostId}`}>
+                                    Vis inntektsmelding
+                                </Link>
+                            </Box>
+                        ),
+                        completed: true,
+                        date: hendelse.dato,
+                    };
                 case Sakshendelser.FORVENTET_SVAR: {
                     const titleContent = getForventetSvarTitleContent(hendelse, text);
                     if (titleContent) {

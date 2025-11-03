@@ -50,7 +50,7 @@ const InntektsmeldingDetaljerPage = () => {
                     highlightColor="#CCE2F0"
                     style={{ borderRadius: '.5rem', borderColor: 'rgba(0,22,48,.19)', marginBottom: '.5rem' }}
                     className="border"
-                    count={2}
+                    count={1}
                 />
             );
         }

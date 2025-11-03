@@ -23,7 +23,14 @@ function DinePleiepengerPage(): ReactElement {
     useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerIdFetcher);
 
     if (saker.length === 1) {
-        return <SakPage sak={saker[0].sak} antallSaker={1} pleietrengende={saker[0].pleietrengende} />;
+        return (
+            <SakPage
+                sak={saker[0].sak}
+                antallSaker={1}
+                pleietrengende={saker[0].pleietrengende}
+                inntektsmeldinger={saker[0].inntektsmeldinger}
+            />
+        );
     }
 
     if (saker.length > 1) {

@@ -19,6 +19,7 @@ export default function SakRoutePage() {
             sak={pleietrengendeMedSak.sak}
             pleietrengende={pleietrengendeMedSak.pleietrengende}
             antallSaker={saker.length}
+            inntektsmeldinger={pleietrengendeMedSak.inntektsmeldinger}
         />
     );
 }

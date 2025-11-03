@@ -16,16 +16,18 @@ import { useLogSaksprofil } from '../../hooks/useLogSaksprofil';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
+import { Inntektsmelding } from '../../types/Inntektsmelding';
 import { browserEnv } from '../../utils/env';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 
 interface Props {
     pleietrengende: Pleietrengende;
     sak: Sak;
+    inntektsmeldinger: Inntektsmelding[];
     antallSaker: number;
 }
 
-const SakPage = ({ sak, pleietrengende, antallSaker }: Props) => {
+const SakPage = ({ sak, pleietrengende, antallSaker, inntektsmeldinger = [] }: Props) => {
     useLogSaksprofil(sak, antallSaker);
 
     useBreadcrumbs({
@@ -52,7 +54,7 @@ const SakPage = ({ sak, pleietrengende, antallSaker }: Props) => {
                 ) : null}
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
-                        <StatusISak sak={sak} tittel="Dette skjer i saken" />
+                        <StatusISak sak={sak} tittel="Dette skjer i saken" inntektsmeldinger={inntektsmeldinger} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         {statusISak?.status === Behandlingsstatus.AVSLUTTET ? null : (

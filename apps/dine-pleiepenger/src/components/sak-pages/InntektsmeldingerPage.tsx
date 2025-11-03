@@ -18,7 +18,7 @@ import PageHeader from '../page-layout/page-header/PageHeader';
 
 interface Props {
     sak: Sak;
-    inntektsmeldinger?: Inntektsmeldinger;
+    inntektsmeldinger: Inntektsmeldinger;
 }
 
 const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }: Props) => {

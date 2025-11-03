@@ -10,7 +10,7 @@ export default function HistorikkRoutePage() {
         return <SakIkkeFunnetPage saksnr={saksnr} />;
     }
 
-    return <HistorikkPage sak={pleietrengendeMedSak.sak} />;
+    return <HistorikkPage sak={pleietrengendeMedSak.sak} inntektsmeldinger={pleietrengendeMedSak.inntektsmeldinger} />;
 }
 
 export const getServerSideProps = withAuthenticatedPage();

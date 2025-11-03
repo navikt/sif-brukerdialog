@@ -5,6 +5,7 @@ import { default as NextLink } from 'next/link';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { Sak } from '../../server/api-models/SakSchema';
+import { Inntektsmelding } from '../../types/Inntektsmelding';
 import { browserEnv } from '../../utils/env';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';
@@ -12,9 +13,10 @@ import StatusISak from '../status-i-sak/StatusISak';
 
 interface Props {
     sak: Sak;
+    inntektsmeldinger: Inntektsmelding[];
 }
 
-const HistorikkPage = ({ sak }: Props) => {
+const HistorikkPage = ({ sak, inntektsmeldinger = [] }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [
             {
@@ -37,7 +39,7 @@ const HistorikkPage = ({ sak }: Props) => {
                         <Heading level="2" size="medium" className="mb-2">
                             Historikk
                         </Heading>
-                        <StatusISak sak={sak} visAlleHendelser={true} />
+                        <StatusISak sak={sak} visAlleHendelser={true} inntektsmeldinger={inntektsmeldinger} />
                         <Box className="ml-4 mt-4">
                             <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
                                 <ChevronLeftIcon role="presentation" />
