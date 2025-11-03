@@ -110,7 +110,7 @@ export type UtsettelsePeriode = z.infer<typeof UtsettelsePeriodeSchema>;
 /* ====================== Inntektsmelding(er) ====================== */
 
 export const InntektsmeldingSchema = SakInntektsmeldingDtoSchema.extend({
-    status: InntektsmeldingStatusSchema.optional(),
+    status: InntektsmeldingStatusSchema,
     startDatoPermisjon: z.preprocess(parseMaybeDateStringToDate, z.date()),
     mottattDato: z.preprocess(parseMaybeDateStringToDate, z.date()),
     innsendingstidspunkt: z.preprocess(parseMaybeDateStringToDate, z.date()),

@@ -1,10 +1,10 @@
 import { BodyShort, Box, Heading, LinkCard, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { AppText, useAppIntl } from '../../i18n';
 import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
-import { browserEnv } from '../../utils/env';
 import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
@@ -35,9 +35,10 @@ const VelgSakPage = ({ saker }: Props) => {
                         return (
                             <LinkCard key={sak.sak.saksnummer}>
                                 <LinkCard.Title className="w-full">
-                                    <LinkCard.Anchor
-                                        href={`${browserEnv.NEXT_PUBLIC_BASE_PATH}/sak/${sak.sak.saksnummer}`}>
-                                        {personaliaUtils.navn(pleietrengende, text)}
+                                    <LinkCard.Anchor asChild>
+                                        <Link href={`/sak/${sak.sak.saksnummer}`}>
+                                            {personaliaUtils.navn(pleietrengende, text)}
+                                        </Link>
                                     </LinkCard.Anchor>
                                 </LinkCard.Title>
                                 {status || pleietrengende.anonymisert === false ? (
