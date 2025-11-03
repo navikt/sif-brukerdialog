@@ -4198,7 +4198,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.32.5"
     "@navikt/ds-react": "npm:7.32.5"
     "@navikt/ds-tailwind": "npm:7.32.5"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/next-logger": "npm:4.4.1"
     "@navikt/oasis": "npm:4.1.0"
     "@navikt/sif-app-register": "workspace:*"
@@ -4362,7 +4362,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.32.5"
     "@navikt/ds-tailwind": "npm:7.32.5"
     "@navikt/fnrvalidator": "npm:2.1.5"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-env": "workspace:*"
@@ -4497,9 +4497,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/nav-dekoratoren-moduler@npm:3.4.0":
-  version: 3.4.0
-  resolution: "@navikt/nav-dekoratoren-moduler@npm:3.4.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F3.4.0%2Fe368316e1b7d6e0fb7f15fbd087c34400a7208f3"
+"@navikt/nav-dekoratoren-moduler@npm:3.5.0":
+  version: 3.5.0
+  resolution: "@navikt/nav-dekoratoren-moduler@npm:3.5.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F3.5.0%2F6df0830237b010f08b3a2a302013fd0edafe77f7"
   dependencies:
     js-cookie: "npm:^3.0.5"
   peerDependencies:
@@ -4507,7 +4507,7 @@ __metadata:
     html-react-parser: ">=5.x"
     jsdom: ">=16.x"
     react: ">=17.x"
-  checksum: 10/e15645b58aa88581c860090b72bf477656098b7470c925e380820af9c76b12620b02b8327536281ebcca2dd58ae01b39ae6708104b75feb4ed82f584dc484e5c
+  checksum: 10/8225685acd6aaed0449bb07230fe72cf161c5cd63ceae57e56f4434bf5f667e094d2f1da0d5e3257120bd7d6180fc25a2209d5b446031d931c1223692f190a1f
   languageName: node
   linkType: hard
 
@@ -4613,7 +4613,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.32.5"
     "@navikt/ds-react": "npm:7.32.5"
     "@navikt/ds-tailwind": "npm:7.32.5"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@playwright/test": "npm:1.56.1"
     "@tailwindcss/postcss": "npm:4.1.16"
     "@tailwindcss/vite": "npm:4.1.16"
@@ -5026,7 +5026,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.32.5"
     "@navikt/ds-react": "npm:7.32.5"
     "@navikt/fnrvalidator": "npm:2.1.5"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -5095,7 +5095,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/server-ungdomsytelse-veileder@workspace:server-ungdomsytelse-veileder"
   dependencies:
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/oasis": "npm:4.1.0"
     "@navikt/sif-common-env": "workspace:*"
     "@types/express": "npm:5.0.5"
@@ -5460,7 +5460,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.32.5"
     "@navikt/ds-react": "npm:7.32.5"
     "@navikt/fnrvalidator": "npm:2.1.5"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
@@ -5601,7 +5601,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.32.5"
     "@navikt/ds-react": "npm:7.32.5"
     "@navikt/ds-tailwind": "npm:7.32.5"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/sif-common-api": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-env": "workspace:*"
@@ -5655,7 +5655,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.32.5"
     "@navikt/ds-tailwind": "npm:7.32.5"
     "@navikt/fnrvalidator": "npm:2.1.5"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -5755,7 +5755,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-server@workspace:server"
   dependencies:
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/oasis": "npm:4.1.0"
     "@navikt/sif-common-env": "workspace:*"
     "@types/express": "npm:5.0.5"
@@ -5878,7 +5878,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.32.5"
     "@navikt/ds-tailwind": "npm:7.32.5"
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-api": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -5958,7 +5958,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.32.5"
     "@navikt/ds-tailwind": "npm:7.32.5"
     "@navikt/fnrvalidator": "npm:2.1.5"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/sif-common-api": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-env": "workspace:*"
