@@ -1,4 +1,5 @@
-import { BoxNew, Tag, VStack } from '@navikt/ds-react';
+import { Box, BoxNew, Switch, Tag, VStack } from '@navikt/ds-react';
+import { useState } from 'react';
 
 import { Inntektsmelding, InntektsmeldingStatus } from '../../types/Inntektsmelding';
 import InntektsmeldingLinkCard from '../inntektsmelding-link-card/InntektsmeldingLinkCard';
@@ -9,18 +10,18 @@ interface Props {
 }
 
 const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
-    // const [visIkkeIBruk, setVisIkkeIBruk] = useState(false);
+    const [visIkkeIBruk, setVisIkkeIBruk] = useState(false);
 
-    // const filterteInntektsmeldinger = visIkkeIBruk
-    //     ? inntektsmeldinger
-    //     : inntektsmeldinger.filter((im) => im.status === InntektsmeldingStatus.I_BRUK);
+    const filterteInntektsmeldinger = visIkkeIBruk
+        ? inntektsmeldinger
+        : inntektsmeldinger.filter((im) => im.status === InntektsmeldingStatus.I_BRUK);
 
-    // const harInntektsmeldingerSomIkkeErIBruk = inntektsmeldinger.some(
-    //     (im) => im.status !== InntektsmeldingStatus.I_BRUK,
-    // );
+    const harInntektsmeldingerSomIkkeErIBruk = inntektsmeldinger.some(
+        (im) => im.status !== InntektsmeldingStatus.I_BRUK,
+    );
     return (
         <VStack gap="2">
-            {/* {harInntektsmeldingerSomIkkeErIBruk && (
+            {harInntektsmeldingerSomIkkeErIBruk && (
                 <Box>
                     <Switch
                         checked={visIkkeIBruk}
@@ -30,8 +31,8 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                         Inkluder inntektsmeldinger som ikke er i bruk
                     </Switch>
                 </Box>
-            )} */}
-            {inntektsmeldinger.map((inntektsmelding) => {
+            )}
+            {filterteInntektsmeldinger.map((inntektsmelding) => {
                 const iBruk = inntektsmelding.status === InntektsmeldingStatus.I_BRUK;
                 return iBruk ? (
                     <InntektsmeldingLinkCard inntektsmelding={inntektsmelding} saksnummer={saksnummer} />
