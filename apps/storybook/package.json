@@ -23,7 +23,7 @@
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.19",
-        "eslint": "9.38.0",
+        "eslint": "9.39.0",
         "eslint-plugin-storybook": "10.0.2",
         "globals": "16.4.0",
         "intl": "1.2.5",
