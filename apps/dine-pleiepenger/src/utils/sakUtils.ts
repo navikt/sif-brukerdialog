@@ -10,7 +10,7 @@ import { Innsendelse, Pleiepengesøknad } from '../server/api-models/Innsendelse
 import { Innsendelsestype } from '../server/api-models/Innsendelsestype';
 import { Sak } from '../server/api-models/SakSchema';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
-import { Inntektsmelding } from '../types/Inntektsmelding';
+import { Inntektsmelding, InntektsmeldingStatus } from '../types/Inntektsmelding';
 import { Organisasjon } from '../types/Organisasjon';
 import { Sakshendelse, Sakshendelser } from '../types/Sakshendelse';
 import { Venteårsak } from '../types/Venteårsak';
@@ -126,11 +126,14 @@ export const getAlleHendelserISak = (sak: Sak, inntektsmeldinger: Inntektsmeldin
         .map((b) => getHendelserIBehandling(b, sak.utledetStatus.saksbehandlingsFrist))
         .flat();
 
-    const inntektsmeldingHendelser: Sakshendelse[] = inntektsmeldinger.map((im) => ({
-        type: Sakshendelser.INNTEKTSMELDING,
-        dato: im.mottattDato,
-        inntektsmelding: im,
-    }));
+    const inntektsmeldingHendelser: Sakshendelse[] = inntektsmeldinger
+        .filter((im) => im.status === InntektsmeldingStatus.I_BRUK)
+        .map((im) => ({
+            type: Sakshendelser.INNTEKTSMELDING,
+            dato: im.mottattDato,
+            inntektsmelding: im,
+            erstatter: inntektsmeldinger.filter((i) => i.erstattetAv.includes(im.journalpostId)),
+        }));
     sakshendelser.push(...inntektsmeldingHendelser);
     return sakshendelser.sort(sortSakshendelse);
 };

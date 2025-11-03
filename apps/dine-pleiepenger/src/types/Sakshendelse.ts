@@ -55,6 +55,7 @@ interface SakshendelseInntektsmelding extends SakshendelseBase {
     /** avsluttet dato */
     dato: Date;
     inntektsmelding: Inntektsmelding;
+    erstatter: Inntektsmelding[];
 }
 
 export type Sakshendelse =

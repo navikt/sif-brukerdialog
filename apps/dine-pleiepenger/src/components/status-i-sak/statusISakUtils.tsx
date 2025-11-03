@@ -97,7 +97,9 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         timestamp: hendelse.dato,
                     };
 
-                case Sakshendelser.INNTEKTSMELDING:
+                case Sakshendelser.INNTEKTSMELDING: {
+                    const ersattterAntall = hendelse.erstatter.length;
+
                     return {
                         title: `Inntektsmelding fra ${hendelse.inntektsmelding.arbeidsgiver.navn}`,
                         content: (
@@ -115,11 +117,21 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                                                 style="currency"
                                                 currency="NOK"
                                             />
+                                            .
                                         </div>
                                         <div>
                                             Status:{' '}
                                             <InntektsmeldingStatusTag status={hendelse.inntektsmelding.status} />
                                         </div>
+                                        {ersattterAntall > 0 && (
+                                            <div>
+                                                Erstatter{' '}
+                                                {ersattterAntall === 1
+                                                    ? '1 inntektsmelding'
+                                                    : `${ersattterAntall} inntektsmeldinger`}
+                                                .
+                                            </div>
+                                        )}
                                     </VStack>
                                     <Link
                                         as={NextLink}
@@ -136,6 +148,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         completed: true,
                         timestamp: hendelse.inntektsmelding.innsendingstidspunkt,
                     };
+                }
                 case Sakshendelser.FORVENTET_SVAR: {
                     const titleContent = getForventetSvarTitleContent(hendelse, text);
                     if (titleContent) {

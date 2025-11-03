@@ -13,6 +13,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
         inntektsmelding;
     const harEndringerIRefusjon = endringerRefusjon && endringerRefusjon.length > 0;
     const harNaturalytelser = naturalYtelser && naturalYtelser.length > 0;
+
     return (
         <VStack gap="4">
             <FormSummary>
@@ -124,6 +125,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     )}
                 </FormSummary.Answers>
             </FormSummary>
+            {}
         </VStack>
     );
 };

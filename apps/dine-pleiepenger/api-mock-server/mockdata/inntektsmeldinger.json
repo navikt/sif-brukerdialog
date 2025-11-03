@@ -10,5 +10,29 @@
         "kildesystem": "Dolly",
         "erstattetAv": [],
         "status": "I_BRUK"
+    },
+    {
+        "saksnummer": "1DQAQRW",
+        "journalpostId": "454018141",
+        "arbeidsgiver": { "navn": "SNILL TORPEDO", "arbeidsgiverOrgnr": "967170232" },
+        "startDatoPermisjon": "2025-07-01",
+        "mottattDato": "2024-03-17",
+        "inntektBeløp": 2400,
+        "innsendingstidspunkt": "2025-09-14T16:48:26",
+        "kildesystem": "Dolly",
+        "erstattetAv": ["454018144"],
+        "status": "ERSTATTET_AV_NYERE"
+    },
+    {
+        "saksnummer": "1DQAQRW",
+        "journalpostId": "454018140",
+        "arbeidsgiver": { "navn": "SNILL TORPEDO", "arbeidsgiverOrgnr": "967170232" },
+        "startDatoPermisjon": "2025-07-01",
+        "mottattDato": "2024-03-16",
+        "inntektBeløp": 0,
+        "innsendingstidspunkt": "2025-09-13T16:48:26",
+        "kildesystem": "Dolly",
+        "erstattetAv": ["454018144"],
+        "status": "ERSTATTET_AV_NYERE"
     }
 ]
