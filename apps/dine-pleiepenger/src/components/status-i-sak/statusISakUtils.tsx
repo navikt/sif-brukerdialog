@@ -1,3 +1,4 @@
+import { FileIcon } from '@navikt/aksel-icons';
 import { Box, Link, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { default as NextLink } from 'next/link';
@@ -123,7 +124,11 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                                     <Link
                                         as={NextLink}
                                         href={`/sak/${hendelse.inntektsmelding.saksnummer}/inntektsmelding/${hendelse.inntektsmelding.journalpostId}`}>
-                                        Gå til hele hele inntektsmeldingen
+                                        <FileIcon
+                                            title="Inntektsmelding"
+                                            style={{ width: '1.5rem', height: '1.5rem' }}
+                                        />
+                                        Gå til hele inntektsmeldingen
                                     </Link>
                                 </ReadMore>
                             </Box>
