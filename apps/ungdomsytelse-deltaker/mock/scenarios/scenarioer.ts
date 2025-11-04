@@ -14,12 +14,24 @@ export interface Scenario {
     data: ScenarioData;
 }
 
+const getMockDatoer = () => {
+    const deltakelseFraOgMed = dayjs().subtract(46, 'days').startOf('week');
+    const søkDeltakelseFrist = deltakelseFraOgMed.add(3, 'months');
+
+    return {
+        deltakelseFraOgMed: deltakelseFraOgMed.toDate(),
+        søkDeltakelseFrist: søkDeltakelseFrist.toDate(),
+    };
+};
+
+const deltakelseMockDatoer = getMockDatoer();
+
 const søknadDeltakelseData: ScenarioData = {
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: '2025-08-01',
+            fraOgMed: dateToISODate(deltakelseMockDatoer.deltakelseFraOgMed),
             tilOgMed: undefined,
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
@@ -29,12 +41,13 @@ const søknadDeltakelseData: ScenarioData = {
         },
     ],
 };
+
 const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: '2025-08-01',
+            fraOgMed: dateToISODate(deltakelseMockDatoer.deltakelseFraOgMed),
             tilOgMed: undefined,
             søktTidspunkt: '2025-08-03T05:05:01.714798Z',
             deltaker: {
@@ -50,8 +63,8 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: '2025-08-01',
-            tilOgMed: '2025-10-02',
+            fraOgMed: dateToISODate(deltakelseMockDatoer.deltakelseFraOgMed),
+            tilOgMed: dateToISODate(dayjs(deltakelseMockDatoer.deltakelseFraOgMed).add(6, 'months').toDate()),
             søktTidspunkt: '2025-08-03T05:05:01.714798Z',
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
@@ -61,14 +74,14 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
         },
     ],
 });
+
 const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: dateToISODate(dayjs().add(1, 'week').startOf('week').toDate()),
-
-            søktTidspunkt: '2025-08-17T05:05:01.714798Z',
+            fraOgMed: dateToISODate(deltakelseMockDatoer.deltakelseFraOgMed),
+            søktTidspunkt: dateToISODate(dayjs(deltakelseMockDatoer.deltakelseFraOgMed).add(17, 'days').toDate()),
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',

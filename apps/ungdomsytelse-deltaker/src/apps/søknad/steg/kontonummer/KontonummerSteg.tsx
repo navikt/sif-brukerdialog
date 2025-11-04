@@ -1,4 +1,3 @@
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Alert, BodyLong, BodyShort, Heading, Radio, RadioGroup } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -13,6 +12,7 @@ import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation'
 import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
+import ExternalLink from '../../../../components/external-link/ExternalLink';
 import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
 
 const KontonummerSteg = () => {
@@ -73,11 +73,11 @@ const KontonummerSteg = () => {
                                                 id="kontonummerSteg.kontonummer.stemmerIkke.info"
                                                 values={{
                                                     Lenke: (children) => (
-                                                        <ExternalLinkIcon
+                                                        <ExternalLink
                                                             role="presentation"
                                                             href={getLenker().personopplysninger}>
                                                             {children}
-                                                        </ExternalLinkIcon>
+                                                        </ExternalLink>
                                                     ),
                                                 }}
                                             />
@@ -100,9 +100,9 @@ const KontonummerSteg = () => {
                                     id="kontonummerSteg.harIkkeKontonummer.info.2"
                                     values={{
                                         Lenke: (children) => (
-                                            <ExternalLinkIcon role="presentation" href={getLenker().endreKontonummer}>
+                                            <ExternalLink role="presentation" href={getLenker().endreKontonummer}>
                                                 {children}
-                                            </ExternalLinkIcon>
+                                            </ExternalLink>
                                         ),
                                     }}
                                 />
@@ -122,9 +122,9 @@ const KontonummerSteg = () => {
                                     id="kontonummerSteg.kontonummerInfoMangler.info.2"
                                     values={{
                                         Lenke: (children) => (
-                                            <ExternalLinkIcon role="presentation" href={getLenker().endreKontonummer}>
+                                            <ExternalLink role="presentation" href={getLenker().endreKontonummer}>
                                                 {children}
-                                            </ExternalLinkIcon>
+                                            </ExternalLink>
                                         ),
                                     }}
                                 />
