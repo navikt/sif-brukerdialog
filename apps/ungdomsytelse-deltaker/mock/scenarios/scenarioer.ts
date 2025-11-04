@@ -1,4 +1,3 @@
-// import { dateToISODate } from '@navikt/sif-common-utils';
 import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 

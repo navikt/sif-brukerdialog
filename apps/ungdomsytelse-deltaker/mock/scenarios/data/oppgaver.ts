@@ -1,6 +1,7 @@
-import { dateToISODate } from '@navikt/sif-common-utils';
 import { OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
+
+import { dateToISODate } from '../../utils/dateUtils';
 
 const deltakelseFraOgMed = dayjs().subtract(46, 'days').startOf('week').toDate();
 const oppgaveMåned = dayjs().startOf('month');
@@ -41,7 +42,7 @@ const endretStartdatoOppgave: OppgaveDto = {
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: oppgaveMåned.add(8, 'days').subtract(7, 'hours').toISOString(),
+    frist: oppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
 };
 
 const endretStartdatoOppgaveLøst: OppgaveDto = {
@@ -56,7 +57,7 @@ const endretStartdatoOppgaveLøst: OppgaveDto = {
     },
     status: OppgaveStatus.LØST,
     opprettetDato: løstOppgaveMåned.add(3, 'hours').toISOString(),
-    frist: løstOppgaveMåned.add(8, 'days').subtract(7, 'hours').toISOString(),
+    frist: løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
     løstDato: løstOppgaveMåned.add(3, 'days').startOf('day').add(12, 'hours').toISOString(),
 };
 
@@ -123,7 +124,7 @@ const rapporterInntektOppgave: OppgaveDto = {
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.ULØST,
     opprettetDato: oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: oppgaveMåned.add(8, 'days').subtract(7, 'hours').toISOString(),
+    frist: oppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
     oppgavetypeData: {
         fraOgMed: dateToISODate(oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
         tilOgMed: dateToISODate(oppgaveMåned.endOf('month').toDate()),
@@ -135,7 +136,7 @@ const rapporterInntektOppgaveLøst: OppgaveDto = {
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.LØST,
     opprettetDato: løstOppgaveMåned.add(3, 'hours').toISOString(),
-    frist: løstOppgaveMåned.add(8, 'days').subtract(7, 'hours').toISOString(),
+    frist: løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
     løstDato: løstOppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
     oppgavetypeData: {
         fraOgMed: dateToISODate(løstOppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
@@ -168,7 +169,7 @@ const bekreftAvvikOppgave: OppgaveDto = {
             totalInntekt: 20000,
         },
     },
-    frist: løstOppgaveMåned.add(8, 'days').subtract(7, 'hours').toISOString(),
+    frist: løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
     opprettetDato: løstOppgaveMåned.add(3, 'hours').toISOString(),
     status: OppgaveStatus.ULØST,
 };
@@ -197,7 +198,7 @@ const bekreftAvvikOppgaveLøst: OppgaveDto = {
     bekreftelse: {
         harUttalelse: false,
     },
-    frist: løstOppgaveMåned.add(8, 'days').subtract(7, 'hours').toISOString(),
+    frist: løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
     opprettetDato: løstOppgaveMåned.add(3, 'hours').toISOString(),
     status: OppgaveStatus.LØST,
     løstDato: løstOppgaveMåned.add(8, 'days').add(54, 'hours').toISOString(),
