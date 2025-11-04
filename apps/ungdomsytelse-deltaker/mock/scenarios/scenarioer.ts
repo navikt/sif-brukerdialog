@@ -47,7 +47,7 @@ const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: undefined,
-            søktTidspunkt: '2025-08-03T05:05:01.714798Z',
+            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate().toISOString(),
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
@@ -63,7 +63,7 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(6, 'months').toDate()),
-            søktTidspunkt: '2025-08-03T05:05:01.714798Z',
+            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate().toISOString(),
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
@@ -79,7 +79,7 @@ const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
-            søktTidspunkt: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate()),
+            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate().toISOString(),
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
