@@ -1,10 +1,11 @@
-import { ArrowRightIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Button, Checkbox, CheckboxGroup, VStack } from '@navikt/ds-react';
 import { AppText, useAppIntl } from '@shared/i18n';
 import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 import getLenker from '@shared/utils/lenker';
 import { useState } from 'react';
 
+import ExternalLink from '../../../components/external-link/ExternalLink';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../components/VelkommenMelding';
 import { useSøknadContext } from '../hooks/context/useSøknadContext';
@@ -42,9 +43,9 @@ const VelkommenPage = () => {
                                 id="velkommenPage.infoStemmer"
                                 values={{
                                     Lenke: (children: string) => (
-                                        <ExternalLinkIcon role="presentation" href={getLenker().rettOgPlikt}>
+                                        <ExternalLink role="presentation" href={getLenker().rettOgPlikt}>
                                             {children}
-                                        </ExternalLinkIcon>
+                                        </ExternalLink>
                                     ),
                                 }}
                             />
