@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- Korrigere lenker i løsninge - feil komponent var brukt.
+- BugFix - feil komponent for eksterne lenker
 
 ## 1.5.7
 
