@@ -67,8 +67,8 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await page.getByText('Er kontonummeret ditt 1234 56 78901?Nei').click();
     await page.getByText('Barn vi har registrert på deg:ALFABETISK TURLØYPE').click();
     await page.getByText('Stemmer opplysningen om barnet?Nei').click();
-    // await page.getByRole('checkbox', { name: 'Jeg bekrefter at' }).check();
-    // await page.getByRole('button', { name: 'Send søknad' }).click();
-    // await expect(page.getByText('Søknaden er sendt!Vi har fått')).toBeVisible();
-    // await testAccessibility(page);
+    await page.getByRole('checkbox', { name: 'Jeg bekrefter at' }).check();
+    await page.getByRole('button', { name: 'Send søknad' }).click();
+    await expect(page.getByText('Søknaden er sendt!Vi har fått')).toBeVisible();
+    await testAccessibility(page);
 });

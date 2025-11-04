@@ -2,18 +2,24 @@ import { OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-o
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../../utils/dateUtils';
+import { getMockToday } from '../../utils/mockDate';
 
-const deltakelseFraOgMed = dayjs().subtract(46, 'days').startOf('week').toDate();
-const oppgaveMåned = dayjs().startOf('month');
-const løstOppgaveMåned = dayjs().startOf('month');
+const getDatoer = () => {
+    const datoer = {
+        deltakelseFraOgMed: dayjs(getMockToday()).subtract(46, 'days').startOf('week'),
+        oppgaveMåned: dayjs(getMockToday()).startOf('month'),
+        løstOppgaveMåned: dayjs(getMockToday()).startOf('month'),
+    };
+    return datoer;
+};
 
-const søkYtelseDay = dayjs().subtract(2, 'months');
 const getSøkYtelseOppgave = (): OppgaveDto => {
+    const søkYtelseDay = dayjs(getMockToday()).subtract(2, 'months');
     return {
         oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
         oppgavetype: Oppgavetype.SØK_YTELSE,
         status: OppgaveStatus.ULØST,
-        frist: løstOppgaveMåned.subtract(1, 'month').add(14, 'days').add(7, 'hours').toISOString(),
+        frist: getDatoer().løstOppgaveMåned.subtract(1, 'month').add(14, 'days').add(7, 'hours').toISOString(),
         oppgavetypeData: {
             fomDato: dateToISODate(søkYtelseDay.subtract(1, 'month').toDate()),
         },
@@ -30,38 +36,38 @@ const getSøkYtelseOppgaveLøst = (): OppgaveDto => {
     };
 };
 
-const endretStartdatoOppgave: OppgaveDto = {
+const getEndretStartdatoOppgave = (): OppgaveDto => ({
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
-        nyStartdato: dateToISODate(dayjs(deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
-        forrigeStartdato: dateToISODate(deltakelseFraOgMed),
+        nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
+        forrigeStartdato: dateToISODate(getDatoer().deltakelseFraOgMed.toDate()),
     },
     bekreftelse: {
         harUttalelse: false,
     },
     status: OppgaveStatus.ULØST,
-    opprettetDato: oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: oppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
-};
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+});
 
-const endretStartdatoOppgaveLøst: OppgaveDto = {
+const getEndretStartdatoOppgaveLøst = (): OppgaveDto => ({
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
-        nyStartdato: dateToISODate(dayjs(deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
-        forrigeStartdato: dateToISODate(deltakelseFraOgMed),
+        nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
+        forrigeStartdato: dateToISODate(getDatoer().deltakelseFraOgMed.toDate()),
     },
     bekreftelse: {
         harUttalelse: false,
     },
     status: OppgaveStatus.LØST,
-    opprettetDato: løstOppgaveMåned.add(3, 'hours').toISOString(),
-    frist: løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
-    løstDato: løstOppgaveMåned.add(3, 'days').startOf('day').add(12, 'hours').toISOString(),
-};
+    opprettetDato: getDatoer().løstOppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    løstDato: getDatoer().løstOppgaveMåned.add(3, 'days').startOf('day').add(12, 'hours').toISOString(),
+});
 
-const meldtUtOppgave: OppgaveDto = {
+const getMeldtUtOppgave = (): OppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7927',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -70,9 +76,9 @@ const meldtUtOppgave: OppgaveDto = {
     status: OppgaveStatus.ULØST,
     opprettetDato: '2025-09-22T05:39:32.420085Z',
     frist: '2025-09-23T07:39:32.310154Z',
-};
+});
 
-const meldtUtOppgaveLøst: OppgaveDto = {
+const getMeldtUtOppgaveLøst = (): OppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7927',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -86,9 +92,9 @@ const meldtUtOppgaveLøst: OppgaveDto = {
     opprettetDato: '2025-09-22T05:39:32.420085Z',
     løstDato: '2025-09-22T05:40:05.767753Z',
     frist: '2025-09-23T07:39:32.310154Z',
-};
+});
 
-const endretSluttdatoOppgave: OppgaveDto = {
+const getEndretSluttdatoOppgave = (): OppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7927',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -99,9 +105,9 @@ const endretSluttdatoOppgave: OppgaveDto = {
     opprettetDato: '2025-09-22T05:39:32.420085Z',
     åpnetDato: '2025-09-22T05:39:34.793877Z',
     frist: '2025-09-23T07:39:32.310154Z',
-};
+});
 
-const endretSluttdatoOppgaveLøst: OppgaveDto = {
+const getEndretSluttdatoOppgaveLøst = (): OppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7927',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -117,44 +123,44 @@ const endretSluttdatoOppgaveLøst: OppgaveDto = {
     løstDato: '2025-09-22T05:40:05.767753Z',
     åpnetDato: '2025-09-22T05:39:34.793877Z',
     frist: '2025-09-23T07:39:32.310154Z',
-};
+});
 
-const rapporterInntektOppgave: OppgaveDto = {
+const getRapporterInntektOppgave = (): OppgaveDto => ({
     oppgaveReferanse: 'f3e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.ULØST,
-    opprettetDato: oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: oppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
     oppgavetypeData: {
-        fraOgMed: dateToISODate(oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tilOgMed: dateToISODate(oppgaveMåned.endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
     },
-};
+});
 
-const rapporterInntektOppgaveLøst: OppgaveDto = {
+const getRapporterInntektOppgaveLøst = (): OppgaveDto => ({
     oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.LØST,
-    opprettetDato: løstOppgaveMåned.add(3, 'hours').toISOString(),
-    frist: løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
-    løstDato: løstOppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
+    opprettetDato: getDatoer().løstOppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    løstDato: getDatoer().løstOppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
     oppgavetypeData: {
-        fraOgMed: dateToISODate(løstOppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tilOgMed: dateToISODate(løstOppgaveMåned.endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        tilOgMed: dateToISODate(getDatoer().løstOppgaveMåned.endOf('month').toDate()),
         rapportertInntekt: {
-            fraOgMed: dateToISODate(løstOppgaveMåned.startOf('month').toDate()),
-            tilOgMed: dateToISODate(løstOppgaveMåned.endOf('month').toDate()),
+            fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.startOf('month').toDate()),
+            tilOgMed: dateToISODate(getDatoer().løstOppgaveMåned.endOf('month').toDate()),
             arbeidstakerOgFrilansInntekt: 23000,
         },
     },
-};
+});
 
-const bekreftAvvikOppgave: OppgaveDto = {
+const getBekreftAvvikOppgave = (): OppgaveDto => ({
     oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
-        fraOgMed: dateToISODate(løstOppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tilOgMed: dateToISODate(løstOppgaveMåned.endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        tilOgMed: dateToISODate(getDatoer().løstOppgaveMåned.endOf('month').toDate()),
         registerinntekt: {
             arbeidOgFrilansInntekter: [
                 {
@@ -169,18 +175,18 @@ const bekreftAvvikOppgave: OppgaveDto = {
             totalInntekt: 20000,
         },
     },
-    frist: løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
-    opprettetDato: løstOppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    opprettetDato: getDatoer().løstOppgaveMåned.add(3, 'hours').toISOString(),
     status: OppgaveStatus.ULØST,
-};
+});
 
-const bekreftAvvikOppgaveLøst: OppgaveDto = {
-    ...bekreftAvvikOppgave,
+const getBekreftAvvikOppgaveLøst = (): OppgaveDto => ({
+    ...getBekreftAvvikOppgave(),
     oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
-        fraOgMed: dateToISODate(løstOppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tilOgMed: dateToISODate(løstOppgaveMåned.endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        tilOgMed: dateToISODate(getDatoer().løstOppgaveMåned.endOf('month').toDate()),
         registerinntekt: {
             arbeidOgFrilansInntekter: [
                 {
@@ -198,23 +204,23 @@ const bekreftAvvikOppgaveLøst: OppgaveDto = {
     bekreftelse: {
         harUttalelse: false,
     },
-    frist: løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
-    opprettetDato: løstOppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    opprettetDato: getDatoer().løstOppgaveMåned.add(3, 'hours').toISOString(),
     status: OppgaveStatus.LØST,
-    løstDato: løstOppgaveMåned.add(8, 'days').add(54, 'hours').toISOString(),
-};
+    løstDato: getDatoer().løstOppgaveMåned.add(8, 'days').add(54, 'hours').toISOString(),
+});
 
-export const mockOppgaver = {
-    rapporterInntektOppgave,
-    rapporterInntektOppgaveLøst,
-    endretStartdatoOppgave,
-    endretStartdatoOppgaveLøst,
-    endretSluttdatoOppgave,
-    endretSluttdatoOppgaveLøst,
-    bekreftAvvikOppgave,
-    bekreftAvvikOppgaveLøst,
+export const getMockOppgaver = () => ({
+    rapporterInntektOppgave: getRapporterInntektOppgave(),
+    rapporterInntektOppgaveLøst: getRapporterInntektOppgaveLøst(),
+    endretStartdatoOppgave: getEndretStartdatoOppgave(),
+    endretStartdatoOppgaveLøst: getEndretStartdatoOppgaveLøst(),
+    endretSluttdatoOppgave: getEndretSluttdatoOppgave(),
+    endretSluttdatoOppgaveLøst: getEndretSluttdatoOppgaveLøst(),
+    bekreftAvvikOppgave: getBekreftAvvikOppgave(),
+    bekreftAvvikOppgaveLøst: getBekreftAvvikOppgaveLøst(),
     søkYtelseOppgave: getSøkYtelseOppgave(),
     søkYtelseOppgaveLøst: getSøkYtelseOppgaveLøst(),
-    meldtUtOppgaveLøst,
-    meldtUtOppgave,
-};
+    meldtUtOppgaveLøst: getMeldtUtOppgaveLøst(),
+    meldtUtOppgave: getMeldtUtOppgave(),
+});

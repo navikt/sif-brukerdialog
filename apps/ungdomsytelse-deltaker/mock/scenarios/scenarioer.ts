@@ -2,8 +2,9 @@ import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../utils/dateUtils';
+import { getMockToday } from '../utils/mockDate';
 import { deltakerBaseScenarioData } from './data/deltakerBaseScenarioData';
-import { mockOppgaver } from './data/oppgaver';
+import { getMockOppgaver } from './data/oppgaver';
 import { ScenarioData, ScenarioType } from './types';
 
 export interface Scenario {
@@ -14,7 +15,7 @@ export interface Scenario {
 }
 
 const getMockDatoer = () => {
-    const deltakelseFraOgMed = dayjs().subtract(46, 'days').startOf('week');
+    const deltakelseFraOgMed = dayjs(getMockToday()).subtract(46, 'days').startOf('week');
     const søkDeltakelseFrist = deltakelseFraOgMed.add(3, 'months');
 
     return {
@@ -23,30 +24,28 @@ const getMockDatoer = () => {
     };
 };
 
-const deltakelseMockDatoer = getMockDatoer();
-
-const søknadDeltakelseData: ScenarioData = {
+const getSøknadDeltakelseData = (): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: dateToISODate(deltakelseMockDatoer.deltakelseFraOgMed),
+            fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: undefined,
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
             },
-            oppgaver: [mockOppgaver.søkYtelseOppgave],
+            oppgaver: [getMockOppgaver().søkYtelseOppgave],
         },
     ],
-};
+});
 
 const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: dateToISODate(deltakelseMockDatoer.deltakelseFraOgMed),
+            fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: undefined,
             søktTidspunkt: '2025-08-03T05:05:01.714798Z',
             deltaker: {
@@ -62,8 +61,8 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: dateToISODate(deltakelseMockDatoer.deltakelseFraOgMed),
-            tilOgMed: dateToISODate(dayjs(deltakelseMockDatoer.deltakelseFraOgMed).add(6, 'months').toDate()),
+            fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
+            tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(6, 'months').toDate()),
             søktTidspunkt: '2025-08-03T05:05:01.714798Z',
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
@@ -79,8 +78,8 @@ const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: dateToISODate(deltakelseMockDatoer.deltakelseFraOgMed),
-            søktTidspunkt: dateToISODate(dayjs(deltakelseMockDatoer.deltakelseFraOgMed).add(17, 'days').toDate()),
+            fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
+            søktTidspunkt: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate()),
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
@@ -94,64 +93,64 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
     [ScenarioType.søknad]: {
         type: ScenarioType.søknad,
         name: 'Søknad',
-        data: søknadDeltakelseData,
+        data: getSøknadDeltakelseData(),
     },
     [ScenarioType.søknadSendt]: {
         type: ScenarioType.søknadSendt,
         name: 'Søknad sendt',
-        data: createSøktDeltakelse([mockOppgaver.søkYtelseOppgaveLøst]),
+        data: createSøktDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst]),
     },
     [ScenarioType.endretStartdato]: {
         type: ScenarioType.endretStartdato,
         name: 'Oppgave med endret startdato',
-        data: createSøktDeltakelse([mockOppgaver.søkYtelseOppgaveLøst, mockOppgaver.endretStartdatoOppgave]),
+        data: createSøktDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().endretStartdatoOppgave]),
     },
     [ScenarioType.meldtUt]: {
         type: ScenarioType.meldtUt,
         name: 'Oppgave med hvor bruker er meldt ut',
         data: createSøktDeltakelse([
-            mockOppgaver.søkYtelseOppgaveLøst,
-            mockOppgaver.endretStartdatoOppgaveLøst,
-            mockOppgaver.meldtUtOppgave,
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().endretStartdatoOppgaveLøst,
+            getMockOppgaver().meldtUtOppgave,
         ]),
     },
     [ScenarioType.endretSluttdato]: {
         type: ScenarioType.endretSluttdato,
         name: 'Oppgave med sluttdato er endret',
         data: createSøktDeltakelse([
-            mockOppgaver.søkYtelseOppgaveLøst,
-            mockOppgaver.endretStartdatoOppgaveLøst,
-            mockOppgaver.meldtUtOppgaveLøst,
-            mockOppgaver.endretSluttdatoOppgave,
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().endretStartdatoOppgaveLøst,
+            getMockOppgaver().meldtUtOppgaveLøst,
+            getMockOppgaver().endretSluttdatoOppgave,
         ]),
     },
     [ScenarioType.rapporterInntekt]: {
         type: ScenarioType.rapporterInntekt,
         name: 'Oppgave for å melde fra om inntekt',
-        data: createSøktDeltakelse([mockOppgaver.søkYtelseOppgaveLøst, mockOppgaver.rapporterInntektOppgave]),
+        data: createSøktDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().rapporterInntektOppgave]),
     },
     [ScenarioType.avvikInntekt]: {
         type: ScenarioType.avvikInntekt,
         name: 'Oppgave for å sjekke inntekt (avvik)',
         data: createSøktDeltakelse([
-            mockOppgaver.søkYtelseOppgaveLøst,
-            mockOppgaver.rapporterInntektOppgaveLøst,
-            mockOppgaver.bekreftAvvikOppgave,
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().rapporterInntektOppgaveLøst,
+            getMockOppgaver().bekreftAvvikOppgave,
         ]),
     },
     [ScenarioType.avsluttet]: {
         type: ScenarioType.avvikInntekt,
         name: 'Avsluttet deltakelse',
         data: createAvsluttetDeltakelse([
-            mockOppgaver.søkYtelseOppgaveLøst,
-            mockOppgaver.rapporterInntektOppgaveLøst,
-            mockOppgaver.bekreftAvvikOppgaveLøst,
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().rapporterInntektOppgaveLøst,
+            getMockOppgaver().bekreftAvvikOppgaveLøst,
         ]),
     },
     [ScenarioType.ikkeStartet]: {
         type: ScenarioType.ikkeStartet,
         name: 'Ikke startet deltakelse',
-        data: createIkkeStartetDeltakelse([mockOppgaver.søkYtelseOppgaveLøst]),
+        data: createIkkeStartetDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst]),
     },
 };
 

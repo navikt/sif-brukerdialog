@@ -12,7 +12,9 @@ import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import MockDate from 'mockdate';
 
+import { getMockToday } from '../mock/utils/mockDate';
 import { AnalyticsProvider } from './analytics/analytics';
 import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
@@ -34,6 +36,10 @@ if (__INJECT_DECORATOR_CLIENT_SIDE__) {
             chatbot: true,
         },
     });
+}
+
+if (__USE_FIXED_MOCKED_DATE__) {
+    MockDate.set(getMockToday());
 }
 
 const queryClient = new QueryClient();
