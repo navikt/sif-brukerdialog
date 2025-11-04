@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.8
+
+### Patch Changes
+
+- Korrigere lenker i løsninge - feil komponent var brukt.
+
 ## 1.5.7
 
 ### Patch Changes
