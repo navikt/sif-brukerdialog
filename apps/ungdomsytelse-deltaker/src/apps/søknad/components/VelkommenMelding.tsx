@@ -37,9 +37,7 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                             id="velkommenMelding.søknadBeskrivelse"
                             values={{
                                 Lenke: (children) => (
-                                    <ExternalLink role="presentation" href={getLenker().omUngdomsprogramytelsen}>
-                                        {children}
-                                    </ExternalLink>
+                                    <ExternalLink href={getLenker().omUngdomsprogramytelsen}>{children}</ExternalLink>
                                 ),
                             }}
                         />

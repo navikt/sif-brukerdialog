@@ -73,9 +73,7 @@ const KontonummerSteg = () => {
                                                 id="kontonummerSteg.kontonummer.stemmerIkke.info"
                                                 values={{
                                                     Lenke: (children) => (
-                                                        <ExternalLink
-                                                            role="presentation"
-                                                            href={getLenker().personopplysninger}>
+                                                        <ExternalLink href={getLenker().personopplysninger}>
                                                             {children}
                                                         </ExternalLink>
                                                     ),
@@ -100,9 +98,7 @@ const KontonummerSteg = () => {
                                     id="kontonummerSteg.harIkkeKontonummer.info.2"
                                     values={{
                                         Lenke: (children) => (
-                                            <ExternalLink role="presentation" href={getLenker().endreKontonummer}>
-                                                {children}
-                                            </ExternalLink>
+                                            <ExternalLink href={getLenker().endreKontonummer}>{children}</ExternalLink>
                                         ),
                                     }}
                                 />
@@ -122,9 +118,7 @@ const KontonummerSteg = () => {
                                     id="kontonummerSteg.kontonummerInfoMangler.info.2"
                                     values={{
                                         Lenke: (children) => (
-                                            <ExternalLink role="presentation" href={getLenker().endreKontonummer}>
-                                                {children}
-                                            </ExternalLink>
+                                            <ExternalLink href={getLenker().endreKontonummer}>{children}</ExternalLink>
                                         ),
                                     }}
                                 />

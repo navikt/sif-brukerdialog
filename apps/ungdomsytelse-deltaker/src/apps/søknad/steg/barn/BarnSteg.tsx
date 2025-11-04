@@ -81,9 +81,7 @@ const BarnSteg = () => {
                                         id="barnSteg.opplysninger.info.text"
                                         values={{
                                             Lenke: (children) => (
-                                                <ExternalLink role="presentation" href={getLenker().skatteetaten}>
-                                                    {children}
-                                                </ExternalLink>
+                                                <ExternalLink href={getLenker().skatteetaten}>{children}</ExternalLink>
                                             ),
                                         }}
                                     />
