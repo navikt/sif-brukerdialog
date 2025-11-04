@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.8
+
+### Patch Changes
+
+- BugFix - feil komponent for eksterne lenker
+
 ## 1.5.7
 
 ### Patch Changes
