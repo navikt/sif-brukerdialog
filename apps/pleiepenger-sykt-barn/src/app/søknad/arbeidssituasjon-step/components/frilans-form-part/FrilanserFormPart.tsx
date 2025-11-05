@@ -12,7 +12,7 @@ import {
     Frilanstype,
 } from '../../../../types/søknad-form-values/FrilansFormValues';
 import { SøknadFormValues } from '../../../../types/søknad-form-values/SøknadFormValues';
-import { skalSpørreOmNormalarbeidstidForIkkeFrilanser } from '../../utils/cleanupArbeidssituasjonStep';
+import { skalSpørreOmNormalarbeidstidForIkkeFrilanser } from '../../utils/normalarbeidstidFrilansUtils';
 import ErFortsattFrilanserSpørsmål from './spørsmål/ErFortsattFrilanserSpørsmål';
 import FrilansAvsluttetNormalarbeidstidSpørsmål from './spørsmål/FrilansAvsluttetNormalarbeidstidSpørsmål';
 import FrilansertypeSpørsmål from './spørsmål/FrilansertypeSpørsmål';

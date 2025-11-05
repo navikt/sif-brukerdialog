@@ -10,7 +10,7 @@ import {
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { ArbeidssituasjonAnsattType } from '../../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
-import { skalSpørreOmNormalarbeidstidForIkkeFrilanser } from '../../arbeidssituasjon-step/utils/cleanupArbeidssituasjonStep';
+import { skalSpørreOmNormalarbeidstidForIkkeFrilanser } from '../../arbeidssituasjon-step/utils/normalarbeidstidFrilansUtils';
 import { getArbeidsukeKey } from '../components/ArbeidstidEnkeltuker';
 import { getArbeidsukerIPerioden } from './arbeidstidStepUtils';
 

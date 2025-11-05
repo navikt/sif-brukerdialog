@@ -5,10 +5,10 @@ import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/Arb
 import { FrilansFormValues, Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import { SelvstendigFormValues } from '../../../types/søknad-form-values/SelvstendigFormValues';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import { getFeatureToggles } from '../../../utils/featureToggleUtils';
-import { erFrilanserISøknadsperiode, harFrilansoppdrag } from '../../../utils/frilanserUtils';
+import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
 import { cleanupFosterhjemsgodtgjørelse } from './cleanupFosterhjemsgodtgjørelse';
 import { cleanupOmsorgsstønad } from './cleanupOmsorgsstønad';
+import { skalSpørreOmNormalarbeidstidForIkkeFrilanser } from './normalarbeidstidFrilansUtils';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 
 export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormValues): ArbeidsforholdFormValues => {
@@ -114,13 +114,4 @@ export const cleanupArbeidssituasjonStep = (
     }
 
     return values;
-};
-
-export const skalSpørreOmNormalarbeidstidForIkkeFrilanser = (values: SøknadFormValues): boolean => {
-    return (
-        getFeatureToggles().visNormalarbeidstidForIkkeFrilanser &&
-        harFrilansoppdrag(values.frilansoppdrag) &&
-        values.omsorgsstønad.mottarOmsorgsstønad === YesOrNo.NO &&
-        values.frilans.harHattInntektSomFrilanser === YesOrNo.NO
-    );
 };
