@@ -180,6 +180,32 @@ const getBekreftAvvikOppgave = (): OppgaveDto => ({
     status: OppgaveStatus.ULØST,
 });
 
+const getBekreftAvvikOppgaveSisteMåned = (): OppgaveDto => ({
+    oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
+    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+    oppgavetypeData: {
+        fraOgMed: '2025-09-01',
+        tilOgMed: '2025-09-30',
+        gjelderSisteMåned: true,
+        registerinntekt: {
+            arbeidOgFrilansInntekter: [
+                {
+                    inntekt: 20000,
+                    arbeidsgiver: '947064649',
+                    arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
+                },
+            ],
+            ytelseInntekter: [],
+            totalInntektArbeidOgFrilans: 20000,
+            totalInntektYtelse: 0,
+            totalInntekt: 20000,
+        },
+    },
+    frist: '2025-10-30T12:47:47.492347Z',
+    status: OppgaveStatus.ULØST,
+    opprettetDato: '2025-10-10T05:00:46.869460Z',
+});
+
 const getBekreftAvvikOppgaveLøst = (): OppgaveDto => ({
     ...getBekreftAvvikOppgave(),
     oppgavetypeData: {
@@ -221,4 +247,5 @@ export const getMockOppgaver = () => ({
     søkYtelseOppgaveLøst: getSøkYtelseOppgaveLøst(),
     meldtUtOppgaveLøst: getMeldtUtOppgaveLøst(),
     meldtUtOppgave: getMeldtUtOppgave(),
+    bekreftAvvikOppgaveSisteMåned: getBekreftAvvikOppgaveSisteMåned(),
 });

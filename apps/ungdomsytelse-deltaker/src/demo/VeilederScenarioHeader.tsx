@@ -51,7 +51,10 @@ const VeilederScenarioHeader = () => {
                             Månedlig melde fra om inntekt
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntekt)}>
-                            Sjekke inntekt ved avvik fra register
+                            Sjekke avvik i inntekt
+                        </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntektSisteMåned)}>
+                            Sjekke avvik i inntekt (siste måned)
                         </ActionMenu.Item>
                     </ActionMenu.Group>
                     <ActionMenu.Divider />
