@@ -20,6 +20,7 @@ import {
     OppgaveBase,
     RapporterInntektOppgave,
 } from '../../types/Oppgave';
+import { getSisteDatoEnKanSvare } from '../../utils/svarfristUtils';
 
 const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     switch (status) {
@@ -47,7 +48,7 @@ const getOppgaveBaseProps = (oppgave: OppgaveDto): Omit<OppgaveBase, 'oppgavetyp
         oppgaveReferanse: oppgave.oppgaveReferanse,
         status: getOppgaveStatusEnum(oppgave.status),
         opprettetDato,
-        sisteDatoEnKanSvare: dayjs(svarfrist).startOf('day').subtract(1, 'day').toDate(),
+        sisteDatoEnKanSvare: getSisteDatoEnKanSvare(svarfrist),
         løstDato,
         åpnetDato,
     };
