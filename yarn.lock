@@ -2903,12 +2903,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/codegen-core@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "@hey-api/codegen-core@npm:0.3.2"
+"@hey-api/codegen-core@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "@hey-api/codegen-core@npm:0.3.3"
   peerDependencies:
     typescript: ">=5.5.3"
-  checksum: 10/0e188e3bdbcd0b915f85a7537b8030028c02dc695d3bd1550a048e0d837dfb369c0b1a63f2495ccc32b74aff1fbe05302221249ac0ec7de314d22c4a07bc6a01
+  checksum: 10/5eb326fcb4831134ff3fe426830c05835fc9129d5cf82ec96d942ea8a5e86eb53429f2521594c7ddff26bc0a5740b5a849920766cedea457437a0b3b012d4347
   languageName: node
   linkType: hard
 
@@ -2924,24 +2924,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/openapi-ts@npm:0.86.11":
-  version: 0.86.11
-  resolution: "@hey-api/openapi-ts@npm:0.86.11"
+"@hey-api/openapi-ts@npm:0.87.0":
+  version: 0.87.0
+  resolution: "@hey-api/openapi-ts@npm:0.87.0"
   dependencies:
-    "@hey-api/codegen-core": "npm:^0.3.2"
+    "@hey-api/codegen-core": "npm:^0.3.3"
     "@hey-api/json-schema-ref-parser": "npm:1.2.1"
     ansi-colors: "npm:4.1.3"
     c12: "npm:3.3.1"
     color-support: "npm:1.1.3"
     commander: "npm:14.0.1"
-    handlebars: "npm:4.7.8"
     open: "npm:10.2.0"
     semver: "npm:7.7.2"
   peerDependencies:
     typescript: ">=5.5.3"
   bin:
     openapi-ts: bin/run.js
-  checksum: 10/17410014ba62882f92bebc5ea2863d895a407da3d8ffa68136e2826b237c7adcea6d861258ec4cc465f5da8392334254aa671f1219d3ce64a28da49b12e5505b
+  checksum: 10/a2371da92f73c4851ae202f810a5d62e18a600f003af8ac111b9d1b31c410af476788eef154a4d9369f887f892ee6541146d7bdbd8f0bdbbb0333af428f8d29f
   languageName: node
   linkType: hard
 
@@ -4433,7 +4432,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.86.11"
+    "@hey-api/openapi-ts": "npm:0.87.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.1"
     config: "workspace:*"
@@ -4453,7 +4452,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.86.11"
+    "@hey-api/openapi-ts": "npm:0.87.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.1"
     config: "workspace:*"
@@ -4473,7 +4472,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.86.11"
+    "@hey-api/openapi-ts": "npm:0.87.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.1"
     config: "workspace:*"
@@ -5817,7 +5816,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.86.11"
+    "@hey-api/openapi-ts": "npm:0.87.0"
     "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.1"
@@ -5838,7 +5837,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.86.11"
+    "@hey-api/openapi-ts": "npm:0.87.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.1"
     config: "workspace:*"
@@ -16357,24 +16356,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"handlebars@npm:4.7.8":
-  version: 4.7.8
-  resolution: "handlebars@npm:4.7.8"
-  dependencies:
-    minimist: "npm:^1.2.5"
-    neo-async: "npm:^2.6.2"
-    source-map: "npm:^0.6.1"
-    uglify-js: "npm:^3.1.4"
-    wordwrap: "npm:^1.0.0"
-  dependenciesMeta:
-    uglify-js:
-      optional: true
-  bin:
-    handlebars: bin/handlebars
-  checksum: 10/bd528f4dd150adf67f3f857118ef0fa43ff79a153b1d943fa0a770f2599e38b25a7a0dbac1a3611a4ec86970fd2325a81310fb788b5c892308c9f8743bd02e11
-  languageName: node
-  linkType: hard
-
 "hard-rejection@npm:^2.1.0":
   version: 2.1.0
   resolution: "hard-rejection@npm:2.1.0"
@@ -20475,7 +20456,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:^1.2.0, minimist@npm:^1.2.5, minimist@npm:^1.2.6, minimist@npm:^1.2.8, minimist@npm:~1.2.8":
+"minimist@npm:^1.2.0, minimist@npm:^1.2.6, minimist@npm:^1.2.8, minimist@npm:~1.2.8":
   version: 1.2.8
   resolution: "minimist@npm:1.2.8"
   checksum: 10/908491b6cc15a6c440ba5b22780a0ba89b9810e1aea684e253e43c4e3b8d56ec1dcdd7ea96dde119c29df59c936cde16062159eae4225c691e19c70b432b6e6f
@@ -26744,15 +26725,6 @@ __metadata:
   bin:
     ua-parser-js: script/cli.js
   checksum: 10/86f2b624ff13f5be86a7cc5172427960493c8c0f703fdc8de340d8701951a1478cdf7a76f1f510932bb25a2fce6a3e0ba750b631f026d85acdc6b2a6b0ba6138
-  languageName: node
-  linkType: hard
-
-"uglify-js@npm:^3.1.4":
-  version: 3.19.3
-  resolution: "uglify-js@npm:3.19.3"
-  bin:
-    uglifyjs: bin/uglifyjs
-  checksum: 10/6b9639c1985d24580b01bb0ab68e78de310d38eeba7db45bec7850ab4093d8ee464d80ccfaceda9c68d1c366efbee28573b52f95e69ac792354c145acd380b11
   languageName: node
   linkType: hard
 
