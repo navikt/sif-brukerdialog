@@ -12,8 +12,8 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'endringsmelding-pleiepenger'
-            working-directory: 'apps/endringsmelding-pleiepenger'
+            app-name: "endringsmelding-pleiepenger"
+            working-directory: "apps/endringsmelding-pleiepenger"
 
     deploy-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
         name: Deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn to dev
@@ -22,8 +22,8 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'
-            working-directory: 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'
+            app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+            working-directory: "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
 
     deploy-omsorgspengesoknad:
         name: Deploy omsorgspengesoknad to dev
@@ -32,8 +32,8 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'omsorgspengesoknad'
-            working-directory: 'apps/omsorgspengesoknad'
+            app-name: "omsorgspengesoknad"
+            working-directory: "apps/omsorgspengesoknad"
 
     deploy-omsorgsdager-aleneomsorg-dialog:
         name: Deploy omsorgsdager-aleneomsorg-dialog to dev
@@ -42,8 +42,8 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'omsorgsdager-aleneomsorg-dialog'
-            working-directory: 'apps/omsorgsdager-aleneomsorg-dialog'
+            app-name: "omsorgsdager-aleneomsorg-dialog"
+            working-directory: "apps/omsorgsdager-aleneomsorg-dialog"
 
     deploy-omsorgspengerutbetaling-soknad:
         name: Deploy omsorgspengerutbetaling-soknad to dev
@@ -52,8 +52,8 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'omsorgspengerutbetaling-soknad'
-            working-directory: 'apps/omsorgspengerutbetaling-soknad'
+            app-name: "omsorgspengerutbetaling-soknad"
+            working-directory: "apps/omsorgspengerutbetaling-soknad"
 
     deploy-omsorgspengerutbetaling-arbeidstaker-soknad:
         name: Deploy omsorgspengerutbetaling-arbeidstaker-soknad to dev
@@ -62,8 +62,8 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'omsorgspengerutbetaling-arbeidstaker-soknad'
-            working-directory: 'apps/omsorgspengerutbetaling-arbeidstaker-soknad'
+            app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
+            working-directory: "apps/omsorgspengerutbetaling-arbeidstaker-soknad"
 
     deploy-pleiepenger-i-livets-sluttfase-soknad:
         name: Deploy pleiepenger-i-livets-sluttfase-soknad to dev
@@ -72,8 +72,8 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'pleiepenger-i-livets-sluttfase-soknad'
-            working-directory: 'apps/pleiepenger-i-livets-sluttfase-soknad'
+            app-name: "pleiepenger-i-livets-sluttfase-soknad"
+            working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
 
     deploy-pleiepenger-sykt-barn:
         name: Deploy pleiepenger-sykt-barn to dev
@@ -82,8 +82,8 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'pleiepenger-sykt-barn'
-            working-directory: 'apps/pleiepenger-sykt-barn'
+            app-name: "pleiepenger-sykt-barn"
+            working-directory: "apps/pleiepenger-sykt-barn"
 
     deploy-sif-ettersending:
         name: Deploy sif-ettersending to dev
@@ -92,8 +92,8 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'sif-ettersending'
-            working-directory: 'apps/sif-ettersending'
+            app-name: "sif-ettersending"
+            working-directory: "apps/sif-ettersending"
 
     deploy-opplaringspenger-soknad:
         name: Deploy opplaringspenger-soknad to dev
@@ -102,8 +102,30 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'opplaringspenger-soknad'
-            working-directory: 'apps/opplaringspenger-soknad'
+            app-name: "opplaringspenger-soknad"
+            working-directory: "apps/opplaringspenger-soknad"
+
+    deploy-dine-pleiepenger:
+        name: Deploy dine pleiepenger to dev
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        secrets: inherit
+        permissions:
+            id-token: write
+        with:
+            app-name: "dine-pleiepenger"
+            working-directory: "apps/dine-pleiepenger"
+            is-next-app: true
+
+    deploy-omsorgsdager-kalkulator:
+        name: Deploy omsorgsdager-kalkulator to dev
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        secrets: inherit
+        permissions:
+            id-token: write
+        with:
+            app-name: "omsorgsdager-kalkulator"
+            working-directory: "apps/omsorgsdager-kalkulator"
+            is-next-app: true
 
     deploy-ungdomsytelse-deltaker:
         name: Deploy ungdomsytelse-deltaker to dev
@@ -112,5 +134,12 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: 'ungdomsytelse-deltaker'
-            working-directory: 'apps/ungdomsytelse-deltaker'
+            app-name: "ungdomsytelse-deltaker"
+            working-directory: "apps/ungdomsytelse-deltaker"
+
+    deploy-ungdomsytelse-veileder:
+        name: Deploy ungdomsytelse-veileder to dev
+        uses: navikt/sif-brukerdialog/.github/workflows/deploy-veileder-app-to-dev.yml@main
+        secrets: inherit
+        permissions:
+            id-token: write

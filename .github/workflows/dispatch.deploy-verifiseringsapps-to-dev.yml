@@ -59,6 +59,6 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: "dine pleiepenger"
+            app-name: "dine-pleiepenger"
             working-directory: "apps/dine-pleiepenger"
             is-next-app: true
