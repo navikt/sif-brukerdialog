@@ -2,7 +2,7 @@
     "name": "@navikt/ungdomsytelse-deltaker",
     "type": "module",
     "private": true,
-    "version": "1.5.8",
+    "version": "1.5.9",
     "scripts": {
         "build": "vite build --base=/ungdomsprogrammet/ytelsen",
         "check:types": "tsc --noemit",
