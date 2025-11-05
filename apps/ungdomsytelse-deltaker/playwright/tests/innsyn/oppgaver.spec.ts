@@ -145,7 +145,7 @@ test.describe('Innsyn - oppgaver', () => {
             await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();
             await expect(page.getByRole('heading', { name: 'Tilbakemelding på inntekt i juli 2025' })).toBeVisible();
             await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
-            await expect(page.getByText('7. august 2025', { exact: true })).toBeVisible();
+            await expect(page.getByText('28. august 2025', { exact: true })).toBeVisible();
             await page.getByRole('radio', { name: 'Ja, inntekten stemmer' }).check();
             await page.getByTestId('typedFormikForm-submitButton').click();
             // Kvittering
@@ -164,7 +164,7 @@ test.describe('Innsyn - oppgaver', () => {
             await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();
             await expect(page.getByRole('heading', { name: 'Tilbakemelding på inntekt i juli 2025' })).toBeVisible();
             await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
-            await expect(page.getByText('7. august 2025', { exact: true })).toBeVisible();
+            await expect(page.getByText('28. august 2025', { exact: true })).toBeVisible();
             await page.getByRole('radio', { name: 'Nei' }).check();
             await page.getByRole('textbox', { name: 'Tilbakemelding' }).fill('Inntekten fra SJOKKERENDE');
             await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
