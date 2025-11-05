@@ -145,7 +145,7 @@ const getRapporterInntektOppgaveLøst = (): OppgaveDto => ({
     frist: getDatoer().løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
     løstDato: getDatoer().løstOppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
     oppgavetypeData: {
-        fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.startOf('month').toDate()),
         tilOgMed: dateToISODate(getDatoer().løstOppgaveMåned.endOf('month').toDate()),
         rapportertInntekt: {
             fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.startOf('month').toDate()),
@@ -182,8 +182,6 @@ const getBekreftAvvikOppgave = (): OppgaveDto => ({
 
 const getBekreftAvvikOppgaveLøst = (): OppgaveDto => ({
     ...getBekreftAvvikOppgave(),
-    oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
-    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
         fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
         tilOgMed: dateToISODate(getDatoer().løstOppgaveMåned.endOf('month').toDate()),
