@@ -51,3 +51,14 @@ jobs:
         secrets: inherit
         permissions:
             id-token: write
+
+    deploy-dine-pleiepenger:
+        name: Deploy dine pleiepenger to dev
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        secrets: inherit
+        permissions:
+            id-token: write
+        with:
+            app-name: "dine pleiepenger"
+            working-directory: "apps/dine pleiepenger"
+            is-next-app: true
