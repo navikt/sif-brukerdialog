@@ -125,7 +125,6 @@ jobs:
         with:
             app-name: "omsorgsdager-kalkulator"
             working-directory: "apps/omsorgsdager-kalkulator"
-            is-next-app: true
 
     deploy-ungdomsytelse-deltaker:
         name: Deploy ungdomsytelse-deltaker to dev
