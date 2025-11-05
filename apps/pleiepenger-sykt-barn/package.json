@@ -4,12 +4,11 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-sykt-barn",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "4.11.32",
+    "version": "4.11.33",
     "private": true,
     "type": "module",
     "dependencies": {
         "@navikt/aksel-icons": "7.33.0",
-        "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "7.33.0",
         "@navikt/ds-react": "7.33.0",
         "@navikt/fnrvalidator": "2.1.5",

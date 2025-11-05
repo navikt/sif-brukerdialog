@@ -1,5 +1,14 @@
 # @navikt/sif-demo-app
 
+## 0.9.22
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+- Updated dependencies [fe1a62a]
+    - @navikt/sif-common-core-ds@10.3.29
+    - @navikt/sif-common-ui@0.11.30
+
 ## 0.9.21
 
 ### Patch Changes

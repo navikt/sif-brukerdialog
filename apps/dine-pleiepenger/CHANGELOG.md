@@ -1,5 +1,13 @@
 # @navikt/dine-pleiepenger
 
+## 1.12.4
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+- Updated dependencies [fe1a62a]
+    - @navikt/sif-common-core-ds@10.3.29
+
 ## 1.12.3
 
 ### Patch Changes

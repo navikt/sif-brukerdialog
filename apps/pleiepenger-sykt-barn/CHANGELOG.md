@@ -1,5 +1,16 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.33
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+- Updated dependencies [fe1a62a]
+    - @navikt/sif-common-soknad-ds@26.1.12
+    - @navikt/sif-common-core-ds@10.3.29
+    - @navikt/sif-common-forms-ds@21.0.30
+    - @navikt/sif-common-ui@0.11.30
+
 ## 4.11.32
 
 ### Patch Changes

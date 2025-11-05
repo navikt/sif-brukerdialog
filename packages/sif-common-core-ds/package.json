@@ -2,7 +2,7 @@
     "author": "navikt",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-core-ds",
-    "version": "10.3.28",
+    "version": "10.3.29",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -21,7 +21,6 @@
     },
     "devDependencies": {
         "@navikt/aksel-icons": "7.33.0",
-        "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "7.33.0",
         "@navikt/ds-react": "7.33.0",
         "@navikt/ds-tailwind": "7.33.0",
