@@ -9,7 +9,6 @@
     "type": "module",
     "dependencies": {
         "@navikt/aksel-icons": "7.33.0",
-        "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "7.33.0",
         "@navikt/ds-react": "7.33.0",
         "@navikt/fnrvalidator": "2.1.5",
