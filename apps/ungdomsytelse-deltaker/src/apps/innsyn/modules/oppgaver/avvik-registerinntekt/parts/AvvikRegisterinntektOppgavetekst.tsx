@@ -56,11 +56,13 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                         )}
                     </BodyLong>
 
+                    {/*
+                    Denne skal ikke tas inn enda
                     {oppgave.oppgavetypeData.gjelderSisteMåned && (
                         <BodyLong>
                             <AppText id="avvikRegisterinntektOppgavetekst.sisteMåned" values={{ rapporteringsmåned }} />
                         </BodyLong>
-                    )}
+                    )} */}
 
                     <Box marginBlock="0 2">
                         <InntektTable

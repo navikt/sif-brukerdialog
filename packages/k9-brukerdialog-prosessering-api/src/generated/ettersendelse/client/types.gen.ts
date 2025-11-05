@@ -107,7 +107,7 @@ type BuildUrlFn = <
         url: string;
     },
 >(
-    options: Pick<TData, 'url'> & Options<TData>,
+    options: TData & Options<TData>,
 ) => string;
 
 export type Client = CoreClient<RequestFn, Config, MethodFn, BuildUrlFn, SseFn> & {
@@ -140,7 +140,8 @@ export type Options<
     TData extends TDataShape = TDataShape,
     ThrowOnError extends boolean = boolean,
     TResponse = unknown,
-> = OmitKeys<RequestOptions<TResponse, ThrowOnError>, 'body' | 'path' | 'query' | 'url'> & Omit<TData, 'url'>;
+> = OmitKeys<RequestOptions<TResponse, ThrowOnError>, 'body' | 'path' | 'query' | 'url'> &
+    ([TData] extends [never] ? unknown : Omit<TData, 'url'>);
 
 export type OptionsLegacyParser<TData = unknown, ThrowOnError extends boolean = boolean> = TData extends { body?: any }
     ? TData extends { headers?: any }

@@ -2,7 +2,7 @@ import { Box, Heading, List, VStack } from '@navikt/ds-react';
 import { AppText } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
 
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import ExternalLink from '../../../components/external-link/ExternalLink';
 
 const BehandlingAvPersonopplysningerContent = () => {
     return (
@@ -40,9 +40,7 @@ const BehandlingAvPersonopplysningerContent = () => {
                 <AppText
                     id="personopplysninger.5"
                     values={{
-                        Lenke: (children) => (
-                            <ExternalLinkIcon href={getLenker().personvern}>{children}</ExternalLinkIcon>
-                        ),
+                        Lenke: (children) => <ExternalLink href={getLenker().personvern}>{children}</ExternalLink>,
                     }}
                 />
             </Box>

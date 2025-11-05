@@ -3,6 +3,7 @@ import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 import { RapporterInntektOppgave } from '../../src/types/Oppgave';
 import { store } from '../state/store';
+import { getMockToday } from './mockDate';
 
 function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
     const state = store.get();
@@ -23,20 +24,20 @@ export const mockUtils = {
     setOppgaveSomÅpnet: (ref: string) =>
         updateOppgave(ref, (oppgave) => ({
             ...oppgave,
-            åpnetDato: new Date().toISOString(),
+            åpnetDato: getMockToday().toISOString(),
         })),
 
     setOppgaveSomLukket: (ref: string) =>
         updateOppgave(ref, (oppgave) => ({
             ...oppgave,
             status: 'LUKKET',
-            lukketDato: new Date().toISOString(),
+            lukketDato: getMockToday().toISOString(),
         })),
 
     setDeltakelseSøktFor: () => {
         const state = store.get();
         const deltakelser = state.deltakelser.map((deltakelse, idx) =>
-            idx === 0 ? { ...deltakelse, søktTidspunkt: new Date().toISOString() } : deltakelse,
+            idx === 0 ? { ...deltakelse, søktTidspunkt: getMockToday().toISOString() } : deltakelse,
         );
         store.set({ ...state, deltakelser });
     },
@@ -47,7 +48,7 @@ export const mockUtils = {
                 harUttalelse: data.oppgave.uttalelse.harUttalelse,
                 uttalelseFraBruker: data.oppgave.uttalelse.uttalelseFraDeltaker,
             },
-            løstDato: new Date().toISOString(),
+            løstDato: getMockToday().toISOString(),
             status: 'LØST',
         };
         return updateOppgave(ref, (oppgave) => ({
@@ -68,7 +69,7 @@ export const mockUtils = {
                         arbeidstakerOgFrilansInntekt: data.oppgittInntekt.arbeidstakerOgFrilansInntekt || 0,
                     },
                 },
-                løstDato: new Date().toISOString(),
+                løstDato: getMockToday().toISOString(),
                 status: 'LØST',
             }) as any;
 
@@ -82,7 +83,7 @@ export const mockUtils = {
         return updateOppgave(ref, (oppgave): OppgaveDto => {
             return {
                 ...oppgave,
-                løstDato: new Date().toISOString(),
+                løstDato: getMockToday().toISOString(),
                 status: 'LØST',
             };
         });

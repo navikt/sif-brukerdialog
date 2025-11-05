@@ -6,6 +6,9 @@ import type {
     HentDokumentData,
     HentDokumentErrors,
     HentDokumentResponses,
+    HentInntektsmeldingerPåSakData,
+    HentInntektsmeldingerPåSakErrors,
+    HentInntektsmeldingerPåSakResponses,
     HentMineSakerData,
     HentMineSakerErrors,
     HentMineSakerResponses,
@@ -22,6 +25,8 @@ import type {
 import {
     zHentDokumentData,
     zHentDokumentResponse,
+    zHentInntektsmeldingerPåSakData,
+    zHentInntektsmeldingerPåSakResponse,
     zHentMineSakerData,
     zHentMineSakerResponse,
     zHentSaksbehandlingstidData,
@@ -48,6 +53,37 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
      */
     meta?: Record<string, unknown>;
 };
+
+export class SakInntektsmeldingerController {
+    public static hentInntektsmeldingerPåSak<ThrowOnError extends boolean = true>(
+        options: Options<HentInntektsmeldingerPåSakData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).get<
+            HentInntektsmeldingerPåSakResponses,
+            HentInntektsmeldingerPåSakErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) => {
+                return await zHentInntektsmeldingerPåSakData.parseAsync(data);
+            },
+            responseValidator: async (data) => {
+                return await zHentInntektsmeldingerPåSakResponse.parseAsync(data);
+            },
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/{saksnummer}/inntektsmeldinger',
+            ...options,
+        });
+    }
+}
 
 export class SØknadController {
     public static hentSøknader<ThrowOnError extends boolean = true>(options?: Options<HentSøknaderData, ThrowOnError>) {
