@@ -60,5 +60,5 @@ jobs:
             id-token: write
         with:
             app-name: "dine pleiepenger"
-            working-directory: "apps/dine pleiepenger"
+            working-directory: "apps/dine-pleiepenger"
             is-next-app: true
