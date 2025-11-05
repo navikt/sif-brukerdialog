@@ -11,6 +11,101 @@ export const zProblemDetail = z.object({
     properties: z.optional(z.record(z.string(), z.unknown())),
 });
 
+export const zArbeidsgiverDto = z.object({
+    navn: z.optional(z.string()),
+    arbeidsgiverOrgnr: z.string(),
+});
+
+export const zEndringRefusjonDto = z.object({
+    refusjonBeløpPerMnd: z.number(),
+    fom: z.iso.date(),
+});
+
+export const zPeriodeDto = z.object({
+    fom: z.iso.date(),
+    tom: z.iso.date(),
+});
+
+export const zGraderingDto = z.object({
+    periode: zPeriodeDto,
+    arbeidstidProsent: z.number(),
+});
+
+export const zNaturalYtelseDto = z.object({
+    periode: z.optional(zPeriodeDto),
+    beløpPerMnd: z.number(),
+    type: z.enum([
+        'ELEKTRISK_KOMMUNIKASJON',
+        'AKSJER_GRUNNFONDSBEVIS_TIL_UNDERKURS',
+        'LOSJI',
+        'KOST_DØGN',
+        'BESØKSREISER_HJEMMET_ANNET',
+        'KOSTBESPARELSE_I_HJEMMET',
+        'RENTEFORDEL_LÅN',
+        'BIL',
+        'KOST_DAGER',
+        'BOLIG',
+        'SKATTEPLIKTIG_DEL_FORSIKRINGER',
+        'FRI_TRANSPORT',
+        'OPSJONER',
+        'TILSKUDD_BARNEHAGEPLASS',
+        'ANNET',
+        'BEDRIFTSBARNEHAGEPLASS',
+        'YRKEBIL_TJENESTLIGBEHOV_KILOMETER',
+        'YRKEBIL_TJENESTLIGBEHOV_LISTEPRIS',
+        'INNBETALING_TIL_UTENLANDSK_PENSJONSORDNING',
+        'UDEFINERT',
+    ]),
+});
+
+export const zOppholdDto = z.object({
+    periode: zPeriodeDto,
+    varighetPerDag: z.optional(z.string()),
+});
+
+export const zUtsettelseDto = z.object({
+    periode: zPeriodeDto,
+    getårsak: z.enum(['ARBEID', 'FERIE', 'SYKDOM', 'INSTITUSJON_SØKER', 'INSTITUSJON_BARN', 'UDEFINERT']),
+});
+
+export const zSakInntektsmeldingDto = z.object({
+    ytelseType: z.enum([
+        'PLEIEPENGER_SYKT_BARN',
+        'PLEIEPENGER_NÆRSTÅENDE',
+        'OMSORGSPENGER_KS',
+        'OMSORGSPENGER_MA',
+        'OMSORGSPENGER_AO',
+        'OPPLÆRINGSPENGER',
+    ]),
+    status: z.enum(['I_BRUK', 'ERSTATTET_AV_NYERE', 'IKKE_RELEVANT', 'MANGLER_DATO']),
+    saksnummer: z.string(),
+    innsendingstidspunkt: z.iso.datetime(),
+    kildesystem: z.string(),
+    arbeidsgiver: zArbeidsgiverDto,
+    nærRelasjon: z.boolean(),
+    journalpostId: z.string(),
+    mottattDato: z.iso.date(),
+    inntektBeløp: z.number(),
+    innsendingsårsak: z.enum(['NY', 'ENDRING', 'UDEFINERT']),
+    erstattetAv: z.array(z.string()),
+    graderinger: z.optional(z.array(zGraderingDto)),
+    naturalYtelser: z.optional(z.array(zNaturalYtelseDto)),
+    utsettelsePerioder: z.optional(z.array(zUtsettelseDto)),
+    startDatoPermisjon: z.optional(z.iso.date()),
+    oppgittFravær: z.optional(z.array(zOppholdDto)),
+    refusjonBeløpPerMnd: z.optional(z.number()),
+    refusjonOpphører: z.optional(z.iso.date()),
+    inntektsmeldingType: z.optional(
+        z.enum([
+            'ORDINÆR',
+            'OMSORGSPENGER_REFUSJON',
+            'ARBEIDSGIVERINITIERT_NYANSATT',
+            'ARBEIDSGIVERINITIERT_UREGISTRERT',
+        ]),
+    ),
+    endringerRefusjon: z.optional(z.array(zEndringRefusjonDto)),
+});
+
 export const zAdressebeskyttelse = z.object({
     gradering: z.enum(['STRENGT_FORTROLIG_UTLAND', 'STRENGT_FORTROLIG', 'FORTROLIG', 'UGRADERT']),
 });
@@ -552,7 +647,7 @@ export const zSakDto = z.object({
         'OBSOLETE',
         '-',
     ]),
-    ytelseType: z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_AO', 'OLP']),
+    ytelseType: z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_AO', 'OMP', 'OLP']),
     behandlinger: z.array(zBehandlingDto),
 });
 
@@ -581,6 +676,19 @@ export const zFraværPeriodeWritable = z.object({
     arbeidsforholdId: z.optional(z.string()),
     arbeidsgiverOrgNr: z.optional(z.string()),
 });
+
+export const zHentInntektsmeldingerPåSakData = z.object({
+    body: z.optional(z.never()),
+    path: z.object({
+        saksnummer: z.string(),
+    }),
+    query: z.optional(z.never()),
+});
+
+/**
+ * OK
+ */
+export const zHentInntektsmeldingerPåSakResponse = z.array(zSakInntektsmeldingDto);
 
 export const zHentSøknaderData = z.object({
     body: z.optional(z.never()),

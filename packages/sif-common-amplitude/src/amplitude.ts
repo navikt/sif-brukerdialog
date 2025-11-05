@@ -1,4 +1,4 @@
-import { getAmplitudeInstance } from '@navikt/nav-dekoratoren-moduler';
+import { getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler';
 import constate from 'constate';
 
 const MAX_AWAIT_TIME = 500;
@@ -62,7 +62,7 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, apiKey } = props;
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
-        const logger = getAmplitudeInstance('dekoratoren');
+        const logger = getAnalyticsInstance('dekoratoren');
         if (isActive && logger) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {

@@ -1,5 +1,28 @@
 # @navikt/sif-demo-app
 
+## 0.9.22
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+- Updated dependencies [fe1a62a]
+    - @navikt/sif-common-core-ds@10.3.29
+    - @navikt/sif-common-ui@0.11.30
+
+## 0.9.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.27
+    - @navikt/sif-common-core-ds@10.3.28
+    - @navikt/sif-common-api@0.4.70
+    - @navikt/sif-validation@1.0.13
+    - @navikt/sif-common-ui@0.11.29
+    - @navikt/ung-common@0.0.70
+    - @navikt/sif-common-faro@0.2.8
+
 ## 0.9.20
 
 ### Patch Changes
