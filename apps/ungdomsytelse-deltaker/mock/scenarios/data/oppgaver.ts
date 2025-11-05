@@ -48,7 +48,7 @@ const getEndretStartdatoOppgave = (): OppgaveDto => ({
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
 });
 
 const getEndretStartdatoOppgaveLøst = (): OppgaveDto => ({
@@ -63,7 +63,7 @@ const getEndretStartdatoOppgaveLøst = (): OppgaveDto => ({
     },
     status: OppgaveStatus.LØST,
     opprettetDato: getDatoer().løstOppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    frist: getDatoer().løstOppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
     løstDato: getDatoer().løstOppgaveMåned.add(3, 'days').startOf('day').add(12, 'hours').toISOString(),
 });
 
@@ -130,7 +130,7 @@ const getRapporterInntektOppgave = (): OppgaveDto => ({
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
     oppgavetypeData: {
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
@@ -142,7 +142,7 @@ const getRapporterInntektOppgaveLøst = (): OppgaveDto => ({
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.LØST,
     opprettetDato: getDatoer().løstOppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    frist: getDatoer().løstOppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
     løstDato: getDatoer().løstOppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
     oppgavetypeData: {
         fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.startOf('month').toDate()),
@@ -175,7 +175,7 @@ const getBekreftAvvikOppgave = (): OppgaveDto => ({
             totalInntekt: 20000,
         },
     },
-    frist: getDatoer().løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    frist: getDatoer().løstOppgaveMåned.add(28, 'days').add(7, 'hours').toISOString(),
     opprettetDato: getDatoer().løstOppgaveMåned.add(3, 'hours').toISOString(),
     status: OppgaveStatus.ULØST,
 });
@@ -202,10 +202,10 @@ const getBekreftAvvikOppgaveLøst = (): OppgaveDto => ({
     bekreftelse: {
         harUttalelse: false,
     },
-    frist: getDatoer().løstOppgaveMåned.add(8, 'days').add(7, 'hours').toISOString(),
+    frist: getDatoer().løstOppgaveMåned.add(28, 'days').add(7, 'hours').toISOString(),
     opprettetDato: getDatoer().løstOppgaveMåned.add(3, 'hours').toISOString(),
     status: OppgaveStatus.LØST,
-    løstDato: getDatoer().løstOppgaveMåned.add(8, 'days').add(54, 'hours').toISOString(),
+    løstDato: getDatoer().løstOppgaveMåned.add(28, 'days').add(54, 'hours').toISOString(),
 });
 
 export const getMockOppgaver = () => ({
