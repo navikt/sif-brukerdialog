@@ -1,5 +1,18 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.59
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+
+## 2.20.58
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+    - @navikt/sif-common-hooks@0.3.7
+
 ## 2.20.57
 
 ### Patch Changes

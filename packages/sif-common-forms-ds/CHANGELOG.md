@@ -1,5 +1,25 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.30
+
+### Patch Changes
+
+- Updated dependencies [fe1a62a]
+    - @navikt/sif-common-core-ds@10.3.29
+    - @navikt/sif-common-ui@0.11.30
+
+## 21.0.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.27
+    - @navikt/sif-common-core-ds@10.3.28
+    - @navikt/sif-common-utils@3.49.48
+    - @navikt/sif-validation@1.0.13
+    - @navikt/sif-common-ui@0.11.29
+
 ## 21.0.28
 
 ### Patch Changes

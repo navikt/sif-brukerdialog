@@ -1,5 +1,20 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.29
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+
+## 10.3.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.48
+    - @navikt/sif-common-api@0.4.70
+
 ## 10.3.27
 
 ### Patch Changes

@@ -1,9 +1,9 @@
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, GuidePanel, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
 
+import ExternalLink from '../../../components/external-link/ExternalLink';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 
 interface Props {
@@ -37,9 +37,7 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                             id="velkommenMelding.søknadBeskrivelse"
                             values={{
                                 Lenke: (children) => (
-                                    <ExternalLinkIcon role="presentation" href={getLenker().omUngdomsprogramytelsen}>
-                                        {children}
-                                    </ExternalLinkIcon>
+                                    <ExternalLink href={getLenker().omUngdomsprogramytelsen}>{children}</ExternalLink>
                                 ),
                             }}
                         />

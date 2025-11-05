@@ -16,20 +16,103 @@ export type ProblemDetail = {
 };
 
 export type ArbeidsgiverDto = {
+    organisasjon?: ArbeidsgiverOrganisasjonDto;
+    privat?: ArbeidsgiverPrivatDto;
+};
+
+export type ArbeidsgiverOrganisasjonDto = {
     navn?: string;
-    arbeidsgiverOrgnr: string;
+    organisasjonsnummer: string;
+};
+
+export type ArbeidsgiverPrivatDto = {
+    navn?: string;
+    fødselsnummer: string;
+};
+
+export type EndringRefusjonDto = {
+    refusjonBeløpPerMnd: number;
+    fom: string;
+};
+
+export type GraderingDto = {
+    periode: PeriodeDto;
+    arbeidstidProsent: number;
+};
+
+export type NaturalYtelseDto = {
+    periode?: PeriodeDto;
+    beløpPerMnd: number;
+    type:
+        | 'ELEKTRISK_KOMMUNIKASJON'
+        | 'AKSJER_GRUNNFONDSBEVIS_TIL_UNDERKURS'
+        | 'LOSJI'
+        | 'KOST_DØGN'
+        | 'BESØKSREISER_HJEMMET_ANNET'
+        | 'KOSTBESPARELSE_I_HJEMMET'
+        | 'RENTEFORDEL_LÅN'
+        | 'BIL'
+        | 'KOST_DAGER'
+        | 'BOLIG'
+        | 'SKATTEPLIKTIG_DEL_FORSIKRINGER'
+        | 'FRI_TRANSPORT'
+        | 'OPSJONER'
+        | 'TILSKUDD_BARNEHAGEPLASS'
+        | 'ANNET'
+        | 'BEDRIFTSBARNEHAGEPLASS'
+        | 'YRKEBIL_TJENESTLIGBEHOV_KILOMETER'
+        | 'YRKEBIL_TJENESTLIGBEHOV_LISTEPRIS'
+        | 'INNBETALING_TIL_UTENLANDSK_PENSJONSORDNING'
+        | 'UDEFINERT';
+};
+
+export type OppholdDto = {
+    periode: PeriodeDto;
+    varighetPerDag?: string;
+};
+
+export type PeriodeDto = {
+    fom: string;
+    tom: string;
 };
 
 export type SakInntektsmeldingDto = {
+    ytelseType:
+        | 'PLEIEPENGER_SYKT_BARN'
+        | 'PLEIEPENGER_NÆRSTÅENDE'
+        | 'OMSORGSPENGER_KS'
+        | 'OMSORGSPENGER_MA'
+        | 'OMSORGSPENGER_AO'
+        | 'OPPLÆRINGSPENGER';
+    status: 'I_BRUK' | 'ERSTATTET_AV_NYERE' | 'IKKE_RELEVANT' | 'MANGLER_DATO';
     saksnummer: string;
-    journalpostId: string;
+    innsendingstidspunkt: string;
+    kildesystem: string;
     arbeidsgiver: ArbeidsgiverDto;
-    startDatoPermisjon?: string;
+    nærRelasjon: boolean;
+    journalpostId: string;
     mottattDato: string;
     inntektBeløp: number;
-    innsendingstidspunkt: string;
-    kildesystem?: string;
+    innsendingsårsak: 'NY' | 'ENDRING' | 'UDEFINERT';
     erstattetAv: string[];
+    graderinger?: GraderingDto[];
+    naturalYtelser?: NaturalYtelseDto[];
+    utsettelsePerioder?: UtsettelseDto[];
+    startDatoPermisjon?: string;
+    oppgittFravær?: OppholdDto[];
+    refusjonBeløpPerMnd?: number;
+    refusjonOpphører?: string;
+    inntektsmeldingType?:
+        | 'ORDINÆR'
+        | 'OMSORGSPENGER_REFUSJON'
+        | 'ARBEIDSGIVERINITIERT_NYANSATT'
+        | 'ARBEIDSGIVERINITIERT_UREGISTRERT';
+    endringerRefusjon?: EndringRefusjonDto[];
+};
+
+export type UtsettelseDto = {
+    periode: PeriodeDto;
+    getårsak: 'ARBEID' | 'FERIE' | 'SYKDOM' | 'INSTITUSJON_SØKER' | 'INSTITUSJON_BARN' | 'UDEFINERT';
 };
 
 export type Adressebeskyttelse = {
@@ -550,7 +633,7 @@ export type SakDto = {
         | 'UNG'
         | 'OBSOLETE'
         | '-';
-    ytelseType: 'PSB' | 'PPN' | 'OMP_KS' | 'OMP_MA' | 'OMP_AO' | 'OLP';
+    ytelseType: 'PSB' | 'PPN' | 'OMP_KS' | 'OMP_MA' | 'OMP_AO' | 'OMP' | 'OLP';
     behandlinger: BehandlingDto[];
 };
 

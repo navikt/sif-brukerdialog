@@ -13,8 +13,6 @@ export const rapporterInntektMessages_nb = {
     'rapporterInntektOppgave.readMore.liste.5': 'tips',
     'rapporterInntektOppgave.readMore.liste.6': 'frilansinntekt',
     'rapporterInntektOppgave.readMore.liste.7': 'inntekt fra aksjeselskap (AS)',
-    'rapporterInntektOppgave.readMore.tekst.2':
-        'Pengene du får fra ungdomsprogramytelsen, skal du ikke gi beskjed om her.',
     'rapporterInntektOppgave.readMore.tekst.3':
         '<link>Du kan lese mer om hva som regnes som inntekt i skatteloven §§ 5.10 til 5.15.</link>',
     'rapporterInntektOppgave.intro.3':

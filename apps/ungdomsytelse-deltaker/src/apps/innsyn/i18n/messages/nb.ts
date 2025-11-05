@@ -137,7 +137,7 @@ export const innsynMessages_nb = {
 
     'inntektForm.feilInntekt.tittel': 'Hva skjer hvis jeg melder inn feil inntekt?',
     'inntektForm.feilInntekt.tekst.1':
-        'Vi sjekker alltid hva arbeidsgiveren din har registrert at du fikk inntekt. Arbeidsgivere registrerer inntekt i et system som heter A-ordningen, og som blant annet Nav og Skatteetaten har tilgang til.',
+        'Vi sjekker alltid hva arbeidsgiveren din har registrert at du fikk i inntekt. Arbeidsgivere registrerer inntekt i et system som heter A-ordningen, og som blant annet Nav og Skatteetaten har tilgang til.',
     'inntektForm.feilInntekt.tekst.2':
         'Hvis det er forskjell på inntekten din i A-ordningen, og inntekten du har sendt inn til oss, får du beskjed om det.',
 

@@ -1,5 +1,39 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.10
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+- Updated dependencies [fe1a62a]
+    - @navikt/sif-common-soknad-ds@26.1.12
+    - @navikt/sif-common-core-ds@10.3.29
+    - @navikt/sif-common-forms-ds@21.0.30
+    - @navikt/sif-common-ui@0.11.30
+
+## 1.5.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.44
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.9
+    - @navikt/sif-common-soknad-ds@26.1.11
+    - @navikt/sif-common-forms-ds@21.0.29
+    - @navikt/sif-common-core-ds@10.3.28
+    - @navikt/sif-common-api@0.4.70
+    - @navikt/sif-common-ui@0.11.29
+    - @navikt/ung-common@0.0.70
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-faro@0.2.8
+
+## 1.5.8
+
+### Patch Changes
+
+- BugFix - feil komponent for eksterne lenker
+
 ## 1.5.7
 
 ### Patch Changes
