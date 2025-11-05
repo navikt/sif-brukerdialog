@@ -1,7 +1,8 @@
 import { Box, Heading, Link, List } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import { File } from '@navikt/ds-icons';
+import { FileIcon } from '@navikt/aksel-icons';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+
 import { AppText } from '../../i18n';
 import { InnsendtSøknadArbeidsgiver } from '../../server/api-models/ArbeidsgivereSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/InnsendtSøknad';
@@ -46,7 +47,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
                         søknad.søknadId,
                         organisasjon.organisasjonsnummer,
                     )}>
-                    <File title="Dokumentikon" />
+                    <FileIcon title="Dokumentikon" />
                     <AppText
                         id="dokumenterSomKanLastesNed.bekreftelse"
                         values={{
@@ -66,7 +67,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
                     href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(
                         dokument,
                     )}`}>
-                    <File title="Dokumentikon" />
+                    <FileIcon title="Dokumentikon" />
                     <span>{`${dokument.tittel} (PDF)`}</span>
                 </Link>
             </li>

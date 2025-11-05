@@ -1,15 +1,15 @@
 import { BodyShort, HStack, Tooltip } from '@navikt/ds-react';
-import { WarningFilled } from '@navikt/ds-icons';
-import { FormikTextarea, isValidationErrorsVisible } from '@navikt/sif-common-formik-ds';
+import { isValidationErrorsVisible } from '@navikt/sif-common-formik-ds';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import EnkeltdatoListAndDialog from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/EnkeltdatoListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { capsFirstCharacter, dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { getStringValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
-import { useAppIntl } from '../../../i18n';
-import { KursFormFields } from './KursStep';
-import { getDatoerUtenforSøknadsperioder, getReisedagerValidator } from './kursStepUtils';
+import { useAppIntl } from '../../../../../i18n';
+import { KursFormComponents, KursFormFields } from '../../KursStep';
+import { getDatoerUtenforSøknadsperioder, getReisedagerValidator } from '../../utils/kursStepUtils';
+import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 
 interface Props {
     reisedager: Enkeltdato[];
@@ -50,7 +50,7 @@ const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, k
                                     {capsFirstCharacter(dateFormatter.dayCompactDate(dato.dato))}
                                     <BodyShort className="text-red-500" as="span">
                                         <Tooltip content="Reisedag er utenfor søknadsperioden">
-                                            <WarningFilled />
+                                            <ExclamationmarkTriangleFillIcon style={{ color: '#C30000' }} />
                                         </Tooltip>
                                     </BodyShort>
                                 </HStack>
@@ -61,7 +61,7 @@ const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, k
                     disabledDateRanges={disabledDateRanges}
                     validate={getReisedagerValidator(kursperioder)}
                 />
-                <FormikTextarea
+                <KursFormComponents.Textarea
                     name={KursFormFields.reisedagerBeskrivelse}
                     label={text('steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.label')}
                     maxLength={maksTegnBeskrivelse}

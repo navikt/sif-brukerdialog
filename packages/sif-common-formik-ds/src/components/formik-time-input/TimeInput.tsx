@@ -30,6 +30,7 @@ export interface TimeInputLayoutProps {
     direction?: TimeInputLayout;
     compact?: boolean;
     justifyContent?: 'left' | 'center' | 'right';
+    wide?: boolean;
     placeholders?: {
         hours: string;
         minutes: string;
@@ -65,6 +66,7 @@ const TimeInput = ({
     maxMinutes = MAX_MINUTES,
     direction: layout = 'horizontal',
     compact = true,
+    wide = false,
     justifyContent = 'center',
     placeholders,
     description,
@@ -89,6 +91,7 @@ const TimeInput = ({
                 bem.modifier(layout),
                 bem.modifier(`content-${justifyContent}`),
                 bem.modifierConditional('compact', compact),
+                bem.modifierConditional('wide', wide),
                 bem.modifierConditional('withValue', hasValue(time.hours) || hasValue(time.minutes)),
                 bem.modifierConditional('withHours', hasValue(time.hours)),
                 bem.modifierConditional('withMinutes', hasValue(time.minutes)),

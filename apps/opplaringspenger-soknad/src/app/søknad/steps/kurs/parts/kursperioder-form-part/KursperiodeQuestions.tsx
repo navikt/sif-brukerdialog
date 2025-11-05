@@ -1,14 +1,14 @@
 import { Box, Button, VStack } from '@navikt/ds-react';
-import { Delete } from '@navikt/ds-icons';
 import { getTypedFormComponents, ISOStringToDate, ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { DateRange, ISODate } from '@navikt/sif-common-utils';
 import { getDateRangeValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
-import { AppText, useAppIntl } from '../../../../i18n';
-import { getPeriodeFromKursperiodeFormValue } from '../kursperiodeUtils';
-import { KursFormFields } from '../KursStep';
-import { startOgSluttErSammeHelg } from '../kursStepUtils';
+import { AppText, useAppIntl } from '../../../../../i18n';
+import kursperiodeOgDagUtils from '../../utils/kursperiodeOgDagUtils';
+import { KursFormFields } from '../../KursStep';
+import { startOgSluttErSammeHelg } from '../../utils/kursStepUtils';
+import { TrashIcon } from '@navikt/aksel-icons';
 
 export enum KursperiodeFormFields {
     tom = 'tom',
@@ -51,7 +51,7 @@ const KursperiodeQuestions = ({
 
     const disabledDateRanges = allePerioder
         .filter((p) => p !== values)
-        .map(getPeriodeFromKursperiodeFormValue)
+        .map(kursperiodeOgDagUtils.getPeriodeFromKursperiodeFormValue)
         .filter((p) => p !== undefined);
     const startdato = ISOStringToDate(values[KursperiodeFormFields.fom]);
     const sluttdato = ISOStringToDate(values[KursperiodeFormFields.tom]);
@@ -61,7 +61,7 @@ const KursperiodeQuestions = ({
         <VStack gap="4">
             <Form.DateRangePicker
                 legend={text('kursperiode.form.periode.label', { periodeNr })}
-                hideLegend={harFlerePerioder === false}
+                hideLegend={true}
                 minDate={minDate}
                 validate={() => {
                     const error = startOgSluttErSammeHelg(startdato, sluttdato);
@@ -150,7 +150,7 @@ const KursperiodeQuestions = ({
                         type="button"
                         variant="tertiary"
                         iconPosition="left"
-                        icon={<Delete aria-hidden={true} />}
+                        icon={<TrashIcon aria-hidden={true} />}
                         onClick={onRemove}
                         size="small">
                         <AppText id="kursperiode.fjern.label" values={{ periodeNr, harFlerePerioder }} />

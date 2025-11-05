@@ -1,5 +1,6 @@
 import { createChildLogger } from '@navikt/next-logger';
 import { NextApiRequest } from 'next';
+
 import { getXRequestId } from './apiUtils';
 
 export const getChildLoggerContext = (xRequestId: string, context?: any) => {

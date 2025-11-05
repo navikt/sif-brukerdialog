@@ -15,14 +15,14 @@ import { AppText, useAppIntl } from '@shared/i18n';
 import { useState } from 'react';
 
 export enum InntektFormFields {
-    harLønn = 'harLønn',
-    lønn = 'lønn',
+    harInntekt = 'harInntekt',
+    inntekt = 'inntekt',
     bekrefterInntekt = 'bekrefterInntekt',
 }
 
 export interface InntektFormValues {
-    [InntektFormFields.harLønn]?: YesOrNo;
-    [InntektFormFields.lønn]?: string;
+    [InntektFormFields.harInntekt]?: YesOrNo;
+    [InntektFormFields.inntekt]?: string;
     [InntektFormFields.bekrefterInntekt]?: boolean;
 }
 
@@ -42,10 +42,10 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
     const [dtoError, setDtoError] = useState<string | undefined>(undefined);
 
     const handleSubmit = (values: InntektFormValues) => {
-        const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harLønn] === YesOrNo.YES;
+        const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harInntekt] === YesOrNo.YES;
 
         const arbeidstakerOgFrilansInntekt = harArbeidstakerOgFrilansInntekt
-            ? getNumberFromNumberInputValue(values[InntektFormFields.lønn])
+            ? getNumberFromNumberInputValue(values[InntektFormFields.inntekt])
             : 0;
 
         if (harArbeidstakerOgFrilansInntekt && arbeidstakerOgFrilansInntekt === undefined) {
@@ -67,7 +67,7 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
             initialValues={{}}
             onSubmit={handleSubmit}
             renderForm={({ values }) => {
-                const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harLønn] === YesOrNo.YES;
+                const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harInntekt] === YesOrNo.YES;
 
                 return (
                     <Form
@@ -81,8 +81,8 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
                         <VStack gap="4">
                             <FormLayout.Questions>
                                 <YesOrNoQuestion
-                                    name={InntektFormFields.harLønn}
-                                    legend={text('inntektForm.utbetaltLønnLegend', { måned })}
+                                    name={InntektFormFields.harInntekt}
+                                    legend={text('inntektForm.utbetaltInntektLegend', { måned })}
                                     validate={(v) => {
                                         const vError = getYesOrNoValidator()(v);
                                         return vError ? { key: vError, values: { måned } } : undefined;
@@ -92,10 +92,10 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
                                 {harArbeidstakerOgFrilansInntekt ? (
                                     <VStack gap="4">
                                         <NumberInput
-                                            name={InntektFormFields.lønn}
-                                            label={text('inntektForm.lønnLabel')}
+                                            name={InntektFormFields.inntekt}
+                                            label={text('inntektForm.inntektLabel')}
                                             integerValue={true}
-                                            description={text('inntektForm.lønnDescription')}
+                                            description={text('inntektForm.inntektDescription')}
                                             onFocus={dtoError ? () => setDtoError(undefined) : undefined}
                                             validate={getNumberValidator({
                                                 min: 1,
@@ -105,20 +105,20 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
                                             })}
                                         />
                                         <VStack gap="2">
-                                            <ReadMore header={text('inntektForm.hvordanFinnerDuUtLønn.tittel')}>
+                                            <ReadMore header={text('inntektForm.hvordanFinnerDuUtInntekt.tittel')}>
                                                 <BodyLong spacing>
-                                                    <AppText id="inntektForm.hvordanFinnerDuUtLønnBeskrivelse.tekst.1" />
+                                                    <AppText id="inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.1" />
                                                 </BodyLong>
                                                 <BodyLong spacing>
-                                                    <AppText id="inntektForm.hvordanFinnerDuUtLønnBeskrivelse.tekst.2" />
+                                                    <AppText id="inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.2" />
                                                 </BodyLong>
                                             </ReadMore>
-                                            <ReadMore header={text('inntektForm.feilLønn.tittel')}>
+                                            <ReadMore header={text('inntektForm.feilInntekt.tittel')}>
                                                 <BodyLong spacing>
-                                                    <AppText id="inntektForm.feilLønn.tekst.1" />
+                                                    <AppText id="inntektForm.feilInntekt.tekst.1" />
                                                 </BodyLong>
                                                 <BodyLong spacing>
-                                                    <AppText id="inntektForm.feilLønn.tekst.2" />
+                                                    <AppText id="inntektForm.feilInntekt.tekst.2" />
                                                 </BodyLong>
                                             </ReadMore>
                                         </VStack>

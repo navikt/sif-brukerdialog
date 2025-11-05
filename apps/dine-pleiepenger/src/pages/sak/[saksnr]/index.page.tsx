@@ -1,6 +1,7 @@
 import { Alert, Box } from '@navikt/ds-react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+
 import { withAuthenticatedPage } from '../../../auth/withAuthentication';
 import DefaultPageLayout from '../../../components/page-layout/default-page-layout/DefaultPageLayout';
 import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
@@ -19,7 +20,7 @@ const getSakFromSaksnr = (
 
 export default function SakRoutePage() {
     const {
-        innsynsdata: { saker, saksbehandlingstidUker },
+        innsynsdata: { saker },
     } = useInnsynsdataContext();
     const router = useRouter();
     const { saksnr } = router.query;
@@ -42,7 +43,6 @@ export default function SakRoutePage() {
         <SakPage
             sak={pleietrengendeMedSak.sak}
             pleietrengende={pleietrengendeMedSak.pleietrengende}
-            saksbehandlingstidUker={saksbehandlingstidUker}
             antallSaker={saker.length}
         />
     );

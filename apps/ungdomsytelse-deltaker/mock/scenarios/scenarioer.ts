@@ -1,4 +1,3 @@
-// import { dateToISODate } from '@navikt/sif-common-utils';
 import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 
@@ -115,12 +114,12 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
     },
     [ScenarioType.rapporterInntekt]: {
         type: ScenarioType.rapporterInntekt,
-        name: 'Oppgave for å melde fra om lønn',
+        name: 'Oppgave for å melde fra om inntekt',
         data: createSøktDeltakelse([mockOppgaver.søkYtelseOppgaveLøst, mockOppgaver.rapporterInntektOppgave]),
     },
     [ScenarioType.avvikInntekt]: {
         type: ScenarioType.avvikInntekt,
-        name: 'Oppgave for å sjekke lønn (avvik)',
+        name: 'Oppgave for å sjekke inntekt (avvik)',
         data: createSøktDeltakelse([
             mockOppgaver.søkYtelseOppgaveLøst,
             mockOppgaver.rapporterInntektOppgaveLøst,

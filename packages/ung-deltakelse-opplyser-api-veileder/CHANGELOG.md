@@ -1,5 +1,53 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.1.31
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.1.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 0.1.26
 
 ### Patch Changes

@@ -1,6 +1,7 @@
 import { Box, Heading, List } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { FormattedMessage, useIntl } from 'react-intl';
+
 import { Organisasjon } from '../../../types/Organisasjon';
 import { getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer } from '../../../utils/dokumentUtils';
 import { getOrganisasjonsnavnEllerOrgNummer } from '../../../utils/sakUtils';

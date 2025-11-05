@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import sortBy from 'lodash.sortby';
+
 import { Aksjonspunkt } from '../server/api-models/AksjonspunktSchema';
 import { Behandling } from '../server/api-models/BehandlingSchema';
 import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
@@ -39,13 +40,13 @@ export const sortInnsendelser = (innsendelser: Innsendelse[]): Innsendelse[] => 
     ).reverse();
 };
 
-export const sortSakshendelse = (h1: Sakshendelse, h2: Sakshendelse): number => {
-    if (h1.type === Sakshendelser.FORVENTET_SVAR) {
+export const sortSakshendelse = (hendelse1: Sakshendelse, hendelse2: Sakshendelse): number => {
+    if (hendelse1.type === Sakshendelser.FORVENTET_SVAR) {
         return 1;
-    } else if (h2.type === Sakshendelser.FORVENTET_SVAR) {
+    } else if (hendelse2.type === Sakshendelser.FORVENTET_SVAR) {
         return -1;
     }
-    return (h1.dato?.getTime() || 0) > (h2.dato?.getTime() || 0) ? 1 : -1;
+    return (hendelse1.dato?.getTime() || 0) > (hendelse2.dato?.getTime() || 0) ? 1 : -1;
 };
 
 export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | undefined => {

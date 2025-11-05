@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Button, Heading, List, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Button, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { AppText, useAppIntl } from '@shared/i18n';
 import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 import getLenker from '@shared/utils/lenker';
@@ -27,13 +27,23 @@ const KvitteringPage = () => {
                     </Heading>
                     <List>
                         <List.Item>
-                            <AppText id="kvitteringPage.hvaSkjerVidere.1" />
+                            <AppText
+                                id="kvitteringPage.hvaSkjerVidere.1"
+                                values={{
+                                    Lenke: (children) => <Link href={getLenker().minSide}>{children}</Link>,
+                                }}
+                            />
                         </List.Item>
                         <List.Item>
                             <AppText id="kvitteringPage.hvaSkjerVidere.2" />
                         </List.Item>
                         <List.Item>
-                            <AppText id="kvitteringPage.hvaSkjerVidere.3" />
+                            <AppText
+                                id="kvitteringPage.hvaSkjerVidere.3"
+                                values={{
+                                    Lenke: (children) => <Link href={getLenker().minSide}>{children}</Link>,
+                                }}
+                            />
                         </List.Item>
                     </List>
                 </div>

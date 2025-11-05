@@ -7,7 +7,8 @@ import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbe
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
+import { kursdagMessages } from '../søknad/steps/kurs/parts/kursdager-form-part/kursdagMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/parts/kursperioder-form-part/kursperiodeMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
@@ -27,6 +28,7 @@ const nb = {
     ...kursperiodeMessages.nb,
     ...arbeidstidMessages.nb,
     ...omBarnetFormIntlMessages.nb,
+    ...kursdagMessages.nb,
 
     'application.title': 'Søknad om opplæringspenger',
 
@@ -206,10 +208,13 @@ const nb = {
     'frilansoppdragInfo.tekst':
         'Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om opplæringspenger. Hvis informasjonen ikke stemmer, må du ta kontakt med oppdragsgiver og be de oppdatere informasjonen i AA-registeret.',
     'ingenFraværConfirmation.title': 'Ingen fravær registrert',
+    'ingenFraværConfirmation.enkeltdag.title': 'Dag uten fravær registrert',
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikke',
     'ingenFraværConfirmation.content':
         'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring, eller er borte fra jobb på grunn av reise til opplæringsstedet. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
+    'ingenFraværConfirmation.enkeltdag.content':
+        'Du har oppgitt at du jobber 7,5 timer eller mer på {antallDager, plural, one {dagen} other {dager}} du har opplæring. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring. Stemmer det at du ikke har fravær fra jobb {antallDager, plural, one {dagen} other {noen av dagene}} du søker for?',
     'ingenFraværConfirmation.heading': 'Fravær fra jobb',
 };
 
@@ -227,6 +232,7 @@ const nn: Record<keyof typeof nb, string> = {
     ...oppsummeringMessages.nn,
     ...validateApiDataMessages.nn,
     ...velkommenPageMessages.nn,
+    ...kursdagMessages.nn,
 
     'application.title': 'Søknad om opplæringspengar',
 
@@ -408,10 +414,13 @@ const nn: Record<keyof typeof nb, string> = {
     'frilansoppdragInfo.tekst':
         'Dette er frilansoppdrag registrerte i AA-registeret i perioden du søkjer om opplæringspengar. Dersom informasjonen ikkje stemmer, må du ta kontakt med oppdragsgivar og be dei oppdatere informasjonen i AA-registeret.',
     'ingenFraværConfirmation.title': 'Ingen fråvær registrert',
+    'ingenFraværConfirmation.enkeltdag.title': 'Dag utan fråvær registrert',
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikkje',
     'ingenFraværConfirmation.content':
         'Du har oppgitt at du jobbar som normalt og ikkje har fråvær dei dagane du søkjer for. For å ha rett til opplæringspengar må du ha fråvær frå jobb fordi du skal delta på opplæring, eller vere borte frå jobb på grunn av reise til opplæringsstaden. Stemmer det at du ikkje har fråvær frå jobb dei dagane du søkjer for?',
+    'ingenFraværConfirmation.enkeltdag.content':
+        'Du har oppgitt at du jobbar 7,5 timar eller meir på {antallDager, plural, one {dagen} other {dagar}} du har opplæring.For å ha rett til opplæringspengar må du ha fråvær frå jobb fordi du skal delta på opplæring, eller vere borte frå jobb på grunn av reise til opplæringsstaden. Stemmer det at du ikkje har fråvær frå jobb {antallDager, plural, one {dagen} other {nokon av dagane}} du søkjer for?',
     'ingenFraværConfirmation.heading': 'Fråvær frå jobb',
 };
 

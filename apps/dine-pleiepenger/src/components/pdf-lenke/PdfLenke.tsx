@@ -1,5 +1,6 @@
-import { Link } from '@navikt/ds-react';
 import { FileIcon } from '@navikt/aksel-icons';
+import { Link } from '@navikt/ds-react';
+
 import { AppText } from '../../i18n';
 
 interface Props {

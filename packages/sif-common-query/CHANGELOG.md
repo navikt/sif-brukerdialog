@@ -1,5 +1,83 @@
 # Changelog
 
+## 0.1.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.8
+    - @navikt/k9-sak-innsyn-api@0.1.8
+    - @navikt/sif-common-utils@3.49.47
+
+## 0.1.52
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.7
+    - @navikt/k9-sak-innsyn-api@0.1.7
+    - @navikt/sif-common-utils@3.49.46
+
+## 0.1.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.6
+    - @navikt/k9-sak-innsyn-api@0.1.6
+    - @navikt/sif-common-utils@3.49.45
+
+## 0.1.50
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.5
+    - @navikt/k9-sak-innsyn-api@0.1.5
+    - @navikt/sif-common-utils@3.49.44
+
+## 0.1.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.4
+    - @navikt/k9-sak-innsyn-api@0.1.4
+    - @navikt/sif-common-utils@3.49.43
+
+## 0.1.48
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.3
+    - @navikt/k9-sak-innsyn-api@0.1.3
+    - @navikt/sif-common-utils@3.49.42
+
+## 0.1.47
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.2
+    - @navikt/k9-sak-innsyn-api@0.1.2
+    - @navikt/sif-common-utils@3.49.41
+
+## 0.1.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.1
+    - @navikt/k9-sak-innsyn-api@0.1.1
+    - @navikt/sif-common-utils@3.49.40
+
 ## 0.1.45
 
 ### Patch Changes

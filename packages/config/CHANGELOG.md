@@ -1,5 +1,47 @@
 # config
 
+## 0.11.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.11.39
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.11.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 0.11.35
 
 ### Patch Changes

@@ -1,9 +1,9 @@
-import { Attachment } from '@navikt/ds-icons';
 import { BodyShort, Box, HStack, Link, List } from '@navikt/ds-react';
 
 import { useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
 import { formatFileSize } from '../../utils/formatFileSize';
+import { PaperclipIcon } from '@navikt/aksel-icons';
 
 type Variant = 'plain' | 'border' | 'zebra';
 
@@ -58,7 +58,7 @@ const VedleggSummaryList = ({
                     <List.Item
                         style={getVariantStyle(variant, index)}
                         key={file.name + index}
-                        icon={<Attachment title="Ikon" aria-hidden />}>
+                        icon={<PaperclipIcon title="Ikon" aria-hidden />}>
                         <HStack gap="2" wrap={false} align="baseline">
                             <HStack flexGrow="2" gap="0 3" align="baseline">
                                 {info ? (

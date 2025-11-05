@@ -1,5 +1,82 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.69
+
+## 0.1.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.68
+
+## 0.1.41
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.67
+
+## 0.1.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.66
+
+## 0.1.39
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.65
+
+## 0.1.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.64
+
+## 0.1.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.63
+
+## 0.1.36
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.62
+
+## 0.1.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.61
+
+## 0.1.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.60
+
 ## 0.1.33
 
 ### Patch Changes

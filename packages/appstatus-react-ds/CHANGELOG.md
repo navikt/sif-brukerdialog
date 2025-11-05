@@ -1,5 +1,54 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.57
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.7
+
+## 2.20.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.7
+
+## 2.20.55
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+
+## 2.20.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.7
+
+## 2.20.53
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+    - @navikt/sif-common-hooks@0.3.6
+
+## 2.20.52
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.6
+
+## 2.20.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+    - @navikt/sif-common-hooks@0.3.6
+
 ## 2.20.50
 
 ### Patch Changes

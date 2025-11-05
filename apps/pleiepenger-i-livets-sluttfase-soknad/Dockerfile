@@ -1,5 +1,5 @@
 
-FROM node:24-alpine AS base
+FROM node:25-alpine AS base
 
 ENV APP="pleiepenger-i-livets-sluttfase-soknad"
 ENV SERVER="server"

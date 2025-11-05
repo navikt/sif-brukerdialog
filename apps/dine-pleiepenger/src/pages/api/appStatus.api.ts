@@ -1,6 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { fetchStatus, SanityConfig } from '@navikt/appstatus-react-ds';
 import { ApplicationState } from '@navikt/appstatus-react-ds/src/hooks/useGetApplicationStatus';
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { browserEnv } from '../../utils/env';
 import { getLogger } from '../../utils/getLogCorrelationID';

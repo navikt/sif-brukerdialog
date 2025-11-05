@@ -37,13 +37,13 @@ export const zDeltakelseInnmeldingDto = z.object({
     startdato: z.iso.date(),
 });
 
+export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
+
 export const zNavn = z.object({
     fornavn: z.string(),
     mellomnavn: z.optional(z.string()),
     etternavn: z.string(),
 });
-
-export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
 
 export const zDeltakerPersonalia = z.object({
     id: z.optional(z.uuid()),

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { ZodError } from 'zod';
+
 import { InnsendtSøknad } from '../types/InnsendtSøknad';
-import { Mellomlagringer } from '../types/Mellomlagring';
 import { SakerParseError } from '../types/SakerParseError';
 import { getContextForApiHandler } from '../utils/apiUtils';
 import { getLogger } from '../utils/getLogCorrelationID';
@@ -10,7 +10,6 @@ import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 import { Innsendelse } from './api-models/InnsendelseSchema';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
-import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
 import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
 import {
     Saksbehandlingstid as Saksbehandlingstid,
@@ -18,7 +17,6 @@ import {
 } from './api-models/SaksbehandlingstidSchema';
 import { Søker, SøkerSchema } from './api-models/SøkerSchema';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
-import { isValidMellomlagring } from './utils/isValidMellomlagring';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -28,8 +26,6 @@ export enum ApiService {
 
 export enum ApiEndpointBrukerdialog {
     'søker' = 'oppslag/soker',
-    'påbegyntSøknad' = 'mellomlagring/PLEIEPENGER_SYKT_BARN',
-    'påbegyntEndring' = 'mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN',
 }
 export enum ApiEndpointInnsyn {
     'søknad' = 'soknad',
@@ -108,7 +104,7 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
                 };
                 throw sakerParseError;
             }
-        } else {
+        } else if (typeof error === 'string') {
             logger.error(error, 'Ukjent feil ved parsing saker');
         }
         throw error;
@@ -167,56 +163,6 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøkn
     const response = await axios.get(url, { headers });
     logger.info(`Søknader fetched`);
     return await InnsendtSøknaderSchema.parse(response.data);
-};
-
-/**
- * Henter ut mellomlagringer fra søknadsdialog og endringsdialog
- * @param req
- * @returns
- */
-export const fetchMellomlagringer = async (req: NextApiRequest): Promise<Mellomlagringer> => {
-    const context = getContextForApiHandler(req);
-
-    /** Påbegynt søknad */
-    const påbegyntSøknadReq = await exchangeTokenAndPrepRequest(
-        ApiService.k9Brukerdialog,
-        context,
-        ApiEndpointBrukerdialog.påbegyntSøknad,
-        'application/json',
-    );
-    const logger = getLogger(req);
-    logger.info(`Fetching påbegynt søknad from url: ${påbegyntSøknadReq.url}`);
-    const påbegyntSøknad = await axios
-        .get(påbegyntSøknadReq.url, { headers: påbegyntSøknadReq.headers })
-        .then((response) => Promise.resolve(fixSøknadMetadata(response.data)));
-
-    /** Påbegynt endring */
-    const påbegyntEndringReq = await exchangeTokenAndPrepRequest(
-        ApiService.k9Brukerdialog,
-        context,
-        ApiEndpointBrukerdialog.påbegyntEndring,
-        'application/json',
-    );
-    logger.info(`Fetching påbegynt endring from url: ${påbegyntEndringReq.url}`);
-    const påbegyntEndring = await axios
-        .get(påbegyntEndringReq.url, { headers: påbegyntEndringReq.headers })
-        .then((response) => Promise.resolve(fixSøknadMetadata(response.data)));
-
-    const søknad = await MellomlagringSchema.parse(påbegyntSøknad);
-    const endring = await MellomlagringSchema.parse(påbegyntEndring);
-
-    return {
-        søknad: isValidMellomlagring(søknad) ? søknad : undefined,
-        endring: isValidMellomlagring(endring) ? endring : undefined,
-    };
-};
-
-const fixSøknadMetadata = (data: MellomlagringModel): MellomlagringModel => {
-    if (data.metadata && (data.metadata as any).updatedTimestemp) {
-        data.metadata.updatedTimestamp = (data.metadata as any).updatedTimestemp;
-        delete (data.metadata as any).updatedTimestemp;
-    }
-    return data;
 };
 
 const fjernUkjenteInnsendelserISaker = (pleietrengendeMedSak: PleietrengendeMedSak[]): PleietrengendeMedSak[] => {

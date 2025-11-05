@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { Venteårsak } from '../../types/Venteårsak';
 
 export type Aksjonspunkt = z.infer<typeof AksjonspunktSchema>;

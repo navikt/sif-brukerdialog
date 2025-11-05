@@ -1,9 +1,9 @@
-import { Edit } from '@navikt/ds-icons';
 import { TagProps } from '@navikt/ds-react';
 import React from 'react';
 
 import { useAppIntl } from '../../i18n';
 import IconTag from './icon-tag/IconTag';
+import { PencilIcon } from '@navikt/aksel-icons';
 
 interface Props extends Omit<TagProps, 'variant' | 'children'> {
     children?: React.ReactNode;
@@ -13,7 +13,7 @@ const EndretTag = (props: Props) => {
     const { children, visIkon, ...rest } = props;
     const { text } = useAppIntl();
     return (
-        <IconTag {...rest} variant="info" icon={visIkon ? <Edit /> : undefined}>
+        <IconTag {...rest} variant="info" icon={visIkon ? <PencilIcon /> : undefined}>
             {children || text('tags.endret')}
         </IconTag>
     );

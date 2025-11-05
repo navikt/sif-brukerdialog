@@ -1,5 +1,47 @@
 # @sif/eslint-config
 
+## 1.1.71
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.70
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.69
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 1.1.68
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 1.1.67
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.66
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.65
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 1.1.64
 
 ### Patch Changes

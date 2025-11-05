@@ -1,5 +1,53 @@
 # @navikt/sif-common-sentry
 
+## 0.28.50
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.28.47
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.28.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 0.28.42
 
 ### Patch Changes

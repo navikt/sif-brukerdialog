@@ -5,7 +5,7 @@ import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 import getLenker from '@shared/utils/lenker';
 import { useState } from 'react';
 
-import ExternalLink from '../components/external-link/ExternalLink';
+import ExternalLink from '../../../components/external-link/ExternalLink';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../components/VelkommenMelding';
 import { useSøknadContext } from '../hooks/context/useSøknadContext';

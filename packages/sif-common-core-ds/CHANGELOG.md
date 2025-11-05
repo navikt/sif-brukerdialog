@@ -1,5 +1,93 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.47
+    - @navikt/sif-common-api@0.4.69
+
+## 10.3.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.46
+    - @navikt/sif-common-api@0.4.68
+
+## 10.3.25
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.67
+
+## 10.3.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.66
+    - @navikt/sif-common-env@0.1.8
+    - @navikt/sif-common-utils@3.49.45
+
+## 10.3.23
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.44
+    - @navikt/sif-common-api@0.4.65
+
+## 10.3.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.43
+    - @navikt/sif-common-api@0.4.64
+
+## 10.3.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.42
+    - @navikt/sif-common-api@0.4.63
+
+## 10.3.20
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+    - @navikt/sif-common-api@0.4.62
+
+## 10.3.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.41
+    - @navikt/sif-common-api@0.4.61
+
+## 10.3.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.40
+    - @navikt/sif-common-api@0.4.60
+
 ## 10.3.17
 
 ### Patch Changes

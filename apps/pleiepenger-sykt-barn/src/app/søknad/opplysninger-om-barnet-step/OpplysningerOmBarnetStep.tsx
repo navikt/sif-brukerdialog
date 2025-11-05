@@ -11,7 +11,6 @@ import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import SøknadFormStep from '../SøknadFormStep';
 import AnnetBarnPart from './AnnetBarnPart';
-import InfoRetningslinjerSøskensaker from './info/InfoRetningslinjerSøskensaker';
 import RegistrertBarnPart from './RegistrertBarnPart';
 
 const harRegistrerteBarn = ({ barn }: Søkerdata) => {
@@ -36,20 +35,16 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
             buttonDisabled={hasPendingUploads}>
             {søkerdata && (
                 <div data-testid="opplysninger-om-barnet">
-                    <VStack gap="6">
-                        <InfoRetningslinjerSøskensaker />
-
-                        <VStack gap="8" marginBlock="2 0">
-                            {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
-                            {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
-                                <AnnetBarnPart
-                                    formValues={values}
-                                    søkersFødselsnummer={søkerdata.søker.fødselsnummer}
-                                    fødselsattester={fødselsattester}
-                                    harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
-                                />
-                            )}
-                        </VStack>
+                    <VStack gap="8" marginBlock="2 0">
+                        {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
+                        {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
+                            <AnnetBarnPart
+                                formValues={values}
+                                søkersFødselsnummer={søkerdata.søker.fødselsnummer}
+                                fødselsattester={fødselsattester}
+                                harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
+                            />
+                        )}
                     </VStack>
                 </div>
             )}

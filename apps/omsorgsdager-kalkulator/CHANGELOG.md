@@ -1,5 +1,59 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.13.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.5
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+
+## 3.13.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 3.13.3
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 3.13.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.0
+
+### Minor Changes
+
+- Legge til tre moduler i outputFileTracingIncludes. De kom ikke med i bygget server feilet med melding om manglende filer.
+
+## 3.12.55
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 3.12.54
 
 ### Patch Changes

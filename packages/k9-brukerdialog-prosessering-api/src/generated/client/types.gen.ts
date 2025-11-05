@@ -255,12 +255,6 @@ export type PleiepengerSyktBarnSøknad = {
     nattevåk?: Nattevåk;
     beredskap?: Beredskap;
     frilans: Frilans;
-    /**
-     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
-     *
-     * @deprecated
-     */
-    stønadGodtgjørelse?: StønadGodtgjørelse;
     fosterhjemgodtgjørelse?:
         | FosterhjemsgodtgjørelseFrikjøpt
         | FosterhjemsgodtgjørelseIkkeFrikjøpt
@@ -787,6 +781,52 @@ export type PrivatArbeidsgiverDto = {
     ansattTom?: string;
 };
 
+export type PleiepengerSyktBarnSøknadWritable = {
+    newVersion?: boolean;
+    apiDataVersjon?: string;
+    språk: 'nb' | 'nn';
+    søkerNorskIdent?: string;
+    barn: BarnDetaljer;
+    arbeidsgivere: Arbeidsgiver[];
+    vedlegg: string[];
+    fødselsattestVedleggUrls?: string[];
+    fraOgMed: string;
+    tilOgMed: string;
+    medlemskap: Medlemskap;
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
+    ferieuttakIPerioden?: FerieuttakIPerioden;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    omsorgstilbud?: Omsorgstilbud;
+    nattevåk?: Nattevåk;
+    beredskap?: Beredskap;
+    frilans: Frilans;
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
+     * @deprecated
+     */
+    stønadGodtgjørelse?: StønadGodtgjørelse;
+    fosterhjemgodtgjørelse?:
+        | FosterhjemsgodtgjørelseFrikjøpt
+        | FosterhjemsgodtgjørelseIkkeFrikjøpt
+        | FosterhjemsgodtgjørelseMottarIkke;
+    omsorgsstønad?: OmsorgsstønadMottarDelerAvPerioden | OmsorgsstønadMottarHelePerioden | OmsorgsstønadMottarIkke;
+    selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
+    barnRelasjon?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
+    barnRelasjonBeskrivelse?: string;
+    harVærtEllerErVernepliktig?: boolean;
+    dataBruktTilUtledningAnnetData?: string;
+};
+
+export type SelvstendigNæringsdrivendeWritable = {
+    harInntektSomSelvstendig: boolean;
+    virksomhet?: VirksomhetWritable;
+    arbeidsforhold?: Arbeidsforhold;
+};
+
 export type VirksomhetWritable = {
     fraOgMed: string;
     tilOgMed?: string;
@@ -834,6 +874,37 @@ export type ArbeidsgiverOlpWritable = {
     navn?: string;
     erAnsatt?: boolean;
     arbeidsforhold?: ArbeidsforholdOlp;
+};
+
+export type OpplæringspengerSøknadWritable = {
+    newVersion?: boolean;
+    apiDataVersjon?: string;
+    språk: 'nb' | 'nn';
+    søkerNorskIdent?: string;
+    barn: BarnDetaljer;
+    arbeidsgivere: ArbeidsgiverOlpWritable[];
+    vedlegg: string[];
+    fraOgMed: string;
+    tilOgMed: string;
+    medlemskap: Medlemskap;
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPerioden;
+    ferieuttakIPerioden?: FerieuttakIPerioden;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    frilans?: FrilansOlp;
+    selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlp;
+    stønadGodtgjørelse?: StønadGodtgjørelse;
+    harVærtEllerErVernepliktig?: boolean;
+    dataBruktTilUtledningAnnetData?: string;
+    ettersendingAvVedlegg?: EttersendingAvVedlegg;
+    kurs: Kurs;
+};
+
+export type SelvstendigNæringsdrivendeOlpWritable = {
+    virksomhet: VirksomhetWritable;
+    arbeidsforhold: ArbeidsforholdOlp;
 };
 
 export type OmsorgspengerutbetalingSnfSøknadWritable = {

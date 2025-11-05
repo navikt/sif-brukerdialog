@@ -1,4 +1,8 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { createRequire } from 'node:module';
 import { join, dirname } from 'path';
+
+const require = createRequire(import.meta.url);
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -12,12 +16,10 @@ function getAbsolutePath(value) {
 const config = {
     stories: ['../src/**/*.stories.@(ts|tsx)'],
     addons: [],
+
     framework: {
         name: getAbsolutePath('@storybook/nextjs'),
         options: {},
-    },
-    docs: {
-        autodocs: 'tag',
     },
 };
 export default config;
