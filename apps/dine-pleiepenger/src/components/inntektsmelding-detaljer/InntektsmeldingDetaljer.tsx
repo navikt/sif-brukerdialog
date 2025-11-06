@@ -9,10 +9,17 @@ interface Props {
 }
 
 const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
-    const { startDatoPermisjon, inntektBeløp, refusjonBeløpPerMnd, endringerRefusjon, naturalYtelser } =
-        inntektsmelding;
+    const {
+        startDatoPermisjon,
+        inntektBeløp,
+        refusjonBeløpPerMnd,
+        endringerRefusjon,
+        naturalYtelser,
+        refusjonOpphører,
+    } = inntektsmelding;
     const harEndringerIRefusjon = endringerRefusjon && endringerRefusjon.length > 0;
     const harNaturalytelser = naturalYtelser && naturalYtelser.length > 0;
+    const harRefusjonOpphører = refusjonOpphører !== undefined;
 
     return (
         <VStack gap="4">
@@ -66,7 +73,9 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                                 <FormSummary.Label>
                                     Vil det være endringer eller opphør av refusjon i løpet av fraværsperioden?
                                 </FormSummary.Label>
-                                <FormSummary.Value>{harEndringerIRefusjon ? 'Ja' : 'Nei'}</FormSummary.Value>
+                                <FormSummary.Value>
+                                    {harEndringerIRefusjon || refusjonOpphører ? 'Ja' : 'Nei'}
+                                </FormSummary.Value>
                             </FormSummary.Answer>
                             {harEndringerIRefusjon && (
                                 <FormSummary.Answer>
@@ -75,7 +84,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                                         <List>
                                             {endringerRefusjon.map((endring) => (
                                                 <List.Item key={endring.fom.toDateString()}>
-                                                    {dateFormatter.compact(endring.fom)}:{' '}
+                                                    Fra og med {dateFormatter.compact(endring.fom)}:{' '}
                                                     <FormattedNumber
                                                         value={endring.refusjonBeløpPerMnd}
                                                         style="currency"
@@ -87,11 +96,23 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                             )}
+                            {harRefusjonOpphører && (
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>Opphør</FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <List>
+                                            <List.Item key="refusjon-opphorer">
+                                                Refusjon opphører fra og med {dateFormatter.compact(refusjonOpphører!)}
+                                            </List.Item>
+                                        </List>
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            )}
                         </>
                     ) : (
                         <FormSummary.Answer>
                             <FormSummary.Label>Informasjon om refusjon</FormSummary.Label>
-                            <FormSummary.Value>Mangler</FormSummary.Value>
+                            <FormSummary.Value>Ingen informasjon om refusjon</FormSummary.Value>
                         </FormSummary.Answer>
                     )}
                 </FormSummary.Answers>
