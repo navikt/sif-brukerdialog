@@ -190,7 +190,8 @@ export const fetchInntektsmeldinger = async (
     const response = await axios.get(url, { headers, transformResponse: storageParser });
     logger.info(`Inntektsmeldinger fetched`);
     if (raw) {
-        return response.data;
+        logger.info('returning raw inntektsmeldinger data');
+        return await response.data;
     }
     return await InntektsmeldingerSchema.parse(response.data);
 };
