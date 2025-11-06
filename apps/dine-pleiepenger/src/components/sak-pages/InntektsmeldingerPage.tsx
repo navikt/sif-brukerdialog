@@ -48,13 +48,7 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }
                 const cacheKey = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmelding/${im.journalpostId}`;
                 // Populer SWR cache med enkelt-inntektsmelding data
                 // Dette gjør at detaljsiden kan laste umiddelbart fra cache
-                mutate(
-                    cacheKey,
-                    async () => {
-                        return im;
-                    },
-                    { revalidate: false },
-                );
+                mutate(cacheKey, im, { revalidate: false });
             });
         }
     }, [inntektsmeldinger, mutate, sak.saksnummer]);
