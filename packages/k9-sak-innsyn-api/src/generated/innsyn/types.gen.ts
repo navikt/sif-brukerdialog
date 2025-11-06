@@ -703,9 +703,9 @@ export enum Innsendelsestype {
 }
 
 export type Innsending = {
-    mottattDato?: string;
     versjon?: string;
     søker?: Søker;
+    mottattDato?: string;
     søknadId?: string;
 };
 
@@ -762,6 +762,12 @@ export enum Venteårsak {
 
 export type SaksbehandlingtidDto = {
     saksbehandlingstidUker: number;
+};
+
+export type SakerMetadataDto = {
+    saksnummer: string;
+    pleietrengende: PleietrengendeDto;
+    fagsakYtelseType: FagsakYtelseType;
 };
 
 export type FraværPeriodeWritable = {
@@ -968,6 +974,43 @@ export type HentSaksbehandlingstidResponses = {
 };
 
 export type HentSaksbehandlingstidResponse = HentSaksbehandlingstidResponses[keyof HentSaksbehandlingstidResponses];
+
+export type HentSakerMetadataData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/saker/metadata';
+};
+
+export type HentSakerMetadataErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentSakerMetadataError = HentSakerMetadataErrors[keyof HentSakerMetadataErrors];
+
+export type HentSakerMetadataResponses = {
+    /**
+     * OK
+     */
+    200: SakerMetadataDto;
+};
+
+export type HentSakerMetadataResponse = HentSakerMetadataResponses[keyof HentSakerMetadataResponses];
 
 export type HentDokumentData = {
     body?: never;

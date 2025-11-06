@@ -616,9 +616,9 @@ export const zFagsakYtelseType = z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_
 export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSMELDING', 'UKJENT']);
 
 export const zInnsending = z.object({
-    mottattDato: z.optional(z.iso.datetime()),
     versjon: z.optional(z.string()),
     søker: z.optional(zSøker),
+    mottattDato: z.optional(z.iso.datetime()),
     søknadId: z.optional(z.string()),
 });
 
@@ -702,6 +702,12 @@ export const zSaksbehandlingtidDto = z.object({
     saksbehandlingstidUker: z.coerce.bigint(),
 });
 
+export const zSakerMetadataDto = z.object({
+    saksnummer: z.string(),
+    pleietrengende: zPleietrengendeDto,
+    fagsakYtelseType: zFagsakYtelseType,
+});
+
 export const zFraværPeriodeWritable = z.object({
     periode: z.string(),
     duration: z.optional(z.string()),
@@ -774,6 +780,17 @@ export const zHentSaksbehandlingstidData = z.object({
  * OK
  */
 export const zHentSaksbehandlingstidResponse = zSaksbehandlingtidDto;
+
+export const zHentSakerMetadataData = z.object({
+    body: z.optional(z.never()),
+    path: z.optional(z.never()),
+    query: z.optional(z.never()),
+});
+
+/**
+ * OK
+ */
+export const zHentSakerMetadataResponse = zSakerMetadataDto;
 
 export const zHentDokumentData = z.object({
     body: z.optional(z.never()),

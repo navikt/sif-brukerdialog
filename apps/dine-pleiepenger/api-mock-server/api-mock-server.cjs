@@ -54,6 +54,10 @@ const startServer = () => {
         res.send(flereSaker);
     });
 
+    server.get('/saker/metadata', (req, res) => {
+        res.send(flereSaker);
+    });
+
     server.get('/:saksnr/inntektsmeldinger', (req, res) => {
         res.send(inntektsmeldinger);
     });

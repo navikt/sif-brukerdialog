@@ -1,3 +1,4 @@
+import { SakerMetadataDto } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { ZodError } from 'zod';
@@ -35,6 +36,7 @@ export enum ApiEndpointInnsyn {
 
 export enum ApiEndpointK9SakInnsyn {
     'saker' = 'saker',
+    'sakerMetadata' = 'saker/metadata',
     /** Gjeldende behandlingsstid i antall uker*/
     'behandlingstid' = 'saker/saksbehandlingstid',
 }
@@ -57,6 +59,29 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
     const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
     logger.info(`Søker fetched`);
     return await SøkerSchema.parse(response.data);
+};
+
+/**
+ * Henter saker for bruker
+ * @param req
+ * @returns
+ */
+export const fetchSakerMetadata = async (req: NextApiRequest, raw: boolean = true): Promise<SakerMetadataDto[]> => {
+    const context = getContextForApiHandler(req);
+    const { url, headers } = await exchangeTokenAndPrepRequest(
+        ApiService.k9SakInnsyn,
+        context,
+        ApiEndpointK9SakInnsyn.sakerMetadata,
+        'application/json',
+    );
+    const logger = getLogger(req);
+    logger.info(`Fetching sakerMetadata from url: ${url}`);
+    const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
+    logger.info(`Response-status from request: ${response.status}`);
+    if (raw) {
+        return response.data;
+    }
+    return [];
 };
 
 /**
