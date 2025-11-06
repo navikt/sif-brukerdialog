@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 
 import { Inntektsmelding, InntektsmeldingStatus } from '../../types/Inntektsmelding';
+import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import { InntektsmeldingStatusTag } from '../inntektsmeldinger-liste/InntektsmeldingerListe';
 
 interface Props {
@@ -39,7 +40,7 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <Link href={`/sak/${saksnummer}/inntektsmelding/${inntektsmelding.journalpostId}`}>
-                        {inntektsmelding.arbeidsgiver.navn}
+                        {getImUtils(inntektsmelding).arbeidsgiverNavn}
                     </Link>
                 </LinkCard.Anchor>
             </LinkCard.Title>

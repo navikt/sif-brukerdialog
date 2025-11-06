@@ -73,11 +73,11 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                                     <FormSummary.Label>Endringer</FormSummary.Label>
                                     <FormSummary.Value>
                                         <List>
-                                            {endringerRefusjon.map((e) => (
-                                                <List.Item key={e.fom.toDateString()}>
-                                                    {dateFormatter.compact(e.fom)}:{' '}
+                                            {endringerRefusjon.map((endring) => (
+                                                <List.Item key={endring.fom.toDateString()}>
+                                                    {dateFormatter.compact(endring.fom)}:{' '}
                                                     <FormattedNumber
-                                                        value={e.refusjonsbeløpMnd}
+                                                        value={endring.refusjonBeløpPerMnd}
                                                         style="currency"
                                                         currency="NOK"
                                                     />
@@ -112,11 +112,22 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                             <FormSummary.Label>Naturalytelser per måned</FormSummary.Label>
                             <FormSummary.Value>
                                 <List>
-                                    {naturalYtelser.map((n, index) => (
+                                    {naturalYtelser.map((naturalytelse, index) => (
                                         <List.Item key={index}>
-                                            {dateFormatter.compact(n.periode.fraOgMed)} -{' '}
-                                            {dateFormatter.compact(n.periode.tilOgMed)}: {n.type} -{' '}
-                                            <FormattedNumber value={n.beloepPerMnd} style="currency" currency="NOK" />
+                                            {naturalytelse.periode ? (
+                                                <>
+                                                    {dateFormatter.compact(naturalytelse.periode.fom)} -{' '}
+                                                    {dateFormatter.compact(naturalytelse.periode.tom)}
+                                                </>
+                                            ) : (
+                                                <>Periode mangler</>
+                                            )}
+                                            : {naturalytelse.type} -{' '}
+                                            <FormattedNumber
+                                                value={naturalytelse.beløpPerMnd}
+                                                style="currency"
+                                                currency="NOK"
+                                            />
                                         </List.Item>
                                     ))}
                                 </List>

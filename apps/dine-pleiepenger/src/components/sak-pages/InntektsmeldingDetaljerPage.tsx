@@ -12,6 +12,7 @@ import useSWR from 'swr';
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { Inntektsmelding } from '../../types/Inntektsmelding';
 import { browserEnv } from '../../utils/env';
+import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/InntektsmeldingDetaljer';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';
@@ -68,11 +69,12 @@ const InntektsmeldingDetaljerPage = () => {
             <Alert variant="info">Ugyldig inntektsmelding.</Alert>
         );
     };
+
     return (
         <DefaultPageLayout
             pageHeader={
                 <PageHeader
-                    title={`Inntektsmelding ${innteksmelding ? `fra ${innteksmelding.arbeidsgiver.navn}` : ''}`}
+                    title={`Inntektsmelding ${innteksmelding ? `fra ${getImUtils(innteksmelding).arbeidsgiverNavn}` : ''}`}
                     hidePleiepengerIcon={true}
                     byline={
                         innteksmelding ? (

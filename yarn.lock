@@ -4176,6 +4176,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.33.0"
     "@navikt/ds-react": "npm:7.33.0"
     "@navikt/ds-tailwind": "npm:7.33.0"
+    "@navikt/k9-sak-innsyn-api": "workspace:*"
     "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
     "@navikt/next-logger": "npm:4.4.1"
     "@navikt/oasis": "npm:4.1.0"

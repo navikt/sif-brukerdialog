@@ -10,6 +10,7 @@ import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
 import { Ettersendelsestype } from '../../types/EttersendelseType';
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
+import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import { InntektsmeldingStatusTag } from '../inntektsmeldinger-liste/InntektsmeldingerListe';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 import EttersendelseStatusContent from './parts/EttersendelseStatusContent';
@@ -101,7 +102,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                     const ersattterAntall = hendelse.erstatter.length;
 
                     return {
-                        title: `Inntektsmelding fra ${hendelse.inntektsmelding.arbeidsgiver.navn}`,
+                        title: `Inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
                         content: (
                             <Box className="mt-2">
                                 <ReadMore header="Vis mer informasjon">
