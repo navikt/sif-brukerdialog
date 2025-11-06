@@ -31,8 +31,8 @@ const InntektsmeldingDetaljerPage = () => {
         {
             revalidateOnFocus: false,
             shouldRetryOnError: false,
+            // Ikke revalider data som allerede er hentet
             revalidateIfStale: false,
-            revalidateOnMount: false,
         },
     );
 
