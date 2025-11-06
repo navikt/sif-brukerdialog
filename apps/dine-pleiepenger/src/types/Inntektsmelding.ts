@@ -1,22 +1,18 @@
 import { innsyn } from '@navikt/k9-sak-innsyn-api';
+import { InntektsmeldingStatusDto } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn/types.gen';
 import z from 'zod';
 
 import { parseMaybeDateStringToDate, parseMaybeDateStringToDateEndOfDay } from '../utils/jsonParseUtils';
 
 /* ====================== Inntektsmelding(er) ====================== */
 
-export enum InntektsmeldingStatus {
-    I_BRUK = 'I_BRUK',
-    ERSTATTET_AV_NYERE = 'ERSTATTET_AV_NYERE',
-    IKKE_RELEVANT = 'IKKE_RELEVANT',
-    MANGLER_DATO = 'MANGLER_DATO',
-}
+export { InntektsmeldingStatusDto as InntektsmeldingStatus };
 
 export const InntektsmeldingSchema = innsyn.zSakInntektsmeldingDto.extend({
     startDatoPermisjon: z.preprocess(parseMaybeDateStringToDate, z.date()),
     mottattDato: z.preprocess(parseMaybeDateStringToDateEndOfDay, z.date()),
     innsendingstidspunkt: z.preprocess(parseMaybeDateStringToDate, z.date()),
-    status: z.enum(InntektsmeldingStatus),
+    status: z.enum(InntektsmeldingStatusDto),
 
     endringerRefusjon: z.optional(
         z.array(
