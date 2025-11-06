@@ -3,22 +3,206 @@
         "ytelseType": "PLEIEPENGER_SYKT_BARN",
         "status": "I_BRUK",
         "saksnummer": "1DQAQRW",
-        "innsendingstidspunkt": "2025-09-15T16:48:26",
-        "kildesystem": "Dolly",
+        "innsendingstidspunkt": "2024-12-16T06:08:14",
+        "kildesystem": "NAV_NO",
         "arbeidsgiver": {
-            "organisasjon": { "navn": "SNILL TORPEDO", "organisasjonsnummer": "967170232" }
+            "organisasjon": {
+                "navn": "DYNAMISK OPPSTEMT HAMSTER KF",
+                "organisasjonsnummer": "311343483"
+            }
         },
         "nærRelasjon": false,
-        "journalpostId": "454018144",
-        "mottattDato": "2025-09-15",
-        "inntektBeløp": 45000,
+        "journalpostId": "453910325",
+        "mottattDato": "2024-12-16",
+        "inntektBeløp": 2000,
         "innsendingsårsak": "NY",
         "erstattetAv": [],
         "graderinger": [],
         "naturalYtelser": [],
         "utsettelsePerioder": [],
-        "startDatoPermisjon": "2025-07-01",
+        "startDatoPermisjon": "2024-10-01",
         "oppgittFravær": [],
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "1DQAQRW",
+        "innsendingstidspunkt": "2024-12-16T06:09:44",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "LAV BLØT KATT MOSKUS",
+                "organisasjonsnummer": "315630304"
+            }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "453910326",
+        "mottattDato": "2024-12-16",
+        "inntektBeløp": 500,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2024-10-01",
+        "oppgittFravær": [],
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "1DQAQRW",
+        "innsendingstidspunkt": "2024-12-16T06:11:23",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "TROSSIG NATURSTRIDIG TIGER AS",
+                "organisasjonsnummer": "311536753"
+            }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "453910327",
+        "mottattDato": "2024-12-16",
+        "inntektBeløp": 4000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2024-10-01",
+        "oppgittFravær": [],
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "1DQAQRW",
+        "innsendingstidspunkt": "2024-12-16T06:18:36",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "INTERESSANT INTUITIV KATT DIAMETER",
+                "organisasjonsnummer": "315853370"
+            }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "453910328",
+        "mottattDato": "2024-12-16",
+        "inntektBeløp": 40000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2024-10-01",
+        "oppgittFravær": [],
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "IKKE_RELEVANT",
+        "saksnummer": "1DQAQRW",
+        "innsendingstidspunkt": "2024-12-16T07:20:18",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "LAV BLØT KATT MOSKUS",
+                "organisasjonsnummer": "315630304"
+            }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "453910277",
+        "mottattDato": "2024-12-16",
+        "inntektBeløp": 500,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2024-11-18",
+        "oppgittFravær": [],
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "IKKE_RELEVANT",
+        "saksnummer": "1DQAQRW",
+        "innsendingstidspunkt": "2024-12-16T07:18:59",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "INTERESSANT INTUITIV KATT DIAMETER",
+                "organisasjonsnummer": "315853370"
+            }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "453910352",
+        "mottattDato": "2024-12-16",
+        "inntektBeløp": 40000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2024-11-18",
+        "oppgittFravær": [],
+        "refusjonBeløpPerMnd": 40000,
+        "refusjonOpphører": "9999-12-31",
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "IKKE_RELEVANT",
+        "saksnummer": "1DQAQRW",
+        "innsendingstidspunkt": "2024-12-16T07:21:36",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "DYNAMISK OPPSTEMT HAMSTER KF",
+                "organisasjonsnummer": "311343483"
+            }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "453910278",
+        "mottattDato": "2024-12-16",
+        "inntektBeløp": 2000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2024-11-18",
+        "oppgittFravær": [],
+        "refusjonBeløpPerMnd": 2000,
+        "refusjonOpphører": "9999-12-31",
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "IKKE_RELEVANT",
+        "saksnummer": "1DQAQRW",
+        "innsendingstidspunkt": "2024-12-16T07:18:24",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "TROSSIG NATURSTRIDIG TIGER AS",
+                "organisasjonsnummer": "311536753"
+            }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "453910351",
+        "mottattDato": "2024-12-16",
+        "inntektBeløp": 4000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2024-11-18",
+        "oppgittFravær": [],
+        "refusjonBeløpPerMnd": 4000,
+        "refusjonOpphører": "9999-12-31",
         "endringerRefusjon": []
     }
 ]

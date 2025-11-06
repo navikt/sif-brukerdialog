@@ -51,13 +51,13 @@ export const InntektsmeldingStatusTag = ({ status }: { status?: InntektsmeldingS
         case InntektsmeldingStatus.I_BRUK:
             return (
                 <Tag variant="success" size="small">
-                    Aktiv
+                    I bruk
                 </Tag>
             );
         case InntektsmeldingStatus.ERSTATTET_AV_NYERE:
             return (
                 <Tag variant="neutral" size="small">
-                    Erstattet
+                    Erstattet av nyere
                 </Tag>
             );
         case InntektsmeldingStatus.IKKE_RELEVANT:

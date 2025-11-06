@@ -1,4 +1,4 @@
-import { FormSummary, List, VStack } from '@navikt/ds-react';
+import { BodyShort, FormSummary, Heading, List, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
@@ -136,7 +136,12 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     )}
                 </FormSummary.Answers>
             </FormSummary>
-            {}
+            <Heading level="2" size="medium">
+                JSON data
+            </Heading>
+            <BodyShort size="small">
+                <pre>{JSON.stringify(inntektsmelding, null, 2)}</pre>
+            </BodyShort>
         </VStack>
     );
 };
