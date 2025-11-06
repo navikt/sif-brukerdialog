@@ -37,7 +37,7 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                 return iBruk ? (
                     <InntektsmeldingLinkCard inntektsmelding={inntektsmelding} saksnummer={saksnummer} />
                 ) : (
-                    <BoxNew key={inntektsmelding.journalpostId}>
+                    <BoxNew key={inntektsmelding.journalpostId} marginBlock="0 4" marginInline="6 0">
                         <InntektsmeldingLinkCard saksnummer={saksnummer} inntektsmelding={inntektsmelding} />
                     </BoxNew>
                 );

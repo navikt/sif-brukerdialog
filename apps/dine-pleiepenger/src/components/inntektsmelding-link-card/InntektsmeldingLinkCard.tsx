@@ -52,9 +52,6 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
                     <Tag variant="info" size="small">
                         Mottatt {dateFormatter.compact(mottattDato)}
                     </Tag>
-                    <Tag variant="info" size="small">
-                        Innsendingstidspunkt {dateFormatter.compactWithTime(inntektsmelding.innsendingstidspunkt)}
-                    </Tag>
                     <InntektsmeldingStatusTag status={inntektsmelding.status} />
                 </HStack>
             </LinkCard.Footer>
