@@ -160,7 +160,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
             <Heading level="2" size="medium">
                 JSON data
             </Heading>
-            <BodyShort size="small">
+            <BodyShort size="small" as="div">
                 <pre>{JSON.stringify(inntektsmelding, null, 2)}</pre>
             </BodyShort>
         </VStack>

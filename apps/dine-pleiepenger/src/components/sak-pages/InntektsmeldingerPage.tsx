@@ -1,14 +1,11 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, Box, BoxNew, Heading, Link, VStack } from '@navikt/ds-react';
-import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
-import axios, { AxiosError } from 'axios';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
-import { useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import useSWR, { useSWRConfig } from 'swr';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
+import { useInntektsmeldinger } from '../../hooks/useInntektsmeldinger';
 import { Sak } from '../../server/api-models/SakSchema';
 import { Inntektsmeldinger } from '../../types/Inntektsmelding';
 import { browserEnv } from '../../utils/env';
@@ -22,36 +19,10 @@ interface Props {
 }
 
 const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }: Props) => {
-    const { mutate } = useSWRConfig();
-    const {
-        data: inntektsmeldingerFetched,
-        error,
-        isLoading,
-    } = useSWR<Inntektsmeldinger, AxiosError>(
-        inntektsmeldingerProp
-            ? null
-            : `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmeldinger`,
-        (url) => axios.get(url, { transformResponse: storageParser }).then((res) => res.data),
-        {
-            revalidateOnFocus: false,
-            shouldRetryOnError: false,
-            errorRetryCount: 0,
-        },
-    );
-
-    const inntektsmeldinger = inntektsmeldingerProp || inntektsmeldingerFetched;
-
-    // Pre-cache hver inntektsmelding i SWR for rask navigering til detaljside
-    useEffect(() => {
-        if (inntektsmeldinger) {
-            inntektsmeldinger.forEach((im) => {
-                const cacheKey = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmelding/${im.journalpostId}`;
-                // Populer SWR cache med enkelt-inntektsmelding data
-                // Dette gjør at detaljsiden kan laste umiddelbart fra cache
-                mutate(cacheKey, im, { revalidate: false });
-            });
-        }
-    }, [inntektsmeldinger, mutate, sak.saksnummer]);
+    const { inntektsmeldinger, isLoading, error } = useInntektsmeldinger({
+        saksnummer: sak.saksnummer,
+        inntektsmeldingerProp,
+    });
 
     useBreadcrumbs({
         breadcrumbs: [
@@ -65,7 +36,7 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }
     });
 
     const renderContent = () => {
-        if (!inntektsmeldingerProp && isLoading) {
+        if (isLoading) {
             return (
                 <Skeleton
                     height="6rem"
@@ -77,7 +48,7 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }
                 />
             );
         }
-        if (!inntektsmeldingerProp && error) {
+        if (error) {
             return (
                 <Alert variant="error">
                     Noe gikk galt ved henting av inntektsmeldinger. Vennligst prøv igjen senere.

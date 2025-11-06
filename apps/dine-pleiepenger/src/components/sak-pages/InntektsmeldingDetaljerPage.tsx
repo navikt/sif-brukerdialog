@@ -1,16 +1,13 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box, BoxNew, Heading, Link, VStack } from '@navikt/ds-react';
-import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import axios, { AxiosError } from 'axios';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
 import Skeleton from 'react-loading-skeleton';
-import useSWR from 'swr';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { Inntektsmelding } from '../../types/Inntektsmelding';
+import { useInntektsmeldinger } from '../../hooks/useInntektsmeldinger';
 import { browserEnv } from '../../utils/env';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/InntektsmeldingDetaljer';
@@ -21,20 +18,11 @@ const InntektsmeldingDetaljerPage = () => {
     const router = useRouter();
     const { saksnr, journalpostId } = router.query;
 
-    const {
-        data: innteksmelding,
-        error,
-        isLoading,
-    } = useSWR<Inntektsmelding, AxiosError>(
-        journalpostId ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${saksnr}/inntektsmelding/${journalpostId}` : null,
-        (url) => axios.get(url, { transformResponse: storageParser }).then((res) => res.data),
-        {
-            revalidateOnFocus: false,
-            shouldRetryOnError: false,
-            // Ikke revalider data som allerede er hentet
-            revalidateIfStale: false,
-        },
-    );
+    const { inntektsmeldinger, isLoading, error } = useInntektsmeldinger({
+        saksnummer: saksnr as string,
+    });
+
+    const innteksmelding = inntektsmeldinger?.find((im) => im.journalpostId === journalpostId);
 
     useBreadcrumbs({
         breadcrumbs: [
