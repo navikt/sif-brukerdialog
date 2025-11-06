@@ -48,7 +48,13 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }
                 const cacheKey = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${sak.saksnummer}/inntektsmelding/${im.journalpostId}`;
                 // Populer SWR cache med enkelt-inntektsmelding data
                 // Dette gjør at detaljsiden kan laste umiddelbart fra cache
-                mutate(cacheKey, im, { revalidate: false });
+                mutate(
+                    cacheKey,
+                    async () => {
+                        return im;
+                    },
+                    { revalidate: false },
+                );
             });
         }
     }, [inntektsmeldinger, mutate, sak.saksnummer]);
@@ -56,9 +62,9 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }
     useBreadcrumbs({
         breadcrumbs: [
             {
-                url: `/innsyn/sak/${sak.saksnummer}`,
+                url: `/sak/${sak.saksnummer}`,
                 title: 'Din sak',
-                handleInApp: false,
+                handleInApp: true,
             },
             { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' },
         ],

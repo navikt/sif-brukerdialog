@@ -31,6 +31,8 @@ const InntektsmeldingDetaljerPage = () => {
         {
             revalidateOnFocus: false,
             shouldRetryOnError: false,
+            // Bruk cachet data fra listen hvis tilgjengelig
+            keepPreviousData: true,
         },
     );
 
