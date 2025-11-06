@@ -1,4 +1,4 @@
-import { Box, BoxNew, Switch, Tag, VStack } from '@navikt/ds-react';
+import { Box, BoxNew, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
 import { Inntektsmelding, InntektsmeldingStatus } from '../../types/Inntektsmelding';
@@ -37,48 +37,13 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                 return iBruk ? (
                     <InntektsmeldingLinkCard inntektsmelding={inntektsmelding} saksnummer={saksnummer} />
                 ) : (
-                    <BoxNew key={inntektsmelding.journalpostId} marginBlock="0 4" marginInline="6 0">
+                    <BoxNew key={inntektsmelding.journalpostId}>
                         <InntektsmeldingLinkCard saksnummer={saksnummer} inntektsmelding={inntektsmelding} />
                     </BoxNew>
                 );
             })}
         </VStack>
     );
-};
-
-export const InntektsmeldingStatusTag = ({ status }: { status?: InntektsmeldingStatus }) => {
-    switch (status) {
-        case InntektsmeldingStatus.I_BRUK:
-            return (
-                <Tag variant="success" size="small">
-                    I bruk
-                </Tag>
-            );
-        case InntektsmeldingStatus.ERSTATTET_AV_NYERE:
-            return (
-                <Tag variant="neutral" size="small">
-                    Erstattet av nyere
-                </Tag>
-            );
-        case InntektsmeldingStatus.IKKE_RELEVANT:
-            return (
-                <Tag variant="neutral" size="small">
-                    Ikke relevant
-                </Tag>
-            );
-        case InntektsmeldingStatus.MANGLER_DATO:
-            return (
-                <Tag variant="warning" size="small">
-                    Mangler dato
-                </Tag>
-            );
-        default:
-            return (
-                <Tag variant="warning" size="small">
-                    [TODO]
-                </Tag>
-            );
-    }
 };
 
 export default InntektsmeldingerListe;

@@ -11,7 +11,7 @@ import { Ettersendelsestype } from '../../types/EttersendelseType';
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
-import { InntektsmeldingStatusTag } from '../inntektsmeldinger-liste/InntektsmeldingerListe';
+import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 import EttersendelseStatusContent from './parts/EttersendelseStatusContent';
 import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';

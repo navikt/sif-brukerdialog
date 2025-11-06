@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import { Inntektsmelding, InntektsmeldingStatus } from '../../types/Inntektsmelding';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
-import { InntektsmeldingStatusTag } from '../inntektsmeldinger-liste/InntektsmeldingerListe';
+import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 
 interface Props {
     inntektsmelding: Inntektsmelding;
@@ -51,6 +51,9 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
                 <HStack gap="2">
                     <Tag variant="info" size="small">
                         Mottatt {dateFormatter.compact(mottattDato)}
+                    </Tag>
+                    <Tag variant="info" size="small">
+                        Innsendingstidspunkt {dateFormatter.compactWithTime(inntektsmelding.innsendingstidspunkt)}
                     </Tag>
                     <InntektsmeldingStatusTag status={inntektsmelding.status} />
                 </HStack>

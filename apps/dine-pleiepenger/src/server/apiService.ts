@@ -7,6 +7,7 @@ import { Inntektsmeldinger, InntektsmeldingerSchema } from '../types/Inntektsmel
 import { SakerParseError } from '../types/SakerParseError';
 import { getContextForApiHandler, serverResponseTransform } from '../utils/apiUtils';
 import { getLogger } from '../utils/getLogCorrelationID';
+import { sorterInntektsmeldingerPåInnsendingstidspunkt } from '../utils/inntektsmeldingUtils';
 import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 import { Innsendelse } from './api-models/InnsendelseSchema';
@@ -192,7 +193,7 @@ export const fetchInntektsmeldinger = async (
         logger.info('returning raw inntektsmeldinger data');
         return await response.data;
     }
-    return await InntektsmeldingerSchema.parse(response.data);
+    return await InntektsmeldingerSchema.parse(response.data).sort(sorterInntektsmeldingerPåInnsendingstidspunkt);
 };
 
 export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøknad[]> => {

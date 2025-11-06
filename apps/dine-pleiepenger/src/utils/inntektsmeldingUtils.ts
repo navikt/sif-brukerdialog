@@ -21,3 +21,7 @@ export const getImUtils = (innteksmelding: Inntektsmelding) => {
         arbeidsgiverNavn: getArbeidsgiverNavn(innteksmelding.arbeidsgiver),
     };
 };
+
+export const sorterInntektsmeldingerPåInnsendingstidspunkt = (a: Inntektsmelding, b: Inntektsmelding): number => {
+    return new Date(b.innsendingstidspunkt).getTime() - new Date(a.innsendingstidspunkt).getTime();
+};
