@@ -30,6 +30,20 @@ const søker = {
     etternavn: 'KORRIDOR',
 };
 
+const sakerMetadata = [
+    {
+        saksnummer: '10007LM',
+        pleietrengende: {
+            identitetsnummer: '23851999701',
+            fødselsdato: '2019-05-23',
+            aktørId: '2602899898036',
+            fornavn: 'SNÅL',
+            etternavn: 'PAPPA',
+        },
+        fagsakYtelseType: 'PSB',
+    },
+];
+
 const startServer = () => {
     const port = 1234;
 
@@ -55,7 +69,7 @@ const startServer = () => {
     });
 
     server.get('/saker/metadata', (req, res) => {
-        res.send(flereSaker);
+        res.send(sakerMetadata);
     });
 
     server.get('/:saksnr/inntektsmeldinger', (req, res) => {
