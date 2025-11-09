@@ -15,7 +15,12 @@ export const setupMockRoutes = async (page: any) => {
 
     await page.route('**/innsynsdata', async (route: any) => {
         const response: Innsynsdata = {
-            saker: sakerMock as any,
+            saker: [],
+            sakerMetadata: sakerMock.map((sak: any) => ({
+                saksnummer: sak.sak.saksnummer,
+                fagsakYtelseType: 'PLEIEPENGER_SYKT_BARN',
+                pleietrengende: sak.pleietrengende,
+            })) as any,
             harSak: true,
             søker: søkerMockData as any,
         };

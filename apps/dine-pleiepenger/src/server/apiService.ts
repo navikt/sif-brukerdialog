@@ -201,7 +201,8 @@ export const fetchSakDetaljer = async (req: NextApiRequest, saksnummer: string):
     try {
         // Backend returnerer én sak, ikke array
         const sakData = fjernUkjenteInnsendelserISak(response.data);
-        const parsedSak = await PleietrengendeMedSakSchema.parse(sakData);
+        // Parse med Zod for validering og filtrering (men date-konvertering skjer client-side)
+        const parsedSak = PleietrengendeMedSakSchema.parse(sakData);
 
         /** Hent inntektsmeldinger for saken */
         let inntektsmeldinger: Inntektsmeldinger = [];

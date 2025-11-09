@@ -8,7 +8,12 @@ import { søkerMockData } from '../mockdata/søker.mock';
 import { setupMockRoutes } from '../utils/setup-mock-routes';
 
 const defaultInnsynsdata: Innsynsdata = {
-    saker: sakerMock as any,
+    saker: [],
+    sakerMetadata: sakerMock.map((sak: any) => ({
+        saksnummer: sak.sak.saksnummer,
+        fagsakYtelseType: 'PLEIEPENGER_SYKT_BARN',
+        pleietrengende: sak.pleietrengende,
+    })) as any,
     harSak: true,
     søker: søkerMockData,
 };

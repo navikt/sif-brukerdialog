@@ -1,3 +1,5 @@
+import { Loader } from '@navikt/ds-react';
+
 import { withAuthenticatedPage } from '../../../auth/withAuthentication';
 import SakIkkeFunnetPage from '../../../components/sak-pages/SakIkkeFunnetPage';
 import SakPage from '../../../components/sak-pages/SakPage';
@@ -6,11 +8,19 @@ import { usePleietrengendeMedSakFromRoute } from '../../../hooks/usePleietrengen
 
 export default function SakRoutePage() {
     const {
-        innsynsdata: { saker },
+        innsynsdata: { sakerMetadata },
     } = useInnsynsdataContext();
-    const { pleietrengendeMedSak, saksnr } = usePleietrengendeMedSakFromRoute();
+    const { pleietrengendeMedSak, saksnr, isLoading, error } = usePleietrengendeMedSakFromRoute();
 
-    if (!pleietrengendeMedSak) {
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <Loader size="3xlarge" title="Laster saksdata..." />
+            </div>
+        );
+    }
+
+    if (error || !pleietrengendeMedSak) {
         return <SakIkkeFunnetPage saksnr={saksnr} />;
     }
 
@@ -18,7 +28,7 @@ export default function SakRoutePage() {
         <SakPage
             sak={pleietrengendeMedSak.sak}
             pleietrengende={pleietrengendeMedSak.pleietrengende}
-            antallSaker={saker.length}
+            antallSaker={sakerMetadata.length}
             inntektsmeldinger={pleietrengendeMedSak.inntektsmeldinger}
         />
     );
