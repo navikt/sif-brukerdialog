@@ -2,9 +2,8 @@ import { HttpStatusCode, isAxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchSaker, fetchSøker } from '../../server/apiService';
+import { fetchSakerMetadata, fetchSøker } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
-import { isSakerParseError } from '../../types/SakerParseError';
 import { Feature } from '../../utils/features';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { fetchAppStatus } from './appStatus.api';
@@ -17,24 +16,24 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const søker = await fetchSøker(req);
 
         /** Bruker har tilgang, hent resten av informasjonen */
-        const [sakerReq, appStatus] = await Promise.allSettled([
-            fetchSaker(req),
+        const [sakerMetadataReq, appStatus] = await Promise.allSettled([
+            fetchSakerMetadata(req),
             Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
         ]);
         logger.info(`Hentet innsynsdata`);
 
         logger.info(`Parser innsynsdata`);
 
-        const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
-        const harSak = saker.length > 0;
+        const sakerMetadata = sakerMetadataReq.status === 'fulfilled' ? sakerMetadataReq.value : [];
+        const harSak = sakerMetadata.length > 0;
 
         const innsynsdata: Innsynsdata = {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             søker,
-            saker,
+            sakerMetadata,
+            saker: [], // Deprecated: tom array for bakoverkompatibilitet
             harSak,
-            sakerParseError:
-                sakerReq.status === 'rejected' && isSakerParseError(sakerReq.reason) ? sakerReq.reason : undefined,
+            sakerParseError: undefined, // Metadata parsing feiler ikke på samme måte
         };
         res.json(innsynsdata);
     } catch (err) {

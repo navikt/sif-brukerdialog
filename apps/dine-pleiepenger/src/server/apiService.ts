@@ -13,7 +13,11 @@ import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 import { Innsendelse } from './api-models/InnsendelseSchema';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
-import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
+import {
+    PleietrengendeMedSak,
+    PleietrengendeMedSakResponseSchema,
+    PleietrengendeMedSakSchema,
+} from './api-models/PleietrengendeMedSakSchema';
 import {
     Saksbehandlingstid as Saksbehandlingstid,
     SaksbehandlingstidSchema,
@@ -36,10 +40,12 @@ export enum ApiEndpointInnsyn {
 
 export enum ApiEndpointK9SakInnsyn {
     'saker' = 'saker',
-    'sakerMetadata' = 'saker/metadata',
     /** Gjeldende behandlingsstid i antall uker*/
-    'behandlingstid' = 'saker/saksbehandlingstid',
+    'saksbehandlingstid' = 'saksbehandlingstid',
 }
+
+export const getSakEndpoint = (saksnummer: string) => `saker/${saksnummer}`;
+export const getInntektsmeldingerEndpoint = (saksnummer: string) => `saker/${saksnummer}/inntektsmeldinger`;
 
 export enum SifApiErrorType {
     UNAUTHORIZED = 'UNAUTHORIZED',
@@ -62,26 +68,25 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
 };
 
 /**
- * Henter saker for bruker
+ * Henter metadata for saker (uten behandlingsdetaljer)
  * @param req
  * @returns
  */
-export const fetchSakerMetadata = async (req: NextApiRequest, raw: boolean = true): Promise<SakerMetadataDto[]> => {
+export const fetchSakerMetadata = async (req: NextApiRequest): Promise<SakerMetadataDto[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        ApiEndpointK9SakInnsyn.sakerMetadata,
+        ApiEndpointK9SakInnsyn.saker,
         'application/json',
     );
     const logger = getLogger(req);
     logger.info(`Fetching sakerMetadata from url: ${url}`);
     const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
     logger.info(`Response-status from request: ${response.status}`);
-    if (raw) {
-        return response.data;
-    }
-    return [];
+
+    // Returner data (er allerede SakerMetadataDto[] fra backend)
+    return response.data;
 };
 
 /**
@@ -173,6 +178,60 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
 };
 
 /**
+ * Henter detaljer for én spesifikk sak basert på saksnummer
+ * @param req
+ * @param saksnummer
+ * @returns
+ */
+export const fetchSakDetaljer = async (req: NextApiRequest, saksnummer: string): Promise<PleietrengendeMedSak> => {
+    const context = getContextForApiHandler(req);
+    const { url, headers } = await exchangeTokenAndPrepRequest(
+        ApiService.k9SakInnsyn,
+        context,
+        getSakEndpoint(saksnummer),
+        'application/json',
+    );
+    const logger = getLogger(req);
+    logger.info(`Fetching sak ${saksnummer} from url: ${url}`);
+    const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
+    logger.info(`Response-status from request: ${response.status}`);
+
+    logger.info(`Parsing sak response data for saksnummer: ${saksnummer}`);
+
+    try {
+        // Backend returnerer én sak, ikke array
+        const sakData = fjernUkjenteInnsendelserISak(response.data);
+        const parsedSak = await PleietrengendeMedSakSchema.parse(sakData);
+
+        /** Hent inntektsmeldinger for saken */
+        let inntektsmeldinger: Inntektsmeldinger = [];
+        try {
+            logger.info('Henter inntektsmeldinger for sak', { saksnummer });
+            inntektsmeldinger = await fetchInntektsmeldinger(req, saksnummer);
+            logger.info(`Hentet ${inntektsmeldinger.length} inntektsmeldinger for sak ${saksnummer}`);
+        } catch (error) {
+            logger.warn(`Kunne ikke hente inntektsmeldinger for sak ${saksnummer}`, { error });
+        }
+
+        return {
+            pleietrengende: parsedSak.pleietrengende,
+            sak: {
+                ...parsedSak.sak,
+                behandlinger: sortBehandlingerNyesteFørst(parsedSak.sak.behandlinger),
+            },
+            inntektsmeldinger,
+        };
+    } catch (error) {
+        if (error instanceof ZodError) {
+            logger.error('Parsing av Sak feiler', { parseDetails: JSON.stringify(getZodErrorsInfo(error)) });
+        } else if (typeof error === 'string') {
+            logger.error(error, 'Ukjent feil ved parsing sak');
+        }
+        throw error;
+    }
+};
+
+/**
  * Henter forventet behandlingstid for søknad på nåværende tidspunkt
  * @param req
  * @returns
@@ -182,7 +241,7 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        ApiEndpointK9SakInnsyn.behandlingstid,
+        ApiEndpointK9SakInnsyn.saksbehandlingstid,
         'application/json',
     );
     const logger = getLogger(req);
@@ -195,6 +254,8 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
 /**
  * Henter inntektsmeldinger for en sak
  * @param req
+ * @param saksnr
+ * @param raw
  * @returns
  */
 export const fetchInntektsmeldinger = async (
@@ -203,11 +264,10 @@ export const fetchInntektsmeldinger = async (
     raw?: boolean,
 ): Promise<Inntektsmeldinger> => {
     const context = getContextForApiHandler(req);
-    const inntektsmeldingerUrl = `${saksnr}/inntektsmeldinger`;
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        inntektsmeldingerUrl,
+        getInntektsmeldingerEndpoint(saksnr),
         'application/json',
     );
     const logger = getLogger(req);
@@ -236,21 +296,23 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøkn
     return await InnsendtSøknaderSchema.parse(response.data);
 };
 
+const fjernUkjenteInnsendelserISak = (pleietrengendeMedSak: PleietrengendeMedSak): PleietrengendeMedSak => {
+    return {
+        ...pleietrengendeMedSak,
+        sak: {
+            ...pleietrengendeMedSak.sak,
+            behandlinger: pleietrengendeMedSak.sak.behandlinger.map((behandling) => {
+                return {
+                    ...behandling,
+                    innsendelser: filtrerUtUkjentInnsendelse(behandling.innsendelser),
+                };
+            }),
+        },
+    };
+};
+
 const fjernUkjenteInnsendelserISaker = (pleietrengendeMedSak: PleietrengendeMedSak[]): PleietrengendeMedSak[] => {
-    return pleietrengendeMedSak.map((pt) => {
-        return {
-            ...pt,
-            sak: {
-                ...pt.sak,
-                behandlinger: pt.sak.behandlinger.map((behandling) => {
-                    return {
-                        ...behandling,
-                        innsendelser: filtrerUtUkjentInnsendelse(behandling.innsendelser),
-                    };
-                }),
-            },
-        };
-    });
+    return pleietrengendeMedSak.map(fjernUkjenteInnsendelserISak);
 };
 
 const filtrerUtUkjentInnsendelse = (innsendelser: Innsendelse[]): Innsendelse[] => {

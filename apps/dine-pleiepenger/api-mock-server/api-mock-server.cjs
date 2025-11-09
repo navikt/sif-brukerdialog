@@ -3,7 +3,6 @@ const express = require('express');
 const helmet = require('helmet');
 const server = express();
 const søknader = require('./mockdata/soknader.json');
-// const saker = require('./mockdata/saker.json');
 const inntektsmeldinger = require('./mockdata/inntektsmeldinger.json');
 const flereSaker = require('./mockdata/flere-saker.json');
 
@@ -65,18 +64,25 @@ const startServer = () => {
     });
 
     server.get('/saker', (req, res) => {
-        res.send(flereSaker);
-    });
-
-    server.get('/saker/metadata', (req, res) => {
         res.send(sakerMetadata);
     });
 
-    server.get('/:saksnr/inntektsmeldinger', (req, res) => {
+    server.get('/saker/:saksnr', (req, res) => {
+        const saksnr = req.params.saksnr;
+        const sak = flereSaker.find((s) => s.sak.saksnummer === saksnr);
+
+        if (sak) {
+            res.send(sak);
+        } else {
+            res.status(404).send({ error: 'Sak ikke funnet' });
+        }
+    });
+
+    server.get('/saker/:saksnr/inntektsmeldinger', (req, res) => {
         res.send(inntektsmeldinger);
     });
 
-    server.get('/saker/saksbehandlingstid', (req, res) => {
+    server.get('/saksbehandlingstid', (req, res) => {
         res.send({
             saksbehandlingstidUker: 7,
         });
