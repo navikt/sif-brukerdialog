@@ -9,7 +9,7 @@ export const sakerMock = [
             mellomnavn: null,
             etternavn: 'LØVETANN',
             aktørId: '2175638020356',
-            anonymisert: false,
+            anonymisert: false as const,
         },
         sak: {
             saksnummer: '1DQAQRW',

@@ -13,7 +13,7 @@ export const flereSakerMock: PleietrengendeMedSak[] = [
             mellomnavn: null,
             etternavn: 'LØVETANN',
             aktørId: '2175638020356',
-            anonymisert: false,
+            anonymisert: false as const,
         },
         sak: {
             saksnummer: '2FAKQRW',
@@ -78,7 +78,7 @@ export const flereSakerMock: PleietrengendeMedSak[] = [
             identitetsnummer: '03121199799',
             fødselsdato: ISODateToDate('2011-12-03'),
             aktørId: '2175638020352',
-            anonymisert: true,
+            anonymisert: true as const,
         },
         sak: {
             saksnummer: '1DQAQRW',
