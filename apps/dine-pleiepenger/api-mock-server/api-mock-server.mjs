@@ -71,10 +71,14 @@ const startServer = () => {
     });
 
     server.get('/saker', (req, res) => {
+        res.send(flereSaker);
+    });
+
+    server.get('/saker/metadata', (req, res) => {
         res.send(sakerMetadata);
     });
 
-    server.get('/saker/:saksnr', (req, res) => {
+    server.get('/sak/:saksnr', (req, res) => {
         const saksnr = req.params.saksnr;
         const sak = flereSaker.find((s) => s.sak.saksnummer === saksnr);
 
@@ -85,7 +89,7 @@ const startServer = () => {
         }
     });
 
-    server.get('/saker/:saksnr/inntektsmeldinger', (req, res) => {
+    server.get('/sak/:saksnr/inntektsmeldinger', (req, res) => {
         res.send(inntektsmeldinger);
     });
 

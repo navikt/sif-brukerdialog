@@ -38,15 +38,6 @@ export enum ApiEndpointInnsyn {
     'søknad' = 'soknad',
 }
 
-export enum ApiEndpointK9SakInnsyn {
-    'saker' = 'saker',
-    /** Gjeldende behandlingsstid i antall uker*/
-    'saksbehandlingstid' = 'saksbehandlingstid',
-}
-
-export const getSakEndpoint = (saksnummer: string) => `saker/${saksnummer}`;
-export const getInntektsmeldingerEndpoint = (saksnummer: string) => `saker/${saksnummer}/inntektsmeldinger`;
-
 export enum SifApiErrorType {
     UNAUTHORIZED = 'UNAUTHORIZED',
     NO_ACCESS = 'NO_ACCESS',
@@ -77,7 +68,7 @@ export const fetchSakerMetadata = async (req: NextApiRequest): Promise<SakerMeta
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        ApiEndpointK9SakInnsyn.saker,
+        'saker/metadata',
         'application/json',
     );
     const logger = getLogger(req);
@@ -99,7 +90,7 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        ApiEndpointK9SakInnsyn.saker,
+        'saker',
         'application/json',
     );
     const logger = getLogger(req);
@@ -188,7 +179,7 @@ export const fetchSakDetaljer = async (req: NextApiRequest, saksnummer: string):
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        getSakEndpoint(saksnummer),
+        `sak/${saksnummer}`,
         'application/json',
     );
     const logger = getLogger(req);
@@ -242,7 +233,7 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        ApiEndpointK9SakInnsyn.saksbehandlingstid,
+        'saksbehandlingstid',
         'application/json',
     );
     const logger = getLogger(req);
@@ -268,7 +259,7 @@ export const fetchInntektsmeldinger = async (
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        getInntektsmeldingerEndpoint(saksnr),
+        `sak/${saksnr}/inntektsmeldinger`,
         'application/json',
     );
     const logger = getLogger(req);
