@@ -41,6 +41,9 @@ export const usePleietrengendeMedSakFromRoute = (): {
         sakFetcher,
     );
 
+    // Venter på router query eller på fetch
+    const isActuallyLoading = !router.isReady || isLoading;
+
     // Kombiner hentet data med pleietrengende fra metadata
     useEffect(() => {
         if (data && saksnrString) {
@@ -70,7 +73,7 @@ export const usePleietrengendeMedSakFromRoute = (): {
     return {
         pleietrengendeMedSak: cachedSak,
         saksnr: saksnrString,
-        isLoading,
+        isLoading: isActuallyLoading,
         error,
     };
 };
