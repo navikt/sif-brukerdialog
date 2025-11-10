@@ -64,18 +64,15 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
     meta?: Record<string, unknown>;
 };
 
-export class SakController {
-    /**
-     * Henter saken registrert på pleietrengende som bruker har omsorgen for
-     */
-    public static hentSak<ThrowOnError extends boolean = true>(options: Options<HentSakData, ThrowOnError>) {
-        return (options.client ?? client).post<HentSakResponses, HentSakErrors, ThrowOnError>({
+export class SØknadController {
+    public static hentSøknader<ThrowOnError extends boolean = true>(options?: Options<HentSøknaderData, ThrowOnError>) {
+        return (options?.client ?? client).get<HentSøknaderResponses, HentSøknaderErrors, ThrowOnError>({
             requestValidator: async (data) => {
-                return await zHentSakData.parseAsync(data);
+                return await zHentSøknaderData.parseAsync(data);
             },
             responseType: 'json',
             responseValidator: async (data) => {
-                return await zHentSakResponse.parseAsync(data);
+                return await zHentSøknaderResponse.parseAsync(data);
             },
             security: [
                 {
@@ -87,15 +84,43 @@ export class SakController {
                     type: 'http',
                 },
             ],
-            url: '/sak/{saksnummer}',
+            url: '/soknad',
             ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers,
-            },
         });
     }
 
+    public static lastNedArbeidsgivermelding<ThrowOnError extends boolean = true>(
+        options: Options<LastNedArbeidsgivermeldingData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).get<
+            LastNedArbeidsgivermeldingResponses,
+            LastNedArbeidsgivermeldingErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) => {
+                return await zLastNedArbeidsgivermeldingData.parseAsync(data);
+            },
+            responseType: 'blob',
+            responseValidator: async (data) => {
+                return await zLastNedArbeidsgivermeldingResponse.parseAsync(data);
+            },
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/soknad/{søknadId}/arbeidsgivermelding',
+            ...options,
+        });
+    }
+}
+
+export class SakController {
     /**
      * Henter sakene registrert på pleietrengende som bruker har omsorgen for
      */
@@ -183,17 +208,18 @@ export class SakController {
             ...options,
         });
     }
-}
 
-export class SØknadController {
-    public static hentSøknader<ThrowOnError extends boolean = true>(options?: Options<HentSøknaderData, ThrowOnError>) {
-        return (options?.client ?? client).get<HentSøknaderResponses, HentSøknaderErrors, ThrowOnError>({
+    /**
+     * Henter saken registrert på pleietrengende som bruker har omsorgen for
+     */
+    public static hentSak<ThrowOnError extends boolean = true>(options: Options<HentSakData, ThrowOnError>) {
+        return (options.client ?? client).get<HentSakResponses, HentSakErrors, ThrowOnError>({
             requestValidator: async (data) => {
-                return await zHentSøknaderData.parseAsync(data);
+                return await zHentSakData.parseAsync(data);
             },
             responseType: 'json',
             responseValidator: async (data) => {
-                return await zHentSøknaderResponse.parseAsync(data);
+                return await zHentSakResponse.parseAsync(data);
             },
             security: [
                 {
@@ -205,37 +231,7 @@ export class SØknadController {
                     type: 'http',
                 },
             ],
-            url: '/soknad',
-            ...options,
-        });
-    }
-
-    public static lastNedArbeidsgivermelding<ThrowOnError extends boolean = true>(
-        options: Options<LastNedArbeidsgivermeldingData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).get<
-            LastNedArbeidsgivermeldingResponses,
-            LastNedArbeidsgivermeldingErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) => {
-                return await zLastNedArbeidsgivermeldingData.parseAsync(data);
-            },
-            responseType: 'blob',
-            responseValidator: async (data) => {
-                return await zLastNedArbeidsgivermeldingResponse.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            url: '/soknad/{søknadId}/arbeidsgivermelding',
+            url: '/sak/{saksnummer}',
             ...options,
         });
     }

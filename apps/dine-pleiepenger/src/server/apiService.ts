@@ -17,7 +17,6 @@ import {
     Saksbehandlingstid as Saksbehandlingstid,
     SaksbehandlingstidSchema,
 } from './api-models/SaksbehandlingstidSchema';
-import { Sak } from './api-models/SakSchema';
 import { Søker, SøkerSchema } from './api-models/SøkerSchema';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 
@@ -85,6 +84,7 @@ export const fetchSakerMetadata = async (req: NextApiRequest): Promise<SakerMeta
 export const fetchSakMedInntektsmeldinger = async (
     req: NextApiRequest,
     saksnummer: string,
+    raw?: boolean,
 ): Promise<SakMedInntektsmeldinger> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
@@ -99,9 +99,13 @@ export const fetchSakMedInntektsmeldinger = async (
     logger.info(`Response-status from request: ${response.status}`);
     logger.info(`Parsing sak response data for saksnummer: ${saksnummer}`);
 
+    if (raw) {
+        return response.data;
+    }
     try {
         // Parse med Zod for validering og filtrering (men date-konvertering skjer client-side)
-        const parsedSak = fjernUkjenteInnsendelserISak(SakMedInntektsmeldingerSchema.parse(response.data).sak);
+        const cleanedSak = fjernUkjenteInnsendelserISak(response.data);
+        const { sak } = SakMedInntektsmeldingerSchema.parse(cleanedSak);
 
         /** Hent inntektsmeldinger for saken */
         let inntektsmeldinger: Inntektsmeldinger = [];
@@ -115,8 +119,8 @@ export const fetchSakMedInntektsmeldinger = async (
 
         return {
             sak: {
-                ...parsedSak,
-                behandlinger: sortBehandlingerNyesteFørst(parsedSak.behandlinger),
+                ...sak,
+                behandlinger: sortBehandlingerNyesteFørst(sak.behandlinger),
             },
             inntektsmeldinger,
         };
@@ -195,15 +199,18 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøkn
     return await InnsendtSøknaderSchema.parse(response.data);
 };
 
-const fjernUkjenteInnsendelserISak = (sak: Sak): Sak => {
+const fjernUkjenteInnsendelserISak = (sak: SakMedInntektsmeldinger): SakMedInntektsmeldinger => {
     return {
         ...sak,
-        behandlinger: sak.behandlinger.map((behandling) => {
-            return {
-                ...behandling,
-                innsendelser: filtrerUtUkjentInnsendelse(behandling.innsendelser),
-            };
-        }),
+        sak: {
+            ...sak.sak,
+            behandlinger: sak.sak.behandlinger.map((behandling) => {
+                return {
+                    ...behandling,
+                    innsendelser: filtrerUtUkjentInnsendelse(behandling.innsendelser),
+                };
+            }),
+        },
     };
 };
 
