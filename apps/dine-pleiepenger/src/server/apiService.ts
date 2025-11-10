@@ -12,11 +12,12 @@ import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 import { Innsendelse } from './api-models/InnsendelseSchema';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
-import { SakMedInntektsmeldinger, SakMedInntektsmeldingerSchema } from './api-models/SakMedInntektsmeldingerSchema';
+import { SakMedInntektsmeldinger } from './api-models/SakMedInntektsmeldingerSchema';
 import {
     Saksbehandlingstid as Saksbehandlingstid,
     SaksbehandlingstidSchema,
 } from './api-models/SaksbehandlingstidSchema';
+import { Sak, SakSchema } from './api-models/SakSchema';
 import { Søker, SøkerSchema } from './api-models/SøkerSchema';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 
@@ -104,8 +105,7 @@ export const fetchSakMedInntektsmeldinger = async (
     }
     try {
         // Parse med Zod for validering og filtrering (men date-konvertering skjer client-side)
-        const cleanedSak = fjernUkjenteInnsendelserISak(response.data);
-        const { sak } = SakMedInntektsmeldingerSchema.parse(cleanedSak);
+        const sak = SakSchema.parse(fjernUkjenteInnsendelserISak(response.data));
 
         /** Hent inntektsmeldinger for saken */
         let inntektsmeldinger: Inntektsmeldinger = [];
@@ -199,18 +199,15 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøkn
     return await InnsendtSøknaderSchema.parse(response.data);
 };
 
-const fjernUkjenteInnsendelserISak = (sak: SakMedInntektsmeldinger): SakMedInntektsmeldinger => {
+const fjernUkjenteInnsendelserISak = (sak: Sak): Sak => {
     return {
         ...sak,
-        sak: {
-            ...sak.sak,
-            behandlinger: sak.sak.behandlinger.map((behandling) => {
-                return {
-                    ...behandling,
-                    innsendelser: filtrerUtUkjentInnsendelse(behandling.innsendelser),
-                };
-            }),
-        },
+        behandlinger: sak.behandlinger.map((behandling) => {
+            return {
+                ...behandling,
+                innsendelser: filtrerUtUkjentInnsendelse(behandling.innsendelser),
+            };
+        }),
     };
 };
 
