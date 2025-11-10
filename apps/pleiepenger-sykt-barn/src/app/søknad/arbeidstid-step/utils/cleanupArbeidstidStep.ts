@@ -10,6 +10,7 @@ import {
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { ArbeidssituasjonAnsattType } from '../../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
+import { skalSpørreOmNormalarbeidstidForIkkeFrilanser } from '../../arbeidssituasjon-step/utils/normalarbeidstidFrilansUtils';
 import { getArbeidsukeKey } from '../components/ArbeidstidEnkeltuker';
 import { getArbeidsukerIPerioden } from './arbeidstidStepUtils';
 
@@ -96,7 +97,9 @@ export const cleanupArbeidstidStep = (
     const { frilans: arbeidssituasjonFrilans } = arbeidssituasjonSøknadsdata;
     /** Frilanser */
     if (!arbeidssituasjonFrilans?.harInntektSomFrilanser || !arbeidssituasjonFrilans?.misterInntektSomFrilanser) {
-        delete cleanedValues.frilans.arbeidsforhold;
+        if (!skalSpørreOmNormalarbeidstidForIkkeFrilanser(cleanedValues)) {
+            delete cleanedValues.frilans.arbeidsforhold;
+        }
     } else {
         if (cleanedValues.frilans.arbeidsforhold) {
             cleanedValues.frilans.arbeidsforhold.arbeidIPeriode = cleanupArbeidIPeriode(
