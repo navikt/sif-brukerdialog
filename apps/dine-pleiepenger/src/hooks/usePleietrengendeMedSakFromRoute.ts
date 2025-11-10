@@ -3,26 +3,29 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
-import { PleietrengendeMedSak, PleietrengendeMedSakSchema } from '../server/api-models/PleietrengendeMedSakSchema';
+import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
+import { PleietrengendeSchema } from '../server/api-models/PleietrengendeSchema';
+import {
+    SakMedInntektsmeldinger,
+    SakMedInntektsmeldingerSchema,
+} from '../server/api-models/SakMedInntektsmeldingerSchema';
 import { browserEnv } from '../utils/env';
 import { useInnsynsdataContext } from './useInnsynsdataContext';
 
-const sakFetcher = async (url: string): Promise<PleietrengendeMedSak> => {
+const sakFetcher = async (url: string): Promise<SakMedInntektsmeldinger> => {
     const response = await axios.get(url);
-    // Parse med Zod for å konvertere date strings til Date objekter
-    return PleietrengendeMedSakSchema.parse(response.data);
+    // Konverterer date strings til Date objekter
+    return SakMedInntektsmeldingerSchema.parse(response.data);
 };
 
-/**
- * Tilpasset hook for å hente sak fra route med lazy loading
- */
+/** Henter sak fra route med lazy loading */
 export const usePleietrengendeMedSakFromRoute = (): {
     pleietrengendeMedSak: PleietrengendeMedSak | undefined;
     saksnr: string | undefined;
     isLoading: boolean;
     error: Error | undefined;
 } => {
-    const { getSaksdata, setSaksdata } = useInnsynsdataContext();
+    const { getSaksdata, setSaksdata, innsynsdata } = useInnsynsdataContext();
     const router = useRouter();
     const { saksnr } = router.query;
     const saksnrString = typeof saksnr === 'string' ? saksnr : undefined;
@@ -31,22 +34,30 @@ export const usePleietrengendeMedSakFromRoute = (): {
         saksnrString ? getSaksdata(saksnrString) : undefined,
     );
 
-    // Only fetch if we have a saksnr and no cached data
+    // Hent kun hvis vi har saksnr og ingen cached data
     const shouldFetch = saksnrString && !cachedSak;
-    const { data, error, isLoading } = useSWR<PleietrengendeMedSak>(
+    const { data, error, isLoading } = useSWR<SakMedInntektsmeldinger>(
         shouldFetch ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${saksnrString}` : null,
         sakFetcher,
     );
 
-    // Update cache when data is fetched
+    // Kombiner hentet data med pleietrengende fra metadata
     useEffect(() => {
         if (data && saksnrString) {
-            setSaksdata(saksnrString, data);
-            setCachedSak(data);
+            const metadata = innsynsdata.sakerMetadata.find((m) => m.saksnummer === saksnrString);
+            if (metadata?.pleietrengende) {
+                const pleietrengende = PleietrengendeSchema.parse(metadata.pleietrengende);
+                const completeSak: PleietrengendeMedSak = {
+                    pleietrengende,
+                    ...data,
+                };
+                setSaksdata(saksnrString, completeSak);
+                setCachedSak(completeSak);
+            }
         }
-    }, [data, saksnrString, setSaksdata]);
+    }, [data, saksnrString, setSaksdata, innsynsdata.sakerMetadata]);
 
-    // Check cache again if saksnr changes
+    // Sjekk cache på nytt hvis saksnr endres
     useEffect(() => {
         if (saksnrString) {
             const cached = getSaksdata(saksnrString);
@@ -57,7 +68,7 @@ export const usePleietrengendeMedSakFromRoute = (): {
     }, [saksnrString, getSaksdata]);
 
     return {
-        pleietrengendeMedSak: cachedSak || data,
+        pleietrengendeMedSak: cachedSak,
         saksnr: saksnrString,
         isLoading,
         error,

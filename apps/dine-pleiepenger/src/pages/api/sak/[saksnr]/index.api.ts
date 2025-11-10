@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
-import { fetchSakDetaljer } from '../../../../server/apiService';
+import { fetchSakMedInntektsmeldinger } from '../../../../server/apiService';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -16,14 +16,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const logger = getLogger(req);
         logger.info(`Henter saksdetaljer for saksnummer: ${saksnr}`);
 
-        const data = await fetchSakDetaljer(req, saksnr);
+        // Pleietrengende kombineres med data på klienten
+        const data = await fetchSakMedInntektsmeldinger(req, saksnr);
 
         if (!data) {
             logger.warn(`Sak ${saksnr} ikke funnet`);
             return res.status(404).json({ error: 'Sak ikke funnet' });
         }
 
-        logger.info(`Saksdetaljer hentet for saksnummer: ${saksnr}`);
+        logger.info(`Saksdetaljer (sak + inntektsmeldinger) hentet for saksnummer: ${saksnr}`);
         res.json(data);
     } catch (err) {
         const logger = getLogger(req);

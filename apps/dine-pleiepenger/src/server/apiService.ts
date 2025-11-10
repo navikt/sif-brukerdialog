@@ -13,11 +13,8 @@ import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 import { Innsendelse } from './api-models/InnsendelseSchema';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
-import {
-    PleietrengendeMedSak,
-    PleietrengendeMedSakResponseSchema,
-    PleietrengendeMedSakSchema,
-} from './api-models/PleietrengendeMedSakSchema';
+import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
+import { SakMedInntektsmeldinger, SakMedInntektsmeldingerSchema } from './api-models/SakMedInntektsmeldingerSchema';
 import {
     Saksbehandlingstid as Saksbehandlingstid,
     SaksbehandlingstidSchema,
@@ -174,7 +171,10 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
  * @param saksnummer
  * @returns
  */
-export const fetchSakDetaljer = async (req: NextApiRequest, saksnummer: string): Promise<PleietrengendeMedSak> => {
+export const fetchSakMedInntektsmeldinger = async (
+    req: NextApiRequest,
+    saksnummer: string,
+): Promise<SakMedInntektsmeldinger> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
@@ -193,7 +193,7 @@ export const fetchSakDetaljer = async (req: NextApiRequest, saksnummer: string):
         // Backend returnerer én sak, ikke array
         const sakData = fjernUkjenteInnsendelserISak(response.data);
         // Parse med Zod for validering og filtrering (men date-konvertering skjer client-side)
-        const parsedSak = PleietrengendeMedSakSchema.parse(sakData);
+        const parsedSak = SakMedInntektsmeldingerSchema.parse(sakData);
 
         /** Hent inntektsmeldinger for saken */
         let inntektsmeldinger: Inntektsmeldinger = [];
@@ -206,7 +206,6 @@ export const fetchSakDetaljer = async (req: NextApiRequest, saksnummer: string):
         }
 
         return {
-            pleietrengende: parsedSak.pleietrengende,
             sak: {
                 ...parsedSak.sak,
                 behandlinger: sortBehandlingerNyesteFørst(parsedSak.sak.behandlinger),

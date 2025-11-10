@@ -2,10 +2,8 @@ import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, Box, BoxNew, Heading, Link, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
-import Skeleton from 'react-loading-skeleton';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { useInntektsmeldinger } from '../../hooks/useInntektsmeldinger';
 import { Sak } from '../../server/api-models/SakSchema';
 import { Inntektsmeldinger } from '../../types/Inntektsmelding';
 import { browserEnv } from '../../utils/env';
@@ -18,12 +16,7 @@ interface Props {
     inntektsmeldinger: Inntektsmeldinger;
 }
 
-const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }: Props) => {
-    const { inntektsmeldinger, isLoading, error } = useInntektsmeldinger({
-        saksnummer: sak.saksnummer,
-        inntektsmeldingerProp,
-    });
-
+const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [
             {
@@ -36,26 +29,6 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger: inntektsmeldingerProp }
     });
 
     const renderContent = () => {
-        if (isLoading) {
-            return (
-                <Skeleton
-                    height="6rem"
-                    baseColor="#E6F1F8"
-                    highlightColor="#CCE2F0"
-                    style={{ borderRadius: '.5rem', borderColor: 'rgba(0,22,48,.19)', marginBottom: '.5rem' }}
-                    className="border"
-                    count={3}
-                />
-            );
-        }
-        if (error) {
-            return (
-                <Alert variant="error">
-                    Noe gikk galt ved henting av inntektsmeldinger. Vennligst prøv igjen senere.
-                </Alert>
-            );
-        }
-
         return inntektsmeldinger && inntektsmeldinger.length > 0 ? (
             <InntektsmeldingerListe saksnummer={sak.saksnummer} inntektsmeldinger={inntektsmeldinger} />
         ) : (

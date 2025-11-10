@@ -4,10 +4,9 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
-import Skeleton from 'react-loading-skeleton';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { useInntektsmeldinger } from '../../hooks/useInntektsmeldinger';
+import { usePleietrengendeMedSakFromRoute } from '../../hooks/usePleietrengendeMedSakFromRoute';
 import { browserEnv } from '../../utils/env';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/InntektsmeldingDetaljer';
@@ -17,12 +16,9 @@ import PageHeader from '../page-layout/page-header/PageHeader';
 const InntektsmeldingDetaljerPage = () => {
     const router = useRouter();
     const { saksnr, journalpostId } = router.query;
+    const { pleietrengendeMedSak, isLoading, error } = usePleietrengendeMedSakFromRoute();
 
-    const { inntektsmeldinger, isLoading, error } = useInntektsmeldinger({
-        saksnummer: saksnr as string,
-    });
-
-    const innteksmelding = inntektsmeldinger?.find((im) => im.journalpostId === journalpostId);
+    const innteksmelding = pleietrengendeMedSak?.inntektsmeldinger?.find((im) => im.journalpostId === journalpostId);
 
     useBreadcrumbs({
         breadcrumbs: [
@@ -34,16 +30,7 @@ const InntektsmeldingDetaljerPage = () => {
 
     const renderContent = () => {
         if (isLoading) {
-            return (
-                <Skeleton
-                    height="6rem"
-                    baseColor="#E6F1F8"
-                    highlightColor="#CCE2F0"
-                    style={{ borderRadius: '.5rem', borderColor: 'rgba(0,22,48,.19)', marginBottom: '.5rem' }}
-                    className="border"
-                    count={1}
-                />
-            );
+            return <Alert variant="info">Laster inntektsmelding...</Alert>;
         }
         if (error) {
             return (
