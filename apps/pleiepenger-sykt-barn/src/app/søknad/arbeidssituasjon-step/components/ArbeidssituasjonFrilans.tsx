@@ -1,4 +1,4 @@
-import { Alert, BodyLong, VStack } from '@navikt/ds-react';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds';
@@ -7,10 +7,6 @@ import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 
 import { AppText, useAppIntl } from '../../../i18n';
-import { Arbeidsgiver } from '../../../types';
-import { FosterhjemsgodtgjørelseFormValues } from '../../../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
-import { FrilansFormValues } from '../../../types/søknad-form-values/FrilansFormValues';
-import { OmsorgsstønadFormValues } from '../../../types/søknad-form-values/OmsorgsstønadFormValues';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { harFrilansoppdrag } from '../../../utils/frilanserUtils';
 import FosterhjemsgodtgjørelseFormPart from './fosterhjemsgodtgjørelse-form-part/FosterhjemsgodtgjørelseFormPart';
@@ -26,7 +22,7 @@ interface Props {
 const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
     const { text } = useAppIntl();
     const { values } = useFormikContext<SøknadFormValues>();
-    const { frilansoppdrag, omsorgsstønad } = values;
+    const { frilansoppdrag } = values;
 
     const søkerHarFrilansoppdrag = harFrilansoppdrag(frilansoppdrag);
 
@@ -76,33 +72,7 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
                     }
                 />
             </FormLayout.Questions>
-            {visIngenFrilansInformasjon(
-                frilansoppdrag,
-                omsorgsstønad,
-                values.fosterhjemsgodtgjørelse,
-                values.frilans,
-            ) && (
-                <Alert variant="info">
-                    <AppText id="frilanser.ingenFrilans.info" />
-                </Alert>
-            )}
         </VStack>
-    );
-};
-
-const visIngenFrilansInformasjon = (
-    frilansoppdrag: Arbeidsgiver[],
-    omsorgsstønad: OmsorgsstønadFormValues,
-    fosterhjem: FosterhjemsgodtgjørelseFormValues,
-    frilans: FrilansFormValues,
-): boolean => {
-    if (frilansoppdrag.length === 0) {
-        return false;
-    }
-    return (
-        frilans.harHattInntektSomFrilanser === YesOrNo.NO &&
-        omsorgsstønad.mottarOmsorgsstønad === YesOrNo.NO &&
-        fosterhjem.mottarFosterhjemsgodtgjørelse === YesOrNo.NO
     );
 };
 

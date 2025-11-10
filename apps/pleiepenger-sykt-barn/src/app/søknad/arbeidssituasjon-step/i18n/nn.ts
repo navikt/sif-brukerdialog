@@ -98,6 +98,11 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'arbeidsforhold.frilanser.normalTimer.frilans.FRILANS_HONORAR.info.3': 'Døme på korleis du reknar det ut:',
     'arbeidsforhold.frilanser.normalTimer.frilans.FRILANS_HONORAR.info.4':
         'Du har dei siste 12 vekene jobba 40 timar som frilansar, og du har brukt 20 timar på det du mottar honorar for. Då får du til samen 60 timar, som du delar på 12 = 5. Du oppgjev altså at du jobba 5 timar i snitt per veke.',
+    'arbeidsforhold.frilanser.avsluttet.info.tittel': 'Hva betyr dette?',
+    'arbeidsforhold.frilanser.avsluttet.info.tekst':
+        'Vi må vite hvor mange timer du jobbet i snitt som frilanser. Hvis du kun har jobbet i korte perioder av gangen, kan du regne et gjennomsnitt for en lengre periode.',
+    'arbeidsforhold.frilanser.normalarbeidstidIkkeFrilanser.intro':
+        'Fordi du er registrert som frilanser i Aa-registeret, trenger vi å vite hvor mye du vanligvis jobbet som frilanser. Hvis du ikke lengre skal være registrert som frilanser, må du kontakte oppdragsgiver for å oppdatere registeret.',
 
     'arbeidsforhold.normalTimer.info.turnus':
         'Når du jobbar turnus, eller har anna varierande arbeidstid, oppgjev du eit snitt per veke.',
@@ -164,8 +169,6 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'frilanser.startdato.spm': 'Når starta du å jobbe som frilansar?',
 
     'frilanser.erFortsattFrilanser.spm': 'Jobbar du framleis som frilansar?',
-    'frilanser.ingenFrilans.info':
-        'Viss det ikkje stemmer at du skal vere registrert med frilansoppdrag i AA-registeret må du be dei som har gjort registreringa om å oppdatere informasjonen. Du kan likevel halde fram med å fylle ut og sende inn søknaden.',
 
     'frilanser.sluttdato.spm': 'Når slutta du å jobbe som frilansar?',
     'frilanser.misterHonorar.tittle': 'Mistar du honorar fordi du må pleie barnet?',

@@ -3,7 +3,7 @@ import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-am
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { purge } from '../api/api';
@@ -37,10 +37,10 @@ const SøknadFormStep = (props: Props) => {
         showButtonSpinner,
         buttonDisabled,
         stepId,
-
         isFinalSubmit,
         showSubmitButton = true,
     } = props;
+    const [nextButtonPending, setNextButtonPending] = useState(false);
     const navigate = useNavigate();
     const { logHendelse } = useAmplitudeInstance();
 
@@ -51,6 +51,12 @@ const SøknadFormStep = (props: Props) => {
         return <InvalidStepPage stepId={stepId} />;
     }
     const { index } = currentStepConfig;
+    const handleOnValidFormSubmit = async () => {
+        if (onValidFormSubmit) {
+            setNextButtonPending(true);
+            onValidFormSubmit();
+        }
+    };
 
     const handleAvbrytSøknad = async () => {
         await purge();
@@ -75,7 +81,7 @@ const SøknadFormStep = (props: Props) => {
             onContinueLater={handleAvsluttOgFortsettSenere}
             steps={soknadStepUtils.getProgressStepsFromConfig(søknadStepConfig, index, intl)}>
             <SøknadFormComponents.Form
-                onValidSubmit={onValidFormSubmit}
+                onValidSubmit={handleOnValidFormSubmit}
                 includeButtons={true}
                 isFinalSubmit={isFinalSubmit}
                 showSubmitButton={showSubmitButton}
@@ -83,7 +89,7 @@ const SøknadFormStep = (props: Props) => {
                 includeValidationSummary={true}
                 runDelayedFormValidation={true}
                 onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
-                submitPending={showButtonSpinner}
+                submitPending={showButtonSpinner || nextButtonPending}
                 submitDisabled={buttonDisabled}
                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
                 {children}
