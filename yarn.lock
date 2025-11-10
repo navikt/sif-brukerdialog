@@ -5714,7 +5714,7 @@ __metadata:
     react-hook-form: "npm:7.66.0"
     react-intl: "npm:7.1.14"
     storybook: "npm:10.0.4"
-    storybook-react-intl: "npm:4.0.7"
+    storybook-react-intl: "npm:10.0.1"
     typescript: "npm:5.9.3"
     vite: "npm:7.2.0"
     vite-plugin-checker: "npm:0.11.0"
@@ -8461,7 +8461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/icons@npm:^1.4.0, @storybook/icons@npm:^1.6.0":
+"@storybook/icons@npm:1.6.0, @storybook/icons@npm:^1.6.0":
   version: 1.6.0
   resolution: "@storybook/icons@npm:1.6.0"
   peerDependencies:
@@ -25480,27 +25480,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook-i18n@npm:^4.0.5":
-  version: 4.0.5
-  resolution: "storybook-i18n@npm:4.0.5"
+"storybook-i18n@npm:^10.0.3":
+  version: 10.0.3
+  resolution: "storybook-i18n@npm:10.0.3"
   dependencies:
-    "@storybook/icons": "npm:^1.4.0"
+    "@storybook/icons": "npm:1.6.0"
   peerDependencies:
-    storybook: ^9.0.0
-  checksum: 10/61254830a67ef5f2e2fc52b048d60275ca7e2b0a056b6eae3e3bfb3ca6409071c5973d70acf2e0a667b2c08ee19b04b53914f242514789d8b27bfe35c24c506d
+    storybook: ^9.0.0 || ^10.0.0
+  checksum: 10/afb815310b352d3d6f4f6bc3301f94e6c6561c874497d051262bfb0fc69a1d2d324de579948c95e64c7c622ea799affb8db69326098f78e4b07a385636add6eb
   languageName: node
   linkType: hard
 
-"storybook-react-intl@npm:4.0.7":
-  version: 4.0.7
-  resolution: "storybook-react-intl@npm:4.0.7"
+"storybook-react-intl@npm:10.0.1":
+  version: 10.0.1
+  resolution: "storybook-react-intl@npm:10.0.1"
   dependencies:
-    storybook-i18n: "npm:^4.0.5"
+    storybook-i18n: "npm:^10.0.3"
   peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     react-intl: ^5.24.0 || ^6.0.0 || ^7.0.0
-    storybook: ^9.0.0
-  checksum: 10/a0d49554417ce69c50e94877fb99b096f6ae4e4285eb1e1001688ae0e4a8a92a5f2bc9feb202135130b6415f21d3129e02bab47c61f4124eec26d1437e496322
+    storybook: ^9.0.0 || ^10.0.0
+  checksum: 10/64023d6acc339b05c35f8e5bb10a0eefecef2793884aacec967c7ef2910d203e2e30f4c6d7b5984895609cfb663f52b3d99a28b74bac44b1c3d8afa603b5d673
   languageName: node
   linkType: hard
 
