@@ -16,7 +16,7 @@
         "sanity"
     ],
     "dependencies": {
-        "@sanity/vision": "4.13.0",
+        "@sanity/vision": "4.14.2",
         "react": "19.2.0",
         "react-dom": "19.2.0",
         "sanity": "4.13.0",
