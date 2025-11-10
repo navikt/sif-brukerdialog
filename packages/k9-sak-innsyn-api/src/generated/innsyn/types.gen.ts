@@ -123,11 +123,7 @@ export type SakInntektsmeldingDto = {
     startDatoPermisjon?: string;
     oppgittFravær?: OppholdDto[];
     refusjon?: RefusjonDto;
-    inntektsmeldingType?:
-        | 'ORDINÆR'
-        | 'OMSORGSPENGER_REFUSJON'
-        | 'ARBEIDSGIVERINITIERT_NYANSATT'
-        | 'ARBEIDSGIVERINITIERT_UREGISTRERT';
+    inntektsmeldingType?: InntektsmeldingTypeDto;
     endringerRefusjon?: EndringRefusjonDto[];
 };
 
@@ -711,9 +707,9 @@ export enum Innsendelsestype {
 }
 
 export type Innsending = {
-    mottattDato?: string;
     versjon?: string;
     søker?: Søker;
+    mottattDato?: string;
     søknadId?: string;
 };
 
@@ -775,7 +771,7 @@ export type SaksbehandlingtidDto = {
 export type SakerMetadataDto = {
     saksnummer: string;
     pleietrengende: PleietrengendeDto;
-    fagsakYtelseType: 'PSB' | 'PPN' | 'OMP_KS' | 'OMP_MA' | 'OMP_AO' | 'OMP' | 'OLP';
+    fagsakYtelseType: FagsakYtelseType;
 };
 
 export type FraværPeriodeWritable = {
