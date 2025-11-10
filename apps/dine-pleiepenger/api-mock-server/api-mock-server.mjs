@@ -1,10 +1,19 @@
 /* eslint-disable no-console */
-const express = require('express');
-const helmet = require('helmet');
+import express from 'express';
+import { readFileSync } from 'fs';
+import helmet from 'helmet';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const server = express();
-const søknader = require('./mockdata/soknader.json');
-const inntektsmeldinger = require('./mockdata/inntektsmeldinger.json');
-const flereSaker = require('./mockdata/flere-saker.json');
+
+// Last inn JSON-filer
+const søknader = JSON.parse(readFileSync(join(__dirname, './mockdata/soknader.json'), 'utf-8'));
+const inntektsmeldinger = JSON.parse(readFileSync(join(__dirname, './mockdata/inntektsmeldinger.json'), 'utf-8'));
+const flereSaker = JSON.parse(readFileSync(join(__dirname, './mockdata/flere-saker.json'), 'utf-8'));
 
 server.use(express.json());
 
