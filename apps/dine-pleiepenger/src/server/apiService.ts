@@ -144,7 +144,7 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
-        'saksbehandlingstid',
+        'saker/saksbehandlingstid',
         'application/json',
     );
     const logger = getLogger(req);
