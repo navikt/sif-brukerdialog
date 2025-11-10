@@ -1,6 +1,9 @@
-import { Loader } from '@navikt/ds-react';
+import { BodyShort, HStack, VStack } from '@navikt/ds-react';
+import Head from 'next/head';
 
 import { withAuthenticatedPage } from '../../../auth/withAuthentication';
+import ComponentLoader from '../../../components/component-loader/ComponentLoader';
+import EmptyPage from '../../../components/page-layout/empty-page/EmptyPage';
 import SakIkkeFunnetPage from '../../../components/sak-pages/SakIkkeFunnetPage';
 import SakPage from '../../../components/sak-pages/SakPage';
 import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
@@ -14,9 +17,15 @@ export default function SakRoutePage() {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center min-h-screen">
-                <Loader size="3xlarge" title="Laster saksdata..." />
-            </div>
+            <EmptyPage>
+                <Head>Henter informasjon - Dine pleiepenger for sykt barn</Head>
+                <HStack align="center" justify="center" marginBlock="8 0">
+                    <VStack gap="4">
+                        <ComponentLoader />
+                        <BodyShort size="large">Henter informasjon...</BodyShort>
+                    </VStack>
+                </HStack>
+            </EmptyPage>
         );
     }
 

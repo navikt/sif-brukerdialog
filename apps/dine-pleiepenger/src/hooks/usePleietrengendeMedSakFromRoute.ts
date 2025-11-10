@@ -36,26 +36,42 @@ export const usePleietrengendeMedSakFromRoute = (): {
 
     // Hent kun hvis vi har saksnr og ingen cached data
     const shouldFetch = saksnrString && !cachedSak;
-    const { data, error, isLoading } = useSWR<SakMedInntektsmeldinger>(
+    const {
+        data,
+        error: swrError,
+        isLoading: swrLoading,
+    } = useSWR<SakMedInntektsmeldinger>(
         shouldFetch ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${saksnrString}` : null,
         sakFetcher,
     );
 
-    // Venter på router query eller på fetch
-    const isActuallyLoading = !router.isReady || isLoading;
+    const [internalLoading, setInternalLoading] = useState(swrLoading);
+    const [internalError, setInternalError] = useState<Error | undefined>();
 
     // Kombiner hentet data med pleietrengende fra metadata
     useEffect(() => {
         if (data && saksnrString) {
+            setInternalLoading(true);
+            setInternalError(undefined);
+
             const metadata = innsynsdata.sakerMetadata.find((m) => m.saksnummer === saksnrString);
             if (metadata?.pleietrengende) {
-                const pleietrengende = PleietrengendeSchema.parse(metadata.pleietrengende);
-                const completeSak: PleietrengendeMedSak = {
-                    pleietrengende,
-                    ...data,
-                };
-                setSaksdata(saksnrString, completeSak);
-                setCachedSak(completeSak);
+                try {
+                    const pleietrengende = PleietrengendeSchema.parse(metadata.pleietrengende);
+                    const completeSak: PleietrengendeMedSak = {
+                        pleietrengende,
+                        ...data,
+                    };
+                    setSaksdata(saksnrString, completeSak);
+                    setCachedSak(completeSak);
+                    setInternalLoading(false);
+                } catch (error) {
+                    setInternalError(error as Error);
+                    setInternalLoading(false);
+                }
+            } else {
+                setInternalError(new Error(`Metadata ikke funnet for sak ${saksnrString}`));
+                setInternalLoading(false);
             }
         }
     }, [data, saksnrString, setSaksdata, innsynsdata.sakerMetadata]);
@@ -73,7 +89,7 @@ export const usePleietrengendeMedSakFromRoute = (): {
     return {
         pleietrengendeMedSak: cachedSak,
         saksnr: saksnrString,
-        isLoading: isActuallyLoading,
-        error,
+        isLoading: swrLoading || internalLoading,
+        error: internalError || swrError,
     };
 };
