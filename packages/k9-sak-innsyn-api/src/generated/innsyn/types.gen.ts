@@ -15,140 +15,141 @@ export type ProblemDetail = {
     };
 };
 
-export type ArbeidsgiverDto = {
-    organisasjon?: ArbeidsgiverOrganisasjonDto;
-    privat?: ArbeidsgiverPrivatDto;
+export type AksjonspunktDto = {
+    venteårsak: Venteårsak;
+    tidsfrist: string;
 };
 
-export type ArbeidsgiverOrganisasjonDto = {
-    navn?: string;
-    organisasjonsnummer: string;
+export type BehandlingDto = {
+    status: BehandlingStatus;
+    opprettetTidspunkt: string;
+    avsluttetTidspunkt?: string;
+    innsendelser: InnsendelserISakDto[];
+    aksjonspunkter: AksjonspunktDto[];
+    utgåendeDokumenter: DokumentDto[];
 };
 
-export type ArbeidsgiverPrivatDto = {
-    navn?: string;
-    fødselsnummer: string;
-};
-
-export type EndringRefusjonDto = {
-    refusjonBeløpPerMnd: number;
-    fom: string;
-};
-
-export type GraderingDto = {
-    periode: PeriodeDto;
-    arbeidstidProsent: number;
-};
-
-export enum InnsendingsårsakDto {
-    NY = 'NY',
-    ENDRING = 'ENDRING',
-    UDEFINERT = 'UDEFINERT',
+export enum BehandlingStatus {
+    OPPRETTET = 'OPPRETTET',
+    UNDER_BEHANDLING = 'UNDER_BEHANDLING',
+    PÅ_VENT = 'PÅ_VENT',
+    AVSLUTTET = 'AVSLUTTET',
 }
 
-export enum InntektsmeldingStatusDto {
-    I_BRUK = 'I_BRUK',
-    ERSTATTET_AV_NYERE = 'ERSTATTET_AV_NYERE',
-    IKKE_RELEVANT = 'IKKE_RELEVANT',
-    MANGLER_DATO = 'MANGLER_DATO',
+export enum Datotype {
+    DATO_OPPRETTET = 'DATO_OPPRETTET',
+    DATO_SENDT_PRINT = 'DATO_SENDT_PRINT',
+    DATO_EKSPEDERT = 'DATO_EKSPEDERT',
+    DATO_JOURNALFOERT = 'DATO_JOURNALFOERT',
+    DATO_REGISTRERT = 'DATO_REGISTRERT',
+    DATO_AVS_RETUR = 'DATO_AVS_RETUR',
+    DATO_DOKUMENT = 'DATO_DOKUMENT',
+    UKJENT = 'UKJENT',
 }
 
-export enum InntektsmeldingTypeDto {
-    ORDINÆR = 'ORDINÆR',
-    OMSORGSPENGER_REFUSJON = 'OMSORGSPENGER_REFUSJON',
-    ARBEIDSGIVERINITIERT_NYANSATT = 'ARBEIDSGIVERINITIERT_NYANSATT',
-    ARBEIDSGIVERINITIERT_UREGISTRERT = 'ARBEIDSGIVERINITIERT_UREGISTRERT',
+export enum DokumentBrevkode {
+    PLEIEPENGER_SYKT_BARN_SOKNAD = 'PLEIEPENGER_SYKT_BARN_SOKNAD',
+    PLEIEPENGER_SYKT_BARN_ETTERSENDELSE = 'PLEIEPENGER_SYKT_BARN_ETTERSENDELSE',
+    ETTERLYST_INNTEKTSMELDING = 'ETTERLYST_INNTEKTSMELDING',
+    ETTERLYST_INNTEKTSMELDING_PURRING = 'ETTERLYST_INNTEKTSMELDING_PURRING',
+    VEDTAK_INNVILGELSE = 'VEDTAK_INNVILGELSE',
+    VEDTAK_AVSLAG = 'VEDTAK_AVSLAG',
+    VEDTAK_FRITEKST = 'VEDTAK_FRITEKST',
+    VEDTAK_ENDRING = 'VEDTAK_ENDRING',
+    VEDTAK_MANUELT = 'VEDTAK_MANUELT',
+    VEDTAK_UENDRETUTFALL = 'VEDTAK_UENDRETUTFALL',
+    UKJENT = 'UKJENT',
 }
 
-export type NaturalYtelseDto = {
-    periode?: PeriodeDto;
-    beløpPerMnd: number;
-    type: NaturalYtelseTypeDto;
-};
-
-export enum NaturalYtelseTypeDto {
-    ELEKTRISK_KOMMUNIKASJON = 'ELEKTRISK_KOMMUNIKASJON',
-    AKSJER_GRUNNFONDSBEVIS_TIL_UNDERKURS = 'AKSJER_GRUNNFONDSBEVIS_TIL_UNDERKURS',
-    LOSJI = 'LOSJI',
-    KOST_DØGN = 'KOST_DØGN',
-    BESØKSREISER_HJEMMET_ANNET = 'BESØKSREISER_HJEMMET_ANNET',
-    KOSTBESPARELSE_I_HJEMMET = 'KOSTBESPARELSE_I_HJEMMET',
-    RENTEFORDEL_LÅN = 'RENTEFORDEL_LÅN',
-    BIL = 'BIL',
-    KOST_DAGER = 'KOST_DAGER',
-    BOLIG = 'BOLIG',
-    SKATTEPLIKTIG_DEL_FORSIKRINGER = 'SKATTEPLIKTIG_DEL_FORSIKRINGER',
-    FRI_TRANSPORT = 'FRI_TRANSPORT',
-    OPSJONER = 'OPSJONER',
-    TILSKUDD_BARNEHAGEPLASS = 'TILSKUDD_BARNEHAGEPLASS',
-    ANNET = 'ANNET',
-    BEDRIFTSBARNEHAGEPLASS = 'BEDRIFTSBARNEHAGEPLASS',
-    YRKEBIL_TJENESTLIGBEHOV_KILOMETER = 'YRKEBIL_TJENESTLIGBEHOV_KILOMETER',
-    YRKEBIL_TJENESTLIGBEHOV_LISTEPRIS = 'YRKEBIL_TJENESTLIGBEHOV_LISTEPRIS',
-    INNBETALING_TIL_UTENLANDSK_PENSJONSORDNING = 'INNBETALING_TIL_UTENLANDSK_PENSJONSORDNING',
-    UDEFINERT = 'UDEFINERT',
-}
-
-export type OppholdDto = {
-    periode: PeriodeDto;
-    varighetPerDag?: string;
-};
-
-export type PeriodeDto = {
-    fom: string;
-    tom: string;
-};
-
-export type RefusjonDto = {
-    refusjonBeløpPerMnd: number;
-    refusjonOpphører?: string;
-};
-
-export type SakInntektsmeldingDto = {
-    ytelseType: YtekseTypeDto;
-    status: InntektsmeldingStatusDto;
-    saksnummer: string;
-    innsendingstidspunkt: string;
-    kildesystem: string;
-    arbeidsgiver: ArbeidsgiverDto;
-    nærRelasjon: boolean;
+export type DokumentDto = {
     journalpostId: string;
-    mottattDato: string;
-    inntektBeløp: number;
-    innsendingsårsak: InnsendingsårsakDto;
-    erstattetAv: string[];
-    graderinger?: GraderingDto[];
-    naturalYtelser?: NaturalYtelseDto[];
-    utsettelsePerioder?: UtsettelseDto[];
-    startDatoPermisjon?: string;
-    oppgittFravær?: OppholdDto[];
-    refusjon?: RefusjonDto;
-    inntektsmeldingType?: InntektsmeldingTypeDto;
-    endringerRefusjon?: EndringRefusjonDto[];
+    dokumentInfoId: string;
+    saksnummer?: string;
+    tittel: string;
+    dokumentType?: DokumentBrevkode;
+    filtype: string;
+    harTilgang: boolean;
+    url: string;
+    relevanteDatoer: RelevantDatoDto[];
 };
 
-export type UtsettelseDto = {
-    periode: PeriodeDto;
-    getårsak: UtsettelseÅrsakDto;
+export enum FagsakYtelseType {
+    PSB = 'PSB',
+    PPN = 'PPN',
+    OMP_KS = 'OMP_KS',
+    OMP_MA = 'OMP_MA',
+    OMP_AO = 'OMP_AO',
+    OMP = 'OMP',
+    OLP = 'OLP',
+}
+
+export type InnsendelserISakDto = {
+    søknadId: string;
+    mottattTidspunkt: string;
+    innsendelsestype: Innsendelsestype;
+    k9FormatInnsendelse?: Innsending;
+    dokumenter: DokumentDto[];
+    arbeidsgivere?: Organisasjon[];
 };
 
-export enum UtsettelseÅrsakDto {
-    ARBEID = 'ARBEID',
-    FERIE = 'FERIE',
-    SYKDOM = 'SYKDOM',
-    INSTITUSJON_SØKER = 'INSTITUSJON_SØKER',
-    INSTITUSJON_BARN = 'INSTITUSJON_BARN',
-    UDEFINERT = 'UDEFINERT',
+export enum Innsendelsestype {
+    SØKNAD = 'SØKNAD',
+    ETTERSENDELSE = 'ETTERSENDELSE',
+    ENDRINGSMELDING = 'ENDRINGSMELDING',
+    UKJENT = 'UKJENT',
 }
 
-export enum YtekseTypeDto {
-    PLEIEPENGER_SYKT_BARN = 'PLEIEPENGER_SYKT_BARN',
-    PLEIEPENGER_NÆRSTÅENDE = 'PLEIEPENGER_NÆRSTÅENDE',
-    OMSORGSPENGER_KS = 'OMSORGSPENGER_KS',
-    OMSORGSPENGER_MA = 'OMSORGSPENGER_MA',
-    OMSORGSPENGER_AO = 'OMSORGSPENGER_AO',
-    OPPLÆRINGSPENGER = 'OPPLÆRINGSPENGER',
+export type Innsending = {
+    mottattDato?: string;
+    søker?: Søker;
+    versjon?: string;
+    søknadId?: string;
+};
+
+export type Organisasjon = {
+    organisasjonsnummer: string;
+    navn?: string;
+};
+
+export type RelevantDatoDto = {
+    dato: string;
+    datotype: Datotype;
+};
+
+export type SakDto = {
+    saksnummer: string;
+    utledetStatus: UtledetStatus;
+    saksbehandlingsFrist?: string;
+    /**
+     * bruk ytelseType
+     *
+     * @deprecated
+     */
+    fagsakYtelseType: FagsakYtelseType;
+    ytelseType: FagsakYtelseType;
+    behandlinger: BehandlingDto[];
+};
+
+export type Søker = {
+    norskIdentitetsnummer: string;
+};
+
+export type UtledetStatus = {
+    status: BehandlingStatus;
+    aksjonspunkter: AksjonspunktDto[];
+    saksbehandlingsFrist?: string;
+};
+
+export enum Venteårsak {
+    INNTEKTSMELDING = 'INNTEKTSMELDING',
+    MEDISINSK_DOKUMENTASJON = 'MEDISINSK_DOKUMENTASJON',
+    FOR_TIDLIG_SOKNAD = 'FOR_TIDLIG_SOKNAD',
+    MELDEKORT = 'MELDEKORT',
 }
+
+export type HentSakRequest = {
+    pleietrengendeAktørId: string;
+};
 
 export type Adressebeskyttelse = {
     gradering: AdressebeskyttelseGradering;
@@ -514,10 +515,6 @@ export enum Språk {
     NN = 'nn',
 }
 
-export type Søker = {
-    norskIdentitetsnummer: string;
-};
-
 export type Søknad = {
     søknadId: string;
     versjon: string;
@@ -622,102 +619,6 @@ export type Ytelse = {
     type: string;
 };
 
-export type AksjonspunktDto = {
-    venteårsak: Venteårsak;
-    tidsfrist: string;
-};
-
-export type BehandlingDto = {
-    status: BehandlingStatus;
-    opprettetTidspunkt: string;
-    avsluttetTidspunkt?: string;
-    innsendelser: InnsendelserISakDto[];
-    aksjonspunkter: AksjonspunktDto[];
-    utgåendeDokumenter: DokumentDto[];
-};
-
-export enum BehandlingStatus {
-    OPPRETTET = 'OPPRETTET',
-    UNDER_BEHANDLING = 'UNDER_BEHANDLING',
-    PÅ_VENT = 'PÅ_VENT',
-    AVSLUTTET = 'AVSLUTTET',
-}
-
-export enum Datotype {
-    DATO_OPPRETTET = 'DATO_OPPRETTET',
-    DATO_SENDT_PRINT = 'DATO_SENDT_PRINT',
-    DATO_EKSPEDERT = 'DATO_EKSPEDERT',
-    DATO_JOURNALFOERT = 'DATO_JOURNALFOERT',
-    DATO_REGISTRERT = 'DATO_REGISTRERT',
-    DATO_AVS_RETUR = 'DATO_AVS_RETUR',
-    DATO_DOKUMENT = 'DATO_DOKUMENT',
-    UKJENT = 'UKJENT',
-}
-
-export enum DokumentBrevkode {
-    PLEIEPENGER_SYKT_BARN_SOKNAD = 'PLEIEPENGER_SYKT_BARN_SOKNAD',
-    PLEIEPENGER_SYKT_BARN_ETTERSENDELSE = 'PLEIEPENGER_SYKT_BARN_ETTERSENDELSE',
-    ETTERLYST_INNTEKTSMELDING = 'ETTERLYST_INNTEKTSMELDING',
-    ETTERLYST_INNTEKTSMELDING_PURRING = 'ETTERLYST_INNTEKTSMELDING_PURRING',
-    VEDTAK_INNVILGELSE = 'VEDTAK_INNVILGELSE',
-    VEDTAK_AVSLAG = 'VEDTAK_AVSLAG',
-    VEDTAK_FRITEKST = 'VEDTAK_FRITEKST',
-    VEDTAK_ENDRING = 'VEDTAK_ENDRING',
-    VEDTAK_MANUELT = 'VEDTAK_MANUELT',
-    VEDTAK_UENDRETUTFALL = 'VEDTAK_UENDRETUTFALL',
-    UKJENT = 'UKJENT',
-}
-
-export type DokumentDto = {
-    journalpostId: string;
-    dokumentInfoId: string;
-    saksnummer?: string;
-    tittel: string;
-    dokumentType?: DokumentBrevkode;
-    filtype: string;
-    harTilgang: boolean;
-    url: string;
-    relevanteDatoer: RelevantDatoDto[];
-};
-
-export enum FagsakYtelseType {
-    PSB = 'PSB',
-    PPN = 'PPN',
-    OMP_KS = 'OMP_KS',
-    OMP_MA = 'OMP_MA',
-    OMP_AO = 'OMP_AO',
-    OMP = 'OMP',
-    OLP = 'OLP',
-}
-
-export type InnsendelserISakDto = {
-    søknadId: string;
-    mottattTidspunkt: string;
-    innsendelsestype: Innsendelsestype;
-    k9FormatInnsendelse?: Innsending;
-    dokumenter: DokumentDto[];
-    arbeidsgivere?: Organisasjon[];
-};
-
-export enum Innsendelsestype {
-    SØKNAD = 'SØKNAD',
-    ETTERSENDELSE = 'ETTERSENDELSE',
-    ENDRINGSMELDING = 'ENDRINGSMELDING',
-    UKJENT = 'UKJENT',
-}
-
-export type Innsending = {
-    versjon?: string;
-    søker?: Søker;
-    mottattDato?: string;
-    søknadId?: string;
-};
-
-export type Organisasjon = {
-    organisasjonsnummer: string;
-    navn?: string;
-};
-
 export type PleietrengendeDto = {
     identitetsnummer: string;
     fødselsdato: string;
@@ -732,38 +633,6 @@ export type PleietrengendeMedSak = {
     sak: SakDto;
 };
 
-export type RelevantDatoDto = {
-    dato: string;
-    datotype: Datotype;
-};
-
-export type SakDto = {
-    saksnummer: string;
-    utledetStatus: UtledetStatus;
-    saksbehandlingsFrist?: string;
-    /**
-     * bruk ytelseType
-     *
-     * @deprecated
-     */
-    fagsakYtelseType: FagsakYtelseType;
-    ytelseType: FagsakYtelseType;
-    behandlinger: BehandlingDto[];
-};
-
-export type UtledetStatus = {
-    status: BehandlingStatus;
-    aksjonspunkter: AksjonspunktDto[];
-    saksbehandlingsFrist?: string;
-};
-
-export enum Venteårsak {
-    INNTEKTSMELDING = 'INNTEKTSMELDING',
-    MEDISINSK_DOKUMENTASJON = 'MEDISINSK_DOKUMENTASJON',
-    FOR_TIDLIG_SOKNAD = 'FOR_TIDLIG_SOKNAD',
-    MELDEKORT = 'MELDEKORT',
-}
-
 export type SaksbehandlingtidDto = {
     saksbehandlingstidUker: number;
 };
@@ -773,6 +642,141 @@ export type SakerMetadataDto = {
     pleietrengende: PleietrengendeDto;
     fagsakYtelseType: FagsakYtelseType;
 };
+
+export type ArbeidsgiverDto = {
+    organisasjon?: ArbeidsgiverOrganisasjonDto;
+    privat?: ArbeidsgiverPrivatDto;
+};
+
+export type ArbeidsgiverOrganisasjonDto = {
+    navn?: string;
+    organisasjonsnummer: string;
+};
+
+export type ArbeidsgiverPrivatDto = {
+    navn?: string;
+    fødselsnummer: string;
+};
+
+export type EndringRefusjonDto = {
+    refusjonBeløpPerMnd: number;
+    fom: string;
+};
+
+export type GraderingDto = {
+    periode: PeriodeDto;
+    arbeidstidProsent: number;
+};
+
+export enum InnsendingsårsakDto {
+    NY = 'NY',
+    ENDRING = 'ENDRING',
+    UDEFINERT = 'UDEFINERT',
+}
+
+export enum InntektsmeldingStatusDto {
+    I_BRUK = 'I_BRUK',
+    ERSTATTET_AV_NYERE = 'ERSTATTET_AV_NYERE',
+    IKKE_RELEVANT = 'IKKE_RELEVANT',
+    MANGLER_DATO = 'MANGLER_DATO',
+}
+
+export enum InntektsmeldingTypeDto {
+    ORDINÆR = 'ORDINÆR',
+    OMSORGSPENGER_REFUSJON = 'OMSORGSPENGER_REFUSJON',
+    ARBEIDSGIVERINITIERT_NYANSATT = 'ARBEIDSGIVERINITIERT_NYANSATT',
+    ARBEIDSGIVERINITIERT_UREGISTRERT = 'ARBEIDSGIVERINITIERT_UREGISTRERT',
+}
+
+export type NaturalYtelseDto = {
+    periode?: PeriodeDto;
+    beløpPerMnd: number;
+    type: NaturalYtelseTypeDto;
+};
+
+export enum NaturalYtelseTypeDto {
+    ELEKTRISK_KOMMUNIKASJON = 'ELEKTRISK_KOMMUNIKASJON',
+    AKSJER_GRUNNFONDSBEVIS_TIL_UNDERKURS = 'AKSJER_GRUNNFONDSBEVIS_TIL_UNDERKURS',
+    LOSJI = 'LOSJI',
+    KOST_DØGN = 'KOST_DØGN',
+    BESØKSREISER_HJEMMET_ANNET = 'BESØKSREISER_HJEMMET_ANNET',
+    KOSTBESPARELSE_I_HJEMMET = 'KOSTBESPARELSE_I_HJEMMET',
+    RENTEFORDEL_LÅN = 'RENTEFORDEL_LÅN',
+    BIL = 'BIL',
+    KOST_DAGER = 'KOST_DAGER',
+    BOLIG = 'BOLIG',
+    SKATTEPLIKTIG_DEL_FORSIKRINGER = 'SKATTEPLIKTIG_DEL_FORSIKRINGER',
+    FRI_TRANSPORT = 'FRI_TRANSPORT',
+    OPSJONER = 'OPSJONER',
+    TILSKUDD_BARNEHAGEPLASS = 'TILSKUDD_BARNEHAGEPLASS',
+    ANNET = 'ANNET',
+    BEDRIFTSBARNEHAGEPLASS = 'BEDRIFTSBARNEHAGEPLASS',
+    YRKEBIL_TJENESTLIGBEHOV_KILOMETER = 'YRKEBIL_TJENESTLIGBEHOV_KILOMETER',
+    YRKEBIL_TJENESTLIGBEHOV_LISTEPRIS = 'YRKEBIL_TJENESTLIGBEHOV_LISTEPRIS',
+    INNBETALING_TIL_UTENLANDSK_PENSJONSORDNING = 'INNBETALING_TIL_UTENLANDSK_PENSJONSORDNING',
+    UDEFINERT = 'UDEFINERT',
+}
+
+export type OppholdDto = {
+    periode: PeriodeDto;
+    varighetPerDag?: string;
+};
+
+export type PeriodeDto = {
+    fom: string;
+    tom: string;
+};
+
+export type RefusjonDto = {
+    refusjonBeløpPerMnd: number;
+    refusjonOpphører?: string;
+};
+
+export type SakInntektsmeldingDto = {
+    ytelseType: YtekseTypeDto;
+    status: InntektsmeldingStatusDto;
+    saksnummer: string;
+    innsendingstidspunkt: string;
+    kildesystem: string;
+    arbeidsgiver: ArbeidsgiverDto;
+    nærRelasjon: boolean;
+    journalpostId: string;
+    mottattDato: string;
+    inntektBeløp: number;
+    innsendingsårsak: InnsendingsårsakDto;
+    erstattetAv: string[];
+    graderinger?: GraderingDto[];
+    naturalYtelser?: NaturalYtelseDto[];
+    utsettelsePerioder?: UtsettelseDto[];
+    startDatoPermisjon?: string;
+    oppgittFravær?: OppholdDto[];
+    refusjon?: RefusjonDto;
+    inntektsmeldingType?: InntektsmeldingTypeDto;
+    endringerRefusjon?: EndringRefusjonDto[];
+};
+
+export type UtsettelseDto = {
+    periode: PeriodeDto;
+    getårsak: UtsettelseÅrsakDto;
+};
+
+export enum UtsettelseÅrsakDto {
+    ARBEID = 'ARBEID',
+    FERIE = 'FERIE',
+    SYKDOM = 'SYKDOM',
+    INSTITUSJON_SØKER = 'INSTITUSJON_SØKER',
+    INSTITUSJON_BARN = 'INSTITUSJON_BARN',
+    UDEFINERT = 'UDEFINERT',
+}
+
+export enum YtekseTypeDto {
+    PLEIEPENGER_SYKT_BARN = 'PLEIEPENGER_SYKT_BARN',
+    PLEIEPENGER_NÆRSTÅENDE = 'PLEIEPENGER_NÆRSTÅENDE',
+    OMSORGSPENGER_KS = 'OMSORGSPENGER_KS',
+    OMSORGSPENGER_MA = 'OMSORGSPENGER_MA',
+    OMSORGSPENGER_AO = 'OMSORGSPENGER_AO',
+    OPPLÆRINGSPENGER = 'OPPLÆRINGSPENGER',
+}
 
 export type FraværPeriodeWritable = {
     periode: string;
@@ -786,16 +790,16 @@ export type FraværPeriodeWritable = {
     arbeidsgiverOrgNr?: string;
 };
 
-export type HentInntektsmeldingerPåSakData = {
-    body?: never;
+export type HentSakData = {
+    body: HentSakRequest;
     path: {
         saksnummer: string;
     };
     query?: never;
-    url: '/{saksnummer}/inntektsmeldinger';
+    url: '/sak/{saksnummer}';
 };
 
-export type HentInntektsmeldingerPåSakErrors = {
+export type HentSakErrors = {
     /**
      * Bad Request
      */
@@ -814,17 +818,16 @@ export type HentInntektsmeldingerPåSakErrors = {
     500: ProblemDetail;
 };
 
-export type HentInntektsmeldingerPåSakError = HentInntektsmeldingerPåSakErrors[keyof HentInntektsmeldingerPåSakErrors];
+export type HentSakError = HentSakErrors[keyof HentSakErrors];
 
-export type HentInntektsmeldingerPåSakResponses = {
+export type HentSakResponses = {
     /**
      * OK
      */
-    200: SakInntektsmeldingDto[];
+    200: SakDto;
 };
 
-export type HentInntektsmeldingerPåSakResponse =
-    HentInntektsmeldingerPåSakResponses[keyof HentInntektsmeldingerPåSakResponses];
+export type HentSakResponse = HentSakResponses[keyof HentSakResponses];
 
 export type HentSøknaderData = {
     body?: never;
@@ -1015,6 +1018,46 @@ export type HentSakerMetadataResponses = {
 };
 
 export type HentSakerMetadataResponse = HentSakerMetadataResponses[keyof HentSakerMetadataResponses];
+
+export type HentInntektsmeldingerPåSakData = {
+    body?: never;
+    path: {
+        saksnummer: string;
+    };
+    query?: never;
+    url: '/sak/{saksnummer}/inntektsmeldinger';
+};
+
+export type HentInntektsmeldingerPåSakErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentInntektsmeldingerPåSakError = HentInntektsmeldingerPåSakErrors[keyof HentInntektsmeldingerPåSakErrors];
+
+export type HentInntektsmeldingerPåSakResponses = {
+    /**
+     * OK
+     */
+    200: SakInntektsmeldingDto[];
+};
+
+export type HentInntektsmeldingerPåSakResponse =
+    HentInntektsmeldingerPåSakResponses[keyof HentInntektsmeldingerPåSakResponses];
 
 export type HentDokumentData = {
     body?: never;
