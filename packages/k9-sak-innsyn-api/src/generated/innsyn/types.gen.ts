@@ -16,8 +16,18 @@ export type ProblemDetail = {
 };
 
 export type ArbeidsgiverDto = {
+    organisasjon?: ArbeidsgiverOrganisasjonDto;
+    privat?: ArbeidsgiverPrivatDto;
+};
+
+export type ArbeidsgiverOrganisasjonDto = {
     navn?: string;
-    arbeidsgiverOrgnr: string;
+    organisasjonsnummer: string;
+};
+
+export type ArbeidsgiverPrivatDto = {
+    navn?: string;
+    fødselsnummer: string;
 };
 
 export type EndringRefusjonDto = {
@@ -66,6 +76,11 @@ export type PeriodeDto = {
     tom: string;
 };
 
+export type RefusjonDto = {
+    refusjonBeløpPerMnd: number;
+    refusjonOpphører?: string;
+};
+
 export type SakInntektsmeldingDto = {
     ytelseType:
         | 'PLEIEPENGER_SYKT_BARN'
@@ -90,8 +105,7 @@ export type SakInntektsmeldingDto = {
     utsettelsePerioder?: UtsettelseDto[];
     startDatoPermisjon?: string;
     oppgittFravær?: OppholdDto[];
-    refusjonBeløpPerMnd?: number;
-    refusjonOpphører?: string;
+    refusjon?: RefusjonDto;
     inntektsmeldingType?:
         | 'ORDINÆR'
         | 'OMSORGSPENGER_REFUSJON'
@@ -557,9 +571,9 @@ export type InnsendelserISakDto = {
 };
 
 export type Innsending = {
+    mottattDato?: string;
     versjon?: string;
     søker?: Søker;
-    mottattDato?: string;
     søknadId?: string;
 };
 
@@ -635,6 +649,12 @@ export type UtledetStatus = {
 
 export type SaksbehandlingtidDto = {
     saksbehandlingstidUker: number;
+};
+
+export type SakerMetadataDto = {
+    saksnummer: string;
+    pleietrengende: PleietrengendeDto;
+    fagsakYtelseType: 'PSB' | 'PPN' | 'OMP_KS' | 'OMP_MA' | 'OMP_AO' | 'OMP' | 'OLP';
 };
 
 export type FraværPeriodeWritable = {
@@ -841,6 +861,43 @@ export type HentSaksbehandlingstidResponses = {
 };
 
 export type HentSaksbehandlingstidResponse = HentSaksbehandlingstidResponses[keyof HentSaksbehandlingstidResponses];
+
+export type HentSakerMetadataData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/saker/metadata';
+};
+
+export type HentSakerMetadataErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentSakerMetadataError = HentSakerMetadataErrors[keyof HentSakerMetadataErrors];
+
+export type HentSakerMetadataResponses = {
+    /**
+     * OK
+     */
+    200: SakerMetadataDto;
+};
+
+export type HentSakerMetadataResponse = HentSakerMetadataResponses[keyof HentSakerMetadataResponses];
 
 export type HentDokumentData = {
     body?: never;
