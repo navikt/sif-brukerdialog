@@ -86,6 +86,11 @@ export const zOppholdDto = z.object({
     varighetPerDag: z.optional(z.string()),
 });
 
+export const zRefusjonDto = z.object({
+    refusjonBeløpPerMnd: z.number(),
+    refusjonOpphører: z.optional(z.iso.date()),
+});
+
 export const zUtsettelseÅrsakDto = z.enum([
     'ARBEID',
     'FERIE',
@@ -127,8 +132,7 @@ export const zSakInntektsmeldingDto = z.object({
     utsettelsePerioder: z.optional(z.array(zUtsettelseDto)),
     startDatoPermisjon: z.optional(z.iso.date()),
     oppgittFravær: z.optional(z.array(zOppholdDto)),
-    refusjonBeløpPerMnd: z.optional(z.number()),
-    refusjonOpphører: z.optional(z.iso.date()),
+    refusjon: z.optional(zRefusjonDto),
     inntektsmeldingType: z.optional(zInntektsmeldingTypeDto),
     endringerRefusjon: z.optional(z.array(zEndringRefusjonDto)),
 });

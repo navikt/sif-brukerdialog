@@ -99,6 +99,11 @@ export type PeriodeDto = {
     tom: string;
 };
 
+export type RefusjonDto = {
+    refusjonBeløpPerMnd: number;
+    refusjonOpphører?: string;
+};
+
 export type SakInntektsmeldingDto = {
     ytelseType: YtekseTypeDto;
     status: InntektsmeldingStatusDto;
@@ -117,9 +122,12 @@ export type SakInntektsmeldingDto = {
     utsettelsePerioder?: UtsettelseDto[];
     startDatoPermisjon?: string;
     oppgittFravær?: OppholdDto[];
-    refusjonBeløpPerMnd?: number;
-    refusjonOpphører?: string;
-    inntektsmeldingType?: InntektsmeldingTypeDto;
+    refusjon?: RefusjonDto;
+    inntektsmeldingType?:
+        | 'ORDINÆR'
+        | 'OMSORGSPENGER_REFUSJON'
+        | 'ARBEIDSGIVERINITIERT_NYANSATT'
+        | 'ARBEIDSGIVERINITIERT_UREGISTRERT';
     endringerRefusjon?: EndringRefusjonDto[];
 };
 
@@ -703,9 +711,9 @@ export enum Innsendelsestype {
 }
 
 export type Innsending = {
+    mottattDato?: string;
     versjon?: string;
     søker?: Søker;
-    mottattDato?: string;
     søknadId?: string;
 };
 
@@ -767,7 +775,7 @@ export type SaksbehandlingtidDto = {
 export type SakerMetadataDto = {
     saksnummer: string;
     pleietrengende: PleietrengendeDto;
-    fagsakYtelseType: FagsakYtelseType;
+    fagsakYtelseType: 'PSB' | 'PPN' | 'OMP_KS' | 'OMP_MA' | 'OMP_AO' | 'OMP' | 'OLP';
 };
 
 export type FraværPeriodeWritable = {
