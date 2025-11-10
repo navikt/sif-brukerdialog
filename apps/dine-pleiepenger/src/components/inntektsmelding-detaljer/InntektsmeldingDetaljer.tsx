@@ -9,14 +9,8 @@ interface Props {
 }
 
 const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
-    const {
-        startDatoPermisjon,
-        inntektBeløp,
-        refusjonBeløpPerMnd,
-        endringerRefusjon,
-        naturalYtelser,
-        refusjonOpphører,
-    } = inntektsmelding;
+    const { startDatoPermisjon, inntektBeløp, refusjon, endringerRefusjon, naturalYtelser, refusjonOpphører } =
+        inntektsmelding;
     const harEndringerIRefusjon = endringerRefusjon && endringerRefusjon.length > 0;
     const harNaturalytelser = naturalYtelser && naturalYtelser.length > 0;
     const harRefusjonOpphører = refusjonOpphører !== undefined;
@@ -61,12 +55,16 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     <FormSummary.Heading level="2">Refusjon</FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
-                    {endringerRefusjon && refusjonBeløpPerMnd !== undefined ? (
+                    {endringerRefusjon && refusjon !== undefined ? (
                         <>
                             <FormSummary.Answer>
                                 <FormSummary.Label>Refusjonsbeløp per måned</FormSummary.Label>
                                 <FormSummary.Value>
-                                    <FormattedNumber value={refusjonBeløpPerMnd} style="currency" currency="NOK" />
+                                    <FormattedNumber
+                                        value={refusjon.refusjonBeløpPerMnd}
+                                        style="currency"
+                                        currency="NOK"
+                                    />
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                             <FormSummary.Answer>
