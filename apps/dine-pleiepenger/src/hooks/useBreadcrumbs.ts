@@ -12,9 +12,9 @@ interface UseBreadcrumbsOptions {
 export const useBreadcrumbs = ({ breadcrumbs }: UseBreadcrumbsOptions): void => {
     const router = useRouter();
     const {
-        innsynsdata: { saker },
+        innsynsdata: { sakerMetadata },
     } = useInnsynsdataContext();
-    const harFlereSaker = saker.length > 1;
+    const harFlereSaker = sakerMetadata.length > 1;
 
     useEffect(() => {
         const allBreadcrumbs = getAllBreadcrumbs(breadcrumbs, harFlereSaker);
