@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, @typescript-eslint/no-unused-vars */
 import express from 'express';
 import { readFileSync } from 'fs';
 import helmet from 'helmet';
@@ -83,7 +83,9 @@ const startServer = () => {
         const sak = flereSaker.find((s) => s.sak.saksnummer === saksnr);
 
         if (sak) {
-            res.send(sak);
+            // Returner uten pleietrengende (klient henter dette fra metadata)
+            const { pleietrengende: _pleietrengende, ...sakMedInntektsmeldinger } = sak;
+            res.send(sakMedInntektsmeldinger);
         } else {
             res.status(404).send({ error: 'Sak ikke funnet' });
         }
