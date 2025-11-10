@@ -11,9 +11,19 @@ export const zProblemDetail = z.object({
     properties: z.optional(z.record(z.string(), z.unknown())),
 });
 
-export const zArbeidsgiverDto = z.object({
+export const zArbeidsgiverOrganisasjonDto = z.object({
     navn: z.optional(z.string()),
-    arbeidsgiverOrgnr: z.string(),
+    organisasjonsnummer: z.string(),
+});
+
+export const zArbeidsgiverPrivatDto = z.object({
+    navn: z.optional(z.string()),
+    fødselsnummer: z.string(),
+});
+
+export const zArbeidsgiverDto = z.object({
+    organisasjon: z.optional(zArbeidsgiverOrganisasjonDto),
+    privat: z.optional(zArbeidsgiverPrivatDto),
 });
 
 export const zEndringRefusjonDto = z.object({
@@ -63,6 +73,11 @@ export const zOppholdDto = z.object({
     varighetPerDag: z.optional(z.string()),
 });
 
+export const zRefusjonDto = z.object({
+    refusjonBeløpPerMnd: z.number(),
+    refusjonOpphører: z.optional(z.iso.date()),
+});
+
 export const zUtsettelseDto = z.object({
     periode: zPeriodeDto,
     getårsak: z.enum(['ARBEID', 'FERIE', 'SYKDOM', 'INSTITUSJON_SØKER', 'INSTITUSJON_BARN', 'UDEFINERT']),
@@ -93,8 +108,7 @@ export const zSakInntektsmeldingDto = z.object({
     utsettelsePerioder: z.optional(z.array(zUtsettelseDto)),
     startDatoPermisjon: z.optional(z.iso.date()),
     oppgittFravær: z.optional(z.array(zOppholdDto)),
-    refusjonBeløpPerMnd: z.optional(z.number()),
-    refusjonOpphører: z.optional(z.iso.date()),
+    refusjon: z.optional(zRefusjonDto),
     inntektsmeldingType: z.optional(
         z.enum([
             'ORDINÆR',
@@ -539,9 +553,9 @@ export const zAksjonspunktDto = z.object({
 });
 
 export const zInnsending = z.object({
+    mottattDato: z.optional(z.iso.datetime()),
     versjon: z.optional(z.string()),
     søker: z.optional(zSøker),
-    mottattDato: z.optional(z.iso.datetime()),
     søknadId: z.optional(z.string()),
 });
 
@@ -660,6 +674,12 @@ export const zSaksbehandlingtidDto = z.object({
     saksbehandlingstidUker: z.coerce.bigint(),
 });
 
+export const zSakerMetadataDto = z.object({
+    saksnummer: z.string(),
+    pleietrengende: zPleietrengendeDto,
+    fagsakYtelseType: z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_AO', 'OMP', 'OLP']),
+});
+
 export const zFraværPeriodeWritable = z.object({
     periode: z.string(),
     duration: z.optional(z.string()),
@@ -737,6 +757,17 @@ export const zHentSaksbehandlingstidData = z.object({
  * OK
  */
 export const zHentSaksbehandlingstidResponse = zSaksbehandlingtidDto;
+
+export const zHentSakerMetadataData = z.object({
+    body: z.optional(z.never()),
+    path: z.optional(z.never()),
+    query: z.optional(z.never()),
+});
+
+/**
+ * OK
+ */
+export const zHentSakerMetadataResponse = zSakerMetadataDto;
 
 export const zHentDokumentData = z.object({
     body: z.optional(z.never()),

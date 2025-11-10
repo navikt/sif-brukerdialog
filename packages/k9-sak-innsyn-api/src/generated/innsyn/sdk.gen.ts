@@ -12,6 +12,9 @@ import type {
     HentMineSakerData,
     HentMineSakerErrors,
     HentMineSakerResponses,
+    HentSakerMetadataData,
+    HentSakerMetadataErrors,
+    HentSakerMetadataResponses,
     HentSaksbehandlingstidData,
     HentSaksbehandlingstidErrors,
     HentSaksbehandlingstidResponses,
@@ -29,6 +32,8 @@ import {
     zHentInntektsmeldingerPåSakResponse,
     zHentMineSakerData,
     zHentMineSakerResponse,
+    zHentSakerMetadataData,
+    zHentSakerMetadataResponse,
     zHentSaksbehandlingstidData,
     zHentSaksbehandlingstidResponse,
     zHentSøknaderData,
@@ -197,6 +202,35 @@ export class SakController {
                 },
             ],
             url: '/saker/saksbehandlingstid',
+            ...options,
+        });
+    }
+
+    /**
+     * Henter metadata om sakene registrert på pleietrengende som bruker har omsorgen for
+     */
+    public static hentSakerMetadata<ThrowOnError extends boolean = true>(
+        options?: Options<HentSakerMetadataData, ThrowOnError>,
+    ) {
+        return (options?.client ?? client).get<HentSakerMetadataResponses, HentSakerMetadataErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zHentSakerMetadataData.parseAsync(data);
+            },
+            responseType: 'json',
+            responseValidator: async (data) => {
+                return await zHentSakerMetadataResponse.parseAsync(data);
+            },
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/saker/metadata',
             ...options,
         });
     }
