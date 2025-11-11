@@ -48,8 +48,8 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         innsynsdataFetcher,
         {
             revalidateOnFocus: false,
-            shouldRetryOnError: false,
-            errorRetryCount: 0,
+            shouldRetryOnError: true,
+            errorRetryCount: 1,
         },
     );
 

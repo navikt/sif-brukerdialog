@@ -43,6 +43,11 @@ export const usePleietrengendeMedSakFromRoute = (): {
     } = useSWR<SakMedInntektsmeldinger>(
         saksnr && !cachedSak ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${saksnr}` : null,
         sakFetcher,
+        {
+            revalidateOnFocus: false,
+            shouldRetryOnError: true,
+            errorRetryCount: 1,
+        },
     );
 
     // Kombiner synkront
