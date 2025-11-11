@@ -14,6 +14,7 @@ const server = express();
 const søknader = JSON.parse(readFileSync(join(__dirname, './mockdata/soknader.json'), 'utf-8'));
 const inntektsmeldinger = JSON.parse(readFileSync(join(__dirname, './mockdata/inntektsmeldinger.json'), 'utf-8'));
 const flereSaker = JSON.parse(readFileSync(join(__dirname, './mockdata/flere-saker.json'), 'utf-8'));
+const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/saker.json'), 'utf-8'));
 
 server.use(express.json());
 
@@ -38,7 +39,7 @@ const søker = {
     etternavn: 'KORRIDOR',
 };
 
-const sakerMetadata = flereSaker.map((sak) => ({
+const sakerMetadata = saker.map((sak) => ({
     saksnummer: sak.sak.saksnummer,
     pleietrengende: {
         identitetsnummer: sak.pleietrengende.identitetsnummer,
@@ -71,7 +72,7 @@ const startServer = () => {
     });
 
     server.get('/saker', (req, res) => {
-        res.send(flereSaker);
+        res.send(saker);
     });
 
     server.get('/saker/metadata', (req, res) => {

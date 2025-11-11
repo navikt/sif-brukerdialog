@@ -22,8 +22,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         ]);
         logger.info(`Hentet innsynsdata`);
 
-        logger.info(`Parser innsynsdata`);
-
         const sakerMetadata = sakerMetadataReq.status === 'fulfilled' ? sakerMetadataReq.value : [];
         const harSak = sakerMetadata.length > 0;
 
