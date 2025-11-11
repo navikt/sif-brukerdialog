@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import useSWR from 'swr';
 
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
@@ -14,7 +14,6 @@ import { useInnsynsdataContext } from './useInnsynsdataContext';
 
 const sakFetcher = async (url: string): Promise<SakMedInntektsmeldinger> => {
     const response = await axios.get(url);
-    // Konverterer date strings til Date objekter
     return SakMedInntektsmeldingerSchema.parse(response.data);
 };
 
@@ -25,71 +24,54 @@ export const usePleietrengendeMedSakFromRoute = (): {
     isLoading: boolean;
     error: Error | undefined;
 } => {
-    const { getSaksdata, setSaksdata, innsynsdata } = useInnsynsdataContext();
-    const router = useRouter();
-    const { saksnr } = router.query;
-    const saksnrString = typeof saksnr === 'string' ? saksnr : undefined;
-
-    const [cachedSak, setCachedSak] = useState<PleietrengendeMedSak | undefined>(
-        saksnrString ? getSaksdata(saksnrString) : undefined,
-    );
-
-    // Hent kun hvis vi har saksnr og ingen cached data
-    const shouldFetch = saksnrString && !cachedSak;
     const {
-        data,
-        error: swrError,
-        isLoading: swrLoading,
+        getSaksdata,
+        setSaksdata,
+        innsynsdata: { sakerMetadata },
+    } = useInnsynsdataContext();
+    const router = useRouter();
+    const saksnr = typeof router.query.saksnr === 'string' ? router.query.saksnr : undefined;
+
+    // Sjekk cache
+    const cachedSak = saksnr ? getSaksdata(saksnr) : undefined;
+
+    // Fetch hvis ikke cached
+    const {
+        data: sakData,
+        error,
+        isLoading,
     } = useSWR<SakMedInntektsmeldinger>(
-        shouldFetch ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${saksnrString}` : null,
+        saksnr && !cachedSak ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${saksnr}` : null,
         sakFetcher,
     );
 
-    const [internalLoading, setInternalLoading] = useState(swrLoading);
-    const [internalError, setInternalError] = useState<Error | undefined>();
+    // Kombiner synkront
+    const pleietrengendeMedSak = useMemo(() => {
+        if (cachedSak) return cachedSak;
+        if (!sakData || !saksnr) return undefined;
 
-    // Kombiner hentet data med pleietrengende fra metadata
-    useEffect(() => {
-        if (data && saksnrString) {
-            setInternalLoading(true);
-            setInternalError(undefined);
+        const metadata = sakerMetadata.find((m) => m.saksnummer === saksnr);
+        if (!metadata?.pleietrengende) return undefined;
 
-            const metadata = innsynsdata.sakerMetadata.find((m) => m.saksnummer === saksnrString);
-            if (metadata?.pleietrengende) {
-                try {
-                    const pleietrengende = PleietrengendeSchema.parse(metadata.pleietrengende);
-                    const completeSak: PleietrengendeMedSak = {
-                        pleietrengende,
-                        ...data,
-                    };
-                    setSaksdata(saksnrString, completeSak);
-                    setCachedSak(completeSak);
-                    setInternalLoading(false);
-                } catch (error) {
-                    setInternalError(error as Error);
-                    setInternalLoading(false);
-                }
-            } else {
-                setInternalError(new Error(`Metadata ikke funnet for sak ${saksnrString}`));
-                setInternalLoading(false);
-            }
+        try {
+            const pleietrengende = PleietrengendeSchema.parse(metadata.pleietrengende);
+            return { pleietrengende, ...sakData };
+        } catch {
+            return undefined;
         }
-    }, [data, saksnrString, setSaksdata, innsynsdata.sakerMetadata]);
+    }, [cachedSak, sakData, saksnr, sakerMetadata]);
 
-    // Sjekk cache på nytt hvis saksnr endres
+    // Lagre i cache (side-effect)
     useEffect(() => {
-        if (saksnrString) {
-            const cached = getSaksdata(saksnrString);
-            if (cached) {
-                setCachedSak(cached);
-            }
+        if (pleietrengendeMedSak && saksnr && !cachedSak) {
+            setSaksdata(saksnr, pleietrengendeMedSak);
         }
-    }, [saksnrString, getSaksdata]);
+    }, [pleietrengendeMedSak, saksnr, cachedSak, setSaksdata]);
 
     return {
-        pleietrengendeMedSak: cachedSak,
-        saksnr: saksnrString,
-        isLoading: swrLoading || internalLoading,
-        error: internalError || swrError,
+        pleietrengendeMedSak,
+        saksnr,
+        isLoading: !cachedSak && isLoading,
+        error,
     };
 };
