@@ -18,11 +18,11 @@ export const PleietrengendeSchema = z.union([
         etternavn: z.string(),
         anonymisert: z.preprocess(() => false, z.literal(false)),
     }),
-    // Anonymisert: mangler navn-felter (undefined)
+    // Anonymisert: mangler navn-felter (transformerer null til undefined)
     BasePleietrengendeSchema.extend({
-        fornavn: z.undefined().optional(),
-        mellomnavn: z.undefined().optional(),
-        etternavn: z.undefined().optional(),
+        fornavn: z.preprocess((val) => (val === null ? undefined : val), z.string().optional()),
+        mellomnavn: z.preprocess((val) => (val === null ? undefined : val), z.string().optional()),
+        etternavn: z.preprocess((val) => (val === null ? undefined : val), z.string().optional()),
         anonymisert: z.preprocess(() => true, z.literal(true)),
     }),
 ]);

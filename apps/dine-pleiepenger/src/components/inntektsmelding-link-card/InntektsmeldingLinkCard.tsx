@@ -1,7 +1,6 @@
 import { Buildings3Icon } from '@navikt/aksel-icons';
 import { Box, HStack, LinkCard, Show, Tag } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
 import Link from 'next/link';
 
 import { Inntektsmelding, InntektsmeldingStatus } from '../../types/Inntektsmelding';
@@ -14,9 +13,6 @@ interface Props {
 }
 
 const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
-    const startdato = dayjs.utc(inntektsmelding.startDatoPermisjon).toDate();
-    const mottattDato = dayjs.utc(inntektsmelding.mottattDato).toDate();
-
     const erIBruk = inntektsmelding.status === InntektsmeldingStatus.I_BRUK;
     return (
         <LinkCard
@@ -42,12 +38,12 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
                 </LinkCard.Anchor>
             </LinkCard.Title>
             <LinkCard.Description>
-                Første fraværsdato: {startdato ? dateFormatter.full(startdato) : 'Ukjent'}.
+                Første fraværsdato: {dateFormatter.full(inntektsmelding.startDatoPermisjon)}.
             </LinkCard.Description>
             <LinkCard.Footer>
                 <HStack gap="2">
                     <Tag variant="info" size="small">
-                        Mottatt {dateFormatter.compact(mottattDato)}
+                        Mottatt {dateFormatter.compact(inntektsmelding.mottattDato)}
                     </Tag>
                     <InntektsmeldingStatusTag status={inntektsmelding.status} />
                 </HStack>

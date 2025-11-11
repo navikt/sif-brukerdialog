@@ -43,7 +43,7 @@ export const InntektsmeldingSchema = innsyn.zSakInntektsmeldingDto.extend({
             }),
         ),
     ),
-    refusjonOpphører: z.preprocess(parseMaybeDateStringToDate, z.date()).optional(),
+    refusjonOpphører: z.optional(z.preprocess(parseMaybeDateStringToDate, z.date())),
     utsettelsePerioder: z.optional(
         z.array(
             innsyn.zUtsettelseDto.extend({
