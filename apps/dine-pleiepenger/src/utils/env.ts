@@ -61,6 +61,9 @@ export const serverEnvSchema = z.object({
     TOKEN_X_PRIVATE_JWK: z.union([z.string(), z.undefined()]),
     TOKEN_X_CLIENT_ID: z.union([z.string(), z.undefined()]),
     NAIS_CLIENT_ID: z.union([z.string(), z.undefined()]),
+
+    /** Features */
+    NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
 });
 
 /**
@@ -117,6 +120,9 @@ const getRawServerConfig = (): Partial<unknown> =>
         TOKEN_X_PRIVATE_JWK: process.env.TOKEN_X_PRIVATE_JWK,
         TOKEN_X_CLIENT_ID: process.env.TOKEN_X_CLIENT_ID,
         NAIS_CLIENT_ID: process.env.NAIS_CLIENT_ID,
+
+        // Features
+        NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: process.env.NEXT_PUBLIC_FEATURE_INNTEKTSMELDING,
     }) satisfies Record<keyof ServerEnv, string | undefined>;
 
 /**

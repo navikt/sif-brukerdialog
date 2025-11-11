@@ -6,6 +6,7 @@ import { ZodError } from 'zod';
 import { InnsendtSøknad } from '../types/InnsendtSøknad';
 import { Inntektsmeldinger, InntektsmeldingerSchema } from '../types/Inntektsmelding';
 import { getContextForApiHandler, serverResponseTransform } from '../utils/apiUtils';
+import { getServerEnv } from '../utils/env';
 import { getLogger } from '../utils/getLogCorrelationID';
 import { sorterInntektsmeldingerPåInnsendingstidspunkt } from '../utils/inntektsmeldingUtils';
 import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
@@ -107,14 +108,21 @@ export const fetchSakMedInntektsmeldinger = async (
         // Parse med Zod for validering og filtrering (men date-konvertering skjer client-side)
         const sak = SakSchema.parse(fjernUkjenteInnsendelserISak(response.data));
 
-        /** Hent inntektsmeldinger for saken */
+        /** Hent inntektsmeldinger for saken hvis feature er enabled */
         let inntektsmeldinger: Inntektsmeldinger = [];
-        try {
-            logger.info('Henter inntektsmeldinger for sak', { saksnummer });
-            inntektsmeldinger = await fetchInntektsmeldinger(req, saksnummer);
-            logger.info(`Hentet ${inntektsmeldinger.length} inntektsmeldinger for sak ${saksnummer}`);
-        } catch (error) {
-            logger.warn(`Kunne ikke hente inntektsmeldinger for sak ${saksnummer}`, { error });
+        const serverEnv = getServerEnv();
+        const inntektsmeldingEnabled = serverEnv.NEXT_PUBLIC_FEATURE_INNTEKTSMELDING === 'on';
+
+        if (inntektsmeldingEnabled) {
+            try {
+                logger.info('Henter inntektsmeldinger for sak', { saksnummer });
+                inntektsmeldinger = await fetchInntektsmeldinger(req, saksnummer);
+                logger.info(`Hentet ${inntektsmeldinger.length} inntektsmeldinger for sak ${saksnummer}`);
+            } catch (error) {
+                logger.warn(`Kunne ikke hente inntektsmeldinger for sak ${saksnummer}`, { error });
+            }
+        } else {
+            logger.info('INNTEKTSMELDING_ENABLED er false, hopper over henting av inntektsmeldinger');
         }
 
         return {

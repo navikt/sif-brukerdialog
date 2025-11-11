@@ -94,7 +94,7 @@ const startServer = () => {
         res.send(inntektsmeldinger);
     });
 
-    server.get('/saksbehandlingstid', (req, res) => {
+    server.get('/saker/saksbehandlingstid', (req, res) => {
         res.send({
             saksbehandlingstidUker: 7,
         });
