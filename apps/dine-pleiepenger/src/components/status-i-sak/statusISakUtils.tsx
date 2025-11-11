@@ -99,7 +99,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                     };
 
                 case Sakshendelser.INNTEKTSMELDING: {
-                    const ersattterAntall = hendelse.erstatter.length;
+                    const ersatterAntall = hendelse.erstatter.length;
 
                     return {
                         title: `Inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
@@ -124,12 +124,12 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                                             Status:{' '}
                                             <InntektsmeldingStatusTag status={hendelse.inntektsmelding.status} />
                                         </div>
-                                        {ersattterAntall > 0 && (
+                                        {ersatterAntall > 0 && (
                                             <div>
                                                 Erstatter{' '}
-                                                {ersattterAntall === 1
+                                                {ersatterAntall === 1
                                                     ? '1 inntektsmelding'
-                                                    : `${ersattterAntall} inntektsmeldinger`}
+                                                    : `${ersatterAntall} inntektsmeldinger`}
                                                 .
                                             </div>
                                         )}

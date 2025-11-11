@@ -15,9 +15,11 @@ const sakerMetadata: SakerMetadataDto[] = flereSakerMock.map(
             pleietrengende: {
                 identitetsnummer: sak.pleietrengende.identitetsnummer,
                 aktørId: sak.pleietrengende.aktørId,
-                fornavn: sak.pleietrengende.fornavn || '',
-                etternavn: sak.pleietrengende.etternavn || '',
                 fødselsdato: sak.pleietrengende.fødselsdato.toISOString().split('T')[0],
+                ...(sak.pleietrengende.anonymisert === false && {
+                    fornavn: sak.pleietrengende.fornavn,
+                    etternavn: sak.pleietrengende.etternavn,
+                }),
             },
         }) as unknown as SakerMetadataDto,
 );

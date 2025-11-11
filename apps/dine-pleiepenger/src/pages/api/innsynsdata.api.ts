@@ -30,7 +30,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             søker,
             sakerMetadata,
             harSak,
-            sakerParseError: undefined, // Metadata parsing feiler ikke på samme måte
         };
         res.json(innsynsdata);
     } catch (err) {
