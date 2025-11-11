@@ -39,7 +39,7 @@ export const deleteNullValues = (obj: any): any => {
     if (Array.isArray(obj)) {
         return obj.map(deleteNullValues);
     }
-    if (typeof obj === 'object' && obj !== null) {
+    if (typeof obj === 'object') {
         return Object.fromEntries(
             Object.entries(obj)
                 .filter(([, value]) => value !== null)

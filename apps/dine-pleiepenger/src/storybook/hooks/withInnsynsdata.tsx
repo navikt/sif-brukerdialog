@@ -7,7 +7,6 @@ import { Søker } from '../../server/api-models/SøkerSchema';
 export const withInnsynsdata: Decorator = (Story) => (
     <InnsynsdataContextProvider
         innsynsdata={{
-            saker: [],
             sakerMetadata: [
                 {
                     saksnummer: '123',

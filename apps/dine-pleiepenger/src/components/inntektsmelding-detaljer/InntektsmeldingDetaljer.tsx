@@ -100,7 +100,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                                     <FormSummary.Value>
                                         <List>
                                             <List.Item key="refusjon-opphorer">
-                                                Refusjon opphører fra og med {dateFormatter.compact(refusjonOpphører!)}
+                                                Refusjon opphører fra og med {dateFormatter.compact(refusjonOpphører)}
                                             </List.Item>
                                         </List>
                                     </FormSummary.Value>

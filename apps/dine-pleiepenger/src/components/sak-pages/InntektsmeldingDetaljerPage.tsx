@@ -71,7 +71,7 @@ const InntektsmeldingDetaljerPage = () => {
             <BoxNew maxWidth="52rem">
                 <VStack gap="4">
                     <Heading level="2" size="medium" className="mb-2">
-                        Inntektsmelding {}
+                        Inntektsmelding
                     </Heading>
                     {renderContent()}
                     <Box className="ml-4 mt-4">

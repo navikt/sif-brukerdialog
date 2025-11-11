@@ -29,7 +29,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             søker,
             sakerMetadata,
-            saker: [], // Deprecated: tom array for bakoverkompatibilitet
             harSak,
             sakerParseError: undefined, // Metadata parsing feiler ikke på samme måte
         };

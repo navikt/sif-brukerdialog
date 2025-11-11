@@ -14,10 +14,7 @@ interface Props {
 }
 
 const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
-    const startdato = inntektsmelding.startDatoPermisjon
-        ? dayjs.utc(inntektsmelding.startDatoPermisjon).toDate()
-        : undefined;
-
+    const startdato = dayjs.utc(inntektsmelding.startDatoPermisjon).toDate();
     const mottattDato = dayjs.utc(inntektsmelding.mottattDato).toDate();
 
     const erIBruk = inntektsmelding.status === InntektsmeldingStatus.I_BRUK;

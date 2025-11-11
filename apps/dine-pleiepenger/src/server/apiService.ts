@@ -110,10 +110,8 @@ export const fetchSakMedInntektsmeldinger = async (
 
         /** Hent inntektsmeldinger for saken hvis feature er enabled */
         let inntektsmeldinger: Inntektsmeldinger = [];
-        const serverEnv = getServerEnv();
-        const inntektsmeldingEnabled = serverEnv.NEXT_PUBLIC_FEATURE_INNTEKTSMELDING === 'on';
 
-        if (inntektsmeldingEnabled) {
+        if (getServerEnv().NEXT_PUBLIC_FEATURE_INNTEKTSMELDING === 'on') {
             try {
                 logger.info('Henter inntektsmeldinger for sak', { saksnummer });
                 inntektsmeldinger = await fetchInntektsmeldinger(req, saksnummer);

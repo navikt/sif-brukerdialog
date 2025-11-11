@@ -7,7 +7,7 @@ const getArbeidsgiverNavn = (arbeidsgiver: ArbeidsgiverDto): string => {
         return arbeidsgiver.organisasjon.navn || arbeidsgiver.organisasjon.organisasjonsnummer;
     }
     if (arbeidsgiver.privat) {
-        return `${arbeidsgiver.privat.navn || 'Privat arbeidsgiver'} `;
+        return `${arbeidsgiver.privat.navn || 'Privat arbeidsgiver'}`;
     }
     return 'Arbeidsgiver hverken privatperson eller organisasjon';
 };
