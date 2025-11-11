@@ -10,19 +10,53 @@ const BasePleietrengendeSchema = z.object({
     identitetsnummer: z.string(),
 });
 
-export const PleietrengendeSchema = z.union([
-    // Ikke-anonymisert: har navn-felter
-    BasePleietrengendeSchema.extend({
-        fornavn: z.string(),
-        mellomnavn: z.union([z.string(), z.null(), z.undefined()]),
-        etternavn: z.string(),
-        anonymisert: z.preprocess(() => false, z.literal(false)),
-    }),
-    // Anonymisert: mangler navn-felter (transformerer null til undefined)
-    BasePleietrengendeSchema.extend({
-        fornavn: z.preprocess((val) => (val === null ? undefined : val), z.string().optional()),
-        mellomnavn: z.preprocess((val) => (val === null ? undefined : val), z.string().optional()),
-        etternavn: z.preprocess((val) => (val === null ? undefined : val), z.string().optional()),
-        anonymisert: z.preprocess(() => true, z.literal(true)),
-    }),
-]);
+// Schema that infers anonymisert from presence of name fields if not provided
+const PleietrengendeSchemaWithInference = BasePleietrengendeSchema.extend({
+    fornavn: z.string().optional(),
+    mellomnavn: z.union([z.string(), z.null(), z.undefined()]).optional(),
+    etternavn: z.string().optional(),
+    anonymisert: z.boolean().optional(),
+}).transform((data) => {
+    // Infer anonymisert if not provided by backend
+    const hasName = data.fornavn != null && data.fornavn !== '' && data.etternavn != null && data.etternavn !== '';
+    const anonymisert = data.anonymisert ?? !hasName;
+    
+    // Transform null to undefined for consistency
+    const fornavn = data.fornavn === null ? undefined : data.fornavn;
+    const mellomnavn = data.mellomnavn === null ? undefined : data.mellomnavn;
+    const etternavn = data.etternavn === null ? undefined : data.etternavn;
+    
+    return {
+        ...data,
+        fornavn,
+        mellomnavn,
+        etternavn,
+        anonymisert,
+    };
+});
+
+// Use discriminated union for type safety after transformation
+export const PleietrengendeSchema = PleietrengendeSchemaWithInference.pipe(
+    z.discriminatedUnion('anonymisert', [
+        // Ikke-anonymisert: har navn-felter
+        z.object({
+            aktørId: z.string(),
+            fødselsdato: z.date(),
+            identitetsnummer: z.string(),
+            anonymisert: z.literal(false),
+            fornavn: z.string(),
+            mellomnavn: z.union([z.string(), z.undefined()]),
+            etternavn: z.string(),
+        }),
+        // Anonymisert: mangler navn-felter
+        z.object({
+            aktørId: z.string(),
+            fødselsdato: z.date(),
+            identitetsnummer: z.string(),
+            anonymisert: z.literal(true),
+            fornavn: z.string().optional(),
+            mellomnavn: z.string().optional(),
+            etternavn: z.string().optional(),
+        }),
+    ]),
+);
