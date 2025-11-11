@@ -9,7 +9,7 @@ interface Props {
     documentTitle?: string;
 }
 
-const PageLoading = ({ title = 'Henter informasjon...', documentTitle }: Props) => {
+const PageLoading = ({ title = 'Henter informasjon ...', documentTitle }: Props) => {
     return (
         <EmptyPage>
             {documentTitle && <Head>{documentTitle}</Head>}
