@@ -10,9 +10,9 @@ test.beforeEach(async ({ page }) => {
     await setupMockRoutes(page);
 });
 
-const getResponseMedUtledetStatus = (status: any, initSak?: any) => ({
+const getSakResponseMedUtledetStatus = (status: any) => ({
     sak: {
-        ...(initSak || sak),
+        ...sak,
         utledetStatus: { ...sak.utledetStatus, ...status },
     },
     inntektsmeldinger: [],
@@ -20,7 +20,7 @@ const getResponseMedUtledetStatus = (status: any, initSak?: any) => ({
 
 test('Saksbehandlingstid er i fremtid', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().add(1, 'day').toDate() });
+        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().add(1, 'day').toDate() });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
@@ -30,7 +30,7 @@ test('Saksbehandlingstid er i fremtid', async ({ page }) => {
 
 test('Saksbehandlingstid er i dag', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().toDate() });
+        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().toDate() });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
@@ -40,7 +40,7 @@ test('Saksbehandlingstid er i dag', async ({ page }) => {
 
 test('Saksbehandlingstid er i fortid', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().subtract(1, 'day').toDate() });
+        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().subtract(1, 'day').toDate() });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
@@ -50,7 +50,7 @@ test('Saksbehandlingstid er i fortid', async ({ page }) => {
 
 test('Ingen Saksbehandlingstid, men behandlingstid', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().toDate() });
+        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().toDate() });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
@@ -60,7 +60,7 @@ test('Ingen Saksbehandlingstid, men behandlingstid', async ({ page }) => {
 
 test('Hverken Saksbehandlingstid eller behandlingstid', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getResponseMedUtledetStatus({ saksbehandlingsFrist: undefined });
+        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: undefined });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
 
@@ -71,7 +71,7 @@ test('Hverken Saksbehandlingstid eller behandlingstid', async ({ page }) => {
 
 test('Sak er ikke under behandling - ikke vis saksbehandlingstid', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getResponseMedUtledetStatus({ saksbehandlingsFrist: undefined, status: 'AVSLUTTET' });
+        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: undefined, status: 'AVSLUTTET' });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
