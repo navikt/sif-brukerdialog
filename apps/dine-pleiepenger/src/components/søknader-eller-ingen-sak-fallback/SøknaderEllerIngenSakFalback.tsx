@@ -1,4 +1,4 @@
-import { Box, Skeleton, VStack } from '@navikt/ds-react';
+import { Box, VStack } from '@navikt/ds-react';
 import axios from 'axios';
 import useSWR from 'swr';
 
@@ -11,6 +11,7 @@ import HvaSkjer from '../hva-skjer/HvaSkjer';
 import IngenSakEllerSøknadPage from '../ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
 import OppdatereSakLenker from '../oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
+import PageLoading from '../page-layout/page-loading/PageLoading';
 import Saksbehandlingstid from '../saksbehandlingstid/Saksbehandlingstid';
 import SkrivTilOssLenker from '../skriv-til-oss-lenker/SkrivTilOssLenker';
 
@@ -30,11 +31,11 @@ const SøknaderEllerIngenSakFalback = () => {
         },
     );
 
-    if (error) {
-        return <IngenSakEllerSøknadPage />;
+    if (isLoading) {
+        return <PageLoading />;
     }
 
-    if (!isLoading && (!innsendteSøknader || innsendteSøknader.length === 0)) {
+    if (error || !innsendteSøknader || innsendteSøknader.length === 0) {
         return <IngenSakEllerSøknadPage />;
     }
 
@@ -43,11 +44,7 @@ const SøknaderEllerIngenSakFalback = () => {
             <VStack gap="8">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
-                        {isLoading ? (
-                            <Skeleton height="200px" variant="rounded" />
-                        ) : (
-                            <DineInnsendteSøknader søknader={innsendteSøknader || []} />
-                        )}
+                        <DineInnsendteSøknader søknader={innsendteSøknader} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         <Saksbehandlingstid />
