@@ -17,7 +17,6 @@ import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
 import { Inntektsmelding } from '../../types/Inntektsmelding';
-import { browserEnv } from '../../utils/env';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 
 interface Props {
@@ -31,7 +30,8 @@ const SakPage = ({ sak, pleietrengende, antallSaker, inntektsmeldinger = [] }: P
     useLogSaksprofil(sak, antallSaker);
 
     useBreadcrumbs({
-        breadcrumbs: [{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din sak' }],
+        breadcrumbs: [],
+        saksnummer: sak.saksnummer,
     });
 
     const statusISak = getBehandlingsstatusISak(sak);

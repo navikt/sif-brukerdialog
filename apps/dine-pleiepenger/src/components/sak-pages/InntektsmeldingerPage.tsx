@@ -18,14 +18,8 @@ interface Props {
 
 const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
     useBreadcrumbs({
-        breadcrumbs: [
-            {
-                url: `/sak/${sak.saksnummer}`,
-                title: 'Din sak',
-                handleInApp: true,
-            },
-            { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' },
-        ],
+        breadcrumbs: [{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' }],
+        saksnummer: sak.saksnummer,
     });
 
     const renderContent = () => {

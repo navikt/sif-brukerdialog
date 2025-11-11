@@ -23,10 +23,10 @@ const InntektsmeldingDetaljerPage = () => {
 
     useBreadcrumbs({
         breadcrumbs: [
-            { url: `/sak/${saksnr}`, title: 'Din sak', handleInApp: true },
             { url: `/sak/${saksnr}/inntektsmelding`, title: 'Inntektsmeldinger', handleInApp: true },
             { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Inntektsmelding' },
         ],
+        saksnummer: typeof saksnr === 'string' ? saksnr : undefined,
     });
 
     if (isLoading) {
