@@ -12,6 +12,7 @@ import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/InntektsmeldingDetaljer';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';
+import PageLoading from '../page-layout/page-loading/PageLoading';
 
 const InntektsmeldingDetaljerPage = () => {
     const router = useRouter();
@@ -28,10 +29,11 @@ const InntektsmeldingDetaljerPage = () => {
         ],
     });
 
+    if (isLoading) {
+        return <PageLoading title="Laster inntektsmelding..." />;
+    }
+
     const renderContent = () => {
-        if (isLoading) {
-            return <Alert variant="info">Laster inntektsmelding...</Alert>;
-        }
         if (error) {
             return (
                 <Alert variant="error">
