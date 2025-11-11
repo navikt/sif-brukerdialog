@@ -32,7 +32,7 @@ export const trimAxiosError = (error: any) => {
 /**
  * Går gjennom objekt og sletter alle nøkler med null-verdier, erstatter med undefined
  */
-export const deleteNullValues = (obj: any): any => {
+export const deleteNullValues = (obj: unknown): unknown => {
     if (obj === null) {
         return undefined;
     }
@@ -53,7 +53,7 @@ export const deleteNullValues = (obj: any): any => {
  * Transform response data for server-side axios calls
  * Brukes som transformResponse i axios config
  */
-export const serverResponseTransform = (data: string): any => {
+export const serverResponseTransform = (data: string): unknown => {
     try {
         const parsed = JSON.parse(data);
         return deleteNullValues(parsed);
