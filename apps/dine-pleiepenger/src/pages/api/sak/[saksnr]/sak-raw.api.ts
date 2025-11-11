@@ -16,7 +16,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const logger = getLogger(req);
         logger.info(`Henter saksdetaljer for saksnummer: ${saksnr}`);
 
-        // Pleietrengende kombineres med data på klienten
         const data = await fetchSakMedInntektsmeldinger(req, saksnr, true);
 
         res.json(data);

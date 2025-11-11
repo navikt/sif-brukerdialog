@@ -12,10 +12,6 @@ const getArbeidsgiverNavn = (arbeidsgiver: ArbeidsgiverDto): string => {
     return 'Arbeidsgiver hverken privatperson eller organisasjon';
 };
 
-export const inntektsmeldingUtils = {
-    getArbeidsgiverNavn,
-};
-
 export const getImUtils = (innteksmelding: Inntektsmelding) => {
     return {
         arbeidsgiverNavn: getArbeidsgiverNavn(innteksmelding.arbeidsgiver),
