@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { AppText } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 
 interface Props {
@@ -13,15 +13,14 @@ interface Props {
 }
 
 const VelgSakPage = ({ sakerMetadata }: Props) => {
+    const { text } = useAppIntl();
     useBreadcrumbs({
         breadcrumbs: [],
     });
     return (
         <DefaultPageLayout>
             <Head>
-                <title>
-                    <AppText id="velgSak.dokumentTittel" />
-                </title>
+                <title>{text('velgSak.dokumentTittel')}</title>
             </Head>
             <Box>
                 <Heading size="medium" level="1" spacing={true}>

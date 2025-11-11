@@ -13,8 +13,8 @@ const server = express();
 // Last inn JSON-filer
 const søknader = JSON.parse(readFileSync(join(__dirname, './mockdata/soknader.json'), 'utf-8'));
 const inntektsmeldinger = JSON.parse(readFileSync(join(__dirname, './mockdata/inntektsmeldinger.json'), 'utf-8'));
-const flereSaker = JSON.parse(readFileSync(join(__dirname, './mockdata/flere-saker.json'), 'utf-8'));
-const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/saker.json'), 'utf-8'));
+const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/flere-saker.json'), 'utf-8'));
+// const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/saker.json'), 'utf-8'));
 
 server.use(express.json());
 
@@ -81,7 +81,7 @@ const startServer = () => {
 
     server.get('/sak/:saksnr', (req, res) => {
         const saksnr = req.params.saksnr;
-        const sak = flereSaker.find((s) => s.sak.saksnummer === saksnr);
+        const sak = saker.find((s) => s.sak.saksnummer === saksnr);
 
         if (sak) {
             res.send(sak.sak);
