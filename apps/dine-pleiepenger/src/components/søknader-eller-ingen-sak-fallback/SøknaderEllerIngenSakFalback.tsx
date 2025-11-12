@@ -27,7 +27,9 @@ const SøknaderEllerIngenSakFalback = () => {
         (url) => axios.get(url).then((res) => InnsendtSøknaderSchema.parse(res.data)),
         {
             revalidateOnFocus: false,
-            shouldRetryOnError: false,
+            shouldRetryOnError: true,
+            errorRetryCount: 1,
+            dedupingInterval: 300000, // Cache i 5 minutter
         },
     );
 

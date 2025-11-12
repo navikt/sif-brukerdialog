@@ -20,7 +20,7 @@ const Saksbehandlingstid = ({ frist, venteårsak }: Props) => {
         {
             revalidateOnFocus: false,
             revalidateOnReconnect: false,
-            dedupingInterval: 60000, // Cache i 1 minutt
+            dedupingInterval: 900000, // Cache i 15 minutter
         },
     );
     const saksbehandlingstidUker = data?.saksbehandlingstidUker ?? 7;
