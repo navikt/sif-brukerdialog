@@ -16,19 +16,24 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const søker = await fetchSøker(req);
 
         /** Bruker har tilgang, hent resten av informasjonen */
-        const [sakerMetadataReq, appStatus] = await Promise.allSettled([
-            fetchSakerMetadata(req),
-            Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
-        ]);
+        const sakerMetadata = await fetchSakerMetadata(req);
+
+        let appStatus;
+        if (Feature.HENT_APPSTATUS) {
+            try {
+                appStatus = await fetchAppStatus();
+            } catch (error) {
+                logger.error(`Henting av appStatus feilet: ${error}. Fortsetter uten appStatus.`);
+            }
+        }
+
         logger.info(`Hentet innsynsdata`);
-
-        const sakerMetadata = sakerMetadataReq.status === 'fulfilled' ? sakerMetadataReq.value : [];
-        const harSak = sakerMetadata.length > 0;
-
         logger.info(`Antall saker: ${sakerMetadata.length}`);
 
+        const harSak = sakerMetadata.length > 0;
+
         const innsynsdata: Innsynsdata = {
-            appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
+            appStatus,
             søker,
             sakerMetadata,
             harSak,
