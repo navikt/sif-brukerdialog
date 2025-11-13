@@ -58,6 +58,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     );
 
     // Legg inn sjekk slik at en alltid kontrollerer at innlogget bruker er den samme når vinduet får fokus
+    // Viktig at denne ligger her, slik at den gjelder alle sider i løsningen
     useVerifyUserOnWindowFocus(data?.søker.fødselsnummer || '', søkerIdFetcher);
 
     if (isLoading) {
