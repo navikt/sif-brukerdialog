@@ -31,86 +31,74 @@ interface Options {
  */
 export const useVerifyCurrentUser = (userId: string, getUserId: () => Promise<string>, options?: Options) => {
     const { logHendelse } = useAmplitudeInstance();
+    const focusConfig = { enabled: true, throttleSeconds: 30, ...options?.focus };
+    const visibilityConfig = { enabled: true, throttleSeconds: 30, ...options?.visibilityChange };
 
     useEffect(() => {
-        const focusConfig = { enabled: true, throttleSeconds: 30, ...options?.focus };
-        const visibilityConfig = { enabled: true, throttleSeconds: 30, ...options?.visibilityChange };
+        let mounted = true;
 
-        const now = Date.now();
         let hiddenTimestamp: number | undefined;
-        let lastFocusCheckTimestamp = now;
-        let lastVisibilityCheckTimestamp = now;
+        let lastUserCheckTimestamp = Date.now();
 
-        // Hjelpefunksjon for å sjekke om throttle-perioden har gått
-        const shouldThrottle = (lastCheck: number, throttleSeconds: number): boolean => {
-            return Date.now() - lastCheck < throttleSeconds * 1000;
+        const isThrottled = (throttleSeconds: number): boolean => {
+            return Date.now() - lastUserCheckTimestamp < throttleSeconds * 1000;
         };
 
-        // Sjekker at innlogget bruker fortsatt er samme bruker. Hvis ikke reloades siden.
         const verifyUser = async () => {
+            lastUserCheckTimestamp = Date.now();
             try {
                 const id = await getUserId();
+                if (!mounted) return;
                 if (id !== userId) {
-                    // Denne er ikke i bruk i alle miljøer, og er dermed ikke alltid tilgjengelig
                     if (logHendelse) {
                         await logHendelse(ApplikasjonHendelse.innloggetBrukerErEndret);
                     }
                     window.location.reload();
                 }
             } catch (error) {
-                if (error && isAxiosError(error) && apiUtils.isUnauthorized(error)) {
+                if (!mounted) return;
+                if (isAxiosError(error) && apiUtils.isUnauthorized(error)) {
                     window.location.reload();
                 }
             }
         };
 
-        // Når vinduet får fokus - kjør brukersjekk (med throttling)
         const handleFocus = async () => {
-            if (shouldThrottle(lastFocusCheckTimestamp, focusConfig.throttleSeconds)) {
-                return; // Skip - for tidlig siden sist sjekk
+            if (isThrottled(focusConfig.throttleSeconds)) {
+                return;
             }
-
-            lastFocusCheckTimestamp = Date.now();
             await verifyUser();
         };
 
-        // Når document endrer visibilityState (f.eks. bytter mellom tabs)
         const handleVisibilityChange = async () => {
             if (document.visibilityState === 'hidden') {
-                // Tab ble skjult - lagre tidspunkt
                 hiddenTimestamp = Date.now();
             } else if (document.visibilityState === 'visible') {
-                // Tab ble synlig - sjekk om den har vært skjult lenge
                 if (visibilityConfig.reloadAfterHiddenSeconds && hiddenTimestamp) {
                     const hiddenTime = Date.now() - hiddenTimestamp;
-                    if (hiddenTime > visibilityConfig.reloadAfterHiddenSeconds * 1000) {
-                        // Tab var skjult lenge - reload direkte (forhindrer at feil brukers data vises)
+                    const threshold = Math.max(5, visibilityConfig.reloadAfterHiddenSeconds);
+                    if (hiddenTime > threshold * 1000) {
                         window.location.reload();
                         return;
                     }
                 }
-
-                // Throttling: Sjekk om det har gått nok tid siden sist sjekk
-                if (shouldThrottle(lastVisibilityCheckTimestamp, visibilityConfig.throttleSeconds)) {
-                    return; // Skip - for tidlig siden sist sjekk
+                if (isThrottled(visibilityConfig.throttleSeconds)) {
+                    return;
                 }
-
-                lastVisibilityCheckTimestamp = Date.now();
                 await verifyUser();
             }
         };
 
-        // Kun lytt på focus hvis aktivert
         if (focusConfig.enabled) {
             window.addEventListener('focus', handleFocus);
         }
 
-        // Kun lytt på visibilitychange hvis aktivert
         if (visibilityConfig.enabled) {
             document.addEventListener('visibilitychange', handleVisibilityChange);
         }
 
         return () => {
+            mounted = false;
             if (focusConfig.enabled) {
                 window.removeEventListener('focus', handleFocus);
             }
@@ -118,5 +106,14 @@ export const useVerifyCurrentUser = (userId: string, getUserId: () => Promise<st
                 document.removeEventListener('visibilitychange', handleVisibilityChange);
             }
         };
-    }, [getUserId, logHendelse, userId, options]);
+    }, [
+        getUserId,
+        logHendelse,
+        userId,
+        focusConfig.enabled,
+        focusConfig.throttleSeconds,
+        visibilityConfig.enabled,
+        visibilityConfig.throttleSeconds,
+        visibilityConfig.reloadAfterHiddenSeconds,
+    ]);
 };
