@@ -3,14 +3,18 @@ import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
 
-export const useVerifyUserOnWindowFocus = (userId: string, getUserId: () => Promise<string>) => {
+export const useVerifyUserOnWindowFocus = (
+    userId: string,
+    getUserId: () => Promise<string>,
+    useDelay: boolean = false,
+) => {
     const { logHendelse } = useAmplitudeInstance();
     useEffect(() => {
         let hiddenTimestamp: number | null = null;
 
         const handleFocus = async () => {
-            // Sjekk kun hvis vinduet har vært skjult i minst 20 sekunder
-            if (hiddenTimestamp && Date.now() - hiddenTimestamp < 20000) {
+            // Sjekk kun hvis vinduet har vært skjult i minst 20 sekunder (hvis delay er aktivert)
+            if (useDelay && hiddenTimestamp && Date.now() - hiddenTimestamp < 20000) {
                 return;
             }
 
@@ -44,5 +48,5 @@ export const useVerifyUserOnWindowFocus = (userId: string, getUserId: () => Prom
             window.removeEventListener('focus', handleFocus);
             document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
-    }, [getUserId, logHendelse, userId]);
+    }, [getUserId, logHendelse, userId, useDelay]);
 };
