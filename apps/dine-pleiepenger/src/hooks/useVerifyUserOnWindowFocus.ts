@@ -10,7 +10,9 @@ export const useVerifyUserOnWindowFocus = (userId: string, getUserId: () => Prom
             try {
                 const id = await getUserId();
                 if (id !== userId) {
-                    await logHendelse(ApplikasjonHendelse.innloggetBrukerErEndret);
+                    if (logHendelse) {
+                        await logHendelse(ApplikasjonHendelse.innloggetBrukerErEndret);
+                    }
                     window.location.reload();
                 }
             } catch (error) {

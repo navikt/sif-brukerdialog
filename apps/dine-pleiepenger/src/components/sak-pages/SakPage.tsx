@@ -12,7 +12,6 @@ import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
 import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { useLogSaksprofil } from '../../hooks/useLogSaksprofil';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
@@ -23,12 +22,9 @@ interface Props {
     pleietrengende: Pleietrengende;
     sak: Sak;
     inntektsmeldinger: Inntektsmelding[];
-    antallSaker: number;
 }
 
-const SakPage = ({ sak, pleietrengende, antallSaker, inntektsmeldinger = [] }: Props) => {
-    useLogSaksprofil(sak, antallSaker);
-
+const SakPage = ({ sak, pleietrengende, inntektsmeldinger = [] }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [],
         saksnummer: sak.saksnummer,

@@ -2,13 +2,9 @@ import { withAuthenticatedPage } from '../../../auth/withAuthentication';
 import PageLoading from '../../../components/page-layout/page-loading/PageLoading';
 import SakIkkeFunnetPage from '../../../components/sak-pages/SakIkkeFunnetPage';
 import SakPage from '../../../components/sak-pages/SakPage';
-import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
 import { usePleietrengendeMedSakFromRoute } from '../../../hooks/usePleietrengendeMedSakFromRoute';
 
 export default function SakRoutePage() {
-    const {
-        innsynsdata: { sakerMetadata },
-    } = useInnsynsdataContext();
     const { pleietrengendeMedSak, saksnr, isLoading, error } = usePleietrengendeMedSakFromRoute();
 
     if (isLoading) {
@@ -28,7 +24,6 @@ export default function SakRoutePage() {
         <SakPage
             sak={pleietrengendeMedSak.sak}
             pleietrengende={pleietrengendeMedSak.pleietrengende}
-            antallSaker={sakerMetadata.length}
             inntektsmeldinger={pleietrengendeMedSak.inntektsmeldinger}
         />
     );
