@@ -40,6 +40,10 @@ export enum SifApiErrorType {
     NO_ACCESS = 'NO_ACCESS',
 }
 
+const shouldReturnRawData = (raw?: boolean): boolean => {
+    return raw === true && getServerEnv().NEXT_PUBLIC_RUNTIME_ENVIRONMENT !== 'production';
+};
+
 export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
@@ -101,7 +105,7 @@ export const fetchSakMedInntektsmeldinger = async (
     logger.info(`Response-status from request: ${response.status}`);
     logger.info(`Parsing sak response data for saksnummer: ${saksnummer}`);
 
-    if (raw) {
+    if (shouldReturnRawData(raw)) {
         return response.data;
     }
     try {
@@ -183,7 +187,7 @@ export const fetchInntektsmeldinger = async (
     logger.info(`Fetching inntektsmeldinger from url: ${url}`);
     const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
     logger.info(`Inntektsmeldinger fetched`);
-    if (raw) {
+    if (shouldReturnRawData(raw)) {
         logger.info('returning raw inntektsmeldinger data');
         return await response.data;
     }
