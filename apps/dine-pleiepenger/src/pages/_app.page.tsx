@@ -19,7 +19,7 @@ import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import PageLoading from '../components/page-layout/page-loading/PageLoading';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { getFaro, initInstrumentation, pinoLevelToFaroLevel } from '../faro/faro';
-import { useVerifyUserOnWindowFocus } from '../hooks/useVerifyUserOnWindowFocus';
+import { useVerifyUserOnVisibilityChange } from '../hooks/useVerifyUserOnVisibilityChange';
 import { messages } from '../i18n';
 import { Søker } from '../server/api-models/SøkerSchema';
 import { Innsynsdata } from '../types/InnsynData';
@@ -57,9 +57,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         swrBaseConfig,
     );
 
-    // Legg inn sjekk slik at en alltid kontrollerer at innlogget bruker er den samme når vinduet får fokus
-    // Viktig at denne ligger her, slik at den gjelder alle sider i løsningen
-    useVerifyUserOnWindowFocus(data?.søker.fødselsnummer || '', søkerIdFetcher);
+    // Legg inn sjekk slik at en alltid kontrollerer at innlogget bruker er den samme når
+    // vinduet vises/får fokus. Ligger her for å være aktiv i alle sider i løsningen.
+    useVerifyUserOnVisibilityChange(data?.søker.fødselsnummer || '', søkerIdFetcher);
 
     if (isLoading) {
         return (

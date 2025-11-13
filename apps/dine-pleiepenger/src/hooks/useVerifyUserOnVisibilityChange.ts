@@ -4,7 +4,7 @@ import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
 
 /**
- * Hook som verifiserer at innlogget bruker er den samme når vindu/tab får fokus/blir synlig.
+ * Hook som verifiserer at innlogget bruker er den samme når vindu/tab får fokus.
  *
  * @param userId - Fødselsnummer til forventet innlogget bruker
  * @param getUserId - Funksjon som henter fødselsnummer til faktisk innlogget bruker
