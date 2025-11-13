@@ -36,9 +36,15 @@ export const useVerifyCurrentUser = (userId: string, getUserId: () => Promise<st
         const focusConfig = { enabled: true, throttleSeconds: 30, ...options?.focus };
         const visibilityConfig = { enabled: true, throttleSeconds: 30, ...options?.visibilityChange };
 
+        const now = Date.now();
         let hiddenTimestamp: number | undefined;
-        let lastFocusCheckTimestamp: number | undefined;
-        let lastVisibilityCheckTimestamp: number | undefined;
+        let lastFocusCheckTimestamp = now;
+        let lastVisibilityCheckTimestamp = now;
+
+        // Hjelpefunksjon for å sjekke om throttle-perioden har gått
+        const shouldThrottle = (lastCheck: number, throttleSeconds: number): boolean => {
+            return Date.now() - lastCheck < throttleSeconds * 1000;
+        };
 
         // Sjekker at innlogget bruker fortsatt er samme bruker. Hvis ikke reloades siden.
         const verifyUser = async () => {
@@ -60,14 +66,11 @@ export const useVerifyCurrentUser = (userId: string, getUserId: () => Promise<st
 
         // Når vinduet får fokus - kjør brukersjekk (med throttling)
         const handleFocus = async () => {
-            const now = Date.now();
-
-            // Sjekk om det har gått nok tid siden sist sjekk
-            if (lastFocusCheckTimestamp && now - lastFocusCheckTimestamp < focusConfig.throttleSeconds * 1000) {
+            if (shouldThrottle(lastFocusCheckTimestamp, focusConfig.throttleSeconds)) {
                 return; // Skip - for tidlig siden sist sjekk
             }
 
-            lastFocusCheckTimestamp = now;
+            lastFocusCheckTimestamp = Date.now();
             await verifyUser();
         };
 
@@ -88,15 +91,11 @@ export const useVerifyCurrentUser = (userId: string, getUserId: () => Promise<st
                 }
 
                 // Throttling: Sjekk om det har gått nok tid siden sist sjekk
-                const now = Date.now();
-                if (
-                    lastVisibilityCheckTimestamp &&
-                    now - lastVisibilityCheckTimestamp < visibilityConfig.throttleSeconds * 1000
-                ) {
+                if (shouldThrottle(lastVisibilityCheckTimestamp, visibilityConfig.throttleSeconds)) {
                     return; // Skip - for tidlig siden sist sjekk
                 }
 
-                lastVisibilityCheckTimestamp = now;
+                lastVisibilityCheckTimestamp = Date.now();
                 await verifyUser();
             }
         };
