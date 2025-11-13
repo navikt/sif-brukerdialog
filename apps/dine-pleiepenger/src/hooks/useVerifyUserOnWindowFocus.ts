@@ -6,7 +6,14 @@ import { useEffect } from 'react';
 export const useVerifyUserOnWindowFocus = (userId: string, getUserId: () => Promise<string>) => {
     const { logHendelse } = useAmplitudeInstance();
     useEffect(() => {
+        let hiddenTimestamp: number | null = null;
+
         const handleFocus = async () => {
+            // Sjekk kun hvis vinduet har vært skjult i minst 20 sekunder
+            if (hiddenTimestamp && Date.now() - hiddenTimestamp < 20000) {
+                return;
+            }
+
             try {
                 const id = await getUserId();
                 if (id !== userId) {
@@ -23,7 +30,9 @@ export const useVerifyUserOnWindowFocus = (userId: string, getUserId: () => Prom
         };
 
         const handleVisibilityChange = () => {
-            if (document.visibilityState === 'visible') {
+            if (document.visibilityState === 'hidden') {
+                hiddenTimestamp = Date.now();
+            } else if (document.visibilityState === 'visible') {
                 handleFocus();
             }
         };
