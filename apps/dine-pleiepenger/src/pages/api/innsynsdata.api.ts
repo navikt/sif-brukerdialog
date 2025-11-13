@@ -25,6 +25,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const sakerMetadata = sakerMetadataReq.status === 'fulfilled' ? sakerMetadataReq.value : [];
         const harSak = sakerMetadata.length > 0;
 
+        logger.info(`Antall saker: ${sakerMetadata.length}`);
+
         const innsynsdata: Innsynsdata = {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             søker,
