@@ -23,7 +23,7 @@ export const useBreadcrumbs = ({ breadcrumbs, saksnummer }: UseBreadcrumbsOption
     useEffect(() => {
         const allBreadcrumbs: DecoratorBreadcrumb[] = [
             { url: browserEnv.NEXT_PUBLIC_MIN_SIDE_URL, title: 'Min side' },
-            ...(harFlereSaker ? [{ url: '/', title: 'Dine pleiepenger', handleInApp: true }] : []),
+            ...(harFlereSaker ? [{ url: '/', title: 'Dine pleiepengesaker', handleInApp: true }] : []),
             ...(inkluderSakCrumb
                 ? [
                       {
