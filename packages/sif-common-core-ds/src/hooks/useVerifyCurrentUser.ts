@@ -3,26 +3,34 @@ import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
 
+interface Options {
+    /** Hvis tab har vært skjult lenger enn dette, reloades siden direkte (sikrere) */
+    visibilityChangeDelaySeconds?: number;
+    /** Hvis false, kjøres ingen sjekk når tab blir synlig (kun ved window focus). Default: true */
+    visibilityChangeEnabled?: boolean;
+    /** Hvis false, kjøres ingen sjekk når vindu får fokus. Default: true */
+    focusEnabled?: boolean;
+}
+
 /**
  * Hook som verifiserer at innlogget bruker er den samme når vindu/tab får fokus.
  *
  * @param userId - Fødselsnummer til forventet innlogget bruker
  * @param getUserId - Funksjon som henter fødselsnummer til faktisk innlogget bruker
- * @param visibilityChangeDelaySeconds - Hvis tab har vært skjult lenger enn dette, reloades siden direkte (sikrere)
+ * @param options - Valgfrie innstillinger
  */
-export const useVerifyUserOnVisibilityChange = (
-    userId: string,
-    getUserId: () => Promise<string>,
-    visibilityChangeDelaySeconds?: number,
-) => {
+export const useVerifyCurrentUser = (userId: string, getUserId: () => Promise<string>, options?: Options) => {
+    const { visibilityChangeDelaySeconds, visibilityChangeEnabled = true, focusEnabled = true } = options || {};
     const { logHendelse } = useAmplitudeInstance();
     useEffect(() => {
         let hiddenTimestamp: number | null = null;
 
+        // Sjekker at innlogget bruker fortsatt er samme bruker. Hvis ikke reloades siden.
         const verifyUser = async () => {
             try {
                 const id = await getUserId();
                 if (id !== userId) {
+                    // Denne er ikke i bruk i alle miljøer, og er dermed ikke alltid tilgjengelig
                     if (logHendelse) {
                         await logHendelse(ApplikasjonHendelse.innloggetBrukerErEndret);
                     }
@@ -35,7 +43,7 @@ export const useVerifyUserOnVisibilityChange = (
             }
         };
 
-        // Når vinduet får fokus (f.eks. bytter mellom vinduer) - kjør brukersjekk
+        // Når vinduet får fokus - kjør brukersjekk
         const handleFocus = async () => {
             await verifyUser();
         };
@@ -60,12 +68,23 @@ export const useVerifyUserOnVisibilityChange = (
             }
         };
 
-        window.addEventListener('focus', handleFocus);
-        document.addEventListener('visibilitychange', handleVisibilityChange);
+        // Kun lytt på focus hvis aktivert
+        if (focusEnabled) {
+            window.addEventListener('focus', handleFocus);
+        }
+
+        // Kun lytt på visibilitychange hvis aktivert
+        if (visibilityChangeEnabled) {
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+        }
 
         return () => {
-            window.removeEventListener('focus', handleFocus);
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
+            if (focusEnabled) {
+                window.removeEventListener('focus', handleFocus);
+            }
+            if (visibilityChangeEnabled) {
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
+            }
         };
-    }, [getUserId, logHendelse, userId, visibilityChangeDelaySeconds]);
+    }, [getUserId, logHendelse, userId, visibilityChangeDelaySeconds, visibilityChangeEnabled]);
 };

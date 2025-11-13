@@ -6,6 +6,7 @@ import { Theme } from '@navikt/ds-react';
 import { configureLogger } from '@navikt/next-logger';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import { useVerifyCurrentUser } from '@navikt/sif-common-core-ds';
 import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import axios, { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
@@ -19,7 +20,6 @@ import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import PageLoading from '../components/page-layout/page-loading/PageLoading';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { getFaro, initInstrumentation, pinoLevelToFaroLevel } from '../faro/faro';
-import { useVerifyUserOnVisibilityChange } from '../hooks/useVerifyUserOnVisibilityChange';
 import { messages } from '../i18n';
 import { Søker } from '../server/api-models/SøkerSchema';
 import { Innsynsdata } from '../types/InnsynData';
@@ -57,9 +57,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         swrBaseConfig,
     );
 
-    // Legg inn sjekk slik at en alltid kontrollerer at innlogget bruker er den samme når
-    // vinduet vises/får fokus. Ligger her for å være aktiv i alle sider i løsningen.
-    useVerifyUserOnVisibilityChange(data?.søker.fødselsnummer || '', søkerIdFetcher);
+    // Legg inn sjekk på at innlogget bruker er den samme når vinduet vises/får fokus.
+    // Ligger her for å være aktiv i alle sider i løsningen.
+    useVerifyCurrentUser(data?.søker.fødselsnummer || '', søkerIdFetcher);
 
     if (isLoading) {
         return (
