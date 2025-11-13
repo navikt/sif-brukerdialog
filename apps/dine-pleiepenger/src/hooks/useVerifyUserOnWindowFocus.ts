@@ -21,9 +21,19 @@ export const useVerifyUserOnWindowFocus = (userId: string, getUserId: () => Prom
                 }
             }
         };
+
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                handleFocus();
+            }
+        };
+
         window.addEventListener('focus', handleFocus);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
         return () => {
             window.removeEventListener('focus', handleFocus);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
     }, [getUserId, logHendelse, userId]);
 };
