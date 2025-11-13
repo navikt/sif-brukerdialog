@@ -19,17 +19,25 @@ import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import PageLoading from '../components/page-layout/page-loading/PageLoading';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { getFaro, initInstrumentation, pinoLevelToFaroLevel } from '../faro/faro';
+import { useVerifyUserOnWindowFocus } from '../hooks/useVerifyUserOnWindowFocus';
 import { messages } from '../i18n';
+import { Søker } from '../server/api-models/SøkerSchema';
 import { Innsynsdata } from '../types/InnsynData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
 import { Feature } from '../utils/features';
+import { swrBaseConfig } from '../utils/swrBaseConfig';
 import UnavailablePage from './unavailable.page';
 
 export const AMPLITUDE_APPLICATION_KEY = 'sif-innsyn';
 
 const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
+
+const søkerIdFetcher = async (): Promise<string> => {
+    const url = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soker`;
+    return axios.get<Søker>(url).then((res) => res.data.fødselsnummer);
+};
 
 if (Feature.FARO) {
     initInstrumentation();
@@ -46,12 +54,11 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/innsynsdata`,
         innsynsdataFetcher,
-        {
-            revalidateOnFocus: false,
-            shouldRetryOnError: true,
-            errorRetryCount: 1,
-        },
+        swrBaseConfig,
     );
+
+    // Legg inn sjekk slik at en alltid kontrollerer at innlogget bruker er den samme når vinduet får fokus
+    useVerifyUserOnWindowFocus(data?.søker.fødselsnummer || '', søkerIdFetcher);
 
     if (isLoading) {
         return (

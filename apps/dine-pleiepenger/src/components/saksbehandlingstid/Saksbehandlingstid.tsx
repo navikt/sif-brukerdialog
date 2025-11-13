@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import { AppText } from '../../i18n';
 import { Venteårsak } from '../../types/Venteårsak';
 import { browserEnv } from '../../utils/env';
+import { swrBaseConfig } from '../../utils/swrBaseConfig';
 import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
 
 interface Props {
@@ -17,11 +18,7 @@ const Saksbehandlingstid = ({ frist, venteårsak }: Props) => {
     const { data, isLoading } = useSWR(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/saksbehandlingstid`,
         (url) => axios.get(url).then((res) => res.data),
-        {
-            revalidateOnFocus: false,
-            revalidateOnReconnect: false,
-            dedupingInterval: 900000, // Cache i 15 minutter
-        },
+        swrBaseConfig,
     );
     const saksbehandlingstidUker = data?.saksbehandlingstidUker ?? 7;
     return (

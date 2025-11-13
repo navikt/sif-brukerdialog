@@ -10,6 +10,7 @@ import {
     SakMedInntektsmeldingerSchema,
 } from '../server/api-models/SakMedInntektsmeldingerSchema';
 import { browserEnv } from '../utils/env';
+import { swrBaseConfig } from '../utils/swrBaseConfig';
 import { useInnsynsdataContext } from './useInnsynsdataContext';
 
 const sakFetcher = async (url: string): Promise<SakMedInntektsmeldinger> => {
@@ -27,7 +28,7 @@ export const usePleietrengendeMedSakFromRoute = (): {
     const {
         getSaksdata,
         setSaksdata,
-        innsynsdata: { sakerMetadata },
+        innsynsdata: { sakerMetadata, søker },
     } = useInnsynsdataContext();
     const router = useRouter();
     const saksnr = typeof router.query.saksnr === 'string' ? router.query.saksnr : undefined;
@@ -35,19 +36,16 @@ export const usePleietrengendeMedSakFromRoute = (): {
     // Sjekk cache
     const cachedSak = saksnr ? getSaksdata(saksnr) : undefined;
 
-    // Fetch hvis ikke cached
+    // Fetch hvis ikke cached. Bruker fødselsnummer i cache-nøkkel for å sikre at ulike brukere får separate cache-entries.
+    // Dette er en ekstrasikkerhet da vi alltid sjekker om innlogget bruker er den samme når vinduet får fokus.
     const {
         data: sakData,
         error,
         isLoading,
     } = useSWR<SakMedInntektsmeldinger>(
-        saksnr && !cachedSak ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${saksnr}` : null,
-        sakFetcher,
-        {
-            revalidateOnFocus: false,
-            shouldRetryOnError: true,
-            errorRetryCount: 1,
-        },
+        saksnr && !cachedSak ? [`${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/sak/${saksnr}`, søker.fødselsnummer] : null,
+        ([url]) => sakFetcher(url),
+        swrBaseConfig,
     );
 
     // Kombiner synkront

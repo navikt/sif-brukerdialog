@@ -2,10 +2,12 @@ import { Box, VStack } from '@navikt/ds-react';
 import axios from 'axios';
 import useSWR from 'swr';
 
+import { useInnsynsdataContext } from '../../hooks/useInnsynsdataContext';
 import { useAppIntl } from '../../i18n';
 import { InnsendtSøknaderSchema } from '../../server/api-models/InnsendtSøknadSchema';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { browserEnv } from '../../utils/env';
+import { swrBaseConfig } from '../../utils/swrBaseConfig';
 import DineInnsendteSøknader from '../dine-innsendte-søknader/DineInnsendteSøknader';
 import HvaSkjer from '../hva-skjer/HvaSkjer';
 import IngenSakEllerSøknadPage from '../ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
@@ -17,20 +19,20 @@ import SkrivTilOssLenker from '../skriv-til-oss-lenker/SkrivTilOssLenker';
 
 const SøknaderEllerIngenSakFalback = () => {
     const { text } = useAppIntl();
+    const {
+        innsynsdata: { søker },
+    } = useInnsynsdataContext();
 
+    // Bruker fødselsnummer i cache-nøkkel for å sikre at ulike brukere får separate cache-entries.
+    // Dette er en ekstrasikkerhet da vi alltid sjekker om innlogget bruker er den samme når vinduet får fokus.
     const {
         data: innsendteSøknader,
         isLoading,
         error,
     } = useSWR<InnsendtSøknad[]>(
-        `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknader`,
-        (url) => axios.get(url).then((res) => InnsendtSøknaderSchema.parse(res.data)),
-        {
-            revalidateOnFocus: false,
-            shouldRetryOnError: true,
-            errorRetryCount: 1,
-            dedupingInterval: 300000, // Cache i 5 minutter
-        },
+        [`${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknader`, søker.fødselsnummer],
+        ([url]) => axios.get(url).then((res) => InnsendtSøknaderSchema.parse(res.data)),
+        swrBaseConfig,
     );
 
     if (isLoading) {
