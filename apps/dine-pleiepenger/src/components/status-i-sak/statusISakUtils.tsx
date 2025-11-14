@@ -1,4 +1,8 @@
-import { Box } from '@navikt/ds-react';
+import { FileIcon } from '@navikt/aksel-icons';
+import { Box, Link, ReadMore, VStack } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { default as NextLink } from 'next/link';
+import { FormattedNumber } from 'react-intl';
 
 import { AppText, IntlTextFn } from '../../i18n';
 import { Innsendelse } from '../../server/api-models/InnsendelseSchema';
@@ -6,6 +10,8 @@ import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
 import { Ettersendelsestype } from '../../types/EttersendelseType';
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
+import { getImUtils } from '../../utils/inntektsmeldingUtils';
+import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 import EttersendelseStatusContent from './parts/EttersendelseStatusContent';
 import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
@@ -92,6 +98,58 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         timestamp: hendelse.dato,
                     };
 
+                case Sakshendelser.INNTEKTSMELDING: {
+                    const ersatterAntall = hendelse.erstatter.length;
+
+                    return {
+                        title: `Inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
+                        content: (
+                            <Box className="mt-2">
+                                <ReadMore header="Vis mer informasjon">
+                                    <VStack gap="2" marginBlock="0 4">
+                                        <div>
+                                            Første dag med perimisjon:{' '}
+                                            {dateFormatter.compact(hendelse.inntektsmelding.startDatoPermisjon)}.{' '}
+                                        </div>
+                                        <div>
+                                            Inntekt:{' '}
+                                            <FormattedNumber
+                                                value={hendelse.inntektsmelding.inntektBeløp}
+                                                style="currency"
+                                                currency="NOK"
+                                            />
+                                            .
+                                        </div>
+                                        <div>
+                                            Status:{' '}
+                                            <InntektsmeldingStatusTag status={hendelse.inntektsmelding.status} />
+                                        </div>
+                                        {ersatterAntall > 0 && (
+                                            <div>
+                                                Erstatter{' '}
+                                                {ersatterAntall === 1
+                                                    ? '1 inntektsmelding'
+                                                    : `${ersatterAntall} inntektsmeldinger`}
+                                                .
+                                            </div>
+                                        )}
+                                    </VStack>
+                                    <Link
+                                        as={NextLink}
+                                        href={`/sak/${hendelse.inntektsmelding.saksnummer}/inntektsmelding/${hendelse.inntektsmelding.journalpostId}`}>
+                                        <FileIcon
+                                            title="Inntektsmelding"
+                                            style={{ width: '1.5rem', height: '1.5rem' }}
+                                        />
+                                        Gå til hele inntektsmeldingen
+                                    </Link>
+                                </ReadMore>
+                            </Box>
+                        ),
+                        completed: true,
+                        timestamp: hendelse.inntektsmelding.innsendingstidspunkt,
+                    };
+                }
                 case Sakshendelser.FORVENTET_SVAR: {
                     const titleContent = getForventetSvarTitleContent(hendelse, text);
                     if (titleContent) {

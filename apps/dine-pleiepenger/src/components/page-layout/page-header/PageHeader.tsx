@@ -8,9 +8,16 @@ interface Props {
     titleTag?: React.ReactNode;
     byline?: React.ReactNode;
     documentTitle?: string;
+    hidePleiepengerIcon?: boolean;
 }
 
-const PageHeader = ({ title = 'Dine pleiepenger for sykt barn', titleTag, byline, documentTitle }: Props) => {
+const PageHeader = ({
+    title = 'Dine pleiepenger for sykt barn',
+    titleTag,
+    byline,
+    documentTitle,
+    hidePleiepengerIcon,
+}: Props) => {
     return (
         <div>
             {documentTitle ? (
@@ -20,9 +27,11 @@ const PageHeader = ({ title = 'Dine pleiepenger for sykt barn', titleTag, byline
             ) : null}
             <div className="text-left">
                 <HStack gap="6" align="center">
-                    <div className="hidden md:block">
-                        <PleiepengerSVG />
-                    </div>
+                    {hidePleiepengerIcon ? null : (
+                        <div className="hidden md:block">
+                            <PleiepengerSVG />
+                        </div>
+                    )}
                     <VStack gap="2">
                         {titleTag ? (
                             <HStack gap="4" align="center">

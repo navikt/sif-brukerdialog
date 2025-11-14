@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import '@navikt/ds-css/darkside';
 @import '../components/page-layout/sak-page-header/sakPageHeader.css' layer(utilities);
+@import '../components/inntektsmelding-link-card/inntektsmeldingListCard.css' layer(utilities);
 
 @config '../../tailwind.config.mjs';
 

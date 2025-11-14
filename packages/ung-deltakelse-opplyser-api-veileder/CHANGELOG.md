@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.2.0
+
+### Minor Changes
+
+- Regenererte codegens med mer cleanup
+
 ## 0.1.36
 
 ### Patch Changes

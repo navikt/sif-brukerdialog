@@ -12,9 +12,12 @@ import type {
     HentMineSakerData,
     HentMineSakerErrors,
     HentMineSakerResponses,
+    HentSakData,
     HentSakerMetadataData,
     HentSakerMetadataErrors,
     HentSakerMetadataResponses,
+    HentSakErrors,
+    HentSakResponses,
     HentSaksbehandlingstidData,
     HentSaksbehandlingstidErrors,
     HentSaksbehandlingstidResponses,
@@ -32,8 +35,10 @@ import {
     zHentInntektsmeldingerPåSakResponse,
     zHentMineSakerData,
     zHentMineSakerResponse,
+    zHentSakData,
     zHentSakerMetadataData,
     zHentSakerMetadataResponse,
+    zHentSakResponse,
     zHentSaksbehandlingstidData,
     zHentSaksbehandlingstidResponse,
     zHentSøknaderData,
@@ -58,37 +63,6 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
      */
     meta?: Record<string, unknown>;
 };
-
-export class SakInntektsmeldingerController {
-    public static hentInntektsmeldingerPåSak<ThrowOnError extends boolean = true>(
-        options: Options<HentInntektsmeldingerPåSakData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).get<
-            HentInntektsmeldingerPåSakResponses,
-            HentInntektsmeldingerPåSakErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) => {
-                return await zHentInntektsmeldingerPåSakData.parseAsync(data);
-            },
-            responseValidator: async (data) => {
-                return await zHentInntektsmeldingerPåSakResponse.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            url: '/{saksnummer}/inntektsmeldinger',
-            ...options,
-        });
-    }
-}
 
 export class SØknadController {
     public static hentSøknader<ThrowOnError extends boolean = true>(options?: Options<HentSøknaderData, ThrowOnError>) {
@@ -231,6 +205,64 @@ export class SakController {
                 },
             ],
             url: '/saker/metadata',
+            ...options,
+        });
+    }
+
+    /**
+     * Henter saken registrert på pleietrengende som bruker har omsorgen for
+     */
+    public static hentSak<ThrowOnError extends boolean = true>(options: Options<HentSakData, ThrowOnError>) {
+        return (options.client ?? client).get<HentSakResponses, HentSakErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zHentSakData.parseAsync(data);
+            },
+            responseType: 'json',
+            responseValidator: async (data) => {
+                return await zHentSakResponse.parseAsync(data);
+            },
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/sak/{saksnummer}',
+            ...options,
+        });
+    }
+}
+
+export class SakInntektsmeldingerController {
+    public static hentInntektsmeldingerPåSak<ThrowOnError extends boolean = true>(
+        options: Options<HentInntektsmeldingerPåSakData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).get<
+            HentInntektsmeldingerPåSakResponses,
+            HentInntektsmeldingerPåSakErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) => {
+                return await zHentInntektsmeldingerPåSakData.parseAsync(data);
+            },
+            responseValidator: async (data) => {
+                return await zHentInntektsmeldingerPåSakResponse.parseAsync(data);
+            },
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/sak/{saksnummer}/inntektsmeldinger',
             ...options,
         });
     }

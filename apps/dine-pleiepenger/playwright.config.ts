@@ -28,6 +28,7 @@ export default defineConfig({
             API_URL: 'http://localhost:8089',
             NEXT_PUBLIC_FEATURE_APPSTATUS: 'off',
             NEXT_PUBLIC_FEATURE_FARO: 'off',
+            NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: 'on',
             NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
             NEXT_PUBLIC_AMPLITUDE_API_KEY: 'default',
