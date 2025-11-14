@@ -2,7 +2,6 @@
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
         "target": "es5",
-        "downlevelIteration": true,
         "lib": ["dom", "dom.iterable", "esnext"],
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],

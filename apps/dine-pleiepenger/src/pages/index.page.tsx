@@ -1,30 +1,33 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import axios from 'axios';
+import { ReactElement } from 'react';
 
 import { withAuthenticatedPage } from '../auth/withAuthentication';
-import PageLoading from '../components/page-layout/page-loading/PageLoading';
 import SøknaderEllerIngenSakFalback from '../components/søknader-eller-ingen-sak-fallback/SøknaderEllerIngenSakFalback';
 import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
+import { useVerifyUserOnWindowFocus } from '../hooks/useVerifyUserOnWindowFocus';
+import { Søker } from '../server/api-models/SøkerSchema';
+import { browserEnv } from '../utils/env';
+import SakPage from './sak/SakPage';
 
-function DinePleiepengerPage() {
-    const router = useRouter();
+const søkerIdFetcher = async (): Promise<string> => {
+    const url = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soker`;
+    return axios.get<Søker>(url).then((res) => res.data.fødselsnummer);
+};
+
+function DinePleiepengerPage(): ReactElement {
     const {
-        innsynsdata: { sakerMetadata },
+        innsynsdata: { saker, søker },
     } = useInnsynsdataContext();
 
-    useEffect(() => {
-        if (sakerMetadata.length === 1) {
-            router.replace(`/sak/${sakerMetadata[0].saksnummer}`);
-        }
-    }, [sakerMetadata, router]);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerIdFetcher);
 
-    if (sakerMetadata.length === 1) {
-        return <PageLoading />;
+    if (saker.length === 1) {
+        return <SakPage sak={saker[0].sak} antallSaker={1} pleietrengende={saker[0].pleietrengende} />;
     }
 
-    if (sakerMetadata.length > 1) {
-        return <VelgSakPage sakerMetadata={sakerMetadata} />;
+    if (saker.length > 1) {
+        return <VelgSakPage saker={saker} />;
     }
 
     return <SøknaderEllerIngenSakFalback />;

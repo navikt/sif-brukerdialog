@@ -1,11 +1,5 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
-## 0.3.0
-
-### Minor Changes
-
-- Regenererte codegens med mer cleanup
-
 ## 0.2.10
 
 ### Patch Changes

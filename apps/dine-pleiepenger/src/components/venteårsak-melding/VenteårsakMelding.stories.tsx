@@ -16,22 +16,22 @@ export default meta;
 
 type Story = StoryObj<typeof VenteårsakMelding>;
 
-export const InntektsmeldingStory: Story = {
+export const Inntektsmelding: Story = {
     args: {
         venteårsak: Venteårsak.INNTEKTSMELDING,
     },
 };
-export const LegeerklæringStory: Story = {
+export const Legeerklæring: Story = {
     args: {
         venteårsak: Venteårsak.MEDISINSK_DOKUMENTASJON,
     },
 };
-export const MeldekortStory: Story = {
+export const Meldekort: Story = {
     args: {
         venteårsak: Venteårsak.MELDEKORT,
     },
 };
-export const SøktForTidligStory: Story = {
+export const SøktForTidlig: Story = {
     args: {
         venteårsak: Venteårsak.FOR_TIDLIG_SOKNAD,
     },
