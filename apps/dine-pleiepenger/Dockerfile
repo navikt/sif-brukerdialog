@@ -8,7 +8,7 @@ COPY /apps/dine-pleiepenger/.next/static ./apps/dine-pleiepenger/.next/static
 COPY /apps/dine-pleiepenger/public ./public
 
 ENV NODE_ENV=production
-ENV PORT=8080
+ENV PORT 8080
 
 EXPOSE 8080
 

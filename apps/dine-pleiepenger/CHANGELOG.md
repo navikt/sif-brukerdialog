@@ -1,16 +1,5 @@
 # @navikt/dine-pleiepenger
 
-## 2.0.0
-
-### Major Changes
-
-- Stor refactoring av hvordan informasjon lastes inn i innsyn. Nye backend-endepunkter, caching i client. Rydding i kode, og forbedret sjekk av innlogget bruker.
-
-### Patch Changes
-
-- Updated dependencies
-    - @navikt/k9-sak-innsyn-api@0.2.0
-
 ## 1.12.5
 
 ### Patch Changes

@@ -1,5 +1,4 @@
 import { Process } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { formatSakshendelseTidspunkt } from '../../utils/sakUtils';
@@ -18,13 +17,6 @@ const getStatusISakStepStatus = (step: ProcessStepData): 'completed' | 'active' 
 };
 
 const StatusISakSteps = ({ steps }: Props) => {
-    const getTidspunkt = (step: ProcessStepData): string | undefined => {
-        if (step.timestamp) {
-            return formatSakshendelseTidspunkt(step.timestamp);
-        } else if (step.date) {
-            return dateFormatter.compact(step.date);
-        }
-    };
     return (
         <Process>
             {steps.map((step, idx) => {
@@ -33,7 +25,7 @@ const StatusISakSteps = ({ steps }: Props) => {
                         key={idx}
                         status={getStatusISakStepStatus(step)}
                         title={step.title}
-                        timestamp={getTidspunkt(step)}>
+                        timestamp={step.timestamp ? formatSakshendelseTidspunkt(step.timestamp) : undefined}>
                         {step.content}
                     </Process.Event>
                 );

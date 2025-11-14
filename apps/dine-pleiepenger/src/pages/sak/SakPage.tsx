@@ -1,5 +1,7 @@
 import { Box, VStack } from '@navikt/ds-react';
+import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
 import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
@@ -11,23 +13,33 @@ import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
 import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
-import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
+import { useLogSaksprofil } from '../../hooks/useLogSaksprofil';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
-import { Inntektsmelding } from '../../types/Inntektsmelding';
+import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
+import { browserEnv } from '../../utils/env';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 
 interface Props {
     pleietrengende: Pleietrengende;
     sak: Sak;
-    inntektsmeldinger: Inntektsmelding[];
+    antallSaker: number;
 }
 
-const SakPage = ({ sak, pleietrengende, inntektsmeldinger = [] }: Props) => {
-    useBreadcrumbs({
-        breadcrumbs: [],
-        saksnummer: sak.saksnummer,
+const SakPage = ({ sak, pleietrengende, antallSaker }: Props) => {
+    const router = useRouter();
+    useLogSaksprofil(sak, antallSaker);
+
+    setBreadcrumbs(
+        getAllBreadcrumbs(
+            [{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak for sykt barn' }],
+            antallSaker > 1,
+        ),
+    );
+
+    onBreadcrumbClick((breadcrumb) => {
+        router.push(breadcrumb.url);
     });
 
     const statusISak = getBehandlingsstatusISak(sak);
@@ -50,7 +62,7 @@ const SakPage = ({ sak, pleietrengende, inntektsmeldinger = [] }: Props) => {
                 ) : null}
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
-                        <StatusISak sak={sak} tittel="Dette skjer i saken" inntektsmeldinger={inntektsmeldinger} />
+                        <StatusISak sak={sak} tittel="Dette skjer i saken" />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         {statusISak?.status === Behandlingsstatus.AVSLUTTET ? null : (
@@ -70,7 +82,7 @@ const SakPage = ({ sak, pleietrengende, inntektsmeldinger = [] }: Props) => {
                     <SkrivTilOssLenker />
                 </Box>
                 <Box className="mb-10">
-                    <SnarveierSak saksnummer={sak.saksnummer} />
+                    <SnarveierSak />
                 </Box>
             </VStack>
             <DevBranchInfo />
