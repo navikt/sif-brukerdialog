@@ -14,10 +14,7 @@ import { getZodErrorsInfo } from '../utils/zodUtils';
 import { Innsendelse } from './api-models/InnsendelseSchema';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
 import { SakMedInntektsmeldinger } from './api-models/SakMedInntektsmeldingerSchema';
-import {
-    Saksbehandlingstid as Saksbehandlingstid,
-    SaksbehandlingstidSchema,
-} from './api-models/SaksbehandlingstidSchema';
+import { Saksbehandlingstid, SaksbehandlingstidSchema } from './api-models/SaksbehandlingstidSchema';
 import { Sak, SakSchema } from './api-models/SakSchema';
 import { Søker, SøkerSchema } from './api-models/SøkerSchema';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
@@ -76,8 +73,6 @@ export const fetchSakerMetadata = async (req: NextApiRequest): Promise<SakerMeta
     logger.info(`Fetching sakerMetadata from url: ${url}`);
     const response = await axios.get(url, { headers });
     logger.info(`Response-status from request: ${response.status}`);
-
-    // Returner data (er allerede SakerMetadataDto[] fra backend)
     return response.data;
 };
 
