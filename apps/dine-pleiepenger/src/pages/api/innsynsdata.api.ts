@@ -2,9 +2,8 @@ import { HttpStatusCode, isAxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchSaker, fetchSøker } from '../../server/apiService';
+import { fetchSakerMetadata, fetchSøker } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
-import { isSakerParseError } from '../../types/SakerParseError';
 import { Feature } from '../../utils/features';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { fetchAppStatus } from './appStatus.api';
@@ -17,24 +16,27 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const søker = await fetchSøker(req);
 
         /** Bruker har tilgang, hent resten av informasjonen */
-        const [sakerReq, appStatus] = await Promise.allSettled([
-            fetchSaker(req),
-            Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
-        ]);
+        const sakerMetadata = await fetchSakerMetadata(req);
+
+        let appStatus;
+        if (Feature.HENT_APPSTATUS) {
+            try {
+                appStatus = await fetchAppStatus();
+            } catch (error) {
+                logger.error(`Henting av appStatus feilet: ${error}. Fortsetter uten appStatus.`);
+            }
+        }
+
         logger.info(`Hentet innsynsdata`);
+        logger.info(`Antall saker: ${sakerMetadata.length}`);
 
-        logger.info(`Parser innsynsdata`);
-
-        const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
-        const harSak = saker.length > 0;
+        const harSak = sakerMetadata.length > 0;
 
         const innsynsdata: Innsynsdata = {
-            appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
+            appStatus,
             søker,
-            saker,
+            sakerMetadata,
             harSak,
-            sakerParseError:
-                sakerReq.status === 'rejected' && isSakerParseError(sakerReq.reason) ? sakerReq.reason : undefined,
         };
         res.json(innsynsdata);
     } catch (err) {
