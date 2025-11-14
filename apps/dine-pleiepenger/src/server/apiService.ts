@@ -209,8 +209,10 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøkn
     const logger = getLogger(req);
     logger.info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers });
-    logger.info(`Søknader fetched`);
-    return await InnsendtSøknaderSchema.parse(response.data);
+    logger.info(`Søknader fetched; parser response data`);
+    const parsedData = await InnsendtSøknaderSchema.parse(response.data);
+    logger.info(`Søknader parsed`);
+    return await parsedData;
 };
 
 const fjernUkjenteInnsendelserISak = (sak: Sak): Sak => {
