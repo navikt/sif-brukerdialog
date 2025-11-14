@@ -2,5 +2,5 @@
 
 export * from './client.gen';
 export * from './sdk.gen';
-export * from './types.gen';
+export type * from './types.gen';
 export * from './zod.gen';

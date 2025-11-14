@@ -42,6 +42,7 @@ const nextConfig = {
     },
     eslint: {
         ignoreDuringBuilds: true,
+        // dirs: ['src'],
     },
 
     redirects: async () => [

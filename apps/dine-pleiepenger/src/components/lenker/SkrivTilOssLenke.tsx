@@ -1,7 +1,6 @@
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Link } from '@navikt/ds-react';
-
 import { browserEnv } from '../../utils/env';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 interface Props {
     tekst: string;
