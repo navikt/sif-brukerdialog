@@ -15,8 +15,8 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "24.10.0",
-        "@types/react": "19.2.2",
+        "@types/node": "24.10.1",
+        "@types/react": "19.2.4",
         "config": "workspace:*",
         "constate": "3.3.3",
         "gh-pages": "6.3.0",
