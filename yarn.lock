@@ -12,6 +12,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@acemir/cssom@npm:^0.9.23":
+  version: 0.9.23
+  resolution: "@acemir/cssom@npm:0.9.23"
+  checksum: 10/752294359ddf691f402bf871f347c1d5ea8532ead5e197cf60eeb7ab25bdd6f6e98fc7fad74042f2e423bb45fe7e4a049db645e01fa0781a0ed4ea2cec911047
+  languageName: node
+  linkType: hard
+
 "@actions/core@npm:^1.11.1":
   version: 1.11.1
   resolution: "@actions/core@npm:1.11.1"
@@ -275,6 +282,19 @@ __metadata:
     is-potential-custom-element-name: "npm:^1.0.1"
     lru-cache: "npm:^11.2.2"
   checksum: 10/f50f8f75564116c80143831750a801cb536e63b4562dbb921ad3d23e05e6a0329d853cdb49fdd40e2b652b07c090451f1e57d4281380eb7e98f31502138890eb
+  languageName: node
+  linkType: hard
+
+"@asamuzakjp/dom-selector@npm:^6.7.4":
+  version: 6.7.4
+  resolution: "@asamuzakjp/dom-selector@npm:6.7.4"
+  dependencies:
+    "@asamuzakjp/nwsapi": "npm:^2.3.9"
+    bidi-js: "npm:^1.0.3"
+    css-tree: "npm:^3.1.0"
+    is-potential-custom-element-name: "npm:^1.0.1"
+    lru-cache: "npm:^11.2.2"
+  checksum: 10/dc550a4e32b956bfc820795e73bb3cae963496101a6dc1ebbd0cad409e734dadbcfbac22a44034c28ec401ee1454a379c64cc02d11eb2186e74c638482d8b2e1
   languageName: node
   linkType: hard
 
@@ -4411,7 +4431,7 @@ __metadata:
     eslint-plugin-storybook: "npm:10.0.6"
     formik: "npm:2.4.8"
     html-react-parser: "npm:5.2.8"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     lodash.sortby: "npm:4.7.0"
     lodash.uniq: "npm:4.5.0"
     next: "npm:15.5.6"
@@ -4522,7 +4542,7 @@ __metadata:
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.56.1"
@@ -4595,7 +4615,7 @@ __metadata:
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
     intl: "npm:1.2.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     lodash: "npm:4.17.21"
     mockdate: "npm:3.0.5"
     msw: "npm:2.12.1"
@@ -4773,7 +4793,7 @@ __metadata:
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     less: "npm:4.4.2"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
@@ -4820,7 +4840,7 @@ __metadata:
     html-react-parser: "npm:5.2.8"
     jest: "npm:30.2.0"
     jest-environment-jsdom: "npm:30.2.0"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     next: "npm:15.5.6"
     node-fetch: "npm:3.3.2"
     playwright-core: "npm:1.56.1"
@@ -4883,7 +4903,7 @@ __metadata:
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     mockdate: "npm:3.0.5"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
@@ -4951,7 +4971,7 @@ __metadata:
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     lodash: "npm:4.17.21"
     mockdate: "npm:3.0.5"
     mustache-express: "npm:1.3.2"
@@ -5025,7 +5045,7 @@ __metadata:
     formik: "npm:2.4.8"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.8"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     lodash: "npm:4.17.21"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
@@ -5097,7 +5117,7 @@ __metadata:
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     lodash: "npm:4.17.21"
     msw: "npm:2.12.1"
     mustache-express: "npm:1.3.2"
@@ -5184,7 +5204,7 @@ __metadata:
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     lodash: "npm:4.17.21"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
@@ -5256,7 +5276,7 @@ __metadata:
     http-proxy-middleware: "npm:3.0.5"
     http-status-codes: "npm:2.3.0"
     intl: "npm:1.2.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     less: "npm:4.4.2"
     lodash.groupby: "npm:4.6.0"
     mockdate: "npm:3.0.5"
@@ -5293,7 +5313,7 @@ __metadata:
     express: "npm:5.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     morgan: "npm:1.10.1"
     prettier: "npm:3.6.2"
     react: "npm:19.2.0"
@@ -5555,7 +5575,7 @@ __metadata:
     formik: "npm:2.4.8"
     gh-pages: "npm:6.3.0"
     intl: "npm:1.2.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     postcss: "npm:8.5.6"
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
@@ -5681,7 +5701,7 @@ __metadata:
     io-ts-types: "npm:0.5.19"
     jest: "npm:30.2.0"
     js-cookie: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     monocle-ts: "npm:2.3.13"
     newtype-ts: "npm:0.3.5"
     postcss: "npm:8.5.6"
@@ -5810,7 +5830,7 @@ __metadata:
     express: "npm:5.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     mustache-express: "npm:1.3.2"
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
@@ -5876,7 +5896,7 @@ __metadata:
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     lodash: "npm:4.17.21"
     mustache-express: "npm:1.3.2"
     playwright-core: "npm:1.56.1"
@@ -5951,7 +5971,7 @@ __metadata:
     express: "npm:5.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     morgan: "npm:1.10.1"
     postcss: "npm:8.5.6"
     prettier: "npm:3.6.2"
@@ -6099,7 +6119,7 @@ __metadata:
     express: "npm:5.1.0"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     mockdate: "npm:3.0.5"
     msw: "npm:2.12.1"
     mustache-express: "npm:1.3.2"
@@ -6180,7 +6200,7 @@ __metadata:
     formik: "npm:2.4.8"
     html-react-parser: "npm:5.2.8"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:27.1.0"
+    jsdom: "npm:27.2.0"
     msw: "npm:2.12.1"
     msw-storybook-addon: "npm:2.0.6"
     mustache-express: "npm:1.3.2"
@@ -13603,6 +13623,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cssstyle@npm:^5.3.3":
+  version: 5.3.3
+  resolution: "cssstyle@npm:5.3.3"
+  dependencies:
+    "@asamuzakjp/css-color": "npm:^4.0.3"
+    "@csstools/css-syntax-patches-for-csstree": "npm:^1.0.14"
+    css-tree: "npm:^3.1.0"
+  checksum: 10/8c6133761395f03d50e74ff4c05473b4835b79013efed3f4b79dc452d94a7122082887d89c3c1164bba0e8919be209b75e4f4706197c086fc9f4b50182ab03d6
+  languageName: node
+  linkType: hard
+
 "csstype@npm:3.1.3, csstype@npm:^3.0.2, csstype@npm:^3.1.3":
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
@@ -19168,13 +19199,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsdom@npm:27.1.0, jsdom@npm:^27.0.1":
-  version: 27.1.0
-  resolution: "jsdom@npm:27.1.0"
+"jsdom@npm:27.2.0":
+  version: 27.2.0
+  resolution: "jsdom@npm:27.2.0"
   dependencies:
-    "@acemir/cssom": "npm:^0.9.19"
-    "@asamuzakjp/dom-selector": "npm:^6.7.3"
-    cssstyle: "npm:^5.3.2"
+    "@acemir/cssom": "npm:^0.9.23"
+    "@asamuzakjp/dom-selector": "npm:^6.7.4"
+    cssstyle: "npm:^5.3.3"
     data-urls: "npm:^6.0.0"
     decimal.js: "npm:^10.6.0"
     html-encoding-sniffer: "npm:^4.0.0"
@@ -19197,7 +19228,7 @@ __metadata:
   peerDependenciesMeta:
     canvas:
       optional: true
-  checksum: 10/9e2bd9824abed594da64fc58f1bdb817c7f82ba3025cef4817e6709807f886ac71b7b6a0f4f69ba604e9137bbcd6b7246b98dec53bde95500f5ac4b39a8ebb00
+  checksum: 10/78458e0230fd18ceef1e8753ab44eadf436654540a3d1dc5068f49b87c2bd1752b8fff25c9e1f30ee406ae3e80cc3f81668f778b8220a7bf9386a0a826dee088
   languageName: node
   linkType: hard
 
@@ -19231,6 +19262,39 @@ __metadata:
     canvas:
       optional: true
   checksum: 10/39d78c4889cac20826393400dce1faed1666e9244fe0c8342a8f08c315375878e6be7fcfe339a33d6ff1a083bfe9e71b16d56ecf4d9a87db2da8c795925ea8c1
+  languageName: node
+  linkType: hard
+
+"jsdom@npm:^27.0.1":
+  version: 27.1.0
+  resolution: "jsdom@npm:27.1.0"
+  dependencies:
+    "@acemir/cssom": "npm:^0.9.19"
+    "@asamuzakjp/dom-selector": "npm:^6.7.3"
+    cssstyle: "npm:^5.3.2"
+    data-urls: "npm:^6.0.0"
+    decimal.js: "npm:^10.6.0"
+    html-encoding-sniffer: "npm:^4.0.0"
+    http-proxy-agent: "npm:^7.0.2"
+    https-proxy-agent: "npm:^7.0.6"
+    is-potential-custom-element-name: "npm:^1.0.1"
+    parse5: "npm:^8.0.0"
+    saxes: "npm:^6.0.0"
+    symbol-tree: "npm:^3.2.4"
+    tough-cookie: "npm:^6.0.0"
+    w3c-xmlserializer: "npm:^5.0.0"
+    webidl-conversions: "npm:^8.0.0"
+    whatwg-encoding: "npm:^3.1.1"
+    whatwg-mimetype: "npm:^4.0.0"
+    whatwg-url: "npm:^15.1.0"
+    ws: "npm:^8.18.3"
+    xml-name-validator: "npm:^5.0.0"
+  peerDependencies:
+    canvas: ^3.0.0
+  peerDependenciesMeta:
+    canvas:
+      optional: true
+  checksum: 10/9e2bd9824abed594da64fc58f1bdb817c7f82ba3025cef4817e6709807f886ac71b7b6a0f4f69ba604e9137bbcd6b7246b98dec53bde95500f5ac4b39a8ebb00
   languageName: node
   linkType: hard
 
