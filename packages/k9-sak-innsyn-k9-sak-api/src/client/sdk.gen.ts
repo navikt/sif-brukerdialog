@@ -43,13 +43,9 @@ export class K9SakController {
             HentSisteGyldigeVedtakForAktorIdErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zHentSisteGyldigeVedtakForAktorIdData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zHentSisteGyldigeVedtakForAktorIdData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentSisteGyldigeVedtakForAktorIdResponse2.parseAsync(data);
-            },
+            responseValidator: async (data) => await zHentSisteGyldigeVedtakForAktorIdResponse2.parseAsync(data),
             security: [
                 {
                     scheme: 'bearer',
@@ -77,13 +73,9 @@ export class K9SakController {
             HentOpplæringsinstitusjonerErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zHentOpplæringsinstitusjonerData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zHentOpplæringsinstitusjonerData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentOpplæringsinstitusjonerResponse.parseAsync(data);
-            },
+            responseValidator: async (data) => await zHentOpplæringsinstitusjonerResponse.parseAsync(data),
             security: [
                 {
                     scheme: 'bearer',
