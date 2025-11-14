@@ -1,5 +1,6 @@
 import { Innsendelse } from '../server/api-models/InnsendelseSchema';
 import { Innsendelsestype } from '../server/api-models/Innsendelsestype';
+import { Inntektsmelding } from './Inntektsmelding';
 import { Venteårsak } from './Venteårsak';
 
 export enum Sakshendelser {
@@ -9,6 +10,7 @@ export enum Sakshendelser {
     'FERDIG_BEHANDLET' = 'FERDIG_BEHANDLET',
     'FORVENTET_SVAR' = 'FORVENTET_SVAR',
     'ETTERSENDELSE' = 'ETTERSENDELSE',
+    'INNTEKTSMELDING' = 'INNTEKTSMELDING',
 }
 
 interface SakshendelseBase {
@@ -48,10 +50,19 @@ interface SakshendelseFerdigBehandlet extends SakshendelseBase {
     dato: Date;
 }
 
+interface SakshendelseInntektsmelding extends SakshendelseBase {
+    type: Sakshendelser.INNTEKTSMELDING;
+    /** avsluttet dato */
+    dato: Date;
+    inntektsmelding: Inntektsmelding;
+    erstatter: Inntektsmelding[];
+}
+
 export type Sakshendelse =
     | SakshendelseMottattSøknad
     | SakshendelseAksjonspunkt
     | SakshendelseAksjonspunkt
     | SakshendelseForventetSvar
     | SakshendelseMottattEttersendelse
-    | SakshendelseFerdigBehandlet;
+    | SakshendelseFerdigBehandlet
+    | SakshendelseInntektsmelding;
