@@ -1,5 +1,12 @@
 # @navikt/sif-common-sentry
 
+## 0.28.53
+
+### Patch Changes
+
+- ce5ca17: Pakkeoppdateringer - minor/patch
+  Codegen
+
 ## 0.28.52
 
 ### Patch Changes

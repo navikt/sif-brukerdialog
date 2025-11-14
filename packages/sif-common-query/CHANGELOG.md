@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.57
+
+### Patch Changes
+
+- ce5ca17: Pakkeoppdateringer - minor/patch
+  Codegen
+- Updated dependencies [ce5ca17]
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.1
+    - @navikt/k9-sak-innsyn-api@0.2.1
+    - @navikt/sif-common-utils@3.49.50
+
 ## 0.1.56
 
 ### Patch Changes

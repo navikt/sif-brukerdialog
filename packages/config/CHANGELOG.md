@@ -1,5 +1,12 @@
 # config
 
+## 0.11.45
+
+### Patch Changes
+
+- ce5ca17: Pakkeoppdateringer - minor/patch
+  Codegen
+
 ## 0.11.44
 
 ### Patch Changes

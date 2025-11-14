@@ -1,5 +1,12 @@
 # appstatus-sanity-config
 
+## 1.2.49
+
+### Patch Changes
+
+- ce5ca17: Pakkeoppdateringer - minor/patch
+  Codegen
+
 ## 1.2.48
 
 ### Patch Changes

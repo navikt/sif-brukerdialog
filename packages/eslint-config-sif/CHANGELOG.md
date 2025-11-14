@@ -1,5 +1,12 @@
 # @sif/eslint-config
 
+## 1.1.74
+
+### Patch Changes
+
+- ce5ca17: Pakkeoppdateringer - minor/patch
+  Codegen
+
 ## 1.1.73
 
 ### Patch Changes

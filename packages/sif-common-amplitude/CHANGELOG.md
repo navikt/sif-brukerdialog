@@ -1,5 +1,12 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.51
+
+### Patch Changes
+
+- ce5ca17: Pakkeoppdateringer - minor/patch
+  Codegen
+
 ## 2.28.50
 
 ### Patch Changes

@@ -1,5 +1,24 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.34
+
+### Patch Changes
+
+- ce5ca17: Pakkeoppdateringer - minor/patch
+  Codegen
+- Updated dependencies [ce5ca17]
+    - @navikt/sif-common-amplitude@2.28.51
+    - @navikt/sif-common-formik-ds@2.5.29
+    - @navikt/sif-common-soknad-ds@26.1.14
+    - @navikt/sif-common-forms-ds@21.0.32
+    - @navikt/sif-common-core-ds@10.3.31
+    - @navikt/sif-common-sentry@0.28.53
+    - @navikt/sif-common-utils@3.49.50
+    - @navikt/sif-common-ui@0.11.32
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-hooks@0.3.7
+    - @navikt/sif-validation@1.0.14
+
 ## 1.41.33
 
 ### Patch Changes
