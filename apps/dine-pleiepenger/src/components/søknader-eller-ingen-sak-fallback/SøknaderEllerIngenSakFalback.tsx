@@ -1,45 +1,39 @@
-import { Box, VStack } from '@navikt/ds-react';
+import { Box, Skeleton, VStack } from '@navikt/ds-react';
 import axios from 'axios';
 import useSWR from 'swr';
 
-import { useInnsynsdataContext } from '../../hooks/useInnsynsdataContext';
 import { useAppIntl } from '../../i18n';
 import { InnsendtSøknaderSchema } from '../../server/api-models/InnsendtSøknadSchema';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { browserEnv } from '../../utils/env';
-import { swrBaseConfig } from '../../utils/swrBaseConfig';
 import DineInnsendteSøknader from '../dine-innsendte-søknader/DineInnsendteSøknader';
 import HvaSkjer from '../hva-skjer/HvaSkjer';
 import IngenSakEllerSøknadPage from '../ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
 import OppdatereSakLenker from '../oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
-import PageLoading from '../page-layout/page-loading/PageLoading';
 import Saksbehandlingstid from '../saksbehandlingstid/Saksbehandlingstid';
 import SkrivTilOssLenker from '../skriv-til-oss-lenker/SkrivTilOssLenker';
 
+const søknaderFetcher = async (url: string): Promise<InnsendtSøknad[]> =>
+    axios.get(url).then((res) => InnsendtSøknaderSchema.parse(res.data));
+
 const SøknaderEllerIngenSakFalback = () => {
     const { text } = useAppIntl();
-    const {
-        innsynsdata: { søker },
-    } = useInnsynsdataContext();
 
-    // Bruker fødselsnummer i cache-nøkkel for å sikre at ulike brukere får separate cache-entries.
-    // Dette er en ekstrasikkerhet da vi alltid sjekker om innlogget bruker er den samme når vinduet får fokus.
     const {
         data: innsendteSøknader,
         isLoading,
         error,
-    } = useSWR<InnsendtSøknad[]>(
-        [`${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknader`, søker.fødselsnummer],
-        ([url]) => axios.get(url).then((res) => InnsendtSøknaderSchema.parse(res.data)),
-        swrBaseConfig,
-    );
+    } = useSWR<InnsendtSøknad[]>(`${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknader`, søknaderFetcher, {
+        revalidateOnFocus: false,
+        shouldRetryOnError: false,
+    });
 
-    if (isLoading) {
-        return <PageLoading />;
+    if (error) {
+        return <IngenSakEllerSøknadPage />;
     }
 
-    if (error || !innsendteSøknader || innsendteSøknader.length === 0) {
+    if (!isLoading && (!innsendteSøknader || innsendteSøknader.length === 0)) {
         return <IngenSakEllerSøknadPage />;
     }
 
@@ -48,7 +42,11 @@ const SøknaderEllerIngenSakFalback = () => {
             <VStack gap="8">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
-                        <DineInnsendteSøknader søknader={innsendteSøknader} />
+                        {isLoading ? (
+                            <Skeleton height="200px" variant="rounded" />
+                        ) : (
+                            <DineInnsendteSøknader søknader={innsendteSøknader || []} />
+                        )}
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         <Saksbehandlingstid />

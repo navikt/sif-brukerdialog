@@ -43,7 +43,7 @@ const InnsendtSøknadBaseSchema = z.object({
     dokumenter: z.array(z.union([InnsendtSøknadDokumentSchema, z.any()])),
     opprettet: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     endret: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()).or(z.undefined()),
-    behandlingsdato: z.union([z.undefined(), z.preprocess((val) => parseMaybeDateStringToDate(val), z.date())]),
+    behandlingsdato: z.union([z.null(), z.preprocess((val) => parseMaybeDateStringToDate(val), z.date())]),
 });
 
 const PleiepengerSøknadSchema = InnsendtSøknadBaseSchema.extend({

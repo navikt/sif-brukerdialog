@@ -1,5 +1,4 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-
 import { Behandlingsstatus } from '../../src/server/api-models/Behandlingsstatus';
 import { Innsendelsestype } from '../../src/server/api-models/Innsendelsestype';
 import { PleietrengendeMedSak } from '../../src/server/api-models/PleietrengendeMedSakSchema';
@@ -13,7 +12,7 @@ export const flereSakerMock: PleietrengendeMedSak[] = [
             mellomnavn: null,
             etternavn: 'LØVETANN',
             aktørId: '2175638020356',
-            anonymisert: false as const,
+            anonymisert: false,
         },
         sak: {
             saksnummer: '2FAKQRW',
@@ -71,14 +70,13 @@ export const flereSakerMock: PleietrengendeMedSak[] = [
                 },
             ],
         },
-        inntektsmeldinger: [],
     },
     {
         pleietrengende: {
             identitetsnummer: '03121199799',
             fødselsdato: ISODateToDate('2011-12-03'),
             aktørId: '2175638020352',
-            anonymisert: true as const,
+            anonymisert: true,
         },
         sak: {
             saksnummer: '1DQAQRW',
@@ -137,6 +135,5 @@ export const flereSakerMock: PleietrengendeMedSak[] = [
                 },
             ],
         },
-        inntektsmeldinger: [],
     },
 ];

@@ -1,19 +1,4 @@
-import { FagsakYtelseType, SakerMetadataDto } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-
-export const sakerMetadata: SakerMetadataDto[] = [
-    {
-        pleietrengende: {
-            identitetsnummer: '27870899799',
-            fødselsdato: '2008-07-27',
-            fornavn: 'RAVGUL',
-            etternavn: 'LØVETANN',
-            aktørId: '2175638020356',
-        },
-        fagsakYtelseType: FagsakYtelseType.PSB,
-        saksnummer: '1DQAQRW',
-    },
-];
 
 export const sakerMock = [
     {
@@ -24,7 +9,7 @@ export const sakerMock = [
             mellomnavn: null,
             etternavn: 'LØVETANN',
             aktørId: '2175638020356',
-            anonymisert: false as const,
+            anonymisert: false,
         },
         sak: {
             saksnummer: '1DQAQRW',

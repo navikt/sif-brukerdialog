@@ -21,7 +21,6 @@ const PleiepengerSøknadSchema = InnsendelseBaseSchema.extend({
 const EndringsmeldingSchema = InnsendelseBaseSchema.extend({
     innsendelsestype: z.literal(Innsendelsestype.ENDRINGSMELDING),
     k9FormatInnsendelse: k9FormatSøknadSchema,
-    arbeidsgivere: z.array(OrganisasjonSchema).optional(),
 });
 
 const EttersendelseSchema = InnsendelseBaseSchema.extend({
