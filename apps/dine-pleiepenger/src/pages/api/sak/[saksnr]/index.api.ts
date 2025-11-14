@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
-import { fetchSakMedInntektsmeldinger } from '../../../../server/apiService';
+import { fetchSakMedInntektsmeldinger } from '../../../../server/api-requests/fetchSakMedInntektsmeldinger';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -16,8 +16,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const logger = getLogger(req);
         logger.info(`Henter saksdetaljer for saksnummer: ${saksnr}`);
 
-        const data = await fetchSakMedInntektsmeldinger(req, saksnr);
-
+        const raw = req.query.raw === 'true';
+        const data = await fetchSakMedInntektsmeldinger(req, saksnr, raw);
         if (!data) {
             logger.warn(`Sak ${saksnr} ikke funnet`);
             return res.status(404).json({ error: 'Sak ikke funnet' });

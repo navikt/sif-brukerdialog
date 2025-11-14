@@ -2,7 +2,8 @@ import { HttpStatusCode, isAxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchSakerMetadata, fetchSøker } from '../../server/apiService';
+import { fetchSakerMetadata } from '../../server/api-requests/fetchSakerMetadata';
+import { fetchSøker } from '../../server/api-requests/fetchSøker';
 import { Innsynsdata } from '../../types/InnsynData';
 import { Feature } from '../../utils/features';
 import { getLogger } from '../../utils/getLogCorrelationID';

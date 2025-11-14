@@ -1,13 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchSøknader } from '../../server/apiService';
+import { fetchSøknader } from '../../server/api-requests/fetchSøknader';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const response = await fetchSøknader(req);
+        const raw = req.query.raw === 'true';
+        const response = await fetchSøknader(req, raw);
         res.send(response.sort(sortInnsendtSøknadEtterOpprettetDato));
     } catch (err) {
         getLogger(req).error(`Hent søknader feilet: ${err}`);

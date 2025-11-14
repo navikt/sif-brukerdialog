@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../../auth/withAuthentication';
-import { ApiService } from '../../../server/apiService';
-import { fetchDocument } from '../../../server/fetchDocument';
+import { ApiServices } from '../../../server/types/ApiServices';
+import { fetchDocument } from '../../../server/api-requests/fetchDocument';
 import { getContextForApiHandler } from '../../../utils/apiUtils';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -20,7 +20,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     try {
         const path = `dokument/${info.join('/')}?dokumentTittel=${dokumentTittel}`;
-        const blob = await fetchDocument(path, getContextForApiHandler(req), ApiService.sifInnsyn);
+        const blob = await fetchDocument(path, getContextForApiHandler(req), ApiServices.sifInnsyn);
         const resBufferArray = await blob.arrayBuffer();
         const resBuffer = Buffer.from(resBufferArray);
 

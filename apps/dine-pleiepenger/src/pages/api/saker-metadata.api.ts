@@ -1,12 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchSakerMetadata } from '../../server/apiService';
+import { fetchSakerMetadata } from '../../server/api-requests/fetchSakerMetadata';
 import { getLogger } from '../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const data = await fetchSakerMetadata(req);
+        const raw = req.query.raw === 'true';
+        const data = await fetchSakerMetadata(req, raw);
         res.send(data);
     } catch (err) {
         getLogger(req).error(`Hent saker feilet: ${err}`);

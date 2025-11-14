@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
-import { fetchInntektsmeldinger } from '../../../../server/apiService';
+import { fetchInntektsmeldinger } from '../../../../server/api-requests/fetchInntektsmeldinger';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -12,7 +12,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             logger.error(`Kunne ikke hente inntektsmelding for sak`);
             return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
         }
-        const data = await fetchInntektsmeldinger(req, saksnr);
+        const raw = req.query.raw === 'true';
+        const data = await fetchInntektsmeldinger(req, saksnr, raw);
         res.send(data);
     } catch (err) {
         const logger = getLogger(req);
