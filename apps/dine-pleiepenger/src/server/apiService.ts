@@ -103,14 +103,18 @@ export const fetchSakMedInntektsmeldinger = async (
     logger.info(`Fetching sak ${saksnummer} from url: ${url}`);
     const response = await axios.get(url, { headers });
     logger.info(`Response-status from request: ${response.status}`);
-    logger.info(`Parsing sak response data for saksnummer: ${saksnummer}`);
 
     if (shouldReturnRawData(raw)) {
         return response.data;
     }
     try {
         // Parse med Zod for validering og filtrering (men date-konvertering skjer client-side)
-        const sak = SakSchema.parse(fjernUkjenteInnsendelserISak(response.data));
+        logger.info(`PreParsing; fjerner innsendelser av type UKJENT i sak`);
+        const sakUtenUkjenteInnsendelser = fjernUkjenteInnsendelserISak(response.data);
+
+        logger.info(`Parsing sak response data for saksnummer: ${saksnummer}`);
+        const sak = SakSchema.parse(sakUtenUkjenteInnsendelser);
+        logger.info(`Parsing gjennomført for sak ${saksnummer}`);
 
         /** Hent inntektsmeldinger for saken hvis feature er enabled */
         let inntektsmeldinger: Inntektsmeldinger = [];
