@@ -1,6 +1,10 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 
-export const sakerAvsluttetMock = [
+import { Behandlingsstatus } from '../../src/server/api-models/Behandlingsstatus';
+import { Innsendelsestype } from '../../src/server/api-models/Innsendelsestype';
+import { PleietrengendeMedSak } from '../../src/server/api-models/PleietrengendeMedSakSchema';
+
+export const sakerMock: PleietrengendeMedSak[] = [
     {
         pleietrengende: {
             identitetsnummer: '27870899799',
@@ -9,24 +13,24 @@ export const sakerAvsluttetMock = [
             mellomnavn: null,
             etternavn: 'LØVETANN',
             aktørId: '2175638020356',
-            anonymisert: false,
+            anonymisert: false as const,
         },
         sak: {
             saksnummer: '1DQAQRW',
             utledetStatus: {
-                status: 'AVSLUTTET',
-                saksbehandlingsFrist: ISODateToDate('2024-03-26'),
+                status: Behandlingsstatus.UNDER_BEHANDLING,
                 aksjonspunkter: [],
+                saksbehandlingsFrist: ISODateToDate('2024-03-26'),
             },
             behandlinger: [
                 {
-                    status: 'AVSLUTTET',
+                    status: Behandlingsstatus.UNDER_BEHANDLING,
                     opprettetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     avsluttetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     innsendelser: [
                         {
-                            søknadId: 'af5088f4-7739-4c47-8665-ee1397200e8f',
-                            innsendelsestype: 'ENDRINGSMELDING',
+                            søknadId: '1',
+                            innsendelsestype: Innsendelsestype.ENDRINGSMELDING,
                             k9FormatInnsendelse: {
                                 søknadId: 'af5088f4-7739-4c47-8665-ee1397200e8f',
                                 mottattDato: new Date('2024-02-14T11:59:40.061Z'),
@@ -67,5 +71,6 @@ export const sakerAvsluttetMock = [
                 },
             ],
         },
+        inntektsmeldinger: [],
     },
 ];

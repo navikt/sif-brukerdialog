@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 export const nb = {
-    'velgSak.dokumentTittel': 'Dine pleiepenger for sykt barn - velg sak',
-    'velgSak.tittel': 'Dine pleiepengesaker',
+    'velgSak.dokumentTittel': 'Velg sak - Dine pleiepenger for sykt barn',
+    'velgSak.tittel': 'Velg sak',
     'velgSak.barn.fdato': 'Født {dato}',
     'velgSak.barn.anonymisert': 'Pleietrengende født {dato}',
     'forside.dokumentTittel': 'Dine pleiepenger for sykt barn',

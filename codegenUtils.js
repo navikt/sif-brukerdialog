@@ -11,6 +11,16 @@ const PATTERNS = {
         description: 'regex patterns removed',
     },
 
+    /** Erstatter @ts-expect-error med @ts-ignore */
+    fixTsExpectError: {
+        pattern: /\/\/\s*@ts-expect-error/g,
+        replacement: '// @ts-ignore',
+        description: '@ts-expect-error replaced with @ts-ignore',
+    },
+
+    /** Fjerner @ts-expect-error som står rett etter en asynkron arrow function
+     * Denne har ingen effekt hvis fixTsExpectError også kjøres
+     */
     fixTsExpectErrorAfterArrowFunction: {
         pattern: /(\s*const\s+\w+\s*:\s*[^=]+=\s*async\s*\([^)]*\)\s*=>\s*{\s*)\n\s*\/\/ @ts-expect-error\s*\n/g,
         replacement: '$1\n',

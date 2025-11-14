@@ -1,17 +1,12 @@
-import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
-import { fetchSaker } from '../../server/apiService';
+import { fetchSakerMetadata } from '../../server/apiService';
 import { getLogger } from '../../utils/getLogCorrelationID';
-
-export const sakerFetcher = async (url: string): Promise<PleietrengendeMedSak[]> =>
-    axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const data = await fetchSaker(req);
+        const data = await fetchSakerMetadata(req);
         res.send(data);
     } catch (err) {
         getLogger(req).error(`Hent saker feilet: ${err}`);
