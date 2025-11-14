@@ -10,11 +10,7 @@ export type Sak = z.infer<typeof SakSchema>;
 export const UtledetStatusSakSchema = z.object({
     status: z.nativeEnum(Behandlingsstatus),
     aksjonspunkter: z.array(AksjonspunktSchema),
-    saksbehandlingsFrist: z.union([
-        z.preprocess((val) => (val === null ? undefined : val), z.undefined() || z.string()),
-        z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-        z.undefined(),
-    ]),
+    saksbehandlingsFrist: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
 });
 
 export const SakSchema = z.object({

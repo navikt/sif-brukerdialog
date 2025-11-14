@@ -4,5 +4,5 @@ export const InnsendtSøknadArbeidsgiverSchema = z.object({
     erAnsatt: z.boolean(),
     navn: z.string(),
     organisasjonsnummer: z.string(),
-    sluttetFørSøknadsperiode: z.union([z.undefined(), z.boolean()]),
+    sluttetFørSøknadsperiode: z.preprocess((val) => (val === null ? undefined : val), z.boolean().optional()),
 });

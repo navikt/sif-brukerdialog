@@ -42,8 +42,8 @@ const InnsendtSøknadBaseSchema = z.object({
     journalpostId: z.string(),
     dokumenter: z.array(z.union([InnsendtSøknadDokumentSchema, z.any()])),
     opprettet: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    endret: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()).or(z.undefined()),
-    behandlingsdato: z.union([z.undefined(), z.preprocess((val) => parseMaybeDateStringToDate(val), z.date())]),
+    endret: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
+    behandlingsdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
 });
 
 const PleiepengerSøknadSchema = InnsendtSøknadBaseSchema.extend({

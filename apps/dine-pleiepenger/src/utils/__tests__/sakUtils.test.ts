@@ -16,21 +16,18 @@ const behandling1: Behandling = {
     innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-01'),
     aksjonspunkter: [],
-    avsluttetTidspunkt: null,
 };
 const behandling2: Behandling = {
     status: Behandlingsstatus.UNDER_BEHANDLING,
     innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-03'),
     aksjonspunkter: [],
-    avsluttetTidspunkt: null,
 };
 const behandling3: Behandling = {
     status: Behandlingsstatus.UNDER_BEHANDLING,
     innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-02'),
     aksjonspunkter: [],
-    avsluttetTidspunkt: null,
 };
 
 const innsendtSøknad: Pleiepengesøknad = {
