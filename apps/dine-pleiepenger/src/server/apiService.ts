@@ -5,7 +5,7 @@ import { ZodError } from 'zod';
 
 import { InnsendtSøknad } from '../types/InnsendtSøknad';
 import { Inntektsmeldinger, InntektsmeldingerSchema } from '../types/Inntektsmelding';
-import { getContextForApiHandler, serverResponseTransform } from '../utils/apiUtils';
+import { getContextForApiHandler } from '../utils/apiUtils';
 import { getServerEnv } from '../utils/env';
 import { getLogger } from '../utils/getLogCorrelationID';
 import { sorterInntektsmeldingerPåInnsendingstidspunkt } from '../utils/inntektsmeldingUtils';
@@ -54,7 +54,7 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
     );
     const logger = getLogger(req);
     logger.info(`Fetching søker from url: ${url}`);
-    const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
+    const response = await axios.get(url, { headers });
     logger.info(`Søker fetched`);
     return await SøkerSchema.parse(response.data);
 };
@@ -74,7 +74,7 @@ export const fetchSakerMetadata = async (req: NextApiRequest): Promise<SakerMeta
     );
     const logger = getLogger(req);
     logger.info(`Fetching sakerMetadata from url: ${url}`);
-    const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
+    const response = await axios.get(url, { headers });
     logger.info(`Response-status from request: ${response.status}`);
 
     // Returner data (er allerede SakerMetadataDto[] fra backend)
@@ -101,7 +101,7 @@ export const fetchSakMedInntektsmeldinger = async (
     );
     const logger = getLogger(req);
     logger.info(`Fetching sak ${saksnummer} from url: ${url}`);
-    const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
+    const response = await axios.get(url, { headers });
     logger.info(`Response-status from request: ${response.status}`);
     logger.info(`Parsing sak response data for saksnummer: ${saksnummer}`);
 
@@ -159,7 +159,7 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
     );
     const logger = getLogger(req);
     logger.info(`Fetching behandlingstid from url: ${url}`);
-    const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
+    const response = await axios.get(url, { headers });
     logger.info(`Behandlingstid fetched`);
     return await SaksbehandlingstidSchema.parse(response.data);
 };
@@ -185,7 +185,7 @@ export const fetchInntektsmeldinger = async (
     );
     const logger = getLogger(req);
     logger.info(`Fetching inntektsmeldinger from url: ${url}`);
-    const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
+    const response = await axios.get(url, { headers });
     logger.info(`Inntektsmeldinger fetched`);
     if (shouldReturnRawData(raw)) {
         logger.info('returning raw inntektsmeldinger data');
@@ -204,7 +204,7 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøkn
     );
     const logger = getLogger(req);
     logger.info(`Fetching søknader from url: ${url}`);
-    const response = await axios.get(url, { headers, transformResponse: [serverResponseTransform] });
+    const response = await axios.get(url, { headers });
     logger.info(`Søknader fetched`);
     return await InnsendtSøknaderSchema.parse(response.data);
 };

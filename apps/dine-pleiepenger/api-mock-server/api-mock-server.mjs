@@ -14,8 +14,8 @@ const server = express();
 const søknader = JSON.parse(readFileSync(join(__dirname, './mockdata/soknader.json'), 'utf-8'));
 const inntektsmeldinger = JSON.parse(readFileSync(join(__dirname, './mockdata/inntektsmeldinger.json'), 'utf-8'));
 // const saker = [];
-// const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/flere-saker.json'), 'utf-8'));
-const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/saker.json'), 'utf-8'));
+const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/flere-saker.json'), 'utf-8'));
+// const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/saker.json'), 'utf-8'));
 
 server.use(express.json());
 

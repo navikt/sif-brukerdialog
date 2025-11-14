@@ -166,7 +166,7 @@ export const getArbeidsgiverinfoFraSøknad = (søknad: Pleiepengesøknad): Organ
 };
 
 export const getOrganisasjonsnavnEllerOrgNummer = (organisasjon: Organisasjon): string => {
-    if (organisasjon.navn === null) {
+    if (organisasjon.navn === null || organisasjon.navn === undefined) {
         return organisasjon.organisasjonsnummer;
     }
     return organisasjon.navn;
