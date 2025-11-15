@@ -18,6 +18,13 @@ const PATTERNS = {
         description: '@ts-expect-error replaced with @ts-ignore',
     },
 
+    /** Utvider z.iso.datetime() til å støtte local fordi vi ikke alltid får dette fra backend */
+    fixIsoDateTimeAllowLocal: {
+        pattern: /z\.iso\.datetime\(\)/g,
+        replacement: 'z.iso.datetime({ local: true })',
+        description: 'z.iso.datetime() expanded to allow local',
+    },
+
     /** Fjerner @ts-expect-error som står rett etter en asynkron arrow function
      * Denne har ingen effekt hvis fixTsExpectError også kjøres
      */
