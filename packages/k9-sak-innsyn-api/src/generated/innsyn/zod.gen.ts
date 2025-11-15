@@ -438,7 +438,7 @@ export const zUngdomsytelse = zYtelse
 export const zSøknad = z.object({
     søknadId: z.string(),
     versjon: z.string(),
-    mottattDato: z.iso.datetime(),
+    mottattDato: z.iso.datetime({ local: true }),
     søker: zSøker,
     språk: z.optional(zSpråk),
     ytelse: z.union([
@@ -496,7 +496,7 @@ export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSME
 export const zInnsending = z.object({
     versjon: z.optional(z.string()),
     søker: z.optional(zSøker),
-    mottattDato: z.optional(z.iso.datetime()),
+    mottattDato: z.optional(z.iso.datetime({ local: true })),
     søknadId: z.optional(z.string()),
 });
 
@@ -533,7 +533,7 @@ export const zDokumentDto = z.object({
 
 export const zInnsendelserISakDto = z.object({
     søknadId: z.uuid(),
-    mottattTidspunkt: z.iso.datetime(),
+    mottattTidspunkt: z.iso.datetime({ local: true }),
     innsendelsestype: zInnsendelsestype,
     k9FormatInnsendelse: z.optional(zInnsending),
     dokumenter: z.array(zDokumentDto),
@@ -544,13 +544,13 @@ export const zVenteårsak = z.enum(['INNTEKTSMELDING', 'MEDISINSK_DOKUMENTASJON'
 
 export const zAksjonspunktDto = z.object({
     venteårsak: zVenteårsak,
-    tidsfrist: z.iso.datetime(),
+    tidsfrist: z.iso.datetime({ local: true }),
 });
 
 export const zBehandlingDto = z.object({
     status: zBehandlingStatus,
-    opprettetTidspunkt: z.iso.datetime(),
-    avsluttetTidspunkt: z.optional(z.iso.datetime()),
+    opprettetTidspunkt: z.iso.datetime({ local: true }),
+    avsluttetTidspunkt: z.optional(z.iso.datetime({ local: true })),
     innsendelser: z.array(zInnsendelserISakDto),
     aksjonspunkter: z.array(zAksjonspunktDto),
     utgåendeDokumenter: z.array(zDokumentDto),
@@ -693,7 +693,7 @@ export const zSakInntektsmeldingDto = z.object({
     ytelseType: zYtekseTypeDto,
     status: zInntektsmeldingStatusDto,
     saksnummer: z.string(),
-    innsendingstidspunkt: z.iso.datetime(),
+    innsendingstidspunkt: z.iso.datetime({ local: true }),
     kildesystem: z.string(),
     arbeidsgiver: zArbeidsgiverDto,
     nærRelasjon: z.boolean(),
