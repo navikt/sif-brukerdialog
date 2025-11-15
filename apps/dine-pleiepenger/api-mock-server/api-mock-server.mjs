@@ -12,10 +12,50 @@ const server = express();
 
 // Last inn JSON-filer
 const søknader = JSON.parse(readFileSync(join(__dirname, './mockdata/soknader.json'), 'utf-8'));
-const inntektsmeldinger = JSON.parse(readFileSync(join(__dirname, './mockdata/inntektsmeldinger.json'), 'utf-8'));
-// const saker = [];
-const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/flere-saker.json'), 'utf-8'));
-// const saker = JSON.parse(readFileSync(join(__dirname, './mockdata/saker.json'), 'utf-8'));
+const saksbehandlingstid = JSON.parse(
+    readFileSync(join(__dirname, './mockdata/common/saksbehandlingstid.json'), 'utf-8'),
+);
+
+// En sak
+
+// To saker
+
+const getMockData = (scenario) => {
+    if (scenario === 'en-sak') {
+        const søker = JSON.parse(readFileSync(join(__dirname, './mockdata/en-sak/soker.json'), 'utf-8'));
+        const sakerMetadata = JSON.parse(
+            readFileSync(join(__dirname, './mockdata/en-sak/saker-metadata.json'), 'utf-8'),
+        );
+        const sak = JSON.parse(readFileSync(join(__dirname, './mockdata/en-sak/sak.json'), 'utf-8'));
+        const inntektsmeldinger = JSON.parse(
+            readFileSync(join(__dirname, './mockdata/en-sak/inntektsmeldinger.json'), 'utf-8'),
+        );
+        return { sakerMetadata, søker, saker: [{ sak, inntektsmeldinger }] };
+    } else if (scenario === 'to-saker') {
+        const søker = JSON.parse(readFileSync(join(__dirname, './mockdata/en-sak/soker.json'), 'utf-8'));
+        const sakerMetadata = JSON.parse(
+            readFileSync(join(__dirname, './mockdata/to-saker/saker-metadata.json'), 'utf-8'),
+        );
+        const sak1 = JSON.parse(readFileSync(join(__dirname, './mockdata/to-saker/1001F8G/sak.json'), 'utf-8'));
+        const sak2 = JSON.parse(readFileSync(join(__dirname, './mockdata/to-saker/100097Y/sak.json'), 'utf-8'));
+        const inntektsmeldinger1 = JSON.parse(
+            readFileSync(join(__dirname, './mockdata/to-saker/1001F8G/inntektsmeldinger.json'), 'utf-8'),
+        );
+        const inntektsmeldinger2 = JSON.parse(
+            readFileSync(join(__dirname, './mockdata/to-saker/100097Y/inntektsmeldinger.json'), 'utf-8'),
+        );
+        return {
+            sakerMetadata,
+            søker,
+            saker: [
+                { sak: sak1, inntektsmeldinger: inntektsmeldinger1 },
+                { sak: sak2, inntektsmeldinger: inntektsmeldinger2 },
+            ],
+        };
+    }
+};
+
+const mockData = getMockData('to-saker');
 
 server.use(express.json());
 
@@ -31,33 +71,12 @@ server.use(function (req, res, next) {
     setTimeout(next, 5);
 });
 
-const søker = {
-    aktørId: '2534326051524',
-    fødselsdato: '1981-02-06',
-    fødselsnummer: '06828199151',
-    fornavn: 'SUNN',
-    mellomnavn: null,
-    etternavn: 'KORRIDOR',
-};
-
-const sakerMetadata = saker.map((sak) => ({
-    saksnummer: sak.sak.saksnummer,
-    pleietrengende: {
-        identitetsnummer: sak.pleietrengende.identitetsnummer,
-        fødselsdato: sak.pleietrengende.fødselsdato,
-        aktørId: sak.pleietrengende.aktørId,
-        fornavn: sak.pleietrengende.fornavn,
-        etternavn: sak.pleietrengende.etternavn,
-    },
-    fagsakYtelseType: 'PSB',
-}));
-
 const startServer = () => {
     const port = 1234;
 
     server.get('/oppslag/soker', (req, res) => {
         res.setHeader('Content-Type', 'application/json');
-        res.send(søker);
+        res.send(mockData.søker);
     });
 
     server.get('/oppslag/soker-ikke-tilgang', (req, res) => {
@@ -72,17 +91,13 @@ const startServer = () => {
         res.download('./api-mock-server/mockdata/eksempel-søknad.pdf', 'søknad.pdf');
     });
 
-    server.get('/saker', (req, res) => {
-        res.send(saker);
-    });
-
     server.get('/saker/metadata', (req, res) => {
-        res.send(sakerMetadata);
+        res.send(mockData.sakerMetadata);
     });
 
     server.get('/sak/:saksnr', (req, res) => {
         const saksnr = req.params.saksnr;
-        const sak = saker.find((s) => s.sak.saksnummer === saksnr);
+        const sak = mockData.saker.find((s) => s.sak.saksnummer === saksnr);
 
         if (sak) {
             res.send(sak.sak);
@@ -92,13 +107,18 @@ const startServer = () => {
     });
 
     server.get('/sak/:saksnr/inntektsmeldinger', (req, res) => {
-        res.send(inntektsmeldinger);
+        const saksnr = req.params.saksnr;
+        const sak = mockData.saker.find((s) => s.sak.saksnummer === saksnr);
+
+        if (sak) {
+            res.send(sak.inntektsmeldinger);
+        } else {
+            res.status(404).send({ error: 'Inntektsmeldinger ikke funnet' });
+        }
     });
 
     server.get('/saker/saksbehandlingstid', (req, res) => {
-        res.send({
-            saksbehandlingstidUker: 7,
-        });
+        res.send(saksbehandlingstid);
     });
 
     server.get('/dokument/:journalpostId/:dokumentInfoId/:variantFormat', (req, res) => {
