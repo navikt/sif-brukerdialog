@@ -1,6 +1,6 @@
 import { Tag } from '@navikt/ds-react';
 
-import { InntektsmeldingStatus } from '../../types/Inntektsmelding';
+import { InntektsmeldingStatus } from '../../types';
 
 export const InntektsmeldingStatusTag = ({ status }: { status?: InntektsmeldingStatus }) => {
     switch (status) {

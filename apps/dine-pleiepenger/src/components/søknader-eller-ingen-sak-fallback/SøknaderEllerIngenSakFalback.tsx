@@ -4,7 +4,7 @@ import useSWR from 'swr';
 
 import { useInnsynsdataContext } from '../../hooks/useInnsynsdataContext';
 import { useAppIntl } from '../../i18n';
-import { InnsendtSøknaderSchema } from '../../server/api-models/InnsendtSøknadSchema';
+import { InnsendtSøknaderSchema } from '../../types/client-schemas/innsendtSøknadClientSchema';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { browserEnv } from '../../utils/env';
 import { swrBaseConfig } from '../../utils/swrBaseConfig';
@@ -14,7 +14,7 @@ import IngenSakEllerSøknadPage from '../ingen-sak-eller-søknad-page/IngenSakEl
 import OppdatereSakLenker from '../oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageLoading from '../page-layout/page-loading/PageLoading';
-import Saksbehandlingstid from '../saksbehandlingstid/Saksbehandlingstid';
+import SaksbehandlingstidPanel from '../saksbehandlingstid/Saksbehandlingstid';
 import SkrivTilOssLenker from '../skriv-til-oss-lenker/SkrivTilOssLenker';
 
 const SøknaderEllerIngenSakFalback = () => {
@@ -51,7 +51,7 @@ const SøknaderEllerIngenSakFalback = () => {
                         <DineInnsendteSøknader søknader={innsendteSøknader} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        <Saksbehandlingstid />
+                        <SaksbehandlingstidPanel />
                     </div>
                 </Box>
                 <Box>

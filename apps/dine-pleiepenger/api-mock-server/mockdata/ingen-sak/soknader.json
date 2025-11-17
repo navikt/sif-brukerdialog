@@ -1,0 +1,83 @@
+[
+    {
+        "søknadId": "9054ab9e-2b82-4998-9f10-9a82827f06e9",
+        "søknadstype": "PP_SYKT_BARN_ENDRINGSMELDING",
+        "status": "MOTTATT",
+        "søknad": {
+            "søker": {
+                "fornavn": "KRIMINELL",
+                "aktørId": "2391969373424",
+                "etternavn": "MULDVARP",
+                "fødselsnummer": "17097721564"
+            },
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdGkiOiJiM2VlZDljMy0zNDhjLTQ2NGEtYWRkNS1lYmQ3ZGFlMzU5ZGYifQ",
+                    "eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdGkiOiJmZjMwZGRhZi1lN2M3LTRlY2UtOWZhNC03ODZmZGVhZDg2MDEifQ"
+                ]
+            ],
+            "k9FormatInnsendelse": {
+                "språk": "nb",
+                "søker": { "norskIdentitetsnummer": "17097721564" },
+                "ytelse": {
+                    "barn": { "fødselsdato": "2009-07-31", "norskIdentitetsnummer": "31070968161" },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": { "perioder": {} },
+                    "omsorg": {},
+                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2021-12-07/2021-12-07": {
+                                            "faktiskArbeidTimerPerDag": "PT2M",
+                                            "jobberNormaltTimerPerDag": "PT4H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnummer": "947064649"
+                            }
+                        ]
+                    },
+                    "tilsynsordning": { "perioder": {} },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": { "perioder": {} },
+                    "søknadsperiode": [],
+                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {}
+                },
+                "versjon": "1.0.0",
+                "søknadId": "9054ab9e-2b82-4998-9f10-9a82827f06e9",
+                "mottattDato": "2022-01-31T13:40:00.621Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            }
+        },
+        "saksId": "1DMR9RQ",
+        "journalpostId": "524277209",
+        "dokumenter": [
+            {
+                "journalpostId": "524277209",
+                "dokumentInfoId": "548469861",
+                "sakId": "1DMR9RQ",
+                "tittel": "Endringsmelding om pleiepenger",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "https://sif-innsyn-api.dev.nav.no/dokument/524277209/548469861/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2022-01-31T14:40:02", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2022-01-31T14:40:02", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2022-01-31T14:40:06", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2022-01-31T01:00", "datotype": "DATO_REGISTRERT" }
+                ]
+            }
+        ],
+        "opprettet": "2023-01-31T13:40:00.621Z",
+        "endret": "2023-01-31T14:40:11",
+        "behandlingsdato": null
+    }
+]

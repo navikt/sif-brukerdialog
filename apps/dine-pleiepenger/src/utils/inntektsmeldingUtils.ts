@@ -1,8 +1,8 @@
-import { ArbeidsgiverDto } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
+import { innsyn } from '@navikt/k9-sak-innsyn-api';
 
-import { Inntektsmelding } from '../types/Inntektsmelding';
+import { Inntektsmelding } from '../types';
 
-const getArbeidsgiverNavn = (arbeidsgiver: ArbeidsgiverDto): string => {
+const getArbeidsgiverNavn = (arbeidsgiver: innsyn.ArbeidsgiverDto): string => {
     if (arbeidsgiver.organisasjon) {
         return arbeidsgiver.organisasjon.navn || arbeidsgiver.organisasjon.organisasjonsnummer;
     }

@@ -6,7 +6,6 @@ import { Theme } from '@navikt/ds-react';
 import { configureLogger } from '@navikt/next-logger';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
-import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import axios, { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
 import { ReactElement } from 'react';
@@ -21,8 +20,10 @@ import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvide
 import { getFaro, initInstrumentation, pinoLevelToFaroLevel } from '../faro/faro';
 import { useVerifyCurrentUser } from '../hooks/useVerifyCurrentUser';
 import { messages } from '../i18n';
-import { Søker } from '../server/api-models/SøkerSchema';
-import { Innsynsdata } from '../types/InnsynData';
+import { SøkerDto } from '../server/dto-schemas/søkerDtoSchema';
+import { Innsynsdata } from '../types';
+import { innsynsdataClientSchema } from '../types/client-schemas/innsynsdataClientSchema';
+import { søkerClientSchema } from '../types/client-schemas/søkerClientSchema';
 import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
 import { Feature } from '../utils/features';
@@ -32,11 +33,11 @@ import UnavailablePage from './unavailable.page';
 export const AMPLITUDE_APPLICATION_KEY = 'sif-innsyn';
 
 const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
-    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
+    axios.get(url).then((res) => innsynsdataClientSchema.parse(res.data));
 
 const søkerIdFetcher = async (): Promise<string> => {
     const url = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soker`;
-    return axios.get<Søker>(url).then((res) => res.data.fødselsnummer);
+    return axios.get<SøkerDto>(url).then((res) => søkerClientSchema.parse(res.data).fødselsnummer);
 };
 
 if (Feature.FARO) {

@@ -39,6 +39,7 @@ export const parseMaybeDateStringToDate = (value: any): Date | undefined => {
     }
     return date;
 };
+
 export const parseMaybeDateStringToDateEndOfDay = (value: any): Date | undefined => {
     const date = parseMaybeDateStringToDate(value);
     return date ? dayjs(date).endOf('day').toDate() : undefined;

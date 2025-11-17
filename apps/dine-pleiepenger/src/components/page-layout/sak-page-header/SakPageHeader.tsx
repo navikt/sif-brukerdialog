@@ -2,7 +2,7 @@ import { BodyShort, HStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { AppText, useAppIntl } from '../../../i18n';
-import { Pleietrengende } from '../../../server/api-models/PleietrengendeSchema';
+import { Pleietrengende } from '../../../types';
 import { personaliaUtils } from '../../../utils/personaliaUtils';
 import PageHeader from '../page-header/PageHeader';
 

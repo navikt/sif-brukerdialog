@@ -4,8 +4,7 @@ import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { Sak } from '../../server/api-models/SakSchema';
-import { Inntektsmelding } from '../../types/Inntektsmelding';
+import { Inntektsmelding, Sak } from '../../types';
 import { browserEnv } from '../../utils/env';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';

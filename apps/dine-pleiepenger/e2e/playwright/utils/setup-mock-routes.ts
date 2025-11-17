@@ -1,7 +1,7 @@
 import { Page } from '@playwright/test';
 import dayjs from 'dayjs';
 
-import { Innsynsdata } from '../../../src/types/InnsynData';
+import { InnsynsdataDto } from '../../../src/server/dto-schemas/innsynsdataDtoSchema';
 import { sakerMetadata, sakerMock } from '../mockdata/saker.mock';
 import { søkerMockData } from '../mockdata/søker.mock';
 // import { søknaderMockData } from '../mockdata/søknader.mock';
@@ -26,7 +26,7 @@ export const setupMockRoutes = async (page: Page) => {
     });
 
     await page.route('**/innsynsdata', async (route: any) => {
-        const response: Innsynsdata = {
+        const response: InnsynsdataDto = {
             sakerMetadata: sakerMetadata,
             harSak: true,
             søker: søkerMockData as any,

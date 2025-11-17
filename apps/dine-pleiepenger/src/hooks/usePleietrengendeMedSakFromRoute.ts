@@ -3,19 +3,22 @@ import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
 import useSWR from 'swr';
 
-import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
-import { PleietrengendeSchema } from '../server/api-models/PleietrengendeSchema';
-import {
-    SakMedInntektsmeldinger,
-    SakMedInntektsmeldingerSchema,
-} from '../server/api-models/SakMedInntektsmeldingerSchema';
+import { PleietrengendeMedSak, SakMedInntektsmeldinger } from '../types';
+import { sakMedInntektsmeldingerClientSchema } from '../types/client-schemas/sakMedInntektsmeldingerClientSchema';
 import { browserEnv } from '../utils/env';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import { useInnsynsdataContext } from './useInnsynsdataContext';
 
 const sakFetcher = async (url: string): Promise<SakMedInntektsmeldinger> => {
     const response = await axios.get(url);
-    return SakMedInntektsmeldingerSchema.parse(response.data);
+    try {
+        const parsedData = sakMedInntektsmeldingerClientSchema.parse(response.data);
+        return parsedData;
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Feil ved parsing av SakMedInntektsmeldinger:', error);
+        throw error;
+    }
 };
 
 /** Henter sak fra route med lazy loading */
@@ -57,8 +60,7 @@ export const usePleietrengendeMedSakFromRoute = (): {
         if (!metadata?.pleietrengende) return undefined;
 
         try {
-            const pleietrengende = PleietrengendeSchema.parse(metadata.pleietrengende);
-            return { pleietrengende, ...sakData };
+            return { pleietrengende: metadata.pleietrengende, ...sakData };
         } catch {
             return undefined;
         }

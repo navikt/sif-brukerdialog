@@ -1,1 +1,1 @@
-export * from '../server/api-models/InnsendtSøknadSchema';
+export * from './client-schemas/innsendtSøknadClientSchema';

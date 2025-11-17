@@ -4,7 +4,8 @@ import axios from 'axios';
 import useSWR from 'swr';
 
 import { AppText } from '../../i18n';
-import { Venteårsak } from '../../types/Venteårsak';
+import { Saksbehandlingstid, Venteårsak } from '../../types';
+import { saksbehandlingstidClientSchema } from '../../types/client-schemas/saksbehandlingstidClientSchema';
 import { browserEnv } from '../../utils/env';
 import { swrBaseConfig } from '../../utils/swrBaseConfig';
 import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
@@ -14,10 +15,10 @@ interface Props {
     venteårsak?: Venteårsak;
 }
 
-const Saksbehandlingstid = ({ frist, venteårsak }: Props) => {
-    const { data, isLoading } = useSWR(
+const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
+    const { data, isLoading } = useSWR<Saksbehandlingstid>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/saksbehandlingstid`,
-        (url) => axios.get(url).then((res) => res.data),
+        (url) => axios.get(url).then((res) => saksbehandlingstidClientSchema.parse(res.data)),
         swrBaseConfig,
     );
     const saksbehandlingstidUker = data?.saksbehandlingstidUker ?? 7;
@@ -46,4 +47,4 @@ const Saksbehandlingstid = ({ frist, venteårsak }: Props) => {
     );
 };
 
-export default Saksbehandlingstid;
+export default SaksbehandlingstidPanel;

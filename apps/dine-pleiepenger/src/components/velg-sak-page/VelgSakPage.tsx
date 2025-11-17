@@ -1,15 +1,15 @@
 import { BodyShort, Box, Heading, LinkCard, VStack } from '@navikt/ds-react';
-import { SakerMetadataDto } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import Link from 'next/link';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { AppText, useAppIntl } from '../../i18n';
+import { SakerMetadata } from '../../types';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 
 interface Props {
-    sakerMetadata: SakerMetadataDto[];
+    sakerMetadata: SakerMetadata[];
 }
 
 const VelgSakPage = ({ sakerMetadata }: Props) => {
@@ -31,7 +31,9 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                     {sakerMetadata.map((sakMetadata) => {
                         const { pleietrengende, saksnummer } = sakMetadata;
                         const fødselsdato = new Date(pleietrengende.fødselsdato);
-                        const navn = `${pleietrengende.fornavn} ${pleietrengende.etternavn}`;
+                        const navn = pleietrengende.anonymisert
+                            ? pleietrengende.identitetsnummer
+                            : `${pleietrengende.fornavn} ${pleietrengende.etternavn}`;
 
                         return (
                             <LinkCard key={saksnummer}>

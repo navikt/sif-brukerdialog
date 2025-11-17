@@ -1,7 +1,6 @@
 import { createContext, FunctionComponent, ReactNode, useState } from 'react';
 
-import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
-import { Innsynsdata } from '../types/InnsynData';
+import { Innsynsdata, PleietrengendeMedSak } from '../types';
 
 interface InnsynsdataContextData {
     innsynsdata: Innsynsdata;

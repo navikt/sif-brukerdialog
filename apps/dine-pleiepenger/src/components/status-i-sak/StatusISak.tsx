@@ -4,8 +4,7 @@ import { default as NextLink } from 'next/link';
 import { useState } from 'react';
 
 import { AppText, useAppIntl } from '../../i18n';
-import { Sak } from '../../server/api-models/SakSchema';
-import { Inntektsmelding } from '../../types/Inntektsmelding';
+import { Inntektsmelding, Sak } from '../../types';
 import { getAlleHendelserISak } from '../../utils/sakUtils';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 import StatusISakHeading from './parts/StatusISakHeading';

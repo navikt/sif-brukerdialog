@@ -2,7 +2,7 @@ import { BodyShort, FormSummary, Heading, List, VStack } from '@navikt/ds-react'
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
-import { Inntektsmelding } from '../../types/Inntektsmelding';
+import { Inntektsmelding } from '../../types';
 
 interface Props {
     inntektsmelding: Inntektsmelding;

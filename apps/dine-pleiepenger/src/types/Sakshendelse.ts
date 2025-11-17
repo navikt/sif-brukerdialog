@@ -1,7 +1,5 @@
-import { Innsendelse } from '../server/api-models/InnsendelseSchema';
-import { Innsendelsestype } from '../server/api-models/Innsendelsestype';
-import { Inntektsmelding } from './Inntektsmelding';
-import { Venteårsak } from './Venteårsak';
+import { InnsendelseISak, Inntektsmelding, Venteårsak } from '.';
+import { Innsendelsestype } from './Innsendelsetype';
 
 export enum Sakshendelser {
     'UKJENT' = 'UKJENT',
@@ -19,14 +17,14 @@ interface SakshendelseBase {
 
 interface SakshendelseMottattSøknad extends SakshendelseBase {
     type: Sakshendelser.MOTTATT_SØKNAD;
-    innsendelse: Innsendelse;
+    innsendelse: InnsendelseISak;
     /** Mottatt dato */
     dato: Date;
 }
 
 interface SakshendelseMottattEttersendelse extends SakshendelseBase {
     type: Sakshendelser.ETTERSENDELSE;
-    innsendelse: Innsendelse;
+    innsendelse: InnsendelseISak;
     /** Mottatt dato */
     dato: Date;
 }
@@ -42,7 +40,7 @@ export interface SakshendelseForventetSvar extends SakshendelseBase {
     /** saksbehandlingFrist */
     dato?: Date;
     /** Søknad, endringsmelding eller ettersendelse */
-    søknadstyperIBehandling: Innsendelsestype[];
+    innsendelsestyperIBehandling: Innsendelsestype[];
 }
 interface SakshendelseFerdigBehandlet extends SakshendelseBase {
     type: Sakshendelser.FERDIG_BEHANDLET;

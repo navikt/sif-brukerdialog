@@ -5,9 +5,9 @@ import { default as NextLink } from 'next/link';
 import { FormattedNumber } from 'react-intl';
 
 import { AppText, IntlTextFn } from '../../i18n';
-import { Innsendelse } from '../../server/api-models/InnsendelseSchema';
-import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
+import { InnsendelseISak } from '../../types';
 import { Ettersendelsestype } from '../../types/EttersendelseType';
+import { Innsendelsestype } from '../../types/Innsendelsetype';
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
@@ -19,14 +19,14 @@ import SøknadStatusContent from './parts/SøknadStatusContent';
 
 export const getProcessStepFromInnsendelse = (
     text: IntlTextFn,
-    innsendelse: Innsendelse,
+    innsendelse: InnsendelseISak,
     current: boolean,
 ): ProcessStepData | undefined => {
     switch (innsendelse.innsendelsestype) {
         case Innsendelsestype.SØKNAD:
             return {
                 title: text('statusISak.mottattSøknad.tittel'),
-                timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
+                timestamp: innsendelse.mottattTidspunkt,
                 content: <SøknadStatusContent søknad={innsendelse} />,
                 completed: true,
                 current,
@@ -35,8 +35,8 @@ export const getProcessStepFromInnsendelse = (
         case Innsendelsestype.ENDRINGSMELDING:
             return {
                 title: text('statusISak.mottattEndringsmelding.tittel'),
-                timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
-                content: <EndringsmeldingStatusContent endringsmelding={innsendelse} />,
+                timestamp: innsendelse.mottattTidspunkt,
+                content: <EndringsmeldingStatusContent dokumenter={innsendelse.dokumenter} />,
                 completed: true,
                 current,
                 isLastStep: false,
@@ -44,12 +44,12 @@ export const getProcessStepFromInnsendelse = (
         case Innsendelsestype.ETTERSENDELSE:
             return {
                 title: text(
-                    innsendelse.k9FormatInnsendelse.type === Ettersendelsestype.legeerklæring
+                    innsendelse.k9FormatInnsendelse?.type === Ettersendelsestype.legeerklæring
                         ? 'statusISak.mottattEttersendelse.legeerklæring.tittel'
                         : 'statusISak.mottattEttersendelse.annet.tittel',
                 ),
-                timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
-                content: <EttersendelseStatusContent ettersendelse={innsendelse} />,
+                timestamp: innsendelse.mottattTidspunkt,
+                content: <EttersendelseStatusContent dokumenter={innsendelse.dokumenter} />,
                 completed: true,
                 current,
                 isLastStep: false,
@@ -171,13 +171,13 @@ const getForventetSvarTitleContent = (
     text: IntlTextFn,
 ): Pick<ProcessStepData, 'title' | 'content'> | undefined => {
     const sisteHendelseErEttersendelse =
-        hendelse.søknadstyperIBehandling[hendelse.søknadstyperIBehandling.length - 1] ===
+        hendelse.innsendelsestyperIBehandling[hendelse.innsendelsestyperIBehandling.length - 1] ===
         Innsendelsestype.ETTERSENDELSE;
     if (sisteHendelseErEttersendelse) {
         return undefined;
     }
-    const inneholderSøknad = hendelse.søknadstyperIBehandling.includes(Innsendelsestype.SØKNAD);
-    const inneholderEndring = hendelse.søknadstyperIBehandling.includes(Innsendelsestype.ENDRINGSMELDING);
+    const inneholderSøknad = hendelse.innsendelsestyperIBehandling.includes(Innsendelsestype.SØKNAD);
+    const inneholderEndring = hendelse.innsendelsestyperIBehandling.includes(Innsendelsestype.ENDRINGSMELDING);
 
     if (!inneholderSøknad && inneholderEndring) {
         return {

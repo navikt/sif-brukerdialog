@@ -3,7 +3,7 @@ import { Box, HStack, LinkCard, Show, Tag } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Link from 'next/link';
 
-import { Inntektsmelding, InntektsmeldingStatus } from '../../types/Inntektsmelding';
+import { Inntektsmelding, InntektsmeldingStatus } from '../../types';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 

@@ -70,7 +70,7 @@ const IngenSakEllerSøknadPage = () => {
                             </Box>
                         </VStack>
                     </div>
-                    <div className="md:mb-none shrink-0 md:w-lg">
+                    <div className="md:mb-none shrink-0 md:w-sm">
                         <VStack gap="4">
                             <Heading level="2" size="medium">
                                 <AppText id="ingeSakPage.snarveier.tittel" />

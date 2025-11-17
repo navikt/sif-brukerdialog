@@ -2,7 +2,7 @@ import { Box, Heading, List } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { Organisasjon } from '../../../types/Organisasjon';
+import { Organisasjon } from '../../../types';
 import { getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer } from '../../../utils/dokumentUtils';
 import { getOrganisasjonsnavnEllerOrgNummer } from '../../../utils/sakUtils';
 import PdfLenke from '../../pdf-lenke/PdfLenke';

@@ -1,5 +1,5 @@
 import { IntlTextFn } from '../i18n';
-import { Pleietrengende } from '../server/api-models/PleietrengendeSchema';
+import { Pleietrengende } from '../types';
 
 export const personaliaUtils = {
     navn: (pleietrengende: Pleietrengende, text: IntlTextFn): string => {

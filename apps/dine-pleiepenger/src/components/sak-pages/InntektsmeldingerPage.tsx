@@ -4,8 +4,7 @@ import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { Sak } from '../../server/api-models/SakSchema';
-import { Inntektsmeldinger } from '../../types/Inntektsmelding';
+import { Inntektsmelding, Sak } from '../../types';
 import { browserEnv } from '../../utils/env';
 import InntektsmeldingerListe from '../inntektsmeldinger-liste/InntektsmeldingerListe';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
@@ -13,7 +12,7 @@ import PageHeader from '../page-layout/page-header/PageHeader';
 
 interface Props {
     sak: Sak;
-    inntektsmeldinger: Inntektsmeldinger;
+    inntektsmeldinger: Inntektsmelding[];
 }
 
 const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
