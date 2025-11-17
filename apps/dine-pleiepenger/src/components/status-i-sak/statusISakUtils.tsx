@@ -20,25 +20,22 @@ import SøknadStatusContent from './parts/SøknadStatusContent';
 export const getProcessStepFromInnsendelse = (
     text: IntlTextFn,
     innsendelse: InnsendelseISak,
-    current: boolean,
 ): ProcessStepData | undefined => {
     switch (innsendelse.innsendelsestype) {
         case Innsendelsestype.SØKNAD:
             return {
                 title: text('statusISak.mottattSøknad.tittel'),
-                timestamp: innsendelse.mottattTidspunkt,
+                timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
                 content: <SøknadStatusContent søknad={innsendelse} />,
                 completed: true,
-                current,
                 isLastStep: false,
             };
         case Innsendelsestype.ENDRINGSMELDING:
             return {
                 title: text('statusISak.mottattEndringsmelding.tittel'),
-                timestamp: innsendelse.mottattTidspunkt,
+                timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
                 content: <EndringsmeldingStatusContent dokumenter={innsendelse.dokumenter} />,
                 completed: true,
-                current,
                 isLastStep: false,
             };
         case Innsendelsestype.ETTERSENDELSE:
@@ -48,10 +45,9 @@ export const getProcessStepFromInnsendelse = (
                         ? 'statusISak.mottattEttersendelse.legeerklæring.tittel'
                         : 'statusISak.mottattEttersendelse.annet.tittel',
                 ),
-                timestamp: innsendelse.mottattTidspunkt,
+                timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
                 content: <EttersendelseStatusContent dokumenter={innsendelse.dokumenter} />,
                 completed: true,
-                current,
                 isLastStep: false,
             };
     }
@@ -65,18 +61,14 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
         return [];
     }
 
-    const antall = hendelserSomSkalVises.length;
-    const erFerdigBehandlet = hendelserSomSkalVises[antall - 1].type === Sakshendelser.FERDIG_BEHANDLET;
-
     return hendelserSomSkalVises
-        .map((hendelse, index): ProcessStepData | undefined => {
+        .map((hendelse): ProcessStepData | undefined => {
             /** Gjeldende hendelse er per må alltid siste hendelse før ferdig behandlet, eller ferdig behandlet */
-            const erGjeldendeHendelse = erFerdigBehandlet ? index === antall - 1 : index === antall - 2;
 
             switch (hendelse.type) {
                 case Sakshendelser.MOTTATT_SØKNAD:
                 case Sakshendelser.ETTERSENDELSE:
-                    return getProcessStepFromInnsendelse(text, hendelse.innsendelse, erGjeldendeHendelse);
+                    return getProcessStepFromInnsendelse(text, hendelse.innsendelse);
 
                 /** Denne skal ikke vises enda */
                 // case Sakshendelser.AKSJONSPUNKT:
@@ -94,7 +86,6 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         content: <FerdigBehandletStatusContent />,
                         completed: true,
                         isLastStep: true,
-                        current: erGjeldendeHendelse,
                         timestamp: hendelse.dato,
                     };
 
@@ -170,12 +161,6 @@ const getForventetSvarTitleContent = (
     hendelse: SakshendelseForventetSvar,
     text: IntlTextFn,
 ): Pick<ProcessStepData, 'title' | 'content'> | undefined => {
-    const sisteHendelseErEttersendelse =
-        hendelse.innsendelsestyperIBehandling[hendelse.innsendelsestyperIBehandling.length - 1] ===
-        Innsendelsestype.ETTERSENDELSE;
-    if (sisteHendelseErEttersendelse) {
-        return undefined;
-    }
     const inneholderSøknad = hendelse.innsendelsestyperIBehandling.includes(Innsendelsestype.SØKNAD);
     const inneholderEndring = hendelse.innsendelsestyperIBehandling.includes(Innsendelsestype.ENDRINGSMELDING);
 

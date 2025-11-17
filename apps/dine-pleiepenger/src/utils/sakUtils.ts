@@ -41,10 +41,8 @@ export const sortBehandlingerNyesteFørst = (
 };
 
 export const sortInnsendelser = (innsendelser: InnsendelseISak[]): InnsendelseISak[] => {
-    return sortBy(innsendelser, ({ mottattTidspunkt }: InnsendelseISak) =>
-        // Todo - denne sjekket kun på k9formatInnsendelse - en grunn til det?
-        // k9FormatInnsendelse.mottattDato.getTime(),
-        mottattTidspunkt.getTime(),
+    return sortBy(innsendelser, ({ k9FormatInnsendelse }: InnsendelseISak) =>
+        k9FormatInnsendelse.mottattDato.getTime(),
     ).reverse();
 };
 
@@ -70,7 +68,7 @@ const mapInnsendelseTilSakshendelse = (innsendelse: InnsendelseISak): Sakshendel
         case Innsendelsestype.ETTERSENDELSE:
             return {
                 type: Sakshendelser.ETTERSENDELSE,
-                dato: innsendelse.mottattTidspunkt,
+                dato: innsendelse.k9FormatInnsendelse.mottattDato,
                 innsendelse,
             };
 
@@ -78,7 +76,7 @@ const mapInnsendelseTilSakshendelse = (innsendelse: InnsendelseISak): Sakshendel
         case Innsendelsestype.SØKNAD:
             return {
                 type: Sakshendelser.MOTTATT_SØKNAD,
-                dato: innsendelse.mottattTidspunkt,
+                dato: innsendelse.k9FormatInnsendelse.mottattDato,
                 innsendelse: innsendelse,
             };
     }
@@ -91,14 +89,14 @@ export const harBehandlingSøknadEllerEndringsmelding = (behandling: Behandling)
 
 export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Sakshendelse[] => {
     const { innsendelser, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
-    const hendelser: Sakshendelse[] = [];
+    const hendelserIBehandling: Sakshendelse[] = [];
 
     innsendelser.forEach((søknad) => {
-        hendelser.push(mapInnsendelseTilSakshendelse(søknad));
+        hendelserIBehandling.push(mapInnsendelseTilSakshendelse(søknad));
     });
 
     if (aksjonspunkter.length >= 1) {
-        hendelser.push({
+        hendelserIBehandling.push({
             type: Sakshendelser.AKSJONSPUNKT,
             venteårsak: getViktigsteVenteårsakForAksjonspunkter(aksjonspunkter),
         });
@@ -108,12 +106,12 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     if (harBehandlingSøknadEllerEndringsmelding(behandling)) {
         /** Avsluttet eller forventet svar på søknad */
         if (status === BehandlingStatus.AVSLUTTET && avsluttetTidspunkt) {
-            hendelser.push({
+            hendelserIBehandling.push({
                 type: Sakshendelser.FERDIG_BEHANDLET,
                 dato: avsluttetTidspunkt,
             });
         } else {
-            hendelser.push({
+            hendelserIBehandling.push({
                 type: Sakshendelser.FORVENTET_SVAR,
                 dato: saksbehandlingFrist,
                 innsendelsestyperIBehandling: (innsendelser || []).map((s) => s.innsendelsestype),
@@ -121,7 +119,7 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
         }
     }
 
-    return hendelser;
+    return hendelserIBehandling;
 };
 
 export const getAlleHendelserISak = (sak: Sak, inntektsmeldinger: Inntektsmelding[]): Sakshendelse[] => {

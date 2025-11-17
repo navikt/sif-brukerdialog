@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import { PleietrengendeMedSak, SakMedInntektsmeldinger } from '../types';
 import { sakMedInntektsmeldingerClientSchema } from '../types/client-schemas/sakMedInntektsmeldingerClientSchema';
 import { browserEnv } from '../utils/env';
+import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import { useInnsynsdataContext } from './useInnsynsdataContext';
 
@@ -13,6 +14,7 @@ const sakFetcher = async (url: string): Promise<SakMedInntektsmeldinger> => {
     const response = await axios.get(url);
     try {
         const parsedData = sakMedInntektsmeldingerClientSchema.parse(response.data);
+        parsedData.sak.behandlinger = sortBehandlingerNyesteFørst(parsedData.sak.behandlinger);
         return parsedData;
     } catch (error) {
         // eslint-disable-next-line no-console

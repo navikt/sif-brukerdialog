@@ -59,7 +59,6 @@ interface SakshendelseInntektsmelding extends SakshendelseBase {
 export type Sakshendelse =
     | SakshendelseMottattSøknad
     | SakshendelseAksjonspunkt
-    | SakshendelseAksjonspunkt
     | SakshendelseForventetSvar
     | SakshendelseMottattEttersendelse
     | SakshendelseFerdigBehandlet

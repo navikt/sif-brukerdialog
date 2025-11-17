@@ -46,6 +46,7 @@ const ettersendelseISakSchema = innsendelseISak.extend({
     /** Annet format, overstyr for ettersendelse */
     k9FormatInnsendelse: z.object({
         type: z.enum(Ettersendelsestype).nullable().optional(),
+        mottattDato: zDateFromDateTimeString,
     }),
 });
 
