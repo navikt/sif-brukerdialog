@@ -71,9 +71,9 @@ const getMockData = (scenario) => {
     }
 };
 
-const mockData = getMockData('debug');
+// const mockData = getMockData('debug');
 // const mockData = getMockData('en-sak');
-// const mockData = getMockData('to-saker');
+const mockData = getMockData('to-saker');
 
 server.use(express.json());
 
