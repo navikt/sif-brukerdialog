@@ -7,7 +7,7 @@ import { FormattedNumber } from 'react-intl';
 import { AppText, IntlTextFn } from '../../i18n';
 import { InnsendelseISak } from '../../types';
 import { Ettersendelsestype } from '../../types/EttersendelseType';
-import { Innsendelsestype } from '../../types/Innsendelsetype';
+import { Innsendelsestype } from '../../types/Innsendelsestype';
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';

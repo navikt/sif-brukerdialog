@@ -1,12 +1,21 @@
 import { Page } from '@navikt/ds-react';
 import { createChildLogger } from '@navikt/next-logger';
 import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-import { getUserRequestId } from '../../utils/userRequestId';
 import ErrorFallback from './ErrorFallback';
 
 interface State {
     hasError: boolean;
+}
+
+let userRequestId: string | undefined;
+
+function getUserRequestId(): string {
+    if (!userRequestId) {
+        userRequestId = uuidv4();
+    }
+    return userRequestId;
 }
 
 class ErrorBoundary extends Component<PropsWithChildren, State> {

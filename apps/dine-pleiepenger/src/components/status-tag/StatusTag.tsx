@@ -3,11 +3,7 @@ import React from 'react';
 
 import { AppText } from '../../i18n';
 import { BehandlingStatus, Venteårsak } from '../../types';
-
-interface Props {
-    status: BehandlingStatus;
-    venteårsak?: Venteårsak;
-}
+import { BehandlingsstatusISak } from '../../types/BehandlingsstatusISak';
 
 const getVenteårsakTag = (venteårsak: Venteårsak): React.ReactNode => {
     switch (venteårsak) {
@@ -40,7 +36,7 @@ const getVenteårsakTag = (venteårsak: Venteårsak): React.ReactNode => {
     }
 };
 
-const StatusTag = ({ status, venteårsak }: Props) => {
+const StatusTag = ({ status, venteårsak }: BehandlingsstatusISak) => {
     switch (status) {
         case BehandlingStatus.OPPRETTET:
         case BehandlingStatus.UNDER_BEHANDLING:

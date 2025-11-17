@@ -1,15 +1,14 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
-import { z } from 'zod';
 
+import { innsendteSøknaderSchema, InnsendtSøknad } from '../../types';
 import { getContextForApiHandler, serverResponseTransform } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
 
-export const fetchSøknader = async (req: NextApiRequest, unparsed?: boolean): Promise<innsyn.SøknadDto[]> => {
+export const fetchSøknader = async (req: NextApiRequest, unparsed?: boolean): Promise<InnsendtSøknad[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiServices.sifInnsyn,
@@ -27,7 +26,7 @@ export const fetchSøknader = async (req: NextApiRequest, unparsed?: boolean): P
     }
 
     logger.info(`Parser response data`);
-    const parsedData = z.array(innsyn.zSøknadDto).parse(response.data) as innsyn.SøknadDto[];
+    const parsedData = innsendteSøknaderSchema.parse(response.data);
     logger.info(`Søknader parsed`);
     return parsedData;
 };

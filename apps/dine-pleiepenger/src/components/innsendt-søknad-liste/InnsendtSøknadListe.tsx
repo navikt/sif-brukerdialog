@@ -3,7 +3,7 @@ import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-re
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { AppText } from '../../i18n';
-import { InnsendtSøknad } from '../../types/InnsendtSøknad';
+import { InnsendtSøknad } from '../../types';
 import InnsendtSøknadContent from './InnsendtSøknadContent';
 import InnsendtSøknadTitle from './InnsendtSøknadTitle';
 

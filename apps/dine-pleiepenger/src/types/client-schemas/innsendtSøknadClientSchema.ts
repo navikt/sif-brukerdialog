@@ -1,9 +1,9 @@
 import { zOrganisasjon } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
 import { z } from 'zod';
 
-import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
+import { zOptionalDateFromISODateString } from './zDateFromString';
 
-const InnsendtSøknadArbeidsgivereSchema = z.union([
+const innsendtSøknadArbeidsgivereSchema = z.union([
     z.array(
         z.object({
             erAnsatt: z.boolean(),
@@ -34,58 +34,58 @@ enum InnsendtSøknadDokumentFiltype {
     PDF = 'PDF',
 }
 
-const InnsendtSøknadDokumentSchema = z.object({
+const innsendtSøknadDokumentSchema = z.object({
     journalpostId: z.string(),
     dokumentInfoId: z.string(),
     sakId: z.string(),
     tittel: z.string(),
-    filtype: z.nativeEnum(InnsendtSøknadDokumentFiltype),
+    filtype: z.enum(InnsendtSøknadDokumentFiltype),
     harTilgang: z.boolean(),
     url: z.string(),
 });
 
-const PleiepengerSøknadInfoSchema = z.object({
-    arbeidsgivere: InnsendtSøknadArbeidsgivereSchema,
-    fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+const pleiepengerSøknadInfoSchema = z.object({
+    arbeidsgivere: innsendtSøknadArbeidsgivereSchema,
+    fraOgMed: zOptionalDateFromISODateString,
+    tilOgMed: zOptionalDateFromISODateString,
 });
 
-const InnsendtSøknadBaseSchema = z.object({
+const innsendtSøknadBaseSchema = z.object({
     søknadId: z.string(),
-    status: z.nativeEnum(InnsendtSøknadsstatus),
+    status: z.enum(InnsendtSøknadsstatus),
     journalpostId: z.string(),
-    dokumenter: z.array(z.union([InnsendtSøknadDokumentSchema, z.any()])),
-    opprettet: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    endret: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
-    behandlingsdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
+    dokumenter: z.array(z.union([innsendtSøknadDokumentSchema, z.any()])),
+    opprettet: zOptionalDateFromISODateString,
+    endret: zOptionalDateFromISODateString,
+    behandlingsdato: zOptionalDateFromISODateString,
 });
 
-const PleiepengerSøknadSchema = InnsendtSøknadBaseSchema.extend({
+const pleiepengerSøknadSchema = innsendtSøknadBaseSchema.extend({
     søknadstype: z.literal(InnsendtSøknadstype.PP_SYKT_BARN),
-    søknad: PleiepengerSøknadInfoSchema,
+    søknad: pleiepengerSøknadInfoSchema,
 });
 
-const EndringsmeldingSchema = InnsendtSøknadBaseSchema.extend({
+const endringsmeldingSchema = innsendtSøknadBaseSchema.extend({
     søknadstype: z.literal(InnsendtSøknadstype.PP_SYKT_BARN_ENDRINGSMELDING),
 });
 
-const EttersendelseSchema = InnsendtSøknadBaseSchema.extend({
+const ettersendelseSchema = innsendtSøknadBaseSchema.extend({
     søknadstype: z.literal(InnsendtSøknadstype.PP_ETTERSENDELSE),
 });
 
-export const InnsendtSøknadSchema = z.discriminatedUnion('søknadstype', [
-    PleiepengerSøknadSchema,
-    EndringsmeldingSchema,
-    EttersendelseSchema,
+export const innsendtSøknadSchema = z.discriminatedUnion('søknadstype', [
+    pleiepengerSøknadSchema,
+    endringsmeldingSchema,
+    ettersendelseSchema,
 ]);
 
-export type InnsendtPleiepengesøknad = z.infer<typeof PleiepengerSøknadSchema>;
-export type InnsendtPleiepengerEttersendelse = z.infer<typeof EttersendelseSchema>;
-export type InnsendtPleiepengerEndringsmelding = z.infer<typeof EndringsmeldingSchema>;
+export type InnsendtPleiepengesøknad = z.infer<typeof pleiepengerSøknadSchema>;
+export type InnsendtPleiepengerEttersendelse = z.infer<typeof ettersendelseSchema>;
+export type InnsendtPleiepengerEndringsmelding = z.infer<typeof endringsmeldingSchema>;
 
 export type InnsendtSøknad =
     | InnsendtPleiepengesøknad
     | InnsendtPleiepengerEttersendelse
     | InnsendtPleiepengerEndringsmelding;
 
-export const InnsendtSøknaderSchema = z.array(InnsendtSøknadSchema);
+export const innsendteSøknaderSchema = z.array(innsendtSøknadSchema);

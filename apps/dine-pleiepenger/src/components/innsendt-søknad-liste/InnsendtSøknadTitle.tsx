@@ -2,7 +2,7 @@ import { TasklistIcon } from '@navikt/aksel-icons';
 import { Bleed, BodyShort, HStack, Show, VStack } from '@navikt/ds-react';
 
 import { AppText } from '../../i18n';
-import { InnsendtSøknad } from '../../types/InnsendtSøknad';
+import { InnsendtSøknad } from '../../types';
 import { formatInnsendtSøknadOpprettetDato } from '../../utils/innsendtSøknadUtils';
 
 interface Props {

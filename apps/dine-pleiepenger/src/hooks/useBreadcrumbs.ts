@@ -2,7 +2,7 @@ import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-modul
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-import { DecoratorBreadcrumb } from '../utils/decoratorBreadcrumbs';
+import { DecoratorBreadcrumb } from '../types/DecoratorBreadcrumb';
 import { browserEnv } from '../utils/env';
 import { useInnsynsdataContext } from './useInnsynsdataContext';
 

@@ -19,16 +19,6 @@ export const getContextForApiHandler = (req: NextApiRequest) => {
     return context;
 };
 
-export const trimAxiosError = (error: any) => {
-    try {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { config, ...rest } = error;
-        return rest;
-    } catch {
-        return 'invalid error object';
-    }
-};
-
 /**
  * Går gjennom objekt og sletter alle nøkler med null-verdier, erstatter med undefined
  */

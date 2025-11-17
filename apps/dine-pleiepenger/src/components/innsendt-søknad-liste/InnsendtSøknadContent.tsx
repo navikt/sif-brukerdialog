@@ -4,8 +4,7 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { useIntl } from 'react-intl';
 
 import { AppText } from '../../i18n';
-import { Dokument, Organisasjon } from '../../types';
-import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/InnsendtSøknad';
+import { Dokument, InnsendtSøknad, InnsendtSøknadstype, Organisasjon } from '../../types';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../utils/dokumentUtils';
 import { browserEnv } from '../../utils/env';
 import { getOrganisasjonsnavnEllerOrgNummer } from '../../utils/sakUtils';

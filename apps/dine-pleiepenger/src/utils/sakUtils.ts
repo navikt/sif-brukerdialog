@@ -12,12 +12,12 @@ import {
     Inntektsmelding,
     InntektsmeldingStatus,
     Organisasjon,
-    PleiepengersøknadInnsendelse,
     Sak,
+    SøknadISak,
     Venteårsak,
 } from '../types';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
-import { Innsendelsestype } from '../types/Innsendelsetype';
+import { Innsendelsestype } from '../types/Innsendelsestype';
 import { Sakshendelse, Sakshendelser } from '../types/Sakshendelse';
 
 dayjs.extend(utc);
@@ -164,7 +164,7 @@ const erOrganisasjonArbeidsgiver = (org: Organisasjon | Arbeidstaker): org is Or
     return false;
 };
 
-export const getOrgArbeidsgivereFraSøknad = (søknad: PleiepengersøknadInnsendelse): Organisasjon[] => {
+export const getOrgArbeidsgivereFraSøknad = (søknad: SøknadISak): Organisasjon[] => {
     const arbeidsgivere = søknad.arbeidsgivere || [];
     const getOrgArbeidsgivere: Organisasjon[] = søknad.k9FormatInnsendelse.ytelse.arbeidstid.arbeidstakerList.filter(
         erOrganisasjonArbeidsgiver,

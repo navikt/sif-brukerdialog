@@ -1,5 +1,5 @@
 import { InnsendelseISak, Inntektsmelding, Venteårsak } from '.';
-import { Innsendelsestype } from './Innsendelsetype';
+import { Innsendelsestype } from './Innsendelsestype';
 
 export enum Sakshendelser {
     'UKJENT' = 'UKJENT',

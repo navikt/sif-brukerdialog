@@ -2,7 +2,7 @@ import { innsyn } from '@navikt/k9-sak-innsyn-api';
 import z from 'zod';
 
 import { Ettersendelsestype } from '../EttersendelseType';
-import { Innsendelsestype } from '../Innsendelsetype';
+import { Innsendelsestype } from '../Innsendelsestype';
 import { dokumentClientSchema } from './dokumentClientSchema';
 import { zDateFromDateTimeString } from './zDateFromString';
 
@@ -10,7 +10,7 @@ import { zDateFromDateTimeString } from './zDateFromString';
  * Generert skjema stemmer ikke med respons (feil i swagger skjema)
  * definerer eget med kun de dataene vi bruker
  * */
-const pleiepengerYtelseSchema = z.object({
+const ytelseISakSchema = z.object({
     type: z.enum(['PLEIEPENGER_SYKT_BARN']),
     arbeidstid: z.object({
         arbeidstakerList: z.array(
@@ -22,26 +22,26 @@ const pleiepengerYtelseSchema = z.object({
 });
 
 /** Baseskjema for innsendelse som vi bruker i løsningen */
-const innsendelseBase = innsyn.zInnsendelserISakDto.extend({
+const innsendelseISak = innsyn.zInnsendelserISakDto.extend({
     mottattTidspunkt: zDateFromDateTimeString,
     dokumenter: z.array(dokumentClientSchema),
     innsendelsestype: z.enum(Innsendelsestype),
     k9FormatInnsendelse: innsyn.zInnsending.extend({
         søknadId: z.string(), // Optional i skjema, overstyrer
         mottattDato: zDateFromDateTimeString,
-        ytelse: pleiepengerYtelseSchema,
+        ytelse: ytelseISakSchema,
     }),
 });
 
-export const pleiepengerSøknadInnsendelseSchema = innsendelseBase.extend({
+export const søknadISakSchema = innsendelseISak.extend({
     innsendelsestype: z.literal(Innsendelsestype.SØKNAD),
 });
 
-const endringsmeldingInnsendelseSchema = innsendelseBase.extend({
+const endringsmeldingISakSchema = innsendelseISak.extend({
     innsendelsestype: z.literal(Innsendelsestype.ENDRINGSMELDING),
 });
 
-const ettersendelseInnsendelseSchema = innsendelseBase.extend({
+const ettersendelseISakSchema = innsendelseISak.extend({
     innsendelsestype: z.literal(Innsendelsestype.ETTERSENDELSE),
     /** Annet format, overstyr for ettersendelse */
     k9FormatInnsendelse: z.object({
@@ -50,7 +50,7 @@ const ettersendelseInnsendelseSchema = innsendelseBase.extend({
 });
 
 export const innsendelseISakClientSchema = z.discriminatedUnion('innsendelsestype', [
-    pleiepengerSøknadInnsendelseSchema,
-    endringsmeldingInnsendelseSchema,
-    ettersendelseInnsendelseSchema,
+    søknadISakSchema,
+    endringsmeldingISakSchema,
+    ettersendelseISakSchema,
 ]);

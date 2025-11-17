@@ -1,13 +1,13 @@
 import { ReadMore, VStack } from '@navikt/ds-react';
 
 import { useAppIntl } from '../../../i18n';
-import { PleiepengersøknadInnsendelse } from '../../../types';
+import { SøknadISak } from '../../../types';
 import { getOrgArbeidsgivereFraSøknad } from '../../../utils/sakUtils';
 import ArbeidsgivereISøknad from './ArbeidsgivereISøknad';
 import Dokumenter from './Dokumenter';
 
 interface Props {
-    søknad: PleiepengersøknadInnsendelse;
+    søknad: SøknadISak;
 }
 
 const SøknadStatusContent = ({ søknad }: Props) => {
