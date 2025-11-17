@@ -1,0 +1,196 @@
+[
+    {
+        "søknadId": "f873b4ff-dd9f-47ed-b018-4815f5f0789d",
+        "søknadstype": "PP_SYKT_BARN",
+        "status": "MOTTATT",
+        "søknad": {
+            "barn": {
+                "navn": "ORANSJE TRADISJON",
+                "aktørId": "2402208203890",
+                "fødselsdato": "2023-07-09",
+                "fødselsnummer": "09472369544"
+            },
+            "språk": "nb",
+            "søker": {
+                "fornavn": "VERTIKAL",
+                "aktørId": "2258293147811",
+                "etternavn": "LEGE",
+                "fødselsdato": "1986-11-20",
+                "fødselsnummer": "20518601564"
+            },
+            "frilans": { "harInntektSomFrilanser": false },
+            "mottatt": "2025-11-17T09:56:15.279372227Z",
+            "fraOgMed": "2025-11-03",
+            "tilOgMed": "2025-11-09",
+            "søknadId": "f873b4ff-dd9f-47ed-b018-4815f5f0789d",
+            "dokumentId": [
+                [
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI3NDM3MTI5Ny0wZDE3LTQ0OGUtODYyZi0yODE4MDExZDk4NGIifQ",
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJmMGY4YWQ1ZS1hN2I3LTQ4NDYtYmE1OS1kNTA4MGZkYTk1NmMifQ"
+                ]
+            ],
+            "medlemskap": {
+                "skalBoIUtlandetNeste12Mnd": false,
+                "harBoddIUtlandetSiste12Mnd": false,
+                "utenlandsoppholdNeste12Mnd": [],
+                "utenlandsoppholdSiste12Mnd": []
+            },
+            "arbeidsgivere": [],
+            "omsorgsstønad": { "type": "MOTTAR_IKKE", "mottarOmsorgsstønad": false },
+            "k9FormatSøknad": {
+                "språk": "nb",
+                "søker": { "norskIdentitetsnummer": "20518601564" },
+                "ytelse": {
+                    "barn": { "norskIdentitetsnummer": "09472369544" },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": { "perioder": { "2025-11-03/2025-11-09": { "timerPleieAvBarnetPerDag": "PT7H30M" } } },
+                    "omsorg": {},
+                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "arbeidstid": {
+                        "arbeidstakerList": [],
+                        "frilanserArbeidstidInfo": {
+                            "perioder": {
+                                "2025-11-03/2025-11-09": {
+                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                    "jobberNormaltTimerPerDag": "PT0S"
+                                }
+                            }
+                        }
+                    },
+                    "tilsynsordning": {
+                        "perioder": { "2025-11-03/2025-11-09": { "etablertTilsynTimerPerDag": "PT0S" } }
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": { "perioder": {} },
+                    "søknadsperiode": ["2025-11-03/2025-11-09"],
+                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "annetDataBruktTilUtledning": {
+                        "soknadDialogCommitSha": "2025.11.14-11.07-c63f171",
+                        "harBekreftetOpplysninger": true,
+                        "harForståttRettigheterOgPlikter": true
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "f873b4ff-dd9f-47ed-b018-4815f5f0789d",
+                "kildesystem": "søknadsdialog",
+                "mottattDato": "2025-11-17T09:56:15.279372227Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "utenlandskNæring": [],
+            "ferieuttakIPerioden": { "ferieuttak": [], "skalTaUtFerieIPerioden": false },
+            "opptjeningIUtlandet": [],
+            "harBekreftetOpplysninger": true,
+            "utenlandsoppholdIPerioden": { "opphold": [], "skalOppholdeSegIUtlandetIPerioden": false },
+            "harVærtEllerErVernepliktig": false,
+            "selvstendigNæringsdrivende": { "harInntektSomSelvstendig": false },
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": "1002UGW",
+        "journalpostId": "454047297",
+        "dokumenter": [
+            {
+                "journalpostId": "454047297",
+                "dokumentInfoId": "454461280",
+                "sakId": "1002UGW",
+                "tittel": "Søknad om pleiepenger for sykt barn",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/454047297/454461280/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2025-11-17T10:56:17", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2025-11-17T10:56:17", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2025-11-17T10:56:25", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2025-11-17T10:56:15", "datotype": "DATO_REGISTRERT" }
+                ]
+            }
+        ],
+        "opprettet": "2025-11-17T09:56:15.279Z",
+        "endret": "2025-11-17T09:56:31"
+    },
+    {
+        "søknadId": "e8cf8f9a-2621-4807-86b5-acf56e3955d3",
+        "søknadstype": "PP_ETTERSENDELSE",
+        "status": "MOTTATT",
+        "søknad": {
+            "sprak": "nb",
+            "søker": {
+                "fornavn": "VERTIKAL",
+                "aktørId": "2258293147811",
+                "etternavn": "LEGE",
+                "fødselsdato": "1986-11-20",
+                "fødselsnummer": "20518601564"
+            },
+            "titler": ["ønsket-ommøblering.png"],
+            "mottatt": "2025-11-17T09:57:41.426156186Z",
+            "k9Format": {
+                "type": "LEGEERKLÆRING",
+                "søker": { "norskIdentitetsnummer": "20518601564" },
+                "ytelse": "PLEIEPENGER_SYKT_BARN",
+                "versjon": "0.0.1",
+                "søknadId": "e8cf8f9a-2621-4807-86b5-acf56e3955d3",
+                "mottattDato": "2025-11-17T09:57:41.426156186Z",
+                "pleietrengende": { "norskIdentitetsnummer": "09472369544" }
+            },
+            "soknadId": "e8cf8f9a-2621-4807-86b5-acf56e3955d3",
+            "vedleggId": [
+                [
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJkZmEyMWRkOC1kM2U1LTQ5Y2ItOWM0NC0zZDgyZTc0NjAyNDEifQ",
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJiNTQ3NDc0ZC0wY2ZkLTQyMTctODNmMC1lMGUwMzg4NWM4YzQifQ"
+                ],
+                [
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJlYzUyYzBkNi03YTQ2LTQ2NGItOWNlZS1iODZjYjRiYjA2MjAifQ"
+                ]
+            ],
+            "søknadstype": "PLEIEPENGER_SYKT_BARN",
+            "pleietrengende": {
+                "navn": "ORANSJE TRADISJON",
+                "fødselsdato": "2023-07-09",
+                "norskIdentitetsnummer": "09472369544"
+            },
+            "ettersendelsesType": "LEGEERKLÆRING",
+            "harBekreftetOpplysninger": true,
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": "1002UGW",
+        "journalpostId": "454047300",
+        "dokumenter": [
+            {
+                "journalpostId": "454047300",
+                "dokumentInfoId": "454461283",
+                "sakId": "1002UGW",
+                "tittel": "Ettersendelse av dokumentasjon til søknad om pleiepenger",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/454047300/454461283/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2025-11-17T10:57:51", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2025-11-17T10:57:51", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2025-11-17T10:57:58", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2025-11-17T10:57:41", "datotype": "DATO_REGISTRERT" }
+                ]
+            },
+            {
+                "journalpostId": "454047300",
+                "dokumentInfoId": "454461284",
+                "sakId": "1002UGW",
+                "tittel": "ønsket-ommøblering.png",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/454047300/454461284/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2025-11-17T10:57:51", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2025-11-17T10:57:51", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2025-11-17T10:57:58", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2025-11-17T10:57:41", "datotype": "DATO_REGISTRERT" }
+                ]
+            }
+        ],
+        "opprettet": "2025-11-17T09:57:41.426Z",
+        "endret": "2025-11-17T09:58:02"
+    }
+]

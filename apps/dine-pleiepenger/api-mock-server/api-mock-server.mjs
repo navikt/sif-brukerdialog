@@ -15,10 +15,6 @@ const saksbehandlingstid = JSON.parse(
     readFileSync(join(__dirname, './mockdata/common/saksbehandlingstid.json'), 'utf-8'),
 );
 
-// En sak
-
-// To saker
-
 const getMockData = (scenario) => {
     if (scenario === 'ingen-sak') {
         const søker = JSON.parse(readFileSync(join(__dirname, './mockdata/ingen-sak/soker.json'), 'utf-8'));
@@ -27,6 +23,17 @@ const getMockData = (scenario) => {
             readFileSync(join(__dirname, './mockdata/ingen-sak/saker-metadata.json'), 'utf-8'),
         );
         return { sakerMetadata, søker, saker: [], soknader };
+    } else if (scenario === 'debug') {
+        const søker = JSON.parse(readFileSync(join(__dirname, './mockdata/debug/soker.json'), 'utf-8'));
+        const soknader = JSON.parse(readFileSync(join(__dirname, './mockdata/debug/soknader.json'), 'utf-8'));
+        const sakerMetadata = JSON.parse(
+            readFileSync(join(__dirname, './mockdata/debug/saker-metadata.json'), 'utf-8'),
+        );
+        const sak = JSON.parse(readFileSync(join(__dirname, './mockdata/debug/sak.json'), 'utf-8'));
+        const inntektsmeldinger = JSON.parse(
+            readFileSync(join(__dirname, './mockdata/debug/inntektsmeldinger.json'), 'utf-8'),
+        );
+        return { sakerMetadata, søker, saker: [{ sak, inntektsmeldinger }], soknader };
     } else if (scenario === 'en-sak') {
         const søker = JSON.parse(readFileSync(join(__dirname, './mockdata/en-sak/soker.json'), 'utf-8'));
         const soknader = JSON.parse(readFileSync(join(__dirname, './mockdata/en-sak/soknader.json'), 'utf-8'));
@@ -64,7 +71,7 @@ const getMockData = (scenario) => {
     }
 };
 
-const mockData = getMockData('ingen-sak');
+const mockData = getMockData('debug');
 // const mockData = getMockData('en-sak');
 // const mockData = getMockData('to-saker');
 
