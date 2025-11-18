@@ -11,6 +11,7 @@ interface Props {
 const SakIkkeFunnetPage = ({ saksnr }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [],
+        inkluderDinePleiepengesakerLenke: true,
         saksnummer: 'Sak ikke funnet', // Brukes ikke, men gjør at bruker får lenke til velg-sak siden
     });
 

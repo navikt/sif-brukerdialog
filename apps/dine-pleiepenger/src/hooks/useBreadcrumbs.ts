@@ -9,9 +9,14 @@ import { useInnsynsdataContext } from './useInnsynsdataContext';
 interface UseBreadcrumbsOptions {
     breadcrumbs: DecoratorBreadcrumb[];
     saksnummer?: string;
+    inkluderDinePleiepengesakerLenke?: boolean;
 }
 
-export const useBreadcrumbs = ({ breadcrumbs, saksnummer }: UseBreadcrumbsOptions): void => {
+export const useBreadcrumbs = ({
+    breadcrumbs,
+    saksnummer,
+    inkluderDinePleiepengesakerLenke,
+}: UseBreadcrumbsOptions): void => {
     const router = useRouter();
     const {
         innsynsdata: { sakerMetadata },
@@ -23,7 +28,9 @@ export const useBreadcrumbs = ({ breadcrumbs, saksnummer }: UseBreadcrumbsOption
     useEffect(() => {
         const allBreadcrumbs: DecoratorBreadcrumb[] = [
             { url: browserEnv.NEXT_PUBLIC_MIN_SIDE_URL, title: 'Min side' },
-            ...(harFlereSaker ? [{ url: '/', title: 'Dine pleiepengesaker', handleInApp: true }] : []),
+            ...(inkluderDinePleiepengesakerLenke || harFlereSaker
+                ? [{ url: '/', title: 'Dine pleiepengesaker', handleInApp: true }]
+                : []),
             ...(inkluderSakCrumb
                 ? [
                       {
