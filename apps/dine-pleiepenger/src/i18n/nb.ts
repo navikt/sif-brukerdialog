@@ -73,12 +73,8 @@ export const nb = {
         'Vi sjekker om vi har fått legeerklæring fra deg. Hvis du ikke sendte den sammen med søknaden din, må du ettersende den til oss så snart du kan.',
 
     'hvaSkjerInfo.inntektsmelding.tittel': 'Inntektsmelding fra arbeidsgiver',
-    'hvaSkjerInfo.inntektsmelding.avsnitt.1':
-        'Hvis du er arbeidstaker, ser vi om arbeidsgiver har sendt oss inntektsmelding. Den trenger vi hvis du søker for første gang, eller det er mer enn fire uker opphold i perioden med pleiepenger.',
-    'hvaSkjerInfo.inntektsmelding.avsnitt.2.1':
-        'Kontakt arbeidsgiveren din for å sikre at de sender inntektsmeldingen til oss. Du kan henvise arbeidsgiver til ',
-    'hvaSkjerInfo.inntektsmelding.avsnitt.2.2': 'nav.no/arbeidsgiver/pleiepenger-barn',
-    'hvaSkjerInfo.inntektsmelding.avsnitt.2.3': ' hvis de trenger mer informasjon.',
+    'hvaSkjerInfo.inntektsmelding.tekst':
+        'Vi trenger inntektsmelding hvis du søker for første gang, eller det er mer enn fire uker opphold i perioden med pleiepenger. Hvis du er arbeidstaker, får arbeidsgiver varsel om å sende inntektsmelding tidligst fire uker før første fraværsdag. Kontakt arbeidsgiver for å sikre at de sender inntektsmeldingen til oss. Du kan henvise arbeidsgiver til <Link>nav.no/arbeidsgiver/pleiepenger-barn</Link> hvis de trenger mer informasjon.',
 
     'hvaSkjerInfo.behandling.tittel': 'Vi behandler søknaden din',
     'hvaSkjerInfo.behandling':
