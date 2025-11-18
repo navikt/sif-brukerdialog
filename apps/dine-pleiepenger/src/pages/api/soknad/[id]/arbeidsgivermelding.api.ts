@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { Readable } from 'stream';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
-import { fetchDocument } from '../../../../server/fetchers/fetchDocument';
+import { fetchDocumentStream } from '../../../../server/fetchers/fetchDocumentStream';
 import { ApiServices } from '../../../../server/types/ApiServices';
 import { getContextForApiHandler } from '../../../../utils/apiUtils';
 
@@ -19,16 +20,16 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
 
     try {
         const path = `soknad/${søknadId}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
-        const blob = await fetchDocument(path, getContextForApiHandler(req), ApiServices.sifInnsyn);
-        const resBufferArray = await blob.arrayBuffer();
-        const resBuffer = Buffer.from(resBufferArray);
-        res.setHeader('Content-Type', 'application/PDF');
-        res.setHeader('Content-Length', (blob as Blob).size.toString());
+        const stream = await fetchDocumentStream(path, getContextForApiHandler(req), ApiServices.sifInnsyn);
+
+        res.setHeader('Content-Type', 'application/pdf');
 
         const dokumentTittel = `Arbeidsgivermelding - org. ${organisasjonsnummer}`;
         res.setHeader('Content-Disposition', `filename="${dokumentTittel}.pdf"`);
-        res.write(resBuffer, 'binary');
-        res.end();
+
+        // Convert Web ReadableStream to Node.js Readable stream
+        const nodeStream = Readable.fromWeb(stream as any);
+        nodeStream.pipe(res);
     } catch {
         res.status(500).json({ error: 'Kunne ikke hente arbeidsgivermelding' });
     }
