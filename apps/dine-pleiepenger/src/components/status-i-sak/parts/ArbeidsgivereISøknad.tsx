@@ -29,7 +29,7 @@ const ArbeidsgivereISøknad = ({ søknadId, arbeidsgivere }: Props) => {
                 <List>
                     {arbeidsgivere.map((organisasjon) => (
                         <li key={organisasjon.organisasjonsnummer}>
-                            <Box marginBlock="0 3">
+                            <Box marginBlock="0 1">
                                 <PdfLenke
                                     href={getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer(
                                         søknadId,
