@@ -1,10 +1,8 @@
 import { expect, test } from '@playwright/test';
 import dayjs from 'dayjs';
 
-import { sakerMock } from '../mockdata/saker.mock';
+import { enSakMockData } from '../mockdata/enSakMockData';
 import { setupMockRoutes } from '../utils/setup-mock-routes';
-
-const sak = sakerMock[0].sak;
 
 test.beforeEach(async ({ page }) => {
     await setupMockRoutes(page);
@@ -12,8 +10,8 @@ test.beforeEach(async ({ page }) => {
 
 const getSakResponseMedUtledetStatus = (status: any) => ({
     sak: {
-        ...sak,
-        utledetStatus: { ...sak.utledetStatus, ...status },
+        ...enSakMockData.sak,
+        utledetStatus: { ...enSakMockData.sak.utledetStatus, ...status },
     },
     inntektsmeldinger: [],
 });

@@ -9,7 +9,7 @@
         "dev-api": "node ./mock/api-mock-server.mjs",
         "dev": "next dev -p 8080",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './e2e/**/*.{js,ts,tsx}'",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "start": "next start -p 8080",

@@ -1,17 +1,13 @@
 import { Page } from '@playwright/test';
 import dayjs from 'dayjs';
 
-import { InnsynsdataDto } from '../../src/server/dto-schemas/innsynsdataDtoSchema';
-import { sakerMetadata, sakerMock } from '../mockdata/saker.mock';
-import { søkerMockData } from '../mockdata/søker.mock';
+import { enSakMockData } from '../mockdata/enSakMockData';
 import { setConsentCookie } from './setup-test-context';
-
-const sak = sakerMock[0].sak;
 
 const getSakResponseMedUtledetStatus = (status: any) => ({
     sak: {
-        ...sak,
-        utledetStatus: { ...sak.utledetStatus, ...status },
+        ...enSakMockData.sak,
+        utledetStatus: { ...enSakMockData.sak.utledetStatus, ...status },
     },
     inntektsmeldinger: [],
 });
@@ -25,10 +21,10 @@ export const setupMockRoutes = async (page: Page) => {
     });
 
     await page.route('**/innsynsdata', async (route: any) => {
-        const response: InnsynsdataDto = {
-            sakerMetadata: sakerMetadata,
+        const response = {
+            sakerMetadata: enSakMockData.sakerMetadata,
             harSak: true,
-            søker: søkerMockData as any,
+            søker: enSakMockData.søker,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
