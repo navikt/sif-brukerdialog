@@ -1,10 +1,9 @@
 import { Page } from '@playwright/test';
 import dayjs from 'dayjs';
 
-import { InnsynsdataDto } from '../../../src/server/dto-schemas/innsynsdataDtoSchema';
+import { InnsynsdataDto } from '../../src/server/dto-schemas/innsynsdataDtoSchema';
 import { sakerMetadata, sakerMock } from '../mockdata/saker.mock';
 import { søkerMockData } from '../mockdata/søker.mock';
-// import { søknaderMockData } from '../mockdata/søknader.mock';
 import { setConsentCookie } from './setup-test-context';
 
 const sak = sakerMock[0].sak;

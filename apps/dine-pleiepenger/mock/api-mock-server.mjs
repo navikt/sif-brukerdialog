@@ -11,53 +11,45 @@ const __dirname = dirname(__filename);
 const server = express();
 
 // Last inn JSON-filer
-const saksbehandlingstid = JSON.parse(
-    readFileSync(join(__dirname, './mockdata/common/saksbehandlingstid.json'), 'utf-8'),
-);
+const saksbehandlingstid = JSON.parse(readFileSync(join(__dirname, './data/saksbehandlingstid.json'), 'utf-8'));
 
 const getMockData = (scenario) => {
     if (scenario === 'ingen-sak') {
-        const søker = JSON.parse(readFileSync(join(__dirname, './mockdata/ingen-sak/soker.json'), 'utf-8'));
-        const soknader = JSON.parse(readFileSync(join(__dirname, './mockdata/ingen-sak/soknader.json'), 'utf-8'));
+        const søker = JSON.parse(readFileSync(join(__dirname, './data/ingen-sak/soker.json'), 'utf-8'));
+        const soknader = JSON.parse(readFileSync(join(__dirname, './data/ingen-sak/soknader.json'), 'utf-8'));
         const sakerMetadata = JSON.parse(
-            readFileSync(join(__dirname, './mockdata/ingen-sak/saker-metadata.json'), 'utf-8'),
+            readFileSync(join(__dirname, './data/ingen-sak/saker-metadata.json'), 'utf-8'),
         );
         return { sakerMetadata, søker, saker: [], soknader };
     } else if (scenario === 'debug') {
-        const søker = JSON.parse(readFileSync(join(__dirname, './mockdata/debug/soker.json'), 'utf-8'));
-        const soknader = JSON.parse(readFileSync(join(__dirname, './mockdata/debug/soknader.json'), 'utf-8'));
-        const sakerMetadata = JSON.parse(
-            readFileSync(join(__dirname, './mockdata/debug/saker-metadata.json'), 'utf-8'),
-        );
-        const sak = JSON.parse(readFileSync(join(__dirname, './mockdata/debug/sak.json'), 'utf-8'));
+        const søker = JSON.parse(readFileSync(join(__dirname, './data/debug/soker.json'), 'utf-8'));
+        const soknader = JSON.parse(readFileSync(join(__dirname, './data/debug/soknader.json'), 'utf-8'));
+        const sakerMetadata = JSON.parse(readFileSync(join(__dirname, './data/debug/saker-metadata.json'), 'utf-8'));
+        const sak = JSON.parse(readFileSync(join(__dirname, './data/debug/sak.json'), 'utf-8'));
         const inntektsmeldinger = JSON.parse(
-            readFileSync(join(__dirname, './mockdata/debug/inntektsmeldinger.json'), 'utf-8'),
+            readFileSync(join(__dirname, './data/debug/inntektsmeldinger.json'), 'utf-8'),
         );
         return { sakerMetadata, søker, saker: [{ sak, inntektsmeldinger }], soknader };
     } else if (scenario === 'en-sak') {
-        const søker = JSON.parse(readFileSync(join(__dirname, './mockdata/en-sak/soker.json'), 'utf-8'));
-        const soknader = JSON.parse(readFileSync(join(__dirname, './mockdata/en-sak/soknader.json'), 'utf-8'));
-        const sakerMetadata = JSON.parse(
-            readFileSync(join(__dirname, './mockdata/en-sak/saker-metadata.json'), 'utf-8'),
-        );
-        const sak = JSON.parse(readFileSync(join(__dirname, './mockdata/en-sak/sak.json'), 'utf-8'));
+        const søker = JSON.parse(readFileSync(join(__dirname, './data/en-sak/soker.json'), 'utf-8'));
+        const soknader = JSON.parse(readFileSync(join(__dirname, './data/en-sak/soknader.json'), 'utf-8'));
+        const sakerMetadata = JSON.parse(readFileSync(join(__dirname, './data/en-sak/saker-metadata.json'), 'utf-8'));
+        const sak = JSON.parse(readFileSync(join(__dirname, './data/en-sak/sak.json'), 'utf-8'));
         const inntektsmeldinger = JSON.parse(
-            readFileSync(join(__dirname, './mockdata/en-sak/inntektsmeldinger.json'), 'utf-8'),
+            readFileSync(join(__dirname, './data/en-sak/inntektsmeldinger.json'), 'utf-8'),
         );
         return { sakerMetadata, søker, saker: [{ sak, inntektsmeldinger }], soknader };
     } else if (scenario === 'to-saker') {
-        const søker = JSON.parse(readFileSync(join(__dirname, './mockdata/to-saker/soker.json'), 'utf-8'));
-        const soknader = JSON.parse(readFileSync(join(__dirname, './mockdata/to-saker/soknader.json'), 'utf-8'));
-        const sakerMetadata = JSON.parse(
-            readFileSync(join(__dirname, './mockdata/to-saker/saker-metadata.json'), 'utf-8'),
-        );
-        const sak1 = JSON.parse(readFileSync(join(__dirname, './mockdata/to-saker/1001F8G/sak.json'), 'utf-8'));
-        const sak2 = JSON.parse(readFileSync(join(__dirname, './mockdata/to-saker/100097Y/sak.json'), 'utf-8'));
+        const søker = JSON.parse(readFileSync(join(__dirname, './data/to-saker/soker.json'), 'utf-8'));
+        const soknader = JSON.parse(readFileSync(join(__dirname, './data/to-saker/soknader.json'), 'utf-8'));
+        const sakerMetadata = JSON.parse(readFileSync(join(__dirname, './data/to-saker/saker-metadata.json'), 'utf-8'));
+        const sak1 = JSON.parse(readFileSync(join(__dirname, './data/to-saker/1001F8G/sak.json'), 'utf-8'));
+        const sak2 = JSON.parse(readFileSync(join(__dirname, './data/to-saker/100097Y/sak.json'), 'utf-8'));
         const inntektsmeldinger1 = JSON.parse(
-            readFileSync(join(__dirname, './mockdata/to-saker/1001F8G/inntektsmeldinger.json'), 'utf-8'),
+            readFileSync(join(__dirname, './data/to-saker/1001F8G/inntektsmeldinger.json'), 'utf-8'),
         );
         const inntektsmeldinger2 = JSON.parse(
-            readFileSync(join(__dirname, './mockdata/to-saker/100097Y/inntektsmeldinger.json'), 'utf-8'),
+            readFileSync(join(__dirname, './data/to-saker/100097Y/inntektsmeldinger.json'), 'utf-8'),
         );
         return {
             sakerMetadata,
@@ -106,7 +98,7 @@ const startServer = () => {
     });
 
     server.get('/soknad/:soknadId/dokument', (req, res) => {
-        res.download('./api-mock-server/mockdata/eksempel-søknad.pdf', 'søknad.pdf');
+        res.download('./data/eksempel-søknad.pdf', 'søknad.pdf');
     });
 
     server.get('/saker/metadata', (req, res) => {
@@ -141,26 +133,24 @@ const startServer = () => {
 
     server.get('/dokument/:journalpostId/:dokumentInfoId/:variantFormat', (req, res) => {
         switch (req.params.dokumentInfoId) {
-            case '533438765':
-                res.download(
-                    './api-mock-server/mockdata/Ettersending av vedlegg - Pleiepenger sykt barn.pdf',
-                    'Ettersending av vedlegg - Pleiepenger sykt barn.pdf',
-                );
+            case '454412718':
+                res.download('./mock/dokumenter/ettersendelse.pdf', 'ettersendelse.pdf');
                 break;
-            case '533438766':
-                res.download(
-                    './api-mock-server/mockdata/BekreftelseTilKLONELABBEN.pdf',
-                    'BekreftelseTilKLONELABBEN.pdf',
-                );
+            case '454412719':
+                res.download('./mock/dokumenter/vedlegg.pdf', 'vedlegg.pdf');
+                break;
+            case '454427849':
+                res.download('./mock/dokumenter/arbeidsgivermelding.pdf', 'BekreftelseTilKLONELABBEN.pdf');
                 break;
             default:
-                res.download('./api-mock-server/mockdata/Søknad om pleiepenger.pdf', 'Søknad om pleiepenger.pdf');
+                res.download('./mock/dokumenter/søknad.pdf', 'Søknad om pleiepenger.pdf');
                 break;
         }
     });
 
+    /** Mock arbeidsgivermelding */
     server.get('/soknad/:soknadId/arbeidsgivermelding', (req, res) => {
-        res.download('./api-mock-server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
+        res.download('./mock/dokumenter/arbeidsgivermelding.pdf', 'arbeidsgivermelding.pdf');
     });
 
     server.listen(port, () => {

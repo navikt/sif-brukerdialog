@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import mockMetadata from '../../../api-mock-server/mockdata/to-saker/saker-metadata.json';
+import mockMetadata from '../../../mock/data/to-saker/saker-metadata.json';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
 import { SakerMetadata } from '../../types';

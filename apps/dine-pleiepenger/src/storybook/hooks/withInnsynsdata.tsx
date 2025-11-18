@@ -1,6 +1,6 @@
 import type { Decorator } from '@storybook/react';
 
-import mockSøker from '../../../api-mock-server/mockdata/en-sak/soker.json';
+import mockSøker from '../../../mock/data/en-sak/soker.json';
 import { InnsynsdataContextProvider } from '../../context/InnsynsdataContextProvider';
 import { Søker } from '../../types';
 

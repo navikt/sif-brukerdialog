@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 
-import mockSøknader from '../../../api-mock-server/mockdata/en-sak/soknader.json';
+import mockSøknader from '../../../mock/data/en-sak/soknader.json';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
 import { InnsendtSøknad } from '../../types';
