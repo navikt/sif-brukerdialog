@@ -10,8 +10,8 @@ test.beforeEach(async ({ page }) => {
 
 const getSakResponseMedUtledetStatus = (status: any) => ({
     sak: {
-        ...enSakMockData.sak,
-        utledetStatus: { ...enSakMockData.sak.utledetStatus, ...status },
+        ...enSakMockData.saker[0],
+        utledetStatus: { ...enSakMockData.saker[0].utledetStatus, ...status },
     },
     inntektsmeldinger: [],
 });
