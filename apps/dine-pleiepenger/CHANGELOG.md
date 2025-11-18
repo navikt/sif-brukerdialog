@@ -5,6 +5,9 @@
 ### Major Changes
 
 - Stor refactoring av hvordan informasjon lastes inn i innsyn. Nye backend-endepunkter, caching i client. Rydding i kode, og forbedret sjekk av innlogget bruker.
+- Ta i bruk genererte zod skjemaer for henting av data i backend; noen justeringer pga feil i genererte skjemaer, og for avgrensning av data som returneres til klient
+- Skrive egne zodClientSkjemaer for typer som kommer fra api-endepunktene. I hovedsak for å konvertere dateString til Date, men også noen for å utvide/begrense typen
+- Skrive om mockData og legge til playwright-tester
 
 ### Patch Changes
 
