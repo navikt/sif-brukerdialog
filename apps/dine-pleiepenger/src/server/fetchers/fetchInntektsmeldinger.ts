@@ -29,7 +29,7 @@ export const fetchInntektsmeldinger = async (
         'application/json',
     );
     const logger = getLogger(req);
-    logger.info(`Fetching inntektsmeldinger from url: ${url}`);
+    logger.info(`Fetching inntektsmeldinger`);
     const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
     logger.info(`Response-status from request: ${response.status}`);
 

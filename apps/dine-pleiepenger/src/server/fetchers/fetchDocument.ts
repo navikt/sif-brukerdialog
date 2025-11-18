@@ -9,7 +9,7 @@ export async function fetchDocument(path: string, context: RequestContext, servi
 
     const { url, headers } = await exchangeTokenAndPrepRequest(service, context, path, 'application/pdf');
 
-    childLogger.info(`Fetching document from ${url}`);
+    childLogger.info(`Fetching document`);
 
     const response = await fetch(url, { headers });
     if (!response.ok) {

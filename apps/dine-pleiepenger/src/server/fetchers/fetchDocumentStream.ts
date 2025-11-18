@@ -10,7 +10,7 @@ export async function fetchDocumentStream(path: string, context: RequestContext,
 
     const { url, headers } = await exchangeTokenAndPrepRequest(service, context, path, 'application/pdf');
 
-    childLogger.info(`Fetching document from ${url}`);
+    childLogger.info(`Fetching document`);
 
     const response = await axios.get(url, {
         responseType: 'stream',
