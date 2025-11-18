@@ -1,4 +1,5 @@
 import { innsyn } from '@navikt/k9-sak-innsyn-api';
+import { zBehandlingDto, zInnsendelserISakDto, zInnsending } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { z } from 'zod';
@@ -9,8 +10,8 @@ import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
 
-// Extend zSakDto to handle backend's object format for fagsakYtelseType
 export const zSakDtoExtended = innsyn.zSakDto.extend({
+    // zSakDto har feil format i forhold til generert skjema; transformeres her
     fagsakYtelseType: z.union([
         innsyn.zSakDto.shape.fagsakYtelseType,
         z
@@ -20,6 +21,20 @@ export const zSakDtoExtended = innsyn.zSakDto.extend({
             })
             .transform((val) => val.kode),
     ]),
+    /** Ytelse mangler i generert schema, legger til slik at det ikke strippes ut */
+    behandlinger: z.array(
+        zBehandlingDto.extend({
+            innsendelser: z.array(
+                zInnsendelserISakDto.extend({
+                    k9FormatInnsendelse: z.optional(
+                        zInnsending.extend({
+                            ytelse: z.any().optional(),
+                        }),
+                    ),
+                }),
+            ),
+        }),
+    ),
 });
 
 const fjernUkjenteInnsendelserISak = (sak: innsyn.SakDto): innsyn.SakDto => {
