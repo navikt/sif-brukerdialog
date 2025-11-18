@@ -498,7 +498,6 @@ export const zInnsending = z.object({
     søker: z.optional(zSøker),
     mottattDato: z.optional(z.iso.datetime({ local: true })),
     søknadId: z.optional(z.string()),
-    ytelse: z.any(),
 });
 
 export const zOrganisasjon = z.object({
