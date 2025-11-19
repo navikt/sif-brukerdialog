@@ -59,7 +59,7 @@ export const prepApiError = (err: any): unknown => {
     if (err instanceof z.ZodError) {
         return JSON.stringify(getZodErrorsInfo(err));
     } else if (isAxiosError(err)) {
-        return err.message;
+        return `${err.code} ${err.message}`;
     }
     return err;
 };
