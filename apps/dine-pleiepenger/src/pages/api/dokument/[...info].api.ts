@@ -6,6 +6,12 @@ import { fetchDocumentStream } from '../../../server/fetchers/fetchDocumentStrea
 import { ApiServices } from '../../../server/types/ApiServices';
 import { getContextForApiHandler } from '../../../utils/apiUtils';
 
+export const config = {
+    api: {
+        responseLimit: false,
+    },
+};
+
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {
         query: { info, dokumentTittel },
