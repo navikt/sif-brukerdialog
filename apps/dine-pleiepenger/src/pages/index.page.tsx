@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
+import { withAuthenticatedPage } from '../auth/withAuthentication';
 import PageLoading from '../components/page-layout/page-loading/PageLoading';
 import SøknaderEllerIngenSakFalback from '../components/søknader-eller-ingen-sak-fallback/SøknaderEllerIngenSakFalback';
 import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
@@ -29,6 +30,6 @@ function DinePleiepengerPage() {
     return <SøknaderEllerIngenSakFalback />;
 }
 
-// export const getServerSideProps = withAuthenticatedPage();
+export const getServerSideProps = withAuthenticatedPage();
 
 export default DinePleiepengerPage;
