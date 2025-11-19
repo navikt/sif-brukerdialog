@@ -1,4 +1,4 @@
-import { Box, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
@@ -8,52 +8,97 @@ import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageH
 import SaksbehandlingstidPanel from '../../components/saksbehandlingstid/Saksbehandlingstid';
 import SkrivTilOssLenker from '../../components/skriv-til-oss-lenker/SkrivTilOssLenker';
 import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
-import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
 import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { BehandlingStatus, Inntektsmelding, Pleietrengende, Sak } from '../../types';
+import { AppText } from '../../i18n';
+import { BehandlingStatus, PleietrengendeMedSak } from '../../types';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
+import PageHeader from '../page-layout/page-header/PageHeader';
+import StatusISak from '../status-i-sak/StatusISak';
 
 interface Props {
-    pleietrengende: Pleietrengende;
-    sak: Sak;
-    inntektsmeldinger: Inntektsmelding[];
+    saksnr: string;
+    pleietrengendeMedSak?: PleietrengendeMedSak;
+    isLoading?: boolean;
 }
 
-const SakPage = ({ sak, pleietrengende, inntektsmeldinger = [] }: Props) => {
+const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [],
-        saksnummer: sak.saksnummer,
+        saksnummer: saksnr,
     });
 
-    const statusISak = getBehandlingsstatusISak(sak);
+    const statusISak = pleietrengendeMedSak ? getBehandlingsstatusISak(pleietrengendeMedSak.sak) : undefined;
+
+    const { sak, inntektsmeldinger, pleietrengende } = pleietrengendeMedSak || {};
+
+    const getContent = () => {
+        // Vi beholder samme tittel som når vi har info
+        const tittel = 'Dette skjer i saken';
+        if (sak) {
+            return <StatusISak sak={sak} tittel={tittel} inntektsmeldinger={inntektsmeldinger || []} />;
+        }
+        if (isLoading) {
+            return (
+                <>
+                    <Heading size="medium" level="2" spacing={true}>
+                        {tittel}
+                    </Heading>
+                    <VStack gap="4">
+                        <Skeleton height="6rem" variant="rounded" />
+                        <Skeleton height="6rem" variant="rounded" />
+                        <Skeleton height="6rem" variant="rounded" />
+                    </VStack>
+                </>
+            );
+        }
+        return (
+            <>
+                <Heading size="medium" level="2" spacing={true}>
+                    {tittel}
+                </Heading>
+                <Alert variant="error" className="mb-6">
+                    Vi klarte dessverre ikke å hente informasjon om pleiepengesaken din. Prøv igjen senere.
+                </Alert>
+            </>
+        );
+    };
 
     return (
         <DefaultPageLayout
             pageHeader={
-                <SakPageHeader
-                    pleietrengende={pleietrengende}
-                    saksnr={sak.saksnummer}
-                    titleTag={statusISak ? <StatusTag {...statusISak} /> : null}
-                />
+                pleietrengende ? (
+                    <SakPageHeader
+                        pleietrengende={pleietrengende}
+                        saksnr={saksnr}
+                        titleTag={statusISak ? <StatusTag {...statusISak} /> : null}
+                    />
+                ) : (
+                    <PageHeader
+                        title="Din pleiepengesak for sykt barn"
+                        byline={
+                            <BodyShort>
+                                <AppText id="sakPageHeader.saksnr" values={{ saksnr }} />
+                            </BodyShort>
+                        }
+                    />
+                )
             }>
             <Head>
-                <title>Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
+                <title>Din pleiepengesak for sykt barn - {saksnr}</title>
             </Head>
             <VStack gap="12">
                 {statusISak?.venteårsak && statusISak.status !== BehandlingStatus.AVSLUTTET ? (
                     <VenteårsakMelding venteårsak={statusISak.venteårsak} />
                 ) : null}
                 <Box className="md:flex md:gap-6">
-                    <div className="md:grow mb-10 md:mb-0">
-                        <StatusISak sak={sak} tittel="Dette skjer i saken" inntektsmeldinger={inntektsmeldinger} />
-                    </div>
+                    <div className="md:grow mb-10 md:mb-0">{getContent()}</div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         {statusISak?.status === BehandlingStatus.AVSLUTTET ? null : (
                             <VStack gap="5">
                                 <SaksbehandlingstidPanel
-                                    frist={sak.utledetStatus.saksbehandlingsFrist}
+                                    frist={sak ? sak.utledetStatus.saksbehandlingsFrist : undefined}
                                     venteårsak={statusISak?.venteårsak}
                                 />
                             </VStack>
@@ -67,7 +112,7 @@ const SakPage = ({ sak, pleietrengende, inntektsmeldinger = [] }: Props) => {
                     <SkrivTilOssLenker />
                 </Box>
                 <Box className="mb-10">
-                    <SnarveierSak saksnummer={sak.saksnummer} />
+                    <SnarveierSak saksnummer={saksnr} />
                 </Box>
             </VStack>
             <DevBranchInfo />

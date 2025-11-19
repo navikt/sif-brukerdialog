@@ -8,7 +8,7 @@ export default function HistorikkRoutePage() {
     const { pleietrengendeMedSak, saksnr, isLoading } = usePleietrengendeMedSakFromRoute();
 
     if (isLoading) {
-        return <PageLoading title="Henter informasjon..." />;
+        return <PageLoading title="Henter informasjon ..." />;
     }
 
     if (!pleietrengendeMedSak) {

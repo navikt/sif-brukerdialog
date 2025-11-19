@@ -20,14 +20,14 @@ export const Default: Story = {
 export const MedCustomTittel: Story = {
     name: 'Med custom tittel',
     args: {
-        title: 'Henter informasjon...',
+        title: 'Henter informasjon ...',
     },
 };
 
 export const MedDokumentTittel: Story = {
     name: 'Med dokumenttittel',
     args: {
-        title: 'Henter informasjon...',
+        title: 'Henter informasjon ...',
         documentTitle: 'Henter informasjon - Dine pleiepenger for sykt barn',
     },
 };

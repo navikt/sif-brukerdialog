@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     if (isLoading) {
         return (
             <PageLoading
-                title="Henter informasjon..."
+                title="Henter informasjon ..."
                 documentTitle="Henter informasjon - Dine pleiepenger for sykt barn"
             />
         );
