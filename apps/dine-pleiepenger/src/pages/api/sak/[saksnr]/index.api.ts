@@ -44,8 +44,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             logger.warn(`Inntektsmeldinger for sak ${saksnr} ikke funnet`);
             return res.status(404).json({ error: 'Inntektsmeldinger ikke funnet' });
         }
-
-        logger.info(`Sak og inntektsmeldinger hentet for saksnummer: ${saksnr}`);
+        if (Feature.INNTEKTSMELDING_ENABLED) {
+            logger.info(`Sak og inntektsmeldinger hentet for saksnummer: ${saksnr}`);
+        } else {
+            logger.info(`Sak hentet for saksnummer: ${saksnr}`);
+        }
         res.json({ sak, inntektsmeldinger });
     } catch (err) {
         const logger = getLogger(req);
