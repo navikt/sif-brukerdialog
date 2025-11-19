@@ -3,6 +3,7 @@ import { ApplicationState } from '@navikt/appstatus-react-ds/src/hooks/useGetApp
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
+import { prepApiError } from '../../utils/apiUtils';
 import { browserEnv } from '../../utils/env';
 import { Feature } from '../../utils/features';
 import { getLogger } from '../../utils/getLogCorrelationID';
@@ -25,10 +26,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
     logger.info(`Henter appStatus`);
     try {
-        res.send(await fetchAppStatus());
+        return res.send(await fetchAppStatus());
     } catch (err) {
-        logger.error(`Hent appStatus feilet: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente appStatus' });
+        logger.error(`Hent appStatus feilet`, prepApiError(err));
+        return res.status(500).json({ error: 'Kunne ikke hente appStatus' });
     }
 }
 

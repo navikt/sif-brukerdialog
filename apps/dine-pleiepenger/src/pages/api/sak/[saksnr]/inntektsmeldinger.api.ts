@@ -1,10 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import z from 'zod';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchInntektsmeldinger } from '../../../../server/fetchers/fetchInntektsmeldinger';
+import { prepApiError } from '../../../../utils/apiUtils';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
-import { getZodErrorsInfo } from '../../../../utils/zodUtils';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -16,13 +15,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         }
         const unparsed = req.query.unparsed === 'true';
         const data = await fetchInntektsmeldinger(req, saksnr, unparsed);
-        res.send(data);
+        return res.send(data);
     } catch (err) {
         const logger = getLogger(req);
-        const parseError = err instanceof z.ZodError ? JSON.stringify(getZodErrorsInfo(err)) : undefined;
-
-        logger.error(`Hent inntektsmeldinger feilet: ${parseError || err}`);
-        res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
+        logger.error(`Hent inntektsmeldinger feilet: ${prepApiError(err)}`);
+        return res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
     }
 }
 

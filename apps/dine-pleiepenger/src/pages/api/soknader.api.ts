@@ -19,14 +19,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         if (nyeste && response.length > 0) {
             // Returner kun nylig opprettet
-            res.send(response.filter(opprettetSisteTreDager));
+            return res.send(response.filter(opprettetSisteTreDager));
         } else {
             // Returner alle
-            res.send(response);
+            return res.send(response);
         }
     } catch (err) {
         getLogger(req).error(`Hent søknader feilet: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente søknader' });
+        return res.status(500).json({ error: 'Kunne ikke hente søknader' });
     }
 }
 

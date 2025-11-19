@@ -15,7 +15,7 @@ import useSWR from 'swr';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInnsynsdataFeilet';
 import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
-import PageLoading from '../components/page-layout/page-loading/PageLoading';
+import LoadingPage from '../components/page-layout/loading-page/LoadingPage';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { getFaro, initInstrumentation, pinoLevelToFaroLevel } from '../faro/faro';
 import { useVerifyCurrentUser } from '../hooks/useVerifyCurrentUser';
@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
 
     if (isLoading) {
         return (
-            <PageLoading
+            <LoadingPage
                 title="Henter informasjon ..."
                 documentTitle="Henter informasjon - Dine pleiepenger for sykt barn"
             />

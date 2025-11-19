@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.1
+
+### Patch Changes
+
+- Rydde loggmeldinger, redirect hvis sak ikke i metadata, smårydding ellers
+
 ## 2.0.0
 
 ### Major Changes

@@ -5,6 +5,7 @@ import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { InnsynsdataDto } from '../../server/dto-schemas/innsynsdataDtoSchema';
 import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
 import { fetchSøker } from '../../server/fetchers/fetchSøker';
+import { prepApiError } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { fetchAppStatus } from './appStatus.api';
 
@@ -31,17 +32,17 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             sakerMetadata,
             harSak: sakerMetadata.length > 0,
         };
-        res.json(innsynsdata);
+        return res.json(innsynsdata);
     } catch (err) {
-        logger.error(`Hent innsynsdata feilet: ${err}`);
+        logger.error(`Hent innsynsdata feilet: ${prepApiError(err)}`);
         if (
             isAxiosError(err) &&
             (err.response?.status === HttpStatusCode.Forbidden ||
                 err.response?.status === HttpStatusCode.UnavailableForLegalReasons)
         ) {
-            res.status(403).json({ error: 'Ikke tilgang' });
+            return res.status(403).json({ error: 'Ikke tilgang' });
         } else {
-            res.status(500).json({ error: 'Kunne ikke hente innsynsdata' });
+            return res.status(500).json({ error: 'Kunne ikke hente innsynsdata' });
         }
     }
 }

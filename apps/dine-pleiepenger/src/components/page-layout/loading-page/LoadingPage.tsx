@@ -9,7 +9,7 @@ interface Props {
     documentTitle?: string;
 }
 
-const PageLoading = ({ title = 'Henter informasjon ...', documentTitle }: Props) => {
+const LoadingPage = ({ title = 'Henter informasjon ...', documentTitle }: Props) => {
     return (
         <EmptyPage>
             {documentTitle && <Head>{documentTitle}</Head>}
@@ -23,4 +23,4 @@ const PageLoading = ({ title = 'Henter informasjon ...', documentTitle }: Props)
     );
 };
 
-export default PageLoading;
+export default LoadingPage;

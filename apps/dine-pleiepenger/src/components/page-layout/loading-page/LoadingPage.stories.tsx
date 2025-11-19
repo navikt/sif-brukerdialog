@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import PageLoading from './PageLoading';
+import LoadingPage from './LoadingPage';
 
-const meta: Meta<typeof PageLoading> = {
-    component: PageLoading,
-    title: 'Components/PageLoading',
+const meta: Meta<typeof LoadingPage> = {
+    component: LoadingPage,
+    title: 'Components/LoadingPage',
     parameters: {
         layout: 'fullscreen',
     },
 };
 export default meta;
 
-type Story = StoryObj<typeof PageLoading>;
+type Story = StoryObj<typeof LoadingPage>;
 
 export const Default: Story = {
     args: {},

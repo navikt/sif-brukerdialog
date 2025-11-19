@@ -6,6 +6,12 @@ import { fetchDocumentStream } from '../../../server/fetchers/fetchDocumentStrea
 import { ApiServices } from '../../../server/types/ApiServices';
 import { getContextForApiHandler } from '../../../utils/apiUtils';
 
+export const config = {
+    api: {
+        responseLimit: false,
+    },
+};
+
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {
         query: { info, dokumentTittel },
@@ -30,7 +36,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const nodeStream = Readable.fromWeb(stream as any);
         nodeStream.pipe(res);
     } catch {
-        res.status(500).json({ error: 'Kunne ikke hente dokument' });
+        return res.status(500).json({ error: 'Kunne ikke hente dokument' });
     }
 }
 

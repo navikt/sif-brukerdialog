@@ -26,13 +26,16 @@ export const fetchSakerMetadata = async (
         'application/json',
     );
     const logger = getLogger(req);
+
+    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
+        logger.info(`Unparsed, fetching raw data from ${url}`);
+        const response = await axios.get(url, { headers });
+        return response.data;
+    }
+
     logger.info(`Fetching sakerMetadata from url: ${url}`);
     const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
     logger.info(`Response-status from request: ${response.status}`);
-
-    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-        return response.data;
-    }
 
     logger.info(`Parser response data`);
     const parsedData = z

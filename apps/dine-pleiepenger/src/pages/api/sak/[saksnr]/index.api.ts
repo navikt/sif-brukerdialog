@@ -5,6 +5,7 @@ import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchInntektsmeldinger } from '../../../../server/fetchers/fetchInntektsmeldinger';
 import { fetchSak } from '../../../../server/fetchers/fetchSak';
 import { serverApiUtils } from '../../../../server/utils/serverApiUtils';
+import { prepApiError } from '../../../../utils/apiUtils';
 import { Feature } from '../../../../utils/features';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
 
@@ -27,10 +28,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         let inntektsmeldinger: innsyn.SakInntektsmeldingDto[] = [];
         if (Feature.INNTEKTSMELDING_ENABLED) {
             inntektsmeldinger = await fetchInntektsmeldinger(req, saksnr, unparsed);
+        } else {
+            logger.info(
+                `Henter ikke inntektsmeldinger. Feature.INNTEKTSMELDING_ENABLED=${Feature.INNTEKTSMELDING_ENABLED}`,
+            );
         }
 
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-            res.json({
+            return res.json({
                 sak,
                 inntektsmeldinger,
             });
@@ -45,12 +50,20 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             return res.status(404).json({ error: 'Inntektsmeldinger ikke funnet' });
         }
 
-        logger.info(`Sak og inntektsmeldinger hentet for saksnummer: ${saksnr}`);
-        res.json({ sak, inntektsmeldinger });
+        // Suksess
+        if (Feature.INNTEKTSMELDING_ENABLED) {
+            logger.info(`Sak og inntektsmeldinger hentet for saksnummer: ${saksnr}`);
+        } else {
+            logger.info(`Sak hentet for saksnummer: ${saksnr}`);
+        }
+        return res.json({ sak, inntektsmeldinger });
     } catch (err) {
         const logger = getLogger(req);
-        logger.error(`Hent sak og inntektsmeldinger feilet: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
+        logger.error(
+            `Hent sak ${Feature.INNTEKTSMELDING_ENABLED ? 'og inntektsmeldinger ' : ''}feilet`,
+            prepApiError(err),
+        );
+        return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     }
 }
 

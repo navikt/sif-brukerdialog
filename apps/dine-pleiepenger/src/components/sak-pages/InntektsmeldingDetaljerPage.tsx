@@ -12,7 +12,7 @@ import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/InntektsmeldingDetaljer';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';
-import PageLoading from '../page-layout/page-loading/PageLoading';
+import LoadingPage from '../page-layout/loading-page/LoadingPage';
 
 const InntektsmeldingDetaljerPage = () => {
     const router = useRouter();
@@ -30,7 +30,7 @@ const InntektsmeldingDetaljerPage = () => {
     });
 
     if (isLoading) {
-        return <PageLoading title="Laster inntektsmelding..." />;
+        return <LoadingPage title="Laster inntektsmelding..." />;
     }
 
     const renderContent = () => {
