@@ -1,5 +1,12 @@
 # @navikt/sif-common-sentry
 
+## 0.28.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
 ## 0.28.52
 
 ### Patch Changes

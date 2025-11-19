@@ -1,5 +1,12 @@
 # @navikt/sif-validation
 
+## 1.0.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
 ## 1.0.14
 
 ### Patch Changes

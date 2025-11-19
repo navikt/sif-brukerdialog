@@ -1,5 +1,12 @@
 # @navikt/sif-common-utils
 
+## 3.49.50
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
 ## 3.49.49
 
 ### Patch Changes

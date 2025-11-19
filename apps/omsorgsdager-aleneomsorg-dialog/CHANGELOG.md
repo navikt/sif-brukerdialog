@@ -1,5 +1,25 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.51
+    - @navikt/sif-common-formik-ds@2.5.29
+    - @navikt/sif-common-soknad-ds@26.1.14
+    - @navikt/sif-common-forms-ds@21.0.32
+    - @navikt/sif-common-core-ds@10.3.31
+    - @navikt/sif-common-sentry@0.28.53
+    - @navikt/sif-common-utils@3.49.50
+    - @navikt/sif-validation@1.0.15
+    - @navikt/sif-common-ui@0.11.32
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-faro@0.2.8
+    - @navikt/sif-common-hooks@0.3.7
+
 ## 2.28.33
 
 ### Patch Changes

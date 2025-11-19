@@ -1,5 +1,12 @@
 # @navikt/sif-server
 
+## 0.4.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
 ## 0.4.48
 
 ### Patch Changes

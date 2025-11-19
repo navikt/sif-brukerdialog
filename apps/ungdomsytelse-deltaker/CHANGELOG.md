@@ -1,5 +1,23 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.1
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.1
+    - @navikt/sif-common-soknad-ds@26.1.14
+    - @navikt/sif-common-forms-ds@21.0.32
+    - @navikt/sif-common-core-ds@10.3.31
+    - @navikt/sif-common-api@0.4.72
+    - @navikt/sif-common-ui@0.11.32
+    - @navikt/ung-common@0.0.73
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-faro@0.2.8
+
 ## 1.5.12
 
 ### Patch Changes
