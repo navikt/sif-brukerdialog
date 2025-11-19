@@ -8,10 +8,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const unparsed = req.query.unparsed === 'true';
         const data = await fetchSakerMetadata(req, unparsed);
-        res.send(data);
+        return res.send(data);
     } catch (err) {
         getLogger(req).error(`Hent saker feilet: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente saker' });
+        return res.status(500).json({ error: 'Kunne ikke hente saker' });
     }
 }
 
