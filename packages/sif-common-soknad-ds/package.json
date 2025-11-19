@@ -30,7 +30,7 @@
         "js-cookie": "3.0.5",
         "jsdom": "27.1.0",
         "postcss": "8.5.6",
-        "webpack": "5.102.1"
+        "webpack": "5.103.0"
     },
     "devDependencies": {
         "@devexperts/remote-data-ts": "2.1.1",
