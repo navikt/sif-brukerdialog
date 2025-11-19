@@ -77,6 +77,9 @@ export const fetchSak = async (req: NextApiRequest, saksnummer: string, unparsed
     }
 
     logger.info(`Parser response data`);
+    if (typeof response.data !== 'object') {
+        throw new Error(`Sak response data er ikke et objekt. [typeof=${typeof response.data}]`);
+    }
     const parsedData = zSakDtoExtended.parse(response.data) as innsyn.SakDto;
     logger.info(`Sak parsed`);
 

@@ -27,6 +27,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         let inntektsmeldinger: innsyn.SakInntektsmeldingDto[] = [];
         if (Feature.INNTEKTSMELDING_ENABLED) {
             inntektsmeldinger = await fetchInntektsmeldinger(req, saksnr, unparsed);
+        } else {
+            logger.info(
+                `Henter ikke inntektsmeldinger. Feature.INNTEKTSMELDING_ENABLED=${Feature.INNTEKTSMELDING_ENABLED}`,
+            );
         }
 
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
@@ -44,6 +48,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             logger.warn(`Inntektsmeldinger for sak ${saksnr} ikke funnet`);
             return res.status(404).json({ error: 'Inntektsmeldinger ikke funnet' });
         }
+
+        // Suksess
         if (Feature.INNTEKTSMELDING_ENABLED) {
             logger.info(`Sak og inntektsmeldinger hentet for saksnummer: ${saksnr}`);
         } else {
@@ -52,7 +58,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.json({ sak, inntektsmeldinger });
     } catch (err) {
         const logger = getLogger(req);
-        logger.error(`Hent sak og inntektsmeldinger feilet: ${err}`);
+        logger.error(`Hent sak og inntektsmeldinger feilet: ${JSON.stringify(err)}`);
         res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     }
 }
