@@ -2031,7 +2031,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/autocomplete@npm:^6.0.0, @codemirror/autocomplete@npm:^6.19.0":
+"@codemirror/autocomplete@npm:^6.0.0, @codemirror/autocomplete@npm:^6.19.1":
   version: 6.19.1
   resolution: "@codemirror/autocomplete@npm:6.19.1"
   dependencies:
@@ -2043,7 +2043,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/commands@npm:^6.0.0, @codemirror/commands@npm:^6.1.0, @codemirror/commands@npm:^6.9.0":
+"@codemirror/commands@npm:^6.0.0, @codemirror/commands@npm:^6.1.0, @codemirror/commands@npm:^6.10.0":
   version: 6.10.0
   resolution: "@codemirror/commands@npm:6.10.0"
   dependencies:
@@ -2127,7 +2127,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/view@npm:^6.0.0, @codemirror/view@npm:^6.17.0, @codemirror/view@npm:^6.23.0, @codemirror/view@npm:^6.27.0, @codemirror/view@npm:^6.35.0, @codemirror/view@npm:^6.38.6":
+"@codemirror/view@npm:^6.0.0, @codemirror/view@npm:^6.17.0, @codemirror/view@npm:^6.23.0, @codemirror/view@npm:^6.27.0, @codemirror/view@npm:^6.35.0":
   version: 6.38.7
   resolution: "@codemirror/view@npm:6.38.7"
   dependencies:
@@ -2136,6 +2136,18 @@ __metadata:
     style-mod: "npm:^4.1.0"
     w3c-keyname: "npm:^2.2.4"
   checksum: 10/0a5192c57dc33cbb4cadbf14d7c09a343c9398956f88c61ad8f5077597d518697ffa128549a255d895cae611662044578afbe45ac200bd439fa5dd72b0ce0c03
+  languageName: node
+  linkType: hard
+
+"@codemirror/view@npm:^6.38.7":
+  version: 6.38.8
+  resolution: "@codemirror/view@npm:6.38.8"
+  dependencies:
+    "@codemirror/state": "npm:^6.5.0"
+    crelt: "npm:^1.0.6"
+    style-mod: "npm:^4.1.0"
+    w3c-keyname: "npm:^2.2.4"
+  checksum: 10/81b1508015a378e4719d0239254173f0c5cd340c2abf96eb488fe5fb474bdb37ec1f010b9890ced774accd7aeb9443e7337cb6a89544b954273e5ddabece7cea
   languageName: node
   linkType: hard
 
@@ -7887,17 +7899,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:4.14.2":
-  version: 4.14.2
-  resolution: "@sanity/vision@npm:4.14.2"
+"@sanity/vision@npm:4.16.0":
+  version: 4.16.0
+  resolution: "@sanity/vision@npm:4.16.0"
   dependencies:
-    "@codemirror/autocomplete": "npm:^6.19.0"
-    "@codemirror/commands": "npm:^6.9.0"
+    "@codemirror/autocomplete": "npm:^6.19.1"
+    "@codemirror/commands": "npm:^6.10.0"
     "@codemirror/lang-javascript": "npm:^6.2.4"
     "@codemirror/language": "npm:^6.11.3"
     "@codemirror/search": "npm:^6.5.11"
     "@codemirror/state": "npm:^6.5.2"
-    "@codemirror/view": "npm:^6.38.6"
+    "@codemirror/view": "npm:^6.38.7"
     "@juggle/resize-observer": "npm:^3.4.0"
     "@lezer/highlight": "npm:^1.2.1"
     "@rexxars/react-json-inspector": "npm:^9.0.1"
@@ -7912,7 +7924,7 @@ __metadata:
     json5: "npm:^2.2.3"
     lodash: "npm:^4.17.21"
     quick-lru: "npm:^5.1.1"
-    react-compiler-runtime: "npm:19.1.0-rc.3"
+    react-compiler-runtime: "npm:1.0.0"
     react-fast-compare: "npm:^3.2.2"
     react-rx: "npm:^4.2.2"
     rxjs: "npm:^7.8.2"
@@ -7920,7 +7932,7 @@ __metadata:
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1.15
-  checksum: 10/5d2eb7ee1d395497c50aedb69a4c349bc6bfe6f8118a19aea52aeef18b85b3c944d8e525109dc1d6ed9598801f3f0d4c8f7445100b8782c4dc63ff854e8e70df
+  checksum: 10/9cdfc05cdf6adb5114e38db695c94b605872d54479917e2fb386026cb411e28989fc29bb5d070048b8d5d642be9cc0bc297777566eadb1918b3d8f192239da7f
   languageName: node
   linkType: hard
 
@@ -11117,7 +11129,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:4.14.2"
+    "@sanity/vision": "npm:4.16.0"
     "@types/react": "npm:19.2.2"
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.1"
