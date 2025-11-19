@@ -10,7 +10,7 @@
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@tanstack/react-query": "5.90.7",
+        "@tanstack/react-query": "5.90.10",
         "axios": "1.13.2",
         "dayjs": "1.11.19",
         "object-hash": "3.0.0",
@@ -18,7 +18,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.2",
+        "@types/react": "19.2.6",
         "react": "19.2.0",
         "typescript": "5.9.3",
         "zod": "4.1.12"
