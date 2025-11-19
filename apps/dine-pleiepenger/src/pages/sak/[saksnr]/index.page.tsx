@@ -1,5 +1,6 @@
 import { withAuthenticatedPage } from '../../../auth/withAuthentication';
 import PageLoading from '../../../components/page-layout/page-loading/PageLoading';
+import SakErrorPage from '../../../components/sak-pages/SakErrorPage';
 import SakIkkeFunnetPage from '../../../components/sak-pages/SakIkkeFunnetPage';
 import SakPage from '../../../components/sak-pages/SakPage';
 import { usePleietrengendeMedSakFromRoute } from '../../../hooks/usePleietrengendeMedSakFromRoute';
@@ -16,7 +17,11 @@ export default function SakRoutePage() {
         );
     }
 
-    if (error || !pleietrengendeMedSak) {
+    if (error) {
+        return <SakErrorPage saksnr={saksnr} error={error} />;
+    }
+
+    if (!pleietrengendeMedSak) {
         return <SakIkkeFunnetPage saksnr={saksnr} />;
     }
 

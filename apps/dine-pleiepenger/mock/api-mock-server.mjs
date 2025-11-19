@@ -21,6 +21,10 @@ const getMockData = (scenario) => {
             readFileSync(join(__dirname, './data/ingen-sak/saker-metadata.json'), 'utf-8'),
         );
         return { sakerMetadata, søker, saker: [], soknader };
+    } else if (scenario === 'sak-error') {
+        const søker = JSON.parse(readFileSync(join(__dirname, './data/ingen-sak/soker.json'), 'utf-8'));
+        const sakerMetadata = JSON.parse(readFileSync(join(__dirname, './data/to-saker/saker-metadata.json'), 'utf-8'));
+        return { sakerMetadata, søker, saker: [], soknader: [] };
     } else if (scenario === 'debug') {
         const søker = JSON.parse(readFileSync(join(__dirname, './data/debug/soker.json'), 'utf-8'));
         const soknader = JSON.parse(readFileSync(join(__dirname, './data/debug/soknader.json'), 'utf-8'));
@@ -64,8 +68,9 @@ const getMockData = (scenario) => {
 };
 
 // const mockData = getMockData('debug');
+const mockData = getMockData('sak-error');
 // const mockData = getMockData('en-sak');
-const mockData = getMockData('to-saker');
+// const mockData = getMockData('to-saker');
 
 server.use(express.json());
 
