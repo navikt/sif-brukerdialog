@@ -35,7 +35,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         }
 
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-            res.json({
+            return res.json({
                 sak,
                 inntektsmeldinger,
             });
