@@ -28,7 +28,6 @@ const SakErrorPage = ({ saksnr }: Props) => {
             pageHeader={
                 <PageHeader
                     title="Din pleiepengesak for sykt barn"
-                    hidePleiepengerIcon={true}
                     byline={
                         <BodyShort as="div">
                             <span>
