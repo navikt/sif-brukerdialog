@@ -37,7 +37,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
         const nodeStream = Readable.fromWeb(stream as any);
         nodeStream.pipe(res);
     } catch {
-        res.status(500).json({ error: 'Kunne ikke hente arbeidsgivermelding' });
+        return res.status(500).json({ error: 'Kunne ikke hente arbeidsgivermelding' });
     }
 }
 

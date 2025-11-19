@@ -9,11 +9,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const unparsed = req.query.unparsed === 'true';
         const data = await fetchSaksbehandlingstid(req, unparsed);
-        res.send(data);
+        return res.send(data);
     } catch (err) {
         const logger = getLogger(req);
-        logger.error(`Hent saksbehandlingstid feilet: ${prepApiError(err)}`);
-        res.status(500).json({ error: 'Kunne ikke hente saksbehandlingstid' });
+        logger.error(`Hent saksbehandlingstid feilet`, prepApiError(err));
+        return res.status(500).json({ error: 'Kunne ikke hente saksbehandlingstid' });
     }
 }
 

@@ -15,11 +15,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         }
         const unparsed = req.query.unparsed === 'true';
         const data = await fetchInntektsmeldinger(req, saksnr, unparsed);
-        res.send(data);
+        return res.send(data);
     } catch (err) {
         const logger = getLogger(req);
         logger.error(`Hent inntektsmeldinger feilet: ${prepApiError(err)}`);
-        res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
+        return res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
     }
 }
 

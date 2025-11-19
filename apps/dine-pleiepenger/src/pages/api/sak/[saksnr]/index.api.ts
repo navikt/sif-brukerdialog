@@ -56,14 +56,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         } else {
             logger.info(`Sak hentet for saksnummer: ${saksnr}`);
         }
-        res.json({ sak, inntektsmeldinger });
+        return res.json({ sak, inntektsmeldinger });
     } catch (err) {
         const logger = getLogger(req);
         logger.error(
             `Hent sak ${Feature.INNTEKTSMELDING_ENABLED ? 'og inntektsmeldinger ' : ''}feilet`,
             prepApiError(err),
         );
-        res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
+        return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     }
 }
 

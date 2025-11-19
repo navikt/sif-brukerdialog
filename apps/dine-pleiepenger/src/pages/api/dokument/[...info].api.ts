@@ -36,7 +36,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const nodeStream = Readable.fromWeb(stream as any);
         nodeStream.pipe(res);
     } catch {
-        res.status(500).json({ error: 'Kunne ikke hente dokument' });
+        return res.status(500).json({ error: 'Kunne ikke hente dokument' });
     }
 }
 
