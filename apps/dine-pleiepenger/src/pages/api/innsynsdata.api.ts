@@ -5,6 +5,7 @@ import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { InnsynsdataDto } from '../../server/dto-schemas/innsynsdataDtoSchema';
 import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
 import { fetchSøker } from '../../server/fetchers/fetchSøker';
+import { prepApiError } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { fetchAppStatus } from './appStatus.api';
 
@@ -33,7 +34,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         };
         res.json(innsynsdata);
     } catch (err) {
-        logger.error(`Hent innsynsdata feilet: ${err}`);
+        logger.error(`Hent innsynsdata feilet: ${prepApiError(err)}`);
         if (
             isAxiosError(err) &&
             (err.response?.status === HttpStatusCode.Forbidden ||

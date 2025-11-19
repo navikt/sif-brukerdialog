@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSaksbehandlingstid } from '../../server/fetchers/fetchSaksbehandlingstid';
+import { prepApiError } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -11,7 +12,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.send(data);
     } catch (err) {
         const logger = getLogger(req);
-        logger.error(`Hent saksbehandlingstid feilet: ${err}`);
+        logger.error(`Hent saksbehandlingstid feilet: ${prepApiError(err)}`);
         res.status(500).json({ error: 'Kunne ikke hente saksbehandlingstid' });
     }
 }

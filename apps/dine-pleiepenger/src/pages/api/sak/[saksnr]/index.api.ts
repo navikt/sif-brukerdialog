@@ -5,6 +5,7 @@ import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchInntektsmeldinger } from '../../../../server/fetchers/fetchInntektsmeldinger';
 import { fetchSak } from '../../../../server/fetchers/fetchSak';
 import { serverApiUtils } from '../../../../server/utils/serverApiUtils';
+import { prepApiError } from '../../../../utils/apiUtils';
 import { Feature } from '../../../../utils/features';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
 
@@ -58,7 +59,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.json({ sak, inntektsmeldinger });
     } catch (err) {
         const logger = getLogger(req);
-        logger.error(`Hent sak og inntektsmeldinger feilet: ${JSON.stringify(err)}`);
+        logger.error(`Hent sak og inntektsmeldinger feilet`, prepApiError(err));
         res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     }
 }

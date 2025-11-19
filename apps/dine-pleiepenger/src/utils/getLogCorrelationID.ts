@@ -26,3 +26,5 @@ export const getLogger = (req: NextApiRequest) => {
         },
     };
 };
+
+export type Logger = ReturnType<typeof getLogger>;

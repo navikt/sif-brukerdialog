@@ -1,7 +1,10 @@
+import { isAxiosError } from 'axios';
 import { NextApiRequest } from 'next';
+import z from 'zod';
 
 import { createDemoRequestContext, createRequestContext } from '../auth/withAuthentication';
 import { isLocal } from './env';
+import { getZodErrorsInfo } from './zodUtils';
 
 export const getXRequestId = (req: NextApiRequest): string => {
     return (req.headers['x-request-id'] as string) || 'undefined-x-request-id';
@@ -50,4 +53,13 @@ export const serverResponseTransform = (data: string): unknown => {
     } catch {
         return data;
     }
+};
+
+export const prepApiError = (err: any): unknown => {
+    if (err instanceof z.ZodError) {
+        return JSON.stringify(getZodErrorsInfo(err));
+    } else if (isAxiosError(err)) {
+        return err.message;
+    }
+    return err;
 };
