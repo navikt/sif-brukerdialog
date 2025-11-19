@@ -17,13 +17,16 @@ export const fetchSøknader = async (req: NextApiRequest, unparsed?: boolean): P
         'application/json',
     );
     const logger = getLogger(req);
+
+    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
+        logger.info(`Unparsed, fetching raw data from ${url}`);
+        const response = await axios.get(url, { headers });
+        return response.data;
+    }
+
     logger.info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
     logger.info(`Response-status from request: ${response.status}`);
-
-    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-        return response.data;
-    }
 
     logger.info(`Parser response data`);
     const parsedData = innsendteSøknaderSchema.parse(response.data);

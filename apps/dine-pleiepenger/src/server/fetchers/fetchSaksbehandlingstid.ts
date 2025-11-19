@@ -28,16 +28,19 @@ export const fetchSaksbehandlingstid = async (
         'application/json',
     );
     const logger = getLogger(req);
+
+    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
+        logger.info(`Unparsed, fetching raw data from ${url}`);
+        const response = await axios.get(url, { headers });
+        return response.data;
+    }
+
     logger.info(`Fetching saksbehandlingstid from url: ${url}`);
     const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
     logger.info(`Response-status from request: ${response.status}`);
 
-    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-        return response.data;
-    }
-
     logger.info(`Parser response data`);
-    /** saksbehandlingstidUker er definert som bigInt i zod; vi trenger å overstyre den til number */
+    // saksbehandlingstidUker er definert som bigInt i zod; vi trenger å overstyre den til number
     const parsedData = saksbehandlingstidDtoSchema.parse(response.data) as innsyn.SaksbehandlingtidDto;
     logger.info(`Saksbehandlingstid parsed`);
     return parsedData;

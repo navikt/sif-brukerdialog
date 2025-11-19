@@ -68,13 +68,16 @@ export const fetchSak = async (req: NextApiRequest, saksnummer: string, unparsed
         'application/json',
     );
     const logger = getLogger(req);
+
+    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
+        logger.info(`Unparsed, fetching raw data from ${url}`);
+        const response = await axios.get(url, { headers });
+        return response.data;
+    }
+
     logger.info(`Fetching sak ${saksnummer} from url: ${url}`);
     const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
     logger.info(`Response-status from request: ${response.status}`);
-
-    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-        return response.data;
-    }
 
     logger.info(`Parser response data`);
     if (typeof response.data !== 'object' || response.data === null) {
