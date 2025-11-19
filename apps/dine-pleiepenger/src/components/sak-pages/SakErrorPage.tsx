@@ -20,7 +20,7 @@ const SakErrorPage = ({ saksnr }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [],
         inkluderDinePleiepengesakerLenke: true,
-        saksnummer: saksnr, // Brukes ikke, men gjør at bruker får lenke til velg-sak siden
+        saksnummer: saksnr,
     });
 
     return (
