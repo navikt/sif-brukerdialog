@@ -1,5 +1,5 @@
 import { withAuthenticatedPage } from '../../../../auth/withAuthentication';
-import PageLoading from '../../../../components/page-layout/page-loading/PageLoading';
+import LoadingPage from '../../../../components/page-layout/loading-page/LoadingPage';
 import InntektsmeldingerPage from '../../../../components/sak-pages/InntektsmeldingerPage';
 import SakIkkeFunnetPage from '../../../../components/sak-pages/SakIkkeFunnetPage';
 import { usePleietrengendeMedSakFromRoute } from '../../../../hooks/usePleietrengendeMedSakFromRoute';
@@ -8,7 +8,7 @@ export default function InntektsmeldingerRoutePage() {
     const { pleietrengendeMedSak, saksnr, isLoading } = usePleietrengendeMedSakFromRoute();
 
     if (isLoading) {
-        return <PageLoading title="Henter informasjon ..." />;
+        return <LoadingPage title="Henter informasjon ..." />;
     }
 
     if (!pleietrengendeMedSak) {

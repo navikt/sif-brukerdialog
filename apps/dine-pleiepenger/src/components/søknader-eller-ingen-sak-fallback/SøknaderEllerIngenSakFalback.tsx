@@ -12,7 +12,7 @@ import HvaSkjer from '../hva-skjer/HvaSkjer';
 import IngenSakEllerSøknadPage from '../ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
 import OppdatereSakLenker from '../oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
-import PageLoading from '../page-layout/page-loading/PageLoading';
+import LoadingPage from '../page-layout/loading-page/LoadingPage';
 import SaksbehandlingstidPanel from '../saksbehandlingstid/Saksbehandlingstid';
 import SkrivTilOssLenker from '../skriv-til-oss-lenker/SkrivTilOssLenker';
 
@@ -35,7 +35,7 @@ const SøknaderEllerIngenSakFalback = () => {
     );
 
     if (isLoading) {
-        return <PageLoading />;
+        return <LoadingPage />;
     }
 
     if (error || !innsendteSøknader || innsendteSøknader.length === 0) {

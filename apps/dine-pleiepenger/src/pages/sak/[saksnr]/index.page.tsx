@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import { withAuthenticatedPage } from '../../../auth/withAuthentication';
-import PageLoading from '../../../components/page-layout/page-loading/PageLoading';
+import LoadingPage from '../../../components/page-layout/loading-page/LoadingPage';
 import SakIkkeFunnetPage from '../../../components/sak-pages/SakIkkeFunnetPage';
 import SakPage from '../../../components/sak-pages/SakPage';
 import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
@@ -14,13 +15,18 @@ export default function SakRoutePage() {
         innsynsdata: { sakerMetadata },
     } = useInnsynsdataContext();
 
+    useEffect(() => {
+        if (saksnr && sakerMetadata && !sakerMetadata.find((s) => s.saksnummer === saksnr)) {
+            router.push('/');
+        }
+    }, [saksnr, sakerMetadata, router]);
+
     if (!saksnr) {
         return <SakIkkeFunnetPage saksnr={saksnr} />;
     }
 
     if (sakerMetadata && !sakerMetadata.find((s) => s.saksnummer === saksnr)) {
-        router.push('/');
-        return <PageLoading />;
+        return <LoadingPage />;
     }
 
     return (
