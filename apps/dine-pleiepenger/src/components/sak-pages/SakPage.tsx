@@ -21,9 +21,10 @@ interface Props {
     saksnr: string;
     pleietrengendeMedSak?: PleietrengendeMedSak;
     isLoading?: boolean;
+    isError?: boolean;
 }
 
-const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading }: Props) => {
+const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [],
         saksnummer: saksnr,
@@ -34,7 +35,7 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading }: Props) => {
     const { sak, inntektsmeldinger, pleietrengende } = pleietrengendeMedSak || {};
 
     const getContent = () => {
-        // Vi beholder samme tittel som når vi har info
+        // Vi beholder samme tittel som når vi har info */
         const tittel = 'Dette skjer i saken';
         if (sak) {
             return <StatusISak sak={sak} tittel={tittel} inntektsmeldinger={inntektsmeldinger || []} />;
@@ -59,7 +60,15 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading }: Props) => {
                     {tittel}
                 </Heading>
                 <Alert variant="error" className="mb-6">
-                    Vi klarte dessverre ikke å hente informasjon om pleiepengesaken din. Prøv igjen senere.
+                    {isError ? (
+                        <BodyShort>
+                            Det oppstod en feil når vi hentet informasjon om pleiepengesaken din. Prøv igjen senere.
+                        </BodyShort>
+                    ) : (
+                        <BodyShort>
+                            Vi klarte dessverre ikke å hente informasjon om pleiepengesaken din. Prøv igjen senere.
+                        </BodyShort>
+                    )}
                 </Alert>
             </>
         );
