@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Heading, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
@@ -44,6 +44,9 @@ const SakErrorPage = ({ saksnr }: Props) => {
             <VStack gap="12">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
+                        <Heading size="medium" level="2" spacing={true}>
+                            Hent informasjon om sak feilet
+                        </Heading>
                         <Alert variant="error" className="mb-6">
                             Vi klarte dessverre ikke å hente informasjon om pleiepengesaken din. Prøv igjen senere.
                         </Alert>
