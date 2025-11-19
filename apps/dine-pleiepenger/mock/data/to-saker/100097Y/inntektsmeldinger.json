@@ -1,0 +1,27 @@
+[
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "100097Y",
+        "innsendingstidspunkt": "2025-09-15T16:48:26",
+        "kildesystem": "Dolly",
+        "arbeidsgiver": {
+            "organisasjon": { "navn": "SNILL TORPEDO", "organisasjonsnummer": "967170232" },
+            "privat": null
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454018144",
+        "mottattDato": "2025-09-15",
+        "inntektBeløp": 45000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2025-07-01",
+        "oppgittFravær": [],
+        "refusjon": null,
+        "inntektsmeldingType": null,
+        "endringerRefusjon": []
+    }
+]

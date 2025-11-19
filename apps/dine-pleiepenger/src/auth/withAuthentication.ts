@@ -5,7 +5,6 @@ import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, Ne
 
 import { RequestContext } from '../types/RequestContext';
 import { browserEnv, isLocal } from '../utils/env';
-import { getSessionId } from '../utils/userSessionId';
 import fakeLocalAuthTokenSet from './fakeLocalAuthTokenSet.json';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
@@ -13,6 +12,11 @@ export interface ServerSidePropsResult {}
 
 type ApiHandler = (req: NextApiRequest, res: NextApiResponse) => Promise<unknown> | unknown;
 type PageHandler = (context: GetServerSidePropsContext) => Promise<GetServerSidePropsResult<ServerSidePropsResult>>;
+
+function getSessionId(req: GetServerSidePropsContext['req'] | NextApiRequest): string {
+    const sessionId = req.cookies['next-session-id'];
+    return sessionId || 'fakeSession';
+}
 
 export interface TokenPayload {
     sub: string;

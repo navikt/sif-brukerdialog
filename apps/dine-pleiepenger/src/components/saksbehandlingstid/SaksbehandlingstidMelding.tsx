@@ -2,7 +2,7 @@ import { BodyShort } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { AppText } from '../../i18n';
-import { Venteårsak } from '../../types/Venteårsak';
+import { Venteårsak } from '../../types';
 import { erSaksbehandlingsfristPassert } from '../../utils/sakUtils';
 
 interface Props {

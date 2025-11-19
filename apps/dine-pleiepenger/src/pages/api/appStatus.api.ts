@@ -4,6 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { browserEnv } from '../../utils/env';
+import { Feature } from '../../utils/features';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { AMPLITUDE_APPLICATION_KEY } from '../_app.page';
 
@@ -18,6 +19,10 @@ export const fetchAppStatus = async (): Promise<ApplicationState | undefined> =>
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const logger = getLogger(req);
+    if (Feature.HENT_APPSTATUS === false) {
+        logger.info(`Feature AppStatus disabled, henter ikke appstatus`);
+        return;
+    }
     logger.info(`Henter appStatus`);
     try {
         res.send(await fetchAppStatus());

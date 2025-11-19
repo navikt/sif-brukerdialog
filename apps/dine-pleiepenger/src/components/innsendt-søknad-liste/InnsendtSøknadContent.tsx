@@ -1,13 +1,10 @@
-import { Box, Heading, Link, List } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { FileIcon } from '@navikt/aksel-icons';
+import { Box, Heading, Link, List } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useIntl } from 'react-intl';
 
 import { AppText } from '../../i18n';
-import { InnsendtSøknadArbeidsgiver } from '../../server/api-models/ArbeidsgivereSchema';
-import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/InnsendtSøknad';
-import { InnsendtSøknadDokument } from '../../types/InnsendtSøknadDocument';
-import { Organisasjon } from '../../types/Organisasjon';
+import { Dokument, InnsendtSøknad, InnsendtSøknadstype, Organisasjon } from '../../types';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../utils/dokumentUtils';
 import { browserEnv } from '../../utils/env';
 import { getOrganisasjonsnavnEllerOrgNummer } from '../../utils/sakUtils';
@@ -38,7 +35,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
         return false;
     };
 
-    const mapOrganisasjoner = (organisasjon: Organisasjon | InnsendtSøknadArbeidsgiver) => {
+    const mapOrganisasjoner = (organisasjon: Organisasjon) => {
         return (
             <li key={organisasjon.organisasjonsnummer}>
                 <Link
@@ -59,7 +56,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
         );
     };
 
-    const mapDokumenter = (dokument: InnsendtSøknadDokument) => {
+    const mapDokumenter = (dokument: Dokument) => {
         return (
             <li key={dokument.dokumentInfoId}>
                 <Link

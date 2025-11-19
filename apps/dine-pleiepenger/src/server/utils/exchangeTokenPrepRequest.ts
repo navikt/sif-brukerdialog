@@ -2,27 +2,27 @@ import { createChildLogger } from '@navikt/next-logger';
 import { requestOboToken } from '@navikt/oasis';
 
 import { browserEnv, getServerEnv, isLocal, ServerEnv } from '../../utils/env';
-import { ApiService } from '../apiService';
+import { ApiServices } from '../types/ApiServices';
 
 const getAudienceAndServerUrl = (
-    service: ApiService,
+    service: ApiServices,
     serverEnv: ServerEnv,
 ): {
     audience: string;
     serverUrl: string;
 } => {
     switch (service) {
-        case ApiService.k9Brukerdialog:
+        case ApiServices.k9Brukerdialog:
             return {
                 audience: serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!,
                 serverUrl: browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!,
             };
-        case ApiService.k9SakInnsyn:
+        case ApiServices.k9SakInnsyn:
             return {
                 audience: serverEnv.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE!,
                 serverUrl: browserEnv.NEXT_PUBLIC_API_URL_K9_SAK_INNSYN!,
             };
-        case ApiService.sifInnsyn:
+        case ApiServices.sifInnsyn:
             return {
                 audience: serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!,
                 serverUrl: browserEnv.NEXT_PUBLIC_API_URL_INNSYN!,
@@ -31,7 +31,7 @@ const getAudienceAndServerUrl = (
 };
 
 export const exchangeTokenAndPrepRequest = async (
-    service: ApiService,
+    service: ApiServices,
     context: any,
     path: string,
     contentType: string,

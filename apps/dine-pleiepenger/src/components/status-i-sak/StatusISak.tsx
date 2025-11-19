@@ -4,7 +4,7 @@ import { default as NextLink } from 'next/link';
 import { useState } from 'react';
 
 import { AppText, useAppIntl } from '../../i18n';
-import { Sak } from '../../server/api-models/SakSchema';
+import { Inntektsmelding, Sak } from '../../types';
 import { getAlleHendelserISak } from '../../utils/sakUtils';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 import StatusISakHeading from './parts/StatusISakHeading';
@@ -15,13 +15,14 @@ interface Props {
     sak: Sak;
     tittel?: string;
     visAlleHendelser?: boolean;
+    inntektsmeldinger: Inntektsmelding[];
 }
 
-const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
+const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props) => {
     const [reverseDirection, setReverseDirection] = useState(false);
     const { text } = useAppIntl();
-    const hendelser = getAlleHendelserISak(sak);
-    const processSteps = getProcessStepsFraSakshendelser(text, hendelser);
+    const sakshendelser = getAlleHendelserISak(sak, inntektsmeldinger);
+    const processSteps = getProcessStepsFraSakshendelser(text, sakshendelser);
 
     if (processSteps.length === 0) {
         return (
@@ -44,7 +45,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
         processSteps.reverse();
     }
     const visibleSteps = visAlleHendelser ? processSteps : [...processSteps].splice(-3);
-    const finnnesFlereHendelser = visibleSteps.length < processSteps.length;
+    const finnesFlereHendelser = visibleSteps.length < processSteps.length;
 
     return (
         <VStack gap="3">
@@ -63,7 +64,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
             <Box className="bg-white p-6 pb-4 pt-6 rounded-large">
                 <VStack gap="8">
                     <StatusISakSteps steps={visibleSteps} />
-                    {finnnesFlereHendelser && visAlleHendelser === undefined ? (
+                    {finnesFlereHendelser && visAlleHendelser === undefined ? (
                         <Box className="ml-4 mb-4">
                             <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
                                 Se alle hendelser

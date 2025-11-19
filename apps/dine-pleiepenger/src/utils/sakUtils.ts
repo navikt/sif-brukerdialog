@@ -1,18 +1,24 @@
+import { Arbeidstaker } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import sortBy from 'lodash.sortby';
 
-import { Aksjonspunkt } from '../server/api-models/AksjonspunktSchema';
-import { Behandling } from '../server/api-models/BehandlingSchema';
-import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
-import { Innsendelse, Pleiepengesøknad } from '../server/api-models/InnsendelseSchema';
-import { Innsendelsestype } from '../server/api-models/Innsendelsestype';
-import { Sak } from '../server/api-models/SakSchema';
+import {
+    Aksjonspunkt,
+    Behandling,
+    BehandlingStatus,
+    InnsendelseISak,
+    Inntektsmelding,
+    InntektsmeldingStatus,
+    Organisasjon,
+    Sak,
+    SøknadISak,
+    Venteårsak,
+} from '../types';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
-import { Organisasjon } from '../types/Organisasjon';
+import { Innsendelsestype } from '../types/Innsendelsestype';
 import { Sakshendelse, Sakshendelser } from '../types/Sakshendelse';
-import { Venteårsak } from '../types/Venteårsak';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -34,8 +40,8 @@ export const sortBehandlingerNyesteFørst = (
     return sortedBehandlinger;
 };
 
-export const sortInnsendelser = (innsendelser: Innsendelse[]): Innsendelse[] => {
-    return sortBy(innsendelser, ({ k9FormatInnsendelse }: Innsendelse) =>
+export const sortInnsendelser = (innsendelser: InnsendelseISak[]): InnsendelseISak[] => {
+    return sortBy(innsendelser, ({ k9FormatInnsendelse }: InnsendelseISak) =>
         k9FormatInnsendelse.mottattDato.getTime(),
     ).reverse();
 };
@@ -57,7 +63,7 @@ export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | unde
     };
 };
 
-const mapInnsendelseTilSakshendelse = (innsendelse: Innsendelse): Sakshendelse => {
+const mapInnsendelseTilSakshendelse = (innsendelse: InnsendelseISak): Sakshendelse => {
     switch (innsendelse.innsendelsestype) {
         case Innsendelsestype.ETTERSENDELSE:
             return {
@@ -83,14 +89,14 @@ export const harBehandlingSøknadEllerEndringsmelding = (behandling: Behandling)
 
 export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Sakshendelse[] => {
     const { innsendelser, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
-    const hendelser: Sakshendelse[] = [];
+    const hendelserIBehandling: Sakshendelse[] = [];
 
     innsendelser.forEach((søknad) => {
-        hendelser.push(mapInnsendelseTilSakshendelse(søknad));
+        hendelserIBehandling.push(mapInnsendelseTilSakshendelse(søknad));
     });
 
     if (aksjonspunkter.length >= 1) {
-        hendelser.push({
+        hendelserIBehandling.push({
             type: Sakshendelser.AKSJONSPUNKT,
             venteårsak: getViktigsteVenteårsakForAksjonspunkter(aksjonspunkter),
         });
@@ -99,31 +105,37 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     /** Melding om vedtak eller fremtidig vedtak skal kun vises hvis behandling inneholder endringsmelding eller søknad */
     if (harBehandlingSøknadEllerEndringsmelding(behandling)) {
         /** Avsluttet eller forventet svar på søknad */
-        if (status === Behandlingsstatus.AVSLUTTET && avsluttetTidspunkt) {
-            hendelser.push({
+        if (status === BehandlingStatus.AVSLUTTET && avsluttetTidspunkt) {
+            hendelserIBehandling.push({
                 type: Sakshendelser.FERDIG_BEHANDLET,
                 dato: avsluttetTidspunkt,
             });
         } else {
-            hendelser.push({
+            hendelserIBehandling.push({
                 type: Sakshendelser.FORVENTET_SVAR,
                 dato: saksbehandlingFrist,
-                søknadstyperIBehandling: getSøknadstyperIBehandling(innsendelser || []),
+                innsendelsestyperIBehandling: (innsendelser || []).map((s) => s.innsendelsestype),
             });
         }
     }
 
-    return hendelser;
+    return hendelserIBehandling;
 };
 
-export const getSøknadstyperIBehandling = (søknader: Innsendelse[]): Innsendelsestype[] => {
-    return søknader.map((s) => s.innsendelsestype);
-};
-
-export const getAlleHendelserISak = (sak: Sak): Sakshendelse[] => {
+export const getAlleHendelserISak = (sak: Sak, inntektsmeldinger: Inntektsmelding[]): Sakshendelse[] => {
     const sakshendelser: Sakshendelse[] = sak.behandlinger
         .map((b) => getHendelserIBehandling(b, sak.utledetStatus.saksbehandlingsFrist))
         .flat();
+
+    const inntektsmeldingHendelser: Sakshendelse[] = inntektsmeldinger
+        .filter((im) => im.status === InntektsmeldingStatus.I_BRUK)
+        .map((im) => ({
+            type: Sakshendelser.INNTEKTSMELDING,
+            dato: im.mottattDato,
+            inntektsmelding: im,
+            erstatter: inntektsmeldinger.filter((i) => i.erstattetAv.includes(im.journalpostId)),
+        }));
+    sakshendelser.push(...inntektsmeldingHendelser);
     return sakshendelser.sort(sortSakshendelse);
 };
 
@@ -143,19 +155,30 @@ const getArbeidsgivernavn = (organisasjonsnummer: string, arbeidsgivere: Organis
     return arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer)?.navn || organisasjonsnummer;
 };
 
-export const getArbeidsgiverinfoFraSøknad = (søknad: Pleiepengesøknad): Organisasjon[] => {
+const erOrganisasjonArbeidsgiver = (org: Organisasjon | Arbeidstaker): org is Organisasjon => {
+    if (org.organisasjonsnummer) {
+        return true;
+    }
+    return false;
+};
+
+export const getOrgArbeidsgivereFraSøknad = (søknad: SøknadISak): Organisasjon[] => {
     const arbeidsgivere = søknad.arbeidsgivere || [];
-    return søknad.k9FormatInnsendelse.ytelse.arbeidstid.arbeidstakerList.map((a) => {
+    const getOrgArbeidsgivere: Organisasjon[] = søknad.k9FormatInnsendelse.ytelse.arbeidstid.arbeidstakerList.filter(
+        erOrganisasjonArbeidsgiver,
+    ) as Organisasjon[];
+
+    return getOrgArbeidsgivere.map((org: Organisasjon) => {
         const organisasjon: Organisasjon = {
-            organisasjonsnummer: a.organisasjonsnummer,
-            navn: getArbeidsgivernavn(a.organisasjonsnummer, arbeidsgivere),
+            organisasjonsnummer: org.organisasjonsnummer,
+            navn: getArbeidsgivernavn(org.organisasjonsnummer, arbeidsgivere),
         };
         return organisasjon;
     });
 };
 
 export const getOrganisasjonsnavnEllerOrgNummer = (organisasjon: Organisasjon): string => {
-    if (organisasjon.navn === null) {
+    if (organisasjon.navn === null || organisasjon.navn === undefined) {
         return organisasjon.organisasjonsnummer;
     }
     return organisasjon.navn;

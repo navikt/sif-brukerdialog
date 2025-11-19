@@ -115,11 +115,11 @@ export const zOppgaveDto = z.object({
     ]),
     bekreftelse: z.optional(zBekreftelseDto),
     status: zOppgaveStatus,
-    opprettetDato: z.iso.datetime(),
-    løstDato: z.optional(z.iso.datetime()),
-    åpnetDato: z.optional(z.iso.datetime()),
-    lukketDato: z.optional(z.iso.datetime()),
-    frist: z.optional(z.iso.datetime()),
+    opprettetDato: z.iso.datetime({ local: true }),
+    løstDato: z.optional(z.iso.datetime({ local: true })),
+    åpnetDato: z.optional(z.iso.datetime({ local: true })),
+    lukketDato: z.optional(z.iso.datetime({ local: true })),
+    frist: z.optional(z.iso.datetime({ local: true })),
 });
 
 export const zDeltakelseKomposittDto = z.object({
@@ -127,7 +127,7 @@ export const zDeltakelseKomposittDto = z.object({
     deltaker: zDeltakerDto,
     fraOgMed: z.iso.date(),
     tilOgMed: z.optional(z.iso.date()),
-    søktTidspunkt: z.optional(z.iso.datetime()),
+    søktTidspunkt: z.optional(z.iso.datetime({ local: true })),
     oppgaver: z.array(zOppgaveDto),
 });
 

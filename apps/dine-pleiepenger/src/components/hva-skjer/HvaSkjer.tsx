@@ -19,15 +19,14 @@ const HvaSkjer = () => {
                     </Process.Event>
                     <Process.Event title={text('hvaSkjerInfo.inntektsmelding.tittel')}>
                         <p>
-                            <AppText id="hvaSkjerInfo.inntektsmelding.avsnitt.1" />
-                        </p>
-                        <p>
-                            <AppText id="hvaSkjerInfo.inntektsmelding.avsnitt.2.1" />
-                            <Link href={browserEnv.NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL}>
-                                <AppText id="hvaSkjerInfo.inntektsmelding.avsnitt.2.2" />
-                            </Link>
-
-                            <AppText id="hvaSkjerInfo.inntektsmelding.avsnitt.2.3" />
+                            <AppText
+                                id="hvaSkjerInfo.inntektsmelding.tekst"
+                                values={{
+                                    Link: (txt: any) => (
+                                        <Link href={browserEnv.NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL}>{txt}</Link>
+                                    ),
+                                }}
+                            />
                         </p>
                     </Process.Event>
                     <Process.Event title={text('hvaSkjerInfo.behandling.tittel')}>

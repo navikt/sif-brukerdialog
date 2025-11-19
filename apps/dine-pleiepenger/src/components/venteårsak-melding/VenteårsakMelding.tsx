@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 
 import { AppText } from '../../i18n';
-import { Venteårsak } from '../../types/Venteårsak';
+import { Venteårsak } from '../../types';
 import { browserEnv } from '../../utils/env';
 import DokumentarkivLenke from '../lenker/DokumentarkivLenke';
 

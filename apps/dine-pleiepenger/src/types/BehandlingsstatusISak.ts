@@ -1,7 +1,6 @@
-import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
-import { Venteårsak } from './Venteårsak';
+import { BehandlingStatus, Venteårsak } from '.';
 
 export interface BehandlingsstatusISak {
-    status: Behandlingsstatus;
+    status: BehandlingStatus;
     venteårsak?: Venteårsak;
 }

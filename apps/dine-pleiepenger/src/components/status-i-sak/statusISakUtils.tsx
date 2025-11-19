@@ -1,11 +1,17 @@
-import { Box } from '@navikt/ds-react';
+import { FileIcon } from '@navikt/aksel-icons';
+import { Box, Link, ReadMore, VStack } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { default as NextLink } from 'next/link';
+import { FormattedNumber } from 'react-intl';
 
 import { AppText, IntlTextFn } from '../../i18n';
-import { Innsendelse } from '../../server/api-models/InnsendelseSchema';
-import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
+import { InnsendelseISak } from '../../types';
 import { Ettersendelsestype } from '../../types/EttersendelseType';
+import { Innsendelsestype } from '../../types/Innsendelsestype';
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
+import { getImUtils } from '../../utils/inntektsmeldingUtils';
+import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 import EttersendelseStatusContent from './parts/EttersendelseStatusContent';
 import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
@@ -13,8 +19,7 @@ import SøknadStatusContent from './parts/SøknadStatusContent';
 
 export const getProcessStepFromInnsendelse = (
     text: IntlTextFn,
-    innsendelse: Innsendelse,
-    current: boolean,
+    innsendelse: InnsendelseISak,
 ): ProcessStepData | undefined => {
     switch (innsendelse.innsendelsestype) {
         case Innsendelsestype.SØKNAD:
@@ -23,29 +28,26 @@ export const getProcessStepFromInnsendelse = (
                 timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
                 content: <SøknadStatusContent søknad={innsendelse} />,
                 completed: true,
-                current,
                 isLastStep: false,
             };
         case Innsendelsestype.ENDRINGSMELDING:
             return {
                 title: text('statusISak.mottattEndringsmelding.tittel'),
                 timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
-                content: <EndringsmeldingStatusContent endringsmelding={innsendelse} />,
+                content: <EndringsmeldingStatusContent dokumenter={innsendelse.dokumenter} />,
                 completed: true,
-                current,
                 isLastStep: false,
             };
         case Innsendelsestype.ETTERSENDELSE:
             return {
                 title: text(
-                    innsendelse.k9FormatInnsendelse.type === Ettersendelsestype.legeerklæring
+                    innsendelse.k9FormatInnsendelse?.type === Ettersendelsestype.legeerklæring
                         ? 'statusISak.mottattEttersendelse.legeerklæring.tittel'
                         : 'statusISak.mottattEttersendelse.annet.tittel',
                 ),
                 timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
-                content: <EttersendelseStatusContent ettersendelse={innsendelse} />,
+                content: <EttersendelseStatusContent dokumenter={innsendelse.dokumenter} />,
                 completed: true,
-                current,
                 isLastStep: false,
             };
     }
@@ -59,18 +61,14 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
         return [];
     }
 
-    const antall = hendelserSomSkalVises.length;
-    const erFerdigBehandlet = hendelserSomSkalVises[antall - 1].type === Sakshendelser.FERDIG_BEHANDLET;
-
     return hendelserSomSkalVises
-        .map((hendelse, index): ProcessStepData | undefined => {
+        .map((hendelse): ProcessStepData | undefined => {
             /** Gjeldende hendelse er per må alltid siste hendelse før ferdig behandlet, eller ferdig behandlet */
-            const erGjeldendeHendelse = erFerdigBehandlet ? index === antall - 1 : index === antall - 2;
 
             switch (hendelse.type) {
                 case Sakshendelser.MOTTATT_SØKNAD:
                 case Sakshendelser.ETTERSENDELSE:
-                    return getProcessStepFromInnsendelse(text, hendelse.innsendelse, erGjeldendeHendelse);
+                    return getProcessStepFromInnsendelse(text, hendelse.innsendelse);
 
                 /** Denne skal ikke vises enda */
                 // case Sakshendelser.AKSJONSPUNKT:
@@ -88,10 +86,61 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         content: <FerdigBehandletStatusContent />,
                         completed: true,
                         isLastStep: true,
-                        current: erGjeldendeHendelse,
                         timestamp: hendelse.dato,
                     };
 
+                case Sakshendelser.INNTEKTSMELDING: {
+                    const ersatterAntall = hendelse.erstatter.length;
+
+                    return {
+                        title: `Inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
+                        content: (
+                            <Box className="mt-2">
+                                <ReadMore header="Vis mer informasjon">
+                                    <VStack gap="2" marginBlock="0 4">
+                                        <div>
+                                            Første dag med perimisjon:{' '}
+                                            {dateFormatter.compact(hendelse.inntektsmelding.startDatoPermisjon)}.{' '}
+                                        </div>
+                                        <div>
+                                            Inntekt:{' '}
+                                            <FormattedNumber
+                                                value={hendelse.inntektsmelding.inntektBeløp}
+                                                style="currency"
+                                                currency="NOK"
+                                            />
+                                            .
+                                        </div>
+                                        <div>
+                                            Status:{' '}
+                                            <InntektsmeldingStatusTag status={hendelse.inntektsmelding.status} />
+                                        </div>
+                                        {ersatterAntall > 0 && (
+                                            <div>
+                                                Erstatter{' '}
+                                                {ersatterAntall === 1
+                                                    ? '1 inntektsmelding'
+                                                    : `${ersatterAntall} inntektsmeldinger`}
+                                                .
+                                            </div>
+                                        )}
+                                    </VStack>
+                                    <Link
+                                        as={NextLink}
+                                        href={`/sak/${hendelse.inntektsmelding.saksnummer}/inntektsmelding/${hendelse.inntektsmelding.journalpostId}`}>
+                                        <FileIcon
+                                            title="Inntektsmelding"
+                                            style={{ width: '1.5rem', height: '1.5rem' }}
+                                        />
+                                        Gå til hele inntektsmeldingen
+                                    </Link>
+                                </ReadMore>
+                            </Box>
+                        ),
+                        completed: true,
+                        timestamp: hendelse.inntektsmelding.innsendingstidspunkt,
+                    };
+                }
                 case Sakshendelser.FORVENTET_SVAR: {
                     const titleContent = getForventetSvarTitleContent(hendelse, text);
                     if (titleContent) {
@@ -112,14 +161,8 @@ const getForventetSvarTitleContent = (
     hendelse: SakshendelseForventetSvar,
     text: IntlTextFn,
 ): Pick<ProcessStepData, 'title' | 'content'> | undefined => {
-    const sisteHendelseErEttersendelse =
-        hendelse.søknadstyperIBehandling[hendelse.søknadstyperIBehandling.length - 1] ===
-        Innsendelsestype.ETTERSENDELSE;
-    if (sisteHendelseErEttersendelse) {
-        return undefined;
-    }
-    const inneholderSøknad = hendelse.søknadstyperIBehandling.includes(Innsendelsestype.SØKNAD);
-    const inneholderEndring = hendelse.søknadstyperIBehandling.includes(Innsendelsestype.ENDRINGSMELDING);
+    const inneholderSøknad = hendelse.innsendelsestyperIBehandling.includes(Innsendelsestype.SØKNAD);
+    const inneholderEndring = hendelse.innsendelsestyperIBehandling.includes(Innsendelsestype.ENDRINGSMELDING);
 
     if (!inneholderSøknad && inneholderEndring) {
         return {

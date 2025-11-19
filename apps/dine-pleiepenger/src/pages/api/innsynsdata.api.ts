@@ -2,10 +2,9 @@ import { HttpStatusCode, isAxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchSaker, fetchSøker } from '../../server/apiService';
-import { Innsynsdata } from '../../types/InnsynData';
-import { isSakerParseError } from '../../types/SakerParseError';
-import { Feature } from '../../utils/features';
+import { InnsynsdataDto } from '../../server/dto-schemas/innsynsdataDtoSchema';
+import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
+import { fetchSøker } from '../../server/fetchers/fetchSøker';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { fetchAppStatus } from './appStatus.api';
 
@@ -13,28 +12,24 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const logger = getLogger(req);
     logger.info(`Henter innsynsdata`);
     try {
-        /** Hent søker først for å se om bruker har tilgang */
-        const søker = await fetchSøker(req);
+        const unparsed = req.query.unparsed === 'true';
 
-        /** Bruker har tilgang, hent resten av informasjonen */
-        const [sakerReq, appStatus] = await Promise.allSettled([
-            fetchSaker(req),
-            Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
-        ]);
-        logger.info(`Hentet innsynsdata`);
+        // Hent søkerinformasjon
+        const søker = await fetchSøker(req, unparsed);
 
-        logger.info(`Parser innsynsdata`);
+        // Hent oversikt over saker
+        const sakerMetadata = await fetchSakerMetadata(req, unparsed);
 
-        const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
-        const harSak = saker.length > 0;
+        // Hent appstatus som sier om appen er tilgjengelig eller ikke
+        const appStatus = await fetchAppStatus();
 
-        const innsynsdata: Innsynsdata = {
-            appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
+        logger.info(`Hentet innsynsdata. Antall saker: ${sakerMetadata.length}`);
+
+        const innsynsdata: InnsynsdataDto = {
+            appStatus,
             søker,
-            saker,
-            harSak,
-            sakerParseError:
-                sakerReq.status === 'rejected' && isSakerParseError(sakerReq.reason) ? sakerReq.reason : undefined,
+            sakerMetadata,
+            harSak: sakerMetadata.length > 0,
         };
         res.json(innsynsdata);
     } catch (err) {

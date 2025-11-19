@@ -1,5 +1,4 @@
-import { Dokument } from '../server/api-models/DokumenetSchema';
-import { InnsendtSøknadDokument } from '../types/InnsendtSøknadDocument';
+import { Dokument } from '../types';
 import { browserEnv } from './env';
 
 export const getDokumentFrontendUrl = (url: string): string => {
@@ -11,7 +10,7 @@ export const getDokumentFrontendUrl = (url: string): string => {
     return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/dokument/${paths}`;
 };
 
-export const getSøknadDokumentFilnavn = (dokument: Dokument | InnsendtSøknadDokument): string => {
+export const getSøknadDokumentFilnavn = (dokument: Dokument): string => {
     const filnavn = `${encodeURIComponent(dokument.tittel.toLowerCase())}`;
     return `${filnavn}.${dokument.filtype.toLowerCase()}`;
 };

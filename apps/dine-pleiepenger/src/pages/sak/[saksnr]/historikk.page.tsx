@@ -1,52 +1,21 @@
-import { Alert, Box } from '@navikt/ds-react';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-
 import { withAuthenticatedPage } from '../../../auth/withAuthentication';
-import DefaultPageLayout from '../../../components/page-layout/default-page-layout/DefaultPageLayout';
-import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
-import { PleietrengendeMedSak } from '../../../server/api-models/PleietrengendeMedSakSchema';
-import HistorikkPage from '../HistorikkPage';
-
-const getSakFromSaksnr = (
-    saker: PleietrengendeMedSak[],
-    saksnr?: string | string[],
-): PleietrengendeMedSak | undefined => {
-    if (!saksnr || typeof saksnr !== 'string' || saker.length === 0) {
-        return undefined;
-    }
-    return saker.find((sak) => sak.sak.saksnummer === saksnr);
-};
+import PageLoading from '../../../components/page-layout/page-loading/PageLoading';
+import HistorikkPage from '../../../components/sak-pages/HistorikkPage';
+import SakIkkeFunnetPage from '../../../components/sak-pages/SakIkkeFunnetPage';
+import { usePleietrengendeMedSakFromRoute } from '../../../hooks/usePleietrengendeMedSakFromRoute';
 
 export default function HistorikkRoutePage() {
-    const {
-        innsynsdata: { saker },
-    } = useInnsynsdataContext();
-    const router = useRouter();
+    const { pleietrengendeMedSak, saksnr, isLoading } = usePleietrengendeMedSakFromRoute();
 
-    const { saksnr } = router.query;
-    const pleietrengendeMedSak = getSakFromSaksnr(saker, saksnr);
-
-    if (!pleietrengendeMedSak) {
-        return (
-            <DefaultPageLayout>
-                <Head>
-                    <title>Sak ikke funnet</title>
-                </Head>
-                <Box className="mb-10">
-                    <Alert variant="error">Kunne ikke finne sak med saksnr &quot;{router.query.saksnr}&quot;</Alert>
-                </Box>
-            </DefaultPageLayout>
-        );
+    if (isLoading) {
+        return <PageLoading title="Henter informasjon ..." />;
     }
 
-    return (
-        <HistorikkPage
-            sak={pleietrengendeMedSak.sak}
-            pleietrengende={pleietrengendeMedSak.pleietrengende}
-            harFlereSaker={saker.length > 1}
-        />
-    );
+    if (!pleietrengendeMedSak) {
+        return <SakIkkeFunnetPage saksnr={saksnr} />;
+    }
+
+    return <HistorikkPage sak={pleietrengendeMedSak.sak} inntektsmeldinger={pleietrengendeMedSak.inntektsmeldinger} />;
 }
 
 export const getServerSideProps = withAuthenticatedPage();

@@ -1,7 +1,7 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 
 import { IntlTextFn } from '../../i18n';
-import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
+import { Pleietrengende } from '../../types';
 import { personaliaUtils } from '../personaliaUtils';
 
 const pleietrengendeMedNavn: Pleietrengende = {

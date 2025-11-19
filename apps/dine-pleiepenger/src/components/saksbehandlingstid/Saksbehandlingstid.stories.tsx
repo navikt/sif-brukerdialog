@@ -3,10 +3,10 @@ import dayjs from 'dayjs';
 
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
-import { Venteårsak } from '../../types/Venteårsak';
-import Saksbehandlingstid from './Saksbehandlingstid';
-const meta: Meta<typeof Saksbehandlingstid> = {
-    component: Saksbehandlingstid,
+import { Venteårsak } from '../../types';
+import SaksbehandlingstidPanel from './Saksbehandlingstid';
+const meta: Meta<typeof SaksbehandlingstidPanel> = {
+    component: SaksbehandlingstidPanel,
     title: 'Content/Saksbehandlingstid',
     parameters: {
         layout: 'centered',
@@ -15,7 +15,7 @@ const meta: Meta<typeof Saksbehandlingstid> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof Saksbehandlingstid>;
+type Story = StoryObj<typeof SaksbehandlingstidPanel>;
 
 export const Default: Story = {
     name: 'Med frist',

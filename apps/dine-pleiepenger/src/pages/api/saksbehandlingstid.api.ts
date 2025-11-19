@@ -1,12 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchSaksbehandlingstid } from '../../server/apiService';
+import { fetchSaksbehandlingstid } from '../../server/fetchers/fetchSaksbehandlingstid';
 import { getLogger } from '../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const data = await fetchSaksbehandlingstid(req);
+        const unparsed = req.query.unparsed === 'true';
+        const data = await fetchSaksbehandlingstid(req, unparsed);
         res.send(data);
     } catch (err) {
         const logger = getLogger(req);

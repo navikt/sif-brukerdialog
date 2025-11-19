@@ -1,9 +1,9 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Behandlingsstatus } from '../../../server/api-models/Behandlingsstatus';
 import { withEmptyPage } from '../../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../../storybook/hooks/withIntl';
+import { BehandlingStatus } from '../../../types';
 import StatusTag from '../../status-tag/StatusTag';
 import SakPageHeader from './SakPageHeader';
 const meta: Meta<typeof SakPageHeader> = {
@@ -30,6 +30,6 @@ export const Default: Story = {
             identitetsnummer: '12345678910',
             fødselsdato: ISODateToDate('2022-01-01'),
         },
-        titleTag: <StatusTag status={Behandlingsstatus.AVSLUTTET} />,
+        titleTag: <StatusTag status={BehandlingStatus.AVSLUTTET} />,
     },
 };
