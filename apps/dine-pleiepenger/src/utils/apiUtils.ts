@@ -48,6 +48,9 @@ export const deleteNullValues = (obj: unknown): unknown => {
  */
 export const serverResponseTransform = (data: string): unknown => {
     try {
+        if (data === '') {
+            return '';
+        }
         const parsed = JSON.parse(data);
         return deleteNullValues(parsed);
     } catch {
@@ -56,10 +59,13 @@ export const serverResponseTransform = (data: string): unknown => {
 };
 
 export const prepApiError = (err: unknown): unknown => {
-    if (err instanceof z.ZodError) {
-        return JSON.stringify(getZodErrorsInfo(err));
-    } else if (isAxiosError(err)) {
-        return `${err.code || 'NO_CODE'}${err.response?.status ? ' ' + err.response.status : ''}${err.response?.statusText ? ' ' + err.response.statusText : ''} ${err.message}`;
+    if (isAxiosError(err)) {
+        const { code, message, response } = err;
+        return { axiosError: { code, message, response: response ? { status: response.status } : undefined } };
+    } else if (err instanceof z.ZodError) {
+        return { zodError: JSON.stringify(getZodErrorsInfo(err)) };
+    } else if (typeof err === 'string') {
+        return { stringError: err };
     }
     return err;
 };
