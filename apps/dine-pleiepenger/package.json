@@ -34,7 +34,7 @@
         "csp-header": "6.2.0",
         "date-fns": "4.1.0",
         "html-react-parser": "5.2.8",
-        "jsdom": "27.1.0",
+        "jsdom": "27.2.0",
         "lodash.sortby": "4.7.0",
         "lodash.uniq": "4.5.0",
         "next": "15.5.6",
