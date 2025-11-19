@@ -55,7 +55,7 @@ export const serverResponseTransform = (data: string): unknown => {
     }
 };
 
-export const prepApiError = (err: any): unknown => {
+export const prepApiError = (err: unknown): unknown => {
     if (err instanceof z.ZodError) {
         return JSON.stringify(getZodErrorsInfo(err));
     } else if (isAxiosError(err)) {
