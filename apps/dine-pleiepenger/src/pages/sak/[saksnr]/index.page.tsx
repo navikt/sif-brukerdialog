@@ -25,6 +25,7 @@ export default function SakRoutePage() {
         return <SakIkkeFunnetPage saksnr={saksnr} />;
     }
 
+    /** Viser loading skjerm frem til sjekk er gjort */
     if (sakerMetadata && !sakerMetadata.find((s) => s.saksnummer === saksnr)) {
         return <LoadingPage />;
     }
