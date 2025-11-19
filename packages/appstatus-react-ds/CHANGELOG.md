@@ -1,5 +1,13 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.61
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+    - @navikt/sif-common-hooks@0.3.7
+
 ## 2.20.60
 
 ### Patch Changes

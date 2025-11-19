@@ -1,5 +1,12 @@
 # appstatus-sanity-config
 
+## 1.2.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
 ## 1.2.48
 
 ### Patch Changes

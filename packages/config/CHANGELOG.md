@@ -1,5 +1,12 @@
 # config
 
+## 0.11.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
 ## 0.11.44
 
 ### Patch Changes
