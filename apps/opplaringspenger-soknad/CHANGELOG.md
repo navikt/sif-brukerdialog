@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.10
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
 ## 1.4.9
 
 ### Patch Changes

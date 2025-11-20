@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.16.35
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
 ## 1.16.34
 
 ### Patch Changes

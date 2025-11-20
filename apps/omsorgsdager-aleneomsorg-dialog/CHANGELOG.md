@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.35
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
 ## 2.28.34
 
 ### Patch Changes

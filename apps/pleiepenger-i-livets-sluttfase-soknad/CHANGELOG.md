@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.22.35
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
 ## 2.22.34
 
 ### Patch Changes

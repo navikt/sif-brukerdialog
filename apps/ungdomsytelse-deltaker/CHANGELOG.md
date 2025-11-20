@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.15
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
 ## 1.5.14
 
 ### Patch Changes

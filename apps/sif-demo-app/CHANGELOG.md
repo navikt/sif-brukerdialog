@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.4.84
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
 ## 0.4.83
 
 ### Patch Changes

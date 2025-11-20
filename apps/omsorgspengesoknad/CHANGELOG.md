@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.35
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
 ## 1.41.34
 
 ### Patch Changes
