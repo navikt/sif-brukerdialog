@@ -3,6 +3,7 @@ import { AppText, useAppIntl } from '@shared/i18n';
 import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 import getLenker from '@shared/utils/lenker';
 
+import ExternalLink from '../../../components/external-link/ExternalLink';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 
 const KvitteringPage = () => {
@@ -42,6 +43,16 @@ const KvitteringPage = () => {
                                 id="kvitteringPage.hvaSkjerVidere.3"
                                 values={{
                                     Lenke: (children) => <Link href={getLenker().minSide}>{children}</Link>,
+                                }}
+                            />
+                        </List.Item>
+                        <List.Item>
+                            <AppText
+                                id="kvitteringPage.hvaSkjerVidere.4"
+                                values={{
+                                    Lenke: (children) => (
+                                        <ExternalLink href={getLenker().skattekort}>{children}</ExternalLink>
+                                    ),
                                 }}
                             />
                         </List.Item>

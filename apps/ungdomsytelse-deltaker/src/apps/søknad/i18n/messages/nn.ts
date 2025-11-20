@@ -61,10 +61,12 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
     'kvitteringPage.hvaSkjerVidere': 'Kva skjer vidare?',
 
     'kvitteringPage.hvaSkjerVidere.1':
-        'Svaret på søknaden (vedtaksbrevet) får du når vi har behandlet den. Da får du en SMS av oss, og så logger du inn på <Lenke>Min side</Lenke> på nav.no for å se vedtaksbrevet ditt.',
-    'kvitteringPage.hvaSkjerVidere.2': 'Pengene får du som regel den 12. hver måned.',
+        'Svaret på søknaden (vedtaksbrevet) får du når me har handsama han. Då får du ein SMS av oss, og så loggar du inn på <Lenke>Min side</Lenke> på nav.no for å sjå vedtaksbrevet ditt.',
+    'kvitteringPage.hvaSkjerVidere.2': 'Pengane får du som regel den 12. kvar månad.',
     'kvitteringPage.hvaSkjerVidere.3':
-        'Hvis du jobber og får lønn mens du er i ungdomsprogrammet, må du melde fra om dette. Du får en SMS den 1. hver måned, og så logger du inn på <Lenke>Min side</Lenke> på nav.no og melder fra om hva du fikk i lønn måneden før.',
+        'Viss du jobbar og får løn medan du er i ungdomsprogrammet, må du melde frå om dette. Du får ein SMS den 1. kvar månad, og så loggar du inn på <Lenke>Min side</Lenke> på nav.no og melder frå om kva du fekk i løn månaden før.',
+    'kvitteringPage.hvaSkjerVidere.4':
+        'Hugs å bestille skattekort på <Lenke>Skatteetaten</Lenke> sine nettsider. Viss du ikkje har skattekort, blir det trekt 50 prosent skatt av pengane.',
 
     'kvitteringPage.lykkeTil': 'Vi ønskjer deg lukke til vidare!',
     'kvitteringPage.gåTilMinSide': 'Gå til Min side',

@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.14
+
+### Patch Changes
+
+- Legge til punkt om skattekort på kvitteringsside i søknaden - ung-deltaker
+
 ## 1.5.13
 
 ### Patch Changes
