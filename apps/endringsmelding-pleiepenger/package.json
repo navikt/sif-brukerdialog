@@ -5,13 +5,13 @@
     "license": "MIT",
     "name": "@navikt/endringsmelding-pleiepenger",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.40.36",
+    "version": "2.40.37",
     "private": true,
     "dependencies": {
-        "@navikt/aksel-icons": "7.33.4",
-        "@navikt/ds-css": "7.33.4",
-        "@navikt/ds-react": "7.33.4",
-        "@navikt/ds-tailwind": "7.33.4",
+        "@navikt/aksel-icons": "7.33.5",
+        "@navikt/ds-css": "7.33.5",
+        "@navikt/ds-react": "7.33.5",
+        "@navikt/ds-tailwind": "7.33.5",
         "@navikt/fnrvalidator": "2.1.5",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -44,7 +44,7 @@
     "devDependencies": {
         "@axe-core/playwright": "4.11.0",
         "@mswjs/data": "0.16.2",
-        "@navikt/ds-tailwind": "7.33.4",
+        "@navikt/ds-tailwind": "7.33.5",
         "@navikt/nav-dekoratoren-moduler": "3.5.0",
         "@playwright/test": "1.56.1",
         "@sentry/vite-plugin": "4.6.0",
@@ -79,9 +79,9 @@
         "storybook": "10.0.8",
         "tailwindcss": "4.1.17",
         "typescript": "5.9.3",
-        "vite": "7.2.2",
+        "vite": "7.2.4",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.10"
+        "vitest": "4.0.11"
     },
     "scripts": {
         "build-storybook": "storybook build",

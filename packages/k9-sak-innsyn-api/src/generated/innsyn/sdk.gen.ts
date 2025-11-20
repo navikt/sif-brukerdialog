@@ -71,14 +71,8 @@ export class SØknadController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSøknaderResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/soknad',
             ...options,
@@ -97,14 +91,8 @@ export class SØknadController {
             responseType: 'blob',
             responseValidator: async (data) => await zLastNedArbeidsgivermeldingResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/soknad/{søknadId}/arbeidsgivermelding',
             ...options,
@@ -124,14 +112,8 @@ export class SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentMineSakerResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/saker',
             ...options,
@@ -150,14 +132,8 @@ export class SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSaksbehandlingstidResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/saker/saksbehandlingstid',
             ...options,
@@ -175,14 +151,8 @@ export class SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSakerMetadataResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/saker/metadata',
             ...options,
@@ -198,14 +168,8 @@ export class SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSakResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/sak/{saksnummer}',
             ...options,
@@ -225,14 +189,8 @@ export class SakInntektsmeldingerController {
             requestValidator: async (data) => await zHentInntektsmeldingerPåSakData.parseAsync(data),
             responseValidator: async (data) => await zHentInntektsmeldingerPåSakResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/sak/{saksnummer}/inntektsmeldinger',
             ...options,
@@ -247,14 +205,8 @@ export class DokumentController {
             responseType: 'blob',
             responseValidator: async (data) => await zHentDokumentResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/dokument/{journalpostId}/{dokumentInfoId}/{variantFormat}',
             ...options,

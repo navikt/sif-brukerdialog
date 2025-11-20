@@ -5,7 +5,7 @@
     "description": "Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
     "license": "MIT",
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-    "version": "1.35.43",
+    "version": "1.35.44",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
@@ -13,10 +13,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/aksel-icons": "7.33.4",
-        "@navikt/ds-css": "7.33.4",
-        "@navikt/ds-react": "7.33.4",
-        "@navikt/ds-tailwind": "7.33.4",
+        "@navikt/aksel-icons": "7.33.5",
+        "@navikt/ds-css": "7.33.5",
+        "@navikt/ds-react": "7.33.5",
+        "@navikt/ds-tailwind": "7.33.5",
         "@navikt/fnrvalidator": "2.1.5",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
@@ -69,9 +69,9 @@
         "rimraf": "6.1.2",
         "storybook": "10.0.8",
         "typescript": "5.9.3",
-        "vite": "7.2.2",
+        "vite": "7.2.4",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.10"
+        "vitest": "4.0.11"
     },
     "eslintConfig": {
         "overrides": [

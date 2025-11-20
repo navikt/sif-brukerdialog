@@ -47,14 +47,8 @@ export class K9SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSisteGyldigeVedtakForAktorIdResponse2.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
             ...options,
@@ -77,14 +71,8 @@ export class K9SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentOpplæringsinstitusjonerResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/k9sak/opplaringsinstitusjoner',
             ...options,
