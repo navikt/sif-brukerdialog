@@ -81,14 +81,8 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zEndreStartdatoResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/endre/startdato',
             ...options,
@@ -110,14 +104,8 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zEndreSluttdatoResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/endre/sluttdato',
             ...options,
@@ -139,14 +127,8 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zMeldUtDeltakerResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/avslutt',
             ...options,
@@ -168,14 +150,8 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zMeldInnDeltakerResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltaker/innmelding',
             ...options,
@@ -201,14 +177,8 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zHentAlleDeltakelserGittDeltakerIdResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltaker/{deltakerId}/deltakelser',
             ...options,
@@ -223,14 +193,8 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zDeltakelseHistorikkResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/historikk',
             ...options,
@@ -247,14 +211,8 @@ export class Veileder {
             requestValidator: async (data) => await zFjernFraProgramData.parseAsync(data),
             responseValidator: async (data) => await zFjernFraProgramResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltaker/{deltakerId}/fjern',
             ...options,
@@ -278,14 +236,8 @@ export class Oppslag {
             responseType: 'json',
             responseValidator: async (data) => await zHentDeltakerInfoGittDeltakerResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/oppslag/deltaker',
             ...options,
@@ -311,14 +263,8 @@ export class Oppslag {
             responseType: 'json',
             responseValidator: async (data) => await zHentDeltakerInfoGittDeltakerIdResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/oppslag/deltaker/{id}',
             ...options,

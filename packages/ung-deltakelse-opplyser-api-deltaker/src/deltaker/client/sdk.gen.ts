@@ -75,14 +75,8 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zMarkerDeltakelseSomSøktResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/{id}/marker-har-sokt',
             ...options,
@@ -100,14 +94,8 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zHentDeltakersOppgaveResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}',
             ...options,
@@ -125,14 +113,8 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zMarkerOppgaveSomLøstResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/løst',
             ...options,
@@ -154,14 +136,8 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zMarkerOppgaveSomLukketResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/lukk',
             ...options,
@@ -183,14 +159,8 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zMarkerOppgaveSomÅpnetResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/apnet',
             ...options,
@@ -212,14 +182,8 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zHentAlleMineDeltakelserResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/hent/alle',
             ...options,
@@ -239,14 +203,8 @@ export class Deltaker {
             responseType: 'json',
             responseValidator: async (data) => await zHentKontonummerResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltaker/hent-kontonummer',
             ...options,
