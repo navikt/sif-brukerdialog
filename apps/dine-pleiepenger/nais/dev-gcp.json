@@ -14,6 +14,15 @@
     "readinessPath": "/innsyn/api/health/isReady",
     "minReplicas": 1,
     "maxReplicas": 1,
+    "resources": {
+        "limits": {
+            "memory": "512Mi"
+        },
+        "requests": {
+            "cpu": "50m",
+            "memory": "254Mi"
+        }
+    },
     "observabilityEnabled": "true",
     "env": {
         "NEXT_PUBLIC_BASE_PATH": "/innsyn",
