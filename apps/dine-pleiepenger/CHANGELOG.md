@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.3
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
 ## 2.0.2
 
 ### Patch Changes

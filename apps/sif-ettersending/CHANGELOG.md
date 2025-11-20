@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.35
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
 ## 3.49.34
 
 ### Patch Changes
