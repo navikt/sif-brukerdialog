@@ -13,9 +13,9 @@
         "@sanity/client": "7.13.0"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "7.33.4",
-        "@navikt/ds-css": "7.33.4",
-        "@navikt/ds-react": "7.33.4",
+        "@navikt/aksel-icons": "7.33.5",
+        "@navikt/ds-css": "7.33.5",
+        "@navikt/ds-react": "7.33.5",
         "@sif/eslint-config": "workspace:*",
         "@types/node": "24.10.1",
         "@types/react": "19.2.6",
@@ -27,7 +27,7 @@
         "react": "19.2.0",
         "react-dom": "19.2.0",
         "rimraf": "6.1.2",
-        "sass": "1.94.1"
+        "sass": "1.94.2"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

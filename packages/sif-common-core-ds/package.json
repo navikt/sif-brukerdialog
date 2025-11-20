@@ -20,10 +20,10 @@
         "tailwindcss": "4.1.17"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "7.33.4",
-        "@navikt/ds-css": "7.33.4",
-        "@navikt/ds-react": "7.33.4",
-        "@navikt/ds-tailwind": "7.33.4",
+        "@navikt/aksel-icons": "7.33.5",
+        "@navikt/ds-css": "7.33.5",
+        "@navikt/ds-react": "7.33.5",
+        "@navikt/ds-tailwind": "7.33.5",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@playwright/test": "1.56.1",
@@ -55,9 +55,9 @@
         "storybook": "10.0.8",
         "typescript": "5.9.3",
         "uuid": "13.0.0",
-        "vite": "7.2.2",
+        "vite": "7.2.4",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.10"
+        "vitest": "4.0.11"
     },
     "overrides": {
         "react-refresh": "0.11.0"

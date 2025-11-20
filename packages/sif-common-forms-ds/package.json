@@ -20,9 +20,9 @@
     },
     "devDependencies": {
         "@formatjs/intl-pluralrules": "5.4.6",
-        "@navikt/aksel-icons": "7.33.4",
-        "@navikt/ds-css": "7.33.4",
-        "@navikt/ds-react": "7.33.4",
+        "@navikt/aksel-icons": "7.33.5",
+        "@navikt/ds-css": "7.33.5",
+        "@navikt/ds-react": "7.33.5",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
@@ -59,9 +59,9 @@
         "rimraf": "6.1.2",
         "storybook": "10.0.8",
         "typescript": "5.9.3",
-        "vite": "7.2.2",
+        "vite": "7.2.4",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.10"
+        "vitest": "4.0.11"
     },
     "scripts": {
         "build-storybook": "storybook build",

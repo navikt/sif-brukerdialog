@@ -14,10 +14,10 @@
     },
     "dependencies": {
         "@hookform/resolvers": "5.2.2",
-        "@navikt/aksel-icons": "7.33.4",
-        "@navikt/ds-css": "7.33.4",
-        "@navikt/ds-react": "7.33.4",
-        "@navikt/ds-tailwind": "7.33.4",
+        "@navikt/aksel-icons": "7.33.5",
+        "@navikt/ds-css": "7.33.5",
+        "@navikt/ds-react": "7.33.5",
+        "@navikt/ds-tailwind": "7.33.5",
         "@navikt/nav-dekoratoren-moduler": "3.5.0",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -62,7 +62,7 @@
         "tailwindcss": "4.1.17",
         "typescript": "5.9.3",
         "typescript-eslint": "8.47.0",
-        "vite": "7.2.2",
+        "vite": "7.2.4",
         "vite-plugin-checker": "0.11.0"
     }
 }
