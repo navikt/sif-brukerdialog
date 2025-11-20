@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.11
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 1.4.10
 
 ### Patch Changes

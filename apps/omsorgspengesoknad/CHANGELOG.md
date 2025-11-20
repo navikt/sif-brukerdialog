@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.36
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 1.41.35
 
 ### Patch Changes

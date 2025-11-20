@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.36
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 2.28.35
 
 ### Patch Changes

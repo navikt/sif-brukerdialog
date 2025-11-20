@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.16
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 1.5.15
 
 ### Patch Changes

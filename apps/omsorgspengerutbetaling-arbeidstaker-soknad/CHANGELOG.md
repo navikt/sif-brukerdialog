@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.16.36
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 1.16.35
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.27
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 0.9.26
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.22.36
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 2.22.35
 
 ### Patch Changes

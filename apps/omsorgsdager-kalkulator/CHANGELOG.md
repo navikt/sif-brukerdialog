@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.13.12
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 3.13.11
 
 ### Patch Changes

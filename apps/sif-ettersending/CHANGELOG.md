@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.36
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 3.49.35
 
 ### Patch Changes
