@@ -8,8 +8,17 @@
     "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
     "ingresses": ["https://k9-ettersending-soknad.intern.dev.nav.no"],
     "cluster": "dev-gcp",
-    "maxReplicas": 1,
     "minReplicas": 1,
+    "maxReplicas": 1,
+    "resources": {
+        "requests": {
+            "memory": "64Mi",
+            "cpu": "20m"
+        },
+        "limits": {
+            "memory": "256Mi"
+        }
+    },
     "observabilityEnabled": "true",
     "env": {
         "ENV": "dev",

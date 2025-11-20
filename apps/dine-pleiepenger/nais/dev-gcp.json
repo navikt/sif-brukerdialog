@@ -15,12 +15,12 @@
     "minReplicas": 1,
     "maxReplicas": 1,
     "resources": {
-        "limits": {
-            "memory": "512Mi"
-        },
         "requests": {
-            "cpu": "50m",
-            "memory": "254Mi"
+            "memory": "64Mi",
+            "cpu": "20m"
+        },
+        "limits": {
+            "memory": "256Mi"
         }
     },
     "observabilityEnabled": "true",

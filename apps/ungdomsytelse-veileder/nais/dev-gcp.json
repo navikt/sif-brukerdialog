@@ -9,6 +9,15 @@
     "accessPolicyOutApps": [{ "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" }],
     "minReplicas": 1,
     "maxReplicas": 1,
+    "resources": {
+        "requests": {
+            "memory": "64Mi",
+            "cpu": "20m"
+        },
+        "limits": {
+            "memory": "256Mi"
+        }
+    },
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
     "azure": {

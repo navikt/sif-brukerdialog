@@ -13,6 +13,15 @@
     "cluster": "dev-gcp",
     "minReplicas": 1,
     "maxReplicas": 1,
+    "resources": {
+        "requests": {
+            "memory": "64Mi",
+            "cpu": "20m"
+        },
+        "limits": {
+            "memory": "256Mi"
+        }
+    },
     "env": {
         "ENV": "dev",
         "APP_VERSION": "dev",
