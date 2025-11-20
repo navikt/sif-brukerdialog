@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.37
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 4.11.36
 
 ### Patch Changes

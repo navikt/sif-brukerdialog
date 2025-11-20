@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.4
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 2.0.3
 
 ### Patch Changes

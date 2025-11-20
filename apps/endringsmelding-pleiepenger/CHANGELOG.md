@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.40.36
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 2.40.35
 
 ### Patch Changes

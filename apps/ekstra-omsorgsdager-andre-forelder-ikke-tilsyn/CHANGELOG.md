@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.35.43
+
+### Patch Changes
+
+- Justere nais resources
+
 ## 1.35.42
 
 ### Patch Changes
