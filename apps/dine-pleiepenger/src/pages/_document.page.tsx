@@ -38,6 +38,8 @@ function createDecoratorEnv(ctx: DocumentContext): 'dev' | 'prod' {
 interface Props {
     Decorator: DecoratorComponentsReact;
     language: string;
+    githubRefName?: string;
+    dataset?: string;
 }
 
 class MyDocument extends Document<Props> {
@@ -58,11 +60,17 @@ class MyDocument extends Document<Props> {
 
         const language = getDocumentParameter(initialProps, 'lang');
 
-        return { ...initialProps, Decorator, language };
+        return {
+            ...initialProps,
+            Decorator,
+            language,
+            githubRefName: serverEnv.GITHUB_REF_NAME,
+            dataset: serverEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
+        };
     }
 
     render(): ReactElement {
-        const { Decorator, language } = this.props;
+        const { Decorator, language, githubRefName, dataset } = this.props;
 
         return (
             <Html lang={language || 'no'}>
@@ -85,7 +93,7 @@ class MyDocument extends Document<Props> {
                     <Decorator.Footer />
                     <Decorator.Scripts />
                     <NextScript />
-                    <DevBranchInfo />
+                    <DevBranchInfo githubRefName={githubRefName} dataset={dataset} />
                 </body>
             </Html>
         );

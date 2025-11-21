@@ -1,18 +1,15 @@
 import { Tag } from '@navikt/ds-react';
 import { useRef } from 'react';
 
-import { getServerEnv } from '../../utils/env';
+interface DevBranchInfoProps {
+    githubRefName?: string;
+    dataset?: string;
+}
 
-const DevBranchInfo = () => {
+const DevBranchInfo = ({ githubRefName, dataset }: DevBranchInfoProps) => {
     const tagRef = useRef<HTMLDivElement>(null);
-    const { GITHUB_REF_NAME, NEXT_PUBLIC_APPSTATUS_DATASET } = getServerEnv();
 
-    if (
-        !GITHUB_REF_NAME ||
-        GITHUB_REF_NAME === 'undefined' ||
-        GITHUB_REF_NAME === 'main' ||
-        NEXT_PUBLIC_APPSTATUS_DATASET !== 'staging'
-    ) {
+    if (!githubRefName || githubRefName === 'undefined' || githubRefName === 'main' || dataset !== 'staging') {
         return null;
     }
 
@@ -41,7 +38,7 @@ const DevBranchInfo = () => {
                 boxShadow: '0 0 6px rgba(0,0,0,0.3)',
                 background: 'rgba(255,255,255, 0.6)',
             }}>
-            Github-branch: {GITHUB_REF_NAME}
+            GitHub-branch: {githubRefName}
         </Tag>
     );
 };

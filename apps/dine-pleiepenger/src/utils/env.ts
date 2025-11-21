@@ -111,7 +111,7 @@ const getRawServerConfig = (): Partial<unknown> =>
         NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: process.env.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE,
-        GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME || ''}`,
+        GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
 
         // Provided by nais
         IDPORTEN_CLIENT_ID: process.env.IDPORTEN_CLIENT_ID,
