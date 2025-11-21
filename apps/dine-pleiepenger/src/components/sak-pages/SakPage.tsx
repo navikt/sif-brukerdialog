@@ -1,7 +1,6 @@
 import { Alert, BodyShort, Box, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 
-import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
 import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
 import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
@@ -124,7 +123,6 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                     <SnarveierSak saksnummer={saksnr} />
                 </Box>
             </VStack>
-            <DevBranchInfo />
         </DefaultPageLayout>
     );
 };

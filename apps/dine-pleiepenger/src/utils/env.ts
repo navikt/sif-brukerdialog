@@ -53,7 +53,7 @@ export const serverEnvSchema = z.object({
     NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: z.string(),
     NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: z.string(),
     NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE: z.string(),
-    NEXT_PUBLIC_GITHUB_REF_NAME: z.string(),
+    GITHUB_REF_NAME: z.string(),
 
     IDPORTEN_CLIENT_ID: z.union([z.string(), z.undefined()]),
     IDPORTEN_WELL_KNOWN_URL: z.union([z.string(), z.undefined()]),
@@ -111,7 +111,7 @@ const getRawServerConfig = (): Partial<unknown> =>
         NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: process.env.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE,
-        NEXT_PUBLIC_GITHUB_REF_NAME: `${process.env.NEXT_PUBLIC_GITHUB_REF_NAME}`,
+        GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME || ''}`,
 
         // Provided by nais
         IDPORTEN_CLIENT_ID: process.env.IDPORTEN_CLIENT_ID,

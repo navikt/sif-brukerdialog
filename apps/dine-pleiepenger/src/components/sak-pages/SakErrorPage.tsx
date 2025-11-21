@@ -3,7 +3,6 @@ import Head from 'next/head';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { AppText } from '../../i18n';
-import DevBranchInfo from '../dev-branch-info/DevBranchInfo';
 import OppdatereSakLenker from '../oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';
@@ -66,7 +65,6 @@ const SakErrorPage = ({ saksnr }: Props) => {
                     <SnarveierSak saksnummer={saksnr} />
                 </Box>
             </VStack>
-            <DevBranchInfo />
         </DefaultPageLayout>
     );
 };

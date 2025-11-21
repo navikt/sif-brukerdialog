@@ -5,6 +5,7 @@ import { DecoratorComponentsReact, fetchDecoratorReact } from '@navikt/nav-dekor
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import { ReactElement } from 'react';
 
+import DevBranchInfo from '../components/dev-branch-info/DevBranchInfo';
 import { browserEnv, getServerEnv } from '../utils/env';
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
@@ -84,6 +85,7 @@ class MyDocument extends Document<Props> {
                     <Decorator.Footer />
                     <Decorator.Scripts />
                     <NextScript />
+                    <DevBranchInfo />
                 </body>
             </Html>
         );
