@@ -1,5 +1,13 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.6
+
+### Patch Changes
+
+- Håndtere Behandlingsstatus UKJENT som settes hvis en sak ikke har behandlinger.
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.3
+
 ## 2.0.5
 
 ### Patch Changes

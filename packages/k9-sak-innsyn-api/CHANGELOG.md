@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.2.3
+
+### Patch Changes
+
+- Håndtere Behandlingsstatus UKJENT som settes hvis en sak ikke har behandlinger.
+
 ## 0.2.2
 
 ### Patch Changes
