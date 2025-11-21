@@ -1,12 +1,23 @@
-/* eslint-disable no-console */
 import express from 'express';
 import { readFileSync } from 'fs';
 import helmet from 'helmet';
 import { dirname, join } from 'path';
+import pino from 'pino';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+const logger = pino({
+    transport: {
+        target: 'pino-pretty',
+        options: {
+            colorize: true,
+            translateTime: 'HH:MM:ss',
+            ignore: 'pid,hostname',
+        },
+    },
+});
 
 const server = express();
 
@@ -43,6 +54,17 @@ const getMockData = (scenario) => {
             readFileSync(join(__dirname, './data/en-sak/inntektsmeldinger.json'), 'utf-8'),
         );
         return { sakerMetadata, søker, saker: [{ sak, inntektsmeldinger }], soknader };
+    } else if (scenario === 'sak-uten-behandling') {
+        const søker = JSON.parse(readFileSync(join(__dirname, './data/sak-uten-behandling/soker.json'), 'utf-8'));
+        const soknader = JSON.parse(readFileSync(join(__dirname, './data/sak-uten-behandling/soknader.json'), 'utf-8'));
+        const sakerMetadata = JSON.parse(
+            readFileSync(join(__dirname, './data/sak-uten-behandling/saker-metadata.json'), 'utf-8'),
+        );
+        const sak = JSON.parse(readFileSync(join(__dirname, './data/sak-uten-behandling/sak.json'), 'utf-8'));
+        const inntektsmeldinger = JSON.parse(
+            readFileSync(join(__dirname, './data/sak-uten-behandling/inntektsmeldinger.json'), 'utf-8'),
+        );
+        return { sakerMetadata, søker, saker: [{ sak, inntektsmeldinger }], soknader };
     } else if (scenario === 'to-saker') {
         const søker = JSON.parse(readFileSync(join(__dirname, './data/to-saker/soker.json'), 'utf-8'));
         const soknader = JSON.parse(readFileSync(join(__dirname, './data/to-saker/soknader.json'), 'utf-8'));
@@ -67,11 +89,9 @@ const getMockData = (scenario) => {
     }
 };
 
-// const mockData = getMockData('debug');
-// const mockData = getMockData('sak-error');
-// const mockData = getMockData('ingen-sak');
-const mockData = getMockData('en-sak');
-// const mockData = getMockData('to-saker');
+const scenario = 'sak-uten-behandling';
+
+const mockData = getMockData(scenario);
 
 server.use(express.json());
 
@@ -118,6 +138,8 @@ const startServer = () => {
         if (sak) {
             res.send(sak.sak);
         } else {
+            // eslint-disable-next-line no-console
+            console.warn('Mock sak ikke funnet for saksnr:', saksnr);
             res.status(404).send({ error: 'Sak ikke funnet' });
         }
     });
@@ -160,7 +182,7 @@ const startServer = () => {
     });
 
     server.listen(port, () => {
-        console.log(`Mockserver is listening on port: ${port}`);
+        logger.info(`Mockserver is listening on port: ${port}`);
     });
 };
 
