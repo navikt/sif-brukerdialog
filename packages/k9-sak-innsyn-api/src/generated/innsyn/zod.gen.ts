@@ -462,7 +462,7 @@ export const zSøknadDto = z.object({
     søknader: z.optional(z.array(zSøknad)),
 });
 
-export const zBehandlingStatus = z.enum(['OPPRETTET', 'UNDER_BEHANDLING', 'PÅ_VENT', 'AVSLUTTET']);
+export const zBehandlingStatus = z.enum(['OPPRETTET', 'UNDER_BEHANDLING', 'PÅ_VENT', 'AVSLUTTET', 'UKJENT']);
 
 export const zDatotype = z.enum([
     'DATO_OPPRETTET',
@@ -494,9 +494,9 @@ export const zFagsakYtelseType = z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_
 export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSMELDING', 'UKJENT']);
 
 export const zInnsending = z.object({
-    mottattDato: z.optional(z.iso.datetime({ local: true })),
     versjon: z.optional(z.string()),
     søker: z.optional(zSøker),
+    mottattDato: z.optional(z.iso.datetime({ local: true })),
     søknadId: z.optional(z.string()),
 });
 
