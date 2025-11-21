@@ -30,7 +30,7 @@ const HistorikkPage = ({ sak, inntektsmeldinger = [] }: Props) => {
                 <Box className="md:flex md:gap-6 mb-10">
                     <div className="md:grow mb-10 md:mb-0">
                         <Heading level="2" size="medium" className="mb-2">
-                            Historikk
+                            Hendelser i saken
                         </Heading>
                         <StatusISak sak={sak} visAlleHendelser={true} inntektsmeldinger={inntektsmeldinger} />
                         <Box className="ml-4 mt-4">
