@@ -85,10 +85,6 @@ export const fetchSak = async (
     const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
     logger.info(`Response-status from request: ${response.status}`);
 
-    if (typeof response.data === 'string' && response.data.trim() === '') {
-        logger.info(`Respons på sak er tom streng`);
-        throw new Error('Respons på sak er tom streng');
-    }
     if (typeof response.data !== 'object' || response.data === null) {
         throw new Error(`Sak response data er ikke et objekt eller er null. [typeof=${typeof response.data}]`);
     }

@@ -5,7 +5,7 @@ import { zDateFromDateTimeString, zDateFromISODateString, zDatePeriodeFromString
 
 /* ====================== Inntektsmelding(er) ====================== */
 
-export const InntektsmeldingSchema = innsyn.zSakInntektsmeldingDto.extend({
+export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto.extend({
     startDatoPermisjon: zDateFromISODateString,
     mottattDato: zDateFromISODateString,
     innsendingstidspunkt: zDateFromDateTimeString,
@@ -44,4 +44,4 @@ export const InntektsmeldingSchema = innsyn.zSakInntektsmeldingDto.extend({
     ),
 });
 
-export const InntektsmeldingerSchema = z.array(InntektsmeldingSchema);
+export const inntektsmeldingerClientSchema = z.array(inntektsmeldingClientSchema);

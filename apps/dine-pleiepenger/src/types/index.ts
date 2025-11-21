@@ -4,7 +4,10 @@ import z from 'zod';
 import { dokumentClientSchema } from './client-schemas/dokumentClientSchema';
 import { innsendelseISakClientSchema, søknadISakSchema } from './client-schemas/innsendelseISakClientSchema';
 import { innsynsdataClientSchema } from './client-schemas/innsynsdataClientSchema';
-import { InntektsmeldingerSchema, InntektsmeldingSchema } from './client-schemas/inntektsmeldingClientSchema';
+import {
+    inntektsmeldingClientSchema,
+    inntektsmeldingerClientSchema,
+} from './client-schemas/inntektsmeldingClientSchema';
 import { pleietrengendeClientSchema } from './client-schemas/pleietrengendeClientSchema';
 import { pleietrengendeMedSakClientSchema } from './client-schemas/pleietrengendeMedSakClientSchema';
 import {
@@ -19,8 +22,8 @@ import { søkerClientSchema } from './client-schemas/søkerClientSchema';
 
 export type PleietrengendeMedSak = z.infer<typeof pleietrengendeMedSakClientSchema>;
 export type Pleietrengende = z.infer<typeof pleietrengendeClientSchema>;
-export type Inntektsmelding = z.infer<typeof InntektsmeldingSchema>;
-export type Inntektsmeldinger = z.infer<typeof InntektsmeldingerSchema>;
+export type Inntektsmelding = z.infer<typeof inntektsmeldingClientSchema>;
+export type Inntektsmeldinger = z.infer<typeof inntektsmeldingerClientSchema>;
 export type UtledetStatus = z.infer<typeof utledetStatusClientSchema>;
 export type Aksjonspunkt = z.infer<typeof aksjonspunktClientSchema>;
 export type Dokument = z.infer<typeof dokumentClientSchema>;

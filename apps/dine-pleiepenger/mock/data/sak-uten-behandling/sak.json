@@ -1,0 +1,8 @@
+{
+    "saksnummer": "1002VJS",
+    "utledetStatus": { "status": "UKJENT", "aksjonspunkter": [], "saksbehandlingsFrist": null },
+    "saksbehandlingsFrist": null,
+    "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
+    "ytelseType": "PSB",
+    "behandlinger": []
+}

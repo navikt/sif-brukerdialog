@@ -1,13 +1,13 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
         "build": "next build",
         "clean": "rm -rf node_modules",
         "dev-api": "node ./mock/api-mock-server.mjs",
-        "dev": "next dev -p 8080",
+        "dev": "next dev -p 8080 | pino-pretty",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
@@ -65,6 +65,7 @@
         "eslint-plugin-storybook": "10.0.8",
         "formik": "2.4.9",
         "node-fetch": "3.3.2",
+        "pino-pretty": "^13.1.2",
         "playwright-core": "1.56.1",
         "postcss": "8.5.6",
         "postcss-import": "16.1.1",

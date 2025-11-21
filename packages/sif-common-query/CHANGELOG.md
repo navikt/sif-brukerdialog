@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.59
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.3
+
 ## 0.1.58
 
 ### Patch Changes

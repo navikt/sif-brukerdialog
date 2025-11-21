@@ -506,6 +506,7 @@ export enum BehandlingStatus {
     UNDER_BEHANDLING = 'UNDER_BEHANDLING',
     PÅ_VENT = 'PÅ_VENT',
     AVSLUTTET = 'AVSLUTTET',
+    UKJENT = 'UKJENT',
 }
 
 export enum Datotype {
@@ -572,9 +573,9 @@ export enum Innsendelsestype {
 }
 
 export type Innsending = {
-    mottattDato?: string;
     versjon?: string;
     søker?: Søker;
+    mottattDato?: string;
     søknadId?: string;
 };
 
