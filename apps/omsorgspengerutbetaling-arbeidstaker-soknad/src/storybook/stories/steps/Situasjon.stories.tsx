@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
 
 import SituasjonStep from '../../../app/søknad/steps/situasjon/SituasjonStep';
-import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../decorators/withAnalyticsProvider';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
@@ -16,7 +16,7 @@ export default {
     decorators: [
         withIntl,
         withRouterProvider,
-        withAmplitudeProvider,
+        withAnalyticsProvider,
         withStepFormValuesContext,
         withFormikWrapper,
         (Story) => withSøknadContextProvider(Story, { søknadsdata: søknadsdataMock }),

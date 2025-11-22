@@ -1,6 +1,6 @@
 import { IngenTilgangMeta } from '@hooks';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { Søker } from '@navikt/sif-common-api';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getMaybeEnv } from '@navikt/sif-common-env';
@@ -100,7 +100,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 };
 
 const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
-    const { logInfo } = useAmplitudeInstance();
+    const { logInfo } = useAnalyticsInstance();
     const { text } = useAppIntl();
 
     useEffectOnce(() => {

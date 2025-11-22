@@ -6,7 +6,7 @@ export const getPlaywrightAppSettings = (): AppDevEnv => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling',
     GITHUB_REF_NAME: 'branch-name',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',
-    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
+    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:

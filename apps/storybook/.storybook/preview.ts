@@ -11,7 +11,7 @@ if (typeof window !== 'undefined') {
         APP_VERSION: 'dev',
         PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger',
         GITHUB_REF_NAME: 'psb-frilans',
-        SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
+        SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
         SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
         SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
         SIF_PUBLIC_DEKORATOR_URL:
@@ -19,7 +19,7 @@ if (typeof window !== 'undefined') {
         SIF_PUBLIC_LOGIN_URL:
             'https://pleiepengesoknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/pleiepenger/soknad',
         SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
-        SIF_PUBLIC_USE_AMPLITUDE: 'true',
+        SIF_PUBLIC_USE_ANALYTICS: 'true',
         K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger/api/k9-brukerdialog',
         K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
         K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',

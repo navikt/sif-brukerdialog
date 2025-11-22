@@ -1,5 +1,5 @@
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 
 import { useAppIntl } from '../../i18n';
@@ -16,7 +16,7 @@ const VelkommenPage = () => {
         dispatch,
     } = useSøknadContext();
 
-    const { logSoknadStartet } = useAmplitudeInstance();
+    const { logSoknadStartet } = useAnalyticsInstance();
 
     const startSøknad = async () => {
         await logSoknadStartet(OmsorgsdagerAleneomsorgApp.navn);

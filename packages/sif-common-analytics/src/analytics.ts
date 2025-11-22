@@ -12,7 +12,7 @@ export enum SIFCommonPageKey {
     'ikkeTilgjengelig' = 'ikkeTilgjengelig',
 }
 
-export enum AmplitudeEvents {
+export enum AnalyticsEvents {
     'applikasjonStartet' = 'applikasjon-startet',
     'søknadStartet' = 'skjema startet',
     'søknadSendt' = 'skjema fullført',
@@ -58,7 +58,7 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props) => {
+export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, apiKey } = props;
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
@@ -77,14 +77,14 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
     }
 
     async function logSoknadStartet(skjemanavn: string) {
-        return logEvent(AmplitudeEvents.søknadStartet, {
+        return logEvent(AnalyticsEvents.søknadStartet, {
             skjemanavn,
             skjemaId: applicationKey,
         });
     }
 
     async function logSoknadSent(skjemanavn: string, locale?: string) {
-        return logEvent(AmplitudeEvents.søknadSendt, {
+        return logEvent(AnalyticsEvents.søknadSendt, {
             skjemanavn,
             skjemaId: applicationKey,
             locale,
@@ -92,32 +92,32 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
     }
 
     async function logSoknadFailed(skjemanavn: string) {
-        return logEvent(AmplitudeEvents.søknadFeilet, {
+        return logEvent(AnalyticsEvents.søknadFeilet, {
             skjemanavn,
             skjemaId: applicationKey,
         });
     }
 
     async function logHendelse(hendelse: ApplikasjonHendelse, details?: EventProperties) {
-        return logEvent(AmplitudeEvents.applikasjonHendelse, {
+        return logEvent(AnalyticsEvents.applikasjonHendelse, {
             hendelse,
             details,
         });
     }
 
     async function logApiError(error: ApiError, details?: EventProperties) {
-        return logEvent(AmplitudeEvents.apiError, {
+        return logEvent(AnalyticsEvents.apiError, {
             error,
             details,
         });
     }
 
     async function logInfo(details: EventProperties) {
-        return logEvent(AmplitudeEvents.applikasjonInfo, details);
+        return logEvent(AnalyticsEvents.applikasjonInfo, details);
     }
 
     async function logUserLoggedOut(info: string) {
-        return logEvent(AmplitudeEvents.applikasjonHendelse, {
+        return logEvent(AnalyticsEvents.applikasjonHendelse, {
             hendelse: ApplikasjonHendelse.brukerSendesTilLoggInn,
             info,
         });

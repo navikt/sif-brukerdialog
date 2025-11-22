@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import KvitteringPage from './KvitteringPage';
 
 const meta: Meta<typeof KvitteringPage> = {
     title: 'Pages/KvitteringPage',
     component: KvitteringPage,
-    decorators: [withAmplitudeProvider, withIntl],
+    decorators: [withAnalyticsProvider, withIntl],
     args: { onUnmount: () => {} },
     parameters: {
         layout: 'centered',

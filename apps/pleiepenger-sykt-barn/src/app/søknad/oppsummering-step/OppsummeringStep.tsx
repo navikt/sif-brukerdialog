@@ -3,7 +3,7 @@ import './oppsummeringStep.less';
 import { useAppIntl } from '@i18n/index';
 import { VStack } from '@navikt/ds-react';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
@@ -65,7 +65,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
 
     const søknadStepConfig = getSøknadStepConfig(values);
 
-    const { logSoknadSent, logSoknadFailed, logUserLoggedOut } = useAmplitudeInstance();
+    const { logSoknadSent, logSoknadFailed, logUserLoggedOut } = useAnalyticsInstance();
     const { logSenderInnSøknadMedIngenFravær } = useLogSøknadInfo();
     const { søknadsdata } = useSøknadsdataContext();
 

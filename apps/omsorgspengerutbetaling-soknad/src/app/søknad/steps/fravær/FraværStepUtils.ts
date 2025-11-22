@@ -193,7 +193,7 @@ export const getFraværSøknadsdataFromFormValues = (values: FraværFormValues):
         };
     }
 
-    //TODO throw error eller amplitude
+    //TODO throw error eller logge
     return undefined;
 };
 

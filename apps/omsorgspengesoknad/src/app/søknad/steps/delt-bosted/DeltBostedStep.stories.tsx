@@ -6,7 +6,7 @@ import { deltBostedMessages } from './deltBostedMessages';
 import DeltBostedStep from './DeltBostedStep';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
@@ -17,7 +17,7 @@ import { søknadsdataMocks } from '../../../../storybook/mock-data/søknadsdataM
 export default {
     title: 'Steps/DeltBosted/Step',
     component: DeltBostedStep,
-    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAmplitudeProvider],
+    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAnalyticsProvider],
 } as Meta<typeof DeltBostedStep>;
 
 interface Props {

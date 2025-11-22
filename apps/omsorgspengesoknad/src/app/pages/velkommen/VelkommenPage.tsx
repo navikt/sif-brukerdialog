@@ -1,6 +1,6 @@
 import { Link } from '@navikt/ds-react';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
@@ -16,7 +16,7 @@ const VelkommenPage = () => {
         dispatch,
     } = useSøknadContext();
 
-    const { logSoknadStartet } = useAmplitudeInstance();
+    const { logSoknadStartet } = useAnalyticsInstance();
 
     const startSøknad = async () => {
         await logSoknadStartet(OmsorgsdagerKroniskApp.navn);

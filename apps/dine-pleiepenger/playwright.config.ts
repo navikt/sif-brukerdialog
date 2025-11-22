@@ -31,7 +31,7 @@ export default defineConfig({
             NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: 'on',
             NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
-            NEXT_PUBLIC_AMPLITUDE_API_KEY: 'default',
+            NEXT_PUBLIC_ANALYTICS_KEY: 'default',
             NEXT_PUBLIC_BASE_PATH: '/innsyn',
             NEXT_PUBLIC_LOGIN_URL: '/dummy',
             NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',

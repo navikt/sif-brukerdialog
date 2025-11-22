@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
 import VelkommenPage from './VelkommenPage';
@@ -8,7 +8,7 @@ import VelkommenPage from './VelkommenPage';
 const meta: Meta<typeof VelkommenPage> = {
     title: 'Pages/VelkommenPage',
     component: VelkommenPage,
-    decorators: [withAmplitudeProvider, withIntl, (Story) => withSøknadContextProvider(Story)],
+    decorators: [withAnalyticsProvider, withIntl, (Story) => withSøknadContextProvider(Story)],
     args: { onUnmount: () => {} },
     parameters: {
         layout: 'centered',

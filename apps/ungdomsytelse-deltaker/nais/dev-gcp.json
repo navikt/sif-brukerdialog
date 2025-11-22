@@ -31,8 +31,8 @@
         "PUBLIC_PATH": "/ungdomsprogrammet/ytelsen",
         "NPM_CONFIG_CACHE": "/tmp",
 
-        "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
-        "SIF_PUBLIC_USE_AMPLITUDE": "true",
+        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+        "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
 
         "SIF_PUBLIC_USE_FARO": "true",

@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-i-livets-sluttfase-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.22.37",
+    "version": "2.22.38",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -14,7 +14,7 @@
         "@navikt/ds-tailwind": "7.33.5",
         "@navikt/fnrvalidator": "2.1.5",
         "@navikt/sif-app-register": "workspace:*",
-        "@navikt/sif-common-amplitude": "workspace:*",
+        "@navikt/sif-common-analytics": "workspace:*",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",

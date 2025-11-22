@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitude';
+import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import IkkeTilgangPage from './IkkeTilgangPage';
 
 const meta: Meta<typeof IkkeTilgangPage> = {
     title: 'Pages/IkkeTilgangPage',
     component: IkkeTilgangPage,
-    decorators: [withAmplitudeProvider, withIntl],
+    decorators: [withAnalyticsProvider, withIntl],
 };
 export default meta;
 

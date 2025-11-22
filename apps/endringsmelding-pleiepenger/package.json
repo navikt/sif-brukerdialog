@@ -5,7 +5,7 @@
     "license": "MIT",
     "name": "@navikt/endringsmelding-pleiepenger",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.40.37",
+    "version": "2.40.38",
     "private": true,
     "dependencies": {
         "@navikt/aksel-icons": "7.33.5",
@@ -13,7 +13,7 @@
         "@navikt/ds-react": "7.33.5",
         "@navikt/ds-tailwind": "7.33.5",
         "@navikt/fnrvalidator": "2.1.5",
-        "@navikt/sif-common-amplitude": "workspace:*",
+        "@navikt/sif-common-analytics": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",

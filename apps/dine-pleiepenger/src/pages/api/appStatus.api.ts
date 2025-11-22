@@ -7,7 +7,7 @@ import { prepApiError } from '../../utils/apiUtils';
 import { browserEnv } from '../../utils/env';
 import { Feature } from '../../utils/features';
 import { getLogger } from '../../utils/getLogCorrelationID';
-import { AMPLITUDE_APPLICATION_KEY } from '../_app.page';
+import { ANALYTICS_APPLICATION_KEY } from '../_app.page';
 
 const sanityConfig: SanityConfig = {
     projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
@@ -15,7 +15,7 @@ const sanityConfig: SanityConfig = {
 };
 
 export const fetchAppStatus = async (): Promise<ApplicationState | undefined> => {
-    return await fetchStatus(AMPLITUDE_APPLICATION_KEY, sanityConfig);
+    return await fetchStatus(ANALYTICS_APPLICATION_KEY, sanityConfig);
 };
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {

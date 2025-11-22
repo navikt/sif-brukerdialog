@@ -5,7 +5,7 @@
     "ingresses": ["https://www.nav.no/ungdomsprogrammet/ytelsen"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
-    "externalHosts": ["www.nav.no", "amplitude.nav.no"],
+    "externalHosts": ["www.nav.no", "telemetry.nav.no"],
     "accessPolicyOutApps": [
         { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
         { "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" }
@@ -22,8 +22,8 @@
         "PUBLIC_PATH": "/ungdomsprogrammet/ytelsen",
         "NPM_CONFIG_CACHE": "/tmp",
 
-        "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
-        "SIF_PUBLIC_USE_AMPLITUDE": "true",
+        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+        "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
 
