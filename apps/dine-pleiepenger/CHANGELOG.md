@@ -1,5 +1,15 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.7
+
+### Patch Changes
+
+- Erstatte begrepet amplitude med analytics. Ingen logikk forandring. Dette er på grunn av at amplitude fases ut.
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.2
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-core-ds@10.3.33
+
 ## 2.0.6
 
 ### Patch Changes
