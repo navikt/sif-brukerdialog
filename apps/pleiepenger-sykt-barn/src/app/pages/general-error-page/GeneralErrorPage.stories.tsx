@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitude';
+import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import GeneralErrorPage from './GeneralErrorPage';
 
 const meta: Meta<typeof GeneralErrorPage> = {
     title: 'Pages/GeneralErrorPage',
     component: GeneralErrorPage,
-    decorators: [withAmplitudeProvider, withIntl],
+    decorators: [withAnalyticsProvider, withIntl],
 };
 export default meta;
 

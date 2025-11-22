@@ -23,7 +23,7 @@ export const setupMockRoutes = async (page: Page, scenario: ScenarioType, props?
     await page.route('https://login.nav.no/**', async (route) => {
         await route.fulfill({ status: 200 });
     });
-    await page.route('https://amplitude.nav.no/collect-auto', async (route) => {
+    await page.route('https://telemetry.nav.no/collect', async (route) => {
         await route.fulfill({ status: 200 });
     });
     await page.route('**collect**', async (route) => {

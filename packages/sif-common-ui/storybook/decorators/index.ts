@@ -1,4 +1,4 @@
-export * from './withAmplitudeProvider';
+export * from './withAnalyticsProvider';
 export * from './withEnvSettings';
 export * from './withIntlWrapper';
 export * from './withRouter';

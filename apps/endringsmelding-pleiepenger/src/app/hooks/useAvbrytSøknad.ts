@@ -1,5 +1,5 @@
 import { useSøknadContext } from '@hooks';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { useCallback } from 'react';
 
 import actionsCreator from '../søknad/context/action/actionCreator';
@@ -9,7 +9,7 @@ import { useMellomlagring } from './useMellomlagring';
 const useAvbrytEllerFortsettSenere = () => {
     const { dispatch } = useSøknadContext();
     const { slettMellomlagring } = useMellomlagring();
-    const { logHendelse } = useAmplitudeInstance();
+    const { logHendelse } = useAnalyticsInstance();
 
     const avbrytSøknad = useCallback(async () => {
         await logHendelse(ApplikasjonHendelse.avbryt);

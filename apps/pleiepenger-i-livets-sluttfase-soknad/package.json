@@ -14,7 +14,7 @@
         "@navikt/ds-tailwind": "7.33.5",
         "@navikt/fnrvalidator": "2.1.5",
         "@navikt/sif-app-register": "workspace:*",
-        "@navikt/sif-common-amplitude": "workspace:*",
+        "@navikt/sif-common-analytics": "workspace:*",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",

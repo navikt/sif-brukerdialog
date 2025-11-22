@@ -4,10 +4,10 @@ export enum LogSøknadInfoType {
     'senderInnSøknadMedIngenFravær' = 'senderInnSøknadMedIngenFravær',
 }
 
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 
 function useLogSøknadInfo() {
-    const { logInfo } = useAmplitudeInstance();
+    const { logInfo } = useAnalyticsInstance();
 
     const logBekreftIngenFraværFraJobb = (bekrefterIngenFravær: boolean) => {
         logInfo({

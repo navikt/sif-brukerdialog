@@ -1,5 +1,5 @@
 import { useAppIntl } from '@i18n/index';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
@@ -42,7 +42,7 @@ const SøknadFormStep = (props: Props) => {
     } = props;
     const [nextButtonPending, setNextButtonPending] = useState(false);
     const navigate = useNavigate();
-    const { logHendelse } = useAmplitudeInstance();
+    const { logHendelse } = useAnalyticsInstance();
 
     const søknadStepConfig = getSøknadStepConfig(formik.values);
     const currentStepConfig = søknadStepConfig[stepId];

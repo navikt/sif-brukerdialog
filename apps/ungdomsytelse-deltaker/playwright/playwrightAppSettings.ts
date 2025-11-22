@@ -7,8 +7,8 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     GITHUB_REF_NAME: 'dev',
 
     VELG_SCENARIO: 'on',
-    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
-    SIF_PUBLIC_USE_AMPLITUDE: 'true',
+    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
+    SIF_PUBLIC_USE_ANALYTICS: 'true',
     SIF_PUBLIC_USE_FARO: 'false',
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '#',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',

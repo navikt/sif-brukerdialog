@@ -1,7 +1,7 @@
 interface AppInfo {
-    /** Ikke synlig beskrivende navn - brukes i amplitude */
+    /** Ikke synlig beskrivende navn - brukes i analytics */
     navn: string;
-    /** Applikasjonsnøkkel som brukes i amplitude og sentry */
+    /** Applikasjonsnøkkel som brukes i analytics og sentry */
     key: string;
     /** Tittel brukt i applikasjon, og dersom en skal lenke til applikasjon */
     tittel: {

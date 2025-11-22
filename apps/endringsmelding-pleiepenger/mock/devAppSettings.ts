@@ -7,7 +7,7 @@ export const getDevAppSettings = (isTest?: boolean) => {
         PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
         GITHUB_REF_NAME: 'some_branch_name',
 
-        SIF_PUBLIC_AMPLITUDE_API_KEY: 'key',
+        SIF_PUBLIC_ANALYTICS_API_KEY: 'key',
         SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
         SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
         SIF_PUBLIC_DEKORATOR_URL:
@@ -18,7 +18,7 @@ export const getDevAppSettings = (isTest?: boolean) => {
         SIF_PUBLIC_LOGIN_URL:
             'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
         SIF_PUBLIC_MINSIDE_URL: 'https://www.nav.no/minside',
-        SIF_PUBLIC_USE_AMPLITUDE: 'false',
+        SIF_PUBLIC_USE_ANALYTICS: 'false',
 
         K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH:
             '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/k9-brukerdialog',

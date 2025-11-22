@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitude';
+import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
 import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
@@ -21,7 +21,7 @@ const meta: Meta<typeof OmBarnetForm> = {
     decorators: [
         withIntl,
         (Story) => withSøknadContextProvider(Story),
-        withAmplitudeProvider,
+        withAnalyticsProvider,
         withRouterProvider,
         (Story) => (
             <TypedFormikWrapper

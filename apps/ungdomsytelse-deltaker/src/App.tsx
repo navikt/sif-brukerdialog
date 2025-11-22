@@ -54,7 +54,7 @@ if (globalThis.location.pathname === '/ungdomsytelse-deltaker') {
 
 function App() {
     const env = getAppEnv();
-    const analyticsIsActive = env[EnvKey.SIF_PUBLIC_USE_AMPLITUDE] === 'true';
+    const analyticsIsActive = env[EnvKey.SIF_PUBLIC_USE_ANALYTICS] === 'true';
 
     const sanityConfig: SanityConfig = {
         projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,

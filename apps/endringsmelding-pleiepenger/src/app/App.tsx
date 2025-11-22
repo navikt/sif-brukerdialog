@@ -22,7 +22,7 @@ const {
     SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     APP_VERSION,
-    SIF_PUBLIC_AMPLITUDE_API_KEY,
+    SIF_PUBLIC_ANALYTICS_API_KEY,
 } = appEnv;
 
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
@@ -37,8 +37,8 @@ const App = () => (
             appName={EndringsmeldingPsbApp.navn}
             appTitle={EndringsmeldingPsbApp.tittel.nb}
             intlMessages={applicationIntlMessages}
-            useAmplitude={!isE2E}
-            amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
+            useAnalytics={!isE2E}
+            analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}
             appStatus={{
                 sanityConfig: {
                     projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

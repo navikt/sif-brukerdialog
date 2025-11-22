@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { getInnsendingService, InnsendingType, Søker } from '@navikt/sif-common-api';
 import { AxiosError } from 'axios';
 import { mellomlagringService } from '../api/mellomlagringService';
@@ -21,7 +21,7 @@ export const useSendSøknad = () => {
     const { locale } = useAppIntl();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent, logInfo } = useAmplitudeInstance();
+    const { logSoknadSent, logInfo } = useAnalyticsInstance();
 
     const sendSøknad = (apiData: SøknadApiData, søker: Søker) => {
         setIsSubmitting(true);

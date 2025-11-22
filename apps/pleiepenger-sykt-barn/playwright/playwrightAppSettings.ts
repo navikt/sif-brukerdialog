@@ -5,7 +5,7 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger',
     GITHUB_REF_NAME: 'dev',
-    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
+    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
@@ -13,7 +13,7 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     SIF_PUBLIC_LOGIN_URL:
         'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
     SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
-    SIF_PUBLIC_USE_AMPLITUDE: 'false',
+    SIF_PUBLIC_USE_ANALYTICS: 'false',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',
     SIF_PUBLIC_FEATURE_VIS_SPM_SLUTTET_I_PERIODE: 'off',
     SIF_PUBLIC_FEATURE_NORMALARBEIDST_IKKE_FRILANSER: 'off',
