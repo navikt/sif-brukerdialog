@@ -77,92 +77,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-browser@npm:2.31.1":
-  version: 2.31.1
-  resolution: "@amplitude/analytics-browser@npm:2.31.1"
-  dependencies:
-    "@amplitude/analytics-core": "npm:2.32.1"
-    "@amplitude/plugin-autocapture-browser": "npm:1.17.3"
-    "@amplitude/plugin-network-capture-browser": "npm:1.6.15"
-    "@amplitude/plugin-page-url-enrichment-browser": "npm:0.5.4"
-    "@amplitude/plugin-page-view-tracking-browser": "npm:2.6.1"
-    "@amplitude/plugin-web-vitals-browser": "npm:1.0.2"
-    tslib: "npm:^2.4.1"
-  checksum: 10/67030379dff61858a9e5b40c1d21af33bdb2921d24f4647c0a771ed33922ed1b95ad07efaeff7e07cb553b89a0554e76f9ea4e9b88d03d96534d0b9c9576526d
-  languageName: node
-  linkType: hard
-
-"@amplitude/analytics-connector@npm:^1.6.4":
-  version: 1.6.4
-  resolution: "@amplitude/analytics-connector@npm:1.6.4"
-  checksum: 10/5adea7f5234f037b730df93d8fbdeb0422aa31b152683a3cbdb31f49fe57b3d483b1a16fd626e9e2ef329461c1a3c00161c4bb473dd5713c498d6eea0b12ea4f
-  languageName: node
-  linkType: hard
-
-"@amplitude/analytics-core@npm:2.32.1":
-  version: 2.32.1
-  resolution: "@amplitude/analytics-core@npm:2.32.1"
-  dependencies:
-    "@amplitude/analytics-connector": "npm:^1.6.4"
-    tslib: "npm:^2.4.1"
-  checksum: 10/eaaf82dcef3158cc7a79caad43233f85f979d720572e5ec54ceb81271ab47434de9fd698f0a1a20ebcdeea0ed5c0a8451317348b601dfdfe01627a2f95b6c81d
-  languageName: node
-  linkType: hard
-
-"@amplitude/plugin-autocapture-browser@npm:1.17.3":
-  version: 1.17.3
-  resolution: "@amplitude/plugin-autocapture-browser@npm:1.17.3"
-  dependencies:
-    "@amplitude/analytics-core": "npm:2.32.1"
-    rxjs: "npm:^7.8.1"
-    tslib: "npm:^2.4.1"
-  checksum: 10/cc8adf7976974639750125a97280d89daca9da558bb97c69e3cf50f1f349c1f6af9bf2b1d25ea172fa2aa47b79f360a91f7767b3eebee18b69b92f04413855b7
-  languageName: node
-  linkType: hard
-
-"@amplitude/plugin-network-capture-browser@npm:1.6.15":
-  version: 1.6.15
-  resolution: "@amplitude/plugin-network-capture-browser@npm:1.6.15"
-  dependencies:
-    "@amplitude/analytics-core": "npm:2.32.1"
-    rxjs: "npm:^7.8.1"
-    tslib: "npm:^2.4.1"
-  checksum: 10/2e202f48c66fb2cf274f02931eb9854c7f297238b2413771d7e105aca5f11e7943e52060484800d54b9085d9f4bc3fede0b6a99e28ea6733072078d1db239b61
-  languageName: node
-  linkType: hard
-
-"@amplitude/plugin-page-url-enrichment-browser@npm:0.5.4":
-  version: 0.5.4
-  resolution: "@amplitude/plugin-page-url-enrichment-browser@npm:0.5.4"
-  dependencies:
-    "@amplitude/analytics-core": "npm:2.32.1"
-    tslib: "npm:^2.4.1"
-  checksum: 10/1cd32f8c2484cd579dceedc6a0dda8f82113d2bb6ffcd653741f7e7906c4721782f411f4726dc43dc8fd0dde7c82d579eee319b67651a5db3e76e926e8f2dfc5
-  languageName: node
-  linkType: hard
-
-"@amplitude/plugin-page-view-tracking-browser@npm:2.6.1":
-  version: 2.6.1
-  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.6.1"
-  dependencies:
-    "@amplitude/analytics-core": "npm:2.32.1"
-    tslib: "npm:^2.4.1"
-  checksum: 10/0c15f6f817d42f9a1161344c10738d6e01e4fad820eea608deff0b10981a62366101e85b5ef7a1ae91dd6f284640d1c2d93f58806b4187b318ef44021910e80d
-  languageName: node
-  linkType: hard
-
-"@amplitude/plugin-web-vitals-browser@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@amplitude/plugin-web-vitals-browser@npm:1.0.2"
-  dependencies:
-    "@amplitude/analytics-core": "npm:2.32.1"
-    rxjs: "npm:^7.8.1"
-    tslib: "npm:^2.4.1"
-    web-vitals: "npm:^5.0.1"
-  checksum: 10/6f8928ee496c55f15899743841962588fc9bd4216edc597823d7f72a4aff44f1dffb000687e5cbc0c064c8016c81739b76f215f3aad5534426106fbe8d0d706a
-  languageName: node
-  linkType: hard
-
 "@architect/asap@npm:~7.0.10":
   version: 7.0.10
   resolution: "@architect/asap@npm:7.0.10"
@@ -4387,7 +4301,7 @@ __metadata:
     "@navikt/next-logger": "npm:4.4.1"
     "@navikt/oasis": "npm:4.1.1"
     "@navikt/sif-app-register": "workspace:*"
-    "@navikt/sif-common-amplitude": "workspace:*"
+    "@navikt/sif-common-analytics": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
@@ -5331,13 +5245,27 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
-    "@amplitude/analytics-browser": "npm:2.31.1"
     "@sif/eslint-config": "workspace:*"
     "@types/node": "npm:24.10.1"
     "@types/react": "npm:19.2.6"
     config: "workspace:*"
     constate: "npm:3.3.3"
     gh-pages: "npm:6.3.0"
+    react: "npm:19.2.0"
+    rimraf: "npm:6.1.2"
+    typescript: "npm:5.9.3"
+  languageName: unknown
+  linkType: soft
+
+"@navikt/sif-common-analytics@workspace:*, @navikt/sif-common-analytics@workspace:packages/sif-common-analytics":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-common-analytics@workspace:packages/sif-common-analytics"
+  dependencies:
+    "@sif/eslint-config": "workspace:*"
+    "@types/node": "npm:24.10.1"
+    "@types/react": "npm:19.2.6"
+    config: "workspace:*"
+    constate: "npm:3.3.3"
     react: "npm:19.2.0"
     rimraf: "npm:6.1.2"
     typescript: "npm:5.9.3"
@@ -26963,7 +26891,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.4.0, tslib@npm:^2.4.1, tslib@npm:^2.7.0, tslib@npm:^2.8.0":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.4.0, tslib@npm:^2.7.0, tslib@npm:^2.8.0":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 10/3e2e043d5c2316461cb54e5c7fe02c30ef6dccb3384717ca22ae5c6b5bc95232a6241df19c622d9c73b809bea33b187f6dbc73030963e29950c2141bc32a79f7
@@ -28157,13 +28085,6 @@ __metadata:
   version: 4.2.4
   resolution: "web-vitals@npm:4.2.4"
   checksum: 10/68cd1c2625a04b26e7eab67110623396afc6c9ef8c3a76f4e780aefe5b7d4ca1691737a0b99119e1d1ca9a463c4d468c0f0090b1875b6d784589d3a4a8503313
-  languageName: node
-  linkType: hard
-
-"web-vitals@npm:^5.0.1":
-  version: 5.1.0
-  resolution: "web-vitals@npm:5.1.0"
-  checksum: 10/3b99e3e5e031257387f59f5e71f84d873b259bc09d560993fff1d0c84e0196a509712bc974666c47f51561f8bb8297ff1c1fdf18d4ebde2345a1cd06dba36021
   languageName: node
   linkType: hard
 

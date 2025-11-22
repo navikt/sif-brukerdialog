@@ -10,7 +10,6 @@
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
-    "dependencies": {},
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "@types/node": "24.10.1",

@@ -1,4 +1,4 @@
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
@@ -30,7 +30,7 @@ interface Options {
  * @param options - Valgfrie innstillinger
  */
 export const useVerifyCurrentUser = (userId: string, getUserId: () => Promise<string>, options?: Options) => {
-    const { logHendelse } = useAmplitudeInstance();
+    const { logHendelse } = useAnalyticsInstance();
     const focusConfig = { enabled: true, throttleSeconds: 30, ...options?.focus };
     const visibilityConfig = { enabled: true, throttleSeconds: 30, ...options?.visibilityChange };
 

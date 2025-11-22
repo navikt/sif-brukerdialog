@@ -5,7 +5,7 @@ import { Status, StatusMessage } from '@navikt/appstatus-react-ds';
 import { Theme } from '@navikt/ds-react';
 import { configureLogger } from '@navikt/next-logger';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
-import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import { AnalyticsProvider } from '@navikt/sif-common-analytics';
 import axios, { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
 import { ReactElement } from 'react';
@@ -30,7 +30,7 @@ import { Feature } from '../utils/features';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import UnavailablePage from './unavailable.page';
 
-export const AMPLITUDE_APPLICATION_KEY = 'sif-innsyn';
+export const ANALYTICS_APPLICATION_KEY = 'sif-innsyn';
 
 const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url).then((res) => innsynsdataClientSchema.parse(res.data));
@@ -83,9 +83,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     return (
         <Theme hasBackground={false}>
             <ErrorBoundary>
-                <AmplitudeProvider
+                <AnalyticsProvider
                     applicationKey={InnsynPsbApp.key}
-                    apiKey={browserEnv.NEXT_PUBLIC_AMPLITUDE_API_KEY}
+                    apiKey={browserEnv.NEXT_PUBLIC_ANALYTICS_KEY}
                     isActive={browserEnv.NEXT_PUBLIC_RUNTIME_ENVIRONMENT === 'production'}>
                     {data.appStatus?.status === Status.unavailable ? (
                         <UnavailablePage />
@@ -103,7 +103,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
                             </IntlProvider>
                         </main>
                     )}
-                </AmplitudeProvider>
+                </AnalyticsProvider>
             </ErrorBoundary>
         </Theme>
     );

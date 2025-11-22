@@ -9,7 +9,6 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit"
     },
-    "dependencies": {},
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "@types/node": "24.10.1",

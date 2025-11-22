@@ -12,8 +12,8 @@ export const publicEnvSchema = z.object({
     /** Faro telemetry */
     NEXT_PUBLIC_TELEMETRY_URL: z.string(),
 
-    /** Amplitude */
-    NEXT_PUBLIC_AMPLITUDE_API_KEY: z.string(),
+    /** Analytics */
+    NEXT_PUBLIC_ANALYTICS_KEY: z.string(),
 
     /** Appstatus */
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: z.string(),
@@ -76,7 +76,7 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
     NEXT_PUBLIC_LOGIN_URL: process.env.NEXT_PUBLIC_LOGIN_URL,
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT,
-    NEXT_PUBLIC_AMPLITUDE_API_KEY: process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY,
+    NEXT_PUBLIC_ANALYTICS_KEY: process.env.NEXT_PUBLIC_ANALYTICS_KEY,
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: process.env.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
     NEXT_PUBLIC_APPSTATUS_DATASET: process.env.NEXT_PUBLIC_APPSTATUS_DATASET,
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG,
