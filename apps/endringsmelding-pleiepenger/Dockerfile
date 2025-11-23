@@ -37,6 +37,7 @@ COPY --from=prune /app/out/json/ ./
 COPY --from=prune /app/out/yarn.lock ./yarn.lock
 
 # Install dependencies with pruned lockfile
+# Note: Installing all deps (including dev) because we need them for build
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn install --immutable
 

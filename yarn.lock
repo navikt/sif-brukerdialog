@@ -16373,21 +16373,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:~10.3.12":
-  version: 10.3.16
-  resolution: "glob@npm:10.3.16"
-  dependencies:
-    foreground-child: "npm:^3.1.0"
-    jackspeak: "npm:^3.1.2"
-    minimatch: "npm:^9.0.1"
-    minipass: "npm:^7.0.4"
-    path-scurry: "npm:^1.11.0"
-  bin:
-    glob: dist/esm/bin.mjs
-  checksum: 10/77f126deac5e4cb8408c9fd1449aeb31ce1eca363a0ca1d0796a8912440af954d201f8658348a121a18d0363dcc4b09708be27fdaf922af667ae160826352a16
-  languageName: node
-  linkType: hard
-
 "global-modules@npm:^0.2.3":
   version: 0.2.3
   resolution: "global-modules@npm:0.2.3"
@@ -20605,7 +20590,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^9.0.1, minimatch@npm:^9.0.4, minimatch@npm:^9.0.5":
+"minimatch@npm:^9.0.4, minimatch@npm:^9.0.5":
   version: 9.0.5
   resolution: "minimatch@npm:9.0.5"
   dependencies:
@@ -22133,7 +22118,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-scurry@npm:^1.11.0, path-scurry@npm:^1.11.1":
+"path-scurry@npm:^1.11.1":
   version: 1.11.1
   resolution: "path-scurry@npm:1.11.1"
   dependencies:
