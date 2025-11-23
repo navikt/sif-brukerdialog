@@ -12,7 +12,8 @@
     "dependencies": {
         "@changesets/cli": "2.29.7",
         "tailwindcss": "4.1.17",
-        "turbo": "2.6.1"
+        "turbo": "2.6.1",
+        "glob": "13.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -52,14 +53,11 @@
         "server",
         "server-ungdomsytelse-veileder"
     ],
-    "overrides": {
-        "glob-parent": ">=5.1.2"
-    },
     "packageManager": "yarn@4.10.3",
     "private": true,
     "resolutions": {
-        "react": "19.2.0",
-        "react-dom": "19.2.0",
-        "@types/react": "19.2.0"
+        "glob@npm:^11.0.0": "11.1.0",
+        "glob@npm:^10.0.0": "10.5.0",
+        "tar@npm:7.5.1": "7.5.2"
     }
 }
