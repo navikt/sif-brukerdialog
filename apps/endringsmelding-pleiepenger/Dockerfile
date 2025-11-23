@@ -49,6 +49,7 @@ COPY --from=prune /app/out/full/ ./
 
 # Overskriv envSchema.ts i server med env.schema.ts fra app
 ARG APP
+ARG SERVER
 COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 
 #########################################
@@ -67,6 +68,8 @@ RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
 #########################################
 
 FROM installer AS client-build
+ARG SCOPE
+ARG APP
 WORKDIR /app
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn turbo run build --filter=${SCOPE}
@@ -77,13 +80,13 @@ RUN mv /app/apps/${APP}/dist /public
 # Server
 #########################################
 FROM node:25-alpine AS server
-ARG SERVER
 WORKDIR /app
 
 # Install only tini, don't need npm/yarn in production
 RUN apk add --no-cache tini && rm -rf /var/cache/apk/*
 
-COPY --from=server-build /app/${SERVER}/dist ./
+# Copy server build (server/ is hardcoded since it's the same for all apps)
+COPY --from=server-build /app/server/dist ./
 ENTRYPOINT ["/sbin/tini", "--"]
 
 #########################################
