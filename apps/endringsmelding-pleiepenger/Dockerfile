@@ -8,7 +8,8 @@ RUN apk fix \
     && apk add --no-cache --update libc6-compat tini \
     && rm -rf /var/cache/apk/*
 
-RUN yarn global add turbo
+# Install turbo globally using npm to avoid yarn classic's old dependencies
+RUN npm install -g turbo@2.6.1
 
 #########################################
 # PRUNE - Use turbo to create pruned workspace
