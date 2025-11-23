@@ -8,7 +8,10 @@ RUN apk fix \
     && apk add --no-cache --update libc6-compat tini \
     && rm -rf /var/cache/apk/*
 
-# Install turbo globally using npm to avoid yarn classic's old dependencies
+# Upgrade npm to get patched glob/tar versions (node:25-alpine ships with npm 11.6.2 which has vulnerable deps)
+RUN npm install -g npm@latest
+
+# Install turbo globally
 RUN npm install -g turbo@2.6.1
 
 #########################################
@@ -73,9 +76,13 @@ RUN mv /app/apps/${APP}/dist /public
 #########################################
 # Server
 #########################################
-FROM base AS server
+FROM node:25-alpine AS server
 ARG SERVER
 WORKDIR /app
+
+# Install only tini, don't need npm/yarn in production
+RUN apk add --no-cache tini && rm -rf /var/cache/apk/*
+
 COPY --from=server-build /app/${SERVER}/dist ./
 ENTRYPOINT ["/sbin/tini", "--"]
 
