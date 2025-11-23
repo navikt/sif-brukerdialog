@@ -9,7 +9,7 @@ RUN apk fix \
     && rm -rf /var/cache/apk/*
 
 # Upgrade npm to get patched glob/tar versions (node:25-alpine ships with npm 11.6.2 which has vulnerable deps)
-RUN npm install -g npm@latest
+RUN npm install -g npm@11.6.3
 
 # Install turbo globally
 RUN npm install -g turbo@2.6.1
