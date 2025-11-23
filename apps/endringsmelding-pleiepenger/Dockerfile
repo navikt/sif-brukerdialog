@@ -22,8 +22,8 @@ COPY packages packages
 COPY apps apps
 ARG SERVER
 COPY ${SERVER} ${SERVER}
-RUN find apps \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
-RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
+RUN find apps packages ${SERVER} -type f ! -name "package.json" -delete
+RUN find apps packages ${SERVER} -type d -empty -delete
 RUN find ${SERVER} \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
 
 #########################################
