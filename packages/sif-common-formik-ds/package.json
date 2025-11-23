@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
-    "version": "2.5.30",
+    "version": "2.5.31",
     "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
@@ -58,7 +58,7 @@
         "typescript": "5.9.3",
         "vite": "7.2.4",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.11",
+        "vitest": "4.0.13",
         "webpack": "5.103.0"
     },
     "directories": {

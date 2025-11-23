@@ -6,7 +6,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.41.38",
+    "version": "1.41.39",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -79,7 +79,7 @@
         "typescript-eslint": "8.47.0",
         "vite": "7.2.4",
         "vite-plugin-checker": "0.11.0",
-        "vitest": "4.0.11"
+        "vitest": "4.0.13"
     },
     "scripts": {
         "build-storybook": "storybook build",

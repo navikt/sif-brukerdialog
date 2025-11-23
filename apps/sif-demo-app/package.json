@@ -2,7 +2,7 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.86",
+    "version": "0.4.87",
     "scripts": {
         "clean": "rm -rf node_modules dist",
         "dev": "node ./dev-server.cjs",
@@ -58,7 +58,7 @@
         "postcss-import": "16.1.1",
         "postcss-styled-syntax": "0.7.1",
         "prettier": "3.6.2",
-        "stylelint": "16.25.0",
+        "stylelint": "16.26.0",
         "tailwindcss": "4.1.17",
         "typescript": "5.9.3",
         "typescript-eslint": "8.47.0",
