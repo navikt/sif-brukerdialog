@@ -19,6 +19,11 @@ WORKDIR /app
 COPY . .
 RUN turbo prune --scope=${SCOPE} --docker
 
+# Server is not in the app's dependency tree, but needed at runtime
+# Copy it separately to a dedicated output location
+ARG SERVER
+RUN mkdir -p /app/out/server && cp -r ${SERVER} /app/out/server/
+
 #########################################
 # BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
 #########################################
@@ -34,6 +39,10 @@ COPY .yarn/releases/ ./.yarn/releases/
 COPY --from=prune /app/out/json/ ./
 COPY --from=prune /app/out/yarn.lock ./yarn.lock
 
+# Copy server package.json (not included in turbo prune json output)
+ARG SERVER
+COPY --from=prune /app/out/server/${SERVER}/package.json ./${SERVER}/package.json
+
 # Install dependencies with pruned lockfile
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn install --immutable
@@ -41,9 +50,12 @@ RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
 # Copy full pruned source
 COPY --from=prune /app/out/full/ ./
 
+# Copy server (not included in turbo prune because it's not a dependency)
+ARG SERVER
+COPY --from=prune /app/out/server/${SERVER} ./${SERVER}
+
 # Overskriv envSchema.ts i server med env.schema.ts fra app
 ARG APP
-ARG SERVER
 COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 
 #########################################
