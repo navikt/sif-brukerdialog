@@ -11,31 +11,39 @@ RUN apk fix \
 RUN yarn global add turbo
 
 #########################################
-# PREPARE DEPS FOR BUILD
+# PRUNE - Use turbo to create pruned workspace
 #########################################
 
-FROM base AS prepare
+FROM base AS prune
 WORKDIR /app
-COPY ["package.json", ".yarnrc.yml", "yarn.lock", "turbo.json", "./"]
-COPY [".yarn/releases/*", ".yarn/releases/"]
-COPY packages packages
-COPY apps apps
-ARG SERVER
-COPY ${SERVER} ${SERVER}
-RUN find apps packages ${SERVER} -type f ! -name "package.json" -delete
-RUN find apps packages ${SERVER} -type d -empty -delete
-RUN find ${SERVER} \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
+COPY . .
+RUN turbo prune --scope=${SCOPE} --docker
 
 #########################################
 # BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
 #########################################
 
-FROM prepare AS installer
-COPY --from=prepare /app ./
+FROM base AS installer
+WORKDIR /app
+
+# Copy yarn configuration from original workspace (not included in turbo prune output)
+COPY .yarnrc.yml ./
+COPY .yarn/releases/ ./.yarn/releases/
+
+# Copy pruned lockfile and package.json files
+COPY --from=prune /app/out/json/ ./
+COPY --from=prune /app/out/yarn.lock ./yarn.lock
+
+# Install dependencies with pruned lockfile
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn install --immutable
-COPY . .
+
+# Copy full pruned source
+COPY --from=prune /app/out/full/ ./
+
 # Overskriv envSchema.ts i server med env.schema.ts fra app
+ARG APP
+ARG SERVER
 COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 
 #########################################
