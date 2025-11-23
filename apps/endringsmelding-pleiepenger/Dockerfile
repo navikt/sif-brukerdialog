@@ -17,12 +17,8 @@ RUN yarn global add turbo
 FROM base AS prune
 WORKDIR /app
 COPY . .
-RUN turbo prune --scope=${SCOPE} --docker
-
-# Server is not in the app's dependency tree, but needed at runtime
-# Copy it separately to a dedicated output location
-ARG SERVER
-RUN mkdir -p /app/out/server && cp -r ${SERVER} /app/out/server/
+# Include both app and server in prune (server is needed at runtime but not in dependency tree)
+RUN turbo prune --scope=${SCOPE} --scope=@navikt/sif-server --docker
 
 #########################################
 # BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
@@ -35,24 +31,16 @@ WORKDIR /app
 COPY .yarnrc.yml ./
 COPY .yarn/releases/ ./.yarn/releases/
 
-# Copy pruned lockfile and package.json files
+# Copy pruned lockfile and package.json files (includes server now)
 COPY --from=prune /app/out/json/ ./
 COPY --from=prune /app/out/yarn.lock ./yarn.lock
-
-# Copy server package.json (not included in turbo prune json output)
-ARG SERVER
-COPY --from=prune /app/out/server/${SERVER}/package.json ./${SERVER}/package.json
 
 # Install dependencies with pruned lockfile
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn install --immutable
 
-# Copy full pruned source
+# Copy full pruned source (includes server because of --scope=@navikt/sif-server)
 COPY --from=prune /app/out/full/ ./
-
-# Copy server (not included in turbo prune because it's not a dependency)
-ARG SERVER
-COPY --from=prune /app/out/server/${SERVER} ./${SERVER}
 
 # Overskriv envSchema.ts i server med env.schema.ts fra app
 ARG APP
