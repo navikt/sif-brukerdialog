@@ -6083,6 +6083,7 @@ __metadata:
     "@storybook/react-vite": "npm:10.0.8"
     "@tailwindcss/postcss": "npm:4.1.17"
     "@tailwindcss/vite": "npm:4.1.17"
+    "@tanstack/react-query": "npm:5.90.10"
     "@types/node": "npm:24.10.1"
     "@types/react": "npm:19.2.6"
     "@types/react-dom": "npm:19.2.3"
