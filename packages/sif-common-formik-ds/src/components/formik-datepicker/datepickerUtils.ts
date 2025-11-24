@@ -24,7 +24,7 @@ export const getDisabledDates = (limitations: DatepickerLimitations): Matcher[] 
                 invalidDates.push({
                     from,
                     to,
-                } as Matcher);
+                });
             }
         });
     }
