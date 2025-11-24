@@ -8,7 +8,6 @@ RUN apk fix \
     && apk add --no-cache --update libc6-compat tini \
     && rm -rf /var/cache/apk/*
 
-RUN corepack enable
 RUN yarn global add turbo
 
 #########################################
