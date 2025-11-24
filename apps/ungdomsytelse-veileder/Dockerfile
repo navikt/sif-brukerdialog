@@ -73,12 +73,13 @@ RUN mv /app/apps/${APP}/dist /public
 # Starter fra fresh node-image for å unngå å ta med npm/yarn/turbo fra base
 FROM node:25-alpine AS server
 WORKDIR /app
+ENV SERVER="server-ungdomsytelse-veileder"
 
 # Installer kun tini - trenger ikke npm/yarn i produksjon
 RUN apk add --no-cache tini && rm -rf /var/cache/apk/*
 
-# Copy server build (server/ is hardcoded since it's the same for all apps)
-COPY --from=server-build /app/server/dist ./
+# Copy server build
+COPY --from=server-build /app/${SERVER}/dist ./
 ENTRYPOINT ["/sbin/tini", "--"]
 
 #########################################
