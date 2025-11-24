@@ -98,6 +98,7 @@
         "postcss-import": "16.1.1",
         "postcss-styled-syntax": "0.7.1",
         "prettier": "3.6.2",
+        "sass-embedded": "1.93.3",
         "storybook": "10.0.8",
         "stylelint": "16.26.0",
         "tailwindcss": "4.1.17",
