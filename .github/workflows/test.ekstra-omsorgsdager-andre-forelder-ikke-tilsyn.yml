@@ -1,78 +1,80 @@
 name: test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
 on:
-    push:
-        branches-ignore:
-            - 'main'
-        paths:
-            - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**/*'
-            - 'nais-config/**/*'
-            - 'packages/**/*'
-            - .github/workflows/test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.yml
-            - yarn.lock
-    workflow_call:
+  push:
+    branches-ignore:
+      - "main"
+    paths:
+      - "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**/*"
+      - "nais-config/**/*"
+      - "packages/**/*"
+      - .github/workflows/test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.yml
+      - yarn.lock
+  workflow_call:
 
 env:
-    APP_NAME: 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'
+  APP_NAME: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
 
 permissions:
-    contents: read
+  contents: read
 
 jobs:
-    run-script-tests:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v6
+  run-script-tests:
+    if: ${{ !contains(github.event.head_commit.message, '[no-test]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
 
-            - name: Setup .yarnrc.yml
-              run: |
-                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
-                  yarn config set npmScopes.navikt.npmAlwaysAuth true
-                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Setup .yarnrc.yml
+        run: |
+          yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+          yarn config set npmScopes.navikt.npmAlwaysAuth true
+          yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v6
-              with:
-                  node-version: 22
-                  cache: 'yarn'
-            - run: yarn set version 4.x
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: "yarn"
+      - run: yarn set version 4.x
 
-            - name: Install dependencies (yarn)
-              run: yarn
+      - name: Install dependencies (yarn)
+        run: yarn
 
-            - name: Run code tests
-              run: yarn test --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+      - name: Run code tests
+        run: yarn test --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
-    run-playwright-test:
-        timeout-minutes: 60
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v6
+  run-playwright-test:
+    if: ${{ !contains(github.event.head_commit.message, '[no-test]') }}
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
 
-            - name: Setup .yarnrc.yml
-              run: |
-                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
-                  yarn config set npmScopes.navikt.npmAlwaysAuth true
-                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Setup .yarnrc.yml
+        run: |
+          yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+          yarn config set npmScopes.navikt.npmAlwaysAuth true
+          yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v6
-              with:
-                  node-version: 22
-                  cache: 'yarn'
-            - run: yarn set version 4.x
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: "yarn"
+      - run: yarn set version 4.x
 
-            - name: Install dependencies
-              run: yarn
+      - name: Install dependencies
+        run: yarn
 
-            - name: Install Playwright Browsers
-              run: npx playwright install chromium
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium
 
-            - name: Build and run tests
-              run: yarn turbo playwright-test --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+      - name: Build and run tests
+        run: yarn turbo playwright-test --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
