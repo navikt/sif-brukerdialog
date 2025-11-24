@@ -11,32 +11,32 @@ RUN apk fix \
 RUN yarn global add turbo
 
 #########################################
-# PRUNE - Use turbo to create pruned workspace
+# PRUNE
 #########################################
 
 FROM base AS prune
 WORKDIR /app
 COPY . .
-# Include both app and server in prune (server is needed at runtime but not in dependency tree)
+# Prune med app og server
 RUN turbo prune --scope=${SCOPE} --scope=@navikt/server-ungdomsytelse-veileder --docker
 
 #########################################
-# BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
+# INSTALLER - Installer pakker og kopier kildekode
 #########################################
 
 FROM base AS installer
 WORKDIR /app
 
-# Copy yarn configuration from original workspace (not included in turbo prune output)
+# Kopier yarn-konfigurasjon fra workspace (ikke inkludert i turbo prune output)
 COPY .yarnrc.yml ./
 COPY .yarn/releases/ ./.yarn/releases/
 
-# Copy pruned lockfile and package.json files (includes server now)
+# Kopier pruned lockfile og package.json filer
 COPY --from=prune /app/out/json/ ./
 COPY --from=prune /app/out/yarn.lock ./yarn.lock
 
-# Install dependencies with pruned lockfile
-# Note: Installing all deps (including dev) because we need them for build
+
+# Installer avhengigheter med pruned lockfile (ink. dev)
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn install --immutable
 
@@ -47,7 +47,7 @@ COPY --from=prune /app/out/full/ ./
 COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 
 #########################################
-# BUILD SERVER
+# BYGG SERVER
 #########################################
 
 FROM installer AS server-build
@@ -57,7 +57,7 @@ RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
 
 
 #########################################
-# Client
+# BYGG KLIENT
 #########################################
 
 FROM installer AS client-build
@@ -68,7 +68,7 @@ RUN mv /app/apps/${APP}/dist /public
 
 
 #########################################
-# Server
+# SERVER RUNTIME
 #########################################
 # Starter fra fresh node-image for å unngå å ta med npm/yarn/turbo fra base
 FROM node:25-alpine AS server
@@ -83,7 +83,7 @@ COPY --from=server-build /app/${SERVER}/dist ./
 ENTRYPOINT ["/sbin/tini", "--"]
 
 #########################################
-# App
+# START APP
 #########################################
 FROM server
 
