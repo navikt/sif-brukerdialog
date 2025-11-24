@@ -95,11 +95,11 @@ const getMeldtUtOppgaveLøst = (): OppgaveDto => ({
 });
 
 const getEndretSluttdatoOppgave = (): OppgaveDto => ({
-    oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7927',
+    oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7928',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
-        nySluttdato: '2026-01-29',
-        forrigeSluttdato: '2026-01-30',
+        nySluttdato: '2026-01-24',
+        forrigeSluttdato: '2026-01-25',
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: '2025-09-22T05:39:32.420085Z',
@@ -108,7 +108,7 @@ const getEndretSluttdatoOppgave = (): OppgaveDto => ({
 });
 
 const getEndretSluttdatoOppgaveLøst = (): OppgaveDto => ({
-    oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7927',
+    oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7928',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
         nySluttdato: '2026-01-29',
