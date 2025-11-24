@@ -36,11 +36,10 @@ export const getDisabledDates = (limitations: DatepickerLimitations): Matcher[] 
     if (limitations.disabledDaysOfWeek) {
         const { dayOfWeek } = limitations.disabledDaysOfWeek;
         const days = isArray(dayOfWeek) ? dayOfWeek : [dayOfWeek];
-        const currentDays = disabledWeekdays.dayOfWeek;
-        if (isArray(currentDays)) {
-            disabledWeekdays.dayOfWeek = [...currentDays, ...days];
+        if (isArray(disabledWeekdays.dayOfWeek)) {
+            disabledWeekdays.dayOfWeek = [...disabledWeekdays.dayOfWeek, ...days];
         } else {
-            disabledWeekdays.dayOfWeek = [currentDays, ...days];
+            disabledWeekdays.dayOfWeek = [disabledWeekdays.dayOfWeek, ...days];
         }
     }
 
