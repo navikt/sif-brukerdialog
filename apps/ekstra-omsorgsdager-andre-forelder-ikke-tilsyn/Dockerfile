@@ -11,31 +11,40 @@ RUN apk fix \
 RUN yarn global add turbo
 
 #########################################
-# PREPARE DEPS FOR BUILD
+# PRUNE - Turbo prune for å lage prunet workspace
 #########################################
 
-FROM base AS prepare
+FROM base AS prune
 WORKDIR /app
-COPY ["package.json", ".yarnrc.yml", "yarn.lock", "turbo.json", "./"]
-COPY [".yarn/releases/*", ".yarn/releases/"]
-COPY packages packages
-COPY apps apps
-ARG SERVER
-COPY ${SERVER} ${SERVER}
-RUN find apps \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
-RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
-RUN find ${SERVER} \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
-
-#########################################
-# BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
-#########################################
-
-FROM prepare AS installer
-COPY --from=prepare /app ./
-RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
-    PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn
 COPY . .
+# Inkluder både app og server (server trengs runtime, men er ikke i dependency tree)
+RUN turbo prune --scope=${SCOPE} --scope=@navikt/sif-server --docker
+
+#########################################
+# INSTALLER - Installer dependencies og kopier kildekode
+#########################################
+
+FROM base AS installer
+WORKDIR /app
+
+# Kopier yarn-konfigurasjon (ikke inkludert i turbo prune output)
+COPY .yarnrc.yml ./
+COPY .yarn/releases/ ./.yarn/releases/
+
+# Kopier prunet lockfile og package.json filer
+COPY --from=prune /app/out/json/ ./
+COPY --from=prune /app/out/yarn.lock ./yarn.lock
+
+# Installer dependencies med prunet lockfile
+RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
+    PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn install --immutable
+
+# Kopier full prunet kildekode
+COPY --from=prune /app/out/full/ ./
+
 # Overskriv envSchema.ts i server med env.schema.ts fra app
+ARG APP
+ARG SERVER
 COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 
 #########################################
@@ -54,6 +63,8 @@ RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
 #########################################
 
 FROM installer AS client-build
+ARG SCOPE
+ARG APP
 WORKDIR /app
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn turbo run build --filter=${SCOPE}
@@ -63,10 +74,15 @@ RUN mv /app/apps/${APP}/dist /public
 #########################################
 # Server
 #########################################
-FROM base AS server
-ARG SERVER
+# Starter fra fresh node-image for å unngå å ta med npm/yarn/turbo fra base
+FROM node:25-alpine AS server
 WORKDIR /app
-COPY --from=server-build /app/${SERVER}/dist ./
+
+# Installer kun tini - trenger ikke npm/yarn i produksjon
+RUN apk add --no-cache tini && rm -rf /var/cache/apk/*
+
+# Kopier bygd server
+COPY --from=server-build /app/server/dist ./
 ENTRYPOINT ["/sbin/tini", "--"]
 
 #########################################
@@ -77,4 +93,5 @@ FROM server
 COPY --from=client-build /public ./public
 
 CMD ["node", "index.js"]
+
 

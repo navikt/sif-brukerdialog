@@ -8,11 +8,7 @@ RUN apk fix \
     && apk add --no-cache --update libc6-compat tini \
     && rm -rf /var/cache/apk/*
 
-# Upgrade npm to get patched glob/tar versions (node:25-alpine ships with npm 11.6.2 which has vulnerable deps)
-RUN npm install -g npm@11.6.3
-
-# Install turbo globally
-RUN npm install -g turbo@2.6.1
+RUN yarn global add turbo
 
 #########################################
 # PRUNE - Use turbo to create pruned workspace
@@ -79,10 +75,11 @@ RUN mv /app/apps/${APP}/dist /public
 #########################################
 # Server
 #########################################
+# Starter fra fresh node-image for å unngå å ta med npm/yarn/turbo fra base
 FROM node:25-alpine AS server
 WORKDIR /app
 
-# Install only tini, don't need npm/yarn in production
+# Installer kun tini - trenger ikke npm/yarn i produksjon
 RUN apk add --no-cache tini && rm -rf /var/cache/apk/*
 
 # Copy server build (server/ is hardcoded since it's the same for all apps)
