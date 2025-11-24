@@ -6041,6 +6041,7 @@ __metadata:
     react-error-boundary: "npm:6.0.0"
     react-helmet: "npm:6.1.0"
     react-intl: "npm:7.1.14"
+    react-loading-skeleton: "npm:3.5.0"
     react-router-dom: "npm:7.9.6"
     storybook: "npm:10.0.8"
     stylelint: "npm:16.26.0"

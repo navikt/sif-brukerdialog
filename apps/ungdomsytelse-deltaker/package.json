@@ -63,6 +63,7 @@
         "react-error-boundary": "6.0.0",
         "react-helmet": "6.1.0",
         "react-intl": "7.1.14",
+        "react-loading-skeleton": "3.5.0",
         "react-router-dom": "7.9.6",
         "uuid": "13.0.0",
         "zod": "4.1.12",
