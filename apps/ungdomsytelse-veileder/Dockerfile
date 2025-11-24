@@ -1,8 +1,7 @@
 FROM node:25-alpine AS base
 
-ARG APP="ungdomsytelse-veileder"
-ARG SERVER="server-ungdomsytelse-veileder"
-
+ENV APP="ungdomsytelse-veileder"
+ENV SERVER="server-ungdomsytelse-veileder"
 ENV SCOPE=@navikt/ungdomsytelse-veileder
 
 RUN apk fix \
@@ -12,30 +11,38 @@ RUN apk fix \
 RUN yarn global add turbo
 
 #########################################
-# PREPARE DEPS FOR BUILD
+# PRUNE - Use turbo to create pruned workspace
 #########################################
 
-FROM base AS prepare
+FROM base AS prune
 WORKDIR /app
-COPY ["package.json", ".yarnrc.yml", "yarn.lock", "turbo.json", "./"]
-COPY [".yarn/releases/*", ".yarn/releases/"]
-COPY packages packages
-COPY apps apps
-ARG SERVER
-COPY ${SERVER} ${SERVER}
-RUN find apps \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
-RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
-RUN find ${SERVER} \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
+COPY . .
+# Include both app and server in prune (server is needed at runtime but not in dependency tree)
+RUN turbo prune --scope=${SCOPE} --scope=@navikt/sif-server --docker
 
 #########################################
 # BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
 #########################################
 
-FROM prepare AS installer
-COPY --from=prepare /app ./
+FROM base AS installer
+WORKDIR /app
+
+# Copy yarn configuration from original workspace (not included in turbo prune output)
+COPY .yarnrc.yml ./
+COPY .yarn/releases/ ./.yarn/releases/
+
+# Copy pruned lockfile and package.json files (includes server now)
+COPY --from=prune /app/out/json/ ./
+COPY --from=prune /app/out/yarn.lock ./yarn.lock
+
+# Install dependencies with pruned lockfile
+# Note: Installing all deps (including dev) because we need them for build
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
-    PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn
-COPY . .
+    PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn install --immutable
+
+# Copy full pruned source (includes server because of --scope=@navikt/sif-server)
+COPY --from=prune /app/out/full/ ./
+
 # Overskriv envSchema.ts i server med env.schema.ts fra app
 COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 
@@ -44,7 +51,6 @@ COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 #########################################
 
 FROM installer AS server-build
-ARG SERVER
 WORKDIR /app/${SERVER}
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn build
@@ -64,10 +70,15 @@ RUN mv /app/apps/${APP}/dist /public
 #########################################
 # Server
 #########################################
-FROM base AS server
-ARG SERVER
+# Starter fra fresh node-image for å unngå å ta med npm/yarn/turbo fra base
+FROM node:25-alpine AS server
 WORKDIR /app
-COPY --from=server-build /app/${SERVER}/dist ./
+
+# Installer kun tini - trenger ikke npm/yarn i produksjon
+RUN apk add --no-cache tini && rm -rf /var/cache/apk/*
+
+# Copy server build (server/ is hardcoded since it's the same for all apps)
+COPY --from=server-build /app/server/dist ./
 ENTRYPOINT ["/sbin/tini", "--"]
 
 #########################################
@@ -78,3 +89,5 @@ FROM server
 COPY --from=client-build /public ./public
 
 CMD ["node", "index.js"]
+
+
