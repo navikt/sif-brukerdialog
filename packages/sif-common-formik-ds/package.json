@@ -13,10 +13,13 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
+        "formik": "2.4.9",
         "i18n-iso-countries": "7.14.0",
         "lodash": "4.17.21",
+        "react-day-picker": "9.11.1",
         "react-dropzone": "14.3.8",
         "react-fast-compare": "3.2.2",
+        "react-intl": "7.1.14",
         "uuid": "13.0.0"
     },
     "devDependencies": {
@@ -47,7 +50,6 @@
         "jest": "30.2.0",
         "prop-types": "15.8.1",
         "react": "19.2.0",
-        "react-day-picker": "9.11.1",
         "react-dom": "19.2.0",
         "react-intl": "7.1.14",
         "react-syntax-highlighter": "16.1.0",
@@ -71,11 +73,6 @@
     },
     "overrides": {
         "react-refresh": "0.11.0"
-    },
-    "peerDependencies": {
-        "formik": "2",
-        "react-day-picker": "9",
-        "react-intl": "7"
     },
     "repository": {
         "type": "git",
