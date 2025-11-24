@@ -74,6 +74,7 @@
     },
     "peerDependencies": {
         "formik": "2",
+        "react-day-picker": "9",
         "react-intl": "7"
     },
     "repository": {

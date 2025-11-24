@@ -5422,6 +5422,7 @@ __metadata:
     webpack: "npm:5.103.0"
   peerDependencies:
     formik: 2
+    react-day-picker: 9
     react-intl: 7
   languageName: unknown
   linkType: soft
