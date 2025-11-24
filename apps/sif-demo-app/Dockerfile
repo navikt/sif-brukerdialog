@@ -36,7 +36,7 @@ COPY --from=prune /app/out/json/ ./
 COPY --from=prune /app/out/yarn.lock ./yarn.lock
 
 
-# Installer avhengigheter med pruned lockfile (ink. dev)
+# Installer avhengigheter med pruned lockfile (inkl. dev)
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn install --immutable
 
