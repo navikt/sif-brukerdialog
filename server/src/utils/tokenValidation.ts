@@ -3,6 +3,14 @@ import { NextFunction, Request, Response } from 'express';
 import logger from './log.js';
 
 export const verifyToken = async (request: Request, response: Response, next: NextFunction) => {
+    // Skip token validation for metrics endpoint used by Prometheus.
+    // NAIS-plattformen skraper /metrics direkte fra poden (localhost:8080/metrics)
+    // uten autentisering, så dette endepunktet må være åpent.
+    if (request.path === '/metrics') {
+        next();
+        return;
+    }
+
     const token = getToken(request);
 
     if (!token) {
