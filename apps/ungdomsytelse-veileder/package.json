@@ -57,6 +57,7 @@
         "react-dom": "19.2.0",
         "react-helmet": "6.1.0",
         "react-intl": "7.1.14",
+        "react-loading-skeleton": "3.5.0",
         "react-markdown": "10.1.0",
         "react-router-dom": "7.9.6",
         "remark-gfm": "4.0.1",

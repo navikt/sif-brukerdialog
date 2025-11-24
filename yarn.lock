@@ -6127,6 +6127,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-helmet: "npm:6.1.0"
     react-intl: "npm:7.1.14"
+    react-loading-skeleton: "npm:3.5.0"
     react-markdown: "npm:10.1.0"
     react-router-dom: "npm:7.9.6"
     remark-gfm: "npm:4.0.1"
