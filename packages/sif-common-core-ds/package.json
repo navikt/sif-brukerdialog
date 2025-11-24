@@ -17,6 +17,7 @@
         "dayjs": "1.11.19",
         "http-status-codes": "2.3.0",
         "i18n-iso-countries": "7.14.0",
+        "react-day-picker": "9.11.1",
         "tailwindcss": "4.1.17"
     },
     "devDependencies": {
@@ -47,7 +48,6 @@
         "postcss": "8.5.6",
         "prop-types": "15.8.1",
         "react": "19.2.0",
-        "react-day-picker": "9.11.1",
         "react-dom": "19.2.0",
         "react-intl": "7.1.14",
         "react-responsive": "10.0.1",
