@@ -37,10 +37,8 @@ export const getDisabledDates = (limitations: DatepickerLimitations): Matcher[] 
         const { dayOfWeek } = limitations.disabledDaysOfWeek;
         const days = isArray(dayOfWeek) ? dayOfWeek : [dayOfWeek];
         if (isArray(disabledWeekdays.dayOfWeek)) {
-            // @ts-ignore
             disabledWeekdays.dayOfWeek = [...disabledWeekdays.dayOfWeek, ...days];
         } else {
-            // @ts-ignore
             disabledWeekdays.dayOfWeek = [disabledWeekdays.dayOfWeek, ...days];
         }
     }
