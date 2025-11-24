@@ -2,7 +2,6 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
-import { isArray } from 'lodash';
 import { Matcher } from 'react-day-picker';
 
 import { ISODateString } from './dateFormatUtils';
@@ -25,31 +24,23 @@ export const getDisabledDates = (limitations: DatepickerLimitations): Matcher[] 
                 invalidDates.push({
                     from,
                     to,
-                });
+                } as Matcher);
             }
         });
     }
-    const disabledWeekdays: Matcher = {
-        dayOfWeek: [...(limitations.disableWeekends ? [0, 6] : [])],
-    };
+    const disabledDays: number[] = limitations.disableWeekends ? [0, 6] : [];
 
     if (limitations.disabledDaysOfWeek) {
         const { dayOfWeek } = limitations.disabledDaysOfWeek;
-        const days = isArray(dayOfWeek) ? dayOfWeek : [dayOfWeek];
-        if (isArray(disabledWeekdays.dayOfWeek)) {
-            // @ts-ignore
-            disabledWeekdays.dayOfWeek = [...disabledWeekdays.dayOfWeek, ...days];
-        } else {
-            // @ts-ignore
-            disabledWeekdays.dayOfWeek = [disabledWeekdays.dayOfWeek, ...days];
-        }
+        const additionalDays = Array.isArray(dayOfWeek) ? dayOfWeek : [dayOfWeek];
+        disabledDays.push(...additionalDays);
     }
 
     return [
         ...invalidDates,
         ...(limitations.maxDate ? [{ after: limitations.maxDate } as Matcher] : []),
         ...(limitations.minDate ? [{ before: limitations.minDate } as Matcher] : []),
-        ...[disabledWeekdays],
+        ...(disabledDays.length > 0 ? [{ dayOfWeek: disabledDays } as Matcher] : []),
     ];
 };
 
