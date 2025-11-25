@@ -20,7 +20,7 @@
     },
     "devDependencies": {
         "@formatjs/intl-pluralrules": "5.4.6",
-        "@navikt/aksel-icons": "7.33.5",
+        "@navikt/aksel-icons": "7.34.0",
         "@navikt/ds-css": "7.33.5",
         "@navikt/ds-react": "7.33.5",
         "@navikt/sif-common-core-ds": "workspace:*",

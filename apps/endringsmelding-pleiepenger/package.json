@@ -8,7 +8,7 @@
     "version": "2.40.39",
     "private": true,
     "dependencies": {
-        "@navikt/aksel-icons": "7.33.5",
+        "@navikt/aksel-icons": "7.34.0",
         "@navikt/ds-css": "7.33.5",
         "@navikt/ds-react": "7.33.5",
         "@navikt/ds-tailwind": "7.33.5",
