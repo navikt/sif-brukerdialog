@@ -14,9 +14,9 @@
     "type": "module",
     "dependencies": {
         "@navikt/aksel-icons": "7.33.5",
-        "@navikt/ds-css": "7.33.5",
-        "@navikt/ds-react": "7.33.5",
-        "@navikt/ds-tailwind": "7.33.5",
+        "@navikt/ds-css": "7.34.0",
+        "@navikt/ds-react": "7.34.0",
+        "@navikt/ds-tailwind": "7.34.0",
         "@navikt/fnrvalidator": "2.1.5",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
