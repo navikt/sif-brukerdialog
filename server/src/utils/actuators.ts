@@ -1,4 +1,5 @@
 import { Express } from 'express';
+import { register } from './metrics.js';
 
 export function setupActuators(server: Express) {
     server.get(`/internal/health/isAlive`, (_request, response) => {
@@ -13,10 +14,9 @@ export function setupActuators(server: Express) {
         });
     });
 
-    // Prometheus metrics endpoint - konfigurert i nais.yml (prometheus.path: /metrics)
-    // Returnerer tomt svar inntil vi evt. implementerer faktiske metrics med prom-client
-    server.get('/metrics', (_request, response) => {
-        response.set('Content-Type', 'text/plain');
-        response.send('');
+    // Prometheus metrics endpoint
+    server.get('/metrics', async (_request, response) => {
+        response.set('Content-Type', register.contentType);
+        response.send(await register.metrics());
     });
 }
