@@ -20,10 +20,10 @@
         "tailwindcss": "4.1.17"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "7.33.5",
-        "@navikt/ds-css": "7.33.5",
-        "@navikt/ds-react": "7.33.5",
-        "@navikt/ds-tailwind": "7.33.5",
+        "@navikt/aksel-icons": "7.34.0",
+        "@navikt/ds-css": "7.34.0",
+        "@navikt/ds-react": "7.34.0",
+        "@navikt/ds-tailwind": "7.34.0",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@playwright/test": "1.56.1",
