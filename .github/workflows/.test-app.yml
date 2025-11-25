@@ -1,0 +1,141 @@
+name: Test app (reusable)
+
+on:
+    workflow_call:
+        inputs:
+            app-name:
+                required: true
+                type: string
+                description: "App name (e.g., 'dine-pleiepenger')"
+            working-directory:
+                required: true
+                type: string
+                description: "Path to app directory (e.g., 'apps/dine-pleiepenger')"
+            package-name:
+                required: true
+                type: string
+                description: "Package name in monorepo (e.g., '@navikt/dine-pleiepenger')"
+            playwright-with-deps:
+                required: false
+                type: boolean
+                default: false
+                description: "Install Playwright with system dependencies (--with-deps)"
+            use-turbo-test:
+                required: false
+                type: boolean
+                default: false
+                description: "Use 'yarn turbo test' instead of 'yarn test'"
+            e2e-build-command:
+                required: false
+                type: string
+                default: ""
+                description: "Custom build command for e2e tests (e.g., 'e2e:build', 'build')"
+            needs-env-file:
+                required: false
+                type: boolean
+                default: false
+                description: "Copy .env.dev to .env.production for next.js apps"
+            run-sonar:
+                required: false
+                type: boolean
+                default: false
+                description: "Run SonarCloud scan after tests"
+
+permissions:
+    contents: read
+
+jobs:
+    run-script-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+              with:
+                  persist-credentials: false
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 22
+                  cache: "yarn"
+
+            - name: Set Yarn version
+              run: yarn set version 4.x
+
+            - name: Install dependencies
+              run: yarn
+
+            - name: Run code tests
+              run: |
+                  if [ "${{ inputs.use-turbo-test }}" = "true" ]; then
+                    yarn turbo test --filter=${{ inputs.package-name }}
+                  else
+                    yarn test --filter=${{ inputs.package-name }}
+                  fi
+
+    run-playwright-test:
+        timeout-minutes: 60
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+              with:
+                  persist-credentials: false
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 22
+                  cache: "yarn"
+
+            - name: Set Yarn version
+              run: yarn set version 4.x
+
+            - name: Install dependencies
+              run: yarn
+
+            - name: Install Playwright Browsers
+              run: |
+                  if [ "${{ inputs.playwright-with-deps }}" = "true" ]; then
+                    npx playwright install chromium --with-deps
+                  else
+                    npx playwright install chromium
+                  fi
+
+            - name: Copy .env.dev for next.js build
+              if: inputs.needs-env-file
+              shell: bash
+              run: |
+                  echo "Copying .env.dev to app root"
+                  cp ${{ inputs.working-directory }}/nais/envs/.env.dev ${{ inputs.working-directory }}/.env.production
+
+            - name: Build application for testing
+              if: inputs.e2e-build-command != ''
+              run: yarn turbo ${{ inputs.e2e-build-command }} --filter=${{ inputs.package-name }}
+
+            - name: Run Playwright tests
+              run: yarn turbo playwright-test --filter=${{ inputs.package-name }}
+
+    sonar:
+        if: inputs.run-sonar
+        uses: ./.github/workflows/.sonarcloud.app-scan.yml
+        with:
+            app: ${{ inputs.app-name }}
+            working-directory: ${{ inputs.working-directory }}
+        secrets: inherit

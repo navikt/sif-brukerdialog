@@ -24,6 +24,8 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v6
+              with:
+                  persist-credentials: false
 
             - name: Setup .yarnrc.yml
               run: |
@@ -37,7 +39,7 @@ jobs:
               uses: actions/setup-node@v6
               with:
                   node-version: 22
-                  cache: 'yarn'
+                  cache: "yarn"
             - run: yarn set version 4.x
 
             - name: Install dependencies (yarn)

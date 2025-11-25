@@ -6,27 +6,21 @@ on:
         branches:
             - main
         paths:
-            - 'apps/omsorgspengesoknad/**/*'
-            - 'server/**/*'
+            - "apps/omsorgspengesoknad/**/*"
+            - "server/**/*"
     workflow_dispatch:
 
-jobs:
-    run-tests:
-        uses: ./.github/workflows/test.omsorgspengesøknad.yml
-        secrets: inherit
-        permissions:
-            contents: read
+permissions:
+    contents: write
+    security-events: write
+    id-token: write
+    actions: read
 
-    deploy-to-prod:
-        name: Deploy omsorgspengesøknad to prod
-        needs: [run-tests]
-        uses: ./.github/workflows/.deploy-app-to-prod.yml
+jobs:
+    deploy:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
-        permissions:
-            contents: write
-            security-events: write
-            id-token: write
-            actions: read
         with:
-            app-name: 'omsorgspengesoknad'
-            working-directory: 'apps/omsorgspengesoknad'
+            app-name: "omsorgspengesoknad"
+            working-directory: "apps/omsorgspengesoknad"
+            package-name: "@navikt/omsorgspengesoknad"
