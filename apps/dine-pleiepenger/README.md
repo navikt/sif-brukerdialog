@@ -1,4 +1,4 @@
-Innsynsløsning på nav.no for dem som har søkt om Pleiepenger for sykt barn.
+Innsynsløsning på nav.no for Pleiepenger for sykt barn.
 
 #### Komme i gang
 
