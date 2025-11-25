@@ -18,7 +18,7 @@ permissions:
 
 jobs:
     deploy:
-        uses: ./.github/workflows/.deploy-and-test-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
             app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"

@@ -1,4 +1,4 @@
-name: Deploy app to prod (reusable)
+name: Test and deploy app to prod (reusable)
 
 on:
     workflow_call:
@@ -20,11 +20,6 @@ on:
                 type: boolean
                 default: false
                 description: "Is Next.js app"
-            is-intern-prod:
-                required: false
-                type: boolean
-                default: false
-                description: "Deploy to internal prod instead of public prod"
             playwright-with-deps:
                 required: false
                 type: boolean
@@ -71,8 +66,7 @@ jobs:
         name: Deploy ${{ inputs.app-name }} to prod
         needs: [run-tests]
         # Skip deploy on push commits containing [skip-prod-deploy]; always run via manual dispatch
-        # Only run if NOT deploying to internal prod
-        if: ${{ !inputs.is-intern-prod && (github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]')) }}
+        if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]') }}
         uses: ./.github/workflows/.deploy-app-to-prod.yml
         secrets: inherit
         permissions:
@@ -84,19 +78,3 @@ jobs:
             app-name: ${{ inputs.app-name }}
             working-directory: ${{ inputs.working-directory }}
             is-next-app: ${{ inputs.is-next-app }}
-
-    deploy-to-intern-prod:
-        name: Deploy ${{ inputs.app-name }} to internal prod
-        needs: [run-tests]
-        # Only run if deploying to internal prod
-        if: ${{ inputs.is-intern-prod && (github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]')) }}
-        uses: ./.github/workflows/.deploy-app-to-intern-prod.yml
-        secrets: inherit
-        permissions:
-            contents: write
-            security-events: write
-            id-token: write
-            actions: read
-        with:
-            app-name: ${{ inputs.app-name }}
-            working-directory: ${{ inputs.working-directory }}
