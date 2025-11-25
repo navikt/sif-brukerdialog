@@ -1,3 +1,3 @@
 # sif-common-api
 
-Felleskode for api-kommunikasjon i sif.
+Felleskode for api-kommunikasjon i sif
