@@ -10,26 +10,19 @@ on:
             - "server/**/*"
     workflow_dispatch:
 
-jobs:
-    run-tests:
-        uses: ./.github/workflows/test.dine-pleiepenger.yml
-        secrets: inherit
-        permissions:
-            contents: read
+permissions:
+    contents: write
+    security-events: write
+    id-token: write
+    actions: read
 
-    deploy-to-prod:
-        name: Deploy dine-pleiepenger to prod
-        needs: [run-tests]
-        # Skip deploy on push commits containing [skip-prod-deploy]; always run via manual dispatch
-        if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]') }}
-        uses: ./.github/workflows/.deploy-app-to-prod.yml
+jobs:
+    deploy:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
-        permissions:
-            contents: write
-            security-events: write
-            id-token: write
-            actions: read
         with:
             app-name: "dine-pleiepenger"
             working-directory: "apps/dine-pleiepenger"
+            package-name: "@navikt/dine-pleiepenger"
             is-next-app: true
+            needs-env-file: true

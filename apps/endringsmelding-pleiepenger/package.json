@@ -8,10 +8,10 @@
     "version": "2.40.39",
     "private": true,
     "dependencies": {
-        "@navikt/aksel-icons": "7.33.5",
-        "@navikt/ds-css": "7.33.5",
-        "@navikt/ds-react": "7.33.5",
-        "@navikt/ds-tailwind": "7.33.5",
+        "@navikt/aksel-icons": "7.34.0",
+        "@navikt/ds-css": "7.34.0",
+        "@navikt/ds-react": "7.34.0",
+        "@navikt/ds-tailwind": "7.34.0",
         "@navikt/fnrvalidator": "2.1.5",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
@@ -47,7 +47,7 @@
     "devDependencies": {
         "@axe-core/playwright": "4.11.0",
         "@mswjs/data": "0.16.2",
-        "@navikt/ds-tailwind": "7.33.5",
+        "@navikt/ds-tailwind": "7.34.0",
         "@navikt/nav-dekoratoren-moduler": "3.5.0",
         "@playwright/test": "1.56.1",
         "@sentry/vite-plugin": "4.6.1",

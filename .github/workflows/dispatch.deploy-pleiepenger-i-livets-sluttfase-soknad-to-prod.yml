@@ -10,25 +10,17 @@ on:
             - "server/**/*"
     workflow_dispatch:
 
-jobs:
-    run-tests:
-        uses: ./.github/workflows/test.pleiepenger-i-livets-sluttfase-soknad.yml
-        secrets: inherit
-        permissions:
-            contents: read
+permissions:
+    contents: write
+    security-events: write
+    id-token: write
+    actions: read
 
-    deploy-to-prod:
-        name: Deploy pleiepenger-i-livets-sluttfase-soknad to prod
-        needs: [run-tests]
-        # Skip deploy on push commits containing [skip-prod-deploy]; always run via manual dispatch
-        if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]') }}
-        uses: ./.github/workflows/.deploy-app-to-prod.yml
+jobs:
+    deploy:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
-        permissions:
-            contents: write
-            security-events: write
-            id-token: write
-            actions: read
         with:
             app-name: "pleiepenger-i-livets-sluttfase-soknad"
             working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
+            package-name: "@navikt/pleiepenger-i-livets-sluttfase-soknad"
