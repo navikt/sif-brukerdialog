@@ -11,24 +11,10 @@ on:
     workflow_dispatch:
 
 jobs:
-    run-tests:
-        uses: ./.github/workflows/test.opplaringspenger-soknad.yml
+    deploy:
+        uses: ./.github/workflows/.deploy-and-test-to-prod.yml
         secrets: inherit
-        permissions:
-            contents: read
-
-    deploy-to-prod:
-        name: Deploy opplaringspenger-soknad to prod
-        needs: [run-tests]
-        # Skip deploy on push commits containing [skip-prod-deploy]; always run via manual dispatch
-        if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]') }}
-        uses: ./.github/workflows/.deploy-app-to-prod.yml
-        secrets: inherit
-        permissions:
-            contents: write
-            security-events: write
-            id-token: write
-            actions: read
         with:
             app-name: "opplaringspenger-soknad"
             working-directory: "apps/opplaringspenger-soknad"
+            package-name: "@navikt/opplaringspenger-soknad"

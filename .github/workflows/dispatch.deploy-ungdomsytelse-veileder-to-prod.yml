@@ -6,27 +6,19 @@ on:
         branches:
             - main
         paths:
-            - 'apps/ungdomsytelse-veileder/**/*'
-            - 'server-ungdomsytelse-veileder/**/*'
+            - "apps/ungdomsytelse-veileder/**/*"
+            - "server-ungdomsytelse-veileder/**/*"
     workflow_dispatch:
 
 jobs:
-    run-tests:
-        uses: ./.github/workflows/test.ungdomsytelse-veileder.yml
+    deploy:
+        uses: ./.github/workflows/.deploy-and-test-to-prod.yml
         secrets: inherit
-        permissions:
-            contents: read
-
-    deploy-to-prod:
-        name: Deploy ungdomsytelse-veileder to prod
-        needs: [run-tests]
-        uses: ./.github/workflows/.deploy-app-to-intern-prod.yml
-        secrets: inherit
-        permissions:
-            contents: write
-            security-events: write
-            id-token: write
-            actions: read
         with:
-            app-name: 'ungdomsytelse-veileder'
-            working-directory: 'apps/ungdomsytelse-veileder'
+            app-name: "ungdomsytelse-veileder"
+            working-directory: "apps/ungdomsytelse-veileder"
+            package-name: "@navikt/ungdomsytelse-veileder"
+            use-turbo-test: true
+            e2e-build-command: "e2e:build"
+            run-sonar: true
+            is-intern-prod: true
