@@ -77,3 +77,26 @@
 .drawer-dialog-wide {
     width: 60rem;
 }
+
+.articles {
+    ol {
+        padding-left: 1.5rem;
+    }
+    ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+    }
+    li > p {
+        margin-bottom: 1rem;
+    }
+    .aksel-body-long,
+    .aksel-body-short {
+        color: var(--ax-text-neutral);
+    }
+    hr {
+        margin-bottom: 2rem;
+    }
+}
+.article h1 {
+    font-size: 1.4rem;
+}
