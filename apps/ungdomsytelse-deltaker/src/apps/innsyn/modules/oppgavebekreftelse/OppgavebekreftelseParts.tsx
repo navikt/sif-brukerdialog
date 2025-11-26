@@ -11,6 +11,7 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
+import RegelverkOgInnsynReadMore from '../oppgaver/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {
@@ -93,6 +94,9 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                             <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ deltakerNavn }} />
                         </Heading>
                         <Box maxWidth="90%">{children}</Box>
+                        <Box marginBlock="0 4">
+                            <RegelverkOgInnsynReadMore />
+                        </Box>
                     </VStack>
                 </GuidePanel>
             </section>
