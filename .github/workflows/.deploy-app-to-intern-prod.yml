@@ -40,7 +40,7 @@ jobs:
             - run: yarn set version 4.x
 
             - name: Install dependencies (yarn)
-              run: yarn
+              run: yarn install --immutable
 
             - name: Build application
               run: yarn turbo run build --filter=@navikt/${{ inputs.app-name }}
