@@ -1,5 +1,17 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.9
+
+### Patch Changes
+
+- d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
+    - Justere workflows for deploy
+    - Skru av prometheus metrics - var ikke brukt
+    - Korrigere dependencies pga --immutable
+    - Forenkle getDisabledDates pga ts warning
+- Updated dependencies [d80e3cd]
+    - @navikt/sif-common-core-ds@10.3.35
+
 ## 2.0.8
 
 ### Patch Changes

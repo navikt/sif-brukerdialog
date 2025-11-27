@@ -1,5 +1,22 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.40
+
+### Patch Changes
+
+- d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
+    - Justere workflows for deploy
+    - Skru av prometheus metrics - var ikke brukt
+    - Korrigere dependencies pga --immutable
+    - Forenkle getDisabledDates pga ts warning
+- Updated dependencies [d80e3cd]
+    - @navikt/sif-common-formik-ds@2.5.32
+    - @navikt/sif-common-soknad-ds@26.1.18
+    - @navikt/sif-common-core-ds@10.3.35
+    - @navikt/sif-common-api@0.4.75
+    - @navikt/sif-common-forms-ds@21.0.36
+    - @navikt/sif-common-ui@0.11.36
+
 ## 1.41.39
 
 ### Patch Changes
