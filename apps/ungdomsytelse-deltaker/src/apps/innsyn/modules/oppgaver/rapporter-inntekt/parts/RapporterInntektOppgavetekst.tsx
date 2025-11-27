@@ -43,9 +43,6 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelde
                             />
                         </BodyLong>
                     )}
-                    {/* <BodyLong>
-                        <AppText id="rapporterInntektOppgavetekst.intro.2" />
-                    </BodyLong> */}
                     <Bleed marginBlock="2 0">
                         <ReadMore header={text('rapporterInntektOppgave.readMore.tittel')}>
                             <BodyLong>
