@@ -9,10 +9,10 @@ interface Props {
     deltakerNavn: string;
     periode: DateRange;
     svarfrist: Date;
-    gjelderSisteMåned?: boolean;
+    gjelderAvkortetMåned?: boolean;
 }
 
-const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelderSisteMåned }: Props) => {
+const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelderAvkortetMåned }: Props) => {
     const frist = dateFormatter.full(svarfrist);
     const måned = dateFormatter.month(periode.from);
 
@@ -33,7 +33,7 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelde
                         />{' '}
                         <AppText id="rapporterInntektOppgavetekst.intro.2" />
                     </BodyLong>
-                    {gjelderSisteMåned && (
+                    {gjelderAvkortetMåned && (
                         <BodyLong>
                             <AppText
                                 id="rapporterInntektOppgavetekst.intro.sisteMåned"
