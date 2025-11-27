@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -69,7 +69,6 @@
         "playwright-core": "1.56.1",
         "postcss": "8.5.6",
         "postcss-import": "16.1.1",
-        "react-day-picker": "9.11.1",
         "react-intl": "7.1.14",
         "storybook": "10.0.8",
         "tailwindcss": "4.1.17",

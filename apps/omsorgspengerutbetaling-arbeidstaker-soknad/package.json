@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "1.16.39",
+    "version": "1.16.40",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -23,6 +23,7 @@
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
+        "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-forms-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",

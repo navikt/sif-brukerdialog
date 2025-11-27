@@ -1,5 +1,16 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.35
+
+### Patch Changes
+
+- d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
+    - Justere workflows for deploy
+    - Skru av prometheus metrics - var ikke brukt
+    - Korrigere dependencies pga --immutable
+    - Forenkle getDisabledDates pga ts warning
+    - @navikt/sif-common-api@0.4.75
+
 ## 10.3.34
 
 ### Patch Changes
