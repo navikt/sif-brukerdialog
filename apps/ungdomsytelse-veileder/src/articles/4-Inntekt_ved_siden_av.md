@@ -29,7 +29,7 @@ Husk! Når deltakerne faktisk jobbet, har ikke noe å si. Det er i hvilken måne
 
 Deltakerne skal ikke elde fra om arbeidsinntekt for den måneden de starter i ungdomsprogrammet.
 
-Se eksempel nederst i artikkelen.
+_Se eksempel nederst i artikkelen._
 
 ---
 
@@ -45,7 +45,7 @@ Der får deltakeren mulighet til å uttale seg om inntekten fra A-ordningen, fø
 
 Utbetalingen av ytelsen vil da bli forsinket, så det er viktig at deltakerne selv rapporterer inn riktig inntekt i første omgang, og at de svarer på forhåndsvarselet så fort som mulig.
 
-Se eksempel nederst i artikkelen.
+_Se eksempel nederst i artikkelen._
 
 ---
 
@@ -71,7 +71,7 @@ De vanlige formene for inntekt for deltakerne i ungdomsprogrammet er
 
 - inntekt fra aksjeselskap (AS)
 
-Les mer om hva som regnes som inntekt i skatteloven §§ 5.10 til 5.15. https://lovdata.no/dokument/NL/lov/1999-03-26-14/KAPITTEL_6-2#§5-10
+Les mer om hva som regnes som inntekt i [skatteloven §§ 5.10 til 5.15](https://lovdata.no/dokument/NL/lov/1999-03-26-14/KAPITTEL_6-2#§5-10).
 
 Deltakerne vil også få redusert ungdomsprogramytelsen dersom de har sykepenger, pleiepenger, opplæringspenger og/eller omsorgspenger. Dette vet Nav, så deltakerne slipper å melde fra om det, men de vil få forhåndsvarsel med mulighet for å gi en tilbakemelding.
 
