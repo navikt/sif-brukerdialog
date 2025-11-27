@@ -155,6 +155,36 @@ const getRapporterInntektOppgaveLøst = (): OppgaveDto => ({
     },
 });
 
+const getRapporterInntektSisteMånedOppgave = (): OppgaveDto => ({
+    oppgaveReferanse: 'f3e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
+    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+    status: OppgaveStatus.ULØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
+    oppgavetypeData: {
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').subtract(4, 'days').toDate()),
+    },
+});
+
+const getRapporterInntektSisteMånedOppgaveLøst = (): OppgaveDto => ({
+    oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
+    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+    status: OppgaveStatus.LØST,
+    opprettetDato: getDatoer().løstOppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().løstOppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
+    løstDato: getDatoer().løstOppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
+    oppgavetypeData: {
+        fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.startOf('month').toDate()),
+        tilOgMed: dateToISODate(getDatoer().løstOppgaveMåned.endOf('month').subtract(4, 'days').toDate()),
+        rapportertInntekt: {
+            fraOgMed: dateToISODate(getDatoer().løstOppgaveMåned.startOf('month').toDate()),
+            tilOgMed: dateToISODate(getDatoer().løstOppgaveMåned.endOf('month').toDate()),
+            arbeidstakerOgFrilansInntekt: 23000,
+        },
+    },
+});
+
 const getBekreftAvvikOppgave = (): OppgaveDto => ({
     oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
@@ -211,6 +241,8 @@ const getBekreftAvvikOppgaveLøst = (): OppgaveDto => ({
 export const getMockOppgaver = () => ({
     rapporterInntektOppgave: getRapporterInntektOppgave(),
     rapporterInntektOppgaveLøst: getRapporterInntektOppgaveLøst(),
+    rapporterInntektSisteMånedOppgave: getRapporterInntektSisteMånedOppgave(),
+    rapporterInntektSisteMånedOppgaveLøst: getRapporterInntektSisteMånedOppgaveLøst(),
     endretStartdatoOppgave: getEndretStartdatoOppgave(),
     endretStartdatoOppgaveLøst: getEndretStartdatoOppgaveLøst(),
     endretSluttdatoOppgave: getEndretSluttdatoOppgave(),
