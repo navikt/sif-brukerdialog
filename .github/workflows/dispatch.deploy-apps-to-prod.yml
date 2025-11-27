@@ -1,0 +1,265 @@
+name: Deploy apps to prod
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "apps/**/*"
+            - "server/**/*"
+            - "packages/**/*"
+    workflow_dispatch:
+        inputs:
+            app:
+                description: "Select app to deploy"
+                required: true
+                type: choice
+                options:
+                    - dine-pleiepenger
+                    - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+                    - endringsmelding-pleiepenger
+                    - omsorgsdager-aleneomsorg-dialog
+                    - omsorgsdager-kalkulator
+                    - omsorgspengerutbetaling-arbeidstaker-soknad
+                    - omsorgspengerutbetaling-soknad
+                    - omsorgspengesoknad
+                    - opplaringspenger-soknad
+                    - pleiepenger-i-livets-sluttfase-soknad
+                    - pleiepenger-sykt-barn
+                    - sif-ettersending
+                    - ungdomsytelse-deltaker
+
+permissions:
+    contents: write
+    security-events: write
+    id-token: write
+    actions: read
+
+jobs:
+    detect-changes:
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        outputs:
+            apps: ${{ steps.filter.outputs.changes }}
+        steps:
+            - uses: actions/checkout@v6
+            - uses: dorny/paths-filter@v3
+              id: filter
+              with:
+                  filters: |
+                      dine-pleiepenger:
+                        - 'apps/dine-pleiepenger/**'
+                        - 'server/**'
+                      ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
+                        - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
+                        - 'server/**'
+                      endringsmelding-pleiepenger:
+                        - 'apps/endringsmelding-pleiepenger/**'
+                        - 'server/**'
+                      omsorgsdager-aleneomsorg-dialog:
+                        - 'apps/omsorgsdager-aleneomsorg-dialog/**'
+                        - 'server/**'
+                      omsorgsdager-kalkulator:
+                        - 'apps/omsorgsdager-kalkulator/**'
+                        - 'server/**'
+                      omsorgspengerutbetaling-arbeidstaker-soknad:
+                        - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
+                        - 'server/**'
+                      omsorgspengerutbetaling-soknad:
+                        - 'apps/omsorgspengerutbetaling-soknad/**'
+                        - 'server/**'
+                      omsorgspengesoknad:
+                        - 'apps/omsorgspengesoknad/**'
+                        - 'server/**'
+                      opplaringspenger-soknad:
+                        - 'apps/opplaringspenger-soknad/**'
+                        - 'server/**'
+                      pleiepenger-i-livets-sluttfase-soknad:
+                        - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
+                        - 'server/**'
+                      pleiepenger-sykt-barn:
+                        - 'apps/pleiepenger-sykt-barn/**'
+                        - 'server/**'
+                      sif-ettersending:
+                        - 'apps/sif-ettersending/**'
+                        - 'server/**'
+                      ungdomsytelse-deltaker:
+                        - 'apps/ungdomsytelse-deltaker/**'
+                        - 'server/**'
+
+    deploy-dine-pleiepenger:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'dine-pleiepenger' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'dine-pleiepenger'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "dine-pleiepenger"
+            working-directory: "apps/dine-pleiepenger"
+            package-name: "@navikt/dine-pleiepenger"
+            is-next-app: true
+            needs-env-file: true
+
+    deploy-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+            working-directory: "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+            package-name: "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+
+    deploy-endringsmelding-pleiepenger:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'endringsmelding-pleiepenger' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'endringsmelding-pleiepenger'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "endringsmelding-pleiepenger"
+            working-directory: "apps/endringsmelding-pleiepenger"
+            package-name: "@navikt/endringsmelding-pleiepenger"
+            playwright-with-deps: true
+
+    deploy-omsorgsdager-aleneomsorg-dialog:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-aleneomsorg-dialog' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-aleneomsorg-dialog'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgsdager-aleneomsorg-dialog"
+            working-directory: "apps/omsorgsdager-aleneomsorg-dialog"
+            package-name: "@navikt/omsorgsdager-aleneomsorg-dialog"
+
+    deploy-omsorgsdager-kalkulator:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-kalkulator' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgsdager-kalkulator"
+            working-directory: "apps/omsorgsdager-kalkulator"
+            package-name: "@navikt/omsorgsdager-kalkulator"
+            e2e-build-command: "build"
+
+    deploy-omsorgspengerutbetaling-arbeidstaker-soknad:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-arbeidstaker-soknad' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-arbeidstaker-soknad'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
+            working-directory: "apps/omsorgspengerutbetaling-arbeidstaker-soknad"
+            package-name: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad"
+
+    deploy-omsorgspengerutbetaling-soknad:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-soknad' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-soknad'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgspengerutbetaling-soknad"
+            working-directory: "apps/omsorgspengerutbetaling-soknad"
+            package-name: "@navikt/omsorgspengerutbetaling-soknad"
+
+    deploy-omsorgspengesoknad:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengesoknad' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengesoknad'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgspengesoknad"
+            working-directory: "apps/omsorgspengesoknad"
+            package-name: "@navikt/omsorgspengesoknad"
+
+    deploy-opplaringspenger-soknad:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'opplaringspenger-soknad' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "opplaringspenger-soknad"
+            working-directory: "apps/opplaringspenger-soknad"
+            package-name: "@navikt/opplaringspenger-soknad"
+
+    deploy-pleiepenger-i-livets-sluttfase-soknad:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-i-livets-sluttfase-soknad' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-i-livets-sluttfase-soknad'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "pleiepenger-i-livets-sluttfase-soknad"
+            working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
+            package-name: "@navikt/pleiepenger-i-livets-sluttfase-soknad"
+
+    deploy-pleiepenger-sykt-barn:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-sykt-barn' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-sykt-barn'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "pleiepenger-sykt-barn"
+            working-directory: "apps/pleiepenger-sykt-barn"
+            package-name: "@navikt/pleiepenger-sykt-barn"
+            playwright-with-deps: true
+
+    deploy-sif-ettersending:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'sif-ettersending' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'sif-ettersending'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "sif-ettersending"
+            working-directory: "apps/sif-ettersending"
+            package-name: "@navikt/sif-ettersending"
+
+    deploy-ungdomsytelse-deltaker:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'ungdomsytelse-deltaker' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-deltaker'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "ungdomsytelse-deltaker"
+            working-directory: "apps/ungdomsytelse-deltaker"
+            package-name: "@navikt/ungdomsytelse-deltaker"
+            use-turbo-test: true
+            e2e-build-command: "e2e:build"
+            run-sonar: true

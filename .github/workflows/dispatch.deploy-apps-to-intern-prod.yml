@@ -1,5 +1,4 @@
-name: Prod - deploy ungdomsytelse-veileder
-run-name: Deploy ungdomsytelse-veileder to prod
+name: Deploy apps to intern prod
 
 on:
     push:
@@ -17,7 +16,7 @@ permissions:
     actions: read
 
 jobs:
-    deploy:
+    deploy-ungdomsytelse-veileder:
         uses: ./.github/workflows/.test-and-deploy-to-intern-prod.yml
         secrets: inherit
         with:

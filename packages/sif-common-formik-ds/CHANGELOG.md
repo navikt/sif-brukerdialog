@@ -1,5 +1,15 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.32
+
+### Patch Changes
+
+- d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
+    - Justere workflows for deploy
+    - Skru av prometheus metrics - var ikke brukt
+    - Korrigere dependencies pga --immutable
+    - Forenkle getDisabledDates pga ts warning
+
 ## 2.5.31
 
 ### Patch Changes

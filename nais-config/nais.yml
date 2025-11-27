@@ -52,9 +52,6 @@ spec:
         generatedConfig:
             mountPath: /apps/{{app}}/dist/assets/nais.js
     {{/if}}
-    prometheus:
-        enabled: true
-        path: /metrics
     vault:
         enabled: false
     observability:

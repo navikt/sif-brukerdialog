@@ -2,7 +2,7 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.87",
+    "version": "0.4.88",
     "scripts": {
         "clean": "rm -rf node_modules dist",
         "dev": "node ./dev-server.cjs",
@@ -22,6 +22,7 @@
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
+        "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-forms-ds": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
