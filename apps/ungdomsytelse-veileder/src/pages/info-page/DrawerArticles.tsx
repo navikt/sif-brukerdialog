@@ -7,8 +7,8 @@ const INFORMER_OM_DEMO = true;
 
 const DrawerArticles = () => {
     return (
-        <VStack gap="10">
-            <VStack gap="4">
+        <VStack gap="10" className="articles">
+            <VStack gap="1">
                 <Heading level="2" size="medium" spacing={true}>
                     Snakk med deltaker om dette
                 </Heading>
@@ -22,7 +22,7 @@ const DrawerArticles = () => {
                         <ExpansionCard.Title size="small">Fylle ut og sende søknaden </ExpansionCard.Title>
                     </ExpansionCard.Header>
                     <ExpansionCard.Content>
-                        <BodyLong spacing>
+                        <BodyLong>
                             Når du har registrert en deltaker, vil deltakeren motta en melding om å logge inn på nav.no
                             for å sende inn søknaden om ungdomsprogramytelsen. Oppfordre deltakerne til å sende søknaden
                             om ungdomsprogramytelsen så fort de er registrert som deltaker i ungdomsprogrammet.
@@ -34,11 +34,13 @@ const DrawerArticles = () => {
                         <ExpansionCard.Title size="small">Bestille skattekort</ExpansionCard.Title>
                     </ExpansionCard.Header>
                     <ExpansionCard.Content>
-                        Sjekk at deltakerne har bestilt skattekort (frikort eller vanlig skattekort). Hvis de har
-                        skattekort fra før, kan det hende at de må endre det nå. Dersom de ikke har skattekort når
-                        pengene skal utbetales, kan det bli trukket så mye som 50 prosent skatt. Så det er viktig at de
-                        raskt for dette på plass. Husk: første utbetaling er den 12. i måneden etter de ble med i
-                        ungdomsprogrammet.
+                        <BodyLong>
+                            Sjekk at deltakerne har bestilt skattekort (frikort eller vanlig skattekort). Hvis de har
+                            skattekort fra før, kan det hende at de må endre det nå. Dersom de ikke har skattekort når
+                            pengene skal utbetales, kan det bli trukket så mye som 50 prosent skatt. Så det er viktig at
+                            de raskt for dette på plass. Husk: første utbetaling er den 12. i måneden etter de ble med i
+                            ungdomsprogrammet.
+                        </BodyLong>
                     </ExpansionCard.Content>
                 </ExpansionCard>
                 <ExpansionCard aria-label="Registrere kontonummer" size="small">
@@ -46,13 +48,15 @@ const DrawerArticles = () => {
                         <ExpansionCard.Title size="small">Registrere kontonummer</ExpansionCard.Title>
                     </ExpansionCard.Header>
                     <ExpansionCard.Content>
-                        Sjekk at deltakerne har en bankkonto som de kan få utbetalt pengene på. Kontonummeret må de
-                        registrere på Min side på nav.no. Dette får de beskjed om i søknaden. Deltakere som allerede har
-                        registrert kontonummeret sitt hos Nav, trenger ikke å gjøre noe.
+                        <BodyLong>
+                            Sjekk at deltakerne har en bankkonto som de kan få utbetalt pengene på. Kontonummeret må de
+                            registrere på Min side på nav.no. Dette får de beskjed om i søknaden. Deltakere som allerede
+                            har registrert kontonummeret sitt hos Nav, trenger ikke å gjøre noe.
+                        </BodyLong>
                     </ExpansionCard.Content>
                 </ExpansionCard>
             </VStack>
-            <VStack gap="4">
+            <VStack gap="1">
                 <Heading level="2" size="medium" spacing={true}>
                     Om ungdomsprogramytelsen
                 </Heading>
@@ -70,7 +74,7 @@ const DrawerArticles = () => {
                     </ExpansionCard>
                 ))}
             </VStack>
-            <VStack gap="4">
+            <VStack gap="1">
                 <Heading level="2" size="medium" spacing={true}>
                     Oppgaver og forhåndsvarsel
                 </Heading>
@@ -88,7 +92,7 @@ const DrawerArticles = () => {
                             <Heading level="2" size="medium">
                                 Enkeltoppgaver
                             </Heading>
-                            <VStack gap="4">
+                            <VStack gap="1">
                                 <Heading level="3" size="small">
                                     Send inn søknad
                                 </Heading>
@@ -97,7 +101,7 @@ const DrawerArticles = () => {
                                     sende inn søknad.
                                 </BodyLong>
                             </VStack>
-                            <VStack gap="4">
+                            <VStack gap="1">
                                 <Heading level="3" size="small">
                                     Rapportere inntekt
                                 </Heading>
@@ -125,7 +129,7 @@ const DrawerArticles = () => {
                                 en behandling som gjelder ungdomsprogramytelsen, så blir deltaker forhåndsvarslet jf.
                                 forvaltningsloven § 16.{' '}
                             </BodyLong>
-                            <VStack gap="4">
+                            <VStack gap="1">
                                 <Heading level="3" size="small">
                                     Endret start- eller sluttdato
                                 </Heading>
@@ -140,7 +144,7 @@ const DrawerArticles = () => {
                                     snakke med veileder først.
                                 </BodyLong>
                             </VStack>
-                            <VStack gap="4">
+                            <VStack gap="1">
                                 <Heading level="3" size="small">
                                     Avvik i inntekt
                                 </Heading>
@@ -157,7 +161,7 @@ const DrawerArticles = () => {
                             <Heading level="2" size="medium">
                                 Oppgaver som blir avbrutt eller utløper
                             </Heading>
-                            <VStack gap="4">
+                            <VStack gap="1">
                                 <Heading level="3" size="small">
                                     Avbrutt oppgave
                                 </Heading>
@@ -168,7 +172,7 @@ const DrawerArticles = () => {
                                     oppgaven automatisk avbrutt og erstattet med en ny.
                                 </BodyLong>
                             </VStack>
-                            <VStack gap="4">
+                            <VStack gap="1">
                                 <Heading level="3" size="small">
                                     Utløpt oppgave
                                 </Heading>
