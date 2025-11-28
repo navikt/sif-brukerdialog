@@ -9,9 +9,10 @@ interface Props {
     deltakerNavn: string;
     periode: DateRange;
     svarfrist: Date;
+    gjelderAvkortetMåned?: boolean;
 }
 
-const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Props) => {
+const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelderAvkortetMåned }: Props) => {
     const frist = dateFormatter.full(svarfrist);
     const måned = dateFormatter.month(periode.from);
 
@@ -29,11 +30,19 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
                             values={{
                                 måned,
                             }}
-                        />
-                    </BodyLong>
-                    <BodyLong>
+                        />{' '}
                         <AppText id="rapporterInntektOppgavetekst.intro.2" />
                     </BodyLong>
+                    {gjelderAvkortetMåned && (
+                        <BodyLong>
+                            <AppText
+                                id="rapporterInntektOppgavetekst.intro.sisteMåned"
+                                values={{
+                                    måned,
+                                }}
+                            />
+                        </BodyLong>
+                    )}
                     <Bleed marginBlock="2 0">
                         <ReadMore header={text('rapporterInntektOppgave.readMore.tittel')}>
                             <BodyLong>
