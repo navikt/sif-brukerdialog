@@ -4,11 +4,18 @@ import { getOppgaveGjelderAvkortetMåned, getSisteVirkedagIMåned } from './rapp
 
 describe('rapporterInntektUtils', () => {
     describe('getSisteVirkedagIMåned', () => {
-        it('returnerer siste ukedag når måneden slutter på ukedag', () => {
+        it('returnerer mandag når måneden slutter på en mandag', () => {
             // Mars 2025 slutter på mandag 31. mars
             const dato = new Date(2025, 2, 15);
             const result = getSisteVirkedagIMåned(dato);
             expect(result).toEqual(new Date(2025, 2, 31, 0, 0, 0, 0));
+        });
+
+        it('returnerer siste fredag når måneden slutter på lørdag', () => {
+            // Mai 2025 slutter på lørdag 31. mai.
+            const dato = new Date(2025, 4, 15);
+            const result = getSisteVirkedagIMåned(dato);
+            expect(result).toEqual(new Date(2025, 4, 30, 0, 0, 0, 0));
         });
 
         it('returnerer siste fredag når måneden slutter på søndag', () => {
@@ -16,13 +23,6 @@ describe('rapporterInntektUtils', () => {
             const dato = new Date(2025, 7, 15);
             const result = getSisteVirkedagIMåned(dato);
             expect(result).toEqual(new Date(2025, 7, 29, 0, 0, 0, 0));
-        });
-
-        it('returnerer siste fredag når måneden slutter på lørdag', () => {
-            // November 2025 slutter på søndag 30. november (lørdag 29. og søndag 30.)
-            const dato = new Date(2025, 10, 15);
-            const result = getSisteVirkedagIMåned(dato);
-            expect(result).toEqual(new Date(2025, 10, 28, 0, 0, 0, 0));
         });
 
         it('håndterer februar i skuddår', () => {
