@@ -1,3 +1,4 @@
+import { Buildings3Icon } from '@navikt/aksel-icons';
 import { Alert, VStack } from '@navikt/ds-react';
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
@@ -35,7 +36,6 @@ import {
     getSituasjonSøknadsdataFromFormValues,
     getSituasjonStepInitialValues,
 } from './SituasjonStepUtils';
-import { Buildings3Icon } from '@navikt/aksel-icons';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
