@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { getOppgaveGjelderAvkortetMåned, getSisteVirkedagIMåned } from './rapporterInntektUtils';
+import { getOppgaveGjelderAvkortetMåned, getSisteVirkedagIMåned } from './oppgaveUtils';
 
-describe('rapporterInntektUtils', () => {
+describe('oppgaveUtils', () => {
     describe('getSisteVirkedagIMåned', () => {
         it('returnerer mandag når måneden slutter på en mandag', () => {
             // Mars 2025 slutter på mandag 31. mars

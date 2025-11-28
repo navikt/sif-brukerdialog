@@ -5,8 +5,8 @@ import { DateRange } from '@navikt/sif-common-utils';
 import { getAppEnv } from '@shared/utils/appEnv';
 import { useNavigate } from 'react-router-dom';
 
+import { getOppgaveGjelderAvkortetMåned } from '../../utils/oppgaveUtils';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
-import { getOppgaveGjelderAvkortetMåned } from '../rapporterInntektUtils';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
 
 interface Props extends RapporterInntektOppgaveProps {

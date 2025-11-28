@@ -18,6 +18,8 @@ export const avvikRegisterinntektMessages_nb = {
         'Vi bruker opplysningene fra arbeidsgiver når vi vurderer hvor mye du får utbetalt. Når vi ikke har mottatt noe fra arbeidsgiver, vil vi basere oss på at du ikke hadde inntekt i {rapporteringsmåned}.',
     'avvikRegisterinntektOppgavetekst.1.harInntekt':
         'Vi bruker denne inntekten fra arbeidsgiver til å vurdere hvor mye du får utbetalt.',
+    'avvikRegisterinntektOppgavetekst.1.harInntekt.sisteMåned':
+        'Vi bruker ikke hele inntekten din, bare deler av den, når vi regner ut hvor mye penger du får. Det er fordi du ikke hadde ungdomsprogramytelsen hele måneden.',
     'avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse':
         'Vi bruker denne inntekten til å vurdere hvor mye du får utbetalt.',
     'avvikRegisterinntektOppgavetekst.2': 'Vi trenger et svar fra deg på om inntekten stemmer eller ikke.',

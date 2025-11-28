@@ -6,6 +6,8 @@ import { AppText, useAppIntl } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
 
+import { getOppgaveGjelderAvkortetMåned } from '../../utils/oppgaveUtils';
+
 interface Props {
     oppgave: AvvikRegisterinntektOppgave;
 }
@@ -20,9 +22,6 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
 
     const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);
     const rapporteringsmånedOgÅr = dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed);
-    const utbetalingsmåned = dateFormatter.month(
-        getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed),
-    );
 
     const {
         registerinntekt: { ytelseInntekter, arbeidOgFrilansInntekter },
@@ -63,16 +62,20 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                             total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
                         />
                     </Box>
-                    <BodyLong>
-                        {harKunYtelseInntekt ? (
-                            <AppText
-                                id="avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse"
-                                values={{ utbetalingsmåned }}
-                            />
-                        ) : (
-                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt" values={{ utbetalingsmåned }} />
-                        )}
-                    </BodyLong>
+                    {getOppgaveGjelderAvkortetMåned(oppgave.oppgavetypeData.tilOgMed) ? (
+                        // Når perioden oppgaven gjelder avsluttes før siste virkedag i måneden
+                        <BodyLong>
+                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.sisteMåned" />
+                        </BodyLong>
+                    ) : (
+                        <BodyLong>
+                            {harKunYtelseInntekt ? (
+                                <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse" />
+                            ) : (
+                                <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt" />
+                            )}
+                        </BodyLong>
+                    )}
                 </>
             ) : (
                 <>

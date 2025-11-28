@@ -56,6 +56,9 @@ const VeilederScenarioHeader = () => {
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntekt)}>
                             Inntektskontroll - sjekke avvik i inntekt
                         </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntektSisteMåned)}>
+                            Inntektskontroll - sjekke avvik i inntekt (siste måned)
+                        </ActionMenu.Item>
                     </ActionMenu.Group>
                     <ActionMenu.Divider />
                     <ActionMenu.Group label="Før og etter deltakelse">

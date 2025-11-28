@@ -7,6 +7,7 @@ export enum ScenarioType {
     rapporterInntekt = 'rapporterInntekt',
     rapporterInntektSisteMåned = 'rapporterInntektSisteMåned',
     avvikInntekt = 'avvikInntekt',
+    avvikInntektSisteMåned = 'avvikInntektSisteMåned',
     avsluttet = 'avsluttet',
     ikkeStartet = 'ikkeStartet',
 }
