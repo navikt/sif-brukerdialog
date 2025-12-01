@@ -183,8 +183,7 @@ const AnnetBarnPart = ({
                                 <BodyLong>
                                     <Text id="omBarnetForm.relasjonAnnet.tekst" />
                                 </BodyLong>
-
-                                <ExpandableInfo title="Hvorfor trenger vi denne informasjonen?">
+                                <ExpandableInfo title={text('omBarnetForm.relasjonAnnet.info.tittel')}>
                                     <BodyLong>
                                         <Text id="omBarnetForm.relasjonAnnet.info.hjelpetekst.1" />
                                     </BodyLong>

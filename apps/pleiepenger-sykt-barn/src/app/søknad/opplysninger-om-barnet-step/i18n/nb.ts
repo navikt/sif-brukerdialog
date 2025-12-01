@@ -23,6 +23,8 @@ export const omBarnetMessages_nb = {
     'steg.omBarnet.relasjon.spm': 'Hvilken relasjon har du til barnet?',
     'steg.omBarnet.relasjonAnnet.spm':
         'Beskriv hvem du er i forhold til barnet, og hvilken tilsynsrolle du har i perioden du søker for',
+    'steg.omBarnet.relasjonAnnet.spm.tekst':
+        'Du må ikke skrive noe om andre enn deg selv og barnet, for eksempel skal du ikke skrive hvorfor du hjelper foreldre med omsorgen for barnet.',
     'steg.omBarnet.relasjonAnnet.info.tittel': 'Hva betyr dette?',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.1':
         'I noen tilfeller kan ikke den eller de som har den daglige omsorgen for barnet ha tilsyn med barn som trenger tilsyn og pleie hele tiden. Da kan andre personer hjelpe til med dette. Andre personer kan for eksempel være en besteforelder, venn, nabo, tante eller onkel.',

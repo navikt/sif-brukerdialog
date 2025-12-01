@@ -25,6 +25,9 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'steg.omBarnet.relasjon.spm': 'Kva for ein relasjon har du til barnet?',
     'steg.omBarnet.relasjonAnnet.spm':
         'Skildr kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer for',
+    'steg.omBarnet.relasjonAnnet.spm.tekst':
+        'Du må ikkje skrive noko om andre enn deg sjølv og barnet, til dømes skal du ikkje skrive kvifor du hjelper foreldre med omsorga for barnet.',
+
     'steg.omBarnet.relasjonAnnet.info.tittel': 'Kva tyder dette?',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.1':
         'I nokre tilfelle kan ikkje den eller dei som har den daglege omsorga for barnet ha tilsyn med barn som treng tilsyn og pleie heile tida. Då kan andre personar hjelpe til med dette. Andre personar kan til dømes vere ein besteforelder, venn, nabo, tante eller onkel.',
