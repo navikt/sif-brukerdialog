@@ -1,5 +1,13 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.1.19
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.36
+- @navikt/sif-common-forms-ds@21.0.37
+- @navikt/sif-common-ui@0.11.37
+
 ## 26.1.18
 
 ### Patch Changes

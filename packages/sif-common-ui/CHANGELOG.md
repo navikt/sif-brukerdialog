@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.11.37
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.36
+
 ## 0.11.36
 
 ### Patch Changes

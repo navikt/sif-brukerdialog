@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.4.76
+
+### Patch Changes
+
+- ff62092: Tillate null verdi på navn for et frilansoppdrag, i og med dette er regelen i backend
+
 ## 0.4.75
 
 ### Patch Changes
