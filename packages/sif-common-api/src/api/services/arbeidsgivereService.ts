@@ -5,9 +5,17 @@ import { k9BrukerdialogApiClient } from '../apiClient';
 import { arbeidsgivereResponseSchema } from '../schemas/arbeidsgivereSchema';
 import { Arbeidsgivere } from '../types';
 
-export const fetchArbeidsgivere = async ({ from, to }: { from: Date; to: Date }): Promise<Arbeidsgivere> => {
+export const fetchArbeidsgivere = async ({
+    from,
+    to,
+    frilansoppdrag = true,
+}: {
+    from: Date;
+    to: Date;
+    frilansoppdrag?: boolean;
+}): Promise<Arbeidsgivere> => {
     const response = await k9BrukerdialogApiClient.get(`/oppslag/arbeidsgiver`, {
-        params: { fra_og_med: dateToISODate(from), til_og_med: dateToISODate(to) },
+        params: { fra_og_med: dateToISODate(from), til_og_med: dateToISODate(to), frilansoppdrag },
     });
     try {
         return arbeidsgivereResponseSchema.parse(response.data);
