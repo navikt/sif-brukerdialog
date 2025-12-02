@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.4.77
+
+### Patch Changes
+
+- 3aeced0: Legge til parameter for å hente ut frilansoppdrag ved arbeidsgiveroppslag
+
 ## 0.4.76
 
 ### Patch Changes
