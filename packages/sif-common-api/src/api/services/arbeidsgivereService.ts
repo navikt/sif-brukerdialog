@@ -8,7 +8,7 @@ import { Arbeidsgivere } from '../types';
 export const fetchArbeidsgivere = async ({
     from,
     to,
-    frilansoppdrag = true,
+    frilansoppdrag,
 }: {
     from: Date;
     to: Date;

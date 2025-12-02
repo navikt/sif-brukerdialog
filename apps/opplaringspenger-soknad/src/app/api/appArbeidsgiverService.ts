@@ -5,7 +5,7 @@ import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 export const appArbeidsgivereService = {
     fetch: async (periode: DateRange): Promise<Arbeidsgiver[]> => {
         try {
-            const data = await fetchArbeidsgivere(periode);
+            const data = await fetchArbeidsgivere({ ...periode, frilansoppdrag: true });
             const aaArbeidsgivere: Arbeidsgiver[] = [];
 
             (data.organisasjoner || []).forEach((a) => {
