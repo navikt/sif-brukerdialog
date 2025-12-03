@@ -1,7 +1,7 @@
 import { Søker } from '@navikt/sif-common-api';
 
 export const søkerMock: Søker = {
-    fødselsnummer: '30086421581',
+    fødselsnummer: '09908799647',
     fornavn: 'GODSLIG',
     etternavn: 'KRONJUVEL',
     aktørId: '123',
