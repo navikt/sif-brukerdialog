@@ -59,7 +59,7 @@ const oppgave: AvvikRegisterinntektOppgave = {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-31').toDate(),
         registerinntekt: registerInntektEnArbeidsgiver,
-        gjelderSisteMåned: false,
+        gjelderDelerAvMåned: false,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),

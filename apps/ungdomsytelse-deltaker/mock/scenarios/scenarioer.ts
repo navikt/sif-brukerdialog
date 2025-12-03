@@ -36,6 +36,7 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver: [getMockOppgaver().søkYtelseOppgave],
+            erSlettet: false,
         },
     ],
 });
@@ -53,6 +54,7 @@ const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver,
+            erSlettet: false,
         },
     ],
 });
@@ -69,6 +71,7 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver,
+            erSlettet: false,
         },
     ],
 });
@@ -85,6 +88,7 @@ const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver,
+            erSlettet: false,
         },
     ],
 });

@@ -5,7 +5,6 @@ import { DateRange } from '@navikt/sif-common-utils';
 import { getAppEnv } from '@shared/utils/appEnv';
 import { useNavigate } from 'react-router-dom';
 
-import { getOppgaveGjelderAvkortetMåned } from '../../utils/oppgaveUtils';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
 
@@ -17,7 +16,6 @@ interface Props extends RapporterInntektOppgaveProps {
 
 const RapporterInntektUbesvart = ({ oppgave, deltakerNavn, periode, måned, setKvitteringData }: Props) => {
     const navigate = useNavigate();
-    const gjelderSisteMåned = getOppgaveGjelderAvkortetMåned(oppgave.oppgavetypeData.tilOgMed);
 
     return (
         <VStack gap="10">
@@ -26,7 +24,7 @@ const RapporterInntektUbesvart = ({ oppgave, deltakerNavn, periode, måned, setK
                     deltakerNavn={deltakerNavn}
                     periode={periode}
                     svarfrist={oppgave.sisteDatoEnKanSvare}
-                    gjelderAvkortetMåned={gjelderSisteMåned}
+                    gjelderDelerAvMåned={oppgave.oppgavetypeData.gjelderDelerAvMåned}
                 />
             </GuidePanel>
             <RapporterInntektForm

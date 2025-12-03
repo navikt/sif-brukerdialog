@@ -133,6 +133,7 @@ const getRapporterInntektOppgave = (): OppgaveDto => ({
     oppgavetypeData: {
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+        gjelderDelerAvMåned: false,
     },
 });
 
@@ -151,6 +152,7 @@ const getRapporterInntektOppgaveLøst = (): OppgaveDto => ({
             tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
             arbeidstakerOgFrilansInntekt: 23000,
         },
+        gjelderDelerAvMåned: false,
     },
 });
 
@@ -163,6 +165,7 @@ const getRapporterInntektSisteMånedOppgave = (): OppgaveDto => ({
     oppgavetypeData: {
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').subtract(4, 'days').toDate()),
+        gjelderDelerAvMåned: true,
     },
 });
 
@@ -181,6 +184,7 @@ const getRapporterInntektSisteMånedOppgaveLøst = (): OppgaveDto => ({
             tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
             arbeidstakerOgFrilansInntekt: 23000,
         },
+        gjelderDelerAvMåned: true,
     },
 });
 
@@ -203,6 +207,7 @@ const getBekreftAvvikOppgave = (): OppgaveDto => ({
             totalInntektYtelse: 0,
             totalInntekt: 20000,
         },
+        gjelderDelerAvMåned: false,
     },
     frist: getDatoer().oppgaveMåned.add(28, 'days').add(7, 'hours').toISOString(),
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
@@ -229,6 +234,7 @@ const getBekreftAvvikOppgaveSisteMåned = (): OppgaveDto => ({
             totalInntektYtelse: 0,
             totalInntekt: 20000,
         },
+        gjelderDelerAvMåned: true,
     },
     frist: getDatoer().oppgaveMåned.add(28, 'days').add(7, 'hours').toISOString(),
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
@@ -253,6 +259,7 @@ const getBekreftAvvikOppgaveLøst = (): OppgaveDto => ({
             totalInntektYtelse: 0,
             totalInntekt: 20000,
         },
+        gjelderDelerAvMåned: false,
     },
     bekreftelse: {
         harUttalelse: false,

@@ -25,7 +25,7 @@ export interface AvvikRegisterinntektOppgave extends OppgaveBase {
         fraOgMed: Date;
         tilOgMed: Date;
         registerinntekt: RegisterinntektDto;
-        gjelderSisteMåned: boolean;
+        gjelderDelerAvMåned: boolean;
     };
 }
 
@@ -57,6 +57,7 @@ export interface RapporterInntektOppgave extends OppgaveBase {
         fraOgMed: Date;
         tilOgMed: Date;
         rapportertInntekt?: Pick<RapportertInntektPeriodeinfoDto, 'arbeidstakerOgFrilansInntekt'>;
+        gjelderDelerAvMåned: boolean;
     };
 }
 

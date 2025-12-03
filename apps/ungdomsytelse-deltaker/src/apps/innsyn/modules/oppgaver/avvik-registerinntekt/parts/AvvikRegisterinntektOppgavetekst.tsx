@@ -6,8 +6,6 @@ import { AppText, useAppIntl } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
 
-import { getOppgaveGjelderAvkortetMåned } from '../../utils/oppgaveUtils';
-
 interface Props {
     oppgave: AvvikRegisterinntektOppgave;
 }
@@ -62,8 +60,8 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                             total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
                         />
                     </Box>
-                    {getOppgaveGjelderAvkortetMåned(oppgave.oppgavetypeData.tilOgMed) ? (
-                        // Når perioden oppgaven gjelder avsluttes før siste virkedag i måneden
+                    {oppgave.oppgavetypeData.gjelderDelerAvMåned ? (
+                        // Når perioden oppgaven ikke gjelder alle virkedager i måneden
                         <BodyLong>
                             <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.sisteMåned" />
                         </BodyLong>
