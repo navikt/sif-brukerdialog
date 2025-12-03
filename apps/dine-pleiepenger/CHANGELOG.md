@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.12
+
+### Patch Changes
+
+- Next 15.5.7
+
 ## 2.0.11
 
 ### Patch Changes
