@@ -6,7 +6,7 @@ import { ArbeidsgiverResponse } from '../../app/types/Arbeidsgiver';
 import { ApiAktivitet, ArbeidsgiverDetaljer } from '../../app/types/søknadApiData/SøknadApiData';
 
 export const søkerStorybookMock: Søker = {
-    fødselsnummer: '30086421581',
+    fødselsnummer: '09908799647',
     fornavn: 'GODSLIG',
     aktørId: '132',
     fødselsdato: ISODateToDate('1990-01-01'),

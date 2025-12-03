@@ -1,3 +1,4 @@
+import { Buildings3Icon } from '@navikt/aksel-icons';
 import { Alert, VStack } from '@navikt/ds-react';
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
@@ -35,7 +36,6 @@ import {
     getSituasjonSøknadsdataFromFormValues,
     getSituasjonStepInitialValues,
 } from './SituasjonStepUtils';
-import { Buildings3Icon } from '@navikt/aksel-icons';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -77,7 +77,7 @@ const SituasjonStep = () => {
 
     useEffectOnce(() => {
         const fetchData = async () => {
-            const a = await fetchArbeidsgivere({ from: getNMonthsAgo(3), to: getDateToday() });
+            const a = await fetchArbeidsgivere({ periode: { from: getNMonthsAgo(3), to: getDateToday() } });
             setArbeidsgivere(a.organisasjoner);
             setLoadState({ isLoading: false, isLoaded: true });
         };

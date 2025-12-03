@@ -1,5 +1,24 @@
 # @navikt/sif-common-ui
 
+## 0.4.77
+
+### Patch Changes
+
+- 3aeced0: Legge til parameter for å hente ut frilansoppdrag ved arbeidsgiveroppslag
+
+## 0.4.76
+
+### Patch Changes
+
+- ff62092: Tillate null verdi på navn for et frilansoppdrag, i og med dette er regelen i backend
+
+## 0.4.75
+
+### Patch Changes
+
+- Updated dependencies [d80e3cd]
+    - @navikt/sif-common-formik-ds@2.5.32
+
 ## 0.4.74
 
 ### Patch Changes

@@ -1,5 +1,51 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.18
+
+### Patch Changes
+
+- Endre endepunkt for å hente ut opplæringsinstitusjoner slik at den kun henter ut aktive institusjoner.
+
+## 1.4.17
+
+### Patch Changes
+
+- Oppdatere i henhold til endret arbeidsgiverService i sif-common-api
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+    - @navikt/sif-common-core-ds@10.3.37
+    - @navikt/sif-common-forms-ds@21.0.38
+    - @navikt/sif-common-soknad-ds@26.1.20
+    - @navikt/sif-common-ui@0.11.38
+
+## 1.4.16
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+    - @navikt/sif-common-core-ds@10.3.36
+    - @navikt/sif-common-forms-ds@21.0.37
+    - @navikt/sif-common-soknad-ds@26.1.19
+    - @navikt/sif-common-ui@0.11.37
+
+## 1.4.15
+
+### Patch Changes
+
+- d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
+    - Justere workflows for deploy
+    - Skru av prometheus metrics - var ikke brukt
+    - Korrigere dependencies pga --immutable
+    - Forenkle getDisabledDates pga ts warning
+- Updated dependencies [d80e3cd]
+    - @navikt/sif-common-formik-ds@2.5.32
+    - @navikt/sif-common-soknad-ds@26.1.18
+    - @navikt/sif-common-core-ds@10.3.35
+    - @navikt/sif-common-api@0.4.75
+    - @navikt/sif-common-forms-ds@21.0.36
+    - @navikt/sif-common-ui@0.11.36
+
 ## 1.4.14
 
 ### Patch Changes

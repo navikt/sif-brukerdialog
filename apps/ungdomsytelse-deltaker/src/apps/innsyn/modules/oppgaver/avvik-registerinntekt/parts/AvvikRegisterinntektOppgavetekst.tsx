@@ -6,8 +6,6 @@ import { AppText, useAppIntl } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
 
-import RegelverkOgInnsynReadMore from './RegelverkOgInnsynReadMore';
-
 interface Props {
     oppgave: AvvikRegisterinntektOppgave;
 }
@@ -113,14 +111,13 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                 <BodyLong spacing>
                     <AppText id="avvikRegisterinntektOppgavetekst.6" values={{ formatertFrist }} />
                 </BodyLong>
-                <BodyLong spacing>
+                <BodyLong>
                     {harKunYtelseInntekt ? (
                         <AppText id="avvikRegisterinntektOppgavetekst.7.kunYtelse" />
                     ) : (
                         <AppText id="avvikRegisterinntektOppgavetekst.7" />
                     )}
                 </BodyLong>
-                <RegelverkOgInnsynReadMore />
             </Box>
         </VStack>
     );

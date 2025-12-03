@@ -1,5 +1,23 @@
 # @navikt/ung-common
 
+## 0.0.78
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.6
+
+## 0.0.77
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.5
+
+## 0.0.76
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.4
+
 ## 0.0.75
 
 ### Patch Changes

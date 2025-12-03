@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@changesets/cli": "2.29.7",
+        "glob": "13.0.0",
         "tailwindcss": "4.1.17",
         "turbo": "2.6.1"
     },
@@ -52,14 +53,11 @@
         "server",
         "server-ungdomsytelse-veileder"
     ],
-    "overrides": {
-        "glob-parent": ">=5.1.2"
-    },
     "packageManager": "yarn@4.10.3",
     "private": true,
     "resolutions": {
         "react": "19.2.0",
         "react-dom": "19.2.0",
-        "@types/react": "19.2.0"
+        "glob@10.4.5": "10.5.0"
     }
 }

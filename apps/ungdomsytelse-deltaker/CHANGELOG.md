@@ -1,5 +1,49 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.22
+
+### Patch Changes
+
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+    - @navikt/sif-common-core-ds@10.3.37
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.6
+    - @navikt/sif-common-forms-ds@21.0.38
+    - @navikt/sif-common-soknad-ds@26.1.20
+    - @navikt/sif-common-ui@0.11.38
+    - @navikt/ung-common@0.0.78
+
+## 1.5.21
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+    - @navikt/sif-common-core-ds@10.3.36
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.5
+    - @navikt/sif-common-forms-ds@21.0.37
+    - @navikt/sif-common-soknad-ds@26.1.19
+    - @navikt/sif-common-ui@0.11.37
+    - @navikt/ung-common@0.0.77
+
+## 1.5.20
+
+### Patch Changes
+
+- d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
+    - Justere workflows for deploy
+    - Skru av prometheus metrics - var ikke brukt
+    - Korrigere dependencies pga --immutable
+    - Forenkle getDisabledDates pga ts warning
+- Updated dependencies [d80e3cd]
+    - @navikt/sif-common-soknad-ds@26.1.18
+    - @navikt/sif-common-core-ds@10.3.35
+    - @navikt/sif-common-api@0.4.75
+    - @navikt/sif-common-forms-ds@21.0.36
+    - @navikt/sif-common-ui@0.11.36
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.4
+    - @navikt/ung-common@0.0.76
+
 ## 1.5.19
 
 ### Patch Changes

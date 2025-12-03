@@ -43,7 +43,7 @@ jobs:
             - run: yarn set version 4.x
 
             - name: Install dependencies (yarn)
-              run: yarn
+              run: yarn install --immutable
 
             - name: Copy .env.prod for next.js build
               if: ${{ inputs.is-next-app == true }}
@@ -67,6 +67,8 @@ jobs:
                   image_suffix: ${{inputs.app-name}}-mono
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+                  build_secrets: |
+                      PACKAGES_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
 
             - name: Deploy to prod
               uses: nais/deploy/actions/deploy@v2
@@ -75,7 +77,6 @@ jobs:
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/prod-gcp.json
                   VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
-                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   IMAGE: ${{ steps.docker-push.outputs.image }}
 
     trivy:

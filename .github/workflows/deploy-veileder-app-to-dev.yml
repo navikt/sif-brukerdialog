@@ -55,7 +55,8 @@ jobs:
           image_suffix: ${{env.APP_NAME}}-mono
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-
+          build_secrets: |
+            PACKAGES_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
       - name: Deploy to dev
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -63,6 +64,4 @@ jobs:
           RESOURCE: apps/${{ env.APP_NAME }}/nais/nais.yml
           VARS: apps/${{ env.APP_NAME }}/nais/dev-gcp.json
           VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           IMAGE: ${{ steps.docker-push.outputs.image }}
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
