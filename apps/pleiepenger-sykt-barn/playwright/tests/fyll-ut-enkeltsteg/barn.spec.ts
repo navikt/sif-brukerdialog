@@ -47,7 +47,7 @@ test.describe('Barn steg', () => {
     test('Annet barn', async ({ page }) => {
         await page.getByText('Søknaden gjelder et annet barn', { exact: true }).click();
         await page.getByLabel('Barnets fødselsnummer/D-nummer').click();
-        await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('02869599258');
+        await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('08861999573');
         await page.getByLabel('Barnets navn').click();
         await page.getByLabel('Barnets navn').fill('Tore');
         await page.getByLabel('Barnets navn').press('Tab');
