@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.17
+
+### Patch Changes
+
+- Endre endepunkt for å hente ut opplæringsinstitusjoner slik at den kun henter ut aktive institusjoner.
+
 ## 1.4.16
 
 ### Patch Changes
