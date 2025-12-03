@@ -1,5 +1,17 @@
 # @navikt/sif-demo-app
 
+## 0.4.90
+
+### Patch Changes
+
+- Oppdatere i henhold til endret arbeidsgiverService i sif-common-api
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+    - @navikt/sif-common-core-ds@10.3.37
+    - @navikt/sif-common-forms-ds@21.0.38
+    - @navikt/sif-common-soknad-ds@26.1.20
+    - @navikt/sif-common-ui@0.11.38
+
 ## 0.4.89
 
 ### Patch Changes

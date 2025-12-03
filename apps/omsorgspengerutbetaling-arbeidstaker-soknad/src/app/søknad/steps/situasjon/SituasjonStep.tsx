@@ -77,7 +77,7 @@ const SituasjonStep = () => {
 
     useEffectOnce(() => {
         const fetchData = async () => {
-            const a = await fetchArbeidsgivere({ from: getNMonthsAgo(3), to: getDateToday() });
+            const a = await fetchArbeidsgivere({ periode: { from: getNMonthsAgo(3), to: getDateToday() } });
             setArbeidsgivere(a.organisasjoner);
             setLoadState({ isLoading: false, isLoaded: true });
         };

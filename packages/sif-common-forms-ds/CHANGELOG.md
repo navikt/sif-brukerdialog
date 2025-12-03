@@ -1,5 +1,12 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.38
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.37
+- @navikt/sif-common-ui@0.11.38
+
 ## 21.0.37
 
 ### Patch Changes
