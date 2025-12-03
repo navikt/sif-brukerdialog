@@ -4299,7 +4299,7 @@ __metadata:
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@storybook/nextjs": "npm:10.0.8"
     "@tailwindcss/postcss": "npm:4.1.17"
@@ -4405,7 +4405,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@storybook/react-vite": "npm:10.0.8"
     "@tailwindcss/postcss": "npm:4.1.17"
@@ -4473,7 +4473,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sentry/vite-plugin": "npm:4.6.1"
     "@sif/eslint-config": "workspace:*"
     "@storybook/testing-library": "npm:0.2.2"
@@ -4661,7 +4661,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@storybook/react-vite": "npm:10.0.8"
     "@tailwindcss/postcss": "npm:4.1.17"
@@ -4718,7 +4718,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.34.0"
     "@navikt/ds-tailwind": "npm:7.34.0"
     "@navikt/nav-dekoratoren-moduler": "npm:3.5.0"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@tailwindcss/postcss": "npm:4.1.17"
     "@tailwindcss/vite": "npm:4.1.17"
     "@types/node": "npm:24.10.1"
@@ -4774,7 +4774,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@storybook/addon-a11y": "npm:10.0.8"
     "@storybook/react-vite": "npm:10.0.8"
@@ -4844,7 +4844,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@storybook/react-vite": "npm:10.0.8"
     "@tailwindcss/postcss": "npm:4.1.17"
@@ -4916,7 +4916,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@storybook/addon-a11y": "npm:10.0.8"
     "@storybook/testing-library": "npm:0.2.2"
@@ -4990,7 +4990,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@storybook/react-vite": "npm:10.0.8"
     "@tailwindcss/postcss": "npm:4.1.17"
@@ -5085,7 +5085,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@storybook/react-vite": "npm:10.0.8"
     "@tailwindcss/postcss": "npm:4.1.17"
@@ -5154,7 +5154,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sentry/vite-plugin": "npm:4.6.1"
     "@sif/eslint-config": "workspace:*"
     "@storybook/addon-docs": "npm:10.0.8"
@@ -5329,7 +5329,7 @@ __metadata:
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@storybook/addon-a11y": "npm:10.0.8"
     "@storybook/builder-vite": "npm:10.0.8"
@@ -5783,7 +5783,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sif/eslint-config": "workspace:*"
     "@tailwindcss/postcss": "npm:4.1.17"
     "@tailwindcss/vite": "npm:4.1.17"
@@ -6006,7 +6006,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/ung-common": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@sentry/react": "npm:10.26.0"
     "@storybook/addon-docs": "npm:10.0.8"
     "@storybook/react-vite": "npm:10.0.8"
@@ -6090,7 +6090,7 @@ __metadata:
     "@navikt/sif-validation": "workspace:*"
     "@navikt/ung-common": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*"
-    "@playwright/test": "npm:1.56.1"
+    "@playwright/test": "npm:1.57.0"
     "@storybook/react-vite": "npm:10.0.8"
     "@tailwindcss/postcss": "npm:4.1.17"
     "@tailwindcss/vite": "npm:4.1.17"
@@ -6853,14 +6853,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:1.56.1":
-  version: 1.56.1
-  resolution: "@playwright/test@npm:1.56.1"
+"@playwright/test@npm:1.57.0":
+  version: 1.57.0
+  resolution: "@playwright/test@npm:1.57.0"
   dependencies:
-    playwright: "npm:1.56.1"
+    playwright: "npm:1.57.0"
   bin:
     playwright: cli.js
-  checksum: 10/9933fa9f8eb9e775e792421b99c984c310b92092e65de57508ae1951a2589d87bbb5f1c4114bfdf7f69c15c0a3acb3f31259e143fa597aa28e97f4b223e37637
+  checksum: 10/07f5ba4841b2db1dea70d821004c5156b692488e13523c096ce3487d30f95f34ccf30ba6467ece60c86faac27ae382213b7eacab48a695550981b2e811e5e579
   languageName: node
   linkType: hard
 
@@ -22545,7 +22545,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright@npm:1.56.1, playwright@npm:^1.14.0":
+"playwright-core@npm:1.57.0":
+  version: 1.57.0
+  resolution: "playwright-core@npm:1.57.0"
+  bin:
+    playwright-core: cli.js
+  checksum: 10/ec066602f0196f036006caee14a30d0a57533a76673bb9a0c609ef56e21decf018f0e8d402ba2fb18251393be6a1c9e193c83266f1670fe50838c5340e220de0
+  languageName: node
+  linkType: hard
+
+"playwright@npm:1.57.0":
+  version: 1.57.0
+  resolution: "playwright@npm:1.57.0"
+  dependencies:
+    fsevents: "npm:2.3.2"
+    playwright-core: "npm:1.57.0"
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    playwright: cli.js
+  checksum: 10/241559210f98ef11b6bd6413f2d29da7ef67c7865b72053192f0d164fab9e0d3bd47913b3351d5de6433a8aff2d8424d4b8bd668df420bf4dda7ae9fcd37b942
+  languageName: node
+  linkType: hard
+
+"playwright@npm:^1.14.0":
   version: 1.56.1
   resolution: "playwright@npm:1.56.1"
   dependencies:

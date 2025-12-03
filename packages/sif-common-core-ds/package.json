@@ -27,7 +27,7 @@
         "@navikt/ds-tailwind": "7.34.0",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
-        "@playwright/test": "1.56.1",
+        "@playwright/test": "1.57.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.0.8",
         "@storybook/builder-vite": "10.0.8",
