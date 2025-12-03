@@ -22,7 +22,7 @@ export type Institusjon = z.infer<typeof institusjonSchema>;
 export type Institusjoner = z.infer<typeof institusjonerSchema>;
 
 export const fetchInstitusjoner = async (): Promise<Institusjon[]> => {
-    const response = await k9SakApiClient.get(`/k9sak/opplaringsinstitusjoner`);
+    const response = await k9SakApiClient.get(`/k9sak/opplaringsinstitusjoner/aktive`);
     try {
         return institusjonerSchema.parse(response.data);
     } catch (e) {
