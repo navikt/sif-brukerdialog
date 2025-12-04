@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@storybook/addon-a11y": "10.0.8",
+        "@storybook/addon-a11y": "10.1.0",
         "@storybook/testing-library": "0.2.2",
         "@types/react": "19.2.7",
         "copyfiles": "2.4.1",
