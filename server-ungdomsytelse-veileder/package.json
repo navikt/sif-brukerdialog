@@ -13,7 +13,7 @@
         "@navikt/oasis": "4.1.1",
         "@navikt/sif-common-env": "workspace:*",
         "csp-header": "6.2.0",
-        "express": "5.1.0",
+        "express": "5.2.0",
         "html-react-parser": "5.2.10",
         "http-proxy-middleware": "3.0.5",
         "jsdom": "27.2.0",
