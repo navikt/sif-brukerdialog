@@ -4330,7 +4330,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-intl: "npm:7.1.14"
     react-loading-skeleton: "npm:3.5.0"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     swr: "npm:2.3.6"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
@@ -4439,7 +4439,7 @@ __metadata:
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
     rimraf: "npm:6.1.2"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     typescript: "npm:5.9.3"
     vite: "npm:7.2.4"
     vite-plugin-checker: "npm:0.11.0"
@@ -4519,7 +4519,7 @@ __metadata:
     react-intl: "npm:7.1.14"
     react-responsive: "npm:10.0.1"
     react-router-dom: "npm:7.9.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
     vite: "npm:7.2.4"
@@ -4698,7 +4698,7 @@ __metadata:
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -4810,7 +4810,7 @@ __metadata:
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
     ulid: "npm:3.0.1"
@@ -4880,7 +4880,7 @@ __metadata:
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -4957,7 +4957,7 @@ __metadata:
     react-hook-form: "npm:7.66.1"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.48.0"
@@ -5032,7 +5032,7 @@ __metadata:
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -5121,7 +5121,7 @@ __metadata:
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -5199,7 +5199,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
     vite: "npm:7.2.4"
@@ -5307,7 +5307,7 @@ __metadata:
     react-day-picker: "npm:9.11.2"
     react-dom: "npm:19.2.0"
     react-intl: "npm:7.1.14"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     typescript: "npm:5.9.3"
     webpack: "npm:5.103.0"
     zod: "npm:4.1.13"
@@ -5361,7 +5361,7 @@ __metadata:
     react-intl: "npm:7.1.14"
     react-responsive: "npm:10.0.1"
     rimraf: "npm:6.1.2"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -5435,7 +5435,7 @@ __metadata:
     react-syntax-highlighter: "npm:16.1.0"
     rimraf: "npm:6.1.2"
     sass-loader: "npm:16.0.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     style-loader: "npm:4.0.0"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -5490,7 +5490,7 @@ __metadata:
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
     rimraf: "npm:6.1.2"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     typescript: "npm:5.9.3"
     vite: "npm:7.2.4"
     vite-plugin-checker: "npm:0.11.0"
@@ -5619,7 +5619,7 @@ __metadata:
     react-router-dom: "npm:7.9.6"
     rimraf: "npm:6.1.2"
     sass-loader: "npm:16.0.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     style-loader: "npm:4.0.0"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -5672,7 +5672,7 @@ __metadata:
     react-day-picker: "npm:9.11.2"
     react-dom: "npm:19.2.0"
     react-intl: "npm:7.1.14"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     typescript: "npm:5.9.3"
     webpack: "npm:5.103.0"
   languageName: unknown
@@ -5856,7 +5856,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-hook-form: "npm:7.66.1"
     react-intl: "npm:7.1.14"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     storybook-react-intl: "npm:10.0.1"
     typescript: "npm:5.9.3"
     vite: "npm:7.2.4"
@@ -6050,7 +6050,7 @@ __metadata:
     react-intl: "npm:7.1.14"
     react-loading-skeleton: "npm:3.5.0"
     react-router-dom: "npm:7.9.6"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     stylelint: "npm:16.26.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
@@ -6139,7 +6139,7 @@ __metadata:
     react-router-dom: "npm:7.9.6"
     remark-gfm: "npm:4.0.1"
     sass-embedded: "npm:1.93.3"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     stylelint: "npm:16.26.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
@@ -8404,7 +8404,7 @@ __metadata:
     globals: "npm:16.5.0"
     postcss: "npm:8.5.6"
     prettier: "npm:3.6.2"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.48.0"
   languageName: unknown
@@ -8616,6 +8616,16 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
   checksum: 10/f9036ca3b0d2904778eb4e202305f2780b549434380f9760f0bc704fe3ee19d7332f9560a66435ebb2156346cee9a863e40fa5e4b27790bf993b0c1180a3146d
+  languageName: node
+  linkType: hard
+
+"@storybook/icons@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "@storybook/icons@npm:2.0.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/04ffa285f4defc611def51f82492688bc49f6f4e8ce4e7ba5c99a1c1410b7e8820b5da65c33610a497df2409de7b48fae399052c5cacab6a4a4a9b48a36ebfd5
   languageName: node
   linkType: hard
 
@@ -10642,25 +10652,6 @@ __metadata:
     chai: "npm:^6.2.1"
     tinyrainbow: "npm:^3.0.3"
   checksum: 10/7b8d8d1c8532358427a43a77e889131b038dca71021b208a15ec980b27acee7864a555cb3c58885a0302c179bf3c06698055c9fe89b476d477909c083cc0d9ea
-  languageName: node
-  linkType: hard
-
-"@vitest/mocker@npm:3.2.4":
-  version: 3.2.4
-  resolution: "@vitest/mocker@npm:3.2.4"
-  dependencies:
-    "@vitest/spy": "npm:3.2.4"
-    estree-walker: "npm:^3.0.3"
-    magic-string: "npm:^0.30.17"
-  peerDependencies:
-    msw: ^2.4.9
-    vite: ^5.0.0 || ^6.0.0 || ^7.0.0-0
-  peerDependenciesMeta:
-    msw:
-      optional: true
-    vite:
-      optional: true
-  checksum: 10/5e92431b6ed9fc1679060e4caef3e4623f4750542a5d7cd944774f8217c4d231e273202e8aea00bab33260a5a9222ecb7005d80da0348c3c829bd37d123071a8
   languageName: node
   linkType: hard
 
@@ -12999,7 +12990,7 @@ __metadata:
     eslint-plugin-storybook: "npm:10.0.8"
     postcss: "npm:8.5.6"
     prettier: "npm:3.6.2"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     typescript: "npm:5.9.3"
   languageName: unknown
   linkType: soft
@@ -14701,7 +14692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.27.0":
+"esbuild@npm:0.27.0, esbuild@npm:^0.18.0 || ^0.19.0 || ^0.20.0 || ^0.21.0 || ^0.22.0 || ^0.23.0 || ^0.24.0 || ^0.25.0 || ^0.26.0 || ^0.27.0":
   version: 0.27.0
   resolution: "esbuild@npm:0.27.0"
   dependencies:
@@ -14790,7 +14781,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.18.0 || ^0.19.0 || ^0.20.0 || ^0.21.0 || ^0.22.0 || ^0.23.0 || ^0.24.0 || ^0.25.0, esbuild@npm:^0.25.0":
+"esbuild@npm:^0.25.0":
   version: 0.25.12
   resolution: "esbuild@npm:0.25.12"
   dependencies:
@@ -19894,7 +19885,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-string@npm:^0.30.0, magic-string@npm:^0.30.17, magic-string@npm:^0.30.21, magic-string@npm:^0.30.5":
+"magic-string@npm:^0.30.0, magic-string@npm:^0.30.21, magic-string@npm:^0.30.5":
   version: 0.30.21
   resolution: "magic-string@npm:0.30.21"
   dependencies:
@@ -25544,7 +25535,7 @@ __metadata:
     react-day-picker: "npm:9.11.2"
     react-dom: "npm:19.2.0"
     react-intl: "npm:7.1.14"
-    storybook: "npm:10.0.8"
+    storybook: "npm:10.1.0"
     typescript: "npm:5.9.3"
     webpack: "npm:5.103.0"
   languageName: unknown
@@ -25953,20 +25944,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:10.0.8":
-  version: 10.0.8
-  resolution: "storybook@npm:10.0.8"
+"storybook@npm:10.1.0":
+  version: 10.1.0
+  resolution: "storybook@npm:10.1.0"
   dependencies:
     "@storybook/global": "npm:^5.0.0"
-    "@storybook/icons": "npm:^1.6.0"
+    "@storybook/icons": "npm:^2.0.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/user-event": "npm:^14.6.1"
     "@vitest/expect": "npm:3.2.4"
-    "@vitest/mocker": "npm:3.2.4"
     "@vitest/spy": "npm:3.2.4"
-    esbuild: "npm:^0.18.0 || ^0.19.0 || ^0.20.0 || ^0.21.0 || ^0.22.0 || ^0.23.0 || ^0.24.0 || ^0.25.0"
+    esbuild: "npm:^0.18.0 || ^0.19.0 || ^0.20.0 || ^0.21.0 || ^0.22.0 || ^0.23.0 || ^0.24.0 || ^0.25.0 || ^0.26.0 || ^0.27.0"
     recast: "npm:^0.23.5"
     semver: "npm:^7.6.2"
+    use-sync-external-store: "npm:^1.5.0"
     ws: "npm:^8.18.0"
   peerDependencies:
     prettier: ^2 || ^3
@@ -25975,7 +25966,7 @@ __metadata:
       optional: true
   bin:
     storybook: ./dist/bin/dispatcher.js
-  checksum: 10/a30b54248d69d7406f78e1871e075092ed9ae366d1c7cec56dc10b31b72a5196ef9e751453c9a7546797228c4fe0f01893c6fa541d24cf51037124d4f0e1566e
+  checksum: 10/8fc5702d9deda5c9c028bc71d719a4a0382709a77ad45705aa1a888a69560e355ce42455d4caca5c1a2f724035efbb320f901f5be790bb3460cb96c17340fa95
   languageName: node
   linkType: hard
 
@@ -27847,7 +27838,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:^1.2.0, use-sync-external-store@npm:^1.4.0, use-sync-external-store@npm:^1.6.0":
+"use-sync-external-store@npm:^1.2.0, use-sync-external-store@npm:^1.4.0, use-sync-external-store@npm:^1.5.0, use-sync-external-store@npm:^1.6.0":
   version: 1.6.0
   resolution: "use-sync-external-store@npm:1.6.0"
   peerDependencies:
