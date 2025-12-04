@@ -1,5 +1,18 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-sentry@0.28.56
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/k9-sak-innsyn-api@0.2.4
+    - @navikt/sif-app-register@0.1.12
+
 ## 2.0.13
 
 ### Patch Changes

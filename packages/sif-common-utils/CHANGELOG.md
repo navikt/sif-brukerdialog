@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
 ## 3.49.52
 
 ### Patch Changes

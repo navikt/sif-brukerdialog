@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-analytics",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Analytics log util used in SIF",
     "main": "src/index.ts",
     "type": "module",
@@ -15,7 +15,7 @@
         "@types/react": "19.2.7",
         "config": "workspace:*",
         "constate": "3.3.3",
-        "react": "19.2.0",
+        "react": "19.2.1",
         "rimraf": "6.1.2",
         "typescript": "5.9.3"
     }

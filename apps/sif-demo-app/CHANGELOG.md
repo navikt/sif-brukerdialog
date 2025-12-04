@@ -1,5 +1,18 @@
 # @navikt/sif-demo-app
 
+## 0.4.92
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.22
+    - @navikt/sif-common-forms-ds@21.0.40
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-faro@0.2.9
+    - @navikt/sif-common-api@0.4.79
+    - @navikt/sif-common-ui@0.11.40
+
 ## 0.4.91
 
 ### Patch Changes

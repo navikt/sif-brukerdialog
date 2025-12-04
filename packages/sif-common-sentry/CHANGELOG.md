@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
 ## 0.28.55
 
 ### Patch Changes

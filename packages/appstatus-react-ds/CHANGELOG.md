@@ -1,5 +1,13 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.64
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.8
+
 ## 2.20.63
 
 ### Patch Changes
