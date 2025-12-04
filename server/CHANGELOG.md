@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.4.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
 ## 0.4.50
 
 ### Patch Changes

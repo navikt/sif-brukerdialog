@@ -1,5 +1,16 @@
 # @navikt/sif-common-ui
 
+## 0.11.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.34
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-validation@1.0.17
+
 ## 0.11.39
 
 ### Patch Changes
