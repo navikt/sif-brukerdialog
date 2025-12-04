@@ -1,5 +1,5 @@
 import { useAppIntl } from '@i18n/index';
-import { Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
@@ -155,6 +155,9 @@ const AnnetBarnPart = ({ formValues, søkersFødselsnummer, fødselsattester, ha
                         label={text('steg.omBarnet.relasjonAnnet.spm')}
                         description={
                             <>
+                                <BodyLong>
+                                    <AppText id="steg.omBarnet.relasjonAnnet.spm.tekst" />
+                                </BodyLong>
                                 <ExpandableInfo title={text('steg.omBarnet.relasjonAnnet.info.tittel')}>
                                     <div>
                                         <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.1" />

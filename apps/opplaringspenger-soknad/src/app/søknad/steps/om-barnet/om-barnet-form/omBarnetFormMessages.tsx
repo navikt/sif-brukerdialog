@@ -19,6 +19,8 @@ const nb = {
     'omBarnetForm.relasjon.spm': 'Hvilken relasjon har du til barnet?',
     'omBarnetForm.relasjonAnnet.spm':
         'Beskriv hvem du er i forhold til barnet, og i hvilke situasjoner du tar deg av og pleier barnet',
+    'omBarnetForm.relasjonAnnet.tekst':
+        'Du må ikke skrive noe om andre enn deg selv og barnet, for eksempel skal du ikke skrive hvorfor du hjelper foreldre med omsorgen for barnet.',
     'omBarnetForm.relasjonAnnet.info.tittel': 'Hva betyr dette?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
         'For å få opplæringspenger må det være nødvendig med opplæring for at du skal kunne ta deg av og pleie barnet. Dette kan være andre omsorgspersoner enn barnets foreldre, så lenge du i perioder tar deg av barnet.',
@@ -97,6 +99,8 @@ const nn: Record<keyof typeof nb, string> = {
     'omBarnetForm.relasjon.spm': 'Kva relasjon har du til barnet?',
     'omBarnetForm.relasjonAnnet.spm':
         'Skildr kven du er i forhold til barnet, og i kva situasjonar du tek deg av og pleier barnet.',
+    'omBarnetForm.relasjonAnnet.tekst':
+        'Du må ikkje skrive noko om andre enn deg sjølv og barnet, til dømes skal du ikkje skrive kvifor du hjelper foreldre med omsorga for barnet.',
     'omBarnetForm.relasjonAnnet.info.tittel': 'Kva tyder dette?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
         'For å få opplæringspengar må det vere naudsynt med opplæring for at du skal kunne ta deg av og pleie barnet. Dette kan vere andre omsorgspersonar enn barnets foreldre, så lenge du i periodar tek deg av barnet.',
