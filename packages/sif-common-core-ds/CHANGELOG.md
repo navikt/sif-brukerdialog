@@ -1,5 +1,23 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-common-api@0.4.79
+
+## 10.3.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.78
+    - @navikt/sif-common-utils@3.49.52
+
 ## 10.3.37
 
 ### Patch Changes

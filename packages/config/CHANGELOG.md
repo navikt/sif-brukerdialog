@@ -1,5 +1,17 @@
 # config
 
+## 0.11.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 0.11.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.11.45
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-faro
 
+## 0.2.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
 ## 0.2.8
 
 ### Patch Changes

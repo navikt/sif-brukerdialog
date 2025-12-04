@@ -1,5 +1,17 @@
 # @sif/eslint-config
 
+## 1.1.76
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 1.1.75
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 1.1.74
 
 ### Patch Changes
