@@ -41,7 +41,7 @@
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "eslint": "9.39.1",
-        "eslint-plugin-storybook": "10.0.8",
+        "eslint-plugin-storybook": "10.1.0",
         "formik": "2.4.9",
         "msw": "2.12.3",
         "msw-storybook-addon": "2.0.6",

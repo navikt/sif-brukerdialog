@@ -64,7 +64,7 @@
         "compression": "1.8.1",
         "dayjs": "1.11.19",
         "eslint": "9.39.1",
-        "eslint-plugin-storybook": "10.0.8",
+        "eslint-plugin-storybook": "10.1.0",
         "express": "5.1.0",
         "helmet": "8.1.0",
         "http-proxy-middleware": "3.0.5",
