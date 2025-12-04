@@ -1,5 +1,11 @@
 # @navikt/sif-common-analytics
 
+## 0.0.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
 ## 0.0.2
 
 ### Patch Changes

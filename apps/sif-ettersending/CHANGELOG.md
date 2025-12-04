@@ -1,5 +1,66 @@
 # @navikt/sif-ettersending
 
+## 3.49.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-formik-ds@2.5.34
+    - @navikt/sif-common-soknad-ds@26.1.22
+    - @navikt/sif-common-forms-ds@21.0.40
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-sentry@0.28.56
+    - @navikt/sif-common-hooks@0.3.8
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-common-faro@0.2.9
+    - @navikt/sif-common-api@0.4.79
+    - @navikt/sif-common-ui@0.11.40
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-validation@1.0.17
+
+## 3.49.43
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.33
+    - @navikt/sif-common-soknad-ds@26.1.21
+    - @navikt/sif-common-forms-ds@21.0.39
+    - @navikt/sif-common-core-ds@10.3.38
+    - @navikt/sif-common-api@0.4.78
+    - @navikt/sif-common-ui@0.11.39
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.2
+    - @navikt/sif-common-faro@0.2.8
+    - @navikt/sif-common-hooks@0.3.7
+    - @navikt/sif-common-sentry@0.28.55
+    - @navikt/sif-common-utils@3.49.52
+    - @navikt/sif-validation@1.0.17
+
+## 3.49.42
+
+### Patch Changes
+
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+    - @navikt/sif-common-core-ds@10.3.37
+    - @navikt/sif-common-forms-ds@21.0.38
+    - @navikt/sif-common-soknad-ds@26.1.20
+    - @navikt/sif-common-ui@0.11.38
+
+## 3.49.41
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+    - @navikt/sif-common-core-ds@10.3.36
+    - @navikt/sif-common-forms-ds@21.0.37
+    - @navikt/sif-common-soknad-ds@26.1.19
+    - @navikt/sif-common-ui@0.11.37
+
 ## 3.49.40
 
 ### Patch Changes

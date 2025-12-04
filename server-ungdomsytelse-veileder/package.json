@@ -1,6 +1,6 @@
 {
     "name": "@navikt/server-ungdomsytelse-veileder",
-    "version": "0.0.49",
+    "version": "0.0.50",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -9,7 +9,7 @@
         "build": "ncc build ./src/index.ts -o dist -t --no-cache"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.5.0",
+        "@navikt/nav-dekoratoren-moduler": "3.6.1",
         "@navikt/oasis": "4.1.1",
         "@navikt/sif-common-env": "workspace:*",
         "csp-header": "6.2.0",
@@ -17,8 +17,8 @@
         "html-react-parser": "5.2.10",
         "http-proxy-middleware": "3.0.5",
         "jsdom": "27.2.0",
-        "react": "19.2.0",
-        "zod": "4.1.12"
+        "react": "19.2.1",
+        "zod": "4.1.13"
     },
     "devDependencies": {
         "@types/express": "5.0.5",
@@ -27,7 +27,7 @@
         "@vercel/ncc": "0.38.4",
         "axios": "1.13.2",
         "morgan": "1.10.1",
-        "prettier": "3.6.2",
+        "prettier": "3.7.0",
         "typescript": "5.9.3",
         "winston": "3.18.3"
     },

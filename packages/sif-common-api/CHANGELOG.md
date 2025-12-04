@@ -1,5 +1,39 @@
 # @navikt/sif-common-ui
 
+## 0.4.79
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.34
+    - @navikt/sif-common-sentry@0.28.56
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-validation@1.0.17
+
+## 0.4.78
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.33
+    - @navikt/sif-common-sentry@0.28.55
+    - @navikt/sif-common-utils@3.49.52
+    - @navikt/sif-validation@1.0.17
+
+## 0.4.77
+
+### Patch Changes
+
+- 3aeced0: Legge til parameter for å hente ut frilansoppdrag ved arbeidsgiveroppslag
+
+## 0.4.76
+
+### Patch Changes
+
+- ff62092: Tillate null verdi på navn for et frilansoppdrag, i og med dette er regelen i backend
+
 ## 0.4.75
 
 ### Patch Changes

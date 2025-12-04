@@ -23,7 +23,7 @@ export const useInitialData = () => {
     const fetchInitialData = async () => {
         const søker = await fetchSøker();
         const barn = await fetchBarn();
-        const arbeidsgivere = await fetchArbeidsgivere(ISODateRangeToDateRange('2020-01-01/2020-01-31'));
+        const arbeidsgivere = await fetchArbeidsgivere({ periode: ISODateRangeToDateRange('2020-01-01/2020-01-31') });
         setInitialData({ søker, barn, arbeidsgivere });
         setIsLoading(false);
     };
