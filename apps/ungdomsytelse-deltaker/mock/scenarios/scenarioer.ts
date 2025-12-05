@@ -133,8 +133,8 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Oppgave for å melde fra om inntekt',
         data: createSøktDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().rapporterInntektOppgave]),
     },
-    [ScenarioType.rapporterInntektSisteMåned]: {
-        type: ScenarioType.rapporterInntektSisteMåned,
+    [ScenarioType.rapporterInntektDelerAvMåned]: {
+        type: ScenarioType.rapporterInntektDelerAvMåned,
         name: 'Oppgave for å melde fra om inntekt (siste måned)',
         data: createSøktDeltakelse([
             getMockOppgaver().søkYtelseOppgaveLøst,

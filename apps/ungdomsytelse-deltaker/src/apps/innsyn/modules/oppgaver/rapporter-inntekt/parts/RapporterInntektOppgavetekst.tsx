@@ -36,7 +36,7 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelde
                     {gjelderDelerAvMåned && (
                         <BodyLong>
                             <AppText
-                                id="rapporterInntektOppgavetekst.intro.sisteMåned"
+                                id="rapporterInntektOppgavetekst.intro.delerAvMåned"
                                 values={{
                                     måned,
                                 }}

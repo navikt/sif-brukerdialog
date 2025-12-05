@@ -50,7 +50,7 @@ const VeilederScenarioHeader = () => {
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.rapporterInntekt)}>
                             Rapportere inntekt månedlig
                         </ActionMenu.Item>
-                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.rapporterInntektSisteMåned)}>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.rapporterInntektDelerAvMåned)}>
                             Rapportere inntekt månedlig (siste måned)
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntekt)}>

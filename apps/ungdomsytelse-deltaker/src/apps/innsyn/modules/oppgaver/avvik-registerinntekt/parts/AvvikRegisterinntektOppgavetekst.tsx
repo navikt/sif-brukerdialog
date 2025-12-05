@@ -63,7 +63,7 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                     {oppgave.oppgavetypeData.gjelderDelerAvMåned ? (
                         // Når perioden oppgaven ikke gjelder alle virkedager i måneden
                         <BodyLong>
-                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.sisteMåned" />
+                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.delerAvMåned" />
                         </BodyLong>
                     ) : (
                         <BodyLong>
