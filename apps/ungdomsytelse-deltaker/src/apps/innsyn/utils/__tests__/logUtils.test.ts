@@ -19,6 +19,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
             deltakerIdent: 'test-ident',
             id: 'deltaker-id',
         },
+        erSlettet: false,
     };
 
     const mockOppgave: SøkYtelseOppgave = {

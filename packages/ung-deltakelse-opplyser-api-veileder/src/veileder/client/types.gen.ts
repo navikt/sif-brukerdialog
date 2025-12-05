@@ -24,6 +24,7 @@ export type DeltakelseDto = {
     deltaker: DeltakerDto;
     fraOgMed: string;
     tilOgMed?: string;
+    erSlettet: boolean;
     søktTidspunkt?: string;
 };
 

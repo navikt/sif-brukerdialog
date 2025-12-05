@@ -31,6 +31,7 @@ export type DeltakelseKomposittDto = {
     deltaker: DeltakerDto;
     fraOgMed: string;
     tilOgMed?: string;
+    erSlettet: boolean;
     søktTidspunkt?: string;
     oppgaver: OppgaveDto[];
 };
@@ -50,17 +51,23 @@ export type EndretStartdatoDataDto = OppgavetypeDataDto & {
     forrigeStartdato: string;
 };
 
+export type FjernetPeriodeDataDto = OppgavetypeDataDto & {
+    forrigeStartdato: string;
+    forrigeSluttdato?: string;
+};
+
 export type InntektsrapporteringOppgavetypeDataDto = OppgavetypeDataDto & {
     fraOgMed: string;
     tilOgMed: string;
     rapportertInntekt?: RapportertInntektPeriodeinfoDto;
+    gjelderDelerAvMåned: boolean;
 };
 
 export type KontrollerRegisterinntektOppgavetypeDataDto = OppgavetypeDataDto & {
     fraOgMed: string;
     tilOgMed: string;
     registerinntekt: RegisterinntektDto;
-    gjelderSisteMåned: boolean;
+    gjelderDelerAvMåned: boolean;
 };
 
 export type OppgaveDto = {
@@ -69,6 +76,7 @@ export type OppgaveDto = {
     oppgavetypeData:
         | EndretSluttdatoDataDto
         | EndretStartdatoDataDto
+        | FjernetPeriodeDataDto
         | InntektsrapporteringOppgavetypeDataDto
         | KontrollerRegisterinntektOppgavetypeDataDto
         | SøkYtelseOppgavetypeDataDto;
@@ -92,6 +100,7 @@ export enum OppgaveStatus {
 export enum Oppgavetype {
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
     BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
+    BEKREFT_FJERNET_PERIODE = 'BEKREFT_FJERNET_PERIODE',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
     SØK_YTELSE = 'SØK_YTELSE',

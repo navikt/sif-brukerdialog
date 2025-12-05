@@ -61,6 +61,7 @@ export const mockUtils = {
         const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<OppgaveDto> =>
             ({
                 oppgavetypeData: {
+                    ...oppgave.oppgavetypeData,
                     fraOgMed: oppgave.oppgavetypeData.fraOgMed,
                     tilOgMed: oppgave.oppgavetypeData.fraOgMed,
                     rapportertInntekt: {
