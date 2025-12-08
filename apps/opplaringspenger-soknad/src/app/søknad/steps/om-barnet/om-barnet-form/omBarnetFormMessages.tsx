@@ -101,11 +101,11 @@ const nn: Record<keyof typeof nb, string> = {
         'Skildr kven du er i forhold til barnet, og i kva situasjonar du tek deg av og pleier barnet.',
     'omBarnetForm.relasjonAnnet.tekst':
         'Du må ikkje skrive noko om andre enn deg sjølv og barnet, til dømes skal du ikkje skrive kvifor du hjelper foreldre med omsorga for barnet.',
-    'omBarnetForm.relasjonAnnet.info.tittel': 'Kvifor treng vi denne informasjonen?',
+    'omBarnetForm.relasjonAnnet.info.tittel': 'Kvifor treng me denne informasjonen?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
         'Viss det er naudsynt med opplæring for å ta deg av og pleie eit barn, kan du ha rett til opplæringspengar. Det kan også gjelde for andre omsorgspersonar enn foreldra til barnet, så lenge du i periodar tek deg av barnet.',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.2':
-        'For å kunne vurdere om det er naudsynt at du får denne opplæringa, må vi difor vite meir om kva rolle du har overfor barnet. Vi skal ikkje ha opplysningar om kva andre omsorgspersonar gjer, berre opplysningar om rolla di overfor barnet du søkjer for.',
+        'For å kunne vurdere om det er naudsynt at du får denne opplæringa, må me difor vite meir om kva rolle du har overfor barnet. Me skal ikkje ha opplysningar om kva andre omsorgspersonar gjer, berre opplysningar om rolla di overfor barnet du søkjer for.',
     'omBarnetForm.relasjonTilBarnet.MOR': 'Mor',
     'omBarnetForm.relasjonTilBarnet.FAR': 'Far',
     'omBarnetForm.relasjonTilBarnet.ANNET': 'Anna',

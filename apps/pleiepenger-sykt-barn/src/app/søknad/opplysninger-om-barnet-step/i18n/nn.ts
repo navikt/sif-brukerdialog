@@ -28,11 +28,11 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'steg.omBarnet.relasjonAnnet.spm.tekst':
         'Du må ikkje skrive noko om andre enn deg sjølv og barnet, til dømes skal du ikkje skrive kvifor du hjelper foreldre med omsorga for barnet.',
 
-    'steg.omBarnet.relasjonAnnet.info.tittel': 'Kvifor treng vi denne informasjonen?',
+    'steg.omBarnet.relasjonAnnet.info.tittel': 'Kvifor treng me denne informasjonen?',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.1':
         'I tilfelle der den eller dei som har den daglege omsorga for barnet ikkje kan ha tilsyn med eit barn som treng tilsyn og pleie heile tida, kan andre personar hjelpe til med dette. Det kan til dømes vere ein besteforelder, ven, nabo, tante eller onkel.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.2':
-        'For å vurdere om du kan ha rett til pleiepengar, må vi vite meir om kva tilsynsrolle du har overfor barnet i perioden du søkjer for. Vi skal ikkje ha opplysningar om kva andre omsorgspersonar gjer, berre opplysningar om rolla di overfor barnet du søkjer for.',
+        'For å vurdere om du kan ha rett til pleiepengar, må me vite meir om kva tilsynsrolle du har overfor barnet i perioden du søkjer for. Me skal ikkje ha opplysningar om kva andre omsorgspersonar gjer, berre opplysningar om rolla di overfor barnet du søkjer for.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.3':
         'Døme: Foreldra kan ikkje vere til stades på sjukehuset heile tida, på grunn av omsorg for andre barn. Du skildrar då kva relasjon du har til barnet, og kor mykje du er saman med barnet på sjukehuset.',
 
