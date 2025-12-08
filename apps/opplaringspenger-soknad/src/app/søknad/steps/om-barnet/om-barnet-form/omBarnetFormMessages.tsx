@@ -21,11 +21,11 @@ const nb = {
         'Beskriv hvem du er i forhold til barnet, og i hvilke situasjoner du tar deg av og pleier barnet',
     'omBarnetForm.relasjonAnnet.tekst':
         'Du må ikke skrive noe om andre enn deg selv og barnet, for eksempel skal du ikke skrive hvorfor du hjelper foreldre med omsorgen for barnet.',
-    'omBarnetForm.relasjonAnnet.info.tittel': 'Hva betyr dette?',
+    'omBarnetForm.relasjonAnnet.info.tittel': 'Hvorfor trenger vi denne informasjonen?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
-        'For å få opplæringspenger må det være nødvendig med opplæring for at du skal kunne ta deg av og pleie barnet. Dette kan være andre omsorgspersoner enn barnets foreldre, så lenge du i perioder tar deg av barnet.',
+        'Hvis det er nødvendig med opplæring for å ta deg av og pleie et barn, kan du ha rett til opplæringspenger. Det kan også gjelde for andre omsorgspersoner enn barnets foreldre, så lenge du i perioder tar deg av barnet.',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.2':
-        'Vi må derfor vite mer om hvilken rolle du har overfor barnet, for å vurdere om det er nødvendig at du får denne opplæringen.',
+        'For å kunne vurdere om det er nødvendig at du får denne opplæringen, må vi derfor vite mer om hvilken rolle du har overfor barnet. Vi skal ikke ha opplysninger om hva andre omsorgspersoner gjør, kun opplysninger om din rolle overfor barnet du søker for.',
     'omBarnetForm.relasjonTilBarnet.MOR': 'Mor',
     'omBarnetForm.relasjonTilBarnet.FAR': 'Far',
     'omBarnetForm.relasjonTilBarnet.ANNET': 'Annet',
@@ -101,11 +101,11 @@ const nn: Record<keyof typeof nb, string> = {
         'Skildr kven du er i forhold til barnet, og i kva situasjonar du tek deg av og pleier barnet.',
     'omBarnetForm.relasjonAnnet.tekst':
         'Du må ikkje skrive noko om andre enn deg sjølv og barnet, til dømes skal du ikkje skrive kvifor du hjelper foreldre med omsorga for barnet.',
-    'omBarnetForm.relasjonAnnet.info.tittel': 'Kva tyder dette?',
+    'omBarnetForm.relasjonAnnet.info.tittel': 'Kvifor treng vi denne informasjonen?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
-        'For å få opplæringspengar må det vere naudsynt med opplæring for at du skal kunne ta deg av og pleie barnet. Dette kan vere andre omsorgspersonar enn barnets foreldre, så lenge du i periodar tek deg av barnet.',
+        'Viss det er naudsynt med opplæring for å ta deg av og pleie eit barn, kan du ha rett til opplæringspengar. Det kan også gjelde for andre omsorgspersonar enn foreldra til barnet, så lenge du i periodar tek deg av barnet.',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.2':
-        'Vi må difor vite meir om kva rolle du har overfor barnet for å vurdere om det er naudsynt at du får denne opplæringa.',
+        'For å kunne vurdere om det er naudsynt at du får denne opplæringa, må vi difor vite meir om kva rolle du har overfor barnet. Vi skal ikkje ha opplysningar om kva andre omsorgspersonar gjer, berre opplysningar om rolla di overfor barnet du søkjer for.',
     'omBarnetForm.relasjonTilBarnet.MOR': 'Mor',
     'omBarnetForm.relasjonTilBarnet.FAR': 'Far',
     'omBarnetForm.relasjonTilBarnet.ANNET': 'Anna',
