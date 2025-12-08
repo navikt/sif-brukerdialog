@@ -12,7 +12,7 @@ export const getHandlers = () => [
     http.get('**/oppslag/arbeidsgiver', () => {
         return HttpResponse.json(mockData.arbeidsgiver);
     }),
-    http.get('**/opplaringsinstitusjoner', () => {
+    http.get('**/opplaringsinstitusjoner/aktive', () => {
         return HttpResponse.json(mockData.institusjoner);
     }),
     http.post('**/opplaringspenger/innsending', () => {
