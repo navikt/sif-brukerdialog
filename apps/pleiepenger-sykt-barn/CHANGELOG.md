@@ -1,5 +1,14 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.46
+
+### Patch Changes
+
+- Tekstoppdateringer i forbindelse med annet barn,. Informere bedre om hvilken informasjon vi ønsker
+- Updated dependencies
+    - @navikt/sif-common-forms-ds@21.0.41
+    - @navikt/sif-common-soknad-ds@26.1.23
+
 ## 4.11.45
 
 ### Patch Changes
