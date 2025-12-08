@@ -1,5 +1,14 @@
 # @navikt/sif-demo-app
 
+## 0.9.36
+
+### Patch Changes
+
+- Oppdatere til gjelderDelerAvMåned flagg på oppgaver for inntekt og kontroll av inntekt
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.0
+    - @navikt/ung-common@0.0.81
+
 ## 0.9.35
 
 ### Patch Changes

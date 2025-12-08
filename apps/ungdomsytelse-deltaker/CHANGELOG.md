@@ -1,5 +1,14 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.25
+
+### Patch Changes
+
+- Oppdatere til gjelderDelerAvMåned flagg på oppgaver for inntekt og kontroll av inntekt
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.0
+    - @navikt/ung-common@0.0.81
+
 ## 1.5.24
 
 ### Patch Changes

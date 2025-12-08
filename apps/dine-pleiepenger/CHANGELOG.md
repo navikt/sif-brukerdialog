@@ -1,5 +1,12 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.15
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.5
+
 ## 2.0.14
 
 ### Patch Changes
