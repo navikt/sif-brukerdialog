@@ -5150,7 +5150,7 @@ __metadata:
     react: "npm:19.2.1"
     react-dom: "npm:19.2.1"
     react-fast-compare: "npm:3.2.2"
-    react-hook-form: "npm:7.66.1"
+    react-hook-form: "npm:7.67.0"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.6"
     storybook: "npm:10.1.0"
@@ -5943,7 +5943,7 @@ __metadata:
     prettier: "npm:3.7.0"
     react: "npm:19.2.1"
     react-dom: "npm:19.2.1"
-    react-hook-form: "npm:7.66.1"
+    react-hook-form: "npm:7.67.0"
     stylelint: "npm:16.26.0"
     tailwindcss: "npm:4.1.17"
     typescript: "npm:5.9.3"
@@ -6050,7 +6050,7 @@ __metadata:
     postcss: "npm:8.5.6"
     react: "npm:19.2.1"
     react-dom: "npm:19.2.1"
-    react-hook-form: "npm:7.66.1"
+    react-hook-form: "npm:7.67.0"
     react-intl: "npm:7.1.14"
     storybook: "npm:10.1.0"
     storybook-react-intl: "npm:10.0.1"
@@ -23862,12 +23862,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.66.1":
-  version: 7.66.1
-  resolution: "react-hook-form@npm:7.66.1"
+"react-hook-form@npm:7.67.0":
+  version: 7.67.0
+  resolution: "react-hook-form@npm:7.67.0"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10/3b39276432de206ee37b3fb24c7d7b815fa1b641a179685392b9dc715edfa5ed3a5d57f7366429595f09c182bf25d7adc991c0c00101739d9efc977ecee22a53
+  checksum: 10/0e74a48b2da0f79166d5c6701f78a08fd5165e901e46ce5a578f0a2f25005e861023ffb35c1a96373c23701a84c3fce2111c4aced824d2ca08c9b2420a645551
   languageName: node
   linkType: hard
 
