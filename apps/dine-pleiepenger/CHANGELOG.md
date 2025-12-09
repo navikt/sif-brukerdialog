@@ -1,5 +1,18 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.16
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-core-ds@10.3.40
+    - @navikt/k9-sak-innsyn-api@0.2.5
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-sentry@0.28.56
+    - @navikt/sif-common-utils@3.49.53
+
 ## 2.0.15
 
 ### Patch Changes

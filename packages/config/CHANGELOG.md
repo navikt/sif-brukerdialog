@@ -1,5 +1,11 @@
 # config
 
+## 0.11.48
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
 ## 0.11.47
 
 ### Patch Changes
