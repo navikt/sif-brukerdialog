@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.41
+
+### Patch Changes
+
+- Tekstoppdateringer i forbindelse med annet barn,. Informere bedre om hvilken informasjon vi ønsker
+
 ## 21.0.40
 
 ### Patch Changes

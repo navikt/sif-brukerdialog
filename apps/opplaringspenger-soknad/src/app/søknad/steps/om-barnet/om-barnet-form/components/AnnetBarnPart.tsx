@@ -1,5 +1,4 @@
-import { Alert, Heading } from '@navikt/ds-react';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
 import {
@@ -26,6 +25,7 @@ import { ÅrsakBarnetManglerIdentitetsnummer } from '../types/ÅrsakBarnetMangle
 import { getBarnetsAlder, nYearsAgo } from '../utils/omBarnetFormUtils';
 import FødselsattestPart from './FødselsattestPart';
 import InfoForFarVedNyttBarn from './InfoForFarVedNyttBarn';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 interface Props {
     formValues: Partial<OmBarnetFormValues>;
@@ -180,13 +180,16 @@ const AnnetBarnPart = ({
                         label={text('omBarnetForm.relasjonAnnet.spm')}
                         description={
                             <>
+                                <BodyLong>
+                                    <Text id="omBarnetForm.relasjonAnnet.tekst" />
+                                </BodyLong>
                                 <ExpandableInfo title={text('omBarnetForm.relasjonAnnet.info.tittel')}>
-                                    <div>
+                                    <BodyLong>
                                         <Text id="omBarnetForm.relasjonAnnet.info.hjelpetekst.1" />
-                                    </div>
-                                    <p>
+                                    </BodyLong>
+                                    <BodyLong>
                                         <Text id="omBarnetForm.relasjonAnnet.info.hjelpetekst.2" />
-                                    </p>
+                                    </BodyLong>
                                 </ExpandableInfo>
                             </>
                         }
