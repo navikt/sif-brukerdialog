@@ -14,7 +14,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'steg.arbeidssituasjon.veileder.3':
         'Viss du mottar yting frå Nav (til dømes foreldrepengar eller sjukepengar) opplyser du om det som var din normale arbeidstid før du starta å motta ytinga.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
-        'Nedanfor ser du {antall, plural, one {arbeidsgjevaren} other {arbeidsgjevarar}} du er registrert tilsett hos i AA-registeret i perioden du søkjer om pleiepengar. For at vi skal vere sikre på at opplysningane er riktige, må du stadfeste om du er, eller har vore, tilsett der.',
+        'Nedanfor ser du {antall, plural, one {arbeidsgjevaren} other {arbeidsgjevarar}} du er registrert tilsett hos i AA-registeret i perioden du søkjer om pleiepengar. For at me skal vere sikre på at opplysningane er riktige, må du stadfeste om du er, eller har vore, tilsett der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
         'Me har ikkje funne nokon arbeidsgjevarar registrert på deg i AA-registeret.',
     'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver.tittel': 'Har du arbeidsforhold som ikkje viser?',
@@ -100,9 +100,9 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
         'Du har dei siste 12 vekene jobba 40 timar som frilansar, og du har brukt 20 timar på det du mottar honorar for. Då får du til samen 60 timar, som du delar på 12 = 5. Du oppgjev altså at du jobba 5 timar i snitt per veke.',
     'arbeidsforhold.frilanser.avsluttet.info.tittel': 'Hva betyr dette?',
     'arbeidsforhold.frilanser.avsluttet.info.tekst':
-        'Vi må vite hvor mange timer du jobbet i snitt som frilanser. Hvis du kun har jobbet i korte perioder av gangen, kan du regne et gjennomsnitt for en lengre periode.',
+        'Me må vite hvor mange timer du jobbet i snitt som frilanser. Hvis du kun har jobbet i korte perioder av gangen, kan du regne et gjennomsnitt for en lengre periode.',
     'arbeidsforhold.frilanser.normalarbeidstidIkkeFrilanser.intro':
-        'Fordi du er registrert som frilanser i Aa-registeret, trenger vi å vite hvor mye du vanligvis jobbet som frilanser. Hvis du ikke lengre skal være registrert som frilanser, må du kontakte oppdragsgiver for å oppdatere registeret.',
+        'Fordi du er registrert som frilanser i Aa-registeret, trenger me å vite hvor mye du vanligvis jobbet som frilanser. Hvis du ikke lengre skal være registrert som frilanser, må du kontakte oppdragsgiver for å oppdatere registeret.',
 
     'arbeidsforhold.normalTimer.info.turnus':
         'Når du jobbar turnus, eller har anna varierande arbeidstid, oppgjev du eit snitt per veke.',
