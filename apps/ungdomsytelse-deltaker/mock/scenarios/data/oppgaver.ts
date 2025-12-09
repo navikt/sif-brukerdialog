@@ -214,7 +214,7 @@ const getBekreftAvvikOppgave = (): OppgaveDto => ({
     status: OppgaveStatus.ULØST,
 });
 
-const getBekreftAvvikOppgaveSisteMåned = (): OppgaveDto => ({
+const getBekreftAvvikOppgaveDelerAvMåned = (): OppgaveDto => ({
     oppgaveReferanse: 'be06ce74-9cb5-4000-bbae-5ab0940b04f7',
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
@@ -278,7 +278,7 @@ export const getMockOppgaver = () => ({
     endretSluttdatoOppgave: getEndretSluttdatoOppgave(),
     endretSluttdatoOppgaveLøst: getEndretSluttdatoOppgaveLøst(),
     bekreftAvvikOppgave: getBekreftAvvikOppgave(),
-    bekreftAvvikOppgaveSisteMåned: getBekreftAvvikOppgaveSisteMåned(),
+    bekreftAvvikOppgaveDelerAvMÅned: getBekreftAvvikOppgaveDelerAvMåned(),
     bekreftAvvikOppgaveLøst: getBekreftAvvikOppgaveLøst(),
     søkYtelseOppgave: getSøkYtelseOppgave(),
     søkYtelseOppgaveLøst: getSøkYtelseOppgaveLøst(),

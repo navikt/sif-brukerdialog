@@ -231,7 +231,7 @@ test.describe('Innsyn - oppgaver', () => {
                 await expect(page.getByText('Vi bruker ikke hele inntekten din')).not.toBeVisible();
             });
             test('Deler av måned', async ({ page }) => {
-                memoryStore.setScenario(ScenarioType.avvikInntektSisteMåned);
+                memoryStore.setScenario(ScenarioType.avvikInntektDelerAvMåned);
                 await page.goto(`./`);
                 const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
                 await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();

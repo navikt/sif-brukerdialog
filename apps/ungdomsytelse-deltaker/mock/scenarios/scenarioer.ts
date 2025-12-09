@@ -150,13 +150,13 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
             getMockOppgaver().bekreftAvvikOppgave,
         ]),
     },
-    [ScenarioType.avvikInntektSisteMåned]: {
-        type: ScenarioType.avvikInntektSisteMåned,
+    [ScenarioType.avvikInntektDelerAvMåned]: {
+        type: ScenarioType.avvikInntektDelerAvMåned,
         name: 'Oppgave for å sjekke inntekt (avvik - deler av måned)',
         data: createSøktDeltakelse([
             getMockOppgaver().søkYtelseOppgaveLøst,
             getMockOppgaver().rapporterInntektOppgaveLøst,
-            getMockOppgaver().bekreftAvvikOppgaveSisteMåned,
+            getMockOppgaver().bekreftAvvikOppgaveDelerAvMÅned,
         ]),
     },
     [ScenarioType.avsluttet]: {
