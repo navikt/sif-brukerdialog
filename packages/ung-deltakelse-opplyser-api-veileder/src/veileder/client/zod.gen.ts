@@ -25,6 +25,7 @@ export const zDeltakelseDto = z.object({
     deltaker: zDeltakerDto,
     fraOgMed: z.iso.date(),
     tilOgMed: z.optional(z.iso.date()),
+    erSlettet: z.boolean(),
     søktTidspunkt: z.optional(z.iso.datetime({ local: true })),
 });
 

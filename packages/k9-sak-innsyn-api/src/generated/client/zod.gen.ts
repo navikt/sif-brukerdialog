@@ -53,3 +53,14 @@ export const zHentOpplæringsinstitusjonerData = z.object({
  * OK
  */
 export const zHentOpplæringsinstitusjonerResponse = z.array(zOpplæringsinstitusjon);
+
+export const zHentAktiveOpplæringsinstitusjonerData = z.object({
+    body: z.optional(z.never()),
+    path: z.optional(z.never()),
+    query: z.optional(z.never()),
+});
+
+/**
+ * OK
+ */
+export const zHentAktiveOpplæringsinstitusjonerResponse = z.array(zOpplæringsinstitusjon);

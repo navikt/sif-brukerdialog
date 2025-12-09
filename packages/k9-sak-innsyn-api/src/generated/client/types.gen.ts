@@ -113,3 +113,42 @@ export type HentOpplæringsinstitusjonerResponses = {
 
 export type HentOpplæringsinstitusjonerResponse =
     HentOpplæringsinstitusjonerResponses[keyof HentOpplæringsinstitusjonerResponses];
+
+export type HentAktiveOpplæringsinstitusjonerData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/k9sak/opplaringsinstitusjoner/aktive';
+};
+
+export type HentAktiveOpplæringsinstitusjonerErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentAktiveOpplæringsinstitusjonerError =
+    HentAktiveOpplæringsinstitusjonerErrors[keyof HentAktiveOpplæringsinstitusjonerErrors];
+
+export type HentAktiveOpplæringsinstitusjonerResponses = {
+    /**
+     * OK
+     */
+    200: Opplæringsinstitusjon[];
+};
+
+export type HentAktiveOpplæringsinstitusjonerResponse =
+    HentAktiveOpplæringsinstitusjonerResponses[keyof HentAktiveOpplæringsinstitusjonerResponses];

@@ -67,6 +67,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                         ...avvikRegisterinntektData,
                         fraOgMed: ISODateToDate(avvikRegisterinntektData.fraOgMed),
                         tilOgMed: ISODateToDate(avvikRegisterinntektData.tilOgMed),
+                        gjelderDelerAvMåned: avvikRegisterinntektData.gjelderDelerAvMåned,
                     },
                     bekreftelse: oppgave.bekreftelse,
                 };
@@ -112,6 +113,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                                       rapporterInntektData.rapportertInntekt.arbeidstakerOgFrilansInntekt,
                               }
                             : undefined,
+                        gjelderDelerAvMåned: rapporterInntektData.gjelderDelerAvMåned,
                     },
                 };
                 parsedOppgaver.push(rapporterInntektOppgave);
@@ -127,6 +129,8 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                 };
                 parsedOppgaver.push(sendSøknadOppgave);
                 return;
+            case Oppgavetype.BEKREFT_FJERNET_PERIODE:
+                throw new Error(`Fjernet periode oppgave er ikke støttet`);
 
             default:
                 throw new Error(`Ukjent oppgavetype: ${oppgave.oppgavetype}`);
