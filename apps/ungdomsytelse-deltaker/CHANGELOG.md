@@ -5,6 +5,9 @@
 ### Patch Changes
 
 - Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.0
+    - @navikt/ung-common@0.0.81
+- Updated dependencies
     - @navikt/sif-common-forms-ds@21.0.41
     - @navikt/sif-common-soknad-ds@26.1.23
 
