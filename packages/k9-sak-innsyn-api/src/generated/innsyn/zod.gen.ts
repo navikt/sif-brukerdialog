@@ -494,10 +494,10 @@ export const zFagsakYtelseType = z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_
 export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSMELDING', 'UKJENT']);
 
 export const zInnsending = z.object({
-    mottattDato: z.optional(z.iso.datetime({ local: true })),
+    søknadId: z.optional(z.string()),
     versjon: z.optional(z.string()),
     søker: z.optional(zSøker),
-    søknadId: z.optional(z.string()),
+    mottattDato: z.optional(z.iso.datetime({ local: true })),
 });
 
 export const zOrganisasjon = z.object({
