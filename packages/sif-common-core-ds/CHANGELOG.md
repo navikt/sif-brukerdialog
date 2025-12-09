@@ -1,5 +1,14 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.40
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-api@0.4.80
+    - @navikt/sif-common-utils@3.49.53
+
 ## 10.3.39
 
 ### Patch Changes
