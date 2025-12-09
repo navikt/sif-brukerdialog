@@ -156,7 +156,7 @@ const getRapporterInntektOppgaveLøst = (): OppgaveDto => ({
     },
 });
 
-const getRapporterInntektSisteMånedOppgave = (): OppgaveDto => ({
+const getRapporterInntektDelerAvMånedOppgave = (): OppgaveDto => ({
     oppgaveReferanse: 'f3e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a82',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.ULØST,
@@ -169,7 +169,7 @@ const getRapporterInntektSisteMånedOppgave = (): OppgaveDto => ({
     },
 });
 
-const getRapporterInntektSisteMånedOppgaveLøst = (): OppgaveDto => ({
+const getRapporterInntektDelerAvMånedOppgaveLøst = (): OppgaveDto => ({
     oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.LØST,
@@ -271,8 +271,8 @@ const getBekreftAvvikOppgaveLøst = (): OppgaveDto => ({
 export const getMockOppgaver = () => ({
     rapporterInntektOppgave: getRapporterInntektOppgave(),
     rapporterInntektOppgaveLøst: getRapporterInntektOppgaveLøst(),
-    rapporterInntektSisteMånedOppgave: getRapporterInntektSisteMånedOppgave(),
-    rapporterInntektSisteMånedOppgaveLøst: getRapporterInntektSisteMånedOppgaveLøst(),
+    rapporterInntektDelerAvMånedOppgave: getRapporterInntektDelerAvMånedOppgave(),
+    rapporterInntektDelerAvMånedOppgaveLøst: getRapporterInntektDelerAvMånedOppgaveLøst(),
     endretStartdatoOppgave: getEndretStartdatoOppgave(),
     endretStartdatoOppgaveLøst: getEndretStartdatoOppgaveLøst(),
     endretSluttdatoOppgave: getEndretSluttdatoOppgave(),

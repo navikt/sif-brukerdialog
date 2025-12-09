@@ -51,13 +51,13 @@ const VeilederScenarioHeader = () => {
                             Rapportere inntekt månedlig
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.rapporterInntektDelerAvMåned)}>
-                            Rapportere inntekt månedlig (siste måned)
+                            Rapportere inntekt månedlig (deler av måned)
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntekt)}>
                             Inntektskontroll - sjekke avvik i inntekt
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntektSisteMåned)}>
-                            Inntektskontroll - sjekke avvik i inntekt (siste måned)
+                            Inntektskontroll - sjekke avvik i inntekt (deler av måned)
                         </ActionMenu.Item>
                     </ActionMenu.Group>
                     <ActionMenu.Divider />
