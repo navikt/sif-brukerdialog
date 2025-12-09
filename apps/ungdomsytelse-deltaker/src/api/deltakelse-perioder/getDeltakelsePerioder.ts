@@ -9,7 +9,8 @@ export const getDeltakelsePerioder = async (): Promise<DeltakelsePeriode[]> => {
         const { data } = await Deltakelse.hentAlleMineDeltakelser();
         return deltakelsePerioderSchema.parse(data);
     } catch (e) {
-        logApiErrorFaro('getDeltakelsePerioder', e);
-        throw handleApiError(e, 'getAlleMineDeltakelser');
+        const parsedApiError = handleApiError(e, 'getDeltakelsePerioder');
+        logApiErrorFaro('getDeltakelsePerioder', parsedApiError);
+        throw parsedApiError;
     }
 };

@@ -50,9 +50,7 @@ const DeltakerInfoLoader = () => {
     if (error) {
         const søkerError = getErrorInfoToLog(søker.error);
         const deltakelsePerioderError = getErrorInfoToLog(deltakelsePerioder.error);
-        console.error(JSON.stringify(deltakelsePerioder.error));
         logApiError(ApiErrorKey.oppstartsinfo, { søkerError, deltakelsePerioderError });
-        logFaroError('DeltakerInfoLoader.Error', JSON.stringify({ søkerError, deltakelsePerioderError }));
         return <HentDeltakerErrorPage error="Feil ved henting av info" />;
     }
 
