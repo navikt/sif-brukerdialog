@@ -4619,7 +4619,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.1"
     eslint-plugin-storybook: "npm:10.1.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     formik: "npm:2.4.9"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.10"
@@ -4694,7 +4694,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.1"
     eslint-plugin-storybook: "npm:10.1.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     flat: "npm:6.0.1"
     formik: "npm:2.4.9"
     html-react-parser: "npm:5.2.10"
@@ -4876,7 +4876,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.1"
     eslint-plugin-storybook: "npm:10.1.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     formik: "npm:2.4.9"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.10"
@@ -4991,7 +4991,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.1"
     eslint-plugin-storybook: "npm:10.1.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.10"
     http-proxy-middleware: "npm:3.0.5"
@@ -5060,7 +5060,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.1"
     eslint-plugin-storybook: "npm:10.1.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.10"
     http-proxy-middleware: "npm:3.0.5"
@@ -5136,7 +5136,7 @@ __metadata:
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-simple-import-sort: "npm:12.1.1"
     eslint-plugin-storybook: "npm:10.1.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     formik: "npm:2.4.9"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.10"
@@ -5208,7 +5208,7 @@ __metadata:
     eslint: "npm:9.39.1"
     eslint-plugin-storybook: "npm:10.1.0"
     eslint-plugin-vitest: "npm:0.5.4"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     express-rate-limit: "npm:8.2.1"
     formik: "npm:2.4.9"
     helmet: "npm:8.1.0"
@@ -5300,7 +5300,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.1"
     eslint-plugin-storybook: "npm:10.1.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     formik: "npm:2.4.9"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.10"
@@ -5375,7 +5375,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.1"
     eslint-plugin-storybook: "npm:10.1.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     formik: "npm:2.4.9"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.10"
@@ -5417,7 +5417,7 @@ __metadata:
     "@vercel/ncc": "npm:0.38.4"
     axios: "npm:1.13.2"
     csp-header: "npm:6.2.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     html-react-parser: "npm:5.2.10"
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:27.2.0"
@@ -5932,7 +5932,7 @@ __metadata:
     eslint-plugin-prettier: "npm:5.5.4"
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-simple-import-sort: "npm:12.1.1"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     html-react-parser: "npm:5.2.10"
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:27.2.0"
@@ -5997,7 +5997,7 @@ __metadata:
     csp-header: "npm:6.2.0"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.19"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     formik: "npm:2.4.9"
     globals: "npm:16.5.0"
     helmet: "npm:8.1.0"
@@ -6076,7 +6076,7 @@ __metadata:
     "@vercel/ncc": "npm:0.38.4"
     axios: "npm:1.13.2"
     csp-header: "npm:6.2.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     html-react-parser: "npm:5.2.10"
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:27.2.0"
@@ -6225,7 +6225,7 @@ __metadata:
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-simple-import-sort: "npm:12.1.1"
     eslint-plugin-storybook: "npm:10.1.0"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     html-react-parser: "npm:5.2.10"
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:27.2.0"
@@ -6312,7 +6312,7 @@ __metadata:
     eslint-plugin-simple-import-sort: "npm:12.1.1"
     eslint-plugin-storybook: "npm:10.1.0"
     eslint-plugin-vitest: "npm:0.5.4"
-    express: "npm:5.1.0"
+    express: "npm:5.2.1"
     formik: "npm:2.4.9"
     html-react-parser: "npm:5.2.10"
     http-proxy-middleware: "npm:3.0.5"
@@ -12103,7 +12103,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"body-parser@npm:^2.2.0":
+"body-parser@npm:^2.2.1":
   version: 2.2.1
   resolution: "body-parser@npm:2.2.1"
   dependencies:
@@ -15813,17 +15813,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:5.1.0":
-  version: 5.1.0
-  resolution: "express@npm:5.1.0"
+"express@npm:5.2.1":
+  version: 5.2.1
+  resolution: "express@npm:5.2.1"
   dependencies:
     accepts: "npm:^2.0.0"
-    body-parser: "npm:^2.2.0"
+    body-parser: "npm:^2.2.1"
     content-disposition: "npm:^1.0.0"
     content-type: "npm:^1.0.5"
     cookie: "npm:^0.7.1"
     cookie-signature: "npm:^1.2.1"
     debug: "npm:^4.4.0"
+    depd: "npm:^2.0.0"
     encodeurl: "npm:^2.0.0"
     escape-html: "npm:^1.0.3"
     etag: "npm:^1.8.1"
@@ -15844,7 +15845,7 @@ __metadata:
     statuses: "npm:^2.0.1"
     type-is: "npm:^2.0.1"
     vary: "npm:^1.1.2"
-  checksum: 10/6dba00bbdf308f43a84ed3f07a7e9870d5208f2a0b8f60f39459dda089750379747819863fad250849d3c9163833f33f94ce69d73938df31e0c5a430800d7e56
+  checksum: 10/4aa545d89702ac83f645c77abda1b57bcabe288f0b380fb5580fac4e323ea0eb533005c8e666b4e19152fb16d4abf11ba87b22aa9a10857a0485cd86b94639bd
   languageName: node
   linkType: hard
 

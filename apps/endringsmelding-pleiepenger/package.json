@@ -70,7 +70,7 @@
         "compression": "1.8.1",
         "eslint": "9.39.1",
         "eslint-plugin-storybook": "10.1.0",
-        "express": "5.1.0",
+        "express": "5.2.1",
         "http-proxy-middleware": "3.0.5",
         "mockdate": "3.0.5",
         "msw": "2.12.3",
