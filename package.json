@@ -10,7 +10,7 @@
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "dependencies": {
-        "@changesets/cli": "2.29.7",
+        "@changesets/cli": "2.29.8",
         "glob": "13.0.0",
         "tailwindcss": "4.1.17",
         "turbo": "2.6.1"
@@ -21,7 +21,7 @@
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
         "lint-staged": "16.2.7",
-        "prettier": "3.7.0",
+        "prettier": "3.7.3",
         "typescript": "5.9.3"
     },
     "lint-staged": {
