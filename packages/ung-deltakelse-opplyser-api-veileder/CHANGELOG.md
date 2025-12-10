@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
 ## 0.3.0
 
 ### Minor Changes

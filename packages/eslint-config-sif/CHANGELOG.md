@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.78
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
 ## 1.1.77
 
 ### Patch Changes

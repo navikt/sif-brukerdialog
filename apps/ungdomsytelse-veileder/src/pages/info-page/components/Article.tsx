@@ -1,4 +1,4 @@
-import { BodyLong, Heading, List } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Heading } from '@navikt/ds-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'; // Støtte for tabeller, sjekklister, gjennomstreking
 import { MarkdownArticle } from '../../../types/MarkdownArticle';
@@ -11,7 +11,7 @@ interface Props {
 const Article = ({ article, size = 'small' }: Props) => {
     const isSmall = size === 'small';
     return (
-        <div className="prose mt-4">
+        <div className="prose mt-4 article">
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -45,9 +45,9 @@ const Article = ({ article, size = 'small' }: Props) => {
                             {children}
                         </BodyLong>
                     ),
-                    ul: ({ children }) => <List>{children}</List>,
+                    ul: ({ children }) => <ul>{children}</ul>,
                     ol: ({ children }) => <ol className="list-decimal ml-6 mb-2">{children}</ol>,
-                    li: ({ children }) => <List.Item>{children}</List.Item>,
+                    li: ({ children }) => <li>{children}</li>,
                     table: ({ children }) => (
                         <table className="w-full border-collapse border border-gray-400 mb-4">{children}</table>
                     ),
@@ -55,6 +55,11 @@ const Article = ({ article, size = 'small' }: Props) => {
                     tr: ({ children }) => <tr className="border border-gray-400">{children}</tr>,
                     th: ({ children }) => <th className="border border-gray-400 p-2 font-bold">{children}</th>,
                     td: ({ children }) => <td className="border border-gray-400 p-2">{children}</td>,
+                    blockquote: ({ children }) => (
+                        <Box marginBlock="0 4">
+                            <Alert variant="info">{children}</Alert>
+                        </Box>
+                    ),
                 }}>
                 {article.content}
             </ReactMarkdown>

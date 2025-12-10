@@ -1,5 +1,48 @@
 # @navikt/sif-demo-app
 
+## 0.9.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.1
+    - @navikt/sif-common-formik-ds@2.5.36
+    - @navikt/sif-common-core-ds@10.3.43
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-common-faro@0.2.10
+    - @navikt/sif-common-api@0.4.83
+    - @navikt/sif-validation@1.0.18
+    - @navikt/sif-common-ui@0.11.44
+    - @navikt/ung-common@0.0.85
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-hooks@0.3.8
+
+## 0.9.40
+
+### Patch Changes
+
+- Oppdatere hjelpetekster
+
+## 0.9.39
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+- @navikt/sif-common-core-ds@10.3.42
+- @navikt/sif-common-ui@0.11.43
+- @navikt/ung-common@0.0.84
+
+## 0.9.38
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-core-ds@10.3.41
+    - @navikt/sif-common-api@0.4.81
+    - @navikt/sif-common-ui@0.11.42
+    - @navikt/ung-common@0.0.83
+
 ## 0.9.37
 
 ### Patch Changes
@@ -87,6 +130,7 @@
 
 ### Patch Changes
 
+- Oppdatert hjelpeartikkel + litt justering av visning av en artikkel.
 - d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
     - Justere workflows for deploy
     - Skru av prometheus metrics - var ikke brukt

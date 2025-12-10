@@ -1,5 +1,29 @@
 # @navikt/sif-common-ui
 
+## 0.4.83
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.36
+    - @navikt/sif-common-sentry@0.28.58
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-validation@1.0.18
+
+## 0.4.82
+
+### Patch Changes
+
+- Updated dependencies [81a4e75]
+    - @navikt/sif-common-sentry@0.28.57
+
+## 0.4.81
+
+### Patch Changes
+
+- bc42630: Rydder opp i feilhåndtering for vedleggsopplasting. Error ved opplastingen ble ikke fanget riktig, og ble til slutt sett på som unhandled.
+
 ## 0.4.80
 
 ### Patch Changes

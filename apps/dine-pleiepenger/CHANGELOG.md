@@ -1,5 +1,33 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.43
+    - @navikt/k9-sak-innsyn-api@0.2.6
+    - @navikt/sif-common-sentry@0.28.58
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.3
+
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies [81a4e75]
+    - @navikt/sif-common-sentry@0.28.57
+    - @navikt/sif-common-core-ds@10.3.42
+
+## 2.0.17
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-core-ds@10.3.41
+
 ## 2.0.16
 
 ### Patch Changes

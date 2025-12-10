@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.0.52
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
 ## 0.0.51
 
 ### Patch Changes

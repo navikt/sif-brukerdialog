@@ -1,5 +1,48 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.36
+    - @navikt/sif-common-soknad-ds@26.1.27
+    - @navikt/sif-common-forms-ds@21.0.45
+    - @navikt/sif-common-core-ds@10.3.43
+    - @navikt/sif-common-sentry@0.28.58
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-common-faro@0.2.10
+    - @navikt/sif-common-api@0.4.83
+    - @navikt/sif-validation@1.0.18
+    - @navikt/sif-common-ui@0.11.44
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-hooks@0.3.8
+
+## 2.28.48
+
+### Patch Changes
+
+- Updated dependencies [81a4e75]
+    - @navikt/sif-common-sentry@0.28.57
+    - @navikt/sif-common-api@0.4.82
+    - @navikt/sif-common-soknad-ds@26.1.26
+    - @navikt/sif-common-core-ds@10.3.42
+    - @navikt/sif-common-forms-ds@21.0.44
+    - @navikt/sif-common-ui@0.11.43
+
+## 2.28.47
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-core-ds@10.3.41
+    - @navikt/sif-common-api@0.4.81
+    - @navikt/sif-common-forms-ds@21.0.43
+    - @navikt/sif-common-soknad-ds@26.1.25
+    - @navikt/sif-common-ui@0.11.42
+
 ## 2.28.46
 
 ### Patch Changes

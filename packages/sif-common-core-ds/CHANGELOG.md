@@ -1,5 +1,28 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-common-api@0.4.83
+
+## 10.3.42
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+
+## 10.3.41
+
+### Patch Changes
+
+- bc42630: Rydder opp i feilhåndtering for vedleggsopplasting. Error ved opplastingen ble ikke fanget riktig, og ble til slutt sett på som unhandled.
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-api@0.4.81
+
 ## 10.3.40
 
 ### Patch Changes

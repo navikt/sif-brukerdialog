@@ -1,5 +1,11 @@
 # config
 
+## 0.11.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
 ## 0.11.48
 
 ### Patch Changes
