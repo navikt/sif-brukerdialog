@@ -58,7 +58,8 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
                     return prevFile;
                 }),
             ]);
-            return Promise.reject();
+            /** Resolver fordi filene har oppdatert status med error-info */
+            return Promise.resolve();
         }
     };
 
@@ -71,7 +72,7 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
                 .filter((file) => !file.error)
                 .map((file) => ({ ...file, pending: true, uploaded: false }));
             setFiles((prevFiles) => [...prevFiles, ...filesToUpload, ...filesWithError]);
-            await filesToUpload.map((file) => uploadFile(file));
+            await Promise.all(filesToUpload.map((file) => uploadFile(file)));
         },
         [files],
     );
