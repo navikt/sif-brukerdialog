@@ -1,5 +1,23 @@
 # @navikt/sif-demo-app
 
+## 0.9.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.1
+    - @navikt/sif-common-formik-ds@2.5.36
+    - @navikt/sif-common-core-ds@10.3.43
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-common-faro@0.2.10
+    - @navikt/sif-common-api@0.4.83
+    - @navikt/sif-validation@1.0.18
+    - @navikt/sif-common-ui@0.11.44
+    - @navikt/ung-common@0.0.85
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-hooks@0.3.8
+
 ## 0.9.40
 
 ### Patch Changes

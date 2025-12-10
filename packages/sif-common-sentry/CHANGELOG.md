@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.58
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
 ## 0.28.57
 
 ### Patch Changes

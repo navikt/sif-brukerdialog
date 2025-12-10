@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.3.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
 ## 0.3.3
 
 ### Patch Changes

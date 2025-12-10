@@ -1,5 +1,11 @@
 # @navikt/sif-validation
 
+## 1.0.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
 ## 1.0.17
 
 ### Patch Changes

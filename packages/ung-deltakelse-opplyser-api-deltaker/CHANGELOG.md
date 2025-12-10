@@ -1,5 +1,13 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.83
+
 ## 0.3.3
 
 ### Patch Changes
