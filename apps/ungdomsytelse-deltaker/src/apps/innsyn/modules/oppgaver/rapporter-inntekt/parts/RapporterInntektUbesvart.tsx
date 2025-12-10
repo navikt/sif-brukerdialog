@@ -16,6 +16,7 @@ interface Props extends RapporterInntektOppgaveProps {
 
 const RapporterInntektUbesvart = ({ oppgave, deltakerNavn, periode, måned, setKvitteringData }: Props) => {
     const navigate = useNavigate();
+
     return (
         <VStack gap="10">
             <GuidePanel>
@@ -23,6 +24,7 @@ const RapporterInntektUbesvart = ({ oppgave, deltakerNavn, periode, måned, setK
                     deltakerNavn={deltakerNavn}
                     periode={periode}
                     svarfrist={oppgave.sisteDatoEnKanSvare}
+                    gjelderDelerAvMåned={oppgave.oppgavetypeData.gjelderDelerAvMåned}
                 />
             </GuidePanel>
             <RapporterInntektForm

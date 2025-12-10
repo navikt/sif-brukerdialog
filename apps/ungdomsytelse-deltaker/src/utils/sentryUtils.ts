@@ -30,5 +30,6 @@ export const initSentry = () => {
         integrations: [Sentry.browserTracingIntegration()],
         environment,
         tracesSampleRate: 0, //  Skru av default tracing
+        allowUrls: [/\/ungdomsprogrammet\/ytelsen\//],
     });
 };

@@ -48,10 +48,12 @@ const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string
     const maybeXRequestId: string | undefined = headers ? headers['x-request-id'] : undefined;
     const errorMsg: string | undefined = error?.message;
 
-    if (['0', '401'].includes(`${error.response?.status || ''}`)) {
+    const status = error.response?.status;
+
+    // Axios gir ikke alltid status 0, men gir ERR_NETWORK
+    if (status === 401 || status === 0 || error.code === 'ERR_NETWORK') {
         return;
     }
-
     logToSentryOrConsole('Api call error', 'fatal', application, {
         XRequestId: maybeXRequestId || undefined,
         errorMsg: errorMsg,

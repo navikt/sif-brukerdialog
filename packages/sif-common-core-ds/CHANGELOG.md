@@ -1,5 +1,60 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.42
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+
+## 10.3.41
+
+### Patch Changes
+
+- bc42630: Rydder opp i feilhåndtering for vedleggsopplasting. Error ved opplastingen ble ikke fanget riktig, og ble til slutt sett på som unhandled.
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-api@0.4.81
+
+## 10.3.40
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-api@0.4.80
+    - @navikt/sif-common-utils@3.49.53
+
+## 10.3.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-common-api@0.4.79
+
+## 10.3.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.78
+    - @navikt/sif-common-utils@3.49.52
+
+## 10.3.37
+
+### Patch Changes
+
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+
+## 10.3.36
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+
 ## 10.3.35
 
 ### Patch Changes

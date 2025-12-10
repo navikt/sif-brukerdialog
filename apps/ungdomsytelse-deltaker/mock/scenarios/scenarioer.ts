@@ -36,6 +36,7 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver: [getMockOppgaver().søkYtelseOppgave],
+            erSlettet: false,
         },
     ],
 });
@@ -53,6 +54,7 @@ const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver,
+            erSlettet: false,
         },
     ],
 });
@@ -69,6 +71,7 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver,
+            erSlettet: false,
         },
     ],
 });
@@ -85,6 +88,7 @@ const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver,
+            erSlettet: false,
         },
     ],
 });
@@ -129,6 +133,14 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Oppgave for å melde fra om inntekt',
         data: createSøktDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().rapporterInntektOppgave]),
     },
+    [ScenarioType.rapporterInntektDelerAvMåned]: {
+        type: ScenarioType.rapporterInntektDelerAvMåned,
+        name: 'Oppgave for å melde fra om inntekt (deler av måned)',
+        data: createSøktDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().rapporterInntektDelerAvMånedOppgave,
+        ]),
+    },
     [ScenarioType.avvikInntekt]: {
         type: ScenarioType.avvikInntekt,
         name: 'Oppgave for å sjekke inntekt (avvik)',
@@ -136,6 +148,15 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
             getMockOppgaver().søkYtelseOppgaveLøst,
             getMockOppgaver().rapporterInntektOppgaveLøst,
             getMockOppgaver().bekreftAvvikOppgave,
+        ]),
+    },
+    [ScenarioType.avvikInntektDelerAvMåned]: {
+        type: ScenarioType.avvikInntektDelerAvMåned,
+        name: 'Oppgave for å sjekke inntekt (avvik - deler av måned)',
+        data: createSøktDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().rapporterInntektOppgaveLøst,
+            getMockOppgaver().bekreftAvvikOppgaveDelerAvMÅned,
         ]),
     },
     [ScenarioType.avsluttet]: {

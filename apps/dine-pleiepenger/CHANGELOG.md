@@ -1,5 +1,84 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies [81a4e75]
+    - @navikt/sif-common-sentry@0.28.57
+    - @navikt/sif-common-core-ds@10.3.42
+
+## 2.0.17
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-core-ds@10.3.41
+
+## 2.0.16
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-core-ds@10.3.40
+    - @navikt/k9-sak-innsyn-api@0.2.5
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-sentry@0.28.56
+    - @navikt/sif-common-utils@3.49.53
+
+## 2.0.15
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.5
+
+## 2.0.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-sentry@0.28.56
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/k9-sak-innsyn-api@0.2.4
+    - @navikt/sif-app-register@0.1.12
+
+## 2.0.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.38
+    - @navikt/k9-sak-innsyn-api@0.2.4
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.2
+    - @navikt/sif-common-sentry@0.28.55
+    - @navikt/sif-common-utils@3.49.52
+
+## 2.0.12
+
+### Patch Changes
+
+- Next 15.5.7
+
+## 2.0.11
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.37
+
+## 2.0.10
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.36
+
 ## 2.0.9
 
 ### Patch Changes

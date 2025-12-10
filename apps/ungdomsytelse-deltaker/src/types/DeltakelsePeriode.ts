@@ -20,6 +20,7 @@ export const deltakelsePeriodeSchema = zDeltakelseKomposittDto
             programPeriode,
             oppgaver: parseOppgaverElement(data.oppgaver as OppgaveDto[]), // Bruker as pga generert type ikke godtas
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
+            erSlettet: data.erSlettet,
         };
     });
 

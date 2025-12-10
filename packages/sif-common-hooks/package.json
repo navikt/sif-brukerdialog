@@ -1,11 +1,11 @@
 {
     "name": "@navikt/sif-common-hooks",
     "main": "src/index.ts",
-    "version": "0.3.7",
+    "version": "0.3.8",
     "private": true,
     "type": "module",
     "dependencies": {
-        "react": "19.2.0",
+        "react": "19.2.1",
         "typescript": "5.9.3"
     },
     "devDependencies": {

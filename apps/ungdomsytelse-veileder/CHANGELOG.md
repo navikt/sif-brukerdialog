@@ -1,10 +1,106 @@
 # @navikt/sif-demo-app
 
+## 0.9.39
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+- @navikt/sif-common-core-ds@10.3.42
+- @navikt/sif-common-ui@0.11.43
+- @navikt/ung-common@0.0.84
+
+## 0.9.38
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-core-ds@10.3.41
+    - @navikt/sif-common-api@0.4.81
+    - @navikt/sif-common-ui@0.11.42
+    - @navikt/ung-common@0.0.83
+
+## 0.9.37
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-formik-ds@2.5.35
+    - @navikt/sif-common-core-ds@10.3.40
+    - @navikt/sif-common-api@0.4.80
+    - @navikt/sif-common-ui@0.11.41
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-faro@0.2.9
+    - @navikt/sif-common-hooks@0.3.8
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-validation@1.0.17
+    - @navikt/ung-common@0.0.82
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.0
+
+## 0.9.36
+
+### Patch Changes
+
+- Oppdatere til gjelderDelerAvMåned flagg på oppgaver for inntekt og kontroll av inntekt
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.0
+    - @navikt/ung-common@0.0.81
+
+## 0.9.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.34
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-hooks@0.3.8
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-common-faro@0.2.9
+    - @navikt/sif-common-api@0.4.79
+    - @navikt/sif-common-ui@0.11.40
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-validation@1.0.17
+    - @navikt/ung-common@0.0.80
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.2.3
+
+## 0.9.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.33
+    - @navikt/sif-common-core-ds@10.3.38
+    - @navikt/sif-common-api@0.4.78
+    - @navikt/sif-common-ui@0.11.39
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-faro@0.2.8
+    - @navikt/sif-common-hooks@0.3.7
+    - @navikt/sif-common-utils@3.49.52
+    - @navikt/sif-validation@1.0.17
+    - @navikt/ung-common@0.0.79
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.2.3
+
+## 0.9.33
+
+### Patch Changes
+
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+    - @navikt/sif-common-core-ds@10.3.37
+    - @navikt/sif-common-ui@0.11.38
+    - @navikt/ung-common@0.0.78
+
 ## 0.9.32
 
 ### Patch Changes
 
-- Oppdatert hjelpeartikkel + litt justering av visning av en artikkel.
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+    - @navikt/sif-common-core-ds@10.3.36
+    - @navikt/sif-common-ui@0.11.37
+    - @navikt/ung-common@0.0.77
 
 ## 0.9.31
 

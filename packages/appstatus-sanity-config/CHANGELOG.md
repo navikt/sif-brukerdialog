@@ -1,5 +1,17 @@
 # appstatus-sanity-config
 
+## 1.2.52
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 1.2.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
 ## 1.2.50
 
 ### Patch Changes

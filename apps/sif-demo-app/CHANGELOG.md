@@ -1,5 +1,95 @@
 # @navikt/sif-demo-app
 
+## 0.4.96
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+- @navikt/sif-common-soknad-ds@26.1.26
+- @navikt/sif-common-core-ds@10.3.42
+- @navikt/sif-common-forms-ds@21.0.44
+- @navikt/sif-common-ui@0.11.43
+
+## 0.4.95
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-core-ds@10.3.41
+    - @navikt/sif-common-api@0.4.81
+    - @navikt/sif-common-forms-ds@21.0.43
+    - @navikt/sif-common-soknad-ds@26.1.25
+    - @navikt/sif-common-ui@0.11.42
+
+## 0.4.94
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-soknad-ds@26.1.24
+    - @navikt/sif-common-forms-ds@21.0.42
+    - @navikt/sif-common-core-ds@10.3.40
+    - @navikt/sif-common-api@0.4.80
+    - @navikt/sif-common-ui@0.11.41
+    - @navikt/sif-common-faro@0.2.9
+
+## 0.4.93
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-forms-ds@21.0.41
+    - @navikt/sif-common-soknad-ds@26.1.23
+
+## 0.4.92
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.22
+    - @navikt/sif-common-forms-ds@21.0.40
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-faro@0.2.9
+    - @navikt/sif-common-api@0.4.79
+    - @navikt/sif-common-ui@0.11.40
+
+## 0.4.91
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.21
+    - @navikt/sif-common-forms-ds@21.0.39
+    - @navikt/sif-common-core-ds@10.3.38
+    - @navikt/sif-common-api@0.4.78
+    - @navikt/sif-common-ui@0.11.39
+    - @navikt/sif-common-faro@0.2.8
+
+## 0.4.90
+
+### Patch Changes
+
+- Oppdatere i henhold til endret arbeidsgiverService i sif-common-api
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+    - @navikt/sif-common-core-ds@10.3.37
+    - @navikt/sif-common-forms-ds@21.0.38
+    - @navikt/sif-common-soknad-ds@26.1.20
+    - @navikt/sif-common-ui@0.11.38
+
+## 0.4.89
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+    - @navikt/sif-common-core-ds@10.3.36
+    - @navikt/sif-common-forms-ds@21.0.37
+    - @navikt/sif-common-soknad-ds@26.1.19
+    - @navikt/sif-common-ui@0.11.37
+
 ## 0.4.88
 
 ### Patch Changes

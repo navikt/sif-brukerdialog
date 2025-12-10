@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.2.5
+
+### Patch Changes
+
+- Oppdatere til gjelderDelerAvMåned flagg på oppgaver for inntekt og kontroll av inntekt
+
 ## 0.2.4
 
 ### Patch Changes

@@ -8,7 +8,7 @@
                 "fornavn": "KRIMINELL",
                 "aktørId": "2391969373424",
                 "etternavn": "MULDVARP",
-                "fødselsnummer": "17097721564"
+                "fødselsnummer": "20518601564"
             },
             "dokumentId": [
                 [
@@ -18,9 +18,9 @@
             ],
             "k9FormatInnsendelse": {
                 "språk": "nb",
-                "søker": { "norskIdentitetsnummer": "17097721564" },
+                "søker": { "norskIdentitetsnummer": "20518601564" },
                 "ytelse": {
-                    "barn": { "fødselsdato": "2009-07-31", "norskIdentitetsnummer": "31070968161" },
+                    "barn": { "fødselsdato": "2009-07-31", "norskIdentitetsnummer": "09472369544" },
                     "type": "PLEIEPENGER_SYKT_BARN",
                     "uttak": { "perioder": {} },
                     "omsorg": {},

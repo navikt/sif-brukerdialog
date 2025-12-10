@@ -20,9 +20,6 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
 
     const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);
     const rapporteringsmånedOgÅr = dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed);
-    const utbetalingsmåned = dateFormatter.month(
-        getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed),
-    );
 
     const {
         registerinntekt: { ytelseInntekter, arbeidOgFrilansInntekter },
@@ -63,16 +60,20 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                             total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
                         />
                     </Box>
-                    <BodyLong>
-                        {harKunYtelseInntekt ? (
-                            <AppText
-                                id="avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse"
-                                values={{ utbetalingsmåned }}
-                            />
-                        ) : (
-                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt" values={{ utbetalingsmåned }} />
-                        )}
-                    </BodyLong>
+                    {oppgave.oppgavetypeData.gjelderDelerAvMåned ? (
+                        // Når perioden oppgaven ikke gjelder alle virkedager i måneden
+                        <BodyLong>
+                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.delerAvMåned" />
+                        </BodyLong>
+                    ) : (
+                        <BodyLong>
+                            {harKunYtelseInntekt ? (
+                                <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse" />
+                            ) : (
+                                <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt" />
+                            )}
+                        </BodyLong>
+                    )}
                 </>
             ) : (
                 <>

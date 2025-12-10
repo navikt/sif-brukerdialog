@@ -20,7 +20,7 @@ export const arbeidsgiverFrilansoppdragSchema = z.object({
     type: z.string(),
     organisasjonsnummer: z.string().nullable(),
     offentligIdent: z.string().optional().nullable(),
-    navn: z.string(),
+    navn: z.string().optional().nullable(),
     ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
     ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
 });

@@ -25,13 +25,16 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'steg.omBarnet.relasjon.spm': 'Kva for ein relasjon har du til barnet?',
     'steg.omBarnet.relasjonAnnet.spm':
         'Skildr kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer for',
-    'steg.omBarnet.relasjonAnnet.info.tittel': 'Kva tyder dette?',
+    'steg.omBarnet.relasjonAnnet.spm.tekst':
+        'Du må ikkje skrive noko om andre enn deg sjølv og barnet, til dømes skal du ikkje skrive kvifor du hjelper foreldre med omsorga for barnet.',
+
+    'steg.omBarnet.relasjonAnnet.info.tittel': 'Kvifor treng me denne informasjonen?',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.1':
-        'I nokre tilfelle kan ikkje den eller dei som har den daglege omsorga for barnet ha tilsyn med barn som treng tilsyn og pleie heile tida. Då kan andre personar hjelpe til med dette. Andre personar kan til dømes vere ein besteforelder, venn, nabo, tante eller onkel.',
+        'I tilfelle der den eller dei som har den daglege omsorga for barnet ikkje kan ha tilsyn med eit barn som treng tilsyn og pleie heile tida, kan andre personar hjelpe til med dette. Det kan til dømes vere ein besteforelder, ven, nabo, tante eller onkel.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.2':
-        'Døme 1: Mor/far kan ikkje sjølv følgje barnet til sjukehuset for utgreiing eller behandling. Då kan andre personar følgje barnet til sjukehuset og ha tilsyn med barnet så lenge opphaldet på sjukehuset varer.',
+        'For å vurdere om du kan ha rett til pleiepengar, må me vite meir om kva tilsynsrolle du har overfor barnet i perioden du søkjer for. Me skal ikkje ha opplysningar om kva andre omsorgspersonar gjer, berre opplysningar om rolla di overfor barnet du søkjer for.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.3':
-        'Døme 2: Korkje mor eller far har moglegheit til å pleie barnet heime, då kan andre personar gjere dette og ha tilsyn med barnet i perioden det gjeld.',
+        'Døme: Foreldra kan ikkje vere til stades på sjukehuset heile tida, på grunn av omsorg for andre barn. Du skildrar då kva relasjon du har til barnet, og kor mykje du er saman med barnet på sjukehuset.',
 
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
     'infoForFarVedNyttBarn.info.1':

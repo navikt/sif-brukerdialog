@@ -14,7 +14,7 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylle ut, og korleis.',
     'page.velkommen.omSøknaden.fremoverITid':
-        'Viss du søkjer fram i tid, har vi forståing for at du kan bli usikker på kva du skal svare på nokre spørsmål som handlar om tida framover. Då svarar du så godt du kan ut frå situasjonen no, og så kan du melde frå om eventuelle endringar seinare.',
+        'Viss du søkjer fram i tid, har me forståing for at du kan bli usikker på kva du skal svare på nokre spørsmål som handlar om tida framover. Då svarar du så godt du kan ut frå situasjonen no, og så kan du melde frå om eventuelle endringar seinare.',
     'page.velkommen.omSøknaden.2':
         'Me tar vare på svara dine i 72 timar. Så, viss du innanfor den tida til dømes vil ta ein pause eller blir automatisk logga ut, held du fram der du var når du kjem tilbake.',
     'page.velkommen.omSøknaden.3':

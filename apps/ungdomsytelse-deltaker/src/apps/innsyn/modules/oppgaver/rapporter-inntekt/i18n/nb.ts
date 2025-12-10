@@ -2,7 +2,9 @@ export const rapporterInntektMessages_nb = {
     'rapporterInntektOppgavetekst.tittel': 'Hei {deltakerNavn}',
     'rapporterInntektOppgavetekst.intro.1': 'Gi oss beskjed hvis du hadde inntekt i {måned}.',
     'rapporterInntektOppgavetekst.intro.2':
-        'Inntekt er lønn, men det kan også være for eksempel etterbetaling, feriepenger, overtid og tillegg for ubekevem arbeidstidstid.',
+        'Inntekt er lønn, men det kan også være for eksempel etterbetaling, feriepenger, overtid og tillegg for ubekevem arbeidstid.',
+    'rapporterInntektOppgavetekst.intro.delerAvMåned':
+        'Du skal gi beskjed om hele inntekten du hadde i {måned}, selv om du ikke hadde ungdomsprogramytelsen hele måneden.',
     'rapporterInntektOppgave.readMore.tittel': 'Les mer om inntekt',
     'rapporterInntektOppgave.readMore.tekst.1':
         'Inntekt er som regel lønnen du får fra en arbeidsgiver, men det kan være mange andre ting også. De vanligste formene for inntekt utenom lønn, er',

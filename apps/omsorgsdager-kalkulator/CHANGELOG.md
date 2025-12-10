@@ -1,5 +1,29 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.13.17
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 3.13.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 3.13.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.14
+
+### Patch Changes
+
+- Next 15.5.7
+
 ## 3.13.13
 
 ### Patch Changes

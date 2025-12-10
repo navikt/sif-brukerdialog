@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.62
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.5
+
+## 0.1.61
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.3
+    - @navikt/k9-sak-innsyn-api@0.2.4
+
 ## 0.1.60
 
 ### Patch Changes

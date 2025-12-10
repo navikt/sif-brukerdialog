@@ -117,6 +117,7 @@ const rapporterInntektOppgave: RapporterInntektOppgave = {
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-31').toDate(),
+        gjelderDelerAvMåned: false,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs('2025-06-01').toDate(),

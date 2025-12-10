@@ -1,5 +1,59 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.3
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-api@0.4.81
+
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-api@0.4.80
+
+## 0.3.0
+
+### Minor Changes
+
+- Oppdatere til gjelderDelerAvMåned flagg på oppgaver for inntekt og kontroll av inntekt
+
+## 0.2.8
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.79
+
+## 0.2.7
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.78
+
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+
 ## 0.2.4
 
 ### Patch Changes
