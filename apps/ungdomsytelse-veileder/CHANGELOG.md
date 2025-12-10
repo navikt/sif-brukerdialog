@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.40
+
+### Patch Changes
+
+- Oppdatere hjelpetekster
+
 ## 0.9.39
 
 ### Patch Changes
@@ -106,6 +112,7 @@
 
 ### Patch Changes
 
+- Oppdatert hjelpeartikkel + litt justering av visning av en artikkel.
 - d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
     - Justere workflows for deploy
     - Skru av prometheus metrics - var ikke brukt
