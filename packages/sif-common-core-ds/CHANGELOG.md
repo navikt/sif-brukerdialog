@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- bc42630: Rydder opp i feilhåndtering for vedleggsopplasting. Error ved opplastingen ble ikke fanget riktig, og ble til slitt sett på som unhandled.
+- bc42630: Rydder opp i feilhåndtering for vedleggsopplasting. Error ved opplastingen ble ikke fanget riktig, og ble til slutt sett på som unhandled.
 - Updated dependencies [bc42630]
     - @navikt/sif-common-api@0.4.81
 
