@@ -9,15 +9,15 @@ Likevel vil de alltid til sammen få mer penger når de både har en inntekt og 
 
 ## Eksempel: Hvordan regner vi ut hvor mye deltakerne skal ha i ytelsen når de har en inntekt i tillegg?
 
-> Siri er 23 år og deltar i ungdomsprogrammet, og da har hun rett på 665,82 kroner per dag i ungdomsprogramytelsen. I januar 2026 er det 22 dager utenom lørdager og søndager, så da vil hun ha rett på
+> Siri er 23 år og deltar i ungdomsprogrammet, og da har hun rett på 681 kroner per dag i ungdomsprogramytelsen. I januar 2026 er det 22 dager utenom lørdager og søndager, så da vil hun ha rett på
 >
-> 665,82 kroner X 22 dager = 14648 kroner
+> 681 kroner X 22 dager = 14&nbsp;982 kroner
 >
-> I januar har Siri en arbeidsinntekt på 3780 kroner (før skatt). 66 prosent av 3780 kroner er 2495 kroner, som da blir trukket fra ytelsen hennes:
+> I januar har Siri en arbeidsinntekt på 3&nbsp;780 kroner (før skatt). 66 prosent av 3&nbsp;780 kroner er 2&nbsp;495 kroner, som da blir trukket fra ytelsen hennes:
 >
-> 14648 kroner – 2495 kroner = 12153 kroner (før skatt)
+> 14&nbsp;982 kroner – 2&nbsp;495 kroner = 12&nbsp;487 kroner (før skatt)
 >
-> For januar vil Siri altså få 12153 kroner i ungdomsprogramytelsen. Med en inntekt på 3780 kroner i tillegg, vil Siri ha til sammen 15933 kroner (før skatt).
+> For januar vil Siri altså få 12&nbsp;487 kroner i ungdomsprogramytelsen. Med en inntekt på 3&nbsp;780 kroner i tillegg, vil Siri ha til sammen 16&nbsp;267 kroner (før skatt).
 
 ## Deltakerne rapporterer inntekt hver måned, utenom startmåneden
 
@@ -27,7 +27,7 @@ Fristen for å svare er den 7. hver måned.
 
 Husk! Når deltakerne faktisk jobbet, har ikke noe å si. Det er i hvilken måned deltakerne får inntekten som betyr noe, og det er dette de skal melde fra om.
 
-Deltakerne skal ikke elde fra om arbeidsinntekt for den måneden de starter i ungdomsprogrammet.
+Deltakerne skal ikke melde fra om arbeidsinntekt for den måneden de starter i ungdomsprogrammet.
 
 _Se eksempel nederst i artikkelen._
 
@@ -95,9 +95,9 @@ Det blir heller ikke fattet vedtak og sendt vedtaksbrev når deltakeren svarer �
 
 ## Eksempel: Hva skjer når deltakerne melder inn inntekt?
 
-> Siri startet i ungdomsprogrammet i oktober. Hun begynte å jobbe litt, og i januar hadde hun en inntekt på 3780 kroner før skatt.
+> Siri startet i ungdomsprogrammet i oktober. Hun begynte å jobbe litt, og i januar hadde hun en inntekt på 3&nbsp;780 kroner før skatt.
 >
-> Når Siri faktisk jobbet, har ikke noe å si. Det er i hvilken måned hun får inntekten som betyr noe, og i januar var altså inntekten hennes på 3780 kroner før skatt.
+> Når Siri faktisk jobbet, har ikke noe å si. Det er i hvilken måned hun får inntekten som betyr noe, og i januar var altså inntekten hennes på 3&nbsp;780 kroner før skatt.
 >
 > 1.  februar får Siri en melding fra Nav om å rapportere inn inntekten sin for januar. Da logger hun inn på Min side og oppgir inntekten hun hadde i januar. Dette må hun gjøre senest 7. februar.
 > 2.  februar sjekker Nav at denne inntekten stemmer med den som arbeidsgiveren til Siri har meldt inn til A-ordningen. A-ordningen er et system der arbeidsgivere registrerer inntekt, og som blant annet Nav og Skatteetaten har tilgang til.
