@@ -5,7 +5,7 @@ import { k9BrukerdialogApiClient } from '../apiClient';
 import { arbeidsgivereResponseSchema } from '../schemas/arbeidsgivereSchema';
 import { Arbeidsgivere } from '../types';
 
-interface FetchArbeidsgivereParams {
+export interface FetchArbeidsgivereParams {
     periode: DateRange;
     frilansoppdrag?: boolean;
 }

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
@@ -9,11 +8,9 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/types';
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/types';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { appArbeidsgivereService } from '../../../api/appArbeidsgiverService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -38,6 +35,7 @@ import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsg
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
 import { ArbeidssituasjonUtland } from './form-parts/ArbeidssituasjonUtland';
+import { useArbeidsgivereISøknadsperiode } from '../../../hooks/useArbeidsgivereISøknadsperiode';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -69,40 +67,39 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
     ValidationError
 >();
 
-interface LoadState {
-    isLoading: boolean;
-    isLoaded: boolean;
-}
-
 const ArbeidssituasjonStep = () => {
     const { text, intl } = useAppIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
-    const [arbeidsgivereIPerioden, setArbeidsgivereIPerioden] = useState<Arbeidsgiver[]>([]);
-    const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
+    // const [arbeidsgivereIPerioden, setArbeidsgivereIPerioden] = useState<Arbeidsgiver[]>([]);
+    // const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
 
-    const { isLoading, isLoaded } = loadState;
+    // const { isLoading, isLoaded } = loadState;
 
     const søknadsperiode = søknadsdata.kurs?.søknadsperiode;
+    const {
+        loadState: { isLoaded, isLoading, error },
+        arbeidsgivereIPerioden,
+    } = useArbeidsgivereISøknadsperiode({ periode: søknadsperiode });
 
-    useEffectOnce(() => {
-        const fetchData = async () => {
-            if (søknadsperiode) {
-                try {
-                    const arbeidsgivere = await appArbeidsgivereService.fetch(søknadsperiode);
-                    setArbeidsgivereIPerioden(arbeidsgivere);
-                    setLoadState({ isLoading: false, isLoaded: true });
-                } catch {
-                    setLoadState({ isLoading: false, isLoaded: true });
-                }
-            }
-        };
-        if (søknadsperiode && !isLoaded && !isLoading) {
-            setLoadState({ isLoading: true, isLoaded: false });
-            fetchData();
-        }
-    });
+    // useEffectOnce(() => {
+    //     const fetchData = async () => {
+    //         if (søknadsperiode) {
+    //             try {
+    //                 const arbeidsgivere = await appArbeidsgivereService.fetch(søknadsperiode);
+    //                 setArbeidsgivereIPerioden(arbeidsgivere);
+    //                 setLoadState({ isLoading: false, isLoaded: true });
+    //             } catch {
+    //                 setLoadState({ isLoading: false, isLoaded: true });
+    //             }
+    //         }
+    //     };
+    //     if (søknadsperiode && !isLoaded && !isLoading) {
+    //         setLoadState({ isLoading: true, isLoaded: false });
+    //         fetchData();
+    //     }
+    // });
 
     const stepId = StepId.ARBEIDSSITUASJON;
     const step = getSøknadStepConfigForStep(stepId, søknadsdata);
@@ -131,7 +128,7 @@ const ArbeidssituasjonStep = () => {
         },
     );
 
-    if (isLoading || !isLoaded) {
+    if (isLoading || (!isLoaded && !error)) {
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
 
@@ -180,6 +177,7 @@ const ArbeidssituasjonStep = () => {
                                             parentFieldName={ArbeidssituasjonFormFields.ansatt_arbeidsforhold}
                                             ansatt_arbeidsforhold={ansatt_arbeidsforhold}
                                             søknadsperiode={søknadsperiode}
+                                            error={error !== undefined}
                                         />
                                     </FormLayout.Section>
 
