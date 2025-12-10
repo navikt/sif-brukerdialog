@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.41
+
+### Patch Changes
+
+- bc42630: Rydder opp i feilhåndtering for vedleggsopplasting. Error ved opplastingen ble ikke fanget riktig, og ble til slutt sett på som unhandled.
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-api@0.4.81
+
 ## 10.3.40
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.4.81
+
+### Patch Changes
+
+- bc42630: Rydder opp i feilhåndtering for vedleggsopplasting. Error ved opplastingen ble ikke fanget riktig, og ble til slutt sett på som unhandled.
+
 ## 0.4.80
 
 ### Patch Changes
