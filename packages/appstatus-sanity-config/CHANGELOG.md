@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
 ## 1.2.52
 
 ### Patch Changes

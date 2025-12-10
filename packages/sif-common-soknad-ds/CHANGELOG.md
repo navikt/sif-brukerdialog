@@ -1,5 +1,22 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.1.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.36
+    - @navikt/sif-common-forms-ds@21.0.45
+    - @navikt/sif-common-core-ds@10.3.43
+    - @navikt/sif-common-sentry@0.28.58
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-common-faro@0.2.10
+    - @navikt/sif-validation@1.0.18
+    - @navikt/sif-common-ui@0.11.44
+    - @navikt/appstatus-react-ds@2.20.65
+    - @navikt/sif-common-hooks@0.3.8
+
 ## 26.1.26
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
 ## 3.49.53
 
 ### Patch Changes

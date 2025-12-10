@@ -1,5 +1,14 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-common-api@0.4.83
+
 ## 10.3.42
 
 ### Patch Changes

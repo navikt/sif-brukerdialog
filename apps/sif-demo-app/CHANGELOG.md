@@ -1,5 +1,18 @@
 # @navikt/sif-demo-app
 
+## 0.4.97
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.27
+    - @navikt/sif-common-forms-ds@21.0.45
+    - @navikt/sif-common-core-ds@10.3.43
+    - @navikt/sif-common-faro@0.2.10
+    - @navikt/sif-common-api@0.4.83
+    - @navikt/sif-common-ui@0.11.44
+
 ## 0.4.96
 
 ### Patch Changes
