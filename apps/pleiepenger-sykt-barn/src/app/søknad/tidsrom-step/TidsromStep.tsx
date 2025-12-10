@@ -59,10 +59,13 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
         return validateTildato(date, values.periodeFra);
     };
 
-    const visInfoOmUtenlandsopphold =
-        values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES &&
-        values.utenlandsoppholdIPerioden &&
-        harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning(values.utenlandsoppholdIPerioden);
+    const visInfoOmUtenlandsopphold = useMemo(() => {
+        return (
+            values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES &&
+            values.utenlandsoppholdIPerioden &&
+            harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning(values.utenlandsoppholdIPerioden)
+        );
+    }, [values.skalOppholdeSegIUtlandetIPerioden, values.utenlandsoppholdIPerioden]);
 
     return (
         <SøknadFormStep
