@@ -19,6 +19,6 @@ Grunnen til at pengene utbetales på etterskudd, er at beløpet skal reduseres d
 
 ## Eksempel
 
-> Veilederen registrerer deltakeren inn i ungdomsprogrammet mandag 15. september 2025, og deltakeren søker om ungdomsprogramytelsen. Da får >deltaker penger fra og med 15. september og til og med 30. september utbetalt før 12. oktober.
+> Veilederen registrerer deltakeren inn i ungdomsprogrammet mandag 15. september 2025, og deltakeren søker om ungdomsprogramytelsen. Da får deltaker penger fra og med 15. september og til og med 30. september utbetalt før 12. oktober.
 >
 > Utbetalingen for oktober mottas 12. november og så videre.
