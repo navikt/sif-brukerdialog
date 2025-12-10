@@ -12,7 +12,7 @@ import { getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { useFormikContext } from 'formik';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { AppText } from '../../i18n';
