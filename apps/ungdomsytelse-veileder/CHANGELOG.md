@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.40
+
+### Patch Changes
+
+- Oppdatere hjelpetekster
+
 ## 0.9.39
 
 ### Patch Changes
