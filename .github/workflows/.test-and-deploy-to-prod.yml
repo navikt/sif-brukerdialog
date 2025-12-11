@@ -83,6 +83,8 @@ jobs:
         if: success()
         needs: [deploy-to-prod]
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
         steps:
             - name: Checkout
               uses: actions/checkout@v6
