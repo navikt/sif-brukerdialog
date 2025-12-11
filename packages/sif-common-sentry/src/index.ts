@@ -55,7 +55,7 @@ const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string
     if (status === 401 || status === 0 || error.code === 'ERR_NETWORK') {
         return;
     }
-    logToSentryOrConsole('Api call error', 'fatal', application, {
+    logToSentryOrConsole('Api call error', 'error', application, {
         XRequestId: maybeXRequestId || undefined,
         errorMsg: errorMsg,
         context,
