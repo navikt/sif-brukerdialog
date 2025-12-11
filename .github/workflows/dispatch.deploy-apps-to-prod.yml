@@ -40,58 +40,43 @@ jobs:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
         outputs:
-            apps: ${{ steps.filter.outputs.changes }}
+            affected-apps: ${{ steps.turbo-filter.outputs.affected-apps }}
         steps:
-            - uses: actions/checkout@v6
-            - uses: dorny/paths-filter@v3
-              id: filter
+            - name: Checkout
+              uses: actions/checkout@v6
               with:
-                  filters: |
-                      dine-pleiepenger:
-                        - 'apps/dine-pleiepenger/**'
-                        - 'server/**'
-                      ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
-                        - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
-                        - 'server/**'
-                      endringsmelding-pleiepenger:
-                        - 'apps/endringsmelding-pleiepenger/**'
-                        - 'server/**'
-                      omsorgsdager-aleneomsorg-dialog:
-                        - 'apps/omsorgsdager-aleneomsorg-dialog/**'
-                        - 'server/**'
-                      omsorgsdager-kalkulator:
-                        - 'apps/omsorgsdager-kalkulator/**'
-                        - 'server/**'
-                      omsorgspengerutbetaling-arbeidstaker-soknad:
-                        - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
-                        - 'server/**'
-                      omsorgspengerutbetaling-soknad:
-                        - 'apps/omsorgspengerutbetaling-soknad/**'
-                        - 'server/**'
-                      omsorgspengesoknad:
-                        - 'apps/omsorgspengesoknad/**'
-                        - 'server/**'
-                      opplaringspenger-soknad:
-                        - 'apps/opplaringspenger-soknad/**'
-                        - 'server/**'
-                      pleiepenger-i-livets-sluttfase-soknad:
-                        - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
-                        - 'server/**'
-                      pleiepenger-sykt-barn:
-                        - 'apps/pleiepenger-sykt-barn/**'
-                        - 'server/**'
-                      sif-ettersending:
-                        - 'apps/sif-ettersending/**'
-                        - 'server/**'
-                      ungdomsytelse-deltaker:
-                        - 'apps/ungdomsytelse-deltaker/**'
-                        - 'server/**'
+                  fetch-depth: 0  # Need full history for turbo filtering
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '18'
+                  cache: 'yarn'
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Get affected apps with Turbo
+              id: turbo-filter
+              run: |
+                  # Get affected packages/apps since last commit
+                  AFFECTED_JSON=$(npx turbo run build --filter="...[HEAD^]" --dry=json || echo '{"packages":[]}')
+                  AFFECTED_PACKAGES=$(echo "$AFFECTED_JSON" | jq -r '.packages // []')
+                  
+                  # Filter to only include actual apps (not packages)
+                  AFFECTED_APPS=$(echo "$AFFECTED_PACKAGES" | jq -r 'map(select(startswith("@navikt/") and (contains("pleiepenger") or contains("omsorg") or contains("ungdom") or contains("ettersending") or contains("dine-") or contains("opplaringspenger") or contains("ekstra-"))))' || echo '[]')
+                  
+                  # Convert to simple names for workflow conditions
+                  APP_NAMES=$(echo "$AFFECTED_APPS" | jq -r 'map(gsub("@navikt/"; "")) | join(",")')
+                  
+                  echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
+                  echo "Affected apps: $APP_NAMES"
 
     deploy-dine-pleiepenger:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'dine-pleiepenger' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'dine-pleiepenger'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'dine-pleiepenger'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -106,7 +91,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -119,7 +104,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'endringsmelding-pleiepenger' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'endringsmelding-pleiepenger'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'endringsmelding-pleiepenger'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -133,7 +118,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-aleneomsorg-dialog' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-aleneomsorg-dialog'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-aleneomsorg-dialog'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -146,7 +131,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-kalkulator' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-kalkulator'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -160,7 +145,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-arbeidstaker-soknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-arbeidstaker-soknad'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-arbeidstaker-soknad'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -173,7 +158,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-soknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-soknad'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-soknad'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -186,7 +171,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengesoknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengesoknad'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengesoknad'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -199,7 +184,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'opplaringspenger-soknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'opplaringspenger-soknad'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -212,7 +197,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-i-livets-sluttfase-soknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-i-livets-sluttfase-soknad'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-i-livets-sluttfase-soknad'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -225,7 +210,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-sykt-barn' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-sykt-barn'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-sykt-barn'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -239,7 +224,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'sif-ettersending' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'sif-ettersending'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'sif-ettersending'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
@@ -252,7 +237,7 @@ jobs:
         if: |
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'ungdomsytelse-deltaker' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-deltaker'))
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.affected-apps, 'ungdomsytelse-deltaker'))
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
