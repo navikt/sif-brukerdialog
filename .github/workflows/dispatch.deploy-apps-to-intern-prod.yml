@@ -42,8 +42,13 @@ jobs:
                       echo "should-deploy=true" >> $GITHUB_OUTPUT
                   else
                       # Use Turborepo to check if ungdomsytelse-veileder is affected
-                      AFFECTED_JSON=$(npx turbo run build --filter="[origin/main...HEAD]" --dry=json || echo '{"packages":[]}')
-                      
+                      set -o pipefail
+                      AFFECTED_JSON=$(npx turbo run build --filter="[origin/main...HEAD]" --dry=json)
+                      TURBO_EXIT_CODE=$?
+                      if [ $TURBO_EXIT_CODE -ne 0 ]; then
+                          echo "ERROR: turbo command failed with exit code $TURBO_EXIT_CODE"
+                          exit 1
+                      fi
                       if echo "$AFFECTED_JSON" | jq -r '(.packages // []) | .[]' | grep -q "@navikt/ungdomsytelse-veileder"; then
                           echo "ungdomsytelse-veileder affected by changes"
                           echo "should-deploy=true" >> $GITHUB_OUTPUT
