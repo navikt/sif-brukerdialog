@@ -1,5 +1,12 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.20
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.44
+
 ## 2.0.19
 
 ### Patch Changes
