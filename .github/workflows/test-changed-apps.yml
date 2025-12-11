@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "apps/**/*"
+      - "apps-intern/**/*"
       - "packages/**/*"
       - "nais-config/**/*"
       - "server/**/*"
