@@ -60,8 +60,10 @@ jobs:
 
     deploy-ungdomsytelse-veileder:
         if: |
-            (github.event_name == 'workflow_dispatch') ||
-            (github.event_name == 'push' && needs.detect-changes.result == 'success' && needs.detect-changes.outputs.should-deploy == 'true')
+            always() && (
+                (github.event_name == 'workflow_dispatch') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && needs.detect-changes.outputs.should-deploy == 'true')
+            )
         needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-intern-prod.yml
         secrets: inherit
