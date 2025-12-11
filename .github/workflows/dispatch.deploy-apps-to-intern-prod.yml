@@ -37,13 +37,13 @@ jobs:
               id: check-deploy
               run: |
                   # Check if server-ungdomsytelse-veileder changed
-                  if git diff --name-only origin/main HEAD | grep -q "^server-ungdomsytelse-veileder/"; then
+                  if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q "^server-ungdomsytelse-veileder/"; then
                       echo "Server changed - deploying ungdomsytelse-veileder"
                       echo "should-deploy=true" >> $GITHUB_OUTPUT
                   else
                       # Use Turborepo to check if ungdomsytelse-veileder is affected
                       set -o pipefail
-                      AFFECTED_JSON=$(npx turbo run build --filter="[origin/main...HEAD]" --dry=json)
+                      AFFECTED_JSON=$(npx turbo run build --filter="[${{ github.event.before }}...${{ github.sha }}]" --dry=json)
                       TURBO_EXIT_CODE=$?
                       if [ $TURBO_EXIT_CODE -ne 0 ]; then
                           echo "ERROR: turbo command failed with exit code $TURBO_EXIT_CODE"
