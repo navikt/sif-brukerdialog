@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.59
+
+### Patch Changes
+
+- Justere logApiError til sentry
+
 ## 0.28.58
 
 ### Patch Changes
