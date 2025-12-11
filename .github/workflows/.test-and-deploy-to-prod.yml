@@ -46,6 +46,12 @@ on:
                 default: false
                 description: "Run SonarCloud scan after tests"
 
+permissions:
+    contents: write
+    security-events: write
+    id-token: write
+    actions: read
+
 jobs:
     run-tests:
         uses: ./.github/workflows/.test-app.yml
@@ -88,12 +94,14 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v6
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Create deployment tag
               run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
                   TAG_NAME="${{ inputs.app-name }}-$(date +%Y%m%d-%H%M%S)"
                   git tag "$TAG_NAME"
                   git push origin "$TAG_NAME"
                   echo "Created tag: $TAG_NAME"
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
