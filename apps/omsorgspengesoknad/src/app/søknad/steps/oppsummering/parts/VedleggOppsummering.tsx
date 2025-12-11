@@ -4,14 +4,16 @@ import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     apiData: SøknadApiData;
     legeerklæringSøknadsdata?: LegeerklæringSøknadsdata;
     samværsavtaleSøknadsdata?: DeltBostedSøknadsdata;
+    onEdit?: () => void;
 }
 
-const VedleggOppsummering = ({ apiData, legeerklæringSøknadsdata, samværsavtaleSøknadsdata }: Props) => {
+const VedleggOppsummering = ({ apiData, legeerklæringSøknadsdata, samværsavtaleSøknadsdata, onEdit }: Props) => {
     const legeerklæringer = getVedleggInLocationArray({
         locations: apiData.legeerklæring,
         vedlegg: legeerklæringSøknadsdata?.vedlegg,
@@ -28,6 +30,7 @@ const VedleggOppsummering = ({ apiData, legeerklæringSøknadsdata, samværsavta
                 <FormSummary.Heading level="2">
                     <AppText id="steg.oppsummering.vedlegg.header" />
                 </FormSummary.Heading>
+                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>

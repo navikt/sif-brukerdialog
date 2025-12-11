@@ -1,3 +1,5 @@
+import { initApiClient, InitApiClientOptions } from '@navikt/sif-common-api';
+
 import {
     ettersendelse,
     omsorgspenger,
@@ -10,20 +12,18 @@ import {
     pleiepengerSyktBarnEndringsmelding,
     pleiepengerSyktBarnSoknad,
     ungdomsytelse,
-} from './';
-import { initApiClient } from './utils/initApiClient';
+} from '.';
 
-export const initK9BrukerdialogProsesseringApiClients = (config: { frontendPath: string; loginURL: string }) => {
-    const { frontendPath, loginURL } = config;
-    initApiClient(omsorgspenger.client, frontendPath, loginURL);
-    initApiClient(ungdomsytelse.client, frontendPath, loginURL);
-    initApiClient(ettersendelse.client, frontendPath, loginURL);
-    initApiClient(omsorgspengerAleneomsorg.client, frontendPath, loginURL);
-    initApiClient(omsorgspengerMidlertidigAlene.client, frontendPath, loginURL);
-    initApiClient(omsorgspengerutbetalingArbeidstaker.client, frontendPath, loginURL);
-    initApiClient(omsorgspengerutbetalingSnf.client, frontendPath, loginURL);
-    initApiClient(opplaeringspenger.client, frontendPath, loginURL);
-    initApiClient(pleiepengerLivetsSluttfase.client, frontendPath, loginURL);
-    initApiClient(pleiepengerSyktBarnEndringsmelding.client, frontendPath, loginURL);
-    initApiClient(pleiepengerSyktBarnSoknad.client, frontendPath, loginURL);
+export const initK9BrukerdialogProsesseringApiClients = (frontendPath: string, options: InitApiClientOptions) => {
+    initApiClient(omsorgspenger.client, frontendPath, options);
+    initApiClient(ungdomsytelse.client, frontendPath, options);
+    initApiClient(ettersendelse.client, frontendPath, options);
+    initApiClient(omsorgspengerAleneomsorg.client, frontendPath, options);
+    initApiClient(omsorgspengerMidlertidigAlene.client, frontendPath, options);
+    initApiClient(omsorgspengerutbetalingArbeidstaker.client, frontendPath, options);
+    initApiClient(omsorgspengerutbetalingSnf.client, frontendPath, options);
+    initApiClient(opplaeringspenger.client, frontendPath, options);
+    initApiClient(pleiepengerLivetsSluttfase.client, frontendPath, options);
+    initApiClient(pleiepengerSyktBarnEndringsmelding.client, frontendPath, options);
+    initApiClient(pleiepengerSyktBarnSoknad.client, frontendPath, options);
 };

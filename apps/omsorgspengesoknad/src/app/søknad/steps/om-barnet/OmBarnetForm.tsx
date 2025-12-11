@@ -1,11 +1,11 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
+import { GyldigeVedtak } from '../../../types/GyldigeVedtak';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import IkkeHøyereRisikoForFraværAlert from './alert/IkkeHøyereRisikoForFraværAlert';
 import IkkeKroniskEllerFunksjonshemningAlert from './alert/IkkeKroniskEllerFuksjonshemningAlert';
@@ -27,7 +27,7 @@ interface Props {
     values: Partial<OmBarnetFormValues>;
     registrerteBarn: RegistrertBarn[];
     isSubmitting: boolean;
-    innvilgedeVedtak: InnvilgedeVedtak;
+    gyldigeVedtak: GyldigeVedtak;
     søker: Søker;
     onVelgAnnetBarn: () => void;
     onBack?: () => void;
@@ -35,8 +35,8 @@ interface Props {
 
 const { Form } = omBarnetFormComponents;
 
-const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak, søker, onBack }: Props) => {
-    const { intl, text } = useAppIntl();
+const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, gyldigeVedtak, søker, onBack }: Props) => {
+    const { text, intl } = useAppIntl();
     const {
         barnetSøknadenGjelder,
         kroniskEllerFunksjonshemming,
@@ -46,7 +46,7 @@ const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak,
     } = values;
 
     const valgtBarn = registrerteBarn.find((barn) => barn.aktørId === barnetSøknadenGjelder);
-    const vedtakForValgtBarn = innvilgedeVedtak[barnetSøknadenGjelder || ''];
+    const vedtakForValgtBarn = gyldigeVedtak[barnetSøknadenGjelder || ''];
     const harInnvilgetVedtakForValgtBarn = valgtBarn && vedtakForValgtBarn?.harInnvilgedeBehandlinger;
 
     const visIkkeSammeAdresseAlert =

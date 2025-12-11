@@ -24,6 +24,7 @@
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-forms-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
+        "@navikt/sif-common-query": "workspace:*",
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",

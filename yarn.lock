@@ -4696,6 +4696,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/fnrvalidator@npm:2.1.5":
+  version: 2.1.5
+  resolution: "@navikt/fnrvalidator@npm:2.1.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Ffnrvalidator%2F2.1.5%2Fe33cbc5693b14419bbcf4d5daee2ac9eeec532e5"
+  checksum: 10/6004890b3046d957f117b8566d6b12bc254cb5417a6fa9dd800a807bbb78d6775165d8c2aba5f1c1561b499341d4e97d662589a9d708651ae59aee06411ce66d
+  languageName: node
+  linkType: hard
+
 "@navikt/fnrvalidator@npm:2.2.1":
   version: 2.2.1
   resolution: "@navikt/fnrvalidator@npm:2.2.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Ffnrvalidator%2F2.2.1%2F37ed0feb23a7525139ad5512684ff6b0977112c6"
@@ -4710,11 +4717,14 @@ __metadata:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
     "@hey-api/openapi-ts": "npm:0.88.0"
+    "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.2"
     config: "workspace:*"
+    dayjs: "npm:1.11.19"
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
+    uuid: "npm:13.0.0"
     vitest: "npm:4.0.15"
     zod: "npm:4.1.13"
   peerDependencies:
@@ -4730,11 +4740,14 @@ __metadata:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
     "@hey-api/openapi-ts": "npm:0.88.0"
+    "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.2"
     config: "workspace:*"
+    dayjs: "npm:1.11.19"
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
+    uuid: "npm:13.0.0"
     vitest: "npm:4.0.15"
     zod: "npm:4.1.13"
   peerDependencies:
@@ -4750,11 +4763,14 @@ __metadata:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
     "@hey-api/openapi-ts": "npm:0.88.0"
+    "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.2"
     config: "workspace:*"
+    dayjs: "npm:1.11.19"
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
+    uuid: "npm:13.0.0"
     vitest: "npm:4.0.15"
     zod: "npm:4.1.13"
   peerDependencies:
@@ -5079,6 +5095,7 @@ __metadata:
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-forms-ds": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
+    "@navikt/sif-common-query": "workspace:*"
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
@@ -5624,7 +5641,9 @@ __metadata:
     "@navikt/ds-react": "npm:7.35.1"
     "@navikt/fnrvalidator": "npm:2.2.1"
     "@navikt/sif-common-core-ds": "workspace:*"
+    "@navikt/sif-common-env": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
+    "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@sif/eslint-config": "workspace:*"
@@ -5684,12 +5703,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-query@workspace:packages/sif-common-query":
+"@navikt/sif-common-query@workspace:*, @navikt/sif-common-query@workspace:packages/sif-common-query":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-query@workspace:packages/sif-common-query"
   dependencies:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
     "@navikt/k9-sak-innsyn-api": "workspace:*"
+    "@navikt/sif-common-api": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@tanstack/react-query": "npm:5.90.11"
@@ -5974,8 +5994,6 @@ __metadata:
     vite: "npm:7.2.6"
     vite-plugin-checker: "npm:0.11.0"
     vitest: "npm:4.0.15"
-  peerDependencies:
-    react: 18.2.0
   languageName: unknown
   linkType: soft
 
@@ -6010,8 +6028,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-validation@workspace:packages/sif-validation"
   dependencies:
+    "@navikt/fnrvalidator": "npm:2.1.5"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
+    dayjs: "npm:1.11.19"
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
     vitest: "npm:4.0.15"
@@ -6033,6 +6053,7 @@ __metadata:
   resolution: "@navikt/ung-common@workspace:packages/ung-common"
   dependencies:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
+    "@navikt/sif-common-api": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*"
@@ -6063,8 +6084,10 @@ __metadata:
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.2"
     config: "workspace:*"
+    dayjs: "npm:1.11.19"
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
+    uuid: "npm:13.0.0"
     vitest: "npm:4.0.15"
     zod: "npm:4.1.13"
   peerDependencies:
@@ -6080,11 +6103,14 @@ __metadata:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
     "@hey-api/openapi-ts": "npm:0.88.0"
+    "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.2"
     config: "workspace:*"
+    dayjs: "npm:1.11.19"
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
+    uuid: "npm:13.0.0"
     vitest: "npm:4.0.15"
     zod: "npm:4.1.13"
   peerDependencies:
@@ -7780,11 +7806,11 @@ __metadata:
   linkType: hard
 
 "@sanity/message-protocol@npm:^0.17.6":
-  version: 0.17.7
-  resolution: "@sanity/message-protocol@npm:0.17.7"
+  version: 0.17.8
+  resolution: "@sanity/message-protocol@npm:0.17.8"
   dependencies:
     "@sanity/comlink": "npm:^4.0.1"
-  checksum: 10/7c478b65cb7d1d11088a5afa077a9d22f72f58a64776d123523e0f726623f65a5920207f4add044f23a5294d96c55e1cc98c0af2f3a22d0ccc21124c4af662ff
+  checksum: 10/f7762aada35936ade14ab397691af707ba5600c3542e93b1d24a2960f6b0bf4538ac21008da425248e6e7153144b190c0f19c3eba0f6bb668a06cf2fdb863cb8
   languageName: node
   linkType: hard
 

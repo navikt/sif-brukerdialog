@@ -1,12 +1,12 @@
-import { k9BrukerdialogApiClient } from '../apiClient';
-import { InvalidParameterErrorResponse, invalidParameterErrorResponse } from '../types/invalidParameter';
+import { getK9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
+import { InvalidParameterErrorResponse, invalidParameterErrorResponseSchema } from '../types/invalidParameter';
 
 export const validerFritekst = async (value: string): Promise<InvalidParameterErrorResponse | undefined> => {
     try {
-        await k9BrukerdialogApiClient.post(`/valider/fritekstfelt`, { verdi: value });
+        await getK9BrukerdialogApiClient().post(`/valider/fritekstfelt`, { verdi: value });
     } catch (e) {
         if (e.response?.status === 400) {
-            const parseResult = invalidParameterErrorResponse.safeParse(e.response.data);
+            const parseResult = invalidParameterErrorResponseSchema.safeParse(e.response.data);
             if (parseResult.success) {
                 return parseResult.data;
             }

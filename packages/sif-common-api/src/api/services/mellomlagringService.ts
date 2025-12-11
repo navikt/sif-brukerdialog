@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 import { storageParser } from '../../utils/storageParser';
-import { k9BrukerdialogApiClient } from '../apiClient';
+import { getK9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
 import { MellomlagringYtelse } from '../types';
 
 dayjs.extend(customParseFormat);
@@ -21,16 +21,16 @@ export function getMellomlagringService<StorageFormat>(
     const url = `/mellomlagring/${ytelse}`;
     return {
         update: (data: StorageFormat) => {
-            return k9BrukerdialogApiClient.put(url, data);
+            return getK9BrukerdialogApiClient().put(url, data);
         },
         create: (data?: StorageFormat) => {
-            return k9BrukerdialogApiClient.post(url, data);
+            return getK9BrukerdialogApiClient().post(url, data);
         },
         fetch: async () => {
-            return (await k9BrukerdialogApiClient.get(url, { transformResponse: storageParser })).data;
+            return (await getK9BrukerdialogApiClient().get(url, { transformResponse: storageParser })).data;
         },
         purge: () => {
-            return k9BrukerdialogApiClient.delete(url, { data: {} });
+            return getK9BrukerdialogApiClient().delete(url, { data: {} });
         },
     };
 }

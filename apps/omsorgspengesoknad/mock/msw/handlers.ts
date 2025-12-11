@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
-import barnMock from '../data/søker1/barn-mock.json';
 import søkerMock from '../data/søker1/søker-mock.json';
+import barnMock from '../data/søker1/barn-mock.json';
 import { getMellomlagringHandlers } from '../state/mellomlagringHandlers';
 
 export const getHandlers = () => [
@@ -12,12 +12,44 @@ export const getHandlers = () => [
             headers: { Location: '/vedlegg/123', 'access-control-expose-headers': 'Location' },
         });
     }),
-    http.post('**/har-gyldig-vedtak', async () => {
-        return HttpResponse.json({
-            harInnvilgedeBehandlinger: false,
-        });
+    http.post('**/valider/friteksfelt', () => HttpResponse.json({})),
+    http.post('**/valider/friteksfelt-ugyldig', async () => {
+        return HttpResponse.json(
+            {
+                violations: [
+                    {
+                        invalidValue: '\uD83D\uDE42\uD83D\uDE0A\uD83D\uDE00\uD83D\uDE01',
+                        parameterName: 'høyereRisikoForFraværBeskrivelse',
+                        parameterType: 'ENTITY',
+                        reason: 'Ugyldige tegn funnet i teksten: \uD83D, \uDE42, \uD83D, \uDE0A, \uD83D, \uDE00, \uD83D, \uDE01',
+                    },
+                ],
+                detail: 'Forespørselen inneholder valideringsfeil',
+                instance: 'https://omsorgspengesoknad.intern.dev.nav.no/omsorgspenger-utvidet-rett/innsending',
+                properties: null,
+                status: 400,
+                title: 'invalid-request-parameters',
+                type: '/problem-details/invalid-request-parameters',
+            },
+            { status: 400 },
+        );
     }),
-    http.post('**/omsorgspenger-utvidet-rett/innsending', async () => {
+    http.post('**/har-gyldig-vedtak', async ({ request }) => {
+        const body = (await request.json()) as { pleietrengendeAktørId: string };
+        const { pleietrengendeAktørId } = body;
+
+        return pleietrengendeAktørId !== '123'
+            ? HttpResponse.json({
+                  harInnvilgedeBehandlinger: false,
+              })
+            : HttpResponse.json({
+                  harInnvilgedeBehandlinger: true,
+                  saksnummer: '123',
+                  vedtaksdato: '2020-01-01',
+              });
+    }),
+    http.post('**/omsorgspenger-utvidet-rett/innsending', async () => HttpResponse.json({})),
+    http.post('**/omsorgspenger-utvidet-rett/innsending-ugyldig', async () => {
         return HttpResponse.json(
             {
                 violations: [
