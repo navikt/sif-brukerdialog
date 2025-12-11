@@ -1,11 +1,10 @@
 import { HStack, VStack } from '@navikt/ds-react';
-import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
-import { Venteårsak } from '../../types/Venteårsak';
+import { BehandlingStatus, Venteårsak } from '../../types';
 import StatusTag from './StatusTag';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof StatusTag> = {
     component: StatusTag,
     title: 'Components/StatusTag',
@@ -23,32 +22,32 @@ export const Default: Story = {
         return (
             <VStack gap="6">
                 <HStack gap="2">
-                    {Behandlingsstatus.OPPRETTET}:
-                    <StatusTag status={Behandlingsstatus.OPPRETTET} />
+                    {BehandlingStatus.OPPRETTET}:
+                    <StatusTag status={BehandlingStatus.OPPRETTET} />
                 </HStack>
                 <HStack gap="2">
-                    {Behandlingsstatus.UNDER_BEHANDLING}:
-                    <StatusTag status={Behandlingsstatus.UNDER_BEHANDLING} />
+                    {BehandlingStatus.UNDER_BEHANDLING}:
+                    <StatusTag status={BehandlingStatus.UNDER_BEHANDLING} />
                 </HStack>
                 <HStack gap="2">
-                    {Behandlingsstatus.PÅ_VENT}/{Venteårsak.INNTEKTSMELDING}:
-                    <StatusTag status={Behandlingsstatus.PÅ_VENT} venteårsak={Venteårsak.INNTEKTSMELDING} />
+                    {BehandlingStatus.PÅ_VENT}/{Venteårsak.INNTEKTSMELDING}:
+                    <StatusTag status={BehandlingStatus.PÅ_VENT} venteårsak={Venteårsak.INNTEKTSMELDING} />
                 </HStack>
                 <HStack gap="2">
-                    {Behandlingsstatus.PÅ_VENT}/{Venteårsak.MEDISINSK_DOKUMENTASJON}:
-                    <StatusTag status={Behandlingsstatus.PÅ_VENT} venteårsak={Venteårsak.MEDISINSK_DOKUMENTASJON} />
+                    {BehandlingStatus.PÅ_VENT}/{Venteårsak.MEDISINSK_DOKUMENTASJON}:
+                    <StatusTag status={BehandlingStatus.PÅ_VENT} venteårsak={Venteårsak.MEDISINSK_DOKUMENTASJON} />
                 </HStack>
                 <HStack gap="2">
-                    {Behandlingsstatus.PÅ_VENT}/{Venteårsak.MELDEKORT}:
-                    <StatusTag status={Behandlingsstatus.PÅ_VENT} venteårsak={Venteårsak.MELDEKORT} />
+                    {BehandlingStatus.PÅ_VENT}/{Venteårsak.MELDEKORT}:
+                    <StatusTag status={BehandlingStatus.PÅ_VENT} venteårsak={Venteårsak.MELDEKORT} />
                 </HStack>
                 <HStack gap="2">
-                    {Behandlingsstatus.PÅ_VENT}/{Venteårsak.MEDISINSK_DOKUMENTASJON}:
-                    <StatusTag status={Behandlingsstatus.PÅ_VENT} venteårsak={Venteårsak.FOR_TIDLIG_SOKNAD} />
+                    {BehandlingStatus.PÅ_VENT}/{Venteårsak.MEDISINSK_DOKUMENTASJON}:
+                    <StatusTag status={BehandlingStatus.PÅ_VENT} venteårsak={Venteårsak.FOR_TIDLIG_SOKNAD} />
                 </HStack>
                 <HStack gap="2">
-                    {Behandlingsstatus.AVSLUTTET}:
-                    <StatusTag status={Behandlingsstatus.AVSLUTTET} />
+                    {BehandlingStatus.AVSLUTTET}:
+                    <StatusTag status={BehandlingStatus.AVSLUTTET} />
                 </HStack>
             </VStack>
         );

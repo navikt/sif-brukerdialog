@@ -18,7 +18,8 @@ const nb = {
 
     'oppsummering.kurs.header': 'Om opplæringen',
     'oppsummering.kurs.institusjon': 'Hvor foregår opplæringen?',
-    'oppsummering.kurs.perioder': 'Hvilke dager søker du opplæringspenger?',
+    'oppsummering.kurs.perioder': 'Hvilke perioder søker du opplæringspenger?',
+    'oppsummering.kurs.enkeltdager': 'Hvilke dager søker du opplæringspenger?',
     'oppsummering.kurs.reisedager': 'Reiser du på dager du ikke har kurs eller opplæring?',
 
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
@@ -160,7 +161,9 @@ const nn: Record<keyof typeof nb, string> = {
 
     'oppsummering.kurs.header': 'Om opplæringa',
     'oppsummering.kurs.institusjon': 'Kor føregår opplæringa?',
-    'oppsummering.kurs.perioder': 'Kva dagar søkjer du opplæringspengar?',
+    'oppsummering.kurs.perioder': 'Kva periodar søkjer du opplæringspengar?',
+    'oppsummering.kurs.enkeltdager': 'Kva dagar søkjer du opplæringspengar?',
+
     'oppsummering.kurs.reisedager': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
 
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',

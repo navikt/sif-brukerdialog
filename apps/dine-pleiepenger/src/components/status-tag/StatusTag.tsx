@@ -1,13 +1,9 @@
 import { Tag } from '@navikt/ds-react';
 import React from 'react';
-import { AppText } from '../../i18n';
-import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
-import { Venteårsak } from '../../types/Venteårsak';
 
-interface Props {
-    status: Behandlingsstatus;
-    venteårsak?: Venteårsak;
-}
+import { AppText } from '../../i18n';
+import { BehandlingStatus, Venteårsak } from '../../types';
+import { BehandlingsstatusISak } from '../../types/BehandlingsstatusISak';
 
 const getVenteårsakTag = (venteårsak: Venteårsak): React.ReactNode => {
     switch (venteårsak) {
@@ -40,19 +36,19 @@ const getVenteårsakTag = (venteårsak: Venteårsak): React.ReactNode => {
     }
 };
 
-const StatusTag = ({ status, venteårsak }: Props) => {
+const StatusTag = ({ status, venteårsak }: BehandlingsstatusISak) => {
     switch (status) {
-        case Behandlingsstatus.OPPRETTET:
-        case Behandlingsstatus.UNDER_BEHANDLING:
+        case BehandlingStatus.OPPRETTET:
+        case BehandlingStatus.UNDER_BEHANDLING:
             return (
                 <Tag variant="info" size="small">
                     <AppText id="statusTag.status.underBehandling" />
                 </Tag>
             );
-        case Behandlingsstatus.PÅ_VENT:
+        case BehandlingStatus.PÅ_VENT:
             return venteårsak ? getVenteårsakTag(venteårsak) : null;
 
-        case Behandlingsstatus.AVSLUTTET:
+        case BehandlingStatus.AVSLUTTET:
             return (
                 <Tag variant="success" size="small">
                     <AppText id="statusTag.status.ferdigBehandlet" />

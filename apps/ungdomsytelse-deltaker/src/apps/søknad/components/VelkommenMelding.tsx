@@ -3,8 +3,8 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
 
+import ExternalLink from '../../../components/external-link/ExternalLink';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
-import ExternalLink from './external-link/ExternalLink';
 
 interface Props {
     fornavn: string;

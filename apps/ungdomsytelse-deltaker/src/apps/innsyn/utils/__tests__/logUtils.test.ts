@@ -19,6 +19,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
             deltakerIdent: 'test-ident',
             id: 'deltaker-id',
         },
+        erSlettet: false,
     };
 
     const mockOppgave: SøkYtelseOppgave = {
@@ -26,7 +27,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         status: OppgaveStatus.ULØST,
         opprettetDato: dayjs().subtract(1, 'day').toDate(),
         oppgaveReferanse: 'test-ref',
-        frist: dayjs().add(7, 'days').toDate(),
+        sisteDatoEnKanSvare: dayjs().add(7, 'days').toDate(),
         oppgavetypeData: {
             fomDato: dayjs().subtract(10, 'days').toDate(),
         },
@@ -165,7 +166,6 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
             });
 
             expect(result.antallDagerMellomOpprettetOgBesvart).toBe(5);
-            expect(result.antallMinutterMellomOpprettetOgBesvart).toBe(5 * 24 * 60);
         });
     });
 });

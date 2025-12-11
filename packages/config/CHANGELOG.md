@@ -1,5 +1,90 @@
 # config
 
+## 0.11.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 0.11.48
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 0.11.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 0.11.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 0.11.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.11.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.11.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.11.39
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.11.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 0.11.35
 
 ### Patch Changes

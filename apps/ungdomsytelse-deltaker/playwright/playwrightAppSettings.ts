@@ -7,8 +7,8 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     GITHUB_REF_NAME: 'dev',
 
     VELG_SCENARIO: 'on',
-    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
-    SIF_PUBLIC_USE_AMPLITUDE: 'true',
+    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
+    SIF_PUBLIC_USE_ANALYTICS: 'true',
     SIF_PUBLIC_USE_FARO: 'false',
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '#',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
@@ -30,6 +30,8 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     SIF_PUBLIC_URL_PERSONVERN: 'https://www.ansatt.dev.nav.no/personvernerklaering',
     SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN: 'https://www.ansatt.dev.nav.no/personvernerklaering',
     SIF_PUBLIC_URL_SKATTEETATEN: 'https://www.skatteetaten.no',
+    SIF_PUBLIC_URL_SKATTEKORT: 'https://www.skatteetaten.no/person/skatt/skattekort/',
+    SIF_PUBLIC_URL_LOVDATA_INNTEKT: 'https://lovdata.no/dokument/NL/lov/1999-03-26-14/KAPITTEL_6-2#%C2%A75-10',
     SIF_PUBLIC_URL_ENDRE_KONTONUMMER: 'https://www.ansatt.dev.nav.no/start/soknad-endring-bankkontonummer',
     SIF_PUBLIC_URL_SKRIV_TIL_OSS: 'https://www.nav.no/skriv-til-oss',
 });

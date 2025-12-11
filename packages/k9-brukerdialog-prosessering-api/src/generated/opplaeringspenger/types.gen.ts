@@ -263,11 +263,55 @@ export type ArbeidIPeriodeWritable = {
     enkeltdager?: Enkeltdag[];
 };
 
+export type ArbeidsforholdOlpWritable = {
+    jobberNormaltTimer: number;
+    arbeidIPeriode: ArbeidIPeriodeWritable;
+};
+
 export type ArbeidsgiverOlpWritable = {
     organisasjonsnummer?: string;
     navn?: string;
     erAnsatt?: boolean;
-    arbeidsforhold?: ArbeidsforholdOlp;
+    arbeidsforhold?: ArbeidsforholdOlpWritable;
+};
+
+export type FrilansOlpWritable = {
+    startdato: string;
+    sluttdato?: string;
+    jobberFortsattSomFrilans: boolean;
+    arbeidsforhold?: ArbeidsforholdOlpWritable;
+    harHattInntektSomFrilanser: boolean;
+};
+
+export type OpplæringspengerSøknadWritable = {
+    newVersion?: boolean;
+    apiDataVersjon?: string;
+    språk: 'nb' | 'nn';
+    søkerNorskIdent?: string;
+    barn: BarnDetaljer;
+    arbeidsgivere: ArbeidsgiverOlpWritable[];
+    vedlegg: string[];
+    fraOgMed: string;
+    tilOgMed: string;
+    medlemskap: Medlemskap;
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPerioden;
+    ferieuttakIPerioden?: FerieuttakIPerioden;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    frilans?: FrilansOlpWritable;
+    selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlp;
+    stønadGodtgjørelse?: StønadGodtgjørelse;
+    harVærtEllerErVernepliktig?: boolean;
+    dataBruktTilUtledningAnnetData?: string;
+    ettersendingAvVedlegg?: EttersendingAvVedlegg;
+    kurs: Kurs;
+};
+
+export type SelvstendigNæringsdrivendeOlpWritable = {
+    virksomhet: VirksomhetWritable;
+    arbeidsforhold: ArbeidsforholdOlpWritable;
 };
 
 export type VirksomhetWritable = {

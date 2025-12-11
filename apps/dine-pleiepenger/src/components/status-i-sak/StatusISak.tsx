@@ -1,27 +1,28 @@
-import { Alert, BodyLong, BodyShort, Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
+import { Alert, BodyLong, Box, Link, Switch, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
+import { useState } from 'react';
+
 import { AppText, useAppIntl } from '../../i18n';
-import { Sak } from '../../server/api-models/SakSchema';
-import { formatSakshendelseTidspunkt, getAlleHendelserISak } from '../../utils/sakUtils';
+import { Inntektsmelding, Sak } from '../../types';
+import { getAlleHendelserISak } from '../../utils/sakUtils';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
-import { Process } from '../process';
-import ProcessStep from '../process/ProcessStep';
 import StatusISakHeading from './parts/StatusISakHeading';
+import StatusISakSteps from './StatusISakSteps';
 import { getProcessStepsFraSakshendelser } from './statusISakUtils';
 
 interface Props {
     sak: Sak;
     tittel?: string;
     visAlleHendelser?: boolean;
+    inntektsmeldinger: Inntektsmelding[];
 }
 
-const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
+const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props) => {
     const [reverseDirection, setReverseDirection] = useState(false);
     const { text } = useAppIntl();
-    const hendelser = getAlleHendelserISak(sak);
-    const processSteps = getProcessStepsFraSakshendelser(text, hendelser);
+    const sakshendelser = getAlleHendelserISak(sak, inntektsmeldinger);
+    const processSteps = getProcessStepsFraSakshendelser(text, sakshendelser);
 
     if (processSteps.length === 0) {
         return (
@@ -31,7 +32,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
                     <AppText
                         id="statusISak.ingenHendelser"
                         values={{
-                            p: (txt) => <BodyLong>{txt}</BodyLong>,
+                            p: (txt: string) => <BodyLong>{txt}</BodyLong>,
                             lenke: <SkrivTilOssLenke tekst={text('statusISak.ingenHendelser.skrivTilOssLenkeTekst')} />,
                         }}
                     />
@@ -44,7 +45,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
         processSteps.reverse();
     }
     const visibleSteps = visAlleHendelser ? processSteps : [...processSteps].splice(-3);
-    const finnnesFlereHendelser = visibleSteps.length < processSteps.length;
+    const finnesFlereHendelser = visibleSteps.length < processSteps.length;
 
     return (
         <VStack gap="3">
@@ -60,41 +61,19 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
                     </Switch>
                 </Box>
             ) : null}
-            <Box className="bg-white p-6 pb-4 pt-4">
-                <Process>
-                    {visibleSteps.map((step, idx) => {
-                        const headingId = `process-heading-${idx}`;
-                        return (
-                            <ProcessStep
-                                key={idx}
-                                completed={step.completed}
-                                current={step.current}
-                                isLastStep={step.isLastStep}
-                                isContinuation={finnnesFlereHendelser && idx === 0}>
-                                <VStack gap="1">
-                                    <Heading size="small" level="3" id={headingId} aria-hidden={true}>
-                                        {step.title}{' '}
-                                        {step.timestamp ? (
-                                            <BodyShort className="mb-2">
-                                                {formatSakshendelseTidspunkt(step.timestamp)}
-                                            </BodyShort>
-                                        ) : null}
-                                    </Heading>
-                                    <div>{step.content}</div>
-                                </VStack>
-                            </ProcessStep>
-                        );
-                    })}
-                </Process>
+            <Box className="bg-white p-6 pb-4 pt-6 rounded-large">
+                <VStack gap="8">
+                    <StatusISakSteps steps={visibleSteps} />
+                    {finnesFlereHendelser && visAlleHendelser === undefined ? (
+                        <Box className="ml-4 mb-4">
+                            <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
+                                Se alle hendelser
+                                <ChevronRightIcon role="presentation" />
+                            </Link>
+                        </Box>
+                    ) : null}
+                </VStack>
             </Box>
-            {finnnesFlereHendelser && visAlleHendelser === undefined ? (
-                <Box className="ml-4 mb-4">
-                    <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
-                        Se alle hendelser
-                        <ChevronRightIcon role="presentation" />
-                    </Link>
-                </Box>
-            ) : null}
         </VStack>
     );
 };

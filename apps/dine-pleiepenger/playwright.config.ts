@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-    testDir: './e2e/playwright/tests',
+    testDir: './playwright/tests',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
@@ -28,10 +28,10 @@ export default defineConfig({
             API_URL: 'http://localhost:8089',
             NEXT_PUBLIC_FEATURE_APPSTATUS: 'off',
             NEXT_PUBLIC_FEATURE_FARO: 'off',
+            NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: 'on',
             NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
-            NEXT_PUBLIC_AMPLITUDE_API_KEY: 'default',
-            NEXT_PUBLIC_GITHUB_REF_NAME: 'dev-branch',
+            NEXT_PUBLIC_ANALYTICS_KEY: 'default',
             NEXT_PUBLIC_BASE_PATH: '/innsyn',
             NEXT_PUBLIC_LOGIN_URL: '/dummy',
             NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',
@@ -64,8 +64,6 @@ export default defineConfig({
             NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: 'https://www.nav.no/arbeidsgiver/pleiepenger-barn',
             NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: 'https://www.dev.nav.no/dokumentarkiv/tema/OMS',
             NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: 'https://tjenester.nav.no/utbetalingsoversikt',
-            NEXT_PUBLIC_FEATURE_HENT_SAKER: 'on',
-            NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: 'off',
             NEXT_PUBLIC_TELEMETRY_URL: 'http://localhost:12347/collect',
         },
     },

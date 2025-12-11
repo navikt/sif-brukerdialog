@@ -1,6 +1,7 @@
 import { Box, Heading, List } from '@navikt/ds-react';
+
 import { AppText } from '../../../i18n';
-import { Dokument } from '../../../server/api-models/DokumenetSchema';
+import { Dokument } from '../../../types';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
 
@@ -12,10 +13,12 @@ interface Props {
 const mapDokumenter = (dokument: Dokument) => {
     return (
         <li key={dokument.dokumentInfoId}>
-            <PdfLenke
-                href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(dokument)}`}
-                tittel={dokument.tittel}
-            />
+            <Box marginBlock="0 1">
+                <PdfLenke
+                    href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(dokument)}`}
+                    tittel={dokument.tittel}
+                />
+            </Box>
         </li>
     );
 };
@@ -31,7 +34,7 @@ const Dokumenter = ({ dokumenter, tittel }: Props) => {
     return (
         <Box>
             {tittel ? (
-                <Heading size="xsmall" level="4" spacing={true}>
+                <Heading size="xsmall" level="3" spacing={true}>
                     {tittel}
                 </Heading>
             ) : null}

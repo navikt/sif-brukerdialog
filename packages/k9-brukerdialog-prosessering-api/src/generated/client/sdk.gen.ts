@@ -137,15 +137,8 @@ export class MellomlagringController {
     ) {
         return (options.client ?? client).delete<DeleteMellomlagringResponses, DeleteMellomlagringErrors, ThrowOnError>(
             {
-                requestValidator: async (data) => {
-                    return await zDeleteMellomlagringData.parseAsync(data);
-                },
-                security: [
-                    {
-                        scheme: 'bearer',
-                        type: 'http',
-                    },
-                ],
+                requestValidator: async (data) => await zDeleteMellomlagringData.parseAsync(data),
+                security: [{ scheme: 'bearer', type: 'http' }],
                 url: '/mellomlagring/{ytelse}',
                 ...options,
             },
@@ -156,18 +149,9 @@ export class MellomlagringController {
         options: Options<GetMellomlagringData, ThrowOnError>,
     ) {
         return (options.client ?? client).get<GetMellomlagringResponses, GetMellomlagringErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zGetMellomlagringData.parseAsync(data);
-            },
-            responseValidator: async (data) => {
-                return await zGetMellomlagringResponse.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zGetMellomlagringData.parseAsync(data),
+            responseValidator: async (data) => await zGetMellomlagringResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/mellomlagring/{ytelse}',
             ...options,
         });
@@ -177,15 +161,8 @@ export class MellomlagringController {
         options: Options<CreateMellomlagringData, ThrowOnError>,
     ) {
         return (options.client ?? client).post<CreateMellomlagringResponses, CreateMellomlagringErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zCreateMellomlagringData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zCreateMellomlagringData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/mellomlagring/{ytelse}',
             ...options,
             headers: {
@@ -199,15 +176,8 @@ export class MellomlagringController {
         options: Options<UpdateMellomlagringData, ThrowOnError>,
     ) {
         return (options.client ?? client).put<UpdateMellomlagringResponses, UpdateMellomlagringErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zUpdateMellomlagringData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zUpdateMellomlagringData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/mellomlagring/{ytelse}',
             ...options,
             headers: {
@@ -222,15 +192,8 @@ export class VedleggController {
     public static lagreVedlegg<ThrowOnError extends boolean = true>(options?: Options<LagreVedleggData, ThrowOnError>) {
         return (options?.client ?? client).post<LagreVedleggResponses, LagreVedleggErrors, ThrowOnError>({
             ...formDataBodySerializer,
-            requestValidator: async (data) => {
-                return await zLagreVedleggData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zLagreVedleggData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/vedlegg',
             ...options,
             headers: {
@@ -242,18 +205,9 @@ export class VedleggController {
 
     public static slettVedlegg<ThrowOnError extends boolean = true>(options: Options<SlettVedleggData, ThrowOnError>) {
         return (options.client ?? client).delete<SlettVedleggResponses, SlettVedleggErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zSlettVedleggData.parseAsync(data);
-            },
-            responseValidator: async (data) => {
-                return await zSlettVedleggResponse.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zSlettVedleggData.parseAsync(data),
+            responseValidator: async (data) => await zSlettVedleggResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/vedlegg/{vedleggId}',
             ...options,
         });
@@ -261,18 +215,9 @@ export class VedleggController {
 
     public static hentVedlegg<ThrowOnError extends boolean = true>(options: Options<HentVedleggData, ThrowOnError>) {
         return (options.client ?? client).get<HentVedleggResponses, HentVedleggErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentVedleggData.parseAsync(data);
-            },
-            responseValidator: async (data) => {
-                return await zHentVedleggResponse.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zHentVedleggData.parseAsync(data),
+            responseValidator: async (data) => await zHentVedleggResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/vedlegg/{vedleggId}',
             ...options,
         });
@@ -284,15 +229,8 @@ export class FeltValideringController {
         options: Options<ValiderFriteksfeltData, ThrowOnError>,
     ) {
         return (options.client ?? client).post<ValiderFriteksfeltResponses, ValiderFriteksfeltErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zValiderFriteksfeltData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zValiderFriteksfeltData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/valider/friteksfelt',
             ...options,
             headers: {
@@ -312,15 +250,8 @@ export class UngdomsytelseController {
             InnsendingUngdomsytelsesøknadErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingUngdomsytelsesøknadData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingUngdomsytelsesøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/ungdomsytelse/soknad/innsending',
             ...options,
             headers: {
@@ -334,15 +265,8 @@ export class UngdomsytelseController {
         options: Options<OppgavebekreftelseData, ThrowOnError>,
     ) {
         return (options.client ?? client).post<OppgavebekreftelseResponses, OppgavebekreftelseErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zOppgavebekreftelseData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zOppgavebekreftelseData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/ungdomsytelse/oppgavebekreftelse/innsending',
             ...options,
             headers: {
@@ -356,15 +280,8 @@ export class UngdomsytelseController {
         options: Options<InntektrapporteringData, ThrowOnError>,
     ) {
         return (options.client ?? client).post<InntektrapporteringResponses, InntektrapporteringErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zInntektrapporteringData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInntektrapporteringData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/ungdomsytelse/inntektsrapportering/innsending',
             ...options,
             headers: {
@@ -384,15 +301,8 @@ export class PleiepengerSyktBarnController {
             InnsendingPleiepengerSyktBarnSøknadErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingPleiepengerSyktBarnSøknadData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingPleiepengerSyktBarnSøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/pleiepenger-sykt-barn/innsending',
             ...options,
             headers: {
@@ -412,15 +322,8 @@ export class EndringsmeldingController {
             InnsendingEndringsmeldingErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingEndringsmeldingData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingEndringsmeldingData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/pleiepenger-sykt-barn/endringsmelding/innsending',
             ...options,
             headers: {
@@ -440,15 +343,8 @@ export class PleiepengerLivetsSluttfaseController {
             InnsendingPleiepengerILivetsSluttfaseSøknadErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingPleiepengerILivetsSluttfaseSøknadData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingPleiepengerILivetsSluttfaseSøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/pleiepenger-livets-sluttfase/innsending',
             ...options,
             headers: {
@@ -462,19 +358,10 @@ export class PleiepengerLivetsSluttfaseController {
 export class PdfController {
     public static lagPdf<ThrowOnError extends boolean = true>(options: Options<LagPdfData, ThrowOnError>) {
         return (options.client ?? client).post<LagPdfResponses, LagPdfErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zLagPdfData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zLagPdfData.parseAsync(data),
             responseType: 'blob',
-            responseValidator: async (data) => {
-                return await zLagPdfResponse.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            responseValidator: async (data) => await zLagPdfResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/pdf',
             ...options,
             headers: {
@@ -494,15 +381,8 @@ export class OpplÆringspengerSØknadController {
             InnsendingOpplæringspengerSøknadErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingOpplæringspengerSøknadData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingOpplæringspengerSøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/opplaringspenger/innsending',
             ...options,
             headers: {
@@ -522,15 +402,8 @@ export class OmsorgspengerUtvidetRettController {
             InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingOmsorgspengerKroniskSyktBarnSøknadData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingOmsorgspengerKroniskSyktBarnSøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/omsorgspenger-utvidet-rett/innsending',
             ...options,
             headers: {
@@ -550,15 +423,8 @@ export class OmsorgspengerUtbetalingSnfController {
             InnsendingOmsorgspengerutbetalingSnfSøknadErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingOmsorgspengerutbetalingSnfSøknadData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingOmsorgspengerutbetalingSnfSøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/omsorgspenger-utbetaling-snf/innsending',
             ...options,
             headers: {
@@ -578,15 +444,9 @@ export class OmsorgspengerUtbetalingArbeidstakerController {
             InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) =>
+                await zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/omsorgspenger-utbetaling-arbeidstaker/innsending',
             ...options,
             headers: {
@@ -606,15 +466,8 @@ export class OmsorgspengerMidlertidigAleneController {
             InnsendingOmsorgspengerMidlertidigAleneSøknadErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingOmsorgspengerMidlertidigAleneSøknadData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingOmsorgspengerMidlertidigAleneSøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/omsorgspenger-midlertidig-alene/innsending',
             ...options,
             headers: {
@@ -634,15 +487,8 @@ export class OmsorgsdagerAleneomsorgController {
             InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/omsorgsdager-aleneomsorg/innsending',
             ...options,
             headers: {
@@ -662,15 +508,8 @@ export class EttersendingController {
             InnsendingEttersendelseErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zInnsendingEttersendelseData.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zInnsendingEttersendelseData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/ettersending/innsending',
             ...options,
             headers: {
@@ -684,18 +523,9 @@ export class EttersendingController {
 export class SØkerController {
     public static hentSøker<ThrowOnError extends boolean = true>(options?: Options<HentSøkerData, ThrowOnError>) {
         return (options?.client ?? client).get<HentSøkerResponses, HentSøkerErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentSøkerData.parseAsync(data);
-            },
-            responseValidator: async (data) => {
-                return await zHentSøkerResponse.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zHentSøkerData.parseAsync(data),
+            responseValidator: async (data) => await zHentSøkerResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/oppslag/soker',
             ...options,
         });
@@ -705,18 +535,9 @@ export class SØkerController {
 export class BarnController {
     public static hentBarn<ThrowOnError extends boolean = true>(options?: Options<HentBarnData, ThrowOnError>) {
         return (options?.client ?? client).get<HentBarnResponses, HentBarnErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentBarnData.parseAsync(data);
-            },
-            responseValidator: async (data) => {
-                return await zHentBarnResponse.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zHentBarnData.parseAsync(data),
+            responseValidator: async (data) => await zHentBarnResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/oppslag/barn',
             ...options,
         });
@@ -728,18 +549,9 @@ export class ArbeidsgivereController {
         options: Options<HentArbeidsgivereData, ThrowOnError>,
     ) {
         return (options.client ?? client).get<HentArbeidsgivereResponses, HentArbeidsgivereErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentArbeidsgivereData.parseAsync(data);
-            },
-            responseValidator: async (data) => {
-                return await zHentArbeidsgivereResponse.parseAsync(data);
-            },
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
+            requestValidator: async (data) => await zHentArbeidsgivereData.parseAsync(data),
+            responseValidator: async (data) => await zHentArbeidsgivereResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
             url: '/oppslag/arbeidsgiver',
             ...options,
         });

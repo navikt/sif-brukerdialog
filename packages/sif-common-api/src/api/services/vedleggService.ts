@@ -8,13 +8,7 @@ const servicePath = '/vedlegg';
 export const uploadVedlegg = async (file: File): Promise<AxiosResponse<any, any>> => {
     const formData = new FormData();
     formData.append('vedlegg', file);
-    try {
-        return getK9BrukerdialogApiClient().post(servicePath, formData, axiosMultipartConfig);
-    } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e);
-        throw e;
-    }
+    return getK9BrukerdialogApiClient().post(servicePath, formData, axiosMultipartConfig);
 };
 
 /**

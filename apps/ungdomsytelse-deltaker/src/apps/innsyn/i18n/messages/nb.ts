@@ -51,7 +51,7 @@ export const innsynMessages_nb = {
     'deltakelseIkkeStartetInfo.tekst2':
         'På denne siden får du oppgaver mens du er i ungdomsprogrammet. Du trenger ikke gjøre noe med oppgavene før du får et varsel på SMS om det.',
     'deltakelsePågåendeInfo.tekst':
-        'Husk å melde fra senest 7. hver måned hvis du jobbet og fikk lønn måneden før. Du får et varsel på SMS når du skal melde fra.',
+        'Husk å melde fra senest 7. hver måned hvis du hadde inntekt måneden før. Du får et varsel på SMS når du skal melde fra.',
 
     'oppgaveOgTilbakemelding.header': 'Beskjed og ditt svar',
     'oppgaveOgTilbakemelding.beskjedFraNav': 'Beskjed fra Nav',
@@ -100,54 +100,56 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.paneltittel': 'Sjekk lønn i {månedOgÅr}',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Tilbakemelding på lønn i {månedOgÅr}',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.paneltittel': 'Sjekk inntekten din i {månedOgÅr}',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Tilbakemelding på inntekt i {månedOgÅr}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
-        'Sjekk at opplysningene våre om lønnen du fikk fra arbeidsgiver i {måned} er riktige. Send oss et svar når du har sjekket.',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål': 'Stemmer lønnen vi har fått oppgitt?',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harIkkeUttalelseLabel': 'Ja, lønnen stemmer',
+        'Sjekk at opplysningene våre om inntekten du fikk fra arbeidsgiver i {måned} er riktige. Send oss et svar når du har sjekket.',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål': 'Stemmer inntekten vi har fått oppgitt?',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harIkkeUttalelseLabel': 'Ja, inntekten stemmer',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harUttalelseLabel':
-        'Nei, lønnen stemmer ikke. Jeg har en tilbakemelding.',
+        'Nei, inntekten stemmer ikke. Jeg har en tilbakemelding.',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst':
         'Vi bruker tilbakemeldingen din når vi vurderer hvor mye penger du skal få i {utbetalingsmåned}. Du får et vedtaksbrev om dette.',
 
-    'oppgavetype.RAPPORTER_INNTEKT.paneltittel': 'Meld fra om du fikk utbetalt lønn i {månedOgÅr}',
-    'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Lønn i {månedOgÅr}',
-    'oppgavetype.RAPPORTER_INNTEKT.info':
-        'Meld fra om du fikk utbetalt lønn i {måned}. Hvis du ikke fikk utbetalt lønn, trenger du ikke gjøre noe.',
+    'oppgavetype.RAPPORTER_INNTEKT.paneltittel': 'Meld fra om du hadde inntekt i {månedOgÅr}',
+    'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Inntekt i {månedOgÅr}',
+    'oppgavetype.RAPPORTER_INNTEKT.info': 'Hvis du ikke hadde inntekt, trenger du ikke gjøre noe.',
 
     'oppgavetype.SØK_YTELSE.paneltittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
     'oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
     'oppgavetype.SØK_YTELSE.info': 'Du er meldt inn i ungdomsprogrammet. Nå kan du søke om ungdomsprogramytelsen.',
 
     /** InntektForm */
-    'inntektForm.validation.harLønn.yesOrNoIsUnanswered': 'Du må svare på om du fikk utbetalt lønn.',
+    'inntektForm.validation.harInntekt.yesOrNoIsUnanswered': 'Du må svare på om du hadde inntekt.',
     'inntektForm.submitLabel': 'Send inn svaret ditt',
     'inntektForm.cancelLabel': 'Avbryt',
-    'inntektForm.utbetaltLønnLegend': 'Fikk du utbetalt lønn i {måned}?',
-    'inntektForm.lønnLabel': 'Hvor mye fikk du i lønn før skatt?',
-    'inntektForm.lønnDescription': 'Se på lønnsslippen din hva lønnen din var før det ble trukket skatt av den.',
-    'inntektForm.hvordanFinnerDuUtLønn.tittel': 'Hvordan finner du ut hva lønnen din var før skatt?',
-    'inntektForm.hvordanFinnerDuUtLønnBeskrivelse.tekst.1':
-        'Når du har en jobb der du får utbetalt lønn, får du alltid en lønnsslipp fra arbeidsgiveren din. På lønnsslippen står det blant annet hva lønnen din er før det blir trukket skatt av den, og det er det tallet du skal skrive inn her.',
-    'inntektForm.hvordanFinnerDuUtLønnBeskrivelse.tekst.2':
+    'inntektForm.utbetaltInntektLegend': 'Hadde du inntekt i {måned}?',
+    'inntektForm.inntektLabel': 'Hvor mye hadde du i inntekt før skatt?',
+    'inntektForm.inntektDescription':
+        'Se på lønnsslippen din hva inntekten din var før det ble trukket skatt av den. Du skal ikke ta med ungdomsprogramytelsen som en del av inntekten din. ',
+
+    'inntektForm.hvordanFinnerDuUtInntekt.tittel': 'Hvor finner jeg inntekten min før skatt?',
+    'inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.1':
+        'Når du jobber og har en inntekt, får du alltid en lønnsslipp fra arbeidsgiveren din. På lønnsslippen står det hva inntekten din er før det blir trukket skatt av den.',
+    'inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.2':
         'Spør arbeidsgiveren din hvis du er usikker på hvor du finner lønnsslippen.',
-    'inntektForm.feilLønn.tittel': 'Hva skjer hvis jeg melder inn feil lønn?',
-    'inntektForm.feilLønn.tekst.1':
-        'Vi sjekker alltid hva arbeidsgiveren din har registrert at du fikk i lønn. Arbeidsgivere registrerer lønn i et system som heter A-ordningen og som blant annet Nav og Skatteetaten har tilgang til.',
-    'inntektForm.feilLønn.tekst.2':
-        'Hvis det er forskjell på lønnen din i A-ordningen og lønnen du har sendt inn til oss, får du beskjed om det.',
+
+    'inntektForm.feilInntekt.tittel': 'Hva skjer hvis jeg melder inn feil inntekt?',
+    'inntektForm.feilInntekt.tekst.1':
+        'Vi sjekker alltid hva arbeidsgiveren din har registrert at du fikk i inntekt. Arbeidsgivere registrerer inntekt i et system som heter A-ordningen, og som blant annet Nav og Skatteetaten har tilgang til.',
+    'inntektForm.feilInntekt.tekst.2':
+        'Hvis det er forskjell på inntekten din i A-ordningen, og inntekten du har sendt inn til oss, får du beskjed om det.',
 
     'inntektForm.hentUtBeløpFeil':
-        'Du har oppgitt at du fikk utbetalt lønn, men vi klarer ikke hente ut beløpet. Vennligst kontroller feltet for lønn og prøv på nytt.',
+        'Du har oppgitt at du hadde inntekt, men vi klarer ikke hente ut beløpet. Vennligst kontroller feltet for inntekt og prøv på nytt.',
 
-    'inntektForm.validation.lønn.numberHasNoValue': 'Du må oppgi hvor mye lønn du fikk før skatt',
-    'inntektForm.validation.lønn.numberHasInvalidFormat':
-        'Oppgitt lønn har ikke gyldig format. Et gyldig tall inneholder kun siffer.',
-    'inntektForm.validation.lønn.numberIsTooSmall':
-        'Oppgitt lønn må være mer enn 0. Hvis du ikke fikk utbetalt lønn, velger du "Nei" på spørsmålet over.',
-    'inntektForm.validation.lønn.numberHasDecimals': 'Du må oppgi lønn uten desimaler.',
+    'inntektForm.validation.inntekt.numberHasNoValue': 'Du må oppgi hva du hadde i inntekt før skatt',
+    'inntektForm.validation.inntekt.numberHasInvalidFormat':
+        'Oppgitt inntekt har ikke gyldig format. Et gyldig tall inneholder kun siffer.',
+    'inntektForm.validation.inntekt.numberIsTooSmall':
+        'Oppgitt inntekt må være mer enn 0. Hvis du ikke hadde inntekt, velger du "Nei" på spørsmålet over.',
+    'inntektForm.validation.inntekt.numberHasDecimals': 'Du må oppgi inntekt uten desimaler.',
 
     /** UtalelseForm */
     'uttalelseForm.submitButtonLabel': 'Send inn svaret ditt',

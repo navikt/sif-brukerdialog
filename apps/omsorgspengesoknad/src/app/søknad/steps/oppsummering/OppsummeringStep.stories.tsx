@@ -5,7 +5,7 @@ import { SøknadContextProvider } from '../../context/SøknadContext';
 import { oppsummeringMessages } from './oppsummeringMessages';
 import OppsummeringStep from './OppsummeringStep';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
@@ -16,7 +16,7 @@ import { søknadsdataMocks } from '../../../../storybook/mock-data/søknadsdataM
 export default {
     title: 'Steps/Oppsummering/Step',
     component: OppsummeringStep,
-    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAmplitudeProvider],
+    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAnalyticsProvider],
 } as Meta<typeof OppsummeringStep>;
 
 interface Props {

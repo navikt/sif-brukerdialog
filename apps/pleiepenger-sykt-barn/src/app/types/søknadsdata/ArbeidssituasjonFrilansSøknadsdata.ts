@@ -5,6 +5,10 @@ import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 
 type HarIkkeInntektSomFrilanser = {
     harInntektSomFrilanser: false;
+    /** Hvis bruker har frilansoppdrag spør vi om normalarbeidstid om bruker
+     * svarer nei på frilanser og omsorgsstønad.
+     */
+    normalarbeidstid?: NormalarbeidstidSøknadsdata;
 };
 
 type KunHonorarMisterIkkeHonorar = {

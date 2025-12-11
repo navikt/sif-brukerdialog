@@ -1,5 +1,84 @@
 # appstatus-sanity-config
 
+## 1.2.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 1.2.52
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 1.2.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 1.2.50
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 1.2.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 1.2.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 1.2.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 1.2.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.2.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.2.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 1.2.43
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 1.2.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.2.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 1.2.40
 
 ### Patch Changes

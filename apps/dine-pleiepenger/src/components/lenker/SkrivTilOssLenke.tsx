@@ -1,5 +1,6 @@
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Link } from '@navikt/ds-react';
-import { ExternalLink } from '@navikt/ds-icons';
+
 import { browserEnv } from '../../utils/env';
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 
 const SkrivTilOssLenke = ({ tekst }: Props) => (
     <Link href={browserEnv.NEXT_PUBLIC_SKRIV_TIL_OSS_URL}>
-        {tekst} <ExternalLink className="ml-1" role="presentation" />
+        {tekst} <ExternalLinkIcon className="ml-1" role="presentation" />
     </Link>
 );
 

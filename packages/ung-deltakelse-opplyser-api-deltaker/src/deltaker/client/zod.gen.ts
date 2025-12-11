@@ -27,9 +27,12 @@ export const zDeltakerDto = z.object({
     deltakerIdent: z.string(),
 });
 
+export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT', 'LUKKET']);
+
 export const zOppgavetype = z.enum([
     'BEKREFT_ENDRET_STARTDATO',
     'BEKREFT_ENDRET_SLUTTDATO',
+    'BEKREFT_FJERNET_PERIODE',
     'BEKREFT_AVVIK_REGISTERINNTEKT',
     'RAPPORTER_INNTEKT',
     'SØK_YTELSE',
@@ -51,6 +54,13 @@ export const zEndretStartdatoDataDto = zOppgavetypeDataDto.and(
     }),
 );
 
+export const zFjernetPeriodeDataDto = zOppgavetypeDataDto.and(
+    z.object({
+        forrigeStartdato: z.iso.date(),
+        forrigeSluttdato: z.optional(z.iso.date()),
+    }),
+);
+
 export const zRapportertInntektPeriodeinfoDto = z.object({
     fraOgMed: z.iso.date(),
     tilOgMed: z.iso.date(),
@@ -62,6 +72,13 @@ export const zInntektsrapporteringOppgavetypeDataDto = zOppgavetypeDataDto.and(
         fraOgMed: z.iso.date(),
         tilOgMed: z.iso.date(),
         rapportertInntekt: z.optional(zRapportertInntektPeriodeinfoDto),
+        gjelderDelerAvMåned: z.boolean(),
+    }),
+);
+
+export const zSøkYtelseOppgavetypeDataDto = zOppgavetypeDataDto.and(
+    z.object({
+        fomDato: z.iso.date(),
     }),
 );
 
@@ -91,16 +108,9 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.
         fraOgMed: z.iso.date(),
         tilOgMed: z.iso.date(),
         registerinntekt: zRegisterinntektDto,
+        gjelderDelerAvMåned: z.boolean(),
     }),
 );
-
-export const zSøkYtelseOppgavetypeDataDto = zOppgavetypeDataDto.and(
-    z.object({
-        fomDato: z.iso.date(),
-    }),
-);
-
-export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT', 'LUKKET']);
 
 export const zOppgaveDto = z.object({
     oppgaveReferanse: z.uuid(),
@@ -108,17 +118,18 @@ export const zOppgaveDto = z.object({
     oppgavetypeData: z.union([
         zEndretSluttdatoDataDto,
         zEndretStartdatoDataDto,
+        zFjernetPeriodeDataDto,
         zInntektsrapporteringOppgavetypeDataDto,
         zKontrollerRegisterinntektOppgavetypeDataDto,
         zSøkYtelseOppgavetypeDataDto,
     ]),
     bekreftelse: z.optional(zBekreftelseDto),
     status: zOppgaveStatus,
-    opprettetDato: z.iso.datetime(),
-    løstDato: z.optional(z.iso.datetime()),
-    åpnetDato: z.optional(z.iso.datetime()),
-    lukketDato: z.optional(z.iso.datetime()),
-    frist: z.optional(z.iso.datetime()),
+    opprettetDato: z.iso.datetime({ local: true }),
+    løstDato: z.optional(z.iso.datetime({ local: true })),
+    åpnetDato: z.optional(z.iso.datetime({ local: true })),
+    lukketDato: z.optional(z.iso.datetime({ local: true })),
+    frist: z.optional(z.iso.datetime({ local: true })),
 });
 
 export const zDeltakelseKomposittDto = z.object({
@@ -126,7 +137,8 @@ export const zDeltakelseKomposittDto = z.object({
     deltaker: zDeltakerDto,
     fraOgMed: z.iso.date(),
     tilOgMed: z.optional(z.iso.date()),
-    søktTidspunkt: z.optional(z.iso.datetime()),
+    erSlettet: z.boolean(),
+    søktTidspunkt: z.optional(z.iso.datetime({ local: true })),
     oppgaver: z.array(zOppgaveDto),
 });
 

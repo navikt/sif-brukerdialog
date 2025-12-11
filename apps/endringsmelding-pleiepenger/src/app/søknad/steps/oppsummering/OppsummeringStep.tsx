@@ -1,7 +1,6 @@
 import './oppsummering.css';
 
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
-import { Back } from '@navikt/ds-icons';
 import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -20,6 +19,7 @@ import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
+import { ChevronLeftIcon } from '@navikt/aksel-icons';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -177,7 +177,7 @@ const OppsummeringStep = () => {
                             type="button"
                             variant="secondary"
                             onClick={goBack}
-                            icon={<Back aria-label={text('oppsummeringStep.forrige.ariaLabel')} />}>
+                            icon={<ChevronLeftIcon aria-label={text('oppsummeringStep.forrige.ariaLabel')} />}>
                             <AppText id="oppsummeringStep.forrige" />
                         </Button>
                     </div>

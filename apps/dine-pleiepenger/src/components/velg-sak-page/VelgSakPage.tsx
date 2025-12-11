@@ -1,62 +1,58 @@
-import { BodyShort, Box, Heading, LinkPanel, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, LinkCard, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import Link from 'next/link';
+
+import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { AppText, useAppIntl } from '../../i18n';
-import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
-import { personaliaUtils } from '../../utils/personaliaUtils';
-import { getBehandlingsstatusISak } from '../../utils/sakUtils';
+import { SakerMetadata } from '../../types';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
-import StatusTag from '../status-tag/StatusTag';
 
 interface Props {
-    saker: PleietrengendeMedSak[];
+    sakerMetadata: SakerMetadata[];
 }
 
-const VelgSakPage = ({ saker }: Props) => {
+const VelgSakPage = ({ sakerMetadata }: Props) => {
     const { text } = useAppIntl();
+    useBreadcrumbs({
+        breadcrumbs: [],
+    });
     return (
         <DefaultPageLayout>
             <Head>
-                <title>
-                    <AppText id="velgSak.dokumentTittel" />
-                </title>
+                <title>{text('velgSak.dokumentTittel')}</title>
             </Head>
             <Box>
                 <Heading size="medium" level="1" spacing={true}>
                     <AppText id="velgSak.tittel" />
                 </Heading>
 
-                <VStack gap="5" className="max-w-2xl mb-10">
-                    {saker.map((sak) => {
-                        const status = getBehandlingsstatusISak(sak.sak);
-                        const { pleietrengende } = sak;
-                        return (
-                            <LinkPanel
-                                as={Link}
-                                border={false}
-                                href={`/sak/${sak.sak.saksnummer}`}
-                                key={sak.sak.saksnummer}>
-                                <LinkPanel.Title className="w-full">
-                                    <Heading as="span" size="small">
-                                        {personaliaUtils.navn(pleietrengende, text)}
-                                    </Heading>
-                                </LinkPanel.Title>
-                                {status || pleietrengende.anonymisert === false ? (
-                                    <LinkPanel.Description>
-                                        <BodyShort spacing={true}>
-                                            <AppText
-                                                id="velgSak.barn.fdato"
-                                                values={{
-                                                    dato: dateFormatter.full(pleietrengende.fødselsdato),
-                                                }}
-                                            />
-                                        </BodyShort>
+                <VStack gap="2" className="max-w-2xl mb-10">
+                    {sakerMetadata.map((sakMetadata) => {
+                        const { pleietrengende, saksnummer } = sakMetadata;
+                        const fødselsdato = new Date(pleietrengende.fødselsdato);
+                        const navn = pleietrengende.anonymisert
+                            ? pleietrengende.identitetsnummer
+                            : `${pleietrengende.fornavn} ${pleietrengende.etternavn}`;
 
-                                        {status ? <StatusTag {...status} /> : null}
-                                    </LinkPanel.Description>
-                                ) : null}
-                            </LinkPanel>
+                        return (
+                            <LinkCard key={saksnummer}>
+                                <LinkCard.Title className="w-full">
+                                    <LinkCard.Anchor asChild>
+                                        <Link href={`/sak/${saksnummer}`}>{navn}</Link>
+                                    </LinkCard.Anchor>
+                                </LinkCard.Title>
+                                <LinkCard.Description>
+                                    <BodyShort>
+                                        <AppText
+                                            id="velgSak.barn.fdato"
+                                            values={{
+                                                dato: dateFormatter.full(fødselsdato),
+                                            }}
+                                        />
+                                    </BodyShort>
+                                </LinkCard.Description>
+                            </LinkCard>
                         );
                     })}
                 </VStack>

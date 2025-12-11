@@ -1,4 +1,4 @@
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ import SøknadsdataWrapper from './SøknadsdataWrapper';
 
 const Søknad = () => {
     const navigate = useNavigate();
-    const { logHendelse } = useAmplitudeInstance();
+    const { logHendelse } = useAnalyticsInstance();
     return (
         <SøknadEssentialsLoader
             onUgyldigMellomlagring={() => logHendelse(ApplikasjonHendelse.ugyldigMellomlagring)}

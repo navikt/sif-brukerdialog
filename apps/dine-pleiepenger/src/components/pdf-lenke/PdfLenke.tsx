@@ -1,5 +1,6 @@
-import { Link } from '@navikt/ds-react';
-import { FilePdfIcon } from '@navikt/aksel-icons';
+import { FileIcon } from '@navikt/aksel-icons';
+import { HGrid, Link } from '@navikt/ds-react';
+
 import { AppText } from '../../i18n';
 
 interface Props {
@@ -10,10 +11,12 @@ interface Props {
 
 const PdfLenke = ({ href, tittel, target = 'blank' }: Props) => (
     <Link target={target} href={href}>
-        <FilePdfIcon title="Dokumentikon PDF" />
-        <span>
-            <AppText id="pdfLenke.lenke" values={{ tittel }} />
-        </span>
+        <HGrid columns="1rem 1fr" gap="4" align="start">
+            <FileIcon title="Dokumentikon PDF" style={{ width: '1.5rem', height: '1.5rem' }} />
+            <span>
+                <AppText id="pdfLenke.lenke" values={{ tittel }} />
+            </span>
+        </HGrid>
     </Link>
 );
 

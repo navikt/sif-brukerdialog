@@ -12,7 +12,7 @@ import { getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { useFormikContext } from 'formik';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { AppText } from '../../i18n';
@@ -59,10 +59,13 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
         return validateTildato(date, values.periodeFra);
     };
 
-    const visInfoOmUtenlandsopphold =
-        values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES &&
-        values.utenlandsoppholdIPerioden &&
-        harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning(values.utenlandsoppholdIPerioden);
+    const visInfoOmUtenlandsopphold = useMemo(() => {
+        return (
+            values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES &&
+            values.utenlandsoppholdIPerioden &&
+            harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning(values.utenlandsoppholdIPerioden)
+        );
+    }, [values.skalOppholdeSegIUtlandetIPerioden, values.utenlandsoppholdIPerioden]);
 
     return (
         <SøknadFormStep

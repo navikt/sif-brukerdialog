@@ -1,0 +1,80 @@
+name: Test and deploy app to prod (reusable)
+
+on:
+    workflow_call:
+        inputs:
+            app-name:
+                required: true
+                type: string
+                description: "App name (e.g., 'dine-pleiepenger')"
+            working-directory:
+                required: true
+                type: string
+                description: "Path to app directory (e.g., 'apps/dine-pleiepenger')"
+            package-name:
+                required: true
+                type: string
+                description: "Package name in monorepo (e.g., '@navikt/dine-pleiepenger')"
+            is-next-app:
+                required: false
+                type: boolean
+                default: false
+                description: "Is Next.js app"
+            playwright-with-deps:
+                required: false
+                type: boolean
+                default: false
+                description: "Install Playwright with system dependencies (--with-deps)"
+            use-turbo-test:
+                required: false
+                type: boolean
+                default: false
+                description: "Use 'yarn turbo test' instead of 'yarn test'"
+            e2e-build-command:
+                required: false
+                type: string
+                default: ""
+                description: "Custom build command for e2e tests (e.g., 'e2e:build', 'build')"
+            needs-env-file:
+                required: false
+                type: boolean
+                default: false
+                description: "Copy .env.dev to .env.production for next.js apps"
+            run-sonar:
+                required: false
+                type: boolean
+                default: false
+                description: "Run SonarCloud scan after tests"
+
+jobs:
+    run-tests:
+        uses: ./.github/workflows/.test-app.yml
+        secrets: inherit
+        permissions:
+            contents: read
+        with:
+            app-name: ${{ inputs.app-name }}
+            working-directory: ${{ inputs.working-directory }}
+            package-name: ${{ inputs.package-name }}
+            playwright-with-deps: ${{ inputs.playwright-with-deps }}
+            use-turbo-test: ${{ inputs.use-turbo-test }}
+            e2e-build-command: ${{ inputs.e2e-build-command }}
+            needs-env-file: ${{ inputs.needs-env-file }}
+            run-sonar: ${{ inputs.run-sonar }}
+
+    deploy-to-prod:
+        name: Deploy ${{ inputs.app-name }} to prod
+        needs: [run-tests]
+        # Skip deploy on push commits containing [skip-prod-deploy]; always run via manual dispatch
+        if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]') }}
+        uses: ./.github/workflows/.deploy-app-to-prod.yml
+        secrets: inherit
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        with:
+            app-name: ${{ inputs.app-name }}
+            working-directory: ${{ inputs.working-directory }}
+            is-next-app: ${{ inputs.is-next-app }}

@@ -1,4 +1,4 @@
-import { ApiError, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApiError, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { AxiosError } from 'axios';
 import { useFormikContext } from 'formik';
@@ -19,7 +19,7 @@ interface PersistSoknadProps {
  */
 
 function usePersistSoknad() {
-    const { logUserLoggedOut, logApiError } = useAmplitudeInstance();
+    const { logUserLoggedOut, logApiError } = useAnalyticsInstance();
     const { values: stateFormValues } = useFormikContext<SøknadFormValues>();
 
     const navigate = useNavigate();

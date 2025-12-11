@@ -1,4 +1,3 @@
-import { ErrorColored } from '@navikt/ds-icons';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
 import { erTimerGyldigInnenforAntallDager } from '@utils';
@@ -7,6 +6,7 @@ import { useIntl } from 'react-intl';
 import IconText from '../../../components/icon-text/IconText';
 import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
+import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 
 interface Props {
     uke: ArbeidstidUkerItem;
@@ -85,7 +85,12 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig }: Props) => {
             </p>
             {erEndringGyldig === false && (
                 <div style={{ marginTop: '0.25rem' }}>
-                    <IconText icon={<ErrorColored role="presentation" aria-hidden="true" />}>For mange timer</IconText>
+                    <IconText
+                        icon={
+                            <XMarkOctagonFillIcon style={{ color: '#C30000' }} role="presentation" aria-hidden="true" />
+                        }>
+                        For mange timer
+                    </IconText>
                 </div>
             )}
         </div>

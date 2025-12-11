@@ -1,0 +1,28 @@
+name: Deploy apps to intern prod
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "apps/ungdomsytelse-veileder/**/*"
+            - "server-ungdomsytelse-veileder/**/*"
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    security-events: write
+    id-token: write
+    actions: read
+
+jobs:
+    deploy-ungdomsytelse-veileder:
+        uses: ./.github/workflows/.test-and-deploy-to-intern-prod.yml
+        secrets: inherit
+        with:
+            app-name: "ungdomsytelse-veileder"
+            working-directory: "apps/ungdomsytelse-veileder"
+            package-name: "@navikt/ungdomsytelse-veileder"
+            use-turbo-test: true
+            e2e-build-command: "e2e:build"
+            run-sonar: true

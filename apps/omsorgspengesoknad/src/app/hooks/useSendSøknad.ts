@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { ApiError } from '@navikt/sif-common-query';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
+import { useMellomlagring } from './useMellomlagring';
 import { useAppIntl } from '../i18n';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import { useMellomlagring } from './useMellomlagring';
 
 export const useSendSøknad = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,7 +16,7 @@ export const useSendSøknad = () => {
     const { slettMellomlagring } = useMellomlagring();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent } = useAmplitudeInstance();
+    const { logSoknadSent } = useAnalyticsInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setIsSubmitting(true);

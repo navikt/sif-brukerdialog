@@ -21,7 +21,9 @@ jobs:
             id-token: write # required: nais/docker-build-push
         steps:
             - name: Checkout code
-              uses: actions/checkout@v5
+              uses: actions/checkout@v6
+              with:
+                  persist-credentials: false
 
             - name: Setup .yarnrc.yml
               run: |
@@ -35,11 +37,11 @@ jobs:
               uses: actions/setup-node@v6
               with:
                   node-version: 22
-                  cache: 'yarn'
+                  cache: "yarn"
             - run: yarn set version 4.x
 
             - name: Install dependencies (yarn)
-              run: yarn install
+              run: yarn install --immutable
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
@@ -65,6 +67,8 @@ jobs:
                   image_suffix: ${{inputs.app-name}}-mono
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+                  build_secrets: |
+                      PACKAGES_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
 
             - name: Deploy to dev
               uses: nais/deploy/actions/deploy@v2
@@ -73,6 +77,4 @@ jobs:
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
                   VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
-                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   IMAGE: ${{ steps.docker-push.outputs.image }}
-                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}

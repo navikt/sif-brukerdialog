@@ -1,5 +1,196 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.83
+
+## 0.3.3
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-api@0.4.81
+
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-api@0.4.80
+
+## 0.3.0
+
+### Minor Changes
+
+- Oppdatere til gjelderDelerAvMåned flagg på oppgaver for inntekt og kontroll av inntekt
+
+## 0.2.8
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.79
+
+## 0.2.7
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.78
+
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+
+## 0.2.4
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.75
+
+## 0.2.3
+
+### Patch Changes
+
+- Pakkeoppdateringer
+    - @navikt/sif-common-api@0.4.74
+
+## 0.2.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.73
+
+## 0.2.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.72
+
+## 0.2.0
+
+### Minor Changes
+
+- Regenererte codegens med mer cleanup
+
+## 0.1.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.71
+
+## 0.1.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.70
+
+## 0.1.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.69
+
+## 0.1.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.68
+
+## 0.1.41
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.67
+
+## 0.1.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.66
+
+## 0.1.39
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.65
+
+## 0.1.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.64
+
+## 0.1.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.63
+
+## 0.1.36
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.62
+
+## 0.1.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.61
+
+## 0.1.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.60
+
 ## 0.1.33
 
 ### Patch Changes

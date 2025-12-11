@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
 
 import KvitteringPage from '../../../app/pages/kvittering/KvitteringPage';
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitude';
+import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
 import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
@@ -9,7 +9,7 @@ import { withSøknadContextProvider } from '../../../storybook/decorators/withS�
 export default {
     title: 'Pages/KvitteringPage',
     component: KvitteringPage,
-    decorators: [withIntl, withRouterProvider, withAmplitudeProvider, (Story) => withSøknadContextProvider(Story)],
+    decorators: [withIntl, withRouterProvider, withAnalyticsProvider, (Story) => withSøknadContextProvider(Story)],
 } as Meta<typeof KvitteringPage>;
 
 const Template: StoryFn<typeof KvitteringPage> = () => <KvitteringPage />;

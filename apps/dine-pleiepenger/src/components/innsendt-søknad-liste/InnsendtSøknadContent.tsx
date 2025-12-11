@@ -1,12 +1,10 @@
+import { FileIcon } from '@navikt/aksel-icons';
 import { Box, Heading, Link, List } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
-import { File } from '@navikt/ds-icons';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useIntl } from 'react-intl';
+
 import { AppText } from '../../i18n';
-import { InnsendtSøknadArbeidsgiver } from '../../server/api-models/ArbeidsgivereSchema';
-import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/InnsendtSøknad';
-import { InnsendtSøknadDokument } from '../../types/InnsendtSøknadDocument';
-import { Organisasjon } from '../../types/Organisasjon';
+import { Dokument, InnsendtSøknad, InnsendtSøknadstype, Organisasjon } from '../../types';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../utils/dokumentUtils';
 import { browserEnv } from '../../utils/env';
 import { getOrganisasjonsnavnEllerOrgNummer } from '../../utils/sakUtils';
@@ -37,7 +35,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
         return false;
     };
 
-    const mapOrganisasjoner = (organisasjon: Organisasjon | InnsendtSøknadArbeidsgiver) => {
+    const mapOrganisasjoner = (organisasjon: Organisasjon) => {
         return (
             <li key={organisasjon.organisasjonsnummer}>
                 <Link
@@ -46,7 +44,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
                         søknad.søknadId,
                         organisasjon.organisasjonsnummer,
                     )}>
-                    <File title="Dokumentikon" />
+                    <FileIcon title="Dokumentikon" />
                     <AppText
                         id="dokumenterSomKanLastesNed.bekreftelse"
                         values={{
@@ -58,7 +56,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
         );
     };
 
-    const mapDokumenter = (dokument: InnsendtSøknadDokument) => {
+    const mapDokumenter = (dokument: Dokument) => {
         return (
             <li key={dokument.dokumentInfoId}>
                 <Link
@@ -66,7 +64,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
                     href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(
                         dokument,
                     )}`}>
-                    <File title="Dokumentikon" />
+                    <FileIcon title="Dokumentikon" />
                     <span>{`${dokument.tittel} (PDF)`}</span>
                 </Link>
             </li>
@@ -76,7 +74,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
     return (
         <>
             <Box>
-                <Heading size="xsmall" level="4" spacing={true}>
+                <Heading size="xsmall" level="3" spacing={true}>
                     <AppText id={`dokumenterTittel.${søknad.søknadstype}`} />
                 </Heading>
                 {søknad.dokumenter && søknad.dokumenter.length > 0 && (
@@ -89,7 +87,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
 
             {søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN && harArbeidsgiver() && (
                 <Box className="mt-8">
-                    <Heading size="xsmall" level="4" spacing={true}>
+                    <Heading size="xsmall" level="3" spacing={true}>
                         <AppText id="bekreftelseTilArbeidsgiver.title" />
                     </Heading>
                     <p>

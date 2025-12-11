@@ -1,5 +1,90 @@
 # @sif/eslint-config
 
+## 1.1.78
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 1.1.77
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 1.1.76
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 1.1.75
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.74
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 1.1.73
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 1.1.72
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 1.1.71
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.70
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.69
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 1.1.68
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 1.1.67
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.66
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.65
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 1.1.64
 
 ### Patch Changes

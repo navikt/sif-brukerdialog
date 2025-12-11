@@ -1,5 +1,96 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.3.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 0.3.3
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.3.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.3.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 0.3.0
+
+### Minor Changes
+
+- Regenererte codegens med mer cleanup
+
+## 0.2.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.2.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.2.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.2.5
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.2.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 0.2.0
 
 ### Minor Changes

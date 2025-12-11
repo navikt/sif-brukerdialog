@@ -3,7 +3,7 @@
     "team": "dusseldorf",
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
-    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "amplitude.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "telemetry.nav.no"],
     "accessPolicyOutApps": [
         { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
         { "application": "sif-innsyn-api", "namespace": "dusseldorf" }
@@ -14,14 +14,23 @@
     "namespace": "dusseldorf",
     "minReplicas": 1,
     "maxReplicas": 1,
+    "resources": {
+        "requests": {
+            "memory": "64Mi",
+            "cpu": "20m"
+        },
+        "limits": {
+            "memory": "256Mi"
+        }
+    },
     "env": {
         "ENV": "dev",
         "APP_VERSION": "dev",
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
 
-        "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
-        "SIF_PUBLIC_USE_AMPLITUDE": "true",
+        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+        "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
 
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",

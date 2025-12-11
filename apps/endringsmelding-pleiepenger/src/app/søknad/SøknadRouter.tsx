@@ -1,5 +1,5 @@
 import { BodyShort, Button, VStack } from '@navikt/ds-react';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import {
@@ -34,7 +34,7 @@ const SøknadRouter = () => {
     } = useSøknadContext();
 
     const { slettMellomlagring } = useMellomlagring();
-    const { logInfo } = useAmplitudeInstance();
+    const { logInfo } = useAnalyticsInstance();
 
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 

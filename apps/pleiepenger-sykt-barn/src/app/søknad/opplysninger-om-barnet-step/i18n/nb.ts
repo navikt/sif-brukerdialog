@@ -23,23 +23,22 @@ export const omBarnetMessages_nb = {
     'steg.omBarnet.relasjon.spm': 'Hvilken relasjon har du til barnet?',
     'steg.omBarnet.relasjonAnnet.spm':
         'Beskriv hvem du er i forhold til barnet, og hvilken tilsynsrolle du har i perioden du søker for',
-    'steg.omBarnet.relasjonAnnet.info.tittel': 'Hva betyr dette?',
+    'steg.omBarnet.relasjonAnnet.spm.tekst':
+        'Du må ikke skrive noe om andre enn deg selv og barnet, for eksempel skal du ikke skrive hvorfor du hjelper foreldre med omsorgen for barnet.',
+
+    'steg.omBarnet.relasjonAnnet.info.tittel': 'Hvorfor trenger vi denne informasjonen?',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.1':
-        'I noen tilfeller kan ikke den eller de som har den daglige omsorgen for barnet ha tilsyn med barn som trenger tilsyn og pleie hele tiden. Da kan andre personer hjelpe til med dette. Andre personer kan for eksempel være en besteforelder, venn, nabo, tante eller onkel.',
+        'I tilfeller der den eller de som har den daglige omsorgen for barnet ikke kan ha tilsyn med et barn som trenger tilsyn og pleie hele tiden, kan andre personer hjelpe til med dette. Det kan for eksempel være en besteforelder, venn, nabo, tante eller onkel.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.2':
-        'Eksempel 1: Mor/far kan ikke selv følge barnet til sykehuset for utredning eller behandling. Da kan andre personer følge barnet til sykehuset, og ha tilsyn med barnet så lenge oppholdet på sykehuset varer.',
+        'For å vurdere om du kan ha rett til pleiepenger, må vi vite mer om hvilken tilsynsrolle du har overfor barnet i perioden du søker for. Vi skal ikke ha opplysninger om hva andre omsorgspersoner gjør, kun opplysninger om din rolle overfor barnet du søker for.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.3':
-        'Eksempel 2: Hverken mor eller far har mulighet til å pleie barnet hjemme, da kan andre personer gjøre dette og ha tilsyn med barnet i perioden det gjelder. ',
+        'Eksempel: Foreldrene kan ikke være tilstede hele tiden på sykehuset, på grunn av omsorg for andre barn. Du beskriver da hvilken relasjon du har til barnet, og hvor mye du er sammen med barnet på sykehuset.',
 
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
     'infoForFarVedNyttBarn.info.1':
         'Hvis du og moren til barnet er gift blir du automatisk registrert som far til barnet. Hvis dere ikke er gift må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
     'infoForFarVedNyttBarn.info.2':
         'Uavhengig av hva som er situasjonen din, kan du fortsette å fylle ut søknaden og sende den inn.',
-
-    'infoSøskensaker.tittel': 'Nye retningslinjer hvis du pleier flere barn',
-    'infoSøskensaker.info.1': 'Hvis du pleier flere barn samtidig, er det nå nye retningslinjer for hvordan du søker.',
-    'infoSøskensaker.lenke': 'Les mer om hvordan du søker her.',
 
     'validation.barnetSøknadenGjelder.noValue': 'Du må velge hvilket barn søknaden gjelder.',
     'validation.barnetsNavn.stringHasNoValue': 'Du må skrive inn navnet på barnet.',

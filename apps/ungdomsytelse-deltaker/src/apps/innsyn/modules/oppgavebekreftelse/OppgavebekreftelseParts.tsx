@@ -11,6 +11,7 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
+import RegelverkOgInnsynReadMore from '../oppgaver/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {
@@ -93,6 +94,9 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                             <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ deltakerNavn }} />
                         </Heading>
                         <Box maxWidth="90%">{children}</Box>
+                        <Box marginBlock="0 4">
+                            <RegelverkOgInnsynReadMore />
+                        </Box>
                     </VStack>
                 </GuidePanel>
             </section>
@@ -130,14 +134,12 @@ const Kvittering = ({ children }: KvitteringProps) => {
 
     return (
         <>
-            <VStack gap="4">
-                <Alert variant="success" tabIndex={-1} ref={alertRef}>
-                    <Heading level="2" size="small" spacing>
-                        <AppText id="oppgavebekreftelse.kvittering.tittel" />
-                    </Heading>
-                    {children}
-                </Alert>
-            </VStack>
+            <Alert variant="success" tabIndex={-1} ref={alertRef}>
+                <Heading level="2" size="small" spacing>
+                    <AppText id="oppgavebekreftelse.kvittering.tittel" />
+                </Heading>
+                {children}
+            </Alert>
             <div>
                 <ForsideLenkeButton />
             </div>

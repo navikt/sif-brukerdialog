@@ -1,9 +1,8 @@
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
 //     enabled: process.env.ANALYZE === 'true',
 // });
-import * as path from 'path';
-
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
+import * as path from 'path';
 
 const appDirectives = {
     'default-src': ["'self'"],
@@ -29,14 +28,20 @@ const nextConfig = {
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
     pageExtensions: ['page.tsx', 'api.ts'],
     transpilePackages: ['tailwind-merge'],
-    outputFileTracingRoot: path.join(__dirname, '../..'),
+    outputFileTracingRoot: path.resolve(__dirname, '../..'),
+    outputFileTracingIncludes: {
+        '/*': [
+            '../../node_modules/async-function/**/*',
+            '../../node_modules/async-generator-function/**/*',
+            '../../node_modules/generator-function/**/*',
+        ],
+    },
 
     experimental: {
         optimizePackageImports: ['@navikt/aksel-icons', '@navikt/ds-react'],
     },
     eslint: {
         ignoreDuringBuilds: true,
-        // dirs: ['src'],
     },
 
     redirects: async () => [
@@ -67,4 +72,4 @@ const nextConfig = {
     productionBrowserSourceMaps: true,
 };
 
-module.exports = nextConfig;
+export default nextConfig;

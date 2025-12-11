@@ -25,7 +25,8 @@ export const zDeltakelseDto = z.object({
     deltaker: zDeltakerDto,
     fraOgMed: z.iso.date(),
     tilOgMed: z.optional(z.iso.date()),
-    søktTidspunkt: z.optional(z.iso.datetime()),
+    erSlettet: z.boolean(),
+    søktTidspunkt: z.optional(z.iso.datetime({ local: true })),
 });
 
 export const zDeltakelseUtmeldingDto = z.object({
@@ -37,13 +38,13 @@ export const zDeltakelseInnmeldingDto = z.object({
     startdato: z.iso.date(),
 });
 
+export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
+
 export const zNavn = z.object({
     fornavn: z.string(),
     mellomnavn: z.optional(z.string()),
     etternavn: z.string(),
 });
-
-export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
 
 export const zDeltakerPersonalia = z.object({
     id: z.optional(z.uuid()),
@@ -67,7 +68,7 @@ export const zEndringstype = z.enum([
 export const zRevisjonstype = z.enum(['OPPRETTET', 'ENDRET', 'SLETTET', 'UKJENT']);
 
 export const zDeltakelseHistorikkDto = z.object({
-    tidspunkt: z.iso.datetime(),
+    tidspunkt: z.iso.datetime({ local: true }),
     endringstype: zEndringstype,
     revisjonstype: zRevisjonstype,
     endring: z.string(),

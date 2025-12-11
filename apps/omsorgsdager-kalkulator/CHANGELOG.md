@@ -1,5 +1,120 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.13.17
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 3.13.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 3.13.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.14
+
+### Patch Changes
+
+- Next 15.5.7
+
+## 3.13.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.12
+
+### Patch Changes
+
+- Justere nais resources
+
+## 3.13.11
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
+## 3.13.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 3.13.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.13.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.13.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.5
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+
+## 3.13.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 3.13.3
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 3.13.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.0
+
+### Minor Changes
+
+- Legge til tre moduler i outputFileTracingIncludes. De kom ikke med i bygget server feilet med melding om manglende filer.
+
+## 3.12.55
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 3.12.54
 
 ### Patch Changes

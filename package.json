@@ -10,17 +10,18 @@
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "dependencies": {
-        "@changesets/cli": "2.29.7",
-        "tailwindcss": "4.1.14",
-        "turbo": "2.5.8"
+        "@changesets/cli": "2.29.8",
+        "glob": "13.0.0",
+        "tailwindcss": "4.1.17",
+        "turbo": "2.6.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "16.2.4",
-        "prettier": "3.6.2",
+        "lint-staged": "16.2.7",
+        "prettier": "3.7.4",
         "typescript": "5.9.3"
     },
     "lint-staged": {
@@ -52,15 +53,12 @@
         "server",
         "server-ungdomsytelse-veileder"
     ],
-    "overrides": {
-        "glob-parent": ">=5.1.2"
-    },
-    "private": true,
     "packageManager": "yarn@4.10.3",
+    "private": true,
     "resolutions": {
-        "@swc/core": "1.5.7",
-        "react": "19.1.0",
-        "react-dom": "19.1.0",
-        "@types/react": "19.1.7"
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+        "glob@10.4.5": "10.5.0",
+        "glob@npm10.4.5": "10.5.0"
     }
 }

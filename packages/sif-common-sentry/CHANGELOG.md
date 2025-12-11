@@ -1,5 +1,102 @@
 # @navikt/sif-common-sentry
 
+## 0.28.58
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 0.28.57
+
+### Patch Changes
+
+- 81a4e75: Forbedre sentry-filter
+
+## 0.28.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 0.28.55
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.28.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 0.28.52
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.28.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.28.50
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.28.47
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.28.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 0.28.42
 
 ### Patch Changes

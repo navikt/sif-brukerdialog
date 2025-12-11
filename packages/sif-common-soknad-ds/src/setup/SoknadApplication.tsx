@@ -5,7 +5,7 @@ import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 
 import { SanityConfig } from '@navikt/appstatus-react-ds/src/types';
-import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import { AnalyticsProvider } from '@navikt/sif-common-analytics';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
 import SifAppWrapper from '@navikt/sif-common-core-ds/src/components/sif-app-wrapper/SifAppWrapper';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
@@ -30,7 +30,7 @@ import ErrorPage from '../pages/error-page/ErrorPage';
 
 interface Props {
     appVersion: string;
-    /** Key used in amplitude and sentry logs */
+    /** Key used in analytics and sentry logs */
     appKey: string;
     /** App name - not visual to user */
     appName: string;
@@ -42,10 +42,10 @@ interface Props {
     intlMessages: MessageFileFormat;
     /** Toggle on/off languageselector in decorator */
     useLanguageSelector?: boolean;
-    /** If amplitude logging is active or not*/
-    useAmplitude: boolean;
-    /** Amplitude project api key */
-    amplitudeApiKey: string;
+    /** If analytics logging is active or not*/
+    useAnalytics: boolean;
+    /** Analytics project api key */
+    analyticsApiKey: string;
     /** Faro logging */
     useFaro?: boolean;
     naisFrontendTelemetryCollectorUrl?: string;
@@ -67,8 +67,8 @@ const SoknadApplication = ({
     appStatus,
     publicPath,
     appKey,
-    useAmplitude,
-    amplitudeApiKey,
+    useAnalytics,
+    analyticsApiKey,
     useLanguageSelector,
     children,
     appTitle,
@@ -94,7 +94,7 @@ const SoknadApplication = ({
                 appVersion={appVersion}
                 isActive={useFaro}>
                 <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
-                    <AmplitudeProvider apiKey={amplitudeApiKey} applicationKey={appKey} isActive={useAmplitude}>
+                    <AnalyticsProvider apiKey={analyticsApiKey} applicationKey={appKey} isActive={useAnalytics}>
                         <IntlProvider
                             locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
                             messages={localeMessages}>
@@ -117,7 +117,7 @@ const SoknadApplication = ({
                                 <DevBranchInfo />
                             </BrowserRouter>
                         </IntlProvider>
-                    </AmplitudeProvider>
+                    </AnalyticsProvider>
                 </ErrorBoundary>
             </FaroProvider>
         </SifAppWrapper>

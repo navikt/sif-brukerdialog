@@ -1,9 +1,9 @@
+import { PlusIcon } from '@navikt/aksel-icons';
 import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
-import { Add } from '@navikt/ds-icons';
+
 import { AppText } from '../../i18n';
-import { InnsendtSøknad } from '../../types/InnsendtSøknad';
+import { InnsendtSøknad } from '../../types';
 import InnsendtSøknadContent from './InnsendtSøknadContent';
 import InnsendtSøknadTitle from './InnsendtSøknadTitle';
 
@@ -64,7 +64,7 @@ const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSøknader}>
                         <HStack gap="2" align="center" wrap={false}>
-                            <Add role="presentation" />
+                            <PlusIcon role="presentation" />
                             <AppText id="innsendtSøknadListe.visFlereInnsendinger" />
                         </HStack>
                     </Button>
@@ -72,25 +72,6 @@ const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
             ) : null}
         </VStack>
     );
-};
-
-export const SøknadListeSkeleton = ({ rows = 3 }: { rows: number }) => {
-    const skeleton: any[] = [];
-    for (let i = 0; i < rows; i++) {
-        const card = (
-            <Skeleton
-                key={i}
-                height="5.9rem"
-                baseColor="#ffffff"
-                highlightColor="#99C4DD"
-                style={{ borderRadius: '.5rem' }}
-                containerClassName="flex"
-                className="border border-gray-500"
-            />
-        );
-        skeleton.push(card);
-    }
-    return <VStack gap="2">{skeleton}</VStack>;
 };
 
 export default InnsendtSøknadListe;

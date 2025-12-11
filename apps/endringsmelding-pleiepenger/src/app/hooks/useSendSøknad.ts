@@ -1,6 +1,6 @@
 import { useSøknadContext } from '@hooks';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { SøknadApiData } from '@types';
 import { appSentryLogger } from '@utils';
 import { AxiosError, isAxiosError } from 'axios';
@@ -25,7 +25,7 @@ export const useSendSøknad = () => {
     const { locale } = useAppIntl();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent, logSoknadFailed, logInfo } = useAmplitudeInstance();
+    const { logSoknadSent, logSoknadFailed, logInfo } = useAnalyticsInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setIsSubmitting(true);

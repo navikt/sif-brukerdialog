@@ -1,5 +1,102 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 0.3.0
+
+### Minor Changes
+
+- Oppdatere til gjelderDelerAvMåned flagg på oppgaver for inntekt og kontroll av inntekt
+
+## 0.2.3
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.2.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 0.2.0
+
+### Minor Changes
+
+- Regenererte codegens med mer cleanup
+
+## 0.1.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.1.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.1.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.1.31
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.1.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 0.1.26
 
 ### Patch Changes

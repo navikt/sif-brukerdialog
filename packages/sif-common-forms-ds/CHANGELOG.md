@@ -1,5 +1,292 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.36
+    - @navikt/sif-common-core-ds@10.3.43
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-validation@1.0.18
+    - @navikt/sif-common-ui@0.11.44
+
+## 21.0.44
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.42
+- @navikt/sif-common-ui@0.11.43
+
+## 21.0.43
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-core-ds@10.3.41
+    - @navikt/sif-common-ui@0.11.42
+
+## 21.0.42
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-formik-ds@2.5.35
+    - @navikt/sif-common-core-ds@10.3.40
+    - @navikt/sif-common-ui@0.11.41
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-validation@1.0.17
+
+## 21.0.41
+
+### Patch Changes
+
+- Tekstoppdateringer i forbindelse med annet barn,. Informere bedre om hvilken informasjon vi ønsker
+
+## 21.0.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.34
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-common-ui@0.11.40
+    - @navikt/sif-validation@1.0.17
+
+## 21.0.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.33
+    - @navikt/sif-common-core-ds@10.3.38
+    - @navikt/sif-common-ui@0.11.39
+    - @navikt/sif-common-utils@3.49.52
+    - @navikt/sif-validation@1.0.17
+
+## 21.0.38
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.37
+- @navikt/sif-common-ui@0.11.38
+
+## 21.0.37
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.36
+- @navikt/sif-common-ui@0.11.37
+
+## 21.0.36
+
+### Patch Changes
+
+- Updated dependencies [d80e3cd]
+    - @navikt/sif-common-formik-ds@2.5.32
+    - @navikt/sif-common-core-ds@10.3.35
+    - @navikt/sif-common-ui@0.11.36
+
+## 21.0.35
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.31
+    - @navikt/sif-common-core-ds@10.3.34
+    - @navikt/sif-common-utils@3.49.52
+    - @navikt/sif-validation@1.0.17
+    - @navikt/sif-common-ui@0.11.35
+
+## 21.0.34
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.9
+    - @navikt/sif-common-ui@0.11.34
+    - @navikt/sif-common-core-ds@10.3.33
+
+## 21.0.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.30
+    - @navikt/sif-common-core-ds@10.3.32
+    - @navikt/sif-common-utils@3.49.51
+    - @navikt/sif-validation@1.0.16
+    - @navikt/sif-common-ui@0.11.33
+
+## 21.0.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.29
+    - @navikt/sif-common-core-ds@10.3.31
+    - @navikt/sif-common-utils@3.49.50
+    - @navikt/sif-validation@1.0.15
+    - @navikt/sif-common-ui@0.11.32
+
+## 21.0.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.28
+    - @navikt/sif-common-core-ds@10.3.30
+    - @navikt/sif-common-utils@3.49.49
+    - @navikt/sif-validation@1.0.14
+    - @navikt/sif-common-ui@0.11.31
+
+## 21.0.30
+
+### Patch Changes
+
+- Updated dependencies [fe1a62a]
+    - @navikt/sif-common-core-ds@10.3.29
+    - @navikt/sif-common-ui@0.11.30
+
+## 21.0.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.27
+    - @navikt/sif-common-core-ds@10.3.28
+    - @navikt/sif-common-utils@3.49.48
+    - @navikt/sif-validation@1.0.13
+    - @navikt/sif-common-ui@0.11.29
+
+## 21.0.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.26
+    - @navikt/sif-common-core-ds@10.3.27
+    - @navikt/sif-common-utils@3.49.47
+    - @navikt/sif-validation@1.0.12
+    - @navikt/sif-common-ui@0.11.28
+
+## 21.0.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.25
+    - @navikt/sif-common-core-ds@10.3.26
+    - @navikt/sif-common-utils@3.49.46
+    - @navikt/sif-validation@1.0.11
+    - @navikt/sif-common-ui@0.11.27
+
+## 21.0.26
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.24
+    - @navikt/sif-common-core-ds@10.3.25
+    - @navikt/sif-common-ui@0.11.26
+
+## 21.0.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.24
+    - @navikt/sif-common-env@0.1.8
+    - @navikt/sif-common-formik-ds@2.5.23
+    - @navikt/sif-common-ui@0.11.25
+    - @navikt/sif-common-utils@3.49.45
+    - @navikt/sif-validation@1.0.10
+
+## 21.0.24
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.22
+    - @navikt/sif-common-core-ds@10.3.23
+    - @navikt/sif-common-utils@3.49.44
+    - @navikt/sif-common-ui@0.11.24
+    - @navikt/sif-validation@1.0.9
+
+## 21.0.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.21
+    - @navikt/sif-common-core-ds@10.3.22
+    - @navikt/sif-common-utils@3.49.43
+    - @navikt/sif-validation@1.0.9
+    - @navikt/sif-common-ui@0.11.23
+
+## 21.0.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.20
+    - @navikt/sif-common-core-ds@10.3.21
+    - @navikt/sif-common-utils@3.49.42
+    - @navikt/sif-validation@1.0.8
+    - @navikt/sif-common-ui@0.11.22
+
+## 21.0.21
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.19
+    - @navikt/sif-common-core-ds@10.3.20
+    - @navikt/sif-common-ui@0.11.21
+
+## 21.0.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.18
+    - @navikt/sif-common-core-ds@10.3.19
+    - @navikt/sif-common-utils@3.49.41
+    - @navikt/sif-validation@1.0.7
+    - @navikt/sif-common-ui@0.11.20
+
+## 21.0.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.17
+    - @navikt/sif-common-core-ds@10.3.18
+    - @navikt/sif-common-utils@3.49.40
+    - @navikt/sif-common-ui@0.11.19
+    - @navikt/sif-validation@1.0.6
+
 ## 21.0.18
 
 ### Patch Changes

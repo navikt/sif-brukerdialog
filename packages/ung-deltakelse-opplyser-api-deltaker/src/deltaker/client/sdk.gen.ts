@@ -71,22 +71,12 @@ export class Deltakelse {
             MarkerDeltakelseSomSøktErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zMarkerDeltakelseSomSøktData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zMarkerDeltakelseSomSøktData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zMarkerDeltakelseSomSøktResponse.parseAsync(data);
-            },
+            responseValidator: async (data) => await zMarkerDeltakelseSomSøktResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/{id}/marker-har-sokt',
             ...options,
@@ -100,22 +90,12 @@ export class Deltakelse {
         options: Options<HentDeltakersOppgaveData, ThrowOnError>,
     ) {
         return (options.client ?? client).get<HentDeltakersOppgaveResponses, HentDeltakersOppgaveErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentDeltakersOppgaveData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zHentDeltakersOppgaveData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentDeltakersOppgaveResponse.parseAsync(data);
-            },
+            responseValidator: async (data) => await zHentDeltakersOppgaveResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}',
             ...options,
@@ -129,22 +109,12 @@ export class Deltakelse {
         options: Options<MarkerOppgaveSomLøstData, ThrowOnError>,
     ) {
         return (options.client ?? client).get<MarkerOppgaveSomLøstResponses, MarkerOppgaveSomLøstErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zMarkerOppgaveSomLøstData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zMarkerOppgaveSomLøstData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zMarkerOppgaveSomLøstResponse.parseAsync(data);
-            },
+            responseValidator: async (data) => await zMarkerOppgaveSomLøstResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/løst',
             ...options,
@@ -162,22 +132,12 @@ export class Deltakelse {
             MarkerOppgaveSomLukketErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zMarkerOppgaveSomLukketData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zMarkerOppgaveSomLukketData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zMarkerOppgaveSomLukketResponse.parseAsync(data);
-            },
+            responseValidator: async (data) => await zMarkerOppgaveSomLukketResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/lukk',
             ...options,
@@ -195,22 +155,12 @@ export class Deltakelse {
             MarkerOppgaveSomÅpnetErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zMarkerOppgaveSomÅpnetData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zMarkerOppgaveSomÅpnetData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zMarkerOppgaveSomÅpnetResponse.parseAsync(data);
-            },
+            responseValidator: async (data) => await zMarkerOppgaveSomÅpnetResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/apnet',
             ...options,
@@ -228,22 +178,12 @@ export class Deltakelse {
             HentAlleMineDeltakelserErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zHentAlleMineDeltakelserData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zHentAlleMineDeltakelserData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentAlleMineDeltakelserResponse.parseAsync(data);
-            },
+            responseValidator: async (data) => await zHentAlleMineDeltakelserResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/hent/alle',
             ...options,
@@ -259,22 +199,12 @@ export class Deltaker {
         options?: Options<HentKontonummerData, ThrowOnError>,
     ) {
         return (options?.client ?? client).get<HentKontonummerResponses, HentKontonummerErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentKontonummerData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zHentKontonummerData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentKontonummerResponse.parseAsync(data);
-            },
+            responseValidator: async (data) => await zHentKontonummerResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltaker/hent-kontonummer',
             ...options,

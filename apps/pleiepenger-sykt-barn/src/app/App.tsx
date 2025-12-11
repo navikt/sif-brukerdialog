@@ -26,8 +26,8 @@ const {
     SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     APP_VERSION,
-    SIF_PUBLIC_USE_AMPLITUDE,
-    SIF_PUBLIC_AMPLITUDE_API_KEY,
+    SIF_PUBLIC_USE_ANALYTICS,
+    SIF_PUBLIC_ANALYTICS_API_KEY,
 } = appEnv;
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
@@ -61,9 +61,9 @@ const App = () => {
                 appStatus={{ sanityConfig: sanityConfig }}
                 intlMessages={applicationIntlMessages}
                 useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
-                useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
+                useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
                 publicPath={PUBLIC_PATH}
-                amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
+                analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}
                 onResetSoknad={handleResetSoknad}>
                 <SoknadApplicationCommonRoutes
                     onReset={() => {

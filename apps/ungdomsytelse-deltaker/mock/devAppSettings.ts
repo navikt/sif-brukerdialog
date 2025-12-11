@@ -8,13 +8,13 @@ export const getDevAppSettings = (): AppEnv => ({
 
     VELG_SCENARIO: 'on',
 
-    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
+    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false',
     SIF_PUBLIC_LOGIN_URL: '#',
     SIF_PUBLIC_MINSIDE_URL: '#',
-    SIF_PUBLIC_USE_AMPLITUDE: 'true',
+    SIF_PUBLIC_USE_ANALYTICS: 'true',
     SIF_PUBLIC_USE_FARO: 'true',
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '#',
     SIF_PUBLIC_URL_DOKUMENTARKIV: '#',
@@ -23,6 +23,8 @@ export const getDevAppSettings = (): AppEnv => ({
     SIF_PUBLIC_URL_PERSONVERN: '#',
     SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN: '#',
     SIF_PUBLIC_URL_SKATTEETATEN: '#',
+    SIF_PUBLIC_URL_SKATTEKORT: '#',
+    SIF_PUBLIC_URL_LOVDATA_INNTEKT: '#',
     SIF_PUBLIC_URL_ENDRE_KONTONUMMER: '#',
     SIF_PUBLIC_URL_SKRIV_TIL_OSS: '#',
 

@@ -1,5 +1,17 @@
 # @navikt/sif-common-hooks
 
+## 0.3.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 0.3.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
 ## 0.3.6
 
 ### Patch Changes

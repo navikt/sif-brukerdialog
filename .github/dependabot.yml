@@ -4,6 +4,8 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 30
     ignore:
       - dependency-name: "*"
@@ -35,6 +37,8 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+    cooldown:
+      default-days: 7
     groups:
       github:
         patterns:
@@ -53,12 +57,13 @@ updates:
       - "/apps/opplaringspenger-soknad"
       - "/apps/pleiepenger-i-livets-sluttfase-soknad"
       - "/apps/pleiepenger-sykt-barn"
-      - "/apps/sif-demo-app"
       - "/apps/sif-ettersending"
       - "/apps/ungdomsytelse-deltaker"
       - "/apps/ungdomsytelse-veileder"
     schedule:
       interval: daily
+    cooldown:
+      default-days: 7
     groups:
       docker:
         patterns:

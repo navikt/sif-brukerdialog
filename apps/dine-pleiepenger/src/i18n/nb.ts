@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 export const nb = {
-    'velgSak.dokumentTittel': 'Dine pleiepenger for sykt barn - velg sak',
-    'velgSak.tittel': 'Dine pleiepengesaker',
+    'velgSak.dokumentTittel': 'Velg sak - Dine pleiepenger for sykt barn',
+    'velgSak.tittel': 'Velg sak',
     'velgSak.barn.fdato': 'Født {dato}',
     'velgSak.barn.anonymisert': 'Pleietrengende født {dato}',
     'forside.dokumentTittel': 'Dine pleiepenger for sykt barn',
@@ -72,12 +73,8 @@ export const nb = {
         'Vi sjekker om vi har fått legeerklæring fra deg. Hvis du ikke sendte den sammen med søknaden din, må du ettersende den til oss så snart du kan.',
 
     'hvaSkjerInfo.inntektsmelding.tittel': 'Inntektsmelding fra arbeidsgiver',
-    'hvaSkjerInfo.inntektsmelding.avsnitt.1':
-        'Hvis du er arbeidstaker, ser vi om arbeidsgiver har sendt oss inntektsmelding. Den trenger vi hvis du søker for første gang, eller det er mer enn fire uker opphold i perioden med pleiepenger.',
-    'hvaSkjerInfo.inntektsmelding.avsnitt.2.1':
-        'Kontakt arbeidsgiveren din for å sikre at de sender inntektsmeldingen til oss. Du kan henvise arbeidsgiver til ',
-    'hvaSkjerInfo.inntektsmelding.avsnitt.2.2': 'nav.no/arbeidsgiver/pleiepenger-barn',
-    'hvaSkjerInfo.inntektsmelding.avsnitt.2.3': ' hvis de trenger mer informasjon.',
+    'hvaSkjerInfo.inntektsmelding.tekst':
+        'Vi trenger inntektsmelding hvis du søker for første gang, eller det er mer enn fire uker opphold i perioden med pleiepenger. Hvis du er arbeidstaker, får arbeidsgiver varsel om å sende inntektsmelding tidligst fire uker før første fraværsdag. Kontakt arbeidsgiver for å sikre at de sender inntektsmeldingen til oss. Du kan henvise arbeidsgiver til <Link>nav.no/arbeidsgiver/pleiepenger-barn</Link> hvis de trenger mer informasjon.',
 
     'hvaSkjerInfo.behandling.tittel': 'Vi behandler søknaden din',
     'hvaSkjerInfo.behandling':
@@ -93,11 +90,6 @@ export const nb = {
         'Hvis du skal få pleiepengene direkte fra Nav, utbetaler vi innen den 25. i måneden. Hvis du skal ha etterbetalt pleiepenger for måneder bakover i tid, er de vanligvis på konto innen 5 virkedager fra du fikk svar på søknaden. Du finner ',
     'hvaSkjerInfo.utbetaling.2': 'oversikt over utbetalingene dine her',
     'hvaSkjerInfo.utbetaling.3': '.',
-
-    'påbegyntSøknad.info.title': 'Gå til påbegynt søknad',
-    'påbegyntSøknad.info': 'Lagres til og med {datoNårSlettes}',
-    'påbegyntEndring.info.title': 'Gå til påbegynt endringsmelding',
-    'påbegyntEndring.info': 'Lagres til og med {datoNårSlettes}',
 
     'dineInnsendteSøknader.tittel': 'Dine søknader, endringer og ettersendelser',
 

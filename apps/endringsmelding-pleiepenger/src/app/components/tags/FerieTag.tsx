@@ -1,7 +1,7 @@
-import { Vacation, Warning } from '@navikt/ds-icons';
 import { TagProps } from '@navikt/ds-react';
 
 import IconTag from './icon-tag/IconTag';
+import { ExclamationmarkTriangleIcon, ParasolBeachIcon } from '@navikt/aksel-icons';
 
 interface Props extends Omit<TagProps, 'variant'> {
     type?: 'fjernet' | 'registrert';
@@ -13,7 +13,13 @@ const FerieTag = (props: Props) => {
         <IconTag
             {...rest}
             variant={type === 'registrert' ? 'success' : 'warning'}
-            icon={type === 'registrert' ? <Vacation role="presentation" /> : <Warning role="presentation" />}>
+            icon={
+                type === 'registrert' ? (
+                    <ParasolBeachIcon role="presentation" />
+                ) : (
+                    <ExclamationmarkTriangleIcon role="presentation" />
+                )
+            }>
             {children}
         </IconTag>
     );

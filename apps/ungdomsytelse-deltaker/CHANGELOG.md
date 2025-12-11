@@ -1,5 +1,478 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.4
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.4
+    - @navikt/sif-common-soknad-ds@26.1.27
+    - @navikt/sif-common-forms-ds@21.0.45
+    - @navikt/sif-common-core-ds@10.3.43
+    - @navikt/sif-common-faro@0.2.10
+    - @navikt/sif-common-api@0.4.83
+    - @navikt/sif-common-ui@0.11.44
+    - @navikt/ung-common@0.0.85
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.3
+
+## 1.5.28
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+- @navikt/sif-common-soknad-ds@26.1.26
+- @navikt/sif-common-core-ds@10.3.42
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.3
+- @navikt/sif-common-forms-ds@21.0.44
+- @navikt/sif-common-ui@0.11.43
+- @navikt/ung-common@0.0.84
+
+## 1.5.27
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-core-ds@10.3.41
+    - @navikt/sif-common-api@0.4.81
+    - @navikt/sif-common-forms-ds@21.0.43
+    - @navikt/sif-common-soknad-ds@26.1.25
+    - @navikt/sif-common-ui@0.11.42
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.2
+    - @navikt/ung-common@0.0.83
+
+## 1.5.26
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-soknad-ds@26.1.24
+    - @navikt/sif-common-forms-ds@21.0.42
+    - @navikt/sif-common-core-ds@10.3.40
+    - @navikt/sif-common-api@0.4.80
+    - @navikt/sif-common-ui@0.11.41
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.3
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-faro@0.2.9
+    - @navikt/ung-common@0.0.82
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.1
+
+## 1.5.25
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.0
+    - @navikt/ung-common@0.0.81
+- Updated dependencies
+    - @navikt/sif-common-forms-ds@21.0.41
+    - @navikt/sif-common-soknad-ds@26.1.23
+
+## 1.5.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-soknad-ds@26.1.22
+    - @navikt/sif-common-forms-ds@21.0.40
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-faro@0.2.9
+    - @navikt/sif-common-api@0.4.79
+    - @navikt/sif-common-ui@0.11.40
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.3
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/ung-common@0.0.80
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.8
+
+## 1.5.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.21
+    - @navikt/sif-common-forms-ds@21.0.39
+    - @navikt/sif-common-core-ds@10.3.38
+    - @navikt/sif-common-api@0.4.78
+    - @navikt/sif-common-ui@0.11.39
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.3
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.2
+    - @navikt/sif-common-faro@0.2.8
+    - @navikt/ung-common@0.0.79
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.7
+
+## 1.5.22
+
+### Patch Changes
+
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+    - @navikt/sif-common-core-ds@10.3.37
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.6
+    - @navikt/sif-common-forms-ds@21.0.38
+    - @navikt/sif-common-soknad-ds@26.1.20
+    - @navikt/sif-common-ui@0.11.38
+    - @navikt/ung-common@0.0.78
+
+## 1.5.21
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+    - @navikt/sif-common-core-ds@10.3.36
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.5
+    - @navikt/sif-common-forms-ds@21.0.37
+    - @navikt/sif-common-soknad-ds@26.1.19
+    - @navikt/sif-common-ui@0.11.37
+    - @navikt/ung-common@0.0.77
+
+## 1.5.20
+
+### Patch Changes
+
+- d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
+    - Justere workflows for deploy
+    - Skru av prometheus metrics - var ikke brukt
+    - Korrigere dependencies pga --immutable
+    - Forenkle getDisabledDates pga ts warning
+- Updated dependencies [d80e3cd]
+    - @navikt/sif-common-soknad-ds@26.1.18
+    - @navikt/sif-common-core-ds@10.3.35
+    - @navikt/sif-common-api@0.4.75
+    - @navikt/sif-common-forms-ds@21.0.36
+    - @navikt/sif-common-ui@0.11.36
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.4
+    - @navikt/ung-common@0.0.76
+
+## 1.5.19
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.3
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.3
+    - @navikt/sif-common-soknad-ds@26.1.17
+    - @navikt/sif-common-forms-ds@21.0.35
+    - @navikt/sif-common-core-ds@10.3.34
+    - @navikt/ung-common@0.0.75
+    - @navikt/sif-common-api@0.4.74
+    - @navikt/sif-common-ui@0.11.35
+
+## 1.5.18
+
+### Patch Changes
+
+- Erstatte begrepet amplitude med analytics. Ingen logikk forandring. Dette er på grunn av at amplitude fases ut.
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.16
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-env@0.1.9
+    - @navikt/sif-common-ui@0.11.34
+    - @navikt/sif-common-core-ds@10.3.33
+    - @navikt/sif-common-forms-ds@21.0.34
+
+## 1.5.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.2
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.2
+    - @navikt/sif-common-soknad-ds@26.1.15
+    - @navikt/sif-common-forms-ds@21.0.33
+    - @navikt/sif-common-core-ds@10.3.32
+    - @navikt/sif-common-api@0.4.73
+    - @navikt/sif-common-ui@0.11.33
+    - @navikt/ung-common@0.0.74
+
+## 1.5.16
+
+### Patch Changes
+
+- Justere nais resources
+
+## 1.5.15
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
+## 1.5.14
+
+### Patch Changes
+
+- Legge til punkt om skattekort på kvitteringsside i søknaden - ung-deltaker
+
+## 1.5.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.1
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.1
+    - @navikt/sif-common-soknad-ds@26.1.14
+    - @navikt/sif-common-forms-ds@21.0.32
+    - @navikt/sif-common-core-ds@10.3.31
+    - @navikt/sif-common-api@0.4.72
+    - @navikt/sif-common-ui@0.11.32
+    - @navikt/ung-common@0.0.73
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-faro@0.2.8
+
+## 1.5.12
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.0
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.0
+    - @navikt/ung-common@0.0.72
+
+## 1.5.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.45
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.10
+    - @navikt/sif-common-soknad-ds@26.1.13
+    - @navikt/sif-common-forms-ds@21.0.31
+    - @navikt/sif-common-core-ds@10.3.30
+    - @navikt/sif-common-api@0.4.71
+    - @navikt/sif-common-ui@0.11.31
+    - @navikt/ung-common@0.0.71
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-faro@0.2.8
+
+## 1.5.10
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+- Updated dependencies [fe1a62a]
+    - @navikt/sif-common-soknad-ds@26.1.12
+    - @navikt/sif-common-core-ds@10.3.29
+    - @navikt/sif-common-forms-ds@21.0.30
+    - @navikt/sif-common-ui@0.11.30
+
+## 1.5.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.44
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.9
+    - @navikt/sif-common-soknad-ds@26.1.11
+    - @navikt/sif-common-forms-ds@21.0.29
+    - @navikt/sif-common-core-ds@10.3.28
+    - @navikt/sif-common-api@0.4.70
+    - @navikt/sif-common-ui@0.11.29
+    - @navikt/ung-common@0.0.70
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-faro@0.2.8
+
+## 1.5.8
+
+### Patch Changes
+
+- BugFix - feil komponent for eksterne lenker
+
+## 1.5.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.43
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.8
+    - @navikt/sif-common-soknad-ds@26.1.10
+    - @navikt/sif-common-forms-ds@21.0.28
+    - @navikt/sif-common-core-ds@10.3.27
+    - @navikt/sif-common-api@0.4.69
+    - @navikt/sif-common-ui@0.11.28
+    - @navikt/ung-common@0.0.69
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-faro@0.2.8
+
+## 1.5.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.42
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.7
+    - @navikt/sif-common-soknad-ds@26.1.9
+    - @navikt/sif-common-forms-ds@21.0.27
+    - @navikt/sif-common-core-ds@10.3.26
+    - @navikt/sif-common-api@0.4.68
+    - @navikt/sif-common-ui@0.11.27
+    - @navikt/ung-common@0.0.68
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-faro@0.2.8
+
+## 1.5.5
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.8
+    - @navikt/sif-common-forms-ds@21.0.26
+    - @navikt/sif-common-core-ds@10.3.25
+    - @navikt/sif-common-api@0.4.67
+    - @navikt/sif-common-ui@0.11.26
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.41
+    - @navikt/ung-common@0.0.67
+
+## 1.5.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.6
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-api@0.4.66
+    - @navikt/sif-common-core-ds@10.3.24
+    - @navikt/sif-common-env@0.1.8
+    - @navikt/sif-common-faro@0.2.8
+    - @navikt/sif-common-forms-ds@21.0.25
+    - @navikt/sif-common-soknad-ds@26.1.7
+    - @navikt/sif-common-ui@0.11.25
+    - @navikt/ung-common@0.0.66
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.40
+
+## 1.5.3
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.39
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.5
+    - @navikt/sif-common-soknad-ds@26.1.6
+    - @navikt/sif-common-forms-ds@21.0.24
+    - @navikt/sif-common-core-ds@10.3.23
+    - @navikt/sif-common-api@0.4.65
+    - @navikt/sif-common-ui@0.11.24
+    - @navikt/ung-common@0.0.65
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-faro@0.2.7
+
+## 1.5.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.38
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.4
+    - @navikt/sif-common-soknad-ds@26.1.5
+    - @navikt/sif-common-forms-ds@21.0.23
+    - @navikt/sif-common-core-ds@10.3.22
+    - @navikt/sif-common-api@0.4.64
+    - @navikt/ung-common@0.0.64
+    - @navikt/sif-common-ui@0.11.23
+
+## 1.5.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.37
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.3
+    - @navikt/sif-common-soknad-ds@26.1.4
+    - @navikt/sif-common-forms-ds@21.0.22
+    - @navikt/sif-common-core-ds@10.3.21
+    - @navikt/sif-common-api@0.4.63
+    - @navikt/sif-common-ui@0.11.22
+    - @navikt/ung-common@0.0.63
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-faro@0.2.7
+
+## 1.5.0
+
+### Minor Changes
+
+- Oppdatere tekster til Rapporter inntekt oppgaven + refactor av logikk på samme oppgave
+
+## 1.4.10
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.3
+    - @navikt/sif-common-forms-ds@21.0.21
+    - @navikt/sif-common-core-ds@10.3.20
+    - @navikt/sif-common-api@0.4.62
+    - @navikt/sif-common-ui@0.11.21
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.36
+    - @navikt/ung-common@0.0.62
+
+## 1.4.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.35
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.2
+    - @navikt/sif-common-soknad-ds@26.1.2
+    - @navikt/sif-common-forms-ds@21.0.20
+    - @navikt/sif-common-core-ds@10.3.19
+    - @navikt/sif-common-api@0.4.61
+    - @navikt/sif-common-ui@0.11.20
+    - @navikt/ung-common@0.0.61
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-faro@0.2.7
+
+## 1.4.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.34
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.1
+    - @navikt/sif-common-soknad-ds@26.1.1
+    - @navikt/sif-common-forms-ds@21.0.19
+    - @navikt/sif-common-core-ds@10.3.18
+    - @navikt/sif-common-api@0.4.60
+    - @navikt/sif-common-ui@0.11.19
+    - @navikt/ung-common@0.0.60
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-faro@0.2.7
+
+## 1.4.7
+
+### Patch Changes
+
+- Erstatte LinkPanel med LinkCard
+
+## 1.4.6
+
+### Patch Changes
+
+- Updated dependencies [ea18e6b]
+    - @navikt/sif-common-soknad-ds@26.1.0
+
 ## 1.4.5
 
 ### Patch Changes

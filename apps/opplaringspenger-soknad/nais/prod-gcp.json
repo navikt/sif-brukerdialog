@@ -28,8 +28,8 @@
         "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",
         "K9_SAK_INNSYN_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger/api/k9-sak-innsyn",
 
-        "SIF_PUBLIC_AMPLITUDE_API_KEY": "10798841ebeba333b8ece6c046322d76",
-        "SIF_PUBLIC_USE_AMPLITUDE": "true",
+        "SIF_PUBLIC_ANALYTICS_API_KEY": "10798841ebeba333b8ece6c046322d76",
+        "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",

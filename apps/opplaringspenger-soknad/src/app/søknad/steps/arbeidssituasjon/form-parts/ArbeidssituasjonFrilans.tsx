@@ -120,7 +120,7 @@ const ArbeidssituasjonFrilans = ({
             {(harHattInntektSomFrilanser === YesOrNo.YES || søkerHarFrilansoppdrag) && (
                 <FormLayout.Panel bleedTop>
                     {søkerHarFrilansoppdrag && (
-                        <Heading level="2" size="small">
+                        <Heading level="2" size="small" spacing>
                             <AppText id="arbeidssituasjonFrilanser.frilanserPart.tittel" />
                         </Heading>
                     )}

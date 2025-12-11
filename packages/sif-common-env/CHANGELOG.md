@@ -1,5 +1,17 @@
 # @navikt/sif-common-ui
 
+## 0.1.9
+
+### Patch Changes
+
+- Erstatte begrepet amplitude med analytics. Ingen logikk forandring. Dette er på grunn av at amplitude fases ut.
+
+## 0.1.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
 ## 0.1.7
 
 ### Patch Changes

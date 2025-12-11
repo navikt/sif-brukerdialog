@@ -1,19 +1,20 @@
-import dayjs from 'dayjs';
-import mockSøker from '../../../api-mock-server/mockdata/soker.json';
-import mockSøknader from '../../../api-mock-server/mockdata/soknader.json';
-import { InnsynsdataContextProvider } from '../../context/InnsynsdataContextProvider';
-import { Søker } from '../../server/api-models/SøkerSchema';
-import { InnsendtSøknad } from '../../types/InnsendtSøknad';
+import type { Decorator } from '@storybook/react';
 
-export const withInnsynsdata = (Story) => (
+import mockSøker from '../../../mock/data/en-sak/soker.json';
+import { InnsynsdataContextProvider } from '../../context/InnsynsdataContextProvider';
+import { Søker } from '../../types';
+
+export const withInnsynsdata: Decorator = (Story) => (
     <InnsynsdataContextProvider
         innsynsdata={{
-            saker: [{ sak: { saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() } } as any],
+            sakerMetadata: [
+                {
+                    saksnummer: '123',
+                    pleietrengende: { fornavn: 'Test', etternavn: 'Person', fødselsdato: '2010-01-01', aktørId: '123' },
+                } as any,
+            ],
             harSak: true,
             søker: mockSøker as any as Søker,
-            mellomlagring: {},
-            brukerprofil: {} as any,
-            innsendteSøknader: mockSøknader as any as InnsendtSøknad[],
         }}>
         <Story />
     </InnsynsdataContextProvider>

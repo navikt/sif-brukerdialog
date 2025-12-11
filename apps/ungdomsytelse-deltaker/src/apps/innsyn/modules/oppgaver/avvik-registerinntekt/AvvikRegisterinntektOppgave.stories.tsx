@@ -57,12 +57,13 @@ const oppgave: AvvikRegisterinntektOppgave = {
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
-        tilOgMed: dayjs('2025-05-01').toDate(),
+        tilOgMed: dayjs('2025-05-31').toDate(),
         registerinntekt: registerInntektEnArbeidsgiver,
+        gjelderDelerAvMåned: false,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    frist: dayjs().add(14, 'days').toDate(),
+    sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
 };
 
 const getOppgaveMedInntekt = (

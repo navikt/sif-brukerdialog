@@ -1,5 +1,93 @@
 # @navikt/sif-server
 
+## 0.4.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 0.4.52
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 0.4.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 0.4.50
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.9
+
+## 0.4.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 0.4.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.4.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.8
+
+## 0.4.44
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.4.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 0.4.39
 
 ### Patch Changes

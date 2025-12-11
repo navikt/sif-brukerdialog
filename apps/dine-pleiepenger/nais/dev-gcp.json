@@ -14,12 +14,21 @@
     "readinessPath": "/innsyn/api/health/isReady",
     "minReplicas": 1,
     "maxReplicas": 1,
+    "resources": {
+        "requests": {
+            "memory": "64Mi",
+            "cpu": "20m"
+        },
+        "limits": {
+            "memory": "256Mi"
+        }
+    },
     "observabilityEnabled": "true",
     "env": {
         "NEXT_PUBLIC_BASE_PATH": "/innsyn",
         "NEXT_PUBLIC_LOGIN_URL": "https://dine-pleiepenger.intern.dev.nav.no/oauth2/login?redirect=https://dine-pleiepenger.intern.dev.nav.no/innsyn",
         "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "dev",
-        "NEXT_PUBLIC_AMPLITUDE_API_KEY": "default",
+        "NEXT_PUBLIC_ANALYTICS_KEY": "default",
         "NEXT_PUBLIC_API_URL_K9_SAK_INNSYN": "http://k9-sak-innsyn-api",
         "NEXT_PUBLIC_API_URL_INNSYN": "http://sif-innsyn-api",
         "NEXT_PUBLIC_API_URL_BRUKERDIALOG": "http://k9-brukerdialog-prosessering",
@@ -31,7 +40,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
 
         "NEXT_PUBLIC_SKJEMA_PLEIEPENGER_URL": "https://pleiepengesoknad.intern.dev.nav.no/soknad",
-        "NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL": "https://endringsmelding-pleiepenger.intern.dev.nav.no/",
+        "NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL": "https://endringsmelding-pleiepenger.intern.dev.nav.no/familie/sykdom-i-familien/soknad/ettersending/pleiepenger",
         "NEXT_PUBLIC_SKJEMA_ETTERSENDELSE_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/",
 
         "NEXT_PUBLIC_DINE_UTBETALINGER_URL": "https://tjenester.nav.no/utbetalingsoversikt/",
@@ -51,10 +60,8 @@
         "NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL": "https://tjenester.nav.no/utbetalingsoversikt",
 
         "NEXT_PUBLIC_FEATURE_APPSTATUS": "off",
-        "NEXT_PUBLIC_FEATURE_HENT_SAKER": "on",
-        "NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID": "on",
-        "NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING": "off",
         "NEXT_PUBLIC_FEATURE_FARO": "on",
+        "NEXT_PUBLIC_FEATURE_INNTEKTSMELDING": "off",
         "NEXT_PUBLIC_TELEMETRY_URL": "https://telemetry.ekstern.dev.nav.no/collect"
     }
 }

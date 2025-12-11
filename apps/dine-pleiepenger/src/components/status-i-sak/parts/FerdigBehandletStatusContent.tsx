@@ -1,5 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import React from 'react';
+
 import DokumentarkivLenke from '../../lenker/DokumentarkivLenke';
 
 const FerdigBehandletStatusContent: React.FunctionComponent = () => {

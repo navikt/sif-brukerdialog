@@ -1,15 +1,16 @@
 import { VStack } from '@navikt/ds-react';
-import { PleiepengerEndringsmelding } from '../../../server/api-models/InnsendelseSchema';
+
+import { Dokument } from '../../../types';
 import Dokumenter from './Dokumenter';
 
 interface Props {
-    endringsmelding: PleiepengerEndringsmelding;
+    dokumenter: Dokument[];
 }
 
-const EndringsmeldingStatusContent = ({ endringsmelding }: Props) => {
+const EndringsmeldingStatusContent = ({ dokumenter }: Props) => {
     return (
         <VStack gap="2">
-            <Dokumenter dokumenter={endringsmelding.dokumenter} />
+            <Dokumenter dokumenter={dokumenter} />
         </VStack>
     );
 };

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { getScenarioMockData } from '../../../../mock/data/scenario';
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
@@ -12,7 +12,7 @@ const { søker } = getScenarioMockData('en-arbeidsgiver-en-periode');
 const meta: Meta<typeof IngenTilgangPage> = {
     title: 'Pages/IngenTilgangPage',
     component: IngenTilgangPage,
-    decorators: [withAmplitudeProvider, withIntl, withRouterProvider],
+    decorators: [withAnalyticsProvider, withIntl, withRouterProvider],
     parameters: {
         layout: 'centered',
     },

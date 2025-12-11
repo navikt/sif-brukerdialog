@@ -1,5 +1,5 @@
 import { failure, pending, success } from '@devexperts/remote-data-ts';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -79,7 +79,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
     const [soknadId, setSoknadId] = useState<string | undefined>();
     const { locale } = useAppIntl();
     const { logSoknadSent, logSoknadStartet, logSoknadFailed, logHendelse, logUserLoggedOut, logInfo } =
-        useAmplitudeInstance();
+        useAnalyticsInstance();
 
     useResetSøknadAfterDokumenterSendt(async () => {
         setInitializing(true);

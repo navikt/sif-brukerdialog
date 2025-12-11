@@ -23,7 +23,10 @@ const MeldtUtOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Pro
                 deltakerNavn={deltakerNavn}
                 initialVisKvittering={initialVisKvittering}>
                 <Oppgavebekreftelse.Ubesvart>
-                    <MeldUtOppgavetekst endretDato={oppgave.oppgavetypeData.nySluttdato} svarfrist={oppgave.frist} />
+                    <MeldUtOppgavetekst
+                        endretDato={oppgave.oppgavetypeData.nySluttdato}
+                        svarfrist={oppgave.sisteDatoEnKanSvare}
+                    />
                 </Oppgavebekreftelse.Ubesvart>
 
                 <Oppgavebekreftelse.Besvart>

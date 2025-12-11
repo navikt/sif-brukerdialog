@@ -3,6 +3,9 @@
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
 import type {
+    HentAktiveOpplæringsinstitusjonerData,
+    HentAktiveOpplæringsinstitusjonerErrors,
+    HentAktiveOpplæringsinstitusjonerResponses,
     HentOpplæringsinstitusjonerData,
     HentOpplæringsinstitusjonerErrors,
     HentOpplæringsinstitusjonerResponses,
@@ -11,6 +14,8 @@ import type {
     HentSisteGyldigeVedtakForAktorIdResponses,
 } from './types.gen';
 import {
+    zHentAktiveOpplæringsinstitusjonerData,
+    zHentAktiveOpplæringsinstitusjonerResponse,
     zHentOpplæringsinstitusjonerData,
     zHentOpplæringsinstitusjonerResponse,
     zHentSisteGyldigeVedtakForAktorIdData,
@@ -43,22 +48,12 @@ export class K9SakController {
             HentSisteGyldigeVedtakForAktorIdErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zHentSisteGyldigeVedtakForAktorIdData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zHentSisteGyldigeVedtakForAktorIdData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentSisteGyldigeVedtakForAktorIdResponse2.parseAsync(data);
-            },
+            responseValidator: async (data) => await zHentSisteGyldigeVedtakForAktorIdResponse2.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
             ...options,
@@ -77,24 +72,34 @@ export class K9SakController {
             HentOpplæringsinstitusjonerErrors,
             ThrowOnError
         >({
-            requestValidator: async (data) => {
-                return await zHentOpplæringsinstitusjonerData.parseAsync(data);
-            },
+            requestValidator: async (data) => await zHentOpplæringsinstitusjonerData.parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentOpplæringsinstitusjonerResponse.parseAsync(data);
-            },
+            responseValidator: async (data) => await zHentOpplæringsinstitusjonerResponse.parseAsync(data),
             security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/k9sak/opplaringsinstitusjoner',
+            ...options,
+        });
+    }
+
+    public static hentAktiveOpplæringsinstitusjoner<ThrowOnError extends boolean = true>(
+        options?: Options<HentAktiveOpplæringsinstitusjonerData, ThrowOnError>,
+    ) {
+        return (options?.client ?? client).get<
+            HentAktiveOpplæringsinstitusjonerResponses,
+            HentAktiveOpplæringsinstitusjonerErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) => await zHentAktiveOpplæringsinstitusjonerData.parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zHentAktiveOpplæringsinstitusjonerResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/k9sak/opplaringsinstitusjoner/aktive',
             ...options,
         });
     }

@@ -1,6 +1,6 @@
-import ComponentLoader from './ComponentLoader';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import ComponentLoader from './ComponentLoader';
 
 const meta: Meta<typeof ComponentLoader> = {
     component: ComponentLoader,

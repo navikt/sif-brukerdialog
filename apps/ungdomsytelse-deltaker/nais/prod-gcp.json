@@ -5,7 +5,7 @@
     "ingresses": ["https://www.nav.no/ungdomsprogrammet/ytelsen"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
-    "externalHosts": ["www.nav.no", "amplitude.nav.no"],
+    "externalHosts": ["www.nav.no", "telemetry.nav.no"],
     "accessPolicyOutApps": [
         { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
         { "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" }
@@ -22,8 +22,8 @@
         "PUBLIC_PATH": "/ungdomsprogrammet/ytelsen",
         "NPM_CONFIG_CACHE": "/tmp",
 
-        "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
-        "SIF_PUBLIC_USE_AMPLITUDE": "true",
+        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+        "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
 
@@ -51,6 +51,8 @@
         "SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN": "https://www.nav.no/ungdomsprogrammet",
         "SIF_PUBLIC_URL_ENDRE_KONTONUMMER": "https://www.nav.no/start/soknad-endring-bankkontonummer",
         "SIF_PUBLIC_URL_SKRIV_TIL_OSS": "https://www.nav.no/skriv-til-oss",
-        "SIF_PUBLIC_URL_SKATTEETATEN": "https://www.skatteetaten.no"
+        "SIF_PUBLIC_URL_SKATTEETATEN": "https://www.skatteetaten.no",
+        "SIF_PUBLIC_URL_SKATTEKORT": "https://www.skatteetaten.no/person/skatt/skattekort/",
+        "SIF_PUBLIC_URL_LOVDATA_INNTEKT": "https://lovdata.no/dokument/NL/lov/1999-03-26-14/KAPITTEL_6-2#%C2%A75-10"
     }
 }

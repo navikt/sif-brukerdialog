@@ -14,7 +14,7 @@ export interface OppgaveBase
     opprettetDato: Date;
     status: OppgaveStatus;
     løstDato?: Date;
-    frist: Date;
+    sisteDatoEnKanSvare: Date /** Siste dag for innlevering */;
     åpnetDato?: Date;
     lukketDato?: Date;
 }
@@ -25,6 +25,7 @@ export interface AvvikRegisterinntektOppgave extends OppgaveBase {
         fraOgMed: Date;
         tilOgMed: Date;
         registerinntekt: RegisterinntektDto;
+        gjelderDelerAvMåned: boolean;
     };
 }
 
@@ -56,6 +57,7 @@ export interface RapporterInntektOppgave extends OppgaveBase {
         fraOgMed: Date;
         tilOgMed: Date;
         rapportertInntekt?: Pick<RapportertInntektPeriodeinfoDto, 'arbeidstakerOgFrilansInntekt'>;
+        gjelderDelerAvMåned: boolean;
     };
 }
 

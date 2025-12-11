@@ -1,6 +1,7 @@
 import '../../src/app.css';
 
 import { Theme, VStack } from '@navikt/ds-react';
+import { UxSignalsLoaderProvider } from '@navikt/sif-common-core-ds';
 import { useEffect } from 'react';
 
 import ForsideHeader from '../../src/apps/innsyn/components/forside-header/ForsideHeader';
@@ -22,16 +23,18 @@ export const useWithInnsynApp = (
     }, [location.pathname]);
     return (
         <Theme hasBackground={false}>
-            <StoryIntlProvider>
-                <ForsidePageLayout
-                    documentTitle="Forside"
-                    footer={options?.frontpageFooter ? <ForsidePageFooter /> : null}>
-                    <VStack gap="8">
-                        {options.withHeader && <ForsideHeader startdato={options.startdato || new Date()} />}
-                        <Story />
-                    </VStack>
-                </ForsidePageLayout>
-            </StoryIntlProvider>
+            <UxSignalsLoaderProvider>
+                <StoryIntlProvider>
+                    <ForsidePageLayout
+                        documentTitle="Forside"
+                        footer={options?.frontpageFooter ? <ForsidePageFooter /> : null}>
+                        <VStack gap="8">
+                            {options.withHeader && <ForsideHeader startdato={options.startdato || new Date()} />}
+                            <Story />
+                        </VStack>
+                    </ForsidePageLayout>
+                </StoryIntlProvider>
+            </UxSignalsLoaderProvider>
         </Theme>
     );
 };

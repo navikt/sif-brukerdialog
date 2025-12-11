@@ -1,12 +1,12 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
+
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
-import { Venteårsak } from '../../types/Venteårsak';
-import Saksbehandlingstid from './Saksbehandlingstid';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
-const meta: Meta<typeof Saksbehandlingstid> = {
-    component: Saksbehandlingstid,
+import { Venteårsak } from '../../types';
+import SaksbehandlingstidPanel from './Saksbehandlingstid';
+const meta: Meta<typeof SaksbehandlingstidPanel> = {
+    component: SaksbehandlingstidPanel,
     title: 'Content/Saksbehandlingstid',
     parameters: {
         layout: 'centered',
@@ -15,7 +15,7 @@ const meta: Meta<typeof Saksbehandlingstid> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof Saksbehandlingstid>;
+type Story = StoryObj<typeof SaksbehandlingstidPanel>;
 
 export const Default: Story = {
     name: 'Med frist',
@@ -26,9 +26,7 @@ export const Default: Story = {
 
 export const UtenFristMedBehandlingstid: Story = {
     name: 'Ingen frist',
-    args: {
-        saksbehandlingstidUker: 3,
-    },
+    args: {},
 };
 
 export const FristIGår: Story = {

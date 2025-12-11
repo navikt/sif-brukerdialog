@@ -28,7 +28,7 @@ const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsu
                 inntekt={inntekt}
                 navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
                 totalColHeader={intl.text('inntektTabell.totalt')}
-                beløpRowHeader={intl.text('inntektTabell.lønn')}
+                beløpRowHeader={intl.text('inntektTabell.inntekt')}
                 total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
             />
         </>

@@ -14,8 +14,7 @@ import type { ServerSentEventsOptions, ServerSentEventsResult } from '../core/se
 import type { Client as CoreClient, Config as CoreConfig } from '../core/types.gen';
 
 export interface Config<T extends ClientOptions = ClientOptions>
-    extends Omit<CreateAxiosDefaults, 'auth' | 'baseURL' | 'headers' | 'method'>,
-        CoreConfig {
+    extends Omit<CreateAxiosDefaults, 'auth' | 'baseURL' | 'headers' | 'method'>, CoreConfig {
     /**
      * Axios implementation. You can use this option to provide either an
      * `AxiosStatic` or an `AxiosInstance`.
@@ -45,7 +44,8 @@ export interface Config<T extends ClientOptions = ClientOptions>
 }
 
 export interface RequestOptions<TData = unknown, ThrowOnError extends boolean = boolean, Url extends string = string>
-    extends Config<{
+    extends
+        Config<{
             throwOnError: ThrowOnError;
         }>,
         Pick<
@@ -107,7 +107,7 @@ type BuildUrlFn = <
         url: string;
     },
 >(
-    options: Pick<TData, 'url'> & Options<TData>,
+    options: TData & Options<TData>,
 ) => string;
 
 export type Client = CoreClient<RequestFn, Config, MethodFn, BuildUrlFn, SseFn> & {
@@ -140,16 +140,5 @@ export type Options<
     TData extends TDataShape = TDataShape,
     ThrowOnError extends boolean = boolean,
     TResponse = unknown,
-> = OmitKeys<RequestOptions<TResponse, ThrowOnError>, 'body' | 'path' | 'query' | 'url'> & Omit<TData, 'url'>;
-
-export type OptionsLegacyParser<TData = unknown, ThrowOnError extends boolean = boolean> = TData extends { body?: any }
-    ? TData extends { headers?: any }
-        ? OmitKeys<RequestOptions<unknown, ThrowOnError>, 'body' | 'headers' | 'url'> & TData
-        : OmitKeys<RequestOptions<unknown, ThrowOnError>, 'body' | 'url'> &
-              TData &
-              Pick<RequestOptions<unknown, ThrowOnError>, 'headers'>
-    : TData extends { headers?: any }
-      ? OmitKeys<RequestOptions<unknown, ThrowOnError>, 'headers' | 'url'> &
-            TData &
-            Pick<RequestOptions<unknown, ThrowOnError>, 'body'>
-      : OmitKeys<RequestOptions<unknown, ThrowOnError>, 'url'> & TData;
+> = OmitKeys<RequestOptions<TResponse, ThrowOnError>, 'body' | 'path' | 'query' | 'url'> &
+    ([TData] extends [never] ? unknown : Omit<TData, 'url'>);

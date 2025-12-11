@@ -6,8 +6,6 @@ import { AppText, useAppIntl } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
 
-import RegelverkOgInnsynReadMore from './RegelverkOgInnsynReadMore';
-
 interface Props {
     oppgave: AvvikRegisterinntektOppgave;
 }
@@ -18,13 +16,10 @@ export const getUtbetalingsmånedForAvvikRegisterinntektOppgave = (oppgaveFraOgM
 
 const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
     const intl = useAppIntl();
-    const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
+    const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.sisteDatoEnKanSvare)}</span>;
 
     const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);
     const rapporteringsmånedOgÅr = dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed);
-    const utbetalingsmåned = dateFormatter.month(
-        getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed),
-    );
 
     const {
         registerinntekt: { ytelseInntekter, arbeidOgFrilansInntekter },
@@ -60,21 +55,25 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                         <InntektTable
                             inntekt={inntekt}
                             navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
-                            beløpRowHeader={intl.text('inntektTabell.lønn')}
+                            beløpRowHeader={intl.text('inntektTabell.inntekt')}
                             totalColHeader={intl.text('inntektTabell.totalt')}
                             total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
                         />
                     </Box>
-                    <BodyLong>
-                        {harKunYtelseInntekt ? (
-                            <AppText
-                                id="avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse"
-                                values={{ utbetalingsmåned }}
-                            />
-                        ) : (
-                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt" values={{ utbetalingsmåned }} />
-                        )}
-                    </BodyLong>
+                    {oppgave.oppgavetypeData.gjelderDelerAvMåned ? (
+                        // Når perioden oppgaven ikke gjelder alle virkedager i måneden
+                        <BodyLong>
+                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.delerAvMåned" />
+                        </BodyLong>
+                    ) : (
+                        <BodyLong>
+                            {harKunYtelseInntekt ? (
+                                <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse" />
+                            ) : (
+                                <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt" />
+                            )}
+                        </BodyLong>
+                    )}
                 </>
             ) : (
                 <>
@@ -113,14 +112,13 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                 <BodyLong spacing>
                     <AppText id="avvikRegisterinntektOppgavetekst.6" values={{ formatertFrist }} />
                 </BodyLong>
-                <BodyLong spacing>
+                <BodyLong>
                     {harKunYtelseInntekt ? (
                         <AppText id="avvikRegisterinntektOppgavetekst.7.kunYtelse" />
                     ) : (
                         <AppText id="avvikRegisterinntektOppgavetekst.7" />
                     )}
                 </BodyLong>
-                <RegelverkOgInnsynReadMore />
             </Box>
         </VStack>
     );

@@ -1,4 +1,4 @@
-import { Office1 } from '@navikt/ds-icons';
+import { Buildings3Icon } from '@navikt/aksel-icons';
 import { Alert, VStack } from '@navikt/ds-react';
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
@@ -77,7 +77,7 @@ const SituasjonStep = () => {
 
     useEffectOnce(() => {
         const fetchData = async () => {
-            const a = await fetchArbeidsgivere({ from: getNMonthsAgo(3), to: getDateToday() });
+            const a = await fetchArbeidsgivere({ periode: { from: getNMonthsAgo(3), to: getDateToday() } });
             setArbeidsgivere(a.organisasjoner);
             setLoadState({ isLoading: false, isLoaded: true });
         };
@@ -164,7 +164,7 @@ const SituasjonStep = () => {
                                                 key={forhold.organisasjonsnummer}
                                                 data-testid={`arbeidsforhold-liste-${index}`}
                                                 title={forhold.navn || forhold.organisasjonsnummer}
-                                                titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
+                                                titleIcon={<Buildings3Icon role="presentation" aria-hidden={true} />}>
                                                 <FormLayout.Questions>
                                                     <ArbeidsforholdSituasjon
                                                         arbeidsforhold={forhold}

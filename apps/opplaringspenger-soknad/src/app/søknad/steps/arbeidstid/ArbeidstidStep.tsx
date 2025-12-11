@@ -23,7 +23,13 @@ import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/for
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
-import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
+import {
+    cleanArbeidIPerioder,
+    getAlleArbeidIPerioder,
+    getDagerMedArbeidstid,
+    harFraværAlleDager,
+    harKunValgtJobberSomNormalt,
+} from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
 
 export enum ArbeidsaktivitetType {
@@ -79,17 +85,31 @@ const ArbeidstidStep = () => {
     const { clearStepFormValues } = useStepFormValuesContext();
 
     const onBeforeValidSubmit = (values: ArbeidstidFormValues) => {
-        const { ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid } = values;
         return new Promise((resolve) => {
-            if (harFraværIPerioden(frilansArbeidstid, selvstendigArbeidstid, ansattArbeidstid) === false) {
+            const perioderMedArbeid = cleanArbeidIPerioder(getAlleArbeidIPerioder(values));
+            const jobberKunSomNormalt = harKunValgtJobberSomNormalt(perioderMedArbeid);
+            const jobberNormaltEnkeltdager =
+                !jobberKunSomNormalt && harFraværAlleDager(getDagerMedArbeidstid(perioderMedArbeid)) === false;
+
+            if (jobberKunSomNormalt || jobberNormaltEnkeltdager) {
+                const antallDagerSøktFor = søknadsdata.kurs?.søknadsdatoer.length;
                 setTimeout(() => {
                     setConfirmationDialog({
-                        title: text('ingenFraværConfirmation.title'),
+                        title: jobberKunSomNormalt
+                            ? text('ingenFraværConfirmation.title')
+                            : text('ingenFraværConfirmation.enkeltdag.title'),
                         okLabel: text('ingenFraværConfirmation.okLabel'),
                         cancelLabel: text('ingenFraværConfirmation.cancelLabel'),
                         content: (
                             <div style={{ maxWidth: '35rem' }}>
-                                <AppText id="ingenFraværConfirmation.content" />
+                                {jobberKunSomNormalt ? (
+                                    <AppText id="ingenFraværConfirmation.content" />
+                                ) : (
+                                    <AppText
+                                        id="ingenFraværConfirmation.enkeltdag.content"
+                                        values={{ antallDager: antallDagerSøktFor }}
+                                    />
+                                )}
                             </div>
                         ),
                         onCancel: () => {
@@ -201,6 +221,9 @@ const ArbeidstidStep = () => {
                                 <FormLayout.Guide>
                                     <p>
                                         <AppText id="arbeidIPeriode.StepInfo.1" />
+                                    </p>
+                                    <p>
+                                        <AppText id="arbeidIPeriode.StepInfo.2" />
                                     </p>
                                 </FormLayout.Guide>
                                 <FormLayout.Sections>

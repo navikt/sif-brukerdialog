@@ -1,5 +1,5 @@
 import { OppgaveStatusTagVariant } from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag';
-import OppgaveLinkPanel from '@innsyn/components/oppgave-link-panel/OppgaveLinkPanel';
+import OppgaveLinkCard from '@innsyn/components/oppgave-link-card/OppgaveLinkCard';
 import { getOppgaveInfo, getOppgavePanelTittel, getOppgaveStatusText } from '@innsyn/utils/textUtils';
 import { VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@shared/i18n';
@@ -19,7 +19,7 @@ const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true
     return (
         <VStack gap="4">
             {oppgaver.map((oppgave) => (
-                <OppgaveLinkPanel
+                <OppgaveLinkCard
                     key={oppgave.oppgaveReferanse}
                     beskrivelse={visBeskrivelse ? getOppgaveInfo(oppgave, intl) : undefined}
                     tittel={getOppgavePanelTittel(oppgave, intl)}
