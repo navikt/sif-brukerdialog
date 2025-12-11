@@ -10,7 +10,7 @@ on:
             working-directory:
                 required: true
                 type: string
-                description: "Path to app directory (e.g., 'apps/ungdomsytelse-veileder')"
+                description: "Path to app directory (e.g., 'apps-intern/ungdomsytelse-veileder')"
             package-name:
                 required: true
                 type: string
