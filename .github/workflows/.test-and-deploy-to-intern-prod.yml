@@ -97,7 +97,8 @@ jobs:
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                  TAG_NAME="${{ inputs.app-name }}-intern-$(date +%Y%m%d-%H%M%S)-${GITHUB_SHA}"
+                  SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+                  TAG_NAME="${{ inputs.app-name }}-intern-$(date +%Y%m%d-%H%M%S)-${SHORT_SHA}"
                   git tag -a "$TAG_NAME" -m "Deploy ${{ inputs.app-name }} to internal production"
                   git push origin "$TAG_NAME"
                   echo "Created tag: $TAG_NAME"

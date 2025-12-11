@@ -59,7 +59,7 @@ updates:
       - "/apps/pleiepenger-sykt-barn"
       - "/apps/sif-ettersending"
       - "/apps/ungdomsytelse-deltaker"
-      - "/apps/ungdomsytelse-veileder"
+      - "/apps-intern/ungdomsytelse-veileder"
     schedule:
       interval: daily
     cooldown:

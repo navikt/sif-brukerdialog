@@ -1,275 +1,275 @@
 name: Test changed apps
 
 on:
-    push:
-        branches-ignore:
-            - main
-        paths:
-            - "apps/**/*"
-            - "packages/**/*"
-            - "nais-config/**/*"
-            - "server/**/*"
-            - "server-ungdomsytelse-veileder/**/*"
-            - "yarn.lock"
-            - ".github/workflows/.test-app.yml"
-            - ".github/workflows/test-changed-apps.yml"
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - "apps/**/*"
+      - "packages/**/*"
+      - "nais-config/**/*"
+      - "server/**/*"
+      - "server-ungdomsytelse-veileder/**/*"
+      - "yarn.lock"
+      - ".github/workflows/.test-app.yml"
+      - ".github/workflows/test-changed-apps.yml"
 
 concurrency:
-    group: test-${{ github.ref }}
-    cancel-in-progress: true
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
-    contents: read
+  contents: read
 
 jobs:
-    detect-changes:
-        name: Detect changed apps
-        runs-on: ubuntu-latest
-        if: ${{ !contains(github.event.head_commit.message, '[no-test]') }}
-        outputs:
-            apps: ${{ steps.filter.outputs.changes }}
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v6
-              with:
-                  persist-credentials: false
-
-            - name: Check changed apps
-              uses: dorny/paths-filter@v3
-              id: filter
-              with:
-                  filters: |
-                      dine-pleiepenger:
-                        - 'apps/dine-pleiepenger/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
-                        - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      endringsmelding-pleiepenger:
-                        - 'apps/endringsmelding-pleiepenger/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      omsorgsdager-aleneomsorg-dialog:
-                        - 'apps/omsorgsdager-aleneomsorg-dialog/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      omsorgsdager-kalkulator:
-                        - 'apps/omsorgsdager-kalkulator/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      omsorgspengerutbetaling-arbeidstaker-soknad:
-                        - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      omsorgspengerutbetaling-soknad:
-                        - 'apps/omsorgspengerutbetaling-soknad/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      omsorgspengesoknad:
-                        - 'apps/omsorgspengesoknad/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      opplaringspenger-soknad:
-                        - 'apps/opplaringspenger-soknad/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      pleiepenger-i-livets-sluttfase-soknad:
-                        - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      pleiepenger-sykt-barn:
-                        - 'apps/pleiepenger-sykt-barn/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      sif-ettersending:
-                        - 'apps/sif-ettersending/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      ungdomsytelse-deltaker:
-                        - 'apps/ungdomsytelse-deltaker/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server/**'
-                        - 'yarn.lock'
-                      ungdomsytelse-veileder:
-                        - 'apps/ungdomsytelse-veileder/**'
-                        - 'packages/**'
-                        - 'nais-config/**'
-                        - 'server-ungdomsytelse-veileder/**'
-                        - 'yarn.lock'
-
-    test-dine-pleiepenger:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'dine-pleiepenger') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
+  detect-changes:
+    name: Detect changed apps
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, '[no-test]') }}
+    outputs:
+      apps: ${{ steps.filter.outputs.changes }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
-            app-name: "dine-pleiepenger"
-            working-directory: "apps/dine-pleiepenger"
-            package-name: "@navikt/dine-pleiepenger"
-            needs-env-file: true
+          persist-credentials: false
 
-    test-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
+      - name: Check changed apps
+        uses: dorny/paths-filter@v3
+        id: filter
         with:
-            app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
-            working-directory: "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
-            package-name: "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+          filters: |
+            dine-pleiepenger:
+              - 'apps/dine-pleiepenger/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
+              - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            endringsmelding-pleiepenger:
+              - 'apps/endringsmelding-pleiepenger/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            omsorgsdager-aleneomsorg-dialog:
+              - 'apps/omsorgsdager-aleneomsorg-dialog/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            omsorgsdager-kalkulator:
+              - 'apps/omsorgsdager-kalkulator/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            omsorgspengerutbetaling-arbeidstaker-soknad:
+              - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            omsorgspengerutbetaling-soknad:
+              - 'apps/omsorgspengerutbetaling-soknad/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            omsorgspengesoknad:
+              - 'apps/omsorgspengesoknad/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            opplaringspenger-soknad:
+              - 'apps/opplaringspenger-soknad/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            pleiepenger-i-livets-sluttfase-soknad:
+              - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            pleiepenger-sykt-barn:
+              - 'apps/pleiepenger-sykt-barn/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            sif-ettersending:
+              - 'apps/sif-ettersending/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            ungdomsytelse-deltaker:
+              - 'apps/ungdomsytelse-deltaker/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
+            ungdomsytelse-veileder:
+              - 'apps-intern/ungdomsytelse-veileder/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server-ungdomsytelse-veileder/**'
+              - 'yarn.lock'
 
-    test-endringsmelding-pleiepenger:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'endringsmelding-pleiepenger') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "endringsmelding-pleiepenger"
-            working-directory: "apps/endringsmelding-pleiepenger"
-            package-name: "@navikt/endringsmelding-pleiepenger"
-            playwright-with-deps: true
+  test-dine-pleiepenger:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'dine-pleiepenger') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "dine-pleiepenger"
+      working-directory: "apps/dine-pleiepenger"
+      package-name: "@navikt/dine-pleiepenger"
+      needs-env-file: true
 
-    test-omsorgsdager-aleneomsorg-dialog:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgsdager-aleneomsorg-dialog') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "omsorgsdager-aleneomsorg-dialog"
-            working-directory: "apps/omsorgsdager-aleneomsorg-dialog"
-            package-name: "@navikt/omsorgsdager-aleneomsorg-dialog"
+  test-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+      working-directory: "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+      package-name: "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
 
-    test-omsorgsdager-kalkulator:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "omsorgsdager-kalkulator"
-            working-directory: "apps/omsorgsdager-kalkulator"
-            package-name: "@navikt/omsorgsdager-kalkulator"
-            e2e-build-command: "build"
+  test-endringsmelding-pleiepenger:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'endringsmelding-pleiepenger') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "endringsmelding-pleiepenger"
+      working-directory: "apps/endringsmelding-pleiepenger"
+      package-name: "@navikt/endringsmelding-pleiepenger"
+      playwright-with-deps: true
 
-    test-omsorgspengerutbetaling-arbeidstaker-soknad:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-arbeidstaker-soknad') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
-            working-directory: "apps/omsorgspengerutbetaling-arbeidstaker-soknad"
-            package-name: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad"
+  test-omsorgsdager-aleneomsorg-dialog:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgsdager-aleneomsorg-dialog') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "omsorgsdager-aleneomsorg-dialog"
+      working-directory: "apps/omsorgsdager-aleneomsorg-dialog"
+      package-name: "@navikt/omsorgsdager-aleneomsorg-dialog"
 
-    test-omsorgspengerutbetaling-soknad:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-soknad') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "omsorgspengerutbetaling-soknad"
-            working-directory: "apps/omsorgspengerutbetaling-soknad"
-            package-name: "@navikt/omsorgspengerutbetaling-soknad"
+  test-omsorgsdager-kalkulator:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "omsorgsdager-kalkulator"
+      working-directory: "apps/omsorgsdager-kalkulator"
+      package-name: "@navikt/omsorgsdager-kalkulator"
+      e2e-build-command: "build"
 
-    test-omsorgspengesoknad:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgspengesoknad') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "omsorgspengesoknad"
-            working-directory: "apps/omsorgspengesoknad"
-            package-name: "@navikt/omsorgspengesoknad"
+  test-omsorgspengerutbetaling-arbeidstaker-soknad:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-arbeidstaker-soknad') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
+      working-directory: "apps/omsorgspengerutbetaling-arbeidstaker-soknad"
+      package-name: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad"
 
-    test-opplaringspenger-soknad:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "opplaringspenger-soknad"
-            working-directory: "apps/opplaringspenger-soknad"
-            package-name: "@navikt/opplaringspenger-soknad"
+  test-omsorgspengerutbetaling-soknad:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-soknad') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "omsorgspengerutbetaling-soknad"
+      working-directory: "apps/omsorgspengerutbetaling-soknad"
+      package-name: "@navikt/omsorgspengerutbetaling-soknad"
 
-    test-pleiepenger-i-livets-sluttfase-soknad:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'pleiepenger-i-livets-sluttfase-soknad') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "pleiepenger-i-livets-sluttfase-soknad"
-            working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
-            package-name: "@navikt/pleiepenger-i-livets-sluttfase-soknad"
+  test-omsorgspengesoknad:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgspengesoknad') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "omsorgspengesoknad"
+      working-directory: "apps/omsorgspengesoknad"
+      package-name: "@navikt/omsorgspengesoknad"
 
-    test-pleiepenger-sykt-barn:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'pleiepenger-sykt-barn') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "pleiepenger-sykt-barn"
-            working-directory: "apps/pleiepenger-sykt-barn"
-            package-name: "@navikt/pleiepenger-sykt-barn"
-            playwright-with-deps: true
+  test-opplaringspenger-soknad:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "opplaringspenger-soknad"
+      working-directory: "apps/opplaringspenger-soknad"
+      package-name: "@navikt/opplaringspenger-soknad"
 
-    test-sif-ettersending:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'sif-ettersending') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "sif-ettersending"
-            working-directory: "apps/sif-ettersending"
-            package-name: "@navikt/sif-ettersending"
+  test-pleiepenger-i-livets-sluttfase-soknad:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'pleiepenger-i-livets-sluttfase-soknad') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "pleiepenger-i-livets-sluttfase-soknad"
+      working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
+      package-name: "@navikt/pleiepenger-i-livets-sluttfase-soknad"
 
-    test-ungdomsytelse-deltaker:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-deltaker') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "ungdomsytelse-deltaker"
-            working-directory: "apps/ungdomsytelse-deltaker"
-            package-name: "@navikt/ungdomsytelse-deltaker"
-            use-turbo-test: true
-            e2e-build-command: "e2e:build"
-            run-sonar: true
+  test-pleiepenger-sykt-barn:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'pleiepenger-sykt-barn') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "pleiepenger-sykt-barn"
+      working-directory: "apps/pleiepenger-sykt-barn"
+      package-name: "@navikt/pleiepenger-sykt-barn"
+      playwright-with-deps: true
 
-    test-ungdomsytelse-veileder:
-        needs: detect-changes
-        if: ${{ contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-veileder') }}
-        uses: ./.github/workflows/.test-app.yml
-        secrets: inherit
-        with:
-            app-name: "ungdomsytelse-veileder"
-            working-directory: "apps/ungdomsytelse-veileder"
-            package-name: "@navikt/ungdomsytelse-veileder"
-            use-turbo-test: true
-            e2e-build-command: "e2e:build"
-            run-sonar: true
+  test-sif-ettersending:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'sif-ettersending') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "sif-ettersending"
+      working-directory: "apps/sif-ettersending"
+      package-name: "@navikt/sif-ettersending"
+
+  test-ungdomsytelse-deltaker:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-deltaker') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "ungdomsytelse-deltaker"
+      working-directory: "apps/ungdomsytelse-deltaker"
+      package-name: "@navikt/ungdomsytelse-deltaker"
+      use-turbo-test: true
+      e2e-build-command: "e2e:build"
+      run-sonar: true
+
+  test-ungdomsytelse-veileder:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-veileder') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "ungdomsytelse-veileder"
+      working-directory: "apps-intern/ungdomsytelse-veileder"
+      package-name: "@navikt/ungdomsytelse-veileder"
+      use-turbo-test: true
+      e2e-build-command: "e2e:build"
+      run-sonar: true

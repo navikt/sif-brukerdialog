@@ -58,7 +58,8 @@ jobs:
                   # Check if server files changed
                   if git diff --name-only origin/main HEAD | grep -q "^server/"; then
                       echo "Server changes detected - deploying all apps"
-                      ALL_APPS="dine-pleiepenger,ekstra-omsorgsdager-andre-forelder-ikke-tilsyn,endringsmelding-pleiepenger,omsorgsdager-aleneomsorg-dialog,omsorgsdager-kalkulator,omsorgspengerutbetaling-arbeidstaker-soknad,omsorgspengerutbetaling-soknad,omsorgspengesoknad,opplaringspenger-soknad,pleiepenger-i-livets-sluttfase-soknad,pleiepenger-sykt-barn,sif-ettersending,ungdomsytelse-deltaker"
+                      # Get all deployable apps dynamically from apps folder
+                      ALL_APPS=$(ls -d apps/*/ | xargs -I {} basename {} | grep -v "storybook" | tr '\n' ',' | sed 's/,$//')
                       echo "affected-apps=$ALL_APPS" >> $GITHUB_OUTPUT
                       echo "Affected apps (server changed): $ALL_APPS"
                   else
