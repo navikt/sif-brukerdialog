@@ -18,7 +18,6 @@ on:
                     - opplaringspenger-soknad
                     - pleiepenger-i-livets-sluttfase-soknad
                     - pleiepenger-sykt-barn
-                    - sif-demo-app
                     - sif-ettersending
                     - ungdomsytelse-deltaker
                 required: true
@@ -31,5 +30,5 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: '${{ inputs.app-name }}'
-            working-directory: 'apps/${{ inputs.app-name }}'
+            app-name: "${{ inputs.app-name }}"
+            working-directory: "apps/${{ inputs.app-name }}"
