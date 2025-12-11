@@ -7817,11 +7817,11 @@ __metadata:
   linkType: hard
 
 "@sanity/message-protocol@npm:^0.17.6":
-  version: 0.17.7
-  resolution: "@sanity/message-protocol@npm:0.17.7"
+  version: 0.17.8
+  resolution: "@sanity/message-protocol@npm:0.17.8"
   dependencies:
     "@sanity/comlink": "npm:^4.0.1"
-  checksum: 10/7c478b65cb7d1d11088a5afa077a9d22f72f58a64776d123523e0f726623f65a5920207f4add044f23a5294d96c55e1cc98c0af2f3a22d0ccc21124c4af662ff
+  checksum: 10/f7762aada35936ade14ab397691af707ba5600c3542e93b1d24a2960f6b0bf4538ac21008da425248e6e7153144b190c0f19c3eba0f6bb668a06cf2fdb863cb8
   languageName: node
   linkType: hard
 
