@@ -63,13 +63,20 @@ jobs:
                       echo "Affected apps (server changed): $ALL_APPS"
                   else
                       # Get affected packages/apps since last deployed state using Turbo
-                      AFFECTED_JSON=$(npx turbo run build --filter="[origin/main...HEAD]" --dry=json || echo '{"packages":[]}')
+                      set +e
+                      TURBO_OUTPUT=$(npx turbo run build --filter="[origin/main...HEAD]" --dry=json)
+                      TURBO_EXIT_CODE=$?
+                      set -e
                       
-                      # Filter to only include actual apps (not packages) and convert to simple names
-                      APP_NAMES=$(echo "$AFFECTED_JSON" | jq -r '(.packages // []) | map(select(startswith("@navikt/") and (contains("pleiepenger") or contains("omsorg") or contains("ungdom") or contains("ettersending") or contains("dine-") or contains("opplaringspenger") or contains("ekstra-")))) | map(gsub("@navikt/"; "")) | join(",")')
-                      
-                      echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
-                      echo "Affected apps (turbo filtering): $APP_NAMES"
+                      if [ $TURBO_EXIT_CODE -ne 0 ]; then
+                          echo "Turbo command failed (exit code $TURBO_EXIT_CODE). No apps will be deployed."
+                          echo "affected-apps=ERROR" >> $GITHUB_OUTPUT
+                      else
+                          # Filter to only include actual apps (not packages) and convert to simple names
+                          APP_NAMES=$(echo "$TURBO_OUTPUT" | jq -r '(.packages // []) | map(select(startswith("@navikt/") and (contains("pleiepenger") or contains("omsorg") or contains("ungdom") or contains("ettersending") or contains("dine-") or contains("opplaringspenger") or contains("ekstra-")))) | map(gsub("@navikt/"; "")) | join(",")')
+                          echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
+                          echo "Affected apps (turbo filtering): $APP_NAMES"
+                      fi
                   fi
 
     deploy-dine-pleiepenger:
