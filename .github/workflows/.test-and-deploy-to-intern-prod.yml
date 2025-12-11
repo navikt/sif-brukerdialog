@@ -72,3 +72,20 @@ jobs:
         with:
             app-name: ${{ inputs.app-name }}
             working-directory: ${{ inputs.working-directory }}
+
+    tag-deployment:
+        if: success()
+        needs: [deploy-to-intern-prod]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+
+            - name: Create deployment tag
+              run: |
+                  TAG_NAME="${{ inputs.app-name }}-intern-$(date +%Y%m%d-%H%M%S)"
+                  git tag "$TAG_NAME"
+                  git push origin "$TAG_NAME"
+                  echo "Created tag: $TAG_NAME"
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

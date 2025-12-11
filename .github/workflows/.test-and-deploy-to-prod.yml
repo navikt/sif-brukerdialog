@@ -78,3 +78,20 @@ jobs:
             app-name: ${{ inputs.app-name }}
             working-directory: ${{ inputs.working-directory }}
             is-next-app: ${{ inputs.is-next-app }}
+
+    tag-deployment:
+        if: success()
+        needs: [deploy-to-prod]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+
+            - name: Create deployment tag
+              run: |
+                  TAG_NAME="${{ inputs.app-name }}-$(date +%Y%m%d-%H%M%S)"
+                  git tag "$TAG_NAME"
+                  git push origin "$TAG_NAME"
+                  echo "Created tag: $TAG_NAME"
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
