@@ -41,12 +41,6 @@ on:
                 default: false
                 description: "Run SonarCloud scan after tests"
 
-permissions:
-    contents: write
-    security-events: write
-    id-token: write
-    actions: read
-
 jobs:
     run-tests:
         uses: ./.github/workflows/.test-app.yml
