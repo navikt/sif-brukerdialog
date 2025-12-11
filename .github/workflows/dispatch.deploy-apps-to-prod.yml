@@ -59,18 +59,26 @@ jobs:
             - name: Get affected apps with Turbo
               id: turbo-filter
               run: |
-                  # Get affected packages/apps since last commit
-                  AFFECTED_JSON=$(npx turbo run build --filter="...[HEAD^]" --dry=json || echo '{"packages":[]}')
-                  AFFECTED_PACKAGES=$(echo "$AFFECTED_JSON" | jq -r '.packages // []')
-                  
-                  # Filter to only include actual apps (not packages)
-                  AFFECTED_APPS=$(echo "$AFFECTED_PACKAGES" | jq -r 'map(select(startswith("@navikt/") and (contains("pleiepenger") or contains("omsorg") or contains("ungdom") or contains("ettersending") or contains("dine-") or contains("opplaringspenger") or contains("ekstra-"))))' || echo '[]')
-                  
-                  # Convert to simple names for workflow conditions
-                  APP_NAMES=$(echo "$AFFECTED_APPS" | jq -r 'map(gsub("@navikt/"; "")) | join(",")')
-                  
-                  echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
-                  echo "Affected apps: $APP_NAMES"
+                  # Check if server files changed
+                  if git diff --name-only HEAD^ HEAD | grep -q "^server/"; then
+                      echo "Server changes detected - deploying all apps"
+                      ALL_APPS="dine-pleiepenger,ekstra-omsorgsdager-andre-forelder-ikke-tilsyn,endringsmelding-pleiepenger,omsorgsdager-aleneomsorg-dialog,omsorgsdager-kalkulator,omsorgspengerutbetaling-arbeidstaker-soknad,omsorgspengerutbetaling-soknad,omsorgspengesoknad,opplaringspenger-soknad,pleiepenger-i-livets-sluttfase-soknad,pleiepenger-sykt-barn,sif-ettersending,ungdomsytelse-deltaker"
+                      echo "affected-apps=$ALL_APPS" >> $GITHUB_OUTPUT
+                      echo "Affected apps (server changed): $ALL_APPS"
+                  else
+                      # Get affected packages/apps since last commit using Turbo
+                      AFFECTED_JSON=$(npx turbo run build --filter="...[HEAD^]" --dry=json || echo '{"packages":[]}')
+                      AFFECTED_PACKAGES=$(echo "$AFFECTED_JSON" | jq -r '.packages // []')
+                      
+                      # Filter to only include actual apps (not packages)
+                      AFFECTED_APPS=$(echo "$AFFECTED_PACKAGES" | jq -r 'map(select(startswith("@navikt/") and (contains("pleiepenger") or contains("omsorg") or contains("ungdom") or contains("ettersending") or contains("dine-") or contains("opplaringspenger") or contains("ekstra-"))))' || echo '[]')
+                      
+                      # Convert to simple names for workflow conditions
+                      APP_NAMES=$(echo "$AFFECTED_APPS" | jq -r 'map(gsub("@navikt/"; "")) | join(",")')
+                      
+                      echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
+                      echo "Affected apps (turbo filtering): $APP_NAMES"
+                  fi
 
     deploy-dine-pleiepenger:
         if: |
