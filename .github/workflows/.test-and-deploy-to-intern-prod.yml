@@ -90,12 +90,14 @@ jobs:
               uses: actions/checkout@v6
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
+                  persist-credentials: true
 
             - name: Create deployment tag
+              continue-on-error: true
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
                   TAG_NAME="${{ inputs.app-name }}-intern-$(date +%Y%m%d-%H%M%S)"
-                  git tag "$TAG_NAME"
+                  git tag -a "$TAG_NAME" -m "Deploy ${{ inputs.app-name }} to internal production"
                   git push origin "$TAG_NAME"
                   echo "Created tag: $TAG_NAME"
