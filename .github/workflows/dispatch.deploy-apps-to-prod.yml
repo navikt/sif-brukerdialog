@@ -45,13 +45,13 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v6
               with:
-                  fetch-depth: 0  # Need full history for turbo filtering
+                  fetch-depth: 0 # Need full history for turbo filtering
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '18'
-                  cache: 'yarn'
+                  node-version: "18"
+                  cache: "yarn"
 
             - name: Install dependencies
               run: yarn install --frozen-lockfile

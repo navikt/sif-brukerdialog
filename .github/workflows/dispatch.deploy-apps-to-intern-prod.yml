@@ -5,8 +5,9 @@ on:
         branches:
             - main
         paths:
-            - "apps/ungdomsytelse-veileder/**/*"
+            - "apps/**/*"
             - "server-ungdomsytelse-veileder/**/*"
+            - "packages/**/*"
     workflow_dispatch:
 
 permissions:
@@ -16,7 +17,53 @@ permissions:
     actions: read
 
 jobs:
+    detect-changes:
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        outputs:
+            should-deploy: ${{ steps.check-deploy.outputs.should-deploy }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+                  cache: "yarn"
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Check if ungdomsytelse-veileder should deploy
+              id: check-deploy
+              run: |
+                  # Check if server-ungdomsytelse-veileder changed
+                  if git diff --name-only HEAD^ HEAD | grep -q "^server-ungdomsytelse-veileder/"; then
+                      echo "Server changed - deploying ungdomsytelse-veileder"
+                      echo "should-deploy=true" >> $GITHUB_OUTPUT
+                  else
+                      # Use Turborepo to check if ungdomsytelse-veileder is affected
+                      AFFECTED_JSON=$(npx turbo run build --filter="...[HEAD^]" --dry=json || echo '{"packages":[]}')
+                      AFFECTED_PACKAGES=$(echo "$AFFECTED_JSON" | jq -r '.packages // []')
+                      
+                      if echo "$AFFECTED_PACKAGES" | jq -r '.[]' | grep -q "@navikt/ungdomsytelse-veileder"; then
+                          echo "ungdomsytelse-veileder affected by changes"
+                          echo "should-deploy=true" >> $GITHUB_OUTPUT
+                      else
+                          echo "ungdomsytelse-veileder not affected"
+                          echo "should-deploy=false" >> $GITHUB_OUTPUT
+                      fi
+                  fi
+
     deploy-ungdomsytelse-veileder:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' ||
+             github.event_name == 'push' && needs.detect-changes.outputs.should-deploy == 'true')
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-intern-prod.yml
         secrets: inherit
         with:
