@@ -1,4 +1,4 @@
-import { BodyLong, InfoCard, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText } from '../../../../i18n';
@@ -15,15 +15,15 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
     <>
         <BodyLong as="div">
             {error ? (
-                <InfoCard data-color="warning">
-                    <InfoCard.Header>
-                        <InfoCard.Title>Hent arbeidsforhold feilet</InfoCard.Title>
-                    </InfoCard.Header>
-                    <InfoCard.Content>
+                <Alert variant="warning">
+                    <Heading level="3" size="small" spacing>
+                        Hent arbeidsforhold feilet
+                    </Heading>
+                    <BodyLong as="div">
                         Vi klarte ikke å hente opp dine arbeidsforhold akkurat nå. Du kan fortsatt fylle ut søknaden og
                         sende inn, men ...
-                    </InfoCard.Content>
-                </InfoCard>
+                    </BodyLong>
+                </Alert>
             ) : (
                 <VStack gap="2" marginBlock="0 8">
                     {ansatt_arbeidsforhold.length > 0 && (
