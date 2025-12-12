@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.54
+
+### Patch Changes
+
+- e8491a9: Pakkeoppdateringer - minor/patch
+
 ## 1.2.53
 
 ### Patch Changes
