@@ -3,9 +3,9 @@ import { DateRange } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 
 export const appArbeidsgivereService = {
-    fetch: async (periode: DateRange): Promise<Arbeidsgiver[]> => {
+    fetch: async (periode: DateRange, inkluderFrilansoppdrag: boolean = true): Promise<Arbeidsgiver[]> => {
         try {
-            const data = await fetchArbeidsgivere({ periode });
+            const data = await fetchArbeidsgivere({ periode, frilansoppdrag: inkluderFrilansoppdrag });
             const aaArbeidsgivere: Arbeidsgiver[] = [];
 
             (data.organisasjoner || []).forEach((a) => {
