@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.51
+
+### Patch Changes
+
+- 2a654ed: Legge til context ved sentry-logging av api-feil
+
 ## 4.11.50
 
 ### Patch Changes
