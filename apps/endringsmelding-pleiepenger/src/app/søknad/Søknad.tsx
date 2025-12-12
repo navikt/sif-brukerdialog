@@ -39,7 +39,7 @@ const Søknad = () => {
 
     if (status === RequestStatus.error) {
         if (isAxiosError(initialData.error)) {
-            appSentryLogger.logApiError(initialData.error);
+            appSentryLogger.logApiError(initialData.error, 'useSøknadInitialData');
         } else {
             appSentryLogger.logError('Søknad.requestStatus', initialData.error);
         }
