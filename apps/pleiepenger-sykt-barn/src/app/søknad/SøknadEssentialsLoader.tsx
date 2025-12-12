@@ -140,7 +140,7 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
         } else if (apiUtils.isForbidden(error)) {
             this.setState({ ...this.state, harIkkeTilgang: true });
         } else if (!userIsCurrentlyOnErrorPage()) {
-            appSentryLogger.logApiError(error);
+            appSentryLogger.logApiError(error, 'fetchSøkerdata');
             this.props.onError();
         }
         /**

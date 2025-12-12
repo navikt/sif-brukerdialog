@@ -92,13 +92,13 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
             if (isAxiosError(error) && isInvalidParameterErrorResponse(error.response?.data)) {
                 setSendingInProgress(false);
                 setInvalidParameters(error.response.data.violations);
-                appSentryLogger.logApiError(error as any);
+                appSentryLogger.logApiError(error as any, 'sendSøknad-invalidParameters');
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
             } else {
                 await logSoknadFailed(PleiepengerSyktBarnApp.navn);
-                appSentryLogger.logApiError(error);
+                appSentryLogger.logApiError(error, 'sendSøknad');
                 navigate(routeConfig.ERROR_PAGE_ROUTE);
             }
         }

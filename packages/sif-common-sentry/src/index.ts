@@ -43,9 +43,10 @@ const logToSentryOrConsole = (
     }
 };
 
-const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string): void => {
+const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string, context?: string): void => {
     const headers = error?.response?.headers;
     const maybeXRequestId: string | undefined = headers ? headers['x-request-id'] : undefined;
+    const maybeCorrelationId: string | undefined = headers ? headers['x-correlation-id'] : undefined;
     const errorMsg: string | undefined = error?.message;
 
     const status = error.response?.status;
@@ -54,9 +55,11 @@ const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string
     if (status === 401 || status === 0 || error.code === 'ERR_NETWORK') {
         return;
     }
-    logToSentryOrConsole('Api call error', 'fatal', application, {
+    logToSentryOrConsole('Api call error', 'error', application, {
         XRequestId: maybeXRequestId || undefined,
         errorMsg: errorMsg,
+        context,
+        maybeCorrelationId,
     });
 };
 
@@ -134,7 +137,7 @@ const getSentryLoggerForApp = (application: string, allowUrls: AllowUrlsType, ig
         logToSentryOrConsole(message, 'info', application, payload ? { info: payload } : undefined),
     logError: (message: string, payload?: string) =>
         logToSentryOrConsole(message, 'error', application, payload ? { info: payload } : undefined),
-    logApiError: (error: AxiosError) => logApiCallErrorToSentryOrConsole(error, application),
+    logApiError: (error: AxiosError, context?: string) => logApiCallErrorToSentryOrConsole(error, application, context),
     logToSentry: (message: string, severity: Sentry.SeverityLevel, payload?: string) =>
         logToSentry(message, severity, application, payload ? { info: payload } : undefined),
 });

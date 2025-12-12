@@ -78,7 +78,7 @@ export async function getArbeidsgivereRemoteData(fromDate: Date, toDate: Date): 
             relocateToLoginPage();
             return [];
         } else {
-            appSentryLogger.logApiError(error);
+            appSentryLogger.logApiError(error, 'getArbeidsgivereRemoteData');
         }
         return Promise.reject(error);
     }
