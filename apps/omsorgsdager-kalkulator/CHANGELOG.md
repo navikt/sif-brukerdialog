@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.13.18
+
+### Patch Changes
+
+- e8491a9: Pakkeoppdateringer - minor/patch
+
 ## 3.13.17
 
 ### Patch Changes
