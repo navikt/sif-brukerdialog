@@ -6,14 +6,14 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.41.49",
+    "version": "1.41.50",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/aksel-icons": "7.35.1",
-        "@navikt/ds-css": "7.35.1",
-        "@navikt/ds-react": "7.35.1",
-        "@navikt/ds-tailwind": "7.35.1",
+        "@navikt/aksel-icons": "7.35.2",
+        "@navikt/ds-css": "7.35.2",
+        "@navikt/ds-react": "7.35.2",
+        "@navikt/ds-tailwind": "7.35.2",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
@@ -40,9 +40,9 @@
         "react": "19.2.1",
         "react-dom": "19.2.1",
         "react-fast-compare": "3.2.2",
-        "react-hook-form": "7.67.0",
+        "react-hook-form": "7.68.0",
         "react-intl": "7.1.14",
-        "react-router-dom": "7.10.0"
+        "react-router-dom": "7.10.1"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.11.0",

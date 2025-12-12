@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.64
+
+### Patch Changes
+
+- e8491a9: Pakkeoppdateringer - minor/patch
+
 ## 0.1.63
 
 ### Patch Changes
