@@ -137,7 +137,7 @@ const getSentryLoggerForApp = (application: string, allowUrls: AllowUrlsType, ig
         logToSentryOrConsole(message, 'info', application, payload ? { info: payload } : undefined),
     logError: (message: string, payload?: string) =>
         logToSentryOrConsole(message, 'error', application, payload ? { info: payload } : undefined),
-    logApiError: (error: AxiosError, context: string) => logApiCallErrorToSentryOrConsole(error, application, context),
+    logApiError: (error: AxiosError, context?: string) => logApiCallErrorToSentryOrConsole(error, application, context),
     logToSentry: (message: string, severity: Sentry.SeverityLevel, payload?: string) =>
         logToSentry(message, severity, application, payload ? { info: payload } : undefined),
 });
