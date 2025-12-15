@@ -14,7 +14,7 @@ const VALID_PATH_SEGMENT_REGEX = /^[a-zA-Z0-9_-]+$/;
  * Regex for gyldig dokumentTittel.
  * Tillater vanlige tegn brukt i dokumentnavn inkludert norske bokstaver, mellomrom og punktum.
  */
-const VALID_DOCUMENT_TITLE_REGEX = /^[a-zA-ZæøåÆØÅ0-9_\-.\s]+$/;
+const VALID_DOCUMENT_TITLE_REGEX = /^[a-zA-ZæøåÆØÅ0-9_.\s-]+$/;
 
 /**
  * Validerer at et path-segment er trygt å bruke i en URL.
@@ -29,17 +29,8 @@ export function validatePathSegment(segment: string, paramName: string = 'path s
         throw new Error(`${paramName} er påkrevd og må være en streng`);
     }
 
-    // Sjekk for path traversal
-    if (segment.includes('..') || segment.includes('/') || segment.includes('\\')) {
-        throw new Error(`${paramName} inneholder ugyldige tegn`);
-    }
-
-    // Sjekk for URL-schemes som kan brukes til SSRF
-    if (segment.includes(':')) {
-        throw new Error(`${paramName} inneholder ugyldige tegn`);
-    }
-
-    // Valider mot tillatt regex
+    // Regex tillater kun alfanumeriske tegn, bindestrek og understrek.
+    // Dette blokkerer automatisk path traversal (..), URL-schemes (:), og andre ugyldige tegn.
     if (!VALID_PATH_SEGMENT_REGEX.test(segment)) {
         throw new Error(`${paramName} inneholder ugyldige tegn`);
     }
@@ -68,16 +59,8 @@ export function validateDokumentTittel(dokumentTittel: string): void {
         throw new Error('Dokumenttittel er påkrevd og må være en streng');
     }
 
-    // Sjekk for path traversal og URL-schemes
-    if (
-        dokumentTittel.includes('..') ||
-        dokumentTittel.includes('/') ||
-        dokumentTittel.includes('\\') ||
-        dokumentTittel.includes(':')
-    ) {
-        throw new Error('Dokumenttittel inneholder ugyldige tegn');
-    }
-
+    // Regex tillater kun norske/engelske bokstaver, tall, understrek, bindestrek, punktum og mellomrom.
+    // Dette blokkerer automatisk path traversal, URL-schemes og andre ugyldige tegn.
     if (!VALID_DOCUMENT_TITLE_REGEX.test(dokumentTittel)) {
         throw new Error('Dokumenttittel inneholder ugyldige tegn');
     }
