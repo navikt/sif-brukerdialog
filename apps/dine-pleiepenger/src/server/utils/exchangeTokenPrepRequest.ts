@@ -3,6 +3,7 @@ import { requestOboToken } from '@navikt/oasis';
 
 import { browserEnv, getServerEnv, isLocal, ServerEnv } from '../../utils/env';
 import { ApiServices } from '../types/ApiServices';
+import { validateRelativeApiPath } from './validatePathSegment';
 
 const getAudienceAndServerUrl = (
     service: ApiServices,
@@ -39,6 +40,10 @@ export const exchangeTokenAndPrepRequest = async (
     headers: any;
     url: string;
 }> => {
+    // Validerer path for å beskytte mot SSRF - defense in depth
+    // Dette sikrer at selv om validering mangler i kall-stedene, så er vi beskyttet
+    const safePath = validateRelativeApiPath(path, 'API path');
+    
     const childLogger = createChildLogger(context.requestId);
     const serverEnv = getServerEnv();
 
@@ -53,8 +58,9 @@ export const exchangeTokenAndPrepRequest = async (
             );
         }
 
+        const url = new URL(safePath, serverUrl);
         return {
-            url: `${serverUrl}/${path}`,
+            url: url.toString(),
             headers: {
                 Authorization: `Bearer ${tokenX.token}`,
                 'Content-Type': contentType,
@@ -64,8 +70,9 @@ export const exchangeTokenAndPrepRequest = async (
             },
         };
     }
+    const url = new URL(safePath, serverUrl);
     return {
-        url: `${serverUrl}/${path}`,
+        url: url.toString(),
         headers: {
             'Content-Type': contentType,
             'x-request-id': context.requestId,
