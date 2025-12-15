@@ -45,7 +45,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             return encodeURIComponent(segment);
         });
 
-        validateDokumentTittel(dokumentTittel);
         const safeDokumentTittel = encodeURIComponent(dokumentTittel);
 
         const path = `dokument/${sanitizedSegments.join('/')}?dokumentTittel=${safeDokumentTittel}`;

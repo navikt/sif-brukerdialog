@@ -19,7 +19,7 @@ const VALID_DOCUMENT_TITLE_REGEX = /^[a-zA-ZæøåÆØÅ0-9_.\s-]+$/;
 /**
  * Regex for gyldig relativ API-path (inkluderer URL-encodede tegn og query-string).
  */
-const VALID_RELATIVE_API_PATH_REGEX = /^[a-zA-Z0-9_%\-./?=&]+$/;
+const VALID_RELATIVE_API_PATH_REGEX = /^(?:[a-zA-Z0-9_\-./?=&]|%[0-9A-Fa-f]{2})+$/;
 
 /** Regex for organisasjonsnummer (9-11 sifre). */
 const VALID_ORGNUMMER_REGEX = /^[0-9]{9,11}$/;

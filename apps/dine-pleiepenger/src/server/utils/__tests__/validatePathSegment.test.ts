@@ -231,6 +231,10 @@ describe('validateRelativeApiPath', () => {
         expect(() => validateRelativeApiPath('dokument/segment?id=123&name=test')).not.toThrow();
     });
 
+    it('aksepterer path som starter med enkel slash', () => {
+        expect(() => validateRelativeApiPath('/dokument/segment')).not.toThrow();
+    });
+
     it('aksepterer URL-encodede tegn', () => {
         expect(() => validateRelativeApiPath('dokument/segment%20med%20mellomrom?id=navn%3Dverdi')).not.toThrow();
     });
