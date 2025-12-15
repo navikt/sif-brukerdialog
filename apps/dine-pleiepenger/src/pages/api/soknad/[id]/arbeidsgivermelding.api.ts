@@ -29,9 +29,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     validateOrganisasjonsnummer(organisasjonsnummer);
 
     try {
-        const safeSøknadId = encodeURIComponent(søknadId);
-        const safeOrgnummer = encodeURIComponent(organisasjonsnummer);
-        const path = `soknad/${safeSøknadId}/arbeidsgivermelding?organisasjonsnummer=${safeOrgnummer}`;
+        const path = `soknad/${søknadId}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
         const stream = await fetchDocumentStream(path, getContextForApiHandler(req), ApiServices.sifInnsyn);
 
         res.setHeader('Content-Type', 'application/pdf');
