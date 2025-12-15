@@ -13,6 +13,19 @@ export const config = {
     },
 };
 
+const dokumentTittelErGyldig = (value: unknown): value is string => {
+    if (typeof value !== 'string' || value.length === 0) {
+        return false;
+    }
+
+    try {
+        validateDokumentTittel(value);
+        return true;
+    } catch {
+        return false;
+    }
+};
+
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {
         query: { info, dokumentTittel },
@@ -22,18 +35,20 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         throw new Error('Ugyldig path i url');
     }
 
-    if (typeof dokumentTittel !== 'string') {
+    if (!dokumentTittelErGyldig(dokumentTittel)) {
         throw new Error('Ugyldig dokumentTittel - typeof !== string');
     }
 
     try {
-        // Validerer path-segmenter for å beskytte mot SSRF
-        for (const segment of info) {
-            validatePathSegment(segment);
-        }
-        validateDokumentTittel(dokumentTittel);
+        const sanitizedSegments = info.map((segment, index) => {
+            validatePathSegment(segment, `path segment ${index + 1}`);
+            return encodeURIComponent(segment);
+        });
 
-        const path = `dokument/${info.join('/')}?dokumentTittel=${encodeURIComponent(dokumentTittel)}`;
+        validateDokumentTittel(dokumentTittel);
+        const safeDokumentTittel = encodeURIComponent(dokumentTittel);
+
+        const path = `dokument/${sanitizedSegments.join('/')}?dokumentTittel=${safeDokumentTittel}`;
         const stream = await fetchDocumentStream(path, getContextForApiHandler(req), ApiServices.sifInnsyn);
 
         res.setHeader('Content-Type', 'application/pdf; charset=utf-8');
