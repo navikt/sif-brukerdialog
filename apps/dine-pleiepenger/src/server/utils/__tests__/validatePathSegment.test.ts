@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { validateDokumentTittel, validatePathSegment, validateSaksnummer } from '../validatePathSegment';
+import {
+    validateDokumentTittel,
+    validateOrganisasjonsnummer,
+    validatePathSegment,
+    validateRelativeApiPath,
+    validateSaksnummer,
+} from '../validatePathSegment';
 
 describe('validatePathSegment', () => {
     describe('gyldige path-segmenter', () => {
@@ -213,5 +219,75 @@ describe('validateDokumentTittel', () => {
                 'Dokumenttittel er påkrevd og må være en streng',
             );
         });
+    });
+});
+
+describe('validateRelativeApiPath', () => {
+    it('aksepterer gyldig path uten query', () => {
+        expect(() => validateRelativeApiPath('dokument/segment/id')).not.toThrow();
+    });
+
+    it('aksepterer gyldig path med query', () => {
+        expect(() => validateRelativeApiPath('dokument/segment?id=123&name=test')).not.toThrow();
+    });
+
+    it('aksepterer path som starter med enkel slash', () => {
+        expect(() => validateRelativeApiPath('/dokument/segment')).not.toThrow();
+    });
+
+    it('aksepterer URL-encodede tegn', () => {
+        expect(() => validateRelativeApiPath('dokument/segment%20med%20mellomrom?id=navn%3Dverdi')).not.toThrow();
+    });
+
+    it('avviser absolutte URL-er', () => {
+        expect(() => validateRelativeApiPath('http://example.com')).toThrow('inneholder ugyldige tegn');
+        expect(() => validateRelativeApiPath('//evil.com')).toThrow('inneholder ugyldige tegn');
+    });
+
+    it('avviser path traversal', () => {
+        expect(() => validateRelativeApiPath('../etc/passwd')).toThrow('inneholder ugyldige tegn');
+    });
+
+    it('avviser ugyldige tegn', () => {
+        expect(() => validateRelativeApiPath('dokument/<script>')).toThrow('inneholder ugyldige tegn');
+    });
+
+    it('kaster hvis path mangler', () => {
+        expect(() => validateRelativeApiPath('')).toThrow('er påkrevd og må være en streng');
+        expect(() => validateRelativeApiPath(null as unknown as string)).toThrow('er påkrevd og må være en streng');
+    });
+});
+
+describe('validateOrganisasjonsnummer', () => {
+    it('aksepterer gyldig organisasjonsnummer', () => {
+        expect(() => validateOrganisasjonsnummer('123456789')).not.toThrow();
+    });
+
+    it('aksepterer organisasjonsnummer på 11 sifre', () => {
+        expect(() => validateOrganisasjonsnummer('12345678901')).not.toThrow();
+    });
+
+    it('avviser organisasjonsnummer med bokstaver', () => {
+        expect(() => validateOrganisasjonsnummer('12345678A')).toThrow('Organisasjonsnummer inneholder ugyldige tegn');
+    });
+
+    it('avviser organisasjonsnummer med for få sifre', () => {
+        expect(() => validateOrganisasjonsnummer('12345678')).toThrow('Organisasjonsnummer inneholder ugyldige tegn');
+    });
+
+    it('avviser organisasjonsnummer med for mange sifre', () => {
+        expect(() => validateOrganisasjonsnummer('123456789012')).toThrow(
+            'Organisasjonsnummer inneholder ugyldige tegn',
+        );
+    });
+
+    it('avviser tom streng', () => {
+        expect(() => validateOrganisasjonsnummer('')).toThrow('Organisasjonsnummer er påkrevd og må være en streng');
+    });
+
+    it('avviser null', () => {
+        expect(() => validateOrganisasjonsnummer(null as unknown as string)).toThrow(
+            'Organisasjonsnummer er påkrevd og må være en streng',
+        );
     });
 });

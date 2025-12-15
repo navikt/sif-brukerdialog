@@ -17,6 +17,14 @@ const VALID_PATH_SEGMENT_REGEX = /^[a-zA-Z0-9_-]+$/;
 const VALID_DOCUMENT_TITLE_REGEX = /^[a-zA-ZæøåÆØÅ0-9_.\s-]+$/;
 
 /**
+ * Regex for gyldig relativ API-path (inkluderer URL-encodede tegn og query-string).
+ */
+const VALID_RELATIVE_API_PATH_REGEX = /^(?:[a-zA-Z0-9_\-./?=&]|%[0-9A-Fa-f]{2})+$/;
+
+/** Regex for organisasjonsnummer (9-11 sifre). */
+const VALID_ORGNUMMER_REGEX = /^[0-9]{9,11}$/;
+
+/**
  * Validerer at et path-segment er trygt å bruke i en URL.
  * Kaster feil hvis segmentet er ugyldig.
  *
@@ -46,6 +54,18 @@ export function validateSaksnummer(saksnummer: string): void {
     validatePathSegment(saksnummer, 'Saksnummer');
 }
 
+export const saksnummerPathValueIsValid = (value: unknown): value is string => {
+    if (typeof value !== 'string' || value.length === 0) {
+        return false;
+    }
+    try {
+        validateSaksnummer(value);
+        return true;
+    } catch {
+        return false;
+    }
+};
+
 /**
  * Validerer en dokumenttittel.
  * Tillater litt mer enn path-segmenter (mellomrom, punktum).
@@ -62,5 +82,37 @@ export function validateDokumentTittel(dokumentTittel: string): void {
     // Dette blokkerer automatisk path traversal, URL-schemes og andre ugyldige tegn.
     if (!VALID_DOCUMENT_TITLE_REGEX.test(dokumentTittel)) {
         throw new Error('Dokumenttittel inneholder ugyldige tegn');
+    }
+}
+
+/** Validerer at en relativ API-path ikke kan brukes til SSRF. */
+export function validateRelativeApiPath(path: string, paramName: string = 'path'): string {
+    if (!path || typeof path !== 'string') {
+        throw new Error(`${paramName} er påkrevd og må være en streng`);
+    }
+
+    if (path.includes('://') || path.startsWith('//')) {
+        throw new Error(`${paramName} inneholder ugyldige tegn`);
+    }
+
+    if (path.includes('..')) {
+        throw new Error(`${paramName} inneholder ugyldige tegn`);
+    }
+
+    if (!VALID_RELATIVE_API_PATH_REGEX.test(path)) {
+        throw new Error(`${paramName} inneholder ugyldige tegn`);
+    }
+
+    return path;
+}
+
+/** Validerer organisasjonsnummer (9 sifre). */
+export function validateOrganisasjonsnummer(organisasjonsnummer: string): void {
+    if (!organisasjonsnummer || typeof organisasjonsnummer !== 'string') {
+        throw new Error('Organisasjonsnummer er påkrevd og må være en streng');
+    }
+
+    if (!VALID_ORGNUMMER_REGEX.test(organisasjonsnummer)) {
+        throw new Error('Organisasjonsnummer inneholder ugyldige tegn');
     }
 }
