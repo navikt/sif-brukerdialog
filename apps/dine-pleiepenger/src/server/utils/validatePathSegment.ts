@@ -21,7 +21,6 @@ const VALID_DOCUMENT_TITLE_REGEX = /^[a-zA-ZæøåÆØÅ0-9_.\s-]+$/;
  * Kaster feil hvis segmentet er ugyldig.
  *
  * @param segment - Path-segmentet som skal valideres
- * @param paramName - Navnet på parameteren (for feilmeldinger)
  * @throws Error hvis segmentet er ugyldig
  */
 export function validatePathSegment(segment: string, paramName: string = 'path segment'): void {

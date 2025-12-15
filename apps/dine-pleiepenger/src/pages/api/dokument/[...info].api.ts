@@ -29,10 +29,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         // Validerer path-segmenter for å beskytte mot SSRF
         for (const segment of info) {
-            if (typeof segment !== 'string') {
-                throw new Error('Ugyldig path i url');
-            }
-            validatePathSegment(segment, 'path segment');
+            validatePathSegment(segment);
         }
         validateDokumentTittel(dokumentTittel);
 
