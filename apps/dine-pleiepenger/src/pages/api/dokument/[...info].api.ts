@@ -18,7 +18,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         query: { info, dokumentTittel },
     } = req;
 
-    if (!Array.isArray(info) || info.length !== 3 || !info.every((s) => typeof s === 'string')) {
+    if (!Array.isArray(info) || info.length !== 3) {
         throw new Error('Ugyldig path i url');
     }
 
@@ -28,7 +28,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     try {
         // Validerer path-segmenter for å beskytte mot SSRF
-        info.forEach((segment) => validatePathSegment(segment, 'path segment'));
+        for (const segment of info) {
+            if (typeof segment !== 'string') {
+                throw new Error('Ugyldig path i url');
+            }
+            validatePathSegment(segment, 'path segment');
+        }
         validateDokumentTittel(dokumentTittel);
 
         const path = `dokument/${info.join('/')}?dokumentTittel=${encodeURIComponent(dokumentTittel)}`;

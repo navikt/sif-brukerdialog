@@ -67,6 +67,16 @@ describe('validatePathSegment', () => {
             expect(() => validatePathSegment('abc#def')).toThrow('inneholder ugyldige tegn');
             expect(() => validatePathSegment('abc?def')).toThrow('inneholder ugyldige tegn');
         });
+
+        it('avviser URL-encoded path traversal', () => {
+            expect(() => validatePathSegment('%2e%2e')).toThrow('inneholder ugyldige tegn');
+            expect(() => validatePathSegment('%2e%2fetc')).toThrow('inneholder ugyldige tegn');
+        });
+
+        it('avviser URL-encoded skråstrek', () => {
+            expect(() => validatePathSegment('abc%2fdef')).toThrow('inneholder ugyldige tegn');
+            expect(() => validatePathSegment('abc%5Cdef')).toThrow('inneholder ugyldige tegn');
+        });
     });
 
     describe('tomme og ugyldige typer', () => {
@@ -174,6 +184,16 @@ describe('validateDokumentTittel', () => {
             expect(() => validateDokumentTittel('dokument@tittel')).toThrow('inneholder ugyldige tegn');
             expect(() => validateDokumentTittel('dokument#tittel')).toThrow('inneholder ugyldige tegn');
             expect(() => validateDokumentTittel('dokument?tittel')).toThrow('inneholder ugyldige tegn');
+        });
+
+        it('avviser URL-encoded path traversal', () => {
+            expect(() => validateDokumentTittel('%2e%2e')).toThrow('inneholder ugyldige tegn');
+            expect(() => validateDokumentTittel('%2e%2fetc%2fpasswd')).toThrow('inneholder ugyldige tegn');
+        });
+
+        it('avviser URL-encoded skråstrek', () => {
+            expect(() => validateDokumentTittel('dokument%2fnavn')).toThrow('inneholder ugyldige tegn');
+            expect(() => validateDokumentTittel('dokument%5Cnavn')).toThrow('inneholder ugyldige tegn');
         });
     });
 
