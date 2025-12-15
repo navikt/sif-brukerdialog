@@ -4,6 +4,7 @@ import { Readable } from 'stream';
 import { withAuthenticatedApi } from '../../../auth/withAuthentication';
 import { fetchDocumentStream } from '../../../server/fetchers/fetchDocumentStream';
 import { ApiServices } from '../../../server/types/ApiServices';
+import { validateDokumentTittel, validatePathSegment } from '../../../server/utils/validatePathSegment';
 import { getContextForApiHandler } from '../../../utils/apiUtils';
 
 export const config = {
@@ -17,7 +18,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         query: { info, dokumentTittel },
     } = req;
 
-    if (info?.length !== 3 || !Array.isArray(info)) {
+    if (!Array.isArray(info) || info.length !== 3) {
         throw new Error('Ugyldig path i url');
     }
 
@@ -26,7 +27,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
 
     try {
-        const path = `dokument/${info.join('/')}?dokumentTittel=${dokumentTittel}`;
+        // Validerer path-segmenter for å beskytte mot SSRF
+        for (const segment of info) {
+            validatePathSegment(segment);
+        }
+        validateDokumentTittel(dokumentTittel);
+
+        const path = `dokument/${info.join('/')}?dokumentTittel=${encodeURIComponent(dokumentTittel)}`;
         const stream = await fetchDocumentStream(path, getContextForApiHandler(req), ApiServices.sifInnsyn);
 
         res.setHeader('Content-Type', 'application/pdf; charset=utf-8');

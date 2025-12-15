@@ -8,6 +8,7 @@ import { getLogger } from '../../utils/getLogCorrelationID';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
+import { validateSaksnummer } from '../utils/validatePathSegment';
 
 /**
  * Henter inntektsmeldinger for en sak
@@ -21,6 +22,9 @@ export const fetchInntektsmeldinger = async (
     saksnr: string,
     unparsed?: boolean,
 ): Promise<innsyn.SakInntektsmeldingDto[]> => {
+    // Validerer saksnummer for å beskytte mot SSRF
+    validateSaksnummer(saksnr);
+
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiServices.k9SakInnsyn,
