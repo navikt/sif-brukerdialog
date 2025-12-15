@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
     validateDokumentTittel,
+    validateOrganisasjonsnummer,
     validatePathSegment,
     validateRelativeApiPath,
     validateSaksnummer,
@@ -250,5 +251,39 @@ describe('validateRelativeApiPath', () => {
     it('kaster hvis path mangler', () => {
         expect(() => validateRelativeApiPath('')).toThrow('er påkrevd og må være en streng');
         expect(() => validateRelativeApiPath(null as unknown as string)).toThrow('er påkrevd og må være en streng');
+    });
+});
+
+describe('validateOrganisasjonsnummer', () => {
+    it('aksepterer gyldig organisasjonsnummer', () => {
+        expect(() => validateOrganisasjonsnummer('123456789')).not.toThrow();
+    });
+
+    it('aksepterer organisasjonsnummer på 11 sifre', () => {
+        expect(() => validateOrganisasjonsnummer('12345678901')).not.toThrow();
+    });
+
+    it('avviser organisasjonsnummer med bokstaver', () => {
+        expect(() => validateOrganisasjonsnummer('12345678A')).toThrow('Organisasjonsnummer inneholder ugyldige tegn');
+    });
+
+    it('avviser organisasjonsnummer med for få sifre', () => {
+        expect(() => validateOrganisasjonsnummer('12345678')).toThrow('Organisasjonsnummer inneholder ugyldige tegn');
+    });
+
+    it('avviser organisasjonsnummer med for mange sifre', () => {
+        expect(() => validateOrganisasjonsnummer('123456789012')).toThrow(
+            'Organisasjonsnummer inneholder ugyldige tegn',
+        );
+    });
+
+    it('avviser tom streng', () => {
+        expect(() => validateOrganisasjonsnummer('')).toThrow('Organisasjonsnummer er påkrevd og må være en streng');
+    });
+
+    it('avviser null', () => {
+        expect(() => validateOrganisasjonsnummer(null as unknown as string)).toThrow(
+            'Organisasjonsnummer er påkrevd og må være en streng',
+        );
     });
 });

@@ -21,6 +21,9 @@ const VALID_DOCUMENT_TITLE_REGEX = /^[a-zA-ZæøåÆØÅ0-9_.\s-]+$/;
  */
 const VALID_RELATIVE_API_PATH_REGEX = /^[a-zA-Z0-9_%\-./?=&]+$/;
 
+/** Regex for organisasjonsnummer (9-11 sifre). */
+const VALID_ORGNUMMER_REGEX = /^[0-9]{9,11}$/;
+
 /**
  * Validerer at et path-segment er trygt å bruke i en URL.
  * Kaster feil hvis segmentet er ugyldig.
@@ -101,4 +104,15 @@ export function validateRelativeApiPath(path: string, paramName: string = 'path'
     }
 
     return path;
+}
+
+/** Validerer organisasjonsnummer (9 sifre). */
+export function validateOrganisasjonsnummer(organisasjonsnummer: string): void {
+    if (!organisasjonsnummer || typeof organisasjonsnummer !== 'string') {
+        throw new Error('Organisasjonsnummer er påkrevd og må være en streng');
+    }
+
+    if (!VALID_ORGNUMMER_REGEX.test(organisasjonsnummer)) {
+        throw new Error('Organisasjonsnummer inneholder ugyldige tegn');
+    }
 }
