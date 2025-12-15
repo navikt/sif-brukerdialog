@@ -3,6 +3,7 @@ import { requestOboToken } from '@navikt/oasis';
 
 import { browserEnv, getServerEnv, isLocal, ServerEnv } from '../../utils/env';
 import { ApiServices } from '../types/ApiServices';
+import { validateRelativeApiPath } from './validatePathSegment';
 
 const getAudienceAndServerUrl = (
     service: ApiServices,
@@ -39,10 +40,24 @@ export const exchangeTokenAndPrepRequest = async (
     headers: any;
     url: string;
 }> => {
+    // Validerer path for å beskytte mot SSRF - defense in depth
+    // Dette sikrer at selv om validering mangler i kall-stedene, så er vi beskyttet
+    const safePath = validateRelativeApiPath(path, 'API path');
+
     const childLogger = createChildLogger(context.requestId);
     const serverEnv = getServerEnv();
 
     const { audience, serverUrl } = getAudienceAndServerUrl(service, serverEnv);
+
+    // Construct safe URL using URL constructor
+    const url = new URL(safePath, serverUrl);
+
+    const baseHeaders = {
+        'Content-Type': contentType,
+        'x-request-id': context.requestId,
+        'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
+        'X-Correlation-ID': context.requestId,
+    };
 
     if (!isLocal) {
         childLogger.info(`Exchanging token for ${audience}`);
@@ -54,23 +69,16 @@ export const exchangeTokenAndPrepRequest = async (
         }
 
         return {
-            url: `${serverUrl}/${path}`,
+            url: url.toString(),
             headers: {
+                ...baseHeaders,
                 Authorization: `Bearer ${tokenX.token}`,
-                'Content-Type': contentType,
-                'x-request-id': context.requestId,
-                'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
-                'X-Correlation-ID': context.requestId,
             },
         };
     }
+
     return {
-        url: `${serverUrl}/${path}`,
-        headers: {
-            'Content-Type': contentType,
-            'x-request-id': context.requestId,
-            'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
-            'X-Correlation-ID': context.requestId,
-        },
+        url: url.toString(),
+        headers: baseHeaders,
     };
 };
