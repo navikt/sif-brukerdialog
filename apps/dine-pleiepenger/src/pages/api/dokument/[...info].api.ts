@@ -18,7 +18,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         query: { info, dokumentTittel },
     } = req;
 
-    if (info?.length !== 3 || !Array.isArray(info)) {
+    if (!Array.isArray(info) || info.length !== 3) {
         throw new Error('Ugyldig path i url');
     }
 
