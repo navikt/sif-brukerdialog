@@ -48,6 +48,16 @@ export const exchangeTokenAndPrepRequest = async (
     const serverEnv = getServerEnv();
 
     const { audience, serverUrl } = getAudienceAndServerUrl(service, serverEnv);
+    
+    // Construct safe URL using URL constructor
+    const url = new URL(safePath, serverUrl);
+    
+    const baseHeaders = {
+        'Content-Type': contentType,
+        'x-request-id': context.requestId,
+        'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
+        'X-Correlation-ID': context.requestId,
+    };
 
     if (!isLocal) {
         childLogger.info(`Exchanging token for ${audience}`);
@@ -58,26 +68,17 @@ export const exchangeTokenAndPrepRequest = async (
             );
         }
 
-        const url = new URL(safePath, serverUrl);
         return {
             url: url.toString(),
             headers: {
+                ...baseHeaders,
                 Authorization: `Bearer ${tokenX.token}`,
-                'Content-Type': contentType,
-                'x-request-id': context.requestId,
-                'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
-                'X-Correlation-ID': context.requestId,
             },
         };
     }
-    const url = new URL(safePath, serverUrl);
+    
     return {
         url: url.toString(),
-        headers: {
-            'Content-Type': contentType,
-            'x-request-id': context.requestId,
-            'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
-            'X-Correlation-ID': context.requestId,
-        },
+        headers: baseHeaders,
     };
 };
