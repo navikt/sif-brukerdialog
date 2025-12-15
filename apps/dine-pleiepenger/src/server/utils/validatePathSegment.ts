@@ -95,15 +95,21 @@ export function validateRelativeApiPath(path: string, paramName: string = 'path'
         throw new Error(`${paramName} inneholder ugyldige tegn`);
     }
 
-    if (path.includes('..')) {
+    const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
+
+    if (normalizedPath.length === 0) {
         throw new Error(`${paramName} inneholder ugyldige tegn`);
     }
 
-    if (!VALID_RELATIVE_API_PATH_REGEX.test(path)) {
+    if (normalizedPath.includes('..')) {
         throw new Error(`${paramName} inneholder ugyldige tegn`);
     }
 
-    return path;
+    if (!VALID_RELATIVE_API_PATH_REGEX.test(normalizedPath)) {
+        throw new Error(`${paramName} inneholder ugyldige tegn`);
+    }
+
+    return normalizedPath;
 }
 
 /** Validerer organisasjonsnummer (9 sifre). */

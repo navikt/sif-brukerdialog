@@ -224,19 +224,21 @@ describe('validateDokumentTittel', () => {
 
 describe('validateRelativeApiPath', () => {
     it('aksepterer gyldig path uten query', () => {
-        expect(() => validateRelativeApiPath('dokument/segment/id')).not.toThrow();
+        expect(validateRelativeApiPath('dokument/segment/id')).toBe('dokument/segment/id');
     });
 
     it('aksepterer gyldig path med query', () => {
-        expect(() => validateRelativeApiPath('dokument/segment?id=123&name=test')).not.toThrow();
+        expect(validateRelativeApiPath('dokument/segment?id=123&name=test')).toBe('dokument/segment?id=123&name=test');
     });
 
     it('aksepterer path som starter med enkel slash', () => {
-        expect(() => validateRelativeApiPath('/dokument/segment')).not.toThrow();
+        expect(validateRelativeApiPath('/dokument/segment')).toBe('dokument/segment');
     });
 
     it('aksepterer URL-encodede tegn', () => {
-        expect(() => validateRelativeApiPath('dokument/segment%20med%20mellomrom?id=navn%3Dverdi')).not.toThrow();
+        expect(validateRelativeApiPath('dokument/segment%20med%20mellomrom?id=navn%3Dverdi')).toBe(
+            'dokument/segment%20med%20mellomrom?id=navn%3Dverdi',
+        );
     });
 
     it('avviser absolutte URL-er', () => {
