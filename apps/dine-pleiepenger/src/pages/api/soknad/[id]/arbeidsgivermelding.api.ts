@@ -35,7 +35,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
         res.setHeader('Content-Type', 'application/pdf');
 
         const dokumentTittel = `Arbeidsgivermelding - org. ${organisasjonsnummer}`;
-        res.setHeader('Content-Disposition', `filename="${encodeURI(dokumentTittel)}.pdf"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${encodeURI(dokumentTittel)}.pdf"`);
 
         // Convert Web ReadableStream to Node.js Readable stream
         const nodeStream = Readable.fromWeb(stream as any);
