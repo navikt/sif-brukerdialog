@@ -11,7 +11,7 @@ export const getDokumentFrontendUrl = (url: string): string => {
 };
 
 export const getSøknadDokumentFilnavn = (dokument: Dokument): string => {
-    const filnavn = `${encodeURIComponent(dokument.tittel.toLowerCase())}`;
+    const filnavn = `psb_${dokument.dokumentInfoId}}`;
     return `${filnavn}.${dokument.filtype.toLowerCase()}`;
 };
 
