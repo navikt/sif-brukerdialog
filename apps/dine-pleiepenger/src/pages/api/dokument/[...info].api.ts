@@ -51,7 +51,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const stream = await fetchDocumentStream(path, getContextForApiHandler(req), ApiServices.sifInnsyn);
 
         res.setHeader('Content-Type', 'application/pdf; charset=utf-8');
-        res.setHeader('Content-Disposition', `filename="${encodeURI(dokumentTittel)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${encodeURI(dokumentTittel)}"`);
 
         // Convert Web ReadableStream to Node.js Readable stream
         const nodeStream = Readable.fromWeb(stream as any);
