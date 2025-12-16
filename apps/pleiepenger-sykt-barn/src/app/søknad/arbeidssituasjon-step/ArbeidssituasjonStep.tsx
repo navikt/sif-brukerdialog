@@ -25,21 +25,24 @@ interface Props {
 }
 
 const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: StepCommonProps & Props) => {
-    const formikProps = useFormikContext<SøknadFormValues>();
-    const formikRef = useRef(formikProps);
-    formikRef.current = formikProps;
+    const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const { text } = useAppIntl();
 
-    const { data: arbeidsgivere = [], isLoading, isSuccess, error } = useArbeidsgivereQuery(søknadsperiode);
+    const { data: arbeidsgivere, isLoading, isSuccess, error } = useArbeidsgivereQuery(søknadsperiode);
+    const hasSyncedRef = useRef(false);
 
     useEffect(() => {
-        if (!isSuccess) {
+        if (hasSyncedRef.current) {
             return;
         }
-        oppdaterSøknadMedArbeidsgivere(arbeidsgivere, formikRef.current);
-    }, [arbeidsgivere, isSuccess]);
-
-    const { values } = formikProps;
+        if (isSuccess && arbeidsgivere) {
+            hasSyncedRef.current = true;
+            oppdaterSøknadMedArbeidsgivere(arbeidsgivere, { values, setFieldValue });
+        } else if (error) {
+            hasSyncedRef.current = true;
+            oppdaterSøknadMedArbeidsgivere([], { values, setFieldValue });
+        }
+    }, [isSuccess, error, arbeidsgivere, values, setFieldValue]);
 
     if (isLoading || (!isSuccess && !error)) {
         return <LoadingSpinner size="3xlarge" style="block" />;
