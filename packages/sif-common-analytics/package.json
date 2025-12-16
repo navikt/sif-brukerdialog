@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-analytics",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Analytics log util used in SIF",
     "main": "src/index.ts",
     "type": "module",
@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "24.10.1",
+        "@types/node": "24.10.2",
         "@types/react": "19.2.7",
         "config": "workspace:*",
         "constate": "3.3.3",

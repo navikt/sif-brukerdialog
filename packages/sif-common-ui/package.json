@@ -1,7 +1,7 @@
 {
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
-    "version": "0.11.45",
+    "version": "0.11.46",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -14,8 +14,8 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
-        "dompurify": "3.3.0",
-        "react-day-picker": "9.11.3"
+        "dompurify": "3.3.1",
+        "react-day-picker": "9.12.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",

@@ -5,6 +5,7 @@ import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchInntektsmeldinger } from '../../../../server/fetchers/fetchInntektsmeldinger';
 import { fetchSak } from '../../../../server/fetchers/fetchSak';
 import { serverApiUtils } from '../../../../server/utils/serverApiUtils';
+import { saksnummerPathValueIsValid } from '../../../../server/utils/validatePathSegment';
 import { prepApiError } from '../../../../utils/apiUtils';
 import { Feature } from '../../../../utils/features';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
@@ -14,7 +15,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const logger = getLogger(req);
         const { saksnr } = req.query;
 
-        if (!saksnr || typeof saksnr !== 'string') {
+        if (!saksnummerPathValueIsValid(saksnr)) {
             logger.error(`Saksnummer mangler eller er ugyldig`);
             return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
         }

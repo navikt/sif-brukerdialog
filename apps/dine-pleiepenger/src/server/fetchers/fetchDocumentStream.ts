@@ -3,6 +3,7 @@ import { createChildLogger } from '@navikt/next-logger';
 import { RequestContext } from '../../types/RequestContext';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
+import { validateRelativeApiPath } from '../utils/validatePathSegment';
 
 export async function fetchDocumentStream(
     path: string,
@@ -11,7 +12,8 @@ export async function fetchDocumentStream(
 ): Promise<ReadableStream<Uint8Array>> {
     const childLogger = createChildLogger(context.requestId);
 
-    const { url, headers } = await exchangeTokenAndPrepRequest(service, context, path, 'application/pdf');
+    const safePath = validateRelativeApiPath(path);
+    const { url, headers } = await exchangeTokenAndPrepRequest(service, context, safePath, 'application/pdf');
 
     childLogger.info(`Fetching document stream`);
 

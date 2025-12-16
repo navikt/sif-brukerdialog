@@ -1,5 +1,11 @@
 # config
 
+## 0.11.50
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+
 ## 0.11.49
 
 ### Patch Changes
