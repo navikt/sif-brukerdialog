@@ -1,5 +1,14 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.38
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+- Updated dependencies [fc216a0]
+    - @navikt/sif-common-utils@3.49.55
+    - @navikt/sif-validation@1.0.18
+
 ## 2.5.37
 
 ### Patch Changes
