@@ -28,3 +28,9 @@
 .navds-guide-panel__content > .navds-body-long p:last-child {
     margin-bottom: 0;
 }
+
+.frilansoppdrag-liste {
+    p {
+        margin: 0; // Motvirker uønsket margin fra .navds-body-long
+    }
+}

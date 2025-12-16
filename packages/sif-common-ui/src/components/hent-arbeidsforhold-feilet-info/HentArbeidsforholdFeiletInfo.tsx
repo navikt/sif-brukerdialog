@@ -15,16 +15,21 @@ const HentArbeidsforholdFeiletInfo = ({ app }: Props) => (
         <BodyLong>
             <UiText id="hentArbeidsforholdFeiletInfo.tekst.1" />
         </BodyLong>
-        {app && [SifAppKeys.PleiepengerLivetsSlutt, SifAppKeys.OpplæringspengerApp].includes(app) && (
-            <>
-                <BodyLong>
-                    <UiText id="hentArbeidsforholdFeiletInfo.tekst.2" />
-                </BodyLong>
-                <BodyLong>
-                    <UiText id="hentArbeidsforholdFeiletInfo.tekst.3" />
-                </BodyLong>
-            </>
-        )}
+        {app &&
+            [
+                SifAppKeys.PleiepengerLivetsSlutt,
+                SifAppKeys.OpplæringspengerApp,
+                SifAppKeys.PleiepengerSyktBarn,
+            ].includes(app) && (
+                <>
+                    <BodyLong>
+                        <UiText id="hentArbeidsforholdFeiletInfo.tekst.2" />
+                    </BodyLong>
+                    <BodyLong>
+                        <UiText id="hentArbeidsforholdFeiletInfo.tekst.3" />
+                    </BodyLong>
+                </>
+            )}
     </Alert>
 );
 
