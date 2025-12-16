@@ -31,6 +31,6 @@
 
 .frilansoppdrag-liste {
     p {
-        margin: 0; // Motvirker uønsket margin fra .navds-body-long
+        margin: 0;
     }
 }
