@@ -1,8 +1,9 @@
-import { Alert, BodyLong, Heading, ReadMore, VStack } from '@navikt/ds-react';
+import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText } from '../../../../i18n';
 import ArbeidssituasjonAnsatt, { AnsattFormData } from './ArbeidssituasjonAnsatt';
+import HentArbeidsforholdFeiletInfo from '../../../../components/hent-arbeidsforhold-feilet-info/HentArbeidsforholdFeiletInto';
 
 interface Props {
     ansatt_arbeidsforhold: AnsattFormData[];
@@ -15,15 +16,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
     <>
         <BodyLong as="div">
             {error ? (
-                <Alert variant="warning">
-                    <Heading level="3" size="small" spacing>
-                        Hent arbeidsforhold feilet
-                    </Heading>
-                    <BodyLong as="div">
-                        Vi klarte ikke å hente opp dine arbeidsforhold akkurat nå. Du kan fortsatt fylle ut søknaden og
-                        sende inn, men ...
-                    </BodyLong>
-                </Alert>
+                <HentArbeidsforholdFeiletInfo />
             ) : (
                 <VStack gap="2" marginBlock="0 8">
                     {ansatt_arbeidsforhold.length > 0 && (
