@@ -12,6 +12,7 @@ import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { hentArbeidsforholdFeiletInfoMessages } from '../components/hent-arbeidsforhold-feilet-info/hentArbeidsforholdFeiletInfo.messages';
 import { appMessages_nb } from './nb';
 import { appMessages_nn } from './nn';
 
@@ -26,6 +27,7 @@ export const libMessages = {
         ...utenlandsoppholdMessages.nb,
         ...virksomhetMessages.nb,
         ...medlemskapFormMessages.nb,
+        ...hentArbeidsforholdFeiletInfoMessages.nb,
     },
     nn: {
         ...commonMessages.nn,
@@ -37,6 +39,7 @@ export const libMessages = {
         ...utenlandsoppholdMessages.nn,
         ...virksomhetMessages.nn,
         ...medlemskapFormMessages.nn,
+        ...hentArbeidsforholdFeiletInfoMessages.nn,
     },
 };
 
