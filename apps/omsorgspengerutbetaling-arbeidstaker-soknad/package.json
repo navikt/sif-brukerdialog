@@ -38,7 +38,7 @@
         "csp-header": "6.2.1",
         "dayjs": "1.11.19",
         "html-react-parser": "5.2.10",
-        "jsdom": "27.2.0",
+        "jsdom": "27.3.0",
         "object-hash": "3.0.0",
         "react": "19.2.1",
         "react-dom": "19.2.1",
