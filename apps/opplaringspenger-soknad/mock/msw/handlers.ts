@@ -10,7 +10,8 @@ export const getHandlers = () => [
         return HttpResponse.json(mockData.barn);
     }),
     http.get('**/oppslag/arbeidsgiver', () => {
-        return HttpResponse.error();
+        return HttpResponse.json(mockData.arbeidsgiver);
+        // return HttpResponse.error(error);
     }),
     http.get('**/opplaringsinstitusjoner/aktive', () => {
         return HttpResponse.json(mockData.institusjoner);
