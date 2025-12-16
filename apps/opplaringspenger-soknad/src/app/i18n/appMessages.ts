@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import { calendarGridMessages } from '../components/calendar-grid/calendarGridMessages';
 import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedTidMessages';
-import { hentArbeidsforholdFeiletInfoMessages } from '../components/hent-arbeidsforhold-feilet-info/hentArbeidsforholdFeiletInfo.messages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
@@ -30,7 +29,6 @@ const nb = {
     ...arbeidstidMessages.nb,
     ...omBarnetFormIntlMessages.nb,
     ...kursdagMessages.nb,
-    ...hentArbeidsforholdFeiletInfoMessages.nb,
 
     'application.title': 'Søknad om opplæringspenger',
 
@@ -235,7 +233,6 @@ const nn: Record<keyof typeof nb, string> = {
     ...validateApiDataMessages.nn,
     ...velkommenPageMessages.nn,
     ...kursdagMessages.nn,
-    ...hentArbeidsforholdFeiletInfoMessages.nn,
 
     'application.title': 'Søknad om opplæringspengar',
 

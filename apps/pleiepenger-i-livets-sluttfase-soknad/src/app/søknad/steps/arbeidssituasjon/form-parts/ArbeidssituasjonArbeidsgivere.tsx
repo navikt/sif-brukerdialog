@@ -1,7 +1,7 @@
 import { BodyLong, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
+import { HentArbeidsforholdFeiletInfo } from '@navikt/sif-common-ui';
 
-import HentArbeidsforholdFeiletInfo from '../../../../components/hent-arbeidsforhold-feilet-info/HentArbeidsforholdFeiletInto';
 import { AppText } from '../../../../i18n';
 import ArbeidssituasjonAnsatt, { AnsattFormData } from './ArbeidssituasjonAnsatt';
 

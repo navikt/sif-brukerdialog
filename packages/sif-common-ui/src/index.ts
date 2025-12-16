@@ -4,6 +4,7 @@ export { default as DurationText, getDurationString } from './components/duratio
 export * from './components/duration-text/DurationText';
 export * from './components/duration-text/i18n/nb';
 export * from './components/form-layout';
+export { default as HentArbeidsforholdFeiletInfo } from './components/hent-arbeidsforhold-feilet-info/HentArbeidsforholdFeiletInfo';
 export { default as ItemListDarkside } from './components/item-list-darkside/ItemListDarkside';
 export { type ProgressStep, default as ProgressStepper } from './components/progress-stepper/ProgressStepper';
 export { default as RegistrerteBarnListeHeading } from './components/registrert-barn-liste-heading/RegistrerteBarnListeHeading';

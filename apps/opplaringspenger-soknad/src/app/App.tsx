@@ -1,5 +1,4 @@
 import { Theme } from '@navikt/ds-react';
-import { Navigate, Route } from 'react-router-dom';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
 import { isProd } from '@navikt/sif-common-env';
 import {
@@ -7,14 +6,15 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Navigate, Route } from 'react-router-dom';
 import { mellomlagringService } from './api/mellomlagringService';
+import './app.css';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 import { relocateToWelcomePage } from './utils/navigationUtils';
-import './app.css';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const {
     PUBLIC_PATH,
