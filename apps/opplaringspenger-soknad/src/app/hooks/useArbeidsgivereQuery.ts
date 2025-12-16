@@ -1,8 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { appArbeidsgivereService } from '../api/appArbeidsgiverService';
 import { dateRangeToISODateRange } from '@navikt/sif-common-utils';
+import { useQuery } from '@tanstack/react-query';
+
+import { appArbeidsgivereService } from '../api/appArbeidsgiverService';
+import { Arbeidsgiver } from '../types/Arbeidsgiver';
 
 export const queryKeys = {
     arbeidsgivere: (periode?: DateRange) =>

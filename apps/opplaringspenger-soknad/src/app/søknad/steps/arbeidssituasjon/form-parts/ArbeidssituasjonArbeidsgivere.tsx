@@ -1,6 +1,8 @@
 import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
+import { SifAppKeys } from '@navikt/sif-app-register';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { FormLayout, HentArbeidsforholdFeiletInfo } from '@navikt/sif-common-ui';
+
 import { AppText } from '../../../../i18n';
 import ArbeidssituasjonAnsatt, { AnsattFormData } from './ArbeidssituasjonAnsatt';
 
@@ -15,7 +17,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
     <>
         <BodyLong as="div">
             {error ? (
-                <HentArbeidsforholdFeiletInfo />
+                <HentArbeidsforholdFeiletInfo app={SifAppKeys.OpplæringspengerApp} />
             ) : (
                 <VStack gap="2" marginBlock="0 8">
                     {ansatt_arbeidsforhold.length > 0 && (
