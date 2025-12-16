@@ -12,7 +12,6 @@ export const getHandlers = () => [
     }),
     http.get('**/oppslag/arbeidsgiver', () => {
         return HttpResponse.json(mockData.arbeidsgiver);
-        // return HttpResponse.error();
     }),
     http.post('**/pleiepenger-sykt-barn/innsending', () => {
         return HttpResponse.json({});

@@ -1,9 +1,11 @@
 import { Arbeidsgivere, fetchArbeidsgivere } from '@navikt/sif-common-api';
 import { DateRange } from '@navikt/sif-common-formik-ds';
+import { dateRangeToISODateRange } from '@navikt/sif-common-utils';
 import { useQuery } from '@tanstack/react-query';
 
 export const queryKeys = {
-    arbeidsgivere: (periode?: DateRange) => ['arbeidsgivere', periode] as const,
+    arbeidsgivere: (periode?: DateRange) =>
+        ['arbeidsgivere', periode ? dateRangeToISODateRange(periode) : undefined] as const,
 };
 
 export const useArbeidsgivereQuery = (periode?: DateRange, enabled = true) => {
