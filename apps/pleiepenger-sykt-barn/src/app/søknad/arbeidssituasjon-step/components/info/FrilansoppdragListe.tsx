@@ -16,7 +16,7 @@ const FrilansoppdragListe = ({ frilansoppdrag }: Props) => {
         <ArbeidssituasjonPanel
             title={text('steg.arbeidssituasjon.frilansoppdragListe.tittel')}
             titleIcon={<FrilansIconSvg />}>
-            <List className="frilansoppdrag-liste">
+            <List>
                 {frilansoppdrag.map((oppdrag) => (
                     <List.Item title={oppdrag.navn} key={oppdrag.id}>
                         {oppdrag.ansattFom && <ArbeidsperiodeTekst from={oppdrag.ansattFom} to={oppdrag.ansattTom} />}

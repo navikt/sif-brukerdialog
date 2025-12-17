@@ -11,7 +11,6 @@ export const getHandlers = () => [
     }),
     http.get('**/oppslag/arbeidsgiver', () => {
         return HttpResponse.json(mockData.arbeidsgiver);
-        // return HttpResponse.error(error);
     }),
     http.get('**/opplaringsinstitusjoner/aktive', () => {
         return HttpResponse.json(mockData.institusjoner);
