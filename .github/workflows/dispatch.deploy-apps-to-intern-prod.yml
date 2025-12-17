@@ -5,7 +5,7 @@ on:
         branches:
             - main
         paths:
-            - "apps/ungdomsytelse-veileder/**/*"
+            - "apps-intern/ungdomsytelse-veileder/**/*"
             - "server-ungdomsytelse-veileder/**/*"
     workflow_dispatch:
 
@@ -21,7 +21,7 @@ jobs:
         secrets: inherit
         with:
             app-name: "ungdomsytelse-veileder"
-            working-directory: "apps/ungdomsytelse-veileder"
+            working-directory: "apps-intern/ungdomsytelse-veileder"
             package-name: "@navikt/ungdomsytelse-veileder"
             use-turbo-test: true
             e2e-build-command: "e2e:build"
