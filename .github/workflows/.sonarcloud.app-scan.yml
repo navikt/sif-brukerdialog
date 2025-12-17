@@ -22,7 +22,7 @@ jobs:
                   fetch-depth: 0
 
             - name: SonarQube Scan
-              uses: SonarSource/sonarqube-scan-action@v6
+              uses: SonarSource/sonarqube-scan-action@v7
               with:
                   args: >
                       -Dproject.settings=apps/${{ inputs.app }}/sonar-project.properties
