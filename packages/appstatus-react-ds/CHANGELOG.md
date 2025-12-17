@@ -1,5 +1,12 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.68
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+    - @navikt/sif-common-hooks@0.3.8
+
 ## 2.20.67
 
 ### Patch Changes
