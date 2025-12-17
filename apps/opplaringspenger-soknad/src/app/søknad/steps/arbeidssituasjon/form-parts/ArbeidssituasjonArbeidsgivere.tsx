@@ -1,6 +1,8 @@
 import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
+import { SifAppKeys } from '@navikt/sif-app-register';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { FormLayout } from '@navikt/sif-common-ui';
+import { FormLayout, HentArbeidsforholdFeiletInfo } from '@navikt/sif-common-ui';
+
 import { AppText } from '../../../../i18n';
 import ArbeidssituasjonAnsatt, { AnsattFormData } from './ArbeidssituasjonAnsatt';
 
@@ -8,25 +10,31 @@ interface Props {
     ansatt_arbeidsforhold: AnsattFormData[];
     parentFieldName: string;
     søknadsperiode: DateRange;
+    error?: boolean;
 }
 
-const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode, parentFieldName }: Props) => (
+const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode, parentFieldName, error }: Props) => (
     <>
         <BodyLong as="div">
-            <VStack gap="2" marginBlock="0 8">
-                {ansatt_arbeidsforhold.length > 0 && (
-                    <AppText
-                        id="steg.arbeidssituasjon.veileder.medArbeidsgiver"
-                        values={{ antall: ansatt_arbeidsforhold.length }}
-                    />
-                )}
-                {ansatt_arbeidsforhold.length === 0 && (
-                    <AppText id="steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet" />
-                )}
-                <ReadMore header="Min arbeidsgiver vises ikke">
-                    <AppText id="steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver" />
-                </ReadMore>
-            </VStack>
+            {error ? (
+                <HentArbeidsforholdFeiletInfo app={SifAppKeys.OpplæringspengerApp} />
+            ) : (
+                <VStack gap="2" marginBlock="0 8">
+                    {ansatt_arbeidsforhold.length > 0 && (
+                        <AppText
+                            id="steg.arbeidssituasjon.veileder.medArbeidsgiver"
+                            values={{ antall: ansatt_arbeidsforhold.length }}
+                        />
+                    )}
+                    {ansatt_arbeidsforhold.length === 0 && (
+                        <AppText id="steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet" />
+                    )}
+
+                    <ReadMore header="Min arbeidsgiver vises ikke">
+                        <AppText id="steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver" />
+                    </ReadMore>
+                </VStack>
+            )}
         </BodyLong>
         {ansatt_arbeidsforhold.length > 0 && (
             <VStack gap="6">

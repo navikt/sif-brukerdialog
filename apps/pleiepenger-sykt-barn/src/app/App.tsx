@@ -9,6 +9,7 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MockDate from 'mockdate';
 import { Navigate, Route } from 'react-router-dom';
 
@@ -39,6 +40,7 @@ if (envNow && getMaybeEnv('USE_MOCK_DATE') === 'true') {
 }
 
 appSentryLogger.init();
+const queryClient = new QueryClient();
 
 const App = () => {
     const sanityConfig: SanityConfig = {
@@ -53,33 +55,39 @@ const App = () => {
 
     return (
         <Theme>
-            <SoknadApplication
-                appVersion={APP_VERSION}
-                appKey={PleiepengerSyktBarnApp.key}
-                appName={PleiepengerSyktBarnApp.navn}
-                appTitle={PleiepengerSyktBarnApp.tittel.nb}
-                appStatus={{ sanityConfig: sanityConfig }}
-                intlMessages={applicationIntlMessages}
-                useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
-                useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
-                publicPath={PUBLIC_PATH}
-                analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}
-                onResetSoknad={handleResetSoknad}>
-                <SoknadApplicationCommonRoutes
-                    onReset={() => {
-                        relocateToSoknad();
-                    }}
-                    contentRoutes={[
-                        <Route
-                            key="index"
-                            path="/"
-                            element={<Navigate to={RouteConfig.SØKNAD_ROUTE_PREFIX} replace={true} />}
-                        />,
-                        <Route key="søknad" path={`${RouteConfig.SØKNAD_ROUTE_PREFIX}/*`} element={<Søknad />} />,
-                        <Route key="errorpage" path={RouteConfig.ERROR_PAGE_ROUTE} element={<GeneralErrorPage />} />,
-                    ]}
-                />
-            </SoknadApplication>
+            <QueryClientProvider client={queryClient}>
+                <SoknadApplication
+                    appVersion={APP_VERSION}
+                    appKey={PleiepengerSyktBarnApp.key}
+                    appName={PleiepengerSyktBarnApp.navn}
+                    appTitle={PleiepengerSyktBarnApp.tittel.nb}
+                    appStatus={{ sanityConfig: sanityConfig }}
+                    intlMessages={applicationIntlMessages}
+                    useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
+                    useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
+                    publicPath={PUBLIC_PATH}
+                    analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}
+                    onResetSoknad={handleResetSoknad}>
+                    <SoknadApplicationCommonRoutes
+                        onReset={() => {
+                            relocateToSoknad();
+                        }}
+                        contentRoutes={[
+                            <Route
+                                key="index"
+                                path="/"
+                                element={<Navigate to={RouteConfig.SØKNAD_ROUTE_PREFIX} replace={true} />}
+                            />,
+                            <Route key="søknad" path={`${RouteConfig.SØKNAD_ROUTE_PREFIX}/*`} element={<Søknad />} />,
+                            <Route
+                                key="errorpage"
+                                path={RouteConfig.ERROR_PAGE_ROUTE}
+                                element={<GeneralErrorPage />}
+                            />,
+                        ]}
+                    />
+                </SoknadApplication>
+            </QueryClientProvider>
         </Theme>
     );
 };

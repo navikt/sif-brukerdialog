@@ -1,20 +1,17 @@
 import { Buildings3Icon } from '@navikt/aksel-icons';
 import { Alert, VStack } from '@navikt/ds-react';
-import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { FormLayout } from '@navikt/sif-common-ui';
-import { getDateToday } from '@navikt/sif-common-utils';
-import { useState } from 'react';
+import { FormLayout, HentArbeidsforholdFeiletInfo } from '@navikt/sif-common-ui';
+import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useArbeidsgivereQuery } from '../../../hooks/useArbeidsgivereQuery';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { Arbeidsforhold } from '../../../types/ArbeidsforholdTypes';
-import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { StepId } from '../../../types/StepId';
 import {
@@ -56,11 +53,6 @@ export interface SituasjonFormValues {
     [SituasjonFormFields.arbeidsforhold]: Arbeidsforhold[];
 }
 
-interface LoadState {
-    isLoading: boolean;
-    isLoaded: boolean;
-}
-
 const { FormikWrapper, Form } = getTypedFormComponents<SituasjonFormFields, SituasjonFormValues, ValidationError>();
 
 const SituasjonStep = () => {
@@ -69,23 +61,10 @@ const SituasjonStep = () => {
         state: { søknadsdata },
     } = useSøknadContext();
 
-    const [arbeidsgivere, setArbeidsgivere] = useState<Arbeidsgiver[]>([]);
-    const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
+    const søknadsperiode: DateRange = { from: getNMonthsAgo(3), to: getDateToday() };
+    const { data, isLoading, isSuccess, error } = useArbeidsgivereQuery(søknadsperiode);
+
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-
-    const { isLoading, isLoaded } = loadState;
-
-    useEffectOnce(() => {
-        const fetchData = async () => {
-            const a = await fetchArbeidsgivere({ periode: { from: getNMonthsAgo(3), to: getDateToday() } });
-            setArbeidsgivere(a.organisasjoner);
-            setLoadState({ isLoading: false, isLoaded: true });
-        };
-        if (!isLoaded && !isLoading) {
-            setLoadState({ isLoading: true, isLoaded: false });
-            fetchData();
-        }
-    });
 
     const stepId = StepId.SITUASJON;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
@@ -112,9 +91,11 @@ const SituasjonStep = () => {
         },
     );
 
-    if (isLoading || !isLoaded) {
-        return <LoadingSpinner size="3xlarge" style="block" title="Henter arbeidsforhold" />;
+    if (isLoading || (!isSuccess && !error)) {
+        return <LoadingSpinner size="3xlarge" style="block" />;
     }
+
+    const arbeidsgivere = data?.organisasjoner || [];
 
     return (
         <SøknadStep stepId={stepId}>
@@ -157,44 +138,50 @@ const SituasjonStep = () => {
                                     </p>
                                 </FormLayout.Guide>
 
-                                <VStack gap="8">
-                                    <FormLayout.Sections>
-                                        {arbeidsforhold.map((forhold, index) => (
-                                            <FormLayout.Section
-                                                key={forhold.organisasjonsnummer}
-                                                data-testid={`arbeidsforhold-liste-${index}`}
-                                                title={forhold.navn || forhold.organisasjonsnummer}
-                                                titleIcon={<Buildings3Icon role="presentation" aria-hidden={true} />}>
-                                                <FormLayout.Questions>
-                                                    <ArbeidsforholdSituasjon
-                                                        arbeidsforhold={forhold}
-                                                        parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
-                                                    />
-                                                    {forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES &&
-                                                        forhold.arbeidsgiverHarUtbetaltLønn === YesOrNo.NO && (
-                                                            <ArbeidsforholdUtbetalingsårsak
-                                                                arbeidsforhold={forhold}
-                                                                andreVedlegg={andreVedlegg}
-                                                                parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
-                                                            />
-                                                        )}
-                                                </FormLayout.Questions>
-                                            </FormLayout.Section>
-                                        ))}
-                                    </FormLayout.Sections>
+                                {error ? (
+                                    <HentArbeidsforholdFeiletInfo />
+                                ) : (
+                                    <VStack gap="8">
+                                        <FormLayout.Sections>
+                                            {arbeidsforhold.map((forhold, index) => (
+                                                <FormLayout.Section
+                                                    key={forhold.organisasjonsnummer}
+                                                    data-testid={`arbeidsforhold-liste-${index}`}
+                                                    title={forhold.navn || forhold.organisasjonsnummer}
+                                                    titleIcon={
+                                                        <Buildings3Icon role="presentation" aria-hidden={true} />
+                                                    }>
+                                                    <FormLayout.Questions>
+                                                        <ArbeidsforholdSituasjon
+                                                            arbeidsforhold={forhold}
+                                                            parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
+                                                        />
+                                                        {forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES &&
+                                                            forhold.arbeidsgiverHarUtbetaltLønn === YesOrNo.NO && (
+                                                                <ArbeidsforholdUtbetalingsårsak
+                                                                    arbeidsforhold={forhold}
+                                                                    andreVedlegg={andreVedlegg}
+                                                                    parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
+                                                                />
+                                                            )}
+                                                    </FormLayout.Questions>
+                                                </FormLayout.Section>
+                                            ))}
+                                        </FormLayout.Sections>
 
-                                    {arbeidsforhold.length === 0 && (
-                                        <Alert variant="info">
-                                            <AppText id="step.situasjon.arbeidsforhold.ingen.info.text" />
-                                        </Alert>
-                                    )}
+                                        {arbeidsforhold.length === 0 && (
+                                            <Alert variant="info">
+                                                <AppText id="step.situasjon.arbeidsforhold.ingen.info.text" />
+                                            </Alert>
+                                        )}
 
-                                    {arbeidsforhold.length > 0 && harKlikketNeiPåAlle && (
-                                        <Alert variant="warning">
-                                            <AppText id="step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei" />
-                                        </Alert>
-                                    )}
-                                </VStack>
+                                        {arbeidsforhold.length > 0 && harKlikketNeiPåAlle && (
+                                            <Alert variant="warning">
+                                                <AppText id="step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei" />
+                                            </Alert>
+                                        )}
+                                    </VStack>
+                                )}
                             </Form>
                         </>
                     );

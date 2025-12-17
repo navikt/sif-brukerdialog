@@ -1,5 +1,5 @@
 import apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { DateRange, dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 import appSentryLogger from '../utils/appSentryLogger';
@@ -68,9 +68,9 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (data: AAregArbeidsgiverRem
     return arbeidsgivere;
 };
 
-export async function getArbeidsgivereRemoteData(fromDate: Date, toDate: Date): Promise<Arbeidsgiver[]> {
+export async function getArbeidsgivereRemoteData(periode: DateRange): Promise<Arbeidsgiver[]> {
     try {
-        const response = await getArbeidsgiver(dateToISODate(fromDate), dateToISODate(toDate));
+        const response = await getArbeidsgiver(dateToISODate(periode.from), dateToISODate(periode.to));
         const arbeidsgivere = mapAAregArbeidsgiverRemoteDataToArbeidsgiver(response.data);
         return Promise.resolve(arbeidsgivere);
     } catch (error: any) {
