@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, BoxNew, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import {
@@ -21,6 +21,8 @@ import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
+import GruppertSjekkliste from '../../components/sjekkliste/GruppertSjekkliste';
+import { useState } from 'react';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -31,6 +33,7 @@ interface Props {
 interface FormValues {
     startDato: string;
     erVedtaksbrevSendt?: YesOrNo;
+    harSjekketSjekkliste?: YesOrNo;
     bekreftRegistrering: boolean;
 }
 
@@ -39,6 +42,8 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
 
     const { mutateAsync, isPending, error } = useMeldInnDeltaker(deltaker.deltakerIdent);
     const { log } = useAppEventLogger();
+
+    const [sjekkListeResultat, setSjekkListeResultat] = useState<boolean>(false);
 
     const handleOnSubmit = async (values: FormValues) => {
         const deltakelse = await mutateAsync({
@@ -68,10 +73,13 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
             initialValues={{}}
             onSubmit={handleOnSubmit}
             renderForm={({ values }) => {
-                const { erVedtaksbrevSendt } = values;
+                const { erVedtaksbrevSendt, harSjekketSjekkliste } = values;
+
+                const kanMeldesInn = sjekkListeResultat === true || harSjekketSjekkliste === YesOrNo.YES;
+
                 return (
                     <TypedFormikForm
-                        showSubmitButton={false}
+                        includeButtons={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'meldInnDeltakerForm')}>
                         <VStack gap="4" marginBlock="4 0">
                             <Heading level="2" size="medium">
@@ -79,11 +87,34 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                             </Heading>
 
                             <FormikYesOrNoQuestion
-                                name="erVedtaksbrevSendt"
-                                legend="Er vedtaksbrev om deltakelse i ungdomsprogrammet sendt fra gosys?"
+                                name="harSjekketSjekkliste"
+                                legend="Har du gjennomført sjekklisten for å se om deltaker kan meldes inn?"
                                 validate={getYesOrNoValidator()}
                             />
-                            {erVedtaksbrevSendt === YesOrNo.NO && (
+                            {harSjekketSjekkliste === YesOrNo.NO && (
+                                <BoxNew
+                                    padding="4"
+                                    borderRadius="medium"
+                                    background="default"
+                                    borderWidth="1"
+                                    marginBlock="0 4"
+                                    borderColor="neutral-subtle">
+                                    <GruppertSjekkliste
+                                        onChange={(resultat) => setSjekkListeResultat(resultat)}
+                                        visResultat={true}
+                                    />
+                                </BoxNew>
+                            )}
+
+                            {kanMeldesInn && (
+                                <FormikYesOrNoQuestion
+                                    name="erVedtaksbrevSendt"
+                                    legend="Er vedtaksbrev om deltakelse i ungdomsprogrammet sendt fra gosys?"
+                                    validate={getYesOrNoValidator()}
+                                />
+                            )}
+
+                            {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.NO && (
                                 <Alert variant="warning">
                                     Deltaker må ha et vedtak om at de er med i ungdomsprogrammet før vi kan behandle en
                                     søknad om ungdomsprogramytelse.

@@ -136,8 +136,9 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                     }}
                     onDeltakelseRegistrert={onDeltakelseRegistrert}
                 />
-            ) : null}
-            <DevUserList />
+            ) : (
+                <DevUserList />
+            )}
         </VStack>
     );
 };
