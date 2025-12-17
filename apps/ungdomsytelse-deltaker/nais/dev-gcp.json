@@ -33,7 +33,7 @@
 
         "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
         "SIF_PUBLIC_USE_ANALYTICS": "true",
-        "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
+        "SIF_PUBLIC_APPSTATUS_DATASET": "production",
 
         "SIF_PUBLIC_USE_FARO": "true",
         "SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL": "https://telemetry.ekstern.dev.nav.no/collect",

@@ -1,5 +1,23 @@
 # @navikt/sif-demo-app
 
+## 0.9.44
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+- Updated dependencies [69fe53c]
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.3
+    - @navikt/sif-common-formik-ds@2.5.39
+    - @navikt/sif-common-core-ds@10.3.46
+    - @navikt/sif-common-api@0.4.86
+    - @navikt/sif-common-ui@0.11.47
+    - @navikt/ung-common@0.0.88
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-faro@0.2.10
+    - @navikt/sif-common-hooks@0.3.8
+    - @navikt/sif-common-utils@3.49.55
+    - @navikt/sif-validation@1.0.18
+
 ## 0.9.43
 
 ### Patch Changes

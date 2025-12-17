@@ -4,12 +4,12 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.20.67",
+    "version": "2.20.68",
     "private": true,
     "type": "module",
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
-        "@portabletext/react": "5.0.0",
+        "@portabletext/react": "6.0.0",
         "@sanity/client": "7.13.1"
     },
     "devDependencies": {
@@ -27,7 +27,7 @@
         "react": "19.2.1",
         "react-dom": "19.2.1",
         "rimraf": "6.1.2",
-        "sass": "1.95.0"
+        "sass": "1.95.1"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

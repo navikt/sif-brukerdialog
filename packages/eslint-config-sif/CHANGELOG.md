@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.80
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+
 ## 1.1.79
 
 ### Patch Changes

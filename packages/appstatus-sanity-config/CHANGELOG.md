@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.55
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+
 ## 1.2.54
 
 ### Patch Changes

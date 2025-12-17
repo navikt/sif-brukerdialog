@@ -1,5 +1,13 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.7
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+- Updated dependencies [69fe53c]
+    - @navikt/sif-common-api@0.4.86
+
 ## 0.3.6
 
 ### Patch Changes

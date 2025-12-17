@@ -59,7 +59,7 @@
         "NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL": "https://www.dev.nav.no/dokumentarkiv/tema/OMS",
         "NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL": "https://tjenester.nav.no/utbetalingsoversikt",
 
-        "NEXT_PUBLIC_FEATURE_APPSTATUS": "off",
+        "NEXT_PUBLIC_FEATURE_APPSTATUS": "on",
         "NEXT_PUBLIC_FEATURE_FARO": "on",
         "NEXT_PUBLIC_FEATURE_INNTEKTSMELDING": "off",
         "NEXT_PUBLIC_TELEMETRY_URL": "https://telemetry.ekstern.dev.nav.no/collect"
