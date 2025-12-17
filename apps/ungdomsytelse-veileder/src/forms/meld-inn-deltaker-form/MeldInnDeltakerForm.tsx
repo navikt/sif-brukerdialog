@@ -1,4 +1,4 @@
-import { Alert, BodyShort, BoxNew, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, BodyShort, BoxNew, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import {
@@ -23,6 +23,7 @@ import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
 import GruppertSjekkliste from '../../components/sjekkliste/GruppertSjekkliste';
 import { useState } from 'react';
+import { Features } from '../../types/Features';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -75,7 +76,9 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
             renderForm={({ values }) => {
                 const { erVedtaksbrevSendt, harSjekketSjekkliste } = values;
 
-                const kanMeldesInn = sjekkListeResultat === true || harSjekketSjekkliste === YesOrNo.YES;
+                const kanMeldesInn = Features.sjekkliste
+                    ? sjekkListeResultat === true || harSjekketSjekkliste === YesOrNo.YES
+                    : true;
 
                 return (
                     <TypedFormikForm
@@ -86,24 +89,30 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                 Registrer ny deltaker
                             </Heading>
 
-                            <FormikYesOrNoQuestion
-                                name="harSjekketSjekkliste"
-                                legend="Har du gjennomført sjekklisten for å se om deltaker kan meldes inn?"
-                                validate={getYesOrNoValidator()}
-                            />
-                            {harSjekketSjekkliste === YesOrNo.NO && (
-                                <BoxNew
-                                    padding="4"
-                                    borderRadius="medium"
-                                    background="default"
-                                    borderWidth="1"
-                                    marginBlock="0 4"
-                                    borderColor="neutral-subtle">
-                                    <GruppertSjekkliste
-                                        onChange={(resultat) => setSjekkListeResultat(resultat)}
-                                        visResultat={true}
+                            {Features.sjekkliste && (
+                                <>
+                                    <FormikYesOrNoQuestion
+                                        name="harSjekketSjekkliste"
+                                        legend="Har du gjennomført sjekklisten for å se om deltaker kan meldes inn?"
+                                        validate={getYesOrNoValidator()}
                                     />
-                                </BoxNew>
+                                    {harSjekketSjekkliste === YesOrNo.NO && (
+                                        <Bleed marginInline="4">
+                                            <BoxNew
+                                                padding="4"
+                                                borderRadius="large"
+                                                background="default"
+                                                borderWidth="1"
+                                                marginBlock="0 4"
+                                                borderColor="neutral-subtle">
+                                                <GruppertSjekkliste
+                                                    onChange={(resultat) => setSjekkListeResultat(resultat)}
+                                                    visResultat={true}
+                                                />
+                                            </BoxNew>
+                                        </Bleed>
+                                    )}
+                                </>
                             )}
 
                             {kanMeldesInn && (
