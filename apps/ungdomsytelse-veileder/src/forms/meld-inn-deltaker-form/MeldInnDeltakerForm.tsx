@@ -121,7 +121,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                 </Alert>
                             )}
 
-                            {erVedtaksbrevSendt === YesOrNo.YES && (
+                            {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.YES && (
                                 <>
                                     <FormikDatepicker
                                         name="startDato"
