@@ -1,7 +1,7 @@
 import './app.css';
 
 import { SanityConfig } from '@navikt/appstatus-react-ds';
-import { Theme } from '@navikt/ds-react';
+import { Button, Theme } from '@navikt/ds-react';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
@@ -88,6 +88,18 @@ const App = () => {
                     />
                 </SoknadApplication>
             </QueryClientProvider>
+            {getMaybeEnv('APP_VERSION') === 'dev' && (
+                <>
+                    <Button
+                        variant="tertiary"
+                        size="small"
+                        onClick={() => {
+                            throw new Error('Test Sentry error from VelkommenPage');
+                        }}>
+                        Test
+                    </Button>
+                </>
+            )}
         </Theme>
     );
 };
