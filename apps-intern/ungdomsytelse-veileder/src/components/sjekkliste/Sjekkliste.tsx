@@ -14,14 +14,16 @@ import {
 } from '@navikt/ds-react';
 
 import GruppertSjekkliste from './GruppertSjekkliste';
+import RadioSjekkliste from './RadioSjekkliste';
 
 const Sjekkliste = () => {
     return (
-        <Tabs defaultValue="gruppertListe">
+        <Tabs defaultValue="radioListe">
             <Tabs.List>
                 <Tabs.Tab value="tabell" label="Tabell" />
                 <Tabs.Tab value="liste" label="Liste" />
                 <Tabs.Tab value="gruppertListe" label="Gruppert Liste" />
+                <Tabs.Tab value="radioListe" label="Radio Liste" />
             </Tabs.List>
             <Tabs.Panel value="tabell">
                 <Box padding="6">
@@ -147,6 +149,15 @@ const Sjekkliste = () => {
             <Tabs.Panel value="gruppertListe">
                 <Box padding="6">
                     <GruppertSjekkliste
+                        onChange={(flag) => {
+                            console.log(flag);
+                        }}
+                    />
+                </Box>
+            </Tabs.Panel>
+            <Tabs.Panel value="radioListe">
+                <Box padding="6">
+                    <RadioSjekkliste
                         onChange={(flag) => {
                             console.log(flag);
                         }}

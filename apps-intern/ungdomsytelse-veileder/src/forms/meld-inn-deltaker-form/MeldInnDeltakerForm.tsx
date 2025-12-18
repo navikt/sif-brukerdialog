@@ -1,4 +1,4 @@
-import { Alert, Bleed, BodyShort, BoxNew, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, BoxNew, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import {
@@ -21,9 +21,9 @@ import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
-import GruppertSjekkliste from '../../components/sjekkliste/GruppertSjekkliste';
 import { useState } from 'react';
 import { Features } from '../../types/Features';
+import RadioSjekkliste from '../../components/sjekkliste/RadioSjekkliste';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -97,20 +97,20 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                         validate={getYesOrNoValidator()}
                                     />
                                     {harSjekketSjekkliste === YesOrNo.NO && (
-                                        <Bleed marginInline="4">
-                                            <BoxNew
-                                                padding="4"
-                                                borderRadius="large"
-                                                background="default"
-                                                borderWidth="1"
-                                                marginBlock="0 4"
-                                                borderColor="neutral-subtle">
-                                                <GruppertSjekkliste
-                                                    onChange={(resultat) => setSjekkListeResultat(resultat)}
-                                                    visResultat={true}
-                                                />
-                                            </BoxNew>
-                                        </Bleed>
+                                        // <Bleed marginInline="4">
+                                        <BoxNew
+                                            padding="8"
+                                            borderRadius="large"
+                                            background="default"
+                                            borderWidth="1"
+                                            marginBlock="0 4"
+                                            borderColor="neutral-subtle">
+                                            <RadioSjekkliste
+                                                onChange={(resultat) => setSjekkListeResultat(resultat)}
+                                                visResultat={true}
+                                            />
+                                        </BoxNew>
+                                        // </Bleed>
                                     )}
                                 </>
                             )}
