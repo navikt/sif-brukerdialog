@@ -45,8 +45,8 @@ const RadioSjekkliste = ({ onChange, visResultat = true }: Props) => {
                     value={values.alder || ''}
                     onChange={(val: JaNei) => setValue('alder', val)}>
                     <HStack gap="10">
-                        <Radio value="nei">Nei</Radio>
                         <Radio value="ja">Ja</Radio>
+                        <Radio value="nei">Nei</Radio>
                     </HStack>
                 </RadioGroup>
 
@@ -71,8 +71,8 @@ const RadioSjekkliste = ({ onChange, visResultat = true }: Props) => {
                             </ReadMore>
                         }>
                         <HStack gap="10">
-                            <Radio value="nei">Nei</Radio>
                             <Radio value="ja">Ja</Radio>
+                            <Radio value="nei">Nei</Radio>
                         </HStack>
                     </RadioGroup>
                 )}
@@ -94,8 +94,8 @@ const RadioSjekkliste = ({ onChange, visResultat = true }: Props) => {
                             </ReadMore>
                         }>
                         <HStack gap="10">
-                            <Radio value="nei">Nei</Radio>
                             <Radio value="ja">Ja</Radio>
+                            <Radio value="nei">Nei</Radio>
                         </HStack>
                     </RadioGroup>
                 )}
@@ -107,8 +107,8 @@ const RadioSjekkliste = ({ onChange, visResultat = true }: Props) => {
                         value={values.mottarYtelser || ''}
                         onChange={(val: JaNei) => setValue('mottarYtelser', val)}>
                         <HStack gap="10">
-                            <Radio value="nei">Nei</Radio>
                             <Radio value="ja">Ja</Radio>
+                            <Radio value="nei">Nei</Radio>
                         </HStack>
                     </RadioGroup>
                 )}
@@ -142,8 +142,8 @@ const RadioSjekkliste = ({ onChange, visResultat = true }: Props) => {
                             </ReadMore>
                         }>
                         <HStack gap="10">
-                            <Radio value="nei">Nei</Radio>
                             <Radio value="ja">Ja</Radio>
+                            <Radio value="nei">Nei</Radio>
                         </HStack>
                     </RadioGroup>
                 )}
