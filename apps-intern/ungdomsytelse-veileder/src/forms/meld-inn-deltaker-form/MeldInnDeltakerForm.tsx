@@ -142,7 +142,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                     <Heading level="2" size="medium">
                                         Registrer ny deltaker
                                     </Heading>
-                                    <Process data-color="brand-blue">
+                                    <Process data-color="accent">
                                         <Process.Event
                                             status={
                                                 kanMeldesInn
@@ -154,7 +154,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                             // status="completed"
                                             title="Kontroller om deltaker kan meldes inn"
                                             bullet={1}>
-                                            <BoxNew paddingBlock="4">
+                                            <BoxNew paddingBlock="4" data-color="accent">
                                                 <FormikYesOrNoQuestion
                                                     name="harSjekketSjekkliste"
                                                     legend="Har du kontrollert at deltaker kan meldes inn i ungdomsprogrammet ved å fylle ut sjekklisten for deltakelse?"
