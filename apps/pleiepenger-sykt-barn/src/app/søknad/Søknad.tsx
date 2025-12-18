@@ -12,36 +12,34 @@ const Søknad = () => {
     const navigate = useNavigate();
     const { logHendelse } = useAnalyticsInstance();
     return (
-        <>
-            <SøknadEssentialsLoader
-                onUgyldigMellomlagring={() => logHendelse(ApplikasjonHendelse.ugyldigMellomlagring)}
-                onError={() => {
+        <SøknadEssentialsLoader
+            onUgyldigMellomlagring={() => logHendelse(ApplikasjonHendelse.ugyldigMellomlagring)}
+            onError={() => {
+                navigateToErrorPage(navigate);
+            }}
+            contentLoadedRenderer={({ formValues, mellomlagringMetadata, søkerdata }) => {
+                if (!søkerdata) {
                     navigateToErrorPage(navigate);
-                }}
-                contentLoadedRenderer={({ formValues, mellomlagringMetadata, søkerdata }) => {
-                    if (!søkerdata) {
-                        navigateToErrorPage(navigate);
-                        return;
-                    }
-                    return (
-                        <SøknadsdataWrapper initialValues={formValues}>
-                            <TypedFormikWrapper<SøknadFormValues>
-                                initialValues={formValues}
-                                onSubmit={() => {}}
-                                renderForm={() => {
-                                    return (
-                                        <SøknadContent
-                                            mellomlagringMetadata={mellomlagringMetadata}
-                                            søker={søkerdata.søker}
-                                        />
-                                    );
-                                }}
-                            />
-                        </SøknadsdataWrapper>
-                    );
-                }}
-            />
-        </>
+                    return;
+                }
+                return (
+                    <SøknadsdataWrapper initialValues={formValues}>
+                        <TypedFormikWrapper<SøknadFormValues>
+                            initialValues={formValues}
+                            onSubmit={() => {}}
+                            renderForm={() => {
+                                return (
+                                    <SøknadContent
+                                        mellomlagringMetadata={mellomlagringMetadata}
+                                        søker={søkerdata.søker}
+                                    />
+                                );
+                            }}
+                        />
+                    </SøknadsdataWrapper>
+                );
+            }}
+        />
     );
 };
 export default Søknad;
