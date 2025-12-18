@@ -1,9 +1,5 @@
-import { Button } from '@navikt/ds-react';
-import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
-import { getMaybeEnv } from '@navikt/sif-common-env';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { useNavigate } from 'react-router-dom';
 
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
@@ -45,20 +41,6 @@ const Søknad = () => {
                     );
                 }}
             />
-            {getMaybeEnv('APP_VERSION') === 'dev' && (
-                <>
-                    <Button
-                        variant="tertiary"
-                        size="small"
-                        onClick={() => {
-                            getSentryLoggerForApp(PleiepengerSyktBarnApp.key, []).logError('some error');
-
-                            throw new Error('Test Sentry error from VelkommenPage');
-                        }}>
-                        Test error
-                    </Button>
-                </>
-            )}
         </>
     );
 };
