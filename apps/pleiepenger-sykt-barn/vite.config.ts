@@ -25,6 +25,7 @@ export default defineConfig({
                       sentryVitePlugin({
                           org: 'nav',
                           project: 'sykdom-i-familien',
+                          url: 'https://sentry.gc.nav.no/',
                           authToken: process.env.SENTRY_AUTH_TOKEN,
                       }),
                   ]
