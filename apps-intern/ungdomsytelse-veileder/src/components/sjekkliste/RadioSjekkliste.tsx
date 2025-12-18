@@ -15,7 +15,7 @@ interface Props {
     onChange: (kanMeldesInn: boolean) => void;
 }
 
-const RadioSjekkliste = ({ onChange, visResultat = true }: Props) => {
+const RadioSjekkliste = ({ onChange, visResultat }: Props) => {
     const [values, setValues] = useState<SjekklisteValues>({});
 
     const setValue = <K extends keyof SjekklisteValues>(key: K, value: SjekklisteValues[K]) => {
@@ -36,7 +36,7 @@ const RadioSjekkliste = ({ onChange, visResultat = true }: Props) => {
     return (
         <VStack gap="2">
             <Heading level="3" size="small" spacing>
-                Sjekkliste - kan deltaker meldes inn i ungdoms&shy;programmet
+                Sjekkliste for om deltaker kan meldes inn i ungdoms&shy;programmet
             </Heading>
             <VStack gap="10">
                 <RadioGroup
