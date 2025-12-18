@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-/* eslint-disable no-constant-condition */
+
 import { Alert, BodyShort, BoxNew, Button, Heading, HStack, Process, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
@@ -137,7 +137,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                         includeButtons={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'meldInnDeltakerForm')}>
                         <VStack gap="4" marginBlock="4 0">
-                            {1 + 1 === 2 ? (
+                            {Features.sjekkliste && 1 + 1 === 2 ? (
                                 <>
                                     <Heading level="2" size="medium">
                                         Registrer ny deltaker
@@ -154,31 +154,29 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                             // status="completed"
                                             title="Kontroller om deltaker kan meldes inn"
                                             bullet={1}>
-                                            {Features.sjekkliste && (
-                                                <BoxNew paddingBlock="4">
-                                                    <FormikYesOrNoQuestion
-                                                        name="harSjekketSjekkliste"
-                                                        legend="Har du kontrollert at deltaker kan meldes inn i ungdomsprogrammet ved å fylle ut sjekklisten for deltakelse?"
-                                                        validate={getYesOrNoValidator()}
-                                                    />
-                                                    {harSjekketSjekkliste === YesOrNo.NO && (
-                                                        // <Bleed marginInline="4">
-                                                        <BoxNew
-                                                            padding="8"
-                                                            borderRadius="large"
-                                                            background="default"
-                                                            borderWidth="1"
-                                                            marginBlock="0 4"
-                                                            borderColor="neutral-subtle">
-                                                            <RadioSjekkliste
-                                                                onChange={(resultat) => setSjekkListeResultat(resultat)}
-                                                                visResultat={true}
-                                                            />
-                                                        </BoxNew>
-                                                        // </Bleed>
-                                                    )}
-                                                </BoxNew>
-                                            )}
+                                            <BoxNew paddingBlock="4">
+                                                <FormikYesOrNoQuestion
+                                                    name="harSjekketSjekkliste"
+                                                    legend="Har du kontrollert at deltaker kan meldes inn i ungdomsprogrammet ved å fylle ut sjekklisten for deltakelse?"
+                                                    validate={getYesOrNoValidator()}
+                                                />
+                                                {harSjekketSjekkliste === YesOrNo.NO && (
+                                                    // <Bleed marginInline="4">
+                                                    <BoxNew
+                                                        padding="8"
+                                                        borderRadius="large"
+                                                        background="default"
+                                                        borderWidth="1"
+                                                        marginBlock="0 4"
+                                                        borderColor="neutral-subtle">
+                                                        <RadioSjekkliste
+                                                            onChange={(resultat) => setSjekkListeResultat(resultat)}
+                                                            visResultat={true}
+                                                        />
+                                                    </BoxNew>
+                                                    // </Bleed>
+                                                )}
+                                            </BoxNew>
                                         </Process.Event>
                                         <Process.Event
                                             status={
