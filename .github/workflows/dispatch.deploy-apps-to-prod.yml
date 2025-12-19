@@ -443,12 +443,9 @@ jobs:
 
                   if [ "${{ needs.detect-changes.result }}" == "failure" ]; then
                       echo "❌ **Change detection failed** - no deployments were attempted" >> $GITHUB_STEP_SUMMARY
-                      exit 1
-                  fi
-
-                  AFFECTED="${{ needs.detect-changes.outputs.affected-apps }}"
-
-                  if [ -z "$AFFECTED" ]; then
+                      echo "" >> $GITHUB_STEP_SUMMARY
+                      echo "Check the detect-changes job logs for details." >> $GITHUB_STEP_SUMMARY
+                  elif [ -z "${{ needs.detect-changes.outputs.affected-apps }}" ]; then
                       echo "ℹ️ **No deployable apps were affected by these changes**" >> $GITHUB_STEP_SUMMARY
                       echo "" >> $GITHUB_STEP_SUMMARY
                       echo "This is expected when changes only affect:" >> $GITHUB_STEP_SUMMARY
@@ -456,5 +453,5 @@ jobs:
                       echo "- Internal packages (sif-common-*, etc.)" >> $GITHUB_STEP_SUMMARY
                       echo "- Configuration files not used by apps" >> $GITHUB_STEP_SUMMARY
                   else
-                      echo "🚀 **Apps deployed:** $AFFECTED" >> $GITHUB_STEP_SUMMARY
+                      echo "🚀 **Apps deployed:** ${{ needs.detect-changes.outputs.affected-apps }}" >> $GITHUB_STEP_SUMMARY
                   fi
