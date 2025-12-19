@@ -50,6 +50,8 @@ on:
                 default: false
                 description: "Run SonarCloud scan after tests"
 
+permissions: {}
+
 jobs:
     run-tests:
         uses: ./.github/workflows/.test-app.yml

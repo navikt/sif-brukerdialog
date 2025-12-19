@@ -33,6 +33,8 @@ on:
                     - sif-ettersending
                     - ungdomsytelse-deltaker
 
+permissions: {}
+
 env:
     # List of all deployable apps - update this when adding/removing apps
     ALL_APPS: >-

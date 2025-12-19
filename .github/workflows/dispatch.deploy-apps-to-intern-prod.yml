@@ -13,6 +13,8 @@ on:
             - "server-ungdomsytelse-veileder/**/*"
     workflow_dispatch:
 
+permissions: {}
+
 jobs:
     detect-changes:
         if: github.event_name == 'push'

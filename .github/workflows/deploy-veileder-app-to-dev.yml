@@ -7,6 +7,8 @@ on:
     branches:
       - "*-veilder-dev"
 
+permissions: {}
+
 env:
   APP_NAME: ungdomsytelse-veileder
 
