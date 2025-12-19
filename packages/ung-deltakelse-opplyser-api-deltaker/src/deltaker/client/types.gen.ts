@@ -41,6 +41,12 @@ export type DeltakerDto = {
     deltakerIdent: string;
 };
 
+export type EndretPeriodeDataDto = OppgavetypeDataDto & {
+    nyPeriode?: PeriodeDto;
+    forrigePeriode?: PeriodeDto;
+    endringer: PeriodeEndringType[];
+};
+
 export type EndretSluttdatoDataDto = OppgavetypeDataDto & {
     nySluttdato: string;
     forrigeSluttdato?: string;
@@ -74,6 +80,7 @@ export type OppgaveDto = {
     oppgaveReferanse: string;
     oppgavetype: Oppgavetype;
     oppgavetypeData:
+        | EndretPeriodeDataDto
         | EndretSluttdatoDataDto
         | EndretStartdatoDataDto
         | FjernetPeriodeDataDto
@@ -100,6 +107,7 @@ export enum OppgaveStatus {
 export enum Oppgavetype {
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
     BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
+    BEKREFT_ENDRET_PERIODE = 'BEKREFT_ENDRET_PERIODE',
     BEKREFT_FJERNET_PERIODE = 'BEKREFT_FJERNET_PERIODE',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
@@ -107,6 +115,18 @@ export enum Oppgavetype {
 }
 
 export type OppgavetypeDataDto = unknown;
+
+export type PeriodeDto = {
+    fom: string;
+    tom?: string;
+};
+
+export enum PeriodeEndringType {
+    ENDRET_STARTDATO = 'ENDRET_STARTDATO',
+    ENDRET_SLUTTDATO = 'ENDRET_SLUTTDATO',
+    FJERNET_PERIODE = 'FJERNET_PERIODE',
+    ANDRE_ENDRINGER = 'ANDRE_ENDRINGER',
+}
 
 export type RapportertInntektPeriodeinfoDto = {
     fraOgMed: string;
