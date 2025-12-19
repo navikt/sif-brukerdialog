@@ -11,7 +11,7 @@
     "dependencies": {
         "@grafana/faro-web-sdk": "2.0.2",
         "constate": "3.3.3",
-        "react": "19.2.1"
+        "react": "19.2.3"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

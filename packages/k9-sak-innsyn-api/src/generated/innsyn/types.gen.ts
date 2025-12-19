@@ -575,8 +575,8 @@ export enum Innsendelsestype {
 export type Innsending = {
     søknadId?: string;
     versjon?: string;
-    søker?: Søker;
     mottattDato?: string;
+    søker?: Søker;
 };
 
 export type Organisasjon = {

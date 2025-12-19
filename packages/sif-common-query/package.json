@@ -19,7 +19,7 @@
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "@types/react": "19.2.7",
-        "react": "19.2.1",
+        "react": "19.2.3",
         "typescript": "5.9.3",
         "zod": "4.1.13"
     },
