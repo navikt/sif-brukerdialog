@@ -1,13 +1,11 @@
 import { useAppIntl } from '@i18n/index';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
-import { useContext, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
-import { getArbeidsgivereRemoteData } from '../../api/getArbeidsgivereRemoteData';
-import { SøkerdataContext } from '../../context/SøkerdataContext';
+import { useArbeidsgivereQuery } from '../../hooks/useArbeidsgivereQuery';
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
@@ -21,43 +19,38 @@ import ArbeidssituasjonVerneplikt from './components/ArbeidssituasjonVerneplikt'
 import { oppdaterSøknadMedArbeidsgivere } from './utils/arbeidsgivereUtils';
 import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
 
-interface LoadState {
-    isLoading: boolean;
-    isLoaded: boolean;
-}
-
 interface Props {
     søknadsdato: Date;
     søknadsperiode: DateRange;
 }
 
 const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: StepCommonProps & Props) => {
-    const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
-    const søkerdata = useContext(SøkerdataContext);
-    const formikProps = useFormikContext<SøknadFormValues>();
+    const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const { text } = useAppIntl();
 
-    const { values } = formikProps;
-    const { isLoading, isLoaded } = loadState;
+    const { data: arbeidsgivere, isLoading, isSuccess, error } = useArbeidsgivereQuery(søknadsperiode);
+    const hasSyncedRef = useRef(false);
 
-    useEffectOnce(() => {
-        const fetchData = async () => {
-            if (søkerdata && søknadsperiode) {
-                const arbeidsgivere = await getArbeidsgivereRemoteData(søknadsperiode.from, søknadsperiode.to);
-                oppdaterSøknadMedArbeidsgivere(arbeidsgivere, formikProps);
-                setLoadState({ isLoading: false, isLoaded: true });
-            }
-        };
-        if (søknadsperiode && !isLoaded && !isLoading) {
-            setLoadState({ isLoading: true, isLoaded: false });
-            fetchData();
+    useEffect(() => {
+        if (hasSyncedRef.current) {
+            return;
         }
-    });
+        if (isSuccess && arbeidsgivere) {
+            hasSyncedRef.current = true;
+            oppdaterSøknadMedArbeidsgivere(arbeidsgivere, { values, setFieldValue });
+        } else if (error) {
+            hasSyncedRef.current = true;
+            oppdaterSøknadMedArbeidsgivere([], { values, setFieldValue });
+        }
+    }, [isSuccess, error, arbeidsgivere, values, setFieldValue]);
+
+    if (isLoading || (!isSuccess && !error)) {
+        return <LoadingSpinner size="3xlarge" style="block" />;
+    }
 
     return (
         <SøknadFormStep stepId={StepID.ARBEIDSSITUASJON} onValidFormSubmit={onValidSubmit} buttonDisabled={isLoading}>
-            {isLoading && <LoadingSpinner type="XS" title="Henter arbeidsforhold" />}
-            {!isLoading && søknadsperiode && (
+            {søknadsperiode && (
                 <>
                     <FormLayout.Guide>
                         <ArbeidssituasjonStepVeileder />
@@ -65,7 +58,10 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
 
                     <FormLayout.Sections>
                         <FormLayout.Section title={text('steg.arbeidssituasjon.tittel')}>
-                            <ArbeidssituasjonArbeidsgivere søknadsperiode={søknadsperiode} />
+                            <ArbeidssituasjonArbeidsgivere
+                                søknadsperiode={søknadsperiode}
+                                hentArbeidsgivereFeilet={!!error}
+                            />
                         </FormLayout.Section>
 
                         <FormLayout.Section title={text('steg.arbeidssituasjon.frilanser.tittel')}>

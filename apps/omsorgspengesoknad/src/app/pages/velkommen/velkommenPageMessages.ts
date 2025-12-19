@@ -7,8 +7,6 @@ const nb = {
         'Denne søknaden bruker du for å søke om ekstra omsorgsdager, hvis barnet ditt har en sykdom eller funksjonshemning som gjør at du må bruke flere omsorgsdager enn det som er vanlig. Det er kun foreldre/fosterforeldre som bor med barnet som kan få ekstra omsorgsdager.',
     'page.velkommen.guide.tekst.2':
         'Hvis flere skal ha ekstra omsorgsdager for samme barn, må dere sende hver deres søknad til Nav.',
-    'page.velkommen.guide.tekst.3':
-        'Hvis du har fått godkjent søknaden av Nav, trenger du ikke å søke om ekstra omsorgsdager igjen. Vedtak om ekstra dager varer til barnet blir 18 år.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
     'page.velkommen.omSøknaden.fremoverITid':
@@ -47,8 +45,6 @@ const nn: Record<keyof typeof nb, string> = {
         'Denne søknaden bruker du for å søkja om ekstra omsorgsdagar, viss barnet ditt har ein sjukdom eller funksjonshemming som gjer at du må bruka fleire omsorgsdagar enn det som er vanleg. Det er berre foreldre/fosterforeldre som bur med barnet som kan få ekstra omsorgsdagar.',
     'page.velkommen.guide.tekst.2':
         'Viss fleire skal ha ekstra omsorgsdagar for same barn, må de senda kvar dykkar søknad til Nav.',
-    'page.velkommen.guide.tekst.3':
-        'Viss du har fått godkjent søknaden av Nav, treng du ikkje å søkja om ekstra omsorgsdagar igjen. Vedtak om ekstra dagar varer til barnet blir 18 år.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylla ut, og korleis.',
     'page.velkommen.omSøknaden.fremoverITid':

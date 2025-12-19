@@ -9,6 +9,7 @@ import { getLogger } from '../../utils/getLogCorrelationID';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
+import { validateSaksnummer } from '../utils/validatePathSegment';
 
 export const zSakDtoExtended = innsyn.zSakDto.extend({
     // zSakDto har feil format i forhold til generert skjema; transformeres her
@@ -66,6 +67,9 @@ export const fetchSak = async (
     saksnummer: string,
     unparsed?: boolean,
 ): Promise<SakDtoExtended> => {
+    // Validerer saksnummer for å beskytte mot SSRF
+    validateSaksnummer(saksnummer);
+
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiServices.k9SakInnsyn,

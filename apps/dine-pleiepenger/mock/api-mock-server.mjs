@@ -89,7 +89,7 @@ const getMockData = (scenario) => {
     }
 };
 
-const scenario = 'sak-uten-behandling';
+const scenario = 'en-sak';
 
 const mockData = getMockData(scenario);
 

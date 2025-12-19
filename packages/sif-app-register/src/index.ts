@@ -1,3 +1,20 @@
+export enum SifAppKeys {
+    PleiepengerSyktBarn = 'pleiepengesoknad',
+    EndringsmeldingPsb = 'endringsmelding-pleiepenger',
+    PleiepengerLivetsSlutt = 'pleiepenger-i-livets-sluttfase-soknad',
+    OmsorgsdagerKronisk = 'omsorgspengersoknad',
+    OmsorgsdagerAleneomsorg = 'omsorgsdager-aleneomsorg-dialog',
+    OmsorgsdagerAnnenForelderIkkeTilsyn = 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
+    OmsorgspengerutbetalingArbeidstaker = 'omsorgspengerutbetaling-arbeidstaker',
+    OmsorgspengerutbetalingSNFri = 'omsorgspengerutbetaling-soknad',
+    Ettersendelse = 'ettersending',
+    InnsynPsb = 'sif-innsyn',
+    OmsorgsdagerKalkulator = 'omsorgsdagerkalkulator',
+    OpplæringspengerApp = 'opplaringspenger-soknad',
+    UngdomsytelseDeltakerApp = 'ungdomsytelse-deltaker',
+    UngdomsytelseVeilederApp = 'ungdomsytelse-veileder',
+}
+
 interface AppInfo {
     /** Ikke synlig beskrivende navn - brukes i analytics */
     navn: string;
@@ -15,7 +32,7 @@ interface AppInfo {
 }
 
 export const PleiepengerSyktBarnApp: AppInfo = {
-    key: 'pleiepengesoknad',
+    key: SifAppKeys.PleiepengerSyktBarn,
     navn: 'Pleiepenger for sykt barn',
     tittel: {
         nb: 'Søknad om pleiepenger for sykt barn',
@@ -27,7 +44,7 @@ export const PleiepengerSyktBarnApp: AppInfo = {
 };
 
 export const EndringsmeldingPsbApp: AppInfo = {
-    key: 'endringsmelding-pleiepenger',
+    key: SifAppKeys.EndringsmeldingPsb,
     navn: 'Endringsmelding pleiepenger sykt barn',
     tittel: {
         nb: 'Endringsmelding for pleiepenger sykt barn',
@@ -39,7 +56,7 @@ export const EndringsmeldingPsbApp: AppInfo = {
 };
 
 export const PleiepengerLivetsSluttApp: AppInfo = {
-    key: 'pleiepenger-i-livets-sluttfase-soknad',
+    key: SifAppKeys.PleiepengerLivetsSlutt,
     navn: 'Pleiepenger i livets sluttfase',
     tittel: {
         nb: 'Søknad om pleiepenger i livets sluttfase',
@@ -51,7 +68,7 @@ export const PleiepengerLivetsSluttApp: AppInfo = {
 };
 
 export const OmsorgsdagerKroniskApp: AppInfo = {
-    key: 'omsorgspengersoknad',
+    key: SifAppKeys.OmsorgsdagerKronisk,
     navn: 'Ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
     tittel: {
         nb: 'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
@@ -63,7 +80,7 @@ export const OmsorgsdagerKroniskApp: AppInfo = {
 };
 
 export const OmsorgsdagerAleneomsorgApp: AppInfo = {
-    key: 'omsorgsdager-aleneomsorg-dialog',
+    key: SifAppKeys.OmsorgsdagerAleneomsorg,
     navn: 'Ekstra omsorgsdager ved aleneomsorg',
     tittel: {
         nb: 'Søknad om ekstra omsorgsdager ved aleneomsorg',
@@ -75,7 +92,7 @@ export const OmsorgsdagerAleneomsorgApp: AppInfo = {
 };
 
 export const OmsorgsdagerAnnenForelderIkkeTilsynApp: AppInfo = {
-    key: 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
+    key: SifAppKeys.OmsorgsdagerAnnenForelderIkkeTilsyn,
     navn: 'Ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
     tittel: {
         nb: 'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
@@ -87,7 +104,7 @@ export const OmsorgsdagerAnnenForelderIkkeTilsynApp: AppInfo = {
 };
 
 export const OmsorgspengerutbetalingArbeidstakerApp: AppInfo = {
-    key: 'omsorgspengerutbetaling-arbeidstaker',
+    key: SifAppKeys.OmsorgspengerutbetalingArbeidstaker,
     navn: 'Utbetaling av omsorgspenger for arbeidstaker',
     tittel: {
         nb: 'Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
@@ -99,7 +116,7 @@ export const OmsorgspengerutbetalingArbeidstakerApp: AppInfo = {
 };
 
 export const OmsorgspengerutbetalingSNFriApp: AppInfo = {
-    key: 'omsorgspengerutbetaling-soknad',
+    key: SifAppKeys.OmsorgspengerutbetalingSNFri,
     navn: 'Utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
     tittel: {
         nb: 'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
@@ -111,7 +128,7 @@ export const OmsorgspengerutbetalingSNFriApp: AppInfo = {
 };
 
 export const EttersendelseApp: AppInfo = {
-    key: 'ettersending',
+    key: SifAppKeys.Ettersendelse,
     navn: 'Ettersending av dokumenter innenfor sykdom i familien',
     tittel: {
         nb: 'Ettersendelse',
@@ -123,7 +140,7 @@ export const EttersendelseApp: AppInfo = {
 };
 
 export const EttersendelsePsbApp: AppInfo = {
-    key: 'ettersending',
+    key: SifAppKeys.Ettersendelse,
     navn: 'Ettersendelse - Pleiepenger for sykt barn',
     tittel: {
         nb: 'Ettersendelse - Pleiepenger for sykt barn',
@@ -135,7 +152,7 @@ export const EttersendelsePsbApp: AppInfo = {
 };
 
 export const EttersendelseLivetsSluttApp: AppInfo = {
-    key: 'ettersending',
+    key: SifAppKeys.Ettersendelse,
     navn: 'Ettersendelse - Pleiepenger i livets sluttfase',
     tittel: {
         nb: 'Ettersendelse - Pleiepenger for sykt barn',
@@ -146,7 +163,7 @@ export const EttersendelseLivetsSluttApp: AppInfo = {
     },
 };
 export const EttersendelseOmsorgspengerApp: AppInfo = {
-    key: 'ettersending',
+    key: SifAppKeys.Ettersendelse,
     navn: 'Ettersendelse - Omsorgspenger',
     tittel: {
         nb: 'Ettersendelse - Omsorgspenger',
@@ -157,7 +174,7 @@ export const EttersendelseOmsorgspengerApp: AppInfo = {
     },
 };
 export const InnsynPsbApp: AppInfo = {
-    key: 'sif-innsyn',
+    key: SifAppKeys.InnsynPsb,
     navn: 'Dine pleiepenger - sykt barn',
     tittel: {
         nb: 'Dine pleiepenger',
@@ -169,7 +186,7 @@ export const InnsynPsbApp: AppInfo = {
 };
 
 export const OmsorgsdagerKalkulator: AppInfo = {
-    key: 'omsorgsdagerkalkulator',
+    key: SifAppKeys.OmsorgsdagerKalkulator,
     navn: 'Omsorgsdagerkalkulator',
     tittel: {
         nb: 'Kalkulator for omsorgsdager',
@@ -181,7 +198,7 @@ export const OmsorgsdagerKalkulator: AppInfo = {
 };
 
 export const OpplæringspengerApp: AppInfo = {
-    key: 'opplaringspenger-soknad',
+    key: SifAppKeys.OpplæringspengerApp,
     navn: 'Søknad om opplæringspenger',
     tittel: {
         nb: 'Søknad om opplæringspenger',
@@ -193,7 +210,7 @@ export const OpplæringspengerApp: AppInfo = {
 };
 
 export const UngdomsytelseDeltakerApp: AppInfo = {
-    key: 'ungdomsytelse-deltaker',
+    key: SifAppKeys.UngdomsytelseDeltakerApp,
     navn: 'Søknad om deltakelse i ungdomprogrammer',
     tittel: {
         nb: 'Søknad om deltakelse i ungdomprogrammer',
@@ -205,7 +222,7 @@ export const UngdomsytelseDeltakerApp: AppInfo = {
 };
 
 export const UngdomsytelseVeilederApp: AppInfo = {
-    key: 'ungdomsytelse-veileder',
+    key: SifAppKeys.UngdomsytelseVeilederApp,
     navn: 'Veilederapplikasjon for ungdomsprogramytelse',
     tittel: {
         nb: 'Veilederapplikasjon for ungdomsprogramytelse',

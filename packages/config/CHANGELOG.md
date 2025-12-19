@@ -1,5 +1,17 @@
 # config
 
+## 0.11.51
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+
+## 0.11.50
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+
 ## 0.11.49
 
 ### Patch Changes

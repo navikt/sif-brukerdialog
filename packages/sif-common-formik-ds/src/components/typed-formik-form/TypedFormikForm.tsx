@@ -86,18 +86,24 @@ function TypedFormikForm<FormValues, ErrorType>({
     const { handleSubmit, submitCount, setStatus, resetForm, isSubmitting, isValid } = formik;
     const [formSubmitCount, setFormSubmitCout] = useState(submitCount);
 
-    const ref = useRef<any>({ isSubmitting, isValid });
+    const prevSubmitPropsRef = useRef<SubmitProps>({ isSubmitting, isValid });
     const summaryRef = useRef<HTMLDivElement>(null);
 
     const { locale } = useIntl();
 
     const showErrors = formik?.status?.showErrors === true || formik?.initialStatus?.showErrors === true;
 
+    /** Handle valid form submission in useEffect to avoid setState during render */
     useEffect(() => {
-        ref.current = {
-            isSubmitting,
-            isValid,
-        };
+        if (userHasSubmittedValidForm(prevSubmitPropsRef.current, { isValid, isSubmitting })) {
+            if (onValidSubmit) {
+                onValidSubmit();
+            }
+        }
+        prevSubmitPropsRef.current = { isSubmitting, isValid };
+    }, [isSubmitting, isValid, onValidSubmit]);
+
+    useEffect(() => {
         if (!isSubmitting) {
             if (submitCount > formSubmitCount) {
                 if (isValid) {
@@ -115,12 +121,6 @@ function TypedFormikForm<FormValues, ErrorType>({
             }
         }
     }, [submitCount, showErrors, setStatus, formSubmitCount, isSubmitting, isValid]);
-
-    if (userHasSubmittedValidForm(ref.current, { isValid, isSubmitting })) {
-        if (onValidSubmit) {
-            onValidSubmit();
-        }
-    }
 
     const runCleanup = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.stopPropagation();
