@@ -33,12 +33,6 @@ on:
                     - sif-ettersending
                     - ungdomsytelse-deltaker
 
-permissions:
-    contents: write
-    security-events: write
-    id-token: write
-    actions: read
-
 env:
     # List of all deployable apps - update this when adding/removing apps
     ALL_APPS: >-
@@ -60,6 +54,8 @@ jobs:
     detect-changes:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         outputs:
             affected-apps: ${{ steps.turbo-filter.outputs.affected-apps }}
         steps:
@@ -155,6 +151,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'dine-pleiepenger'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -172,6 +173,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -187,6 +193,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'endringsmelding-pleiepenger'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -203,6 +214,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-aleneomsorg-dialog'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -218,6 +234,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-kalkulator'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -234,6 +255,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-arbeidstaker-soknad'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -249,6 +275,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-soknad'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -264,6 +295,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengesoknad'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -279,6 +315,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'opplaringspenger-soknad'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -294,6 +335,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-i-livets-sluttfase-soknad'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -309,6 +355,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-sykt-barn'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -325,6 +376,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'sif-ettersending'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
@@ -340,6 +396,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'ungdomsytelse-deltaker'))
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
