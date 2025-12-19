@@ -4,6 +4,9 @@ on:
     push:
         branches:
             - main
+        paths:
+            - "apps-intern/ungdomsytelse-veileder/**/*"
+            - "server-ungdomsytelse-veileder/**/*"
     workflow_dispatch:
 
 permissions:

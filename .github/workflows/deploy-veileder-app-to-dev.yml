@@ -50,7 +50,7 @@ jobs:
           team: dusseldorf
           push_image: true
           pull: true
-          dockerfile: apps/${{env.APP_NAME}}/Dockerfile
+          dockerfile: apps-intern/${{env.APP_NAME}}/Dockerfile
           docker_context: .
           image_suffix: ${{env.APP_NAME}}-mono
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
@@ -61,7 +61,7 @@ jobs:
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-gcp
-          RESOURCE: apps/${{ env.APP_NAME }}/nais/nais.yml
-          VARS: apps/${{ env.APP_NAME }}/nais/dev-gcp.json
+          RESOURCE: apps-intern/${{ env.APP_NAME }}/nais/nais.yml
+          VARS: apps-intern/${{ env.APP_NAME }}/nais/dev-gcp.json
           VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
           IMAGE: ${{ steps.docker-push.outputs.image }}
