@@ -32,6 +32,7 @@ export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT', '
 export const zOppgavetype = z.enum([
     'BEKREFT_ENDRET_STARTDATO',
     'BEKREFT_ENDRET_SLUTTDATO',
+    'BEKREFT_ENDRET_PERIODE',
     'BEKREFT_FJERNET_PERIODE',
     'BEKREFT_AVVIK_REGISTERINNTEKT',
     'RAPPORTER_INNTEKT',
@@ -58,6 +59,26 @@ export const zFjernetPeriodeDataDto = zOppgavetypeDataDto.and(
     z.object({
         forrigeStartdato: z.iso.date(),
         forrigeSluttdato: z.optional(z.iso.date()),
+    }),
+);
+
+export const zPeriodeDto = z.object({
+    fom: z.iso.date(),
+    tom: z.optional(z.iso.date()),
+});
+
+export const zPeriodeEndringType = z.enum([
+    'ENDRET_STARTDATO',
+    'ENDRET_SLUTTDATO',
+    'FJERNET_PERIODE',
+    'ANDRE_ENDRINGER',
+]);
+
+export const zEndretPeriodeDataDto = zOppgavetypeDataDto.and(
+    z.object({
+        nyPeriode: z.optional(zPeriodeDto),
+        forrigePeriode: z.optional(zPeriodeDto),
+        endringer: z.array(zPeriodeEndringType),
     }),
 );
 
@@ -116,6 +137,7 @@ export const zOppgaveDto = z.object({
     oppgaveReferanse: z.uuid(),
     oppgavetype: zOppgavetype,
     oppgavetypeData: z.union([
+        zEndretPeriodeDataDto,
         zEndretSluttdatoDataDto,
         zEndretStartdatoDataDto,
         zFjernetPeriodeDataDto,
