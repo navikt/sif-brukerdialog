@@ -91,26 +91,27 @@ jobs:
                       set -e
 
                       if [ $TURBO_EXIT_CODE -ne 0 ]; then
-                          echo "Turbo command failed (exit code $TURBO_EXIT_CODE). No apps will be deployed."
-                          echo "affected-apps=ERROR" >> $GITHUB_OUTPUT
-                      else
-                          # Turbo returns ALL affected packages (apps + internal packages like sif-common-*).
-                          # We filter to only include actual deployable apps by matching against ALL_APPS.
-                          # The jq filter:
-                          #   1. Removes whitespace from ALL_APPS and splits into array
-                          #   2. Strips @navikt/ prefix from package names
-                          #   3. Keeps only packages that exist in the allowed apps list
-                          #   4. Joins the result as comma-separated string
-                          APP_NAMES=$(echo "$TURBO_OUTPUT" | jq -r --arg apps "${{ env.ALL_APPS }}" '
-                              ($apps | gsub("\\s+"; "") | split(",")) as $allowed |
-                              (.packages // []) | 
-                              map(gsub("@navikt/"; "")) | 
-                              map(select(. as $pkg | $allowed | index($pkg))) | 
-                              join(",")
-                          ')
-                          echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
-                          echo "Affected apps: $APP_NAMES"
+                          echo "ERROR: Turbo command failed with exit code $TURBO_EXIT_CODE"
+                          echo "Output: $TURBO_OUTPUT"
+                          exit 1
                       fi
+
+                      # Turbo returns ALL affected packages (apps + internal packages like sif-common-*).
+                      # We filter to only include actual deployable apps by matching against ALL_APPS.
+                      # The jq filter:
+                      #   1. Removes whitespace from ALL_APPS and splits into array
+                      #   2. Strips @navikt/ prefix from package names
+                      #   3. Keeps only packages that exist in the allowed apps list
+                      #   4. Joins the result as comma-separated string
+                      APP_NAMES=$(echo "$TURBO_OUTPUT" | jq -r --arg apps "${{ env.ALL_APPS }}" '
+                          ($apps | gsub("\\s+"; "") | split(",")) as $allowed |
+                          (.packages // []) | 
+                          map(gsub("@navikt/"; "")) | 
+                          map(select(. as $pkg | $allowed | index($pkg))) | 
+                          join(",")
+                      ')
+                      echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
+                      echo "Affected apps: $APP_NAMES"
                   fi
 
     # Deploy jobs for each app
