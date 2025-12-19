@@ -4707,7 +4707,7 @@ __metadata:
     "@portabletext/react": "npm:6.0.0"
     "@sanity/client": "npm:7.13.2"
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
     config: "workspace:*"
@@ -5162,7 +5162,7 @@ __metadata:
     "@playwright/test": "npm:1.57.0"
     "@tailwindcss/postcss": "npm:4.1.18"
     "@tailwindcss/vite": "npm:4.1.18"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
     classnames: "npm:2.5.1"
@@ -5224,7 +5224,7 @@ __metadata:
     "@tanstack/react-query": "npm:5.90.12"
     "@testing-library/dom": "npm:10.4.1"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
@@ -5293,7 +5293,7 @@ __metadata:
     "@tailwindcss/vite": "npm:4.1.18"
     "@testing-library/dom": "npm:10.4.1"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
@@ -5440,7 +5440,7 @@ __metadata:
     "@tanstack/react-query": "npm:5.90.12"
     "@testing-library/dom": "npm:10.4.1"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
@@ -5662,7 +5662,7 @@ __metadata:
     "@navikt/sif-common-env": "workspace:*"
     "@types/express": "npm:5.0.6"
     "@types/morgan": "npm:1.9.10"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@vercel/ncc": "npm:0.38.4"
     axios: "npm:1.13.2"
     csp-header: "npm:6.2.1"
@@ -5712,7 +5712,7 @@ __metadata:
   resolution: "@navikt/sif-common-analytics@workspace:packages/sif-common-analytics"
   dependencies:
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     config: "workspace:*"
     constate: "npm:3.3.3"
@@ -5780,7 +5780,7 @@ __metadata:
     "@storybook/builder-vite": "npm:10.1.7"
     "@storybook/react-vite": "npm:10.1.7"
     "@storybook/testing-library": "npm:0.2.2"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
     "@vitejs/plugin-react": "npm:5.1.2"
@@ -5856,7 +5856,7 @@ __metadata:
     "@storybook/test-runner": "npm:0.24.2"
     "@storybook/testing-library": "npm:0.2.2"
     "@types/jest": "npm:30.0.0"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
     "@vitejs/plugin-react": "npm:5.1.2"
@@ -5912,7 +5912,7 @@ __metadata:
     "@testing-library/dom": "npm:10.4.1"
     "@testing-library/react": "npm:16.3.0"
     "@testing-library/user-event": "npm:14.6.1"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
     "@vitejs/plugin-react": "npm:5.1.2"
@@ -5989,7 +5989,7 @@ __metadata:
     "@sentry/react": "npm:10.30.0"
     "@sentry/types": "npm:10.30.0"
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     axios: "npm:1.13.2"
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
@@ -6034,7 +6034,7 @@ __metadata:
     "@testing-library/react": "npm:16.3.0"
     "@testing-library/user-event": "npm:14.6.1"
     "@types/jest": "npm:30.0.0"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
     "@vitejs/plugin-react": "npm:5.1.2"
@@ -6129,7 +6129,7 @@ __metadata:
   resolution: "@navikt/sif-common-utils@workspace:packages/sif-common-utils"
   dependencies:
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
     config: "workspace:*"
@@ -6266,7 +6266,7 @@ __metadata:
     "@navikt/sif-common-env": "workspace:*"
     "@types/express": "npm:5.0.6"
     "@types/morgan": "npm:1.9.10"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@vercel/ncc": "npm:0.38.4"
     axios: "npm:1.13.2"
     csp-header: "npm:6.2.1"
@@ -6403,7 +6403,7 @@ __metadata:
     "@tailwindcss/postcss": "npm:4.1.18"
     "@tailwindcss/vite": "npm:4.1.18"
     "@tanstack/react-query": "npm:5.90.12"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-helmet": "npm:6.1.11"
@@ -6485,7 +6485,7 @@ __metadata:
     "@tailwindcss/postcss": "npm:4.1.18"
     "@tailwindcss/vite": "npm:4.1.18"
     "@tanstack/react-query": "npm:5.90.12"
-    "@types/node": "npm:24.10.3"
+    "@types/node": "npm:25.0.1"
     "@types/react": "npm:19.2.7"
     "@types/react-dom": "npm:19.2.3"
     "@typescript-eslint/parser": "npm:8.49.0"
@@ -10150,12 +10150,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:24.10.3":
-  version: 24.10.3
-  resolution: "@types/node@npm:24.10.3"
+"@types/node@npm:25.0.1":
+  version: 25.0.1
+  resolution: "@types/node@npm:25.0.1"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10/b5f3f3431b333d077fe8f656edc2a352597a0c83a21157d7cbf2811d20ba31ecf31182aaf5013f83b72bf94e368ece736e76ff0e578ceee6a30b43a666b5071f
+  checksum: 10/a00ac3fc23fb94a06c23f4c9e422ad8f911cb31e4a51e72b7dc7349565b2142df6231f45ebdc4f856e1519f661d8b13074f05855f4b68ce050ac81173dbcbe0f
   languageName: node
   linkType: hard
 
