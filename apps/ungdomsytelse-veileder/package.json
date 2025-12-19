@@ -99,7 +99,7 @@
         "postcss-styled-syntax": "0.7.1",
         "prettier": "3.7.4",
         "sass-embedded": "1.96.0",
-        "storybook": "10.1.7",
+        "storybook": "10.1.10",
         "stylelint": "16.26.1",
         "tailwindcss": "4.1.18",
         "typescript": "5.9.3",
