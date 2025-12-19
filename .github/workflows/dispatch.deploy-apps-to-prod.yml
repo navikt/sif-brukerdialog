@@ -37,6 +37,7 @@ permissions: {}
 
 env:
     # List of all deployable apps - update this when adding/removing apps
+    # Note: No trailing comma on the last item to avoid empty array elements when splitting
     ALL_APPS: >-
         dine-pleiepenger,
         ekstra-omsorgsdager-andre-forelder-ikke-tilsyn,
