@@ -1,170 +1,167 @@
+import { Alert, BodyLong, Box, Heading, HStack, List, Radio, RadioGroup, ReadMore, VStack } from '@navikt/ds-react';
+import { usePrevious } from '@navikt/sif-common-hooks';
+import { useEffect, useState } from 'react';
 import {
-    Bleed,
-    BodyLong,
-    Box,
-    Checkbox,
-    CheckboxGroup,
-    List,
-    Radio,
-    RadioGroup,
-    ReadMore,
-    Table,
-    Tabs,
-    VStack,
-} from '@navikt/ds-react';
+    alleSpørsmålBesvart,
+    getAvslagÅrsak,
+    getSjekklisteVisning,
+    JaNei,
+    SjekklisteValues,
+    TypeLivsoppholdsytelse,
+} from './sjekklisteUtils';
 
-import GruppertSjekkliste from './GruppertSjekkliste';
-import RadioSjekkliste from './RadioSjekkliste';
+interface Props {
+    visResultat?: boolean;
+    onChange: (kanMeldesInn: boolean) => void;
+}
 
-const Sjekkliste = () => {
+const Sjekkliste = ({ onChange, visResultat }: Props) => {
+    const [values, setValues] = useState<SjekklisteValues>({});
+
+    const setValue = <K extends keyof SjekklisteValues>(key: K, value: SjekklisteValues[K]) => {
+        setValues((prev) => ({ ...prev, [key]: value }));
+    };
+
+    const visning = getSjekklisteVisning(values);
+    const avslagÅrsak = getAvslagÅrsak(values, visning);
+    const kanMeldesInn = alleSpørsmålBesvart(values, visning) && avslagÅrsak === undefined;
+    const prev = usePrevious(kanMeldesInn);
+
+    useEffect(() => {
+        if (prev !== kanMeldesInn) {
+            onChange(kanMeldesInn);
+        }
+    }, [kanMeldesInn, onChange, prev]);
+
     return (
-        <Tabs defaultValue="radioListe">
-            <Tabs.List>
-                <Tabs.Tab value="tabell" label="Tabell" />
-                <Tabs.Tab value="liste" label="Liste" />
-                <Tabs.Tab value="gruppertListe" label="Gruppert Liste" />
-                <Tabs.Tab value="radioListe" label="Radio Liste" />
-            </Tabs.List>
-            <Tabs.Panel value="tabell">
-                <Box padding="6">
-                    <Table>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.DataCell></Table.DataCell>
-                                <Table.HeaderCell scope="col">Krav</Table.HeaderCell>
-                                <Table.HeaderCell scope="col">Start</Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            <Table.Row>
-                                <Table.DataCell>
-                                    <Checkbox hideLabel aria-labelledby="header">
-                                        {' '}
-                                    </Checkbox>
-                                </Table.DataCell>
-                                <Table.HeaderCell scope="row">
-                                    <span id="header">Skal ja</span>
-                                </Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Body>
-                    </Table>
-                </Box>
-            </Tabs.Panel>
-            <Tabs.Panel value="liste">
-                <Box padding="6">
-                    <VStack gap="6">
-                        <CheckboxGroup legend="Sjekkliste for deltakelse">
-                            <Checkbox name="check" value="alder18">
-                                Har fylt 18 år når deltakelsen starter
-                            </Checkbox>
-                            <Checkbox name="check" value="alder29">
-                                Har ikke fylt 29 år når deltakelsen starter
-                            </Checkbox>
-                            <Checkbox name="check" value="bistand">
-                                Har behov for bistand fra Nav for å komme i arbeid
-                            </Checkbox>
-                            <VStack>
-                                <Checkbox name="check" value="nødvendig">
-                                    Deltakelsen er nødvendig og hensiktsmessig for å komme i arbeid
-                                </Checkbox>
-                                <Bleed marginBlock="1 0">
-                                    <Box marginInline="8 0">
-                                        <ReadMore header="Les mer om krav til deltakelse">
-                                            <VStack gap="4">
-                                                <BodyLong>
-                                                    Punkter som gir eksempler på hvem som ikke kan tas inn (eks: har lån
-                                                    og stipend fra lånekassen mm mm)
-                                                </BodyLong>
-                                                <List>
-                                                    <List.Item>Har lån og stipend fra lånekassen</List.Item>
-                                                    <List.Item>Har skjult formue på Barbados</List.Item>
-                                                </List>
-                                            </VStack>
-                                        </ReadMore>
-                                    </Box>
-                                </Bleed>
-                            </VStack>
+        <VStack gap="2">
+            <Heading level="3" size="small" spacing>
+                Sjekkliste for om deltaker kan meldes inn i ungdoms&shy;programmet
+            </Heading>
+            <VStack gap="10">
+                <RadioGroup
+                    name="alder"
+                    legend="Er deltaker mellom 18 og 29 år ved oppstart?"
+                    value={values.alder || ''}
+                    onChange={(val: JaNei) => setValue('alder', val)}>
+                    <HStack gap="10">
+                        <Radio value="ja">Ja</Radio>
+                        <Radio value="nei">Nei</Radio>
+                    </HStack>
+                </RadioGroup>
 
-                            <VStack>
-                                <Checkbox name="check" value="fulltid">
-                                    Kan delta på fulltid
-                                </Checkbox>
-                                <Bleed marginBlock="1 0">
-                                    <Box marginInline="8 0">
-                                        <ReadMore header="Les mer om krav til deltakelse">
-                                            <VStack gap="4">
-                                                <BodyLong>
-                                                    Punkter som gir eksempler på hvem som ikke kan delta på full tid
-                                                    (eks: mottar sykepenger, pleiepenger)
-                                                </BodyLong>
-                                                <List>
-                                                    <List.Item>Mottar sykepenger, pleiepenger</List.Item>
-                                                    <List.Item>Har skjult formue på Barbados</List.Item>
-                                                </List>
-                                            </VStack>
-                                        </ReadMore>
-                                    </Box>
-                                </Bleed>
-                            </VStack>
-                            <Checkbox name="check" value="tidligereDeltakelse">
-                                Har ikke tidligere deltatt i ungdomsprogrammet
-                            </Checkbox>
-                            <Checkbox name="check" value="tidligereDeltakelse">
-                                Ønsker å delta i ungdomsprogrammet
-                            </Checkbox>
-                        </CheckboxGroup>
+                {visning.visBehov && (
+                    <RadioGroup
+                        name="behov"
+                        value={values.behov || ''}
+                        onChange={(val: JaNei) => setValue('behov', val)}
+                        legend="Har deltaker behov for bistand fra Nav og er deltakelsen nødvendig og hensiktsmessig for å komme i arbeid?"
+                        description={
+                            <ReadMore header="Les mer om nødvendighet">
+                                <VStack gap="4">
+                                    <BodyLong>
+                                        Punkter som gir eksempler på hvem som ikke kan tas inn (eks: har lån og stipend
+                                        fra lånekassen mm mm)
+                                    </BodyLong>
+                                    <List>
+                                        <List.Item>Har lån og stipend fra lånekassen</List.Item>
+                                        <List.Item>Har skjult formue på Barbados</List.Item>
+                                    </List>
+                                </VStack>
+                            </ReadMore>
+                        }>
+                        <HStack gap="10">
+                            <Radio value="ja">Ja</Radio>
+                            <Radio value="nei">Nei</Radio>
+                        </HStack>
+                    </RadioGroup>
+                )}
 
-                        <RadioGroup legend="Mottar andre livsoppholdsytelser fra Nav?">
-                            <Radio name="livsoppholdystelser" value="nei">
-                                Nei
-                            </Radio>
-                            <Radio name="livsoppholdystelser" value="økonomisk">
-                                Ja, økononomisk bistand
-                            </Radio>
-                            <Radio name="livsoppholdsytelser" value="livsoppholdsytelse">
-                                Ja, livsoppholdsytelse
-                            </Radio>
-                        </RadioGroup>
+                {visning.visAvklart && (
+                    <RadioGroup
+                        name="avklart"
+                        value={values.avklart || ''}
+                        onChange={(val: JaNei) => setValue('avklart', val)}
+                        legend="Ønsker deltaker å være med, kan delta på fulltid og har ikke tidligere vært med i ungdomsprogrammet?"
+                        description={
+                            <ReadMore header="Les mer om krav til deltakelse på fulltid">
+                                <VStack gap="4" marginBlock="0 4">
+                                    <BodyLong>
+                                        Punkter som gir eksempler på hvem som ikke kan delta på full tid (eks: mottar
+                                        sykepenger, pleiepenger)
+                                    </BodyLong>
+                                </VStack>
+                            </ReadMore>
+                        }>
+                        <HStack gap="10">
+                            <Radio value="ja">Ja</Radio>
+                            <Radio value="nei">Nei</Radio>
+                        </HStack>
+                    </RadioGroup>
+                )}
 
-                        <RadioGroup
-                            legend="Skal annen livsoppholdsytelse stanses"
-                            description="Skal denne livsoppholdsytelsen stanses slik at tom dato kan settes etter annen livsoppholdsytelse har stanset?">
-                            <VStack>
-                                <Radio name="stanses" value="ja">
-                                    Ja
-                                </Radio>
-                                <Bleed marginBlock="1 0">
-                                    <Box marginInline="8 0">
-                                        <ReadMore header="Om andre livsoppholdsytelser">sdf</ReadMore>
-                                    </Box>
-                                </Bleed>
-                            </VStack>
-                            <Radio name="stanses" value="nei">
-                                Nei
-                            </Radio>
-                        </RadioGroup>
-                    </VStack>
+                {visning.visMottarYtelser && (
+                    <RadioGroup
+                        name="livsoppholdsytelser"
+                        legend="Mottar deltakeren andre livsoppholdsytelser fra Nav?"
+                        value={values.mottarYtelser || ''}
+                        onChange={(val: JaNei) => setValue('mottarYtelser', val)}>
+                        <HStack gap="10">
+                            <Radio value="ja">Ja</Radio>
+                            <Radio value="nei">Nei</Radio>
+                        </HStack>
+                    </RadioGroup>
+                )}
+
+                {visning.visTypeLivsoppholdsytelse && (
+                    <RadioGroup
+                        name="typeLivsoppholdsytelse"
+                        legend="Hvilken form for livsoppholdsytelse er dette?"
+                        value={values.typeLivsoppholdsytelse || ''}
+                        onChange={(val: TypeLivsoppholdsytelse) => setValue('typeLivsoppholdsytelse', val)}>
+                        <Radio value="økonomisk">Økonomisk bistand</Radio>
+                        <Radio value="annen">Annen livsoppholdsytelse</Radio>
+                    </RadioGroup>
+                )}
+
+                {visning.visSkalStanses && (
+                    <RadioGroup
+                        name="skalStanses"
+                        legend="Skal denne livsoppholdsytelsen stanses?"
+                        value={values.skalStanses || ''}
+                        onChange={(val: JaNei) => setValue('skalStanses', val)}
+                        description={
+                            <ReadMore header="Les mer om krav til deltakelse på fulltid">
+                                <VStack gap="4" marginBlock="0 4">
+                                    <BodyLong>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi quia,
+                                        nesciunt rerum temporibus vitae molestias vel ad eligendi vero ex eos officiis
+                                        magni, libero alias nostrum in dolorem mollitia tenetur?
+                                    </BodyLong>
+                                </VStack>
+                            </ReadMore>
+                        }>
+                        <HStack gap="10">
+                            <Radio value="ja">Ja</Radio>
+                            <Radio value="nei">Nei</Radio>
+                        </HStack>
+                    </RadioGroup>
+                )}
+            </VStack>
+
+            {visResultat && kanMeldesInn && (
+                <Box marginBlock="4 0">
+                    <Alert variant="success">Deltaker kan meldes inn</Alert>
                 </Box>
-            </Tabs.Panel>
-            <Tabs.Panel value="gruppertListe">
-                <Box padding="6">
-                    <GruppertSjekkliste
-                        onChange={(flag) => {
-                            console.log(flag);
-                        }}
-                    />
+            )}
+            {visResultat && !kanMeldesInn && avslagÅrsak && (
+                <Box marginBlock="4 0">
+                    <Alert variant="error">
+                        Deltaker kan ikke meldes inn fordi ... tekst avhengig av årsak ({avslagÅrsak})
+                    </Alert>
                 </Box>
-            </Tabs.Panel>
-            <Tabs.Panel value="radioListe">
-                <Box padding="6">
-                    <RadioSjekkliste
-                        onChange={(flag) => {
-                            console.log(flag);
-                        }}
-                    />
-                </Box>
-            </Tabs.Panel>
-        </Tabs>
+            )}
+        </VStack>
     );
 };
 

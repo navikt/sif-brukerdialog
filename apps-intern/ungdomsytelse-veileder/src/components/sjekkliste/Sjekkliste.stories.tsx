@@ -17,4 +17,5 @@ type Story = StoryObj<typeof Sjekkliste>;
 
 export const SjekklisteStory: Story = {
     name: 'Sjekkliste',
+    args: { onChange: () => {}, visResultat: true },
 };

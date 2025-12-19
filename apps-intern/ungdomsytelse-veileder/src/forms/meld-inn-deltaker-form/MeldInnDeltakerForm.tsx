@@ -25,7 +25,7 @@ import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
 import { useState } from 'react';
 import { Features } from '../../types/Features';
-import RadioSjekkliste from '../../components/sjekkliste/RadioSjekkliste';
+import Sjekkliste from '../../components/sjekkliste/Sjekkliste';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -169,7 +169,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                                         borderWidth="1"
                                                         marginBlock="0 4"
                                                         borderColor="neutral-subtle">
-                                                        <RadioSjekkliste
+                                                        <Sjekkliste
                                                             onChange={(resultat) => setSjekkListeResultat(resultat)}
                                                             visResultat={true}
                                                         />
