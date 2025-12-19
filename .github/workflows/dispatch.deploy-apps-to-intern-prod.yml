@@ -41,9 +41,14 @@ jobs:
                       echo "should-deploy=true" >> $GITHUB_OUTPUT
                   else
                       # Use Turborepo to check if ungdomsytelse-veileder is affected
-                      set -o pipefail
+                      #
+                      # set +e / set -e: Temporarily disable auto-exit on error so we can capture
+                      # the exit code and handle Turbo failures gracefully instead of crashing the workflow.
+                      set +e
                       AFFECTED_JSON=$(npx turbo run build --filter="[${{ github.event.before }}...${{ github.sha }}]" --dry=json)
                       TURBO_EXIT_CODE=$?
+                      set -e
+
                       if [ $TURBO_EXIT_CODE -ne 0 ]; then
                           echo "ERROR: turbo command failed with exit code $TURBO_EXIT_CODE"
                           exit 1
