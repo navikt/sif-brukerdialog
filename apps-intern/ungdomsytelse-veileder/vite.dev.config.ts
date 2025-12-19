@@ -12,6 +12,7 @@ const appSettings: AppEnv = {
     GITHUB_REF_NAME: 'local',
 
     SIF_PUBLIC_FEATURE_ENDRE_SLUTTDATO: 'on',
+    SIF_PUBLIC_FEATURE_SJEKKLISTE: 'on',
 
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: '/api/ung-deltakelse-opplyser',
     UNG_DELTAKELSE_OPPLYSER_API_URL: 'http://localhost:8089',

@@ -9,6 +9,7 @@ on:
                 type: choice
                 options:
                     - ungdomsytelse-deltaker
+                    - ungdomsytelse-veileder
                 required: true
 
 jobs:
@@ -19,5 +20,5 @@ jobs:
         permissions:
             id-token: write
         with:
-            app: '${{ inputs.app-name }}'
-            working-directory: 'apps/${{ inputs.app-name }}'
+            app: "${{ inputs.app-name }}"
+            working-directory: "${{ inputs.app-name == 'ungdomsytelse-veileder' && 'apps-intern' || 'apps' }}/${{ inputs.app-name }}"

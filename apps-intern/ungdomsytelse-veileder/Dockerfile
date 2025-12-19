@@ -44,7 +44,7 @@ RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
 COPY --from=prune /app/out/full/ ./
 
 # Overskriv envSchema.ts i server med env.schema.ts fra app
-COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
+COPY apps-intern/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 
 #########################################
 # BYGG SERVER
@@ -64,7 +64,7 @@ FROM installer AS client-build
 WORKDIR /app
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn turbo run build --filter=${SCOPE}
-RUN mv /app/apps/${APP}/dist /public
+RUN mv /app/apps-intern/${APP}/dist /public
 
 
 #########################################

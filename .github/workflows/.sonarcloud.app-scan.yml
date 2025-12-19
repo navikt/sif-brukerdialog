@@ -4,7 +4,7 @@ on:
     workflow_call:
         inputs:
             app:
-                description: 'App-mappen under ./apps'
+                description: "App-mappen under ./apps"
                 required: true
                 type: string
             working-directory:
@@ -25,8 +25,8 @@ jobs:
               uses: SonarSource/sonarqube-scan-action@v7
               with:
                   args: >
-                      -Dproject.settings=apps/${{ inputs.app }}/sonar-project.properties
-                      -Dsonar.projectBaseDir=apps/${{ inputs.app }}
+                      -Dproject.settings=${{ inputs.working-directory }}/sonar-project.properties
+                      -Dsonar.projectBaseDir=${{ inputs.working-directory }}
                   #   -Dsonar.verbose=true
                   #   -Dsonar.log.level=DEBUG
               env:

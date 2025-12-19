@@ -12,6 +12,7 @@ const localSchema = z.object({
         .optional()
         .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
     SIF_PUBLIC_FEATURE_ENDRE_SLUTTDATO: z.string().optional().default('off'),
+    SIF_PUBLIC_FEATURE_SJEKKLISTE: z.string().optional().default('off'),
     SIF_PUBLIC_UMAMI_NETTSIDE_ID: z.string().optional(),
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: z.string().optional(),
 });

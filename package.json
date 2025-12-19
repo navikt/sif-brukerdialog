@@ -49,6 +49,7 @@
     },
     "workspaces": [
         "apps/*",
+        "apps-intern/*",
         "packages/*",
         "server",
         "server-ungdomsytelse-veileder"
