@@ -1,4 +1,4 @@
-name: Test and deploy app to internal prod (reusable)
+name: Test and deploy app (reusable)
 
 on:
     workflow_call:
@@ -6,15 +6,24 @@ on:
             app-name:
                 required: true
                 type: string
-                description: "App name (e.g., 'ungdomsytelse-veileder')"
+                description: "App name (e.g., 'dine-pleiepenger')"
             working-directory:
                 required: true
                 type: string
-                description: "Path to app directory (e.g., 'apps-intern/ungdomsytelse-veileder')"
+                description: "Path to app directory (e.g., 'apps/dine-pleiepenger')"
             package-name:
                 required: true
                 type: string
-                description: "Package name in monorepo (e.g., '@navikt/ungdomsytelse-veileder')"
+                description: "Package name in monorepo (e.g., '@navikt/dine-pleiepenger')"
+            environment:
+                required: true
+                type: string
+                description: "Target environment: 'prod' or 'intern-prod'"
+            is-next-app:
+                required: false
+                type: boolean
+                default: false
+                description: "Is Next.js app (only used for prod deployments)"
             playwright-with-deps:
                 required: false
                 type: boolean
@@ -57,11 +66,26 @@ jobs:
             needs-env-file: ${{ inputs.needs-env-file }}
             run-sonar: ${{ inputs.run-sonar }}
 
-    deploy-to-intern-prod:
-        name: Deploy ${{ inputs.app-name }} to internal prod
+    deploy-to-prod:
+        name: Deploy ${{ inputs.app-name }} to prod
         needs: [run-tests]
-        # Skip deploy on push commits containing [skip-prod-deploy]; always run via manual dispatch
-        if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]') }}
+        if: ${{ inputs.environment == 'prod' && (github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]')) }}
+        uses: ./.github/workflows/.deploy-app-to-prod.yml
+        secrets: inherit
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        with:
+            app-name: ${{ inputs.app-name }}
+            working-directory: ${{ inputs.working-directory }}
+            is-next-app: ${{ inputs.is-next-app }}
+
+    deploy-to-intern-prod:
+        name: Deploy ${{ inputs.app-name }} to intern-prod
+        needs: [run-tests]
+        if: ${{ inputs.environment == 'intern-prod' && (github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-prod-deploy]')) }}
         uses: ./.github/workflows/.deploy-app-to-intern-prod.yml
         secrets: inherit
         permissions:
@@ -73,9 +97,16 @@ jobs:
             app-name: ${{ inputs.app-name }}
             working-directory: ${{ inputs.working-directory }}
 
+    # Tag the deployment for traceability
+    # Note on concurrent deployments:
+    # When multiple apps deploy simultaneously (e.g., shared package changes),
+    # each job creates its own tag with the app-name prefix, preventing collisions.
+    # The continue-on-error ensures tagging failures don't fail the deployment.
+    # In rare cases of git push conflicts, the tag may not be created, but the
+    # deployment itself will have succeeded. Tags are informational only.
     tag-deployment:
-        if: success()
-        needs: [deploy-to-intern-prod]
+        if: always() && (needs.deploy-to-prod.result == 'success' || needs.deploy-to-intern-prod.result == 'success')
+        needs: [deploy-to-prod, deploy-to-intern-prod]
         runs-on: ubuntu-latest
         permissions:
             contents: write
@@ -92,7 +123,16 @@ jobs:
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
                   SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
-                  TAG_NAME="${{ inputs.app-name }}-intern-$(date +%Y%m%d-%H%M%S)-${SHORT_SHA}"
-                  git tag -a "$TAG_NAME" -m "Deploy ${{ inputs.app-name }} to internal production"
+
+                  # Tag format includes environment for intern-prod
+                  if [ "${{ inputs.environment }}" == "intern-prod" ]; then
+                      TAG_NAME="${{ inputs.app-name }}-intern-$(date +%Y%m%d-%H%M%S)-${SHORT_SHA}"
+                      DEPLOY_MSG="Deploy ${{ inputs.app-name }} to internal production"
+                  else
+                      TAG_NAME="${{ inputs.app-name }}-$(date +%Y%m%d-%H%M%S)-${SHORT_SHA}"
+                      DEPLOY_MSG="Deploy ${{ inputs.app-name }} to production"
+                  fi
+
+                  git tag -a "$TAG_NAME" -m "$DEPLOY_MSG"
                   git push origin "$TAG_NAME"
                   echo "Created tag: $TAG_NAME"

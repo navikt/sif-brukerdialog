@@ -53,6 +53,14 @@ jobs:
                           echo "ERROR: turbo command failed with exit code $TURBO_EXIT_CODE"
                           exit 1
                       fi
+
+                      # Validate that Turbo output is valid JSON before processing
+                      if ! echo "$AFFECTED_JSON" | jq empty 2>/dev/null; then
+                          echo "ERROR: Turbo output is not valid JSON"
+                          echo "Output: $AFFECTED_JSON"
+                          exit 1
+                      fi
+
                       if echo "$AFFECTED_JSON" | jq -r '(.packages // []) | .[]' | grep -q "@navikt/ungdomsytelse-veileder"; then
                           echo "ungdomsytelse-veileder affected by changes"
                           echo "should-deploy=true" >> $GITHUB_OUTPUT
@@ -85,12 +93,13 @@ jobs:
             security-events: write
             id-token: write
             actions: read
-        uses: ./.github/workflows/.test-and-deploy-to-intern-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "ungdomsytelse-veileder"
             working-directory: "apps-intern/ungdomsytelse-veileder"
             package-name: "@navikt/ungdomsytelse-veileder"
+            environment: "intern-prod"
             use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true

@@ -147,12 +147,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'dine-pleiepenger'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "dine-pleiepenger"
             working-directory: "apps/dine-pleiepenger"
             package-name: "@navikt/dine-pleiepenger"
+            environment: "prod"
             is-next-app: true
             needs-env-file: true
 
@@ -163,12 +164,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
             working-directory: "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
             package-name: "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+            environment: "prod"
 
     deploy-endringsmelding-pleiepenger:
         if: |
@@ -177,12 +179,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'endringsmelding-pleiepenger'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "endringsmelding-pleiepenger"
             working-directory: "apps/endringsmelding-pleiepenger"
             package-name: "@navikt/endringsmelding-pleiepenger"
+            environment: "prod"
             playwright-with-deps: true
 
     deploy-omsorgsdager-aleneomsorg-dialog:
@@ -192,12 +195,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-aleneomsorg-dialog'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgsdager-aleneomsorg-dialog"
             working-directory: "apps/omsorgsdager-aleneomsorg-dialog"
             package-name: "@navikt/omsorgsdager-aleneomsorg-dialog"
+            environment: "prod"
 
     deploy-omsorgsdager-kalkulator:
         if: |
@@ -206,12 +210,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-kalkulator'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgsdager-kalkulator"
             working-directory: "apps/omsorgsdager-kalkulator"
             package-name: "@navikt/omsorgsdager-kalkulator"
+            environment: "prod"
             e2e-build-command: "build"
 
     deploy-omsorgspengerutbetaling-arbeidstaker-soknad:
@@ -221,12 +226,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-arbeidstaker-soknad'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
             working-directory: "apps/omsorgspengerutbetaling-arbeidstaker-soknad"
             package-name: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad"
+            environment: "prod"
 
     deploy-omsorgspengerutbetaling-soknad:
         if: |
@@ -235,12 +241,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-soknad'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgspengerutbetaling-soknad"
             working-directory: "apps/omsorgspengerutbetaling-soknad"
             package-name: "@navikt/omsorgspengerutbetaling-soknad"
+            environment: "prod"
 
     deploy-omsorgspengesoknad:
         if: |
@@ -249,12 +256,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengesoknad'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgspengesoknad"
             working-directory: "apps/omsorgspengesoknad"
             package-name: "@navikt/omsorgspengesoknad"
+            environment: "prod"
 
     deploy-opplaringspenger-soknad:
         if: |
@@ -263,12 +271,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'opplaringspenger-soknad'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "opplaringspenger-soknad"
             working-directory: "apps/opplaringspenger-soknad"
             package-name: "@navikt/opplaringspenger-soknad"
+            environment: "prod"
 
     deploy-pleiepenger-i-livets-sluttfase-soknad:
         if: |
@@ -277,12 +286,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-i-livets-sluttfase-soknad'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "pleiepenger-i-livets-sluttfase-soknad"
             working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
             package-name: "@navikt/pleiepenger-i-livets-sluttfase-soknad"
+            environment: "prod"
 
     deploy-pleiepenger-sykt-barn:
         if: |
@@ -291,12 +301,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-sykt-barn'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "pleiepenger-sykt-barn"
             working-directory: "apps/pleiepenger-sykt-barn"
             package-name: "@navikt/pleiepenger-sykt-barn"
+            environment: "prod"
             playwright-with-deps: true
 
     deploy-sif-ettersending:
@@ -306,12 +317,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'sif-ettersending'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "sif-ettersending"
             working-directory: "apps/sif-ettersending"
             package-name: "@navikt/sif-ettersending"
+            environment: "prod"
 
     deploy-ungdomsytelse-deltaker:
         if: |
@@ -320,12 +332,13 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'ungdomsytelse-deltaker'))
             )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "ungdomsytelse-deltaker"
             working-directory: "apps/ungdomsytelse-deltaker"
             package-name: "@navikt/ungdomsytelse-deltaker"
+            environment: "prod"
             use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
