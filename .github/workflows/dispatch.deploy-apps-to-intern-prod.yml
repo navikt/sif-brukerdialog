@@ -9,16 +9,12 @@ on:
             - "server-ungdomsytelse-veileder/**/*"
     workflow_dispatch:
 
-permissions:
-    contents: write
-    security-events: write
-    id-token: write
-    actions: read
-
 jobs:
     detect-changes:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         outputs:
             should-deploy: ${{ steps.check-deploy.outputs.should-deploy }}
         steps:
@@ -68,6 +64,11 @@ jobs:
                 (github.event_name == 'push' && needs.detect-changes.result == 'success' && needs.detect-changes.outputs.should-deploy == 'true')
             )
         needs: [detect-changes]
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         uses: ./.github/workflows/.test-and-deploy-to-intern-prod.yml
         secrets: inherit
         with:
