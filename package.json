@@ -56,8 +56,8 @@
     "packageManager": "yarn@4.10.3",
     "private": true,
     "resolutions": {
-        "react": "19.2.0",
-        "react-dom": "19.2.0",
+        "react": "19.2.3",
+        "react-dom": "19.2.3",
         "glob@10.4.5": "10.5.0",
         "glob@npm10.4.5": "10.5.0"
     }
