@@ -79,6 +79,13 @@ jobs:
             working-directory: ${{ inputs.working-directory }}
             is-next-app: ${{ inputs.is-next-app }}
 
+    # Tag the deployment for traceability
+    # Note on concurrent deployments:
+    # When multiple apps deploy simultaneously (e.g., shared package changes),
+    # each job creates its own tag with the app-name prefix, preventing collisions.
+    # The continue-on-error ensures tagging failures don't fail the deployment.
+    # In rare cases of git push conflicts, the tag may not be created, but the
+    # deployment itself will have succeeded. Tags are informational only.
     tag-deployment:
         if: success()
         needs: [deploy-to-prod]
@@ -98,6 +105,8 @@ jobs:
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
                   SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+                  # Tag format: <app-name>-<timestamp>-<short-sha>
+                  # The app-name prefix ensures no collisions between concurrent app deployments
                   TAG_NAME="${{ inputs.app-name }}-$(date +%Y%m%d-%H%M%S)-${SHORT_SHA}"
                   git tag -a "$TAG_NAME" -m "Deploy ${{ inputs.app-name }} to production"
                   git push origin "$TAG_NAME"

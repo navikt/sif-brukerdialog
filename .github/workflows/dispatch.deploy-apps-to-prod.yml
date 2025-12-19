@@ -72,8 +72,8 @@ jobs:
             - name: Get affected apps with Turbo
               id: turbo-filter
               run: |
-                  # The server/ folder contains shared Express server code used by all apps.
-                  # If it changes, all apps must be redeployed to get the updated server.
+                  # The server/ folder contains shared server code used by multiple apps.
+                  # If it changes, we conservatively redeploy all apps listed in ALL_APPS.
                   if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q "^server/"; then
                       echo "Server changes detected - deploying all apps"
                       echo "affected-apps=${{ env.ALL_APPS }}" >> $GITHUB_OUTPUT
@@ -96,13 +96,22 @@ jobs:
                           exit 1
                       fi
 
+                      # Validate that Turbo output is valid JSON before processing
+                      if ! echo "$TURBO_OUTPUT" | jq empty 2>/dev/null; then
+                          echo "ERROR: Turbo output is not valid JSON"
+                          echo "Output: $TURBO_OUTPUT"
+                          exit 1
+                      fi
+
                       # Turbo returns ALL affected packages (apps + internal packages like sif-common-*).
                       # We filter to only include actual deployable apps by matching against ALL_APPS.
                       # The jq filter:
                       #   1. Removes whitespace from ALL_APPS and splits into array
+                      #      (handles both spaces and newlines from YAML multi-line strings)
                       #   2. Strips @navikt/ prefix from package names
                       #   3. Keeps only packages that exist in the allowed apps list
                       #   4. Joins the result as comma-separated string
+                      set +e
                       APP_NAMES=$(echo "$TURBO_OUTPUT" | jq -r --arg apps "${{ env.ALL_APPS }}" '
                           ($apps | gsub("\\s+"; "") | split(",")) as $allowed |
                           (.packages // []) | 
@@ -110,6 +119,14 @@ jobs:
                           map(select(. as $pkg | $allowed | index($pkg))) | 
                           join(",")
                       ')
+                      JQ_EXIT_CODE=$?
+                      set -e
+
+                      if [ $JQ_EXIT_CODE -ne 0 ]; then
+                          echo "ERROR: jq processing failed with exit code $JQ_EXIT_CODE"
+                          exit 1
+                      fi
+
                       echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
                       echo "Affected apps: $APP_NAMES"
                   fi
@@ -312,3 +329,47 @@ jobs:
             use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
+
+    # Summary job to report deployment status
+    # This helps clarify when no apps needed deployment (expected for non-app changes)
+    deployment-summary:
+        if: always() && github.event_name == 'push'
+        needs:
+            - detect-changes
+            - deploy-dine-pleiepenger
+            - deploy-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+            - deploy-endringsmelding-pleiepenger
+            - deploy-omsorgsdager-aleneomsorg-dialog
+            - deploy-omsorgsdager-kalkulator
+            - deploy-omsorgspengerutbetaling-arbeidstaker-soknad
+            - deploy-omsorgspengerutbetaling-soknad
+            - deploy-omsorgspengesoknad
+            - deploy-opplaringspenger-soknad
+            - deploy-pleiepenger-i-livets-sluttfase-soknad
+            - deploy-pleiepenger-sykt-barn
+            - deploy-sif-ettersending
+            - deploy-ungdomsytelse-deltaker
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deployment Summary
+              run: |
+                  echo "## Deployment Summary" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+
+                  if [ "${{ needs.detect-changes.result }}" == "failure" ]; then
+                      echo "❌ **Change detection failed** - no deployments were attempted" >> $GITHUB_STEP_SUMMARY
+                      exit 1
+                  fi
+
+                  AFFECTED="${{ needs.detect-changes.outputs.affected-apps }}"
+
+                  if [ -z "$AFFECTED" ]; then
+                      echo "ℹ️ **No deployable apps were affected by these changes**" >> $GITHUB_STEP_SUMMARY
+                      echo "" >> $GITHUB_STEP_SUMMARY
+                      echo "This is expected when changes only affect:" >> $GITHUB_STEP_SUMMARY
+                      echo "- Documentation files" >> $GITHUB_STEP_SUMMARY
+                      echo "- Internal packages (sif-common-*, etc.)" >> $GITHUB_STEP_SUMMARY
+                      echo "- Configuration files not used by apps" >> $GITHUB_STEP_SUMMARY
+                  else
+                      echo "🚀 **Apps deployed:** $AFFECTED" >> $GITHUB_STEP_SUMMARY
+                  fi
