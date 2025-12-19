@@ -4,6 +4,14 @@ on:
     push:
         branches:
             - main
+        paths:
+            - "nais-config/nais.yml"
+            - "yarn.lock"
+            - "turbo.json"
+            - "apps/**/*"
+            - "packages/**/*"
+            - "server/**/*"
+
     workflow_dispatch:
         inputs:
             app:
