@@ -11,6 +11,8 @@ on:
                 type: string
                 required: true
 
+permissions: {}
+
 jobs:
     scan:
         runs-on: ubuntu-latest

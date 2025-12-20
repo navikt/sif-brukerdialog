@@ -7,6 +7,8 @@ on:
         branches:
             - "innsyn**"
 
+permissions: {}
+
 jobs:
     deploy-to-dev:
         name: Deploy dine pleiepenger to dev

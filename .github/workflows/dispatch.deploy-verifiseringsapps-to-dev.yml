@@ -4,6 +4,8 @@ run-name: Deploy verifiseringsapps to dev (${{github.ref_name}})
 on:
     workflow_dispatch:
 
+permissions: {}
+
 jobs:
     deploy-endringsmelding-pleiepenger:
         name: Deploy endringsmelding-pleiepenger to dev

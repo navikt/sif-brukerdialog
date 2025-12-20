@@ -1,0 +1,242 @@
+name: "Test: Deploy workflow dry-run"
+run-name: "Test deploy workflow (dry-run) - ${{ github.ref_name }}"
+
+# This workflow tests the deploy workflow logic without actually deploying.
+# Use this to verify detect-changes and job conditions work correctly.
+# Delete this file or disable it before merging to main.
+
+on:
+    push:
+        branches:
+            - "test-deploy-**"
+            - "fix-deploy-**"
+    workflow_dispatch:
+
+permissions: {}
+
+env:
+    # Keep in sync with dispatch.deploy-apps-to-prod.yml
+    ALL_APPS: >-
+        dine-pleiepenger,
+        ekstra-omsorgsdager-andre-forelder-ikke-tilsyn,
+        endringsmelding-pleiepenger,
+        omsorgsdager-aleneomsorg-dialog,
+        omsorgsdager-kalkulator,
+        omsorgspengerutbetaling-arbeidstaker-soknad,
+        omsorgspengerutbetaling-soknad,
+        omsorgspengesoknad,
+        opplaringspenger-soknad,
+        pleiepenger-i-livets-sluttfase-soknad,
+        pleiepenger-sykt-barn,
+        sif-ettersending,
+        ungdomsytelse-deltaker
+
+jobs:
+    detect-changes:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        outputs:
+            affected-apps: ${{ steps.turbo-filter.outputs.affected-apps }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: "yarn"
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Get affected apps with Turbo
+              id: turbo-filter
+              run: |
+                  echo "## Testing detect-changes logic"
+
+                  # For testing, compare against main branch instead of github.event.before
+                  BASE_REF="origin/main"
+                  HEAD_REF="${{ github.sha }}"
+
+                  echo "Comparing: $BASE_REF...$HEAD_REF"
+
+                  # Check for server changes
+                  if git diff --name-only $BASE_REF $HEAD_REF | grep -q "^server/"; then
+                      echo "Server changes detected - would deploy all apps"
+                      echo "affected-apps=${{ env.ALL_APPS }}" >> $GITHUB_OUTPUT
+                  else
+                      set +e
+                      TURBO_OUTPUT=$(npx turbo run build --filter="[$BASE_REF...$HEAD_REF]" --dry=json)
+                      TURBO_EXIT_CODE=$?
+                      set -e
+
+                      if [ $TURBO_EXIT_CODE -ne 0 ]; then
+                          echo "ERROR: Turbo command failed with exit code $TURBO_EXIT_CODE"
+                          echo "Output: $TURBO_OUTPUT"
+                          exit 1
+                      fi
+
+                      if ! echo "$TURBO_OUTPUT" | jq empty 2>/dev/null; then
+                          echo "ERROR: Turbo output is not valid JSON"
+                          echo "Output: $TURBO_OUTPUT"
+                          exit 1
+                      fi
+
+                      set +e
+                      APP_NAMES=$(echo "$TURBO_OUTPUT" | jq -r --arg apps "${{ env.ALL_APPS }}" '
+                          ($apps | gsub("\\s+"; "") | split(",")) as $allowed |
+                          (.packages // []) | 
+                          map(gsub("@navikt/"; "")) | 
+                          map(select(. as $pkg | $allowed | index($pkg))) | 
+                          join(",")
+                      ')
+                      JQ_EXIT_CODE=$?
+                      set -e
+
+                      if [ $JQ_EXIT_CODE -ne 0 ]; then
+                          echo "ERROR: jq processing failed with exit code $JQ_EXIT_CODE"
+                          exit 1
+                      fi
+
+                      echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
+                      echo "Affected apps: $APP_NAMES"
+                  fi
+
+    # Simulated deploy jobs - one per app to test the conditions
+    simulate-deploy-dine-pleiepenger:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'dine-pleiepenger')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy dine-pleiepenger"
+
+    simulate-deploy-ekstra-omsorgsdager:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+
+    simulate-deploy-endringsmelding-pleiepenger:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'endringsmelding-pleiepenger')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy endringsmelding-pleiepenger"
+
+    simulate-deploy-omsorgsdager-aleneomsorg:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-aleneomsorg-dialog')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy omsorgsdager-aleneomsorg-dialog"
+
+    simulate-deploy-omsorgsdager-kalkulator:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-kalkulator')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy omsorgsdager-kalkulator"
+
+    simulate-deploy-omsorgspengerutbetaling-arbeidstaker:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-arbeidstaker-soknad')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy omsorgspengerutbetaling-arbeidstaker-soknad"
+
+    simulate-deploy-omsorgspengerutbetaling:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-soknad')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy omsorgspengerutbetaling-soknad"
+
+    simulate-deploy-omsorgspengesoknad:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengesoknad')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy omsorgspengesoknad"
+
+    simulate-deploy-opplaringspenger:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'opplaringspenger-soknad')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy opplaringspenger-soknad"
+
+    simulate-deploy-pleiepenger-sluttfase:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-i-livets-sluttfase-soknad')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy pleiepenger-i-livets-sluttfase-soknad"
+
+    simulate-deploy-pleiepenger-sykt-barn:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-sykt-barn')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy pleiepenger-sykt-barn"
+
+    simulate-deploy-sif-ettersending:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'sif-ettersending')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy sif-ettersending"
+
+    simulate-deploy-ungdomsytelse-deltaker:
+        if: contains(needs.detect-changes.outputs.affected-apps, 'ungdomsytelse-deltaker')
+        needs: [detect-changes]
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "✅ Would deploy ungdomsytelse-deltaker"
+
+    # Summary of what would happen
+    summary:
+        if: always()
+        needs:
+            - detect-changes
+            - simulate-deploy-dine-pleiepenger
+            - simulate-deploy-ekstra-omsorgsdager
+            - simulate-deploy-endringsmelding-pleiepenger
+            - simulate-deploy-omsorgsdager-aleneomsorg
+            - simulate-deploy-omsorgsdager-kalkulator
+            - simulate-deploy-omsorgspengerutbetaling-arbeidstaker
+            - simulate-deploy-omsorgspengerutbetaling
+            - simulate-deploy-omsorgspengesoknad
+            - simulate-deploy-opplaringspenger
+            - simulate-deploy-pleiepenger-sluttfase
+            - simulate-deploy-pleiepenger-sykt-barn
+            - simulate-deploy-sif-ettersending
+            - simulate-deploy-ungdomsytelse-deltaker
+        runs-on: ubuntu-latest
+        steps:
+            - name: Test Summary
+              run: |
+                  echo "## 🧪 Deploy Workflow Dry-Run Results" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+
+                  if [ "${{ needs.detect-changes.result }}" == "failure" ]; then
+                      echo "❌ **detect-changes failed**" >> $GITHUB_STEP_SUMMARY
+                  elif [ -z "${{ needs.detect-changes.outputs.affected-apps }}" ]; then
+                      echo "ℹ️ **No apps would be deployed** (no affected apps detected)" >> $GITHUB_STEP_SUMMARY
+                  else
+                      echo "🚀 **Apps that would be deployed:**" >> $GITHUB_STEP_SUMMARY
+                      echo "" >> $GITHUB_STEP_SUMMARY
+                      echo "${{ needs.detect-changes.outputs.affected-apps }}" | tr ',' '\n' | while read app; do
+                          if [ -n "$app" ]; then
+                              echo "- $app" >> $GITHUB_STEP_SUMMARY
+                          fi
+                      done
+                  fi
+
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "---" >> $GITHUB_STEP_SUMMARY
+                  echo "⚠️ **This was a dry-run - no actual deployments were made.**" >> $GITHUB_STEP_SUMMARY

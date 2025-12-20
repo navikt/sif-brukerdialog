@@ -5,16 +5,16 @@ on:
   push:
     branches:
       - "**"
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+
+permissions: {}
 
 jobs:
   build-and-deploy-gh-pages-content:
     name: Build and Deploy storybook and demo apps to GitHub Pages
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[gh-pages]')
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       # Sjekk ut koden
       - name: Checkout repository
@@ -85,6 +85,9 @@ jobs:
     name: Deploy to GitHub Pages
     needs: build-and-deploy-gh-pages-content
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
     steps:
