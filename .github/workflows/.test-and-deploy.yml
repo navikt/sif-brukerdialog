@@ -29,11 +29,6 @@ on:
                 type: boolean
                 default: false
                 description: "Install Playwright with system dependencies (--with-deps)"
-            use-turbo-test:
-                required: false
-                type: boolean
-                default: false
-                description: "Use 'yarn turbo test' instead of 'yarn test'"
             e2e-build-command:
                 required: false
                 type: string
@@ -63,7 +58,6 @@ jobs:
             working-directory: ${{ inputs.working-directory }}
             package-name: ${{ inputs.package-name }}
             playwright-with-deps: ${{ inputs.playwright-with-deps }}
-            use-turbo-test: ${{ inputs.use-turbo-test }}
             e2e-build-command: ${{ inputs.e2e-build-command }}
             needs-env-file: ${{ inputs.needs-env-file }}
             run-sonar: ${{ inputs.run-sonar }}

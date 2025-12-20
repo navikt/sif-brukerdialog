@@ -106,6 +106,5 @@ jobs:
             working-directory: "apps-intern/ungdomsytelse-veileder"
             package-name: "@navikt/ungdomsytelse-veileder"
             environment: "intern-prod"
-            use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true

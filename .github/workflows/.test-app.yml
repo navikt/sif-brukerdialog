@@ -20,11 +20,6 @@ on:
         type: boolean
         default: false
         description: "Install Playwright with system dependencies (--with-deps)"
-      use-turbo-test:
-        required: false
-        type: boolean
-        default: false
-        description: "Use 'yarn turbo test' instead of 'yarn test'"
       e2e-build-command:
         required: false
         type: string
@@ -74,12 +69,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Run code tests
-        run: |
-          if [ "${{ inputs.use-turbo-test }}" = "true" ]; then
-            yarn turbo test --filter=${{ inputs.package-name }}
-          else
-            yarn test --filter=${{ inputs.package-name }}
-          fi
+        run: yarn test --filter=${{ inputs.package-name }}
 
   run-playwright-test:
     timeout-minutes: 60

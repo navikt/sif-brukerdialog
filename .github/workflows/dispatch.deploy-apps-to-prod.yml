@@ -411,7 +411,6 @@ jobs:
             working-directory: "apps/ungdomsytelse-deltaker"
             package-name: "@navikt/ungdomsytelse-deltaker"
             environment: "prod"
-            use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
 
