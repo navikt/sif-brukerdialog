@@ -50,7 +50,7 @@
         "react-intl": "7.1.14",
         "react-router-dom": "7.10.1",
         "uuid": "13.0.0",
-        "zod": "4.1.13"
+        "zod": "4.2.0"
     },
     "devDependencies": {
         "@playwright/test": "1.57.0",

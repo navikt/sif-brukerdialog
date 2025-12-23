@@ -20,7 +20,7 @@
         "typescript": "5.9.3",
         "uuid": "13.0.0",
         "vitest": "4.0.15",
-        "zod": "4.1.13"
+        "zod": "4.2.0"
     },
     "peerDependencies": {
         "axios": "*",
