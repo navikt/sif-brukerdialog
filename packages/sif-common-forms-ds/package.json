@@ -19,7 +19,7 @@
         "date-fns": "4.1.0"
     },
     "devDependencies": {
-        "@formatjs/intl-pluralrules": "5.4.6",
+        "@formatjs/intl-pluralrules": "6.0.1",
         "@navikt/aksel-icons": "7.35.3",
         "@navikt/ds-css": "7.35.3",
         "@navikt/ds-react": "7.35.3",
