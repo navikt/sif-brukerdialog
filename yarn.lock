@@ -4758,7 +4758,7 @@ __metadata:
     vite: "npm:7.2.7"
     vitest: "npm:4.0.15"
     webpack: "npm:5.103.0"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   languageName: unknown
   linkType: soft
 
@@ -4968,7 +4968,7 @@ __metadata:
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   peerDependencies:
     dayjs: "*"
     uuid: "*"
@@ -4988,7 +4988,7 @@ __metadata:
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   peerDependencies:
     dayjs: "*"
     uuid: "*"
@@ -5008,7 +5008,7 @@ __metadata:
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   peerDependencies:
     dayjs: "*"
     uuid: "*"
@@ -5461,7 +5461,7 @@ __metadata:
     vite: "npm:7.2.7"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   languageName: unknown
   linkType: soft
 
@@ -5654,7 +5654,7 @@ __metadata:
     react: "npm:19.2.3"
     typescript: "npm:5.9.3"
     winston: "npm:3.19.0"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   languageName: unknown
   linkType: soft
 
@@ -5734,7 +5734,7 @@ __metadata:
     storybook: "npm:10.1.10"
     typescript: "npm:5.9.3"
     webpack: "npm:5.103.0"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   languageName: unknown
   linkType: soft
 
@@ -5956,7 +5956,7 @@ __metadata:
     react: "npm:19.2.3"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   languageName: unknown
   linkType: soft
 
@@ -6193,7 +6193,7 @@ __metadata:
     vite: "npm:7.2.7"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   languageName: unknown
   linkType: soft
 
@@ -6259,7 +6259,7 @@ __metadata:
     react: "npm:19.2.3"
     typescript: "npm:5.9.3"
     winston: "npm:3.19.0"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   languageName: unknown
   linkType: soft
 
@@ -6301,7 +6301,7 @@ __metadata:
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   peerDependencies:
     axios: "*"
     dayjs: "*"
@@ -6323,7 +6323,7 @@ __metadata:
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   peerDependencies:
     dayjs: "*"
     uuid: "*"
@@ -6343,7 +6343,7 @@ __metadata:
     postcss: "npm:8.5.6"
     typescript: "npm:5.9.3"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   peerDependencies:
     dayjs: "*"
     uuid: "*"
@@ -6428,7 +6428,7 @@ __metadata:
     vite: "npm:7.2.7"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
     zustand: "npm:5.0.9"
   languageName: unknown
   linkType: soft
@@ -6517,7 +6517,7 @@ __metadata:
     vite: "npm:7.2.7"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.0.15"
-    zod: "npm:4.1.13"
+    zod: "npm:4.2.1"
   languageName: unknown
   linkType: soft
 
@@ -29241,7 +29241,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:4.1.13, zod@npm:^3.25.0 || ^4.0.0":
+"zod@npm:4.2.1":
+  version: 4.2.1
+  resolution: "zod@npm:4.2.1"
+  checksum: 10/f21d106ce31e0f24040aa13b13fdd1300fcc8119622b28ca1b1b726ff70b75190dbcfeb927d34f19174683afa298e5df4d806f622abe9b037a0aadb9cdef6443
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.25.0 || ^4.0.0":
   version: 4.1.13
   resolution: "zod@npm:4.1.13"
   checksum: 10/0679190318928f69fcb07751063719de232c663b13955fcdb55db59839569d39f3f29b955cb0cba7af0b724233f88c06b3e84c550397ad4e68f8088fa6799d88
