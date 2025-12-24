@@ -3089,6 +3089,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@grafana/faro-core@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@grafana/faro-core@npm:2.1.0"
+  dependencies:
+    "@opentelemetry/api": "npm:^1.9.0"
+    "@opentelemetry/otlp-transformer": "npm:^0.208.0"
+  checksum: 10/0801a0fb4d2de5656921b3292e23e17552b6020e1a565a672fd4f17a3006ee62e96f8c6cf9945f57fc5d2667815be5a570173cce8daad8b15bad201245990e44
+  languageName: node
+  linkType: hard
+
 "@grafana/faro-react@npm:2.0.2":
   version: 2.0.2
   resolution: "@grafana/faro-react@npm:2.0.2"
@@ -3109,7 +3119,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@grafana/faro-web-sdk@npm:2.0.2, @grafana/faro-web-sdk@npm:^2.0.2":
+"@grafana/faro-web-sdk@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@grafana/faro-web-sdk@npm:2.1.0"
+  dependencies:
+    "@grafana/faro-core": "npm:^2.1.0"
+    ua-parser-js: "npm:^1.0.32"
+    web-vitals: "npm:^5.0.3"
+  checksum: 10/9db8212b5e212fc9c0dd8ad197a55533b1d0352f83ecc9b93d64ebc4b8070b2e96543b4143cd26d830f6561f2e8c5a576f48ab6e8d09a2caf16ac1a8ead8e20d
+  languageName: node
+  linkType: hard
+
+"@grafana/faro-web-sdk@npm:^2.0.2":
   version: 2.0.2
   resolution: "@grafana/faro-web-sdk@npm:2.0.2"
   dependencies:
@@ -4705,7 +4726,7 @@ __metadata:
   resolution: "@navikt/dine-pleiepenger@workspace:apps/dine-pleiepenger"
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
-    "@grafana/faro-web-sdk": "npm:2.0.2"
+    "@grafana/faro-web-sdk": "npm:2.1.0"
     "@navikt/aksel-icons": "npm:7.35.3"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
@@ -5742,7 +5763,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds"
   dependencies:
-    "@grafana/faro-web-sdk": "npm:2.0.2"
+    "@grafana/faro-web-sdk": "npm:2.1.0"
     "@navikt/aksel-icons": "npm:7.35.3"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
@@ -5807,7 +5828,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-faro@workspace:packages/sif-common-faro"
   dependencies:
-    "@grafana/faro-web-sdk": "npm:2.0.2"
+    "@grafana/faro-web-sdk": "npm:2.1.0"
     "@sif/eslint-config": "workspace:*"
     constate: "npm:3.3.3"
     react: "npm:19.2.3"
