@@ -6,7 +6,7 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@grafana/faro-web-sdk": "2.0.2",
+        "@grafana/faro-web-sdk": "2.1.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
