@@ -3089,27 +3089,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@grafana/faro-react@npm:2.0.2":
-  version: 2.0.2
-  resolution: "@grafana/faro-react@npm:2.0.2"
+"@grafana/faro-core@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@grafana/faro-core@npm:2.1.0"
   dependencies:
-    "@grafana/faro-web-sdk": "npm:^2.0.2"
-    "@grafana/faro-web-tracing": "npm:^2.0.2"
+    "@opentelemetry/api": "npm:^1.9.0"
+    "@opentelemetry/otlp-transformer": "npm:^0.208.0"
+  checksum: 10/0801a0fb4d2de5656921b3292e23e17552b6020e1a565a672fd4f17a3006ee62e96f8c6cf9945f57fc5d2667815be5a570173cce8daad8b15bad201245990e44
+  languageName: node
+  linkType: hard
+
+"@grafana/faro-react@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@grafana/faro-react@npm:2.1.0"
+  dependencies:
+    "@grafana/faro-web-sdk": "npm:^2.1.0"
+    "@grafana/faro-web-tracing": "npm:^2.1.0"
     hoist-non-react-statics: "npm:^3.3.2"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-router: ^7.0.0
     react-router-dom: ^4.0.0 || ^5.0.0 || ^6.0.0
   peerDependenciesMeta:
     react-dom:
       optional: true
+    react-router:
+      optional: true
     react-router-dom:
       optional: true
-  checksum: 10/1eca402030dba692599612bd38a75c5aa06a60120254c164e560909cae807ae25ab97c95cfce57fcc92708ecbea5c15d29f0c44965489c5225ba736391393abc
+  checksum: 10/b2f27528890a5b7965e314c97cfeb7daf117e9be6a5ac473e785d62e0cf095cb6039fc010d8e8cc1a2e7964bbfa4dd59d55e26310cc8564cd7660b71a6380eb9
   languageName: node
   linkType: hard
 
-"@grafana/faro-web-sdk@npm:2.0.2, @grafana/faro-web-sdk@npm:^2.0.2":
+"@grafana/faro-web-sdk@npm:2.0.2":
   version: 2.0.2
   resolution: "@grafana/faro-web-sdk@npm:2.0.2"
   dependencies:
@@ -3120,11 +3133,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@grafana/faro-web-tracing@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@grafana/faro-web-tracing@npm:2.0.2"
+"@grafana/faro-web-sdk@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@grafana/faro-web-sdk@npm:2.1.0"
   dependencies:
-    "@grafana/faro-web-sdk": "npm:^2.0.2"
+    "@grafana/faro-core": "npm:^2.1.0"
+    ua-parser-js: "npm:^1.0.32"
+    web-vitals: "npm:^5.0.3"
+  checksum: 10/9db8212b5e212fc9c0dd8ad197a55533b1d0352f83ecc9b93d64ebc4b8070b2e96543b4143cd26d830f6561f2e8c5a576f48ab6e8d09a2caf16ac1a8ead8e20d
+  languageName: node
+  linkType: hard
+
+"@grafana/faro-web-tracing@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@grafana/faro-web-tracing@npm:2.1.0"
+  dependencies:
+    "@grafana/faro-web-sdk": "npm:^2.1.0"
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/core": "npm:^2.0.0"
     "@opentelemetry/exporter-trace-otlp-http": "npm:^0.208.0"
@@ -3135,7 +3159,7 @@ __metadata:
     "@opentelemetry/resources": "npm:^2.0.0"
     "@opentelemetry/sdk-trace-web": "npm:^2.0.0"
     "@opentelemetry/semantic-conventions": "npm:^1.32.0"
-  checksum: 10/34bf8d1416fe9b6d63f21f0d0c4887a3787c800d8253c19f9d47a5a2675fa5cc7fbbf89bae79b338773a17abc65537bc5e4a569b58946633142ab77e02207f8c
+  checksum: 10/f8452fa6df1376c4ae4246140457b3e76e30f6a9b05ffd92505ed1c0c2906f5bde76b4e3e45533f9e94e117531f91d02ffc43681e14f993420cff300d3ebefe2
   languageName: node
   linkType: hard
 
@@ -6357,7 +6381,7 @@ __metadata:
     "@axe-core/playwright": "npm:4.11.0"
     "@eslint/eslintrc": "npm:3.3.3"
     "@eslint/js": "npm:9.39.1"
-    "@grafana/faro-react": "npm:2.0.2"
+    "@grafana/faro-react": "npm:2.1.0"
     "@navikt/aksel-icons": "npm:7.35.3"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
@@ -6440,7 +6464,7 @@ __metadata:
     "@axe-core/playwright": "npm:4.11.0"
     "@eslint/eslintrc": "npm:3.3.3"
     "@eslint/js": "npm:9.39.1"
-    "@grafana/faro-react": "npm:2.0.2"
+    "@grafana/faro-react": "npm:2.1.0"
     "@navikt/aksel-icons": "npm:7.35.3"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
