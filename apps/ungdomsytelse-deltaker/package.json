@@ -29,7 +29,7 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@grafana/faro-react": "2.0.2",
+        "@grafana/faro-react": "2.1.0",
         "@navikt/aksel-icons": "7.35.3",
         "@navikt/ds-css": "7.35.3",
         "@navikt/ds-react": "7.35.3",
