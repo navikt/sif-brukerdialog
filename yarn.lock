@@ -3010,12 +3010,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/ecma402-abstract@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@formatjs/ecma402-abstract@npm:3.0.2"
+  dependencies:
+    "@formatjs/fast-memoize": "npm:3.0.1"
+    "@formatjs/intl-localematcher": "npm:0.7.2"
+    decimal.js: "npm:^10.4.3"
+    tslib: "npm:^2.8.0"
+  checksum: 10/a0e5838b141189331bdf63d36b101b98e3f78465813acf41d7a42c7f0733ba4e72815a7d5258bb7b97fcd455e0721ff14fc8e9478b33385f73ef460ff6b33d22
+  languageName: node
+  linkType: hard
+
 "@formatjs/fast-memoize@npm:2.2.7":
   version: 2.2.7
   resolution: "@formatjs/fast-memoize@npm:2.2.7"
   dependencies:
     tslib: "npm:^2.8.0"
   checksum: 10/e7e6efc677d63a13d99a854305db471b69f64cbfebdcb6dbe507dab9aa7eaae482ca5de86f343c856ca0a2c8f251672bd1f37c572ce14af602c0287378097d43
+  languageName: node
+  linkType: hard
+
+"@formatjs/fast-memoize@npm:3.0.1":
+  version: 3.0.1
+  resolution: "@formatjs/fast-memoize@npm:3.0.1"
+  dependencies:
+    tslib: "npm:^2.8.0"
+  checksum: 10/9c152fbb3725a0ba759f75658107504b33cd7d232380cdce5afeea320be3c71762de0af9b1dc3b8f03c652c6db9b7453ad57ab1e82762dd9a1713990988f84b8
   languageName: node
   linkType: hard
 
@@ -3049,15 +3070,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-pluralrules@npm:5.4.6":
-  version: 5.4.6
-  resolution: "@formatjs/intl-pluralrules@npm:5.4.6"
+"@formatjs/intl-localematcher@npm:0.7.2":
+  version: 0.7.2
+  resolution: "@formatjs/intl-localematcher@npm:0.7.2"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.6"
-    "@formatjs/intl-localematcher": "npm:0.6.2"
+    tslib: "npm:^2.8.0"
+  checksum: 10/cdf12070f9dbddb35808382baf220c0de67d480626aa115ce3c16b92f608a23235c7e4ac953518c1cf04acb2808230fdf63bd214cb1ea575b2c494e3c69ef88f
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-pluralrules@npm:6.0.2":
+  version: 6.0.2
+  resolution: "@formatjs/intl-pluralrules@npm:6.0.2"
+  dependencies:
+    "@formatjs/ecma402-abstract": "npm:3.0.2"
+    "@formatjs/intl-localematcher": "npm:0.7.2"
     decimal.js: "npm:^10.4.3"
     tslib: "npm:^2.8.0"
-  checksum: 10/88aa244e69ccfdf459899f5fa3c64df345f451ef91ce1188eab35b7e37daa225d22120f64be633f2cd8b826ea705d19831915118f555f2d17611ee842a9a86dc
+  checksum: 10/7fc62240225ce92f6ed5d3ae78f6bb618567f343274fcadae94946692ef7070f887da2fbcba2574d4d664cc0493936f9ae917379a9b83d83653ccaf0c75a1931
   languageName: node
   linkType: hard
 
@@ -5874,7 +5904,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-forms-ds@workspace:packages/sif-common-forms-ds"
   dependencies:
-    "@formatjs/intl-pluralrules": "npm:5.4.6"
+    "@formatjs/intl-pluralrules": "npm:6.0.2"
     "@navikt/aksel-icons": "npm:7.35.3"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
@@ -5989,7 +6019,7 @@ __metadata:
   resolution: "@navikt/sif-common-soknad-ds@workspace:packages/sif-common-soknad-ds"
   dependencies:
     "@devexperts/remote-data-ts": "npm:2.1.1"
-    "@formatjs/intl-pluralrules": "npm:5.4.6"
+    "@formatjs/intl-pluralrules": "npm:6.0.2"
     "@navikt/aksel-icons": "npm:7.35.3"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:7.35.3"
