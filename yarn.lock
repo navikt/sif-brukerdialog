@@ -4857,7 +4857,7 @@ __metadata:
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     rimraf: "npm:6.1.2"
     storybook: "npm:10.1.10"
     typescript: "npm:5.9.3"
@@ -4938,7 +4938,7 @@ __metadata:
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     react-responsive: "npm:10.0.1"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     storybook: "npm:10.1.10"
     tailwindcss: "npm:4.1.18"
     typescript: "npm:5.9.3"
@@ -5117,7 +5117,7 @@ __metadata:
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     storybook: "npm:10.1.10"
     tailwindcss: "npm:4.1.18"
     typescript: "npm:5.9.3"
@@ -5230,7 +5230,7 @@ __metadata:
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     storybook: "npm:10.1.10"
     tailwindcss: "npm:4.1.18"
     typescript: "npm:5.9.3"
@@ -5300,7 +5300,7 @@ __metadata:
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     storybook: "npm:10.1.10"
     tailwindcss: "npm:4.1.18"
     typescript: "npm:5.9.3"
@@ -5377,7 +5377,7 @@ __metadata:
     react-fast-compare: "npm:3.2.2"
     react-hook-form: "npm:7.68.0"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     storybook: "npm:10.1.10"
     tailwindcss: "npm:4.1.18"
     typescript: "npm:5.9.3"
@@ -5453,7 +5453,7 @@ __metadata:
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     storybook: "npm:10.1.10"
     tailwindcss: "npm:4.1.18"
     typescript: "npm:5.9.3"
@@ -5543,7 +5543,7 @@ __metadata:
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     storybook: "npm:10.1.10"
     tailwindcss: "npm:4.1.18"
     typescript: "npm:5.9.3"
@@ -5622,7 +5622,7 @@ __metadata:
     react-day-picker: "npm:9.12.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     storybook: "npm:10.1.10"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -5912,7 +5912,7 @@ __metadata:
     react-day-picker: "npm:9.12.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     rimraf: "npm:6.1.2"
     storybook: "npm:10.1.10"
     typescript: "npm:5.9.3"
@@ -6040,7 +6040,7 @@ __metadata:
     react-day-picker: "npm:9.12.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     rimraf: "npm:6.1.2"
     sass-loader: "npm:16.0.6"
     storybook: "npm:10.1.10"
@@ -6186,7 +6186,7 @@ __metadata:
     react-day-picker: "npm:9.12.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     tailwindcss: "npm:4.1.18"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -6418,7 +6418,7 @@ __metadata:
     react-helmet: "npm:6.1.0"
     react-intl: "npm:7.1.14"
     react-loading-skeleton: "npm:3.5.0"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     storybook: "npm:10.1.10"
     stylelint: "npm:16.26.1"
     tailwindcss: "npm:4.1.18"
@@ -6505,7 +6505,7 @@ __metadata:
     react-intl: "npm:7.1.14"
     react-loading-skeleton: "npm:3.5.0"
     react-markdown: "npm:10.1.0"
-    react-router-dom: "npm:7.10.1"
+    react-router-dom: "npm:7.11.0"
     remark-gfm: "npm:4.0.1"
     sass-embedded: "npm:1.96.0"
     storybook: "npm:10.1.10"
@@ -24080,21 +24080,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:7.10.1":
-  version: 7.10.1
-  resolution: "react-router-dom@npm:7.10.1"
+"react-router-dom@npm:7.11.0":
+  version: 7.11.0
+  resolution: "react-router-dom@npm:7.11.0"
   dependencies:
-    react-router: "npm:7.10.1"
+    react-router: "npm:7.11.0"
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: 10/a3dbf65aa036015a8199bc40a0863bda8234ed71c0df32e5c7355380ff1337aa346cc516837c2e4dce0edd6a96d3d9625cbcccd388b265b8b809f0d89cd3e85f
+  checksum: 10/47ae509e044957f3c0baae9d594f199832b1d96e4deab69a95f557835cb04bebef1625c4fe1daa1077f1b647c559c636deaa7c35b03d72cc06942d88944e6b37
   languageName: node
   linkType: hard
 
-"react-router@npm:7.10.1":
-  version: 7.10.1
-  resolution: "react-router@npm:7.10.1"
+"react-router@npm:7.11.0":
+  version: 7.11.0
+  resolution: "react-router@npm:7.11.0"
   dependencies:
     cookie: "npm:^1.0.1"
     set-cookie-parser: "npm:^2.6.0"
@@ -24104,7 +24104,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10/0de854fe2d7d4d8f62337b829dd51fc8ce8167d8dd57e286b55ed6113a5910abe94164f47dda5f0bf2b4344abddaaf1ad6cbe87c0e63ab1ab3766155262dd7da
+  checksum: 10/34c787880f19a7fadaef2906ecd0c1a1576052ad240bfba72708840d5e5181f604818351ff2e82d2761a2f33dfd63e2f68ab35ffd7552aa04563f1a7154b5b58
   languageName: node
   linkType: hard
 
