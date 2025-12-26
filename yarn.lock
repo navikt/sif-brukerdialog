@@ -4934,7 +4934,7 @@ __metadata:
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     react-responsive: "npm:10.0.1"
@@ -5113,7 +5113,7 @@ __metadata:
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.14"
@@ -5161,7 +5161,7 @@ __metadata:
     playwright-core: "npm:1.57.0"
     postcss: "npm:8.5.6"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     tailwindcss: "npm:4.1.18"
@@ -5619,7 +5619,7 @@ __metadata:
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.10.1"
@@ -5728,7 +5728,7 @@ __metadata:
     less: "npm:4.4.2"
     postcss: "npm:8.5.6"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     storybook: "npm:10.1.10"
@@ -5780,7 +5780,7 @@ __metadata:
     postcss: "npm:8.5.6"
     prop-types: "npm:15.8.1"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     react-responsive: "npm:10.0.1"
@@ -5851,7 +5851,7 @@ __metadata:
     lodash: "npm:4.17.21"
     prop-types: "npm:15.8.1"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-dropzone: "npm:14.3.8"
     react-fast-compare: "npm:3.2.2"
@@ -5909,7 +5909,7 @@ __metadata:
     jsdom: "npm:27.3.0"
     postcss: "npm:8.5.6"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.10.1"
@@ -6037,7 +6037,7 @@ __metadata:
     newtype-ts: "npm:0.3.5"
     postcss: "npm:8.5.6"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.10.1"
@@ -6094,7 +6094,7 @@ __metadata:
     less: "npm:4.4.2"
     postcss: "npm:8.5.6"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     storybook: "npm:10.1.10"
@@ -6183,7 +6183,7 @@ __metadata:
     playwright-core: "npm:1.57.0"
     postcss: "npm:8.5.6"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.10.1"
@@ -23767,16 +23767,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-day-picker@npm:9.12.0":
-  version: 9.12.0
-  resolution: "react-day-picker@npm:9.12.0"
+"react-day-picker@npm:9.13.0":
+  version: 9.13.0
+  resolution: "react-day-picker@npm:9.13.0"
   dependencies:
     "@date-fns/tz": "npm:^1.4.1"
     date-fns: "npm:^4.1.0"
     date-fns-jalali: "npm:^4.1.0-0"
   peerDependencies:
     react: ">=16.8.0"
-  checksum: 10/b5ba64991b28a588b9b8684094a2755f34af47994084db74be487b47a9648998bc22a38da5c9ace4adbc083816f6e4f3a83225a3b1e84ad53617b5aad18f4cdc
+  checksum: 10/1a622e2850c04dcfbec6607c44abded18315d17e378b6366f5328b7528f869d7bb32f8bc67df5efddab552108854089c84957e16871ace182c3e6cd71df99621
   languageName: node
   linkType: hard
 
@@ -25862,7 +25862,7 @@ __metadata:
     less: "npm:4.4.2"
     postcss: "npm:8.5.6"
     react: "npm:19.2.3"
-    react-day-picker: "npm:9.12.0"
+    react-day-picker: "npm:9.13.0"
     react-dom: "npm:19.2.3"
     react-intl: "npm:7.1.14"
     storybook: "npm:10.1.10"
