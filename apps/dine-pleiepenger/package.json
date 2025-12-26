@@ -76,7 +76,7 @@
         "uuid": "13.0.0",
         "vite": "7.2.7",
         "vitest": "4.0.15",
-        "webpack": "5.103.0"
+        "webpack": "5.104.1"
     },
     "_id": "@navikt/dine-pleiepenger@0.3.1"
 }
