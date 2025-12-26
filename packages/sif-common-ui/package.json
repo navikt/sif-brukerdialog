@@ -37,7 +37,7 @@
         "react-intl": "7.1.14",
         "storybook": "10.1.10",
         "typescript": "5.9.3",
-        "webpack": "5.103.0"
+        "webpack": "5.104.1"
     },
     "scripts": {
         "build-storybook": "storybook build ",
