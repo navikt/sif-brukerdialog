@@ -31,7 +31,7 @@
         "axios": "1.13.2",
         "compression": "1.8.1",
         "cookie-parser": "1.4.7",
-        "csp-header": "6.2.1",
+        "csp-header": "6.3.0",
         "dayjs": "1.11.19",
         "express": "5.2.1",
         "express-rate-limit": "8.2.1",

@@ -30,7 +30,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "axios": "1.13.2",
-        "csp-header": "6.2.1",
+        "csp-header": "6.3.0",
         "dayjs": "1.11.19",
         "formik": "2.4.9",
         "html-react-parser": "5.2.10",

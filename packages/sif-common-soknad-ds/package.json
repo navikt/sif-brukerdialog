@@ -23,7 +23,7 @@
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/nav-dekoratoren-moduler": "3.6.1",
         "classnames": "2.5.1",
-        "csp-header": "6.2.1",
+        "csp-header": "6.3.0",
         "date-fns": "4.1.0",
         "fp-ts": "2.16.11",
         "html-react-parser": "5.2.10",
