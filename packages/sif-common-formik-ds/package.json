@@ -24,8 +24,8 @@
     },
     "devDependencies": {
         "@navikt/aksel-icons": "7.35.3",
-        "@navikt/ds-css": "7.35.3",
-        "@navikt/ds-react": "7.35.3",
+        "@navikt/ds-css": "7.36.0",
+        "@navikt/ds-react": "7.36.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.1.10",
