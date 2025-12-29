@@ -30,7 +30,7 @@
     },
     "dependencies": {
         "@grafana/faro-react": "2.0.2",
-        "@navikt/aksel-icons": "7.35.3",
+        "@navikt/aksel-icons": "7.36.0",
         "@navikt/ds-css": "7.35.3",
         "@navikt/ds-react": "7.35.3",
         "@navikt/ds-tailwind": "7.35.3",

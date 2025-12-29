@@ -37,7 +37,7 @@
     "devDependencies": {
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.4.6",
-        "@navikt/aksel-icons": "7.35.3",
+        "@navikt/aksel-icons": "7.36.0",
         "@navikt/ds-css": "7.35.3",
         "@navikt/ds-react": "7.35.3",
         "@navikt/sif-common-core-ds": "workspace:*",

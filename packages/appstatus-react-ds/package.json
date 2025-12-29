@@ -13,7 +13,7 @@
         "@sanity/client": "7.13.2"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "7.35.3",
+        "@navikt/aksel-icons": "7.36.0",
         "@navikt/ds-css": "7.35.3",
         "@navikt/ds-react": "7.35.3",
         "@sif/eslint-config": "workspace:*",

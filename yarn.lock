@@ -4668,7 +4668,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:7.35.3, @navikt/aksel-icons@npm:^7.35.3":
+"@navikt/aksel-icons@npm:7.36.0":
+  version: 7.36.0
+  resolution: "@navikt/aksel-icons@npm:7.36.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F7.36.0%2F5d01680f20cd3ad3c447ea53fd4f71d9e40056e1"
+  checksum: 10/85625f0b31a7c12bcd528706b753cb936a212d8703684ac09f8b11fa971a452775049db8752aa0e0a80416373c48545b2b0bac3b8493d1d227036a139a37d089
+  languageName: node
+  linkType: hard
+
+"@navikt/aksel-icons@npm:^7.35.3":
   version: 7.35.3
   resolution: "@navikt/aksel-icons@npm:7.35.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F7.35.3%2F9650240ffbf336bf8951dd88fcac4e01cb69f8d6"
   checksum: 10/9d2ab06a8a7906a2cd34d60db9eeeaa3275053ef866b0fd0e163ea392ff3b1ae708a2f219491f4724e057c7d5152d0107c577adee76300590c8108cd26e0405b
@@ -4679,7 +4686,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds"
   dependencies:
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/sif-common-hooks": "workspace:*"
@@ -4706,7 +4713,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
     "@grafana/faro-web-sdk": "npm:2.0.2"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -4807,7 +4814,7 @@ __metadata:
   resolution: "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn@workspace:apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -4873,7 +4880,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
     "@mswjs/data": "npm:0.16.2"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -5062,7 +5069,7 @@ __metadata:
   resolution: "@navikt/omsorgsdager-aleneomsorg-dialog@workspace:apps/omsorgsdager-aleneomsorg-dialog"
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -5133,7 +5140,7 @@ __metadata:
   resolution: "@navikt/omsorgsdager-kalkulator@workspace:apps/omsorgsdager-kalkulator"
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -5175,7 +5182,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad@workspace:apps/omsorgspengerutbetaling-arbeidstaker-soknad"
   dependencies:
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -5246,7 +5253,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/omsorgspengerutbetaling-soknad@workspace:apps/omsorgspengerutbetaling-soknad"
   dependencies:
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -5318,7 +5325,7 @@ __metadata:
     "@axe-core/playwright": "npm:4.11.0"
     "@eslint/eslintrc": "npm:3.3.3"
     "@eslint/js": "npm:9.39.1"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -5392,7 +5399,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/opplaringspenger-soknad@workspace:apps/opplaringspenger-soknad"
   dependencies:
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -5488,7 +5495,7 @@ __metadata:
   resolution: "@navikt/pleiepenger-i-livets-sluttfase-soknad@workspace:apps/pleiepenger-i-livets-sluttfase-soknad"
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -5558,7 +5565,7 @@ __metadata:
   resolution: "@navikt/pleiepenger-sykt-barn@workspace:apps/pleiepenger-sykt-barn"
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/fnrvalidator": "npm:2.2.1"
@@ -5705,7 +5712,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-api@workspace:packages/sif-common-api"
   dependencies:
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/fnrvalidator": "npm:2.2.1"
@@ -5743,7 +5750,7 @@ __metadata:
   resolution: "@navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds"
   dependencies:
     "@grafana/faro-web-sdk": "npm:2.0.2"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -5819,7 +5826,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-formik-ds@workspace:packages/sif-common-formik-ds"
   dependencies:
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/fnrvalidator": "npm:2.2.1"
@@ -5875,7 +5882,7 @@ __metadata:
   resolution: "@navikt/sif-common-forms-ds@workspace:packages/sif-common-forms-ds"
   dependencies:
     "@formatjs/intl-pluralrules": "npm:5.4.6"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/fnrvalidator": "npm:2.2.1"
@@ -5990,7 +5997,7 @@ __metadata:
   dependencies:
     "@devexperts/remote-data-ts": "npm:2.1.1"
     "@formatjs/intl-pluralrules": "npm:5.4.6"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
@@ -6069,7 +6076,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-ui@workspace:packages/sif-common-ui"
   dependencies:
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/fnrvalidator": "npm:2.2.1"
@@ -6132,7 +6139,7 @@ __metadata:
   resolution: "@navikt/sif-ettersending@workspace:apps/sif-ettersending"
   dependencies:
     "@axe-core/playwright": "npm:4.11.0"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -6202,7 +6209,7 @@ __metadata:
   resolution: "@navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers"
   dependencies:
     "@hookform/error-message": "npm:2.0.1"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/sif-common-utils": "workspace:*"
@@ -6358,7 +6365,7 @@ __metadata:
     "@eslint/eslintrc": "npm:3.3.3"
     "@eslint/js": "npm:9.39.1"
     "@grafana/faro-react": "npm:2.0.2"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -6441,7 +6448,7 @@ __metadata:
     "@eslint/eslintrc": "npm:3.3.3"
     "@eslint/js": "npm:9.39.1"
     "@grafana/faro-react": "npm:2.0.2"
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/ds-tailwind": "npm:7.35.3"
@@ -25841,7 +25848,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sif-storybook@workspace:apps/storybook"
   dependencies:
-    "@navikt/aksel-icons": "npm:7.35.3"
+    "@navikt/aksel-icons": "npm:7.36.0"
     "@navikt/ds-css": "npm:7.35.3"
     "@navikt/ds-react": "npm:7.35.3"
     "@navikt/fnrvalidator": "npm:2.2.1"
