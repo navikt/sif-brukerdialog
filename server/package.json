@@ -12,18 +12,18 @@
         "@navikt/nav-dekoratoren-moduler": "3.6.1",
         "@navikt/oasis": "4.1.1",
         "@navikt/sif-common-env": "workspace:*",
-        "csp-header": "6.2.1",
+        "csp-header": "6.3.0",
         "express": "5.2.1",
-        "html-react-parser": "5.2.10",
+        "html-react-parser": "5.2.11",
         "http-proxy-middleware": "3.0.5",
-        "jsdom": "27.3.0",
+        "jsdom": "27.4.0",
         "react": "19.2.3",
-        "zod": "4.1.13"
+        "zod": "4.2.1"
     },
     "devDependencies": {
         "@types/express": "5.0.6",
         "@types/morgan": "1.9.10",
-        "@types/node": "25.0.1",
+        "@types/node": "25.0.3",
         "@vercel/ncc": "0.38.4",
         "axios": "1.13.2",
         "morgan": "1.10.1",
