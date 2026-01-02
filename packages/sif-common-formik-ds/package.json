@@ -16,16 +16,16 @@
         "formik": "2.4.9",
         "i18n-iso-countries": "7.14.0",
         "lodash": "4.17.21",
-        "react-day-picker": "9.12.0",
+        "react-day-picker": "9.13.0",
         "react-dropzone": "14.3.8",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.14",
         "uuid": "13.0.0"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "7.35.3",
-        "@navikt/ds-css": "7.35.3",
-        "@navikt/ds-react": "7.35.3",
+        "@navikt/aksel-icons": "7.36.0",
+        "@navikt/ds-css": "7.36.0",
+        "@navikt/ds-react": "7.36.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.1.10",
@@ -37,7 +37,7 @@
         "@storybook/test-runner": "0.24.2",
         "@storybook/testing-library": "0.2.2",
         "@types/jest": "30.0.0",
-        "@types/node": "25.0.1",
+        "@types/node": "25.0.3",
         "@types/react": "19.2.7",
         "@types/react-dom": "19.2.3",
         "@vitejs/plugin-react": "5.1.2",
@@ -58,10 +58,10 @@
         "storybook": "10.1.10",
         "style-loader": "4.0.0",
         "typescript": "5.9.3",
-        "vite": "7.2.7",
+        "vite": "7.3.0",
         "vite-plugin-checker": "0.12.0",
-        "vitest": "4.0.15",
-        "webpack": "5.103.0"
+        "vitest": "4.0.16",
+        "webpack": "5.104.1"
     },
     "directories": {
         "lib": "lib"
