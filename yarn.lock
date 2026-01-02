@@ -8602,9 +8602,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:4.22.0":
-  version: 4.22.0
-  resolution: "@sanity/vision@npm:4.22.0"
+"@sanity/vision@npm:5.1.0":
+  version: 5.1.0
+  resolution: "@sanity/vision@npm:5.1.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.20.0"
     "@codemirror/commands": "npm:^6.10.0"
@@ -8625,18 +8625,16 @@ __metadata:
     is-hotkey-esm: "npm:^1.0.0"
     json-2-csv: "npm:^5.5.9"
     json5: "npm:^2.2.3"
-    lodash: "npm:^4.17.21"
+    lodash-es: "npm:^4.17.21"
     quick-lru: "npm:^5.1.1"
-    react-compiler-runtime: "npm:1.0.0"
     react-fast-compare: "npm:^3.2.2"
     react-rx: "npm:^4.2.2"
     rxjs: "npm:^7.8.2"
-    use-effect-event: "npm:^2.0.3"
   peerDependencies:
-    react: ^18 || ^19.0.0
+    react: ^19.2.2
     sanity: ^4.0.0-0 || ^5.0.0-0
     styled-components: ^6.1.15
-  checksum: 10/f07aab03198ba040913f3cd4f2049cb7c3e5068169535310358cd0bc2fb20de3cba4c8f29d14c24408f465f3379e70ee68e486a46943f3d03dcfa5fbda5b70ce
+  checksum: 10/7b5b9a69c3b65f3942131ac0d3c2b369a69fa03876129730ab2f78935e381d15cbbc8f5658d765de1641ba3d219c744b0dc9d51ea0d6e2a3fbc73ebbbae9a3c8
   languageName: node
   linkType: hard
 
@@ -11794,7 +11792,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:4.22.0"
+    "@sanity/vision": "npm:5.1.0"
     "@types/react": "npm:19.2.7"
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.2"
