@@ -106,6 +106,7 @@ export const zSøkYtelseOppgavetypeDataDto = zOppgavetypeDataDto.and(
 export const zYtelseType = z.enum([
     'SYKEPENGER',
     'OMSORGSPENGER',
+    'PLEIEPENGER',
     'PLEIEPENGER_SYKT_BARN',
     'PLEIEPENGER_LIVETS_SLUTTFASE',
     'OPPLAERINGSPENGER',

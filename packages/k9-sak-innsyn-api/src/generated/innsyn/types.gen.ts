@@ -214,36 +214,31 @@ export type Omsorg = {
     beskrivelseAvOmsorgsrollen?: string;
 };
 
-export type OmsorgspengerAleneOmsorg = Ytelse & {
-    type: 'OmsorgspengerAleneOmsorg';
-} & {
+export type OmsorgspengerAleneOmsorg = Omit<Ytelse, 'type'> & {
     barn: Barn;
     periode: string;
     dataBruktTilUtledning?: DataBruktTilUtledning;
+    type: 'OmsorgspengerAleneOmsorg';
 };
 
-export type OmsorgspengerKroniskSyktBarn = Ytelse & {
-    type: 'OmsorgspengerKroniskSyktBarn';
-} & {
+export type OmsorgspengerKroniskSyktBarn = Omit<Ytelse, 'type'> & {
     barn: Barn;
     kroniskEllerFunksjonshemming: boolean;
     høyereRisikoForFravær?: boolean;
     høyereRisikoForFraværBeskrivelse?: string;
     dataBruktTilUtledning?: DataBruktTilUtledning;
+    type: 'OmsorgspengerKroniskSyktBarn';
 };
 
-export type OmsorgspengerMidlertidigAlene = Ytelse & {
-    type: 'OmsorgspengerMidlertidigAlene';
-} & {
+export type OmsorgspengerMidlertidigAlene = Omit<Ytelse, 'type'> & {
     barn: Barn[];
     annenForelder: AnnenForelder;
     begrunnelse?: string;
     dataBruktTilUtledning?: DataBruktTilUtledning;
+    type: 'OmsorgspengerMidlertidigAlene';
 };
 
-export type OmsorgspengerUtbetaling = Ytelse & {
-    type: 'OmsorgspengerUtbetaling';
-} & {
+export type OmsorgspengerUtbetaling = Omit<Ytelse, 'type'> & {
     fosterbarn?: Barn[];
     aktivitet?: OpptjeningAktivitet;
     fraværsperioder?: FraværPeriode[];
@@ -251,6 +246,7 @@ export type OmsorgspengerUtbetaling = Ytelse & {
     bosteder?: Bosteder;
     utenlandsopphold?: Utenlandsopphold;
     dataBruktTilUtledning?: DataBruktTilUtledning;
+    type: 'OmsorgspengerUtbetaling';
 };
 
 export type OppgittInntekt = {
@@ -264,9 +260,7 @@ export type OppgittInntektForPeriode = {
     periode: string;
 };
 
-export type Opplæringspenger = Ytelse & {
-    type: 'Opplæringspenger';
-} & {
+export type Opplæringspenger = Omit<Ytelse, 'type'> & {
     barn: Barn;
     søknadsperiode: string[];
     trekkKravPerioder: string[];
@@ -279,6 +273,7 @@ export type Opplæringspenger = Ytelse & {
     uttak: Uttak;
     omsorg: Omsorg;
     kurs?: Kurs;
+    type: 'Opplæringspenger';
 };
 
 export type OpptjeningAktivitet = {
@@ -288,9 +283,7 @@ export type OpptjeningAktivitet = {
     andreAktiviteter: AnnenAktivitet[];
 };
 
-export type PleiepengerSyktBarn = Ytelse & {
-    type: 'PleiepengerSyktBarn';
-} & {
+export type PleiepengerSyktBarn = Omit<Ytelse, 'type'> & {
     barn: Barn;
     søknadsperiode: string[];
     /**
@@ -315,6 +308,7 @@ export type PleiepengerSyktBarn = Ytelse & {
     uttak: Uttak;
     omsorg: Omsorg;
     erSammenMedBarnet?: boolean;
+    type: 'PleiepengerSyktBarn';
 };
 
 export type Pleietrengende = {
@@ -322,9 +316,7 @@ export type Pleietrengende = {
     fødselsdato?: string;
 };
 
-export type PleipengerLivetsSluttfase = Ytelse & {
-    type: 'PleipengerLivetsSluttfase';
-} & {
+export type PleipengerLivetsSluttfase = Omit<Ytelse, 'type'> & {
     pleietrengende: Pleietrengende;
     søknadsperiode: string[];
     trekkKravPerioder: string[];
@@ -335,6 +327,7 @@ export type PleipengerLivetsSluttfase = Ytelse & {
     uttak?: Uttak;
     lovbestemtFerie?: LovbestemtFerie;
     dataBruktTilUtledning?: DataBruktTilUtledning;
+    type: 'PleipengerLivetsSluttfase';
 };
 
 export type Reise = {
@@ -430,13 +423,12 @@ export enum UngSøknadstype {
     RAPPORTERING_SØKNAD = 'RAPPORTERING_SØKNAD',
 }
 
-export type Ungdomsytelse = Ytelse & {
-    type: 'Ungdomsytelse';
-} & {
+export type Ungdomsytelse = Omit<Ytelse, 'type'> & {
     søknadType: UngSøknadstype;
     søktFraDatoer: string[];
     inntekter?: OppgittInntekt;
     deltakelseId?: string;
+    type: 'Ungdomsytelse';
 };
 
 export type UtenlandskArbeidsforhold = {
@@ -574,8 +566,8 @@ export enum Innsendelsestype {
 
 export type Innsending = {
     søknadId?: string;
-    versjon?: string;
     mottattDato?: string;
+    versjon?: string;
     søker?: Søker;
 };
 
