@@ -1,5 +1,18 @@
 # @navikt/sif-demo-app
 
+## 0.9.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.40
+    - @navikt/sif-common-core-ds@10.3.47
+    - @navikt/sif-common-utils@3.49.56
+    - @navikt/sif-common-api@0.4.87
+    - @navikt/sif-common-ui@0.11.48
+    - @navikt/ung-common@0.0.89
+
 ## 0.9.44
 
 ### Patch Changes

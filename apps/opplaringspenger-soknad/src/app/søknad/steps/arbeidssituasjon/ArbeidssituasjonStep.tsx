@@ -11,14 +11,16 @@ import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlan
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useArbeidsgivereQuery } from '../../../hooks/useArbeidsgivereQuery';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -26,8 +28,8 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
-    getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
+    getArbeidssituasjonStepInitialValues,
     visVernepliktSpørsmål,
 } from './arbeidssituasjonStepUtils';
 import { AnsattFormData } from './form-parts/ArbeidssituasjonAnsatt';
@@ -35,7 +37,6 @@ import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsg
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
 import { ArbeidssituasjonUtland } from './form-parts/ArbeidssituasjonUtland';
-import { useArbeidsgivereQuery } from '../../../hooks/useArbeidsgivereQuery';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',

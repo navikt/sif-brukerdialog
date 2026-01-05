@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.67
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.56
+
 ## 0.1.66
 
 ### Patch Changes
