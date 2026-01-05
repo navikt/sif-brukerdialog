@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+
 ## 3.49.55
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.56
+
 ## 2.5.39
 
 ### Patch Changes

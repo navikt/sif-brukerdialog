@@ -1,5 +1,14 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.47
+    - @navikt/sif-common-utils@3.49.56
+
 ## 2.0.22
 
 ### Patch Changes
