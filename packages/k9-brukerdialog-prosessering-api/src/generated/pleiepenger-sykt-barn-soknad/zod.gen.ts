@@ -51,32 +51,22 @@ export const zFosterhjemgodtgjørelse = z.object({
     mottarFosterhjemsgodtgjørelse: z.boolean(),
 });
 
-export const zFosterhjemsgodtgjørelseFrikjøpt = zFosterhjemgodtgjørelse
-    .and(
-        z.object({
-            type: z.literal('FosterhjemsgodtgjørelseFrikjøpt'),
-        }),
-    )
-    .and(
-        z.object({
-            erFrikjøptFraJobb: z.boolean(),
-            frikjøptBeskrivelse: z.string(),
-        }),
-    );
+export const zFosterhjemsgodtgjørelseFrikjøpt = zFosterhjemgodtgjørelse.and(
+    z.object({
+        erFrikjøptFraJobb: z.boolean(),
+        frikjøptBeskrivelse: z.string(),
+        type: z.literal('FosterhjemsgodtgjørelseFrikjøpt'),
+    }),
+);
 
-export const zFosterhjemsgodtgjørelseIkkeFrikjøpt = zFosterhjemgodtgjørelse
-    .and(
-        z.object({
-            type: z.literal('FosterhjemsgodtgjørelseIkkeFrikjøpt'),
-        }),
-    )
-    .and(
-        z.object({
-            erFrikjøptFraJobb: z.boolean(),
-            startdato: z.optional(z.iso.date()),
-            sluttdato: z.optional(z.iso.date()),
-        }),
-    );
+export const zFosterhjemsgodtgjørelseIkkeFrikjøpt = zFosterhjemgodtgjørelse.and(
+    z.object({
+        erFrikjøptFraJobb: z.boolean(),
+        startdato: z.optional(z.iso.date()),
+        sluttdato: z.optional(z.iso.date()),
+        type: z.literal('FosterhjemsgodtgjørelseIkkeFrikjøpt'),
+    }),
+);
 
 export const zFosterhjemsgodtgjørelseMottarIkke = zFosterhjemgodtgjørelse.and(
     z.object({
@@ -110,31 +100,21 @@ export const zOmsorgsstønad = z.object({
     mottarOmsorgsstønad: z.boolean(),
 });
 
-export const zOmsorgsstønadMottarDelerAvPerioden = zOmsorgsstønad
-    .and(
-        z.object({
-            type: z.literal('OmsorgsstønadMottarDelerAvPerioden'),
-        }),
-    )
-    .and(
-        z.object({
-            startdato: z.optional(z.iso.date()),
-            sluttdato: z.optional(z.iso.date()),
-            antallTimerIUken: z.string(),
-        }),
-    );
+export const zOmsorgsstønadMottarDelerAvPerioden = zOmsorgsstønad.and(
+    z.object({
+        startdato: z.optional(z.iso.date()),
+        sluttdato: z.optional(z.iso.date()),
+        antallTimerIUken: z.string(),
+        type: z.literal('OmsorgsstønadMottarDelerAvPerioden'),
+    }),
+);
 
-export const zOmsorgsstønadMottarHelePerioden = zOmsorgsstønad
-    .and(
-        z.object({
-            type: z.literal('OmsorgsstønadMottarHelePerioden'),
-        }),
-    )
-    .and(
-        z.object({
-            antallTimerIUken: z.string(),
-        }),
-    );
+export const zOmsorgsstønadMottarHelePerioden = zOmsorgsstønad.and(
+    z.object({
+        antallTimerIUken: z.string(),
+        type: z.literal('OmsorgsstønadMottarHelePerioden'),
+    }),
+);
 
 export const zOmsorgsstønadMottarIkke = zOmsorgsstønad.and(
     z.object({
