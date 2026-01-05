@@ -1,6 +1,6 @@
 import '@formatjs/intl-pluralrules/locale-data/nb';
 import '@formatjs/intl-pluralrules/locale-data/nn';
-import '@formatjs/intl-pluralrules/polyfill';
+import '@formatjs/intl-pluralrules/polyfill.js';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 
