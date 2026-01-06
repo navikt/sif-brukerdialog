@@ -12,7 +12,7 @@ const getDatoer = () => {
     return datoer;
 };
 
-const getSøkYtelseOppgave = (): OppgaveDto => {
+const getSøkYtelseOppgaveDto = (): OppgaveDto => {
     const søkYtelseDay = dayjs(getMockToday()).subtract(2, 'months');
     return {
         oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
@@ -26,8 +26,8 @@ const getSøkYtelseOppgave = (): OppgaveDto => {
     };
 };
 
-const getSøkYtelseOppgaveLøst = (): OppgaveDto => {
-    const oppgave = getSøkYtelseOppgave();
+const getSøkYtelseOppgaveDtoLøst = (): OppgaveDto => {
+    const oppgave = getSøkYtelseOppgaveDto();
     return {
         ...oppgave,
         status: OppgaveStatus.LØST,
@@ -35,7 +35,7 @@ const getSøkYtelseOppgaveLøst = (): OppgaveDto => {
     };
 };
 
-const getEndretStartdatoOppgave = (): OppgaveDto => ({
+const getEndretStartdatoOppgaveDto = (): OppgaveDto => ({
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
@@ -50,7 +50,7 @@ const getEndretStartdatoOppgave = (): OppgaveDto => ({
     frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
 });
 
-const getEndretStartdatoOppgaveLøst = (): OppgaveDto => ({
+const getEndretStartdatoOppgaveDtoLøst = (): OppgaveDto => ({
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f780223077',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
@@ -66,7 +66,7 @@ const getEndretStartdatoOppgaveLøst = (): OppgaveDto => ({
     løstDato: getDatoer().oppgaveMåned.add(3, 'days').startOf('day').add(12, 'hours').toISOString(),
 });
 
-const getMeldtUtOppgave = (): OppgaveDto => ({
+const getMeldtUtOppgaveDto = (): OppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7927',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -77,7 +77,7 @@ const getMeldtUtOppgave = (): OppgaveDto => ({
     frist: '2025-09-23T07:39:32.310154Z',
 });
 
-const getMeldtUtOppgaveLøst = (): OppgaveDto => ({
+const getMeldtUtOppgaveDtoLøst = (): OppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7921',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -93,7 +93,7 @@ const getMeldtUtOppgaveLøst = (): OppgaveDto => ({
     frist: '2025-09-23T07:39:32.310154Z',
 });
 
-const getEndretSluttdatoOppgave = (): OppgaveDto => ({
+const getEndretSluttdatoOppgaveDto = (): OppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7928',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -106,7 +106,7 @@ const getEndretSluttdatoOppgave = (): OppgaveDto => ({
     frist: '2025-09-23T07:39:32.310154Z',
 });
 
-const getEndretSluttdatoOppgaveLøst = (): OppgaveDto => ({
+const getEndretSluttdatoOppgaveDtoLøst = (): OppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7929',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -124,7 +124,7 @@ const getEndretSluttdatoOppgaveLøst = (): OppgaveDto => ({
     frist: '2025-09-23T07:39:32.310154Z',
 });
 
-const getRapporterInntektOppgave = (): OppgaveDto => ({
+const getRapporterInntektOppgaveDto = (): OppgaveDto => ({
     oppgaveReferanse: 'f3e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.ULØST,
@@ -137,7 +137,7 @@ const getRapporterInntektOppgave = (): OppgaveDto => ({
     },
 });
 
-const getRapporterInntektOppgaveLøst = (): OppgaveDto => ({
+const getRapporterInntektOppgaveDtoLøst = (): OppgaveDto => ({
     oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a89',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.LØST,
@@ -156,7 +156,7 @@ const getRapporterInntektOppgaveLøst = (): OppgaveDto => ({
     },
 });
 
-const getRapporterInntektDelerAvMånedOppgave = (): OppgaveDto => ({
+const getRapporterInntektDelerAvMånedOppgaveDto = (): OppgaveDto => ({
     oppgaveReferanse: 'f3e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a82',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.ULØST,
@@ -169,7 +169,7 @@ const getRapporterInntektDelerAvMånedOppgave = (): OppgaveDto => ({
     },
 });
 
-const getRapporterInntektDelerAvMånedOppgaveLøst = (): OppgaveDto => ({
+const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): OppgaveDto => ({
     oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.LØST,
@@ -188,7 +188,7 @@ const getRapporterInntektDelerAvMånedOppgaveLøst = (): OppgaveDto => ({
     },
 });
 
-const getBekreftAvvikOppgave = (): OppgaveDto => ({
+const getBekreftAvvikOppgaveDto = (): OppgaveDto => ({
     oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
@@ -214,7 +214,7 @@ const getBekreftAvvikOppgave = (): OppgaveDto => ({
     status: OppgaveStatus.ULØST,
 });
 
-const getBekreftAvvikOppgaveDelerAvMåned = (): OppgaveDto => ({
+const getBekreftAvvikOppgaveDelerAvMånedDto = (): OppgaveDto => ({
     oppgaveReferanse: 'be06ce74-9cb5-4000-bbae-5ab0940b04f7',
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
@@ -241,8 +241,8 @@ const getBekreftAvvikOppgaveDelerAvMåned = (): OppgaveDto => ({
     status: OppgaveStatus.ULØST,
 });
 
-const getBekreftAvvikOppgaveLøst = (): OppgaveDto => ({
-    ...getBekreftAvvikOppgave(),
+const getBekreftAvvikOppgaveDtoLøst = (): OppgaveDto => ({
+    ...getBekreftAvvikOppgaveDto(),
     oppgavetypeData: {
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
@@ -269,19 +269,19 @@ const getBekreftAvvikOppgaveLøst = (): OppgaveDto => ({
 });
 
 export const getMockOppgaver = () => ({
-    rapporterInntektOppgave: getRapporterInntektOppgave(),
-    rapporterInntektOppgaveLøst: getRapporterInntektOppgaveLøst(),
-    rapporterInntektDelerAvMånedOppgave: getRapporterInntektDelerAvMånedOppgave(),
-    rapporterInntektDelerAvMånedOppgaveLøst: getRapporterInntektDelerAvMånedOppgaveLøst(),
-    endretStartdatoOppgave: getEndretStartdatoOppgave(),
-    endretStartdatoOppgaveLøst: getEndretStartdatoOppgaveLøst(),
-    endretSluttdatoOppgave: getEndretSluttdatoOppgave(),
-    endretSluttdatoOppgaveLøst: getEndretSluttdatoOppgaveLøst(),
-    bekreftAvvikOppgave: getBekreftAvvikOppgave(),
-    bekreftAvvikOppgaveDelerAvMÅned: getBekreftAvvikOppgaveDelerAvMåned(),
-    bekreftAvvikOppgaveLøst: getBekreftAvvikOppgaveLøst(),
-    søkYtelseOppgave: getSøkYtelseOppgave(),
-    søkYtelseOppgaveLøst: getSøkYtelseOppgaveLøst(),
-    meldtUtOppgaveLøst: getMeldtUtOppgaveLøst(),
-    meldtUtOppgave: getMeldtUtOppgave(),
+    rapporterInntektOppgave: getRapporterInntektOppgaveDto(),
+    rapporterInntektOppgaveLøst: getRapporterInntektOppgaveDtoLøst(),
+    rapporterInntektDelerAvMånedOppgave: getRapporterInntektDelerAvMånedOppgaveDto(),
+    rapporterInntektDelerAvMånedOppgaveLøst: getRapporterInntektDelerAvMånedOppgaveDtoLøst(),
+    endretStartdatoOppgave: getEndretStartdatoOppgaveDto(),
+    endretStartdatoOppgaveLøst: getEndretStartdatoOppgaveDtoLøst(),
+    endretSluttdatoOppgave: getEndretSluttdatoOppgaveDto(),
+    endretSluttdatoOppgaveLøst: getEndretSluttdatoOppgaveDtoLøst(),
+    bekreftAvvikOppgave: getBekreftAvvikOppgaveDto(),
+    bekreftAvvikOppgaveDelerAvMÅned: getBekreftAvvikOppgaveDelerAvMånedDto(),
+    bekreftAvvikOppgaveLøst: getBekreftAvvikOppgaveDtoLøst(),
+    søkYtelseOppgave: getSøkYtelseOppgaveDto(),
+    søkYtelseOppgaveLøst: getSøkYtelseOppgaveDtoLøst(),
+    meldtUtOppgaveLøst: getMeldtUtOppgaveDtoLøst(),
+    meldtUtOppgave: getMeldtUtOppgaveDto(),
 });

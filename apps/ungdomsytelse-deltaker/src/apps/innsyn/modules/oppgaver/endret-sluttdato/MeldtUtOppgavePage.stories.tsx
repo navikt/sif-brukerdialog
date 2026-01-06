@@ -1,11 +1,11 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
-import { EndretSluttdatoOppgave } from '@shared/types/Oppgave';
+import { EndretSluttdatoOppgave, ParsedOppgavetype } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
@@ -22,7 +22,7 @@ type Story = StoryObj;
 
 const oppgave: EndretSluttdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
         nySluttdato: dayjs('2025-05-01').toDate(),
         forrigeSluttdato: undefined,

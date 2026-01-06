@@ -1,12 +1,12 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
-import { SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
@@ -23,7 +23,7 @@ type Story = StoryObj;
 
 const oppgave: SøkYtelseOppgave = {
     oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
-    oppgavetype: Oppgavetype.SØK_YTELSE,
+    oppgavetype: ParsedOppgavetype.SØK_YTELSE,
     oppgavetypeData: {
         fomDato: ISODateToDate('2025-05-01'),
     },

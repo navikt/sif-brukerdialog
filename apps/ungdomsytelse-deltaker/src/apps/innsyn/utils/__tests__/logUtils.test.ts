@@ -1,7 +1,7 @@
 import { logUtils } from '@innsyn/utils/logUtils';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
-import { SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
 import { KontonummerOppslagInfo } from '@søknad/types';
 import dayjs from 'dayjs';
@@ -23,7 +23,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
     };
 
     const mockOppgave: SøkYtelseOppgave = {
-        oppgavetype: Oppgavetype.SØK_YTELSE,
+        oppgavetype: ParsedOppgavetype.SØK_YTELSE,
         status: OppgaveStatus.ULØST,
         opprettetDato: dayjs().subtract(1, 'day').toDate(),
         oppgaveReferanse: 'test-ref',

@@ -1,10 +1,15 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
-import { EndretSluttdatoOppgave, EndretStartdatoOppgave, RapporterInntektOppgave } from '@shared/types/Oppgave';
+import {
+    EndretSluttdatoOppgave,
+    EndretStartdatoOppgave,
+    ParsedOppgavetype,
+    RapporterInntektOppgave,
+} from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
@@ -25,7 +30,7 @@ type Story = StoryObj;
 
 const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
         nySluttdato: dayjs('2025-05-01').toDate(),
         forrigeSluttdato: undefined,
@@ -69,7 +74,7 @@ export const EndretSluttdato: Story = {
 
 const endretStartdatoOppgave: EndretStartdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
         nyStartdato: dayjs('2025-05-01').toDate(),
         forrigeStartdato: dayjs('2025-05-05').toDate(),
@@ -113,7 +118,7 @@ export const EndretStartdato: Story = {
 
 const rapporterInntektOppgave: RapporterInntektOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+    oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-31').toDate(),
