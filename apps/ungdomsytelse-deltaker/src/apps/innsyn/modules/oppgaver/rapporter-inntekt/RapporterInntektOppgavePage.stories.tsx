@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 import RapporterInntektOppgavePage from './RapporterInntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/5. Rapporter inntekt',
+    title: 'Innsyn/Oppgaver/8. Rapporter inntekt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };

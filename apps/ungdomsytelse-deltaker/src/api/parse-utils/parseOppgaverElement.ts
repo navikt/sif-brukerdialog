@@ -1,5 +1,6 @@
 /* eslint-disable no-case-declarations */
-import { isISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { isISODate, ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import {
     EndretPeriodeDataDto,
     EndretSluttdatoDataDto,
@@ -141,8 +142,8 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: OppgaveDto): Oppgave => {
             ...getOppgaveBaseProps(oppgave),
             oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
             oppgavetypeData: {
-                forrigePeriode: mapPeriodeDtoTilDates(forrigePeriode),
-                nyPeriode: mapPeriodeDtoTilDates(nyPeriode),
+                forrigePeriode: mapPeriodeDtoToOpenDateRange(forrigePeriode),
+                nyPeriode: mapPeriodeDtoToDateRange(nyPeriode),
             },
             bekreftelse: oppgave.bekreftelse,
         };
@@ -226,13 +227,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
     return parsedOppgaver;
 };
 
-const mapPeriodeDtoTilDates = (periode: {
-    fom: string;
-    tom?: string;
-}): {
-    fraOgMed: Date;
-    tilOgMed?: Date;
-} => {
+const mapPeriodeDtoToOpenDateRange = (periode: { fom: string; tom?: string }): OpenDateRange => {
     if (periode.fom && !isISODate(periode.fom)) {
         throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fom}`);
     }
@@ -240,7 +235,23 @@ const mapPeriodeDtoTilDates = (periode: {
         throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tom}`);
     }
     return {
-        fraOgMed: ISODateToDate(periode.fom),
-        tilOgMed: periode.tom ? ISODateToDate(periode.tom) : undefined,
+        from: ISODateToDate(periode.fom),
+        to: periode.tom ? ISODateToDate(periode.tom) : undefined,
+    };
+};
+
+const mapPeriodeDtoToDateRange = (periode: { fom: string; tom?: string }): DateRange => {
+    if (periode.fom && !isISODate(periode.fom)) {
+        throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fom}`);
+    }
+    if (!periode.tom) {
+        throw new Error(`Tom-dato er undefined for perioden`);
+    }
+    if (periode.tom && !isISODate(periode.tom)) {
+        throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tom}`);
+    }
+    return {
+        from: ISODateToDate(periode.fom),
+        to: ISODateToDate(periode.tom),
     };
 };

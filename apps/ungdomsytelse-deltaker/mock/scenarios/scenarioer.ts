@@ -109,6 +109,14 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Oppgave med endret startdato',
         data: createSøktDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().endretStartdatoOppgave]),
     },
+    [ScenarioType.endretStartOgSluttdato]: {
+        type: ScenarioType.endretStartOgSluttdato,
+        name: 'Oppgave med endret start- og sluttdato',
+        data: createSøktDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().endretStartOgSluttdatoOppgave,
+        ]),
+    },
     [ScenarioType.meldtUt]: {
         type: ScenarioType.meldtUt,
         name: 'Oppgave med hvor bruker er meldt ut',

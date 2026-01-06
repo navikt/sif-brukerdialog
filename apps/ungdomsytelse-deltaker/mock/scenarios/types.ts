@@ -2,6 +2,7 @@ export enum ScenarioType {
     søknad = 'søknad',
     søknadSendt = 'søknadSendt',
     endretStartdato = 'endretStartdato',
+    endretStartOgSluttdato = 'endretStartOgSluttdato',
     meldtUt = 'meldtUt',
     endretSluttdato = 'endretSluttdato',
     fjernetPeriode = 'fjernetPeriode',

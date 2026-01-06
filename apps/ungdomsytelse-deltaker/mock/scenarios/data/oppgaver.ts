@@ -288,6 +288,24 @@ const getFjernetPeriodeOppgaveDto = (): OppgaveDto => ({
     frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
 });
 
+const getEndretStartOgSluttdatoOppgaveDto = (): OppgaveDto => ({
+    oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f6',
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PERIODE,
+    oppgavetypeData: {
+        endringer: [PeriodeEndringType.ENDRET_SLUTTDATO, PeriodeEndringType.ENDRET_STARTDATO],
+        forrigePeriode: {
+            fom: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
+        },
+        nyPeriode: {
+            fom: dateToISODate(getDatoer().oppgaveMåned.add(1, 'month').startOf('month').toDate()),
+            tom: dateToISODate(getDatoer().oppgaveMåned.add(1, 'month').endOf('month').toDate()),
+        },
+    },
+    status: OppgaveStatus.ULØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+});
+
 export const getMockOppgaver = () => ({
     rapporterInntektOppgave: getRapporterInntektOppgaveDto(),
     rapporterInntektOppgaveLøst: getRapporterInntektOppgaveDtoLøst(),
@@ -297,6 +315,7 @@ export const getMockOppgaver = () => ({
     endretStartdatoOppgaveLøst: getEndretStartdatoOppgaveDtoLøst(),
     endretSluttdatoOppgave: getEndretSluttdatoOppgaveDto(),
     endretSluttdatoOppgaveLøst: getEndretSluttdatoOppgaveDtoLøst(),
+    endretStartOgSluttdatoOppgave: getEndretStartOgSluttdatoOppgaveDto(),
     bekreftAvvikOppgave: getBekreftAvvikOppgaveDto(),
     bekreftAvvikOppgaveDelerAvMÅned: getBekreftAvvikOppgaveDelerAvMånedDto(),
     bekreftAvvikOppgaveLøst: getBekreftAvvikOppgaveDtoLøst(),

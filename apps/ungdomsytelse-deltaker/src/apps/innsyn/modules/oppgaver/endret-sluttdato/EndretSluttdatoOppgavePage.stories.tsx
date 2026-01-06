@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 import EndretSluttdatoOppgavePage from './EndretSluttdatoOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/4. Endret sluttdato',
+    title: 'Innsyn/Oppgaver/3. Endret sluttdato',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };

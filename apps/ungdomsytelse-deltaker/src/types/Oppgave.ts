@@ -1,3 +1,5 @@
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { OpenDateRange } from '@navikt/sif-common-utils';
 import {
     BekreftelseDto,
     OppgaveDto,
@@ -65,14 +67,8 @@ export interface MeldtUtOppgave extends ParsedOppgaveBase {
 export interface EndretStartOgSluttdatoOppgave extends ParsedOppgaveBase {
     oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO;
     oppgavetypeData: {
-        forrigePeriode: {
-            fraOgMed: Date;
-            tilOgMed?: Date;
-        };
-        nyPeriode: {
-            fraOgMed: Date;
-            tilOgMed?: Date;
-        };
+        forrigePeriode: OpenDateRange;
+        nyPeriode: DateRange;
     };
 }
 

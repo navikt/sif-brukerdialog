@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 import MeldtUtOppgavePage from './MeldtUtOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/3. Meldt ut',
+    title: 'Innsyn/Oppgaver/4. Meldt ut',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };

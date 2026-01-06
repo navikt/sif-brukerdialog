@@ -18,7 +18,7 @@ import dayjs from 'dayjs';
 import AvvikRegisterinntektOppgavePage from './AvvikRegisterinntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/6. Avvik registerinntekt inntekt',
+    title: 'Innsyn/Oppgaver/7. Avvik registerinntekt inntekt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };

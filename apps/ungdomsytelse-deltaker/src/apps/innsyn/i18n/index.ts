@@ -1,5 +1,6 @@
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgaver/avvik-registerinntekt/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgaver/endret-sluttdato/i18n/nb';
+import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgaver/endret-start-og-sluttdato/i18n/nb';
 import { endretStartdatoMessages_nb } from '../modules/oppgaver/endret-startdato/i18n/nb';
 import { fjernetPeriodeMessages_nb } from '../modules/oppgaver/fjernet-periode/i18n/nb';
 import { meldtUtMessages_nb } from '../modules/oppgaver/meldt-ut/i18n/nb';
@@ -15,6 +16,7 @@ const nb = {
     ...meldtUtMessages_nb,
     ...fjernetPeriodeMessages_nb,
     ...søkYtelseOppgaveMessages_nb,
+    ...endretStartOgSluttdatoMessages_nb,
     ...avvikRegisterinntektMessages_nb,
     ...rapporterInntektMessages_nb,
 };

@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 
 import { ParsedOppgavetype } from '../../../types/Oppgave';
 import AvvikRegisterinntektOppgavePage from '../modules/oppgaver/avvik-registerinntekt/AvvikRegisterinntektOppgavePage';
+import EndretStartOgSluttdatoOppgavePage from '../modules/oppgaver/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePage';
 import FjernetPeriodeOppgavePage from '../modules/oppgaver/fjernet-periode/FjernetPeriodeOppgavePage';
 import MeldtUtOppgavePage from '../modules/oppgaver/meldt-ut/MeldtUtOppgavePage';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnetPage';
@@ -56,7 +57,7 @@ const OppgavePage = (): React.ReactElement => {
             return <FjernetPeriodeOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;
 
         case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
-            return <>TODO</>;
+            return <EndretStartOgSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
     }
 };
 

@@ -101,10 +101,13 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
-    'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.paneltittel': 'Se og gi tilbakemelding på endret periode',
-    'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.oppgavetittel': 'Tilbakemelding på endret periode',
-    'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.info': 'Veilederen din har endret perioden din i ungdomsprogrammet.',
-    'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på endringen?',
+    'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.paneltittel': 'Se og gi tilbakemelding på ny start- og sluttdato',
+    'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.oppgavetittel':
+        'Tilbakemelding på ny start- og sluttdato for ungdoms\u00ADprogram\u00ADytelsen',
+    'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.info':
+        'Veilederen din har endret start- og sluttdatoen din i ungdomsprogrammet.',
+    'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.harTilbakemeldingSpørsmål':
+        'Har du en tilbakemelding på ny start- og sluttdato?',
     'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.harIkkeUttalelseLabel': 'Nei',
     'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.harUttalelseLabel': 'Ja',
     'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
