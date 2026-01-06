@@ -10,6 +10,7 @@ export enum ParsedOppgavetype {
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
     BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
+    BEKREFT_MELDT_UT = 'BEKREFT_MELDT_UT',
     BEKREFT_ENDRET_START_OG_SLUTTDATO = 'BEKREFT_ENDRET_START_OG_SLUTTDATO',
     BEKREFT_FJERNET_PERIODE = 'BEKREFT_FJERNET_PERIODE',
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
@@ -49,8 +50,15 @@ export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
 export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
     oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO;
     oppgavetypeData: {
-        forrigeSluttdato?: Date;
+        forrigeSluttdato: Date;
         nySluttdato: Date;
+    };
+}
+
+export interface MeldtUtOppgave extends ParsedOppgaveBase {
+    oppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT;
+    oppgavetypeData: {
+        sluttdato: Date;
     };
 }
 
@@ -76,6 +84,7 @@ export type BekreftelseOppgave =
     | EndretSluttdatoOppgave
     | EndretStartdatoOppgave
     | EndretStartOgSluttdatoOppgave
+    | MeldtUtOppgave
     | (AvvikRegisterinntektOppgave & {
           bekreftelse?: BekreftelseDto;
       });
@@ -101,6 +110,7 @@ export type Oppgave =
     | SøkYtelseOppgave
     | EndretStartdatoOppgave
     | EndretSluttdatoOppgave
+    | MeldtUtOppgave
     | EndretStartOgSluttdatoOppgave
     | FjernetPeriodeOppgave
     | AvvikRegisterinntektOppgave

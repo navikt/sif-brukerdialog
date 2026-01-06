@@ -20,6 +20,7 @@ import {
     EndretStartdatoOppgave,
     EndretStartOgSluttdatoOppgave,
     FjernetPeriodeOppgave,
+    MeldtUtOppgave,
     Oppgave,
     ParsedOppgaveBase,
     ParsedOppgavetype,
@@ -63,15 +64,27 @@ const getEndretSluttdatoOppgave = (
     oppgave: OppgaveDto,
     nySluttdato: string,
     forrigeSluttdato: string | undefined,
-): EndretSluttdatoOppgave => ({
-    ...getOppgaveBaseProps(oppgave),
-    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-    oppgavetypeData: {
-        forrigeSluttdato: forrigeSluttdato ? ISODateToDate(forrigeSluttdato) : undefined,
-        nySluttdato: ISODateToDate(nySluttdato),
-    },
-    bekreftelse: oppgave.bekreftelse,
-});
+): EndretSluttdatoOppgave | MeldtUtOppgave => {
+    if (forrigeSluttdato) {
+        return {
+            ...getOppgaveBaseProps(oppgave),
+            oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+            oppgavetypeData: {
+                forrigeSluttdato: ISODateToDate(forrigeSluttdato),
+                nySluttdato: ISODateToDate(nySluttdato),
+            },
+            bekreftelse: oppgave.bekreftelse,
+        };
+    }
+    return {
+        ...getOppgaveBaseProps(oppgave),
+        oppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT,
+        oppgavetypeData: {
+            sluttdato: ISODateToDate(nySluttdato),
+        },
+        bekreftelse: oppgave.bekreftelse,
+    };
+};
 
 const getEndretStartdatoOppgave = (
     oppgave: OppgaveDto,

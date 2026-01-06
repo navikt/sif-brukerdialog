@@ -5,7 +5,7 @@ import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
-import { EndretSluttdatoOppgave, ParsedOppgavetype } from '@shared/types/Oppgave';
+import { MeldtUtOppgave, ParsedOppgavetype } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
@@ -20,19 +20,18 @@ export default meta;
 
 type Story = StoryObj;
 
-const oppgave: EndretSluttdatoOppgave = {
+const oppgave: MeldtUtOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    oppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT,
     oppgavetypeData: {
-        nySluttdato: dayjs('2025-05-01').toDate(),
-        forrigeSluttdato: undefined,
+        sluttdato: dayjs('2025-05-01').toDate(),
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
 };
 
-const besvartOppgave: EndretSluttdatoOppgave = {
+const besvartOppgave: MeldtUtOppgave = {
     ...oppgave,
     bekreftelse: {
         harUttalelse: false,

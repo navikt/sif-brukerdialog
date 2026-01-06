@@ -3,36 +3,36 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '@shared/i18n';
 
 interface Props {
-    endretDato: Date;
+    sluttdato: Date;
     svarfrist: Date;
 }
 
-const MeldUtOppgavetekst = ({ endretDato, svarfrist }: Props) => {
-    const formatertDato = <span className="text-nowrap">{dateFormatter.full(endretDato)}</span>;
+const MeldUtOppgavetekst = ({ sluttdato, svarfrist }: Props) => {
+    const formatertDato = <span className="text-nowrap">{dateFormatter.full(sluttdato)}</span>;
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(svarfrist)}</span>;
 
     return (
         <>
             <BodyLong spacing>
                 <AppText
-                    id="endretSluttdato.meldUtOppgavetekst.1"
+                    id="meldtUt.oppgavetekst.1"
                     values={{ formatertDato, strong: (content) => <strong>{content}</strong> }}
                 />
             </BodyLong>
             <BodyLong spacing>
-                <AppText id="endretSluttdato.meldUtOppgavetekst.2" />
+                <AppText id="meldtUt.oppgavetekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <AppText id="endretSluttdato.meldUtOppgavetekst.3" />
+                <AppText id="meldtUt.oppgavetekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <AppText id="endretSluttdato.meldUtOppgavetekst.4" />
+                <AppText id="meldtUt.oppgavetekst.4" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <AppText id="endretSluttdato.meldUtOppgavetekst.svarfrist" values={{ formatertFrist }} />
+                <AppText id="meldtUt.oppgavetekst.svarfrist" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong>
-                <AppText id="endretSluttdato.meldUtOppgavetekst.5" values={{ formatertDato }} />
+                <AppText id="meldtUt.oppgavetekst.5" values={{ formatertDato }} />
             </BodyLong>
         </>
     );

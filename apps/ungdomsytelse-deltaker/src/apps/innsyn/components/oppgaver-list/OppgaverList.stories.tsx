@@ -33,7 +33,7 @@ const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
     oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
         nySluttdato: dayjs('2025-05-01').toDate(),
-        forrigeSluttdato: undefined,
+        forrigeSluttdato: dayjs('2025-04-01').toDate(),
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
