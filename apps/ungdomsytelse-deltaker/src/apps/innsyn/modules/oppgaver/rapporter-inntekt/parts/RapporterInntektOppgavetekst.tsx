@@ -4,6 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
+import { ReactNode } from 'react';
 
 interface Props {
     deltakerNavn: string;
@@ -90,13 +91,13 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelde
                     <BodyLong>
                         <AppText
                             id="rapporterInntektOppgave.intro.3"
-                            values={{ frist, strong: (content) => <strong>{content}</strong> }}
+                            values={{ frist, strong: (content: ReactNode) => <strong>{content}</strong> }}
                         />
                     </BodyLong>
                     <BodyLong>
                         <AppText
                             id="rapporterInntektOppgave.intro.4"
-                            values={{ strong: (content) => <strong>{content}</strong> }}
+                            values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
                         />
                     </BodyLong>
                 </VStack>

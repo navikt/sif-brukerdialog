@@ -5,14 +5,14 @@ import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
-import { EndretStartdatoOppgave, ParsedOppgavetype } from '@shared/types/Oppgave';
+import { EndretStartOgSluttdatoOppgave, ParsedOppgavetype } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
-import EndretStartdatoOppgavePage from './EndretStartdatoOppgavePage';
+import EndretStartOgSluttdatoOppgavePage from './EndretStartOgSluttdatoOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/2. Endret startdato',
+    title: 'Innsyn/Oppgaver/5. Endret startdato og sluttdato',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };
@@ -20,19 +20,22 @@ export default meta;
 
 type Story = StoryObj;
 
-const oppgave: EndretStartdatoOppgave = {
+const oppgave: EndretStartOgSluttdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
+    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
     oppgavetypeData: {
-        nyStartdato: dayjs('2025-05-01').toDate(),
-        forrigeStartdato: dayjs('2025-05-05').toDate(),
+        forrigePeriode: { from: dayjs('2025-05-04').toDate() },
+        nyPeriode: {
+            from: dayjs('2025-05-01').toDate(),
+            to: dayjs('2025-08-01').toDate(),
+        },
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
 };
 
-const besvartOppgave: EndretStartdatoOppgave = {
+const besvartOppgave: EndretStartOgSluttdatoOppgave = {
     ...oppgave,
     bekreftelse: {
         harUttalelse: false,
@@ -40,6 +43,7 @@ const besvartOppgave: EndretStartdatoOppgave = {
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
 };
+
 export const OppgavePanel: Story = {
     name: 'Oppgavevisning på forside',
     render: () => (
@@ -70,25 +74,25 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretStartdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretStartOgSluttdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const Kvittering: Story = {
     name: 'Kvittering',
     render: () => (
-        <EndretStartdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
+        <EndretStartOgSluttdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
     ),
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretStartdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretStartOgSluttdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <EndretStartdatoOppgavePage
+        <EndretStartOgSluttdatoOppgavePage
             oppgave={{
                 ...besvartOppgave,
                 bekreftelse: {
@@ -105,7 +109,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <EndretStartdatoOppgavePage
+        <EndretStartOgSluttdatoOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -115,7 +119,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <EndretStartdatoOppgavePage
+        <EndretStartOgSluttdatoOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />

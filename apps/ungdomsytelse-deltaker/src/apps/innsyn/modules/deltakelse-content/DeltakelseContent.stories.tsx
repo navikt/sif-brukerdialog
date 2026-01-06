@@ -1,4 +1,4 @@
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { withDeltakerContext } from '@shared/storybook/decorators/withDeltakerContext';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
@@ -8,6 +8,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
 import { scenarioer } from '../../../../../mock/scenarios/scenarioer';
+import { ParsedOppgavetype } from '../../../../types/Oppgave';
 import OppgaveIkkeFunnetPage from '../../pages/OppgaveIkkeFunnetPage';
 import DeltakelseContent from './DeltakelseContent';
 
@@ -50,7 +51,7 @@ export const DeltakelseIkkeStartet: Story = {
             programPeriode: {
                 from: dayjs().add(2, 'days').toDate(),
             },
-            oppgaver: deltakelsePeriode.oppgaver.filter((o) => o.oppgavetype === Oppgavetype.SØK_YTELSE),
+            oppgaver: deltakelsePeriode.oppgaver.filter((o) => o.oppgavetype === ParsedOppgavetype.SØK_YTELSE),
         },
     },
 };

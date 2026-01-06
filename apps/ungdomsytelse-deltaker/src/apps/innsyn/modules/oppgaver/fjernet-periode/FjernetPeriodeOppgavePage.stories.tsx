@@ -1,18 +1,18 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
-import { EndretSluttdatoOppgave } from '@shared/types/Oppgave';
+import { FjernetPeriodeOppgave, ParsedOppgavetype } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
-import MeldtUtOppgavePage from './MeldtUtOppgavePage';
+import FjernetPeriodeOppgavePage from './FjernetPeriodeOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/3. Meldt ut',
+    title: 'Innsyn/Oppgaver/6. Fjernet periode',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };
@@ -20,19 +20,15 @@ export default meta;
 
 type Story = StoryObj;
 
-const oppgave: EndretSluttdatoOppgave = {
+const oppgave: FjernetPeriodeOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-    oppgavetypeData: {
-        nySluttdato: dayjs('2025-05-01').toDate(),
-        forrigeSluttdato: undefined,
-    },
+    oppgavetype: ParsedOppgavetype.BEKREFT_FJERNET_PERIODE,
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
 };
 
-const besvartOppgave: EndretSluttdatoOppgave = {
+const besvartOppgave: FjernetPeriodeOppgave = {
     ...oppgave,
     bekreftelse: {
         harUttalelse: false,
@@ -71,23 +67,25 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <MeldtUtOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <FjernetPeriodeOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const OppgaveKvittering: Story = {
     name: 'Kvittering',
-    render: () => <MeldtUtOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />,
+    render: () => (
+        <FjernetPeriodeOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
+    ),
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <MeldtUtOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <FjernetPeriodeOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <MeldtUtOppgavePage
+        <FjernetPeriodeOppgavePage
             oppgave={{
                 ...besvartOppgave,
                 bekreftelse: {
@@ -104,7 +102,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <MeldtUtOppgavePage
+        <FjernetPeriodeOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -114,7 +112,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <MeldtUtOppgavePage
+        <FjernetPeriodeOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />

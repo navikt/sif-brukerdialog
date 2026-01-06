@@ -69,6 +69,15 @@ const VeilederScenarioHeader = () => {
                             Deltakelse avsluttet
                         </ActionMenu.Item>
                     </ActionMenu.Group>
+                    <ActionMenu.Divider />
+                    <ActionMenu.Group label="Oppgaver under utvikling (ikke implementert)">
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.endretStartOgSluttdato)}>
+                            Endret start og sluttdato
+                        </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.fjernetPeriode)}>
+                            Slettet påbegynt deltakelse
+                        </ActionMenu.Item>
+                    </ActionMenu.Group>
                 </ActionMenu.Content>
             </ActionMenu>
         </InternalHeader>

@@ -1,6 +1,7 @@
 import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '@shared/i18n';
+import { ReactNode } from 'react';
 
 interface Props {
     frist: Date;
@@ -14,7 +15,7 @@ const EndretStartdatoOppgavetekst = ({ frist, startdato }: Props) => {
             <BodyLong spacing>
                 <AppText
                     id="endretStartdato.tekst.1"
-                    values={{ formatertDato, strong: (content) => <strong>{content}</strong> }}
+                    values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </BodyLong>
             <BodyLong spacing>

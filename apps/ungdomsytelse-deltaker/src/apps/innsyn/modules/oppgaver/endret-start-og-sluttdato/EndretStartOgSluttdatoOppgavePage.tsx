@@ -3,22 +3,19 @@ import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
-import { EndretStartdatoOppgave } from '@shared/types/Oppgave';
+import { EndretStartOgSluttdatoOppgave } from '@shared/types/Oppgave';
 import { ReactNode } from 'react';
 
-import EndretStartdatoOppgavetekst from './parts/EndretStartdatoOppgavetekst';
+import EndretStartOgSluttdatoOppgavetekst from './parts/EndretStartOgSluttdatoOppgavetekst';
 
 interface Props {
     deltakerNavn: string;
-    oppgave: EndretStartdatoOppgave;
+    oppgave: EndretStartOgSluttdatoOppgave;
     initialVisKvittering?: boolean;
 }
 
-const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
+const EndretStartOgSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
-    const formatertDato = (
-        <span className="text-nowrap">{dateFormatter.full(oppgave.oppgavetypeData.nyStartdato)}</span>
-    );
 
     return (
         <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
@@ -27,25 +24,29 @@ const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
                 deltakerNavn={deltakerNavn}
                 initialVisKvittering={initialVisKvittering}>
                 <Oppgavebekreftelse.Ubesvart>
-                    <EndretStartdatoOppgavetekst
+                    <EndretStartOgSluttdatoOppgavetekst
                         frist={oppgave.sisteDatoEnKanSvare}
-                        startdato={oppgave.oppgavetypeData.nyStartdato}
+                        nyPeriode={oppgave.oppgavetypeData.nyPeriode}
                     />
                 </Oppgavebekreftelse.Ubesvart>
 
                 <Oppgavebekreftelse.Besvart>
                     <AppText
-                        id="endretStartdato.oppsummering"
-                        values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
+                        id="endretStartOgSluttdato.oppsummering"
+                        values={{
+                            fom: dateFormatter.full(oppgave.oppgavetypeData.nyPeriode.from),
+                            tom: dateFormatter.full(oppgave.oppgavetypeData.nyPeriode.to),
+                            strong: (content: ReactNode) => <strong>{content}</strong>,
+                        }}
                     />
                 </Oppgavebekreftelse.Besvart>
 
                 <Oppgavebekreftelse.Kvittering>
-                    <AppText id="oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst" />
+                    <AppText id="oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.kvitteringTekst" />
                 </Oppgavebekreftelse.Kvittering>
             </Oppgavebekreftelse>
         </DefaultPageLayout>
     );
 };
 
-export default EndretStartdatoOppgavePage;
+export default EndretStartOgSluttdatoOppgavePage;

@@ -5,6 +5,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
+import { ReactNode } from 'react';
 
 interface Props {
     oppgave: AvvikRegisterinntektOppgave;
@@ -95,13 +96,13 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                         <List.Item>
                             <AppText
                                 id="avvikRegisterinntektOppgavetekst.3"
-                                values={{ strong: (content) => <strong>{content}</strong> }}
+                                values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
                             />
                         </List.Item>
                         <List.Item>
                             <AppText
                                 id="avvikRegisterinntektOppgavetekst.4"
-                                values={{ strong: (content) => <strong>{content}</strong> }}
+                                values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
                             />
                         </List.Item>
                     </List>
