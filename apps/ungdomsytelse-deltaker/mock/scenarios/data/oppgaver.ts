@@ -1,4 +1,9 @@
-import { OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import {
+    OppgaveDto,
+    OppgaveStatus,
+    Oppgavetype,
+    PeriodeEndringType,
+} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../../utils/dateUtils';
@@ -268,6 +273,21 @@ const getBekreftAvvikOppgaveDtoLøst = (): OppgaveDto => ({
     løstDato: getDatoer().oppgaveMåned.add(28, 'days').add(54, 'hours').toISOString(),
 });
 
+const getFjernetPeriodeOppgaveDto = (): OppgaveDto => ({
+    oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f7',
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PERIODE,
+    oppgavetypeData: {
+        endringer: [PeriodeEndringType.FJERNET_PERIODE],
+        forrigePeriode: {
+            fom: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
+            tom: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+        },
+    },
+    status: OppgaveStatus.ULØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+});
+
 export const getMockOppgaver = () => ({
     rapporterInntektOppgave: getRapporterInntektOppgaveDto(),
     rapporterInntektOppgaveLøst: getRapporterInntektOppgaveDtoLøst(),
@@ -284,4 +304,5 @@ export const getMockOppgaver = () => ({
     søkYtelseOppgaveLøst: getSøkYtelseOppgaveDtoLøst(),
     meldtUtOppgaveLøst: getMeldtUtOppgaveDtoLøst(),
     meldtUtOppgave: getMeldtUtOppgaveDto(),
+    fjernetPeriode: getFjernetPeriodeOppgaveDto(),
 });

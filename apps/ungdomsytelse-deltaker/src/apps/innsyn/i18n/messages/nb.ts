@@ -110,10 +110,12 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
-    'oppgavetype.BEKREFT_FJERNET_PERIODE.paneltittel': 'Se og gi tilbakemelding på SLETT PERIODE',
-    'oppgavetype.BEKREFT_FJERNET_PERIODE.oppgavetittel': 'Tilbakemelding på SLETT PERIODE',
-    'oppgavetype.BEKREFT_FJERNET_PERIODE.info': 'Veilederen din har SLETTET PERIODEN din i ungdomsprogrammet.',
-    'oppgavetype.BEKREFT_FJERNET_PERIODE.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på SLETTINGEN?',
+    'oppgavetype.BEKREFT_FJERNET_PERIODE.paneltittel':
+        'Se og gi tilbakemelding på stans av ungdoms\u00ADprogram\u00ADytelsen',
+    'oppgavetype.BEKREFT_FJERNET_PERIODE.oppgavetittel': 'Tilbakemelding på stans av ungdoms\u00ADprogram\u00ADytelsen',
+    'oppgavetype.BEKREFT_FJERNET_PERIODE.info':
+        'Veilederen din har meldt deg ut av ungdomsprogrammet fordi du ikke skal delta i programmet likevel.',
+    'oppgavetype.BEKREFT_FJERNET_PERIODE.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding?',
     'oppgavetype.BEKREFT_FJERNET_PERIODE.harIkkeUttalelseLabel': 'Nei',
     'oppgavetype.BEKREFT_FJERNET_PERIODE.harUttalelseLabel': 'Ja',
     'oppgavetype.BEKREFT_FJERNET_PERIODE.tilbakemeldingFritekstLabel': 'Tilbakemelding',

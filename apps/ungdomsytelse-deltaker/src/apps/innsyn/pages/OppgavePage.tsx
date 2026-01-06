@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 
 import { ParsedOppgavetype } from '../../../types/Oppgave';
 import AvvikRegisterinntektOppgavePage from '../modules/oppgaver/avvik-registerinntekt/AvvikRegisterinntektOppgavePage';
+import FjernetPeriodeOppgavePage from '../modules/oppgaver/fjernet-periode/FjernetPeriodeOppgavePage';
 import MeldtUtOppgavePage from '../modules/oppgaver/meldt-ut/MeldtUtOppgavePage';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnetPage';
 
@@ -17,7 +18,7 @@ type OppgavePageParams = {
     oppgaveReferanse: string;
 };
 
-const OppgavePage = () => {
+const OppgavePage = (): React.ReactElement => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
     const {
         deltakelsePeriode,
@@ -50,6 +51,12 @@ const OppgavePage = () => {
 
         case ParsedOppgavetype.SØK_YTELSE:
             return <SøkYtelseOppgavePage oppgave={oppgave} />;
+
+        case ParsedOppgavetype.BEKREFT_FJERNET_PERIODE:
+            return <FjernetPeriodeOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;
+
+        case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
+            return <>TODO</>;
     }
 };
 

@@ -118,6 +118,15 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
             getMockOppgaver().meldtUtOppgave,
         ]),
     },
+    [ScenarioType.fjernetPeriode]: {
+        type: ScenarioType.fjernetPeriode,
+        name: 'Deltakelse slettet/fjernet periode',
+        data: createSøktDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().endretStartdatoOppgaveLøst,
+            getMockOppgaver().fjernetPeriode,
+        ]),
+    },
     [ScenarioType.endretSluttdato]: {
         type: ScenarioType.endretSluttdato,
         name: 'Oppgave med sluttdato er endret',

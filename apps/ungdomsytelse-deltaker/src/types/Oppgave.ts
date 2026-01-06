@@ -84,6 +84,7 @@ export type BekreftelseOppgave =
     | EndretSluttdatoOppgave
     | EndretStartdatoOppgave
     | EndretStartOgSluttdatoOppgave
+    | FjernetPeriodeOppgave
     | MeldtUtOppgave
     | (AvvikRegisterinntektOppgave & {
           bekreftelse?: BekreftelseDto;
