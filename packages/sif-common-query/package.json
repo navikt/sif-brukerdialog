@@ -21,7 +21,7 @@
         "@types/react": "19.2.7",
         "react": "19.2.3",
         "typescript": "5.9.3",
-        "zod": "4.2.1"
+        "zod": "4.3.2"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
