@@ -1,7 +1,11 @@
 import { innsyn } from '@navikt/k9-sak-innsyn-api';
 import z from 'zod';
 
-import { zDateFromDateTimeString, zDateFromISODateString, zDatePeriodeFromStringPeriode } from './zDateFromString';
+import {
+    zDateFromDateTimeString,
+    zDateFromISODateString,
+    zDatePeriodeFromStringPeriodeFixYear9999,
+} from './zDateFromString';
 
 /* ====================== Inntektsmelding(er) ====================== */
 
@@ -22,7 +26,7 @@ export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto.extend(
     graderinger: z.optional(
         z.array(
             innsyn.zGraderingDto.extend({
-                periode: zDatePeriodeFromStringPeriode,
+                periode: zDatePeriodeFromStringPeriodeFixYear9999,
             }),
         ),
     ),
@@ -30,7 +34,7 @@ export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto.extend(
     naturalYtelser: z.optional(
         z.array(
             innsyn.zNaturalYtelseDto.extend({
-                periode: zDatePeriodeFromStringPeriode,
+                periode: zDatePeriodeFromStringPeriodeFixYear9999,
             }),
         ),
     ),
@@ -38,7 +42,7 @@ export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto.extend(
     utsettelsePerioder: z.optional(
         z.array(
             innsyn.zUtsettelseDto.extend({
-                periode: zDatePeriodeFromStringPeriode,
+                periode: zDatePeriodeFromStringPeriodeFixYear9999,
             }),
         ),
     ),

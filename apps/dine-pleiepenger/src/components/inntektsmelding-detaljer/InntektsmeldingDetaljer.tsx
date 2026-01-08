@@ -1,8 +1,10 @@
-import { BodyShort, FormSummary, Heading, List, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, ExpansionCard, FormSummary, Heading, List, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
 import { Inntektsmelding } from '../../types';
+import InfoBlock from '../info-block/InfoBlock';
+import NaturalYtelserInfo from './parts/NaturalYtelserInfo';
 
 interface Props {
     inntektsmelding: Inntektsmelding;
@@ -12,11 +14,68 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
     const { startDatoPermisjon, inntektBeløp, refusjon, endringerRefusjon, naturalYtelser, refusjonOpphører } =
         inntektsmelding;
     const harEndringerIRefusjon = endringerRefusjon && endringerRefusjon.length > 0;
-    const harNaturalytelser = naturalYtelser && naturalYtelser.length > 0;
     const harRefusjonOpphører = refusjonOpphører !== undefined;
+    const harRefusjon = refusjon !== undefined;
 
     return (
         <VStack gap="4">
+            <BodyShort>
+                Arbeidsgiveren din har sendt oss disse opplysningene. Har du spørsmål eller mener noe er feil, må du
+                kontakte arbeidsgiver.
+            </BodyShort>
+
+            <ExpansionCard aria-label="sdf">
+                <ExpansionCard.Header>
+                    <ExpansionCard.Title size="medium">
+                        <span style={{ fontWeight: 'normal' }}>Beregnet månedsinntekt:</span>{' '}
+                        <FormattedNumber
+                            value={inntektBeløp}
+                            style="currency"
+                            currency="NOK"
+                            maximumFractionDigits={0}
+                        />
+                    </ExpansionCard.Title>
+                    <ExpansionCard.Content>
+                        <BodyLong spacing>
+                            Beregnet månedsinntekt skal være er et gjennomsnitt av det du tjente de tre siste månedene
+                            før din første dag med pleiepenger.
+                        </BodyLong>
+                        <BodyLong spacing>
+                            Vi bruker denne inntekten for å finne ut hvor mye du kan få utbetalt i pleiepenger.
+                        </BodyLong>
+                        <BodyLong>
+                            Nav dekker inntekten du har opptil{' '}
+                            <span className="nowrap">[TODO: må få grunnpeløp for periode fra backend]</span> kroner
+                            (seks ganger grunnbeløpet). Siden du tjener mer enn dette, vil Nav ikke dekke hele inntekten
+                            din.
+                        </BodyLong>
+                    </ExpansionCard.Content>
+                </ExpansionCard.Header>
+            </ExpansionCard>
+
+            <InfoBlock icon="calendar" title="Første fraværsdag med pleiepenger">
+                {startDatoPermisjon ? (
+                    <>
+                        <span className="capitalize">{dateFormatter.day(startDatoPermisjon)}</span>{' '}
+                        {dateFormatter.full(startDatoPermisjon)}
+                    </>
+                ) : (
+                    'Ikke oppgitt'
+                )}
+            </InfoBlock>
+
+            <InfoBlock icon="wallet" title="Hvordan utbetales pleiepengene?">
+                {harRefusjon ? (
+                    <>Du får pleiepengene utbetalt gjennom arbeidsgiveren din.</>
+                ) : (
+                    <>Du får pleiepengene utbetalt direkte fra Nav.</>
+                )}
+            </InfoBlock>
+
+            <InfoBlock icon="spark" title="Mister du naturalytelser (goder) under fraværet?">
+                <NaturalYtelserInfo naturalYtelser={naturalYtelser} />
+            </InfoBlock>
+
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2">Første dag med pleiepenger</FormSummary.Heading>
@@ -115,46 +174,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     )}
                 </FormSummary.Answers>
             </FormSummary>
-            <FormSummary>
-                <FormSummary.Header>
-                    <FormSummary.Heading level="2">Naturalytelser</FormSummary.Heading>
-                </FormSummary.Header>
-                <FormSummary.Answers>
-                    <FormSummary.Answer>
-                        <FormSummary.Label>
-                            Har den ansatte naturalytelser som faller bort ved fraværet?
-                        </FormSummary.Label>
-                        <FormSummary.Value>{harNaturalytelser ? 'Ja' : 'Nei'}</FormSummary.Value>
-                    </FormSummary.Answer>
-                    {harNaturalytelser && (
-                        <FormSummary.Answer>
-                            <FormSummary.Label>Naturalytelser per måned</FormSummary.Label>
-                            <FormSummary.Value>
-                                <List>
-                                    {naturalYtelser.map((naturalytelse, index) => (
-                                        <List.Item key={index}>
-                                            {naturalytelse.periode ? (
-                                                <>
-                                                    {dateFormatter.compact(naturalytelse.periode.fom)} -{' '}
-                                                    {dateFormatter.compact(naturalytelse.periode.tom)}
-                                                </>
-                                            ) : (
-                                                <>Periode mangler</>
-                                            )}
-                                            : {naturalytelse.type} -{' '}
-                                            <FormattedNumber
-                                                value={naturalytelse.beløpPerMnd}
-                                                style="currency"
-                                                currency="NOK"
-                                            />
-                                        </List.Item>
-                                    ))}
-                                </List>
-                            </FormSummary.Value>
-                        </FormSummary.Answer>
-                    )}
-                </FormSummary.Answers>
-            </FormSummary>
+
             <Heading level="2" size="medium">
                 JSON data
             </Heading>
