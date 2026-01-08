@@ -1,5 +1,6 @@
-import { BodyLong, BodyShort, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, ExpansionCard, HGrid, Switch, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { useState } from 'react';
 import { FormattedNumber } from 'react-intl';
 
 import { Inntektsmelding } from '../../types';
@@ -12,7 +13,10 @@ interface Props {
 }
 
 const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
-    const { startDatoPermisjon, inntektBeløp, refusjon, endringerRefusjon, naturalYtelser } = inntektsmelding;
+    const { startDatoPermisjon, inntektBeløp, refusjon, endringerRefusjon, naturalYtelser, arbeidsgiver } =
+        inntektsmelding;
+
+    const [visJson, setVisJson] = useState(false);
 
     return (
         <VStack gap="4">
@@ -71,12 +75,31 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 <NaturalYtelserInfo naturalYtelser={naturalYtelser} />
             </InfoBlock>
 
-            <Heading level="2" size="medium">
-                JSON data
-            </Heading>
-            <BodyShort size="small" as="div">
-                <pre>{JSON.stringify(inntektsmelding, null, 2)}</pre>
-            </BodyShort>
+            <HGrid columns={{ sm: 1, md: 2 }} gap="4">
+                <InfoBlock icon="building" title="Din arbeidsgiver" background="info-softA">
+                    {arbeidsgiver.organisasjon && (
+                        <VStack gap="1">
+                            <div>{arbeidsgiver.organisasjon.navn}</div>
+                            <div>Orgnr. {arbeidsgiver.organisasjon.organisasjonsnummer}</div>
+                        </VStack>
+                    )}
+                    {arbeidsgiver.privat && (
+                        <VStack gap="1">
+                            <div>{arbeidsgiver.privat.navn}</div>
+                        </VStack>
+                    )}
+                </InfoBlock>
+            </HGrid>
+            <Switch checked={visJson} onChange={(evt) => setVisJson(evt.currentTarget.checked)}>
+                Vis JSON
+            </Switch>
+            {visJson && (
+                <InfoBlock icon="code" title="Inntektsmelding JSON" background="default">
+                    <BodyShort size="small" as="div">
+                        <pre>{JSON.stringify(inntektsmelding, null, 2)}</pre>
+                    </BodyShort>
+                </InfoBlock>
+            )}
         </VStack>
     );
 };

@@ -15,7 +15,6 @@ export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto
         mottattDato: zDateFromISODateString,
         innsendingstidspunkt: zDateFromDateTimeString,
         status: z.enum(innsyn.InntektsmeldingStatusDto),
-
         endringerRefusjon: z.optional(
             z.array(
                 innsyn.zEndringRefusjonDto.extend({
@@ -31,22 +30,22 @@ export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto
                 }),
             ),
         ),
-        // graderinger: z.optional(
-        //     z.array(
-        //         innsyn.zGraderingDto.extend({
-        //             periode: zDatePeriodeFromStringPeriodeFixYear9999,
-        //         }),
-        //     ),
-        // ),
-        // refusjonOpphører: z.optional(zDateFromISODateString),
-        // utsettelsePerioder: z.optional(
-        //     z.array(
-        //         innsyn.zUtsettelseDto.extend({
-        //             periode: zDatePeriodeFromStringPeriodeFixYear9999,
-        //         }),
-        //     ),
-        // ),
+        refusjon: z.optional(
+            innsyn.zRefusjonDto.omit({
+                // Dette feltet er utledet: "refusjonsOpphører er satt til første dato i endringerIRefusjon med beløp = 0"
+                refusjonOpphører: true,
+            }),
+        ),
     })
-    .omit({ refusjonOpphører: true, graderinger: true, utsettelsePerioder: true });
+    // Felter som ikke brukes i løsningen
+    .omit({
+        graderinger: true,
+        utsettelsePerioder: true,
+        innsendingsårsak: true,
+        kildesystem: true,
+        nærRelasjon: true,
+        oppgittFravær: true,
+        inntektsmeldingType: true,
+    });
 
 export const inntektsmeldingerClientSchema = z.array(inntektsmeldingClientSchema);
