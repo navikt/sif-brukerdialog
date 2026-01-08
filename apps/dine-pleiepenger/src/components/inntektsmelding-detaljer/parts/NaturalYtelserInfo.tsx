@@ -1,25 +1,15 @@
 import { InlineMessage, List } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
 import { Inntektsmelding } from '../../../types';
 import { naturalytelseNavn } from '../i18n/naturalytelser';
+import { renderPeriodeString } from '../inntektsmeldingUtils';
 
 type NaturalYtelser = Inntektsmelding['naturalYtelser'];
 
 interface Props {
     naturalYtelser?: NaturalYtelser;
 }
-
-const renderPeriodeString = (periode?: { fom: Date; tom?: Date }) => {
-    if (!periode) {
-        return 'I perioden';
-    }
-    if (!periode.tom) {
-        return `Fra ${dateFormatter.compact(periode.fom)}`;
-    }
-    return `I perioden ${dateFormatter.compact(periode.fom)} - ${dateFormatter.compact(periode.tom)}`;
-};
 
 const NaturalYtelserInfo = ({ naturalYtelser }: Props) => {
     if (!naturalYtelser) {

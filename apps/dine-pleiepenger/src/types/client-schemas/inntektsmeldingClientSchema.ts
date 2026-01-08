@@ -9,43 +9,44 @@ import {
 
 /* ====================== Inntektsmelding(er) ====================== */
 
-export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto.extend({
-    startDatoPermisjon: zDateFromISODateString,
-    mottattDato: zDateFromISODateString,
-    innsendingstidspunkt: zDateFromDateTimeString,
-    status: z.enum(innsyn.InntektsmeldingStatusDto),
+export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto
+    .extend({
+        startDatoPermisjon: zDateFromISODateString,
+        mottattDato: zDateFromISODateString,
+        innsendingstidspunkt: zDateFromDateTimeString,
+        status: z.enum(innsyn.InntektsmeldingStatusDto),
 
-    endringerRefusjon: z.optional(
-        z.array(
-            innsyn.zEndringRefusjonDto.extend({
-                fom: zDateFromISODateString,
-            }),
+        endringerRefusjon: z.optional(
+            z.array(
+                innsyn.zEndringRefusjonDto.extend({
+                    fom: zDateFromISODateString,
+                }),
+            ),
         ),
-    ),
 
-    graderinger: z.optional(
-        z.array(
-            innsyn.zGraderingDto.extend({
-                periode: zDatePeriodeFromStringPeriodeFixYear9999,
-            }),
+        naturalYtelser: z.optional(
+            z.array(
+                innsyn.zNaturalYtelseDto.extend({
+                    periode: zDatePeriodeFromStringPeriodeFixYear9999,
+                }),
+            ),
         ),
-    ),
-
-    naturalYtelser: z.optional(
-        z.array(
-            innsyn.zNaturalYtelseDto.extend({
-                periode: zDatePeriodeFromStringPeriodeFixYear9999,
-            }),
-        ),
-    ),
-    refusjonOpphører: z.optional(zDateFromISODateString),
-    utsettelsePerioder: z.optional(
-        z.array(
-            innsyn.zUtsettelseDto.extend({
-                periode: zDatePeriodeFromStringPeriodeFixYear9999,
-            }),
-        ),
-    ),
-});
+        // graderinger: z.optional(
+        //     z.array(
+        //         innsyn.zGraderingDto.extend({
+        //             periode: zDatePeriodeFromStringPeriodeFixYear9999,
+        //         }),
+        //     ),
+        // ),
+        // refusjonOpphører: z.optional(zDateFromISODateString),
+        // utsettelsePerioder: z.optional(
+        //     z.array(
+        //         innsyn.zUtsettelseDto.extend({
+        //             periode: zDatePeriodeFromStringPeriodeFixYear9999,
+        //         }),
+        //     ),
+        // ),
+    })
+    .omit({ refusjonOpphører: true, graderinger: true, utsettelsePerioder: true });
 
 export const inntektsmeldingerClientSchema = z.array(inntektsmeldingClientSchema);
