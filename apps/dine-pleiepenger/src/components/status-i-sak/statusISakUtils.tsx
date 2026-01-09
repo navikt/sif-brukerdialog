@@ -1,5 +1,5 @@
 import { FileIcon } from '@navikt/aksel-icons';
-import { Box, Link, ReadMore, VStack } from '@navikt/ds-react';
+import { Box, HStack, Link, ReadMore, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
 import { FormattedNumber } from 'react-intl';
 
@@ -95,10 +95,13 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                             <Box className="mt-2">
                                 <ReadMore header="Vis detaljer i inntektsmelding">
                                     <VStack gap="2" marginBlock="0 4">
-                                        <div>
+                                        <HStack gap="2">
                                             <strong>Status: </strong>
-                                            <InntektsmeldingStatusTag status={hendelse.inntektsmelding.status} />
-                                        </div>
+                                            <InntektsmeldingStatusTag
+                                                status={hendelse.inntektsmelding.status}
+                                                showIcon={true}
+                                            />
+                                        </HStack>
                                         <div>
                                             <strong>Beregnet månedsinntekt: </strong>
                                             <FormattedNumber

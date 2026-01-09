@@ -1,6 +1,5 @@
 import { BodyLong, BodyShort, ExpansionCard, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { useState } from 'react';
 import { FormattedNumber } from 'react-intl';
 
 import { Inntektsmelding } from '../../types';
@@ -16,8 +15,6 @@ interface Props {
 const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
     const { startDatoPermisjon, inntektBeløp, refusjon, endringerRefusjon, naturalYtelser, arbeidsgiver } =
         inntektsmelding;
-
-    const [visJson, setVisJson] = useState(false);
 
     return (
         <VStack gap="4">
