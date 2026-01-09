@@ -1,6 +1,7 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData, Locale } from '@navikt/sif-common-core-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
+
 import { Institusjoner } from '../../api/institusjonService';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';

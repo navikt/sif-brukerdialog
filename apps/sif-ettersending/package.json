@@ -4,14 +4,14 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.49.53",
+    "version": "3.49.54",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/aksel-icons": "7.36.0",
-        "@navikt/ds-css": "7.36.0",
-        "@navikt/ds-react": "7.36.0",
-        "@navikt/ds-tailwind": "7.36.0",
+        "@navikt/aksel-icons": "7.38.0",
+        "@navikt/ds-css": "7.38.0",
+        "@navikt/ds-react": "7.38.0",
+        "@navikt/ds-tailwind": "7.38.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/nav-dekoratoren-moduler": "3.6.1",
         "@navikt/sif-app-register": "workspace:*",
@@ -39,8 +39,8 @@
         "object-hash": "3.0.0",
         "react": "19.2.3",
         "react-day-picker": "9.13.0",
-        "react-intl": "8.0.9",
-        "react-router-dom": "7.11.0"
+        "react-intl": "8.0.10",
+        "react-router-dom": "7.12.0"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.11.0",
@@ -58,7 +58,7 @@
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "express": "5.2.1",
-        "globals": "16.5.0",
+        "globals": "17.0.0",
         "helmet": "8.1.0",
         "http-proxy-middleware": "3.0.5",
         "jsdom": "27.4.0",
@@ -72,7 +72,7 @@
         "vite": "7.3.0",
         "vite-plugin-checker": "0.12.0",
         "vitest": "4.0.16",
-        "zod": "4.2.1"
+        "zod": "4.3.4"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",

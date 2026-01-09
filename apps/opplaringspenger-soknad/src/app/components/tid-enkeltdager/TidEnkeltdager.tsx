@@ -2,6 +2,7 @@ import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
+
 import { AppText } from '../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';

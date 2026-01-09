@@ -1,5 +1,18 @@
 # @navikt/dine-pleiepenger
 
+## 2.0.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.48
+    - @navikt/k9-sak-innsyn-api@0.2.9
+    - @navikt/sif-common-utils@3.49.57
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.4
+    - @navikt/sif-common-sentry@0.28.60
+
 ## 2.0.23
 
 ### Patch Changes

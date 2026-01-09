@@ -1,10 +1,11 @@
-import { Alert, Box, Heading, HStack } from '@navikt/ds-react';
 import { Buildings3Icon } from '@navikt/aksel-icons';
+import { Alert, Box, Heading, HStack } from '@navikt/ds-react';
 import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';

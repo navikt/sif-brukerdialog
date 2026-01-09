@@ -1,3 +1,4 @@
+import { TrashIcon } from '@navikt/aksel-icons';
 import { Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { getTypedFormComponents, InputTime, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
@@ -8,11 +9,11 @@ import {
     isDateWeekDay,
     ISODate,
 } from '@navikt/sif-common-utils';
-import { AppText, useAppIntl } from '../../../../../i18n';
-import { KursFormFields } from '../../KursStep';
 import { getDateValidator, getTimeValidator } from '@navikt/sif-validation';
+
+import { AppText, useAppIntl } from '../../../../../i18n';
+import { KursFormFields } from '../../KursStepForm';
 import kursperiodeOgDagUtils from '../../utils/kursperiodeOgDagUtils';
-import { TrashIcon } from '@navikt/aksel-icons';
 
 export enum KursdagFormFields {
     dato = 'dato',
