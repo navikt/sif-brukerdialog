@@ -48,16 +48,16 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                             trailingZeroDisplay="stripIfInteger"
                         />
                     </ExpansionCard.Title>
-                    <ExpansionCard.Content>
-                        <BodyLong spacing>
-                            Beregnet månedsinntekt skal være et gjennomsnitt av det du tjente de tre siste månedene før
-                            din første dag med pleiepenger.
-                        </BodyLong>
-                        <BodyLong>
-                            Vi bruker denne inntekten for å finne ut hvor mye du kan få utbetalt i pleiepenger.
-                        </BodyLong>
-                    </ExpansionCard.Content>
                 </ExpansionCard.Header>
+                <ExpansionCard.Content>
+                    <BodyLong spacing>
+                        Beregnet månedsinntekt skal være et gjennomsnitt av det du tjente de tre siste månedene før din
+                        første dag med pleiepenger.
+                    </BodyLong>
+                    <BodyLong>
+                        Vi bruker denne inntekten for å finne ut hvor mye du kan få utbetalt i pleiepenger.
+                    </BodyLong>
+                </ExpansionCard.Content>
             </ExpansionCard>
 
             <InfoBlock icon="calendar" title="Første fraværsdag med pleiepenger">

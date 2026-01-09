@@ -22,15 +22,6 @@ export const zOptionalDateFromDateTimeString = z
     });
 
 export const zDateFromISODateString = z.string().transform((val) => ISODateToDate(val));
-export const zDateFromISODateStringFix9999Year = z
-    .string()
-    .transform((val) => ISODateToDate(val))
-    .transform((date) => {
-        if (date.getFullYear() === 9999) {
-            return undefined;
-        }
-        return date;
-    });
 
 export const zOptionalDateFromISODateString = z
     .string()
@@ -40,9 +31,4 @@ export const zOptionalDateFromISODateString = z
 export const zDatePeriodeFromStringPeriode = innsyn.zPeriodeDto.extend({
     fom: zDateFromISODateString,
     tom: zDateFromISODateString,
-});
-
-export const zDatePeriodeFromStringPeriodeFixYear9999 = innsyn.zPeriodeDto.extend({
-    fom: zDateFromISODateString,
-    tom: zDateFromISODateStringFix9999Year,
 });

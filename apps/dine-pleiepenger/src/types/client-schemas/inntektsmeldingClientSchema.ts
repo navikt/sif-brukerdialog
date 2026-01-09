@@ -17,17 +17,17 @@ export type NaturalYtelse = NaturalYtelseMister | NaturalYtelsMottar;
 type NaturalYtelseEndring = { endring: 'mister'; fom: Date } | { endring: 'mottar'; fom: Date };
 
 /**
- * K9 bruker spesielle årstall for å angi "tidenes morgen" (1901) og "evig tid" (9999).
+ * K9 bruker spesielle årstall for å angi "tidenes morgen" (0001) og "evig tid" (9999).
  * Vi utleder om bruker mister eller mottar naturalytelse basert på disse grenseverdiene.
  */
 export const utledNaturalYtelseEndring = (periode: { fom: Date; tom: Date }): NaturalYtelseEndring => {
     const fomYear = periode.fom.getFullYear();
     const tomYear = periode.tom.getFullYear();
 
-    if (fomYear === 1901 && tomYear !== 9999) {
+    if (fomYear === 1 && tomYear !== 9999) {
         return { endring: 'mister', fom: dayjs(periode.tom).add(1, 'day').toDate() };
     }
-    if (fomYear !== 1901 && tomYear === 9999) {
+    if (fomYear !== 1 && tomYear === 9999) {
         return { endring: 'mottar', fom: dayjs(periode.fom).add(1, 'day').toDate() };
     }
     throw new Error('Ugyldig periode for naturalytelse');
