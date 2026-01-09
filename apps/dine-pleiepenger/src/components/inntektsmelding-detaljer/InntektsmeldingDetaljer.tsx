@@ -12,6 +12,8 @@ interface Props {
     inntektsmelding: Inntektsmelding;
 }
 
+const ariaOrgnummer = (orgnummer: string) => orgnummer.split('').join(' ');
+
 const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
     const { startDatoPermisjon, inntektBeløp, refusjon, endringerRefusjon, naturalYtelser, arbeidsgiver } =
         inntektsmelding;
@@ -99,7 +101,12 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     {arbeidsgiver.organisasjon && (
                         <VStack gap="1">
                             <div>{arbeidsgiver.organisasjon.navn}</div>
-                            <div>Orgnr. {arbeidsgiver.organisasjon.organisasjonsnummer}</div>
+                            <div>
+                                Orgnr.{' '}
+                                <span aria-label={ariaOrgnummer(arbeidsgiver.organisasjon.organisasjonsnummer)}>
+                                    {arbeidsgiver.organisasjon.organisasjonsnummer}
+                                </span>
+                            </div>
                         </VStack>
                     )}
                     {arbeidsgiver.privat && (
