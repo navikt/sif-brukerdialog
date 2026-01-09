@@ -105,7 +105,8 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                                                 value={hendelse.inntektsmelding.inntektBeløp}
                                                 style="currency"
                                                 currency="NOK"
-                                                maximumFractionDigits={0}
+                                                maximumFractionDigits={2}
+                                                trailingZeroDisplay="stripIfInteger"
                                             />
                                             .
                                         </div>

@@ -1,4 +1,4 @@
-import { BodyLong, BodyShort, ExpansionCard, HGrid, HStack, Switch, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, ExpansionCard, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 import { FormattedNumber } from 'react-intl';
@@ -45,7 +45,8 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                             value={inntektBeløp}
                             style="currency"
                             currency="NOK"
-                            maximumFractionDigits={0}
+                            maximumFractionDigits={2}
+                            trailingZeroDisplay="stripIfInteger"
                         />
                     </ExpansionCard.Title>
                     <ExpansionCard.Content>
@@ -111,16 +112,6 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     )}
                 </InfoBlock>
             </HGrid>
-            <Switch checked={visJson} onChange={(evt) => setVisJson(evt.currentTarget.checked)}>
-                Vis JSON
-            </Switch>
-            {visJson && (
-                <InfoBlock icon="code" title="Inntektsmelding JSON" background="default">
-                    <BodyShort size="small" as="div">
-                        <pre>{JSON.stringify(inntektsmelding, null, 2)}</pre>
-                    </BodyShort>
-                </InfoBlock>
-            )}
         </VStack>
     );
 };

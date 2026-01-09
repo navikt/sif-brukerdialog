@@ -29,7 +29,8 @@ const NaturalYtelserInfo = ({ naturalYtelser }: Props) => {
                         value={ytelse.beløpPerMnd}
                         style="currency"
                         currency="NOK"
-                        maximumFractionDigits={0}
+                        maximumFractionDigits={2}
+                        trailingZeroDisplay="stripIfInteger"
                     />
                 </List.Item>
             ))}
