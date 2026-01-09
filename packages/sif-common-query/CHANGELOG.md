@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.68
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.7
+    - @navikt/k9-sak-innsyn-api@0.2.9
+    - @navikt/sif-common-utils@3.49.57
+
 ## 0.1.67
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @navikt/ung-common
 
+## 0.0.90
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.9
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.4
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.7
+
 ## 0.0.89
 
 ### Patch Changes
