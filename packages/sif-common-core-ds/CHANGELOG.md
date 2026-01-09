@@ -1,5 +1,14 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.57
+    - @navikt/sif-common-api@0.4.88
+
 ## 10.3.47
 
 ### Patch Changes

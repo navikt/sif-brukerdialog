@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
 ## 0.3.3
 
 ### Patch Changes

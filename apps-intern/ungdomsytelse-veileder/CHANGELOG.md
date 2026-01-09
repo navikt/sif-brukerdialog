@@ -1,5 +1,23 @@
 # @navikt/sif-demo-app
 
+## 0.9.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.4
+    - @navikt/sif-common-formik-ds@2.5.41
+    - @navikt/sif-common-core-ds@10.3.48
+    - @navikt/sif-common-utils@3.49.57
+    - @navikt/sif-common-api@0.4.88
+    - @navikt/sif-common-ui@0.11.49
+    - @navikt/ung-common@0.0.90
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-faro@0.2.10
+    - @navikt/sif-common-hooks@0.3.8
+    - @navikt/sif-validation@1.0.18
+
 ## 0.9.45
 
 ### Patch Changes

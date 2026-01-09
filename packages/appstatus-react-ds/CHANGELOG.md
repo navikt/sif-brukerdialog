@@ -1,5 +1,12 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.69
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+    - @navikt/sif-common-hooks@0.3.8
+
 ## 2.20.68
 
 ### Patch Changes
