@@ -10,65 +10,27 @@ type NaturalYtelseBase = Omit<z.infer<typeof innsyn.zNaturalYtelseDto>, 'periode
     opptjeningsperiode: { fom: Date; tom: Date };
 };
 
-export type NaturalYtelseMister = NaturalYtelseBase & {
-    endring: 'mister';
-    fom: Date;
-};
-
-export type NaturalYtelsMottar = NaturalYtelseBase & {
-    endring: 'mottar';
-    fom: Date;
-};
-
+export type NaturalYtelseMister = NaturalYtelseBase & { endring: 'mister'; fom: Date };
+export type NaturalYtelsMottar = NaturalYtelseBase & { endring: 'mottar'; fom: Date };
 export type NaturalYtelse = NaturalYtelseMister | NaturalYtelsMottar;
 
-/* ====================== Inntektsmelding(er) ====================== */
+type NaturalYtelseEndring = { endring: 'mister'; fom: Date } | { endring: 'mottar'; fom: Date };
 
 /**
- * Perioden som kommer fra K9 er periode for opptjening av naturalytelse. Når vi skal vise
- * det motsatte, altså når brukeren mister eller mottar naturalytelse, må vi tolke perioden
- * fra naturalytelsene og finne datoen for når en mister eller for når en igjen
- * mottar naturalytelsen.
- * Det er to unike datoer i k9:
- * fom === 1901 -> Dette er en ytelsen en mottar fra "tidenens morgen"
- * tom === 9999 -> Dette er en ytelsen en mottar til "evig tid"
- * @param periode Periode hvor en mottar naturalytelse
- * @param rest Resten av naturalytelse-objektet
- * @returns NaturalYtelse med enten misterFom eller mottarFom basert på endring
+ * K9 bruker spesielle årstall for å angi "tidenes morgen" (1901) og "evig tid" (9999).
+ * Vi utleder om bruker mister eller mottar naturalytelse basert på disse grenseverdiene.
  */
-const utledMisterEllerMottarNaturalytelse = (
-    periode: { fom: Date; tom: Date },
-    rest: Omit<z.infer<typeof innsyn.zNaturalYtelseDto>, 'periode'>,
-): NaturalYtelse => {
+export const utledNaturalYtelseEndring = (periode: { fom: Date; tom: Date }): NaturalYtelseEndring => {
     const fomYear = periode.fom.getFullYear();
     const tomYear = periode.tom.getFullYear();
 
-    const baseData = {
-        ...rest,
-        opptjeningsperiode: periode,
-    };
-
-    /**
-     * Hvis fom er 1901, betyr det at ytelsen mottas fra "tidenes morgen", og dermed
-     * mister en ytelsen dagen etter tom-datoen.
-     */
     if (fomYear === 1901 && tomYear !== 9999) {
-        return {
-            ...baseData,
-            endring: 'mister',
-            fom: dayjs(periode.tom).add(1, 'day').toDate(),
-        } satisfies NaturalYtelseMister;
+        return { endring: 'mister', fom: dayjs(periode.tom).add(1, 'day').toDate() };
     }
     if (fomYear !== 1901 && tomYear === 9999) {
-        return {
-            ...baseData,
-            endring: 'mottar',
-            fom: dayjs(periode.fom).add(1, 'day').toDate(),
-        } satisfies NaturalYtelsMottar;
+        return { endring: 'mottar', fom: dayjs(periode.fom).add(1, 'day').toDate() };
     }
-    throw new Error(
-        'Ugyldig periode for naturalytelse: Kan ikke utlede dato for når en mister eller mottar naturalytelse',
-    );
+    throw new Error('Ugyldig periode for naturalytelse');
 };
 
 export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto
@@ -87,19 +49,18 @@ export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto
 
         naturalYtelser: z.optional(
             z.array(
-                innsyn.zNaturalYtelseDto
-                    .extend({
-                        periode: zDatePeriodeFromStringPeriode,
-                    })
-                    .transform((value): NaturalYtelse => {
-                        const { periode, ...rest } = value;
-                        return utledMisterEllerMottarNaturalytelse(periode, rest);
+                innsyn.zNaturalYtelseDto.extend({ periode: zDatePeriodeFromStringPeriode }).transform(
+                    ({ periode, ...rest }): NaturalYtelse => ({
+                        ...rest,
+                        opptjeningsperiode: periode,
+                        ...utledNaturalYtelseEndring(periode),
                     }),
+                ),
             ),
         ),
         refusjon: z.optional(
             innsyn.zRefusjonDto.omit({
-                // Dette feltet er utledet: "refusjonsOpphører er satt til første dato i endringerIRefusjon med beløp = 0"
+                // Fjern feltet refusjonOpphører fordi dette bare er utledet i k9: "refusjonsOpphører er satt til første dato i endringerIRefusjon med beløp = 0"
                 refusjonOpphører: true,
             }),
         ),
