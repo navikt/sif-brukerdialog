@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { useEffect, useState } from 'react';
+
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';

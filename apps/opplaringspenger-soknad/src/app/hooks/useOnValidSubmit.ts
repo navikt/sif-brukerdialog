@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
-import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
+import { StepId } from '../types/StepId';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 

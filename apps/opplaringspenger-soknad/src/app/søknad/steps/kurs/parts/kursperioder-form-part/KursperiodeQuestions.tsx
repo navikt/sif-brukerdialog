@@ -1,14 +1,15 @@
+import { TrashIcon } from '@navikt/aksel-icons';
 import { Box, Button, VStack } from '@navikt/ds-react';
 import { getTypedFormComponents, ISOStringToDate, ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { DateRange, ISODate } from '@navikt/sif-common-utils';
 import { getDateRangeValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import { AppText, useAppIntl } from '../../../../../i18n';
+import { KursFormFields } from '../../KursStepForm';
 import kursperiodeOgDagUtils from '../../utils/kursperiodeOgDagUtils';
-import { KursFormFields } from '../../KursStep';
 import { startOgSluttErSammeHelg } from '../../utils/kursStepUtils';
-import { TrashIcon } from '@navikt/aksel-icons';
 
 export enum KursperiodeFormFields {
     tom = 'tom',
@@ -16,8 +17,8 @@ export enum KursperiodeFormFields {
 }
 
 export interface KursperiodeFormValues {
-    [KursperiodeFormFields.fom]: ISODate;
-    [KursperiodeFormFields.tom]: ISODate;
+    [KursperiodeFormFields.fom]: ISODate | undefined;
+    [KursperiodeFormFields.tom]: ISODate | undefined;
 }
 const Form = getTypedFormComponents<KursperiodeFormFields, KursperiodeFormValues, ValidationError>();
 

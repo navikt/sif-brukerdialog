@@ -1,4 +1,5 @@
 import { BodyLong, Link } from '@navikt/ds-react';
+
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 
