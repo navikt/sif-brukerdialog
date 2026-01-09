@@ -1,9 +1,9 @@
 import { InlineMessage, List } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
 import { Inntektsmelding } from '../../../types';
 import { naturalytelseNavn } from '../i18n/naturalytelser';
-import { renderPeriodeString } from '../inntektsmeldingUtils';
 
 type NaturalYtelser = Inntektsmelding['naturalYtelser'];
 
@@ -22,7 +22,9 @@ const NaturalYtelserInfo = ({ naturalYtelser }: Props) => {
         <List>
             {naturalYtelser.map((ytelse, index) => (
                 <List.Item key={index}>
-                    {renderPeriodeString(ytelse.periode)} får du ikke lenger {naturalytelseNavn[ytelse.type]}, verdi{' '}
+                    Fra {dateFormatter.compact(ytelse.fom)}{' '}
+                    {ytelse.endring === 'mister' ? 'får du ikke lenger ' : 'får du '}
+                    {naturalytelseNavn[ytelse.type]}, verdi{' '}
                     <FormattedNumber
                         value={ytelse.beløpPerMnd}
                         style="currency"
