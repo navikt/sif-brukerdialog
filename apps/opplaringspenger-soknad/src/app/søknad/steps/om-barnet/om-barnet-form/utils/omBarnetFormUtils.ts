@@ -3,8 +3,9 @@ import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { dateToISODate, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { OmBarnetFormMessageKeys } from '../omBarnetFormMessages';
-import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
+import { ÅrsakBarnetManglerIdentitetsnummer, OmBarnetFormValues, RelasjonTilBarnet } from '../types';
 import { OmBarnetFormSøknadsdata, RelasjonTilBarnetSøknadsdataBase } from '../types/OmBarnetFormSøknadsdata';
 
 export const omBarnetFormDefaultValues: OmBarnetFormValues = {

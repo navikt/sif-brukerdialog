@@ -1,6 +1,7 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
 

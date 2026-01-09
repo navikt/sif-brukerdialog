@@ -1,5 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
+
 import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
 import { AppText } from '../../../../i18n';
 import { ArbeidIPeriodeApiData, ArbeidsforholdApiData } from '../../../../types/søknadApiData/SøknadApiData';

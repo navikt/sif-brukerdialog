@@ -1,5 +1,5 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const nb = {
     'omBarnetForm.hvilketBarn.spm': 'Hvilket barn gjelder søknaden?',

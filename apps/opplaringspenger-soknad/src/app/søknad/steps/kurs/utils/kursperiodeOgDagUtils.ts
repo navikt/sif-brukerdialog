@@ -1,9 +1,10 @@
 import { DateRange, dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, durationAsNumberDuration, guid, numberDurationAsDuration } from '@navikt/sif-common-utils';
-import { Kursperiode } from '../../../../types/Kursperiode';
-import { KursperiodeFormValues } from '../parts/kursperioder-form-part/KursperiodeQuestions';
-import { KursdagFormValues } from '../parts/kursdager-form-part/KursdagQuestions';
+
 import { Kursdag } from '../../../../types/Kursdag';
+import { Kursperiode } from '../../../../types/Kursperiode';
+import { KursdagFormValues } from '../parts/kursdager-form-part/KursdagQuestions';
+import { KursperiodeFormValues } from '../parts/kursperioder-form-part/KursperiodeQuestions';
 
 const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is Kursperiode => {
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;

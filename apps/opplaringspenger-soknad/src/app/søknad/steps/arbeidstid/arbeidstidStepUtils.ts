@@ -2,6 +2,7 @@ import { DateRange } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { ArbeidIPeriodeSøknadsdata } from '../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';

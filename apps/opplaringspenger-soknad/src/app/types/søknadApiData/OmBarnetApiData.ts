@@ -1,7 +1,8 @@
 import { ISODate } from '@navikt/sif-common-utils';
+
 import {
-    RelasjonTilBarnet,
     ÅrsakBarnetManglerIdentitetsnummer,
+    RelasjonTilBarnet,
 } from '../../søknad/steps/om-barnet/om-barnet-form/types';
 
 type RegistrertBarnApiData = {

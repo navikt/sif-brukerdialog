@@ -1,4 +1,5 @@
 import { DateDurationMap } from '@navikt/sif-common-utils';
+
 import { ArbeidIPeriodeType } from '../ArbeidIPeriodeType';
 
 interface ArbeidISøknadsperiodeJobberIkkeSøknadsdata {

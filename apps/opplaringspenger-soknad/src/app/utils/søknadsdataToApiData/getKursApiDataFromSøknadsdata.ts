@@ -1,9 +1,10 @@
 import { dateRangeToISODateRange, dateToISODate, durationToISODuration } from '@navikt/sif-common-utils';
+
 import { Institusjoner } from '../../api/institusjonService';
+import { EnkeltdagEllerPeriode } from '../../søknad/steps/kurs/KursStepForm';
+import { Kursdag } from '../../types/Kursdag';
 import { KursApiData, KursdagApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata } from '../../types/søknadsdata/KursSøknadsdata';
-import { EnkeltdagEllerPeriode } from '../../søknad/steps/kurs/KursStep';
-import { Kursdag } from '../../types/Kursdag';
 
 const getKursdagApiDataFromKursdag = (kursdag: Kursdag): KursdagApiData => ({
     dato: dateToISODate(kursdag.dato),

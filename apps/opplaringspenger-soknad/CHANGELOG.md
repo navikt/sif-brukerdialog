@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.31
+
+### Patch Changes
+
+- Bugfix på validering av dato som er undefined (silent fail), refactor KursStep til å skille ut KursStepForm som egen fil. Lint for sortering av alle imports.
+
 ## 1.4.30
 
 ### Patch Changes

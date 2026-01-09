@@ -1,12 +1,13 @@
-import { FieldArray, useFormikContext } from 'formik';
-import { DateRange } from '@navikt/sif-common-utils';
+import { PlusIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, Hide, VStack } from '@navikt/ds-react';
-import { KursFormValues } from '../../KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
-import KursdagQuestions from './KursdagQuestions';
+import { DateRange } from '@navikt/sif-common-utils';
+import { FieldArray, useFormikContext } from 'formik';
+
 import { AppText } from '../../../../../i18n';
 import { useFocusManagement } from '../../hooks/useFocusManagement';
-import { PlusIcon } from '@navikt/aksel-icons';
+import { KursFormValues } from '../../KursStepForm';
+import KursdagQuestions from './KursdagQuestions';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
