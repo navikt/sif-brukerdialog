@@ -15,15 +15,15 @@ export type InfoBlockIcon = 'calendar' | 'wallet' | 'spark' | 'building' | 'code
 const renderInfoBlockIcon = (icon: InfoBlockIcon): React.ReactNode => {
     switch (icon) {
         case 'calendar':
-            return <CalendarIcon color="#005B82" width="1.5rem" height="1.5rem" />;
+            return <CalendarIcon color="#005B82" width="1.5rem" height="1.5rem" role="presentation" />;
         case 'wallet':
-            return <WalletIcon color="#005B82" width="1.5rem" height="1.5rem" />;
+            return <WalletIcon color="#005B82" width="1.5rem" height="1.5rem" role="presentation" />;
         case 'spark':
-            return <SparkLargeIcon color="#005B82" width="1.5rem" height="1.5rem" />;
+            return <SparkLargeIcon color="#005B82" width="1.5rem" height="1.5rem" role="presentation" />;
         case 'building':
-            return <Buildings3Icon color="#005B82" width="1.5rem" height="1.5rem" />;
+            return <Buildings3Icon color="#005B82" width="1.5rem" height="1.5rem" role="presentation" />;
         case 'code':
-            return <CodeIcon color="#005B82" width="1.5rem" height="1.5rem" />;
+            return <CodeIcon color="#005B82" width="1.5rem" height="1.5rem" role="presentation" />;
     }
 };
 
@@ -34,10 +34,18 @@ const InfoBlock = ({ icon, title, background = 'default', titleInfo, children }:
                 <Box width="2.5rem">{renderInfoBlockIcon(icon)}</Box>
             </Show>
             <VStack gap="2">
-                <HStack gap="2">
-                    <BodyShort weight="semibold">{title}</BodyShort>
-                    {titleInfo && <HelpText>{titleInfo}</HelpText>}
-                </HStack>
+                <Show below="sm">
+                    <HGrid columns="auto 1fr" gap="2">
+                        <BodyShort weight="semibold">{title}</BodyShort>
+                        {titleInfo && <HelpText>{titleInfo}</HelpText>}
+                    </HGrid>
+                </Show>
+                <Show above="sm">
+                    <HStack gap="2">
+                        <BodyShort weight="semibold">{title}</BodyShort>
+                        {titleInfo && <HelpText>{titleInfo}</HelpText>}
+                    </HStack>
+                </Show>
                 <BoxNew>{children}</BoxNew>
             </VStack>
         </HGrid>

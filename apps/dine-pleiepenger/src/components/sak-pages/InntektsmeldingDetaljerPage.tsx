@@ -1,5 +1,5 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Box, BoxNew, Detail, HStack, Link, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, BodyShort, Box, BoxNew, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
@@ -10,7 +10,6 @@ import { usePleietrengendeMedSakFromRoute } from '../../hooks/usePleietrengendeM
 import { browserEnv } from '../../utils/env';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/InntektsmeldingDetaljer';
-import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import LoadingPage from '../page-layout/loading-page/LoadingPage';
 import PageHeader from '../page-layout/page-header/PageHeader';
@@ -58,21 +57,9 @@ const InntektsmeldingDetaljerPage = () => {
                     hidePleiepengerIcon={true}
                     byline={
                         inntektsmelding ? (
-                            <VStack gap="6" marginBlock="2 0">
-                                <Detail uppercase={true}>
-                                    Sendt inn {dateFormatter.compactWithTime(inntektsmelding.mottattDato)}
-                                </Detail>
-                                <HStack gap="2" align="center">
-                                    <BodyShort weight="semibold" size="large">
-                                        Status:
-                                    </BodyShort>
-                                    <InntektsmeldingStatusTag
-                                        status={inntektsmelding.status}
-                                        size="medium"
-                                        showIcon={true}
-                                    />
-                                </HStack>
-                            </VStack>
+                            <BodyShort size="medium">
+                                Sendt inn {dateFormatter.compactWithTime(inntektsmelding.mottattDato)}
+                            </BodyShort>
                         ) : undefined
                     }
                 />
@@ -83,7 +70,8 @@ const InntektsmeldingDetaljerPage = () => {
 
             <BoxNew maxWidth="52rem">
                 <VStack gap="4">
-                    {renderContent()}
+                    <Bleed marginBlock="4 0">{renderContent()}</Bleed>
+
                     <Box className="ml-4 mt-4">
                         <Link as={NextLink} href={`/sak/${saksnr}/inntektsmelding`}>
                             <ChevronLeftIcon role="presentation" />

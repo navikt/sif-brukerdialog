@@ -1,10 +1,11 @@
-import { BodyLong, BodyShort, ExpansionCard, HGrid, Switch, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, ExpansionCard, HGrid, HStack, Switch, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 import { FormattedNumber } from 'react-intl';
 
 import { Inntektsmelding } from '../../types';
 import InfoBlock from '../info-block/InfoBlock';
+import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 import NaturalYtelserInfo from './parts/NaturalYtelserInfo';
 import RefusjonInfo from './parts/RefusjonInfo';
 
@@ -20,15 +21,26 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
 
     return (
         <VStack gap="4">
-            <BodyShort>
-                Arbeidsgiveren din har sendt oss disse opplysningene. Har du spørsmål eller mener noe er feil, må du
-                kontakte arbeidsgiver.
-            </BodyShort>
+            <VStack gap="10">
+                <HStack gap="2" align="center">
+                    <BodyShort weight="semibold" size="large">
+                        Status:
+                    </BodyShort>
+                    <InntektsmeldingStatusTag status={inntektsmelding.status} size="medium" showIcon={true} />
+                </HStack>
 
-            <ExpansionCard aria-label="sdf">
+                <BodyShort>
+                    Arbeidsgiveren din har sendt oss disse opplysningene. Har du spørsmål eller mener noe er feil, må du
+                    kontakte arbeidsgiver.
+                </BodyShort>
+            </VStack>
+
+            <ExpansionCard aria-labelledby="beregnet-månedsinntekt">
                 <ExpansionCard.Header>
-                    <ExpansionCard.Title size="medium">
-                        <span style={{ fontWeight: 'normal' }}>Beregnet månedsinntekt:</span>{' '}
+                    <ExpansionCard.Title size="medium" as="div">
+                        <span style={{ fontWeight: 'normal' }} id="beregnet-månedsinntekt">
+                            Beregnet månedsinntekt:
+                        </span>{' '}
                         <FormattedNumber
                             value={inntektBeløp}
                             style="currency"
