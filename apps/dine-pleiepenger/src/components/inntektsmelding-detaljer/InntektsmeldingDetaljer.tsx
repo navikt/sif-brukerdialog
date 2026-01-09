@@ -38,19 +38,11 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     </ExpansionCard.Title>
                     <ExpansionCard.Content>
                         <BodyLong spacing>
-                            Beregnet månedsinntekt skal være er et gjennomsnitt av det du tjente de tre siste månedene
-                            før din første dag med pleiepenger.
-                        </BodyLong>
-                        <BodyLong spacing>
-                            Vi bruker denne inntekten for å finne ut hvor mye du kan få utbetalt i pleiepenger.
+                            Beregnet månedsinntekt skal være et gjennomsnitt av det du tjente de tre siste månedene før
+                            din første dag med pleiepenger.
                         </BodyLong>
                         <BodyLong>
-                            Nav dekker inntekten du har opptil{' '}
-                            <span className="nowrap">
-                                [TODO: kan vi vise dette - dette vil jo variere ut fra hvilken periode?]
-                            </span>{' '}
-                            kroner (seks ganger grunnbeløpet). Siden du tjener mer enn dette, vil Nav ikke dekke hele
-                            inntekten din.
+                            Vi bruker denne inntekten for å finne ut hvor mye du kan få utbetalt i pleiepenger.
                         </BodyLong>
                     </ExpansionCard.Content>
                 </ExpansionCard.Header>
@@ -67,11 +59,28 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 )}
             </InfoBlock>
 
-            <InfoBlock icon="wallet" title="Hvordan utbetales pleiepengene?">
+            <InfoBlock
+                icon="wallet"
+                title="Hvordan utbetales pleiepengene?"
+                titleInfo={
+                    <>
+                        Pleiepenger kan enten utbetales direkte fra Nav, eller som vanlig lønn fra arbeidsgiver. Hvis
+                        arbeidsgiver betaler deg lønn og får pengene tilbake fra Nav, kalles det forskuttering. Noen
+                        arbeidsgivere må forskuttere på grunn av tariffavtaler, mens andre velger det selv.
+                    </>
+                }>
                 <RefusjonInfo inntektBeløp={inntektBeløp} refusjon={refusjon} endringerRefusjon={endringerRefusjon} />
             </InfoBlock>
 
-            <InfoBlock icon="spark" title="Mister du naturalytelser (goder) under fraværet?">
+            <InfoBlock
+                icon="spark"
+                title="Mister du naturalytelser (goder) under fraværet?"
+                titleInfo={
+                    <>
+                        Naturalytelser er goder som ansatte får i tillegg til vanlig lønn. Dette kan for eksempel være
+                        forsikringer, mobilabonnement, internett eller bruk av firmabil.
+                    </>
+                }>
                 <NaturalYtelserInfo naturalYtelser={naturalYtelser} />
             </InfoBlock>
 
