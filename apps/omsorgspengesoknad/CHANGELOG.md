@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.55
+
+### Patch Changes
+
+- Ta i bruk ny validering av fritekst for høyere risiko for fravær
+
 ## 1.41.54
 
 ### Patch Changes
