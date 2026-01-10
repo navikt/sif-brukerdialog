@@ -62,6 +62,8 @@ const nb = {
         'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb kan ikke inneholde flere enn 2000 tegn.',
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb må være på minst 5 tegn.',
+    'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringHasInvalidCharacters':
+        'Beskrivelsen inneholder ugyldige tegn. Dette skjer ofte når tekst kopieres fra andre steder. Prøv å skrive inn teksten på nytt direkte i feltet i stedet for å lime den inn. Ugyldige tegn kan for eksempel være emojier eller spesialtegn som « », §.',
     /** Alerts */
     'steg.omBarnet.alert.sammeAdresse.nei':
         'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra Nav. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
@@ -138,6 +140,9 @@ const nn: Record<OmBarnetMessageKeys, string> = {
         'Skildringa av korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, kan ikkje vera lengre enn 2000 teikn.',
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Skildringa på korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, må vera minst 5 teikn lang.',
+    'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringHasInvalidCharacters':
+        'Skildringa inneheld ugyldige teikn. Dette skjer ofte når tekst vert kopiert frå andre stader. Prøv å skrive inn teksten på nytt direkte i feltet i staden for å lime han inn. Ugyldige teikn kan til dømes vere emojar eller spesialteikn som « », §.',
+
     'steg.omBarnet.alert.sammeAdresse.nei':
         'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå Nav. Forelderen som bur saman med barnet kan i nokre tilfelle dela sine omsorgsdagar.',
     'steg.omBarnet.alert.ikkeHøyereRisikoForFravær':
