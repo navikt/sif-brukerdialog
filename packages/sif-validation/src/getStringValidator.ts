@@ -74,7 +74,7 @@ const getStringValidator =
                 }
             }
             if (options.disallowInvalidBackendCharacters) {
-                if (validTextRegex.test(value) === false) {
+                if (validTextRegex.test(value) === false || value.includes('@')) {
                     return ValidateStringError.stringHasInvalidCharacters;
                 }
             }
