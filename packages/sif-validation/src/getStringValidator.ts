@@ -10,6 +10,7 @@ export enum ValidateStringError {
     stringIsTooLong = 'stringIsTooLong',
     stringHasInvalidFormat = 'stringHasInvalidFormat',
     stringContainsUnicodeChacters = 'stringContainsUnicodeChacters',
+    stringHasInvalidCharacters = 'stringHasInvalidCharacters',
 }
 
 export const ValidateStringErrorKeys = Object.keys(ValidateStringError);
@@ -21,7 +22,8 @@ type StringValidationResult =
     | ValidateStringError.stringIsTooLong
     | ValidateStringError.stringIsTooShort
     | ValidateStringError.stringHasInvalidFormat
-    | ValidateStringError.stringContainsUnicodeChacters;
+    | ValidateStringError.stringContainsUnicodeChacters
+    | ValidateStringError.stringHasInvalidCharacters;
 
 interface Options {
     required?: boolean;
@@ -29,11 +31,16 @@ interface Options {
     maxLength?: number;
     formatRegExp?: RegExp;
     disallowUnicodeCharacters?: boolean;
+    /** Disallow characters not accepted by backend - only allows letters, numbers, punctuation and spaces */
+    disallowInvalidBackendCharacters?: boolean;
 }
 
 const containsNonLatinCodepoints = (s: string): boolean => {
     return /[^u0000-\u00ff\s]/.test(s);
 };
+
+/** Regex that allows letters, numbers, punctuation, spaces, newlines, $ and = (unicode aware) */
+const validTextRegex = /^[\p{L}\p{N}\p{P}\p{Zs}\n\r$=]+$/u;
 
 const getStringValidator =
     (options: Options = {}): ValidationFunction<StringValidationResult> =>
@@ -64,6 +71,11 @@ const getStringValidator =
             if (options.disallowUnicodeCharacters) {
                 if (containsNonLatinCodepoints(value)) {
                     return ValidateStringError.stringContainsUnicodeChacters;
+                }
+            }
+            if (options.disallowInvalidBackendCharacters) {
+                if (validTextRegex.test(value) === false) {
+                    return ValidateStringError.stringHasInvalidCharacters;
                 }
             }
         }
