@@ -37,6 +37,7 @@
 
         "SIF_PUBLIC_FEATURE_ENDRE_SLUTTDATO": "on",
         "SIF_PUBLIC_FEATURE_SJEKKLISTE": "off",
+        "SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE": "off",
 
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://dev-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
