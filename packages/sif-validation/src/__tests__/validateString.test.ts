@@ -95,5 +95,10 @@ describe(`validateString`, () => {
                 ValidateStringError.stringHasInvalidCharacters,
             );
         });
+        it(`returns ${ValidateStringError.stringHasInvalidCharacters} for text with @`, () => {
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('test@example.com')).toBe(
+                ValidateStringError.stringHasInvalidCharacters,
+            );
+        });
     });
 });
