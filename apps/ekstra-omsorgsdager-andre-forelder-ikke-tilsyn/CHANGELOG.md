@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.35.63
+
+### Patch Changes
+
+- Legge til validering av fritekstfelt for ugyldige tegn.
+
 ## 1.35.62
 
 ### Patch Changes

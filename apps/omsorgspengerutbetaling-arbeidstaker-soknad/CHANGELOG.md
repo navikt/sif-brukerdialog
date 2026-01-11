@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.16.56
+
+### Patch Changes
+
+- Legge til validering av fritekstfelt for ugyldige tegn.
+
 ## 1.16.55
 
 ### Patch Changes
