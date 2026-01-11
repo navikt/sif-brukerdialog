@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.49
+
+### Patch Changes
+
+- CSS margin fix for aksel-list header.
+
 ## 10.3.48
 
 ### Patch Changes
