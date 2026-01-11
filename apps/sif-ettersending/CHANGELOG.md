@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.56
+
+### Patch Changes
+
+- Legge til validering av fritekstfelt for ugyldige tegn.
+
 ## 3.49.55
 
 ### Patch Changes

@@ -64,7 +64,7 @@ const nb = {
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb må være på minst 5 tegn.',
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringHasInvalidCharacters':
-        'Beskrivelsen inneholder ugyldige tegn. Dette kan blant annet skyldes tekst som er kopiert fra andre steder. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Beskrivelsen inneholder ugyldige tegn. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Dette kan blant annet oppstå dersom tekst kopieres fra andre steder. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 
     /** Alerts */
     'steg.omBarnet.alert.sammeAdresse.nei':
@@ -143,7 +143,7 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Skildringa på korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, må vera minst 5 teikn lang.',
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringHasInvalidCharacters':
-        'Skildringa inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Skildringa inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 
     'steg.omBarnet.alert.sammeAdresse.nei':
         'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå Nav. Forelderen som bur saman med barnet kan i nokre tilfelle dela sine omsorgsdagar.',

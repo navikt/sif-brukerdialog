@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.58
+
+### Patch Changes
+
+- Legge til validering av fritekstfelt for ugyldige tegn.
+
 ## 4.11.57
 
 ### Patch Changes

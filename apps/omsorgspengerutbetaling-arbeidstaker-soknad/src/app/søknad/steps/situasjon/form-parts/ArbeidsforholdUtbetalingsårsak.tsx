@@ -76,7 +76,12 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                     <Textarea
                         name={getFieldName(ArbeidsforholdFormFields.konfliktForklaring)}
                         validate={(value) => {
-                            const error = getStringValidator({ minLength: 5, maxLength: 2000, required: true })(value);
+                            const error = getStringValidator({
+                                minLength: 5,
+                                maxLength: 2000,
+                                required: true,
+                                disallowInvalidBackendCharacters: true,
+                            })(value);
                             switch (error) {
                                 case ValidateStringError.stringHasNoValue:
                                     return {
