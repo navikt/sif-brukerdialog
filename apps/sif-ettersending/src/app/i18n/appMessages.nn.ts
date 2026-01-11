@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { appMessagesNB } from './appMessages.nb';
 
 export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
@@ -172,6 +173,9 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'validation.beskrivelse.stringHasNoValue': 'Skildre ettersendinga',
     'validation.beskrivelse.stringIsTooLong': 'Skildringa kan ikkje innehalde meir enn {maks} teikn',
     'validation.beskrivelse.stringIsTooShort': 'Skildringa må innehalde minst {min} teikn',
+    'validation.beskrivelse.stringHasInvalidCharacters':
+        'Skildringa inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+
     'validation.ytelse.noValue': 'Du må velje kva denne ettersendinga gjeld',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste opplysningane',
     'validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
