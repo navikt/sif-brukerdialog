@@ -71,6 +71,7 @@ const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, k
                             required: true,
                             maxLength: maksTegnBeskrivelse,
                             minLength: 5,
+                            disallowInvalidBackendCharacters: true,
                         })(value);
                         return error
                             ? {

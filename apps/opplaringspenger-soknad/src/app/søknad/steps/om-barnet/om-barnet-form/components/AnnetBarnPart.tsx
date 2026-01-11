@@ -196,7 +196,11 @@ const AnnetBarnPart = ({
                         }
                         name={OmBarnetFormFields.relasjonTilBarnetBeskrivelse}
                         validate={(value) => {
-                            const error = getStringValidator({ required: true, maxLength: 2000 })(value);
+                            const error = getStringValidator({
+                                required: true,
+                                maxLength: 2000,
+                                disallowInvalidBackendCharacters: true,
+                            })(value);
                             return error
                                 ? {
                                       key: error,

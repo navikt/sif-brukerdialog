@@ -49,6 +49,9 @@ const nb = {
         'For få tegn. Du må beskrive hvorfor du reiser på andre dager enn du har kurs eller opplæring med flere tegn.',
     'steg.kurs.validation.reisedagerBeskrivelse.stringIsTooLong':
         'For mange tegn. Beskrivelsen kan ikke bestå av flere enn {antall} tegn.',
+    'steg.kurs.validation.reisedagerBeskrivelse.stringHasInvalidCharacters':
+        'Beskrivelsen inneholder ugyldige tegn. Dette kan blant annet skyldes tekst som er kopiert fra andre steder. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+
     'steg.kurs.validation.reisedager.reisedagUtenforKursperiode':
         '{antallDager, plural, one {Én reisedag} other {# reisedager}} er utenfor søknadsperioden: {dager}. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Hvis du vil søke om opplæringspenger for disse dagene, må du inkludere dem i perioden du søker om opplæringspenger. Hvis du ikke søker opplæringspenger disse dagene, må du fjerne dem her.',
     'steg.kurs.validation.reisedager.reisedagPåHelg': 'En reisedag kan ikke være en lørdag eller søndag.',
@@ -157,6 +160,8 @@ const nn: Record<keyof typeof nb, string> = {
         'For få teikn. Du må beskrive kvifor du reiser på andre dagar enn du har kurs eller opplæring med fleire teikn.',
     'steg.kurs.validation.reisedagerBeskrivelse.stringIsTooLong':
         'For mange teikn. Beskrivinga kan ikkje bestå av fleire enn {antall} teikn.',
+    'steg.kurs.validation.reisedagerBeskrivelse.stringHasInvalidCharacters':
+        'Skildringa inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
     'steg.kurs.validation.reisedager.reisedagPåHelg': 'Ein reisedag kan ikkje vera ein laurdag eller sundag.',
     'steg.kurs.validation.reisedager.reisedagUtenforKursperiode':
         'Reisedag er ikkje innanfor dagane du søkjer. Dette kan skje om du har endra kva dagar du søkjer opplæringspengar, etter at du har lagt til reisedag. Du må endre eller fjerne reisedag som ikkje er innanfor dagane du søkjer.',
