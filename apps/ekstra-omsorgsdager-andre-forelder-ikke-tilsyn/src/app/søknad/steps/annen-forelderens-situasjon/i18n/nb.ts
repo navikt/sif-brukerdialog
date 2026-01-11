@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const annenForelderenSituasjonMessages_nb = {
     'step.annenForeldrensSituasjon.banner.1':
         'Her skal du gi informasjon om hva som er grunnen til at den andre forelderen ikke kan ha tilsyn med barn i en periode på minst 6 måneder.',
@@ -48,6 +49,8 @@ export const annenForelderenSituasjonMessages_nb = {
         'Beskrivelse om hva som gjør at den andre forelderen ikke kan ha tilsyn med barn, kan ikke inneholde flere enn {maks} tegn.',
     'validation.annenForelderSituasjonBeskrivelse.stringIsTooShort':
         'Beskriv hva som gjør at den andre forelderen ikke kan ha tilsyn med barn, må inneholde minst {min} tegn.',
+    'validation.annenForelderSituasjonBeskrivelse.stringHasInvalidCharacters':
+        'Beskrivelsen inneholder ugyldige tegn. Dette kan blant annet skyldes tekst som er kopiert fra andre steder. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 
     'validation.annenForelderPeriodeFom.dateHasNoValue.SYKDOM':
         'Du må oppgi hvilken dato den andre forelderen ikke kan ta seg av barn fra.',
