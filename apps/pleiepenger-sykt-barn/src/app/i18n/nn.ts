@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { sifCommonPleiepengerMessages_nn } from '../local-sif-common-pleiepenger/i18n/nn';
 import { confirmationPageMessages_nn } from '../pages/confirmation-page/i18n/nn';
 import { velkommenPageMessages_nn } from '../pages/velkommen-page/i18n/nn';
@@ -100,6 +101,14 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
         'Du må svare ja eller nei på om du mottar fosterheimsgodtgjersle.',
     'validation.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.noValue':
         'Du må svare ja eller nei på om du er frikjøpt frå jobb',
+
+    'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringHasNoValue':
+        'Du må skrive inn detaljar om frikjøp og fosterheimsgodtgjersle',
+    'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringIsTooLong':
+        'Skildringa av frikjøp og fosterheimsgodtgjersle kan ikkje vera lengre enn 1000 teikn.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringHasInvalidCharacters':
+        'Skildringa inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+
     'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listHasTooFewItems':
         'Du må velje kva for ein arbeidsgjevar du er frikjøpt frå',
     'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listIsEmpty':

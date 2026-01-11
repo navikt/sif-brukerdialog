@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const omBarnetMessages_nb = {
     'step.opplysninger-om-barnet.pageTitle': 'Pleiepengesøknad - opplysninger om barnet',
     'step.opplysninger-om-barnet.stepTitle': 'Barn',
@@ -67,4 +68,6 @@ export const omBarnetMessages_nb = {
         'Du må beskrive hvem du er i forhold til barnet, og hvilken tilsynsrolle du har i perioden du søker om.',
     'validation.relasjonTilBarnetBeskrivelse.stringIsTooLong':
         'Du har brukt for mange tegn i beskrivelsen din. Teksten kan ikke inneholde flere enn {maks} tegn.',
+    'validation.relasjonTilBarnetBeskrivelse.stringHasInvalidCharacters':
+        'Beskrivelsen av beredskap inneholder ugyldige tegn. Dette kan blant annet skyldes tekst som er kopiert fra andre steder. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 };

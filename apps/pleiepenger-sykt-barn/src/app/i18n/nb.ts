@@ -98,6 +98,14 @@ export const appCommonMessages_nb = {
         'Du må svare ja eller nei på om du mottar fosterhjemsgodtgjørelse.',
     'validation.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.noValue':
         'Du må svare ja eller nei på om du er frikjøpt fra jobb',
+
+    'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringHasNoValue':
+        'Du må beskrive detaljer om frikjøp og fosterhjemsgodtgjørelse',
+    'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringIsTooLong':
+        'Du har brukt for mange tegn i beskrivelsen din. Teksten kan ikke inneholde flere enn 1000 tegn.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringHasInvalidCharacters':
+        'Beskrivelsen inneholder ugyldige tegn. Dette kan blant annet skyldes tekst som er kopiert fra andre steder. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+
     'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listHasTooFewItems':
         'Du må velge hvilken arbeidsgiver du er frikjøpt fra',
     'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listIsEmpty':

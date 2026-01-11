@@ -52,6 +52,9 @@ p:not(.aksel-error-message):not(.aksel-textarea__counter):not(.noPadding) {
 .aksel-list__item > div > p.aksel-body-short--medium:first-child {
     margin: 0.125rem 0 !important;
 }
+.aksel-list__item > div > p.aksel-body-long--medium:first-child {
+    margin: 0.125rem 0 !important;
+}
 
 .aksel-combobox__list p {
     margin: 0 !important;
