@@ -112,7 +112,7 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringIsTooLong':
         'Forklaringa kan vere på maks {maks} teikn.',
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringHasInvalidCharacters':
-        'Forklaringa inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Forklaringa inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
     'validation.arbeidsforhold.utbetalingsårsak.vedlegg.noVedleggUploaded':
         'Ingen dokument med forklaring frå {arbeidsgivernavn} er lasta opp.',
     'validation.barn.ingenBarn': 'Du må leggje til minst eitt barn du har omsorg for',

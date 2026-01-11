@@ -50,7 +50,7 @@ export const annenForelderenSituasjonMessages_nb = {
     'validation.annenForelderSituasjonBeskrivelse.stringIsTooShort':
         'Beskriv hva som gjør at den andre forelderen ikke kan ha tilsyn med barn, må inneholde minst {min} tegn.',
     'validation.annenForelderSituasjonBeskrivelse.stringHasInvalidCharacters':
-        'Beskrivelsen inneholder ugyldige tegn. Dette kan blant annet skyldes tekst som er kopiert fra andre steder. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Beskrivelsen inneholder ugyldige tegn. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Dette kan blant annet oppstå dersom tekst kopieres fra andre steder. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 
     'validation.annenForelderPeriodeFom.dateHasNoValue.SYKDOM':
         'Du må oppgi hvilken dato den andre forelderen ikke kan ta seg av barn fra.',

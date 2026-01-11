@@ -107,7 +107,7 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
     'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringIsTooLong':
         'Skildringa av frikjøp og fosterheimsgodtgjersle kan ikkje vera lengre enn 1000 teikn.',
     'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringHasInvalidCharacters':
-        'Skildringa inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Skildringa inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 
     'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listHasTooFewItems':
         'Du må velje kva for ein arbeidsgjevar du er frikjøpt frå',

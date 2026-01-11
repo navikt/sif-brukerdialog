@@ -52,7 +52,7 @@ export const annenForelderenSituasjonMessages_nn: Record<keyof typeof annenForel
     'validation.annenForelderSituasjonBeskrivelse.stringIsTooShort':
         'Skildringa av kva som gjer at den andre forelderen ikkje kan ha tilsyn med barn, må innehalde minst {min} teikn.',
     'validation.annenForelderSituasjonBeskrivelse.stringHasInvalidCharacters':
-        'Skildringa inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Skildringa inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 
     'validation.annenForelderPeriodeFom.dateHasNoValue.SYKDOM':
         'Du må oppgje frå kva dato den andre forelderen ikkje kan ta seg av barn.',

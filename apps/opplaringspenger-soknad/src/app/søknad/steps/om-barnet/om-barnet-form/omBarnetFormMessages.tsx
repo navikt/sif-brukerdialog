@@ -60,7 +60,7 @@ const nb = {
     'omBarnetForm.validation.relasjonTilBarnetBeskrivelse.stringHasNoValue':
         'Du må beskrive hvem du er i forhold til barnet, og hvilken tilsynsrolle du har i perioden du søker for.',
     'omBarnetForm.validation.relasjonTilBarnetBeskrivelse.stringHasInvalidCharacters':
-        'Beskrivelsen inneholder ugyldige tegn. Dette kan blant annet skyldes tekst som er kopiert fra andre steder. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Beskrivelsen inneholder ugyldige tegn. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Dette kan blant annet oppstå dersom tekst kopieres fra andre steder. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
     'omBarnetForm.validation.sammeAdresse.noValue': 'Du må svare ja eller nei på om du bor sammen med barnet.',
     'omBarnetForm.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om barnet har en kronisk/langvarig sykdom eller funksjonshemning.',
@@ -154,7 +154,7 @@ const nn: Record<keyof typeof nb, string> = {
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Skildringa av korleis barnets sjukdom eller funksjonshemming gir høgare risiko for fråvær frå jobb må vere minst 5 teikn.',
     'omBarnetForm.validation.relasjonTilBarnetBeskrivelse.stringHasInvalidCharacters':
-        'Skildringa inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Skildringa inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
     'omBarnetForm.validation.årsakManglerIdentitetsnummer.noValue':
         'Du må svare på spørsmålet om kvifor barnet ikkje har fødselsnummer eller D-nummer.',
     'omBarnetForm.infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',

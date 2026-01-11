@@ -61,7 +61,7 @@ export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBer
     'validation.harNattevåk_ekstrainfo.stringHasNoValue': 'Du må skildre kva som gjer at du må vere vaken om natta.',
     'validation.harNattevåk_ekstrainfo.stringIsTooLong': 'Skildringa kan vere på maks 1000 teikn.',
     'validation.harNattevåk_ekstrainfo.stringHasInvalidCharacters':
-        'Skildringa av nattevåk inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Skildringa av nattevåk inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 
     'validation.harBeredskap.yesOrNoIsUnanswered': 'Du må svare ja eller nei på om du må vere i beredskap.',
 
@@ -70,5 +70,5 @@ export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBer
     'validation.harBeredskap_ekstrainfo.stringIsTooLong':
         'Du har brukt for mange teikn i skildringa di. Teksten kan ikkje innehalde fleire enn 1000 teikn.',
     'validation.harBeredskap_ekstrainfo.stringHasInvalidCharacters':
-        'Skildringa av beredskap inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Skildringa av beredskap inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 };

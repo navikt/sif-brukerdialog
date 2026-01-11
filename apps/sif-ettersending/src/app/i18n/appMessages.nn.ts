@@ -174,7 +174,7 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'validation.beskrivelse.stringIsTooLong': 'Skildringa kan ikkje innehalde meir enn {maks} teikn',
     'validation.beskrivelse.stringIsTooShort': 'Skildringa må innehalde minst {min} teikn',
     'validation.beskrivelse.stringHasInvalidCharacters':
-        'Skildringa inneheld ugyldige teikn. Dette kan mellom anna skuldast tekst som er kopiert frå andre stader. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+        'Skildringa inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 
     'validation.ytelse.noValue': 'Du må velje kva denne ettersendinga gjeld',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste opplysningane',
