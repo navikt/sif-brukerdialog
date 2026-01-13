@@ -137,7 +137,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                         includeButtons={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'meldInnDeltakerForm')}>
                         <VStack gap="4" marginBlock="4 0">
-                            {Features.sjekkliste && 1 + 1 === 2 ? (
+                            {Features.sjekkliste ? (
                                 <>
                                     <Heading level="2" size="medium">
                                         Registrer ny deltaker
