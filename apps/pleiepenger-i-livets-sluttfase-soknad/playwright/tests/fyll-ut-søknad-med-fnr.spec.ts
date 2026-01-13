@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 import { fyllUtPleietrengendeMedFnr } from '../utfylling-utils/pleietrengendeUtfyllingUtils';
 import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockRoutes';
+import { testAccessibility } from '../utils/testAccessibility';
 
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';
@@ -18,10 +19,12 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     /** Velkommen side */
     await expect(page.getByRole('heading', { level: 2, name: 'Hei, PRESENTABEL' })).toBeVisible();
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
     /** Pleietrengende side */
     await fyllUtPleietrengendeMedFnr(page);
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Tidsrom side */
@@ -50,6 +53,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
         .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
         .getByLabel('Nei')
         .check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Arbeidssituasjon */
@@ -83,6 +87,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
         })
         .getByLabel('Nei')
         .check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Jobb i søknadsperioden */
@@ -98,6 +103,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').click();
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').fill('3');
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Minutt').fill('30');
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Medlemsskap */
@@ -110,6 +116,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
         .getByRole('group', { name: 'Planlegger du å bo i utlandet i hele eller deler av de neste 12 månedene?' })
         .getByLabel('Nei')
         .click();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Legeerklæring */
@@ -121,6 +128,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await fileChooser.setFiles('./playwright/files/navlogopng.png');
     const listItems = await page.getByText('navlogopng.png');
     await expect(listItems).toHaveCount(1);
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Oppsummering */
@@ -130,8 +138,10 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
         )
         .check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Send søknad', exact: true }).click();
 
     /** Kvittering */
     await expect(page.getByText('Vi har mottatt søknad om pleiepenger i livets sluttfase')).toBeVisible();
+    await testAccessibility(page);
 });
