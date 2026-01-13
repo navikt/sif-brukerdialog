@@ -5,7 +5,12 @@ import { z } from 'zod';
 export const zProblemDetail = z.object({
     type: z.optional(z.url()),
     title: z.optional(z.string()),
-    status: z.optional(z.int()),
+    status: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     detail: z.optional(z.string()),
     instance: z.optional(z.url()),
     properties: z.optional(z.record(z.string(), z.unknown())),
@@ -48,7 +53,12 @@ export const zUngdomsytelseOppgavebekreftelse = z.object({
 });
 
 export const zOppgittInntekt = z.object({
-    arbeidstakerOgFrilansInntekt: z.optional(z.int()),
+    arbeidstakerOgFrilansInntekt: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
 });
 
 export const zUngdomsytelseInntektsrapportering = z.object({
@@ -282,7 +292,12 @@ export const zUtenlandsoppholdIPerioden = z.object({
 
 export const zVarigEndring = z.object({
     dato: z.optional(z.iso.date()),
-    inntektEtterEndring: z.optional(z.int()),
+    inntektEtterEndring: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     forklaring: z.optional(z.string()),
 });
 
@@ -291,7 +306,12 @@ export const zVirksomhet = z.object({
     tilOgMed: z.optional(z.iso.date()),
     næringstype: z.enum(['FISKE', 'JORDBRUK_SKOGBRUK', 'DAGMAMMA', 'ANNEN']),
     fiskerErPåBladB: z.optional(z.boolean()),
-    næringsinntekt: z.optional(z.int()),
+    næringsinntekt: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     navnPåVirksomheten: z.string(),
     organisasjonsnummer: z.optional(z.string().min(0).max(20)),
     registrertINorge: z.boolean(),
@@ -819,7 +839,12 @@ export const zVirksomhetWritable = z.object({
     tilOgMed: z.optional(z.iso.date()),
     næringstype: z.enum(['FISKE', 'JORDBRUK_SKOGBRUK', 'DAGMAMMA', 'ANNEN']),
     fiskerErPåBladB: z.optional(z.boolean()),
-    næringsinntekt: z.optional(z.int()),
+    næringsinntekt: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     navnPåVirksomheten: z.string(),
     organisasjonsnummer: z.optional(z.string().min(0).max(20)),
     registrertINorge: z.boolean(),
