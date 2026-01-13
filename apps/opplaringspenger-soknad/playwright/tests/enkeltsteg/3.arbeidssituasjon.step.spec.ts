@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
 import { fyllUtArbeidssituasjonStep } from '../../utfylling-utils/3.arbeidssituasjonStep';
 import { routeUtils } from '../../utils/routeUtils';

@@ -1,5 +1,7 @@
 import { expect, Page } from '@playwright/test';
 
+import { testAccessibility } from '../utils/testAccessibility';
+
 export const fyllUtOpplæringEnkeltdag = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om opplæringen' }).isVisible();
     await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).click();
@@ -16,6 +18,7 @@ export const fyllUtOpplæringEnkeltdag = async (page: Page) => {
     await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').fill('4');
     await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').press('Tab');
     await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Minutter').fill('30');
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -35,6 +38,7 @@ export const fyllUtOpplæringFlereEnkeltdager = async (page: Page) => {
     await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').fill('4');
     await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').press('Tab');
     await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Minutter').fill('30');
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Legg til ny dag' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
     await page.getByRole('button', { name: 'onsdag 11' }).click();
@@ -42,6 +46,7 @@ export const fyllUtOpplæringFlereEnkeltdager = async (page: Page) => {
     await page.getByRole('textbox', { name: 'Timer' }).nth(2).fill('2');
     await page.getByRole('textbox', { name: 'Timer' }).nth(3).click();
     await page.getByRole('textbox', { name: 'Timer' }).nth(3).fill('5');
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -56,6 +61,7 @@ export const fyllUtOpplæringEnPeriode = async (page: Page) => {
     await leggTilReisedag(page);
     await leggTilFerie(page);
     await leggTilUtenlandsopphold(page);
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -72,6 +78,7 @@ export const fyllUtOpplæringToPerioder = async (page: Page) => {
     await leggTilReisedag(page);
     await leggTilFerie(page);
     await svarIngenUtenlandsopphold(page);
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -105,6 +112,7 @@ const leggTilReisedag = async (page: Page) => {
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByLabel('Årsak for reisetid').fill('kombinerer med ferie');
     await page.getByLabel('Årsak for reisetid').blur();
+    await testAccessibility(page);
 };
 
 const leggTilFerie = async (page: Page) => {
@@ -126,6 +134,7 @@ const leggTilFerie = async (page: Page) => {
         .click();
 
     await page.getByRole('button', { name: 'torsdag 5' }).click();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Ok' }).click();
 };
 
@@ -154,6 +163,7 @@ export const leggTilUtenlandsopphold = async (page: Page) => {
         .click();
     await page.getByRole('button', { name: 'lørdag 7' }).click();
     await page.getByLabel('Velg land').selectOption('ABW');
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Ok' }).click();
 };
 

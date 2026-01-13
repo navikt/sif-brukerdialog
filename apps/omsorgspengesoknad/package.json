@@ -94,6 +94,7 @@
         "playwright-test": "playwright test",
         "pw:build": "vite build --config vite.playwright.config.ts",
         "pw:start": "vite preview --base / --config vite.playwright.config.ts",
+        "pw:run": "playwright test",
         "storybook": "storybook dev -p 6006",
         "test": "vitest run"
     },

@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
 
 import { SøknadRoutes } from '../../../src/app/søknad/config/SøknadRoutes';
-import { testAccessibility } from '../../../src/app/utils/testAccessibility';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow as setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);

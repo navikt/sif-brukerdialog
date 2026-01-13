@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
-import { testAccessibility } from '../../src/utils/testAccessibility';
 import { MockScenario, setupMockRoutes } from '../utils/setup-mock-routes';
+import { testAccessibility } from '../utils/testAccessibility';
 
 test('Ingen sak, ingen søknad', async ({ page }) => {
     await setupMockRoutes(page, MockScenario.INGEN_SAK_ELLER_SOKNADER);

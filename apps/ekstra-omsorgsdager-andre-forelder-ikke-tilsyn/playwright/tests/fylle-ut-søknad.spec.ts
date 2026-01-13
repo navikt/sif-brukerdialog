@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
 
-import { testAccessibility } from '../../src/app/utils/testAccessibility';
 import { annenForelderMock } from '../mock-data/annenForelderMock';
 import { søkerMock } from '../mock-data/søkerMock';
 import { setupMockApi } from '../utils/setupMockApi';
+import { testAccessibility } from '../utils/testAccessibility';
 
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/velkommen';
