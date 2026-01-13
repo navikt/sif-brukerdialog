@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.81
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
 ## 1.1.80
 
 ### Patch Changes

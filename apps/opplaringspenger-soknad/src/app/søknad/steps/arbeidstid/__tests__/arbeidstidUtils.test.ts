@@ -1,15 +1,16 @@
-import { vi } from 'vitest';
 import { Duration } from '@navikt/sif-common-utils';
+import { vi } from 'vitest';
+
+import { ArbeidsaktivitetType, ArbeidstidFormFields } from '../ArbeidstidStep';
+import { ArbeidIPeriode, JobberIPeriodeSvar } from '../ArbeidstidTypes';
 import {
+    cleanArbeidIPerioder,
     erRedusertArbeidstid,
     getAlleArbeidIPerioder,
-    cleanArbeidIPerioder,
-    harKunValgtJobberSomNormalt,
     getDagerMedArbeidstid,
     harFraværAlleDager,
+    harKunValgtJobberSomNormalt,
 } from '../form-parts/arbeidstidUtils';
-import { JobberIPeriodeSvar, ArbeidIPeriode } from '../ArbeidstidTypes';
-import { ArbeidstidFormFields, ArbeidsaktivitetType } from '../ArbeidstidStep';
 
 vi.mock('@navikt/sif-common-env', () => {
     return {

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { omBarnetMessages_nb } from './nb';
 
 export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, string> = {
@@ -69,4 +70,6 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
         'Du må skildre kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer om.',
     'validation.relasjonTilBarnetBeskrivelse.stringIsTooLong':
         'Du har brukt for mange teikn i skildringa di. Teksten kan ikkje innehalde fleire enn {maks} teikn.',
+    'validation.relasjonTilBarnetBeskrivelse.stringHasInvalidCharacters':
+        'Skildringa av beredskap inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 };

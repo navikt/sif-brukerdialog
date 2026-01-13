@@ -1,4 +1,5 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
 import {
@@ -18,6 +19,7 @@ import {
     ValidateDateError,
 } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import { AppText } from '../../../../../i18n';
 import { OmBarnetFormText as Text, useOmBarnetFormIntl } from '../omBarnetFormMessages';
 import { OmBarnetFormFields, OmBarnetFormValues, RelasjonTilBarnet } from '../types';
@@ -25,7 +27,6 @@ import { ÅrsakBarnetManglerIdentitetsnummer } from '../types/ÅrsakBarnetMangle
 import { getBarnetsAlder, nYearsAgo } from '../utils/omBarnetFormUtils';
 import FødselsattestPart from './FødselsattestPart';
 import InfoForFarVedNyttBarn from './InfoForFarVedNyttBarn';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 interface Props {
     formValues: Partial<OmBarnetFormValues>;
@@ -195,7 +196,11 @@ const AnnetBarnPart = ({
                         }
                         name={OmBarnetFormFields.relasjonTilBarnetBeskrivelse}
                         validate={(value) => {
-                            const error = getStringValidator({ required: true, maxLength: 2000 })(value);
+                            const error = getStringValidator({
+                                required: true,
+                                maxLength: 2000,
+                                disallowInvalidBackendCharacters: true,
+                            })(value);
                             return error
                                 ? {
                                       key: error,

@@ -22,6 +22,13 @@ export const getDate99YearsFromNow = () => dayjs().subtract(99, 'year').startOf(
 export const dateToISODate = (date: Date): ISODate => dayjs(date).format(ISODateFormat);
 
 export const ISODateToDate = (isoDate: ISODate): Date => {
+    if (isoDate.charAt(0) === '0') {
+        // Håndterer hvis verdien er f.eks. 0001; en verdi som indikerer "tidenes morgen" i backend
+        const year = parseInt(isoDate.substring(0, 4), 10);
+        const date = dayjs.utc(isoDate, ISODateFormat).toDate();
+        date.setUTCFullYear(year);
+        return date;
+    }
     return dayjs.utc(isoDate, ISODateFormat).toDate();
 };
 

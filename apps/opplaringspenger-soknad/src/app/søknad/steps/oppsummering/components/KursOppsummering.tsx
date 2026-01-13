@@ -9,13 +9,14 @@ import {
     ISODateToDate,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import {
     FerieuttakIPeriodenApiData,
     KursApiData,
     UtenlandsoppholdIPeriodenApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
-import { EnkeltdagEllerPeriode } from '../../kurs/KursStep';
+import { EnkeltdagEllerPeriode } from '../../kurs/KursStepForm';
 
 interface Props {
     kurs: KursApiData;

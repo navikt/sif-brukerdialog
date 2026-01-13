@@ -1,4 +1,5 @@
 import { Duration, durationToDecimalDuration } from '@navikt/sif-common-utils';
+
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../ArbeidstidStep';
 import { ArbeidIPeriode, JobberIPeriodeSvar } from '../ArbeidstidTypes';
 

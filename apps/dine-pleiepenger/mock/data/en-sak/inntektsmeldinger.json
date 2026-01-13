@@ -3,25 +3,91 @@
         "ytelseType": "PLEIEPENGER_SYKT_BARN",
         "status": "I_BRUK",
         "saksnummer": "100242W",
-        "innsendingstidspunkt": "2025-11-14T16:48:26Z",
-        "kildesystem": "Dolly",
+        "innsendingstidspunkt": "2025-11-21T09:49:04.862",
+        "kildesystem": "NAV_NO",
         "arbeidsgiver": {
-            "organisasjon": { "navn": "SNILL TORPEDO", "organisasjonsnummer": "967170232" },
-            "privat": null
+            "organisasjon": {
+                "navn": "HELDIG SPRUDLENDE TIGER AS",
+                "organisasjonsnummer": "315786940"
+            }
         },
         "nærRelasjon": false,
-        "journalpostId": "454018144",
-        "mottattDato": "2025-11-14",
-        "inntektBeløp": 45000,
+        "journalpostId": "454049214",
+        "mottattDato": "2025-11-21",
+        "inntektBeløp": 50000,
         "innsendingsårsak": "NY",
         "erstattetAv": [],
         "graderinger": [],
-        "naturalYtelser": [],
+        "naturalYtelser": [
+            {
+                "periode": {
+                    "fom": "0001-01-01",
+                    "tom": "2025-11-02"
+                },
+                "beløpPerMnd": 2000,
+                "type": "BIL"
+            },
+            {
+                "periode": {
+                    "fom": "0001-01-01",
+                    "tom": "2025-11-02"
+                },
+                "beløpPerMnd": 300,
+                "type": "ELEKTRISK_KOMMUNIKASJON"
+            },
+            {
+                "periode": {
+                    "fom": "0001-01-01",
+                    "tom": "2025-11-02"
+                },
+                "beløpPerMnd": 500,
+                "type": "FRI_TRANSPORT"
+            },
+            {
+                "periode": {
+                    "fom": "0001-01-01",
+                    "tom": "2025-11-03"
+                },
+                "beløpPerMnd": 1000,
+                "type": "OPSJONER"
+            },
+            {
+                "periode": {
+                    "fom": "2025-11-06",
+                    "tom": "9999-12-31"
+                },
+                "beløpPerMnd": 2000,
+                "type": "BIL"
+            },
+            {
+                "periode": {
+                    "fom": "2025-11-06",
+                    "tom": "9999-12-31"
+                },
+                "beløpPerMnd": 500,
+                "type": "FRI_TRANSPORT"
+            }
+        ],
         "utsettelsePerioder": [],
-        "startDatoPermisjon": "2025-07-01",
+        "startDatoPermisjon": "2025-11-03",
         "oppgittFravær": [],
-        "refusjon": null,
-        "inntektsmeldingType": null,
-        "endringerRefusjon": []
+        "refusjon": {
+            "refusjonBeløpPerMnd": 50000
+        },
+        "inntektsmeldingType": "ORDINÆR",
+        "endringerRefusjon": [
+            {
+                "refusjonBeløpPerMnd": 25000,
+                "fom": "2025-11-04"
+            },
+            {
+                "refusjonBeløpPerMnd": 0,
+                "fom": "2025-11-05"
+            },
+            {
+                "refusjonBeløpPerMnd": 50000,
+                "fom": "2025-11-10"
+            }
+        ]
     }
 ]

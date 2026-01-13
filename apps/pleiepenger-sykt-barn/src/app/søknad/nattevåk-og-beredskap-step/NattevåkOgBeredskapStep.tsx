@@ -91,7 +91,11 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                             </BodyLong>
                                         </Box>
                                     }
-                                    validate={getStringValidator({ required: true, maxLength: 1000 })}
+                                    validate={getStringValidator({
+                                        required: true,
+                                        maxLength: 1000,
+                                        disallowInvalidBackendCharacters: true,
+                                    })}
                                     maxLength={1000}
                                     data-testid="nattevåk-tilleggsinfo"
                                 />
@@ -117,7 +121,11 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                     name={SøknadFormField.harBeredskap_ekstrainfo}
                                     label={<AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm" />}
                                     maxLength={1000}
-                                    validate={getStringValidator({ required: true, maxLength: 1000 })}
+                                    validate={getStringValidator({
+                                        required: true,
+                                        maxLength: 1000,
+                                        disallowInvalidBackendCharacters: true,
+                                    })}
                                     description={
                                         <Box paddingBlock="2">
                                             <BodyLong as="div">

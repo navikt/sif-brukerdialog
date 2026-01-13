@@ -1,6 +1,5 @@
 import { FileIcon } from '@navikt/aksel-icons';
-import { Box, Link, ReadMore, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { Box, HStack, Link, ReadMore, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
 import { FormattedNumber } from 'react-intl';
 
@@ -90,40 +89,30 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                     };
 
                 case Sakshendelser.INNTEKTSMELDING: {
-                    const ersatterAntall = hendelse.erstatter.length;
-
                     return {
                         title: `Inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
                         content: (
                             <Box className="mt-2">
-                                <ReadMore header="Vis mer informasjon">
+                                <ReadMore header="Vis detaljer i inntektsmelding">
                                     <VStack gap="2" marginBlock="0 4">
+                                        <HStack gap="2">
+                                            <strong>Status: </strong>
+                                            <InntektsmeldingStatusTag
+                                                status={hendelse.inntektsmelding.status}
+                                                showIcon={true}
+                                            />
+                                        </HStack>
                                         <div>
-                                            Første dag med perimisjon:{' '}
-                                            {dateFormatter.compact(hendelse.inntektsmelding.startDatoPermisjon)}.{' '}
-                                        </div>
-                                        <div>
-                                            Inntekt:{' '}
+                                            <strong>Beregnet månedsinntekt: </strong>
                                             <FormattedNumber
                                                 value={hendelse.inntektsmelding.inntektBeløp}
                                                 style="currency"
                                                 currency="NOK"
+                                                maximumFractionDigits={2}
+                                                trailingZeroDisplay="stripIfInteger"
                                             />
                                             .
                                         </div>
-                                        <div>
-                                            Status:{' '}
-                                            <InntektsmeldingStatusTag status={hendelse.inntektsmelding.status} />
-                                        </div>
-                                        {ersatterAntall > 0 && (
-                                            <div>
-                                                Erstatter{' '}
-                                                {ersatterAntall === 1
-                                                    ? '1 inntektsmelding'
-                                                    : `${ersatterAntall} inntektsmeldinger`}
-                                                .
-                                            </div>
-                                        )}
                                     </VStack>
                                     <Link
                                         as={NextLink}

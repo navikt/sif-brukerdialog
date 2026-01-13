@@ -1,5 +1,16 @@
 # @navikt/sif-common-ui
 
+## 0.4.88
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.41
+    - @navikt/sif-common-utils@3.49.57
+    - @navikt/sif-common-sentry@0.28.60
+    - @navikt/sif-validation@1.0.18
+
 ## 0.4.87
 
 ### Patch Changes

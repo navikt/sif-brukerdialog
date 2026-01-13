@@ -1,4 +1,5 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+
 import { AppText } from '../../../../../i18n';
 import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
 import FrilansoppdragListe from '../frilansoppdrag-liste/FrilansoppdragListe';
