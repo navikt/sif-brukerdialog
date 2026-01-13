@@ -3,14 +3,14 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Deltaker } from '../../types/Deltaker';
-import SlettDeltakerForm from './SlettDeltakerForm';
+import SlettNyDeltakerForm from '../../forms/slett-ny-deltaker-form/SlettNyDeltakerForm';
 
 interface Props {
     deltaker: Deltaker;
     onCancel: () => void;
 }
 
-const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
+const SlettNyDeltakerModal = ({ deltaker, onCancel }: Props) => {
     const [deltakelseSlettet, setDeltakelseSlettet] = useState(false);
 
     const handleOnDeltakelseSlettet = () => {
@@ -33,7 +33,7 @@ const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
             width="medium">
             <Modal.Header closeButton={true}>
                 <Heading level="1" size="large" id="slett-modal-heading">
-                    Slett deltaker
+                    Slett ny deltaker
                 </Heading>
             </Modal.Header>
             <Modal.Body>
@@ -41,7 +41,7 @@ const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
                     {deltakelseSlettet ? (
                         <Alert variant="success">Deltakeren er slettet.</Alert>
                     ) : (
-                        <SlettDeltakerForm
+                        <SlettNyDeltakerForm
                             deltaker={deltaker}
                             onCancel={onCancel}
                             onDeltakerSlettet={handleOnDeltakelseSlettet}
@@ -60,4 +60,4 @@ const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
     );
 };
 
-export default SlettDeltakerModal;
+export default SlettNyDeltakerModal;

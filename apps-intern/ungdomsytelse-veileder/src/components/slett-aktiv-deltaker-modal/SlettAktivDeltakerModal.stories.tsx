@@ -5,20 +5,20 @@ import { withQueryClientProvider } from '../../../storybook/decorators/withQuery
 import { withRouter } from '../../../storybook/decorators/withRouter';
 import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
 import { registrertDeltakerSchema } from '../../types/Deltaker';
-import SlettDeltakerModal from './SlettDeltakerModal';
+import SlettAktivDeltakerModal from './SlettAktivDeltakerModal';
 
-const meta: Meta<typeof SlettDeltakerModal> = {
-    component: SlettDeltakerModal,
-    title: 'Skjema/Slett deltaker ',
+const meta: Meta<typeof SlettAktivDeltakerModal> = {
+    component: SlettAktivDeltakerModal,
+    title: 'Skjema/Slett aktiv deltaker ',
     parameters: {},
     decorators: [withIntl, withVeilederContext, withQueryClientProvider, withRouter],
 };
 export default meta;
 
-type Story = StoryObj<typeof SlettDeltakerModal>;
+type Story = StoryObj<typeof SlettAktivDeltakerModal>;
 
 export const Default: Story = {
-    name: 'Slett deltaker',
+    name: 'Slett aktiv deltaker',
     args: {
         deltaker: registrertDeltakerSchema.parse(registrertDeltakerMock.deltakerPersonalia),
     },

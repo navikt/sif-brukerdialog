@@ -8,16 +8,20 @@ import DiskresjonskoderTags from '../../../components/diskresjonskode-tag/Diskre
 import { Deltaker } from '../../../types/Deltaker';
 
 interface Props {
+    skjulHeader?: boolean;
+    copyFnrEnabled?: boolean;
     deltaker: Deltaker;
 }
 
-const DeltakerInfo = ({ deltaker }: Props) => {
+const DeltakerInfo = ({ deltaker, skjulHeader, copyFnrEnabled = true }: Props) => {
     const alder = dayjs().diff(dayjs(deltaker.fødselsdato), 'year');
     return (
         <VStack gap="4">
-            <Heading level="2" size="medium">
-                Om Deltaker
-            </Heading>
+            {!skjulHeader && (
+                <Heading level="2" size="medium">
+                    Om Deltaker
+                </Heading>
+            )}
             <InfoBox>
                 {/* <HGrid gap="4" columns={{ sm: 1, md: 'auto 1fr' }}> */}
                 <VStack gap="4">
@@ -26,7 +30,7 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                         <dd>{formatName(deltaker.navn)}</dd>
                         <dt>Fødselsnummer:</dt>
                         <dd>
-                            <Fødselsnummer fnr={deltaker.deltakerIdent} copyEnabled={true} />
+                            <Fødselsnummer fnr={deltaker.deltakerIdent} copyEnabled={copyFnrEnabled} />
                         </dd>
                         <dt>Fødselsdato:</dt>
                         <dd>

@@ -1,15 +1,13 @@
 import { BodyLong, BoxNew, Button, Heading, HGrid, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { Deltakelse } from '../../../types/Deltakelse';
-import SlettAktivDeltakelseModal from '../../../components/slett-aktiv-deltakelse-modal/SlettAktivDeltakelseModal';
 import { Deltaker } from '../../../types/Deltaker';
+import SlettAktivDeltakerModal from '../../../components/slett-aktiv-deltaker-modal/SlettAktivDeltakerModal';
 
 interface Props {
-    deltakelse: Deltakelse;
     deltaker: Deltaker;
 }
 
-const SlettAktivDeltakelse = ({ deltakelse, deltaker }: Props) => {
+const SlettAktivDeltakerInfo = ({ deltaker }: Props) => {
     const [ekspandert, setEkspandert] = useState(false);
     const [visDialog, setVisDialog] = useState(false);
     return (
@@ -37,15 +35,9 @@ const SlettAktivDeltakelse = ({ deltakelse, deltaker }: Props) => {
                     </BoxNew>
                 </HGrid>
             ) : null}
-            {visDialog && (
-                <SlettAktivDeltakelseModal
-                    deltakelse={deltakelse}
-                    deltaker={deltaker}
-                    onClose={() => setVisDialog(false)}
-                />
-            )}
+            {visDialog && <SlettAktivDeltakerModal deltaker={deltaker} onCancel={() => setVisDialog(false)} />}
         </VStack>
     );
 };
 
-export default SlettAktivDeltakelse;
+export default SlettAktivDeltakerInfo;

@@ -1,6 +1,6 @@
 import { BodyShort, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import SlettDeltakerModal from '../../../components/slett-deltaker-modal/SlettDeltakerModal';
+import SlettNyDeltakerModal from '../../../components/slett-ny-deltaker-modal/SlettNyDeltakerModal';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { kanSletteDeltakelse } from '../../../utils/deltakelseUtils';
@@ -10,7 +10,7 @@ interface Props {
     deltakelse: Deltakelse;
 }
 
-const SlettDeltakerInfo = ({ deltakelse, deltaker }: Props) => {
+const SlettNyDeltakerInfo = ({ deltakelse, deltaker }: Props) => {
     const [visSlettDeltakerModal, setVisSlettDeltakerModal] = useState(false);
 
     if (!kanSletteDeltakelse(deltakelse)) {
@@ -21,7 +21,7 @@ const SlettDeltakerInfo = ({ deltakelse, deltaker }: Props) => {
         <VStack gap="4">
             <VStack gap="2">
                 <Heading level="2" size="small">
-                    Slett deltaker
+                    Slett ny deltaker
                 </Heading>
                 <BodyShort>
                     Frem til deltaker har sendt inn søknad, kan du slette deltakeren hvis du har registrert hen ved en
@@ -30,14 +30,14 @@ const SlettDeltakerInfo = ({ deltakelse, deltaker }: Props) => {
             </VStack>
             <Box>
                 <Button variant="secondary" size="small" onClick={() => setVisSlettDeltakerModal(true)}>
-                    Gå til slett deltaker
+                    Gå til slett ny deltaker
                 </Button>
             </Box>
             {visSlettDeltakerModal && (
-                <SlettDeltakerModal deltaker={deltaker} onCancel={() => setVisSlettDeltakerModal(false)} />
+                <SlettNyDeltakerModal deltaker={deltaker} onCancel={() => setVisSlettDeltakerModal(false)} />
             )}
         </VStack>
     );
 };
 
-export default SlettDeltakerInfo;
+export default SlettNyDeltakerInfo;
