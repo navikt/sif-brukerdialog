@@ -12,7 +12,7 @@ const SlettAktivDeltakerInfo = ({ deltaker }: Props) => {
     const [visDialog, setVisDialog] = useState(false);
     return (
         <VStack gap="2">
-            <Switch checked={ekspandert} onChange={(e) => setEkspandert(e.target.checked)}>
+            <Switch checked={ekspandert} onChange={(e) => setEkspandert(e.target.checked)} size="small">
                 Vis unntakshandlinger
             </Switch>
             {ekspandert ? (

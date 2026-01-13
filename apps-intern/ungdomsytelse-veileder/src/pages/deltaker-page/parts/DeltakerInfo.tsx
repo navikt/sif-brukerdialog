@@ -6,6 +6,8 @@ import Fødselsnummer from '../../../atoms/Fødselsnummer';
 import InfoBox from '../../../atoms/InfoBox';
 import DiskresjonskoderTags from '../../../components/diskresjonskode-tag/DiskresjonskoderTags';
 import { Deltaker } from '../../../types/Deltaker';
+import { Features } from '../../../types/Features';
+import SlettAktivDeltakerInfo from './SlettAktivDeltakerInfo';
 
 interface Props {
     skjulHeader?: boolean;
@@ -53,19 +55,8 @@ const DeltakerInfo = ({ deltaker, skjulHeader, copyFnrEnabled = true }: Props) =
                         )}
                     </dl>
                 </VStack>
-                {/* <VStack gap="2">
-                        <Heading size="small" level="3">
-                            Metadata om deltaker (kun for test)
-                        </Heading>
-                        <dl className="ungDefinitionList">
-                            <dt>Første mulige innmeldingsdato:</dt>
-                            <dd>{dateFormatter.compact(deltaker.førsteMuligeInnmeldingsdato)}</dd>
-                            <dt>Siste mulige innmeldingsdato:</dt>
-                            <dd>{dateFormatter.compact(deltaker.sisteMuligeInnmeldingsdato)}</dd>
-                        </dl>
-                    </VStack> */}
-                {/* </HGrid> */}
             </InfoBox>
+            {Features.slettAktivDeltakelse && <SlettAktivDeltakerInfo deltaker={deltaker} />}
         </VStack>
     );
 };
