@@ -16,6 +16,7 @@ interface Props extends Omit<FormikRadioGroupProps<any, any>, 'legend' | 'radios
     registrerteBarn: RegistrertBarn[];
     inkluderAnnetBarn?: boolean;
     annetBarnOptions?: FormikRadioProp;
+    headerLevel?: '2' | '3';
 }
 
 export const VelgBarnFormPart = ({
@@ -23,6 +24,7 @@ export const VelgBarnFormPart = ({
     inkluderAnnetBarn,
     registrerteBarn,
     annetBarnOptions,
+    headerLevel = '3',
     ...restProps
 }: Props) => {
     const { text } = useFormsIntl();
@@ -44,7 +46,7 @@ export const VelgBarnFormPart = ({
         <Box>
             <FormikRadioGroup
                 legend={
-                    <RegistrerteBarnListeHeading level="3" size="xsmall">
+                    <RegistrerteBarnListeHeading level={headerLevel} size="xsmall">
                         {legend || text('@forms.velgBarnFormPart.legend')}
                     </RegistrerteBarnListeHeading>
                 }

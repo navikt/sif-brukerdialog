@@ -48,7 +48,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
         <FormLayout.Questions>
             <Heading level="3" size="medium">
                 <HStack gap="3" align="center">
-                    <Buildings3Icon height="1.8rem" width="1.5rem" />
+                    <Buildings3Icon height="1.8rem" width="1.5rem" role="presentation" />
                     <Box>{arbeidsforhold.arbeidsgiver.navn}</Box>
                 </HStack>
             </Heading>

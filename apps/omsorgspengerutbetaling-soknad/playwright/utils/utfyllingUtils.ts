@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import locale from 'dayjs/locale/nb.js';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 
+import { testAccessibility } from './testAccessibility';
+
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
@@ -34,6 +36,7 @@ const startSøknad = async (page: Page) => {
     await page.goto(startUrl);
     await page.getByText('Velkommen til søknad om omsorgspenger');
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').check();
+    await testAccessibility(page);
     await page.getByRole('button').getByText('Start søknad').click();
 };
 
@@ -41,6 +44,7 @@ const fyllUtOmBarnfyllUtOmBarnToUnder13år = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om barn' });
     await page.getByRole('group', { name: 'Har du fått ekstra omsorgsdager for et barn' }).getByLabel('Ja').click();
     await page.getByRole('group', { name: 'Har du dekket de 10 første omsorgsdagene i år?' }).getByLabel('Ja').click();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -57,6 +61,7 @@ const fyllUtFraværSteg = async (page: Page) => {
     await page.getByLabel('Til og med').fill(tilDato);
     await page.getByLabel('Til og med').press('Tab');
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).press('Tab');
+    await testAccessibility(page);
     await page.getByLabel('Dager med fullt fravær fra jobb').getByTestId('typedFormikForm-submitButton').click();
 
     /** Dager med delvis fravær */
@@ -67,6 +72,7 @@ const fyllUtFraværSteg = async (page: Page) => {
     await page.getByLabel('Antall timer du skulle ha jobbet denne dagen').selectOption('7.5');
     await page.getByText('Antall timer du var borte fra jobb denne dagen').click();
     await page.getByLabel('Antall timer du var borte fra jobb denne dagen').selectOption('3');
+    await testAccessibility(page);
     await page.getByLabel('Dag med delvis fravær fra jobb').getByTestId('typedFormikForm-submitButton').click();
 
     /** Perioder i utlandet */
@@ -78,8 +84,10 @@ const fyllUtFraværSteg = async (page: Page) => {
     await page.getByLabel('Til og med').fill(tomDatoIUtlandet);
     await page.getByLabel('Til og med').press('Tab');
     await page.getByLabel('Velg land').selectOption('BHR');
+    await testAccessibility(page);
     await page.getByLabel('Utenlandsopphold').getByTestId('typedFormikForm-submitButton').click();
 
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -92,6 +100,7 @@ const lastOppLegeerklæring = async (page: Page) => {
     await fileChooser.setFiles('./playwright/files/navlogopng.png');
     const listItems = await page.getByText('navlogopng.png');
     await expect(listItems).toHaveCount(1);
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -119,6 +128,7 @@ const fyllUtVirksomhetDialog = async (page: Page) => {
         )
         .fill(virksomhet.varigEndringINæringsinntekt_forklaring);
     await page.getByRole('group', { name: 'Har du regnskapsfører?' }).getByLabel('Nei').check();
+    await testAccessibility(page);
     await page
         .getByLabel('Opplysninger om den eldste virksomheten din')
         .getByTestId('typedFormikForm-submitButton')
@@ -136,6 +146,7 @@ const fyllerUtArbeidssituasjonSteg = async (page: Page) => {
     await page.getByTestId('selvstendig_harFlereVirksomheter_yes').check();
     await page.getByRole('button', { name: 'Registrer virksomhet' }).click();
     await fyllUtVirksomhetDialog(page);
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -161,6 +172,7 @@ const fyllerUtFraværFraSteg = async (page: Page) => {
             await page.locator('form fieldset').locator(`nth=${i}`).getByText('Frilanser', { exact: true }).click();
         }
     }
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -168,17 +180,20 @@ const fyllUtMedlemsskap = async (page: Page) => {
     await page.getByRole('heading', { name: 'Medlemskap i folketrygden' });
     await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
     await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
 const sendInnSøknad = async (page: Page) => {
     await page.getByRole('heading', { name: 'Oppsummering' });
     await page.getByTestId('bekreft-label').click();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 const kontrollerKvittering = async (page: Page) => {
     await page.waitForURL('**/soknad_sendt');
     await page.getByRole('heading', { name: 'Vi har mottatt søknad om utbetaling av omsorgspenger' });
+    await testAccessibility(page);
 };
 
 export const utfyllingUtils = {

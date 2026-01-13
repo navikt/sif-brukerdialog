@@ -1,5 +1,7 @@
 import { expect, Page } from '@playwright/test';
 
+import { testAccessibility } from '../utils/testAccessibility';
+
 export const fyllUtMedlemskap = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Medlemskap' })).toBeVisible();
     await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Ja').check();
@@ -22,6 +24,7 @@ export const fyllUtMedlemskap = async (page: Page) => {
     await page.getByLabel('Velg land').selectOption('BHS');
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByRole('group', { name: 'Planlegger du' }).getByLabel('Nei').check();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 

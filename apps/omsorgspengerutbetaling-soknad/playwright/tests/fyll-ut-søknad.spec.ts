@@ -29,6 +29,7 @@ test.describe('Fyller ut søknad', () => {
             await route.fulfill({ status: 200 });
         });
         await page.route('*', async (route) => {
+            // eslint-disable-next-line no-console
             console.log(route);
             await route.fulfill({ status: 200 });
         });

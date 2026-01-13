@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -20,6 +21,7 @@ test.afterEach(async ({ page }) => {
 test.describe('Barn steg', () => {
     test('Registrert barn', async ({ page }) => {
         await page.getByLabel('ALFABETISK FAGGOTTFødt').check();
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Annet barn - utlandet', async ({ page }) => {
@@ -42,6 +44,7 @@ test.describe('Barn steg', () => {
         const listItems = await page.getByText('navlogopng.png');
         await expect(listItems).toHaveCount(1);
 
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Annet barn', async ({ page }) => {
@@ -52,6 +55,7 @@ test.describe('Barn steg', () => {
         await page.getByLabel('Barnets navn').fill('Tore');
         await page.getByLabel('Barnets navn').press('Tab');
         await page.getByLabel('Mor', { exact: true }).check();
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
 });
