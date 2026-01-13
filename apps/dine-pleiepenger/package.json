@@ -12,6 +12,7 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
+        "pw:run": "playwright test",
         "start": "next start -p 8080",
         "storybook": "storybook dev -p 6006",
         "test": "vitest run",

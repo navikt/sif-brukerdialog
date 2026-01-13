@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { SøknadRoutes } from '../../../src/app/søknad/config/SøknadRoutes';
+import { testAccessibility } from '../../../src/app/utils/testAccessibility';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 
@@ -23,9 +24,11 @@ test('test', async ({ page }) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByTestId('aktivitet_a_947064649').getByRole('button', { name: 'Vis mer' }).click();
+    await testAccessibility(page);
     await page.getByTestId('aktivitet_a_947064649').getByTestId('uke_44').getByTestId('endre-button').click();
     await page.getByTestId('prosent-verdi').click();
     await page.getByTestId('prosent-verdi').fill('50');
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('aktivitet_a_947064640').getByRole('button', { name: 'Vis mer' }).click();
     await page.getByTestId('dateRangeAccordion_1_header').click();
@@ -38,6 +41,7 @@ test('test', async ({ page }) => {
     await page.getByTestId('toggle-timer').click();
     await page.getByTestId('timer-verdi').click();
     await page.getByTestId('timer-verdi').fill('2');
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Ok', exact: true }).click();
     await page.getByTestId('aktivitet_frilanser').getByRole('button', { name: 'Vis mer' }).click();
     await page.getByRole('radio', { name: 'Ja' }).check();
@@ -47,6 +51,7 @@ test('test', async ({ page }) => {
     await page.getByTestId('timer-verdi').click();
     await page.getByTestId('timer-verdi').fill('2');
     await page.getByRole('button', { name: 'Ok', exact: true }).click();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     await expect(page.getByTestId('uke_44').getByTestId('arbeidstid-faktisk')).toContainText(
@@ -61,8 +66,10 @@ test('test', async ({ page }) => {
     await expect(page.getByTestId('uke_7').getByTestId('arbeidstid-faktisk')).toContainText(
         '2 t. 0 m.Endret fra 15 t. 0 m.',
     );
+    await testAccessibility(page);
     await expect(page.getByText('Det er ikke registrert noen')).toBeVisible();
     await page.getByText('Jeg bekrefter at').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();
+    await testAccessibility(page);
 });

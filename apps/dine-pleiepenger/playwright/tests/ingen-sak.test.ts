@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 
+import { testAccessibility } from '../../src/utils/testAccessibility';
 import { MockScenario, setupMockRoutes } from '../utils/setup-mock-routes';
 
 test('Ingen sak, ingen søknad', async ({ page }) => {
@@ -8,6 +9,7 @@ test('Ingen sak, ingen søknad', async ({ page }) => {
     await page.goto('http://localhost:8080/innsyn');
     await expect(page.getByRole('heading', { level: 1, name: 'Dine pleiepenger for sykt barn' })).toBeVisible();
     await expect(page.getByText('Vi finner ingen sak om pleiepenger for sykt barn')).toBeVisible();
+    await testAccessibility(page);
 });
 
 test('Ingen sak, men søknader', async ({ page }) => {
@@ -16,6 +18,7 @@ test('Ingen sak, men søknader', async ({ page }) => {
     await page.goto('http://localhost:8080/innsyn');
     await expect(page.getByRole('heading', { level: 1, name: 'Dine pleiepenger for sykt barn' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Dine søknader, endringer og' })).toBeVisible();
+    await testAccessibility(page);
 
     await page
         .getByLabel('Søknad om pleiepenger sykt barnMottatt: tirsdag 16. september 2025, kl. 11:')
@@ -25,4 +28,5 @@ test('Ingen sak, men søknader', async ({ page }) => {
     await expect(page.getByRole('link', { name: 'Dokumentikon Søknad om' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Søknad og eventuelle vedlegg' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Dokumentikon Bekreftelse til' })).toBeVisible();
+    await testAccessibility(page);
 });
