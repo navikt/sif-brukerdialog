@@ -5,6 +5,8 @@ import DeltakelseHistorikk from './DeltakelseHistorikk';
 import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
 import DeltakerInfo from './DeltakerInfo';
 import SlettNyDeltakerInfo from './SlettNyDeltakerInfo';
+import { Features } from '../../../types/Features';
+import SlettAktivDeltakerInfo from './SlettAktivDeltakerInfo';
 
 interface Props {
     deltaker: Deltaker;
@@ -38,7 +40,12 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                     </HStack>
                 ) : null}
 
-                <DeltakerInfo deltaker={deltaker} />
+                <VStack gap="4">
+                    <DeltakerInfo deltaker={deltaker} />
+                    {Features.slettAktivDeltakelse && (
+                        <SlettAktivDeltakerInfo deltaker={deltaker} deltakelse={deltakelse} />
+                    )}
+                </VStack>
 
                 <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
 

@@ -6,8 +6,6 @@ import Fødselsnummer from '../../../atoms/Fødselsnummer';
 import InfoBox from '../../../atoms/InfoBox';
 import DiskresjonskoderTags from '../../../components/diskresjonskode-tag/DiskresjonskoderTags';
 import { Deltaker } from '../../../types/Deltaker';
-import { Features } from '../../../types/Features';
-import SlettAktivDeltakerInfo from './SlettAktivDeltakerInfo';
 
 interface Props {
     skjulHeader?: boolean;
@@ -56,7 +54,6 @@ const DeltakerInfo = ({ deltaker, skjulHeader, copyFnrEnabled = true }: Props) =
                     </dl>
                 </VStack>
             </InfoBox>
-            {Features.slettAktivDeltakelse && <SlettAktivDeltakerInfo deltaker={deltaker} />}
         </VStack>
     );
 };

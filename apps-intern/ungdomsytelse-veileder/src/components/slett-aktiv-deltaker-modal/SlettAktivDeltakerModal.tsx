@@ -4,13 +4,15 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Deltaker } from '../../types/Deltaker';
 import SlettAktivDeltakerForm from '../../forms/slett-aktiv-deltaker-form/SlettAktivDeltakerForm';
+import { Deltakelse } from '../../types/Deltakelse';
 
 interface Props {
     deltaker: Deltaker;
+    deltakelse: Deltakelse;
     onCancel: () => void;
 }
 
-const SlettAktivDeltakerModal = ({ deltaker, onCancel }: Props) => {
+const SlettAktivDeltakerModal = ({ deltaker, deltakelse, onCancel }: Props) => {
     const [deltakelseSlettet, setDeltakelseSlettet] = useState(false);
 
     const handleOnDeltakelseSlettet = () => {
@@ -43,6 +45,7 @@ const SlettAktivDeltakerModal = ({ deltaker, onCancel }: Props) => {
                     ) : (
                         <SlettAktivDeltakerForm
                             deltaker={deltaker}
+                            deltakelse={deltakelse}
                             onCancel={onCancel}
                             onDeltakerSlettet={handleOnDeltakelseSlettet}
                         />

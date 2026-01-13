@@ -1,16 +1,19 @@
-import { BodyLong, Button, Checkbox, Fieldset, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Checkbox, Fieldset, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { useSlettDeltaker } from '../../hooks/useSlettDeltaker';
 import { Deltaker } from '../../types/Deltaker';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
-import DeltakerInfo from '../../pages/deltaker-page/parts/DeltakerInfo';
 import BorderBox from '../../atoms/BorderBox';
 import { fødselsnummerFormatter } from '../../utils/formaterFødselsnummer';
 import { useTextFieldFormatter } from '../../hooks/useTextFieldFormatter';
+import Fødselsnummer from '../../atoms/Fødselsnummer';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { Deltakelse } from '../../types/Deltakelse';
 
 interface Props {
     deltaker: Deltaker;
+    deltakelse: Deltakelse;
     onCancel: () => void;
     onDeltakerSlettet: () => void;
 }
@@ -20,7 +23,7 @@ type Validations = {
     bekreftelse?: string;
 };
 
-const SlettAktivDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => {
+const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakerSlettet }: Props) => {
     const { error, isPending, mutate } = useSlettDeltaker(deltaker.id);
     const [validationError, setValidationError] = useState<Validations | undefined>(undefined);
     const [bekrefter, setBekrefter] = useState<boolean>(false);
@@ -51,27 +54,37 @@ const SlettAktivDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props
         <VStack gap="4">
             <BodyLong>
                 Informasjon før skjema for sletting. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-                architecto fugiat dolores iusto deserunt odio blanditiis eligendi unde, odit suscipit perspiciatis
-                tempora voluptate nobis sed quam, atque aperiam. Beatae, laboriosam!
+                architecto fugiat dolores iusto deserunt odio blanditiis.
             </BodyLong>
-
-            <VStack gap="4">
-                <Heading level="2" size="small">
-                    Deltaker
-                </Heading>
-                <DeltakerInfo deltaker={deltaker} skjulHeader={true} copyFnrEnabled={false} />
-            </VStack>
 
             <form onSubmit={handleSubmit}>
                 <VStack gap="4">
                     <BorderBox className="p-6 items-center w-full">
                         <VStack gap="4">
                             <Heading level="2" size="small">
-                                Skjema for slett deltaker
+                                Deltaker som skal slettes
                             </Heading>
+
+                            <Box marginBlock="0 4">
+                                <dl className="ungDefinitionList">
+                                    <dt>Navn:</dt>
+                                    <dd>{formatName(deltaker.navn)}</dd>
+                                    <dt>Fødselsdato:</dt>
+                                    <dd>{dateFormatter.compact(deltaker.fødselsdato)}</dd>
+                                    <dt>Fødselsnummer:</dt>
+                                    <dd>
+                                        <Fødselsnummer fnr={deltaker.deltakerIdent} copyEnabled={false} />
+                                    </dd>
+                                    <dt>Startdato:</dt>
+                                    <dd>{dateFormatter.compact(deltakelse.fraOgMed)}</dd>
+                                    <dt>Sluttdato:</dt>
+                                    <dd>{deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}</dd>
+                                </dl>
+                            </Box>
+
                             <TextField
                                 name="bekreft-fodselsnummer"
-                                label="Fødselsnummer/d-nummer:"
+                                label="Skriv inn deltakers fødselsnummer for å verifisere deltaker som skal slettes"
                                 autoComplete="off"
                                 onChange={(evt) => {
                                     setFnrValue(evt.target.value);
@@ -82,9 +95,9 @@ const SlettAktivDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props
                                 htmlSize={15}
                                 width="10rem"
                                 error={validationError?.fnr}
-                                description="Skriv inn deltakers fødselsnummer for å bekrefte slettingen"
                                 {...textFieldFormatterProps}
                             />
+
                             <Fieldset
                                 error={validationError?.bekreftelse}
                                 legend="Skjema for å slette deltaker"
@@ -98,17 +111,18 @@ const SlettAktivDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props
                                     Jeg bekrefter at {formatName(deltaker.navn)} skal slettes som deltaker
                                 </Checkbox>
                             </Fieldset>
+
+                            <HStack gap="4">
+                                <Button type="submit" variant="primary" loading={isPending}>
+                                    Slett deltaker
+                                </Button>
+                                <Button type="button" variant="secondary" onClick={onCancel}>
+                                    Avbryt
+                                </Button>
+                            </HStack>
+                            {error ? <ApiErrorAlert error={error} /> : null}
                         </VStack>
                     </BorderBox>
-                    <HStack gap="4">
-                        <Button type="submit" variant="primary" loading={isPending}>
-                            Slett deltaker
-                        </Button>
-                        <Button type="button" variant="secondary" onClick={onCancel}>
-                            Avbryt
-                        </Button>
-                    </HStack>
-                    {error ? <ApiErrorAlert error={error} /> : null}
                 </VStack>
             </form>
         </VStack>
