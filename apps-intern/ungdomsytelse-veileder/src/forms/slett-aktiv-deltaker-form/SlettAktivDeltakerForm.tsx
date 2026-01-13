@@ -1,4 +1,15 @@
-import { BodyLong, Box, Button, Checkbox, Fieldset, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
+import {
+    BodyLong,
+    Box,
+    Button,
+    Checkbox,
+    Fieldset,
+    Heading,
+    HStack,
+    InfoCard,
+    TextField,
+    VStack,
+} from '@navikt/ds-react';
 import { useState } from 'react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { useSlettDeltaker } from '../../hooks/useSlettDeltaker';
@@ -57,6 +68,15 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakerSlet
                 architecto fugiat dolores iusto deserunt odio blanditiis.
             </BodyLong>
 
+            <InfoCard data-color="warning">
+                <InfoCard.Header>
+                    <InfoCard.Title>Sjekkliste</InfoCard.Title>
+                </InfoCard.Header>
+                <InfoCard.Content>
+                    Vil det være hensiktsmessig med en sjekkliste som veileder må krysse av for at skjemaet under skal
+                    dukke opp?
+                </InfoCard.Content>
+            </InfoCard>
             <form onSubmit={handleSubmit}>
                 <VStack gap="4">
                     <BorderBox className="p-6 items-center w-full">
