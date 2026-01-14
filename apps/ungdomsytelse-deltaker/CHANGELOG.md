@@ -1,5 +1,47 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.35
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.49
+    - @navikt/sif-common-forms-ds@21.0.51
+    - @navikt/sif-common-soknad-ds@26.1.33
+    - @navikt/sif-common-ui@0.11.50
+
+## 1.5.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.9
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.7
+    - @navikt/sif-common-soknad-ds@26.1.32
+    - @navikt/sif-common-forms-ds@21.0.50
+    - @navikt/sif-common-core-ds@10.3.48
+    - @navikt/sif-common-api@0.4.88
+    - @navikt/sif-common-ui@0.11.49
+    - @navikt/ung-common@0.0.90
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.4
+    - @navikt/sif-common-faro@0.2.10
+
+## 1.5.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.1.31
+    - @navikt/sif-common-forms-ds@21.0.49
+    - @navikt/sif-common-core-ds@10.3.47
+    - @navikt/sif-common-api@0.4.87
+    - @navikt/sif-common-ui@0.11.48
+    - @navikt/ung-common@0.0.89
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.8
+
 ## 1.5.32
 
 ### Patch Changes

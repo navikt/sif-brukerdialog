@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { setNow } from '../utils/setNow';
 import { setupMockApi } from '../utils/setupMockApi';
+import { testAccessibility } from '../utils/testAccessibility';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/velkommen';
 
@@ -16,19 +17,23 @@ test('Fyll ut enkel søknad', async ({ page }) => {
     /** Velkommen side */
     await page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' });
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
     await page.getByRole('heading', { level: 1, name: 'Om aleneomsorg for barn' });
     await page.getByLabel('Mock Mocknes').check();
     await page.getByLabel('Nei').check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg' }).click();
 
     await page.getByRole('heading', { level: 1, name: 'Tidspunkt for aleneomsorg' });
     await page.getByLabel('I 2021 eller tidligere').check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg' }).click();
 
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
+    await testAccessibility(page);
     await page.getByLabel('Jeg bekrefter').check();
 
     await page.getByRole('button', { name: 'Send søknad', exact: true }).click();
@@ -42,4 +47,5 @@ test('Fyll ut enkel søknad', async ({ page }) => {
             })
             .isVisible(),
     ).toBeTruthy();
+    await testAccessibility(page);
 });

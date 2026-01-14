@@ -85,22 +85,20 @@ export type Fosterhjemgodtgjørelse = {
     mottarFosterhjemsgodtgjørelse: boolean;
 };
 
-export type FosterhjemsgodtgjørelseFrikjøpt = Fosterhjemgodtgjørelse & {
-    type: 'FosterhjemsgodtgjørelseFrikjøpt';
-} & {
+export type FosterhjemsgodtgjørelseFrikjøpt = Omit<Fosterhjemgodtgjørelse, 'type'> & {
     erFrikjøptFraJobb: boolean;
     frikjøptBeskrivelse: string;
+    type: 'FosterhjemsgodtgjørelseFrikjøpt';
 };
 
-export type FosterhjemsgodtgjørelseIkkeFrikjøpt = Fosterhjemgodtgjørelse & {
-    type: 'FosterhjemsgodtgjørelseIkkeFrikjøpt';
-} & {
+export type FosterhjemsgodtgjørelseIkkeFrikjøpt = Omit<Fosterhjemgodtgjørelse, 'type'> & {
     erFrikjøptFraJobb: boolean;
     startdato?: string;
     sluttdato?: string;
+    type: 'FosterhjemsgodtgjørelseIkkeFrikjøpt';
 };
 
-export type FosterhjemsgodtgjørelseMottarIkke = Fosterhjemgodtgjørelse & {
+export type FosterhjemsgodtgjørelseMottarIkke = Omit<Fosterhjemgodtgjørelse, 'type'> & {
     type: 'FosterhjemsgodtgjørelseMottarIkke';
 };
 
@@ -141,21 +139,19 @@ export type Omsorgsstønad = {
     mottarOmsorgsstønad: boolean;
 };
 
-export type OmsorgsstønadMottarDelerAvPerioden = Omsorgsstønad & {
-    type: 'OmsorgsstønadMottarDelerAvPerioden';
-} & {
+export type OmsorgsstønadMottarDelerAvPerioden = Omit<Omsorgsstønad, 'type'> & {
     startdato?: string;
     sluttdato?: string;
     antallTimerIUken: string;
+    type: 'OmsorgsstønadMottarDelerAvPerioden';
 };
 
-export type OmsorgsstønadMottarHelePerioden = Omsorgsstønad & {
-    type: 'OmsorgsstønadMottarHelePerioden';
-} & {
+export type OmsorgsstønadMottarHelePerioden = Omit<Omsorgsstønad, 'type'> & {
     antallTimerIUken: string;
+    type: 'OmsorgsstønadMottarHelePerioden';
 };
 
-export type OmsorgsstønadMottarIkke = Omsorgsstønad & {
+export type OmsorgsstønadMottarIkke = Omit<Omsorgsstønad, 'type'> & {
     type: 'OmsorgsstønadMottarIkke';
 };
 

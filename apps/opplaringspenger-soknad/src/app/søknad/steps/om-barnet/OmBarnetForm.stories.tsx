@@ -1,7 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';

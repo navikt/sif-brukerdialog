@@ -5,6 +5,7 @@ import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/form
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { useAppIntl } from '../../../../i18n';
 import { ArbeidssituasjonFormFields } from '../ArbeidssituasjonStep';
 

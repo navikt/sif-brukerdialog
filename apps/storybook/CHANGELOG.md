@@ -1,5 +1,33 @@
 # @navikt/sif-common-ui
 
+## 0.0.94
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.49
+
+## 0.0.93
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.41
+    - @navikt/sif-common-core-ds@10.3.48
+    - @navikt/sif-common-utils@3.49.57
+    - @navikt/sif-validation@1.0.18
+
+## 0.0.92
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.40
+    - @navikt/sif-common-core-ds@10.3.47
+    - @navikt/sif-common-utils@3.49.56
+
 ## 0.0.91
 
 ### Patch Changes

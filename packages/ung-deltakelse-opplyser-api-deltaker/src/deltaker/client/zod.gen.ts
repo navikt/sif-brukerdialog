@@ -5,14 +5,22 @@ import { z } from 'zod';
 export const zProblemDetail = z.object({
     type: z.optional(z.url()),
     title: z.optional(z.string()),
-    status: z.optional(z.int()),
+    status: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     detail: z.optional(z.string()),
     instance: z.optional(z.url()),
     properties: z.optional(z.record(z.string(), z.unknown())),
 });
 
 export const zArbeidOgFrilansRegisterInntektDto = z.object({
-    inntekt: z.int(),
+    inntekt: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
     arbeidsgiver: z.string(),
     arbeidsgiverNavn: z.optional(z.string()),
 });
@@ -106,22 +114,35 @@ export const zSøkYtelseOppgavetypeDataDto = zOppgavetypeDataDto.and(
 export const zYtelseType = z.enum([
     'SYKEPENGER',
     'OMSORGSPENGER',
+    'PLEIEPENGER',
     'PLEIEPENGER_SYKT_BARN',
     'PLEIEPENGER_LIVETS_SLUTTFASE',
     'OPPLAERINGSPENGER',
 ]);
 
 export const zYtelseRegisterInntektDto = z.object({
-    inntekt: z.int(),
+    inntekt: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
     ytelsetype: zYtelseType,
 });
 
 export const zRegisterinntektDto = z.object({
     arbeidOgFrilansInntekter: z.array(zArbeidOgFrilansRegisterInntektDto),
     ytelseInntekter: z.array(zYtelseRegisterInntektDto),
-    totalInntektArbeidOgFrilans: z.int(),
-    totalInntektYtelse: z.int(),
-    totalInntekt: z.int(),
+    totalInntektArbeidOgFrilans: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    totalInntektYtelse: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    totalInntekt: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
 });
 
 export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.and(

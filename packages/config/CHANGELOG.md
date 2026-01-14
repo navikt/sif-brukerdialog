@@ -1,5 +1,11 @@
 # config
 
+## 0.11.52
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
 ## 0.11.51
 
 ### Patch Changes

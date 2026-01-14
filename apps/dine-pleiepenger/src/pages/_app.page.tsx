@@ -92,7 +92,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
                     ) : (
                         <main>
                             {data.appStatus?.message && (
-                                <div className="max-w-[1128px] mx-auto p-5 mb-5">
+                                <div className="max-w-282 mx-auto p-5 mb-5">
                                     <StatusMessage message={data.appStatus.message} />
                                 </div>
                             )}

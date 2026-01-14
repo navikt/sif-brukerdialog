@@ -5,7 +5,12 @@ import { z } from 'zod';
 export const zProblemDetail = z.object({
     type: z.optional(z.url()),
     title: z.optional(z.string()),
-    status: z.optional(z.int()),
+    status: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     detail: z.optional(z.string()),
     instance: z.optional(z.url()),
     properties: z.optional(z.record(z.string(), z.unknown())),
@@ -44,7 +49,12 @@ export const zUngdomsytelseOppgavebekreftelse = z.object({
 });
 
 export const zOppgittInntekt = z.object({
-    arbeidstakerOgFrilansInntekt: z.optional(z.int()),
+    arbeidstakerOgFrilansInntekt: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
 });
 
 export const zUngdomsytelseInntektsrapportering = z.object({

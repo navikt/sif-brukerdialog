@@ -56,4 +56,49 @@ describe(`validateString`, () => {
             );
         });
     });
+    describe('disallowInvalidBackendCharacters validation', () => {
+        it(`returns undefined for valid text with letters`, () => {
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('Hei på deg')).toBeUndefined();
+        });
+        it(`returns undefined for valid text with numbers`, () => {
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('Test 123')).toBeUndefined();
+        });
+        it(`returns undefined for valid text with punctuation`, () => {
+            expect(
+                getStringValidator({ disallowInvalidBackendCharacters: true })('Hei, dette er en test!'),
+            ).toBeUndefined();
+        });
+        it(`returns undefined for valid text with special norwegian characters`, () => {
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('Blåbærsyltetøy')).toBeUndefined();
+        });
+        it(`returns undefined for valid text with hyphen and apostrophe`, () => {
+            expect(
+                getStringValidator({ disallowInvalidBackendCharacters: true })("Anne-Marie O'Brien"),
+            ).toBeUndefined();
+        });
+        it(`returns undefined for text with newlines (textarea support)`, () => {
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('Linje1\nLinje2')).toBeUndefined();
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('Linje1\r\nLinje2')).toBeUndefined();
+        });
+        it(`returns ${ValidateStringError.stringHasInvalidCharacters} for text with emoji`, () => {
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('Hei 👋')).toBe(
+                ValidateStringError.stringHasInvalidCharacters,
+            );
+        });
+        it(`returns ${ValidateStringError.stringHasInvalidCharacters} for text with tab`, () => {
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('Tekst\tmed\ttab')).toBe(
+                ValidateStringError.stringHasInvalidCharacters,
+            );
+        });
+        it(`returns ${ValidateStringError.stringHasInvalidCharacters} for text with special control characters`, () => {
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('Tekst\x00med\x1Fkontroll')).toBe(
+                ValidateStringError.stringHasInvalidCharacters,
+            );
+        });
+        it(`returns ${ValidateStringError.stringHasInvalidCharacters} for text with @`, () => {
+            expect(getStringValidator({ disallowInvalidBackendCharacters: true })('test@example.com')).toBe(
+                ValidateStringError.stringHasInvalidCharacters,
+            );
+        });
+    });
 });

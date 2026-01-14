@@ -1,18 +1,19 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { getInnsendingService, InnsendingType, Søker } from '@navikt/sif-common-api';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { mellomlagringService } from '../api/mellomlagringService';
 import { useAppIntl } from '../i18n';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
+import { EnkeltdagEllerPeriode } from '../søknad/steps/kurs/KursStepForm';
 import { KvitteringInfo } from '../types/KvitteringInfo';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
-import { EnkeltdagEllerPeriode } from '../søknad/steps/kurs/KursStep';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();

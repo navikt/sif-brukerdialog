@@ -1,5 +1,20 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.88
+
+## 0.3.8
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.87
+
 ## 0.3.7
 
 ### Patch Changes

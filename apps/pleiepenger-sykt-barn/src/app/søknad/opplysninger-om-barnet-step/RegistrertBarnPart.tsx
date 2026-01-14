@@ -44,6 +44,7 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
             <VelgBarnFormPart
                 name={SøknadFormField.barnetSøknadenGjelder}
                 legend={text('steg.omBarnet.hvilketBarn.spm')}
+                headerLevel="2"
                 registrerteBarn={søkersBarn}
                 validate={getRequiredFieldValidator()}
                 inkluderAnnetBarn={true}

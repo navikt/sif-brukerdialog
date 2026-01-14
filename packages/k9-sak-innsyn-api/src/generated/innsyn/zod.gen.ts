@@ -5,7 +5,12 @@ import { z } from 'zod';
 export const zProblemDetail = z.object({
     type: z.optional(z.url()),
     title: z.optional(z.string()),
-    status: z.optional(z.int()),
+    status: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     detail: z.optional(z.string()),
     instance: z.optional(z.url()),
     properties: z.optional(z.record(z.string(), z.unknown())),
@@ -284,156 +289,116 @@ export const zYtelse = z.object({
     type: z.string(),
 });
 
-export const zOmsorgspengerAleneOmsorg = zYtelse
-    .and(
-        z.object({
-            type: z.literal('OmsorgspengerAleneOmsorg'),
-        }),
-    )
-    .and(
-        z.object({
-            barn: zBarn,
-            periode: z.string(),
-            dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
-        }),
-    );
+export const zOmsorgspengerAleneOmsorg = zYtelse.and(
+    z.object({
+        barn: zBarn,
+        periode: z.string(),
+        dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
+        type: z.literal('OmsorgspengerAleneOmsorg'),
+    }),
+);
 
-export const zOmsorgspengerKroniskSyktBarn = zYtelse
-    .and(
-        z.object({
-            type: z.literal('OmsorgspengerKroniskSyktBarn'),
-        }),
-    )
-    .and(
-        z.object({
-            barn: zBarn,
-            kroniskEllerFunksjonshemming: z.boolean(),
-            høyereRisikoForFravær: z.optional(z.boolean()),
-            høyereRisikoForFraværBeskrivelse: z.optional(z.string().min(1).max(1000)),
-            dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
-        }),
-    );
+export const zOmsorgspengerKroniskSyktBarn = zYtelse.and(
+    z.object({
+        barn: zBarn,
+        kroniskEllerFunksjonshemming: z.boolean(),
+        høyereRisikoForFravær: z.optional(z.boolean()),
+        høyereRisikoForFraværBeskrivelse: z.optional(z.string().min(1).max(1000)),
+        dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
+        type: z.literal('OmsorgspengerKroniskSyktBarn'),
+    }),
+);
 
-export const zOmsorgspengerMidlertidigAlene = zYtelse
-    .and(
-        z.object({
-            type: z.literal('OmsorgspengerMidlertidigAlene'),
-        }),
-    )
-    .and(
-        z.object({
-            barn: z.array(zBarn),
-            annenForelder: zAnnenForelder,
-            begrunnelse: z.optional(z.string().min(0).max(30000)),
-            dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
-        }),
-    );
+export const zOmsorgspengerMidlertidigAlene = zYtelse.and(
+    z.object({
+        barn: z.array(zBarn),
+        annenForelder: zAnnenForelder,
+        begrunnelse: z.optional(z.string().min(0).max(30000)),
+        dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
+        type: z.literal('OmsorgspengerMidlertidigAlene'),
+    }),
+);
 
-export const zOmsorgspengerUtbetaling = zYtelse
-    .and(
-        z.object({
-            type: z.literal('OmsorgspengerUtbetaling'),
-        }),
-    )
-    .and(
-        z.object({
-            fosterbarn: z.optional(z.array(zBarn)),
-            aktivitet: z.optional(zOpptjeningAktivitet),
-            fraværsperioder: z.optional(z.array(zFraværPeriode)),
-            fraværsperioderKorrigeringIm: z.optional(z.array(zFraværPeriode)),
-            bosteder: z.optional(zBosteder),
-            utenlandsopphold: z.optional(zUtenlandsopphold),
-            dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
-        }),
-    );
+export const zOmsorgspengerUtbetaling = zYtelse.and(
+    z.object({
+        fosterbarn: z.optional(z.array(zBarn)),
+        aktivitet: z.optional(zOpptjeningAktivitet),
+        fraværsperioder: z.optional(z.array(zFraværPeriode)),
+        fraværsperioderKorrigeringIm: z.optional(z.array(zFraværPeriode)),
+        bosteder: z.optional(zBosteder),
+        utenlandsopphold: z.optional(zUtenlandsopphold),
+        dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
+        type: z.literal('OmsorgspengerUtbetaling'),
+    }),
+);
 
-export const zOpplæringspenger = zYtelse
-    .and(
-        z.object({
-            type: z.literal('Opplæringspenger'),
-        }),
-    )
-    .and(
-        z.object({
-            barn: zBarn,
-            søknadsperiode: z.array(z.string()),
-            trekkKravPerioder: z.array(z.string()),
-            opptjeningAktivitet: zOpptjeningAktivitet,
-            dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
-            bosteder: zBosteder,
-            utenlandsopphold: zUtenlandsopphold,
-            lovbestemtFerie: zLovbestemtFerie,
-            arbeidstid: zArbeidstid,
-            uttak: zUttak,
-            omsorg: zOmsorg,
-            kurs: z.optional(zKurs),
-        }),
-    );
+export const zOpplæringspenger = zYtelse.and(
+    z.object({
+        barn: zBarn,
+        søknadsperiode: z.array(z.string()),
+        trekkKravPerioder: z.array(z.string()),
+        opptjeningAktivitet: zOpptjeningAktivitet,
+        dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
+        bosteder: zBosteder,
+        utenlandsopphold: zUtenlandsopphold,
+        lovbestemtFerie: zLovbestemtFerie,
+        arbeidstid: zArbeidstid,
+        uttak: zUttak,
+        omsorg: zOmsorg,
+        kurs: z.optional(zKurs),
+        type: z.literal('Opplæringspenger'),
+    }),
+);
 
-export const zPleiepengerSyktBarn = zYtelse
-    .and(
-        z.object({
-            type: z.literal('PleiepengerSyktBarn'),
-        }),
-    )
-    .and(
-        z.object({
-            barn: zBarn,
-            søknadsperiode: z.array(z.string()),
-            endringsperiode: z.array(z.string()),
-            trekkKravPerioder: z.array(z.string()),
-            opptjeningAktivitet: z.optional(zOpptjeningAktivitet),
-            dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
-            annetDataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
-            infoFraPunsj: z.optional(zInfoFraPunsj),
-            bosteder: zBosteder,
-            utenlandsopphold: zUtenlandsopphold,
-            beredskap: zBeredskap,
-            nattevåk: zNattevåk,
-            tilsynsordning: zTilsynsordning,
-            lovbestemtFerie: zLovbestemtFerie,
-            arbeidstid: zArbeidstid,
-            uttak: zUttak,
-            omsorg: zOmsorg,
-            erSammenMedBarnet: z.optional(z.boolean()),
-        }),
-    );
+export const zPleiepengerSyktBarn = zYtelse.and(
+    z.object({
+        barn: zBarn,
+        søknadsperiode: z.array(z.string()),
+        endringsperiode: z.array(z.string()),
+        trekkKravPerioder: z.array(z.string()),
+        opptjeningAktivitet: z.optional(zOpptjeningAktivitet),
+        dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
+        annetDataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
+        infoFraPunsj: z.optional(zInfoFraPunsj),
+        bosteder: zBosteder,
+        utenlandsopphold: zUtenlandsopphold,
+        beredskap: zBeredskap,
+        nattevåk: zNattevåk,
+        tilsynsordning: zTilsynsordning,
+        lovbestemtFerie: zLovbestemtFerie,
+        arbeidstid: zArbeidstid,
+        uttak: zUttak,
+        omsorg: zOmsorg,
+        erSammenMedBarnet: z.optional(z.boolean()),
+        type: z.literal('PleiepengerSyktBarn'),
+    }),
+);
 
-export const zPleipengerLivetsSluttfase = zYtelse
-    .and(
-        z.object({
-            type: z.literal('PleipengerLivetsSluttfase'),
-        }),
-    )
-    .and(
-        z.object({
-            pleietrengende: zPleietrengende,
-            søknadsperiode: z.array(z.string()),
-            trekkKravPerioder: z.array(z.string()),
-            opptjeningAktivitet: z.optional(zOpptjeningAktivitet),
-            bosteder: zBosteder,
-            utenlandsopphold: zUtenlandsopphold,
-            arbeidstid: zArbeidstid,
-            uttak: z.optional(zUttak),
-            lovbestemtFerie: z.optional(zLovbestemtFerie),
-            dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
-        }),
-    );
+export const zPleipengerLivetsSluttfase = zYtelse.and(
+    z.object({
+        pleietrengende: zPleietrengende,
+        søknadsperiode: z.array(z.string()),
+        trekkKravPerioder: z.array(z.string()),
+        opptjeningAktivitet: z.optional(zOpptjeningAktivitet),
+        bosteder: zBosteder,
+        utenlandsopphold: zUtenlandsopphold,
+        arbeidstid: zArbeidstid,
+        uttak: z.optional(zUttak),
+        lovbestemtFerie: z.optional(zLovbestemtFerie),
+        dataBruktTilUtledning: z.optional(zDataBruktTilUtledning),
+        type: z.literal('PleipengerLivetsSluttfase'),
+    }),
+);
 
-export const zUngdomsytelse = zYtelse
-    .and(
-        z.object({
-            type: z.literal('Ungdomsytelse'),
-        }),
-    )
-    .and(
-        z.object({
-            søknadType: zUngSøknadstype,
-            søktFraDatoer: z.array(z.iso.date()),
-            inntekter: z.optional(zOppgittInntekt),
-            deltakelseId: z.optional(z.uuid()),
-        }),
-    );
+export const zUngdomsytelse = zYtelse.and(
+    z.object({
+        søknadType: zUngSøknadstype,
+        søktFraDatoer: z.array(z.iso.date()),
+        inntekter: z.optional(zOppgittInntekt),
+        deltakelseId: z.optional(z.uuid()),
+        type: z.literal('Ungdomsytelse'),
+    }),
+);
 
 export const zSøknad = z.object({
     søknadId: z.string(),
@@ -495,8 +460,8 @@ export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSME
 
 export const zInnsending = z.object({
     søknadId: z.optional(z.string()),
-    versjon: z.optional(z.string()),
     mottattDato: z.optional(z.iso.datetime({ local: true })),
+    versjon: z.optional(z.string()),
     søker: z.optional(zSøker),
 });
 
@@ -577,7 +542,10 @@ export const zPleietrengendeMedSak = z.object({
 });
 
 export const zSaksbehandlingtidDto = z.object({
-    saksbehandlingstidUker: z.coerce.bigint(),
+    saksbehandlingstidUker: z.coerce
+        .bigint()
+        .min(BigInt('-9223372036854775808'), { error: 'Invalid value: Expected int64 to be >= -9223372036854775808' })
+        .max(BigInt('9223372036854775807'), { error: 'Invalid value: Expected int64 to be <= 9223372036854775807' }),
 });
 
 export const zSakerMetadataDto = z.object({

@@ -1,3 +1,4 @@
+import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 import { BodyShort, HStack, Tooltip } from '@navikt/ds-react';
 import { isValidationErrorsVisible } from '@navikt/sif-common-formik-ds';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
@@ -6,10 +7,10 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { capsFirstCharacter, dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { getStringValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import { useAppIntl } from '../../../../../i18n';
-import { KursFormComponents, KursFormFields } from '../../KursStep';
+import { KursFormComponents, KursFormFields } from '../../KursStepForm';
 import { getDatoerUtenforSøknadsperioder, getReisedagerValidator } from '../../utils/kursStepUtils';
-import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 
 interface Props {
     reisedager: Enkeltdato[];
@@ -70,6 +71,7 @@ const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, k
                             required: true,
                             maxLength: maksTegnBeskrivelse,
                             minLength: 5,
+                            disallowInvalidBackendCharacters: true,
                         })(value);
                         return error
                             ? {

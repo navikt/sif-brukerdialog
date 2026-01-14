@@ -1,5 +1,55 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.58
+
+### Patch Changes
+
+- Legge til validering av fritekstfelt for ugyldige tegn.
+
+## 4.11.57
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.49
+    - @navikt/sif-common-forms-ds@21.0.51
+    - @navikt/sif-common-soknad-ds@26.1.33
+    - @navikt/sif-common-ui@0.11.50
+
+## 4.11.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.41
+    - @navikt/sif-common-soknad-ds@26.1.32
+    - @navikt/sif-common-forms-ds@21.0.50
+    - @navikt/sif-common-core-ds@10.3.48
+    - @navikt/sif-common-utils@3.49.57
+    - @navikt/sif-common-api@0.4.88
+    - @navikt/sif-common-ui@0.11.49
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.4
+    - @navikt/sif-common-faro@0.2.10
+    - @navikt/sif-common-hooks@0.3.8
+    - @navikt/sif-common-sentry@0.28.60
+    - @navikt/sif-validation@1.0.18
+
+## 4.11.55
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.40
+    - @navikt/sif-common-soknad-ds@26.1.31
+    - @navikt/sif-common-forms-ds@21.0.49
+    - @navikt/sif-common-core-ds@10.3.47
+    - @navikt/sif-common-utils@3.49.56
+    - @navikt/sif-common-api@0.4.87
+    - @navikt/sif-common-ui@0.11.48
+
 ## 4.11.54
 
 ### Patch Changes

@@ -1,5 +1,4 @@
 import { Alert, BoxNew, Heading, HStack, Tag } from '@navikt/ds-react';
-import { useContext, useEffect, useState } from 'react';
 import {
     DateRange,
     getErrorForField,
@@ -20,6 +19,8 @@ import {
 import { getTimeValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
+import { useContext, useEffect, useState } from 'react';
+
 import { AppIntlShape, AppText, useAppIntl } from '../../../../../i18n';
 import { getArbeidstidIPeriodeIntlValues } from '../../arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';

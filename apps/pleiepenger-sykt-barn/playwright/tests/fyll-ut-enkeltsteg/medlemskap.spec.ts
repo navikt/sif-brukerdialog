@@ -4,6 +4,7 @@ import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -23,6 +24,7 @@ test.describe('Medlemskap', () => {
     test('Har ikke bodd/skal ikke bo i utlandet', async ({ page }) => {
         await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
         await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Har bodd/skal bo i utlandet', async ({ page }) => {
@@ -90,6 +92,7 @@ test.describe('Medlemskap', () => {
             .click();
         await page.getByRole('button', { name: 'søndag 22' }).click();
         await page.getByRole('button', { name: 'Ok' }).click();
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
 });

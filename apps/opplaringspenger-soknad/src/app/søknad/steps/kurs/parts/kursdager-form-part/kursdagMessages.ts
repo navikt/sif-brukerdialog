@@ -1,5 +1,5 @@
-import { useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useIntl } from 'react-intl';
 
 const nb = {
     'kursdag.form.dag.label': 'Dag {harFlereDager, select, true { {dagNr}} other{}} med opplæring',

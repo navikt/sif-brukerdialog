@@ -1,5 +1,17 @@
 # appstatus-sanity-config
 
+## 1.2.57
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
+## 1.2.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+
 ## 1.2.55
 
 ### Patch Changes

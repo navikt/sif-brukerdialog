@@ -1,5 +1,29 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.49
+
+### Patch Changes
+
+- CSS margin fix for aksel-list header.
+
+## 10.3.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.57
+    - @navikt/sif-common-api@0.4.88
+
+## 10.3.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.56
+    - @navikt/sif-common-api@0.4.87
+
 ## 10.3.46
 
 ### Patch Changes

@@ -2,6 +2,7 @@ import { BoxNew, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { DurationText } from '@navikt/sif-common-ui';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
+
 import { AppText } from '../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 

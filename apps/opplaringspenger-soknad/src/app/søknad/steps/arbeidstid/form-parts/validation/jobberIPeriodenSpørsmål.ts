@@ -1,4 +1,5 @@
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
+
 import { ArbeidIPeriodeIntlValues } from '../../../../../types/ArbeidIPeriodeIntlValues';
 
 export const getJobberIPeriodenValidator = (intlValues: ArbeidIPeriodeIntlValues) => (value: any) => {

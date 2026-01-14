@@ -29,7 +29,7 @@ const SnarveierSak = ({ saksnummer }: Props) => {
                             <LinkCard.Anchor
                                 asChild
                                 href={`${browserEnv.NEXT_PUBLIC_BASE_PATH}/sak/${saksnummer}/inntektsmelding`}>
-                                <Link href={`/sak/${saksnummer}/inntektsmelding`}>Rapportert inntekt</Link>
+                                <Link href={`/sak/${saksnummer}/inntektsmelding`}>Inntektsmeldinger</Link>
                             </LinkCard.Anchor>
                         </LinkCard.Title>
                     </LinkCard>

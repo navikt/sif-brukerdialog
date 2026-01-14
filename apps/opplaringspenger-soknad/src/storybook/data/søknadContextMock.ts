@@ -9,7 +9,7 @@ import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { SøknadRoutes } from '../../app/types/SøknadRoutes';
 import { institusjonerMock } from './institusjonerMock';
 import { Kursdag } from '../../app/types/Kursdag';
-import { EnkeltdagEllerPeriode } from '../../app/søknad/steps/kurs/KursStep';
+import { EnkeltdagEllerPeriode } from '../../app/søknad/steps/kurs/KursStepForm';
 
 const kursperioder: Kursperiode[] = [
     {

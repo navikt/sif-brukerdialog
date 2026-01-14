@@ -1,5 +1,17 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.13.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
+## 3.13.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+
 ## 3.13.19
 
 ### Patch Changes

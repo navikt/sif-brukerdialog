@@ -5,7 +5,12 @@ import { z } from 'zod';
 export const zProblemDetail = z.object({
     type: z.optional(z.url()),
     title: z.optional(z.string()),
-    status: z.optional(z.int()),
+    status: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     detail: z.optional(z.string()),
     instance: z.optional(z.url()),
     properties: z.optional(z.record(z.string(), z.unknown())),
@@ -48,7 +53,12 @@ export const zUngdomsytelseOppgavebekreftelse = z.object({
 });
 
 export const zOppgittInntekt = z.object({
-    arbeidstakerOgFrilansInntekt: z.optional(z.int()),
+    arbeidstakerOgFrilansInntekt: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
 });
 
 export const zUngdomsytelseInntektsrapportering = z.object({
@@ -96,32 +106,22 @@ export const zFosterhjemgodtgjørelse = z.object({
     mottarFosterhjemsgodtgjørelse: z.boolean(),
 });
 
-export const zFosterhjemsgodtgjørelseFrikjøpt = zFosterhjemgodtgjørelse
-    .and(
-        z.object({
-            type: z.literal('FosterhjemsgodtgjørelseFrikjøpt'),
-        }),
-    )
-    .and(
-        z.object({
-            erFrikjøptFraJobb: z.boolean(),
-            frikjøptBeskrivelse: z.string(),
-        }),
-    );
+export const zFosterhjemsgodtgjørelseFrikjøpt = zFosterhjemgodtgjørelse.and(
+    z.object({
+        erFrikjøptFraJobb: z.boolean(),
+        frikjøptBeskrivelse: z.string(),
+        type: z.literal('FosterhjemsgodtgjørelseFrikjøpt'),
+    }),
+);
 
-export const zFosterhjemsgodtgjørelseIkkeFrikjøpt = zFosterhjemgodtgjørelse
-    .and(
-        z.object({
-            type: z.literal('FosterhjemsgodtgjørelseIkkeFrikjøpt'),
-        }),
-    )
-    .and(
-        z.object({
-            erFrikjøptFraJobb: z.boolean(),
-            startdato: z.optional(z.iso.date()),
-            sluttdato: z.optional(z.iso.date()),
-        }),
-    );
+export const zFosterhjemsgodtgjørelseIkkeFrikjøpt = zFosterhjemgodtgjørelse.and(
+    z.object({
+        erFrikjøptFraJobb: z.boolean(),
+        startdato: z.optional(z.iso.date()),
+        sluttdato: z.optional(z.iso.date()),
+        type: z.literal('FosterhjemsgodtgjørelseIkkeFrikjøpt'),
+    }),
+);
 
 export const zFosterhjemsgodtgjørelseMottarIkke = zFosterhjemgodtgjørelse.and(
     z.object({
@@ -155,31 +155,21 @@ export const zOmsorgsstønad = z.object({
     mottarOmsorgsstønad: z.boolean(),
 });
 
-export const zOmsorgsstønadMottarDelerAvPerioden = zOmsorgsstønad
-    .and(
-        z.object({
-            type: z.literal('OmsorgsstønadMottarDelerAvPerioden'),
-        }),
-    )
-    .and(
-        z.object({
-            startdato: z.optional(z.iso.date()),
-            sluttdato: z.optional(z.iso.date()),
-            antallTimerIUken: z.string(),
-        }),
-    );
+export const zOmsorgsstønadMottarDelerAvPerioden = zOmsorgsstønad.and(
+    z.object({
+        startdato: z.optional(z.iso.date()),
+        sluttdato: z.optional(z.iso.date()),
+        antallTimerIUken: z.string(),
+        type: z.literal('OmsorgsstønadMottarDelerAvPerioden'),
+    }),
+);
 
-export const zOmsorgsstønadMottarHelePerioden = zOmsorgsstønad
-    .and(
-        z.object({
-            type: z.literal('OmsorgsstønadMottarHelePerioden'),
-        }),
-    )
-    .and(
-        z.object({
-            antallTimerIUken: z.string(),
-        }),
-    );
+export const zOmsorgsstønadMottarHelePerioden = zOmsorgsstønad.and(
+    z.object({
+        antallTimerIUken: z.string(),
+        type: z.literal('OmsorgsstønadMottarHelePerioden'),
+    }),
+);
 
 export const zOmsorgsstønadMottarIkke = zOmsorgsstønad.and(
     z.object({
@@ -302,7 +292,12 @@ export const zUtenlandsoppholdIPerioden = z.object({
 
 export const zVarigEndring = z.object({
     dato: z.optional(z.iso.date()),
-    inntektEtterEndring: z.optional(z.int()),
+    inntektEtterEndring: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     forklaring: z.optional(z.string()),
 });
 
@@ -311,7 +306,12 @@ export const zVirksomhet = z.object({
     tilOgMed: z.optional(z.iso.date()),
     næringstype: z.enum(['FISKE', 'JORDBRUK_SKOGBRUK', 'DAGMAMMA', 'ANNEN']),
     fiskerErPåBladB: z.optional(z.boolean()),
-    næringsinntekt: z.optional(z.int()),
+    næringsinntekt: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     navnPåVirksomheten: z.string(),
     organisasjonsnummer: z.optional(z.string().min(0).max(20)),
     registrertINorge: z.boolean(),
@@ -839,7 +839,12 @@ export const zVirksomhetWritable = z.object({
     tilOgMed: z.optional(z.iso.date()),
     næringstype: z.enum(['FISKE', 'JORDBRUK_SKOGBRUK', 'DAGMAMMA', 'ANNEN']),
     fiskerErPåBladB: z.optional(z.boolean()),
-    næringsinntekt: z.optional(z.int()),
+    næringsinntekt: z.optional(
+        z
+            .int()
+            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    ),
     navnPåVirksomheten: z.string(),
     organisasjonsnummer: z.optional(z.string().min(0).max(20)),
     registrertINorge: z.boolean(),

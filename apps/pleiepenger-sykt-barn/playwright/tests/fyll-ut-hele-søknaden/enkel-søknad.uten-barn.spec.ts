@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -11,6 +12,7 @@ test('Fyll ut enkel søknad ved ingen registrerte barn', async ({ page }) => {
     await routeUtils.setupMockRoutes(page, { barnRespons: { barn: [] } });
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen');
     await page.getByLabel('Jeg bekrefter at jeg har').check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
     await expect(page.getByRole('heading', { name: 'Barn', level: 1 })).toBeVisible();
@@ -35,6 +37,7 @@ test('Fyll ut enkel søknad ved ingen registrerte barn', async ({ page }) => {
     await page.getByRole('button', { name: 'søndag 15' }).click();
     await page.getByRole('group', { name: 'Skal du reise til utlandet i' }).getByLabel('Nei').check();
     await page.getByRole('group', { name: 'Skal du ha ferie i perioden' }).getByLabel('Nei').check();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByTestId('er-ansatt').getByText('Ja').click();
     await page.getByLabel('Hvor mange timer jobber du').click();

@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import locale from 'dayjs/locale/nb.js';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 
+import { testAccessibility } from './testAccessibility';
+
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
@@ -13,6 +15,7 @@ const startSøknad = async (page: Page) => {
     const intro = page.locator('.soknad-velkommen-page');
     await expect(intro).toContainText('Velkommen til søknad om omsorgspenger');
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').check();
+    await testAccessibility(page);
     await page.getByRole('button').getByText('Start søknad').click();
 };
 
@@ -28,6 +31,7 @@ const fyllUtDineBarnSteg = async (page: Page) => {
     await page.getByText('Barnet er mitt fosterbarn').click();
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByLabel('Nei').check();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -37,9 +41,8 @@ const fyllUtDinArbeidssituasjonSteg = async (page: Page) => {
     await page.getByTestId('arbeidsforhold-harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene_no').check();
     await page.getByTestId('arbeidsforhold-utbetalingsårsak-nyoppstartetHosArbeidsgiver').check();
     await page.getByTestId('nyoppstartetHosArbeidsgiver-jobbetHosAnnenArbeidsgiver').check();
-
     await page.getByTestId('arbeidsforhold-liste-1').getByTestId('arbeidsforhold-harHattFravær_no').check();
-
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -58,6 +61,7 @@ const fyllUtFraværSteg = async (page: Page) => {
     await page.getByLabel('Til og med').fill('02.01.2024');
     await page.getByLabel('Velg land').selectOption('ISL');
     await page.getByRole('button', { name: 'Ok' }).click();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -70,6 +74,7 @@ const lastOppLegeerklæring = async (page: Page) => {
     await fileChooser.setFiles('./playwright/files/navlogopng.png');
     const listItems = await page.getByText('navlogopng.png');
     await expect(listItems).toHaveCount(1);
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -77,17 +82,20 @@ const fyllUtMedlemsskap = async (page: Page) => {
     await page.getByRole('heading', { name: 'Medlemskap i folketrygden' });
     await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
     await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
 const sendInnSøknad = async (page: Page) => {
     await page.getByRole('heading', { name: 'Oppsummering' });
     await page.getByTestId('bekreft-label').click();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 const kontrollerKvittering = async (page: Page) => {
     await page.waitForURL('**/soknad_sendt');
     await page.getByRole('heading', { name: 'Vi har mottatt søknad om utbetaling av omsorgspenger' });
+    await testAccessibility(page);
 };
 
 export const utfyllingUtils = {

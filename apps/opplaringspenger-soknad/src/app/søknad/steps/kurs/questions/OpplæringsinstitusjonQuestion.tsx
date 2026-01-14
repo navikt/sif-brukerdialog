@@ -1,5 +1,5 @@
 import { AppText, useAppIntl } from '../../../../i18n';
-import { KursFormComponents, KursFormFields } from '../KursStep';
+import { KursFormComponents, KursFormFields } from '../KursStepForm';
 import { Institusjon } from '../../../../api/institusjonService';
 import { getStringValidator } from '@navikt/sif-validation';
 import { Box, ReadMore } from '@navikt/ds-react';

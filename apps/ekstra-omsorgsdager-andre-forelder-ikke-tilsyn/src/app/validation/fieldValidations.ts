@@ -30,7 +30,12 @@ export const validateTildato = (
 };
 
 export const validateTextArea = (value: string): ValidationResult<ValidationError> => {
-    const error = getStringValidator({ required: true, minLength: 5, maxLength: 1000 })(value);
+    const error = getStringValidator({
+        required: true,
+        minLength: 5,
+        maxLength: 1000,
+        disallowInvalidBackendCharacters: true,
+    })(value);
     return error
         ? {
               key: error,
