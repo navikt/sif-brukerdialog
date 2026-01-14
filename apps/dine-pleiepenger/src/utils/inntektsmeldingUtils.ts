@@ -1,4 +1,5 @@
 import { innsyn } from '@navikt/k9-sak-innsyn-api';
+import dayjs from 'dayjs';
 
 import { Inntektsmelding } from '../types';
 import { EndringRefusjon } from '../types/inntektsmeldingTypes';
@@ -28,7 +29,7 @@ export const getRefusjonFørFørsteEndring = (
     startDatoPermisjon: Date,
     førsteEndring: EndringRefusjon,
 ): EndringRefusjon | undefined => {
-    if (førsteEndring && førsteEndring.fom > startDatoPermisjon) {
+    if (førsteEndring && dayjs(førsteEndring.fom).isAfter(startDatoPermisjon, 'day')) {
         return {
             fom: startDatoPermisjon,
             refusjonBeløpPerMnd: refusjonBeløpPerMnd,
