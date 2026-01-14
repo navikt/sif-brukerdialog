@@ -20,14 +20,15 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
+        "pw:run": "playwright test",
         "pw:build": "vite build --config vite.playwright.config.ts",
         "pw:start": "vite preview --base / --config vite.playwright.config.ts"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "7.38.0",
-        "@navikt/ds-css": "7.38.0",
-        "@navikt/ds-react": "7.38.0",
-        "@navikt/ds-tailwind": "7.38.0",
+        "@navikt/aksel-icons": "7.39.0",
+        "@navikt/ds-css": "7.39.0",
+        "@navikt/ds-react": "7.39.0",
+        "@navikt/ds-tailwind": "7.39.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
@@ -55,7 +56,7 @@
         "react-day-picker": "9.13.0",
         "react-dom": "19.2.3",
         "react-fast-compare": "3.2.2",
-        "react-intl": "8.0.10",
+        "react-intl": "8.0.11",
         "react-router-dom": "7.12.0",
         "uuid": "13.0.0"
     },
@@ -87,7 +88,7 @@
         "storybook": "10.1.11",
         "tailwindcss": "4.1.18",
         "typescript": "5.9.3",
-        "vite": "7.3.0",
+        "vite": "7.3.1",
         "vite-plugin-checker": "0.12.0",
         "vitest": "4.0.16"
     },

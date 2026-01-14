@@ -1,5 +1,7 @@
 import { expect, Page } from '@playwright/test';
 
+import { testAccessibility } from '../utils/testAccessibility';
+
 export const fyllUtArbeidstid = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
     await page.getByRole('group', { name: 'Jobber du noe hos Arbeids- og' }).getByLabel('Jeg jobber noe').check();
@@ -13,6 +15,7 @@ export const fyllUtArbeidstid = async (page: Page) => {
         .getByRole('group', { name: 'Jobber du noe som frilanser i søknadsperioden' })
         .getByLabel('Jeg jobber som normalt, og')
         .check();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 

@@ -10,10 +10,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/aksel-icons": "7.38.0",
-        "@navikt/ds-css": "7.38.0",
-        "@navikt/ds-react": "7.38.0",
-        "@navikt/ds-tailwind": "7.38.0",
+        "@navikt/aksel-icons": "7.39.0",
+        "@navikt/ds-css": "7.39.0",
+        "@navikt/ds-react": "7.39.0",
+        "@navikt/ds-tailwind": "7.39.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
@@ -40,8 +40,8 @@
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-fast-compare": "3.2.2",
-        "react-hook-form": "7.69.0",
-        "react-intl": "8.0.10",
+        "react-hook-form": "7.70.0",
+        "react-intl": "8.0.11",
         "react-router-dom": "7.12.0"
     },
     "devDependencies": {
@@ -60,7 +60,7 @@
         "@types/react": "19.2.7",
         "@types/react-dom": "19.2.3",
         "@vitejs/plugin-react": "5.1.2",
-        "axe-core": "4.11.0",
+        "axe-core": "4.11.1",
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "cors": "2.8.5",
@@ -78,8 +78,8 @@
         "storybook": "10.1.11",
         "tailwindcss": "4.1.18",
         "typescript": "5.9.3",
-        "typescript-eslint": "8.51.0",
-        "vite": "7.3.0",
+        "typescript-eslint": "8.52.0",
+        "vite": "7.3.1",
         "vite-plugin-checker": "0.12.0",
         "vitest": "4.0.16"
     },
@@ -94,6 +94,7 @@
         "playwright-test": "playwright test",
         "pw:build": "vite build --config vite.playwright.config.ts",
         "pw:start": "vite preview --base / --config vite.playwright.config.ts",
+        "pw:run": "playwright test",
         "storybook": "storybook dev -p 6006",
         "test": "vitest run"
     },

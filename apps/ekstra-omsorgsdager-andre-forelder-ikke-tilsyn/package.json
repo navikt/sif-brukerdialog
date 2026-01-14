@@ -13,10 +13,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/aksel-icons": "7.38.0",
-        "@navikt/ds-css": "7.38.0",
-        "@navikt/ds-react": "7.38.0",
-        "@navikt/ds-tailwind": "7.38.0",
+        "@navikt/aksel-icons": "7.39.0",
+        "@navikt/ds-css": "7.39.0",
+        "@navikt/ds-react": "7.39.0",
+        "@navikt/ds-tailwind": "7.39.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
@@ -42,7 +42,7 @@
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-fast-compare": "3.2.2",
-        "react-intl": "8.0.10",
+        "react-intl": "8.0.11",
         "react-router-dom": "7.12.0"
     },
     "devDependencies": {
@@ -71,7 +71,7 @@
         "rimraf": "6.1.2",
         "storybook": "10.1.11",
         "typescript": "5.9.3",
-        "vite": "7.3.0",
+        "vite": "7.3.1",
         "vite-plugin-checker": "0.12.0",
         "vitest": "4.0.16"
     },

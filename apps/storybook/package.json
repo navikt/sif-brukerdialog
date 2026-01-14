@@ -6,9 +6,9 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/aksel-icons": "7.38.0",
-        "@navikt/ds-css": "7.38.0",
-        "@navikt/ds-react": "7.38.0",
+        "@navikt/aksel-icons": "7.39.0",
+        "@navikt/ds-css": "7.39.0",
+        "@navikt/ds-react": "7.39.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
@@ -31,7 +31,7 @@
         "postcss": "8.5.6",
         "react": "19.2.3",
         "react-dom": "19.2.3",
-        "react-intl": "8.0.10",
+        "react-intl": "8.0.11",
         "storybook": "10.1.11",
         "typescript": "5.9.3",
         "webpack": "5.104.1"

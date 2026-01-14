@@ -72,6 +72,7 @@ const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) => {
             {renderVirksomhetSummary(virksomhet, virksomhetIntl)}
             {virksomhet.næringsinntekt !== undefined && (
                 <SummaryBlock
+                    level="2"
                     header={
                         harFlereVirksomheter
                             ? text('@forms.virksomhet.næringsinntekt.flereVirksomheter.spm')
@@ -83,7 +84,7 @@ const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) => {
                 </SummaryBlock>
             )}
             {erRegnetSomNyoppstartet === true && (
-                <SummaryBlock header={text('@forms.virksomhet.har_blitt_yrkesaktiv')}>
+                <SummaryBlock level="2" header={text('@forms.virksomhet.har_blitt_yrkesaktiv')}>
                     {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene === undefined && (
                         <JaNeiSvar harSvartJa={virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined} />
                     )}
@@ -95,18 +96,20 @@ const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) => {
             )}
             {erRegnetSomNyoppstartet === false && (
                 <>
-                    <SummaryBlock header={text('@forms.virksomhet.varig_endring_spm')}>
+                    <SummaryBlock level="2" header={text('@forms.virksomhet.varig_endring_spm')}>
                         <JaNeiSvar harSvartJa={virksomhet.varigEndring !== undefined} />
                     </SummaryBlock>
                     {virksomhet.varigEndring && (
                         <>
-                            <SummaryBlock header={text('@forms.virksomhet.summary.varigEndring.dato')}>
+                            <SummaryBlock level="2" header={text('@forms.virksomhet.summary.varigEndring.dato')}>
                                 <DatoSvar isoDato={virksomhet.varigEndring.dato} />
                             </SummaryBlock>
-                            <SummaryBlock header={text('@forms.virksomhet.summary.varigEndring.næringsinntekt')}>
+                            <SummaryBlock
+                                level="2"
+                                header={text('@forms.virksomhet.summary.varigEndring.næringsinntekt')}>
                                 <TallSvar verdi={virksomhet.varigEndring.inntektEtterEndring} />
                             </SummaryBlock>
-                            <SummaryBlock header={text('@forms.virksomhet.summary.varigEndring.beskrivelse')}>
+                            <SummaryBlock level="2" header={text('@forms.virksomhet.summary.varigEndring.beskrivelse')}>
                                 <Sitat>
                                     <TextareaSvar text={virksomhet.varigEndring.forklaring} />
                                 </Sitat>
@@ -117,7 +120,7 @@ const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) => {
             )}
             {/* Regnskapsfører */}
             {virksomhet.registrertINorge && (
-                <SummaryBlock header={text('@forms.virksomhet.regnskapsfører_spm')}>
+                <SummaryBlock level="2" header={text('@forms.virksomhet.regnskapsfører_spm')}>
                     {virksomhet.regnskapsfører === undefined && <JaNeiSvar harSvartJa={false} />}
                     {virksomhet.regnskapsfører !== undefined &&
                         text('@forms.virksomhet.summary.regnskapsfører.info', {

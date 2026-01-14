@@ -4,6 +4,7 @@ import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -83,6 +84,7 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByTestId('arbeidssituasjonSelvstendig').getByLabel('Hvor mange timer jobber du').click();
         await page.getByTestId('arbeidssituasjonSelvstendig').getByLabel('Hvor mange timer jobber du').fill('5');
         await page.getByTestId('arbeidssituasjonOpptjeningUtland').getByText('Ja').check();
+        await testAccessibility(page);
     });
     test('Jobb i annet EØS land', async ({ page }) => {
         /** Jobb i annet EØS land */
@@ -109,6 +111,7 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('Skriv inn navnet på').click();
         await page.getByLabel('Skriv inn navnet på').fill('frt');
         await page.getByRole('button', { name: 'Ok' }).click();
+        await testAccessibility(page);
     });
 
     test('Næringsvirksomhet i et annet EØS-land', async ({ page }) => {
@@ -136,5 +139,6 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'fredag 30' }).click();
         await page.getByRole('button', { name: 'Ok' }).click();
+        await testAccessibility(page);
     });
 });

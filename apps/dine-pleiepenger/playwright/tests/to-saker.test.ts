@@ -1,7 +1,7 @@
-import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 import { MockScenario, setupMockRoutes } from '../utils/setup-mock-routes';
+import { testAccessibility } from '../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setupMockRoutes(page, MockScenario.TO_SAKER);
@@ -14,11 +14,7 @@ test('Velg sak ved flere saker', async ({ page }) => {
     await expect(page.getByText('BEVISST SANSFødt 14. april')).toBeVisible();
     await expect(page.getByText('GOD BALSAMFødt 22. desember')).toBeVisible();
 
-    const accessibilityScanResults = await new AxeBuilder({ page })
-        .disableRules(['color-contrast'])
-        .include('#__next')
-        .analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
+    await testAccessibility(page);
 
     await page.getByRole('link', { name: 'BEVISST SANS' }).click();
 
@@ -43,22 +39,13 @@ test('Saksdetaljer + historikk', async ({ page }) => {
         page.getByText('Søknad og eventuelle vedlegg i søknadDokumentikon PDFSøknad om pleiepenger for'),
     ).toBeVisible();
 
-    const accessibilityScanResults = await new AxeBuilder({ page })
-        .disableRules(['color-contrast'])
-        .include('#__next')
-        .analyze();
-
-    expect(accessibilityScanResults.violations).toEqual([]);
+    await testAccessibility(page);
 
     await page.getByRole('link', { name: 'Se alle hendelser' }).click();
 
     await expect(page.getByRole('heading', { level: 1, name: 'Historikk' })).toBeVisible();
-    const historikkAccessibilityScanResults = await new AxeBuilder({ page })
-        .disableRules(['color-contrast'])
-        .include('#__next')
-        .analyze();
+    await testAccessibility(page);
 
-    expect(historikkAccessibilityScanResults.violations).toEqual([]);
     await page.getByRole('link', { name: 'Tilbake til sak' }).click();
 
     await expect(page.getByRole('heading', { level: 1, name: 'Din pleiepengesak for sykt barn' })).toBeVisible();
@@ -82,10 +69,5 @@ test('Bytte mellom sak', async ({ page }) => {
     await page.getByRole('link', { name: 'GOD BALSAM' }).click();
     await expect(page.getByText('Saksnummer: 1001F8G')).toBeVisible();
 
-    const accessibilityScanResults = await new AxeBuilder({ page })
-        .disableRules(['color-contrast'])
-        .include('#__next')
-        .analyze();
-
-    expect(accessibilityScanResults.violations).toEqual([]);
+    await testAccessibility(page);
 });
