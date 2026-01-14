@@ -1,4 +1,4 @@
-import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Box, HStack, LocalAlert, VStack } from '@navikt/ds-react';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import DeltakelseHistorikk from './DeltakelseHistorikk';
@@ -40,6 +40,14 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                     </HStack>
                 ) : null}
 
+                {deltakelse.erSlettet && (
+                    <LocalAlert status="warning">
+                        <LocalAlert.Header>
+                            <LocalAlert.Title>Deltakelsen er slettet - avventer vedtak</LocalAlert.Title>
+                        </LocalAlert.Header>
+                    </LocalAlert>
+                )}
+
                 <VStack gap="4">
                     <DeltakerInfo deltaker={deltaker} />
                     {Features.slettAktivDeltakelse && (
@@ -47,10 +55,12 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                     )}
                 </VStack>
 
-                <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
-
-                <SlettNyDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
-
+                {!deltakelse.erSlettet && (
+                    <>
+                        <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
+                        <SlettNyDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
+                    </>
+                )}
                 <DeltakelseHistorikk deltakelseId={deltakelse.id} />
             </VStack>
         </Box>

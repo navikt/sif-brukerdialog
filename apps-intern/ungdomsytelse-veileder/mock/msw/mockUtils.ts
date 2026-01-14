@@ -131,6 +131,28 @@ const endreStartdato = (deltakelseId: string, dato: string) => {
     return dbDeltakelse.deltakelse;
 };
 
+const fjernDeltaker = (deltakerId: string) => {
+    const deltaker = getDeltakerByDeltakerId(deltakerId);
+    if (!deltaker) {
+        throw new Error('Fant ikke deltaker med id');
+    }
+    const deltakelser = db.deltakelser.filter((d) => d.deltakelse.deltaker.id === deltakerId);
+    if (deltakelser.length !== 1) {
+        throw new Error('Ingen eller for mange deltakelser');
+    }
+    const deltakelse = deltakelser[0];
+    const dbDeltakelse: DbDeltakelse = {
+        ...deltakelse,
+        deltakelse: {
+            ...deltakelse.deltakelse,
+            erSlettet: true,
+        },
+    };
+    db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelse.deltakelse.id ? dbDeltakelse : d));
+    save(db);
+    return dbDeltakelse.deltakelse;
+};
+
 const endreSluttdato = (deltakelseId: string, dato: string) => {
     const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
     if (!deltakelse) {
@@ -156,5 +178,6 @@ export const mockUtils = {
     getDeltakelseHistorikk,
     getDeltakerByDeltakerId,
     meldInnDeltaker,
+    fjernDeltaker,
     reset,
 };

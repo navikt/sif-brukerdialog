@@ -22,17 +22,24 @@ const SlettAktivDeltakerModal = ({ deltaker, deltakelse, onCancel }: Props) => {
     const navigate = useNavigate();
 
     const queryClient = useQueryClient();
+
     const gåTilForsiden = () => {
-        queryClient.resetQueries();
         navigate('/');
     };
 
+    const handleOnClose = () => {
+        if (deltakelseSlettet) {
+            queryClient.resetQueries();
+            if (!deltakelse.søktTidspunkt) {
+                gåTilForsiden();
+            }
+        } else {
+            onCancel();
+        }
+    };
+
     return (
-        <Modal
-            open={true}
-            onClose={deltakelseSlettet ? gåTilForsiden : onCancel}
-            aria-labelledby="slett-modal-heading"
-            width="medium">
+        <Modal open={true} onClose={handleOnClose} aria-labelledby="slett-modal-heading" width="medium">
             <Modal.Header closeButton={true}>
                 <Heading level="1" size="large" id="slett-modal-heading">
                     Slett aktiv deltaker
@@ -54,7 +61,7 @@ const SlettAktivDeltakerModal = ({ deltaker, deltakelse, onCancel }: Props) => {
             </Modal.Body>
             {deltakelseSlettet ? (
                 <Modal.Footer>
-                    <Button variant="primary" onClick={gåTilForsiden}>
+                    <Button variant="primary" onClick={handleOnClose}>
                         Ok, lukk dialog
                     </Button>
                 </Modal.Footer>

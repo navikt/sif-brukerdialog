@@ -36,8 +36,11 @@ export const handlers = [
         return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
 
-    http.delete('**/veileder/register/deltakelse/:deltakelseId/fjern', async () => {
-        return new HttpResponse(null, { status: 403 });
+    http.delete('**/veileder/register/deltaker/:deltakerId/fjern', async ({ params }) => {
+        const { deltakerId } = params;
+        const data = mockUtils.fjernDeltaker(deltakerId as string);
+        await slowDown(75);
+        return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
 
     http.get('**/veileder/register/deltakelse/:deltakelseId/historikk', async ({ params }) => {
