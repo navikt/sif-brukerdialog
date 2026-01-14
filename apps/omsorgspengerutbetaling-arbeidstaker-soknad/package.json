@@ -50,6 +50,7 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
+        "@axe-core/playwright": "4.11.0",
         "@playwright/test": "1.57.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.1.11",

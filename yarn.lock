@@ -5202,6 +5202,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad@workspace:apps/omsorgspengerutbetaling-arbeidstaker-soknad"
   dependencies:
+    "@axe-core/playwright": "npm:4.11.0"
     "@navikt/aksel-icons": "npm:7.39.0"
     "@navikt/ds-css": "npm:7.39.0"
     "@navikt/ds-react": "npm:7.39.0"
@@ -5273,6 +5274,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/omsorgspengerutbetaling-soknad@workspace:apps/omsorgspengerutbetaling-soknad"
   dependencies:
+    "@axe-core/playwright": "npm:4.11.0"
     "@navikt/aksel-icons": "npm:7.39.0"
     "@navikt/ds-css": "npm:7.39.0"
     "@navikt/ds-react": "npm:7.39.0"
@@ -5419,6 +5421,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/opplaringspenger-soknad@workspace:apps/opplaringspenger-soknad"
   dependencies:
+    "@axe-core/playwright": "npm:4.11.0"
     "@navikt/aksel-icons": "npm:7.39.0"
     "@navikt/ds-css": "npm:7.39.0"
     "@navikt/ds-react": "npm:7.39.0"
