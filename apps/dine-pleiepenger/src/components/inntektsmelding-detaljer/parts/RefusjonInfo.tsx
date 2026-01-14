@@ -1,16 +1,14 @@
 import { List } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
-import { Inntektsmelding } from '../../../types';
-
-type Refusjon = Inntektsmelding['refusjon'];
-type EndringerRefusjon = Inntektsmelding['endringerRefusjon'];
-type Endring = NonNullable<EndringerRefusjon>[0];
+import { EndringerRefusjon, EndringRefusjon, Refusjon } from '../../../types/inntektsmeldingTypes';
+import { getRefusjonFørFørsteEndring } from '../../../utils/inntektsmeldingUtils';
 
 interface Props {
     inntektBeløp: number;
     refusjon?: Refusjon;
     endringerRefusjon?: EndringerRefusjon;
+    startDatoPermisjon: Date;
 }
 
 enum RefusjonUtbetaler {
@@ -32,7 +30,7 @@ const utledUtbetaler = ({ total, utbetaling }: { total: number; utbetaling: numb
     return RefusjonUtbetaler.BEGGE;
 };
 
-const renderEndringListItem = (endring: Endring, refusjonBeløpPerMnd: number) => {
+const renderEndringListItem = (endring: EndringRefusjon, refusjonBeløpPerMnd: number) => {
     const hvemBetaler = utledUtbetaler({ total: refusjonBeløpPerMnd, utbetaling: endring.refusjonBeløpPerMnd });
     const datoString = `Fra ${dateFormatter.compact(endring.fom)}`;
     switch (hvemBetaler) {
@@ -45,7 +43,7 @@ const renderEndringListItem = (endring: Endring, refusjonBeløpPerMnd: number) =
     }
 };
 
-const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon }: Props) => {
+const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPermisjon }: Props) => {
     const harRefusjon = refusjon !== undefined && refusjon.refusjonBeløpPerMnd > 0;
     const harEndringerIRefusjon = refusjon && endringerRefusjon !== undefined && endringerRefusjon.length > 0;
 
@@ -76,6 +74,15 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon }: Props) => 
     }
 
     // Har endringer i refusjon - list opp endringene
+    const førsteEndring = endringerRefusjon[0];
+    const refusjonFørFørsteEndring = getRefusjonFørFørsteEndring(
+        refusjon.refusjonBeløpPerMnd,
+        startDatoPermisjon,
+        førsteEndring,
+    );
+    if (refusjonFørFørsteEndring) {
+        endringerRefusjon.unshift(refusjonFørFørsteEndring);
+    }
     return (
         <List>
             {endringerRefusjon.map((endring, index) => (
