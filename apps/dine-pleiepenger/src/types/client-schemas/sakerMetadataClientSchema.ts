@@ -1,7 +1,6 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
-
+import { zSakerMetadataDtoModified } from '../../server/dto-schemas/sakerMetadataDtoModified';
 import { pleietrengendeClientSchema } from './pleietrengendeClientSchema';
 
-export const sakerMetadataClientSchema = innsyn.zSakerMetadataDto.extend({
+export const sakerMetadataClientSchema = zSakerMetadataDtoModified.extend({
     pleietrengende: pleietrengendeClientSchema,
 });

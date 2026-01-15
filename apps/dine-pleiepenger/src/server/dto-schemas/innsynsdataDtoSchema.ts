@@ -1,13 +1,13 @@
 import { ApplicationState } from '@navikt/appstatus-react-ds/src/hooks/useGetApplicationStatus';
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
 import z from 'zod';
 
+import { zSakerMetadataDtoModified } from './sakerMetadataDtoModified';
 import { søkerDtoSchema } from './søkerDtoSchema';
 
 export const innsynsdataDtoSchema = z.object({
     søker: søkerDtoSchema,
     appStatus: z.custom<ApplicationState>().optional(),
-    sakerMetadata: innsyn.zSakerMetadataDto.array(),
+    sakerMetadata: zSakerMetadataDtoModified.array(),
     harSak: z.boolean(),
 });
 
