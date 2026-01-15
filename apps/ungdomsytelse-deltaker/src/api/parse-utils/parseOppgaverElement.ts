@@ -138,7 +138,7 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: OppgaveDto): Oppgave => {
         forrigePeriode &&
         nyPeriode
     ) {
-        const fjernetPeriodeOppgave: EndretStartOgSluttdatoOppgave = {
+        const endretStartOgSluttdatoOppgave: EndretStartOgSluttdatoOppgave = {
             ...getOppgaveBaseProps(oppgave),
             oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
             oppgavetypeData: {
@@ -147,7 +147,7 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: OppgaveDto): Oppgave => {
             },
             bekreftelse: oppgave.bekreftelse,
         };
-        return fjernetPeriodeOppgave;
+        return endretStartOgSluttdatoOppgave;
     }
 
     throw new Error(`Kan ikke lage oppgave fra endret periode oppgave med endringer: ${endringer.join(', ')}`);

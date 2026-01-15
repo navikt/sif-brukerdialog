@@ -31,7 +31,7 @@ const FjernetPeriodeOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering
                 </Oppgavebekreftelse.Besvart>
 
                 <Oppgavebekreftelse.Kvittering>
-                    <AppText id="oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst" />
+                    <AppText id="oppgavetype.BEKREFT_FJERNET_PERIODE.kvitteringTekst" />
                 </Oppgavebekreftelse.Kvittering>
             </Oppgavebekreftelse>
         </DefaultPageLayout>
