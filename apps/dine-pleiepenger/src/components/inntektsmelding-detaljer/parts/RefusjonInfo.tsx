@@ -80,12 +80,14 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPer
         startDatoPermisjon,
         førsteEndring,
     );
-    if (refusjonFørFørsteEndring) {
-        endringerRefusjon.unshift(refusjonFørFørsteEndring);
-    }
+
+    const alleEndringer = refusjonFørFørsteEndring
+        ? [refusjonFørFørsteEndring, ...endringerRefusjon]
+        : endringerRefusjon;
+
     return (
         <List>
-            {endringerRefusjon.map((endring, index) => (
+            {alleEndringer.map((endring, index) => (
                 <List.Item key={index}>{renderEndringListItem(endring, refusjon.refusjonBeløpPerMnd)}</List.Item>
             ))}
         </List>
