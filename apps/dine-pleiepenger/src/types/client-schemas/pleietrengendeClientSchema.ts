@@ -5,7 +5,6 @@ import { zDateFromISODateString } from '../../types/client-schemas/zDateFromStri
 const BasePleietrengendeSchema = z.object({
     aktørId: z.string(),
     fødselsdato: zDateFromISODateString,
-    identitetsnummer: z.string(),
 });
 
 const IkkeAnonymisertPleietrengendeSchema = BasePleietrengendeSchema.extend({

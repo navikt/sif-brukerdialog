@@ -31,8 +31,9 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                     {sakerMetadata.map((sakMetadata) => {
                         const { pleietrengende, saksnummer } = sakMetadata;
                         const fødselsdato = new Date(pleietrengende.fødselsdato);
+
                         const navn = pleietrengende.anonymisert
-                            ? pleietrengende.identitetsnummer
+                            ? `Pleietrengende født ${dateFormatter.compact(pleietrengende.fødselsdato)}`
                             : `${pleietrengende.fornavn} ${pleietrengende.etternavn}`;
 
                         return (
@@ -42,16 +43,18 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                                         <Link href={`/sak/${saksnummer}`}>{navn}</Link>
                                     </LinkCard.Anchor>
                                 </LinkCard.Title>
-                                <LinkCard.Description>
-                                    <BodyShort>
-                                        <AppText
-                                            id="velgSak.barn.fdato"
-                                            values={{
-                                                dato: dateFormatter.full(fødselsdato),
-                                            }}
-                                        />
-                                    </BodyShort>
-                                </LinkCard.Description>
+                                {!pleietrengende.anonymisert && (
+                                    <LinkCard.Description>
+                                        <BodyShort>
+                                            <AppText
+                                                id="velgSak.barn.fdato"
+                                                values={{
+                                                    dato: dateFormatter.full(fødselsdato),
+                                                }}
+                                            />
+                                        </BodyShort>
+                                    </LinkCard.Description>
+                                )}
                             </LinkCard>
                         );
                     })}

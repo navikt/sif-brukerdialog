@@ -27,7 +27,6 @@ export const Default: Story = {
             etternavn: 'Hansen',
             mellomnavn: 'Von',
             fornavn: 'Ola',
-            identitetsnummer: '12345678910',
             fødselsdato: ISODateToDate('2022-01-01'),
         },
         titleTag: <StatusTag status={BehandlingStatus.AVSLUTTET} />,
