@@ -8,7 +8,9 @@
             "mellomnavn": null,
             "etternavn": "SANS"
         },
-        "fagsakYtelseType": "PSB"
+        "fagsakYtelseType": "PSB",
+        "fagsakOpprettetTidspunkt": "2025-03-19T07:43:05Z",
+        "fagsakAvsluttetTidspunkt": null
     },
     {
         "saksnummer": "1001F8G",
@@ -19,6 +21,8 @@
             "mellomnavn": null,
             "etternavn": null
         },
-        "fagsakYtelseType": "PSB"
+        "fagsakYtelseType": "PSB",
+        "fagsakOpprettetTidspunkt": "2022-03-19T07:43:05Z",
+        "fagsakAvsluttetTidspunkt": null
     }
 ]

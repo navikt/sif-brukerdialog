@@ -37,7 +37,7 @@ export const fetchSakerMetadata = async (
     const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
     logger.info(`Response-status from request: ${response.status}`);
 
-    logger.info(`Parser response data`);
+    logger.info(`Parser SakerMetadata response data`);
     const parsedData = z
         .array(
             innsyn.zSakerMetadataDto.extend({

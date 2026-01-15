@@ -8,6 +8,8 @@
             "mellomnavn": null,
             "etternavn": "GORILLA"
         },
-        "fagsakYtelseType": "PSB"
+        "fagsakYtelseType": "PSB",
+        "fagsakOpprettetTidspunkt": "2025-03-19T07:43:05Z",
+        "fagsakAvsluttetTidspunkt": null
     }
 ]
