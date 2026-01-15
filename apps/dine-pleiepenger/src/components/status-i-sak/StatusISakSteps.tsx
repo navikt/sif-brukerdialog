@@ -1,4 +1,4 @@
-import { Process } from '@navikt/ds-react';
+import { Process, ProcessProps } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { ProcessStepData } from '../../types/ProcessStepData';
@@ -6,6 +6,7 @@ import { formatSakshendelseTidspunkt } from '../../utils/sakUtils';
 
 interface Props {
     steps: ProcessStepData[];
+    isTruncated?: ProcessProps['isTruncated'];
 }
 
 const getStatusISakStepStatus = (step: ProcessStepData): 'completed' | 'active' | 'uncompleted' => {
@@ -17,7 +18,7 @@ const getStatusISakStepStatus = (step: ProcessStepData): 'completed' | 'active' 
     return 'uncompleted';
 };
 
-const StatusISakSteps = ({ steps }: Props) => {
+const StatusISakSteps = ({ steps, isTruncated }: Props) => {
     const getTidspunkt = (step: ProcessStepData): string | undefined => {
         if (step.timestamp) {
             return formatSakshendelseTidspunkt(step.timestamp);
@@ -26,7 +27,7 @@ const StatusISakSteps = ({ steps }: Props) => {
         }
     };
     return (
-        <Process>
+        <Process isTruncated={isTruncated}>
             {steps.map((step, idx) => {
                 return (
                     <Process.Event
