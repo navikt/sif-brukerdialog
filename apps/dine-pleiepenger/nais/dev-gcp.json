@@ -61,7 +61,7 @@
 
         "NEXT_PUBLIC_FEATURE_APPSTATUS": "on",
         "NEXT_PUBLIC_FEATURE_FARO": "on",
-        "NEXT_PUBLIC_FEATURE_INNTEKTSMELDING": "off",
+        "NEXT_PUBLIC_FEATURE_INNTEKTSMELDING": "on",
         "NEXT_PUBLIC_TELEMETRY_URL": "https://telemetry.ekstern.dev.nav.no/collect"
     }
 }

@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { testAccessibility } from './testAccessibility';
 
 const year = new Date().getFullYear();
 
@@ -10,6 +11,7 @@ test('Test text info part', async ({ page }) => {
     });
     await expect(appTitle).toBeVisible();
     await expect(appTitle).toHaveText('Kalkulator for omsorgsdager');
+    await testAccessibility(page);
 
     const appTitleDescription = page.getByText('Finn ut hvor mange omsorgsdager du kan ha rett til');
     await expect(appTitleDescription).toBeVisible();
@@ -72,6 +74,7 @@ test('Test kalkulator 1 barn', async ({ page }) => {
     await page.getByText('Barn med kronisk sykdom10 dager').isVisible();
     await page.getByText('Ekstra pga. aleneomsorg10 dager').nth(1).isVisible();
     await page.getByText('Totalt antall omsorgsdager= 40 dager').isVisible();
+    await testAccessibility(page);
 });
 
 test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
@@ -153,6 +156,8 @@ test('Test kalkulator Barn 13 år', async ({ page }) => {
     await page.getByText('Grunnrett for 1 barn10 dager').isVisible();
     await page.getByText('Barn med kronisk sykdom10 dager').isVisible();
     await page.getByText('Totalt antall omsorgsdager= 20 dager').isVisible();
+
+    await testAccessibility(page);
 });
 
 test('Test kalkulator 2 barn test paneler', async ({ page }) => {

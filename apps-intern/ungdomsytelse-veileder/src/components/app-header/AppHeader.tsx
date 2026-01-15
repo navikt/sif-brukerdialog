@@ -1,12 +1,21 @@
 import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
-import { InformationSquareIcon, MenuGridIcon, MoonFillIcon, PersonIcon, SunFillIcon } from '@navikt/aksel-icons';
+import {
+    InformationSquareIcon,
+    MenuGridIcon,
+    MoonFillIcon,
+    PersonIcon,
+    SunFillIcon,
+    TasklistIcon,
+} from '@navikt/aksel-icons';
 import { useThemeContext } from '../../context/ThemeContext';
 import { useVeileder } from '../../context/VeilederContext';
 import DrawerArticles from '../../pages/info-page/DrawerArticles';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { useDrawer } from '../drawer/DrawerContext';
+import SjekklisteDrawer from '../sjekkliste/DrawerSjekkliste';
+import { Features } from '../../types/Features';
 
 interface Props {
     visActionsMenu?: boolean;
@@ -36,6 +45,21 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
                     <SunFillIcon aria-label="Lys modus er aktiv" />
                 )}
             </InternalHeader.Button>
+            {Features.sjekkliste && (
+                <ActionMenu>
+                    <ActionMenu.Trigger>
+                        <InternalHeader.Button
+                            onClick={async (e) => {
+                                e.preventDefault();
+                                await log(AppHendelse.viserInformasjon);
+                                openDrawer(<SjekklisteDrawer />, { title: 'Deltakersjekkliste' });
+                            }}>
+                            <TasklistIcon fontSize="1.5rem" title="Sjekkliste" />
+                            Deltakersjekkliste
+                        </InternalHeader.Button>
+                    </ActionMenu.Trigger>
+                </ActionMenu>
+            )}
             <ActionMenu>
                 <ActionMenu.Trigger>
                     <InternalHeader.Button

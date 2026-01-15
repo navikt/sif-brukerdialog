@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 import { annenForelderMock } from '../mock-data/annenForelderMock';
 import { søkerMock } from '../mock-data/søkerMock';
 import { setupMockApi } from '../utils/setupMockApi';
+import { testAccessibility } from '../utils/testAccessibility';
 
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/velkommen';
@@ -17,12 +18,14 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     /** Velkommen side */
     await page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' });
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
     /** Om den andre forelderen */
     await page.getByRole('heading', { level: 1, name: 'Om den andre forelderen' });
     await page.getByLabel('Skriv inn fødselsnummeret til den andre forelderen, 11 siffer').fill(annenForelderMock.fnr);
     await page.getByLabel('Skriv inn navnet til den andre forelderen').fill(annenForelderMock.navn);
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Den andre forelderens situasjon */
@@ -34,6 +37,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByText('FraÅpne datovelger').click();
     await page.getByLabel('Fra', { exact: true }).fill('28.02.2023');
     await page.getByLabel('Til', { exact: true }).fill('03.09.2023');
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Om barn */
@@ -42,11 +46,13 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByLabel('Barnets navn').fill('Test Barn');
     await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('18897699792');
     await page.getByLabel('Legg til barn').getByTestId('typedFormikForm-submitButton').click();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
     await page.getByLabel('Jeg bekrefter').check();
+    await testAccessibility(page);
 
     await expect(await page.getByText(`${søkerMock.fornavn} ${søkerMock.etternavn}`).isVisible()).toBeTruthy();
     await expect(await page.getByText(søkerMock.fødselsnummer).isVisible()).toBeTruthy();
@@ -78,4 +84,5 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
             })
             .isVisible(),
     ).toBeTruthy();
+    await testAccessibility(page);
 });

@@ -1,8 +1,9 @@
 import { VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { useState } from 'react';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -10,8 +11,8 @@ import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValue
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -20,7 +21,7 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonFrilansUtils';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
-import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import { getArbeidstidSøknadsdataFromFormValues, getArbeidstidStepInitialValues } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import {

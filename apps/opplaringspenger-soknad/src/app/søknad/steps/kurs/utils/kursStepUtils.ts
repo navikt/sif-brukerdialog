@@ -11,23 +11,25 @@ import {
     getDatesInDateRanges,
     isDateInDateRanges,
     isDateWeekDay,
+    isISODate,
     ISODateToDate,
     sortDateRange,
 } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, getListValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+
+import { Kursdag } from '../../../../types/Kursdag';
 import { Kursperiode } from '../../../../types/Kursperiode';
 import { FerieuttakIPeriodenSøknadsdata } from '../../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
 import { KursSøknadsdata } from '../../../../types/søknadsdata/KursSøknadsdata';
 import { ReisedagerSøknadsdata } from '../../../../types/søknadsdata/ReisedagerSøknadsdata';
 import { Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../../../types/søknadsdata/UtenlandsoppholdSøknadsdata';
+import { EnkeltdagEllerPeriode, KursFormFields, KursFormValues } from '../KursStepForm';
+import { KursdagFormValues } from '../parts/kursdager-form-part/KursdagQuestions';
 import { KursperiodeFormValues } from '../parts/kursperioder-form-part/KursperiodeQuestions';
 import kursperiodeOgDagUtils from './kursperiodeOgDagUtils';
-import { EnkeltdagEllerPeriode, KursFormFields, KursFormValues } from '../KursStep';
-import { KursdagFormValues } from '../parts/kursdager-form-part/KursdagQuestions';
-import { Kursdag } from '../../../../types/Kursdag';
 
 dayjs.extend(isoWeek);
 
@@ -422,11 +424,11 @@ export const startOgSluttErSammeHelg = (start?: Date, slutt?: Date): boolean => 
 export const getKursperioderValidator = (perioder: KursperiodeFormValues[]) => {
     const ranges = perioder
         .map((periode) => {
-            const from = ISODateToDate(periode.fom);
-            const to = ISODateToDate(periode.tom);
+            const from = isISODate(periode.fom) ? ISODateToDate(periode.fom) : undefined;
+            const to = isISODate(periode.tom) ? ISODateToDate(periode.tom) : undefined;
             return from && to ? { from, to } : undefined;
         })
-        .filter((range) => dateRangeUtils.isDateRange(range));
+        .filter((range) => !!range && dateRangeUtils.isDateRange(range));
     if (!ranges || ranges.length === 0) {
         return undefined;
     }

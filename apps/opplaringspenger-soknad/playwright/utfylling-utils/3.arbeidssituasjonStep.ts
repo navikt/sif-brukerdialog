@@ -1,5 +1,7 @@
 import { expect, Page } from '@playwright/test';
 
+import { testAccessibility } from '../utils/testAccessibility';
+
 export const fyllUtArbeidssituasjonStep = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Din arbeidssituasjon' })).toBeVisible();
     await page
@@ -39,6 +41,7 @@ export const fyllUtArbeidssituasjonStep = async (page: Page) => {
         })
         .getByLabel('Nei')
         .check();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 

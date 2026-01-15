@@ -1,10 +1,11 @@
 import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds';
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
+
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
+import { EnkeltdagEllerPeriode } from '../../søknad/steps/kurs/KursStepForm';
 import { VedleggType } from '../../søknad/steps/legeerklæring/LegeerklæringForm';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { OmBarnetApiData } from './OmBarnetApiData';
-import { EnkeltdagEllerPeriode } from '../../søknad/steps/kurs/KursStep';
 
 export * from './OmBarnetApiData';
 

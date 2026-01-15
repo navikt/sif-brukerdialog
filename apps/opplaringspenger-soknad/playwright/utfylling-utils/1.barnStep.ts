@@ -1,9 +1,12 @@
 import { expect, Page } from '@playwright/test';
+
 import { lastOppDokument } from '../utils/dokumentUtils';
+import { testAccessibility } from '../utils/testAccessibility';
 
 export const fyllUtRegistrertBarn = async (page: Page) => {
     await page.getByRole('heading', { level: 1, name: 'Om personen du pleier' });
     await page.getByText('ALFABETISK FAGGOTT').click();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -19,6 +22,7 @@ export const fyllUtAnnetBarn = async (page: Page) => {
     await page.getByText('Fosterforelder').click();
     await lastOppDokument(page, page.locator('input[type="file"]'), './playwright/files/navlogopng.png');
     await expect(page.getByRole('heading', { name: 'Dokumenter lastet opp (1)' })).toBeVisible();
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 

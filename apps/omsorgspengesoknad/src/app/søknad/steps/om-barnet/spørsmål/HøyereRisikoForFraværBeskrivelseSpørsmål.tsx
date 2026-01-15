@@ -22,6 +22,7 @@ const HøyereRisikoForFraværBeskrivelseSpørsmål = () => {
                     minLength: 5,
                     maxLength: 1000,
                     required: true,
+                    disallowInvalidBackendCharacters: true,
                 })(value);
 
                 return error;

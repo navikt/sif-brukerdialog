@@ -6,6 +6,7 @@ import { VelgBarn_AnnetBarnValue, VelgBarnFormPart } from '@navikt/sif-common-fo
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import AnnetBarnPart from './components/AnnetBarnPart';
 import { OmBarnetFormComponents } from './components/OmBarnetFormComponents';
 import { useOmBarnetFormIntl } from './omBarnetFormMessages';

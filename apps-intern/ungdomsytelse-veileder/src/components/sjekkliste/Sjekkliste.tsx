@@ -12,10 +12,11 @@ import {
 
 interface Props {
     visResultat?: boolean;
+    showHeader?: boolean;
     onChange: (kanMeldesInn: boolean) => void;
 }
 
-const Sjekkliste = ({ onChange, visResultat }: Props) => {
+const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
     const [values, setValues] = useState<SjekklisteValues>({});
 
     const setValue = <K extends keyof SjekklisteValues>(key: K, value: SjekklisteValues[K]) => {
@@ -35,9 +36,11 @@ const Sjekkliste = ({ onChange, visResultat }: Props) => {
 
     return (
         <VStack gap="2">
-            <Heading level="3" size="small" spacing>
-                Sjekkliste for om deltaker kan meldes inn i ungdoms&shy;programmet
-            </Heading>
+            {showHeader && (
+                <Heading level="3" size="small" spacing>
+                    Sjekkliste for om deltaker kan meldes inn i ungdoms&shy;programmet
+                </Heading>
+            )}
             <VStack gap="10">
                 <RadioGroup
                     name="alder"

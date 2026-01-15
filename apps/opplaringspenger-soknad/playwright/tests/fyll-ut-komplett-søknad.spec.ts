@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { fyllUtRegistrertBarn } from '../utfylling-utils/1.barnStep';
 import { fyllUtOpplæringEnPeriode } from '../utfylling-utils/2.opplæringStep';
 import { fyllUtArbeidssituasjonStep } from '../utfylling-utils/3.arbeidssituasjonStep';

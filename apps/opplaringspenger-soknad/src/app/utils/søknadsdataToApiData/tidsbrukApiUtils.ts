@@ -12,6 +12,7 @@ import {
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { TidEnkeltdagApiData, TidFasteDagerApiData } from '../../types/søknadApiData/SøknadApiData';
 
 export const getFasteDagerApiData = ({

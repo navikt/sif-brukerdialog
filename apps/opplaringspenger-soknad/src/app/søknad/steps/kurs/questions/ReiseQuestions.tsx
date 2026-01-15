@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { KursFormComponents, KursFormFields, KursFormValues } from '../KursStep';
+import { KursFormComponents, KursFormFields, KursFormValues } from '../KursStepForm';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { YesOrNo } from '@navikt/sif-common-core-ds';

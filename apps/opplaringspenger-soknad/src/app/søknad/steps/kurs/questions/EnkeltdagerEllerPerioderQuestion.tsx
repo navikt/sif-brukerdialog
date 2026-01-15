@@ -1,6 +1,7 @@
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
-import { EnkeltdagEllerPeriode, KursFormComponents, KursFormFields } from '../KursStep';
+
 import { useAppIntl } from '../../../../i18n';
+import { EnkeltdagEllerPeriode, KursFormComponents, KursFormFields } from '../KursStepForm';
 
 const EnkeltdagerEllerPerioderQuestion = () => {
     const { text } = useAppIntl();

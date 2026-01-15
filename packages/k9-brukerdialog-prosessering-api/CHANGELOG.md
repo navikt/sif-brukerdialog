@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.3.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
 ## 0.3.6
 
 ### Patch Changes

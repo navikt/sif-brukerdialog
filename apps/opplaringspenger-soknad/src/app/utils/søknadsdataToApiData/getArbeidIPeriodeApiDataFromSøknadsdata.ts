@@ -1,4 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils';
+
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
 import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { ArbeidIPeriodeApiData } from '../../types/søknadApiData/SøknadApiData';
