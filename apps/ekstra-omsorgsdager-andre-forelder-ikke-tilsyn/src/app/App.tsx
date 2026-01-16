@@ -12,6 +12,7 @@ import {
 import { Navigate, Route } from 'react-router-dom';
 
 import { applicationIntlMessages } from './i18n';
+import IkkeTilgangPage from './pages/ikke-tilgang-page/IkkeTilgangPage';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
@@ -49,7 +50,7 @@ const App = () => (
                 contentRoutes={[
                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                     <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                    <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
+                    <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<IkkeTilgangPage />} />,
                     <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                 ]}
             />
