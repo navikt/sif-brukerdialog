@@ -5,6 +5,7 @@ import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
+    NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
@@ -68,7 +69,7 @@ const App = () => (
                     contentRoutes={[
                         <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                         <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                        <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
+                        <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<NoAccessPage />} />,
                         <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                     ]}
                 />

@@ -5,7 +5,7 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
 
 import { AppText, useAppIntl } from '../../i18n';
-import getLenker from '../../lenker';
+import { getLenker } from '../../lenker';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 

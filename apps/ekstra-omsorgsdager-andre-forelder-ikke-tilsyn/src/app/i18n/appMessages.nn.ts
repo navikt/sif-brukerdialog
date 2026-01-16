@@ -30,7 +30,4 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
     'apiDataValidation.undefined': 'Det oppstod ein feil ved visning av sida.',
-    'page.ikkeTilgang.tekst':
-        'Du har ikkje tilgang til denne sida. Dersom du er under 18 år, må ein av foreldra dine eller ein føresett skrive under på søknaden saman med deg. Du må derfor fylle ut søknaden på papir og sende han i posten.',
-    'page.ikkeTilgang.lastNed': 'Her kan du laste ned papirsøknaden',
 };

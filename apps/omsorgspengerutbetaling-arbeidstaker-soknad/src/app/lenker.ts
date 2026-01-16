@@ -1,44 +1,37 @@
-interface Lenker {
-    medlemskap: string;
-    deltFastBosted: string;
-    papirskjemaPrivat: string;
-    vilkårOmsorgspenger: string;
-    personvern: string;
-    rettOgPlikt: string;
-    saksbehandlingstider: string;
-    ettersending: string;
-}
+import { sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
-const LenkerBokmål: Lenker = {
-    deltFastBosted:
+const lenkerBokmål = {
+    skatt_deltFastBosted:
         'https://www.skatteetaten.no/person/folkeregister/fodsel-og-navnevalg/delt-fast-bosted-for-felles-barn',
-    medlemskap:
-        'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
-    papirskjemaPrivat: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/brev',
-    vilkårOmsorgspenger: 'https://www.nav.no/familie/sykdom-i-familien/nb/omsorgspenger',
-    personvern: 'https://www.nav.no/personvernerklaering',
-    rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/saksbehandlingstider',
-    ettersending: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-35.01/ettersendelse',
+    papirskjemaPrivat: 'https://www.nav.no/soknader#omsorgspenger-hjemme-med-sykt-barn-dager',
+    vilkårOmsorgspenger: 'https://www.nav.no/omsorgspenger',
+    ettersending: 'https://www.nav.no/ettersende#omsorgspenger-hjemme-med-sykt-barn-dager',
 };
 
-const LenkerNynorsk: Partial<Lenker> = {
-    medlemskap: 'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Nynorsk/medlemskap-i-folketrygda',
-    papirskjemaPrivat: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/brev',
-    vilkårOmsorgspenger: 'https://www.nav.no/familie/sykdom-i-familien/nn/omsorgspenger',
-    rettOgPlikt:
-        'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Nynorsk/du-har-plikt-til-%C3%A5-gje-nav-riktige-opplysningar',
+type Lenker = typeof lenkerBokmål;
+
+const lenkerNynorsk: Lenker = {
+    ...lenkerBokmål,
+    skatt_deltFastBosted:
+        'https://www.skatteetaten.no/person/folkeregister/fodsel-og-navnevalg/delt-fast-bosted-for-felles-barn',
+    papirskjemaPrivat: 'https://www.nav.no/soknader#omsorgspengar-heime-med-sjukt-barn-dagar',
+    vilkårOmsorgspenger: 'https://www.nav.no/omsorgspenger/nn',
+    ettersending: 'https://www.nav.no/ettersende/nn#omsorgspengar-heime-med-sjukt-barn-dagar',
 };
 
-const getLenker = (locale?: string): Lenker => {
+const getLenker = (locale?: string): Lenker & typeof sifCommonLenkerBokmål => {
     switch (locale) {
         case 'nn':
             return {
-                ...LenkerBokmål,
-                ...LenkerNynorsk,
+                ...sifCommonLenkerNynorsk,
+                ...lenkerBokmål,
+                ...lenkerNynorsk,
             };
         default:
-            return LenkerBokmål;
+            return {
+                ...sifCommonLenkerBokmål,
+                ...lenkerBokmål,
+            };
     }
 };
 

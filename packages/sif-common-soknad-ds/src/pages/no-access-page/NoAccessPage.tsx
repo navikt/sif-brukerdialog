@@ -7,9 +7,10 @@ import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 import { SoknadText } from '../../i18n/soknad.messages';
 
 interface Props {
-    papirskjemaUrl: string;
+    papirskjemaUrl?: string;
+    kontaktOssUrl?: string;
 }
-const IkkeTilgangPage = ({ papirskjemaUrl }: Props) => {
+const IkkeTilgangPage = ({ papirskjemaUrl, kontaktOssUrl = 'https://www.nav.no/kontaktoss' }: Props) => {
     const { text } = useSoknadIntl();
     return (
         <Page
@@ -18,12 +19,27 @@ const IkkeTilgangPage = ({ papirskjemaUrl }: Props) => {
             topContentRenderer={() => <SoknadHeader title={text('application.title')} />}>
             <Box marginBlock="10">
                 <SifGuidePanel poster={true}>
-                    <p>
-                        <SoknadText id="@soknad.page.noAccessPage.tekst" />
-                    </p>
-                    <Link href={papirskjemaUrl} target="_blank">
-                        <SoknadText id="@soknad.page.noAccessPage.lastNed" />
-                    </Link>
+                    {papirskjemaUrl ? (
+                        <>
+                            <p>
+                                <SoknadText id="@soknad.page.noAccessPage.tekst" />
+                            </p>
+                            {papirskjemaUrl && (
+                                <Link href={papirskjemaUrl} target="_blank">
+                                    <SoknadText id="@soknad.page.noAccessPage.lastNed" />
+                                </Link>
+                            )}
+                        </>
+                    ) : (
+                        <p>
+                            <SoknadText
+                                id="@soknad.page.noAccessPage.kontaktoss"
+                                values={{
+                                    lenke: (content: React.ReactNode) => <Link href={kontaktOssUrl}>{content}</Link>,
+                                }}
+                            />
+                        </p>
+                    )}
                 </SifGuidePanel>
             </Box>
         </Page>

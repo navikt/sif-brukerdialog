@@ -80,7 +80,7 @@ const MedlemskapStep = () => {
                             <MedlemskapForm
                                 values={values}
                                 isSubmitting={isSubmitting}
-                                medlemskapInfoUrl={getLenker(locale).medlemskap}
+                                medlemskapInfoUrl={getLenker(locale).medlemskapIFolketrygden}
                                 goBack={goBack}
                             />
                         </>

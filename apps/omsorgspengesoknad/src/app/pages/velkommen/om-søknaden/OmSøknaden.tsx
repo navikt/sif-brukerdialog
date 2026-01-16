@@ -1,6 +1,6 @@
 import { Accordion, Box, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { AppText } from '../../../i18n';
-import getLenker from '../../../lenker';
+import { getLenker } from '../../../lenker';
 
 const OmSøknaden = () => {
     return (
@@ -71,7 +71,7 @@ const OmSøknaden = () => {
                                     id="page.velkommen.personopplysninger.5.3"
                                     values={{
                                         Lenke: (children: React.ReactNode) => (
-                                            <Link href={getLenker().personvern} target="_blank">
+                                            <Link href={getLenker().personvernerklæring} target="_blank">
                                                 {children}
                                             </Link>
                                         ),

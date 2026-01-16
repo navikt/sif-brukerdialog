@@ -29,10 +29,16 @@ type SøknadInitialNotLoggedIn = {
     status: RequestStatus.redirectingToLogin;
 };
 
+type SøknadInitialNoAccess = {
+    status: RequestStatus.noAccess;
+};
+
 export type SøknadInitialDataState =
     | SøknadInitialSuccess
     | SøknadInitialFailed
     | SøknadInitialLoading
+    | SøknadInitialLoading
+    | SøknadInitialNoAccess
     | SøknadInitialNotLoggedIn;
 
 export const defaultSøknadState: Partial<SøknadContextState> = {

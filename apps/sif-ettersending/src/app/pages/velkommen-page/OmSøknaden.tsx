@@ -28,7 +28,7 @@ const OmSøknaden = () => {
                         id="page.velkommen.omSøknaden.4"
                         values={{
                             Lenke: (children: ReactNode) => (
-                                <Link key="lenke" href={getLenker().personvern} target="_blank">
+                                <Link key="lenke" href={getLenker().personvernerklæring} target="_blank">
                                     {children}
                                 </Link>
                             ),

@@ -7,6 +7,7 @@ import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
 import { AppText, useAppIntl } from '../i18n';
+import { relocateToNoAccessPage } from '../utils/navigationUtils';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
@@ -35,6 +36,10 @@ const Søknad = () => {
                 )}
             />
         );
+    }
+    if (status === RequestStatus.noAccess) {
+        relocateToNoAccessPage();
+        return;
     }
 
     /** Success */

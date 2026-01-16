@@ -31,7 +31,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
     const { values } = useFormikContext<SøknadFormValues>();
     const { harHattInntektSomSN, virksomhet, harFlereVirksomheter, arbeidsforhold } = values.selvstendig;
     const søkerHarFlereVirksomheter = harFlereVirksomheter === YesOrNo.YES;
-    const urlSkatteetatenSN = getLenker(intl.locale).skatteetatenSN;
+    const urlSkatteetatenSN = getLenker(intl.locale).skatt_SNInntekt;
 
     const intlValues = getArbeidsforholdIntlValues(appIntl, {
         arbeidsforhold: {

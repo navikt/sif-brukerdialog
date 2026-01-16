@@ -48,7 +48,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                     id="personopplysninger.6"
                     values={{
                         Lenke: (children) => (
-                            <Link href={getLenker().personvern} target="_blank" key="personvernLenke">
+                            <Link href={getLenker().personvernerklæring} target="_blank" key="personvernLenke">
                                 {children}
                             </Link>
                         ),
