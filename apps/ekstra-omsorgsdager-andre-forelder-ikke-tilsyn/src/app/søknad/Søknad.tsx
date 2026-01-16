@@ -5,6 +5,7 @@ import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { AppText, useAppIntl } from '../i18n';
 import { RequestStatus } from '../types/RequestStatus';
+import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
@@ -36,6 +37,11 @@ const Søknad = () => {
                 )}
             />
         );
+    }
+
+    if (status === RequestStatus.noAccess) {
+        relocateToNoAccessPage();
+        return null;
     }
 
     /** Success */
