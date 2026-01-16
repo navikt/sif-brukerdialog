@@ -15,9 +15,17 @@ const Søknad = () => {
     const { status } = initialData;
 
     /** Loading */
-    if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
+    if (
+        status === RequestStatus.loading ||
+        status === RequestStatus.redirectingToLogin ||
+        status === RequestStatus.noAccess
+    ) {
+        if (status === RequestStatus.noAccess) {
+            relocateToNoAccessPage();
+        }
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
+
     /** Error */
     if (status === 'error') {
         return (
@@ -36,10 +44,6 @@ const Søknad = () => {
                 )}
             />
         );
-    }
-    if (status === RequestStatus.noAccess) {
-        relocateToNoAccessPage();
-        return;
     }
 
     /** Success */
