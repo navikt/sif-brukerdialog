@@ -34,14 +34,14 @@ const OmSøknaden = () => {
                     <Accordion.Content>
                         <p>
                             <AppText id="page.velkommen.omSøknaden.endringer.tekst.1.a" />{' '}
-                            <Link href={getLenker('nb').endringsmelding} target="_blank">
+                            <Link href={getLenker('nb').endringsmelding} target="_blank" rel="noopener noreferrer">
                                 <AppText id="page.velkommen.omSøknaden.endringer.tekst.1.b" />
                             </Link>
                             <AppText id="page.velkommen.omSøknaden.endringer.tekst.1.c" />
                         </p>
                         <p>
                             <AppText id="page.velkommen.omSøknaden.endringer.tekst.2.a" />{' '}
-                            <Link href={getLenker('nb').skrivTilOss} target="_blank">
+                            <Link href={getLenker('nb').skrivTilOss} target="_blank" rel="noopener noreferrer">
                                 <AppText id="page.velkommen.omSøknaden.endringer.tekst.2.b" />
                             </Link>
                             <AppText id="page.velkommen.omSøknaden.endringer.tekst.2.c" />

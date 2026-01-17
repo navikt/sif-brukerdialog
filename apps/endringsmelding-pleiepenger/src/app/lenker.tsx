@@ -1,42 +1,38 @@
 import { Link } from '@navikt/ds-react';
+import { SifCommonLenker, sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
 import { AppText } from './i18n';
 
-interface Lenker {
-    beskjedTilOss: string;
-    skrivTilOss: string;
-    kontaktOss: string;
-    personvern: string;
-    beskjedOmFamilie: string;
-}
-
-const LenkerBokmål: Lenker = {
-    beskjedTilOss: 'https://innboks.nav.no/s/beskjed-til-oss?category=Endring-sykdom-familien',
-    skrivTilOss: 'https://innboks.nav.no/s/skriv-til-oss?category=Pleiepenger',
-    kontaktOss: 'https://www.nav.no/kontaktoss',
-    beskjedOmFamilie: 'https://www.nav.no/send-beskjed-om-familie',
-    personvern: 'https://www.nav.no/personvernerklaering',
+const LenkerBokmål = {
+    beskjedTilOssEndringsmelding: 'https://innboks.nav.no/s/beskjed-til-oss?category=Endring-sykdom-familien',
+    skrivTilOssPleiepenger: 'https://innboks.nav.no/s/skriv-til-oss?category=Pleiepenger',
 };
 
-export const getLenker = (locale?: string): Lenker => {
+type Lenker = typeof LenkerBokmål;
+
+export const getLenker = (locale?: string): Lenker & SifCommonLenker => {
     switch (locale) {
         case 'nn':
             return {
+                ...sifCommonLenkerNynorsk,
                 ...LenkerBokmål,
             };
         default:
-            return LenkerBokmål;
+            return {
+                ...sifCommonLenkerBokmål,
+                ...LenkerBokmål,
+            };
     }
 };
 
 export const SkrivTilOssLink = () => (
-    <Link href={getLenker().skrivTilOss}>
+    <Link href={getLenker().skrivTilOssPleiepenger}>
         <AppText id="lenke.skrivTilOss" />
     </Link>
 );
 
 export const SendBeskjedLink = () => (
-    <Link href={getLenker().beskjedTilOss}>
+    <Link href={getLenker().beskjedTilOssEndringsmelding}>
         <AppText id="lenke.sendBeskjed" />
     </Link>
 );

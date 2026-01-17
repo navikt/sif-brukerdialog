@@ -5,9 +5,9 @@ import { fyllUtArbeidssituasjonStep } from '../../utfylling-utils/3.arbeidssitua
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.ARBEIDSSITUASJON, { arbeidssituasjon: undefined });
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.ARBEIDSSITUASJON, { arbeidssituasjon: undefined });
     await expect(page.getByRole('heading', { name: 'Din arbeidssituasjon' })).toBeVisible();
 });
 

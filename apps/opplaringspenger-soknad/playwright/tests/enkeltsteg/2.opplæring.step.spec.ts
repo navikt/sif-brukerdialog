@@ -14,9 +14,9 @@ import {
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.KURS, { kurs: undefined });
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.KURS, { kurs: undefined });
     await expect(page.getByRole('heading', { name: 'Om opplæringen' })).toBeVisible();
 });
 

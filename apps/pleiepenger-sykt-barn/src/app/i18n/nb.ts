@@ -87,10 +87,6 @@ export const appCommonMessages_nb = {
         'Du er kommet til en side du ikke trenger å fylle ut. Dette kan skje hvis du går frem og tilbake i søknaden gjennom pilene i nettleseren (pilene helt øverst til venstre på siden). Du unngår dette problemet hvis du heller bruker knapper og lenker som ligger inne i selve søknaden for å gå frem eller tilbake.',
     'page.invalidStepPage.tilbakeLenke': 'Gå tilbake til forrige side',
 
-    'page.ikkeTilgang.tekst':
-        'Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.',
-    'page.ikkeTilgang.lastNed': 'Her kan du laste ned papirsøknaden',
-
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
     'validation.omsorgsstønad.mottarOmsorgsstønad.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du mottar omsorgsstønad.',

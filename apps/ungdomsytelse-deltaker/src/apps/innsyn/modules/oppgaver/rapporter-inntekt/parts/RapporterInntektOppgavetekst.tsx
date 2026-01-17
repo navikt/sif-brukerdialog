@@ -78,7 +78,10 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelde
                                     id="rapporterInntektOppgave.readMore.tekst.3"
                                     values={{
                                         link: (value) => (
-                                            <ExternalLink href={getLenker().lovdataInntekt} target="_blank">
+                                            <ExternalLink
+                                                href={getLenker().lovdataInntekt}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
                                                 {value}
                                             </ExternalLink>
                                         ),
