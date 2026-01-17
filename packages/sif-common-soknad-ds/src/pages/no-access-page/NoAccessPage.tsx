@@ -1,4 +1,4 @@
-import { BodyLong, Box, Link } from '@navikt/ds-react';
+import { BodyLong, Box, Heading, Link } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { useIntl } from 'react-intl';
@@ -54,7 +54,14 @@ const NoAccessPage = <IntlKeys extends string = string>({
     return (
         <Page title={tittel} topContentRenderer={() => <SoknadHeader title={tittel} />}>
             <Box marginBlock="10">
-                <SifGuidePanel poster={true}>{renderContent()}</SifGuidePanel>
+                <SifGuidePanel poster={true}>
+                    <Box marginBlock="4">
+                        <Heading level="1" size="large" spacing>
+                            <SoknadText id="@soknad.page.noAccessPage.tittel" />
+                        </Heading>
+                        {renderContent()}
+                    </Box>
+                </SifGuidePanel>
             </Box>
         </Page>
     );

@@ -15,6 +15,7 @@ import { Navigate, Route } from 'react-router-dom';
 
 import { mellomlagringService } from './api/mellomlagringService';
 import { applicationIntlMessages, type AppMessageKeys } from './i18n';
+import getLenker from './lenker';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
@@ -72,7 +73,12 @@ const App = () => (
                         <Route
                             path={SøknadRoutes.IKKE_TILGANG}
                             key="ikke-tilgang"
-                            element={<NoAccessPage<AppMessageKeys> tittelIntlKey="application.title" />}
+                            element={
+                                <NoAccessPage<AppMessageKeys>
+                                    tittelIntlKey="application.title"
+                                    papirskjemaUrl={getLenker().papirskjemaPrivat}
+                                />
+                            }
                         />,
                         <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                     ]}

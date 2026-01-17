@@ -8,7 +8,7 @@ import { testAccessibility } from './testAccessibility';
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
-const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling';
+export const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling';
 const date = dayjs('2023-10-04');
 
 const fraDato = date.startOf('isoWeek').subtract(3, 'weeks').format('DD.MM.YYYY');

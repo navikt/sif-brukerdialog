@@ -1,5 +1,5 @@
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
-import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffect, useState } from 'react';
 
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
@@ -74,6 +74,8 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 setInitialData({
                     status: RequestStatus.redirectingToLogin,
                 });
+            } else if (isForbidden(error)) {
+                setInitialData({ status: RequestStatus.noAccess });
             } else {
                 appSentryLogger.logError('fetchInitialData', error);
                 setInitialData({

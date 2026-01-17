@@ -2,14 +2,14 @@ import { expect, test } from '@playwright/test';
 
 import { annenForelderMock } from '../mock-data/annenForelderMock';
 import { søkerMock } from '../mock-data/søkerMock';
-import { setupMockApi } from '../utils/setupMockApi';
+import { setupMockRoutes } from '../utils/setupMockRoutes';
 import { testAccessibility } from '../utils/testAccessibility';
 
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/velkommen';
 
 test.beforeEach(async ({ page }) => {
-    await setupMockApi(page);
+    await setupMockRoutes(page);
 });
 
 test('Fyll ut søknad med annet barn', async ({ page }) => {
