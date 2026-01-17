@@ -5,7 +5,7 @@ import { getMellomlagringHandlers } from './mellomlagringHandlers';
 
 export const getHandlers = () => [
     http.get('**/oppslag/soker', () => {
-        return HttpResponse.json(mockData.søker, { status: 451 });
+        return HttpResponse.json(mockData.søker);
     }),
     http.get('**/oppslag/arbeidsgiver', () => {
         return HttpResponse.json(mockData.arbeidsgiver);
