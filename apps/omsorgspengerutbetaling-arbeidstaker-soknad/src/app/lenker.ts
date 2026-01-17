@@ -1,4 +1,4 @@
-import { sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
+import { SifCommonLenker, sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
 const lenkerBokmål = {
     skatt_deltFastBosted:
@@ -19,7 +19,7 @@ const lenkerNynorsk: Lenker = {
     ettersending: 'https://www.nav.no/ettersende/nn#omsorgspengar-heime-med-sjukt-barn-dagar',
 };
 
-const getLenker = (locale?: string): Lenker & typeof sifCommonLenkerBokmål => {
+const getLenker = (locale?: string): Lenker & SifCommonLenker => {
     switch (locale) {
         case 'nn':
             return {
