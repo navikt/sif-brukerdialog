@@ -22,8 +22,6 @@ const config: StorybookConfig = {
         name: getAbsolutePath('@storybook/react-vite'),
         options: {},
     },
-    env: (config) => ({
-        ...config,
-    }),
+    env: (config) => config,
 };
 export default config;

@@ -13,7 +13,7 @@ type Lenker = typeof lenkerBokmål;
 const lenkerNynorsk: Lenker = {
     ...lenkerBokmål,
     skatt_deltFastBosted:
-        'https://www.skatteetaten.no/person/folkeregister/fodsel-og-navnevalg/delt-fast-bosted-for-felles-barn',
+        'https://www.skatteetaten.no/nn/person/folkeregister/fodsel-og-namneval/delt-fast-bosted-for-felles-barn/',
     papirskjemaPrivat: 'https://www.nav.no/soknader#omsorgspengar-heime-med-sjukt-barn-dagar',
     vilkårOmsorgspenger: 'https://www.nav.no/omsorgspenger/nn',
     ettersending: 'https://www.nav.no/ettersende/nn#omsorgspengar-heime-med-sjukt-barn-dagar',
