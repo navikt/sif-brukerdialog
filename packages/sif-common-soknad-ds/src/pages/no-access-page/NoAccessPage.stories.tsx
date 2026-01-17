@@ -15,5 +15,6 @@ type Story = StoryObj<typeof NoAccessPage>;
 export const Default: Story = {
     args: {
         papirskjemaUrl: 'https://www.nav.no/',
+        tittelIntlKey: 'application.title',
     },
 };

@@ -12,7 +12,7 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Navigate, Route } from 'react-router-dom';
 
-import { applicationIntlMessages, AppMessageKeys } from './i18n';
+import { applicationIntlMessages, type AppMessageKeys } from './i18n';
 import getLenker from './lenker';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
