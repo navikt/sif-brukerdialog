@@ -71,7 +71,10 @@ const OmSøknaden = () => {
                                     id="page.velkommen.personopplysninger.5.3"
                                     values={{
                                         Lenke: (children: React.ReactNode) => (
-                                            <Link href={getLenker().personvernerklæring} target="_blank">
+                                            <Link
+                                                href={getLenker().personvernerklæring}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
                                                 {children}
                                             </Link>
                                         ),

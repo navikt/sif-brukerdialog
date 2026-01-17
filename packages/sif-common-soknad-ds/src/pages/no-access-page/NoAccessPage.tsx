@@ -34,7 +34,7 @@ const NoAccessPage = <IntlKeys extends string = string>({
                     <BodyLong>
                         <SoknadText id="@soknad.page.noAccessPage.tekst" />
                     </BodyLong>
-                    <Link href={papirskjemaUrl} target="_blank">
+                    <Link href={papirskjemaUrl} target="_blank" rel="noopener noreferrer">
                         <SoknadText id="@soknad.page.noAccessPage.lastNed" />
                     </Link>
                 </>

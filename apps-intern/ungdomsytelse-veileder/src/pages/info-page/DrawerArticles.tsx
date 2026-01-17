@@ -211,7 +211,8 @@ const DrawerArticles = () => {
                         <BodyLong>
                             <Link
                                 href="https://navikt.github.io/sif-brukerdialog/ungdomsytelse-deltaker"
-                                target="_blank">
+                                target="_blank"
+                                rel="noopener noreferrer">
                                 Gå til demoversjon av deltakersidene
                                 <ExternalLinkIcon role="presentation" />
                             </Link>

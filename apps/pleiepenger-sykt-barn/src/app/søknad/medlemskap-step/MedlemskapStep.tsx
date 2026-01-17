@@ -29,7 +29,7 @@ const MedlemskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props
         <SøknadFormStep stepId={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
             <FormLayout.Guide>
                 {text('step.medlemskap.veileder')}{' '}
-                <Link href={getLenker().medlemskapIFolketrygden} target="_blank">
+                <Link href={getLenker().medlemskapIFolketrygden} target="_blank" rel="noopener noreferrer">
                     nav.no
                 </Link>
                 .

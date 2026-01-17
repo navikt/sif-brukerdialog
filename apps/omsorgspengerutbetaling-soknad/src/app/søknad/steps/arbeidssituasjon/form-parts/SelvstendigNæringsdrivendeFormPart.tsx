@@ -38,7 +38,10 @@ const SelvstendigNæringsdrivendeFormPart = ({ values }: Props) => {
                     <ExpandableInfo title={text('step.arbeidssituasjon.selvstendig.hjelpetekst.tittel')}>
                         <>
                             {text('step.arbeidssituasjon.selvstendig.hjelpetekst')}{' '}
-                            <Link href={getLenker(intl.locale).skatt_SNInntekt} target="_blank">
+                            <Link
+                                href={getLenker(intl.locale).skatt_SNInntekt}
+                                target="_blank"
+                                rel="noopener noreferrer">
                                 <AppText id="step.arbeidssituasjon.selvstendig.hjelpetekst.snSkatteetatenLenke" />
                             </Link>
                         </>

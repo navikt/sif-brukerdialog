@@ -49,7 +49,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                     <ExpandableInfo title={text('selvstendig.harDuHattInntekt.hjelpetekst.tittel')}>
                         <>
                             <AppText id="selvstendig.harDuHattInntekt.hjelpetekst" />{' '}
-                            <Link href={urlSkatteetatenSN} target="_blank">
+                            <Link href={urlSkatteetatenSN} target="_blank" rel="noopener noreferrer">
                                 <AppText id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
                             </Link>
                         </>

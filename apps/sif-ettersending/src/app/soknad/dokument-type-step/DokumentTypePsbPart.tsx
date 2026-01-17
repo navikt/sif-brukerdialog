@@ -34,7 +34,10 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
                                 id="step.dokumentType.info.2"
                                 values={{
                                     Lenke: (children: ReactNode) => (
-                                        <Link href={getLenker().endringsmelding} target="_blank">
+                                        <Link
+                                            href={getLenker().endringsmelding}
+                                            target="_blank"
+                                            rel="noopener noreferrer">
                                             {children}
                                         </Link>
                                     ),
@@ -46,7 +49,7 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
                                 id="step.dokumentType.info.3"
                                 values={{
                                     Lenke: (children: ReactNode) => (
-                                        <Link href={getLenker().skrivTilOss} target="_blank">
+                                        <Link href={getLenker().skrivTilOss} target="_blank" rel="noopener noreferrer">
                                             {children}
                                         </Link>
                                     ),

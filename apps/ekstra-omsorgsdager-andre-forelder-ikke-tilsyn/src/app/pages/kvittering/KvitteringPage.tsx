@@ -32,7 +32,10 @@ const KvitteringPage = () => {
                             id="kvittering.info.3"
                             values={{
                                 Lenke: (children) => (
-                                    <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
+                                    <Link
+                                        href={getLenker(intl.locale).saksbehandlingstider}
+                                        target="_blank"
+                                        rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),

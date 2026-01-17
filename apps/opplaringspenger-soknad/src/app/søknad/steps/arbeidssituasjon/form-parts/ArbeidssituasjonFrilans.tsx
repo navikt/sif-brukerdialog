@@ -99,7 +99,7 @@ const ArbeidssituasjonFrilans = ({
                                 <VStack gap="6">
                                     <BodyShort>
                                         {text('frilanser.hjelpetekst')}{' '}
-                                        <Link href={urlSkatteetaten} target="_blank">
+                                        <Link href={urlSkatteetaten} target="_blank" rel="noopener noreferrer">
                                             <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
                                         </Link>
                                         .

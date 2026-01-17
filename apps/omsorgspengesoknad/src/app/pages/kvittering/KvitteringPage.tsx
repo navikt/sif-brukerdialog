@@ -36,7 +36,10 @@ const KvitteringPage = () => {
                             <AppText id="page.kvittering.info.4.1" />
                         </p>
                         <p>
-                            <Link href={getLenker(locale).saksbehandlingstider} target="_blank">
+                            <Link
+                                href={getLenker(locale).saksbehandlingstider}
+                                target="_blank"
+                                rel="noopener noreferrer">
                                 <AppText id="page.kvittering.info.4.2" />
                             </Link>
                         </p>
