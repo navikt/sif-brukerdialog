@@ -12,7 +12,7 @@ import {
 } from '@navikt/sif-common-soknad-ds';
 import { Navigate, Route } from 'react-router-dom';
 
-import { applicationIntlMessages } from './i18n';
+import { applicationIntlMessages, AppMessageKeys } from './i18n';
 import { getLenker } from './lenker';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
@@ -54,7 +54,12 @@ const App = () => (
                     <Route
                         path={SøknadRoutes.IKKE_TILGANG}
                         key="ikke-tilgang"
-                        element={<NoAccessPage papirskjemaUrl={getLenker().papirskjema} />}
+                        element={
+                            <NoAccessPage<AppMessageKeys>
+                                tittelIntlKey="application.title"
+                                papirskjemaUrl={getLenker().papirskjema}
+                            />
+                        }
                     />,
                     <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                 ]}

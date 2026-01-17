@@ -57,10 +57,6 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'resetMellomlagring.text.1': 'Dersom feilen vare ved, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
-    'page.ikkeTilgang.tekst':
-        'Du har ikkje tilgang til denne sida. Dersom du er under 18 år, må ein av foreldra dine eller ein føresett skrive under på søknaden saman med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.',
-    'page.ikkeTilgang.lastNed': 'Her kan du laste ned papirsøknaden',
-
     'validation.barn.ingenBarn': 'Du må leggje til minst eitt barn for å kunne gå vidare i søknaden.',
     'validation.harUtvidetRett.yesOrNoIsUnanswered':
         'Du må svare om du har fått ekstra omsorgsdagar for barn fordi barnet har kronisk sjukdom eller funksjonshemming.',

@@ -5,14 +5,15 @@ import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
+    NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
 import MockDate from 'mockdate';
 import { Navigate, Route } from 'react-router-dom';
 
-import { applicationIntlMessages } from './i18n';
-import IkkeTilgangPage from './pages/ikke-tilgang-page/IkkeTilgangPage';
+import { applicationIntlMessages, AppMessageKeys } from './i18n';
+import getLenker from './lenker';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
@@ -57,7 +58,16 @@ const App = () => (
                 contentRoutes={[
                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                     <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                    <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<IkkeTilgangPage />} />,
+                    <Route
+                        path={SøknadRoutes.IKKE_TILGANG}
+                        key="ikke-tilgang"
+                        element={
+                            <NoAccessPage<AppMessageKeys>
+                                tittelIntlKey="application.title"
+                                papirskjemaUrl={getLenker().papirskjemaPrivat}
+                            />
+                        }
+                    />,
                     <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                 ]}
             />

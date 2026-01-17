@@ -1,49 +1,63 @@
-import { Box, Link } from '@navikt/ds-react';
+import { BodyLong, Box, Link } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { useIntl } from 'react-intl';
 
 import SoknadHeader from '../../components/soknad-header/SoknadHeader';
-import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 import { SoknadText } from '../../i18n/soknad.messages';
 
-interface Props {
+interface Props<IntlKeys extends string = string> {
+    tittelIntlKey: IntlKeys;
+    variant?: 'forenklet' | 'vanlig'; // Forenklet viser bare teksten at en ikke har tilgang
     papirskjemaUrl?: string;
     kontaktOssUrl?: string;
 }
-const IkkeTilgangPage = ({ papirskjemaUrl, kontaktOssUrl = 'https://www.nav.no/kontaktoss' }: Props) => {
-    const { text } = useSoknadIntl();
+const NoAccessPage = <IntlKeys extends string = string>({
+    tittelIntlKey,
+    variant = 'vanlig',
+    papirskjemaUrl,
+    kontaktOssUrl = 'https://www.nav.no/kontaktoss',
+}: Props<IntlKeys>) => {
+    const { formatMessage } = useIntl();
+    const tittel = formatMessage({ id: tittelIntlKey });
+    const renderContent = () => {
+        if (variant === 'forenklet') {
+            return (
+                <BodyLong>
+                    <SoknadText id="@soknad.page.noAccessPage.forenklet" />
+                </BodyLong>
+            );
+        }
+        if (papirskjemaUrl) {
+            return (
+                <>
+                    <BodyLong>
+                        <SoknadText id="@soknad.page.noAccessPage.tekst" />
+                    </BodyLong>
+                    <Link href={papirskjemaUrl} target="_blank">
+                        <SoknadText id="@soknad.page.noAccessPage.lastNed" />
+                    </Link>
+                </>
+            );
+        }
+        return (
+            <BodyLong>
+                <SoknadText
+                    id="@soknad.page.noAccessPage.kontaktoss"
+                    values={{
+                        lenke: (content: React.ReactNode) => <Link href={kontaktOssUrl}>{content}</Link>,
+                    }}
+                />
+            </BodyLong>
+        );
+    };
     return (
-        <Page
-            className="ikkeTilgangPage"
-            title={text('application.title')}
-            topContentRenderer={() => <SoknadHeader title={text('application.title')} />}>
+        <Page title={tittel} topContentRenderer={() => <SoknadHeader title={tittel} />}>
             <Box marginBlock="10">
-                <SifGuidePanel poster={true}>
-                    {papirskjemaUrl ? (
-                        <>
-                            <p>
-                                <SoknadText id="@soknad.page.noAccessPage.tekst" />
-                            </p>
-                            {papirskjemaUrl && (
-                                <Link href={papirskjemaUrl} target="_blank">
-                                    <SoknadText id="@soknad.page.noAccessPage.lastNed" />
-                                </Link>
-                            )}
-                        </>
-                    ) : (
-                        <p>
-                            <SoknadText
-                                id="@soknad.page.noAccessPage.kontaktoss"
-                                values={{
-                                    lenke: (content: React.ReactNode) => <Link href={kontaktOssUrl}>{content}</Link>,
-                                }}
-                            />
-                        </p>
-                    )}
-                </SifGuidePanel>
+                <SifGuidePanel poster={true}>{renderContent()}</SifGuidePanel>
             </Box>
         </Page>
     );
 };
 
-export default IkkeTilgangPage;
+export default NoAccessPage;
