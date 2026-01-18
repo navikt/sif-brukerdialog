@@ -118,6 +118,7 @@ const UtalelseForm = ({
                                             required: true,
                                             minLength: MIN_LENGTH,
                                             maxLength: MAX_LENGTH,
+                                            disallowInvalidBackendCharacters: true,
                                         })(value);
                                         return errorKey
                                             ? {
