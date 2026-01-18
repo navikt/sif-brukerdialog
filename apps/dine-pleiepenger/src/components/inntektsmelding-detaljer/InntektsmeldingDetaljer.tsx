@@ -81,7 +81,12 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                         arbeidsgivere må forskuttere på grunn av tariffavtaler, mens andre velger det selv.
                     </>
                 }>
-                <RefusjonInfo inntektBeløp={inntektBeløp} refusjon={refusjon} endringerRefusjon={endringerRefusjon} />
+                <RefusjonInfo
+                    inntektBeløp={inntektBeløp}
+                    refusjon={refusjon}
+                    endringerRefusjon={endringerRefusjon}
+                    startDatoPermisjon={startDatoPermisjon}
+                />
             </InfoBlock>
 
             <InfoBlock

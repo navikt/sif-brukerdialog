@@ -2,6 +2,7 @@ import { avbrytSøknadDialogMessages_nn } from '../components/avbrytSøknadDialo
 import { fortsettSøknadSenereDialogMessages_nn } from '../components/fortsettSøknadSenereDialog/i18n/nn';
 import { soknadErrorMessages_nn } from '../components/soknad-error-messages/i18n/nn';
 import { samtykkeFormMessages_nn } from '../modules/samtykke-form/i18n/nn';
+import { noAccessPageMessages_nn } from '../pages/no-access-page/i18n/nn';
 import { SoknadMessagesType } from './soknad.messages';
 
 export const soknadMessages_nn: SoknadMessagesType = {
@@ -16,4 +17,5 @@ export const soknadMessages_nn: SoknadMessagesType = {
     ...soknadErrorMessages_nn,
     ...avbrytSøknadDialogMessages_nn,
     ...fortsettSøknadSenereDialogMessages_nn,
+    ...noAccessPageMessages_nn,
 };

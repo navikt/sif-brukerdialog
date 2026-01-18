@@ -168,14 +168,14 @@ const ArbeidssituasjonStep = () => {
                                             frilansoppdrag={frilansoppdrag || []}
                                             søknadsperiode={søknadsperiode}
                                             søknadsdato={getDateToday()}
-                                            urlSkatteetaten={getLenker(intl.locale).skatteetaten}
+                                            urlSkatteetaten={getLenker(intl.locale).skatt_arbeidstakerinntekt}
                                         />
                                     </FormLayout.Section>
 
                                     <FormLayout.Section title={text('steg.arbeidssituasjon.sn.tittel')}>
                                         <ArbeidssituasjonSN
                                             formValues={selvstendig}
-                                            urlSkatteetatenSN={getLenker(intl.locale).skatteetatenSN}
+                                            urlSkatteetatenSN={getLenker(intl.locale).skatt_SNInntekt}
                                             søknadsperiode={søknadsperiode}
                                         />
                                     </FormLayout.Section>

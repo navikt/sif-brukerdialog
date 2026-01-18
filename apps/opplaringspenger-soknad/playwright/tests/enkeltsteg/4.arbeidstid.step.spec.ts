@@ -5,9 +5,9 @@ import { fyllUtArbeidstid } from '../../utfylling-utils/4.arbeidstidStep';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.ARBEIDSTID);
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.ARBEIDSTID);
     await expect(page.getByRole('heading', { name: 'Jobb i søknadsperioden' })).toBeVisible();
 });
 

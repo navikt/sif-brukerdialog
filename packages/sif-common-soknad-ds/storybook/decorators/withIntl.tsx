@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { IntlProvider } from 'react-intl';
+
 import { soknadMessages } from '../../src/i18n/soknad.messages';
 
 export const withIntl = (Story, context) => {

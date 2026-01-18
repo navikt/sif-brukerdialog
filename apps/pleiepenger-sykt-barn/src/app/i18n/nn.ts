@@ -88,10 +88,6 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
         'Du har kome til ei side du ikkje treng å fylle ut. Dette kan skje om du går fram og tilbake i søknaden gjennom pilene i nettlesaren (pilene heilt øvst til venstre på sida). Du unngår dette problemet om du heller brukar knappane og lenkjene i sjølve søknaden for å gå fram eller tilbake.',
     'page.invalidStepPage.tilbakeLenke': 'Gå tilbake til førre side',
 
-    'page.ikkeTilgang.tekst':
-        'Du har ikkje tilgang til denne sida. Dersom du er under 18 år, må ein av foreldra dine eller ein føresett skrive under på søknaden saman med deg. Du må derfor fylle ut søknaden på papir og sende han i posten.',
-    'page.ikkeTilgang.lastNed': 'Her kan du laste ned papirsøknaden',
-
     'validation.harForståttRettigheterOgPlikter.notChecked':
         'Du må stadfeste at du har lese og forstått pliktene dine.',
     'validation.omsorgsstønad.mottarOmsorgsstønad.yesOrNoIsUnanswered':

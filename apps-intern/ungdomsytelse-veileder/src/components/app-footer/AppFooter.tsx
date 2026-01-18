@@ -10,7 +10,8 @@ const AppFooter = () => {
                             Hvis du opplever feil med løsningen, kan du melde fra om dette{' '}
                             <Link
                                 href="https://jira.adeo.no/plugins/servlet/desk/portal/541/create/6034"
-                                target="_blank">
+                                target="_blank"
+                                rel="noopener noreferrer">
                                 i Porten
                             </Link>
                             .

@@ -63,7 +63,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
             ) : null}
             <Box className="bg-white p-6 pb-4 pt-6 rounded-large">
                 <VStack gap="8">
-                    <StatusISakSteps steps={visibleSteps} />
+                    <StatusISakSteps steps={visibleSteps} isTruncated={finnesFlereHendelser ? 'start' : undefined} />
                     {finnesFlereHendelser && visAlleHendelser === undefined ? (
                         <Box className="ml-4 mb-4">
                             <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>

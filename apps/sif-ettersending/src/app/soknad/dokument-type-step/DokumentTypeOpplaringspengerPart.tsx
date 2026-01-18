@@ -28,7 +28,7 @@ const DokumentTypeOpplaringspengerPart = ({ dokumentType }: Props) => {
                             id="step.dokumentType.info.3"
                             values={{
                                 Lenke: (children: ReactNode) => (
-                                    <Link href={getLenker().skrivTilOss} target="_blank">
+                                    <Link href={getLenker().skrivTilOss} target="_blank" rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),

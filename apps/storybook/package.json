@@ -6,9 +6,9 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/aksel-icons": "7.39.0",
-        "@navikt/ds-css": "7.39.0",
-        "@navikt/ds-react": "7.39.0",
+        "@navikt/aksel-icons": "7.40.0",
+        "@navikt/ds-css": "7.40.0",
+        "@navikt/ds-react": "7.40.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.7",
+        "@types/react": "19.2.8",
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.19",

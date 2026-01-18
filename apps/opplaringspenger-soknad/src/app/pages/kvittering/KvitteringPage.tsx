@@ -34,12 +34,18 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
                             id="page.kvittering.list.item.3"
                             values={{
                                 MinSideLenke: (children) => (
-                                    <Link href={getLenker(intl.locale).minSide} target="_blank">
+                                    <Link
+                                        href={getLenker(intl.locale).minSide}
+                                        target="_blank"
+                                        rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),
                                 SaksbehandlingstidLenke: (children) => (
-                                    <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
+                                    <Link
+                                        href={getLenker(intl.locale).saksbehandlingstider}
+                                        target="_blank"
+                                        rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),

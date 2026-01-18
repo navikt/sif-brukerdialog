@@ -47,7 +47,7 @@ const DeltBostedForm = ({ values, goBack, andreVedlegg = [], isSubmitting }: Pro
                         id="step.deltBosted.info.2"
                         values={{
                             Lenke: (children) => (
-                                <Link target="_blank" href={getLenker(intl.locale).deltFastBosted}>
+                                <Link target="_blank" href={getLenker(intl.locale).skatt_deltFastBosted}>
                                     {children}
                                 </Link>
                             ),
