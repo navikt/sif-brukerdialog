@@ -20,11 +20,11 @@
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "sanity": "5.2.0",
-        "styled-components": "6.2.0"
+        "styled-components": "6.3.5"
     },
     "devDependencies": {
         "@sanity/eslint-config-studio": "6.0.0",
-        "@types/react": "19.2.7",
+        "@types/react": "19.2.8",
         "dayjs": "1.11.19",
         "eslint": "9.39.2",
         "postcss": "8.5.6",
