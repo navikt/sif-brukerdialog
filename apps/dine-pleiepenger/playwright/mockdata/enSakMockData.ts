@@ -16,7 +16,6 @@ const sakerMetadata = [
     {
         saksnummer: '1001F8G',
         pleietrengende: {
-            identitetsnummer: '22521885096',
             fødselsdato: '2018-12-22',
             aktørId: '2959134453538',
             fornavn: 'GOD',

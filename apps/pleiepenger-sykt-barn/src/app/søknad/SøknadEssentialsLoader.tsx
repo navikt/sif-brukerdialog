@@ -1,14 +1,15 @@
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { LoadingPage } from '@navikt/sif-common-soknad-ds';
+import { LoadingPage, NoAccessPage } from '@navikt/sif-common-soknad-ds';
 import { AxiosError, AxiosResponse } from 'axios';
 import React from 'react';
 
 import { purge, rehydrate } from '../api/api';
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøkerdataContextProvider } from '../context/SøkerdataContext';
-import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
+import { AppMessageKeys } from '../i18n';
+import getLenker from '../lenker';
 import { Søkerdata } from '../types/Søkerdata';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
@@ -161,7 +162,12 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
             return <LoadingPage />;
         }
         if (harIkkeTilgang) {
-            return <IkkeTilgangPage />;
+            return (
+                <NoAccessPage<AppMessageKeys>
+                    tittelIntlKey="application.title"
+                    papirskjemaUrl={getLenker().papirskjemaPrivat}
+                />
+            );
         }
         return (
             <SøkerdataContextProvider value={søkerdata}>

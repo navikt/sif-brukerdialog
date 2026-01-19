@@ -7,12 +7,12 @@ import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 import { setupMockRoutes } from '../../utils/setupMockRoutes';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await setupMockRoutes(page, context, {
+    await setupMockRoutes(page, {
         mellomlagring: mellomlagringMock,
     });
-    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.LEGEERKLÆRING, {
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.LEGEERKLÆRING, {
         legeerklæring: { vedlegg: [], skalEttersendeVedlegg: false },
     });
     await expect(page.getByRole('heading', { name: 'Dokumentasjon på nødvendig opplæring' })).toBeVisible();

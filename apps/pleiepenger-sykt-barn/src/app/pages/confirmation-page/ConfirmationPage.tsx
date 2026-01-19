@@ -66,7 +66,7 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
                             <AppText id="page.confirmation.dinePP.list.item.4" />
                         </List.Item>
                     </List>
-                    <Link href={lenker.innsynSIF} target="_blank">
+                    <Link href={lenker.innsynSIF} target="_blank" rel="noopener noreferrer">
                         <AppText id="page.confirmation.dinePP.lenke" />
                     </Link>
                 </VStack>

@@ -140,7 +140,10 @@ const BarnFormPart = ({ barn, index, antallBarn, valideringsFeil }: Props) => {
                                                     </BodyLong>
                                                     <BodyLong as="div" spacing>
                                                         <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt2" />
-                                                        <Link href={lenker.omsorgspengerEkstraDager} target="_blank">
+                                                        <Link
+                                                            href={lenker.omsorgspengerEkstraDager}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer">
                                                             <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt2.lenke" />
                                                         </Link>
                                                     </BodyLong>
@@ -202,7 +205,8 @@ const BarnFormPart = ({ barn, index, antallBarn, valideringsFeil }: Props) => {
                                                             />{' '}
                                                             <Link
                                                                 href={lenker.omsorgspengerEkstraDager}
-                                                                target="_blank">
+                                                                target="_blank"
+                                                                rel="noopener noreferrer">
                                                                 <FormattedMessage id="barn.aleneOmOmsorgen.readMore.avsnitt.4.lenke" />
                                                             </Link>
                                                         </BodyLong>

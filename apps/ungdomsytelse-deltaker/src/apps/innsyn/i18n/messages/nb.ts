@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const innsynMessages_nb = {
     'innsyn.sidetittel': 'Din ungdomsprogramytelse',
     Ja: 'Ja',
@@ -159,9 +160,11 @@ export const innsynMessages_nb = {
         'Du må ikke oppgi sensitive informasjon (personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
 
     'uttalelseForm.validation.harTilbakemelding.yesOrNoIsUnanswered': 'Du må svare på om du har en tilbakemelding.',
-    'uttalelseForm.validation.tilbakemelding.stringHasNoValue': 'Du må fylle ut tilbakemeldingsfeltet.',
-    'uttalelseForm.validation.tilbakemelding.stringIsTooShort':
+    'uttalelseForm.validation.uttalelse.stringHasNoValue': 'Du må fylle ut tilbakemeldingsfeltet.',
+    'uttalelseForm.validation.uttalelse.stringIsTooShort':
         'Du har brukt for få tegn i tilbakemeldingen din. Teksten må minst inneholde {min} tegn.',
-    'uttalelseForm.validation.tilbakemelding.stringIsTooLong':
+    'uttalelseForm.validation.uttalelse.stringIsTooLong':
         'Du har brukt for mange tegn i tilbakemeldingen din. Teksten kan ikke inneholde flere enn {maks} tegn.',
+    'uttalelseForm.validation.uttalelse.stringHasInvalidCharacters':
+        'Tilbakemeldingen inneholder ugyldige tegn. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Dette kan blant annet oppstå dersom tekst kopieres fra andre steder. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
 };

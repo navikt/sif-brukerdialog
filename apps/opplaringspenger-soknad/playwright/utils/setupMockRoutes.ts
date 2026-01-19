@@ -1,12 +1,9 @@
-import { BrowserContext, Page } from '@playwright/test';
-import { StepId } from '../../src/app/types/StepId';
-import { mockData } from '../../mock/data';
+import { Page } from '@playwright/test';
 
-export const setupMockRoutes = async (
-    page: Page,
-    context: BrowserContext,
-    props?: { mellomlagring: any; lastStep?: StepId },
-) => {
+import { mockData } from '../../mock/data';
+import { StepId } from '../../src/app/types/StepId';
+
+export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; lastStep?: StepId }) => {
     await page.route('**/oppslag/barn**', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.barn) });
     });

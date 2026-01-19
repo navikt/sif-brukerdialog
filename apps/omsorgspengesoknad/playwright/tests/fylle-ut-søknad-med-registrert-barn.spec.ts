@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { setNow } from '../utils/setNow';
-import { setupMockRoutes } from '../utils/setupMockApi';
+import { setupMockRoutes } from '../utils/setupMockRoutes';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 

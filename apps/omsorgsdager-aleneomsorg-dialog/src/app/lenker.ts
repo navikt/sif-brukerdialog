@@ -1,31 +1,24 @@
-interface Lenker {
-    navno: string;
-    personvern: string;
-    rettOgPlikt: string;
-    saksbehandlingstider: string;
-    merOmFastBostedOgSamvær: string;
-    aleneMedBarn: string;
-    skrivTilOss: string;
-}
+import { SifCommonLenker, sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
-const LenkerBokmål: Lenker = {
-    navno: 'https://www.nav.no/',
-    personvern: 'https://www.nav.no/personvernerklaering',
-    rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/saksbehandlingstider',
+const lenkerBokmål = {
     merOmFastBostedOgSamvær: `https://www.regjeringen.no/no/tema/familie-og-barn/innsiktsartikler/bosted-og-samvar/samvar/id749587/`,
     aleneMedBarn: 'https://www.nav.no/familie/alene-med-barn',
-    skrivTilOss: 'https://www.nav.no/person/kontakt-oss/nb/skriv-til-oss',
 };
 
-const getLenker = (locale?: string): Lenker => {
+type Lenker = typeof lenkerBokmål;
+
+const getLenker = (locale?: string): Lenker & SifCommonLenker => {
     switch (locale) {
         case 'nn':
             return {
-                ...LenkerBokmål,
+                ...sifCommonLenkerNynorsk,
+                ...lenkerBokmål,
             };
         default:
-            return LenkerBokmål;
+            return {
+                ...sifCommonLenkerBokmål,
+                ...lenkerBokmål,
+            };
     }
 };
 

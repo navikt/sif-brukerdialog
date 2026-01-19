@@ -42,7 +42,11 @@ const KvitteringPage = ({ søknadstype, dokumenttype }: Props) => {
                             }
                             values={{
                                 Lenke: (children) => (
-                                    <Link href={getLenker().INNSYN_PP} key="lenke" target="_blank">
+                                    <Link
+                                        href={getLenker().innsynPleiepenger}
+                                        key="lenke"
+                                        target="_blank"
+                                        rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),

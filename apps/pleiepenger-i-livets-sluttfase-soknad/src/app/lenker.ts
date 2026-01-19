@@ -1,38 +1,27 @@
-interface Lenker {
-    navno: string;
-    personvern: string;
-    rettOgPlikt: string;
-    saksbehandlingstider: string;
-    ettersend: string;
-    medlemskap: string;
-    søknadPåPapir: string;
-    skatteetaten: string;
-    skatteetatenSN: string;
-}
+import { SifCommonLenker, sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
-const LenkerBokmål: Lenker = {
-    navno: 'https://www.nav.no/',
-    personvern: 'https://www.nav.no/personvernerklaering',
-    rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/saksbehandlingstider',
+const lenkerBokmål = {
     ettersend:
         'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/ettersendelse',
-    medlemskap:
-        'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
-    søknadPåPapir: 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger#NAV091205',
-    skatteetaten: 'https://www.skatteetaten.no/skjema/mine-inntekter-og-arbeidsforhold/',
-    skatteetatenSN:
-        'https://www.skatteetaten.no/person/skatt/hjelp-til-riktig-skatt/arbeid-trygd-og-pensjon/hobby-ekstrainntekt-og-smajobber/lonnsarbeid-i-hjemmet/lonn-betalt-over-60-000/naringsdrivende-oppdragstakere',
+    søknadPåPapir: 'https://www.nav.no/soknader#pleiepenger-i-livets-sluttfase',
 };
 
-const getLenker = (locale?: string): Lenker => {
+type Lenker = typeof lenkerBokmål;
+
+const lenkerNynorsk: Partial<Lenker> = {
+    søknadPåPapir: 'https://www.nav.no/soknader/nn#pleiepengar-i-livets-sluttfase',
+};
+
+const getLenker = (locale?: string): Lenker & SifCommonLenker => {
     switch (locale) {
         case 'nn':
             return {
-                ...LenkerBokmål,
+                ...sifCommonLenkerNynorsk,
+                ...lenkerBokmål,
+                ...lenkerNynorsk,
             };
         default:
-            return LenkerBokmål;
+            return { ...sifCommonLenkerBokmål, ...lenkerBokmål };
     }
 };
 

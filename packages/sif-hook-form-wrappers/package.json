@@ -14,16 +14,16 @@
     },
     "dependencies": {
         "@hookform/error-message": "2.0.1",
-        "@navikt/aksel-icons": "7.39.0",
-        "@navikt/ds-css": "7.39.0",
-        "@navikt/ds-react": "7.39.0",
+        "@navikt/aksel-icons": "7.40.0",
+        "@navikt/ds-css": "7.40.0",
+        "@navikt/ds-react": "7.40.0",
         "@navikt/sif-common-utils": "workspace:*",
-        "@types/react": "19.2.7",
+        "@types/react": "19.2.8",
         "@types/react-dom": "19.2.3",
         "dayjs": "1.11.19",
         "react": "19.2.3",
         "react-dom": "19.2.3",
-        "react-hook-form": "7.70.0",
+        "react-hook-form": "7.71.0",
         "react-intl": "8.0.11"
     },
     "devDependencies": {

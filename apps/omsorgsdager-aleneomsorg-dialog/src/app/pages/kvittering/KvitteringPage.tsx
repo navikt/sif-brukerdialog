@@ -32,7 +32,10 @@ const KvitteringPage = () => {
                             id="kvittering.info.3"
                             values={{
                                 Lenke: (children: React.ReactNode) => (
-                                    <Link href={getLenker().saksbehandlingstider} target="_blank">
+                                    <Link
+                                        href={getLenker().saksbehandlingstider}
+                                        target="_blank"
+                                        rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),
