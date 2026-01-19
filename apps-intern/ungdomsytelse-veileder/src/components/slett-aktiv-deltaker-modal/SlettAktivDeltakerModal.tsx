@@ -42,7 +42,7 @@ const SlettAktivDeltakerModal = ({ deltaker, deltakelse, onCancel }: Props) => {
         <Modal open={true} onClose={handleOnClose} aria-labelledby="slett-modal-heading" width="medium">
             <Modal.Header closeButton={true}>
                 <Heading level="1" size="large" id="slett-modal-heading">
-                    Slett aktiv deltaker
+                    Slett deltaker
                 </Heading>
             </Modal.Header>
             <Modal.Body>
