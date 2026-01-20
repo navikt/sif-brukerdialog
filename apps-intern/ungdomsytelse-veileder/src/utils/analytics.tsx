@@ -21,6 +21,7 @@ export enum AppHendelse {
     deltakerSlettet = 'deltaker-slettet',
     startdatoEndret = 'startdato-endret',
     sluttdatoSattFørsteGang = 'sluttdato-satt-første-gang',
+    aktivDeltakerSlettet = 'aktiv-deltaker-slettet',
     sluttdatoEndret = 'sluttdato-endret',
 }
 

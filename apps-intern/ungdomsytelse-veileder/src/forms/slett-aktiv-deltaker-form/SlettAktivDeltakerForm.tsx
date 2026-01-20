@@ -1,6 +1,5 @@
 import { Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { useSlettDeltaker } from '../../hooks/useSlettDeltaker';
 import { Deltaker } from '../../types/Deltaker';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import BorderBox from '../../atoms/BorderBox';
@@ -9,9 +8,11 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../types/Deltakelse';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useState } from 'react';
 import BekreftSlettAktivDeltakerDialog from '../../components/bekreft-slett-aktiv-deltaker-dialog/BekreftSlettAktivDeltakerDialog';
+import { SlettDeltakerÅrsak, SlettDeltakerÅrsakList } from '../../types/SlettDeltakerÅrsaker';
+import { useSlettAktivDeltaker } from '../../hooks/useSlettAktivDeltaker';
 
 interface Props {
     deltaker: Deltaker;
@@ -20,32 +21,32 @@ interface Props {
     onDeltakerSlettet: () => void;
 }
 
-enum FormField {
+enum FieldNames {
     årsak = 'årsak',
     bekreftFødselsnummer = 'bekreftFødselsnummer',
     bekreftSletting = 'bekreftSletting',
 }
 
 type FormValues = {
-    [FormField.årsak]: string;
-    [FormField.bekreftFødselsnummer]: string;
-    [FormField.bekreftSletting]: boolean;
+    [FieldNames.årsak]: string;
+    [FieldNames.bekreftFødselsnummer]: string;
+    [FieldNames.bekreftSletting]: boolean;
 };
 
-const { Form, FormikWrapper, Select, TextField, ConfirmationCheckbox } = getTypedFormComponents<
-    FormField,
+const { Form, FormikWrapper, RadioGroup, TextField, ConfirmationCheckbox } = getTypedFormComponents<
+    FieldNames,
     FormValues,
     ValidationError
 >();
 
 const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakerSlettet }: Props) => {
-    const { error, isPending, mutate } = useSlettDeltaker(deltaker.id);
-    const [visBekreftModal, setVisBekreftModal] = useState(false);
+    const { error, isPending, mutate } = useSlettAktivDeltaker(deltaker.id);
+    const [bekreftSlettInfo, setBekreftSlettInfo] = useState<{ årsak: SlettDeltakerÅrsak } | undefined>();
 
     const intl = useIntl();
 
-    const handleOnSubmit = async () => {
-        mutate({ deltakerId: deltaker.id }, { onSuccess: onDeltakerSlettet });
+    const doSlettDeltaker = async (årsak: SlettDeltakerÅrsak) => {
+        mutate({ deltakerId: deltaker.id, årsak }, { onSuccess: onDeltakerSlettet });
     };
 
     const siste5SifferFødselsnummer = deltaker.deltakerIdent.slice(-5);
@@ -53,13 +54,16 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakerSlet
         <>
             <FormikWrapper
                 initialValues={{}}
-                onSubmit={() => null}
+                onSubmit={(values) => {
+                    const årsak = values ? (values[FieldNames.årsak] as SlettDeltakerÅrsak) : undefined;
+                    if (årsak) {
+                        setBekreftSlettInfo({ årsak });
+                    }
+                }}
                 renderForm={() => {
                     return (
                         <Form
-                            onValidSubmit={() => {
-                                setVisBekreftModal(true);
-                            }}
+                            onValidSubmit={() => null}
                             includeButtons={false}
                             formErrorHandler={getIntlFormErrorHandler(intl, 'slettAktivDeltaker.validation')}>
                             <VStack gap="4">
@@ -94,19 +98,18 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakerSlet
                                                 </dl>
                                             </Box>
 
-                                            <Select
-                                                name={FormField.årsak}
-                                                label="Velg årsak for sletting"
-                                                validate={getRequiredFieldValidator()}>
-                                                <option></option>
-                                                <option value="1">Årsak 1</option>
-                                                <option value="2">Årsak 2</option>
-                                                <option value="3">Årsak 3</option>
-                                                <option value="annet">Annet</option>
-                                            </Select>
+                                            <RadioGroup
+                                                name={FieldNames.årsak}
+                                                legend="Hvorfor meldes deltaker ut?"
+                                                radios={SlettDeltakerÅrsakList.map((årsak) => ({
+                                                    value: årsak,
+                                                    label: <FormattedMessage id={`slettDeltakerÅrsak.${årsak}`} />,
+                                                }))}
+                                                validate={getRequiredFieldValidator()}
+                                            />
 
                                             <TextField
-                                                name={FormField.bekreftFødselsnummer}
+                                                name={FieldNames.bekreftFødselsnummer}
                                                 label="Skriv inn 5 siste siffer i deltakers fødselsnummer for å verifisere deltaker som skal slettes"
                                                 autoComplete="off"
                                                 size="medium"
@@ -128,7 +131,7 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakerSlet
                                             />
 
                                             <ConfirmationCheckbox
-                                                name={FormField.bekreftSletting}
+                                                name={FieldNames.bekreftSletting}
                                                 label={
                                                     <>
                                                         Jeg bekrefter at {formatName(deltaker.navn)} skal slettes som
@@ -154,12 +157,14 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakerSlet
                     );
                 }}
             />
-            <BekreftSlettAktivDeltakerDialog
-                deltakerNavn={formatName(deltaker.navn)}
-                onAvbryt={() => setVisBekreftModal(false)}
-                onBekreft={handleOnSubmit}
-                open={visBekreftModal}
-            />
+            {bekreftSlettInfo && (
+                <BekreftSlettAktivDeltakerDialog
+                    deltakerNavn={formatName(deltaker.navn)}
+                    onAvbryt={() => setBekreftSlettInfo(undefined)}
+                    onBekreft={() => doSlettDeltaker(bekreftSlettInfo.årsak)}
+                    open={true}
+                />
+            )}
         </>
     );
 };

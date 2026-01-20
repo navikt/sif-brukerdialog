@@ -1,7 +1,7 @@
 import { BodyLong, Button, ConfirmationPanel, HStack, List, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { useSlettDeltaker } from '../../hooks/useSlettDeltaker';
+import { useSlettNyDeltaker } from '../../hooks/useSlettNyDeltaker';
 import { Deltaker } from '../../types/Deltaker';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const SlettNyDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => {
-    const { error, isPending, mutate } = useSlettDeltaker(deltaker.id);
+    const { error, isPending, mutate } = useSlettNyDeltaker(deltaker.id);
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [bekrefter, setBekrefter] = useState<boolean>(false);
 
