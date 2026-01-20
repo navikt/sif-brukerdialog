@@ -42,19 +42,19 @@ const SlettAktivDeltakerModal = ({ deltaker, deltakelse, onCancel }: Props) => {
         <Modal open={true} onClose={handleOnClose} aria-labelledby="slett-modal-heading" width="medium">
             <Modal.Header closeButton={true}>
                 <Heading level="1" size="large" id="slett-modal-heading">
-                    Slett deltaker
+                    Registrer slettet deltakelse
                 </Heading>
             </Modal.Header>
             <Modal.Body>
                 <Box style={{ minWidth: '600px' }}>
                     {deltakelseSlettet ? (
-                        <Alert variant="success">Deltakeren er slettet.</Alert>
+                        <Alert variant="success">Deltakelsen er slettet.</Alert>
                     ) : (
                         <SlettAktivDeltakerForm
                             deltaker={deltaker}
                             deltakelse={deltakelse}
                             onCancel={onCancel}
-                            onDeltakerSlettet={handleOnDeltakelseSlettet}
+                            onDeltakelseSlettet={handleOnDeltakelseSlettet}
                         />
                     )}
                 </Box>

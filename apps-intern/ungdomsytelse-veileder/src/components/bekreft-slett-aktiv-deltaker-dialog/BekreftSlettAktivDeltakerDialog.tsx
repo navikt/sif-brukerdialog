@@ -22,7 +22,8 @@ const BekreftSlettAktivDeltakerDialog = ({ deltakerNavn, onBekreft, onAvbryt, op
             <Dialog.Body>
                 <VStack gap="6">
                     <BodyLong size="large">
-                        Er du helt sikker på at du ønsker å slette {deltakerNavn} som deltaker? Dette kan ikke angres.
+                        Er du helt sikker på at du ønsker å registrere {deltakerNavn} som slettet deltaker i
+                        ungdomsprogrammet? Dette kan ikke angres.
                     </BodyLong>
                 </VStack>
             </Dialog.Body>
@@ -31,7 +32,7 @@ const BekreftSlettAktivDeltakerDialog = ({ deltakerNavn, onBekreft, onAvbryt, op
                     Nei, avbryt
                 </Button>
                 <Button variant="danger" onClick={onBekreft}>
-                    Ja, slett deltakelse
+                    Ja, registrer sletting
                 </Button>
             </Dialog.Footer>
         </Dialog.Popup>

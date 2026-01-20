@@ -22,8 +22,8 @@ const nb = {
     'utmeldingsårsak.deltaker-ønsker-ikke-delta': 'Deltakeren ønsker ikke å delta',
     'utmeldingsårsak.annet': 'Annet',
 
-    'slettDeltakerÅrsak.årsak1': 'Årsak 1',
-    'slettDeltakerÅrsak.årsak2': 'Årsak 2',
+    'slettDeltakerÅrsak.årsak1': 'Deltaker startet ikke i programmet allikevel',
+    'slettDeltakerÅrsak.årsak2': 'Veileder har meldt inn feil deltaker',
     'slettDeltakerÅrsak.annet': 'Annet',
 };
 

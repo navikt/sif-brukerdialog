@@ -29,15 +29,15 @@ const SlettAktivDeltakerInfo = ({ deltaker, deltakelse }: Props) => {
                                 borderRadius="large">
                                 <VStack gap="0">
                                     <Heading level="3" size="xsmall" spacing>
-                                        Slett aktiv deltakelse
+                                        Registrer slettet deltakelse i ungdomsprogrammet
                                     </Heading>
                                     <BodyLong spacing>
-                                        I noen unntakstilfeller kan en aktiv deltakelse slettes, men det er flere krav
-                                        for at dette kan gjennomføres.
+                                        Hvis en deltaker ikke starter opp i programmet likevel, kan du registrere
+                                        slettet deltakelse her.
                                     </BodyLong>
                                     <div>
                                         <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
-                                            Åpne skjema for sletting
+                                            Åpne skjema
                                         </Button>
                                     </div>
                                 </VStack>

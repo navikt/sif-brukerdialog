@@ -1,4 +1,4 @@
-import { Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { Deltaker } from '../../types/Deltaker';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
@@ -18,7 +18,7 @@ interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     onCancel: () => void;
-    onDeltakerSlettet: () => void;
+    onDeltakelseSlettet: () => void;
 }
 
 enum FieldNames {
@@ -39,7 +39,7 @@ const { Form, FormikWrapper, RadioGroup, TextField, ConfirmationCheckbox } = get
     ValidationError
 >();
 
-const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakerSlettet }: Props) => {
+const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSlettet: onDeltakerSlettet }: Props) => {
     const { error, isPending, mutate } = useSlettAktivDeltaker(deltaker.id);
     const [bekreftSlettInfo, setBekreftSlettInfo] = useState<{ årsak: SlettDeltakerÅrsak } | undefined>();
 
@@ -67,91 +67,101 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakerSlet
                             includeButtons={false}
                             formErrorHandler={getIntlFormErrorHandler(intl, 'slettAktivDeltaker.validation')}>
                             <VStack gap="4">
-                                <VStack gap="4">
-                                    <BorderBox className="p-6 items-center w-full">
-                                        <VStack gap="4">
-                                            <Heading level="2" size="small">
-                                                Deltaker som skal slettes
-                                            </Heading>
+                                <Alert variant="info">
+                                    <Heading level="2" size="small" spacing>
+                                        Hva skjer når du registrerer en deltakelse som slettet?
+                                    </Heading>
+                                    <VStack gap="4">
+                                        <BodyLong>
+                                            Ungdomsprogramytelsen skal ikke utbetales likevel, og deltakeren får et
+                                            vedtaksbrev om dette.
+                                        </BodyLong>
+                                        <BodyLong>
+                                            Hvis deltakeren allerede har fått utbetalt ytelsen, blir det opprette en
+                                            tilbakekrevingssak.
+                                        </BodyLong>
+                                    </VStack>
+                                </Alert>
+                                <BorderBox className="p-6 items-center w-full">
+                                    <VStack gap="4">
+                                        <Heading level="2" size="small">
+                                            Deltakelse
+                                        </Heading>
 
-                                            <Box marginBlock="0 4">
-                                                <dl className="ungDefinitionList">
-                                                    <dt>Navn:</dt>
-                                                    <dd>{formatName(deltaker.navn)}</dd>
-                                                    <dt>Fødselsdato:</dt>
-                                                    <dd>{dateFormatter.compact(deltaker.fødselsdato)}</dd>
-                                                    <dt>Fødselsnummer:</dt>
-                                                    <dd>
-                                                        <Fødselsnummer
-                                                            fnr={deltaker.deltakerIdent}
-                                                            copyEnabled={false}
-                                                        />
-                                                    </dd>
-                                                    <dt>Startdato:</dt>
-                                                    <dd>{dateFormatter.compact(deltakelse.fraOgMed)}</dd>
-                                                    <dt>Sluttdato:</dt>
-                                                    <dd>
-                                                        {deltakelse.tilOgMed
-                                                            ? dateFormatter.compact(deltakelse.tilOgMed)
-                                                            : '-'}
-                                                    </dd>
-                                                </dl>
-                                            </Box>
+                                        <Box marginBlock="0 4">
+                                            <dl className="ungDefinitionList">
+                                                <dt>Navn:</dt>
+                                                <dd>{formatName(deltaker.navn)}</dd>
+                                                <dt>Fødselsdato:</dt>
+                                                <dd>{dateFormatter.compact(deltaker.fødselsdato)}</dd>
+                                                <dt>Fødselsnummer:</dt>
+                                                <dd>
+                                                    <Fødselsnummer fnr={deltaker.deltakerIdent} copyEnabled={false} />
+                                                </dd>
+                                                <dt>Startdato:</dt>
+                                                <dd>{dateFormatter.compact(deltakelse.fraOgMed)}</dd>
+                                                <dt>Sluttdato:</dt>
+                                                <dd>
+                                                    {deltakelse.tilOgMed
+                                                        ? dateFormatter.compact(deltakelse.tilOgMed)
+                                                        : '-'}
+                                                </dd>
+                                            </dl>
+                                        </Box>
 
-                                            <RadioGroup
-                                                name={FieldNames.årsak}
-                                                legend="Hvorfor meldes deltaker ut?"
-                                                radios={SlettDeltakerÅrsakList.map((årsak) => ({
-                                                    value: årsak,
-                                                    label: <FormattedMessage id={`slettDeltakerÅrsak.${årsak}`} />,
-                                                }))}
-                                                validate={getRequiredFieldValidator()}
-                                            />
+                                        <RadioGroup
+                                            name={FieldNames.årsak}
+                                            legend="Hvorfor slettes deltakelsen?"
+                                            radios={SlettDeltakerÅrsakList.map((årsak) => ({
+                                                value: årsak,
+                                                label: <FormattedMessage id={`slettDeltakerÅrsak.${årsak}`} />,
+                                            }))}
+                                            validate={getRequiredFieldValidator()}
+                                        />
 
-                                            <TextField
-                                                name={FieldNames.bekreftFødselsnummer}
-                                                label="Skriv inn 5 siste siffer i deltakers fødselsnummer for å verifisere deltaker som skal slettes"
-                                                autoComplete="off"
-                                                size="medium"
-                                                maxLength={5}
-                                                htmlSize={10}
-                                                validate={(value) => {
-                                                    const stringError = getStringValidator({
-                                                        required: true,
-                                                        minLength: 5,
-                                                        maxLength: 5,
-                                                    })(value);
-                                                    if (stringError === undefined) {
-                                                        if (value !== siste5SifferFødselsnummer) {
-                                                            return 'stringDoesNotMatch';
-                                                        }
+                                        <TextField
+                                            name={FieldNames.bekreftFødselsnummer}
+                                            label="Skriv inn 5 siste siffer i deltakers fødselsnummer for å verifisere deltaker som skal slettes"
+                                            autoComplete="off"
+                                            size="medium"
+                                            maxLength={5}
+                                            htmlSize={10}
+                                            validate={(value) => {
+                                                const stringError = getStringValidator({
+                                                    required: true,
+                                                    minLength: 5,
+                                                    maxLength: 5,
+                                                })(value);
+                                                if (stringError === undefined) {
+                                                    if (value !== siste5SifferFødselsnummer) {
+                                                        return 'stringDoesNotMatch';
                                                     }
-                                                    return stringError;
-                                                }}
-                                            />
-
-                                            <ConfirmationCheckbox
-                                                name={FieldNames.bekreftSletting}
-                                                label={
-                                                    <>
-                                                        Jeg bekrefter at {formatName(deltaker.navn)} skal slettes som
-                                                        deltaker
-                                                    </>
                                                 }
-                                                validate={getCheckedValidator()}></ConfirmationCheckbox>
+                                                return stringError;
+                                            }}
+                                        />
 
-                                            <HStack gap="4">
-                                                <Button type="submit" variant="primary" loading={isPending}>
-                                                    Slett deltaker
-                                                </Button>
-                                                <Button type="button" variant="secondary" onClick={onCancel}>
-                                                    Avbryt
-                                                </Button>
-                                            </HStack>
-                                            {error ? <ApiErrorAlert error={error} /> : null}
-                                        </VStack>
-                                    </BorderBox>
-                                </VStack>
+                                        <ConfirmationCheckbox
+                                            name={FieldNames.bekreftSletting}
+                                            label={
+                                                <>
+                                                    Jeg bekrefter at {formatName(deltaker.navn)} skal registreres som
+                                                    slettet deltaker i ungdomsprogrammet.
+                                                </>
+                                            }
+                                            validate={getCheckedValidator()}></ConfirmationCheckbox>
+
+                                        <HStack gap="4">
+                                            <Button type="submit" variant="primary" loading={isPending}>
+                                                Registrer sletting
+                                            </Button>
+                                            <Button type="button" variant="secondary" onClick={onCancel}>
+                                                Avbryt
+                                            </Button>
+                                        </HStack>
+                                        {error ? <ApiErrorAlert error={error} /> : null}
+                                    </VStack>
+                                </BorderBox>
                             </VStack>
                         </Form>
                     );
