@@ -34,7 +34,11 @@ const KravTilJobbInfo = () => {
                 </List.Item>
             </List>
             <BodyLong>
-                <Link href={getLenker(locale).opplæringspengerNavNo} data-color="neutral">
+                <Link
+                    href={getLenker(locale).opplæringspengerNavNo}
+                    data-color="neutral"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     <AppText id="steg.arbeidssituasjon.jobbInfo.4" />
                 </Link>
             </BodyLong>
