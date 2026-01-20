@@ -48,7 +48,7 @@ const SlettAktivDeltakerModal = ({ deltaker, deltakelse, onCancel }: Props) => {
             <Modal.Body>
                 <Box style={{ minWidth: '600px' }}>
                     {deltakelseSlettet ? (
-                        <Alert variant="success">Deltakelsen er slettet.</Alert>
+                        <Alert variant="success">Deltakelsen er registrert som slettet.</Alert>
                     ) : (
                         <SlettAktivDeltakerForm
                             deltaker={deltaker}
