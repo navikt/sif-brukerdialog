@@ -228,7 +228,7 @@ const ArbeidstidStep = () => {
                                     </p>
                                 </FormLayout.Guide>
                                 <FormLayout.Sections>
-                                    {ansattArbeidstid && (
+                                    {ansattArbeidstid && ansattArbeidstid.length > 0 && (
                                         <VStack gap="8">
                                             {ansattArbeidstid.map((arbeidsforhold, index) => {
                                                 return (
@@ -254,7 +254,6 @@ const ArbeidstidStep = () => {
                                             })}
                                         </VStack>
                                     )}
-
                                     {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
                                         <FormLayout.Section title={text('arbeidIPeriode.FrilansLabel')}>
                                             <ArbeidIPeriodeSpørsmål
@@ -271,7 +270,6 @@ const ArbeidstidStep = () => {
                                             />
                                         </FormLayout.Section>
                                     )}
-
                                     {selvstendigArbeidstid &&
                                         søknadsperiode &&
                                         periodeSomSelvstendigISøknadsperiode && (

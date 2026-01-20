@@ -7,13 +7,14 @@ export const arbeidsgiverMock = {
             ansattTom: null,
         },
     ],
-    // frilansoppdrag: [
-    //     {
-    //         type: 'FRILANSOPPDRAG',
-    //         // navn: 'Fugl of freedom',
-    //         organisasjonsnummer: '11ss',
-    //         ansattFom: '2021-12-12',
-    //         ansattTom: null,
-    //     },
-    // ],
+    frilansoppdrag: [
+        {
+            ansattFom: '2005-09-16',
+            ansattTom: null,
+            navn: 'HÅRREISENDE FRISØR',
+            offentligIdent: null,
+            organisasjonsnummer: '839942907',
+            type: 'Organisasjon',
+        },
+    ],
 };
