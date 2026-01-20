@@ -103,9 +103,23 @@ const nb = {
     'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel': 'Hva om jeg får utbetaling fra Nav nå?',
     'arbeidsforhold.normalTimer.info.utbetalingFraNAV.avsnitt.1':
         'Hvis du for dette arbeidsforholdet for eksempel får foreldrepenger, sykepenger eller annet fra Nav nå, registrerer du det som var normalarbeidstiden din før du begynte å få denne utbetalingen fra Nav.',
+
+    'steg.arbeidssituasjon.jobbInfo.tittel': 'Du må ha jobbet i minst fire uker for å kunne søke om opplæringspenger',
+    'steg.arbeidssituasjon.jobbInfo.1':
+        'For å ha rett til opplæringspenger, må du har jobbet i minst fire uker før du starter opplæringen.',
+    'steg.arbeidssituasjon.jobbInfo.2':
+        'Du kan sende inn søknaden selv om du ikke har jobbet, men da kan det være at du får avslag på søknaden. ',
+    'steg.arbeidssituasjon.jobbInfo.3':
+        'Hvis du har hatt en av disse pengestøttene i minst fire uker før opplæringen, regnes det som jobb:',
+    'steg.arbeidssituasjon.jobbInfo.3.1': 'sykepenger',
+    'steg.arbeidssituasjon.jobbInfo.3.2': 'dagpenger',
+    'steg.arbeidssituasjon.jobbInfo.3.3': 'foreldre- og svangerskapspenger',
+    'steg.arbeidssituasjon.jobbInfo.3.4': 'pleie-, opplærings- og omsorgspenger',
+    'steg.arbeidssituasjon.jobbInfo.4': 'Les mer om vilkårene for å få opplæringspenger på nav.no.',
 };
 
 const nn: Record<keyof typeof nb, string> = {
+    ...nb,
     'steg.arbeidssituasjon.arbeidsgivere.tittel': 'Arbeidsgivarar',
 
     'steg.arbeidssituasjon.veileder.1':
