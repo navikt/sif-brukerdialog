@@ -2,7 +2,7 @@ import { expect, Page } from '@playwright/test';
 
 import { testAccessibility } from '../utils/testAccessibility';
 
-export const fyllUtArbeidssituasjonStep = async (page: Page) => {
+export const fyllUtArbeidssituasjonStep = async (page: Page, harFrilansoppdrag: boolean = false) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Din arbeidssituasjon' })).toBeVisible();
     await page
         .getByRole('group', {
@@ -16,7 +16,10 @@ export const fyllUtArbeidssituasjonStep = async (page: Page) => {
     await page
         .getByLabel('Hvor mange timer jobber du normalt per uke hos Arbeids- og velferdsetaten når du ikke har fravær?')
         .fill('37,5');
-    await page.getByRole('group', { name: 'Er du frilanser i perioden du' }).getByLabel('Ja').check();
+
+    if (harFrilansoppdrag === false) {
+        await page.getByRole('group', { name: 'Er du frilanser i perioden du' }).getByLabel('Ja').check();
+    }
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByLabel('År', { exact: true }).selectOption('2021');
     await page.getByLabel('mandag 6').click();
@@ -25,6 +28,7 @@ export const fyllUtArbeidssituasjonStep = async (page: Page) => {
     await page
         .getByLabel('Hvor mange timer jobber du normalt per uke som frilanser når du ikke har fravær?')
         .fill('20');
+
     await page
         .getByRole('group', { name: 'Er du selvstendig næringsdrivende i perioden du søker for?' })
         .getByLabel('Nei')
@@ -43,6 +47,34 @@ export const fyllUtArbeidssituasjonStep = async (page: Page) => {
         .check();
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
+};
+
+export const fyllUtArbeidssituasjonStepIngenArbeid = async (page: Page) => {
+    await expect(page.getByRole('heading', { level: 1, name: 'Din arbeidssituasjon' })).toBeVisible();
+    await page.getByRole('group', { name: 'Er du frilanser i perioden du' }).getByLabel('Nei').check();
+    await page
+        .getByRole('group', { name: 'Er du selvstendig næringsdrivende i perioden du søker for?' })
+        .getByLabel('Nei')
+        .check();
+    await page
+        .getByRole('group', {
+            name: 'Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden du søker om?',
+        })
+        .getByLabel('Nei')
+        .check();
+    await page
+        .getByRole('group', {
+            name: 'Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?',
+        })
+        .getByLabel('Nei')
+        .check();
+    await page.getByRole('group', { name: 'Utøvde du verneplikt på' }).getByLabel('Nei').check();
+    await expect(
+        page.getByRole('heading', {
+            level: 2,
+            name: 'Du må ha jobbet i minst fire uker for å kunne søke om opplæringspenger',
+        }),
+    ).toBeVisible();
 };
 
 export const kontrollerArbeidssituasjonOppsummering = async (page: Page) => {

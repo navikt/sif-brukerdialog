@@ -7,4 +7,26 @@ export const arbeidsgiverMock = {
             ansattTom: null,
         },
     ],
+    privateArbeidsgivere: [],
+};
+
+export const arbeidsgiverMedFrilansoppdragMock = {
+    ...arbeidsgiverMock,
+    frilansoppdrag: [
+        {
+            ansattFom: '2005-09-16',
+            ansattTom: null,
+            navn: 'HÅRREISENDE FRISØR',
+            offentligIdent: null,
+            organisasjonsnummer: '839942907',
+            type: 'Organisasjon',
+        },
+    ],
+    privateArbeidsgivere: [],
+};
+
+export const arbeidsgiverIngenArbeid = {
+    organisasjoner: [],
+    frilansoppdrag: [],
+    privateArbeidsgivere: [],
 };
