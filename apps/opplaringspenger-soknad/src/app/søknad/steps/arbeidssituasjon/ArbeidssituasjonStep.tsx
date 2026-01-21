@@ -209,7 +209,7 @@ const ArbeidssituasjonStep = () => {
                                     )}
                                 </FormLayout.Sections>
                                 {skalViseVernepliktSpørsmål && harVærtEllerErVernepliktig === YesOrNo.NO && (
-                                    <Box marginBlock="6 0">
+                                    <Box marginBlock="space-24 space-0">
                                         <KravTilJobbInfo />
                                     </Box>
                                 )}
