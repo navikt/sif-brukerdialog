@@ -13,8 +13,8 @@ const LoadingPage = ({ title = 'Henter informasjon ...', documentTitle }: Props)
     return (
         <EmptyPage>
             {documentTitle && <Head>{documentTitle}</Head>}
-            <HStack align="center" justify="center" marginBlock="8 0">
-                <VStack gap="4">
+            <HStack align="center" justify="center" marginBlock="space-32 space-0">
+                <VStack gap="space-16">
                     <ComponentLoader />
                     <BodyShort size="large">{title}</BodyShort>
                 </VStack>

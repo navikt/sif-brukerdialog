@@ -39,7 +39,7 @@ const deltaker: Deltaker = {
 export const Varianter: Story = {
     name: 'Alle varianter',
     render: () => (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <DeltakerKort deltaker={deltaker} />
             <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE6] }} />
             <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE7] }} />

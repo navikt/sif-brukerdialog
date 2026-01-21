@@ -67,7 +67,7 @@ const SamtykkeForm = ({ onValidSubmit, submitPending, submitButtonLabel }: Props
                     submitButtonLabel={submitButtonLabel || text('@soknad.samtykkeform.submitButtonLabel')}
                     includeValidationSummary={true}
                     formErrorHandler={getIntlFormErrorHandler(intl, '@soknad.samtykkeForm')}>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <SamtykkeFormPart />
                     </VStack>
                 </Form>

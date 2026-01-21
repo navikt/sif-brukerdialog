@@ -229,7 +229,7 @@ const ArbeidstidStep = () => {
                                 </FormLayout.Guide>
                                 <FormLayout.Sections>
                                     {ansattArbeidstid && (
-                                        <VStack gap="8">
+                                        <VStack gap="space-32">
                                             {ansattArbeidstid.map((arbeidsforhold, index) => {
                                                 return (
                                                     <FormLayout.Section

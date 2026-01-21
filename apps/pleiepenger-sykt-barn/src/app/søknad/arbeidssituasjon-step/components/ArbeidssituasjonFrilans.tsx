@@ -27,8 +27,8 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
     const søkerHarFrilansoppdrag = harFrilansoppdrag(frilansoppdrag);
 
     return (
-        <VStack gap="6" data-testid="arbeidssituasjonFrilanser">
-            <VStack gap="2">
+        <VStack gap="space-24" data-testid="arbeidssituasjonFrilanser">
+            <VStack gap="space-8">
                 <BodyLong>
                     <AppText id="steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro" />
                 </BodyLong>
@@ -53,7 +53,6 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
                     </BodyLong>
                 </ExpandableInfo>
             </VStack>
-
             <FormLayout.Questions>
                 {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
 

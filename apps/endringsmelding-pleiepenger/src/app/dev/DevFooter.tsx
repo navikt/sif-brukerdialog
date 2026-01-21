@@ -1,6 +1,7 @@
 import './devFooter.scss';
 
 import { useSøknadContext } from '@hooks';
+import { CogIcon } from '@navikt/aksel-icons';
 import { Button, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import React, { useState } from 'react';
@@ -9,7 +10,6 @@ import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
-import { CogIcon } from '@navikt/aksel-icons';
 
 const DevFooter: React.FunctionComponent = () => {
     const [showModal, setShowModal] = useState(false);
@@ -53,7 +53,7 @@ const DevFooter: React.FunctionComponent = () => {
                 className="scenario-modal"
                 style={{ width: '100%' }}>
                 <Modal.Body>
-                    <VStack gap="8">
+                    <VStack gap="space-32">
                         <div className="scenarioes">
                             <RadioGroup
                                 value={scenario.value}

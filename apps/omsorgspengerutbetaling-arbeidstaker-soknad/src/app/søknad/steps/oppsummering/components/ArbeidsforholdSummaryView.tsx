@@ -139,7 +139,7 @@ const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit
                                                     </FormSummary.Label>
                                                     <FormSummary.Value>
                                                         {maybeListOfVedlegg && maybeListOfVedlegg.length > 0 ? (
-                                                            <Box marginBlock="2">
+                                                            <Box marginBlock="space-8">
                                                                 <VedleggSummaryList vedlegg={maybeListOfVedlegg} />
                                                             </Box>
                                                         ) : (

@@ -1,4 +1,4 @@
-import '@navikt/ds-css/darkside';
+import '@navikt/ds-css';
 import './app.css';
 
 import { SanityConfig } from '@navikt/appstatus-react-ds';

@@ -19,10 +19,10 @@ const ForsidePageLayout = ({ children, documentTitle, footer }: Props) => {
     return (
         <main aria-label={text('pageLayout.main.ariaLabel')}>
             <PageContentWrapper>
-                <VStack gap="10">{children}</VStack>
+                <VStack gap="space-40">{children}</VStack>
             </PageContentWrapper>
             {footer && (
-                <Box className="bg-[#FFEBC7]" marginBlock={{ sm: '8 0', xs: '3 0' }} paddingBlock={{ sm: '8 0' }}>
+                <Box className="bg-[#FFEBC7]" marginBlock={{ sm: "space-32 space-0", xs: "space-12 space-0" }} paddingBlock={{ sm: "space-32 space-0" }}>
                     <PageContentWrapper>{footer}</PageContentWrapper>
                 </Box>
             )}

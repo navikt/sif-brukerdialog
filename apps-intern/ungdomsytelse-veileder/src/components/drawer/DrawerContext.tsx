@@ -55,8 +55,8 @@ export const DrawerProvider = ({ children, initialTitle, initialOpen = true, ini
                 onClose={closeDrawer}
                 aria-label="Dialog">
                 <Modal.Header>
-                    <HStack gap="4" align="center">
-                        <Bleed marginBlock="2" marginInline="2">
+                    <HStack gap="space-16" align="center">
+                        <Bleed marginBlock="space-8" marginInline="space-8">
                             <Button
                                 variant="tertiary-neutral"
                                 type="button"

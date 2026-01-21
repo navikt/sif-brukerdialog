@@ -21,7 +21,7 @@ const KvitteringPage = () => {
     return (
         <Page title={text('page.confirmation.sidetittel')}>
             <Kvittering tittel={text('page.confirmation.tittel')}>
-                <VStack gap="8">
+                <VStack gap="space-32">
                     <Infolist heading={text('page.confirmation.undertittel')}>
                         <li>
                             <AppText id="page.conformation.alert.info.1" />

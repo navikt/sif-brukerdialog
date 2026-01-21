@@ -29,12 +29,12 @@ const OppgaveStatusTag = ({
     }
     const ikon =
         variant === 'tag-uten-ikon' ? null : (
-            <Box marginBlock="1">
+            <Box marginBlock="space-4">
                 <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
             </Box>
         );
 
-    const text = <Box paddingInline="1">{oppgaveStatusTekst}</Box>;
+    const text = <Box paddingInline="space-4">{oppgaveStatusTekst}</Box>;
     switch (oppgaveStatus) {
         case OppgaveStatus.LØST:
         case OppgaveStatus.LUKKET:

@@ -44,7 +44,7 @@ const SøknaderEllerIngenSakFalback = () => {
 
     return (
         <DefaultPageLayout documentTitle={text('forside.dokumentTittel')}>
-            <VStack gap="8">
+            <VStack gap="space-32">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
                         <DineInnsendteSøknader søknader={innsendteSøknader} />

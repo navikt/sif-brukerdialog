@@ -40,7 +40,7 @@ const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
     };
 
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             {søknader.slice(0, antall).map((søknad, index) => {
                 const labelId = `søknad-${søknad.journalpostId}`;
                 return (
@@ -63,7 +63,7 @@ const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
             {antall < totalt ? (
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSøknader}>
-                        <HStack gap="2" align="center" wrap={false}>
+                        <HStack gap="space-8" align="center" wrap={false}>
                             <PlusIcon role="presentation" />
                             <AppText id="innsendtSøknadListe.visFlereInnsendinger" />
                         </HStack>

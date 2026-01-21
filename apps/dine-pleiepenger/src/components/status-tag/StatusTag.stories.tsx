@@ -20,32 +20,32 @@ type Story = StoryObj<typeof StatusTag>;
 export const Default: Story = {
     render: () => {
         return (
-            <VStack gap="6">
-                <HStack gap="2">
+            <VStack gap="space-24">
+                <HStack gap="space-8">
                     {BehandlingStatus.OPPRETTET}:
                     <StatusTag status={BehandlingStatus.OPPRETTET} />
                 </HStack>
-                <HStack gap="2">
+                <HStack gap="space-8">
                     {BehandlingStatus.UNDER_BEHANDLING}:
                     <StatusTag status={BehandlingStatus.UNDER_BEHANDLING} />
                 </HStack>
-                <HStack gap="2">
+                <HStack gap="space-8">
                     {BehandlingStatus.PÅ_VENT}/{Venteårsak.INNTEKTSMELDING}:
                     <StatusTag status={BehandlingStatus.PÅ_VENT} venteårsak={Venteårsak.INNTEKTSMELDING} />
                 </HStack>
-                <HStack gap="2">
+                <HStack gap="space-8">
                     {BehandlingStatus.PÅ_VENT}/{Venteårsak.MEDISINSK_DOKUMENTASJON}:
                     <StatusTag status={BehandlingStatus.PÅ_VENT} venteårsak={Venteårsak.MEDISINSK_DOKUMENTASJON} />
                 </HStack>
-                <HStack gap="2">
+                <HStack gap="space-8">
                     {BehandlingStatus.PÅ_VENT}/{Venteårsak.MELDEKORT}:
                     <StatusTag status={BehandlingStatus.PÅ_VENT} venteårsak={Venteårsak.MELDEKORT} />
                 </HStack>
-                <HStack gap="2">
+                <HStack gap="space-8">
                     {BehandlingStatus.PÅ_VENT}/{Venteårsak.MEDISINSK_DOKUMENTASJON}:
                     <StatusTag status={BehandlingStatus.PÅ_VENT} venteårsak={Venteårsak.FOR_TIDLIG_SOKNAD} />
                 </HStack>
-                <HStack gap="2">
+                <HStack gap="space-8">
                     {BehandlingStatus.AVSLUTTET}:
                     <StatusTag status={BehandlingStatus.AVSLUTTET} />
                 </HStack>

@@ -8,7 +8,7 @@ export interface RegistrerteBarnListeHeadingProps extends HeadingProps {
 
 const RegistrerteBarnListeHeading = ({ children: tittel, ...rest }: RegistrerteBarnListeHeadingProps) => {
     return (
-        <HStack gap="2">
+        <HStack gap="space-8">
             <Heading {...rest} aria-label={tittel}>
                 {tittel}
             </Heading>

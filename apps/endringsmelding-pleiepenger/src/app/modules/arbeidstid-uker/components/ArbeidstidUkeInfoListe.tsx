@@ -1,3 +1,4 @@
+import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
 import { erTimerGyldigInnenforAntallDager } from '@utils';
@@ -6,7 +7,6 @@ import { useIntl } from 'react-intl';
 import IconText from '../../../components/icon-text/IconText';
 import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
-import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 
 interface Props {
     uke: ArbeidstidUkerItem;

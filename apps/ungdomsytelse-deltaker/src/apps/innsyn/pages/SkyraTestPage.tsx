@@ -7,15 +7,15 @@ const SkyraTestPage = () => {
     useSkyraReloader();
     return (
         <DefaultPageLayout documentTitle="Skyra testside">
-            <VStack gap="10">
-                <VStack gap="4">
+            <VStack gap="space-40">
+                <VStack gap="space-16">
                     <Heading size="large" level="1">
                         Skyra testside
                     </Heading>
                     <Alert variant="error">Side som tester om skyra-undersøkelse vises</Alert>
                 </VStack>
 
-                <VStack gap="10">
+                <VStack gap="space-40">
                     <div>
                         <Heading size="medium" level="2">
                             Test

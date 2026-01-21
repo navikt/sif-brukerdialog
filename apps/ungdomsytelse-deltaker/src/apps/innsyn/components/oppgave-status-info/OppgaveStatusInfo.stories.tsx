@@ -18,14 +18,14 @@ type Story = StoryObj;
 export const AlleStatuser: Story = {
     name: 'Alle varianter',
     render: () => (
-        <VStack gap="10">
-            <VStack gap="4">
+        <VStack gap="space-40">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Utløpt oppgave
                 </Heading>
                 <OppgaveStatusInfo oppgaveStatus={OppgaveStatus.UTLØPT} />
             </VStack>
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Avbrutt oppgave
                 </Heading>

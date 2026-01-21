@@ -26,7 +26,7 @@ const HistorikkPage = ({ sak, inntektsmeldinger = [] }: Props) => {
             <Head>
                 <title>Historikk - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>
-            <VStack gap="12">
+            <VStack gap="space-48">
                 <Box className="md:flex md:gap-6 mb-10">
                     <div className="md:grow mb-10 md:mb-0">
                         <Heading level="2" size="medium" className="mb-2">

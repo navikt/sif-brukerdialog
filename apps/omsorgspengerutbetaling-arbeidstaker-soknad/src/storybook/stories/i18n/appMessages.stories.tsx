@@ -23,7 +23,7 @@ export default {
 };
 
 const Template = () => (
-    <Box marginBlock="10" paddingBlock="8">
+    <Box marginBlock="space-40" paddingBlock="space-32">
         <MessagesPreview messages={appMessages} showExplanation={false} />
     </Box>
 );

@@ -4,8 +4,8 @@ import Sjekkliste from './Sjekkliste';
 const SjekklisteDrawer = () => {
     return (
         <>
-            <VStack gap="4">
-                <VStack gap="1">
+            <VStack gap="space-16">
+                <VStack gap="space-4">
                     <Heading level="2" size="medium" spacing={true}>
                         Kontroller om deltaker kan meldes inn
                     </Heading>

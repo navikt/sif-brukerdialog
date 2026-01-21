@@ -191,7 +191,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                         <List>
                                             {utenlandsoppholdIPerioden.opphold.map((opphold) => (
                                                 <List.Item key={opphold.fraOgMed}>
-                                                    <HStack gap="2">
+                                                    <HStack gap="space-8">
                                                         <div>
                                                             {dateFormatter.full(ISODateToDate(opphold.fraOgMed))} -{' '}
                                                             {dateFormatter.full(ISODateToDate(opphold.tilOgMed))}:

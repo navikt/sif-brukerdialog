@@ -25,7 +25,7 @@ const HentDeltakerErrorPage = ({ error }: Props) => {
                     <BodyShort>{error}</BodyShort>
                 </Alert>
                 {__IS_VEILEDER_DEMO__ && (
-                    <Box marginBlock="10 0">
+                    <Box marginBlock="space-40 space-0">
                         <Button size="small" type="button" onClick={resetMockScenario}>
                             Reset mockdata
                         </Button>

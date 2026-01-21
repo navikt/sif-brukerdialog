@@ -134,12 +134,12 @@ const OmOmsorgenForBarnStep = () => {
                                 submitDisabled={kanIkkeFortsette || isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <VStack gap="12">
+                                <VStack gap="space-48">
                                     <div>
                                         <RegistrerteBarnListeHeading level="2" size="medium" spacing={true}>
                                             {text('steg.omOmsorgenForBarn.dineBarn.seksjonsTittel')}
                                         </RegistrerteBarnListeHeading>
-                                        <VStack gap="8">
+                                        <VStack gap="space-32">
                                             {registrertBarn.length > 0 && (
                                                 <ItemList<RegistrertBarn>
                                                     getItemId={(barn): string => barn.aktørId}
@@ -158,7 +158,8 @@ const OmOmsorgenForBarnStep = () => {
                                                 </Heading>
                                                 {text('steg.omOmsorgenForBarn.info.spm.text')}
                                             </div>
-                                            <Bleed marginBlock={annetBarn.length === 0 ? '4 0' : undefined}>
+                                            <Bleed
+                                                marginBlock={annetBarn.length === 0 ? 'space-16 space-0' : undefined}>
                                                 <AnnetBarnListAndDialog<OmOmsorgenForBarnFormFields>
                                                     name={OmOmsorgenForBarnFormFields.annetBarn}
                                                     labels={{
@@ -189,8 +190,8 @@ const OmOmsorgenForBarnStep = () => {
                                     </div>
 
                                     {harBarn && (
-                                        <VStack gap="12">
-                                            <VStack gap="6">
+                                        <VStack gap="space-48">
+                                            <VStack gap="space-24">
                                                 <Heading level="2" size="medium">
                                                     <AppText id="steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel" />
                                                 </Heading>
@@ -204,7 +205,7 @@ const OmOmsorgenForBarnStep = () => {
                                                 />
                                             </VStack>
 
-                                            <VStack gap="6">
+                                            <VStack gap="space-24">
                                                 <Heading level="2" size="medium">
                                                     <AppText id="steg.omOmsorgenForBarn.deltBosted.seksjonsTittel" />
                                                 </Heading>

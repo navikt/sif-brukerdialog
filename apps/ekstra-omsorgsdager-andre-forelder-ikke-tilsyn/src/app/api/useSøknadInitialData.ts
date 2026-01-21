@@ -1,6 +1,7 @@
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { useEffect, useState } from 'react';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useState } from 'react';
 
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { initialSøknadsdata } from '../søknad/context/reducer/søknadReducer';
@@ -99,9 +100,9 @@ function useSøknadInitialData(): SøknadInitialDataState {
         }
     };
 
-    useEffect(() => {
+    useEffectOnce(() => {
         fetch();
-    }, []);
+    });
 
     return initialData;
 }

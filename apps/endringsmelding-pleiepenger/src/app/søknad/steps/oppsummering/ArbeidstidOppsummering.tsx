@@ -19,7 +19,7 @@ const ArbeidstidOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {
     const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === false);
     const ukjenteArbeidsforhold = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === true);
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             {ukjenteArbeidsforhold &&
                 Object.keys(ukjenteArbeidsforhold).map((key) => (
                     <ArbeidstidArbeidstakerOppsummering
@@ -29,7 +29,6 @@ const ArbeidstidOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {
                         arbeidstidKolonneTittel={text('oppsummeringStep.arbeidstid.kolonne.iPerioden')}
                     />
                 ))}
-
             {eksisterendeArbeidstakere &&
                 Object.keys(eksisterendeArbeidstakere).map((key) => (
                     <ArbeidstidArbeidstakerOppsummering
@@ -38,7 +37,6 @@ const ArbeidstidOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {
                         arbeidsgivere={arbeidsgivere}
                     />
                 ))}
-
             {frilanserArbeidstidInfo && (
                 <>
                     <Heading level="3" size="small">

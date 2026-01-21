@@ -58,7 +58,7 @@ const InfoInnhold = () => {
     const navigate = useNavigate();
 
     return (
-        <HGrid columns="1fr 4fr" gap="10">
+        <HGrid columns="1fr 4fr" gap="space-40">
             <Box>
                 <nav>
                     <Heading level="2" size="small" className="mb-2">
@@ -77,7 +77,7 @@ const InfoInnhold = () => {
                                         evt.preventDefault();
                                         navigate(`/informasjon/${article.id}`);
                                     }}>
-                                    <HGrid columns="1fr auto" gap="2" width="100%">
+                                    <HGrid columns="1fr auto" gap="space-8" width="100%">
                                         <span>{article.title}</span>
                                         <ChevronRightIcon width="1.2rem" height="1.2rem" />
                                     </HGrid>

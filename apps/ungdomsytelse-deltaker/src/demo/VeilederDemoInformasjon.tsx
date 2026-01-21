@@ -2,10 +2,10 @@ import { Alert, BodyLong, List, ReadMore, VStack } from '@navikt/ds-react';
 import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 
 const VeilederDemoInformasjon = () => (
-    <VStack gap="10">
+    <VStack gap="space-40">
         <PageBoundary>
             <Alert variant="warning" fullWidth={true} className="w-full">
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <BodyLong as="div">
                         Dette er en demo av hvordan søknadsskjema og deltakersider ser ut for en deltaker i
                         ungdomsprogrammet.
