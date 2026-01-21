@@ -16,11 +16,11 @@ const DeltakerHeader = ({
 }: Props) => {
     return (
         <HGrid columns="1fr auto">
-            <HStack align="center" gap="4" className="nowrap">
+            <HStack align="center" gap="space-16" className="nowrap">
                 <Hide below="md">
                     <PersonNøytral width="3.5rem" height="3.5rem" aria-hidden="true" />
                 </Hide>
-                <VStack gap="0">
+                <VStack gap="space-0">
                     <BodyShort size="small">Deltaker</BodyShort>
                     <Heading level="1" size="medium">
                         {fornavn} {etternavn}

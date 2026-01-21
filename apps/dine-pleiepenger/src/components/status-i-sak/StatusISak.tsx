@@ -26,7 +26,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
 
     if (processSteps.length === 0) {
         return (
-            <VStack gap="3">
+            <VStack gap="space-12">
                 <StatusISakHeading tittel={tittel} />
                 <Alert variant="info">
                     <AppText
@@ -48,7 +48,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
     const finnesFlereHendelser = visibleSteps.length < processSteps.length;
 
     return (
-        <VStack gap="3">
+        <VStack gap="space-12">
             <StatusISakHeading tittel={tittel} />
             {visAlleHendelser ? (
                 <Box>
@@ -61,8 +61,8 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
                     </Switch>
                 </Box>
             ) : null}
-            <Box className="bg-white p-6 pb-4 pt-6 rounded-large">
-                <VStack gap="8">
+            <Box className=" p-6 pb-4 pt-6 rounded-large" background="default" borderRadius="16">
+                <VStack gap="space-32">
                     <StatusISakSteps steps={visibleSteps} isTruncated={finnesFlereHendelser ? 'start' : undefined} />
                     {finnesFlereHendelser && visAlleHendelser === undefined ? (
                         <Box className="ml-4 mb-4">

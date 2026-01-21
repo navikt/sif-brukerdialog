@@ -8,8 +8,8 @@ interface Props {
 
 const MeldUtDeltakerPanel = ({ onClickMeldUtButton }: Props) => (
     <InfoBox>
-        <VStack gap="6">
-            <VStack gap="2">
+        <VStack gap="space-24">
+            <VStack gap="space-8">
                 <BodyShort size="large" weight="semibold" className="text-2xl">
                     Er deltaker meldt ut av ungdomsprogrammet?
                 </BodyShort>

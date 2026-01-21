@@ -61,10 +61,9 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
             <FormLayout.Guide>
                 <AppText id="steg.oppsummering.info" />
             </FormLayout.Guide>
-
-            <VStack gap="8">
+            <VStack gap="space-32">
                 <div data-testid="oppsummering">
-                    <VStack gap="8">
+                    <VStack gap="space-32">
                         <FormSummary>
                             <FormSummary.Header>
                                 <FormSummary.Heading level="2">

@@ -141,7 +141,7 @@ const SituasjonStep = () => {
                                 {error ? (
                                     <HentArbeidsforholdFeiletInfo />
                                 ) : (
-                                    <VStack gap="8">
+                                    <VStack gap="space-32">
                                         <FormLayout.Sections>
                                             {arbeidsforhold.map((forhold, index) => (
                                                 <FormLayout.Section

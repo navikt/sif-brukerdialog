@@ -35,7 +35,7 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
             buttonDisabled={hasPendingUploads}>
             {søkerdata && (
                 <div data-testid="opplysninger-om-barnet">
-                    <VStack gap="8" marginBlock="2 0">
+                    <VStack gap="space-32" marginBlock="space-8 space-0">
                         {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
                         {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
                             <AnnetBarnPart

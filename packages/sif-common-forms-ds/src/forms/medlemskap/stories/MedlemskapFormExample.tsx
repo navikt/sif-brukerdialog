@@ -46,7 +46,7 @@ const medlemskapApiData: MedlemskapApiData = {
 const MedlemskapFormExample = () => {
     return (
         <Tabs defaultValue="form">
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Tabs.List>
                     <Tabs.Tab value="form" label="MedlemskapForm" />
                     <Tabs.Tab value="summary" label="MedlemskapSummary" />
@@ -55,7 +55,7 @@ const MedlemskapFormExample = () => {
                     <Tabs.Tab value="apiData" label="ApiData" />
                 </Tabs.List>
                 <Tabs.Panel value="form" style={{ maxWidth: '50rem' }}>
-                    <Box padding="10">
+                    <Box padding="space-40">
                         <TypedFormikWrapper<MedlemskapFormValues>
                             initialValues={initialValues}
                             onSubmit={() => {}}

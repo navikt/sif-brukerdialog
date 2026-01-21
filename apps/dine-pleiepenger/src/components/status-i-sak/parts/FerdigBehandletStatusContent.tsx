@@ -5,7 +5,7 @@ import DokumentarkivLenke from '../../lenker/DokumentarkivLenke';
 
 const FerdigBehandletStatusContent: React.FunctionComponent = () => {
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <DokumentarkivLenke tekst="Se vedtak i dokumentarkivet" />
         </VStack>
     );

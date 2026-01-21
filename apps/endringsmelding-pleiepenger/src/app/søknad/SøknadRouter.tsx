@@ -142,7 +142,7 @@ const UkjentPathMelding = ({ pathname, onReset }: { pathname: string; onReset: (
     appSentryLogger.logError('ukjentPath', pathname);
     return (
         <FormLayout.Guide mood="uncertain">
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <BodyShort>Oops, det oppstod en feil.</BodyShort>
                 <Button type="button" onClick={onReset}>
                     Start på nytt

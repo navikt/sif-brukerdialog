@@ -1,4 +1,4 @@
-import '@navikt/ds-css/darkside';
+import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 import { Theme } from '@navikt/ds-react';

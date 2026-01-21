@@ -31,22 +31,20 @@ const fjernDagerIkkeSøktForOgUtenArbeidstid = (enkeltdager: TidEnkeltdagApiData
 
 const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode, dagerMedPleie }: Props) => {
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
                 arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
                 <p style={{ marginTop: 0 }}>
                     <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
                 </p>
             )}
-
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
                 <p style={{ marginTop: 0 }}>
                     <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
                 </p>
             )}
-
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
-                <VStack gap="8">
+                <VStack gap="space-32">
                     <Heading size="xsmall" level="4" spacing={true}>
                         <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
                     </Heading>

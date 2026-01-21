@@ -27,7 +27,7 @@ const FødselsattestPart = ({ fødselsattester, andreVedlegg, ettersendelseURL }
     useVedleggHelper(fødselsattester, andreVedlegg, onVedleggChange);
 
     return (
-        <VStack gap="6">
+        <VStack gap="space-24">
             <div>
                 <Heading level="2" size="medium" spacing={true}>
                     {text('omBarnetForm.fødselsattest.tittel')}

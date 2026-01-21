@@ -80,8 +80,8 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     };
 
     return (
-        <VStack gap="4" className="hentDeltakerForm w-full">
-            <VStack gap="2">
+        <VStack gap="space-16" className="hentDeltakerForm w-full">
+            <VStack gap="space-8">
                 <form onSubmit={handleSubmit}>
                     <Fieldset
                         error={validationError}
@@ -91,7 +91,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                             </Heading>
                         }
                         hideLegend={false}>
-                        <HStack gap="2" align="end" paddingBlock="2 0">
+                        <HStack gap="space-8" align="end" paddingBlock="space-8 space-0">
                             <TextField
                                 name="fnr"
                                 value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
@@ -115,9 +115,8 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                 </form>
                 {error && fnrValue ? <FinnDeltakerApiError error={error} fnr={fnrValue} /> : null}
             </VStack>
-
             {nyDeltaker ? (
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <DeltakerKort deltaker={nyDeltaker} onClose={resetForm} />
 
                     <Checkbox
@@ -127,7 +126,6 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                     </Checkbox>
                 </VStack>
             ) : null}
-
             {visRegistrerNySkjema && nyDeltaker ? (
                 <MeldInnDeltakerForm
                     deltaker={nyDeltaker}

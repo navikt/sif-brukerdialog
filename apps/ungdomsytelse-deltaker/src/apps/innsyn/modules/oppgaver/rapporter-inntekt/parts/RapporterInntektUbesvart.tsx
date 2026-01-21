@@ -18,7 +18,7 @@ const RapporterInntektUbesvart = ({ oppgave, deltakerNavn, periode, måned, setK
     const navigate = useNavigate();
 
     return (
-        <VStack gap="10">
+        <VStack gap="space-40">
             <GuidePanel>
                 <RapporterInntektOppgavetekst
                     deltakerNavn={deltakerNavn}

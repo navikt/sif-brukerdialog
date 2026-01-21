@@ -1,4 +1,4 @@
-import '@navikt/ds-css/darkside';
+import '@navikt/ds-css';
 
 import { Box, Button, Tabs, VStack } from '@navikt/ds-react';
 import { MessagesTable } from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
@@ -24,11 +24,11 @@ export const SpørsmålWrapper = (props: SpørsmålWrapperProps) => {
     const allMessages = getIntlMessagesFromKeys([...messageIntlKeys, ...validationErrorIntlKeys]);
 
     return (
-        <VStack gap="10">
+        <VStack gap="space-40">
             <StoryFormikWrapper parameters={{ formErrorHandlerIntlKey, maxWidth: 'none', includeButtons: false }}>
                 <Box>
                     <ShadowBox>
-                        <VStack gap="4">
+                        <VStack gap="space-16">
                             {spørsmål}
                             <Box>
                                 <Button type="submit" variant="primary">
@@ -39,10 +39,9 @@ export const SpørsmålWrapper = (props: SpørsmålWrapperProps) => {
                     </ShadowBox>
                 </Box>
             </StoryFormikWrapper>
-
             <Box>
                 <Tabs defaultValue="alle">
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <Tabs.List>
                             <Tabs.Tab value="alle" label="Alle" />
                             <Tabs.Tab value="innhold" label="Kun innhold" />

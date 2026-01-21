@@ -16,14 +16,14 @@ interface Props {
 const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
     if (deltakelser.length === 0) {
         return (
-            <VStack maxWidth="30rem" marginBlock="8 8">
+            <VStack maxWidth="30rem" marginBlock="space-32 space-32">
                 <Alert variant="info">Deltakelse ikke funnet</Alert>
             </VStack>
         );
     }
     if (deltakelser.length > 1) {
         return (
-            <VStack maxWidth="30rem" marginBlock="8 8">
+            <VStack maxWidth="30rem" marginBlock="space-32 space-32">
                 <Alert variant="info">Deltaker har flere deltakerperioder - dette er ikke støttet enda</Alert>
             </VStack>
         );
@@ -33,7 +33,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
 
     return (
         <Box className="pb-8 pt-8">
-            <VStack gap="10">
+            <VStack gap="space-40">
                 {deltakelse.søktTidspunkt === undefined ? (
                     <HStack>
                         <Alert variant="warning">Søknad om ungdomsprogramytelse er ikke mottatt fra deltaker</Alert>

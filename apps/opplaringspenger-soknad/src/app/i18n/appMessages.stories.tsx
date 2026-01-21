@@ -16,7 +16,7 @@ type Story = StoryObj<any>;
 
 export const Default: Story = {
     render: () => (
-        <Box marginBlock="10">
+        <Box marginBlock="space-40">
             <MessagesPreview messages={appMessages} showExplanation={false} />
         </Box>
     ),

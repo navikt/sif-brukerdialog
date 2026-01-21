@@ -9,7 +9,7 @@ interface Props {
 
 const DeltakelseIkkeStartetInfo = ({ fraOgMed }: Props) => (
     <InnsynInfoBox>
-        <VStack gap="6">
+        <VStack gap="space-24">
             <BodyLong size="large" weight="semibold">
                 <AppText id="deltakelseIkkeStartetInfo.tekst1" values={{ fraOgMed: dateFormatter.full(fraOgMed) }} />
             </BodyLong>

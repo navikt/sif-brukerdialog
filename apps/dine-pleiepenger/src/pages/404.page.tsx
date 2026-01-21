@@ -7,7 +7,7 @@ import { browserEnv } from '../utils/env';
 const NotFoundPage: NextPage = () => {
     return (
         <main className="navds-pageblock navds-pageblock--xl navds-pageblock--gutters">
-            <Box padding="20">
+            <Box padding="space-80">
                 <HGrid columns={2}>
                     <div>
                         <Heading level="1" size="xlarge" spacing={true}>

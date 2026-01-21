@@ -71,7 +71,7 @@ const DurationWeekdaysInput = ({
 
     if (useExpansionCards) {
         return (
-            <VStack gap="2">
+            <VStack gap="space-8">
                 {months.map((month) => {
                     const enabledDatesInMonth = getEnabledDatesInMonth(month);
                     if (enabledDatesInMonth.length === 0) return null;

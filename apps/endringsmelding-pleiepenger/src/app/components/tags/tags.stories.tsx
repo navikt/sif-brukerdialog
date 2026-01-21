@@ -19,7 +19,7 @@ type Story = StoryObj;
 export const Tags: Story = {
     name: 'Tags',
     render: () => (
-        <HStack gap="5">
+        <HStack gap="space-20">
             <EndretTag />
             <NyTag />
             <FerieTag>Ferie</FerieTag>

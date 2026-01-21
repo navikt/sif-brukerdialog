@@ -33,7 +33,7 @@ const OmsorgstilbudStep = ({ onValidSubmit, søknadsperiode }: StepCommonProps &
     return (
         <SøknadFormStep stepId={StepID.OMSORGSTILBUD} onValidFormSubmit={onValidSubmit}>
             <FormLayout.Guide>{omsorgstilbudInfo.stepIntro}</FormLayout.Guide>
-            <VStack gap="8">
+            <VStack gap="space-32">
                 <OmsorgstilbudSpørsmål
                     periode={søknadsperiode}
                     omsorgstilbud={omsorgstilbud}

@@ -9,7 +9,7 @@ const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
     const { text } = useAppIntl();
     return (
         <DefaultPageLayout documentTitle={text('oppgaveIkkeFunnetPage.dokumentTittel')}>
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Heading size="large" level="1">
                     {text('oppgaveIkkeFunnetPage.tittel')}
                 </Heading>

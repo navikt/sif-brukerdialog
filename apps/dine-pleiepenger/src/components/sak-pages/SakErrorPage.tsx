@@ -39,7 +39,7 @@ const SakErrorPage = ({ saksnr }: Props) => {
             <Head>
                 <title>Din pleiepengesak for sykt barn - {saksnr}</title>
             </Head>
-            <VStack gap="12">
+            <VStack gap="space-48">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
                         <Heading size="medium" level="2" spacing={true}>
@@ -50,7 +50,7 @@ const SakErrorPage = ({ saksnr }: Props) => {
                         </Alert>
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        <VStack gap="5">
+                        <VStack gap="space-20">
                             <SaksbehandlingstidPanel />
                         </VStack>
                     </div>

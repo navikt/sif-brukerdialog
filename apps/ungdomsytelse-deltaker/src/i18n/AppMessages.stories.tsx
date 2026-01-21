@@ -19,7 +19,7 @@ type Story = StoryObj;
 export const InnsynTeksterStory: Story = {
     name: 'Innsyn',
     render: () => (
-        <Box padding="10">
+        <Box padding="space-40">
             <Heading level="1" size="large" spacing>
                 Innsynstekster
             </Heading>
@@ -36,7 +36,7 @@ export const InnsynTeksterStory: Story = {
 export const SøknadTeksterStory: Story = {
     name: 'Søknad',
     render: () => (
-        <Box padding="10">
+        <Box padding="space-40">
             <Heading level="1" size="large" spacing>
                 Søknadstekster
             </Heading>

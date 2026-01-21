@@ -23,7 +23,7 @@ type Story = StoryObj<typeof DeltakelseHistorikk>;
 export const Varianter: Story = {
     name: 'Deltakelse historikk',
     render: () => (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <DeltakelseHistorikk deltakelseId={registrertDeltakerMock.deltakelse.id} />
         </VStack>
     ),

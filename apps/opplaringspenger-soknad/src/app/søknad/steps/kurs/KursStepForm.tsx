@@ -124,7 +124,7 @@ const KursStepForm = ({ values, institusjoner, gyldigSøknadsperiode, isSubmitti
                                 id="kursperioder"
                                 legend={<AppText id="steg.kurs.kursperioder.tittel" />}
                                 description={
-                                    <Box marginBlock="1 6">
+                                    <Box marginBlock="space-4 space-24">
                                         <AppText id="steg.kurs.kursperioder.tekst" />
                                     </Box>
                                 }
@@ -166,7 +166,7 @@ const KursStepForm = ({ values, institusjoner, gyldigSøknadsperiode, isSubmitti
                             id="enkeltdager"
                             legend={<AppText id="steg.kurs.enkeltdager.tittel" />}
                             description={
-                                <Box marginBlock="1 6">
+                                <Box marginBlock="space-4 space-24">
                                     <AppText id="steg.kurs.enkeltdager.tekst" />
                                 </Box>
                             }

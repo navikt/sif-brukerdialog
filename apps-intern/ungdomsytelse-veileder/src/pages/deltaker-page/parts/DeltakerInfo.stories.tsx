@@ -37,7 +37,7 @@ const deltaker: Deltaker = {
 export const Default: Story = {
     name: 'DeltakerInfo',
     render: () => (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <DeltakerInfo deltaker={deltaker} />
         </VStack>
     ),
@@ -46,7 +46,7 @@ export const Default: Story = {
 export const MedDiskresjonskode: Story = {
     name: 'DeltakerInfo - med diskresjonskode',
     render: () => (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <DeltakerInfo deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE6] }} />
         </VStack>
     ),

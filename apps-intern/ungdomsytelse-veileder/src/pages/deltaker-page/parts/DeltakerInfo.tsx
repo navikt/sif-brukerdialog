@@ -16,15 +16,14 @@ interface Props {
 const DeltakerInfo = ({ deltaker, skjulHeader, copyFnrEnabled = true }: Props) => {
     const alder = dayjs().diff(dayjs(deltaker.fødselsdato), 'year');
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             {!skjulHeader && (
                 <Heading level="2" size="medium">
                     Om Deltaker
                 </Heading>
             )}
             <InfoBox>
-                {/* <HGrid gap="4" columns={{ sm: 1, md: 'auto 1fr' }}> */}
-                <VStack gap="4">
+                <VStack gap="space-16">
                     <dl className="ungDefinitionList">
                         <dt>Navn:</dt>
                         <dd>{formatName(deltaker.navn)}</dd>
@@ -34,7 +33,7 @@ const DeltakerInfo = ({ deltaker, skjulHeader, copyFnrEnabled = true }: Props) =
                         </dd>
                         <dt>Fødselsdato:</dt>
                         <dd>
-                            <VStack gap="3">
+                            <VStack gap="space-12">
                                 <span>
                                     {dateFormatter.compact(deltaker.fødselsdato)} ({alder} år)
                                 </span>

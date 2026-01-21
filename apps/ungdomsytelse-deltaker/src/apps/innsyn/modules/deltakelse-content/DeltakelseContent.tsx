@@ -35,13 +35,13 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
 
     const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (
-        <VStack gap="10">
+        <VStack gap="space-40">
             {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
             {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
             {visInfoOmDeltakelseAvsluttet && programPeriode.to && (
                 <DeltakelseAvsluttetInfo fraOgMed={programPeriode.from} tilOgMed={programPeriode.to} />
             )}
-            <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
+            <VStack gap="space-16" marginBlock={medMelding ? 'space-0' : 'space-24'}>
                 <Heading level="2" size="medium">
                     <AppText id="deltakelseContent.header" />
                 </Heading>
@@ -53,7 +53,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     </BodyLong>
                 )}
             </VStack>
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     <AppText id="deltakelseContent.tidligereOppgaver" />
                 </Heading>

@@ -42,11 +42,11 @@ const DagerMedPleieFormPart = () => {
                     return sd.length === 0 ? 'ingenDagerValgt' : undefined;
                 }}
                 description={
-                    <Box paddingBlock="2">
+                    <Box paddingBlock="space-8">
                         <AppText id="dagerMedPleie.info.1" />
                     </Box>
                 }>
-                <Box paddingBlock="2 0">
+                <Box paddingBlock="space-8 space-0">
                     <DaySelector
                         dateRange={periode}
                         selectedDates={selectedDates}

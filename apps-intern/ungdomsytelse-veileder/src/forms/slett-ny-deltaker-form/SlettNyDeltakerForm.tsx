@@ -47,7 +47,7 @@ const SlettNyDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) =
                 </List.Item>
             </List>
             <form onSubmit={handleSubmit}>
-                <VStack gap="6">
+                <VStack gap="space-24">
                     <ConfirmationPanel
                         label={`Jeg bekrefter at ${formatName(deltaker.navn)} skal slettes som deltaker`}
                         name="bekreft-sletting"
@@ -57,7 +57,7 @@ const SlettNyDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) =
                             setValidationError(undefined);
                         }}
                     />
-                    <HStack gap="4">
+                    <HStack gap="space-16">
                         <Button type="submit" variant="primary" loading={isPending}>
                             Slett ny deltaker
                         </Button>

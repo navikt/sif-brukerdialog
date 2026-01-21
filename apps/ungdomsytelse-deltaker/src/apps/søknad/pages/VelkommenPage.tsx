@@ -31,7 +31,7 @@ const VelkommenPage = () => {
 
     return (
         <DefaultPageLayout documentTitle={text('søknad.tittel')}>
-            <VStack gap="8">
+            <VStack gap="space-32">
                 <SøknadHeader />
 
                 <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelsePeriode.programPeriode.from} />
@@ -49,7 +49,7 @@ const VelkommenPage = () => {
                             />
                         </BodyLong>
 
-                        <Box paddingBlock="4 8">
+                        <Box paddingBlock="space-16 space-32">
                             <CheckboxGroup
                                 error={error}
                                 name="bekreftelse"

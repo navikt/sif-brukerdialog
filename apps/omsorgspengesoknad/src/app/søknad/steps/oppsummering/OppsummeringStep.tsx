@@ -117,7 +117,7 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <VStack gap="8">
+                                <VStack gap="space-32">
                                     <OmSøkerOppsummering søker={søker} />
                                     <OmBarnetOppsummering apiData={apiData} />
                                     <VedleggOppsummering

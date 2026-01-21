@@ -60,8 +60,8 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
     const valgtDato = kursperiodeOgDagUtils.getDatoFromKursdagFormDato(values[KursdagFormFields.dato]);
 
     return (
-        <VStack gap="4">
-            <HGrid columns={{ md: 3 }} gap="4">
+        <VStack gap="space-16">
+            <HGrid columns={{ md: 3 }} gap="space-16">
                 <Form.DatePicker
                     name={getFieldName(KursdagFormFields.dato)}
                     label={text('kursdag.form.dato.label', { dagNr: dagNr, harFlereDager })}
@@ -132,7 +132,6 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
                     label={text('kursdag.form.tidReise.label')}
                 />
             </HGrid>
-
             {harFlereDager && onRemove && (
                 <Box>
                     <Button

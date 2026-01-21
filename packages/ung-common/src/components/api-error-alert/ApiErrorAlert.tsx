@@ -10,11 +10,11 @@ const ApiErrorAlert = ({ error, detaljert }: Props) => {
     return (
         <Alert variant="error">
             {isApiAxiosError(error) ? (
-                <VStack gap="4">
+                <VStack gap="space-16">
                     <BodyShort>{error.message}</BodyShort>
                     {detaljert && (
                         <ReadMore header="Vis flere detaljer">
-                            <VStack gap="2">
+                            <VStack gap="space-8">
                                 <BodyShort>Type: {error.type}</BodyShort>
                                 <BodyShort>Context: {error.context}</BodyShort>
                                 <BodyShort>Message: {error.message}</BodyShort>

@@ -10,7 +10,7 @@ interface Props {
 const ForsideHeader = ({ startdato }: Props) => {
     return (
         <Stack
-            gap="6"
+            gap="space-24"
             direction={{ sm: 'row-reverse', md: 'row' }}
             justify={{ sm: 'space-between', md: 'start' }}
             align="center"
@@ -18,7 +18,7 @@ const ForsideHeader = ({ startdato }: Props) => {
             <Show above="sm">
                 <UngdomsprogramPictogram />
             </Show>
-            <VStack gap="1">
+            <VStack gap="space-4">
                 <Heading level="1" size="xlarge">
                     <AppText id="innsynAppHeader.ytelseNavn" />
                 </Heading>

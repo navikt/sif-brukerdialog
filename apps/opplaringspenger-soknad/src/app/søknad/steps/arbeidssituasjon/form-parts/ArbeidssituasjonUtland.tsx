@@ -19,7 +19,7 @@ export const ArbeidssituasjonUtland = ({ harOpptjeningUtland, harUtenlandskNæri
     return (
         <>
             <FormLayout.Questions>
-                <VStack gap="3">
+                <VStack gap="space-12">
                     <FormikYesOrNoQuestion
                         legend={text('steg.arbeidssituasjon.opptjeningUtland.spm')}
                         name={ArbeidssituasjonFormFields.harOpptjeningUtland}
@@ -42,7 +42,7 @@ export const ArbeidssituasjonUtland = ({ harOpptjeningUtland, harUtenlandskNæri
                     )}
                 </VStack>
 
-                <VStack gap="3">
+                <VStack gap="space-12">
                     <FormikYesOrNoQuestion
                         legend={text('steg.arbeidssituasjon.utenlandskNæring.spm')}
                         name={ArbeidssituasjonFormFields.harUtenlandskNæring}

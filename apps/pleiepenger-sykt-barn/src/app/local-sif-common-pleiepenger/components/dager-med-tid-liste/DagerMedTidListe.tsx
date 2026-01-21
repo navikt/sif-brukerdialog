@@ -24,7 +24,7 @@ export const DagerMedTidListe = ({ dagerMedTid, viseUke, visNormaltid }: Props) 
     return (
         <div className={bem.block}>
             <div className={bem.element('uker')}>
-                <VStack gap="6">
+                <VStack gap="space-24">
                     {Object.keys(weeksWithDays).map((key) => {
                         const days = weeksWithDays[key];
                         return (

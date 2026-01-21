@@ -1,4 +1,4 @@
-import { BoxNew } from '@navikt/ds-react';
+import { Box } from '@navikt/ds-react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 
 import { withStepWrapper } from '../../storybook/decorators';
@@ -11,9 +11,9 @@ export default {
 
 const Template = () => (
     <>
-        <BoxNew marginBlock="10 6">
+        <Box marginBlock="space-40 space-24">
             <MessagesPreview messages={appMessages} showExplanation={false} />
-        </BoxNew>
+        </Box>
     </>
 );
 

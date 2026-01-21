@@ -17,7 +17,7 @@ const UnavailablePage = () => {
     const title = text('application.title');
     return (
         <Page className={bem.block} title={title} topContentRenderer={() => <SoknadHeader title={title} />}>
-            <Box marginBlock="14">
+            <Box marginBlock="space-56">
                 <Alert variant="warning">
                     <p>
                         <AppText id="page.unavailable.1" />{' '}

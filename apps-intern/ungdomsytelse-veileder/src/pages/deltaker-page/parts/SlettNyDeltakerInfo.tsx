@@ -18,8 +18,8 @@ const SlettNyDeltakerInfo = ({ deltakelse, deltaker }: Props) => {
     }
 
     return (
-        <VStack gap="4">
-            <VStack gap="2">
+        <VStack gap="space-16">
+            <VStack gap="space-8">
                 <Heading level="2" size="small">
                     Slett ny deltaker
                 </Heading>

@@ -1,5 +1,5 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Bleed, BodyShort, Box, BoxNew, Link, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, BodyShort, Box, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
@@ -67,10 +67,9 @@ const InntektsmeldingDetaljerPage = () => {
             <Head>
                 <title>Inntektsmelding - Din pleiepengesak for sykt barn - {saksnr}</title>
             </Head>
-
-            <BoxNew maxWidth="52rem">
-                <VStack gap="4">
-                    <Bleed marginBlock="4 0">{renderContent()}</Bleed>
+            <Box maxWidth="52rem">
+                <VStack gap="space-16">
+                    <Bleed marginBlock="space-16 space-0">{renderContent()}</Bleed>
 
                     <Box className="ml-4 mt-4">
                         <Link as={NextLink} href={`/sak/${saksnr}/inntektsmelding`}>
@@ -79,7 +78,7 @@ const InntektsmeldingDetaljerPage = () => {
                         </Link>
                     </Box>
                 </VStack>
-            </BoxNew>
+            </Box>
         </DefaultPageLayout>
     );
 };

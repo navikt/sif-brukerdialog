@@ -114,7 +114,7 @@ const FraværFraStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <VStack gap="8">
+                                <VStack gap="space-32">
                                     <SifGuidePanel>
                                         <p>
                                             <AppText id="step.fravaerFra.info" />

@@ -1,10 +1,11 @@
-import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { KursFormFields, KursFormValues } from '../KursStepForm';
-import { AppText, useAppIntl } from '../../../../i18n';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { YesOrNo } from '@navikt/sif-common-core-ds';
-import { FormLayout } from '@navikt/sif-common-ui';
+import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
+
+import { AppText, useAppIntl } from '../../../../i18n';
+import { KursFormFields, KursFormValues } from '../KursStepForm';
 import { getFerieperioderValidator } from '../utils/kursStepUtils';
 
 interface Props {

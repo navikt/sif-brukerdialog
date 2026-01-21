@@ -10,7 +10,7 @@ interface Props {
 
 const ErrorPage = (props: Props) => (
     <AppPage>
-        <HStack paddingBlock="32 0" paddingInline="6" justify="center">
+        <HStack paddingBlock="space-128 space-0" paddingInline="space-24" justify="center">
             <ErrorPageContent {...props} />
         </HStack>
     </AppPage>

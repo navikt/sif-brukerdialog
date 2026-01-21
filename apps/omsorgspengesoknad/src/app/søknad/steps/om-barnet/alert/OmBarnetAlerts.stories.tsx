@@ -18,7 +18,7 @@ const { getScopedIntlKeys } = storybookIntlUtils;
 const Template: StoryFn = () => {
     const messages = storybookIntlUtils.getIntlMessagesFromKeys(getScopedIntlKeys('steg.omBarnet.alert.'));
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             <AlertStoryWrapper title="Ikke høyere risiko for fravær">
                 <IkkeHøyereRisikoForFraværAlert />
             </AlertStoryWrapper>

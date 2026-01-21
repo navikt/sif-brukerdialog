@@ -142,7 +142,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            <VStack gap="4">
+                            <VStack gap="space-16">
                                 {arbeidsaktiviteter.map((arbeidsaktivitet) => (
                                     <ArbeidsaktivitetFormPart
                                         key={arbeidsaktivitet.key}

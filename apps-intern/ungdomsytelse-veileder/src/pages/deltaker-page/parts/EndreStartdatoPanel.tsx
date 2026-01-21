@@ -12,7 +12,7 @@ interface DatoBoksProps {
 const EndreStartdatoPanel = ({ dato, kanEndreStartdato, onClickEndreButton }: DatoBoksProps) => {
     return (
         <InfoBox>
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <div>
                     <Heading level="3" size="xsmall" spacing>
                         <BodyShort as="span">Startdato:</BodyShort>

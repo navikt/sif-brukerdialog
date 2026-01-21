@@ -1,7 +1,7 @@
 import ForsideLenkeButton from '@innsyn/atoms/forside-lenke-button/ForsideLenkeButton';
 import OppgaveStatusInfo from '@innsyn/components/oppgave-status-info/OppgaveStatusInfo';
 import UtalelseForm, { UttalelseSvaralternativer } from '@innsyn/modules/forms/uttalelse-form/UtalelseForm';
-import { Alert, Box, BoxNew, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Box, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
@@ -41,10 +41,10 @@ const OppgaveOgTilbakemelding = ({
                             <AppText id="oppgaveOgTilbakemelding.beskjedFraNav" />
                         </FormSummary.Label>
                         <FormSummary.Value>
-                            <Box marginBlock="2 0">
-                                <BoxNew background="accent-moderate" borderRadius="large" padding="4">
+                            <Box marginBlock="space-8 space-0">
+                                <Box background="accent-moderate" borderRadius="12" padding="space-16">
                                     {beskjedFraNav}
-                                </BoxNew>
+                                </Box>
                             </Box>
                         </FormSummary.Value>
                     </FormSummary.Answer>
@@ -86,15 +86,15 @@ const Ubesvart = ({ children }: UbesvartProps) => {
     if (oppgave.status !== OppgaveStatus.ULØST || visKvittering) return null;
 
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             <section aria-label={appIntl.text('oppgavebekreftelse.oppgavetekst.ariaLabel')}>
                 <GuidePanel>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <Heading level="2" size="medium">
                             <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ deltakerNavn }} />
                         </Heading>
                         <Box maxWidth="90%">{children}</Box>
-                        <Box marginBlock="0 4">
+                        <Box marginBlock="space-0 space-16">
                             <RegelverkOgInnsynReadMore />
                         </Box>
                     </VStack>
@@ -181,11 +181,9 @@ const Besvart = ({ children }: BesvartProps) => {
     })();
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             {oppgaveInnhold}
-
             <OppgaveStatusInfo oppgaveStatus={oppgave.status} />
-
             <div>
                 <ForsideLenkeButton />
             </div>

@@ -95,7 +95,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <VStack gap="8">
+                        <VStack gap="space-32">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -105,7 +105,7 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <VStack gap="8">
+                                <VStack gap="space-32">
                                     <OmSøkerOppsummering søker={søker} />
                                     <FormSummary>
                                         <FormSummary.Header>

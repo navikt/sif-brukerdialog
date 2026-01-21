@@ -57,7 +57,7 @@ const IntroPage = () => {
                         <PageForm.Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'page.intro')}
                             submitButtonLabel={text('step.button.gåVidere')}>
-                            <Box marginBlock="10">
+                            <Box marginBlock="space-40">
                                 <PageForm.RadioGroup
                                     name={PageFormField.søknadstype}
                                     legend={text('page.intro.hvilkenTypeSøknad')}

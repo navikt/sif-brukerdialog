@@ -70,10 +70,10 @@ const ExampleForm: React.FunctionComponent = () => {
                             onValidSubmit={() => console.log('submit')}
                             onCancel={() => console.log('cancel')}
                             formErrorHandler={getIntlFormErrorHandler(intl)}>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.DatePicker name={Fields.date} label="Choose a date" />
                             </Box>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.Checkbox
                                     name={Fields.checked}
                                     label="Check this"
@@ -81,13 +81,13 @@ const ExampleForm: React.FunctionComponent = () => {
                                     validate={getCheckedValidator()}
                                 />
                             </Box>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <ExampleListAndDialog
                                     name={Fields.list}
                                     labels={{ addLabel: 'Legg til', modalTitle: 'Some title', listTitle: 'Some items' }}
                                 />
                             </Box>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.CheckboxGroup
                                     name={Fields.checkboxes}
                                     legend="Favourite animals"
@@ -100,10 +100,10 @@ const ExampleForm: React.FunctionComponent = () => {
                                     validate={getCheckedValidator()}
                                 />
                             </Box>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.CountrySelect name={Fields.country} label="Which country is the best for cats?" />
                             </Box>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.TextField
                                     name={Fields.name}
                                     label="What is the name of the beast?"
@@ -111,7 +111,7 @@ const ExampleForm: React.FunctionComponent = () => {
                                     width="l"
                                 />
                             </Box>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.YesOrNoQuestion
                                     name={Fields.yesOrNo}
                                     legend="Do you want more questions?"
@@ -119,25 +119,25 @@ const ExampleForm: React.FunctionComponent = () => {
                                 />
                             </Box>
                             {values.yesOrNo === YesOrNo.YES && (
-                                <Box marginBlock="8">
+                                <Box marginBlock="space-32">
                                     <Panel border={true}>
                                         <Form.InputGroup name={Fields.group} legend="Some more questions then">
                                             Some content in this group
-                                            <Box marginBlock="8">
+                                            <Box marginBlock="space-32">
                                                 <Form.Textarea
                                                     name={Fields.description}
                                                     label="Please type some words"
                                                     maxLength={200}
                                                 />
                                             </Box>
-                                            <Box marginBlock="8">
+                                            <Box marginBlock="space-32">
                                                 <Form.TimeInput label="What's the time?" name={Fields.time} />
                                             </Box>
                                         </Form.InputGroup>
                                     </Panel>
                                 </Box>
                             )}
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.Select
                                     label="Choose ONE animal"
                                     name={Fields.select}
@@ -150,14 +150,14 @@ const ExampleForm: React.FunctionComponent = () => {
                                     ))}
                                 </Form.Select>
                             </Box>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.DateRangePicker
                                     legend="Choose some daterange"
                                     fromInputProps={{ label: 'Daterange from', name: Fields.dateRange_from }}
                                     toInputProps={{ label: 'Daterange to', name: Fields.dateRange_to }}
                                 />
                             </Box>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.RadioGroup
                                     legend="Choose ONE animal"
                                     name={Fields.radio}
@@ -165,7 +165,7 @@ const ExampleForm: React.FunctionComponent = () => {
                                     validate={getCheckedValidator()}
                                 />
                             </Box>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Form.ConfirmationCheckbox
                                     name={Fields.confirmation}
                                     label="I confirm"
@@ -173,7 +173,7 @@ const ExampleForm: React.FunctionComponent = () => {
                                     Please confirm that you do not like cats
                                 </Form.ConfirmationCheckbox>
                             </Box>
-                            <FormikValidationErrorSummary wrapper={(summary) => <Box marginBlock="8">{summary}</Box>} />
+                            <FormikValidationErrorSummary wrapper={(summary) => <Box marginBlock="space-32">{summary}</Box>} />
                         </Form.Form>
                     );
                 }}
