@@ -1,7 +1,7 @@
+import { PencilIcon } from '@navikt/aksel-icons';
 import { Alert, Button, VStack } from '@navikt/ds-react';
 
 import { AppText } from '../../../i18n';
-import { PencilIcon } from '@navikt/aksel-icons';
 
 interface Props {
     visVelgUkerMelding: boolean;

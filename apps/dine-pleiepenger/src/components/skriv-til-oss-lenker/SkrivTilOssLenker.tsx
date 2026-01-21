@@ -1,8 +1,9 @@
+import { Chat2Icon } from '@navikt/aksel-icons';
 import { Heading, HGrid, VStack } from '@navikt/ds-react';
+
 import { useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 import SnarveiLinkCard from '../snarvei-link-card/SnarveiLinkCard';
-import { Chat2Icon } from '@navikt/aksel-icons';
 
 const SkrivTilOssLenker = () => {
     const { text } = useAppIntl();

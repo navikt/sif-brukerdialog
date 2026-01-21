@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
@@ -10,6 +10,7 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -96,10 +97,9 @@ function useSøknadInitialData(): SøknadInitialDataState {
             }
         }
     };
-
-    useEffect(() => {
+    useEffectOnce(() => {
         fetch();
-    }, []);
+    });
 
     return initialData;
 }

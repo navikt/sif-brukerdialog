@@ -1,8 +1,9 @@
+import { Box, ReadMore } from '@navikt/ds-react';
+import { getStringValidator } from '@navikt/sif-validation';
+
+import { Institusjon } from '../../../../api/institusjonService';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { KursFormComponents, KursFormFields } from '../KursStepForm';
-import { Institusjon } from '../../../../api/institusjonService';
-import { getStringValidator } from '@navikt/sif-validation';
-import { Box, ReadMore } from '@navikt/ds-react';
 
 interface Props {
     initialValue?: string;

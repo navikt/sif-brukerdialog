@@ -1,7 +1,7 @@
+import { ExclamationmarkTriangleIcon, ParasolBeachIcon } from '@navikt/aksel-icons';
 import { TagProps } from '@navikt/ds-react';
 
 import IconTag from './icon-tag/IconTag';
-import { ExclamationmarkTriangleIcon, ParasolBeachIcon } from '@navikt/aksel-icons';
 
 interface Props extends Omit<TagProps, 'variant'> {
     type?: 'fjernet' | 'registrert';

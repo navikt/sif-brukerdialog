@@ -1,9 +1,8 @@
 import { TrashIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, HGrid } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
-import { useState } from 'react';
-
 import { AppText, useAppIntl } from '@shared/i18n';
+import { useState } from 'react';
 
 interface Props {
     slett?: {

@@ -1,5 +1,6 @@
 import './arbeidstidUker.scss';
 
+import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { Button, HStack, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { getDateRangeText } from '@navikt/sif-common-utils';
@@ -15,7 +16,6 @@ import ArbeidstidUkeTabell from './components/ArbeidstidUkeTabell';
 import EndreUkerFooter from './components/EndreUkerFooter';
 import EndreUkerHeader from './components/EndreUkerHeader';
 import { ArbeidstidUkerItem } from './types/ArbeidstidUkerItem';
-import { PlusCircleIcon } from '@navikt/aksel-icons';
 
 interface Props {
     listItems: ArbeidstidUkerItem[];

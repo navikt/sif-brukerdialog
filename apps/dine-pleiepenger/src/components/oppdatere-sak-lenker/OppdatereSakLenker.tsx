@@ -1,6 +1,6 @@
+import { FileIcon, PencilWritingIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { Heading, HGrid, VStack } from '@navikt/ds-react';
-import { PencilWritingIcon, TasklistIcon } from '@navikt/aksel-icons';
-import { FileIcon } from '@navikt/aksel-icons';
+
 import { useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 import SnarveiLinkCard from '../snarvei-link-card/SnarveiLinkCard';

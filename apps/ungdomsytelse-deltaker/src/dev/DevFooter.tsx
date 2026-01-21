@@ -1,3 +1,4 @@
+import { CogIcon } from '@navikt/aksel-icons';
 import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useState } from 'react';
@@ -5,7 +6,6 @@ import { useState } from 'react';
 import { defaultScenario, Scenario, scenarioer } from '../../mock/scenarios/scenarioer';
 import { store } from '../../mock/state/store';
 import { getAppEnv } from '../utils/appEnv';
-import { CogIcon } from '@navikt/aksel-icons';
 
 const DevFooter = () => {
     const [showModal, setShowModal] = useState(false);

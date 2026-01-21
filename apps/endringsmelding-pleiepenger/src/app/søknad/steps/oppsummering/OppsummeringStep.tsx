@@ -1,6 +1,7 @@
 import './oppsummering.css';
 
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
+import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -19,7 +20,6 @@ import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
-import { ChevronLeftIcon } from '@navikt/aksel-icons';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
