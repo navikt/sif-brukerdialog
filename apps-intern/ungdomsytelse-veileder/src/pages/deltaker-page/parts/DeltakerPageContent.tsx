@@ -43,7 +43,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                 {deltakelse.erSlettet && (
                     <LocalAlert status="warning">
                         <LocalAlert.Header>
-                            <LocalAlert.Title>Deltakelsen er slettet - avventer vedtak</LocalAlert.Title>
+                            <LocalAlert.Title>Deltakelsen er slettet</LocalAlert.Title>
                         </LocalAlert.Header>
                     </LocalAlert>
                 )}
