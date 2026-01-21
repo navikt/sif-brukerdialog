@@ -47,7 +47,7 @@ const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, k
                         const erUtenforSøknadsperiode = reisedagerUtenforSøknadsperioder.includes(dato.dato);
                         if (erUtenforSøknadsperiode && visFeil) {
                             return (
-                                <HStack gap="2">
+                                <HStack gap="space-8">
                                     {capsFirstCharacter(dateFormatter.dayCompactDate(dato.dato))}
                                     <BodyShort className="text-red-500" as="span">
                                         <Tooltip content="Reisedag er utenfor søknadsperioden">

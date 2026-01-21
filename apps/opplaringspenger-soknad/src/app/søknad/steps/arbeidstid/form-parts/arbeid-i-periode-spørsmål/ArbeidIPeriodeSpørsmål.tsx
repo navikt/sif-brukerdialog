@@ -1,4 +1,4 @@
-import { Alert, BoxNew, Heading, HStack, Tag } from '@navikt/ds-react';
+import { Alert, Box, Heading, HStack, Tag } from '@navikt/ds-react';
 import {
     DateRange,
     getErrorForField,
@@ -116,7 +116,7 @@ const ArbeidIPeriodeSpørsmål = ({
         ).length;
 
         return (
-            <HStack gap="4" align="center">
+            <HStack gap="space-16" align="center">
                 <div style={{ minWidth: '10rem' }}>Timer med jobb {dayjs(month).format('MMMM YYYY')}</div>
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
@@ -154,7 +154,6 @@ const ArbeidIPeriodeSpørsmål = ({
                     radios={getJobberIPeriodenRadios(appIntl, skjulJobberNormaltValg)}
                 />
             )}
-
             {(jobberIPerioden === JobberIPeriodeSvar.redusert || skjulJobberNormaltValg) && (
                 <FormLayout.Panel bleedTop={true}>
                     <InputGroup
@@ -175,11 +174,11 @@ const ArbeidIPeriodeSpørsmål = ({
                             return undefined;
                         }}
                         description={
-                            <BoxNew paddingBlock="2 0">
+                            <Box paddingBlock="space-8 space-0">
                                 <Alert variant="info" inline={true}>
                                     <AppText id="arbeidIPeriode.enkeltdager_gruppe.description" />
                                 </Alert>
-                            </BoxNew>
+                            </Box>
                         }>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput

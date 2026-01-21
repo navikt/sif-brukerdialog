@@ -41,8 +41,7 @@ const ArbeidstidStep = () => {
                     </List.Item>
                 </List>
             </FormLayout.Guide>
-
-            <VStack gap="8">
+            <VStack gap="space-32">
                 {harFjernetFerie && (
                     <Alert variant="warning">
                         <AppText id="arbeidstidStep.fjernetFerie.melding" />

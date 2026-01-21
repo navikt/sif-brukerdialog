@@ -2,11 +2,11 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    border-top: 1px solid var(--ac-table-row-border, var(--a-border-default));
+    border-top: 1px solid var(--ac-table-row-border, var(--ax-border-neutral));
     border-top-width: 2px;
     li {
         padding: var(--ax-space-16,) var(--ax-space-8);
-        border-bottom: 1px solid var(--ac-table-row-border, var(--a-border-default));
+        border-bottom: 1px solid var(--ac-table-row-border, var(--ax-border-neutral));
     }
 
     .arbeidstidUke {
@@ -16,7 +16,7 @@
             align-items: flex-start;
         }
         &--valgt {
-            background-color: var(--ac-table-row-selected, var(--a-surface-action-subtle));
+            background-color: var(--ac-table-row-selected, var(--ax-bg-accent-soft));
         }
         &__velgUke {
             min-width: 2.5rem;

@@ -17,7 +17,7 @@ const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true
     const intl = useAppIntl();
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             {oppgaver.map((oppgave) => (
                 <OppgaveLinkCard
                     key={oppgave.oppgaveReferanse}

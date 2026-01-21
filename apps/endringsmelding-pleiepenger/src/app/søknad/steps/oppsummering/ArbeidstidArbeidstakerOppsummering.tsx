@@ -21,12 +21,12 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
     }
 
     return (
-        <VStack gap="4" data-testid={`oppsummering-${organisasjonsnummer}`}>
+        <VStack gap="space-16" data-testid={`oppsummering-${organisasjonsnummer}`}>
             <Heading level="3" size="small">
                 {arbeidsgiver.navn}
             </Heading>
             {arbeidstaker._erUkjentArbeidsforhold && arbeidstaker._arbeiderIPerioden && (
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <Heading level="3" size="xsmall">
                         <AppText id="arbeidstidStep.arbeiderIPeriodenSpm.legend" values={{ navn: arbeidsgiver.navn }} />
                     </Heading>
@@ -34,7 +34,6 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
                     <AppText id={ArbeiderIPeriodenSvarIntlKey[arbeidstaker._arbeiderIPerioden]} />
                 </VStack>
             )}
-
             {(arbeidstaker._erUkjentArbeidsforhold === false ||
                 (arbeidstaker._erUkjentArbeidsforhold === true &&
                     arbeidstaker._arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert)) && (

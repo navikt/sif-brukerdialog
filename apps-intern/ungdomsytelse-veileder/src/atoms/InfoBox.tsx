@@ -1,10 +1,10 @@
-import { BoxNew } from '@navikt/ds-react';
+import { Box } from '@navikt/ds-react';
 
 const InfoBox = ({ children }) => {
     return (
-        <BoxNew background="info-moderate" paddingBlock="7 8" paddingInline="8" borderRadius="large">
+        <Box background="info-moderate" paddingBlock="space-28 space-32" paddingInline="space-32" borderRadius="16">
             {children}
-        </BoxNew>
+        </Box>
     );
 };
 

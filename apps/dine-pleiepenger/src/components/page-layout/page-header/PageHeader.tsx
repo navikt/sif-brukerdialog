@@ -26,15 +26,15 @@ const PageHeader = ({
                 </Head>
             ) : null}
             <div className="text-left">
-                <HStack gap="6" align="center">
+                <HStack gap="space-24" align="center">
                     {hidePleiepengerIcon ? null : (
                         <div className="hidden md:block">
                             <PleiepengerSVG />
                         </div>
                     )}
-                    <VStack gap="2">
+                    <VStack gap="space-8">
                         {titleTag ? (
-                            <HStack gap="4" align="center">
+                            <HStack gap="space-16" align="center">
                                 <Heading size="large" level="1" className=" mr-4">
                                     {title}
                                 </Heading>

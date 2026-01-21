@@ -1,4 +1,4 @@
-import { BoxNew, ExpansionCard, VStack } from '@navikt/ds-react';
+import { Box, ExpansionCard, VStack } from '@navikt/ds-react';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
@@ -41,12 +41,12 @@ const ArbeidsaktivitetBlock = ({
             <ExpansionCard.Content data-color="accent">{children}</ExpansionCard.Content>
         </ExpansionCard>
     ) : (
-        <BoxNew borderRadius="large" borderColor="neutral" borderWidth="1" padding="4">
-            <VStack gap="8">
+        <Box borderRadius="16" borderColor="neutral" borderWidth="1" padding="space-16">
+            <VStack gap="space-32">
                 {renderHeader()}
                 <div>{children}</div>
             </VStack>
-        </BoxNew>
+        </Box>
     );
 };
 

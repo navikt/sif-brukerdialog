@@ -56,7 +56,7 @@ const Article = ({ article, size = 'small' }: Props) => {
                     th: ({ children }) => <th className="border border-gray-400 p-2 font-bold">{children}</th>,
                     td: ({ children }) => <td className="border border-gray-400 p-2">{children}</td>,
                     blockquote: ({ children }) => (
-                        <Box marginBlock="0 4">
+                        <Box marginBlock="space-0 space-16">
                             <Alert variant="info">{children}</Alert>
                         </Box>
                     ),

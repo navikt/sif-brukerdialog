@@ -10,7 +10,7 @@ const KvitteringPage = () => {
     const { text } = useAppIntl();
     return (
         <DefaultPageLayout documentTitle={text('kvitteringPage.dokumentTittel')}>
-            <VStack gap="8">
+            <VStack gap="space-32">
                 <SøknadHeader />
 
                 <Alert variant="success">

@@ -59,7 +59,7 @@ export const mockUtils = {
 
     setRapportertInntekt: (ref: string, data: UngdomsytelseInntektsrapportering) => {
         const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<OppgaveDto> =>
-            ({
+            (({
                 oppgavetypeData: {
                     ...oppgave.oppgavetypeData,
                     fraOgMed: oppgave.oppgavetypeData.fraOgMed,
@@ -70,9 +70,10 @@ export const mockUtils = {
                         arbeidstakerOgFrilansInntekt: data.oppgittInntekt.arbeidstakerOgFrilansInntekt || 0,
                     },
                 },
+
                 løstDato: getMockToday().toISOString(),
-                status: 'LØST',
-            }) as any;
+                status: 'LØST'
+            }) as any);
 
         setTimeout(() => {
             updateOppgave(ref, (oppgave) => ({

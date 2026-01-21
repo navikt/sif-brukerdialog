@@ -13,7 +13,7 @@ const UnavailablePage = () => {
 
     return (
         <Page className={bem.block} title={title} topContentRenderer={() => <SoknadHeader title={title} />}>
-            <Box marginBlock="10">
+            <Box marginBlock="space-40">
                 <Alert variant="warning">
                     <BodyLong as="div">
                         <AppText id="page.unavailable.info.1" />

@@ -1,3 +1,4 @@
+import { CogIcon } from '@navikt/aksel-icons';
 import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useState } from 'react';
@@ -5,7 +6,6 @@ import { useState } from 'react';
 import { defaultScenario, Scenario, scenarioer } from '../../mock/scenarios/scenarioer';
 import { store } from '../../mock/state/store';
 import { getAppEnv } from '../utils/appEnv';
-import { CogIcon } from '@navikt/aksel-icons';
 
 const DevFooter = () => {
     const [showModal, setShowModal] = useState(false);
@@ -54,7 +54,7 @@ const DevFooter = () => {
                 }}
                 style={{ width: '100%' }}>
                 <Modal.Body style={{ minWidth: '30rem' }}>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <div className="scenarioes">
                             <RadioGroup
                                 value={scenario.type}
@@ -70,7 +70,7 @@ const DevFooter = () => {
                                 })}
                             </RadioGroup>
                         </div>
-                        <HStack gap="4">
+                        <HStack gap="space-16">
                             <Button
                                 type="button"
                                 onClick={() => {

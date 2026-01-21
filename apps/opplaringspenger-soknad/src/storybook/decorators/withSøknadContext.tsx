@@ -1,5 +1,5 @@
-import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
 import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
+import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { søknadContextMock } from '../data/søknadContextMock';
 

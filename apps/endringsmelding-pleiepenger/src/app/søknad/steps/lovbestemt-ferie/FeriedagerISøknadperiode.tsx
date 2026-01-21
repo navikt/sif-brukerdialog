@@ -38,7 +38,7 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
     };
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <LovbestemtFerieListe
                 perioder={perioder}
                 onUndoDelete={(periode) => {
@@ -53,7 +53,6 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
                     onChange(fjernFerie(alleFeriedager, periode));
                 }}
             />
-
             <div>
                 <Button
                     data-testid="leggTilFerieKnapp"
@@ -68,7 +67,6 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
                     <AppText id="feriedagerISøknadsperiode.leggTilFerie" />
                 </Button>
             </div>
-
             {visFerieModal && (
                 <LovbestemtFerieModal
                     onClose={() => setVisFerieModal(undefined)}

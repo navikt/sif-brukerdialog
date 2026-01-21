@@ -6,7 +6,7 @@ const NotFoundPage = () => {
         <Page>
             <Page.Block width="xl" gutters={true}>
                 <main className="navds-pageblock navds-pageblock--xl navds-pageblock--gutter">
-                    <Box padding="20" className="bg-gray-50">
+                    <Box padding="space-80" className="bg-gray-50">
                         <HGrid columns={2}>
                             <div>
                                 <Heading level="1" size="xlarge" spacing={true}>

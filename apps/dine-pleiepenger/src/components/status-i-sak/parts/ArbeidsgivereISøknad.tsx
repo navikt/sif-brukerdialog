@@ -19,7 +19,7 @@ const ArbeidsgivereISøknad = ({ søknadId, arbeidsgivere }: Props) => {
             <Heading size="xsmall" level="3" spacing={true}>
                 <FormattedMessage id="bekreftelseTilArbeidsgiver.title" />
             </Heading>
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <BodyLong>
                     <FormattedMessage id="bekreftelseTilArbeidsgiver.info" />
                 </BodyLong>
@@ -29,7 +29,7 @@ const ArbeidsgivereISøknad = ({ søknadId, arbeidsgivere }: Props) => {
                 <List>
                     {arbeidsgivere.map((organisasjon) => (
                         <li key={organisasjon.organisasjonsnummer}>
-                            <Box marginBlock="0 1">
+                            <Box marginBlock="space-0 space-4">
                                 <PdfLenke
                                     href={getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer(
                                         søknadId,

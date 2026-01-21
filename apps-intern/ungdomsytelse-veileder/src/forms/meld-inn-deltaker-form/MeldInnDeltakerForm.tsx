@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-import { Alert, BodyShort, BoxNew, Button, Heading, HStack, Process, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Heading, HStack, Process, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import {
@@ -83,7 +83,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                     : true;
 
                 const renderFormPart = () => (
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <FormikDatepicker
                             name="startDato"
                             label="Når starter deltakeren i ungdomsprogrammet?"
@@ -116,7 +116,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                             validate={getCheckedValidator()}
                         />
 
-                        <HStack gap="2">
+                        <HStack gap="space-8">
                             <Button
                                 type="submit"
                                 variant="primary"
@@ -136,7 +136,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                     <TypedFormikForm
                         includeButtons={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'meldInnDeltakerForm')}>
-                        <VStack gap="4" marginBlock="4 0">
+                        <VStack gap="space-16" marginBlock="space-16 space-0">
                             {Features.sjekkliste ? (
                                 <>
                                     <Heading level="2" size="medium">
@@ -154,7 +154,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                             // status="completed"
                                             title="Kontroller om deltaker kan meldes inn"
                                             bullet={1}>
-                                            <BoxNew paddingBlock="4" data-color="accent">
+                                            <Box paddingBlock="space-16" data-color="accent">
                                                 <FormikYesOrNoQuestion
                                                     name="harSjekketSjekkliste"
                                                     legend="Har du kontrollert at deltaker kan meldes inn i ungdomsprogrammet ved å fylle ut sjekklisten for deltakelse?"
@@ -162,21 +162,21 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                                 />
                                                 {harSjekketSjekkliste === YesOrNo.NO && (
                                                     // <Bleed marginInline="4">
-                                                    <BoxNew
-                                                        padding="8"
-                                                        borderRadius="large"
+                                                    <Box
+                                                        padding="space-32"
+                                                        borderRadius="16"
                                                         background="default"
                                                         borderWidth="1"
-                                                        marginBlock="0 4"
+                                                        marginBlock="space-0 space-16"
                                                         borderColor="neutral-subtle">
                                                         <Sjekkliste
                                                             onChange={(resultat) => setSjekkListeResultat(resultat)}
                                                             visResultat={true}
                                                         />
-                                                    </BoxNew>
+                                                    </Box>
                                                     // </Bleed>
                                                 )}
-                                            </BoxNew>
+                                            </Box>
                                         </Process.Event>
                                         <Process.Event
                                             status={
@@ -192,13 +192,13 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                             title="Send vedtaksbrev om deltakelse fra gosys"
                                             bullet={2}>
                                             {kanMeldesInn && (
-                                                <BoxNew paddingBlock="4">
+                                                <Box paddingBlock="space-16">
                                                     <FormikYesOrNoQuestion
                                                         name="erVedtaksbrevSendt"
                                                         legend="Er vedtaksbrev om deltakelse i ungdomsprogrammet sendt fra gosys?"
                                                         validate={getYesOrNoValidator()}
                                                     />
-                                                </BoxNew>
+                                                </Box>
                                             )}
                                         </Process.Event>
                                         <Process.Event
@@ -208,9 +208,9 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
 
                                             status={erVedtaksbrevSendt === YesOrNo.YES ? 'active' : undefined}>
                                             {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.YES && (
-                                                <BoxNew paddingBlock="4" style={{ minWidth: '33rem' }}>
+                                                <Box paddingBlock="space-16" style={{ minWidth: '33rem' }}>
                                                     {renderFormPart()}
-                                                </BoxNew>
+                                                </Box>
                                             )}
                                         </Process.Event>
                                     </Process>

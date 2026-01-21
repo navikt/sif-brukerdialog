@@ -31,12 +31,12 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
             name="kursperioder"
             render={(arrayHelpers) => {
                 return (
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         {kursperioder.map((kursperiode, index) => (
                             <FormLayout.Panel key={index}>
                                 <fieldset ref={setElementRef(index)} aria-labelledby={`kursperiode-legend-${index}`}>
                                     <Hide hidden={harFlerePerioder === false}>
-                                        <Box marginBlock="0 2">
+                                        <Box marginBlock="space-0 space-8">
                                             <legend id={`kursperiode-legend-${index}`}>
                                                 <BodyShort weight="semibold" spacing={false} className="noPadding">
                                                     <AppText

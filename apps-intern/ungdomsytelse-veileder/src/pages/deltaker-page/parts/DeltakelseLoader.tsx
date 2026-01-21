@@ -1,4 +1,4 @@
-import { BoxNew, Page } from '@navikt/ds-react';
+import { Box, Page } from '@navikt/ds-react';
 import { useDeltakelserForDeltaker } from '../../../hooks/useDeltakelserForDeltaker';
 import { Deltaker } from '../../../types/Deltaker';
 import ErrorPageContent from '../../error-page/ErrorPageContent';
@@ -18,11 +18,11 @@ const DeltakelseLoader = ({ deltaker }: Props) => {
 
     if (error && !isLoading) {
         return (
-            <BoxNew>
+            <Box>
                 <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
                     <ErrorPageContent error={error} />
                 </Page.Block>
-            </BoxNew>
+            </Box>
         );
     }
 

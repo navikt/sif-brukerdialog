@@ -8,10 +8,10 @@ const IngenSakEllerSøknadPage = () => {
     const { text } = useAppIntl();
     return (
         <DefaultPageLayout documentTitle={text('forside.dokumentTittel')}>
-            <VStack gap="8" className="mb-16">
+            <VStack gap="space-32" className="mb-16">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
-                        <VStack gap="4">
+                        <VStack gap="space-16">
                             <Heading level="2" size="medium">
                                 <AppText id="ingeSakPage.saker.tittel" />
                             </Heading>
@@ -71,7 +71,7 @@ const IngenSakEllerSøknadPage = () => {
                         </VStack>
                     </div>
                     <div className="md:mb-none shrink-0 md:w-sm">
-                        <VStack gap="4">
+                        <VStack gap="space-16">
                             <Heading level="2" size="medium">
                                 <AppText id="ingeSakPage.snarveier.tittel" />
                             </Heading>

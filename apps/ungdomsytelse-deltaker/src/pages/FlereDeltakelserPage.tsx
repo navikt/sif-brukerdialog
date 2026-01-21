@@ -5,7 +5,7 @@ import ErrorPage from './ErrorPage';
 
 const FlereDeltakelserPage = () => (
     <ErrorPage pageTitle="Flere deltakelser" bannerTitle="Ungdomsprogramytelsen">
-        <Box paddingBlock="0 24">
+        <Box paddingBlock="space-0 space-96">
             <SifGuidePanel mood="uncertain">
                 <Heading level="2" size="medium" spacing>
                     Oops, det oppstod en feil

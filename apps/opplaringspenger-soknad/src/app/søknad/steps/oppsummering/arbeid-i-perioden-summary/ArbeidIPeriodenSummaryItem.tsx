@@ -19,7 +19,7 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
 
 const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode }: Props) => {
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             <>
                 {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
                     arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
@@ -33,9 +33,8 @@ const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode }: Props) => {
                     </p>
                 )}
             </>
-
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
-                <VStack gap="8">
+                <VStack gap="space-32">
                     <Heading size="small" level="4">
                         <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
                     </Heading>

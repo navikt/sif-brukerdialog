@@ -143,7 +143,7 @@ const EndreArbeidstidForm = ({
                 });
 
                 return (
-                    <VStack gap="8" className="endreArbeidstidForm">
+                    <VStack gap="space-32" className="endreArbeidstidForm">
                         <div>
                             <Heading size="large" level="2" spacing={true}>
                                 {arbeidsuker.length === 1
@@ -156,7 +156,6 @@ const EndreArbeidstidForm = ({
                                 {getUkerOgÅrBeskrivelse(arbeidsuker, appIntl, lovbestemtFerie)}
                             </BodyShort>
                         </div>
-
                         {dagerMedFjernetFerie && dagerMedFjernetFerie.length > 0 && (
                             <Alert variant="warning">
                                 <AppText
@@ -270,7 +269,7 @@ const getUkerOgÅrBeskrivelse = (
             ? getFeriedagerIUke(lovbestemtFerie.feriedagerMeta.datoerMedFerie, arbeidsuker[0].periode, true)
             : [];
         return (
-            <VStack gap="2">
+            <VStack gap="space-8">
                 <BodyShort as="div" className="capsFirstChar">
                     {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
                 </BodyShort>

@@ -1,3 +1,4 @@
+import { Buildings3Icon } from '@navikt/aksel-icons';
 import { BodyLong } from '@navikt/ds-react';
 import {
     DateRange,
@@ -43,7 +44,6 @@ import {
     getFraværStepInitialValues,
     getOrganisasjonsnummerKey,
 } from './fraværStepUtils';
-import { Buildings3Icon } from '@navikt/aksel-icons';
 
 export enum FraværStepFormFields {
     fravær = 'fravær',

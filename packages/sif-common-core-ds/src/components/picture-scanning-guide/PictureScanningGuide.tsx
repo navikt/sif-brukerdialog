@@ -1,5 +1,6 @@
 import './pictureScanningGuide.scss';
 
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 
 import ExpandableInfo from '../../components/expandable-info/ExpandableInfo';
@@ -8,7 +9,6 @@ import bemUtils from '../../utils/bemUtils';
 import { getChildHeadingLevel, HeadingLevel } from '../../utils/headingLevelUtils';
 import ScanningIcon from './scanning-icon/ScanningIcon';
 import PictureScanningExample from './storybook/PictureScanningExample';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 const bem = bemUtils('pictureScanningGuide');
 interface Props {
@@ -25,44 +25,59 @@ const PictureScanningGuide = ({ headingLevel = '2' }: Props) => {
         <ExpandableInfo title={text('@core.psg.expandable.tittel')}>
             <div className={bem.block}>
                 <BodyLong as="div">
-                    <VStack gap="6">
+                    <VStack gap="space-24">
                         <Heading level={headingLevel} size="medium">
                             <CoreText id="@core.psg.tittel" />
                         </Heading>
-                        <List title={text('@core.psg.section1.tittel')} headingTag={`h${childHeadingLevel}`}>
-                            <List.Item>
-                                <CoreText id="@core.psg.section1.liste.1" />
-                            </List.Item>
-                            <List.Item>
-                                <CoreText id="@core.psg.section1.liste.2" />
-                            </List.Item>
-                            <List.Item>
-                                <CoreText id="@core.psg.section1.liste.3" />
-                            </List.Item>
-                        </List>
+                        <div>
+                            <Heading level={childHeadingLevel} size="small" spacing={true}>
+                                <CoreText id="@core.psg.section1.tittel" />
+                            </Heading>
+                            <List>
+                                <List.Item>
+                                    <CoreText id="@core.psg.section1.liste.1" />
+                                </List.Item>
+                                <List.Item>
+                                    <CoreText id="@core.psg.section1.liste.2" />
+                                </List.Item>
+                                <List.Item>
+                                    <CoreText id="@core.psg.section1.liste.3" />
+                                </List.Item>
+                            </List>
+                        </div>
 
-                        <List title={text('@core.psg.section2.tittel')} headingTag={`h${childHeadingLevel}`}>
-                            <List.Item>
-                                <CoreText id="@core.psg.section2.liste.1" />
-                            </List.Item>
-                            <List.Item>
-                                <CoreText id="@core.psg.section2.liste.2" />
-                            </List.Item>
-                            <List.Item>
-                                <CoreText id="@core.psg.section2.liste.3" />
-                            </List.Item>
-                        </List>
-                        <List title={text('@core.psg.section3.tittel')} headingTag={`h${childHeadingLevel}`}>
-                            <List.Item>
-                                <CoreText id="@core.psg.section3.liste.1" />
-                            </List.Item>
-                            <List.Item>
-                                <CoreText id="@core.psg.section3.liste.2" />
-                            </List.Item>
-                            <List.Item>
-                                <CoreText id="@core.psg.section3.liste.3" />
-                            </List.Item>
-                        </List>
+                        <div>
+                            <Heading level={childHeadingLevel} size="small" spacing={true}>
+                                <CoreText id="@core.psg.section2.tittel" />
+                            </Heading>
+                            <List>
+                                <List.Item>
+                                    <CoreText id="@core.psg.section2.liste.1" />
+                                </List.Item>
+                                <List.Item>
+                                    <CoreText id="@core.psg.section2.liste.2" />
+                                </List.Item>
+                                <List.Item>
+                                    <CoreText id="@core.psg.section2.liste.3" />
+                                </List.Item>
+                            </List>
+                        </div>
+                        <div>
+                            <Heading level={childHeadingLevel} size="small" spacing={true}>
+                                <CoreText id="@core.psg.section3.tittel" />
+                            </Heading>
+                            <List>
+                                <List.Item>
+                                    <CoreText id="@core.psg.section3.liste.1" />
+                                </List.Item>
+                                <List.Item>
+                                    <CoreText id="@core.psg.section3.liste.2" />
+                                </List.Item>
+                                <List.Item>
+                                    <CoreText id="@core.psg.section3.liste.3" />
+                                </List.Item>
+                            </List>
+                        </div>
                         <div>
                             <Heading level={childHeadingLevel} size="small" spacing={true}>
                                 <CoreText id="@core.psg.icon.heading" />

@@ -30,7 +30,11 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
             {isLoading ? (
                 <Skeleton height="6rem" variant="rounded" />
             ) : (
-                <Box.New paddingBlock="4 6" paddingInline="6" borderRadius="large" background="info-moderateA">
+                <Box
+                    paddingBlock="space-16 space-24"
+                    paddingInline="space-24"
+                    borderRadius="16"
+                    background="info-moderateA">
                     <Box className="mb-4">
                         <SaksbehandlingstidMelding
                             frist={frist}
@@ -41,7 +45,7 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
                     <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
                         <AppText id="svarfrist.lesMerLenke" />
                     </Link>
-                </Box.New>
+                </Box>
             )}
         </Box>
     );

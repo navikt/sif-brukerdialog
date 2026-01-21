@@ -8,7 +8,7 @@ interface Props {
 const UxSignalsPanel = ({ panelId, mode }: Props) => {
     return (
         <Box
-            borderRadius="large"
+            borderRadius="8"
             style={{ backgroundColor: 'white' }}
             data-uxsignals-embed={`panel-${panelId}`}
             data-uxsignals-mode={mode || ''}></Box>

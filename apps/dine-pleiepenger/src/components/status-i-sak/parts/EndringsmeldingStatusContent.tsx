@@ -9,7 +9,7 @@ interface Props {
 
 const EndringsmeldingStatusContent = ({ dokumenter }: Props) => {
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <Dokumenter dokumenter={dokumenter} />
         </VStack>
     );
