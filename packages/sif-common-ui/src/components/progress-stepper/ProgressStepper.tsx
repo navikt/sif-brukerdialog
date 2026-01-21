@@ -60,9 +60,9 @@ const ProgressStepper = ({
     }, [setFocusOnHeadingOnMount]);
 
     return (
-        <VStack gap="5">
+        <VStack gap="space-20">
             {includeGotoPreviousStepLink && currentStepIndex ? (
-                <Box paddingBlock="0 1">
+                <Box paddingBlock="space-0 space-4">
                     <BodyShort size="medium" as="div">
                         <Link href="#" onClick={handleBackClick}>
                             <ArrowLeftIcon aria-hidden="true" />
@@ -71,7 +71,6 @@ const ProgressStepper = ({
                     </BodyShort>
                 </Box>
             ) : undefined}
-
             <Heading
                 tabIndex={-1}
                 size="large"
@@ -80,7 +79,6 @@ const ProgressStepper = ({
                 ref={headingRef}>
                 {step.label}
             </Heading>
-
             <FormProgress activeStep={currentStepIndex + 1} totalSteps={steps.length}>
                 {steps.map((s) => (
                     <FormProgress.Step

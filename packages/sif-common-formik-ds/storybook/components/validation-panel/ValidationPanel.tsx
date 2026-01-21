@@ -18,7 +18,7 @@ const ValidationPanel = ({ title, children, code }) => {
             <Heading level="3" size="medium">
                 {title}
             </Heading>
-            <Box marginBlock="8 0">
+            <Box marginBlock="space-32 space-0">
                 {hasValue(code) && (
                     <Tabs
                         value={activePanel}

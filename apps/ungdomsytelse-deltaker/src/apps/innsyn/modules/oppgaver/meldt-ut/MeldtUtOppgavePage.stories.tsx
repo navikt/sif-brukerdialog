@@ -43,14 +43,14 @@ const besvartOppgave: MeldtUtOppgave = {
 export const OppgavePanel: Story = {
     name: 'Oppgavevisning på forside',
     render: () => (
-        <VStack gap="10">
-            <VStack gap="4">
+        <VStack gap="space-40">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
                 <OppgaverList oppgaver={[oppgave]} />
             </VStack>
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Løste oppgaver
                 </Heading>

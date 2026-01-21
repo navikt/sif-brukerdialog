@@ -43,7 +43,7 @@ const OmBarnetForm = ({
             submitPending={isSubmitting}
             onBack={goBack}
             runDelayedFormValidation={true}>
-            <VStack gap="8">
+            <VStack gap="space-32">
                 {harRegistrerteBarn ? (
                     <Box>
                         <Heading level="2" size="medium" spacing={true}>

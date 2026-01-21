@@ -2,14 +2,15 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { Næringstype, OpptjeningAktivitet, UtenlandskNæringstype } from '@navikt/sif-common-forms-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+
+import { EnkeltdagEllerPeriode } from '../../app/søknad/steps/kurs/KursStepForm';
 import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/utils/kursStepUtils';
 import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
+import { Kursdag } from '../../app/types/Kursdag';
 import { Kursperiode } from '../../app/types/Kursperiode';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { SøknadRoutes } from '../../app/types/SøknadRoutes';
 import { institusjonerMock } from './institusjonerMock';
-import { Kursdag } from '../../app/types/Kursdag';
-import { EnkeltdagEllerPeriode } from '../../app/søknad/steps/kurs/KursStepForm';
 
 const kursperioder: Kursperiode[] = [
     {

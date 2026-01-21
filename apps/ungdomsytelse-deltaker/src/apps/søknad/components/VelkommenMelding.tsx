@@ -15,11 +15,11 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
     const { text } = useAppIntl();
     return (
         <GuidePanel poster={true}>
-            <Box paddingBlock="4 0">
+            <Box paddingBlock="space-16 space-0">
                 <Heading level="1" size="medium" spacing={true}>
                     <AppText id="velkommenMelding.hei" values={{ fornavn }} />
                 </Heading>
-                <VStack gap="4">
+                <VStack gap="space-16">
                     <BodyLong>
                         <AppText
                             id="velkommenMelding.deltakelsePeriode"
@@ -42,7 +42,7 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                             }}
                         />
                     </BodyLong>
-                    <VStack gap="0">
+                    <VStack gap="space-0">
                         <ReadMore header={text('velkommenMelding.readMore.dato.header')}>
                             <BodyLong spacing>
                                 <AppText id="velkommenMelding.readMore.dato.content" />

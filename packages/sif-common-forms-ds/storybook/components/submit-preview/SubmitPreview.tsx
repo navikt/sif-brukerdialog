@@ -6,7 +6,7 @@ interface Props {
 
 function SubmitPreview({ values }: Props) {
     return values ? (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <Heading level="3" size="small">
                 Skjemadata
             </Heading>

@@ -22,7 +22,7 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
     return (
         <>
             <FormLayout.Guide>
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <AppText id="step.dokumentType.info" />
 
                     <List>
@@ -59,7 +59,6 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
                     </List>
                 </VStack>
             </FormLayout.Guide>
-
             <FormLayout.Questions>
                 <SoknadFormComponents.RadioGroup
                     legend={text('step.dokumentType.dokumentType.spm')}

@@ -135,7 +135,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                         heading: labels.modalTitle,
                     }}>
                     <Modal.Body>
-                        <VStack gap="4">
+                        <VStack gap="space-16">
                             {labels.modalDescription ? <BodyLong as="div">{labels.modalDescription}</BodyLong> : null}
                             {formRenderer({
                                 onSubmit: handleOnSubmit,
@@ -147,7 +147,6 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     </Modal.Body>
                 </Modal>
             ) : null}
-
             <SkjemagruppeQuestion
                 ref={fieldsetRef}
                 legend={labels.listTitle}
@@ -156,13 +155,13 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 tabIndex={-1}
                 description={labels.description}
                 className="modalFormAndListFieldset">
-                <VStack gap="4">
+                <VStack gap="space-16">
                     {items.length > 0 && (
                         <div>{listRenderer({ items, onEdit: handleEdit, onDelete: handleDelete })}</div>
                     )}
                     {items.length === 0 && labels.emptyListText && <Alert variant="info">{labels.emptyListText}</Alert>}
                     {(maxItems === undefined || maxItems > items.length) && (
-                        <Box marginBlock={items.length !== 0 ? '0' : '2 0'}>
+                        <Box marginBlock={items.length !== 0 ? 'space-0' : 'space-8 space-0'}>
                             <Button
                                 ref={addButtonRef}
                                 type="button"
@@ -175,7 +174,6 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     )}
                 </VStack>
             </SkjemagruppeQuestion>
-
             {confirmDelete && itemToDelete && (
                 <ConfirmationDialog
                     title={confirmDelete.title}

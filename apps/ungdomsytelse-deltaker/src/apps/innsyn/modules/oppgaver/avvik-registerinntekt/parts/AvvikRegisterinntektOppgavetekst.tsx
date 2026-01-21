@@ -35,7 +35,7 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
     const harKunYtelseInntekt = ytelseInntekter.length > 0 && arbeidOgFrilansInntekter.length === 0;
 
     return (
-        <VStack gap="4" width="100%" paddingBlock="0 4">
+        <VStack gap="space-16" width="100%" paddingBlock="space-0 space-16">
             {harInntekt ? (
                 <>
                     <BodyLong>
@@ -52,7 +52,7 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                         )}
                     </BodyLong>
 
-                    <Box marginBlock="0 2">
+                    <Box marginBlock="space-0 space-8">
                         <InntektTable
                             inntekt={inntekt}
                             navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
@@ -63,9 +63,9 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                     </Box>
                     {oppgave.oppgavetypeData.gjelderDelerAvMåned ? (
                         // Når perioden oppgaven ikke gjelder alle virkedager i måneden
-                        <BodyLong>
+                        (<BodyLong>
                             <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.delerAvMåned" />
-                        </BodyLong>
+                        </BodyLong>)
                     ) : (
                         <BodyLong>
                             {harKunYtelseInntekt ? (
@@ -89,9 +89,8 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                     </BodyLong>
                 </>
             )}
-
-            <Box marginBlock="2 0">
-                <Box marginBlock="0 6">
+            <Box marginBlock="space-8 space-0">
+                <Box marginBlock="space-0 space-24">
                     <List>
                         <List.Item>
                             <AppText

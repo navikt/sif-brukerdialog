@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "@grafana/faro-web-sdk": "2.1.0",
-        "@navikt/aksel-icons": "7.40.0",
+        "@navikt/aksel-icons": "8.0.1",
         "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/nav-dekoratoren-moduler": "3.6.1",
         "@navikt/next-logger": "4.4.5",
@@ -50,10 +50,10 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.11.0",
-        "@navikt/aksel-icons": "7.40.0",
-        "@navikt/ds-css": "7.40.0",
-        "@navikt/ds-react": "7.40.0",
-        "@navikt/ds-tailwind": "7.40.0",
+        "@navikt/aksel-icons": "8.0.1",
+        "@navikt/ds-css": "8.0.1",
+        "@navikt/ds-react": "8.0.1",
+        "@navikt/ds-tailwind": "8.0.1",
         "@playwright/test": "1.57.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/nextjs": "10.1.11",

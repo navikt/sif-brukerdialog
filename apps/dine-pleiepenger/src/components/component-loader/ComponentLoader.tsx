@@ -6,7 +6,7 @@ interface Props {
 
 const ComponentLoader = ({ title }: Props) => (
     <div className="p-5 text-center">
-        <VStack gap="4" align="center">
+        <VStack gap="space-16" align="center">
             <Loader size="2xlarge" title={title} />
             {title ? <BodyShort size="large">{title}</BodyShort> : null}
         </VStack>

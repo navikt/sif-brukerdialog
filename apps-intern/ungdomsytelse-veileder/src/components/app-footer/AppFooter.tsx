@@ -1,11 +1,11 @@
-import { BodyShort, BoxNew, Link, Page, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Link, Page, VStack } from '@navikt/ds-react';
 
 const AppFooter = () => {
     return (
         <footer>
-            <BoxNew background="neutral-moderateA">
+            <Box background="neutral-moderateA">
                 <Page.Block gutters={true}>
-                    <VStack gap="6" className="pt-6 pb-6">
+                    <VStack gap="space-24" className="pt-6 pb-6">
                         <BodyShort>
                             Hvis du opplever feil med løsningen, kan du melde fra om dette{' '}
                             <Link
@@ -18,7 +18,7 @@ const AppFooter = () => {
                         </BodyShort>
                     </VStack>
                 </Page.Block>
-            </BoxNew>
+            </Box>
         </footer>
     );
 };

@@ -1,4 +1,4 @@
-import { Alert, Bleed, BodyLong, BoxNew, Heading, HStack, Page, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, BodyLong, Box, Heading, HStack, Page, VStack } from '@navikt/ds-react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -32,12 +32,12 @@ const StartPage = () => {
     };
 
     return (
-        <BoxNew background="default" paddingBlock="0">
+        <Box background="default" paddingBlock="space-0">
             <AppPage>
                 <Page.Block gutters={true}>
-                    <HStack align="center" justify="center" paddingBlock="14 0">
-                        <VStack gap="8" maxWidth="44rem">
-                            <VStack gap="4">
+                    <HStack align="center" justify="center" paddingBlock="space-56 space-0">
+                        <VStack gap="space-32" maxWidth="44rem">
+                            <VStack gap="space-16">
                                 <Heading level="1" size="large">
                                     Deltakerregistrering - ungdomsprogrammet
                                 </Heading>
@@ -60,14 +60,14 @@ const StartPage = () => {
                                     </Alert>
                                 )}
                             </VStack>
-                            <Bleed marginBlock="4 0">
+                            <Bleed marginBlock="space-16 space-0">
                                 <InformasjonIntro />
                             </Bleed>
                         </VStack>
                     </HStack>
                 </Page.Block>
             </AppPage>
-        </BoxNew>
+        </Box>
     );
 };
 

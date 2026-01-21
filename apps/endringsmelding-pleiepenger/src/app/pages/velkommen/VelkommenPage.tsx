@@ -46,7 +46,7 @@ const VelkommenPage = () => {
                             <Heading level="1" size="large" data-testid="velkommen-header" spacing={false}>
                                 <AppText id="velkommenPage.guide.tittel" values={{ navn: søkersFornavn }} />
                             </Heading>
-                            <VStack gap="6">
+                            <VStack gap="space-24">
                                 <BodyLong size="large">
                                     <AppText
                                         id="velkommenPage.guide.tekst"

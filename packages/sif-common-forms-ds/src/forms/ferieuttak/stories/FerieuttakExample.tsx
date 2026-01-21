@@ -36,7 +36,7 @@ const FormikExample = () => {
     const intl = useIntl();
     return (
         <Tabs defaultValue="list">
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Tabs.List>
                     <Tabs.Tab value="list" label="ListAndDialog" />
                     <Tabs.Tab value="form" label="Form" />
@@ -44,7 +44,7 @@ const FormikExample = () => {
                     <Tabs.Tab value="validationMessages" label="Valideringsmeldinger" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
-                    <VStack gap="8">
+                    <VStack gap="space-32">
                         <TypedFormikWrapper<FormValues>
                             initialValues={initialValues}
                             onSubmit={setListFormValues}

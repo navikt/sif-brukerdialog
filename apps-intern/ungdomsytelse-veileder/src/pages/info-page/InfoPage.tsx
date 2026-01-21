@@ -9,7 +9,7 @@ const InfoPage = () => {
     return (
         <Page>
             <Page.Block width="xl" gutters={true} className="pt-5">
-                <VStack gap="8">
+                <VStack gap="space-32">
                     <HGrid columns="1fr auto" className="border-b-2 border-b-gray-500 pb-2">
                         <Heading size="large" level="1">
                             Informasjon

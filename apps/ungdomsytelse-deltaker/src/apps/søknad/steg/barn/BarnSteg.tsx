@@ -38,14 +38,13 @@ const BarnSteg = () => {
             <FormLayout.Guide>
                 <AppText id="barnSteg.beskrivelse" />
             </FormLayout.Guide>
-
             <form
                 onSubmit={(evt) => {
                     evt.preventDefault();
                     handleOnSubmit();
                 }}>
                 <FormLayout.Questions>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <RegistrerteBarnListeHeading level="2" size="xsmall">
                             {text('barnSteg.registrerteBarn.tittel')}
                         </RegistrerteBarnListeHeading>

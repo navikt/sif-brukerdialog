@@ -35,7 +35,7 @@ const Wrapper = ({ children }) => {
 const ModifyValueButtons = () => {
     const { setFieldValue } = useFormikContext();
     return (
-        <HStack gap="2">
+        <HStack gap="space-8">
             <Button type="button" onClick={() => setFieldValue('date', '')} variant="secondary" size="small">
                 Tøm felt
             </Button>
@@ -49,7 +49,7 @@ const ModifyValueButtons = () => {
 export const Default: Story = {
     render: () => (
         <Wrapper>
-            <VStack gap="2">
+            <VStack gap="space-8">
                 <FormikDatepicker {...defaultProps} />
                 <Box>
                     <ModifyValueButtons />

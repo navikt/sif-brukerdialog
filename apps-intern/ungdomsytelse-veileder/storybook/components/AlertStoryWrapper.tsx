@@ -19,14 +19,13 @@ const AlertStoryWrapper = ({
     return (
         <>
             <ShadowBox>
-                <VStack gap="4">
+                <VStack gap="space-16">
                     <Heading level="3" size="small">
                         {title}
                     </Heading>
                     <div>{children}</div>
                 </VStack>
             </ShadowBox>
-
             {messages && <MessagesList messages={messages} />}
         </>
     );

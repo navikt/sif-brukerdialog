@@ -39,7 +39,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
     });
 
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             <RadioGroup
                 radios={[
                     {
@@ -70,7 +70,6 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                         : undefined;
                 }}
             />
-
             {utbetalingsårsak === Utbetalingsårsak.konfliktMedArbeidsgiver && (
                 <>
                     <Textarea
@@ -110,7 +109,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                         )}
                         data-testid="konfliktMedArbeidsgiver-forklaring"
                     />
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <FormikFileUpload
                             headingLevel="3"
                             label={text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg')}

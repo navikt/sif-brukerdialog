@@ -47,7 +47,7 @@ const FormikExample = () => {
 
     return (
         <Tabs defaultValue="list">
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Tabs.List>
                     <Tabs.Tab value="list" label="ListAndDialog" />
                     <Tabs.Tab value="perioderForm" label="PerioderForm" />
@@ -71,7 +71,7 @@ const FormikExample = () => {
                                     submitButtonLabel="Valider skjema"
                                     formErrorHandler={getIntlFormErrorHandler(intl)}>
                                     <FormLayout.Questions>
-                                        <VStack gap="4">
+                                        <VStack gap="space-16">
                                             <Heading level="2" size="medium" spacing={true}>
                                                 FraværPerioderListAndDialog
                                             </Heading>
@@ -105,7 +105,7 @@ const FormikExample = () => {
                                                 helgedagerIkkeTillat={true}
                                             />
                                         </VStack>
-                                        <VStack gap="4">
+                                        <VStack gap="space-16">
                                             <Heading level="2" size="medium" spacing={true}>
                                                 FraværDagerListAndDialog
                                             </Heading>

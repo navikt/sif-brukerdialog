@@ -1,5 +1,4 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
-
 import { AppText, useAppIntl } from '@shared/i18n';
 
 const RegelverkOgInnsynReadMore = () => {
@@ -9,7 +8,7 @@ const RegelverkOgInnsynReadMore = () => {
             <BodyLong>
                 <AppText id="regelverkOgInnsyn.readMore.tekst.1" />
             </BodyLong>
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <List>
                     <List.Item>
                         <Link href="https://lovdata.no/dokument/NL/lov/2004-12-10-76">

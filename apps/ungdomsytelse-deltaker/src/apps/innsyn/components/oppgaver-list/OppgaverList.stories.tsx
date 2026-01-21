@@ -43,14 +43,14 @@ const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
 export const EndretSluttdato: Story = {
     name: 'Endret sluttdato',
     render: () => (
-        <VStack gap="10">
-            <VStack gap="4">
+        <VStack gap="space-40">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
                 <OppgaverList oppgaver={[endretSluttdatoOppgave]} />
             </VStack>
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Løste oppgaver
                 </Heading>
@@ -87,14 +87,14 @@ const endretStartdatoOppgave: EndretStartdatoOppgave = {
 export const EndretStartdato: Story = {
     name: 'Endret startdato',
     render: () => (
-        <VStack gap="10">
-            <VStack gap="4">
+        <VStack gap="space-40">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
                 <OppgaverList oppgaver={[endretStartdatoOppgave]} />
             </VStack>
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Løste oppgaver
                 </Heading>
@@ -132,14 +132,14 @@ const rapporterInntektOppgave: RapporterInntektOppgave = {
 export const RapporterInntekt: Story = {
     name: 'Rapporter inntekt',
     render: () => (
-        <VStack gap="10">
-            <VStack gap="4">
+        <VStack gap="space-40">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
                 <OppgaverList oppgaver={[rapporterInntektOppgave]} />
             </VStack>
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Løste oppgaver
                 </Heading>

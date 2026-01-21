@@ -8,7 +8,7 @@ const DemoAppRouter = ({ children }: { children: React.ReactNode }) => {
     return (
         <HashRouter>
             <div className="demoMode">
-                <VStack gap="10">
+                <VStack gap="space-40">
                     <VeilederScenarioHeader />
                     <aside>
                         <VeilederDemoInformasjon />

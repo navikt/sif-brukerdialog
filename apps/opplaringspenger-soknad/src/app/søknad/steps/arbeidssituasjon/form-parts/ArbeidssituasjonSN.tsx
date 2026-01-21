@@ -49,7 +49,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
 
     return (
         <>
-            <VStack gap="3">
+            <VStack gap="space-12">
                 <YesOrNoQuestion
                     name={SelvstendigFormFields.harHattInntektSomSN}
                     legend={text('selvstendig.harDuHattInntekt.spm')}

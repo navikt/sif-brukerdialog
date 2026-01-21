@@ -11,7 +11,7 @@ interface Props {
 
 const EndreSluttdatoPanel = ({ tilOgMed, kanEndreSluttdato, onClickEndreSluttdato }: Props) => (
     <InfoBox>
-        <VStack gap="6">
+        <VStack gap="space-24">
             <div>
                 <Heading level="3" size="xsmall" spacing>
                     <BodyShort as="span">Sluttdato:</BodyShort>

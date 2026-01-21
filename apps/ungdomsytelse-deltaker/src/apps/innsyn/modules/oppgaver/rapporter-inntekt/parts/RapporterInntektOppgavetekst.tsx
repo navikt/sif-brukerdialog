@@ -19,12 +19,12 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelde
 
     const { text } = useAppIntl();
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <Heading level="2" size="medium">
                 <AppText id="rapporterInntektOppgavetekst.tittel" values={{ deltakerNavn }} />
             </Heading>
             <Box maxWidth="90%">
-                <VStack gap="6">
+                <VStack gap="space-24">
                     <BodyLong>
                         <AppText
                             id="rapporterInntektOppgavetekst.intro.1"
@@ -44,12 +44,12 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelde
                             />
                         </BodyLong>
                     )}
-                    <Bleed marginBlock="2 0">
+                    <Bleed marginBlock="space-8 space-0">
                         <ReadMore header={text('rapporterInntektOppgave.readMore.tittel')}>
                             <BodyLong>
                                 <AppText id="rapporterInntektOppgave.readMore.tekst.1" />
                             </BodyLong>
-                            <Box marginBlock="2 6">
+                            <Box marginBlock="space-8 space-24">
                                 <List>
                                     <List.Item>
                                         <AppText id="rapporterInntektOppgave.readMore.liste.1" />

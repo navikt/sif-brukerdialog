@@ -3,7 +3,7 @@ import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 const StartdatoInfo = () => {
     return (
         <ReadMore header="Les om å endre startdato">
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <BodyLong>
                     Når startdatoen endres før deltakeren har søkt, får deltakeren den nye datoen i søknaden. Dermed
                     blir denne datoen benyttet i behandlinga.

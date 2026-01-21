@@ -1,4 +1,4 @@
-import { BoxNew, Page, Skeleton } from '@navikt/ds-react';
+import { Box, Page, Skeleton } from '@navikt/ds-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { validate } from 'uuid';
@@ -30,24 +30,22 @@ const DeltakerPage = () => {
         <AppPage>
             {/* Deltaker - spinner */}
             {deltakerPending ? <Skeleton width="100%" height="6.5rem" variant="rectangle" /> : null}
-
             {/* Error */}
             {error && !deltakerPending ? (
-                <BoxNew>
+                <Box>
                     <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
                         <ErrorPageContent error={error} />
                     </Page.Block>
-                </BoxNew>
+                </Box>
             ) : null}
-
             {/* Deltaker header */}
             {deltaker && (
                 <>
-                    <BoxNew background="neutral-moderate">
+                    <Box background="neutral-moderate">
                         <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
                             <DeltakerHeader deltaker={deltaker} onLukkDeltaker={() => navigate('/')} />
                         </Page.Block>
-                    </BoxNew>
+                    </Box>
                     <Page.Block width="xl" gutters={true}>
                         <DeltakelseLoader deltaker={deltaker} />
                     </Page.Block>

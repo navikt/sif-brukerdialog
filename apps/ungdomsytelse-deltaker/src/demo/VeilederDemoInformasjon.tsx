@@ -4,14 +4,14 @@ import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundar
 const VeilederDemoInformasjon = () => {
     return (
         <Theme hasBackground={false}>
-            <VStack gap="10">
+            <VStack gap="space-40">
                 <PageBoundary>
                     <GlobalAlert status="announcement">
                         <GlobalAlert.Header>
                             <GlobalAlert.Title>Demo</GlobalAlert.Title>
                         </GlobalAlert.Header>
                         <GlobalAlert.Content>
-                            <VStack gap="2">
+                            <VStack gap="space-8">
                                 <BodyLong as="div">
                                     Dette er en demo av hvordan søknadsskjema og deltakersider ser ut for en deltaker i
                                     ungdomsprogrammet.

@@ -38,7 +38,7 @@ const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
 
     return (
         <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(props.oppgave, appIntl)}>
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <RapporterInntektOppgavePart {...props} />
             </VStack>
         </DefaultPageLayout>

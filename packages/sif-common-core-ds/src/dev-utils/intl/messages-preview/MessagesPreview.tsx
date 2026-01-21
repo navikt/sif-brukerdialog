@@ -52,9 +52,8 @@ const MessagesPreview = ({
                     {title}
                 </Heading>
             )}
-
             {placeholdersMismatch.length > 0 && (
-                <VStack gap="4" marginBlock="8">
+                <VStack gap="space-16" marginBlock="space-32">
                     <Heading size="small" level="3">
                         Tekstnøkler med ulikhet i placeholdere
                     </Heading>
@@ -69,7 +68,7 @@ const MessagesPreview = ({
                 </VStack>
             )}
             {missingMessages && showMissingTextSummary && (
-                <VStack gap="4" marginBlock="8">
+                <VStack gap="space-16" marginBlock="space-32">
                     <Heading size="small" level="3">
                         Tekstnøkler som ikke er oversatt
                     </Heading>
@@ -86,7 +85,7 @@ const MessagesPreview = ({
                 </VStack>
             )}
             {showExplanation && (
-                <Box paddingBlock="0 6">
+                <Box paddingBlock="space-0 space-24">
                     <MessagesPreviewExplanation />
                 </Box>
             )}

@@ -46,14 +46,14 @@ class ErrorBoundary extends React.Component<Props, State> {
                 <Page
                     title="Det oppstod en feil"
                     topContentRenderer={() => <SoknadHeader title={this.props.appTitle} />}>
-                    <Box marginBlock="12">
+                    <Box marginBlock="space-48">
                         <SifGuidePanel mood="uncertain">
                             <Heading level="2" size="medium">
                                 Det oppstod en feil
                             </Heading>
 
                             <p>Dersom feilen vedvarer, kan du prøve å starte på nytt.</p>
-                            <Box marginBlock="4 0">
+                            <Box marginBlock="space-16 space-0">
                                 {this.props.onResetSoknad && (
                                     <Button
                                         type="button"

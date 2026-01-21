@@ -1,5 +1,5 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Box, BoxNew, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, Link, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 
@@ -33,9 +33,9 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
             <Head>
                 <title>Inntektsmeldinger - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>
-            <VStack gap="12">
-                <BoxNew maxWidth="52rem">
-                    <VStack gap="4">
+            <VStack gap="space-48">
+                <Box maxWidth="52rem">
+                    <VStack gap="space-16">
                         <Heading level="2" size="medium" className="mb-2">
                             Inntektsmeldinger vi har mottatt
                         </Heading>
@@ -47,7 +47,7 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
                             </Link>
                         </Box>
                     </VStack>
-                </BoxNew>
+                </Box>
             </VStack>
         </DefaultPageLayout>
     );

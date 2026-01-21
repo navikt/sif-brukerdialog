@@ -12,7 +12,7 @@ const EttersendelseStatusContent = ({ dokumenter }: Props) => {
     const { text } = useAppIntl();
     return (
         <ReadMore header={text('statusISak.søknadStatusContent.ettersendelse.readMoreHeader')}>
-            <VStack gap="2" className="pt-2">
+            <VStack gap="space-8" className="pt-2">
                 <Dokumenter dokumenter={dokumenter} />
             </VStack>
         </ReadMore>

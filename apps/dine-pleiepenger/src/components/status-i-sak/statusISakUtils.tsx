@@ -94,8 +94,8 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         content: (
                             <Box className="mt-2">
                                 <ReadMore header="Vis detaljer i inntektsmelding">
-                                    <VStack gap="2" marginBlock="0 4">
-                                        <HStack gap="2">
+                                    <VStack gap="space-8" marginBlock="space-0 space-16">
+                                        <HStack gap="space-8">
                                             <strong>Status: </strong>
                                             <InntektsmeldingStatusTag
                                                 status={hendelse.inntektsmelding.status}

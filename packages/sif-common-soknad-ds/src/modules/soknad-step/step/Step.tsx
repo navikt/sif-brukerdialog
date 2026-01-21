@@ -58,7 +58,7 @@ function Step({
                 </PageBoundary>
             )}>
             <section aria-label="Skjema" ref={sectionRef}>
-                <VStack gap="10">
+                <VStack gap="space-40">
                     <ProgressStepper
                         steps={steps}
                         currentStepIndex={currentStepIndex}
