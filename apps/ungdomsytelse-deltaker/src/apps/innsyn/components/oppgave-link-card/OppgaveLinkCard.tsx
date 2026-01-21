@@ -41,8 +41,8 @@ const OppgaveLinkCard = ({
                 <LinkCard.Anchor href="#">{tittel}</LinkCard.Anchor>
             </LinkCard.Title>
             <LinkCard.Description>
-                <VStack gap="1">
-                    {beskrivelse && <Box marginBlock="0 1">{beskrivelse}</Box>}
+                <VStack gap="space-4">
+                    {beskrivelse && <Box marginBlock="space-0 space-4">{beskrivelse}</Box>}
                     <div>
                         <OppgaveStatusTag
                             oppgaveStatus={oppgaveStatus}

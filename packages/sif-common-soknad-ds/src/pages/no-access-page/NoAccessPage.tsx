@@ -53,9 +53,9 @@ const NoAccessPage = <IntlKeys extends string = string>({
     };
     return (
         <Page title={tittel} topContentRenderer={() => <SoknadHeader title={tittel} />}>
-            <Box marginBlock="10">
+            <Box marginBlock="space-40">
                 <SifGuidePanel poster={true}>
-                    <Box marginBlock="4">
+                    <Box marginBlock="space-16">
                         <Heading level="1" size="large" spacing>
                             <SoknadText id="@soknad.page.noAccessPage.tittel" />
                         </Heading>

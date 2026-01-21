@@ -19,7 +19,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
             {error ? (
                 <HentArbeidsforholdFeiletInfo app={SifAppKeys.OpplæringspengerApp} />
             ) : (
-                <VStack gap="2" marginBlock="0 8">
+                <VStack gap="space-8" marginBlock="space-0 space-32">
                     {ansatt_arbeidsforhold.length > 0 && (
                         <AppText
                             id="steg.arbeidssituasjon.veileder.medArbeidsgiver"
@@ -37,7 +37,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
             )}
         </BodyLong>
         {ansatt_arbeidsforhold.length > 0 && (
-            <VStack gap="6">
+            <VStack gap="space-24">
                 {ansatt_arbeidsforhold.map((forhold, index) => (
                     <FormLayout.Panel key={forhold.arbeidsgiver.id}>
                         <ArbeidssituasjonAnsatt

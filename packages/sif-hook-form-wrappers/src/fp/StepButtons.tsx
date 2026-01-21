@@ -26,7 +26,7 @@ export const StepButtons = ({
     isJumpToEndButton = false,
 }: Props) => {
     return (
-        <HStack gap="2">
+        <HStack gap="space-8">
             <Button
                 type="button"
                 variant="secondary"

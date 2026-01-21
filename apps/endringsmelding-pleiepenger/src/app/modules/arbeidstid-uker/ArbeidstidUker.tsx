@@ -111,7 +111,7 @@ const ArbeidstidUker = ({
     const renderLastInnFlereUker = () => {
         if (paginering && hasMoreItems) {
             return (
-                <HStack gap="2">
+                <HStack gap="space-8">
                     <Button
                         variant="tertiary"
                         icon={<PlusCircleIcon role="presentation" aria-hidden={true} />}
@@ -149,7 +149,7 @@ const ArbeidstidUker = ({
 
     if (renderAsList) {
         return (
-            <VStack gap="4" className="arbeidstidUkeListeWrapper">
+            <VStack gap="space-16" className="arbeidstidUkeListeWrapper">
                 {renderEndreUkerHeader()}
                 <ArbeidstidUkeListe
                     uker={visibleItems}
@@ -163,9 +163,8 @@ const ArbeidstidUker = ({
     }
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             {renderEndreUkerHeader()}
-
             <ArbeidstidUkeTabell
                 uker={visibleItems}
                 selectableList={selectableList}

@@ -18,7 +18,7 @@ const StegFooter = ({ slett }: Props) => {
     return (
         <>
             <div>
-                <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
+                <HGrid gap={{ xs: "space-16", sm: "space-32 space-16" }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
                     {slett && (
                         <Button
                             type="button"

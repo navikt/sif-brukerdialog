@@ -4,7 +4,7 @@ import { getLenker } from '../../../lenker';
 
 const OmSøknaden = () => {
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <Box>
                 <Heading level="2" size="medium" spacing={true}>
                     <AppText id="page.velkommen.omSøknaden.tittel" />
@@ -22,14 +22,13 @@ const OmSøknaden = () => {
                     </List.Item>
                 </List>
             </Box>
-
             <Accordion data-color="accent">
                 <Accordion.Item>
                     <Accordion.Header>
                         <AppText id="page.velkommen.personopplysninger.tittel" />
                     </Accordion.Header>
                     <Accordion.Content>
-                        <VStack gap="2">
+                        <VStack gap="space-8">
                             <div>
                                 <Heading level="3" size="xsmall" spacing={true}>
                                     <AppText id="page.velkommen.personopplysninger.behandler.tittel" />

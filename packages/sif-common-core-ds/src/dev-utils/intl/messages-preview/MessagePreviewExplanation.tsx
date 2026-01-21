@@ -4,11 +4,11 @@ const MessagesPreviewExplanation = () => {
     return (
         <Alert variant="info">
             <BodyShort size="large">Tegnforklaring</BodyShort>
-            <Box marginBlock="6">
+            <Box marginBlock="space-24">
                 Tekstene inneholder koder som brukes når applikasjonen setter inn verdier, og for å bestemme hvordan
                 teksten skal se ut.
             </Box>
-            <Box marginBlock="6">
+            <Box marginBlock="space-24">
                 <BodyShort size="medium" weight="semibold">
                     Entall/flertall av en verdi
                 </BodyShort>
@@ -17,7 +17,7 @@ const MessagesPreviewExplanation = () => {
                 </blockquote>
                 Kun ordene direkte etter # skal oversettes, resten er teknisk kode.
             </Box>
-            <Box marginBlock="6">
+            <Box marginBlock="space-24">
                 <BodyShort size="medium" weight="semibold">
                     Sett inn verdi i tekst
                 </BodyShort>
@@ -27,7 +27,7 @@ const MessagesPreviewExplanation = () => {
                 Ord i klammer, f.eks. <code>{`{fom}`}</code>, blir erstattet med en verdi fra applikasjonen, og skal
                 ikke oversettes.
             </Box>
-            <Box marginBlock="6">
+            <Box marginBlock="space-24">
                 <BodyShort size="medium" weight="semibold">
                     HTML-formatering
                 </BodyShort>

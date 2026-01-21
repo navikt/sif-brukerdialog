@@ -63,12 +63,12 @@ const RapporterInntektOppgavePart = ({
                 const arbeidstakerOgFrilansInntekt =
                     oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
                 return (
-                    <VStack gap="6">
+                    <VStack gap="space-24">
                         {arbeidstakerOgFrilansInntekt === undefined ? (
                             /** Oppgaven er akkurat besvart og informasjonen er ikke kommet på oppgaven som er lastet inn */
-                            <Alert variant="info">
+                            (<Alert variant="info">
                                 <AppText id="rapporterInntektOppgavePart.løst.utenInfo" />
-                            </Alert>
+                            </Alert>)
                         ) : (
                             <RapportertInntektOppsummering måned={måned} inntekt={arbeidstakerOgFrilansInntekt} />
                         )}
@@ -79,14 +79,13 @@ const RapporterInntektOppgavePart = ({
     };
 
     return (
-        <VStack gap="6">
+        <VStack gap="space-24">
             <div>
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
                 <AppText id="rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
             </Heading>
-
             {kvitteringData ? (
                 <RapporterInntektKvittering ref={kvitteringAlertRef} kvitteringData={kvitteringData} />
             ) : (

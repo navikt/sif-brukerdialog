@@ -90,7 +90,7 @@ const UtalelseForm = ({
                         submitPending={isPending}
                         includeValidationSummary={true}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'uttalelseForm.validation')}>
-                        <VStack gap="6" marginBlock="2 0">
+                        <VStack gap="space-24" marginBlock="space-8 space-0">
                             <YesOrNoQuestion
                                 reverse={true}
                                 name={FormFields.harUttalelse}

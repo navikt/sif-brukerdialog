@@ -7,7 +7,7 @@ import { getLenker } from '../../lenker';
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     const { intl } = useAppIntl();
     return (
-        <VStack gap="2" paddingBlock="2 0">
+        <VStack gap="space-8" paddingBlock="space-8 space-0">
             <div>
                 <Heading level="3" size="xsmall" spacing={true}>
                     <AppText id="personopplysninger.1" />
@@ -16,7 +16,6 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                     <AppText id="personopplysninger.2" />
                 </p>
             </div>
-
             <div>
                 <Heading level="3" size="xsmall">
                     <AppText id="personopplysninger.3" />

@@ -42,7 +42,7 @@ const ArbeidstidUkeListe = ({ uker, visEndringSomOpprinnelig, selectableList, re
                                 </div>
                             )}
                             <div className="arbeidstidUke__info">
-                                <VStack gap="2">
+                                <VStack gap="space-8">
                                     <Heading level="3" size="xsmall">
                                         <AppText id="arbeidstidUkeListe.heading" values={{ ukenummer }} />
                                     </Heading>

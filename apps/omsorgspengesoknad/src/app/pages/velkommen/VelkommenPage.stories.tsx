@@ -21,12 +21,12 @@ const Template: StoryFn<typeof VelkommenPage> = () => (
             <Tabs.Tab value="tekster" label="Tekster" />
         </Tabs.List>
         <Tabs.Panel value="steg">
-            <Box marginBlock="8">
+            <Box marginBlock="space-32">
                 <VelkommenPage />
             </Box>
         </Tabs.Panel>
         <Tabs.Panel value="tekster">
-            <Box marginBlock="8">
+            <Box marginBlock="space-32">
                 <MessagesPreview
                     messages={velkommenPageMessages}
                     showMissingTextSummary={true}

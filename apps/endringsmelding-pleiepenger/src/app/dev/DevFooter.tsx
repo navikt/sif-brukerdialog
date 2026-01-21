@@ -53,7 +53,7 @@ const DevFooter: React.FunctionComponent = () => {
                 className="scenario-modal"
                 style={{ width: '100%' }}>
                 <Modal.Body>
-                    <VStack gap="8">
+                    <VStack gap="space-32">
                         <div className="scenarioes">
                             <RadioGroup
                                 value={scenario.value}

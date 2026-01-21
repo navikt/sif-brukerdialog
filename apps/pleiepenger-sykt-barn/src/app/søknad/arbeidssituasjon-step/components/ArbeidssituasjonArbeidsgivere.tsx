@@ -21,9 +21,9 @@ const ArbeidssituasjonArbeidsgivere = ({ søknadsperiode, hentArbeidsgivereFeile
         <HentArbeidsforholdFeiletInfo app={SifAppKeys.PleiepengerSyktBarn} />
     ) : (
         <>
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <ArbeidssituasjonArbeidsgivereIntro antallArbeidsforhold={ansatt_arbeidsforhold.length} />
-                <VStack gap="4">
+                <VStack gap="space-16">
                     {ansatt_arbeidsforhold.map((forhold, index) => (
                         <div key={forhold.arbeidsgiver.id}>
                             <ArbeidssituasjonAnsatt

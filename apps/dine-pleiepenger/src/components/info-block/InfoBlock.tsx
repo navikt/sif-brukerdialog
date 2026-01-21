@@ -1,5 +1,5 @@
 import { Buildings3Icon, CalendarIcon, CodeIcon, SparkLargeIcon, WalletIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, BoxNew, BoxNewProps, HelpText, HGrid, HStack, Show, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, BoxNewProps, HelpText, HGrid, HStack, Show, VStack } from '@navikt/ds-react';
 import React from 'react';
 
 interface Props {
@@ -28,28 +28,28 @@ const renderInfoBlockIcon = (icon: InfoBlockIcon): React.ReactNode => {
 };
 
 const InfoBlock = ({ icon, title, background = 'default', titleInfo, children }: Props) => (
-    <BoxNew borderRadius="large" background={background} padding="6" data-color="brand-blue">
+    <Box borderRadius="large" background={background} padding="space-24" data-color="brand-blue">
         <HGrid columns={{ sm: '2.5rem 1fr' }}>
             <Show above="sm">
                 <Box width="2.5rem">{renderInfoBlockIcon(icon)}</Box>
             </Show>
-            <VStack gap="2">
+            <VStack gap="space-8">
                 <Show below="sm">
-                    <HGrid columns="auto 1fr" gap="2">
+                    <HGrid columns="auto 1fr" gap="space-8">
                         <BodyShort weight="semibold">{title}</BodyShort>
                         {titleInfo && <HelpText>{titleInfo}</HelpText>}
                     </HGrid>
                 </Show>
                 <Show above="sm">
-                    <HStack gap="2">
+                    <HStack gap="space-8">
                         <BodyShort weight="semibold">{title}</BodyShort>
                         {titleInfo && <HelpText>{titleInfo}</HelpText>}
                     </HStack>
                 </Show>
-                <BoxNew>{children}</BoxNew>
+                <Box>{children}</Box>
             </VStack>
         </HGrid>
-    </BoxNew>
+    </Box>
 );
 
 export default InfoBlock;

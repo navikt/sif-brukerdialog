@@ -73,7 +73,7 @@ const OmsorgstilbudVariert = ({
             name={formFieldName}
             legend={tittel}
             validate={() => validateOmsorgstilbudEnkeltdagerIPeriode(tidIOmsorgstilbud, periode)}>
-            <VStack gap="6">
+            <VStack gap="space-24">
                 {kanLeggeTilPeriode && (
                     <OmsorgstilbudPeriode periode={periode} onPeriodeChange={handleOnPeriodeChange} />
                 )}

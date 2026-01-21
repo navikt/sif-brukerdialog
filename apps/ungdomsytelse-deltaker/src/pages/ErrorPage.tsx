@@ -14,7 +14,7 @@ const ErrorPage = ({ children, pageTitle, bannerTitle }: Props) => {
         <Page
             title={pageTitle || text('@soknad.errorPage.defaultTitle')}
             topContentRenderer={() => <SoknadHeader title={bannerTitle || text('application.title')} />}>
-            <Box paddingBlock="10">{children || <SoknadErrorMessages.GeneralApplicationError />}</Box>
+            <Box paddingBlock="space-40">{children || <SoknadErrorMessages.GeneralApplicationError />}</Box>
         </Page>
     );
 };

@@ -15,7 +15,7 @@ const SnarveierSak = ({ saksnummer }: Props) => {
             <Heading size="medium" level="2" spacing={true}>
                 <AppText id="snarveierSak.tittel" />
             </Heading>
-            <HGrid gap="2" columns={{ xs: 1, md: INNTEKTSMELDING_ENABLED ? 2 : 3 }}>
+            <HGrid gap="space-8" columns={{ xs: 1, md: INNTEKTSMELDING_ENABLED ? 2 : 3 }}>
                 <LinkCard>
                     <LinkCard.Title>
                         <LinkCard.Anchor href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}>

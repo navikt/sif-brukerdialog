@@ -135,7 +135,7 @@ const ArbeidstidUkeTabell = ({
                                     </div>
 
                                     {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
-                                        <Box marginBlock="0 4">
+                                        <Box marginBlock="space-0 space-16">
                                             <UkeTags
                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
@@ -159,7 +159,7 @@ const ArbeidstidUkeTabell = ({
                                                 <span className="arbeidsukeTidsrom__tekst">
                                                     {getDateRangeText(uke.periode, intl.locale)}
                                                     {(uke.harFeriedager || uke.harFjernetFeriedager) && (
-                                                        <Box marginBlock="0 4">
+                                                        <Box marginBlock="space-0 space-16">
                                                             <UkeTags
                                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}

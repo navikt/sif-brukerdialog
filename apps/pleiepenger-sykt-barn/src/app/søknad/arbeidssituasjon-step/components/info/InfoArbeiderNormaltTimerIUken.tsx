@@ -106,7 +106,7 @@ export const InfoArbeiderNormaltTimerFrilanser = ({
 export const InfoArbeidetNormaltTimerFrilanserAvsluttet = () => {
     const { text } = useAppIntl();
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <div>
                 <ExpandableInfo title={text('arbeidsforhold.frilanser.avsluttet.info.tittel')}>
                     <AppText id="arbeidsforhold.frilanser.avsluttet.info.tekst" />

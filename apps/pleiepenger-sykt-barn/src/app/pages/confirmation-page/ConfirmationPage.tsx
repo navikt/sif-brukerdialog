@@ -43,7 +43,7 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
                     </Alert>
                 )}
 
-                <VStack gap="4">
+                <VStack gap="space-16">
                     <Heading level="2" size="medium">
                         <AppText id="page.confirmation.dinePP.info.tittel" />
                     </Heading>

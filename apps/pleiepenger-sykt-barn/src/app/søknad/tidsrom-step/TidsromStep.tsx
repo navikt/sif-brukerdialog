@@ -76,7 +76,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                 <SøknadFormComponents.DateRangePicker
                     legend={text('steg.tidsrom.hvilketTidsrom.spm')}
                     description={
-                        <Box marginBlock="0 4">
+                        <Box marginBlock="space-0 space-16">
                             <ExpandableInfo title={text('steg.tidsrom.hvilketTidsrom.info.tittel')}>
                                 <p>
                                     <AppText id="steg.tidsrom.hvilketTidsrom.info.1" />

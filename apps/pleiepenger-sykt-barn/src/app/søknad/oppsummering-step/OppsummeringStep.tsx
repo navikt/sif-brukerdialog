@@ -170,7 +170,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 <AppText id="steg.oppsummering.info" />
                             </p>
                         </FormLayout.Guide>
-                        <VStack gap="8">
+                        <VStack gap="space-32">
                             {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
                                 <ApiValidationSummary
                                     errors={apiValuesValidationErrors}

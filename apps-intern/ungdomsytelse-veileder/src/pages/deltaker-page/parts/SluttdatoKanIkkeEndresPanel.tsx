@@ -3,8 +3,8 @@ import InfoBox from '../../../atoms/InfoBox';
 
 const SluttdatoKanIkkeEndresPanel = () => (
     <InfoBox>
-        <VStack gap="6">
-            <VStack gap="2">
+        <VStack gap="space-24">
+            <VStack gap="space-8">
                 <BodyShort size="large" weight="semibold" className="text-2xl">
                     Sluttdato:
                 </BodyShort>

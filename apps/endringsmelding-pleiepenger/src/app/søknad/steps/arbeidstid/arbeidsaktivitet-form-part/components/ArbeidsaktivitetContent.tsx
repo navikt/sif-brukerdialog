@@ -119,14 +119,14 @@ const ArbeidsaktivitetContent = ({
     const visPerioder = spørOmOmsorgsstønad === false || (spørOmOmsorgsstønad && mottarOmsorgsstønad !== undefined);
 
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             {erNyArbeidsgiver && (
                 <ArbeiderIPeriodenSpørsmål arbeidsaktivitet={arbeidsaktivitet} parentFieldName={parentFieldName} />
             )}
             {(erNyArbeidsgiver === false || arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) && (
                 <>
                     {spørOmOmsorgsstønad && (
-                        <VStack gap="2">
+                        <VStack gap="space-8">
                             <FormikYesOrNoQuestion
                                 name={`${parentFieldName}.mottarOmsorgsstønad`}
                                 legend="Mottar du omsorgsstønad i perioden du skal endre?"
@@ -153,7 +153,7 @@ const ArbeidsaktivitetContent = ({
                                             values={{ antallPerioder: perioder.length }}
                                         />
                                     </Heading>
-                                    <VStack gap="6">
+                                    <VStack gap="space-24">
                                         <ArbeidsaktivitetUtenforPeriodeInfo
                                             arbeidsaktivitet={arbeidsaktivitet}
                                             tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}

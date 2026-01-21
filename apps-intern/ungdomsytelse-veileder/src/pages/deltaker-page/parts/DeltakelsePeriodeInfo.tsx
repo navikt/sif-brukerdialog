@@ -36,11 +36,11 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
 
     return (
         <>
-            <VStack gap="3">
+            <VStack gap="space-12">
                 <Heading level="2" size="medium">
                     Deltakerperiode
                 </Heading>
-                <HGrid gap="4" columns={{ sm: 1, md: '1fr 1fr' }}>
+                <HGrid gap="space-16" columns={{ sm: 1, md: '1fr 1fr' }}>
                     <EndreStartdatoPanel
                         dato={deltakelse.fraOgMed}
                         kanEndreStartdato={kanEndreStartdato(deltakelse, tillattEndringsperiode)}

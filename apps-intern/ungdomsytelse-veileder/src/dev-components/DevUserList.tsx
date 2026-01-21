@@ -7,22 +7,22 @@ const DevUserList = () => {
         return null;
     }
     return import.meta.env.MODE === 'msw' ? (
-        <VStack gap="10">
+        <VStack gap="space-40">
             <VStack>
                 Testbrukere lokalt:
-                <HStack gap="2" align="center">
+                <HStack gap="space-8" align="center">
                     <CopyButton copyText="26430569928" size="small" /> 26430569928 - registrert med historikk
                 </HStack>
-                <HStack gap="2" align="center">
+                <HStack gap="space-8" align="center">
                     <CopyButton copyText="03867198392" size="small" /> 03867198392 - registrert
                 </HStack>
-                <HStack gap="2" align="center">
+                <HStack gap="space-8" align="center">
                     <CopyButton copyText="56857102105" size="small" /> 56857102105 - ikke registrert
                 </HStack>
-                <HStack gap="2" align="center">
+                <HStack gap="space-8" align="center">
                     <CopyButton copyText="27857798800" size="small" /> 27857798800 - finnes ikke
                 </HStack>
-                <HStack gap="2" align="center">
+                <HStack gap="space-8" align="center">
                     <CopyButton copyText="09847696068" size="small" /> 09847696068 - kode 6/7
                 </HStack>
             </VStack>

@@ -31,7 +31,7 @@ const OpplæringsinstitusjonQuestion = ({ institusjoner, initialValue }: Props) 
             })}
             description={
                 <ReadMore header={text('steg.kurs.opplæringsinstitusjon.readMore.header')}>
-                    <Box marginBlock="0 4">
+                    <Box marginBlock="space-0 space-16">
                         <AppText id="steg.kurs.opplæringsinstitusjon.readMore.content" />
                     </Box>
                 </ReadMore>

@@ -85,10 +85,10 @@ const OppsummeringStep = () => {
                     <AppText id="oppsummeringStep.guide" />
                 </p>
             </FormLayout.Guide>
-            <VStack gap="12">
+            <VStack gap="space-48">
                 {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
                     <SummarySection header={text('oppsummeringStep.nyttArbeidsforhold.tittel')}>
-                        <VStack gap="10">
+                        <VStack gap="space-40">
                             {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
                                 const arbeidsforhold = ukjenteArbeidsforhold.find(
                                     (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
@@ -99,11 +99,11 @@ const OppsummeringStep = () => {
                                 }
                                 const getTestKey = (key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
                                 return (
-                                    <VStack gap="4" key={arbeidsgiver.key}>
+                                    <VStack gap="space-16" key={arbeidsgiver.key}>
                                         <Heading level="3" size="small">
                                             {arbeidsgiver.navn}
                                         </Heading>
-                                        <VStack gap="1">
+                                        <VStack gap="space-4">
                                             <Heading level="4" size="xsmall">
                                                 <AppText
                                                     id="oppsummeringStep.arbeidsgiver.erAnsatt"
@@ -116,7 +116,7 @@ const OppsummeringStep = () => {
                                         </VStack>
                                         {arbeidsforhold.erAnsatt === false && <IkkeAnsattMelding />}
                                         {arbeidsforhold.erAnsatt && (
-                                            <VStack gap="1">
+                                            <VStack gap="space-4">
                                                 <Heading level="4" size="xsmall">
                                                     <AppText
                                                         id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
@@ -195,7 +195,7 @@ const OppsummeringStep = () => {
                         }}
                         renderForm={() => {
                             return (
-                                <VStack gap="8">
+                                <VStack gap="space-32">
                                     <Form
                                         formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
                                         submitDisabled={

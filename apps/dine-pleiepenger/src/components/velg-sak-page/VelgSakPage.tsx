@@ -27,7 +27,7 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                     <AppText id="velgSak.tittel" />
                 </Heading>
 
-                <VStack gap="2" className="max-w-2xl mb-10">
+                <VStack gap="space-8" className="max-w-2xl mb-10">
                     {sakerMetadata.map((sakMetadata) => {
                         const { pleietrengende, saksnummer } = sakMetadata;
                         const fødselsdato = new Date(pleietrengende.fødselsdato);

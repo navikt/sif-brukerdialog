@@ -14,7 +14,7 @@ const EndreUkerHeader = ({
     visKorteUkerMelding,
 }: Props) => {
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <Checkbox
                 checked={ukerKanVelges}
                 onChange={(evt) => {

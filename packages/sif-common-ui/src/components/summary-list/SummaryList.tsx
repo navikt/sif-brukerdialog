@@ -27,7 +27,7 @@ function SummaryList<ItemType = any>({
     bullets,
 }: Props<ItemType>) {
     return useAkselList || variant !== undefined ? (
-        <Box paddingBlock="2 0">
+        <Box paddingBlock="space-8 space-0">
             <List as={as}>
                 {items.map((item, idx) => (
                     <List.Item

@@ -8,7 +8,7 @@ interface Props {
 
 const SoknadVelkommenGuide = ({ title, children }: Props) => (
     <GuidePanel poster={true}>
-        <Box paddingBlock="2 0">
+        <Box paddingBlock="space-8 space-0">
             <Heading level="2" size="medium" spacing={true}>
                 {title}
             </Heading>

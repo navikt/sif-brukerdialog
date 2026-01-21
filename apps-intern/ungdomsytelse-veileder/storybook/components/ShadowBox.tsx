@@ -2,9 +2,9 @@ import { Box } from '@navikt/ds-react';
 
 const ShadowBox = ({ children }: { children: React.ReactNode }) => {
     return (
-        <Box.New borderRadius="medium" borderWidth="1" borderColor="info-subtle" padding="6" shadow="dialog">
+        <Box borderRadius="8" borderWidth="1" borderColor="info-subtle" padding="space-24" shadow="dialog">
             {children}
-        </Box.New>
+        </Box>
     );
 };
 

@@ -14,7 +14,7 @@ interface Props {
 }
 
 const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, error, søknadsperiode, parentFieldName }: Props) => (
-    <VStack gap="8">
+    <VStack gap="space-32">
         <BodyLong as="div">
             {error ? (
                 <HentArbeidsforholdFeiletInfo app={SifAppKeys.PleiepengerLivetsSlutt} />

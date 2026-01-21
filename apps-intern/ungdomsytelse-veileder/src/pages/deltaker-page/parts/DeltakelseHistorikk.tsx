@@ -20,9 +20,9 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
 
     if (historikk.isLoading) {
         return (
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <HistorikkHeader />
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <Skeleton height="2rem" variant="rectangle" />
                     <Skeleton height="2rem" variant="rectangle" />
                     <Skeleton height="2rem" variant="rectangle" />
@@ -32,7 +32,7 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
     }
     if (historikk.isError) {
         return (
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <HistorikkHeader />
                 <Alert variant="error" size="small">
                     Det oppstod en feil ved henting av historikk.
@@ -43,7 +43,7 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
     }
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <HistorikkHeader />
             <DeltakelseHistorikkListe historikkInnslag={getDeltakelseHistorikkTilInnslag(historikk.data || [])} />
         </VStack>

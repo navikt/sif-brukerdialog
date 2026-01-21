@@ -129,7 +129,7 @@ const TidspunktForAleneomsorgStep = () => {
                                     </p>
                                 </FormLayout.Guide>
 
-                                <VStack gap="8">
+                                <VStack gap="space-32">
                                     {barnMedAleneomsorg.map((barn) => {
                                         return (
                                             <div key={barn.idFnr}>

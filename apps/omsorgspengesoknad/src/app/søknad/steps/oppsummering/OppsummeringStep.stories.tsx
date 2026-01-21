@@ -31,12 +31,12 @@ const Template: StoryFn<Props> = ({ context }: Props) => (
                 <Tabs.Tab value="tekster" label="Tekster" />
             </Tabs.List>
             <Tabs.Panel value="steg">
-                <Box paddingBlock="10">
+                <Box paddingBlock="space-40">
                     <OppsummeringStep />
                 </Box>
             </Tabs.Panel>
             <Tabs.Panel value="tekster">
-                <Box paddingBlock="10">
+                <Box paddingBlock="space-40">
                     <MessagesPreview
                         messages={oppsummeringMessages}
                         showMissingTextSummary={true}

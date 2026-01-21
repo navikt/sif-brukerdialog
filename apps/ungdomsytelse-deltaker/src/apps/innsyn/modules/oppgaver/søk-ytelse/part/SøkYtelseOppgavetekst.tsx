@@ -15,7 +15,7 @@ interface Props {
 const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
     if (oppgave.status !== OppgaveStatus.LØST) {
         return (
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <Heading level="1" size="large">
                     <AppText id="oppgavetype.SØK_YTELSE.oppgavetittel" />
                 </Heading>
@@ -29,14 +29,13 @@ const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
         );
     }
     return (
-        <VStack gap="6">
+        <VStack gap="space-24">
             <div>
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
                 <AppText id="oppgavetype.SØK_YTELSE.oppgavetittel" />
             </Heading>
-
             <section aria-labelledby="summaryHeading">
                 <FormSummary>
                     <FormSummary.Header>

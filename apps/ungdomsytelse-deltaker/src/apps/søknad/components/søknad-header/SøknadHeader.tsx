@@ -4,16 +4,16 @@ import { AppText } from '@shared/i18n';
 
 const SøknadHeader = () => {
     return (
-        <Bleed marginInline={{ lg: '24' }}>
+        <Bleed marginInline={{ lg: "space-96" }}>
             <Stack
-                gap="6"
+                gap="space-24"
                 direction={{ sm: 'row-reverse', lg: 'row' }}
                 justify={{ sm: 'space-between', lg: 'start' }}
                 wrap={false}>
                 <Show above="sm">
                     <ApplicationPictogram />
                 </Show>
-                <VStack gap="1">
+                <VStack gap="space-4">
                     <Heading level="1" size="xlarge">
                         <AppText id="søknad.tittel.shy" />
                     </Heading>

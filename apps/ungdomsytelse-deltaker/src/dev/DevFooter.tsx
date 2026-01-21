@@ -54,7 +54,7 @@ const DevFooter = () => {
                 }}
                 style={{ width: '100%' }}>
                 <Modal.Body style={{ minWidth: '30rem' }}>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <div className="scenarioes">
                             <RadioGroup
                                 value={scenario.type}
@@ -70,7 +70,7 @@ const DevFooter = () => {
                                 })}
                             </RadioGroup>
                         </div>
-                        <HStack gap="4">
+                        <HStack gap="space-16">
                             <Button
                                 type="button"
                                 onClick={() => {

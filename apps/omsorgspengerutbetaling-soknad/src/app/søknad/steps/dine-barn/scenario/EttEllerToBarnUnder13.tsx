@@ -21,9 +21,8 @@ const EttEllerToBarnUnder13 = ({ harSyktBarn, harAleneomsorg, harUtvidetRett }: 
         <>
             <HarSyktBarnSpørsmål />
             {harSyktBarn === YesOrNo.NO && <HarAleneomsorgSpørsmål />}
-
             {harBesvartAlleSpørsmål && harUtvidetRett === false ? (
-                <VStack gap="6">
+                <VStack gap="space-24">
                     <Heading level="3" size="small">
                         <AppText id="step.dineBarn.ettEllerToBarnUnder13.ingenRett.tittel" />
                     </Heading>

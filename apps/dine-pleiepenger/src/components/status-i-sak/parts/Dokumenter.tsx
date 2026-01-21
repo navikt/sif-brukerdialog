@@ -13,7 +13,7 @@ interface Props {
 const mapDokumenter = (dokument: Dokument) => {
     return (
         <li key={dokument.dokumentInfoId}>
-            <Box marginBlock="0 1">
+            <Box marginBlock="space-0 space-4">
                 <PdfLenke
                     href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(dokument)}`}
                     tittel={dokument.tittel}

@@ -14,7 +14,7 @@ const LovbestemtFerieOppsummering = ({ lovbestemtFerie }: Props) => {
     const { locale } = useIntl();
     const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieOppsummeringInfo(lovbestemtFerie);
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             {perioderLagtTil.length > 0 && (
                 <div>
                     <Heading level="3" size="small" spacing={true}>
