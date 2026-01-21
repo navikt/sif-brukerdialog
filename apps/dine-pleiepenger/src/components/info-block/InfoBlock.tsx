@@ -28,7 +28,7 @@ const renderInfoBlockIcon = (icon: InfoBlockIcon): React.ReactNode => {
 };
 
 const InfoBlock = ({ icon, title, background = 'default', titleInfo, children }: Props) => (
-    <Box borderRadius="large" background={background} padding="space-24" data-color="brand-blue">
+    <Box borderRadius="16" background={background} padding="space-24" data-color="brand-blue">
         <HGrid columns={{ sm: '2.5rem 1fr' }}>
             <Show above="sm">
                 <Box width="2.5rem">{renderInfoBlockIcon(icon)}</Box>
