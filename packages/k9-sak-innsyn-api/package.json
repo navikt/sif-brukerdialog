@@ -30,7 +30,9 @@
         "gen-types:innsyn": "openapi-ts --file configs/openapi-ts.config-innsyn.ts",
         "gen-types:k9-sak": "openapi-ts --file configs/openapi-ts.config-k9-sak.ts",
         "gen-types:legacy": "openapi-ts --file configs/openapi-ts.config.ts",
-        "codegen": "yarn gen-types:all:fixed",
+        "codegen": "yarn codegen:dev",
+        "codegen:dev": "CODEGEN_ENV=dev yarn gen-types:all:fixed",
+        "codegen:prod": "CODEGEN_ENV=prod yarn gen-types:all:fixed",
         "lint:eslint": "eslint './src/*/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/generated/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
