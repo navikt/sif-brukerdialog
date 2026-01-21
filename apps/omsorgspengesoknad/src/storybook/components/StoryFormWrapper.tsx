@@ -8,7 +8,7 @@ interface Props {
 
 const StoryFormWrapper = ({ children, maxWidth = '35rem' }: Props) => (
     <VStack gap="space-32" maxWidth={maxWidth}>
-        <Box borderRadius="4" borderWidth="1" borderColor="neutral-subtle" padding="space-24" shadow-xs="medium">
+        <Box borderRadius="4" borderWidth="1" borderColor="neutral-subtle" padding="space-24" shadow="dialog">
             {children}
         </Box>
     </VStack>

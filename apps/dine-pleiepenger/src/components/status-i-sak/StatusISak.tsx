@@ -61,7 +61,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
                     </Switch>
                 </Box>
             ) : null}
-            <Box className="bg-white p-6 pb-4 pt-6 rounded-large" background="default" borderRadius="16">
+            <Box className=" p-6 pb-4 pt-6 rounded-large" background="default" borderRadius="16">
                 <VStack gap="space-32">
                     <StatusISakSteps steps={visibleSteps} isTruncated={finnesFlereHendelser ? 'start' : undefined} />
                     {finnesFlereHendelser && visAlleHendelser === undefined ? (

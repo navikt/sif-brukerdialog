@@ -6,7 +6,7 @@ const ResponsivePanel = ({ ...rest }: BoxNewProps & any) => (
         background="neutral-soft"
         borderRadius="8"
         borderWidth="1"
-        padding={{ xs: "space-8", sm: "space-16", md: "space-24" }}
+        padding={{ xs: 'space-8', sm: 'space-16', md: 'space-24' }}
         {...rest}
     />
 );
