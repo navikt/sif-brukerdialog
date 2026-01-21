@@ -1,4 +1,4 @@
-import { BodyLong, BoxNew, Button, Heading, HGrid, Switch, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Heading, HGrid, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { Deltaker } from '../../../types/Deltaker';
 import SlettAktivDeltakerModal from '../../../components/slett-aktiv-deltaker-modal/SlettAktivDeltakerModal';
@@ -16,18 +16,18 @@ const SlettAktivDeltakerInfo = ({ deltaker, deltakelse }: Props) => {
     return (
         <>
             {deltakelse.erSlettet ? null : (
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <Switch checked={ekspandert} onChange={(e) => setEkspandert(e.target.checked)} size="small">
                         Vis unntakshandlinger
                     </Switch>
                     {ekspandert ? (
-                        <HGrid gap="4" columns={{ sm: 1, md: '1fr 1fr' }}>
-                            <BoxNew
+                        <HGrid gap="space-4" columns={{ sm: 1, md: '1fr 1fr' }}>
+                            <Box
                                 background="warning-moderate"
-                                paddingBlock="7 8"
-                                paddingInline="8"
-                                borderRadius="large">
-                                <VStack gap="0">
+                                paddingBlock="space-6 space-8"
+                                paddingInline="space-8"
+                                borderRadius="16">
+                                <VStack gap="space-0">
                                     <Heading level="3" size="xsmall" spacing>
                                         Registrer slettet deltakelse i ungdomsprogrammet
                                     </Heading>
@@ -41,7 +41,7 @@ const SlettAktivDeltakerInfo = ({ deltaker, deltakelse }: Props) => {
                                         </Button>
                                     </div>
                                 </VStack>
-                            </BoxNew>
+                            </Box>
                         </HGrid>
                     ) : null}
                 </VStack>

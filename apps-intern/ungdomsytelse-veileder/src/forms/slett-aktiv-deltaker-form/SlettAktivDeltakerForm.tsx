@@ -66,12 +66,12 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSl
                             onValidSubmit={() => null}
                             includeButtons={false}
                             formErrorHandler={getIntlFormErrorHandler(intl, 'slettAktivDeltaker.validation')}>
-                            <VStack gap="4">
+                            <VStack gap="space-16">
                                 <Alert variant="info">
                                     <Heading level="2" size="small" spacing>
                                         Hva skjer når du registrerer en deltakelse som slettet?
                                     </Heading>
-                                    <VStack gap="4">
+                                    <VStack gap="space-16">
                                         <BodyLong>
                                             Ungdomsprogramytelsen skal ikke utbetales likevel, og deltakeren får et
                                             vedtaksbrev om dette.
@@ -83,12 +83,12 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSl
                                     </VStack>
                                 </Alert>
                                 <BorderBox className="p-6 items-center w-full">
-                                    <VStack gap="4">
+                                    <VStack gap="space-16">
                                         <Heading level="2" size="small">
                                             Deltakelse
                                         </Heading>
 
-                                        <Box marginBlock="0 4">
+                                        <Box marginBlock="space-0 space-16">
                                             <dl className="ungDefinitionList">
                                                 <dt>Navn:</dt>
                                                 <dd>{formatName(deltaker.navn)}</dd>
@@ -151,7 +151,7 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSl
                                             }
                                             validate={getCheckedValidator()}></ConfirmationCheckbox>
 
-                                        <HStack gap="4">
+                                        <HStack gap="space-16">
                                             <Button type="submit" variant="primary" loading={isPending}>
                                                 Registrer sletting
                                             </Button>

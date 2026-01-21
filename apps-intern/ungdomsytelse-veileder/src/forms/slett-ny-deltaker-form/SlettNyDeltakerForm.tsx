@@ -27,7 +27,7 @@ const SlettNyDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) =
         }
     };
     return (
-        <VStack gap="6">
+        <VStack gap="space-24">
             <BodyLong>
                 Du kan slette en deltaker frem til deltaker har sendt inn en søknad. Men det er noen viktige punkter som
                 du må ivareta hvis du sletter:

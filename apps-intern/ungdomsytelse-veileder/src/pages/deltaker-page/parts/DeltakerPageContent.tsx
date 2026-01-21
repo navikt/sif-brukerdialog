@@ -48,7 +48,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                     </LocalAlert>
                 )}
 
-                <VStack gap="4">
+                <VStack gap="space-16">
                     <DeltakerInfo deltaker={deltaker} />
                     {Features.slettAktivDeltakelse && (
                         <SlettAktivDeltakerInfo deltaker={deltaker} deltakelse={deltakelse} />

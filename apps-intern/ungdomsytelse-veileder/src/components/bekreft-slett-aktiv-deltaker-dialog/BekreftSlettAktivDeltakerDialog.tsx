@@ -20,7 +20,7 @@ const BekreftSlettAktivDeltakerDialog = ({ deltakerNavn, onBekreft, onAvbryt, op
                 <Dialog.Title>Bekreft sletting</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
-                <VStack gap="6">
+                <VStack gap="space-24">
                     <BodyLong size="large">
                         Er du helt sikker på at du ønsker å registrere {deltakerNavn} som slettet deltaker i
                         ungdomsprogrammet? Dette kan ikke angres.

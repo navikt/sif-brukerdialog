@@ -19,6 +19,7 @@
         "pw:copy-mock-service-worker": "cp ./mockServiceWorker.js ./dist-playwright/",
         "pw:start": "vite preview --base /sif-brukerdialog/ungdomsytelse-veileder/ --outDir dist-playwright --config vite.playwright.config.ts",
         "playwright-test": "playwright test",
+        "pw:run": "playwright test",
         "storybook:build": "storybook build",
         "storybook": "storybook dev -p 6006"
     },
