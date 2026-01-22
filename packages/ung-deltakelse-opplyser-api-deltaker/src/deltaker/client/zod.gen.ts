@@ -181,6 +181,7 @@ export const zDeltakelseKomposittDto = z.object({
     fraOgMed: z.iso.date(),
     tilOgMed: z.optional(z.iso.date()),
     erSlettet: z.boolean(),
+    harOpphørsvedtak: z.boolean(),
     søktTidspunkt: z.optional(z.iso.datetime({ local: true })),
     oppgaver: z.array(zOppgaveDto),
 });

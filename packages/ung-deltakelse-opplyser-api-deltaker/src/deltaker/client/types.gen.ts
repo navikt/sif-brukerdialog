@@ -32,6 +32,7 @@ export type DeltakelseKomposittDto = {
     fraOgMed: string;
     tilOgMed?: string;
     erSlettet: boolean;
+    harOpphørsvedtak: boolean;
     søktTidspunkt?: string;
     oppgaver: OppgaveDto[];
 };
