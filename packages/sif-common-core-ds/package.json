@@ -2,7 +2,7 @@
     "author": "navikt",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-core-ds",
-    "version": "10.3.49",
+    "version": "10.3.50",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -33,7 +33,7 @@
         "@storybook/builder-vite": "10.1.11",
         "@storybook/react-vite": "10.1.11",
         "@storybook/testing-library": "0.2.2",
-        "@types/node": "25.0.6",
+        "@types/node": "25.0.8",
         "@types/react": "19.2.8",
         "@types/react-dom": "19.2.3",
         "@vitejs/plugin-react": "5.1.2",
@@ -57,7 +57,7 @@
         "uuid": "13.0.0",
         "vite": "7.3.1",
         "vite-plugin-checker": "0.12.0",
-        "vitest": "4.0.16"
+        "vitest": "4.0.17"
     },
     "overrides": {
         "react-refresh": "0.11.0"

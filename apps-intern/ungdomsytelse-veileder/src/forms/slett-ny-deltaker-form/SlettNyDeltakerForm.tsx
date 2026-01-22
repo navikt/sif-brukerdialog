@@ -1,9 +1,9 @@
-import { BodyShort, Button, ConfirmationPanel, HStack, List, VStack } from '@navikt/ds-react';
+import { BodyLong, Button, ConfirmationPanel, HStack, List, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { useSlettDeltaker } from '../../hooks/useSlettDeltaker';
+import { useSlettNyDeltaker } from '../../hooks/useSlettNyDeltaker';
 import { Deltaker } from '../../types/Deltaker';
-import ApiErrorAlert from '../api-error-alert/ApiErrorAlert';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 interface Props {
     deltaker: Deltaker;
@@ -11,8 +11,8 @@ interface Props {
     onDeltakerSlettet: () => void;
 }
 
-const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => {
-    const { error, isPending, mutate } = useSlettDeltaker(deltaker.id);
+const SlettNyDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => {
+    const { error, isPending, mutate } = useSlettNyDeltaker(deltaker.id);
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [bekrefter, setBekrefter] = useState<boolean>(false);
 
@@ -27,11 +27,12 @@ const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => 
         }
     };
     return (
-        <>
-            <BodyShort spacing>
+        <VStack gap="space-24">
+            <BodyLong>
                 Du kan slette en deltaker frem til deltaker har sendt inn en søknad. Men det er noen viktige punkter som
                 du må ivareta hvis du sletter:
-            </BodyShort>
+            </BodyLong>
+
             <List>
                 <List.Item title="Deltaker må kontaktes">
                     Deltaker er informert om at hen er meldt inn i programmet, og har fått en oppgave på Min side på
@@ -58,7 +59,7 @@ const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => 
                     />
                     <HStack gap="space-16">
                         <Button type="submit" variant="primary" loading={isPending}>
-                            Slett deltaker (kan ikke angres)
+                            Slett ny deltaker
                         </Button>
                         <Button type="button" variant="secondary" onClick={onCancel}>
                             Avbryt
@@ -67,8 +68,8 @@ const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => 
                     {error ? <ApiErrorAlert error={error} /> : null}
                 </VStack>
             </form>
-        </>
+        </VStack>
     );
 };
 
-export default SlettDeltakerForm;
+export default SlettNyDeltakerForm;

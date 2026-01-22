@@ -1,12 +1,13 @@
 const nb = {
     'steg.legeerklæring.counsellorPanel.info.1':
-        'Her skal du laste opp dokumentasjon på nødvendig opplæring. Denne dokumentasjonen får man ofte når man søker om opplæring/kurs, eller man får den på kursstedet.',
-    'steg.legeerklæring.counsellorPanel.info.2.tittel': 'Vi trenger:',
-    'steg.legeerklæring.counsellorPanel.info.2.1': 'signert legeerklæring som bekrefter  at opplæringen er nødvendig',
+        'Vi kan ikke behandle søknaden din før vi har fått dokumentasjon på at opplæringen er nødvendig. Hvis du ikke har dokumentasjonen nå, kan du ettersende den innen 14 dager. ',
+    'steg.legeerklæring.counsellorPanel.info.2.tittel': 'Last opp:',
+    'steg.legeerklæring.counsellorPanel.info.2.1':
+        'signert legeerklæring som bekrefter at barnet ditt har langvarig sykdom eller funksjonshemning, og som gjør at opplæringen er nødvendig',
     'steg.legeerklæring.counsellorPanel.info.2.2':
-        'informasjon om innhold og tidspunkt for opplæring/kurs (kursbekreftelse)',
+        'informasjon om innhold og tidspunkt for opplæring eller kurs (kursbekreftelse)',
     'steg.legeerklæring.counsellorPanel.info.3':
-        'Vi kan ikke behandle søknaden din uten denne dokumentasjonen. Hvis du ikke har dokumentasjonen nå, kan du ettersende den innen 14 dager.',
+        'Dokumentasjonen får du ofte når du søker om opplæring/kurs eller på kursstedet.',
 
     'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på nødvendig opplæring',
 
@@ -25,15 +26,16 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'steg.legeerklæring.counsellorPanel.info.1':
-        'Her skal du laste opp dokumentasjon på naudsynt opplæring. Denne dokumentasjonen får ein ofte når ein søkjer om opplæring/kurs, eller ein får den på kursstaden.',
-    'steg.legeerklæring.counsellorPanel.info.2.tittel': 'Vi treng:',
-    'steg.legeerklæring.counsellorPanel.info.2.1': 'signert legeerklæring som stadfestar at opplæringa er naudsynt',
+        'Me kan ikkje handsame søknaden din før me har fått dokumentasjon på at opplæringa er naudsynt. Viss du ikkje har dokumentasjonen no, kan du ettersende han innan 14 dagar. ',
+    'steg.legeerklæring.counsellorPanel.info.2.tittel': 'Last opp:',
+    'steg.legeerklæring.counsellorPanel.info.2.1':
+        'signert legeerklæring som stadfestar at barnet ditt har langvarig sjukdom eller funksjonshemming, og som gjer at opplæringa er naudsynt',
     'steg.legeerklæring.counsellorPanel.info.2.2':
-        'informasjon om innhald og tidspunkt for opplæring/kurs (stadfesting frå kursstaden)',
+        'informasjon om innhald og tidspunkt for opplæring eller kurs (kursstadfesting)',
     'steg.legeerklæring.counsellorPanel.info.3':
-        'Vi kan ikkje handsame søknaden din utan denne dokumentasjonen. Viss du ikkje har dokumentasjonen no, kan du ettersende den innan 14 dagar.',
-    'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på nødvendig opplæring',
+        'Dokumentasjonen får du ofte når du søkjer om opplæring/kurs eller på kursstaden.',
 
+    'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på naudsynt opplæring',
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen dokumenter er lasta opp',
 
     'dokumenter.advarsel.totalstørrelse.1':

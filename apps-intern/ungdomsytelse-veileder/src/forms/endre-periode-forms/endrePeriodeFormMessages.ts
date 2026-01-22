@@ -21,6 +21,10 @@ const nb = {
     'utmeldingsårsak.manglende-deltakelse': 'Manglende deltakelse',
     'utmeldingsårsak.deltaker-ønsker-ikke-delta': 'Deltakeren ønsker ikke å delta',
     'utmeldingsårsak.annet': 'Annet',
+
+    'slettDeltakerÅrsak.deltakerStartetIkke': 'Deltaker startet ikke i programmet likevel',
+    'slettDeltakerÅrsak.feilDeltakerMeldtInn': 'Veileder har meldt inn feil deltaker',
+    'slettDeltakerÅrsak.annet': 'Annet',
 };
 
 export const endrePeriodeFormMessages = {

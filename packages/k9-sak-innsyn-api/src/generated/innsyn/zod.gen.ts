@@ -459,10 +459,10 @@ export const zFagsakYtelseType = z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_
 export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSMELDING', 'UKJENT']);
 
 export const zInnsending = z.object({
+    søknadId: z.optional(z.string()),
     versjon: z.optional(z.string()),
     mottattDato: z.optional(z.iso.datetime({ local: true })),
     søker: z.optional(zSøker),
-    søknadId: z.optional(z.string()),
 });
 
 export const zOrganisasjon = z.object({
@@ -551,7 +551,7 @@ export const zSakerMetadataDto = z.object({
     saksnummer: z.string(),
     pleietrengende: zPleietrengendeDto,
     fagsakYtelseType: zFagsakYtelseType,
-    fagsakOpprettetTidspunkt: z.iso.datetime({ local: true }),
+    fagsakOpprettetTidspunkt: z.optional(z.iso.datetime({ local: true })),
     fagsakAvsluttetTidspunkt: z.optional(z.iso.datetime({ local: true })),
 });
 
