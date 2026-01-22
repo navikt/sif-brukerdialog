@@ -27,7 +27,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
-        "@tanstack/react-query": "5.90.16",
+        "@tanstack/react-query": "5.90.17",
         "axios": "1.13.2",
         "compression": "1.8.1",
         "cookie-parser": "1.4.7",
@@ -61,7 +61,7 @@
         "@tailwindcss/vite": "4.1.18",
         "@testing-library/dom": "10.4.1",
         "@testing-library/react": "16.3.1",
-        "@types/node": "25.0.6",
+        "@types/node": "25.0.8",
         "@types/object-hash": "3.0.6",
         "@types/react": "19.2.8",
         "@types/react-dom": "19.2.3",
@@ -74,13 +74,13 @@
         "helmet": "8.1.0",
         "msw": "2.12.7",
         "postcss": "8.5.6",
-        "postcss-nesting": "13.0.2",
+        "postcss-nesting": "14.0.0",
         "storybook": "10.1.11",
         "tailwindcss": "4.1.18",
         "typescript": "5.9.3",
         "vite": "7.3.1",
         "vite-plugin-checker": "0.12.0",
-        "vitest": "4.0.16"
+        "vitest": "4.0.17"
     },
     "scripts": {
         "build-storybook": "storybook build",
