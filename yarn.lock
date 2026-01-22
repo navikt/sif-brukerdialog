@@ -2080,15 +2080,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/view@npm:^6.39.8":
-  version: 6.39.9
-  resolution: "@codemirror/view@npm:6.39.9"
+"@codemirror/view@npm:^6.39.9":
+  version: 6.39.11
+  resolution: "@codemirror/view@npm:6.39.11"
   dependencies:
     "@codemirror/state": "npm:^6.5.0"
     crelt: "npm:^1.0.6"
     style-mod: "npm:^4.1.0"
     w3c-keyname: "npm:^2.2.4"
-  checksum: 10/9e86b35f31fd4f8b4c2fe608fa6116ddc71261acd842c405de41de1f752268c47ea8e0c400818b4d0481a629e1f773dda9e6f0d24d38ed6a9f6b3d58b2dff669
+  checksum: 10/691825e783a1ac720411f59fface596fe1ba0fbf0344ed61af84937c7dd4337298b1a91fbff93cee076dc1b1c5c6f7bd73b8660fa417fb484f157946ecac9986
   languageName: node
   linkType: hard
 
@@ -8931,9 +8931,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:5.2.0":
-  version: 5.2.0
-  resolution: "@sanity/vision@npm:5.2.0"
+"@sanity/vision@npm:5.3.1":
+  version: 5.3.1
+  resolution: "@sanity/vision@npm:5.3.1"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.20.0"
     "@codemirror/commands": "npm:^6.10.1"
@@ -8941,7 +8941,7 @@ __metadata:
     "@codemirror/language": "npm:^6.12.1"
     "@codemirror/search": "npm:^6.5.11"
     "@codemirror/state": "npm:^6.5.3"
-    "@codemirror/view": "npm:^6.39.8"
+    "@codemirror/view": "npm:^6.39.9"
     "@juggle/resize-observer": "npm:^3.4.0"
     "@lezer/highlight": "npm:^1.2.3"
     "@rexxars/react-json-inspector": "npm:^9.0.1"
@@ -8963,7 +8963,7 @@ __metadata:
     react: ^19.2.2
     sanity: ^4.0.0-0 || ^5.0.0-0
     styled-components: ^6.1.15
-  checksum: 10/68fc9c39673b2b3af3b3785e3160785fb7c1fe4fac22adc64b6e652cadd46a9cea0608f16e9e43db1391a5f7135d162a4f201ff4d0863878308c709cbca15234
+  checksum: 10/904b424fecc01f20f7617a561ca654a3511976edd1e7fc1f2fae986895f5ce4b71b230b1022269eb075520a1afa9bb88fbbc8d15e64d325ee4ba36d74a8c58c1
   languageName: node
   linkType: hard
 
@@ -12265,7 +12265,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:6.0.0"
-    "@sanity/vision": "npm:5.2.0"
+    "@sanity/vision": "npm:5.3.1"
     "@types/react": "npm:19.2.8"
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.2"
