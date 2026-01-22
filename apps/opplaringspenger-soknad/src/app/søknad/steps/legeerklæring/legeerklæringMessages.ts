@@ -26,14 +26,14 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'steg.legeerklæring.counsellorPanel.info.1':
-        'Vi kan ikkje handsame søknaden din før vi har fått dokumentasjon på at opplæringa er naudsynt. Viss du ikkje har dokumentasjonen no, kan du ettersende den innan 14 dagar.',
+        'Me kan ikkje handsame søknaden din før me har fått dokumentasjon på at opplæringa er naudsynt. Viss du ikkje har dokumentasjonen no, kan du ettersende han innan 14 dagar. ',
     'steg.legeerklæring.counsellorPanel.info.2.tittel': 'Last opp:',
     'steg.legeerklæring.counsellorPanel.info.2.1':
         'signert legeerklæring som stadfestar at barnet ditt har langvarig sjukdom eller funksjonshemming, og som gjer at opplæringa er naudsynt',
     'steg.legeerklæring.counsellorPanel.info.2.2':
-        'informasjon om innhald og tidspunkt for opplæring eller kurs (stadfesting frå kursstaden)',
+        'informasjon om innhald og tidspunkt for opplæring eller kurs (kursstadfesting)',
     'steg.legeerklæring.counsellorPanel.info.3':
-        'Dokumentasjonen får ein ofte når ein søkjer om opplæring eller kurs, eller ein får den på kursstaden.',
+        'Dokumentasjonen får du ofte når du søkjer om opplæring/kurs eller på kursstaden.',
 
     'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på naudsynt opplæring',
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen dokumenter er lasta opp',

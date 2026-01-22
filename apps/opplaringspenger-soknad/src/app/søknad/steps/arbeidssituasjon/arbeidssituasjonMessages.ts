@@ -119,7 +119,6 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
     'steg.arbeidssituasjon.arbeidsgivere.tittel': 'Arbeidsgivarar',
 
     'steg.arbeidssituasjon.veileder.1':
@@ -222,6 +221,19 @@ const nn: Record<keyof typeof nb, string> = {
     'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel': 'Kva om eg får utbetaling frå Nav no?',
     'arbeidsforhold.normalTimer.info.utbetalingFraNAV.avsnitt.1':
         'Om du for dette arbeidsforholdet til dømes får foreldrepengar, sjukepengar eller anna frå Nav no, registrerer du det som var normalarbeidstida di før du begynte å få denne utbetalinga frå Nav.',
+
+    'steg.arbeidssituasjon.jobbInfo.tittel': 'Du må ha jobba i minst fire veker for å kunne søkje om opplæringspengar',
+    'steg.arbeidssituasjon.jobbInfo.1':
+        'For å ha rett til opplæringspengar, må du har jobba i minst fire veker før du startar opplæringa.',
+    'steg.arbeidssituasjon.jobbInfo.2':
+        'Du kan sende inn søknaden sjølv om du ikkje har jobba, men då kan det vere at du får avslag på søknaden. ',
+    'steg.arbeidssituasjon.jobbInfo.3':
+        'Om du har hatt ei av desse pengestøttene i minst fire veker før opplæringa, blir det rekna som jobb:',
+    'steg.arbeidssituasjon.jobbInfo.3.1': 'sjukepengar',
+    'steg.arbeidssituasjon.jobbInfo.3.2': 'dagpengar',
+    'steg.arbeidssituasjon.jobbInfo.3.3': 'foreldre- og svangerskapspengar',
+    'steg.arbeidssituasjon.jobbInfo.3.4': 'pleie-, opplærings- og omsorgspengar',
+    'steg.arbeidssituasjon.jobbInfo.4': 'Les meir om vilkåra for å få opplæringspengar på nav.no.',
 };
 
 export const arbeidssituasjonMessages = { nb, nn };
