@@ -3,14 +3,16 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Deltaker } from '../../types/Deltaker';
-import SlettDeltakerForm from './SlettDeltakerForm';
+import SlettAktivDeltakerForm from '../../forms/slett-aktiv-deltaker-form/SlettAktivDeltakerForm';
+import { Deltakelse } from '../../types/Deltakelse';
 
 interface Props {
     deltaker: Deltaker;
+    deltakelse: Deltakelse;
     onCancel: () => void;
 }
 
-const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
+const SlettAktivDeltakerModal = ({ deltaker, deltakelse, onCancel }: Props) => {
     const [deltakelseSlettet, setDeltakelseSlettet] = useState(false);
 
     const handleOnDeltakelseSlettet = () => {
@@ -20,38 +22,46 @@ const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
     const navigate = useNavigate();
 
     const queryClient = useQueryClient();
+
     const gåTilForsiden = () => {
-        queryClient.resetQueries();
         navigate('/');
     };
 
+    const handleOnClose = () => {
+        if (deltakelseSlettet) {
+            queryClient.resetQueries();
+            if (!deltakelse.søktTidspunkt) {
+                gåTilForsiden();
+            }
+        } else {
+            onCancel();
+        }
+    };
+
     return (
-        <Modal
-            open={true}
-            onClose={deltakelseSlettet ? gåTilForsiden : onCancel}
-            aria-labelledby="slett-modal-heading"
-            width="medium">
+        <Modal open={true} onClose={handleOnClose} aria-labelledby="slett-modal-heading" width="medium">
             <Modal.Header closeButton={true}>
                 <Heading level="1" size="large" id="slett-modal-heading">
-                    Slett deltaker
+                    Registrer slettet deltakelse
                 </Heading>
             </Modal.Header>
             <Modal.Body>
                 <Box style={{ minWidth: '600px' }}>
                     {deltakelseSlettet ? (
-                        <Alert variant="success">Deltakeren er slettet.</Alert>
+                        <Alert variant="success">Deltakelsen er registrert som slettet.</Alert>
                     ) : (
-                        <SlettDeltakerForm
+                        <SlettAktivDeltakerForm
                             deltaker={deltaker}
+                            deltakelse={deltakelse}
                             onCancel={onCancel}
-                            onDeltakerSlettet={handleOnDeltakelseSlettet}
+                            onDeltakelseSlettet={handleOnDeltakelseSlettet}
                         />
                     )}
                 </Box>
             </Modal.Body>
             {deltakelseSlettet ? (
                 <Modal.Footer>
-                    <Button variant="primary" onClick={gåTilForsiden}>
+                    <Button variant="primary" onClick={handleOnClose}>
                         Ok, lukk dialog
                     </Button>
                 </Modal.Footer>
@@ -60,4 +70,4 @@ const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
     );
 };
 
-export default SlettDeltakerModal;
+export default SlettAktivDeltakerModal;

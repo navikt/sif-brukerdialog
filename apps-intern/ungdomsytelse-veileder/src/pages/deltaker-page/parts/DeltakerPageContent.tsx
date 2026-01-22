@@ -1,10 +1,12 @@
-import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Box, HStack, LocalAlert, VStack } from '@navikt/ds-react';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import DeltakelseHistorikk from './DeltakelseHistorikk';
 import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
 import DeltakerInfo from './DeltakerInfo';
-import SlettDeltakerInfo from './SlettDeltakerInfo';
+import SlettNyDeltakerInfo from './SlettNyDeltakerInfo';
+import { Features } from '../../../types/Features';
+import SlettAktivDeltakerInfo from './SlettAktivDeltakerInfo';
 
 interface Props {
     deltaker: Deltaker;
@@ -38,12 +40,27 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                     </HStack>
                 ) : null}
 
-                <DeltakerInfo deltaker={deltaker} />
+                {deltakelse.erSlettet && (
+                    <LocalAlert status="warning">
+                        <LocalAlert.Header>
+                            <LocalAlert.Title>Deltakelsen er slettet</LocalAlert.Title>
+                        </LocalAlert.Header>
+                    </LocalAlert>
+                )}
 
-                <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
+                <VStack gap="space-16">
+                    <DeltakerInfo deltaker={deltaker} />
+                    {Features.slettAktivDeltakelse && !deltakelse.erSlettet && (
+                        <SlettAktivDeltakerInfo deltaker={deltaker} deltakelse={deltakelse} />
+                    )}
+                </VStack>
 
-                <SlettDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
-
+                {!deltakelse.erSlettet && (
+                    <>
+                        <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
+                        <SlettNyDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
+                    </>
+                )}
                 <DeltakelseHistorikk deltakelseId={deltakelse.id} />
             </VStack>
         </Box>
