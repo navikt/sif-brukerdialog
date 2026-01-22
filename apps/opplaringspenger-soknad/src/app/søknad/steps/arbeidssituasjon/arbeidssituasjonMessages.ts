@@ -106,7 +106,7 @@ const nb = {
 
     'steg.arbeidssituasjon.jobbInfo.tittel': 'Du må ha jobbet i minst fire uker for å kunne søke om opplæringspenger',
     'steg.arbeidssituasjon.jobbInfo.1':
-        'For å ha rett til opplæringspenger, må du har jobbet i minst fire uker før du starter opplæringen.',
+        'For å ha rett til opplæringspenger må du har jobbet i minst fire uker før du starter opplæringen.',
     'steg.arbeidssituasjon.jobbInfo.2':
         'Du kan sende inn søknaden selv om du ikke har jobbet, men da kan det være at du får avslag på søknaden. ',
     'steg.arbeidssituasjon.jobbInfo.3':
@@ -224,7 +224,7 @@ const nn: Record<keyof typeof nb, string> = {
 
     'steg.arbeidssituasjon.jobbInfo.tittel': 'Du må ha jobba i minst fire veker for å kunne søkje om opplæringspengar',
     'steg.arbeidssituasjon.jobbInfo.1':
-        'For å ha rett til opplæringspengar, må du har jobba i minst fire veker før du startar opplæringa.',
+        'For å ha rett til opplæringspengar må du har jobba i minst fire veker før du startar opplæringa.',
     'steg.arbeidssituasjon.jobbInfo.2':
         'Du kan sende inn søknaden sjølv om du ikkje har jobba, men då kan det vere at du får avslag på søknaden. ',
     'steg.arbeidssituasjon.jobbInfo.3':
