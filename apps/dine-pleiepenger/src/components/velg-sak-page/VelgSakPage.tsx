@@ -1,4 +1,4 @@
-import { BodyShort, Box, Heading, LinkCard, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Detail, Heading, HStack, LinkCard, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -29,7 +29,8 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
 
                 <VStack gap="space-8" className="max-w-2xl mb-10">
                     {sakerMetadata.map((sakMetadata) => {
-                        const { pleietrengende, saksnummer } = sakMetadata;
+                        const { pleietrengende, saksnummer, fagsakOpprettetTidspunkt, fagsakAvsluttetTidspunkt } =
+                            sakMetadata;
                         const fødselsdato = new Date(pleietrengende.fødselsdato);
 
                         const navn = pleietrengende.anonymisert
@@ -45,14 +46,45 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                                 </LinkCard.Title>
                                 {!pleietrengende.anonymisert && (
                                     <LinkCard.Description>
-                                        <BodyShort>
-                                            <AppText
-                                                id="velgSak.barn.fdato"
-                                                values={{
-                                                    dato: dateFormatter.full(fødselsdato),
-                                                }}
-                                            />
-                                        </BodyShort>
+                                        <VStack gap="space-4">
+                                            <BodyShort>
+                                                <AppText
+                                                    id="velgSak.barn.fdato"
+                                                    values={{
+                                                        dato: dateFormatter.full(fødselsdato),
+                                                    }}
+                                                />
+                                            </BodyShort>
+                                            {(fagsakOpprettetTidspunkt || fagsakAvsluttetTidspunkt) && (
+                                                <Detail as="div">
+                                                    <HStack gap="space-4">
+                                                        {fagsakOpprettetTidspunkt && (
+                                                            <AppText
+                                                                id="velgSak.barn.sakOpprettet"
+                                                                values={{
+                                                                    dato: dateFormatter.compact(
+                                                                        new Date(fagsakOpprettetTidspunkt),
+                                                                    ),
+                                                                }}
+                                                            />
+                                                        )}
+                                                        {fagsakAvsluttetTidspunkt && (
+                                                            <>
+                                                                {fagsakOpprettetTidspunkt ? ' ' : null}
+                                                                <AppText
+                                                                    id="velgSak.barn.sakAvsluttet"
+                                                                    values={{
+                                                                        dato: dateFormatter.compact(
+                                                                            new Date(fagsakAvsluttetTidspunkt),
+                                                                        ),
+                                                                    }}
+                                                                />
+                                                            </>
+                                                        )}
+                                                    </HStack>
+                                                </Detail>
+                                            )}
+                                        </VStack>
                                     </LinkCard.Description>
                                 )}
                             </LinkCard>

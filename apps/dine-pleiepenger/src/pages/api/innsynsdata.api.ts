@@ -34,7 +34,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         };
         return res.json(innsynsdata);
     } catch (err) {
-        logger.error(`Hent innsynsdata feilet: ${prepApiError(err)}`);
+        logger.error(`Hent innsynsdata feilet: ${JSON.stringify(prepApiError(err))}`);
         if (
             isAxiosError(err) &&
             (err.response?.status === HttpStatusCode.Forbidden ||

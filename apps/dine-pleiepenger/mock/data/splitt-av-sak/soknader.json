@@ -1,0 +1,467 @@
+[
+    {
+        "søknadId": "257a474b-898f-4389-aa82-b06d88eee45e",
+        "søknadstype": "PP_SYKT_BARN",
+        "status": "MOTTATT",
+        "søknad": {
+            "barn": {
+                "navn": "OVERFØLSOM KONSTRUKSJON",
+                "aktørId": "2096467561999",
+                "fødselsdato": "2024-05-27",
+                "fødselsnummer": "27452451048"
+            },
+            "språk": "nb",
+            "søker": {
+                "fornavn": "SIST",
+                "aktørId": "2060261372357",
+                "etternavn": "METROLOG",
+                "fødselsdato": "1995-11-30",
+                "fødselsnummer": "30519534688"
+            },
+            "frilans": { "harInntektSomFrilanser": false },
+            "mottatt": "2026-01-20T09:22:31.848590243Z",
+            "fraOgMed": "2025-08-04",
+            "tilOgMed": "2025-08-08",
+            "søknadId": "257a474b-898f-4389-aa82-b06d88eee45e",
+            "dokumentId": [
+                [
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJkNjA5MjAyOS1lNjhlLTQ2NTYtOTI2Yi1jZmI2NzlhNWU1NTQifQ",
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI5NzEzN2UwYy1kNzI3LTQ4ZGYtOGY3Ny0yYzAyNGEyZDM2ZmQifQ"
+                ],
+                [
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI1MzEzYmJmNi0zNTQ4LTRjY2YtYTgyNC03OTY4YmU3ZTM0OTYifQ"
+                ]
+            ],
+            "medlemskap": {
+                "skalBoIUtlandetNeste12Mnd": false,
+                "harBoddIUtlandetSiste12Mnd": false,
+                "utenlandsoppholdNeste12Mnd": [],
+                "utenlandsoppholdSiste12Mnd": []
+            },
+            "arbeidsgivere": [
+                {
+                    "navn": "INTERESSANT INTUITIV KATT DIAMETER",
+                    "erAnsatt": true,
+                    "arbeidsforhold": {
+                        "arbeidIPeriode": { "type": "ARBEIDER_IKKE" },
+                        "normalarbeidstid": { "timerPerUkeISnitt": "PT40H" }
+                    },
+                    "organisasjonsnummer": "315853370",
+                    "sluttetFørSøknadsperiode": false
+                }
+            ],
+            "omsorgsstønad": { "type": "MOTTAR_IKKE", "mottarOmsorgsstønad": false },
+            "k9FormatSøknad": {
+                "språk": "nb",
+                "søker": { "norskIdentitetsnummer": "30519534688" },
+                "ytelse": {
+                    "barn": { "norskIdentitetsnummer": "27452451048" },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": { "perioder": { "2025-08-04/2025-08-08": { "timerPleieAvBarnetPerDag": "PT7H30M" } } },
+                    "omsorg": {},
+                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2025-08-04/2025-08-08": {
+                                            "faktiskArbeidTimerPerDag": "PT0S",
+                                            "jobberNormaltTimerPerDag": "PT8H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "INTERESSANT INTUITIV KATT DIAMETER",
+                                "organisasjonsnummer": "315853370"
+                            }
+                        ],
+                        "frilanserArbeidstidInfo": {
+                            "perioder": {
+                                "2025-08-04/2025-08-08": {
+                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                    "jobberNormaltTimerPerDag": "PT0S"
+                                }
+                            }
+                        }
+                    },
+                    "tilsynsordning": {
+                        "perioder": { "2025-08-04/2025-08-08": { "etablertTilsynTimerPerDag": "PT0S" } }
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": { "perioder": {} },
+                    "søknadsperiode": ["2025-08-04/2025-08-08"],
+                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "annetDataBruktTilUtledning": {
+                        "soknadDialogCommitSha": "2026.01.18-08.32-3f7b685",
+                        "harBekreftetOpplysninger": true,
+                        "harForståttRettigheterOgPlikter": true
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "257a474b-898f-4389-aa82-b06d88eee45e",
+                "kildesystem": "søknadsdialog",
+                "mottattDato": "2026-01-20T09:22:31.848590243Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "utenlandskNæring": [],
+            "ferieuttakIPerioden": { "ferieuttak": [], "skalTaUtFerieIPerioden": false },
+            "opptjeningIUtlandet": [],
+            "harBekreftetOpplysninger": true,
+            "utenlandsoppholdIPerioden": { "opphold": [], "skalOppholdeSegIUtlandetIPerioden": false },
+            "selvstendigNæringsdrivende": { "harInntektSomSelvstendig": false },
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": "1003iMC",
+        "journalpostId": "454067057",
+        "dokumenter": [
+            {
+                "journalpostId": "454067057",
+                "dokumentInfoId": "454487610",
+                "sakId": "1003iMC",
+                "tittel": "Søknad om pleiepenger for sykt barn",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/454067057/454487610/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2026-01-20T10:22:33", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2026-01-20T10:22:33", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2026-01-20T10:23:30", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2026-01-20T10:22:31", "datotype": "DATO_REGISTRERT" }
+                ]
+            },
+            {
+                "journalpostId": "454067057",
+                "dokumentInfoId": "454487611",
+                "sakId": "1003iMC",
+                "tittel": "Innsendelse (1).pdf",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/454067057/454487611/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2026-01-20T10:22:33", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2026-01-20T10:22:33", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2026-01-20T10:23:30", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2026-01-20T10:22:31", "datotype": "DATO_REGISTRERT" }
+                ]
+            }
+        ],
+        "opprettet": "2026-01-20T09:22:31.848Z",
+        "endret": "2026-01-20T10:23:36",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "8a4aec17-3ff8-4f88-8e61-a0035e4f6d53",
+        "søknadstype": "PP_SYKT_BARN",
+        "status": "MOTTATT",
+        "søknad": {
+            "barn": {
+                "navn": "OVERFØLSOM KONSTRUKSJON",
+                "aktørId": "2096467561999",
+                "fødselsdato": "2024-05-27",
+                "fødselsnummer": "27452451048"
+            },
+            "språk": "nb",
+            "søker": {
+                "fornavn": "SIST",
+                "aktørId": "2060261372357",
+                "etternavn": "METROLOG",
+                "fødselsdato": "1995-11-30",
+                "fødselsnummer": "30519534688"
+            },
+            "frilans": { "harInntektSomFrilanser": false },
+            "mottatt": "2026-01-20T07:43:37.421175751Z",
+            "fraOgMed": "2024-08-01",
+            "tilOgMed": "2024-09-13",
+            "søknadId": "8a4aec17-3ff8-4f88-8e61-a0035e4f6d53",
+            "dokumentId": [
+                [
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJlMWFiZGExZC0xMTE5LTQzNWEtYmIyYi1iZDViODNjYWQ4ZjYifQ",
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJhNjZkYmZhZC03NTNkLTRkOWItOTYwYi0wNDQ1NzhiOGJhMzcifQ"
+                ],
+                [
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI4MGEzNDNjYS1hMTBhLTRkZWYtOTdmOC01ODZkOTg3NjU3NzQifQ"
+                ]
+            ],
+            "medlemskap": {
+                "skalBoIUtlandetNeste12Mnd": false,
+                "harBoddIUtlandetSiste12Mnd": false,
+                "utenlandsoppholdNeste12Mnd": [],
+                "utenlandsoppholdSiste12Mnd": []
+            },
+            "arbeidsgivere": [
+                {
+                    "navn": "INTERESSANT INTUITIV KATT DIAMETER",
+                    "erAnsatt": true,
+                    "arbeidsforhold": {
+                        "arbeidIPeriode": { "type": "ARBEIDER_IKKE" },
+                        "normalarbeidstid": { "timerPerUkeISnitt": "PT40H" }
+                    },
+                    "organisasjonsnummer": "315853370",
+                    "sluttetFørSøknadsperiode": false
+                }
+            ],
+            "omsorgsstønad": { "type": "MOTTAR_IKKE", "mottarOmsorgsstønad": false },
+            "k9FormatSøknad": {
+                "språk": "nb",
+                "søker": { "norskIdentitetsnummer": "30519534688" },
+                "ytelse": {
+                    "barn": { "norskIdentitetsnummer": "27452451048" },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": { "perioder": { "2024-08-01/2024-09-13": { "timerPleieAvBarnetPerDag": "PT7H30M" } } },
+                    "omsorg": {},
+                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2024-08-01/2024-09-13": {
+                                            "faktiskArbeidTimerPerDag": "PT0S",
+                                            "jobberNormaltTimerPerDag": "PT8H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "INTERESSANT INTUITIV KATT DIAMETER",
+                                "organisasjonsnummer": "315853370"
+                            }
+                        ],
+                        "frilanserArbeidstidInfo": {
+                            "perioder": {
+                                "2024-08-01/2024-09-13": {
+                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                    "jobberNormaltTimerPerDag": "PT0S"
+                                }
+                            }
+                        }
+                    },
+                    "tilsynsordning": {
+                        "perioder": { "2024-08-01/2024-09-13": { "etablertTilsynTimerPerDag": "PT0S" } }
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": { "perioder": {} },
+                    "søknadsperiode": ["2024-08-01/2024-09-13"],
+                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "annetDataBruktTilUtledning": {
+                        "soknadDialogCommitSha": "2026.01.18-08.32-3f7b685",
+                        "harBekreftetOpplysninger": true,
+                        "harForståttRettigheterOgPlikter": true
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "8a4aec17-3ff8-4f88-8e61-a0035e4f6d53",
+                "kildesystem": "søknadsdialog",
+                "mottattDato": "2026-01-20T07:43:37.421175751Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "utenlandskNæring": [],
+            "ferieuttakIPerioden": { "ferieuttak": [], "skalTaUtFerieIPerioden": false },
+            "opptjeningIUtlandet": [],
+            "harBekreftetOpplysninger": true,
+            "utenlandsoppholdIPerioden": { "opphold": [], "skalOppholdeSegIUtlandetIPerioden": false },
+            "selvstendigNæringsdrivende": { "harInntektSomSelvstendig": false },
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": "1003iJK",
+        "journalpostId": "454066985",
+        "dokumenter": [
+            {
+                "journalpostId": "454066985",
+                "dokumentInfoId": "454487507",
+                "sakId": "1003iJK",
+                "tittel": "Søknad om pleiepenger for sykt barn",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/454066985/454487507/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2026-01-20T08:43:40", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2026-01-20T08:43:40", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2026-01-20T08:43:49", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2026-01-20T08:43:37", "datotype": "DATO_REGISTRERT" }
+                ]
+            },
+            {
+                "journalpostId": "454066985",
+                "dokumentInfoId": "454487508",
+                "sakId": "1003iJK",
+                "tittel": "Innsendelse (1).pdf",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/454066985/454487508/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2026-01-20T08:43:40", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2026-01-20T08:43:40", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2026-01-20T08:43:49", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2026-01-20T08:43:37", "datotype": "DATO_REGISTRERT" }
+                ]
+            }
+        ],
+        "opprettet": "2026-01-20T07:43:37.421Z",
+        "endret": "2026-01-20T08:43:53",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "3d2807b5-782f-4baa-8cba-8f4e762c43fc",
+        "søknadstype": "PP_SYKT_BARN",
+        "status": "MOTTATT",
+        "søknad": {
+            "barn": {
+                "navn": "OVERFØLSOM KONSTRUKSJON",
+                "aktørId": "2096467561999",
+                "fødselsdato": "2024-05-27",
+                "fødselsnummer": "27452451048"
+            },
+            "språk": "nb",
+            "søker": {
+                "fornavn": "SIST",
+                "aktørId": "2060261372357",
+                "etternavn": "METROLOG",
+                "fødselsdato": "1995-11-30",
+                "fødselsnummer": "30519534688"
+            },
+            "frilans": { "harInntektSomFrilanser": false },
+            "mottatt": "2026-01-20T07:57:35.805169739Z",
+            "fraOgMed": "2025-09-29",
+            "tilOgMed": "2025-10-31",
+            "søknadId": "3d2807b5-782f-4baa-8cba-8f4e762c43fc",
+            "dokumentId": [
+                [
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJkNmI5N2MwMS1kY2IyLTRlZTgtYmU5YS1mNmM1MWFjZTllMGIifQ",
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiIwOThmOTEzYy01MTdkLTQ3ZGEtYTRlZC1iZmUxYTI0MDcyN2YifQ"
+                ],
+                [
+                    "eyJraWQiOiJaMlZwVkdkaWVqQnNRak5DTUdoalFsUk1RWFJ0WVdsNmVrVm1lVzU1TW1OM2JtSkZjVVJrVHc9PSIsImFsZyI6Im5vbmUiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJiYTE0NDZhNS1jZDgwLTQ2ZjItYTUwNS02YjRmYjFkN2JlZDQifQ"
+                ]
+            ],
+            "medlemskap": {
+                "skalBoIUtlandetNeste12Mnd": false,
+                "harBoddIUtlandetSiste12Mnd": false,
+                "utenlandsoppholdNeste12Mnd": [],
+                "utenlandsoppholdSiste12Mnd": []
+            },
+            "arbeidsgivere": [
+                {
+                    "navn": "INTERESSANT INTUITIV KATT DIAMETER",
+                    "erAnsatt": true,
+                    "arbeidsforhold": {
+                        "arbeidIPeriode": { "type": "ARBEIDER_IKKE" },
+                        "normalarbeidstid": { "timerPerUkeISnitt": "PT40H" }
+                    },
+                    "organisasjonsnummer": "315853370",
+                    "sluttetFørSøknadsperiode": false
+                }
+            ],
+            "omsorgsstønad": { "type": "MOTTAR_IKKE", "mottarOmsorgsstønad": false },
+            "k9FormatSøknad": {
+                "språk": "nb",
+                "søker": { "norskIdentitetsnummer": "30519534688" },
+                "ytelse": {
+                    "barn": { "norskIdentitetsnummer": "27452451048" },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": { "perioder": { "2025-09-29/2025-10-31": { "timerPleieAvBarnetPerDag": "PT7H30M" } } },
+                    "omsorg": {},
+                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2025-09-29/2025-10-31": {
+                                            "faktiskArbeidTimerPerDag": "PT0S",
+                                            "jobberNormaltTimerPerDag": "PT8H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "INTERESSANT INTUITIV KATT DIAMETER",
+                                "organisasjonsnummer": "315853370"
+                            }
+                        ],
+                        "frilanserArbeidstidInfo": {
+                            "perioder": {
+                                "2025-09-29/2025-10-31": {
+                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                    "jobberNormaltTimerPerDag": "PT0S"
+                                }
+                            }
+                        }
+                    },
+                    "tilsynsordning": {
+                        "perioder": { "2025-09-29/2025-10-31": { "etablertTilsynTimerPerDag": "PT0S" } }
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": { "perioder": {} },
+                    "søknadsperiode": ["2025-09-29/2025-10-31"],
+                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "annetDataBruktTilUtledning": {
+                        "soknadDialogCommitSha": "2026.01.18-08.32-3f7b685",
+                        "harBekreftetOpplysninger": true,
+                        "harForståttRettigheterOgPlikter": true
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "3d2807b5-782f-4baa-8cba-8f4e762c43fc",
+                "kildesystem": "søknadsdialog",
+                "mottattDato": "2026-01-20T07:57:35.805169739Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "utenlandskNæring": [],
+            "ferieuttakIPerioden": { "ferieuttak": [], "skalTaUtFerieIPerioden": false },
+            "opptjeningIUtlandet": [],
+            "harBekreftetOpplysninger": true,
+            "utenlandsoppholdIPerioden": { "opphold": [], "skalOppholdeSegIUtlandetIPerioden": false },
+            "selvstendigNæringsdrivende": { "harInntektSomSelvstendig": false },
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": "1003iMC",
+        "journalpostId": "454066987",
+        "dokumenter": [
+            {
+                "journalpostId": "454066987",
+                "dokumentInfoId": "454487510",
+                "sakId": "1003iMC",
+                "tittel": "Søknad om pleiepenger for sykt barn",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/454066987/454487510/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2026-01-20T08:57:37", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2026-01-20T08:57:37", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2026-01-20T08:57:42", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2026-01-20T08:57:35", "datotype": "DATO_REGISTRERT" }
+                ]
+            },
+            {
+                "journalpostId": "454066987",
+                "dokumentInfoId": "454487511",
+                "sakId": "1003iMC",
+                "tittel": "Innsendelse (1).pdf",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/454066987/454487511/ARKIV",
+                "relevanteDatoer": [
+                    { "dato": "2026-01-20T08:57:37", "datotype": "DATO_OPPRETTET" },
+                    { "dato": "2026-01-20T08:57:37", "datotype": "DATO_DOKUMENT" },
+                    { "dato": "2026-01-20T08:57:42", "datotype": "DATO_JOURNALFOERT" },
+                    { "dato": "2026-01-20T08:57:35", "datotype": "DATO_REGISTRERT" }
+                ]
+            }
+        ],
+        "opprettet": "2026-01-20T07:57:35.805Z",
+        "endret": "2026-01-20T08:57:47",
+        "behandlingsdato": null
+    }
+]
