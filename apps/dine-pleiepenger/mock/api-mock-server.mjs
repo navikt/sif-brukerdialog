@@ -86,10 +86,33 @@ const getMockData = (scenario) => {
             ],
             soknader,
         };
+    } else if (scenario === 'splitt-av-sak') {
+        const søker = JSON.parse(readFileSync(join(__dirname, './data/splitt-av-sak/soker.json'), 'utf-8'));
+        const soknader = JSON.parse(readFileSync(join(__dirname, './data/splitt-av-sak/soknader.json'), 'utf-8'));
+        const sakerMetadata = JSON.parse(
+            readFileSync(join(__dirname, './data/splitt-av-sak/saker-metadata.json'), 'utf-8'),
+        );
+        const sak1 = JSON.parse(readFileSync(join(__dirname, './data/splitt-av-sak/1003iJK/sak.json'), 'utf-8'));
+        const sak2 = JSON.parse(readFileSync(join(__dirname, './data/splitt-av-sak/1003iMC/sak.json'), 'utf-8'));
+        const inntektsmeldinger1 = JSON.parse(
+            readFileSync(join(__dirname, './data/splitt-av-sak/1003iJK/inntektsmeldinger.json'), 'utf-8'),
+        );
+        const inntektsmeldinger2 = JSON.parse(
+            readFileSync(join(__dirname, './data/splitt-av-sak/1003iMC/inntektsmeldinger.json'), 'utf-8'),
+        );
+        return {
+            sakerMetadata,
+            søker,
+            saker: [
+                { sak: sak1, inntektsmeldinger: inntektsmeldinger1 },
+                { sak: sak2, inntektsmeldinger: inntektsmeldinger2 },
+            ],
+            soknader,
+        };
     }
 };
 
-const scenario = 'to-saker';
+const scenario = 'splitt-av-sak';
 
 const mockData = getMockData(scenario);
 

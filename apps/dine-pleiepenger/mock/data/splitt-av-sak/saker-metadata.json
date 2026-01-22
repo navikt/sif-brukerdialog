@@ -1,0 +1,28 @@
+[
+    {
+        "saksnummer": "1003iJK",
+        "pleietrengende": {
+            "fødselsdato": "2024-05-27",
+            "aktørId": "2096467561999",
+            "fornavn": "OVERFØLSOM",
+            "mellomnavn": null,
+            "etternavn": "KONSTRUKSJON"
+        },
+        "fagsakYtelseType": "PSB",
+        "fagsakOpprettetTidspunkt": "2026-01-20T07:44:49Z",
+        "fagsakAvsluttetTidspunkt": null
+    },
+    {
+        "saksnummer": "1003iMC",
+        "pleietrengende": {
+            "fødselsdato": "2024-05-27",
+            "aktørId": "2096467561999",
+            "fornavn": "OVERFØLSOM",
+            "mellomnavn": null,
+            "etternavn": "KONSTRUKSJON"
+        },
+        "fagsakYtelseType": "PSB",
+        "fagsakOpprettetTidspunkt": "2022-01-20T07:58:43Z",
+        "fagsakAvsluttetTidspunkt": "2025-12-03T10:08:13Z"
+    }
+]
