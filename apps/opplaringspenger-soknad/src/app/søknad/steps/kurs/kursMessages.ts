@@ -39,6 +39,8 @@ const nb = {
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
+    'steg.kurs.validation.enkeltdagEllerPeriode':
+        'Du må velge om søknaden gjelder enkeltdag eller sammenhengende periode.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
         'Du må svare på om du reiser på dager du ikke har kurs eller opplæring.',
     'steg.kurs.validation.reisedager.listIsEmpty':
@@ -150,6 +152,8 @@ const nn: Record<keyof typeof nb, string> = {
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive kvar opplæringa føregår med minst 2 teikn.',
+    'steg.kurs.validation.enkeltdagEllerPeriode':
+        'Du må velje om søknaden gjeld enkeltdag eller samanhengande periode.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
         'Du må svare på om du reiser på dagar du ikkje har kurs eller opplæring.',
     'steg.kurs.validation.reisedager.listIsEmpty':

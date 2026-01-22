@@ -45,7 +45,8 @@
         "lint:fix": "turbo lint:fix",
         "prepare": "husky install",
         "test": "turbo test",
-        "codegen": "turbo run codegen",
+        "codegen:dev": "turbo run codegen:dev",
+        "codegen:prod": "turbo run codegen:prod",
         "deploy-gh-pages": "gh-pages -d gh-pages"
     },
     "workspaces": [
