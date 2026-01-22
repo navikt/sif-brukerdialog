@@ -2171,12 +2171,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/selector-resolve-nested@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@csstools/selector-resolve-nested@npm:3.1.0"
+"@csstools/selector-resolve-nested@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@csstools/selector-resolve-nested@npm:4.0.0"
   peerDependencies:
-    postcss-selector-parser: ^7.0.0
-  checksum: 10/eaad6a6c99345cae2849a2c73daf53381fabd75851eefd830ee743e4d454d4e2930aa99c8b9e651fed92b9a8361f352c6c754abf82c576bba4953f1e59c927e9
+    postcss-selector-parser: ^7.1.1
+  checksum: 10/eebdec8f3a8dbb81afa5c76b0568bb1a0b6dfa7c2c9434dbc4cd86cc2244db1cca2392127fca0d54653050688eb1da18eb7bfecedf5c1f9689957c4c44617f32
   languageName: node
   linkType: hard
 
@@ -2186,6 +2186,15 @@ __metadata:
   peerDependencies:
     postcss-selector-parser: ^7.0.0
   checksum: 10/8df1a01a1fa52b66c7ba0286e1c77d1faff45009876f09ddcac542a1c4bca9f34ee92a10acf056b8e7b7ac93679c1635496c6cdfd7d88dbaff2b6afd1eb823ec
+  languageName: node
+  linkType: hard
+
+"@csstools/selector-specificity@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@csstools/selector-specificity@npm:6.0.0"
+  peerDependencies:
+    postcss-selector-parser: ^7.1.1
+  checksum: 10/56790acc910b516df87bf6fd43389a88da1922ffb004de4d6099559ece48c88a8185e29439c570d1102a414bbecbb34e33f1aeace76a63e9f72e0794517cf7d7
   languageName: node
   linkType: hard
 
@@ -5520,7 +5529,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     postcss: "npm:8.5.6"
-    postcss-nesting: "npm:13.0.2"
+    postcss-nesting: "npm:14.0.0"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
@@ -5591,7 +5600,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     postcss: "npm:8.5.6"
-    postcss-nesting: "npm:13.0.2"
+    postcss-nesting: "npm:14.0.0"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
@@ -5745,7 +5754,7 @@ __metadata:
     object-hash: "npm:3.0.0"
     openid-client: "npm:6.8.1"
     postcss: "npm:8.5.6"
-    postcss-nesting: "npm:13.0.2"
+    postcss-nesting: "npm:14.0.0"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
@@ -23937,16 +23946,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:13.0.2":
-  version: 13.0.2
-  resolution: "postcss-nesting@npm:13.0.2"
+"postcss-nesting@npm:14.0.0":
+  version: 14.0.0
+  resolution: "postcss-nesting@npm:14.0.0"
   dependencies:
-    "@csstools/selector-resolve-nested": "npm:^3.1.0"
-    "@csstools/selector-specificity": "npm:^5.0.0"
-    postcss-selector-parser: "npm:^7.0.0"
+    "@csstools/selector-resolve-nested": "npm:^4.0.0"
+    "@csstools/selector-specificity": "npm:^6.0.0"
+    postcss-selector-parser: "npm:^7.1.1"
   peerDependencies:
     postcss: ^8.4
-  checksum: 10/ac82d7d2d2621d76ca42e065b90728c91206480ef01f874c21d032c5964b723818ab13194b09c7871edee8e4220241160f72d29ece65acbfe8827937a5b6ace0
+  checksum: 10/70dded833806b6569a92c4170cd61d641d3b86fa5fdd71921a0eae6c1c0d743bcaa29b87e41fda75058c03619d20e012c994f0136ef05da938e81d3cb5f7f8a5
   languageName: node
   linkType: hard
 
@@ -23966,7 +23975,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-selector-parser@npm:^7.0.0, postcss-selector-parser@npm:^7.1.0":
+"postcss-selector-parser@npm:^7.0.0, postcss-selector-parser@npm:^7.1.0, postcss-selector-parser@npm:^7.1.1":
   version: 7.1.1
   resolution: "postcss-selector-parser@npm:7.1.1"
   dependencies:
