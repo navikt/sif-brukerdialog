@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.69
+
+### Patch Changes
+
+- Updated dependencies [522fe9f]
+    - @navikt/sif-common-utils@3.49.58
+
 ## 0.1.68
 
 ### Patch Changes
