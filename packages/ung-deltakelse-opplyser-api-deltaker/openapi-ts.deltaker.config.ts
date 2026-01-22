@@ -26,6 +26,12 @@ export const createConfig = (env: Env): UserConfig => ({
     ],
 });
 
-const env = (process.env.CODEGEN_ENV as Env) || 'dev';
+const parseEnv = (value: string | undefined): Env => {
+    if (value === 'prod') return 'prod';
+    if (value === 'dev' || value === undefined) return 'dev';
+    throw new Error(`Invalid CODEGEN_ENV: '${value}'. Must be 'dev' or 'prod'.`);
+};
+
+const env = parseEnv(process.env.CODEGEN_ENV);
 
 export default defineConfig(createConfig(env));
