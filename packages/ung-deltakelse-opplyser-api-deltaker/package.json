@@ -27,7 +27,8 @@
         "fix-regexp": "node scripts/fix-generated-regex.mjs",
         "gen-types:fixed": "yarn gen-types && yarn fix-regexp",
         "gen-types": "openapi-ts -f openapi-ts.deltaker.config.ts",
-        "codegen": "yarn gen-types:fixed",
+        "codegen:dev": "CODEGEN_ENV=dev yarn gen-types:fixed",
+        "codegen:prod": "CODEGEN_ENV=prod yarn gen-types:fixed",
         "lint:eslint": "eslint './src/deltaker/client/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/deltaker/client/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"

@@ -1,7 +1,13 @@
-import { defineConfig } from '@hey-api/openapi-ts';
+import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
-export default defineConfig({
-    input: 'https://k9-brukerdialog-prosessering.intern.dev.nav.no/v3/api-docs/pleiepenger-sykt-barn-endringsmelding',
+import { Env, getEnvBaseUrl } from '.';
+
+const getInputUrl = (env: Env): string => {
+    return `https://k9-brukerdialog-prosessering.${getEnvBaseUrl(env)}/v3/api-docs/pleiepenger-sykt-barn-endringsmelding`;
+};
+
+export const createConfig = (env: Env): UserConfig => ({
+    input: getInputUrl(env),
     output: {
         format: 'prettier',
         lint: 'eslint',
@@ -26,3 +32,7 @@ export default defineConfig({
         { name: 'zod', exportFromIndex: true },
     ],
 });
+
+const env = (process.env.CODEGEN_ENV as Env) || 'dev';
+
+export default defineConfig(createConfig(env));

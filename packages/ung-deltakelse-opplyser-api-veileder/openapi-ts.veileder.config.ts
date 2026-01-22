@@ -1,7 +1,14 @@
-import { defaultPlugins, defineConfig } from '@hey-api/openapi-ts';
+import { defaultPlugins, defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
-export default defineConfig({
-    input: 'https://ung-deltakelse-opplyser.intern.dev.nav.no/v3/api-docs/veileder',
+type Env = 'dev' | 'prod';
+
+const getInputUrl = (env: Env): string => {
+    const baseUrl = env === 'dev' ? 'intern.dev.nav.no' : 'intern.nav.no';
+    return `https://ung-deltakelse-opplyser.${baseUrl}/v3/api-docs/veileder`;
+};
+
+export const createConfig = (env: Env): UserConfig => ({
+    input: getInputUrl(env),
     output: {
         format: 'prettier',
         lint: 'eslint',
@@ -18,3 +25,7 @@ export default defineConfig({
         },
     ],
 });
+
+const env = (process.env.CODEGEN_ENV as Env) || 'dev';
+
+export default defineConfig(createConfig(env));
