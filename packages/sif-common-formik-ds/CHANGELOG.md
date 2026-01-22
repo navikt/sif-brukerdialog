@@ -1,5 +1,13 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.42
+
+### Patch Changes
+
+- 522fe9f: lodash@4.17.23
+- Updated dependencies [522fe9f]
+    - @navikt/sif-common-utils@3.49.58
+
 ## 2.5.41
 
 ### Patch Changes
