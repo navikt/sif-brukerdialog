@@ -77,7 +77,7 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSl
                                             vedtaksbrev om dette.
                                         </BodyLong>
                                         <BodyLong>
-                                            Hvis deltakeren allerede har fått utbetalt ytelsen, blir det opprette en
+                                            Hvis deltakeren allerede har fått utbetalt ytelsen, blir det opprettet en
                                             tilbakekrevingssak.
                                         </BodyLong>
                                     </VStack>

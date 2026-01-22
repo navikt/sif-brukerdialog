@@ -50,7 +50,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
 
                 <VStack gap="space-16">
                     <DeltakerInfo deltaker={deltaker} />
-                    {Features.slettAktivDeltakelse && (
+                    {Features.slettAktivDeltakelse && !deltakelse.erSlettet && (
                         <SlettAktivDeltakerInfo deltaker={deltaker} deltakelse={deltakelse} />
                     )}
                 </VStack>
