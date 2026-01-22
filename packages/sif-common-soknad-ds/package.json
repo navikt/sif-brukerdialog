@@ -3,7 +3,7 @@
     "description": "Basis felleskomponenter for sykdom i familien søknadsskjema",
     "name": "@navikt/sif-common-soknad-ds",
     "main": "src/index.ts",
-    "version": "26.1.33",
+    "version": "26.1.34",
     "private": true,
     "type": "module",
     "peerDependencies": {
@@ -57,7 +57,7 @@
         "@testing-library/react": "16.3.1",
         "@testing-library/user-event": "14.6.1",
         "@types/jest": "30.0.0",
-        "@types/node": "25.0.6",
+        "@types/node": "25.0.8",
         "@types/react": "19.2.8",
         "@types/react-dom": "19.2.3",
         "@vitejs/plugin-react": "5.1.2",
@@ -84,7 +84,7 @@
         "uuid": "13.0.0",
         "vite": "7.3.1",
         "vite-plugin-checker": "0.12.0",
-        "vitest": "4.0.16"
+        "vitest": "4.0.17"
     },
     "scripts": {
         "build-storybook": "storybook build",

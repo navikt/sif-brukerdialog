@@ -5,7 +5,7 @@
     "license": "MIT",
     "name": "@navikt/endringsmelding-pleiepenger",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.40.55",
+    "version": "2.40.56",
     "private": true,
     "dependencies": {
         "@navikt/aksel-icons": "8.0.1",
@@ -36,7 +36,7 @@
         "html-react-parser": "5.2.11",
         "intl": "1.2.5",
         "jsdom": "27.4.0",
-        "lodash": "4.17.21",
+        "lodash": "4.17.23",
         "object-hash": "3.0.0",
         "react": "19.2.3",
         "react-day-picker": "9.13.0",
@@ -50,7 +50,7 @@
         "@navikt/ds-tailwind": "8.0.1",
         "@navikt/nav-dekoratoren-moduler": "3.6.1",
         "@playwright/test": "1.57.0",
-        "@sentry/vite-plugin": "4.6.1",
+        "@sentry/vite-plugin": "4.6.2",
         "@sif/eslint-config": "workspace:*",
         "@storybook/testing-library": "0.2.2",
         "@tailwindcss/postcss": "4.1.18",
@@ -84,7 +84,7 @@
         "typescript": "5.9.3",
         "vite": "7.3.1",
         "vite-plugin-checker": "0.12.0",
-        "vitest": "4.0.16"
+        "vitest": "4.0.17"
     },
     "scripts": {
         "build-storybook": "storybook build",

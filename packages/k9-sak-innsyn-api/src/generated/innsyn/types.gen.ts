@@ -565,10 +565,10 @@ export enum Innsendelsestype {
 }
 
 export type Innsending = {
+    søknadId?: string;
     versjon?: string;
     mottattDato?: string;
     søker?: Søker;
-    søknadId?: string;
 };
 
 export type Organisasjon = {
@@ -624,7 +624,7 @@ export type SakerMetadataDto = {
     saksnummer: string;
     pleietrengende: PleietrengendeDto;
     fagsakYtelseType: FagsakYtelseType;
-    fagsakOpprettetTidspunkt: string;
+    fagsakOpprettetTidspunkt?: string;
     fagsakAvsluttetTidspunkt?: string;
 };
 
