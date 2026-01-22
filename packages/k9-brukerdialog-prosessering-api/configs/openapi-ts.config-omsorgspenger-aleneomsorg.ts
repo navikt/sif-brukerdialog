@@ -1,38 +1,6 @@
-import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
+import { createConfig } from '.';
 
-import { Env, getEnvBaseUrl } from '.';
-
-const getInputUrl = (env: Env): string => {
-    return `https://k9-brukerdialog-prosessering.${getEnvBaseUrl(env)}/v3/api-docs/omsorgspenger-aleneomsorg`;
-};
-
-export const createConfig = (env: Env): UserConfig => ({
-    input: getInputUrl(env),
-    output: {
-        format: 'prettier',
-        lint: 'eslint',
-        path: './src/generated/omsorgspenger-aleneomsorg', // Separat mappe
-    },
-    plugins: [
-        {
-            name: '@hey-api/typescript',
-            enums: 'typescript',
-        },
-        {
-            name: '@hey-api/sdk',
-            asClass: true,
-            validator: true,
-        },
-        {
-            name: '@hey-api/client-axios',
-            throwOnError: true,
-            baseUrl: '',
-            exportFromIndex: true,
-        },
-        { name: 'zod', exportFromIndex: true },
-    ],
+export default createConfig({
+    apiDocsPath: 'omsorgspenger-aleneomsorg',
+    outputPath: './src/generated/omsorgspenger-aleneomsorg',
 });
-
-const env = (process.env.CODEGEN_ENV as Env) || 'dev';
-
-export default defineConfig(createConfig(env));
