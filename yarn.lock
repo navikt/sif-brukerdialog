@@ -5449,7 +5449,7 @@ __metadata:
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.2"
-    eslint-config-next: "npm:16.1.1"
+    eslint-config-next: "npm:16.1.2"
     formik: "npm:2.4.9"
     html-react-parser: "npm:5.2.11"
     jest: "npm:30.2.0"
@@ -5672,7 +5672,7 @@ __metadata:
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.57.0"
     postcss: "npm:8.5.6"
-    prettier: "npm:3.7.4"
+    prettier: "npm:3.8.0"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-fast-compare: "npm:3.2.2"
@@ -5949,7 +5949,7 @@ __metadata:
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:27.4.0"
     morgan: "npm:1.10.1"
-    prettier: "npm:3.7.4"
+    prettier: "npm:3.8.0"
     react: "npm:19.2.3"
     typescript: "npm:5.9.3"
     winston: "npm:3.19.0"
@@ -5978,7 +5978,7 @@ __metadata:
     glob: "npm:13.0.0"
     husky: "npm:9.1.7"
     lint-staged: "npm:16.2.7"
-    prettier: "npm:3.7.4"
+    prettier: "npm:3.8.0"
     tailwindcss: "npm:4.1.18"
     turbo: "npm:2.7.4"
     typescript: "npm:5.9.3"
@@ -6554,7 +6554,7 @@ __metadata:
     jsdom: "npm:27.4.0"
     morgan: "npm:1.10.1"
     postcss: "npm:8.5.6"
-    prettier: "npm:3.7.4"
+    prettier: "npm:3.8.0"
     react: "npm:19.2.3"
     typescript: "npm:5.9.3"
     winston: "npm:3.19.0"
@@ -6710,7 +6710,7 @@ __metadata:
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
     postcss-styled-syntax: "npm:0.7.1"
-    prettier: "npm:3.7.4"
+    prettier: "npm:3.8.0"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-error-boundary: "npm:6.0.3"
@@ -6797,7 +6797,7 @@ __metadata:
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
     postcss-styled-syntax: "npm:0.7.1"
-    prettier: "npm:3.7.4"
+    prettier: "npm:3.8.0"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-helmet: "npm:6.1.0"
@@ -6827,12 +6827,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:16.1.1":
-  version: 16.1.1
-  resolution: "@next/eslint-plugin-next@npm:16.1.1"
+"@next/eslint-plugin-next@npm:16.1.2":
+  version: 16.1.2
+  resolution: "@next/eslint-plugin-next@npm:16.1.2"
   dependencies:
     fast-glob: "npm:3.3.1"
-  checksum: 10/40ee51a518849b5f5952e2c5562ffa1ca6c804e1af4b786ca1226857c26997a5cbcb69346884dba306e5460eb0912457c054d0c320fb38907affcd834cb0a36d
+  checksum: 10/0b4e94ec1050f44edfb28d595d8582a1790a48e3b2152aa51416bc9586335070316439cb8b70b385756ab87385f188b51e3ec4ed298e657db715f310d7f595a8
   languageName: node
   linkType: hard
 
@@ -9159,7 +9159,7 @@ __metadata:
     eslint-plugin-vitest: "npm:0.5.4"
     globals: "npm:17.0.0"
     postcss: "npm:8.5.6"
-    prettier: "npm:3.7.4"
+    prettier: "npm:3.8.0"
     storybook: "npm:10.1.11"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.53.0"
@@ -12121,7 +12121,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.2"
     postcss: "npm:8.5.6"
-    prettier: "npm:3.7.4"
+    prettier: "npm:3.8.0"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-is: "npm:19.2.3"
@@ -13881,7 +13881,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:7.0.1"
     eslint-plugin-storybook: "npm:10.1.11"
     postcss: "npm:8.5.6"
-    prettier: "npm:3.7.4"
+    prettier: "npm:3.8.0"
     storybook: "npm:10.1.11"
     typescript: "npm:5.9.3"
   languageName: unknown
@@ -15883,11 +15883,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:16.1.1":
-  version: 16.1.1
-  resolution: "eslint-config-next@npm:16.1.1"
+"eslint-config-next@npm:16.1.2":
+  version: 16.1.2
+  resolution: "eslint-config-next@npm:16.1.2"
   dependencies:
-    "@next/eslint-plugin-next": "npm:16.1.1"
+    "@next/eslint-plugin-next": "npm:16.1.2"
     eslint-import-resolver-node: "npm:^0.3.6"
     eslint-import-resolver-typescript: "npm:^3.5.2"
     eslint-plugin-import: "npm:^2.32.0"
@@ -15902,7 +15902,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/fa7d50d125907c7c1be09b9cef898d886af35ed4224ca60391af241e05d2296d3a35f98c84a1d257e61ed552eaa94c9c703ebc7a476e0d1937e136d10bd3db0f
+  checksum: 10/44a9cb54b4699308c506e25ca4628483b3b8f5c226ceeec78c0c6b97140563bb7b1a57a9af3c3f6dd83a7695e9af8263444b220128ba3d0b4f35a8361c6fd33e
   languageName: node
   linkType: hard
 
@@ -23927,12 +23927,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.7.4, prettier@npm:^3.7.4":
-  version: 3.7.4
-  resolution: "prettier@npm:3.7.4"
+"prettier@npm:3.8.0":
+  version: 3.8.0
+  resolution: "prettier@npm:3.8.0"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/b4d00ea13baed813cb777c444506632fb10faaef52dea526cacd03085f01f6db11fc969ccebedf05bf7d93c3960900994c6adf1b150e28a31afd5cfe7089b313
+  checksum: 10/a643c62f095c2987a34cea4fceddce8dea12cc3ee024494aff690cfac22ef20be835e212b39b718c833014fd22890ae156be67b75a26e2bc9b7acde9a34d31fa
   languageName: node
   linkType: hard
 
@@ -23942,6 +23942,15 @@ __metadata:
   bin:
     prettier: bin-prettier.js
   checksum: 10/00cdb6ab0281f98306cd1847425c24cbaaa48a5ff03633945ab4c701901b8e96ad558eb0777364ffc312f437af9b5a07d0f45346266e8245beaf6247b9c62b24
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.7.4":
+  version: 3.7.4
+  resolution: "prettier@npm:3.7.4"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10/b4d00ea13baed813cb777c444506632fb10faaef52dea526cacd03085f01f6db11fc969ccebedf05bf7d93c3960900994c6adf1b150e28a31afd5cfe7089b313
   languageName: node
   linkType: hard
 
