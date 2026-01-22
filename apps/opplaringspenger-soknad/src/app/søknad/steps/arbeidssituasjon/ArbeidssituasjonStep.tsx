@@ -1,3 +1,4 @@
+import { Box } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
@@ -37,6 +38,7 @@ import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsg
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
 import { ArbeidssituasjonUtland } from './form-parts/ArbeidssituasjonUtland';
+import KravTilJobbInfo from './form-parts/info/KravTilJobbInfo';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -125,11 +127,19 @@ const ArbeidssituasjonStep = () => {
                         selvstendig,
                         harOpptjeningUtland,
                         harUtenlandskNæring,
+                        harVærtEllerErVernepliktig,
                     },
                 }) => {
                     if (!søknadsperiode || !ansatt_arbeidsforhold || !frilans || !selvstendig) {
                         return undefined;
                     }
+                    const skalViseVernepliktSpørsmål = visVernepliktSpørsmål(
+                        søknadsperiode,
+                        ansatt_arbeidsforhold,
+                        frilans,
+                        selvstendig,
+                        frilansoppdrag,
+                    );
 
                     return (
                         <>
@@ -182,13 +192,7 @@ const ArbeidssituasjonStep = () => {
                                         />
                                     </FormLayout.Section>
 
-                                    {visVernepliktSpørsmål(
-                                        søknadsperiode,
-                                        ansatt_arbeidsforhold,
-                                        frilans,
-                                        selvstendig,
-                                        frilansoppdrag,
-                                    ) && (
+                                    {skalViseVernepliktSpørsmål && (
                                         <FormLayout.Section title={text('steg.arbeidssituasjon.verneplikt.tittel')}>
                                             <YesOrNoQuestion
                                                 name={ArbeidssituasjonFormFields.harVærtEllerErVernepliktig}
@@ -204,6 +208,11 @@ const ArbeidssituasjonStep = () => {
                                         </FormLayout.Section>
                                     )}
                                 </FormLayout.Sections>
+                                {skalViseVernepliktSpørsmål && harVærtEllerErVernepliktig === YesOrNo.NO && (
+                                    <Box marginBlock="space-24 space-0">
+                                        <KravTilJobbInfo />
+                                    </Box>
+                                )}
                             </Form>
                         </>
                     );

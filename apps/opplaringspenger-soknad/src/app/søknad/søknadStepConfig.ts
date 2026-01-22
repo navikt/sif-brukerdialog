@@ -1,4 +1,6 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
+import { DateRange, isISODate } from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
 
 import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { StepId } from '../types/StepId';
@@ -9,7 +11,10 @@ const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
         StepId.OM_BARNET,
         StepId.KURS,
         StepId.ARBEIDSSITUASJON,
-        ...(erAnsattFrilanserEllerSelvstendigNæringsdrivende(søknadsdata.arbeidssituasjon) ? [StepId.ARBEIDSTID] : []),
+        ...(søknadsdata.kurs &&
+        erAnsattFrilanserEllerSelvstendigNæringsdrivende(søknadsdata.kurs?.søknadsperiode, søknadsdata.arbeidssituasjon)
+            ? [StepId.ARBEIDSTID]
+            : []),
         StepId.MEDLEMSKAP,
         StepId.LEGEERKLÆRING,
         StepId.OPPSUMMERING,
@@ -30,14 +35,27 @@ export const getSøknadStepConfigForStep = (stepId: StepId, søknadsdata: Søkna
 };
 
 export const erAnsattFrilanserEllerSelvstendigNæringsdrivende = (
+    søknadsperiode: DateRange,
     arbeidssituasjon?: ArbeidssituasjonSøknadsdata,
 ): boolean => {
     if (!arbeidssituasjon) {
         return false;
     }
     const { frilans, selvstendig, arbeidsgivere } = arbeidssituasjon;
-    if (frilans.erFrilanser || selvstendig.erSelvstendigNæringsdrivende) {
+    if (selvstendig.erSelvstendigNæringsdrivende) {
         return true;
+    }
+    if (frilans.erFrilanser) {
+        if (frilans.jobberFortsattSomFrilans) {
+            return true;
+        }
+        if (
+            frilans.sluttdato &&
+            isISODate(frilans.sluttdato) &&
+            dayjs(frilans.sluttdato).isAfter(dayjs(søknadsperiode.from))
+        ) {
+            return true;
+        }
     }
     return arbeidsgivere === undefined
         ? false
