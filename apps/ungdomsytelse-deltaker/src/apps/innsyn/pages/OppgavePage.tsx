@@ -19,7 +19,7 @@ type OppgavePageParams = {
     oppgaveReferanse: string;
 };
 
-const OppgavePage = (): React.ReactElement => {
+const OppgavePage = () => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
     const {
         deltakelsePeriode,
