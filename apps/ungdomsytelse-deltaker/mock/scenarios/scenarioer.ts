@@ -64,6 +64,23 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
+            tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(2, 'day').toDate()),
+            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(1, 'days').toDate().toISOString(),
+            deltaker: {
+                id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                deltakerIdent: '234',
+            },
+            oppgaver,
+            erSlettet: false,
+        },
+    ],
+});
+const createOpphørtDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+    ...deltakerBaseScenarioData,
+    deltakelser: [
+        {
+            id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(6, 'months').toDate()),
             søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate().toISOString(),
             deltaker: {
@@ -71,27 +88,32 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver,
-            erSlettet: false,
+            erSlettet: true,
+            harOpphørsvedtak: true,
         },
     ],
 });
 
-const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
-    ...deltakerBaseScenarioData,
-    deltakelser: [
-        {
-            id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
-            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate().toISOString(),
-            deltaker: {
+const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => {
+    const fraOgMed = dateToISODate(dayjs().add(1, 'month').startOf('week').toDate());
+    const søktTidspunkt = dayjs(fraOgMed).add(1, 'days').toDate().toISOString();
+    return {
+        ...deltakerBaseScenarioData,
+        deltakelser: [
+            {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-                deltakerIdent: '234',
+                fraOgMed,
+                søktTidspunkt,
+                deltaker: {
+                    id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                    deltakerIdent: '234',
+                },
+                oppgaver,
+                erSlettet: false,
             },
-            oppgaver,
-            erSlettet: false,
-        },
-    ],
-});
+        ],
+    };
+};
 
 export const scenarioer: Record<ScenarioType, Scenario> = {
     [ScenarioType.søknad]: {
@@ -180,6 +202,16 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         type: ScenarioType.avvikInntekt,
         name: 'Avsluttet deltakelse',
         data: createAvsluttetDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().rapporterInntektOppgaveLøst,
+            getMockOppgaver().bekreftAvvikOppgaveLøst,
+        ]),
+    },
+    [ScenarioType.opphørt]: {
+        type: ScenarioType.opphørt,
+        name: 'Opphørt deltakelse',
+        data: createOpphørtDeltakelse([
+            getMockOppgaver().fjernetPeriodeLøst,
             getMockOppgaver().søkYtelseOppgaveLøst,
             getMockOppgaver().rapporterInntektOppgaveLøst,
             getMockOppgaver().bekreftAvvikOppgaveLøst,

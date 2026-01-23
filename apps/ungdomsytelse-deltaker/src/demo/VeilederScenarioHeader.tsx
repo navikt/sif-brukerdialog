@@ -71,6 +71,9 @@ const VeilederScenarioHeader = () => {
                     </ActionMenu.Group>
                     <ActionMenu.Divider />
                     <ActionMenu.Group label="Oppgaver under utvikling (ikke implementert)">
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.opphørt)}>
+                            Opphørt deltakelse
+                        </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.endretStartOgSluttdato)}>
                             Endret start og sluttdato
                         </ActionMenu.Item>

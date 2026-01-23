@@ -288,6 +288,22 @@ const getFjernetPeriodeOppgaveDto = (): OppgaveDto => ({
     frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
 });
 
+const getFjernetPeriodeOppgaveDtoLøst = (): OppgaveDto => ({
+    oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f7',
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PERIODE,
+    oppgavetypeData: {
+        endringer: [PeriodeEndringType.FJERNET_PERIODE],
+        forrigePeriode: {
+            fom: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
+            tom: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+        },
+    },
+    status: OppgaveStatus.LØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    løstDato: getDatoer().oppgaveMåned.add(28, 'days').add(54, 'hours').toISOString(),
+});
+
 const getEndretStartOgSluttdatoOppgaveDto = (): OppgaveDto => ({
     oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f6',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PERIODE,
@@ -324,4 +340,5 @@ export const getMockOppgaver = () => ({
     meldtUtOppgaveLøst: getMeldtUtOppgaveDtoLøst(),
     meldtUtOppgave: getMeldtUtOppgaveDto(),
     fjernetPeriode: getFjernetPeriodeOppgaveDto(),
+    fjernetPeriodeLøst: getFjernetPeriodeOppgaveDtoLøst(),
 });

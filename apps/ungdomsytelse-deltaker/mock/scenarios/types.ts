@@ -12,6 +12,7 @@ export enum ScenarioType {
     avvikInntektDelerAvMåned = 'avvikInntektDelerAvMåned',
     avsluttet = 'avsluttet',
     ikkeStartet = 'ikkeStartet',
+    opphørt = 'opphørt',
 }
 
 export interface ScenarioData {

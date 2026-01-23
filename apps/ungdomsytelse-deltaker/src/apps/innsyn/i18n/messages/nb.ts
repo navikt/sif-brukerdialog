@@ -42,11 +42,12 @@ export const innsynMessages_nb = {
     'breadcrumbs.minSide': 'Min side',
     'breadcrumbs.innsyn': 'Din ungdomsprogramytelse',
 
-    'deltakelseContent.header': 'Dine oppgaver',
+    'deltakelseContent.dineOppgaver': 'Dine oppgaver',
     'deltakelseContent.ingenUløsteOppgaver': 'Du har ingen uløste oppgaver.',
     'deltakelseContent.tidligereOppgaver': 'Tidligere oppgaver',
     'deltakelseContent.ingenTidligereOppgaver': 'Du har ingen tidligere oppgaver.',
 
+    'deltakelseOpphørtInfo.tekst': 'Deltakelsen er opphørt.',
     'deltakelseAvsluttetInfo.tekst': 'Du var i ungdomsprogrammet fra {fraOgMed} - {tilOgMed}.',
     'deltakelseIkkeStartetInfo.tekst1':
         'Du ble meldt inn i ungdomsprogrammet {fraOgMed}. Fra denne datoen mottar du penger gjennom ungdomsprogramytelsen.',
