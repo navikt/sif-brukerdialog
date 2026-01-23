@@ -20,6 +20,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
             id: 'deltaker-id',
         },
         erSlettet: false,
+        harOpphørsvedtak: false,
     };
 
     const mockOppgave: SøkYtelseOppgave = {
