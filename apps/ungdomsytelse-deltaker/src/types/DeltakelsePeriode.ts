@@ -8,7 +8,6 @@ import { parseOppgaverElement } from '../api/parse-utils/parseOppgaverElement';
 export const deltakelsePeriodeSchema = zDeltakelseKomposittDto
     .extend({
         id: z.string(),
-        harOpphørsvedtak: z.boolean().optional().default(false),
     })
     .transform((data) => {
         const { fraOgMed, tilOgMed, ...rest } = data;
@@ -18,11 +17,11 @@ export const deltakelsePeriodeSchema = zDeltakelseKomposittDto
         };
         return {
             ...rest,
-            harOpphørsvedtak: data.harOpphørsvedtak,
             programPeriode,
             oppgaver: parseOppgaverElement(data.oppgaver as OppgaveDto[]), // Bruker as pga generert type ikke godtas
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
             erSlettet: data.erSlettet,
+            harOpphørsvedtak: data.harOpphørsvedtak,
         };
     });
 
