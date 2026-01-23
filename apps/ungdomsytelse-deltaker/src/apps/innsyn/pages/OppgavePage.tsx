@@ -5,9 +5,9 @@ import EndretStartdatoOppgavePage from '@innsyn/modules/oppgaver/endret-startdat
 import RapporterInntektOppgavePage from '@innsyn/modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
 import SøkYtelseOppgavePage from '@innsyn/modules/oppgaver/søk-ytelse/SøkYtelseOppgavePage';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
+import { ParsedOppgavetype } from '@shared/types/Oppgave';
 import { useParams } from 'react-router-dom';
 
-import { ParsedOppgavetype } from '../../../types/Oppgave';
 import AvvikRegisterinntektOppgavePage from '../modules/oppgaver/avvik-registerinntekt/AvvikRegisterinntektOppgavePage';
 import EndretStartOgSluttdatoOppgavePage from '../modules/oppgaver/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePage';
 import FjernetPeriodeOppgavePage from '../modules/oppgaver/fjernet-periode/FjernetPeriodeOppgavePage';
