@@ -289,7 +289,7 @@ const getFjernetPeriodeOppgaveDto = (): OppgaveDto => ({
 });
 
 const getFjernetPeriodeOppgaveDtoLøst = (): OppgaveDto => ({
-    oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f7',
+    oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f2',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PERIODE,
     oppgavetypeData: {
         endringer: [PeriodeEndringType.FJERNET_PERIODE],
