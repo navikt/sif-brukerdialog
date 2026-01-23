@@ -14,10 +14,10 @@
         "test": "jest"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.0.1",
-        "@navikt/ds-css": "8.0.1",
-        "@navikt/ds-react": "8.0.1",
-        "@navikt/ds-tailwind": "8.0.1",
+        "@navikt/aksel-icons": "8.1.0",
+        "@navikt/ds-css": "8.1.0",
+        "@navikt/ds-react": "8.1.0",
+        "@navikt/ds-tailwind": "8.1.0",
         "@navikt/nav-dekoratoren-moduler": "3.6.1",
         "classnames": "2.5.1",
         "csp-header": "6.3.0",
@@ -31,7 +31,7 @@
         "react": "19.2.3",
         "react-day-picker": "9.13.0",
         "react-dom": "19.2.3",
-        "react-intl": "8.0.11",
+        "react-intl": "8.1.0",
         "uuid": "13.0.0"
     },
     "devDependencies": {
@@ -39,7 +39,7 @@
         "@playwright/test": "1.57.0",
         "@tailwindcss/postcss": "4.1.18",
         "@tailwindcss/vite": "4.1.18",
-        "@types/node": "25.0.8",
+        "@types/node": "25.0.9",
         "@types/react": "19.2.8",
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
