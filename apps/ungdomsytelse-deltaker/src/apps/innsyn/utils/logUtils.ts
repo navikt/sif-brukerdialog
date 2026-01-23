@@ -28,7 +28,7 @@ type DeltakelsePeriodeMeta = {
 const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeriodeMeta => {
     const harSøkt = deltakelse.søktTidspunkt !== undefined;
     const harStartet = dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
-    const erAvsluttet = dayjs(deltakelse.programPeriode.to).isAfter(dayjs());
+    const erAvsluttet = dayjs(deltakelse.programPeriode.to).isBefore(dayjs());
 
     const søkYtelseOppgave = deltakelse.oppgaver.find(
         (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.SØK_YTELSE,
