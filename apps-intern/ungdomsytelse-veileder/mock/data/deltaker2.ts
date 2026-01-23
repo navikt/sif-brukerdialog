@@ -30,6 +30,7 @@ const deltakelse: DeltakelseDto = {
     fraOgMed: '2025-05-05',
     tilOgMed: '2026-01-01',
     erSlettet: false,
+    harOpphørsvedtak: false,
     søktTidspunkt: '2025-05-31T03:58:29.015999Z',
 };
 

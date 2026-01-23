@@ -5,9 +5,10 @@ import { AppText } from '@shared/i18n';
 
 interface Props {
     startdato: Date;
+    harOpphørsvedtak?: boolean;
 }
 
-const ForsideHeader = ({ startdato }: Props) => {
+const ForsideHeader = ({ startdato, harOpphørsvedtak }: Props) => {
     return (
         <Stack
             gap="space-24"
@@ -22,9 +23,11 @@ const ForsideHeader = ({ startdato }: Props) => {
                 <Heading level="1" size="xlarge">
                     <AppText id="innsynAppHeader.ytelseNavn" />
                 </Heading>
-                <div className="uppercase">
-                    <AppText id="innsynAppHeader.startdato" values={{ dato: dateFormatter.full(startdato) }} />
-                </div>
+                {harOpphørsvedtak ? null : (
+                    <div className="uppercase">
+                        <AppText id="innsynAppHeader.startdato" values={{ dato: dateFormatter.full(startdato) }} />
+                    </div>
+                )}
             </VStack>
         </Stack>
     );

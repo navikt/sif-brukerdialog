@@ -95,6 +95,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
             id: deltakerId,
         },
         erSlettet: false,
+        harOpphørsvedtak: false,
         fraOgMed: startdato,
         søktTidspunkt: undefined,
     };

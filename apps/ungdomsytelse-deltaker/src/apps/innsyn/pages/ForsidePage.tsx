@@ -18,7 +18,10 @@ const ForsidePage = () => {
     return (
         <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
             <VStack gap="space-32">
-                <ForsideHeader startdato={deltakelsePeriode.programPeriode.from} />
+                <ForsideHeader
+                    startdato={deltakelsePeriode.programPeriode.from}
+                    harOpphørsvedtak={deltakelsePeriode.harOpphørsvedtak}
+                />
                 <UXRapportertInntekt />
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
             </VStack>
