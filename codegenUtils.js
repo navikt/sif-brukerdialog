@@ -11,6 +11,13 @@ const PATTERNS = {
         description: 'regex patterns removed',
     },
 
+    /** Fjerner hardkodet URL fra baseURL-typen, beholder kun (string & {}) */
+    removeBaseUrlLiteral: {
+        pattern: /baseURL: '[^']+' \| \(string & \{\}\);/g,
+        replacement: 'baseURL: string & {};',
+        description: 'baseURL URL literal removed',
+    },
+
     /** Erstatter @ts-expect-error med @ts-ignore */
     fixTsExpectError: {
         pattern: /\/\/\s*@ts-expect-error/g,
