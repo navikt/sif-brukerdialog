@@ -1,14 +1,15 @@
-import InnsynInfoBox from '@innsyn/atoms/innsyn-info-box/InnsynInfoBox';
-import { BodyLong } from '@navikt/ds-react';
+import { InfoCard } from '@navikt/ds-react';
 import { AppText } from '@shared/i18n';
 
 const DeltakelseOpphørtInfo = () => {
     return (
-        <InnsynInfoBox>
-            <BodyLong size="large" weight="semibold">
-                <AppText id="deltakelseOpphørtInfo.tekst" />
-            </BodyLong>
-        </InnsynInfoBox>
+        <InfoCard data-color="warning">
+            <InfoCard.Header>
+                <InfoCard.Title>
+                    <AppText id="deltakelseOpphørtInfo.tekst" />
+                </InfoCard.Title>
+            </InfoCard.Header>
+        </InfoCard>
     );
 };
 
