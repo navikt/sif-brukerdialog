@@ -129,8 +129,6 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                 };
                 parsedOppgaver.push(sendSøknadOppgave);
                 return;
-            case Oppgavetype.BEKREFT_FJERNET_PERIODE:
-                throw new Error(`Fjernet periode oppgave er ikke støttet`);
 
             default:
                 throw new Error(`Ukjent oppgavetype: ${oppgave.oppgavetype}`);
