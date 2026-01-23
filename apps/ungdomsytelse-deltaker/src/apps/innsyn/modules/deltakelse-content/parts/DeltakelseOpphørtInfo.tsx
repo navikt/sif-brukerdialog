@@ -3,7 +3,7 @@ import { AppText } from '@shared/i18n';
 
 const DeltakelseOpphørtInfo = () => {
     return (
-        <InfoCard data-color="warning">
+        <InfoCard data-color="danger">
             <InfoCard.Header>
                 <InfoCard.Title>
                     <AppText id="deltakelseOpphørtInfo.tekst" />
