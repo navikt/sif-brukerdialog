@@ -31,6 +31,7 @@ export const zDeltakelseDto = z.object({
     fraOgMed: z.iso.date(),
     tilOgMed: z.optional(z.iso.date()),
     erSlettet: z.boolean(),
+    harOpphørsvedtak: z.boolean(),
     søktTidspunkt: z.optional(z.iso.datetime({ local: true })),
 });
 
@@ -67,6 +68,7 @@ export const zEndringstype = z.enum([
     'ENDRET_STARTDATO',
     'ENDRET_SLUTTDATO',
     'DELTAKER_HAR_SØKT_YTELSE',
+    'DELTAKELSE_FJERNET',
     'UKJENT',
 ]);
 
