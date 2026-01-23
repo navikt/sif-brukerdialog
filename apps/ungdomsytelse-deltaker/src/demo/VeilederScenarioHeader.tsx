@@ -63,17 +63,17 @@ const VeilederScenarioHeader = () => {
                     <ActionMenu.Divider />
                     <ActionMenu.Group label="Før og etter deltakelse">
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.ikkeStartet)}>
-                            Deltakelse ikke påbegynt
+                            Deltakelse ikke startet
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avsluttet)}>
                             Deltakelse avsluttet
                         </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.opphørt)}>
+                            Deltakelse opphørt (slettet)
+                        </ActionMenu.Item>
                     </ActionMenu.Group>
                     <ActionMenu.Divider />
                     <ActionMenu.Group label="Oppgaver under utvikling (ikke implementert)">
-                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.opphørt)}>
-                            Opphørt deltakelse
-                        </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.endretStartOgSluttdato)}>
                             Endret start og sluttdato
                         </ActionMenu.Item>
