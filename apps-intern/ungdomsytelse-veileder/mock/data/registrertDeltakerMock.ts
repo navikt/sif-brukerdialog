@@ -28,6 +28,7 @@ const deltakelse: DeltakelseDto = {
     fraOgMed: '2025-03-10',
     tilOgMed: undefined,
     erSlettet: false,
+    harOpphørsvedtak: false,
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
 };
 
@@ -45,6 +46,14 @@ const deltakelseHistorikk: DeltakelseHistorikkDto[] = [
         endring: 'Deltaker har sendt inn søknad',
         aktør: 'Z990501 (deltaker)',
         tidspunkt: '2025-06-01T03:58:01.778344Z',
+    },
+
+    {
+        revisjonstype: Revisjonstype.ENDRET,
+        tidspunkt: '2026-01-14T14:26:01.736493Z',
+        endringstype: Endringstype.DELTAKELSE_FJERNET,
+        endring: 'Deltakelsen fra 02.12.2025 og til 06.08.2026 er fjernet.',
+        aktør: 'Z990501 (veileder)',
     },
 ];
 
