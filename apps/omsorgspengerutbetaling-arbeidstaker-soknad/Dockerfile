@@ -1,4 +1,4 @@
-FROM node:25-alpine AS base
+FROM node:25.1.0-alpine AS base
 
 ENV APP="omsorgspengerutbetaling-arbeidstaker-soknad"
 ENV SERVER="server"
