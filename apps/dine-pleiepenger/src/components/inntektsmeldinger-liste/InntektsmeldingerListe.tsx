@@ -12,6 +12,8 @@ interface Props {
 const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
     const [visIkkeIBruk, setVisIkkeIBruk] = useState(false);
 
+    // const grupperteInntektsmeldinger = grupperInntektsmeldingerEtterErstattetAv(inntektsmeldinger);
+
     const filterteInntektsmeldinger = visIkkeIBruk
         ? inntektsmeldinger
         : inntektsmeldinger.filter((im) => im.status === InntektsmeldingStatus.I_BRUK);
@@ -19,6 +21,7 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
     const harInntektsmeldingerSomIkkeErIBruk = inntektsmeldinger.some(
         (im) => im.status !== InntektsmeldingStatus.I_BRUK,
     );
+
     return (
         <VStack gap="space-8">
             {harInntektsmeldingerSomIkkeErIBruk && (
@@ -41,7 +44,11 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                         saksnummer={saksnummer}
                     />
                 ) : (
-                    <Box key={inntektsmelding.journalpostId} marginBlock="space-0 space-16" marginInline="space-24 space-0">
+                    <Box
+                        key={inntektsmelding.journalpostId}
+                        // marginBlock="space-0 space-16"
+                        // marginInline="space-24 space-0"
+                    >
                         <InntektsmeldingLinkCard saksnummer={saksnummer} inntektsmelding={inntektsmelding} />
                     </Box>
                 );

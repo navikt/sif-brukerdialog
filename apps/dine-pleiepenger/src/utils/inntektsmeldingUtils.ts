@@ -37,3 +37,23 @@ export const getRefusjonFørFørsteEndring = (
     }
     return undefined;
 };
+
+export type InntektsmeldingMedErstatter = Inntektsmelding & {
+    erstatter: Inntektsmelding[];
+};
+
+/** Grupperer inntektsmeldinger som ikke er erstattet, med liste over de de erstatter. Sortert på dato, nyeste først. */
+export const grupperInntektsmeldingerEtterErstattetAv = (
+    inntektsmeldinger: Inntektsmelding[],
+): InntektsmeldingMedErstatter[] => {
+    const ikkeErstattede = inntektsmeldinger
+        .filter((im) => im.erstattetAv.length === 0)
+        .sort(sorterInntektsmeldingerPåInnsendingstidspunkt);
+
+    return ikkeErstattede.map((im) => ({
+        ...im,
+        erstatter: inntektsmeldinger
+            .filter((i) => i.erstattetAv.includes(im.journalpostId))
+            .sort(sorterInntektsmeldingerPåInnsendingstidspunkt),
+    }));
+};
