@@ -32,7 +32,7 @@ const utledUtbetaler = ({ total, utbetaling }: { total: number; utbetaling: numb
 
 const renderEndringListItem = (endring: EndringRefusjon, refusjonBeløpPerMnd: number) => {
     const hvemBetaler = utledUtbetaler({ total: refusjonBeløpPerMnd, utbetaling: endring.refusjonBeløpPerMnd });
-    const datoString = `Fra ${dateFormatter.compact(endring.fom)}`;
+    const datoString = `Fra og med ${dateFormatter.compact(endring.fom)}`;
     switch (hvemBetaler) {
         case RefusjonUtbetaler.ARBEIDSGIVER:
             return `${datoString} betaler arbeidsgiver lønn til deg som vanlig.`;
@@ -75,6 +75,7 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPer
 
     // Har endringer i refusjon - list opp endringene
     const førsteEndring = endringerRefusjon[0];
+
     const refusjonFørFørsteEndring = getRefusjonFørFørsteEndring(
         refusjon.refusjonBeløpPerMnd,
         startDatoPermisjon,
@@ -84,6 +85,14 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPer
     const alleEndringer = refusjonFørFørsteEndring
         ? [refusjonFørFørsteEndring, ...endringerRefusjon]
         : endringerRefusjon;
+
+    // Legg til opphør av refusjon som siste endring hvis det finnes
+    if (refusjon.refusjonOpphører) {
+        alleEndringer.push({
+            fom: refusjon.refusjonOpphører,
+            refusjonBeløpPerMnd: 0,
+        });
+    }
 
     return (
         <List>
