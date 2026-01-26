@@ -12,6 +12,8 @@ on:
                     - ungdomsytelse-veileder
                 required: true
 
+permissions: {}
+
 jobs:
     trigger-scan:
         name: Trigger sonar scan on ${{ inputs.app-name }}

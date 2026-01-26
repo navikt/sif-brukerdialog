@@ -11,10 +11,13 @@ on:
                 type: string
                 required: true
 
+permissions: {}
+
 jobs:
     scan:
         runs-on: ubuntu-latest
         permissions:
+            contents: read # required: actions/checkout
             id-token: none
         steps:
             - uses: actions/checkout@v6
