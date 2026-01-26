@@ -25,6 +25,7 @@ export type DeltakelseDto = {
     fraOgMed: string;
     tilOgMed?: string;
     erSlettet: boolean;
+    harOpphørsvedtak: boolean;
     søktTidspunkt?: string;
 };
 
@@ -81,6 +82,7 @@ export enum Endringstype {
     ENDRET_STARTDATO = 'ENDRET_STARTDATO',
     ENDRET_SLUTTDATO = 'ENDRET_SLUTTDATO',
     DELTAKER_HAR_SØKT_YTELSE = 'DELTAKER_HAR_SØKT_YTELSE',
+    DELTAKELSE_FJERNET = 'DELTAKELSE_FJERNET',
     UKJENT = 'UKJENT',
 }
 

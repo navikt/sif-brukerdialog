@@ -6,6 +6,7 @@ import { z } from 'zod';
 export const deltakelseSchema = zDeltakelseDto
     .extend({
         id: z.string(),
+        harOpphørsvedtak: z.boolean().optional().default(false),
     })
     .transform((data) => {
         const fraOgMed = ISODateToDate(data.fraOgMed);

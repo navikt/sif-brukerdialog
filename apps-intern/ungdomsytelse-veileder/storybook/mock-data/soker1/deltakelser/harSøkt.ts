@@ -7,6 +7,7 @@ export const deltakelserHarSøkt: DeltakelseDto[] = [
         tilOgMed: undefined,
         søktTidspunkt: '2024-12-01T11:43:29.048157Z',
         erSlettet: false,
+        harOpphørsvedtak: false,
         deltaker: {
             id: '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
             deltakerIdent: '03867198392',

@@ -1,4 +1,4 @@
-import { Alert, BodyShort, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Detail, ReadMore, VStack } from '@navikt/ds-react';
 import { ApiError, isApiAxiosError } from '@navikt/ung-common';
 
 interface Props {
@@ -26,7 +26,10 @@ const ApiErrorAlert = ({ error, detaljert }: Props) => {
                     )}
                 </VStack>
             ) : (
-                <>{error.message}</>
+                <VStack gap="space-8">
+                    <BodyShort>{error.message}</BodyShort>
+                    <Detail>{error.context}</Detail>
+                </VStack>
             )}
         </Alert>
     );
