@@ -15,10 +15,6 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
 
     const arbeidsgivereMedInntektsmeldinger = grupperInntektsmeldingerPåArbeidsgiver(inntektsmeldinger);
 
-    // const filterteInntektsmeldinger = visIkkeIBruk
-    //     ? inntektsmeldinger
-    //     : inntektsmeldinger.filter((im) => im.status === InntektsmeldingStatus.I_BRUK);
-
     const harInntektsmeldingerSomIkkeErIBruk = inntektsmeldinger.some(
         (im) => im.status !== InntektsmeldingStatus.I_BRUK,
     );
@@ -50,7 +46,7 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                             onChange={(e) => {
                                 setVisIkkeIBruk(e.target.checked);
                             }}>
-                            Vis inntektsmeldinger som er erstattet
+                            Vis inntektsmeldinger som ikke er i bruk eller er erstattet av nyere
                         </Switch>
                     </Box>
                 )}
@@ -63,6 +59,9 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                                 {arbeidsgiver.arbeidsgiverNavn}
                             </Heading>
                             {arbeidsgiver.inntektsmeldinger.map((inntektsmelding) => {
+                                if (visIkkeIBruk === false && inntektsmelding.status !== InntektsmeldingStatus.I_BRUK) {
+                                    return null;
+                                }
                                 return (
                                     <VStack gap="space-8" key={inntektsmelding.journalpostId}>
                                         <InntektsmeldingLinkCard

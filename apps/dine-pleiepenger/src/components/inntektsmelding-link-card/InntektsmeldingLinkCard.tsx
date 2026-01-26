@@ -15,6 +15,7 @@ interface Props {
 const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
     const erIBruk = inntektsmelding.status === InntektsmeldingStatus.I_BRUK;
     const erIkkeRelevant = inntektsmelding.status === InntektsmeldingStatus.IKKE_RELEVANT;
+    const erErstattet = inntektsmelding.status === InntektsmeldingStatus.ERSTATTET_AV_NYERE;
 
     const getClassName = () => {
         if (erIkkeRelevant) {
@@ -29,7 +30,7 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
     return (
         <LinkCard
             key={inntektsmelding.journalpostId}
-            size={erIBruk ? 'medium' : 'small'}
+            size={erErstattet ? 'small' : 'medium'}
             className={`w-full inntektsmeldingLinkCard ${getClassName()}`}>
             <Show above="sm" asChild>
                 <Box
@@ -61,7 +62,7 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
             </LinkCard.Description>
             <LinkCard.Footer>
                 <HStack gap="space-8">
-                    <Tag variant="info" size="xsmall">
+                    <Tag variant="info" size="small">
                         Mottatt {dateFormatter.compact(inntektsmelding.mottattDato)}
                     </Tag>
                     <InntektsmeldingStatusTag status={inntektsmelding.status} />
