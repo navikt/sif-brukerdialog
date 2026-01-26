@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.37
+
+### Patch Changes
+
+- Trigger deploy etter tar oppdatering
+
 ## 1.5.36
 
 ### Patch Changes

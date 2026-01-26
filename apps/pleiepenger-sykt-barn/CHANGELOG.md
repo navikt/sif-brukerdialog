@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.60
+
+### Patch Changes
+
+- Trigger deploy etter tar oppdatering
+
 ## 4.11.59
 
 ### Patch Changes

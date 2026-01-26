@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.58
+
+### Patch Changes
+
+- Trigger deploy etter tar oppdatering
+
 ## 1.41.57
 
 ### Patch Changes
