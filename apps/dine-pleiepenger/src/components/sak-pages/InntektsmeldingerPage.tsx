@@ -25,7 +25,12 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
         return inntektsmeldinger && inntektsmeldinger.length > 0 ? (
             <InntektsmeldingerListe saksnummer={sak.saksnummer} inntektsmeldinger={inntektsmeldinger} />
         ) : (
-            <Alert variant="info">Det er ingen inntektsmeldinger knyttet til denne saken.</Alert>
+            <>
+                <Heading level="2" size="medium" className="mb-2">
+                    Ingen inntektsmeldinger er mottatt for denne saken
+                </Heading>
+                <Alert variant="info">Det er ingen inntektsmeldinger knyttet til denne saken.</Alert>
+            </>
         );
     };
     return (
@@ -33,22 +38,17 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
             <Head>
                 <title>Inntektsmeldinger - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>
-            <VStack gap="space-48">
-                <Box maxWidth="52rem">
-                    <VStack gap="space-16">
-                        <Heading level="2" size="medium" className="mb-2">
-                            Inntektsmeldinger vi har mottatt
-                        </Heading>
-                        {renderContent()}
-                        <Box className="ml-4 mt-4">
-                            <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
-                                <ChevronLeftIcon role="presentation" />
-                                Tilbake til sak
-                            </Link>
-                        </Box>
-                    </VStack>
-                </Box>
-            </VStack>
+            <Box maxWidth="52rem">
+                <VStack gap="space-16">
+                    {renderContent()}
+                    <Box className="ml-4 mt-4">
+                        <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
+                            <ChevronLeftIcon role="presentation" />
+                            Tilbake til sak
+                        </Link>
+                    </Box>
+                </VStack>
+            </Box>
         </DefaultPageLayout>
     );
 };

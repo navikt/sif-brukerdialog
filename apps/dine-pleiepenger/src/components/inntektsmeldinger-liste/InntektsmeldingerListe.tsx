@@ -1,7 +1,8 @@
-import { Box, Switch, VStack } from '@navikt/ds-react';
+import { Box, Heading, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
 import { Inntektsmelding, InntektsmeldingStatus } from '../../types';
+import { grupperInntektsmeldingerPåArbeidsgiver } from '../../utils/inntektsmeldingUtils';
 import InntektsmeldingLinkCard from '../inntektsmelding-link-card/InntektsmeldingLinkCard';
 
 interface Props {
@@ -12,47 +13,86 @@ interface Props {
 const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
     const [visIkkeIBruk, setVisIkkeIBruk] = useState(false);
 
-    // const grupperteInntektsmeldinger = grupperInntektsmeldingerEtterErstattetAv(inntektsmeldinger);
+    const arbeidsgivereMedInntektsmeldinger = grupperInntektsmeldingerPåArbeidsgiver(inntektsmeldinger);
 
-    const filterteInntektsmeldinger = visIkkeIBruk
-        ? inntektsmeldinger
-        : inntektsmeldinger.filter((im) => im.status === InntektsmeldingStatus.I_BRUK);
+    // const filterteInntektsmeldinger = visIkkeIBruk
+    //     ? inntektsmeldinger
+    //     : inntektsmeldinger.filter((im) => im.status === InntektsmeldingStatus.I_BRUK);
 
     const harInntektsmeldingerSomIkkeErIBruk = inntektsmeldinger.some(
         (im) => im.status !== InntektsmeldingStatus.I_BRUK,
     );
 
-    return (
-        <VStack gap="space-8">
-            {harInntektsmeldingerSomIkkeErIBruk && (
-                <Box>
-                    <Switch
-                        checked={visIkkeIBruk}
-                        onChange={(e) => {
-                            setVisIkkeIBruk(e.target.checked);
-                        }}>
-                        Inkluder inntektsmeldinger som ikke er i bruk
-                    </Switch>
-                </Box>
-            )}
-            {filterteInntektsmeldinger.map((inntektsmelding) => {
-                const iBruk = inntektsmelding.status === InntektsmeldingStatus.I_BRUK;
-                return iBruk ? (
+    const renderInntektsmeldinger = (im: Inntektsmelding[]) => {
+        return (
+            <VStack gap="space-8">
+                {im.map((inntektsmelding) => (
                     <InntektsmeldingLinkCard
                         key={inntektsmelding.journalpostId}
                         inntektsmelding={inntektsmelding}
                         saksnummer={saksnummer}
                     />
-                ) : (
-                    <Box
-                        key={inntektsmelding.journalpostId}
-                        // marginBlock="space-0 space-16"
-                        // marginInline="space-24 space-0"
-                    >
-                        <InntektsmeldingLinkCard saksnummer={saksnummer} inntektsmelding={inntektsmelding} />
+                ))}
+            </VStack>
+        );
+    };
+
+    return (
+        <VStack gap="space-32">
+            <VStack gap="space-6">
+                <Heading level="2" size="medium">
+                    Inntektsmeldinger mottatt på saken
+                </Heading>
+                {harInntektsmeldingerSomIkkeErIBruk && (
+                    <Box>
+                        <Switch
+                            checked={visIkkeIBruk}
+                            onChange={(e) => {
+                                setVisIkkeIBruk(e.target.checked);
+                            }}>
+                            Vis inntektsmeldinger som er erstattet
+                        </Switch>
                     </Box>
-                );
-            })}
+                )}
+            </VStack>
+            <VStack gap="space-48">
+                {arbeidsgivereMedInntektsmeldinger.map((arbeidsgiver) => {
+                    return (
+                        <VStack gap="space-12" key={arbeidsgiver.arbeidsgiverId}>
+                            <Heading level="2" size="medium">
+                                {arbeidsgiver.arbeidsgiverNavn}
+                            </Heading>
+                            {arbeidsgiver.inntektsmeldinger.map((inntektsmelding) => {
+                                return (
+                                    <VStack gap="space-8" key={inntektsmelding.journalpostId}>
+                                        <InntektsmeldingLinkCard
+                                            inntektsmelding={inntektsmelding}
+                                            saksnummer={saksnummer}
+                                        />
+                                        {visIkkeIBruk && inntektsmelding.erstatter.length > 0 && (
+                                            <Box
+                                                borderWidth="0 0 0 1"
+                                                borderColor="info-subtleA"
+                                                paddingBlock="space-0 space-4"
+                                                marginInline={{ xs: 'space-12 space-0', md: 'space-16 space-0' }}>
+                                                <VStack
+                                                    gap="space-12"
+                                                    marginInline={{ xs: 'space-12 space-0', md: 'space-16 space-0' }}
+                                                    marginBlock="space-8 space-8">
+                                                    <Heading level="3" size="xsmall">
+                                                        Inntektsmeldingen over erstatter disse:
+                                                    </Heading>
+                                                    {renderInntektsmeldinger(inntektsmelding.erstatter)}
+                                                </VStack>
+                                            </Box>
+                                        )}
+                                    </VStack>
+                                );
+                            })}
+                        </VStack>
+                    );
+                })}
+            </VStack>
         </VStack>
     );
 };

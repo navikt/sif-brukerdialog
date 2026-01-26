@@ -3,7 +3,11 @@
 }
 
 .inntektsmeldingLinkCard--ikkeIBruk {
-    --ax-bg-raised: var(--ax-bg-sunken);
+    --ax-bg-raised: var(--ax-bg-neutral-soft);
+}
+
+.inntektsmeldingLinkCard--ikkeRelevant {
+    --ax-bg-raised: var(--ax-bg-warning-moderate);
 }
 
 .inntektsmeldingLinkCard--ikkeIBruk:hover {

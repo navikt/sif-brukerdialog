@@ -1,19 +1,19 @@
 [
     {
         "ytelseType": "PLEIEPENGER_SYKT_BARN",
-        "status": "I_BRUK",
+        "status": "IKKE_RELEVANT",
         "saksnummer": "10007LM",
-        "innsendingstidspunkt": "2025-02-19T10:39:27",
+        "innsendingstidspunkt": "2025-03-21T10:39:27",
         "kildesystem": "Dolly",
         "arbeidsgiver": {
             "organisasjon": {
                 "navn": "TROSSIG NATURSTRIDIG TIGER AS",
-                "organisasjonsnummer": "310547824"
+                "organisasjonsnummer": "311536753"
             }
         },
         "nærRelasjon": false,
         "journalpostId": "453947901",
-        "mottattDato": "2025-02-19",
+        "mottattDato": "2025-02-21",
         "inntektBeløp": 65000,
         "innsendingsårsak": "NY",
         "erstattetAv": [],
