@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.58
+
+### Patch Changes
+
+- Trigger deploy etter tar oppdatering
+
 ## 3.49.57
 
 ### Patch Changes

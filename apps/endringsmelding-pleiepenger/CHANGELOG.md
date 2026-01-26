@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.40.57
+
+### Patch Changes
+
+- Trigger deploy etter tar oppdatering
+
 ## 2.40.56
 
 ### Patch Changes

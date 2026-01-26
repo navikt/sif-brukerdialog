@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.49
+
+### Patch Changes
+
+- Trigger deploy etter tar oppdatering
+
 ## 0.9.48
 
 ### Patch Changes

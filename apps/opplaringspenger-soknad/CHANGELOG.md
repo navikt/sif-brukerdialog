@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.34
+
+### Patch Changes
+
+- Trigger deploy etter tar oppdatering
+
 ## 1.4.33
 
 ### Patch Changes

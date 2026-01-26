@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.57
+
+### Patch Changes
+
+- Trigger deploy etter tar oppdatering
+
 ## 2.28.56
 
 ### Patch Changes

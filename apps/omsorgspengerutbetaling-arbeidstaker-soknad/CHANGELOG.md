@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.16.58
+
+### Patch Changes
+
+- Trigger deploy etter tar oppdatering
+
 ## 1.16.57
 
 ### Patch Changes
