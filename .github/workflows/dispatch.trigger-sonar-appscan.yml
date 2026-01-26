@@ -18,7 +18,8 @@ jobs:
     trigger-scan:
         name: Trigger sonar scan on ${{ inputs.app-name }}
         uses: ./.github/workflows/.sonarcloud.app-scan.yml
-        secrets: inherit
+        secrcontents: read
+            ets: inherit
         permissions:
             id-token: write
         with:
