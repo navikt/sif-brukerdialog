@@ -10,7 +10,6 @@ import {
     BehandlingStatus,
     InnsendelseISak,
     Inntektsmelding,
-    InntektsmeldingStatus,
     Organisasjon,
     Sak,
     SøknadISak,
@@ -128,7 +127,7 @@ export const getAlleHendelserISak = (sak: Sak, inntektsmeldinger: Inntektsmeldin
         .flat();
 
     const inntektsmeldingHendelser: Sakshendelse[] = inntektsmeldinger
-        .filter((im) => im.status === InntektsmeldingStatus.I_BRUK)
+        // .filter((im) => im.status === InntektsmeldingStatus.I_BRUK)
         .map((im) => ({
             type: Sakshendelser.INNTEKTSMELDING,
             dato: im.mottattDato,
