@@ -10,6 +10,8 @@ on:
 env:
   APP_NAME: ungdomsytelse-veileder
 
+permissions: {}
+
 jobs:
   deploy-to-dev:
     name: Deploy veilederapp to dev (${{github.ref_name}})

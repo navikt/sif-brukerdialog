@@ -22,6 +22,8 @@ on:
                     - ungdomsytelse-deltaker
                 required: true
 
+permissions: {}
+
 jobs:
     deploy-to-dev:
         name: Deploy ${{ inputs.app-name }} to dev
