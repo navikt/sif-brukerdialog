@@ -7,8 +7,8 @@ const INFORMER_OM_DEMO = true;
 
 const DrawerArticles = () => {
     return (
-        <VStack gap="10" className="articles">
-            <VStack gap="1">
+        <VStack gap="space-40" className="articles">
+            <VStack gap="space-4">
                 <Heading level="2" size="medium" spacing={true}>
                     Snakk med deltaker om dette
                 </Heading>
@@ -56,7 +56,7 @@ const DrawerArticles = () => {
                     </ExpansionCard.Content>
                 </ExpansionCard>
             </VStack>
-            <VStack gap="1">
+            <VStack gap="space-4">
                 <Heading level="2" size="medium" spacing={true}>
                     Om ungdomsprogramytelsen
                 </Heading>
@@ -74,7 +74,7 @@ const DrawerArticles = () => {
                     </ExpansionCard>
                 ))}
             </VStack>
-            <VStack gap="1">
+            <VStack gap="space-4">
                 <Heading level="2" size="medium" spacing={true}>
                     Oppgaver og forhåndsvarsel
                 </Heading>
@@ -83,7 +83,7 @@ const DrawerArticles = () => {
                         <ExpansionCard.Title size="small">Oppgaver deltaker får på Min side</ExpansionCard.Title>
                     </ExpansionCard.Header>
                     <ExpansionCard.Content>
-                        <VStack gap="6">
+                        <VStack gap="space-24">
                             <BodyLong>
                                 Deltakeren vil underveis motta ulike oppgaver knyttet til ungdomsprogramytelsen. Disse
                                 varsles via SMS og leder til Min side på nav.no. Derfra kan deltakeren gå videre til
@@ -92,7 +92,7 @@ const DrawerArticles = () => {
                             <Heading level="2" size="medium">
                                 Enkeltoppgaver
                             </Heading>
-                            <VStack gap="1">
+                            <VStack gap="space-4">
                                 <Heading level="3" size="small">
                                     Send inn søknad
                                 </Heading>
@@ -101,7 +101,7 @@ const DrawerArticles = () => {
                                     sende inn søknad.
                                 </BodyLong>
                             </VStack>
-                            <VStack gap="1">
+                            <VStack gap="space-4">
                                 <Heading level="3" size="small">
                                     Rapportere inntekt
                                 </Heading>
@@ -129,7 +129,7 @@ const DrawerArticles = () => {
                                 en behandling som gjelder ungdomsprogramytelsen, så blir deltaker forhåndsvarslet jf.
                                 forvaltningsloven § 16.{' '}
                             </BodyLong>
-                            <VStack gap="1">
+                            <VStack gap="space-4">
                                 <Heading level="3" size="small">
                                     Endret start- eller sluttdato
                                 </Heading>
@@ -144,7 +144,7 @@ const DrawerArticles = () => {
                                     snakke med veileder først.
                                 </BodyLong>
                             </VStack>
-                            <VStack gap="1">
+                            <VStack gap="space-4">
                                 <Heading level="3" size="small">
                                     Avvik i inntekt
                                 </Heading>
@@ -161,7 +161,7 @@ const DrawerArticles = () => {
                             <Heading level="2" size="medium">
                                 Oppgaver som blir avbrutt eller utløper
                             </Heading>
-                            <VStack gap="1">
+                            <VStack gap="space-4">
                                 <Heading level="3" size="small">
                                     Avbrutt oppgave
                                 </Heading>
@@ -172,7 +172,7 @@ const DrawerArticles = () => {
                                     oppgaven automatisk avbrutt og erstattet med en ny.
                                 </BodyLong>
                             </VStack>
-                            <VStack gap="1">
+                            <VStack gap="space-4">
                                 <Heading level="3" size="small">
                                     Utløpt oppgave
                                 </Heading>
@@ -196,11 +196,11 @@ const DrawerArticles = () => {
                 </ExpansionCard>
             </VStack>
             {INFORMER_OM_DEMO && (
-                <VStack gap="4" paddingBlock="0 4">
+                <VStack gap="space-16" paddingBlock="space-0 space-16">
                     <Heading level="2" size="medium">
                         Demoversjon av deltakersidene
                     </Heading>
-                    <VStack gap="6">
+                    <VStack gap="space-24">
                         <BodyLong>
                             Du kan prøve ut en demoversjon av deltakersidene for å se hvordan funksjonaliteten og
                             informasjonen fremstår for deltakerne. I demoen kan du se både søknadsskjemaet,
@@ -211,7 +211,8 @@ const DrawerArticles = () => {
                         <BodyLong>
                             <Link
                                 href="https://navikt.github.io/sif-brukerdialog/ungdomsytelse-deltaker"
-                                target="_blank">
+                                target="_blank"
+                                rel="noopener noreferrer">
                                 Gå til demoversjon av deltakersidene
                                 <ExternalLinkIcon role="presentation" />
                             </Link>

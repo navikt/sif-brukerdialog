@@ -10,7 +10,7 @@ interface Props {
 }
 
 const DefaultPageLayout = ({ children, pageHeader, documentTitle }: Props) => (
-    <VStack gap="10" className="p-5 max-w-282 mx-auto">
+    <VStack gap="space-40" className="p-5 max-w-282 mx-auto">
         {pageHeader ? pageHeader : <PageHeader documentTitle={documentTitle} />}
         {children}
     </VStack>

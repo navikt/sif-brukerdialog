@@ -1,3 +1,4 @@
+import { SlettDeltakerÅrsak } from '../types/SlettDeltakerÅrsaker';
 import { Utmeldingsårsak } from '../types/Utmeldingsårsaker';
 import { AppHendelse, useAnalyticsInstance } from './analytics';
 
@@ -5,6 +6,7 @@ import { AppHendelse, useAnalyticsInstance } from './analytics';
 export type AppEventPayloads = {
     [AppHendelse.startdatoEndret]: { endring: number };
     [AppHendelse.sluttdatoSattFørsteGang]: { årsak: Utmeldingsårsak };
+    [AppHendelse.aktivDeltakerSlettet]: { årsak: SlettDeltakerÅrsak };
     [AppHendelse.sluttdatoEndret]: void;
     [AppHendelse.deltakerSlettet]: void;
     [AppHendelse.deltakerRegistrert]: void;

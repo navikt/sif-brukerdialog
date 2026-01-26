@@ -41,7 +41,7 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
                 Første fraværsdato: {dateFormatter.full(inntektsmelding.startDatoPermisjon)}.
             </LinkCard.Description>
             <LinkCard.Footer>
-                <HStack gap="2">
+                <HStack gap="space-8">
                     <Tag variant="info" size="small">
                         Mottatt {dateFormatter.compact(inntektsmelding.mottattDato)}
                     </Tag>

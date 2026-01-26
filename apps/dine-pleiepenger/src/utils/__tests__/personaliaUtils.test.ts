@@ -11,14 +11,12 @@ const pleietrengendeMedNavn: Pleietrengende = {
     fornavn: 'Ola',
     etternavn: 'Nordmann',
     mellomnavn: 'Nord',
-    identitetsnummer: '12345678910',
 };
 
 const pleietrengendeAnonymisert: Pleietrengende = {
     anonymisert: true,
     aktørId: '123',
     fødselsdato: ISODateToDate('2021-01-01'),
-    identitetsnummer: '12345678910',
 };
 
 describe('personaliaUtils', () => {

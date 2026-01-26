@@ -43,7 +43,7 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
                     </Alert>
                 )}
 
-                <VStack gap="4">
+                <VStack gap="space-16">
                     <Heading level="2" size="medium">
                         <AppText id="page.confirmation.dinePP.info.tittel" />
                     </Heading>
@@ -66,7 +66,7 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
                             <AppText id="page.confirmation.dinePP.list.item.4" />
                         </List.Item>
                     </List>
-                    <Link href={lenker.innsynSIF} target="_blank">
+                    <Link href={lenker.innsynSIF} target="_blank" rel="noopener noreferrer">
                         <AppText id="page.confirmation.dinePP.lenke" />
                     </Link>
                 </VStack>

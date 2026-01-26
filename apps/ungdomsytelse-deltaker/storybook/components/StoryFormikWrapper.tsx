@@ -47,8 +47,8 @@ export const StoryFormikWrapper = (props: Props) => {
                             {...(useBorder
                                 ? {
                                       maxWidth,
-                                      borderColor: 'border-info',
-                                      borderRadius: 'medium',
+                                      borderColor: 'info',
+                                      borderRadius: '8',
                                       borderWidth: '1',
                                   }
                                 : {})}>

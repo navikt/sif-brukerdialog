@@ -80,7 +80,7 @@ function FormikRadioGroup<FieldName, ErrorType>({
                         value={field.value || ''}>
                         {renderHorizontal ? (
                             <Stack
-                                gap="0 6"
+                                gap="space-0 space-24"
                                 direction={{ xs: 'column', sm: 'row' }}
                                 wrap={false}
                                 style={{ marginTop: '-.25rem', marginBottom: '.5rem' }}>

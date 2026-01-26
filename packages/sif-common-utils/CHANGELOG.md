@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.58
+
+### Patch Changes
+
+- 522fe9f: lodash@4.17.23
+
 ## 3.49.57
 
 ### Patch Changes

@@ -1,9 +1,8 @@
 import { TrashIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, HGrid } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
-import { useState } from 'react';
-
 import { AppText, useAppIntl } from '@shared/i18n';
+import { useState } from 'react';
 
 interface Props {
     slett?: {
@@ -18,7 +17,7 @@ const StegFooter = ({ slett }: Props) => {
     return (
         <>
             <div>
-                <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
+                <HGrid gap={{ xs: "space-16", sm: "space-32 space-16" }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
                     {slett && (
                         <Button
                             type="button"

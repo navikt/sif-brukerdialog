@@ -96,7 +96,6 @@ const LovbestemtFerieStep = () => {
                     </List.Item>
                 </List>
             </FormLayout.Guide>
-
             <FormikWrapper
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
@@ -114,14 +113,13 @@ const LovbestemtFerieStep = () => {
                                     oppdaterSøknadState({ feriedager });
                                 }}
                             />
-
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'lovbestemtFerieForm')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
-                                <VStack gap="6">
+                                <VStack gap="space-24">
                                     {sak.søknadsperioder.length === 1 ? null : (
                                         <Heading level="3" size="small">
                                             <AppText
@@ -137,7 +135,7 @@ const LovbestemtFerieStep = () => {
                                         defaultOpenState="none"
                                         renderContent={(søknadsperiode) => {
                                             return (
-                                                <Box paddingBlock="4">
+                                                <Box paddingBlock="space-16">
                                                     <Heading
                                                         level={sak.søknadsperioder.length === 1 ? '3' : '4'}
                                                         size={sak.søknadsperioder.length === 1 ? 'small' : 'xsmall'}

@@ -28,7 +28,7 @@ export const useWithInnsynApp = (
                     <ForsidePageLayout
                         documentTitle="Forside"
                         footer={options?.frontpageFooter ? <ForsidePageFooter /> : null}>
-                        <VStack gap="8">
+                        <VStack gap="space-32">
                             {options.withHeader && <ForsideHeader startdato={options.startdato || new Date()} />}
                             <Story />
                         </VStack>

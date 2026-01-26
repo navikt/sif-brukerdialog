@@ -34,7 +34,7 @@ const UngdomsprogrammetBanner = () => {
                                 </span>
                             </span>
                         </Box>
-                        <Bleed marginBlock="3">
+                        <Bleed marginBlock="space-12">
                             <span
                                 className="inline-block rounded-xl p-3 pb-6 pt-6"
                                 style={{ backgroundColor: '#D7E6F0', paddingRight: '1.5rem' }}>

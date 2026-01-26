@@ -1,12 +1,13 @@
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { KursFormComponents, KursFormFields, KursFormValues } from '../KursStepForm';
-import { AppText, useAppIntl } from '../../../../i18n';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { YesOrNo } from '@navikt/sif-common-core-ds';
-import { FormLayout } from '@navikt/sif-common-ui';
-import ReiseInfo from '../info/ReiseInfo';
-import ReisedagerFormPart from '../parts/reisedager-form-part/ReisedagerFormPart';
 import { Alert } from '@navikt/ds-react';
+import { YesOrNo } from '@navikt/sif-common-core-ds';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
+
+import { AppText, useAppIntl } from '../../../../i18n';
+import ReiseInfo from '../info/ReiseInfo';
+import { KursFormComponents, KursFormFields, KursFormValues } from '../KursStepForm';
+import ReisedagerFormPart from '../parts/reisedager-form-part/ReisedagerFormPart';
 
 interface Props {
     values: Partial<KursFormValues>;

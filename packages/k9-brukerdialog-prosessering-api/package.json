@@ -6,13 +6,13 @@
     "type": "module",
     "version": "0.3.7",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.90.1",
+        "@hey-api/openapi-ts": "0.90.4",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.13.2",
         "config": "workspace:*",
         "postcss": "8.5.6",
         "typescript": "5.9.3",
-        "vitest": "4.0.16",
+        "vitest": "4.0.17",
         "zod": "4.3.5"
     },
     "peerDependencies": {
@@ -39,7 +39,8 @@
         "gen-types:pleiepenger-sykt-barn-endringsmelding": "openapi-ts --file configs/openapi-ts.config-pleiepenger-sykt-barn-endringsmelding.ts",
         "gen-types:pleiepenger-sykt-barn-soknad": "openapi-ts --file configs/openapi-ts.config-pleiepenger-sykt-barn-soknad.ts",
         "gen-types:legacy": "openapi-ts --file configs/openapi-ts.config.ts",
-        "codegen": "yarn gen-types:all:fixed",
+        "codegen:dev": "CODEGEN_ENV=dev yarn gen-types:all:fixed",
+        "codegen:prod": "CODEGEN_ENV=prod yarn gen-types:all:fixed",
         "lint:eslint": "eslint './src/*/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/generated/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"

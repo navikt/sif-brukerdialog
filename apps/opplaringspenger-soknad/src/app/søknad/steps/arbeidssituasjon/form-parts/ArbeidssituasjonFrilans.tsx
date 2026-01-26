@@ -96,15 +96,15 @@ const ArbeidssituasjonFrilans = ({
                     description={
                         søkerHarFrilansoppdrag ? undefined : (
                             <ExpandableInfo title={text('frilanser.hjelpetekst.spm')}>
-                                <VStack gap="6">
+                                <VStack gap="space-24">
                                     <BodyShort>
                                         {text('frilanser.hjelpetekst')}{' '}
-                                        <Link href={urlSkatteetaten} target="_blank">
+                                        <Link href={urlSkatteetaten} target="_blank" rel="noopener noreferrer">
                                             <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
                                         </Link>
                                         .
                                     </BodyShort>
-                                    <VStack gap="2">
+                                    <VStack gap="space-8">
                                         <Heading level="3" size="xsmall">
                                             <AppText id="frilanser.hjelpetekst.2.heading" />
                                         </Heading>

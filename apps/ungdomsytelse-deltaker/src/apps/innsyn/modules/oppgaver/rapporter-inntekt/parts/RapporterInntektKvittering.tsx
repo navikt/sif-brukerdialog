@@ -15,7 +15,7 @@ interface Props {
 const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteringData }, ref) => {
     useSkyraReloader();
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             <Alert variant="success" ref={ref} tabIndex={-1}>
                 <Heading level="2" size="small" spacing>
                     <AppText id="rapporterInntektKvittering.tittel" />

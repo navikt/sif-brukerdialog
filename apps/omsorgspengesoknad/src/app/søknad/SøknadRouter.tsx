@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
@@ -26,7 +26,7 @@ const SøknadRouter = () => {
         state: { søknadsdata, søknadRoute: stateSøknadRoute, søker, søknadSendt, isReloadingApp },
     } = useSøknadContext();
     const navigateTo = useNavigate();
-    const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
+    const isFirstTimeLoadingApp = useRef(true);
     const { slettMellomlagring } = useMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
@@ -34,19 +34,19 @@ const SøknadRouter = () => {
     useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
 
     useEffect(() => {
-        if (stateSøknadRoute && isFirstTimeLoadingApp) {
-            setIsFirstTimeLoadingApp(false);
+        if (stateSøknadRoute && isFirstTimeLoadingApp.current) {
+            isFirstTimeLoadingApp.current = false;
             navigateTo(stateSøknadRoute);
         }
         if (pathname === SøknadRoutes.VELKOMMEN && stateSøknadRoute) {
             navigateTo(stateSøknadRoute); // Send til sider dersom bruker kommer til velkommen via annen navigasjon
         }
-    }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
+    }, [navigateTo, pathname, stateSøknadRoute]);
 
     const restartSøknad = useCallback(async () => {
-        await slettMellomlagring;
+        await slettMellomlagring();
         relocateToWelcomePage();
-    }, []);
+    }, [slettMellomlagring]);
 
     useEffect(() => {
         if (shouldResetSøknad) {

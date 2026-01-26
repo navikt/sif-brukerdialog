@@ -1,11 +1,11 @@
-import { BrowserContext, Page } from '@playwright/test';
-import { StepId } from '../../src/app/types/StepId';
+import { Page } from '@playwright/test';
+
 import { mockData } from '../../mock/data';
+import { StepId } from '../../src/app/types/StepId';
 
 export const setupMockRoutes = async (
     page: Page,
-    context: BrowserContext,
-    props?: { mellomlagring: any; lastStep?: StepId },
+    props?: { mellomlagring: any; lastStep?: StepId; mockData?: Partial<typeof mockData> },
 ) => {
     await page.route('**/oppslag/barn**', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.barn) });
@@ -15,7 +15,10 @@ export const setupMockRoutes = async (
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.søker) });
     });
     await page.route('**/oppslag/arbeidsgiver**', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(mockData.arbeidsgiver) });
+        await route.fulfill({
+            status: 200,
+            body: JSON.stringify(props?.mockData?.arbeidsgiver || mockData.arbeidsgiver),
+        });
     });
     await page.route('**/vedlegg', async (route) => {
         await route.fulfill({

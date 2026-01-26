@@ -34,10 +34,10 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     return (
         <DefaultPageLayout documentTitle={`${tittel} - ${text('søknad.tittel')}`}>
             <section aria-label="Skjema">
-                <VStack gap="8">
+                <VStack gap="space-32">
                     <SøknadHeader />
                     <div>
-                        <Box paddingBlock="6 5">
+                        <Box paddingBlock="space-24 space-20">
                             <Heading level="2" size="large">
                                 {tittel}
                             </Heading>
@@ -56,7 +56,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                         </FormProgress>
                     </div>
 
-                    <Box marginBlock="4 0">{children}</Box>
+                    <Box marginBlock="space-16 space-0">{children}</Box>
 
                     <StegFooter
                         slett={{

@@ -1,4 +1,4 @@
-import { Box, BoxNew, Switch, VStack } from '@navikt/ds-react';
+import { Box, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
 import { Inntektsmelding, InntektsmeldingStatus } from '../../types';
@@ -20,7 +20,7 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
         (im) => im.status !== InntektsmeldingStatus.I_BRUK,
     );
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             {harInntektsmeldingerSomIkkeErIBruk && (
                 <Box>
                     <Switch
@@ -41,9 +41,9 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                         saksnummer={saksnummer}
                     />
                 ) : (
-                    <BoxNew key={inntektsmelding.journalpostId} marginBlock="0 4" marginInline="6 0">
+                    <Box key={inntektsmelding.journalpostId} marginBlock="space-0 space-16" marginInline="space-24 space-0">
                         <InntektsmeldingLinkCard saksnummer={saksnummer} inntektsmelding={inntektsmelding} />
-                    </BoxNew>
+                    </Box>
                 );
             })}
         </VStack>

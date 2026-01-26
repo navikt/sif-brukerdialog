@@ -45,13 +45,13 @@ class AppErrorBoundary extends React.Component<Props, State> {
         if (hasError) {
             return (
                 <AppPage>
-                    <Box paddingBlock="10">
+                    <Box paddingBlock="space-40">
                         <SifGuidePanel mood="uncertain">
                             <Heading level="2" size="medium">
                                 Det oppstod en feil
                             </Heading>
                             <p>Dersom feilen vedvarer, kan du prøve å starte på nytt.</p>
-                            <Box marginBlock="4 0">
+                            <Box marginBlock="space-16 space-0">
                                 {onResetSoknad && (
                                     <Button
                                         type="button"

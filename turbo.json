@@ -29,7 +29,11 @@
         "lint:eslint": {},
         "lint:tsc": {},
         "lint:fix": {},
-        "codegen": {
+        "codegen:dev": {
+            "outputs": [],
+            "cache": false
+        },
+        "codegen:prod": {
             "outputs": [],
             "cache": false
         },

@@ -6,7 +6,7 @@ import { getLenker } from '../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     return (
-        <VStack gap="6" paddingBlock="2 0">
+        <VStack gap="space-24" paddingBlock="space-8 space-0">
             <div>
                 <Heading level="3" size="small">
                     <AppText id="personopplysninger.1" />
@@ -43,13 +43,12 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                     </List.Item>
                 </List>
             </div>
-
             <div>
                 <AppText
                     id="personopplysninger.5"
                     values={{
                         Link: (children) => (
-                            <Link href={getLenker().personvern} target="_blank">
+                            <Link href={getLenker().personvernerklæring} target="_blank" rel="noopener noreferrer">
                                 {children}
                             </Link>
                         ),

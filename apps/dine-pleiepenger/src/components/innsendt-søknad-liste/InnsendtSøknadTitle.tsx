@@ -11,13 +11,13 @@ interface Props {
 
 const InnsendtSøknadTitle = ({ søknad }: Props) => {
     return (
-        <Bleed marginBlock="2 0">
-            <VStack gap="2">
-                <HStack gap="2" align="start" wrap={false}>
+        <Bleed marginBlock="space-8 space-0">
+            <VStack gap="space-8">
+                <HStack gap="space-8" align="start" wrap={false}>
                     <Show above="sm">
                         <TasklistIcon role="presentation" aria-hidden={true} width="1.25rem" height="1.25rem" />
                     </Show>
-                    <Bleed marginBlock="1 0">
+                    <Bleed marginBlock="space-4 space-0">
                         <BodyShort as="div" size="large" weight="semibold">
                             <AppText id={`sakstype.${søknad.søknadstype}`} />
                         </BodyShort>

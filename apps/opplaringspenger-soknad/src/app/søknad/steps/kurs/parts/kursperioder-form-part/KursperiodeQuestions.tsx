@@ -59,7 +59,7 @@ const KursperiodeQuestions = ({
     const periodeNr = index + 1;
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <Form.DateRangePicker
                 legend={text('kursperiode.form.periode.label', { periodeNr })}
                 hideLegend={true}
@@ -144,7 +144,6 @@ const KursperiodeQuestions = ({
                     },
                 }}
             />
-
             {harFlerePerioder && onRemove && (
                 <Box>
                     <Button

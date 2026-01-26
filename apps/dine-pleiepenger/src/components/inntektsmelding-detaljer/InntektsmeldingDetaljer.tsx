@@ -19,9 +19,9 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
         inntektsmelding;
 
     return (
-        <VStack gap="4">
-            <VStack gap="10">
-                <HStack gap="2" align="center">
+        <VStack gap="space-16">
+            <VStack gap="space-40">
+                <HStack gap="space-8" align="center">
                     <BodyShort weight="semibold" size="large">
                         Status:
                     </BodyShort>
@@ -33,7 +33,6 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     kontakte arbeidsgiver.
                 </BodyShort>
             </VStack>
-
             <ExpansionCard aria-labelledby="beregnet-månedsinntekt">
                 <ExpansionCard.Header>
                     <ExpansionCard.Title size="medium" as="div">
@@ -59,7 +58,6 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     </BodyLong>
                 </ExpansionCard.Content>
             </ExpansionCard>
-
             <InfoBlock icon="calendar" title="Første fraværsdag med pleiepenger">
                 {startDatoPermisjon ? (
                     <>
@@ -70,7 +68,6 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                     'Ikke oppgitt'
                 )}
             </InfoBlock>
-
             <InfoBlock
                 icon="wallet"
                 title="Hvordan utbetales pleiepengene?"
@@ -81,9 +78,13 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                         arbeidsgivere må forskuttere på grunn av tariffavtaler, mens andre velger det selv.
                     </>
                 }>
-                <RefusjonInfo inntektBeløp={inntektBeløp} refusjon={refusjon} endringerRefusjon={endringerRefusjon} />
+                <RefusjonInfo
+                    inntektBeløp={inntektBeløp}
+                    refusjon={refusjon}
+                    endringerRefusjon={endringerRefusjon}
+                    startDatoPermisjon={startDatoPermisjon}
+                />
             </InfoBlock>
-
             <InfoBlock
                 icon="spark"
                 title="Mister du naturalytelser (goder) under fraværet?"
@@ -95,11 +96,10 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 }>
                 <NaturalYtelserInfo naturalYtelser={naturalYtelser} />
             </InfoBlock>
-
-            <HGrid columns={{ sm: 1, md: 2 }} gap="4">
+            <HGrid columns={{ sm: 1, md: 2 }} gap="space-16">
                 <InfoBlock icon="building" title="Din arbeidsgiver" background="info-softA">
                     {arbeidsgiver.organisasjon && (
-                        <VStack gap="1">
+                        <VStack gap="space-4">
                             <div>{arbeidsgiver.organisasjon.navn}</div>
                             <div>
                                 Orgnr.{' '}
@@ -110,7 +110,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                         </VStack>
                     )}
                     {arbeidsgiver.privat && (
-                        <VStack gap="1">
+                        <VStack gap="space-4">
                             <div>{arbeidsgiver.privat.navn}</div>
                         </VStack>
                     )}

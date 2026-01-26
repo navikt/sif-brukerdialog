@@ -26,7 +26,7 @@ function StepFooter({ onAvbrytOgFortsettSenere, onAvbrytOgSlett }: Props) {
                 <div className={bem.element('horizontalDivider')} />
                 <div className={bem.element('actions')}>
                     {onAvbrytOgFortsettSenere && (
-                        <Box asChild marginBlock={{ xs: '4 0', sm: '0' }}>
+                        <Box asChild marginBlock={{ xs: "space-16 space-0", sm: "space-0" }}>
                             <Button
                                 type="button"
                                 variant="tertiary"

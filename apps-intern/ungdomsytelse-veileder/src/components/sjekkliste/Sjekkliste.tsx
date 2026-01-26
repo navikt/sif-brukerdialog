@@ -35,19 +35,19 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
     }, [kanMeldesInn, onChange, prev]);
 
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             {showHeader && (
                 <Heading level="3" size="small" spacing>
                     Sjekkliste for om deltaker kan meldes inn i ungdoms&shy;programmet
                 </Heading>
             )}
-            <VStack gap="10">
+            <VStack gap="space-40">
                 <RadioGroup
                     name="alder"
                     legend="Er deltaker mellom 18 og 29 år ved oppstart?"
                     value={values.alder || ''}
                     onChange={(val: JaNei) => setValue('alder', val)}>
-                    <HStack gap="10">
+                    <HStack gap="space-40">
                         <Radio value="ja">Ja</Radio>
                         <Radio value="nei">Nei</Radio>
                     </HStack>
@@ -61,7 +61,7 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
                         legend="Har deltaker behov for bistand fra Nav og er deltakelsen nødvendig og hensiktsmessig for å komme i arbeid?"
                         description={
                             <ReadMore header="Les mer om nødvendighet">
-                                <VStack gap="4">
+                                <VStack gap="space-16">
                                     <BodyLong>
                                         Punkter som gir eksempler på hvem som ikke kan tas inn (eks: har lån og stipend
                                         fra lånekassen mm mm)
@@ -73,7 +73,7 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
                                 </VStack>
                             </ReadMore>
                         }>
-                        <HStack gap="10">
+                        <HStack gap="space-40">
                             <Radio value="ja">Ja</Radio>
                             <Radio value="nei">Nei</Radio>
                         </HStack>
@@ -88,7 +88,7 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
                         legend="Ønsker deltaker å være med, kan delta på fulltid og har ikke tidligere vært med i ungdomsprogrammet?"
                         description={
                             <ReadMore header="Les mer om krav til deltakelse på fulltid">
-                                <VStack gap="4" marginBlock="0 4">
+                                <VStack gap="space-16" marginBlock="space-0 space-16">
                                     <BodyLong>
                                         Punkter som gir eksempler på hvem som ikke kan delta på full tid (eks: mottar
                                         sykepenger, pleiepenger)
@@ -96,7 +96,7 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
                                 </VStack>
                             </ReadMore>
                         }>
-                        <HStack gap="10">
+                        <HStack gap="space-40">
                             <Radio value="ja">Ja</Radio>
                             <Radio value="nei">Nei</Radio>
                         </HStack>
@@ -109,7 +109,7 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
                         legend="Mottar deltakeren andre livsoppholdsytelser fra Nav?"
                         value={values.mottarYtelser || ''}
                         onChange={(val: JaNei) => setValue('mottarYtelser', val)}>
-                        <HStack gap="10">
+                        <HStack gap="space-40">
                             <Radio value="ja">Ja</Radio>
                             <Radio value="nei">Nei</Radio>
                         </HStack>
@@ -135,7 +135,7 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
                         onChange={(val: JaNei) => setValue('skalStanses', val)}
                         description={
                             <ReadMore header="Les mer om krav til deltakelse på fulltid">
-                                <VStack gap="4" marginBlock="0 4">
+                                <VStack gap="space-16" marginBlock="space-0 space-16">
                                     <BodyLong>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi quia,
                                         nesciunt rerum temporibus vitae molestias vel ad eligendi vero ex eos officiis
@@ -144,21 +144,20 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
                                 </VStack>
                             </ReadMore>
                         }>
-                        <HStack gap="10">
+                        <HStack gap="space-40">
                             <Radio value="ja">Ja</Radio>
                             <Radio value="nei">Nei</Radio>
                         </HStack>
                     </RadioGroup>
                 )}
             </VStack>
-
             {visResultat && kanMeldesInn && (
-                <Box marginBlock="4 0">
+                <Box marginBlock="space-16 space-0">
                     <Alert variant="success">Deltaker kan meldes inn</Alert>
                 </Box>
             )}
             {visResultat && !kanMeldesInn && avslagÅrsak && (
-                <Box marginBlock="4 0">
+                <Box marginBlock="space-16 space-0">
                     <Alert variant="error">
                         Deltaker kan ikke meldes inn fordi ... tekst avhengig av årsak ({avslagÅrsak})
                     </Alert>

@@ -40,7 +40,7 @@ export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Vir
           });
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <div>
                 {text('@forms.virksomhet.summary.navn')}: {virksomhet.navnPåVirksomheten}.
             </div>
@@ -68,7 +68,7 @@ const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) => {
     const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(ISODateToDate(virksomhet.fraOgMed));
 
     return (
-        <VStack gap="6">
+        <VStack gap="space-24">
             {renderVirksomhetSummary(virksomhet, virksomhetIntl)}
             {virksomhet.næringsinntekt !== undefined && (
                 <SummaryBlock

@@ -31,7 +31,7 @@ const Oppgavebekreftelse = ({ oppgave, deltakerNavn, children, initialVisKvitter
 
     return (
         <OppgavebekreftelseContext.Provider value={contextValue}>
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <div>
                     <OppgaveStatusTag
                         oppgaveStatus={oppgave.status}

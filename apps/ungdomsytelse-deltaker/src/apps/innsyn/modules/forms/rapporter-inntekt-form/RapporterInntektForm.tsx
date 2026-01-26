@@ -78,7 +78,7 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
                         includeValidationSummary={true}
                         submitPending={isPending}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
-                        <VStack gap="4">
+                        <VStack gap="space-16">
                             <FormLayout.Questions>
                                 <YesOrNoQuestion
                                     name={InntektFormFields.harInntekt}
@@ -90,7 +90,7 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
                                 />
 
                                 {harArbeidstakerOgFrilansInntekt ? (
-                                    <VStack gap="4">
+                                    <VStack gap="space-16">
                                         <NumberInput
                                             name={InntektFormFields.inntekt}
                                             label={text('inntektForm.inntektLabel')}
@@ -104,7 +104,7 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
                                                 allowDecimals: false,
                                             })}
                                         />
-                                        <VStack gap="2">
+                                        <VStack gap="space-8">
                                             <ReadMore header={text('inntektForm.hvordanFinnerDuUtInntekt.tittel')}>
                                                 <BodyLong spacing>
                                                     <AppText id="inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.1" />

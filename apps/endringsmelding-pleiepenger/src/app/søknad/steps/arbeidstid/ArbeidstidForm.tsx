@@ -125,7 +125,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                                 id="arbeidstidStep.ingenArbeidsaktiviteter"
                                 values={{
                                     Lenke: (txt: string) => (
-                                        <Link href={getLenker(intl.locale).beskjedOmFamilie}>{txt}</Link>
+                                        <Link href={getLenker(intl.locale).skrivTilOss}>{txt}</Link>
                                     ),
                                 }}
                             />
@@ -142,7 +142,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            <VStack gap="4">
+                            <VStack gap="space-16">
                                 {arbeidsaktiviteter.map((arbeidsaktivitet) => (
                                     <ArbeidsaktivitetFormPart
                                         key={arbeidsaktivitet.key}

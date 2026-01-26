@@ -14,17 +14,17 @@
     },
     "dependencies": {
         "@hookform/error-message": "2.0.1",
-        "@navikt/aksel-icons": "7.39.0",
-        "@navikt/ds-css": "7.39.0",
-        "@navikt/ds-react": "7.39.0",
+        "@navikt/aksel-icons": "8.1.0",
+        "@navikt/ds-css": "8.1.0",
+        "@navikt/ds-react": "8.1.0",
         "@navikt/sif-common-utils": "workspace:*",
-        "@types/react": "19.2.7",
+        "@types/react": "19.2.8",
         "@types/react-dom": "19.2.3",
         "dayjs": "1.11.19",
         "react": "19.2.3",
         "react-dom": "19.2.3",
-        "react-hook-form": "7.70.0",
-        "react-intl": "8.0.10"
+        "react-hook-form": "7.71.1",
+        "react-intl": "8.1.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -43,9 +43,9 @@
         "storybook": "10.1.11",
         "storybook-react-intl": "10.0.1",
         "typescript": "5.9.3",
-        "vite": "7.3.0",
+        "vite": "7.3.1",
         "vite-plugin-checker": "0.12.0",
-        "vitest": "4.0.16"
+        "vitest": "4.0.17"
     },
     "peerDependencies": {
         "react": "18.2.0"

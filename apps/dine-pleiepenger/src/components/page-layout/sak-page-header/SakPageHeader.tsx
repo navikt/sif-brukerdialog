@@ -24,7 +24,7 @@ const SakPageHeader = ({ tittel, titleTag, saksnr, pleietrengende, hidePleiepeng
             hidePleiepengerIcon={hidePleiepengerIcon}
             byline={
                 <BodyShort as="div">
-                    <HStack gap="2">
+                    <HStack gap="space-8">
                         <span>
                             <AppText id="sakPageHeader.saksnr" values={{ saksnr }} />
                         </span>

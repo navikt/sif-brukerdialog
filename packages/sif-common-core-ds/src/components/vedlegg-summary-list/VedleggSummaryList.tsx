@@ -1,9 +1,9 @@
+import { PaperclipIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, HStack, Link, List } from '@navikt/ds-react';
 
 import { useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
 import { formatFileSize } from '../../utils/formatFileSize';
-import { PaperclipIcon } from '@navikt/aksel-icons';
 
 type Variant = 'plain' | 'border' | 'zebra';
 
@@ -18,8 +18,8 @@ const getVariantStyle = (variant: Variant, index: number): React.CSSProperties =
     switch (variant) {
         case 'border':
             return {
-                borderBottom: '1px solid var(--a-border-subtle)',
-                borderTop: index === 0 ? '1px solid var(--a-border-subtle)' : 'none',
+                borderBottom: '1px solid var(--ax-border-neutral-subtle)',
+                borderTop: index === 0 ? '1px solid var(--ax-border-neutral-subtle)' : 'none',
                 paddingBlockEnd: '.5rem',
                 paddingBlockStart: '.5rem',
                 margin: 0,
@@ -28,7 +28,7 @@ const getVariantStyle = (variant: Variant, index: number): React.CSSProperties =
             return {
                 padding: '.5rem',
                 margin: 0,
-                backgroundColor: index % 2 === 0 ? 'var(--ac-table-row-zebra,var(--a-surface-subtle))' : 'none',
+                backgroundColor: index % 2 === 0 ? 'var(--ac-table-row-zebra,var(--ax-bg-neutral-soft))' : 'none',
             };
         default:
             return {
@@ -47,7 +47,7 @@ const VedleggSummaryList = ({
     const { text } = useCoreIntl();
 
     return vedlegg.length === 0 ? (
-        <Box marginBlock="2">
+        <Box marginBlock="space-8">
             <BodyShort>{emptyListText || text('@core.vedleggSummaryList.ingenVedlegg')}</BodyShort>
         </Box>
     ) : (
@@ -59,10 +59,14 @@ const VedleggSummaryList = ({
                         style={getVariantStyle(variant, index)}
                         key={file.name + index}
                         icon={<PaperclipIcon title="Ikon" aria-hidden />}>
-                        <HStack gap="2" wrap={false} align="baseline">
-                            <HStack flexGrow="2" gap="0 3" align="baseline">
+                        <HStack gap="space-8" wrap={false} align="baseline">
+                            <HStack flexGrow="2" gap="space-0 space-12" align="baseline">
                                 {info ? (
-                                    <Link href={info.url} style={{ wordBreak: 'break-word' }} target="_blank">
+                                    <Link
+                                        href={info.url}
+                                        style={{ wordBreak: 'break-word' }}
+                                        target="_blank"
+                                        rel="noopener noreferrer">
                                         {file.name}
                                     </Link>
                                 ) : (
@@ -71,7 +75,7 @@ const VedleggSummaryList = ({
                                     </BodyShort>
                                 )}
                                 {showFileSize && file.size ? (
-                                    <BodyShort as="span" size="small" style={{ color: 'var(--a-text-subtle)' }}>
+                                    <BodyShort as="span" size="small" style={{ color: 'var(--ax-text-neutral-subtle)' }}>
                                         ({formatFileSize(file.size)})
                                     </BodyShort>
                                 ) : null}

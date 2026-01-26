@@ -78,15 +78,15 @@
         "endringerRefusjon": [
             {
                 "refusjonBeløpPerMnd": 25000,
-                "fom": "2025-11-04"
+                "fom": "2025-11-08"
             },
             {
                 "refusjonBeløpPerMnd": 0,
-                "fom": "2025-11-05"
+                "fom": "2025-11-12"
             },
             {
                 "refusjonBeløpPerMnd": 50000,
-                "fom": "2025-11-10"
+                "fom": "2025-11-20"
             }
         ]
     }

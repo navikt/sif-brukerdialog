@@ -32,7 +32,7 @@ const InvalidStepSøknadsdataInfo = ({ stepId, stepConfig }: Props) => {
             </Link>
         );
         return (
-            <Box marginBlock="8">
+            <Box marginBlock="space-32">
                 <Alert variant="warning">
                     <Heading level="2" size="small" spacing={true}>
                         Oops, dette stemmer ikke helt

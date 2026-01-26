@@ -14,7 +14,7 @@ interface Props {
 
 const PictureScanningExample = ({ image, status, statusText, description, headingLevel = '4' }: Props) => (
     <BodyLong as="div">
-        <Box marginBlock="0 4">{image}</Box>
+        <Box marginBlock="space-0 space-16">{image}</Box>
         <Heading size="xsmall" level={headingLevel} spacing={true} style={{ display: 'flex', gap: '.25rem' }}>
             <StatusIkon status={status} />
             <span>{statusText}</span>

@@ -12,7 +12,7 @@
     "dependencies": {
         "glob": "13.0.0",
         "tailwindcss": "4.1.18",
-        "turbo": "2.7.3"
+        "turbo": "2.7.5"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -20,7 +20,7 @@
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
         "lint-staged": "16.2.7",
-        "prettier": "3.7.4",
+        "prettier": "3.8.0",
         "typescript": "5.9.3"
     },
     "lint-staged": {
@@ -36,6 +36,7 @@
         "build-storybook": "turbo build-storybook",
         "clean-all": "turbo clean && rm -rf node_modules",
         "clean": "turbo clean",
+        "clean:output": "node scripts/clean-output.mjs",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "lint": "turbo lint",
         "lint:eslint": "turbo lint:eslint",
@@ -43,7 +44,8 @@
         "lint:fix": "turbo lint:fix",
         "prepare": "husky install",
         "test": "turbo test",
-        "codegen": "turbo run codegen",
+        "codegen:dev": "turbo run codegen:dev",
+        "codegen:prod": "turbo run codegen:prod",
         "deploy-gh-pages": "gh-pages -d gh-pages"
     },
     "workspaces": [

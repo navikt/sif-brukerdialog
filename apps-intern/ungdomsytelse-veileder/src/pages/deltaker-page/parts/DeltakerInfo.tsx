@@ -8,29 +8,32 @@ import DiskresjonskoderTags from '../../../components/diskresjonskode-tag/Diskre
 import { Deltaker } from '../../../types/Deltaker';
 
 interface Props {
+    skjulHeader?: boolean;
+    copyFnrEnabled?: boolean;
     deltaker: Deltaker;
 }
 
-const DeltakerInfo = ({ deltaker }: Props) => {
+const DeltakerInfo = ({ deltaker, skjulHeader, copyFnrEnabled = true }: Props) => {
     const alder = dayjs().diff(dayjs(deltaker.fødselsdato), 'year');
     return (
-        <VStack gap="4">
-            <Heading level="2" size="medium">
-                Om Deltaker
-            </Heading>
+        <VStack gap="space-16">
+            {!skjulHeader && (
+                <Heading level="2" size="medium">
+                    Om Deltaker
+                </Heading>
+            )}
             <InfoBox>
-                {/* <HGrid gap="4" columns={{ sm: 1, md: 'auto 1fr' }}> */}
-                <VStack gap="4">
+                <VStack gap="space-16">
                     <dl className="ungDefinitionList">
                         <dt>Navn:</dt>
                         <dd>{formatName(deltaker.navn)}</dd>
                         <dt>Fødselsnummer:</dt>
                         <dd>
-                            <Fødselsnummer fnr={deltaker.deltakerIdent} copyEnabled={true} />
+                            <Fødselsnummer fnr={deltaker.deltakerIdent} copyEnabled={copyFnrEnabled} />
                         </dd>
                         <dt>Fødselsdato:</dt>
                         <dd>
-                            <VStack gap="3">
+                            <VStack gap="space-12">
                                 <span>
                                     {dateFormatter.compact(deltaker.fødselsdato)} ({alder} år)
                                 </span>
@@ -49,18 +52,6 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                         )}
                     </dl>
                 </VStack>
-                {/* <VStack gap="2">
-                        <Heading size="small" level="3">
-                            Metadata om deltaker (kun for test)
-                        </Heading>
-                        <dl className="ungDefinitionList">
-                            <dt>Første mulige innmeldingsdato:</dt>
-                            <dd>{dateFormatter.compact(deltaker.førsteMuligeInnmeldingsdato)}</dd>
-                            <dt>Siste mulige innmeldingsdato:</dt>
-                            <dd>{dateFormatter.compact(deltaker.sisteMuligeInnmeldingsdato)}</dd>
-                        </dl>
-                    </VStack> */}
-                {/* </HGrid> */}
             </InfoBox>
         </VStack>
     );

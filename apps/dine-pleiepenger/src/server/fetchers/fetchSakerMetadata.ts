@@ -1,10 +1,10 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { z } from 'zod';
 
 import { getContextForApiHandler, serverResponseTransform } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogCorrelationID';
+import { SakerMetadataDtoModified, zSakerMetadataDtoModified } from '../dto-schemas/sakerMetadataDtoModified';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
@@ -14,10 +14,11 @@ import { serverApiUtils } from '../utils/serverApiUtils';
  * @param req
  * @returns
  */
+
 export const fetchSakerMetadata = async (
     req: NextApiRequest,
     unparsed?: boolean,
-): Promise<innsyn.SakerMetadataDto[]> => {
+): Promise<SakerMetadataDtoModified[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiServices.k9SakInnsyn,
@@ -37,14 +38,8 @@ export const fetchSakerMetadata = async (
     const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
     logger.info(`Response-status from request: ${response.status}`);
 
-    logger.info(`Parser response data`);
-    const parsedData = z
-        .array(
-            innsyn.zSakerMetadataDto.extend({
-                fagsakYtelseType: z.enum(innsyn.FagsakYtelseType),
-            }),
-        )
-        .parse(response.data);
+    logger.info(`Parser SakerMetadata response data`);
+    const parsedData = z.array(zSakerMetadataDtoModified).parse(response.data);
     logger.info(`SakerMetadata parsed`);
     return parsedData;
 };

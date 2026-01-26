@@ -460,8 +460,8 @@ export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSME
 
 export const zInnsending = z.object({
     søknadId: z.optional(z.string()),
-    mottattDato: z.optional(z.iso.datetime({ local: true })),
     versjon: z.optional(z.string()),
+    mottattDato: z.optional(z.iso.datetime({ local: true })),
     søker: z.optional(zSøker),
 });
 
@@ -471,7 +471,6 @@ export const zOrganisasjon = z.object({
 });
 
 export const zPleietrengendeDto = z.object({
-    identitetsnummer: z.string(),
     fødselsdato: z.iso.date(),
     aktørId: z.string(),
     fornavn: z.optional(z.string()),
@@ -552,6 +551,8 @@ export const zSakerMetadataDto = z.object({
     saksnummer: z.string(),
     pleietrengende: zPleietrengendeDto,
     fagsakYtelseType: zFagsakYtelseType,
+    fagsakOpprettetTidspunkt: z.optional(z.iso.datetime({ local: true })),
+    fagsakAvsluttetTidspunkt: z.optional(z.iso.datetime({ local: true })),
 });
 
 export const zArbeidsgiverOrganisasjonDto = z.object({

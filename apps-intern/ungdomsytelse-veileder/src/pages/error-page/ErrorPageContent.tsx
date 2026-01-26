@@ -13,13 +13,13 @@ const ErrorPageContent = ({ error, visTips }: Props) => {
     return (
         <Box className="p-10">
             <HGrid columns="minmax(auto,600px)">
-                <VStack gap="16">
-                    <VStack gap="8">
+                <VStack gap="space-64">
+                    <VStack gap="space-32">
                         <div>
                             <Heading level="1" size="large" spacing>
                                 Beklager, noe gikk galt.
                             </Heading>
-                            <Box marginBlock="4">
+                            <Box marginBlock="space-16">
                                 {typeof error === 'string' ? (
                                     <Alert variant="error">{error}</Alert>
                                 ) : (
@@ -28,7 +28,7 @@ const ErrorPageContent = ({ error, visTips }: Props) => {
                             </Box>
                         </div>
                         {visTips && (
-                            <VStack gap="4">
+                            <VStack gap="space-16">
                                 <BodyShort>Du kan prøve å</BodyShort>
                                 <List>
                                     <List.Item>

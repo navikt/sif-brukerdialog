@@ -45,7 +45,7 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                     <Heading size="medium" level="2" spacing={true}>
                         {tittel}
                     </Heading>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <Skeleton height="6rem" variant="rounded" />
                         <Skeleton height="6rem" variant="rounded" />
                         <Skeleton height="6rem" variant="rounded" />
@@ -96,7 +96,7 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
             <Head>
                 <title>Din pleiepengesak for sykt barn - {saksnr}</title>
             </Head>
-            <VStack gap="12">
+            <VStack gap="space-48">
                 {statusISak?.venteårsak && statusISak.status !== BehandlingStatus.AVSLUTTET ? (
                     <VenteårsakMelding venteårsak={statusISak.venteårsak} />
                 ) : null}
@@ -104,7 +104,7 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                     <div className="md:grow mb-10 md:mb-0">{getContent()}</div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         {statusISak?.status === BehandlingStatus.AVSLUTTET ? null : (
-                            <VStack gap="5">
+                            <VStack gap="space-20">
                                 <SaksbehandlingstidPanel
                                     frist={sak ? sak.utledetStatus.saksbehandlingsFrist : undefined}
                                     venteårsak={statusISak?.venteårsak}

@@ -1,6 +1,7 @@
-import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { fetchBarn, fetchSøker, isUnauthorized, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { useEffect, useState } from 'react';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useState } from 'react';
 
 import { MellomlagringData, mellomlagringService } from '../api/mellomlagringService';
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
@@ -8,7 +9,7 @@ import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import { relocateToNoAccessPage } from '../utils/navigationUtils';
+import { relocateToLoginPage } from '../utils/navigationUtils';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -30,10 +31,15 @@ type SøknadInitialNotLoggedIn = {
     status: RequestStatus.redirectingToLogin;
 };
 
+type SøknadInitialNoAccess = {
+    status: RequestStatus.noAccess;
+};
+
 export type SøknadInitialDataState =
     | SøknadInitialSuccess
     | SøknadInitialFailed
     | SøknadInitialLoading
+    | SøknadInitialNoAccess
     | SøknadInitialNotLoggedIn;
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
@@ -74,8 +80,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 data,
             });
         } catch (error: any) {
-            if (isForbidden(error)) {
-                relocateToNoAccessPage();
+            if (isUnauthorized(error)) {
+                relocateToLoginPage();
+            } else if (isForbidden(error)) {
+                setInitialData({ status: RequestStatus.noAccess });
             } else {
                 appSentryLogger.logError('fetchInitialData', error);
                 setInitialData({
@@ -86,9 +94,9 @@ function useSøknadInitialData(): SøknadInitialDataState {
         }
     };
 
-    useEffect(() => {
+    useEffectOnce(() => {
         fetch();
-    }, []);
+    });
 
     return initialData;
 }

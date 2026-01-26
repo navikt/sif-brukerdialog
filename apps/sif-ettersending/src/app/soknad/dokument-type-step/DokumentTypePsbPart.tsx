@@ -22,7 +22,7 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
     return (
         <>
             <FormLayout.Guide>
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <AppText id="step.dokumentType.info" />
 
                     <List>
@@ -34,7 +34,10 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
                                 id="step.dokumentType.info.2"
                                 values={{
                                     Lenke: (children: ReactNode) => (
-                                        <Link href={getLenker().endringsmelding} target="_blank">
+                                        <Link
+                                            href={getLenker().endringsmelding}
+                                            target="_blank"
+                                            rel="noopener noreferrer">
                                             {children}
                                         </Link>
                                     ),
@@ -46,7 +49,7 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
                                 id="step.dokumentType.info.3"
                                 values={{
                                     Lenke: (children: ReactNode) => (
-                                        <Link href={getLenker().skrivTilOss} target="_blank">
+                                        <Link href={getLenker().skrivTilOss} target="_blank" rel="noopener noreferrer">
                                             {children}
                                         </Link>
                                     ),
@@ -56,7 +59,6 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
                     </List>
                 </VStack>
             </FormLayout.Guide>
-
             <FormLayout.Questions>
                 <SoknadFormComponents.RadioGroup
                     legend={text('step.dokumentType.dokumentType.spm')}

@@ -21,17 +21,17 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
     const harFlereDager = kursdager.length > 1;
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <FieldArray
                 name="kursdager"
                 render={(arrayHelpers) => {
                     return (
-                        <VStack gap="4">
+                        <VStack gap="space-16">
                             {kursdager.map((kursdag, index) => (
                                 <FormLayout.Panel key={index}>
                                     <fieldset ref={setElementRef(index)} aria-labelledby={`kursdag-legend-${index}`}>
                                         <Hide hidden={harFlereDager === false}>
-                                            <Box marginBlock="0 2">
+                                            <Box marginBlock="space-0 space-8">
                                                 <legend id={`kursdag-legend-${index}`}>
                                                     <BodyShort weight="semibold" spacing={false} className="noPadding">
                                                         <AppText

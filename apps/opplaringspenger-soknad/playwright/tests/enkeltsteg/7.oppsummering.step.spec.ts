@@ -7,12 +7,12 @@ import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 import { setupMockRoutes } from '../../utils/setupMockRoutes';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await setupMockRoutes(page, context, {
+    await setupMockRoutes(page, {
         mellomlagring: mellomlagringMock,
     });
-    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.OPPSUMMERING);
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.OPPSUMMERING);
     await expect(page.getByRole('heading', { name: 'Oppsummering' })).toBeVisible();
 });
 

@@ -48,7 +48,7 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
     const synligeHistorikkInnslag = historikkInnslag.slice(0, antall);
 
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <Table zebraStripes>
                 <Table.Header>
                     <Table.Row>
@@ -74,7 +74,7 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
             {antall < totalt ? (
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlerehistorikkInnslag}>
-                        <HStack gap="2" align="center" wrap={false}>
+                        <HStack gap="space-8" align="center" wrap={false}>
                             <PlusIcon aria-hidden="true" />
                             Vis flere
                         </HStack>

@@ -5,7 +5,7 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../i18n';
-import getLenker from '../../../lenker';
+import { getLenker } from '../../../lenker';
 
 interface Props {
     samværsavtaler?: Vedlegg[];

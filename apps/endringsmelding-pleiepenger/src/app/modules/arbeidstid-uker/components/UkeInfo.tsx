@@ -1,7 +1,8 @@
+import { InformationSquareFillIcon } from '@navikt/aksel-icons';
+import { Tooltip } from '@navikt/ds-react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
-import { InformationSquareFillIcon } from '@navikt/aksel-icons';
 
 interface Props {
     uke: ArbeidstidUkerItem;
@@ -9,11 +10,13 @@ interface Props {
 
 const UkeInfoIkon = ({ uke }: Props) => {
     return (
-        <span style={{ fontSize: '1.4rem' }}>
-            <InformationSquareFillIcon
-                style={{ color: '#4CADCD' }}
-                aria-label={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}
-            />
+        <span style={{ fontSize: '1.5rem' }}>
+            <Tooltip content={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}>
+                <InformationSquareFillIcon
+                    style={{ color: '#457c9d' }}
+                    aria-label={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}
+                />
+            </Tooltip>
         </span>
     );
 };

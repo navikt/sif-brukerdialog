@@ -93,7 +93,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
             renderForm={({ values }) => {
                 const { erVedtaksbrevSendt } = values;
                 return (
-                    <VStack gap="6">
+                    <VStack gap="space-24">
                         {erEndringAvSluttdato === false && (
                             <ReadMore header="Les mer om å registrere sluttdato for utmeldt deltaker">
                                 <BodyLong spacing>
@@ -115,8 +115,8 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                             onCancel={onCancel}
                             submitDisabled={erVedtaksbrevSendt === YesOrNo.NO}
                             showButtonArrows={false}>
-                            <VStack gap="6">
-                                <VStack gap="8" className="rounded-xs">
+                            <VStack gap="space-24">
+                                <VStack gap="space-32" className="rounded-xs">
                                     {erEndringAvSluttdato === false && (
                                         <>
                                             <FormikYesOrNoQuestion
@@ -154,7 +154,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                                     validate={getRequiredFieldValidator()}
                                                 />
                                             )}
-                                            <Bleed marginBlock="4 0">
+                                            <Bleed marginBlock="space-16 space-0">
                                                 <ConfirmationCheckbox
                                                     name={FieldNames.bekrefterEndring}
                                                     label={

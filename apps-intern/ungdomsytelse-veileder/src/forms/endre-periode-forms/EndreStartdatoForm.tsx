@@ -96,7 +96,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
             onSubmit={handleOnSubmit}
             renderForm={() => {
                 return (
-                    <VStack gap="6">
+                    <VStack gap="space-24">
                         <StartdatoInfo />
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
@@ -106,8 +106,8 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                             cancelButtonLabel="Avbryt"
                             onCancel={onCancel}
                             showButtonArrows={false}>
-                            <VStack gap="6">
-                                <VStack gap="8" className="rounded-xs">
+                            <VStack gap="space-24">
+                                <VStack gap="space-32" className="rounded-xs">
                                     <DatePicker
                                         name={FieldNames.startdato}
                                         label="Oppgi startdato:"
@@ -117,7 +117,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                         disableWeekends={true}
                                         validate={getPeriodeDatoValidator(startdatoMinMax, deltakelse.fraOgMed)}
                                     />
-                                    <Bleed marginBlock="4 0">
+                                    <Bleed marginBlock="space-16 space-0">
                                         <ConfirmationCheckbox
                                             name={FieldNames.bekrefterEndring}
                                             label="Jeg bekrefter endring av startdato"

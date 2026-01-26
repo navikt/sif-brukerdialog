@@ -9,7 +9,7 @@ interface Props {
 
 const VedleggList = ({ vedlegg, spacing = true }: Props) => {
     return (
-        <VStack as="ul" gap="2" marginBlock={spacing ? '2' : undefined}>
+        <VStack as="ul" gap="space-8" marginBlock={spacing ? 'space-8' : undefined}>
             {vedlegg.map((file, index) => (
                 <FileUpload.Item
                     as="li"

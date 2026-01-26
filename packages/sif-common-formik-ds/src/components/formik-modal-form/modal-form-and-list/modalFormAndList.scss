@@ -14,7 +14,7 @@
             inset 0 0 0 2px
                 var(
                     --ac-button-secondary-focus-border,
-                    var(--__ac-button-secondary-focus-border, var(--a-border-action))
+                    var(--__ac-button-secondary-focus-border, var(--ax-border-accent))
                 ),
             var(--a-shadow-focus);
     }

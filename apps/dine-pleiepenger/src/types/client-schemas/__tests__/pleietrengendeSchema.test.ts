@@ -6,7 +6,6 @@ describe('pleietrengendeClientSchema', () => {
     const baseData = {
         aktørId: '123456789',
         fødselsdato: '2010-01-01',
-        identitetsnummer: '12345678901',
     };
 
     describe('Ikke-anonymisert pleietrengende', () => {

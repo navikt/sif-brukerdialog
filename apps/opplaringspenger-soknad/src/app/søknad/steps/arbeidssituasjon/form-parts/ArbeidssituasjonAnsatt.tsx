@@ -47,12 +47,11 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
     return (
         <FormLayout.Questions>
             <Heading level="3" size="medium">
-                <HStack gap="3" align="center">
+                <HStack gap="space-12" align="center">
                     <Buildings3Icon height="1.8rem" width="1.5rem" role="presentation" />
                     <Box>{arbeidsforhold.arbeidsgiver.navn}</Box>
                 </HStack>
             </Heading>
-
             <YesOrNoQuestion
                 legend={text('arbeidsforhold.erAnsatt.spm', {
                     navn: arbeidsforhold.arbeidsgiver.navn,
@@ -68,7 +67,6 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                         : undefined;
                 }}
             />
-
             {yesOrNoIsAnswered(arbeidsforhold.erAnsatt) && (
                 <>
                     {arbeidsforhold.erAnsatt === YesOrNo.NO && (

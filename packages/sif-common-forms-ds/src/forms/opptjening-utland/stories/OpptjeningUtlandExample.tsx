@@ -37,7 +37,7 @@ const OpptjeningUtlandExample = () => {
     const intl = useIntl();
     return (
         <Tabs defaultValue="list">
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Tabs.List>
                     <Tabs.Tab value="list" label="ListAndDialog" />
                     <Tabs.Tab value="form" label="Form" />

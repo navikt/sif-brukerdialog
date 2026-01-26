@@ -49,7 +49,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
 
     return (
         <>
-            <VStack gap="3">
+            <VStack gap="space-12">
                 <YesOrNoQuestion
                     name={SelvstendigFormFields.harHattInntektSomSN}
                     legend={text('selvstendig.harDuHattInntekt.spm')}
@@ -58,7 +58,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                         <ExpandableInfo title={text('selvstendig.harDuHattInntekt.hjelpetekst.tittel')}>
                             <>
                                 {text('selvstendig.harDuHattInntekt.hjelpetekst')}{' '}
-                                <Link href={urlSkatteetatenSN} target="_blank">
+                                <Link href={urlSkatteetatenSN} target="_blank" rel="noopener noreferrer">
                                     <AppText id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
                                 </Link>
                             </>

@@ -1,4 +1,4 @@
-import '@navikt/ds-css/darkside';
+import '@navikt/ds-css';
 
 import { Box } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
@@ -47,8 +47,8 @@ export const StoryFormikWrapper = (props: Props) => {
                             {...(useBorder
                                 ? {
                                       maxWidth,
-                                      borderColor: 'border-info',
-                                      borderRadius: 'medium',
+                                      borderColor: 'info',
+                                      borderRadius: '8',
                                       borderWidth: '1',
                                   }
                                 : {})}>

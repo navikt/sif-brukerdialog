@@ -17,7 +17,7 @@ import { AnalyticsProvider, registerAnalytics } from './utils/analytics';
 import { getAppEnv } from './utils/appEnv';
 import { GlobalQueryLogger } from './utils/globalQueryLogger';
 import { initApiClients } from './utils/initApiClients';
-import '@navikt/ds-css/darkside';
+import '@navikt/ds-css';
 import './app.css';
 
 const queryClient = new QueryClient();

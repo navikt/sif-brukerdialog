@@ -1,5 +1,19 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.33
+
+### Patch Changes
+
+- 522fe9f: lodash@4.17.23
+- Updated dependencies [522fe9f]
+    - @navikt/sif-common-formik-ds@2.5.42
+    - @navikt/sif-common-utils@3.49.58
+    - @navikt/sif-common-api@0.4.89
+    - @navikt/sif-common-core-ds@10.3.50
+    - @navikt/sif-common-forms-ds@21.0.52
+    - @navikt/sif-common-soknad-ds@26.1.34
+    - @navikt/sif-common-ui@0.11.51
+
 ## 1.4.32
 
 ### Patch Changes

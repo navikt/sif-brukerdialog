@@ -8,7 +8,7 @@ interface Props extends React.HTMLAttributes<HTMLUListElement> {
 }
 
 const Infolist = ({ heading, headingLevel = '2', ...rest }: Props) => (
-    <VStack gap="4">
+    <VStack gap="space-16">
         {heading && (
             <Heading size="medium" level={headingLevel}>
                 {heading}

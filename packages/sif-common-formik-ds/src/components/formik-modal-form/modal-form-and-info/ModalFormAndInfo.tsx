@@ -1,4 +1,4 @@
-import { BoxNew, Button, HStack, Modal, VStack } from '@navikt/ds-react';
+import { Box, Button, HStack, Modal, VStack } from '@navikt/ds-react';
 import classNames from 'classnames';
 import React from 'react';
 
@@ -86,22 +86,22 @@ function ModalFormAndInfo<DataType>({
                 {labels.addLabel}
             </Button>
         ) : (
-            <VStack gap="6">
+            <VStack gap="space-24">
                 {wrapInfoInPanel ? (
-                    <BoxNew
+                    <Box
                         background="default"
                         borderColor="neutral-subtle"
                         borderWidth="1"
-                        borderRadius="large"
-                        padding="4">
+                        borderRadius="12"
+                        padding="space-16">
                         {infoRenderer({ data, onEdit: handleEdit, onDelete: handleDelete })}
-                    </BoxNew>
+                    </Box>
                 ) : (
                     infoRenderer({ data, onEdit: handleEdit, onDelete: handleDelete })
                 )}
 
                 {renderEditButtons && (
-                    <HStack gap="4">
+                    <HStack gap="space-16">
                         <Button
                             type="button"
                             onClick={() => setModalState({ isVisible: true, data })}

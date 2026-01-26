@@ -57,8 +57,8 @@ const OppsummeringSteg = () => {
 
     return (
         <SøknadSteg tittel={text('oppsummeringSteg.tittel')} steg={Steg.OPPSUMMERING}>
-            <VStack gap="8">
-                <VStack gap="4">
+            <VStack gap="space-32">
+                <VStack gap="space-16">
                     <FormSummary>
                         <FormSummary.Header>
                             <FormSummary.Heading level="2">
@@ -186,7 +186,7 @@ const OppsummeringSteg = () => {
                         setBekreftError(undefined);
                         handleOnSubmit();
                     }}>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <CheckboxGroup
                             name="bekrefterInnsending"
                             hideLegend={true}

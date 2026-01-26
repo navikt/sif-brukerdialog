@@ -64,9 +64,9 @@ export const MessagesTable = ({
     const currentMessageKeys = Object.keys(allMessages).slice(startIndex, endIndex);
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             {messagesPerPage < totalMessages && (
-                <HStack gap="1" align="center">
+                <HStack gap="space-4" align="center">
                     <BodyShort size="large" weight="semibold">
                         Sider:
                     </BodyShort>
@@ -80,7 +80,6 @@ export const MessagesTable = ({
                     />
                 </HStack>
             )}
-
             <table className="messageList">
                 <thead>
                     <tr>
@@ -141,33 +140,33 @@ const MessagesList = ({ messages }: Props) => {
                     {/* <Tabs.Tab value="translate" label="Automatisk oversettelse" /> */}
                 </Tabs.List>
                 <Tabs.Panel value="messages">
-                    <Box marginBlock="8">
+                    <Box marginBlock="space-32">
                         <MessagesTable messages={messages} nbOnly={false} />
                     </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="kompaktNB">
-                    <Box marginBlock="8">
+                    <Box marginBlock="space-32">
                         <PlainMessageList messages={messages} locale="nb" />
                     </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="kompaktNN">
-                    <Box marginBlock="8">
+                    <Box marginBlock="space-32">
                         <PlainMessageList messages={messages} locale="nn" />
                     </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="json" className="h-24 w-full bg-gray-50 p-4">
-                    <Box marginBlock="8">
+                    <Box marginBlock="space-32">
                         <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(messages, null, 2)}</pre>
                     </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="translate" className="h-24 w-full bg-gray-50 p-4">
                     {numMessages > 120 ? (
-                        <Box marginBlock="8">
+                        <Box marginBlock="space-32">
                             <Alert variant="info">Det er for mange tekster til at en kan foreslå oversettelse</Alert>
                         </Box>
                     ) : (
                         <>
-                            <Box marginBlock="8">
+                            <Box marginBlock="space-32">
                                 <Button
                                     variant="secondary"
                                     size="small"
@@ -181,7 +180,7 @@ const MessagesList = ({ messages }: Props) => {
                                 </Button>
                             </Box>
                             {translation !== undefined ? (
-                                <Box marginBlock="8">
+                                <Box marginBlock="space-32">
                                     <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(translation, null, 2)}</pre>
                                 </Box>
                             ) : null}

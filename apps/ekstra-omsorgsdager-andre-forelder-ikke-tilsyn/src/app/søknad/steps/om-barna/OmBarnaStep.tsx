@@ -98,7 +98,7 @@ const OmBarnaStep = () => {
                                                 ? text('step.omBarna.spm.andreBarn')
                                                 : text('step.omBarna.spm.flereBarn')}
                                         </Heading>
-                                        <VStack gap="4">
+                                        <VStack gap="space-16">
                                             <BodyShort>
                                                 <AppText id="step.omBarna.info.spm.text" />
                                             </BodyShort>

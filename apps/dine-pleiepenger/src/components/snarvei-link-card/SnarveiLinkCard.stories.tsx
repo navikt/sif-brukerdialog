@@ -1,9 +1,9 @@
+import { PencilIcon } from '@navikt/aksel-icons';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
 import SnarveiLinkCard from './SnarveiLinkCard';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PencilIcon } from '@navikt/aksel-icons';
 const meta: Meta<typeof SnarveiLinkCard> = {
     component: SnarveiLinkCard,
     title: 'Components/SnarveiLinkCard',

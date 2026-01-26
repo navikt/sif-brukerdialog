@@ -53,10 +53,10 @@ const SøknadsperioderMånedListe = ({
             legend={fieldset.legend}
             description={fieldset.description}
             validate={fieldset.validate}>
-            <VStack gap="4">{måneder.map(renderMåned)}</VStack>
+            <VStack gap="space-16">{måneder.map(renderMåned)}</VStack>
         </FormikInputGroup>
     ) : (
-        <VStack gap="4">{måneder.map(renderMåned)}</VStack>
+        <VStack gap="space-16">{måneder.map(renderMåned)}</VStack>
     );
 };
 
