@@ -13,14 +13,13 @@ export const InntektsmeldingStatusTag = ({ status, showIcon, ...tagProps }: Prop
         case InntektsmeldingStatus.I_BRUK:
             return (
                 <Tag variant="success" size="small" {...tagProps}>
-                    {showIcon && <CheckmarkHeavyIcon role="presentation" width="1.5em" height="1.5em" />} Gyldig
-                    inntektsmelding
+                    {showIcon && <CheckmarkHeavyIcon role="presentation" width="1.5em" height="1.5em" />} I bruk
                 </Tag>
             );
         case InntektsmeldingStatus.ERSTATTET_AV_NYERE:
             return (
                 <Tag variant="neutral" size="small" {...tagProps}>
-                    Erstattet
+                    Erstattet av nyere
                 </Tag>
             );
         case InntektsmeldingStatus.IKKE_RELEVANT:

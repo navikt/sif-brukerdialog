@@ -67,7 +67,7 @@ export const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingst
         default:
             return (
                 <>
-                    <BodyShort spacing>
+                    <BodyShort>
                         <AppText
                             id="svarfrist.generellFrist.1"
                             values={{
