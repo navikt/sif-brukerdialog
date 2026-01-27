@@ -34,8 +34,7 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
     const { sak, inntektsmeldinger, pleietrengende } = pleietrengendeMedSak || {};
 
     const getContent = () => {
-        // Vi beholder samme tittel som når vi har info */
-        const tittel = 'Dette skjer i saken';
+        const tittel = 'Dette har skjedd i saken din';
         if (sak) {
             return <StatusISak sak={sak} tittel={tittel} inntektsmeldinger={inntektsmeldinger || []} />;
         }

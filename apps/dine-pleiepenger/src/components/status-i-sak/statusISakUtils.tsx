@@ -1,4 +1,4 @@
-import { FileIcon } from '@navikt/aksel-icons';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { Box, HStack, Link, ReadMore, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
 import { FormattedNumber } from 'react-intl';
@@ -93,7 +93,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         title: `Inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
                         content: (
                             <Box className="mt-2">
-                                <ReadMore header="Vis detaljer i inntektsmelding">
+                                <ReadMore header="Vis mer om inntektsmeldingen">
                                     <VStack gap="space-8" marginBlock="space-0 space-16">
                                         <HStack gap="space-8">
                                             <strong>Status: </strong>
@@ -117,7 +117,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                                     <Link
                                         as={NextLink}
                                         href={`/sak/${hendelse.inntektsmelding.saksnummer}/inntektsmelding/${hendelse.inntektsmelding.journalpostId}`}>
-                                        <FileIcon
+                                        <ArrowRightIcon
                                             title="Inntektsmelding"
                                             style={{ width: '1.5rem', height: '1.5rem' }}
                                         />

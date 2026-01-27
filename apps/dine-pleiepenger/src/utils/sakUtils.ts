@@ -18,7 +18,6 @@ import {
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
 import { Innsendelsestype } from '../types/Innsendelsestype';
 import { Sakshendelse, Sakshendelser } from '../types/Sakshendelse';
-import { sorterInntektsmeldingerPåInnsendingstidspunkt } from './inntektsmeldingUtils';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -127,15 +126,12 @@ export const getAlleHendelserISak = (sak: Sak, inntektsmeldinger: Inntektsmeldin
         .map((b) => getHendelserIBehandling(b, sak.utledetStatus.saksbehandlingsFrist))
         .flat();
 
-    const inntektsmeldingHendelser: Sakshendelse[] = inntektsmeldinger
-        .sort(sorterInntektsmeldingerPåInnsendingstidspunkt)
-        .reverse()
-        .map((im) => ({
-            type: Sakshendelser.INNTEKTSMELDING,
-            dato: im.innsendingstidspunkt,
-            inntektsmelding: im,
-            erstatter: inntektsmeldinger.filter((i) => i.erstattetAv.includes(im.journalpostId)),
-        }));
+    const inntektsmeldingHendelser: Sakshendelse[] = inntektsmeldinger.map((im) => ({
+        type: Sakshendelser.INNTEKTSMELDING,
+        dato: im.innsendingstidspunkt,
+        inntektsmelding: im,
+        erstatter: inntektsmeldinger.filter((i) => i.erstattetAv.includes(im.journalpostId)),
+    }));
     sakshendelser.push(...inntektsmeldingHendelser);
     return sakshendelser.sort(sortSakshendelse);
 };

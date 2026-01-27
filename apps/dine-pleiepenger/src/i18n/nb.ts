@@ -170,9 +170,9 @@ export const nb = {
     'venteårsakMelding.meldekort.info':
         'Vi kan tidligst behandle søknaden din når du har sendt inn det siste meldekortet, før du starter perioden med pleiepenger.',
 
-    'statusISak.søknadStatusContent.readMoreHeader': 'Se dokumenter og bekreftelse til arbeidsgiver',
-    'statusISak.søknadStatusContent.readMoreHeader.ingenArbeidsgiver': 'Se dokumenter',
+    'statusISak.søknadStatusContent.readMoreHeader': 'Vis dokumenter og bekreftelse til arbeidsgiver',
+    'statusISak.søknadStatusContent.readMoreHeader.ingenArbeidsgiver': 'Vis dokumenter',
     'statusISak.søknadStatusContent.dokumenterISøknad': 'Søknad og eventuelle vedlegg i søknad',
     'statusISak.søknadStatusContent.ettersendelse.dokumenter': 'Dokumenter i ettersendelse',
-    'statusISak.søknadStatusContent.ettersendelse.readMoreHeader': 'Se dokumenter',
+    'statusISak.søknadStatusContent.ettersendelse.readMoreHeader': 'Vis dokumenter',
 };

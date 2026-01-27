@@ -32,9 +32,9 @@ test('Saksdetaljer + historikk', async ({ page }) => {
 
     await expect(page.getByText('Saksnummer: 100097Y|')).toBeVisible();
     await expect(
-        page.getByText('Vi har fått søknaden din om pleiepenger13.09.2025, kl. 14:21Se dokumenter og'),
+        page.getByText('Vi har fått søknaden din om pleiepenger13.09.2025, kl. 14:21Vis dokumenter og'),
     ).toBeVisible();
-    await page.getByRole('button', { name: 'Se dokumenter og bekreftelse' }).click();
+    await page.getByRole('button', { name: 'Vis dokumenter og bekreftelse' }).click();
     await expect(
         page.getByText('Søknad og eventuelle vedlegg i søknadDokumentikon PDFSøknad om pleiepenger for'),
     ).toBeVisible();
