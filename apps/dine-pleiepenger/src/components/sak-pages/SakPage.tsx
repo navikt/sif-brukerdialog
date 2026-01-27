@@ -40,7 +40,7 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
         }
         if (isLoading) {
             return (
-                <>
+                <div>
                     <Heading size="medium" level="2" spacing={true}>
                         {tittel}
                     </Heading>
@@ -49,7 +49,7 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                         <Skeleton height="6rem" variant="rounded" />
                         <Skeleton height="6rem" variant="rounded" />
                     </VStack>
-                </>
+                </div>
             );
         }
         return (
@@ -101,17 +101,18 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                             <Skeleton height="1.5rem" width="10rem" variant="rounded" />
                         )}
                     </HStack>
-                    {statusISak?.venteårsak && statusISak.status !== BehandlingStatus.AVSLUTTET ? (
-                        <VenteårsakMelding venteårsak={statusISak.venteårsak} />
-                    ) : null}
-                    {statusISak?.status === BehandlingStatus.AVSLUTTET ? null : (
-                        <VStack gap="space-20">
-                            <SaksbehandlingstidPanel
-                                frist={sak ? sak.utledetStatus.saksbehandlingsFrist : undefined}
-                                venteårsak={statusISak?.venteårsak}
-                                sakErLastet={!!sak}
-                            />
-                        </VStack>
+
+                    {statusISak?.status !== BehandlingStatus.AVSLUTTET && (
+                        <>
+                            {statusISak?.venteårsak && <VenteårsakMelding venteårsak={statusISak.venteårsak} />}
+                            <VStack gap="space-20">
+                                <SaksbehandlingstidPanel
+                                    frist={sak?.utledetStatus.saksbehandlingsFrist}
+                                    venteårsak={statusISak?.venteårsak}
+                                    sakErLastet={!!sak}
+                                />
+                            </VStack>
+                        </>
                     )}
 
                     {getContent()}
