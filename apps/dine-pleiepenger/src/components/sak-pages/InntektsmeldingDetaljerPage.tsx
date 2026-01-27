@@ -1,5 +1,5 @@
-import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Bleed, BodyShort, Box, Link, VStack } from '@navikt/ds-react';
+import { ArrowLeftIcon } from '@navikt/aksel-icons';
+import { Alert, Bleed, BodyShort, Button, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
@@ -68,15 +68,20 @@ const InntektsmeldingDetaljerPage = () => {
                         }
                     />
                 }>
-                <VStack gap="space-16">
+                <VStack gap="space-32">
                     <Bleed marginBlock="space-16 space-0">{renderContent()}</Bleed>
-
-                    <Box className="ml-4 mt-4">
-                        <Link as={NextLink} href={`/sak/${saksnr}/inntektsmelding`}>
-                            <ChevronLeftIcon role="presentation" aria-hidden="true" />
+                    <div>
+                        <Button
+                            variant="secondary"
+                            type="button"
+                            as={NextLink}
+                            icon={<ArrowLeftIcon role="presentation" aria-hidden="true" />}
+                            iconPosition="left"
+                            size="small"
+                            href={`/sak/${saksnr}/inntektsmelding`}>
                             Tilbake til alle inntektsmeldinger
-                        </Link>
-                    </Box>
+                        </Button>
+                    </div>
                 </VStack>
             </DefaultPageLayout>
         </>

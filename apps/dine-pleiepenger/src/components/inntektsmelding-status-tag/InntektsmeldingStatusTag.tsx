@@ -19,7 +19,7 @@ export const InntektsmeldingStatusTag = ({ status, showIcon, ...tagProps }: Prop
             );
         case InntektsmeldingStatus.ERSTATTET_AV_NYERE:
             return (
-                <Tag variant="neutral" size="xsmall" {...tagProps}>
+                <Tag variant="neutral" size="small" {...tagProps}>
                     Erstattet
                 </Tag>
             );

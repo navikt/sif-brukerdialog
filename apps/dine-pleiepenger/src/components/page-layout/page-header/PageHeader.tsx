@@ -1,11 +1,10 @@
-import { BodyShort, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Heading, HStack, Show, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 
 import PleiepengerSVG from '../../../svg/PleiepengerSVG';
 
 interface Props {
     title?: string;
-    titleTag?: React.ReactNode;
     byline?: React.ReactNode;
     documentTitle?: string;
     hidePleiepengerIcon?: boolean;
@@ -13,7 +12,6 @@ interface Props {
 
 const PageHeader = ({
     title = 'Dine pleiepenger for sykt barn',
-    titleTag,
     byline,
     documentTitle,
     hidePleiepengerIcon,
@@ -25,26 +23,17 @@ const PageHeader = ({
                     <title>{documentTitle}</title>
                 </Head>
             ) : null}
-            <div className="text-left">
+            <div>
                 <HStack gap="space-24" align="center">
                     {hidePleiepengerIcon ? null : (
-                        <div className="hidden md:block">
+                        <Show above="md">
                             <PleiepengerSVG />
-                        </div>
+                        </Show>
                     )}
                     <VStack gap="space-8">
-                        {titleTag ? (
-                            <HStack gap="space-16" align="center">
-                                <Heading size="large" level="1" className=" mr-4">
-                                    {title}
-                                </Heading>
-                                <BodyShort as="div">{titleTag}</BodyShort>
-                            </HStack>
-                        ) : (
-                            <Heading size="large" level="1">
-                                {title}
-                            </Heading>
-                        )}
+                        <Heading size="large" level="1">
+                            {title}
+                        </Heading>
                         {byline}
                     </VStack>
                 </HStack>

@@ -1,6 +1,6 @@
 'use client';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { Box, Button, Heading, HGrid, Hide, Link, Skeleton } from '@navikt/ds-react';
+import { Box, Button, Heading, HGrid, Hide, Link, Skeleton, VStack } from '@navikt/ds-react';
 import axios from 'axios';
 import useSWR from 'swr';
 
@@ -38,26 +38,26 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
                     borderRadius="16"
                     background="info-moderateA">
                     <HGrid gap="space-16" columns={{ xs: 'auto 96px' }} align="center">
-                        <Box>
-                            <Box className="mb-4">
-                                <SaksbehandlingstidMelding
-                                    frist={frist}
-                                    venteårsak={venteårsak}
-                                    saksbehandlingstidUker={saksbehandlingstidUker}
-                                />
-                            </Box>
-                            <Button
-                                variant="secondary"
-                                type="button"
-                                as={Link}
-                                icon={<ArrowRightIcon role="presentation" aria-hidden="true" />}
-                                iconPosition="right"
-                                size="small"
-                                className="noTextDecoration"
-                                href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
-                                <AppText id="svarfrist.lesMerLenke" />
-                            </Button>
-                        </Box>
+                        <VStack gap="space-16">
+                            <SaksbehandlingstidMelding
+                                frist={frist}
+                                venteårsak={venteårsak}
+                                saksbehandlingstidUker={saksbehandlingstidUker}
+                            />
+                            <div>
+                                <Button
+                                    variant="secondary"
+                                    type="button"
+                                    as={Link}
+                                    icon={<ArrowRightIcon role="presentation" aria-hidden="true" />}
+                                    iconPosition="right"
+                                    size="small"
+                                    className="noTextDecoration"
+                                    href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
+                                    <AppText id="svarfrist.lesMerLenke" />
+                                </Button>
+                            </div>
+                        </VStack>
                         <Hide below="sm">
                             <Box>
                                 <SaksbehandlingstidPictogram role="presentation" />

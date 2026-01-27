@@ -45,7 +45,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
     if (processSteps.length === 0) {
         return (
             <VStack gap="space-12">
-                <StatusISakHeading tittel={tittel} />
+                {tittel ? <StatusISakHeading tittel={tittel} /> : null}
                 <Alert variant="info">
                     <AppText
                         id="statusISak.ingenHendelser"
@@ -61,7 +61,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
 
     return (
         <VStack gap="space-12">
-            <StatusISakHeading tittel={tittel} />
+            {tittel ? <StatusISakHeading tittel={tittel} /> : null}
             {visAlleHendelser ? (
                 <Box>
                     <Switch
@@ -73,11 +73,11 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
                     </Switch>
                 </Box>
             ) : null}
-            <Box className="p-6 pb-4 pt-6" background="default" borderRadius="16">
+            <Box background="default" borderRadius="16" padding="space-24">
                 <VStack gap="space-32">
                     <StatusISakSteps steps={visibleSteps} isTruncated={finnesFlereHendelser ? 'end' : undefined} />
                     {finnesFlereHendelser && !visAlleHendelser ? (
-                        <Box className="ml-4 mb-4">
+                        <div>
                             <Button
                                 variant="secondary"
                                 type="button"
@@ -88,7 +88,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
                                 href={`/sak/${sak.saksnummer}/historikk`}>
                                 Se tidligere hendelser
                             </Button>
-                        </Box>
+                        </div>
                     ) : null}
                 </VStack>
             </Box>

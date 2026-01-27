@@ -6,7 +6,6 @@ export const nb = {
     'velgSak.barn.anonymisert': 'Pleietrengende født {dato}',
     'forside.dokumentTittel': 'Dine pleiepenger for sykt barn',
 
-    'ingeSakPage.saker.tittel': 'Dine pleiengesaker for sykt barn',
     'ingeSakPage.snarveier.tittel': 'Snarveier',
     'ingeSakPage.melding.tittel': 'Vi finner ingen sak om pleiepenger for sykt barn',
     'ingeSakPage.melding.tekst':

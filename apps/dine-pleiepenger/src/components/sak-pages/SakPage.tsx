@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 
 import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
@@ -53,22 +53,22 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
             );
         }
         return (
-            <>
+            <div>
                 <Heading size="medium" level="2" spacing={true}>
                     {tittel}
                 </Heading>
-                <Alert variant="error" className="mb-6">
+                <Alert variant="error">
                     {isError ? (
-                        <BodyShort>
+                        <BodyLong>
                             Det oppstod en feil når vi hentet informasjon om pleiepengesaken din. Prøv igjen senere.
-                        </BodyShort>
+                        </BodyLong>
                     ) : (
-                        <BodyShort>
+                        <BodyLong>
                             Vi klarte dessverre ikke å hente informasjon om pleiepengesaken din. Prøv igjen senere.
-                        </BodyShort>
+                        </BodyLong>
                     )}
                 </Alert>
-            </>
+            </div>
         );
     };
 
@@ -111,19 +111,13 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                         </VStack>
                     )}
 
-                    <Box>{getContent()}</Box>
+                    {getContent()}
 
-                    <Box>
-                        <OppdatereSakLenker />
-                    </Box>
+                    <OppdatereSakLenker />
 
-                    <Box>
-                        <SkrivTilOssLenker />
-                    </Box>
+                    <SkrivTilOssLenker />
 
-                    <Box className="mb-10">
-                        <SnarveierSak saksnummer={saksnr} />
-                    </Box>
+                    <SnarveierSak saksnummer={saksnr} />
                 </VStack>
             </DefaultPageLayout>
         </>

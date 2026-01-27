@@ -82,7 +82,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                     return {
                         title: `Inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
                         content: (
-                            <Box className="mt-2">
+                            <Box marginBlock="space-8 space-0">
                                 <ReadMore header="Vis mer om inntektsmeldingen">
                                     <VStack gap="space-8" marginBlock="space-0 space-16">
                                         <HStack gap="space-8">

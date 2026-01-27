@@ -86,7 +86,7 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPer
         ? [refusjonFørFørsteEndring, ...endringerRefusjon]
         : endringerRefusjon;
 
-    // Legg til opphør av refusjon som siste endring hvis det finnes.
+    // Legg til opphør av refusjon som siste element hvis det finnes opphør av refusjon.
     // refusjonOpphører utledes fra siste endring i refusjon.
     if (refusjon.refusjonOpphører) {
         alleEndringer.push({

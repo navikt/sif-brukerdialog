@@ -31,13 +31,9 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
         <LinkCard
             key={inntektsmelding.journalpostId}
             size={erErstattet ? 'small' : 'medium'}
-            className={`w-full inntektsmeldingLinkCard ${getClassName()}`}>
+            className={`inntektsmeldingLinkCard ${getClassName()}`}>
             <Show above="sm" asChild>
-                <Box
-                    asChild
-                    borderRadius="full"
-                    padding="space-12"
-                    style={{ backgroundColor: 'var(--ax-bg-moderateA)' }}>
+                <Box asChild borderRadius="full" padding="space-12" background="moderateA">
                     <LinkCard.Icon>
                         <FileIcon role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />
                     </LinkCard.Icon>
