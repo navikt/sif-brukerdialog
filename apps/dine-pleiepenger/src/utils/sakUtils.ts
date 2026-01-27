@@ -132,7 +132,7 @@ export const getAlleHendelserISak = (sak: Sak, inntektsmeldinger: Inntektsmeldin
         .reverse()
         .map((im) => ({
             type: Sakshendelser.INNTEKTSMELDING,
-            dato: im.mottattDato,
+            dato: im.innsendingstidspunkt,
             inntektsmelding: im,
             erstatter: inntektsmeldinger.filter((i) => i.erstattetAv.includes(im.journalpostId)),
         }));
