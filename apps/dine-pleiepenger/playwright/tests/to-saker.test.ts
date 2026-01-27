@@ -34,19 +34,19 @@ test('Saksdetaljer + historikk', async ({ page }) => {
     await expect(
         page.getByText('Vi har fått søknaden din om pleiepenger13.09.2025, kl. 14:21Vis dokumenter og'),
     ).toBeVisible();
-    await page.getByRole('button', { name: 'Vis dokumenter og bekreftelse' }).click();
+    await page.getByRole('button', { name: 'Vis dokumenter og bekreftelse' }).first().click();
     await expect(
-        page.getByText('Søknad og eventuelle vedlegg i søknadDokumentikon PDFSøknad om pleiepenger for'),
+        page.getByText('Søknad og eventuelle vedlegg i søknadDokumentikon PDFSøknad om pleiepenger for').first(),
     ).toBeVisible();
 
     await testAccessibility(page);
 
-    await page.getByRole('link', { name: 'Se alle hendelser' }).click();
+    await page.getByRole('button', { name: 'Se tidligere hendelser' }).click();
 
     await expect(page.getByRole('heading', { level: 1, name: 'Historikk' })).toBeVisible();
     await testAccessibility(page);
 
-    await page.getByRole('link', { name: 'Tilbake til sak' }).click();
+    await page.getByRole('button', { name: 'Tilbake til sak' }).click();
 
     await expect(page.getByRole('heading', { level: 1, name: 'Din pleiepengesak for sykt barn' })).toBeVisible();
     await expect(page.getByText('Saksnummer: 100097Y|')).toBeVisible();
