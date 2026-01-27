@@ -3,12 +3,12 @@ import { Box, HStack, Link, ReadMore, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
 import { FormattedNumber } from 'react-intl';
 
-import { AppText, IntlTextFn } from '../../i18n';
+import { IntlTextFn } from '../../i18n';
 import { InnsendelseISak } from '../../types';
 import { Ettersendelsestype } from '../../types/EttersendelseType';
 import { Innsendelsestype } from '../../types/Innsendelsestype';
 import { ProcessStepData } from '../../types/ProcessStepData';
-import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
+import { Sakshendelse, Sakshendelser } from '../../types/Sakshendelse';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
@@ -69,16 +69,6 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                 case Sakshendelser.ETTERSENDELSE:
                     return getProcessStepFromInnsendelse(text, hendelse.innsendelse);
 
-                /** Denne skal ikke vises enda */
-                // case Sakshendelser.AKSJONSPUNKT:
-                //     return {
-                //         title: hendelse.venteårsak,
-                //         completed: false,
-                //         current: true,
-                //         content: '',
-                //         timestamp: hendelse.dato,
-                //     };
-
                 case Sakshendelser.FERDIG_BEHANDLET:
                     return {
                         title: text('statusISak.ferdigBehandlet.tittel'),
@@ -130,45 +120,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         timestamp: hendelse.inntektsmelding.innsendingstidspunkt,
                     };
                 }
-                case Sakshendelser.FORVENTET_SVAR: {
-                    const titleContent = getForventetSvarTitleContent(hendelse, text);
-                    if (titleContent) {
-                        return {
-                            ...titleContent,
-                            completed: false,
-                            isLastStep: true,
-                        };
-                    }
-                    return undefined;
-                }
             }
         })
         .filter((h) => h !== undefined) as ProcessStepData[];
-};
-
-const getForventetSvarTitleContent = (
-    hendelse: SakshendelseForventetSvar,
-    text: IntlTextFn,
-): Pick<ProcessStepData, 'title' | 'content'> | undefined => {
-    const inneholderSøknad = hendelse.innsendelsestyperIBehandling.includes(Innsendelsestype.SØKNAD);
-    const inneholderEndring = hendelse.innsendelsestyperIBehandling.includes(Innsendelsestype.ENDRINGSMELDING);
-
-    if (!inneholderSøknad && inneholderEndring) {
-        return {
-            title: text('statusISak.forventetSvar.endring.tittel'),
-            content: (
-                <Box className="mt-2">
-                    <AppText id="statusISak.forventetSvar.endring.info" />
-                </Box>
-            ),
-        };
-    }
-    return {
-        title: text('statusISak.forventetSvar.søknad.tittel'),
-        content: (
-            <Box className="mt-2">
-                <AppText id="statusISak.forventetSvar.søknad.info" />
-            </Box>
-        ),
-    };
 };

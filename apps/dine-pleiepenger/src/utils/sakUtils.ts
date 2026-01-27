@@ -46,11 +46,11 @@ export const sortInnsendelser = (innsendelser: InnsendelseISak[]): InnsendelseIS
 };
 
 export const sortSakshendelse = (hendelse1: Sakshendelse, hendelse2: Sakshendelse): number => {
-    if (hendelse1.type === Sakshendelser.FORVENTET_SVAR) {
-        return 1;
-    } else if (hendelse2.type === Sakshendelser.FORVENTET_SVAR) {
-        return -1;
-    }
+    // if (hendelse1.type === Sakshendelser.FORVENTET_SVAR) {
+    //     return 1;
+    // } else if (hendelse2.type === Sakshendelser.FORVENTET_SVAR) {
+    //     return -1;
+    // }
     return (hendelse1.dato?.getTime() || 0) > (hendelse2.dato?.getTime() || 0) ? 1 : -1;
 };
 
@@ -86,7 +86,7 @@ export const harBehandlingSøknadEllerEndringsmelding = (behandling: Behandling)
         [Innsendelsestype.SØKNAD, Innsendelsestype.ENDRINGSMELDING].includes(i.innsendelsestype),
     );
 
-export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Sakshendelse[] => {
+export const getHendelserIBehandling = (behandling: Behandling): Sakshendelse[] => {
     const { innsendelser, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
     const hendelserIBehandling: Sakshendelse[] = [];
 
@@ -101,30 +101,23 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
         });
     }
 
-    /** Melding om vedtak eller fremtidig vedtak skal kun vises hvis behandling inneholder endringsmelding eller søknad */
-    if (harBehandlingSøknadEllerEndringsmelding(behandling)) {
-        /** Avsluttet eller forventet svar på søknad */
-        if (status === BehandlingStatus.AVSLUTTET && avsluttetTidspunkt) {
-            hendelserIBehandling.push({
-                type: Sakshendelser.FERDIG_BEHANDLET,
-                dato: avsluttetTidspunkt,
-            });
-        } else {
-            hendelserIBehandling.push({
-                type: Sakshendelser.FORVENTET_SVAR,
-                dato: saksbehandlingFrist,
-                innsendelsestyperIBehandling: (innsendelser || []).map((s) => s.innsendelsestype),
-            });
-        }
+    /** Melding om vedtak skal kun vises hvis behandling inneholder endringsmelding eller søknad */
+    if (
+        harBehandlingSøknadEllerEndringsmelding(behandling) &&
+        status === BehandlingStatus.AVSLUTTET &&
+        avsluttetTidspunkt
+    ) {
+        hendelserIBehandling.push({
+            type: Sakshendelser.FERDIG_BEHANDLET,
+            dato: avsluttetTidspunkt,
+        });
     }
 
     return hendelserIBehandling;
 };
 
 export const getAlleHendelserISak = (sak: Sak, inntektsmeldinger: Inntektsmelding[]): Sakshendelse[] => {
-    const sakshendelser: Sakshendelse[] = sak.behandlinger
-        .map((b) => getHendelserIBehandling(b, sak.utledetStatus.saksbehandlingsFrist))
-        .flat();
+    const sakshendelser: Sakshendelse[] = sak.behandlinger.map((b) => getHendelserIBehandling(b)).flat();
 
     const inntektsmeldingHendelser: Sakshendelse[] = inntektsmeldinger.map((im) => ({
         type: Sakshendelser.INNTEKTSMELDING,
