@@ -93,12 +93,14 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                     )
                 }>
                 <VStack gap="space-48">
-                    {statusISak ? (
-                        <HStack gap="space-8">
-                            <BodyShort weight="semibold">Status på sak:</BodyShort>
+                    <HStack gap="space-8" align="center">
+                        <BodyShort weight="semibold">Status på sak:</BodyShort>
+                        {statusISak ? (
                             <StatusTag {...statusISak} />
-                        </HStack>
-                    ) : null}
+                        ) : (
+                            <Skeleton height="1.5rem" width="10rem" variant="rounded" />
+                        )}
+                    </HStack>
                     {statusISak?.venteårsak && statusISak.status !== BehandlingStatus.AVSLUTTET ? (
                         <VenteårsakMelding venteårsak={statusISak.venteårsak} />
                     ) : null}
