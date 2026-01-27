@@ -73,7 +73,7 @@ const InntektsmeldingDetaljerPage = () => {
 
                     <Box className="ml-4 mt-4">
                         <Link as={NextLink} href={`/sak/${saksnr}/inntektsmelding`}>
-                            <ChevronLeftIcon role="presentation" />
+                            <ChevronLeftIcon role="presentation" aria-hidden="true" />
                             Tilbake til alle inntektsmeldinger
                         </Link>
                     </Box>

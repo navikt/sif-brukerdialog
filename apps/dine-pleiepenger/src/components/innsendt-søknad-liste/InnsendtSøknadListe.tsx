@@ -64,7 +64,7 @@ const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSøknader}>
                         <HStack gap="space-8" align="center" wrap={false}>
-                            <PlusIcon role="presentation" />
+                            <PlusIcon role="presentation" aria-hidden="true" />
                             <AppText id="innsendtSøknadListe.visFlereInnsendinger" />
                         </HStack>
                     </Button>

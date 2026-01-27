@@ -50,7 +50,7 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
                                 variant="secondary"
                                 type="button"
                                 as={Link}
-                                icon={<ArrowRightIcon />}
+                                icon={<ArrowRightIcon role="presentation" aria-hidden="true" />}
                                 iconPosition="right"
                                 size="small"
                                 className="noTextDecoration"
@@ -60,7 +60,7 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
                         </Box>
                         <Hide below="sm">
                             <Box>
-                                <SaksbehandlingstidPictogram />
+                                <SaksbehandlingstidPictogram role="presentation" />
                             </Box>
                         </Hide>
                     </HGrid>

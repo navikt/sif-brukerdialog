@@ -38,7 +38,7 @@ const HistorikkPage = ({ sak, inntektsmeldinger = [] }: Props) => {
                             variant="secondary"
                             type="button"
                             as={NextLink}
-                            icon={<ArrowLeftIcon />}
+                            icon={<ArrowLeftIcon role="presentation" aria-hidden="true" />}
                             iconPosition="left"
                             size="small"
                             href={`/sak/${sak.saksnummer}`}>

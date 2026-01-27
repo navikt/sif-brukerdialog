@@ -82,7 +82,7 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
                                 variant="secondary"
                                 type="button"
                                 as={NextLink}
-                                icon={<ArrowRightIcon />}
+                                icon={<ArrowRightIcon role="presentation" aria-hidden="true" />}
                                 iconPosition="right"
                                 size="small"
                                 href={`/sak/${sak.saksnummer}/historikk`}>
