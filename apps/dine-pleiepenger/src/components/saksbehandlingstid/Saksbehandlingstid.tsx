@@ -38,7 +38,7 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak, sakErLastet }: Props) => 
                     paddingInline="space-24"
                     borderRadius="16"
                     background="info-moderateA">
-                    <HGrid gap="space-16" columns={{ xs: 'auto 96px' }} align="center">
+                    <HGrid gap="space-16" columns={{ sm: 'auto 96px' }} align="center">
                         <VStack gap="space-16">
                             <SaksbehandlingstidMelding
                                 frist={frist}

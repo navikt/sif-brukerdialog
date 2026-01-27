@@ -1,8 +1,10 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
 import { createRequire } from 'node:module';
-import { join, dirname } from 'path';
+import { join, dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 const require = createRequire(import.meta.url);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -20,6 +22,16 @@ const config = {
     framework: {
         name: getAbsolutePath('@storybook/nextjs'),
         options: {},
+    },
+
+    webpackFinal: async (config) => {
+        config.resolve = config.resolve || {};
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            // Mock withAuthentication for å unngå Node.js-moduler fra @navikt/oasis
+            '../auth/withAuthentication': resolve(__dirname, '../src/storybook/mocks/withAuthentication.mock.ts'),
+        };
+        return config;
     },
 };
 export default config;
