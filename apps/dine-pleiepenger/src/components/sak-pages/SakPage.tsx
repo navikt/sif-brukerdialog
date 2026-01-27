@@ -107,6 +107,7 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                             <SaksbehandlingstidPanel
                                 frist={sak ? sak.utledetStatus.saksbehandlingsFrist : undefined}
                                 venteårsak={statusISak?.venteårsak}
+                                sakErLastet={!!sak}
                             />
                         </VStack>
                     )}

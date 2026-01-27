@@ -15,9 +15,10 @@ import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
 interface Props {
     frist?: Date;
     venteårsak?: Venteårsak;
+    sakErLastet?: boolean;
 }
 
-const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
+const SaksbehandlingstidPanel = ({ frist, venteårsak, sakErLastet }: Props) => {
     const { data, isLoading } = useSWR<Saksbehandlingstid>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/saksbehandlingstid`,
         (url) => axios.get(url).then((res) => saksbehandlingstidClientSchema.parse(res.data)),
@@ -29,7 +30,7 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
             <Heading size="medium" level="2" spacing={true}>
                 <AppText id="svarfrist.tittel" />
             </Heading>
-            {isLoading ? (
+            {isLoading || !sakErLastet ? (
                 <Skeleton height="6rem" variant="rounded" />
             ) : (
                 <Box
