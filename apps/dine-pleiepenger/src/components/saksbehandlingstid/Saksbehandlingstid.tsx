@@ -1,5 +1,6 @@
 'use client';
-import { Box, Heading, Link, Skeleton } from '@navikt/ds-react';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
+import { Box, Button, Heading, HGrid, Hide, Link, Skeleton } from '@navikt/ds-react';
 import axios from 'axios';
 import useSWR from 'swr';
 
@@ -9,6 +10,7 @@ import { saksbehandlingstidClientSchema } from '../../types/client-schemas/saksb
 import { browserEnv } from '../../utils/env';
 import { swrBaseConfig } from '../../utils/swrBaseConfig';
 import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
+import SaksbehandlingstidPictogram from './SaksbehandlingstidPictogram';
 
 interface Props {
     frist?: Date;
@@ -35,16 +37,33 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
                     paddingInline="space-24"
                     borderRadius="16"
                     background="info-moderateA">
-                    <Box className="mb-4">
-                        <SaksbehandlingstidMelding
-                            frist={frist}
-                            venteårsak={venteårsak}
-                            saksbehandlingstidUker={saksbehandlingstidUker}
-                        />
-                    </Box>
-                    <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
-                        <AppText id="svarfrist.lesMerLenke" />
-                    </Link>
+                    <HGrid gap="space-16" columns={{ xs: 'auto 96px' }} align="center">
+                        <Box>
+                            <Box className="mb-4">
+                                <SaksbehandlingstidMelding
+                                    frist={frist}
+                                    venteårsak={venteårsak}
+                                    saksbehandlingstidUker={saksbehandlingstidUker}
+                                />
+                            </Box>
+                            <Button
+                                variant="secondary"
+                                type="button"
+                                as={Link}
+                                icon={<ArrowRightIcon />}
+                                iconPosition="right"
+                                size="small"
+                                className="noTextDecoration"
+                                href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
+                                <AppText id="svarfrist.lesMerLenke" />
+                            </Button>
+                        </Box>
+                        <Hide below="sm">
+                            <Box>
+                                <SaksbehandlingstidPictogram />
+                            </Box>
+                        </Hide>
+                    </HGrid>
                 </Box>
             )}
         </Box>

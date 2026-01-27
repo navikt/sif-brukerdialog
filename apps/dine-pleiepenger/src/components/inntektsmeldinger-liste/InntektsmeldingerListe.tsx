@@ -1,4 +1,4 @@
-import { Box, Heading, Switch, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
 import { Inntektsmelding, InntektsmeldingStatus } from '../../types';
@@ -37,7 +37,7 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
         <VStack gap="space-32">
             <VStack gap="space-6">
                 <Heading level="2" size="medium">
-                    Inntektsmeldinger mottatt på saken
+                    Arbeidsgivere og inntektsmeldinger
                 </Heading>
                 {harInntektsmeldingerSomIkkeErIBruk && (
                     <Box>
@@ -55,8 +55,9 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                 {arbeidsgivereMedInntektsmeldinger.map((arbeidsgiver) => {
                     return (
                         <VStack gap="space-12" key={arbeidsgiver.arbeidsgiverId}>
-                            <Heading level="2" size="medium">
+                            <Heading level="3" size="medium">
                                 {arbeidsgiver.arbeidsgiverNavn}
+                                <BodyShort>Organisasjonsnummer {arbeidsgiver.arbeidsgiverId}</BodyShort>
                             </Heading>
                             {arbeidsgiver.inntektsmeldinger.map((inntektsmelding) => {
                                 if (visIkkeIBruk === false && inntektsmelding.status !== InntektsmeldingStatus.I_BRUK) {

@@ -35,7 +35,7 @@ export const nb = {
     'snarveier.omPleiepenger': 'Om pleiepenger for sykt barn',
     'snarveier.søkOmPleiepenger': 'Søk om pleiepenger for sykt barn',
 
-    'statusTag.status.underBehandling': 'Til behandling',
+    'statusTag.status.underBehandling': 'I kø til behandling',
     'statusTag.status.ferdigBehandlet': 'Ferdig behandlet',
     'statusTag.venteårsak.inntektsmelding': 'Venter på inntektsmelding',
     'statusTag.venteårsak.legeerklæring': 'Venter på legeerklæring',
@@ -46,8 +46,7 @@ export const nb = {
     'sakstype.PP_ETTERSENDELSE': 'Ettersendelse av dokumenter - Pleiepenger sykt barn',
     'sakstype.PP_SYKT_BARN_ENDRINGSMELDING': 'Endringsmelding pleiepenger',
 
-    'info.forsinkelse':
-        'Det kan ta opptil 15 minutter før en ny søknad, endringsmelding eller ettersendt legeerklæring vises her.',
+    'info.forsinkelse': 'Det kan ta opptil 15 minutter før nye hendelser vises her.',
 
     'svarfrist.tittel': 'Saksbehandlingstid',
     'svarfrist.forventetBehandlingstid':
@@ -56,7 +55,7 @@ export const nb = {
         'Vi jobber fremdeles med søknaden din. Noen ganger kan det ta lengre tid, spesielt hvis saken er komplisert eller vi har ventet på dokumenter.',
     'svarfrist.fristPassert.2':
         'Hvis du eller arbeidsgiveren din nylig har sendt oss dokumenter, tar det som regel noen dager før vår saksbehandler har vurdert dem.',
-    'svarfrist.lesMerLenke': 'Se saksbehandlingstider',
+    'svarfrist.lesMerLenke': 'Mer om saksbehandlingstid',
     'svarfrist.dokumenterManglerFrist':
         'Fordi vi mangler dokumenter kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
     'svarfrist.forTidligSoknad':

@@ -89,7 +89,7 @@ const getMockData = (scenario) => {
     }
 };
 
-const scenario = 'debug';
+const scenario = 'en-sak';
 
 const mockData = getMockData(scenario);
 

@@ -1,5 +1,5 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { Alert, BodyLong, Box, Link, Switch, VStack } from '@navikt/ds-react';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
+import { Alert, BodyLong, Box, Button, Switch, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
 import { useMemo, useState } from 'react';
 
@@ -77,10 +77,16 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
                     <StatusISakSteps steps={visibleSteps} isTruncated={finnesFlereHendelser ? 'end' : undefined} />
                     {finnesFlereHendelser && !visAlleHendelser ? (
                         <Box className="ml-4 mb-4">
-                            <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
-                                Se alle hendelser
-                                <ChevronRightIcon role="presentation" />
-                            </Link>
+                            <Button
+                                variant="secondary"
+                                type="button"
+                                as={NextLink}
+                                icon={<ArrowRightIcon />}
+                                iconPosition="right"
+                                size="small"
+                                href={`/sak/${sak.saksnummer}/historikk`}>
+                                Se tidligere hendelser
+                            </Button>
                         </Box>
                     ) : null}
                 </VStack>

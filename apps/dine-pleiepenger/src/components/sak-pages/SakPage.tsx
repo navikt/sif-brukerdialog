@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 
 import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
@@ -7,7 +7,6 @@ import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageH
 import SaksbehandlingstidPanel from '../../components/saksbehandlingstid/Saksbehandlingstid';
 import SkrivTilOssLenker from '../../components/skriv-til-oss-lenker/SkrivTilOssLenker';
 import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
-import StatusTag from '../../components/status-tag/StatusTag';
 import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { AppText } from '../../i18n';
@@ -15,6 +14,7 @@ import { BehandlingStatus, PleietrengendeMedSak } from '../../types';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 import PageHeader from '../page-layout/page-header/PageHeader';
 import StatusISak from '../status-i-sak/StatusISak';
+import StatusTag from '../status-tag/StatusTag';
 
 interface Props {
     saksnr: string;
@@ -73,35 +73,36 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
     };
 
     return (
-        <DefaultPageLayout
-            pageHeader={
-                pleietrengende ? (
-                    <SakPageHeader
-                        pleietrengende={pleietrengende}
-                        saksnr={saksnr}
-                        titleTag={statusISak ? <StatusTag {...statusISak} /> : null}
-                    />
-                ) : (
-                    <PageHeader
-                        title="Din pleiepengesak for sykt barn"
-                        byline={
-                            <BodyShort>
-                                <AppText id="sakPageHeader.saksnr" values={{ saksnr }} />
-                            </BodyShort>
-                        }
-                    />
-                )
-            }>
+        <>
             <Head>
                 <title>Din pleiepengesak for sykt barn - {saksnr}</title>
             </Head>
-            <VStack gap="space-48">
-                {statusISak?.venteårsak && statusISak.status !== BehandlingStatus.AVSLUTTET ? (
-                    <VenteårsakMelding venteårsak={statusISak.venteårsak} />
-                ) : null}
-                <Box className="md:flex md:gap-6">
-                    <div className="md:grow mb-10 md:mb-0">{getContent()}</div>
-                    <div className="md:mb-none shrink-0 md:w-72">
+            <DefaultPageLayout
+                pageHeader={
+                    pleietrengende ? (
+                        <SakPageHeader pleietrengende={pleietrengende} saksnr={saksnr} />
+                    ) : (
+                        <PageHeader
+                            title="Din pleiepengesak for sykt barn"
+                            byline={
+                                <BodyShort>
+                                    <AppText id="sakPageHeader.saksnr" values={{ saksnr }} />
+                                </BodyShort>
+                            }
+                        />
+                    )
+                }>
+                <Box maxWidth="50rem">
+                    <VStack gap="space-48">
+                        {statusISak ? (
+                            <HStack gap="space-8">
+                                <BodyShort weight="semibold">Status på sak:</BodyShort>
+                                <StatusTag {...statusISak} />
+                            </HStack>
+                        ) : null}
+                        {statusISak?.venteårsak && statusISak.status !== BehandlingStatus.AVSLUTTET ? (
+                            <VenteårsakMelding venteårsak={statusISak.venteårsak} />
+                        ) : null}
                         {statusISak?.status === BehandlingStatus.AVSLUTTET ? null : (
                             <VStack gap="space-20">
                                 <SaksbehandlingstidPanel
@@ -110,19 +111,24 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                                 />
                             </VStack>
                         )}
-                    </div>
+
+                        <Box>{getContent()}</Box>
+
+                        <Box>
+                            <OppdatereSakLenker />
+                        </Box>
+
+                        <Box>
+                            <SkrivTilOssLenker />
+                        </Box>
+
+                        <Box className="mb-10">
+                            <SnarveierSak saksnummer={saksnr} />
+                        </Box>
+                    </VStack>
                 </Box>
-                <Box>
-                    <OppdatereSakLenker />
-                </Box>
-                <Box>
-                    <SkrivTilOssLenker />
-                </Box>
-                <Box className="mb-10">
-                    <SnarveierSak saksnummer={saksnr} />
-                </Box>
-            </VStack>
-        </DefaultPageLayout>
+            </DefaultPageLayout>
+        </>
     );
 };
 

@@ -46,7 +46,7 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <Link href={`/sak/${saksnummer}/inntektsmelding/${inntektsmelding.journalpostId}`}>
-                        Første fraværsdato: {dateFormatter.full(inntektsmelding.startDatoPermisjon)}.
+                        Inntektsmelding - første fraværsdag {dateFormatter.full(inntektsmelding.startDatoPermisjon)}.
                     </Link>
                 </LinkCard.Anchor>
             </LinkCard.Title>
