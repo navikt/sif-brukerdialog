@@ -57,7 +57,7 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                         <VStack gap="space-12" key={arbeidsgiver.arbeidsgiverId}>
                             <Heading level="3" size="medium">
                                 {arbeidsgiver.arbeidsgiverNavn}
-                                <BodyShort>Organisasjonsnummer {arbeidsgiver.arbeidsgiverId}</BodyShort>
+                                <BodyShort>{arbeidsgiver.arbeidsgiverId}</BodyShort>
                             </Heading>
                             {arbeidsgiver.inntektsmeldinger.map((inntektsmelding) => {
                                 if (visIkkeIBruk === false && inntektsmelding.status !== InntektsmeldingStatus.I_BRUK) {
@@ -79,7 +79,7 @@ const InntektsmeldingerListe = ({ inntektsmeldinger, saksnummer }: Props) => {
                                                     gap="space-12"
                                                     marginInline={{ xs: 'space-12 space-0', md: 'space-16 space-0' }}
                                                     marginBlock="space-8 space-8">
-                                                    <Heading level="3" size="xsmall">
+                                                    <Heading level="4" size="xsmall">
                                                         Inntektsmeldingen over erstatter disse:
                                                     </Heading>
                                                     {renderInntektsmeldinger(inntektsmelding.erstatter)}

@@ -53,7 +53,7 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
                         </Button>
                     </div>
                 </VStack>
-            </DefaultPageLayout>{' '}
+            </DefaultPageLayout>
         </>
     );
 };
