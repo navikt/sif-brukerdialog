@@ -92,41 +92,39 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                         />
                     )
                 }>
-                <Box maxWidth="50rem">
-                    <VStack gap="space-48">
-                        {statusISak ? (
-                            <HStack gap="space-8">
-                                <BodyShort weight="semibold">Status på sak:</BodyShort>
-                                <StatusTag {...statusISak} />
-                            </HStack>
-                        ) : null}
-                        {statusISak?.venteårsak && statusISak.status !== BehandlingStatus.AVSLUTTET ? (
-                            <VenteårsakMelding venteårsak={statusISak.venteårsak} />
-                        ) : null}
-                        {statusISak?.status === BehandlingStatus.AVSLUTTET ? null : (
-                            <VStack gap="space-20">
-                                <SaksbehandlingstidPanel
-                                    frist={sak ? sak.utledetStatus.saksbehandlingsFrist : undefined}
-                                    venteårsak={statusISak?.venteårsak}
-                                />
-                            </VStack>
-                        )}
+                <VStack gap="space-48">
+                    {statusISak ? (
+                        <HStack gap="space-8">
+                            <BodyShort weight="semibold">Status på sak:</BodyShort>
+                            <StatusTag {...statusISak} />
+                        </HStack>
+                    ) : null}
+                    {statusISak?.venteårsak && statusISak.status !== BehandlingStatus.AVSLUTTET ? (
+                        <VenteårsakMelding venteårsak={statusISak.venteårsak} />
+                    ) : null}
+                    {statusISak?.status === BehandlingStatus.AVSLUTTET ? null : (
+                        <VStack gap="space-20">
+                            <SaksbehandlingstidPanel
+                                frist={sak ? sak.utledetStatus.saksbehandlingsFrist : undefined}
+                                venteårsak={statusISak?.venteårsak}
+                            />
+                        </VStack>
+                    )}
 
-                        <Box>{getContent()}</Box>
+                    <Box>{getContent()}</Box>
 
-                        <Box>
-                            <OppdatereSakLenker />
-                        </Box>
+                    <Box>
+                        <OppdatereSakLenker />
+                    </Box>
 
-                        <Box>
-                            <SkrivTilOssLenker />
-                        </Box>
+                    <Box>
+                        <SkrivTilOssLenker />
+                    </Box>
 
-                        <Box className="mb-10">
-                            <SnarveierSak saksnummer={saksnr} />
-                        </Box>
-                    </VStack>
-                </Box>
+                    <Box className="mb-10">
+                        <SnarveierSak saksnummer={saksnr} />
+                    </Box>
+                </VStack>
             </DefaultPageLayout>
         </>
     );

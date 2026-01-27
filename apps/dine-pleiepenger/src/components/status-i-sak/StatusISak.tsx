@@ -24,6 +24,7 @@ const sortProcessStepDescending = (a: ProcessStepData, b: ProcessStepData) =>
 
 const sortProcessStepAscending = (a: ProcessStepData, b: ProcessStepData) =>
     (a.timestamp?.getTime() || 0) - (b.timestamp?.getTime() || 0);
+
 const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props) => {
     const [sortDescending, setSortDescending] = useState(true);
     const { text } = useAppIntl();

@@ -1,7 +1,7 @@
 import { BodyShort, Heading, HStack, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 
-import PleiepengerSVG from '../../../svg/pleiepenger';
+import PleiepengerSVG from '../../../svg/PleiepengerSVG';
 
 interface Props {
     title?: string;

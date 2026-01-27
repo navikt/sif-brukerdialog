@@ -50,24 +50,24 @@ const InntektsmeldingDetaljerPage = () => {
     };
 
     return (
-        <DefaultPageLayout
-            pageHeader={
-                <PageHeader
-                    title={`Inntektsmelding ${inntektsmelding ? `fra ${getImUtils(inntektsmelding).arbeidsgiverNavn}` : ''}`}
-                    hidePleiepengerIcon={true}
-                    byline={
-                        inntektsmelding ? (
-                            <BodyShort size="medium">
-                                Sendt inn {dateFormatter.compactWithTime(inntektsmelding.mottattDato)}
-                            </BodyShort>
-                        ) : undefined
-                    }
-                />
-            }>
+        <>
             <Head>
                 <title>Inntektsmelding - Din pleiepengesak for sykt barn - {saksnr}</title>
             </Head>
-            <Box maxWidth="52rem">
+            <DefaultPageLayout
+                pageHeader={
+                    <PageHeader
+                        title={`Inntektsmelding ${inntektsmelding ? `fra ${getImUtils(inntektsmelding).arbeidsgiverNavn}` : ''}`}
+                        hidePleiepengerIcon={true}
+                        byline={
+                            inntektsmelding ? (
+                                <BodyShort size="medium">
+                                    Sendt inn {dateFormatter.compactWithTime(inntektsmelding.mottattDato)}
+                                </BodyShort>
+                            ) : undefined
+                        }
+                    />
+                }>
                 <VStack gap="space-16">
                     <Bleed marginBlock="space-16 space-0">{renderContent()}</Bleed>
 
@@ -78,8 +78,8 @@ const InntektsmeldingDetaljerPage = () => {
                         </Link>
                     </Box>
                 </VStack>
-            </Box>
-        </DefaultPageLayout>
+            </DefaultPageLayout>
+        </>
     );
 };
 

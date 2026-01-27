@@ -5,12 +5,12 @@ import axios from 'axios';
 import useSWR from 'swr';
 
 import { AppText } from '../../i18n';
+import SaksbehandlingstidPictogram from '../../svg/SaksbehandlingstidPictogram';
 import { Saksbehandlingstid, Venteårsak } from '../../types';
 import { saksbehandlingstidClientSchema } from '../../types/client-schemas/saksbehandlingstidClientSchema';
 import { browserEnv } from '../../utils/env';
 import { swrBaseConfig } from '../../utils/swrBaseConfig';
 import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
-import SaksbehandlingstidPictogram from './SaksbehandlingstidPictogram';
 
 interface Props {
     frist?: Date;

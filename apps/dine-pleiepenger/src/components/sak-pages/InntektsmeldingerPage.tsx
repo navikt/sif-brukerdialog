@@ -1,5 +1,5 @@
-import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Box, Heading, Link, VStack } from '@navikt/ds-react';
+import { ArrowLeftIcon } from '@navikt/aksel-icons';
+import { Alert, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 
@@ -21,35 +21,40 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
         saksnummer: sak.saksnummer,
     });
 
-    const renderContent = () => {
-        return inntektsmeldinger && inntektsmeldinger.length > 0 ? (
-            <InntektsmeldingerListe saksnummer={sak.saksnummer} inntektsmeldinger={inntektsmeldinger} />
-        ) : (
-            <>
-                <Heading level="2" size="medium" className="mb-2">
-                    Ingen inntektsmeldinger er mottatt for denne saken
-                </Heading>
-                <Alert variant="info">Det er ingen inntektsmeldinger knyttet til denne saken.</Alert>
-            </>
-        );
-    };
     return (
-        <DefaultPageLayout pageHeader={<PageHeader title="Inntektsmeldinger" hidePleiepengerIcon={true} />}>
+        <>
             <Head>
                 <title>Inntektsmeldinger - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>
-            <Box maxWidth="52rem">
-                <VStack gap="space-16">
-                    {renderContent()}
-                    <Box className="ml-4 mt-4">
-                        <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
-                            <ChevronLeftIcon role="presentation" />
+            <DefaultPageLayout pageHeader={<PageHeader title="Inntektsmeldinger" hidePleiepengerIcon={true} />}>
+                <VStack gap="space-24">
+                    {inntektsmeldinger && inntektsmeldinger.length > 0 ? (
+                        <Box marginBlock="space-0 space-24">
+                            <InntektsmeldingerListe saksnummer={sak.saksnummer} inntektsmeldinger={inntektsmeldinger} />
+                        </Box>
+                    ) : (
+                        <>
+                            <Heading level="2" size="medium" spacing>
+                                Ingen inntektsmeldinger er mottatt for denne saken
+                            </Heading>
+                            <Alert variant="info">Det er ingen inntektsmeldinger knyttet til denne saken.</Alert>
+                        </>
+                    )}
+                    <div>
+                        <Button
+                            variant="secondary"
+                            type="button"
+                            as={NextLink}
+                            icon={<ArrowLeftIcon />}
+                            iconPosition="left"
+                            size="small"
+                            href={`/sak/${sak.saksnummer}`}>
                             Tilbake til sak
-                        </Link>
-                    </Box>
+                        </Button>
+                    </div>
                 </VStack>
-            </Box>
-        </DefaultPageLayout>
+            </DefaultPageLayout>{' '}
+        </>
     );
 };
 
