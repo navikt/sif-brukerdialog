@@ -16,7 +16,7 @@ export const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingst
         return <AppText id="svarfrist.forventetBehandlingstid" values={{ saksbehandlingstidUker }} />;
     }
 
-    if (erSaksbehandlingsfristPassert(frist) && 1 + 1 === 3) {
+    if (erSaksbehandlingsfristPassert(frist)) {
         if (venteårsak === Venteårsak.FOR_TIDLIG_SOKNAD) {
             return (
                 <AppText
