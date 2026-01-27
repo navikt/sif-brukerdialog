@@ -62,7 +62,8 @@ export const nb = {
         'Fordi vi ikke kan behandle søknaden din enda, kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
     'svarfrist.forTidligSoknad.fristPassert':
         'Fordi vi ikke kan behandle søknaden din enda, kan saksbehandlingstiden bli lenger enn vanlig.',
-    'svarfrist.generellFrist': 'Du kan forvente svar innen <dato>{frist}</dato>.',
+    'svarfrist.generellFrist.1': 'Du kan forvente svar innen <dato>{frist}</dato>.',
+    'svarfrist.generellFrist.2': 'Du vil få en SMS når du har fått svar på søknaden din.',
 
     'hvaSkjerInfo.tittel': 'Hva skjer etter at du har sendt søknad til oss?',
     'hvaSkjerInfo.innsent.endringsmelding.tittel': 'Saksgang etter innsendt endringsmelding',

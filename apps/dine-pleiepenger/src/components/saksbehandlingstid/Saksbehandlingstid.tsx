@@ -33,7 +33,7 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak }: Props) => {
                 <Skeleton height="6rem" variant="rounded" />
             ) : (
                 <Box
-                    paddingBlock="space-16 space-24"
+                    paddingBlock="space-24 space-24"
                     paddingInline="space-24"
                     borderRadius="16"
                     background="info-moderateA">

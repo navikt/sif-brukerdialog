@@ -16,7 +16,7 @@ export const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingst
         return <AppText id="svarfrist.forventetBehandlingstid" values={{ saksbehandlingstidUker }} />;
     }
 
-    if (erSaksbehandlingsfristPassert(frist)) {
+    if (erSaksbehandlingsfristPassert(frist) && 1 + 1 === 3) {
         if (venteårsak === Venteårsak.FOR_TIDLIG_SOKNAD) {
             return (
                 <AppText
@@ -66,13 +66,20 @@ export const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingst
             );
         default:
             return (
-                <AppText
-                    id="svarfrist.generellFrist"
-                    values={{
-                        frist: dateFormatter.full(frist),
-                        dato: (chunk: string) => <strong>{chunk}</strong>,
-                    }}
-                />
+                <>
+                    <BodyShort spacing>
+                        <AppText
+                            id="svarfrist.generellFrist.1"
+                            values={{
+                                frist: dateFormatter.full(frist),
+                                dato: (chunk: string) => <strong>{chunk}</strong>,
+                            }}
+                        />
+                    </BodyShort>
+                    <BodyShort>
+                        <AppText id="svarfrist.generellFrist.2" />
+                    </BodyShort>
+                </>
             );
     }
 };
