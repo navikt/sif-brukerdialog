@@ -38,7 +38,7 @@
         "jsdom": "27.4.0",
         "lodash.sortby": "4.7.0",
         "lodash.uniq": "4.5.0",
-        "next": "15.5.9",
+        "next": "16.1.4",
         "next-logger": "5.0.2",
         "pino": "10.2.1",
         "react": "19.2.3",
