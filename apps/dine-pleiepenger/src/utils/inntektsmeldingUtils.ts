@@ -38,6 +38,13 @@ export const getRefusjonFørFørsteEndring = (
     return undefined;
 };
 
+export const getRefusjonOpphørerEndring = (refusjonOpphører: Date): EndringRefusjon => {
+    return {
+        fom: dayjs(refusjonOpphører).add(1, 'day').toDate(),
+        refusjonBeløpPerMnd: 0,
+    };
+};
+
 export type InntektsmeldingMedErstatter = Inntektsmelding & {
     erstatter: Inntektsmelding[];
 };

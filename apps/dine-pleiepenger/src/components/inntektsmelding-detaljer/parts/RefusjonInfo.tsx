@@ -2,7 +2,7 @@ import { List } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { EndringerRefusjon, EndringRefusjon, Refusjon } from '../../../types/inntektsmeldingTypes';
-import { getRefusjonFørFørsteEndring } from '../../../utils/inntektsmeldingUtils';
+import { getRefusjonFørFørsteEndring, getRefusjonOpphørerEndring } from '../../../utils/inntektsmeldingUtils';
 
 interface Props {
     inntektBeløp: number;
@@ -89,10 +89,7 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPer
     // Legg til opphør av refusjon som siste element hvis det finnes opphør av refusjon.
     // refusjonOpphører utledes fra siste endring i refusjon.
     if (refusjon.refusjonOpphører) {
-        alleEndringer.push({
-            fom: refusjon.refusjonOpphører,
-            refusjonBeløpPerMnd: 0,
-        });
+        alleEndringer.push(getRefusjonOpphørerEndring(refusjon.refusjonOpphører));
     }
 
     return (
