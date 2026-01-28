@@ -1,5 +1,4 @@
-import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Box, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 
@@ -7,6 +6,7 @@ import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { Inntektsmelding, Sak } from '../../types';
 import { browserEnv } from '../../utils/env';
 import InntektsmeldingerListe from '../inntektsmeldinger-liste/InntektsmeldingerListe';
+import LinkButton from '../link-button/LinkButton';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';
 
@@ -21,35 +21,33 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
         saksnummer: sak.saksnummer,
     });
 
-    const renderContent = () => {
-        return inntektsmeldinger && inntektsmeldinger.length > 0 ? (
-            <InntektsmeldingerListe saksnummer={sak.saksnummer} inntektsmeldinger={inntektsmeldinger} />
-        ) : (
-            <Alert variant="info">Det er ingen inntektsmeldinger knyttet til denne saken.</Alert>
-        );
-    };
     return (
-        <DefaultPageLayout pageHeader={<PageHeader title="Inntektsmeldinger" hidePleiepengerIcon={true} />}>
+        <>
             <Head>
                 <title>Inntektsmeldinger - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>
-            <VStack gap="space-48">
-                <Box maxWidth="52rem">
-                    <VStack gap="space-16">
-                        <Heading level="2" size="medium" className="mb-2">
-                            Inntektsmeldinger vi har mottatt
-                        </Heading>
-                        {renderContent()}
-                        <Box className="ml-4 mt-4">
-                            <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
-                                <ChevronLeftIcon role="presentation" />
-                                Tilbake til sak
-                            </Link>
+            <DefaultPageLayout pageHeader={<PageHeader title="Inntektsmeldinger" hidePleiepengerIcon={true} />}>
+                <VStack gap="space-24">
+                    {inntektsmeldinger && inntektsmeldinger.length > 0 ? (
+                        <Box marginBlock="space-0 space-24">
+                            <InntektsmeldingerListe saksnummer={sak.saksnummer} inntektsmeldinger={inntektsmeldinger} />
                         </Box>
-                    </VStack>
-                </Box>
-            </VStack>
-        </DefaultPageLayout>
+                    ) : (
+                        <>
+                            <Heading level="2" size="medium" spacing>
+                                Ingen inntektsmeldinger er mottatt for denne saken
+                            </Heading>
+                            <Alert variant="info">Det er ingen inntektsmeldinger knyttet til denne saken.</Alert>
+                        </>
+                    )}
+                    <div>
+                        <LinkButton direction="left" as={NextLink} href={`/sak/${sak.saksnummer}`}>
+                            Tilbake til sak
+                        </LinkButton>
+                    </div>
+                </VStack>
+            </DefaultPageLayout>
+        </>
     );
 };
 

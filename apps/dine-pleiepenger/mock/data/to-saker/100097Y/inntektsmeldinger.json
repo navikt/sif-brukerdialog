@@ -3,25 +3,88 @@
         "ytelseType": "PLEIEPENGER_SYKT_BARN",
         "status": "I_BRUK",
         "saksnummer": "100097Y",
-        "innsendingstidspunkt": "2025-09-15T16:48:26",
-        "kildesystem": "Dolly",
+        "innsendingstidspunkt": "2026-01-14T13:18:16.511",
+        "kildesystem": "NAV_NO",
         "arbeidsgiver": {
-            "organisasjon": { "navn": "SNILL TORPEDO", "organisasjonsnummer": "967170232" },
+            "organisasjon": { "navn": "TROSSIG NATURSTRIDIG TIGER AS", "organisasjonsnummer": "311536753" },
             "privat": null
         },
         "nærRelasjon": false,
-        "journalpostId": "454018144",
-        "mottattDato": "2025-09-15",
-        "inntektBeløp": 45000,
+        "journalpostId": "454065031",
+        "mottattDato": "2026-01-14",
+        "inntektBeløp": 30000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [
+            { "periode": { "fom": "0001-01-03", "tom": "2026-01-05" }, "beløpPerMnd": 2000, "type": "BIL" }
+        ],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2026-01-05",
+        "oppgittFravær": [],
+        "refusjon": { "refusjonBeløpPerMnd": 30000, "refusjonOpphører": "2026-01-29" },
+        "inntektsmeldingType": "ORDINÆR",
+        "endringerRefusjon": [{ "refusjonBeløpPerMnd": 20000, "fom": "2026-01-06" }]
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "100097Y",
+        "innsendingstidspunkt": "2026-01-14T13:19:32.35",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": { "navn": "LAV BLØT KATT MOSKUS", "organisasjonsnummer": "315630304" },
+            "privat": null
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454065037",
+        "mottattDato": "2026-01-14",
+        "inntektBeløp": 20000,
         "innsendingsårsak": "NY",
         "erstattetAv": [],
         "graderinger": [],
         "naturalYtelser": [],
         "utsettelsePerioder": [],
-        "startDatoPermisjon": "2025-07-01",
+        "startDatoPermisjon": "2026-01-05",
         "oppgittFravær": [],
         "refusjon": null,
-        "inntektsmeldingType": null,
+        "inntektsmeldingType": "ORDINÆR",
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "100097Y",
+        "innsendingstidspunkt": "2026-01-14T13:19:02.331",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": { "navn": "INTERESSANT INTUITIV KATT DIAMETER", "organisasjonsnummer": "315853370" },
+            "privat": null
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454065036",
+        "mottattDato": "2026-01-14",
+        "inntektBeløp": 50000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [
+            {
+                "periode": { "fom": "0001-01-03", "tom": "2026-01-04" },
+                "beløpPerMnd": 350,
+                "type": "ELEKTRISK_KOMMUNIKASJON"
+            },
+            {
+                "periode": { "fom": "2026-02-01", "tom": "9999-12-31" },
+                "beløpPerMnd": 350,
+                "type": "ELEKTRISK_KOMMUNIKASJON"
+            }
+        ],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2026-01-05",
+        "oppgittFravær": [],
+        "refusjon": { "refusjonBeløpPerMnd": 50000, "refusjonOpphører": null },
+        "inntektsmeldingType": "ORDINÆR",
         "endringerRefusjon": []
     }
 ]

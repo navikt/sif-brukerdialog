@@ -1,5 +1,4 @@
-import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Bleed, BodyShort, Box, Link, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, BodyShort, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
@@ -10,6 +9,7 @@ import { usePleietrengendeMedSakFromRoute } from '../../hooks/usePleietrengendeM
 import { browserEnv } from '../../utils/env';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
 import InntektsmeldingDetaljer from '../inntektsmelding-detaljer/InntektsmeldingDetaljer';
+import LinkButton from '../link-button/LinkButton';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import LoadingPage from '../page-layout/loading-page/LoadingPage';
 import PageHeader from '../page-layout/page-header/PageHeader';
@@ -33,7 +33,15 @@ const InntektsmeldingDetaljerPage = () => {
         return <LoadingPage title="Laster inntektsmelding..." />;
     }
 
-    const renderContent = () => {
+    const pageTitle = inntektsmelding
+        ? `Inntektsmelding fra ${getImUtils(inntektsmelding).arbeidsgiverNavn}`
+        : 'Inntektsmelding';
+
+    const pageByline = inntektsmelding ? (
+        <BodyShort size="medium">Sendt inn {dateFormatter.compactWithTime(inntektsmelding.mottattDato)}</BodyShort>
+    ) : undefined;
+
+    const content = (() => {
         if (error) {
             return (
                 <Alert variant="error">
@@ -41,45 +49,29 @@ const InntektsmeldingDetaljerPage = () => {
                 </Alert>
             );
         }
-
-        return inntektsmelding ? (
-            <InntektsmeldingDetaljer inntektsmelding={inntektsmelding} />
-        ) : (
-            <Alert variant="info">Ugyldig inntektsmelding.</Alert>
-        );
-    };
+        if (!inntektsmelding) {
+            return <Alert variant="info">Ugyldig inntektsmelding.</Alert>;
+        }
+        return <InntektsmeldingDetaljer inntektsmelding={inntektsmelding} />;
+    })();
 
     return (
-        <DefaultPageLayout
-            pageHeader={
-                <PageHeader
-                    title={`Inntektsmelding ${inntektsmelding ? `fra ${getImUtils(inntektsmelding).arbeidsgiverNavn}` : ''}`}
-                    hidePleiepengerIcon={true}
-                    byline={
-                        inntektsmelding ? (
-                            <BodyShort size="medium">
-                                Sendt inn {dateFormatter.compactWithTime(inntektsmelding.mottattDato)}
-                            </BodyShort>
-                        ) : undefined
-                    }
-                />
-            }>
+        <>
             <Head>
                 <title>Inntektsmelding - Din pleiepengesak for sykt barn - {saksnr}</title>
             </Head>
-            <Box maxWidth="52rem">
-                <VStack gap="space-16">
-                    <Bleed marginBlock="space-16 space-0">{renderContent()}</Bleed>
-
-                    <Box className="ml-4 mt-4">
-                        <Link as={NextLink} href={`/sak/${saksnr}/inntektsmelding`}>
-                            <ChevronLeftIcon role="presentation" />
+            <DefaultPageLayout
+                pageHeader={<PageHeader title={pageTitle} hidePleiepengerIcon={true} byline={pageByline} />}>
+                <VStack gap="space-32">
+                    <Bleed marginBlock="space-16 space-0">{content}</Bleed>
+                    <div>
+                        <LinkButton direction="left" as={NextLink} href={`/sak/${saksnr}/inntektsmelding`}>
                             Tilbake til alle inntektsmeldinger
-                        </Link>
-                    </Box>
+                        </LinkButton>
+                    </div>
                 </VStack>
-            </Box>
-        </DefaultPageLayout>
+            </DefaultPageLayout>
+        </>
     );
 };
 

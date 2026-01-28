@@ -22,7 +22,7 @@ const NaturalYtelserInfo = ({ naturalYtelser }: Props) => {
         <List>
             {naturalYtelser.map((ytelse, index) => (
                 <List.Item key={index}>
-                    Fra {dateFormatter.compact(ytelse.fom)}{' '}
+                    Fra og med {dateFormatter.compact(ytelse.fom)}{' '}
                     {ytelse.endring === 'mister' ? 'får du ikke lenger ' : 'får du '}
                     {naturalytelseNavn[ytelse.type]}, verdi{' '}
                     <FormattedNumber

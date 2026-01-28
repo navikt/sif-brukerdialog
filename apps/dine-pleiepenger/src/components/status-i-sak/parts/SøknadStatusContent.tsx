@@ -22,7 +22,7 @@ const SøknadStatusContent = ({ søknad }: Props) => {
                     ? 'statusISak.søknadStatusContent.readMoreHeader'
                     : 'statusISak.søknadStatusContent.readMoreHeader.ingenArbeidsgiver',
             )}>
-            <VStack gap="space-8" className="pt-2">
+            <VStack gap="space-16">
                 <Dokumenter
                     dokumenter={søknad.dokumenter}
                     tittel={text('statusISak.søknadStatusContent.dokumenterISøknad')}

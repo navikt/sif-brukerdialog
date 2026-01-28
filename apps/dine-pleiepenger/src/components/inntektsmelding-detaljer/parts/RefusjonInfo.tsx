@@ -2,7 +2,7 @@ import { List } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { EndringerRefusjon, EndringRefusjon, Refusjon } from '../../../types/inntektsmeldingTypes';
-import { getRefusjonFørFørsteEndring } from '../../../utils/inntektsmeldingUtils';
+import { getRefusjonEndringListe } from '../../../utils/inntektsmeldingUtils';
 
 interface Props {
     inntektBeløp: number;
@@ -32,7 +32,7 @@ const utledUtbetaler = ({ total, utbetaling }: { total: number; utbetaling: numb
 
 const renderEndringListItem = (endring: EndringRefusjon, refusjonBeløpPerMnd: number) => {
     const hvemBetaler = utledUtbetaler({ total: refusjonBeløpPerMnd, utbetaling: endring.refusjonBeløpPerMnd });
-    const datoString = `Fra ${dateFormatter.compact(endring.fom)}`;
+    const datoString = `Fra og med ${dateFormatter.compact(endring.fom)}`;
     switch (hvemBetaler) {
         case RefusjonUtbetaler.ARBEIDSGIVER:
             return `${datoString} betaler arbeidsgiver lønn til deg som vanlig.`;
@@ -54,11 +54,11 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPer
 
     // Har ikke endringer i refusjon; utled hvem som betaler for hele perioden
     if (!harEndringerIRefusjon) {
-        const hvemBetaler = utledUtbetaler({
+        const utbetaler = utledUtbetaler({
             total: inntektBeløp,
             utbetaling: refusjon.refusjonBeløpPerMnd,
         });
-        switch (hvemBetaler) {
+        switch (utbetaler) {
             case RefusjonUtbetaler.ARBEIDSGIVER:
                 return <>Arbeidsgiver betaler lønn til deg som vanlig under fraværet.</>;
             case RefusjonUtbetaler.NAV:
@@ -74,16 +74,12 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPer
     }
 
     // Har endringer i refusjon - list opp endringene
-    const førsteEndring = endringerRefusjon[0];
-    const refusjonFørFørsteEndring = getRefusjonFørFørsteEndring(
-        refusjon.refusjonBeløpPerMnd,
+    const alleEndringer = getRefusjonEndringListe({
+        refusjonBeløpPerMnd: refusjon.refusjonBeløpPerMnd,
+        refusjonOpphører: refusjon.refusjonOpphører,
         startDatoPermisjon,
-        førsteEndring,
-    );
-
-    const alleEndringer = refusjonFørFørsteEndring
-        ? [refusjonFørFørsteEndring, ...endringerRefusjon]
-        : endringerRefusjon;
+        endringerRefusjon,
+    });
 
     return (
         <List>

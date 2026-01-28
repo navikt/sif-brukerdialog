@@ -21,24 +21,27 @@ export const Default: Story = {
     name: 'Med frist',
     args: {
         frist: dayjs().add(10, 'day').toDate(),
+        sakErLastet: true,
     },
 };
 
 export const UtenFristMedBehandlingstid: Story = {
     name: 'Ingen frist',
-    args: {},
+    args: { sakErLastet: true },
 };
 
 export const FristIGår: Story = {
     name: 'Frist i går',
     args: {
         frist: dayjs().subtract(1, 'day').toDate(),
+        sakErLastet: true,
     },
 };
 export const FristPassert: Story = {
     name: 'Frist i dag',
     args: {
         frist: dayjs().toDate(),
+        sakErLastet: true,
     },
 };
 export const VenteårsakMedisinsk: Story = {
@@ -46,6 +49,7 @@ export const VenteårsakMedisinsk: Story = {
     args: {
         frist: dayjs().toDate(),
         venteårsak: Venteårsak.MEDISINSK_DOKUMENTASJON,
+        sakErLastet: true,
     },
 };
 export const VenteårsakInntektsmelding: Story = {
@@ -53,6 +57,7 @@ export const VenteårsakInntektsmelding: Story = {
     args: {
         frist: dayjs().toDate(),
         venteårsak: Venteårsak.INNTEKTSMELDING,
+        sakErLastet: true,
     },
 };
 export const VenteårsakForTidligSøknad: Story = {
@@ -60,6 +65,7 @@ export const VenteårsakForTidligSøknad: Story = {
     args: {
         frist: dayjs().toDate(),
         venteårsak: Venteårsak.FOR_TIDLIG_SOKNAD,
+        sakErLastet: true,
     },
 };
 export const VenteårsakForTidligSøknadFristPassert: Story = {
@@ -67,6 +73,7 @@ export const VenteårsakForTidligSøknadFristPassert: Story = {
     args: {
         frist: dayjs().subtract(3, 'months').toDate(),
         venteårsak: Venteårsak.FOR_TIDLIG_SOKNAD,
+        sakErLastet: true,
     },
 };
 export const VenteårsakMeldekort: Story = {
@@ -74,5 +81,6 @@ export const VenteårsakMeldekort: Story = {
     args: {
         frist: dayjs().toDate(),
         venteårsak: Venteårsak.MELDEKORT,
+        sakErLastet: true,
     },
 };

@@ -86,10 +86,18 @@ const getMockData = (scenario) => {
             ],
             soknader,
         };
+    } else if (scenario === 'ingen-sak-eller-soknad') {
+        const søker = JSON.parse(readFileSync(join(__dirname, './data/soker.json'), 'utf-8'));
+        return {
+            sakerMetadata: [],
+            søker,
+            saker: [],
+            soknader: [],
+        };
     }
 };
 
-const scenario = 'to-saker';
+const scenario = 'to-saker'; // Velg scenario her
 
 const mockData = getMockData(scenario);
 

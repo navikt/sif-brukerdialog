@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import mockMetadata from '../../../mock/data/to-saker/saker-metadata.json';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
+import { withInnsynsdata } from '../../storybook/hooks/withInnsynsdata';
 import { withIntl } from '../../storybook/hooks/withIntl';
 import { SakerMetadata } from '../../types';
 import { sakerMetadataClientSchema } from '../../types/client-schemas/sakerMetadataClientSchema';
@@ -15,7 +16,7 @@ const meta: Meta<typeof VelgSakPage> = {
     parameters: {
         layout: 'centered',
     },
-    decorators: [withEmptyPage, withIntl],
+    decorators: [withEmptyPage, withIntl, withInnsynsdata],
 };
 export default meta;
 

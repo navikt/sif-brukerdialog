@@ -2,7 +2,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import '../style/global.css';
 
 import { Status, StatusMessage } from '@navikt/appstatus-react-ds';
-import { Theme } from '@navikt/ds-react';
+import { Box, Theme } from '@navikt/ds-react';
 import { configureLogger } from '@navikt/next-logger';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { AnalyticsProvider } from '@navikt/sif-common-analytics';
@@ -16,6 +16,7 @@ import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInnsynsdataFeilet';
 import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import LoadingPage from '../components/page-layout/loading-page/LoadingPage';
+import { maxPageWidth } from '../constants';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { getFaro, initInstrumentation, pinoLevelToFaroLevel } from '../faro/faro';
 import { useVerifyCurrentUser } from '../hooks/useVerifyCurrentUser';
@@ -92,9 +93,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
                     ) : (
                         <main>
                             {data.appStatus?.message && (
-                                <div className="max-w-282 mx-auto p-5 mb-5">
+                                <Box maxWidth={maxPageWidth} marginInline="auto" marginBlock="space-48">
                                     <StatusMessage message={data.appStatus.message} />
-                                </div>
+                                </Box>
                             )}
                             <IntlProvider locale="nb" messages={messages.nb}>
                                 <InnsynsdataContextProvider innsynsdata={data}>

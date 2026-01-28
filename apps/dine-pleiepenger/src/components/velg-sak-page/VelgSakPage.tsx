@@ -27,7 +27,7 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                     <AppText id="velgSak.tittel" />
                 </Heading>
 
-                <VStack gap="space-8" className="max-w-2xl mb-10">
+                <VStack gap="space-8">
                     {sakerMetadata.map((sakMetadata) => {
                         const { pleietrengende, saksnummer } = sakMetadata;
                         const fødselsdato = new Date(pleietrengende.fødselsdato);
@@ -38,7 +38,7 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
 
                         return (
                             <LinkCard key={saksnummer}>
-                                <LinkCard.Title className="w-full">
+                                <LinkCard.Title>
                                     <LinkCard.Anchor asChild>
                                         <Link href={`/sak/${saksnummer}`}>{navn}</Link>
                                     </LinkCard.Anchor>

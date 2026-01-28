@@ -1,5 +1,4 @@
 import { Process, ProcessProps } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { formatSakshendelseTidspunkt } from '../../utils/sakUtils';
@@ -22,8 +21,6 @@ const StatusISakSteps = ({ steps, isTruncated }: Props) => {
     const getTidspunkt = (step: ProcessStepData): string | undefined => {
         if (step.timestamp) {
             return formatSakshendelseTidspunkt(step.timestamp);
-        } else if (step.date) {
-            return dateFormatter.compact(step.date);
         }
     };
     return (

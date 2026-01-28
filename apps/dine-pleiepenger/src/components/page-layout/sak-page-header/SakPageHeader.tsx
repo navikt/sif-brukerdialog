@@ -10,17 +10,15 @@ interface Props {
     saksnr: string;
     pleietrengende: Pleietrengende;
     tittel?: string;
-    titleTag?: React.ReactNode;
     hidePleiepengerIcon?: boolean;
 }
 
-const SakPageHeader = ({ tittel, titleTag, saksnr, pleietrengende, hidePleiepengerIcon }: Props) => {
+const SakPageHeader = ({ tittel, saksnr, pleietrengende, hidePleiepengerIcon }: Props) => {
     const { text } = useAppIntl();
     return (
         <PageHeader
             documentTitle={tittel || text('sakPageHeader.defaultTittel')}
             title={tittel || text('sakPageHeader.defaultTittel')}
-            titleTag={titleTag}
             hidePleiepengerIcon={hidePleiepengerIcon}
             byline={
                 <BodyShort as="div">

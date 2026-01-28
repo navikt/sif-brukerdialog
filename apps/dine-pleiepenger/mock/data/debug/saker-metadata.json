@@ -1,14 +1,12 @@
 [
     {
-        "saksnummer": "1002UGW",
+        "saksnummer": "10007LM",
         "pleietrengende": {
-            "fødselsdato": "2023-07-09",
-            "aktørId": "2402208203890",
-            "fornavn": "ORANSJE",
-            "etternavn": "TRADISJON"
+            "fødselsdato": "2019-05-23",
+            "aktørId": "2602899898036",
+            "fornavn": "SNÅL",
+            "etternavn": "PAPPA"
         },
-        "fagsakYtelseType": "PSB",
-        "fagsakOpprettetTidspunkt": "2025-03-19T07:43:05Z",
-        "fagsakAvsluttetTidspunkt": null
+        "fagsakYtelseType": "PSB"
     }
 ]

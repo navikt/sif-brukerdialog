@@ -1,4 +1,4 @@
-import { Theme } from '@navikt/ds-react';
+import { Theme, VStack } from '@navikt/ds-react';
 import React from 'react';
 
 interface Props {
@@ -7,9 +7,9 @@ interface Props {
 
 const EmptyPage = ({ children }: Props) => (
     <Theme hasBackground={false}>
-        <div className="p-5 pb-10 md:p-10 md:pb-20">
-            <div className="max-w-282 mx-auto">{children}</div>
-        </div>
+        <VStack align="center" justify="start" padding="space-24" paddingBlock="space-24 space-128" minHeight="20rem">
+            {children}
+        </VStack>
     </Theme>
 );
 

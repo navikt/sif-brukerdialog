@@ -3,17 +3,87 @@
         "ytelseType": "PLEIEPENGER_SYKT_BARN",
         "status": "I_BRUK",
         "saksnummer": "100242W",
-        "innsendingstidspunkt": "2025-11-21T09:49:04.862",
+        "innsendingstidspunkt": "2026-01-14T13:18:16.511",
         "kildesystem": "NAV_NO",
         "arbeidsgiver": {
             "organisasjon": {
-                "navn": "HELDIG SPRUDLENDE TIGER AS",
-                "organisasjonsnummer": "315786940"
+                "navn": "TROSSIG NATURSTRIDIG TIGER AS",
+                "organisasjonsnummer": "311536753"
             }
         },
         "nærRelasjon": false,
-        "journalpostId": "454049214",
-        "mottattDato": "2025-11-21",
+        "journalpostId": "454065031",
+        "mottattDato": "2026-01-14",
+        "inntektBeløp": 30000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [
+            {
+                "periode": {
+                    "fom": "0001-01-01",
+                    "tom": "2026-01-05"
+                },
+                "beløpPerMnd": 2000,
+                "type": "BIL"
+            }
+        ],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2026-01-05",
+        "oppgittFravær": [],
+        "refusjon": {
+            "refusjonBeløpPerMnd": 30000,
+            "refusjonOpphører": "2026-01-29"
+        },
+        "inntektsmeldingType": "ORDINÆR",
+        "endringerRefusjon": [
+            {
+                "refusjonBeløpPerMnd": 20000,
+                "fom": "2026-01-06"
+            }
+        ]
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "100242W",
+        "innsendingstidspunkt": "2026-01-14T13:19:32.35",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "LAV BLØT KATT MOSKUS",
+                "organisasjonsnummer": "315630304"
+            }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454065037",
+        "mottattDato": "2026-01-14",
+        "inntektBeløp": 20000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2026-01-05",
+        "oppgittFravær": [],
+        "inntektsmeldingType": "ORDINÆR",
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "100242W",
+        "innsendingstidspunkt": "2026-01-14T13:19:02.331",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "INTERESSANT INTUITIV KATT DIAMETER",
+                "organisasjonsnummer": "315853370"
+            }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454065036",
+        "mottattDato": "2026-01-14",
         "inntektBeløp": 50000,
         "innsendingsårsak": "NY",
         "erstattetAv": [],
@@ -22,72 +92,27 @@
             {
                 "periode": {
                     "fom": "0001-01-01",
-                    "tom": "2025-11-02"
+                    "tom": "2026-01-04"
                 },
-                "beløpPerMnd": 2000,
-                "type": "BIL"
-            },
-            {
-                "periode": {
-                    "fom": "0001-01-01",
-                    "tom": "2025-11-02"
-                },
-                "beløpPerMnd": 300,
+                "beløpPerMnd": 350,
                 "type": "ELEKTRISK_KOMMUNIKASJON"
             },
             {
                 "periode": {
-                    "fom": "0001-01-01",
-                    "tom": "2025-11-02"
-                },
-                "beløpPerMnd": 500,
-                "type": "FRI_TRANSPORT"
-            },
-            {
-                "periode": {
-                    "fom": "0001-01-01",
-                    "tom": "2025-11-03"
-                },
-                "beløpPerMnd": 1000,
-                "type": "OPSJONER"
-            },
-            {
-                "periode": {
-                    "fom": "2025-11-06",
+                    "fom": "2026-02-01",
                     "tom": "9999-12-31"
                 },
-                "beløpPerMnd": 2000,
-                "type": "BIL"
-            },
-            {
-                "periode": {
-                    "fom": "2025-11-06",
-                    "tom": "9999-12-31"
-                },
-                "beløpPerMnd": 500,
-                "type": "FRI_TRANSPORT"
+                "beløpPerMnd": 350,
+                "type": "ELEKTRISK_KOMMUNIKASJON"
             }
         ],
         "utsettelsePerioder": [],
-        "startDatoPermisjon": "2025-11-03",
+        "startDatoPermisjon": "2026-01-05",
         "oppgittFravær": [],
         "refusjon": {
             "refusjonBeløpPerMnd": 50000
         },
         "inntektsmeldingType": "ORDINÆR",
-        "endringerRefusjon": [
-            {
-                "refusjonBeløpPerMnd": 25000,
-                "fom": "2025-11-08"
-            },
-            {
-                "refusjonBeløpPerMnd": 0,
-                "fom": "2025-11-12"
-            },
-            {
-                "refusjonBeløpPerMnd": 50000,
-                "fom": "2025-11-20"
-            }
-        ]
+        "endringerRefusjon": []
     }
 ]

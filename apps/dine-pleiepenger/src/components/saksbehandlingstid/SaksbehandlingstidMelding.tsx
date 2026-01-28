@@ -66,13 +66,20 @@ export const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingst
             );
         default:
             return (
-                <AppText
-                    id="svarfrist.generellFrist"
-                    values={{
-                        frist: dateFormatter.full(frist),
-                        dato: (chunk: string) => <strong>{chunk}</strong>,
-                    }}
-                />
+                <>
+                    <BodyShort>
+                        <AppText
+                            id="svarfrist.generellFrist.1"
+                            values={{
+                                frist: dateFormatter.full(frist),
+                                dato: (chunk: string) => <strong>{chunk}</strong>,
+                            }}
+                        />
+                    </BodyShort>
+                    <BodyShort>
+                        <AppText id="svarfrist.generellFrist.2" />
+                    </BodyShort>
+                </>
             );
     }
 };

@@ -15,7 +15,7 @@ interface Props {
 const ArbeidsgivereISøknad = ({ søknadId, arbeidsgivere }: Props) => {
     const intl = useIntl();
     return (
-        <Box className="mt-4">
+        <div>
             <Heading size="xsmall" level="3" spacing={true}>
                 <FormattedMessage id="bekreftelseTilArbeidsgiver.title" />
             </Heading>
@@ -44,7 +44,7 @@ const ArbeidsgivereISøknad = ({ søknadId, arbeidsgivere }: Props) => {
                     ))}
                 </List>
             </VStack>
-        </Box>
+        </div>
     );
 };
 

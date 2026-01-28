@@ -2,7 +2,12 @@ import { innsyn } from '@navikt/k9-sak-innsyn-api';
 import dayjs from 'dayjs';
 import z from 'zod';
 
-import { zDateFromDateTimeString, zDateFromISODateString, zDatePeriodeFromStringPeriode } from './zDateFromString';
+import {
+    zDateFromDateTimeString,
+    zDateFromISODateString,
+    zDatePeriodeFromStringPeriode,
+    zOptionalDateFromISODateString,
+} from './zDateFromString';
 
 /* ====================== Naturalytelse typer ====================== */
 
@@ -58,12 +63,11 @@ export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto
                 ),
             ),
         ),
-        refusjon: z.optional(
-            innsyn.zRefusjonDto.omit({
-                // Fjern feltet refusjonOpphører fordi dette bare er utledet i k9: "refusjonsOpphører er satt til første dato i endringerIRefusjon med beløp = 0"
-                refusjonOpphører: true,
-            }),
-        ),
+        refusjon: innsyn.zRefusjonDto
+            .extend({
+                refusjonOpphører: zOptionalDateFromISODateString,
+            })
+            .optional(),
     })
     // Felter som ikke brukes i løsningen
     .omit({
