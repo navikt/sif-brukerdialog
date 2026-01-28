@@ -16,15 +16,15 @@
         "sanity"
     ],
     "dependencies": {
-        "@sanity/vision": "5.4.0",
+        "@sanity/vision": "5.5.0",
         "react": "19.2.3",
         "react-dom": "19.2.3",
-        "sanity": "5.4.0",
+        "sanity": "5.5.0",
         "styled-components": "6.3.8"
     },
     "devDependencies": {
         "@sanity/eslint-config-studio": "6.0.0",
-        "@types/react": "19.2.8",
+        "@types/react": "19.2.9",
         "dayjs": "1.11.19",
         "eslint": "9.39.2",
         "postcss": "8.5.6",
