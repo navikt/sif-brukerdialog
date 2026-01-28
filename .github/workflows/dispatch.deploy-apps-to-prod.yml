@@ -5,9 +5,13 @@ on:
         branches:
             - main
         paths:
+            - "nais-config/nais.yml"
+            - "yarn.lock"
+            - "turbo.json"
             - "apps/**/*"
-            - "server/**/*"
             - "packages/**/*"
+            - "server/**/*"
+
     workflow_dispatch:
         inputs:
             app:
@@ -29,237 +33,424 @@ on:
                     - sif-ettersending
                     - ungdomsytelse-deltaker
 
-permissions:
-    contents: write
-    security-events: write
-    id-token: write
-    actions: read
+permissions: {}
+
+env:
+    # List of all deployable apps - update this when adding/removing apps
+    # Note: No trailing comma on the last item to avoid empty array elements when splitting
+    ALL_APPS: >-
+        dine-pleiepenger,
+        ekstra-omsorgsdager-andre-forelder-ikke-tilsyn,
+        endringsmelding-pleiepenger,
+        omsorgsdager-aleneomsorg-dialog,
+        omsorgsdager-kalkulator,
+        omsorgspengerutbetaling-arbeidstaker-soknad,
+        omsorgspengerutbetaling-soknad,
+        omsorgspengesoknad,
+        opplaringspenger-soknad,
+        pleiepenger-i-livets-sluttfase-soknad,
+        pleiepenger-sykt-barn,
+        sif-ettersending,
+        ungdomsytelse-deltaker
 
 jobs:
     detect-changes:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         outputs:
-            apps: ${{ steps.filter.outputs.changes }}
+            affected-apps: ${{ steps.turbo-filter.outputs.affected-apps }}
         steps:
-            - uses: actions/checkout@v6
-            - uses: dorny/paths-filter@v3
-              id: filter
+            - name: Checkout
+              uses: actions/checkout@v6
               with:
-                  filters: |
-                      dine-pleiepenger:
-                        - 'apps/dine-pleiepenger/**'
-                        - 'server/**'
-                      ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
-                        - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
-                        - 'server/**'
-                      endringsmelding-pleiepenger:
-                        - 'apps/endringsmelding-pleiepenger/**'
-                        - 'server/**'
-                      omsorgsdager-aleneomsorg-dialog:
-                        - 'apps/omsorgsdager-aleneomsorg-dialog/**'
-                        - 'server/**'
-                      omsorgsdager-kalkulator:
-                        - 'apps/omsorgsdager-kalkulator/**'
-                        - 'server/**'
-                      omsorgspengerutbetaling-arbeidstaker-soknad:
-                        - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
-                        - 'server/**'
-                      omsorgspengerutbetaling-soknad:
-                        - 'apps/omsorgspengerutbetaling-soknad/**'
-                        - 'server/**'
-                      omsorgspengesoknad:
-                        - 'apps/omsorgspengesoknad/**'
-                        - 'server/**'
-                      opplaringspenger-soknad:
-                        - 'apps/opplaringspenger-soknad/**'
-                        - 'server/**'
-                      pleiepenger-i-livets-sluttfase-soknad:
-                        - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
-                        - 'server/**'
-                      pleiepenger-sykt-barn:
-                        - 'apps/pleiepenger-sykt-barn/**'
-                        - 'server/**'
-                      sif-ettersending:
-                        - 'apps/sif-ettersending/**'
-                        - 'server/**'
-                      ungdomsytelse-deltaker:
-                        - 'apps/ungdomsytelse-deltaker/**'
-                        - 'server/**'
+                  fetch-depth: 0 # Need full history for turbo filtering
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: "yarn"
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Get affected apps with Turbo
+              id: turbo-filter
+              run: |
+                  # The server/ folder contains shared server code used by multiple apps.
+                  # If it changes, we conservatively redeploy all apps listed in ALL_APPS.
+                  if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q "^server/"; then
+                      echo "Server changes detected - deploying all apps"
+                      echo "affected-apps=${{ env.ALL_APPS }}" >> $GITHUB_OUTPUT
+                  else
+                      # Use Turborepo to detect which packages/apps are affected by the push.
+                      # The --filter flag compares the git range from before the push (github.event.before)
+                      # to after the push (github.sha). This can include multiple commits.
+                      # --dry=json outputs the affected packages as JSON without actually running the build.
+                      #
+                      # set +e / set -e: Temporarily disable auto-exit on error so we can capture
+                      # the exit code and handle Turbo failures gracefully instead of crashing the workflow.
+                      set +e
+                      TURBO_OUTPUT=$(npx turbo run build --filter="[${{ github.event.before }}...${{ github.sha }}]" --dry=json)
+                      TURBO_EXIT_CODE=$?
+                      set -e
+
+                      if [ $TURBO_EXIT_CODE -ne 0 ]; then
+                          echo "ERROR: Turbo command failed with exit code $TURBO_EXIT_CODE"
+                          echo "Output: $TURBO_OUTPUT"
+                          exit 1
+                      fi
+
+                      # Validate that Turbo output is valid JSON before processing
+                      if ! echo "$TURBO_OUTPUT" | jq empty 2>/dev/null; then
+                          echo "ERROR: Turbo output is not valid JSON"
+                          echo "Output: $TURBO_OUTPUT"
+                          exit 1
+                      fi
+
+                      # Turbo returns ALL affected packages (apps + internal packages like sif-common-*).
+                      # We filter to only include actual deployable apps by matching against ALL_APPS.
+                      # The jq filter:
+                      #   1. Removes whitespace from ALL_APPS and splits into array
+                      #      (handles both spaces and newlines from YAML multi-line strings)
+                      #   2. Strips @navikt/ prefix from package names
+                      #   3. Keeps only packages that exist in the allowed apps list
+                      #   4. Joins the result as comma-separated string
+                      set +e
+                      APP_NAMES=$(echo "$TURBO_OUTPUT" | jq -r --arg apps "${{ env.ALL_APPS }}" '
+                          ($apps | gsub("\\s+"; "") | split(",")) as $allowed |
+                          (.packages // []) | 
+                          map(gsub("@navikt/"; "")) | 
+                          map(select(. as $pkg | $allowed | index($pkg))) | 
+                          join(",")
+                      ')
+                      JQ_EXIT_CODE=$?
+                      set -e
+
+                      if [ $JQ_EXIT_CODE -ne 0 ]; then
+                          echo "ERROR: jq processing failed with exit code $JQ_EXIT_CODE"
+                          exit 1
+                      fi
+
+                      echo "affected-apps=$APP_NAMES" >> $GITHUB_OUTPUT
+                      echo "Affected apps: $APP_NAMES"
+                  fi
+
+    # Deploy jobs for each app
+    #
+    # Why always() is needed:
+    # The detect-changes job only runs on push events (not workflow_dispatch).
+    # Without always(), GitHub Actions would skip these jobs when detect-changes is skipped,
+    # because by default jobs with skipped dependencies are also skipped.
+    # always() ensures the job runs regardless of dependency status, then we check
+    # the actual conditions in the if-expression.
 
     deploy-dine-pleiepenger:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'dine-pleiepenger' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'dine-pleiepenger'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'dine-pleiepenger') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'dine-pleiepenger'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "dine-pleiepenger"
             working-directory: "apps/dine-pleiepenger"
             package-name: "@navikt/dine-pleiepenger"
+            environment: "prod"
             is-next-app: true
             needs-env-file: true
 
     deploy-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
             working-directory: "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
             package-name: "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+            environment: "prod"
 
     deploy-endringsmelding-pleiepenger:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'endringsmelding-pleiepenger' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'endringsmelding-pleiepenger'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'endringsmelding-pleiepenger') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'endringsmelding-pleiepenger'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "endringsmelding-pleiepenger"
             working-directory: "apps/endringsmelding-pleiepenger"
             package-name: "@navikt/endringsmelding-pleiepenger"
+            environment: "prod"
             playwright-with-deps: true
 
     deploy-omsorgsdager-aleneomsorg-dialog:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-aleneomsorg-dialog' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-aleneomsorg-dialog'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-aleneomsorg-dialog') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-aleneomsorg-dialog'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgsdager-aleneomsorg-dialog"
             working-directory: "apps/omsorgsdager-aleneomsorg-dialog"
             package-name: "@navikt/omsorgsdager-aleneomsorg-dialog"
+            environment: "prod"
 
     deploy-omsorgsdager-kalkulator:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-kalkulator' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-kalkulator') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgsdager-kalkulator'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgsdager-kalkulator"
             working-directory: "apps/omsorgsdager-kalkulator"
             package-name: "@navikt/omsorgsdager-kalkulator"
+            environment: "prod"
             e2e-build-command: "build"
 
     deploy-omsorgspengerutbetaling-arbeidstaker-soknad:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-arbeidstaker-soknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-arbeidstaker-soknad'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-arbeidstaker-soknad') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-arbeidstaker-soknad'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
             working-directory: "apps/omsorgspengerutbetaling-arbeidstaker-soknad"
             package-name: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad"
+            environment: "prod"
 
     deploy-omsorgspengerutbetaling-soknad:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-soknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-soknad'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-soknad') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengerutbetaling-soknad'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgspengerutbetaling-soknad"
             working-directory: "apps/omsorgspengerutbetaling-soknad"
             package-name: "@navikt/omsorgspengerutbetaling-soknad"
+            environment: "prod"
 
     deploy-omsorgspengesoknad:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengesoknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengesoknad'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengesoknad') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'omsorgspengesoknad'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "omsorgspengesoknad"
             working-directory: "apps/omsorgspengesoknad"
             package-name: "@navikt/omsorgspengesoknad"
+            environment: "prod"
 
     deploy-opplaringspenger-soknad:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'opplaringspenger-soknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'opplaringspenger-soknad') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'opplaringspenger-soknad'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "opplaringspenger-soknad"
             working-directory: "apps/opplaringspenger-soknad"
             package-name: "@navikt/opplaringspenger-soknad"
+            environment: "prod"
 
     deploy-pleiepenger-i-livets-sluttfase-soknad:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-i-livets-sluttfase-soknad' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-i-livets-sluttfase-soknad'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-i-livets-sluttfase-soknad') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-i-livets-sluttfase-soknad'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "pleiepenger-i-livets-sluttfase-soknad"
             working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
             package-name: "@navikt/pleiepenger-i-livets-sluttfase-soknad"
+            environment: "prod"
 
     deploy-pleiepenger-sykt-barn:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-sykt-barn' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-sykt-barn'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-sykt-barn') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'pleiepenger-sykt-barn'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "pleiepenger-sykt-barn"
             working-directory: "apps/pleiepenger-sykt-barn"
             package-name: "@navikt/pleiepenger-sykt-barn"
+            environment: "prod"
             playwright-with-deps: true
 
     deploy-sif-ettersending:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'sif-ettersending' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'sif-ettersending'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'sif-ettersending') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'sif-ettersending'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "sif-ettersending"
             working-directory: "apps/sif-ettersending"
             package-name: "@navikt/sif-ettersending"
+            environment: "prod"
 
     deploy-ungdomsytelse-deltaker:
         if: |
-            always() &&
-            (github.event_name == 'workflow_dispatch' && inputs.app == 'ungdomsytelse-deltaker' ||
-             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-deltaker'))
+            always() && (
+                (github.event_name == 'workflow_dispatch' && inputs.app == 'ungdomsytelse-deltaker') ||
+                (github.event_name == 'push' && needs.detect-changes.result == 'success' && contains(needs.detect-changes.outputs.affected-apps, 'ungdomsytelse-deltaker'))
+            )
         needs: [detect-changes]
-        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        uses: ./.github/workflows/.test-and-deploy.yml
         secrets: inherit
         with:
             app-name: "ungdomsytelse-deltaker"
             working-directory: "apps/ungdomsytelse-deltaker"
             package-name: "@navikt/ungdomsytelse-deltaker"
-            use-turbo-test: true
+            environment: "prod"
             e2e-build-command: "e2e:build"
             run-sonar: true
+
+    # Summary job to report deployment status
+    # This helps clarify when no apps needed deployment (expected for non-app changes)
+    deployment-summary:
+        if: always() && github.event_name == 'push'
+        needs:
+            - detect-changes
+            - deploy-dine-pleiepenger
+            - deploy-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+            - deploy-endringsmelding-pleiepenger
+            - deploy-omsorgsdager-aleneomsorg-dialog
+            - deploy-omsorgsdager-kalkulator
+            - deploy-omsorgspengerutbetaling-arbeidstaker-soknad
+            - deploy-omsorgspengerutbetaling-soknad
+            - deploy-omsorgspengesoknad
+            - deploy-opplaringspenger-soknad
+            - deploy-pleiepenger-i-livets-sluttfase-soknad
+            - deploy-pleiepenger-sykt-barn
+            - deploy-sif-ettersending
+            - deploy-ungdomsytelse-deltaker
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deployment Summary
+              run: |
+                  echo "## Deployment Summary" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+
+                  if [ "${{ needs.detect-changes.result }}" == "failure" ]; then
+                      echo "❌ **Change detection failed** - no deployments were attempted" >> $GITHUB_STEP_SUMMARY
+                      echo "" >> $GITHUB_STEP_SUMMARY
+                      echo "Check the detect-changes job logs for details." >> $GITHUB_STEP_SUMMARY
+                  elif [ -z "${{ needs.detect-changes.outputs.affected-apps }}" ]; then
+                      echo "ℹ️ **No deployable apps were affected by these changes**" >> $GITHUB_STEP_SUMMARY
+                      echo "" >> $GITHUB_STEP_SUMMARY
+                      echo "This is expected when changes only affect:" >> $GITHUB_STEP_SUMMARY
+                      echo "- Documentation files" >> $GITHUB_STEP_SUMMARY
+                      echo "- Internal packages (sif-common-*, etc.)" >> $GITHUB_STEP_SUMMARY
+                      echo "- Configuration files not used by apps" >> $GITHUB_STEP_SUMMARY
+                  else
+                      echo "🚀 **Apps deployed:** ${{ needs.detect-changes.outputs.affected-apps }}" >> $GITHUB_STEP_SUMMARY
+                  fi
