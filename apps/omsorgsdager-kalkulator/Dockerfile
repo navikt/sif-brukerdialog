@@ -6,10 +6,10 @@ RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/* \
 
 WORKDIR /app
 
-COPY /apps/omsorgsdager-kalkulator/next.config.js .
-COPY /apps/omsorgsdager-kalkulator/.next/standalone ./
-COPY /apps/omsorgsdager-kalkulator/.next/static ./apps/omsorgsdager-kalkulator/.next/static
-COPY /apps/omsorgsdager-kalkulator/public ./public
+COPY --chown=nextjs:nodejs /apps/omsorgsdager-kalkulator/next.config.js .
+COPY --chown=nextjs:nodejs /apps/omsorgsdager-kalkulator/.next/standalone ./
+COPY --chown=nextjs:nodejs /apps/omsorgsdager-kalkulator/.next/static ./apps/omsorgsdager-kalkulator/.next/static
+COPY --chown=nextjs:nodejs /apps/omsorgsdager-kalkulator/public ./public
 
 USER nextjs
 

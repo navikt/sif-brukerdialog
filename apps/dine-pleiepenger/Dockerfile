@@ -6,10 +6,10 @@ RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/* \
 
 WORKDIR /app
 
-COPY /apps/dine-pleiepenger/next.config.ts .
-COPY /apps/dine-pleiepenger/.next/standalone ./
-COPY /apps/dine-pleiepenger/.next/static ./apps/dine-pleiepenger/.next/static
-COPY /apps/dine-pleiepenger/public ./public
+COPY --chown=nextjs:nodejs /apps/dine-pleiepenger/next.config.ts .
+COPY --chown=nextjs:nodejs /apps/dine-pleiepenger/.next/standalone ./
+COPY --chown=nextjs:nodejs /apps/dine-pleiepenger/.next/static ./apps/dine-pleiepenger/.next/static
+COPY --chown=nextjs:nodejs /apps/dine-pleiepenger/public ./public
 
 USER nextjs
 
