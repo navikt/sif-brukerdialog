@@ -24,25 +24,36 @@ export const sorterInntektsmeldingerPåInnsendingstidspunkt = (a: Inntektsmeldin
     return new Date(b.innsendingstidspunkt).getTime() - new Date(a.innsendingstidspunkt).getTime();
 };
 
-export const getRefusjonFørFørsteEndring = (
-    refusjonBeløpPerMnd: number,
-    startDatoPermisjon: Date,
-    førsteEndring: EndringRefusjon,
-): EndringRefusjon | undefined => {
-    if (førsteEndring && dayjs(førsteEndring.fom).isAfter(startDatoPermisjon, 'day')) {
-        return {
-            fom: startDatoPermisjon,
-            refusjonBeløpPerMnd: refusjonBeløpPerMnd,
-        };
-    }
-    return undefined;
-};
+interface GetRefusjonEndringListeParams {
+    refusjonBeløpPerMnd: number;
+    refusjonOpphører?: Date;
+    startDatoPermisjon: Date;
+    endringerRefusjon: EndringRefusjon[];
+}
 
-export const getRefusjonOpphørerEndring = (refusjonOpphører: Date): EndringRefusjon => {
-    return {
-        fom: dayjs(refusjonOpphører).add(1, 'day').toDate(),
-        refusjonBeløpPerMnd: 0,
-    };
+export const getRefusjonEndringListe = ({
+    refusjonBeløpPerMnd,
+    refusjonOpphører,
+    startDatoPermisjon,
+    endringerRefusjon,
+}: GetRefusjonEndringListeParams): EndringRefusjon[] => {
+    const alleEndringer: EndringRefusjon[] = [];
+    const førsteEndring = endringerRefusjon[0];
+
+    // Legg til info om refusjon før første endring hvis første endring er etter startdato
+    if (førsteEndring && dayjs(førsteEndring.fom).isAfter(startDatoPermisjon, 'day')) {
+        alleEndringer.push({ fom: startDatoPermisjon, refusjonBeløpPerMnd });
+    }
+
+    alleEndringer.push(...endringerRefusjon);
+
+    // Legg til info om opphør av refusjon som siste element hvis det finnes opphør av refusjon.
+    // refusjonOpphører utledes fra siste endring i refusjon.
+    if (refusjonOpphører) {
+        alleEndringer.push({ fom: dayjs(refusjonOpphører).add(1, 'day').toDate(), refusjonBeløpPerMnd: 0 });
+    }
+
+    return alleEndringer;
 };
 
 export type InntektsmeldingMedErstatter = Inntektsmelding & {

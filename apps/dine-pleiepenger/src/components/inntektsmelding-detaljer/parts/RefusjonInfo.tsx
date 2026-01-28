@@ -2,7 +2,7 @@ import { List } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { EndringerRefusjon, EndringRefusjon, Refusjon } from '../../../types/inntektsmeldingTypes';
-import { getRefusjonFørFørsteEndring, getRefusjonOpphørerEndring } from '../../../utils/inntektsmeldingUtils';
+import { getRefusjonEndringListe } from '../../../utils/inntektsmeldingUtils';
 
 interface Props {
     inntektBeløp: number;
@@ -54,11 +54,11 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPer
 
     // Har ikke endringer i refusjon; utled hvem som betaler for hele perioden
     if (!harEndringerIRefusjon) {
-        const hvemBetaler = utledUtbetaler({
+        const utbetaler = utledUtbetaler({
             total: inntektBeløp,
             utbetaling: refusjon.refusjonBeløpPerMnd,
         });
-        switch (hvemBetaler) {
+        switch (utbetaler) {
             case RefusjonUtbetaler.ARBEIDSGIVER:
                 return <>Arbeidsgiver betaler lønn til deg som vanlig under fraværet.</>;
             case RefusjonUtbetaler.NAV:
@@ -74,23 +74,12 @@ const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPer
     }
 
     // Har endringer i refusjon - list opp endringene
-    const førsteEndring = endringerRefusjon[0];
-
-    const refusjonFørFørsteEndring = getRefusjonFørFørsteEndring(
-        refusjon.refusjonBeløpPerMnd,
+    const alleEndringer = getRefusjonEndringListe({
+        refusjonBeløpPerMnd: refusjon.refusjonBeløpPerMnd,
+        refusjonOpphører: refusjon.refusjonOpphører,
         startDatoPermisjon,
-        førsteEndring,
-    );
-
-    const alleEndringer = refusjonFørFørsteEndring
-        ? [refusjonFørFørsteEndring, ...endringerRefusjon]
-        : endringerRefusjon;
-
-    // Legg til opphør av refusjon som siste element hvis det finnes opphør av refusjon.
-    // refusjonOpphører utledes fra siste endring i refusjon.
-    if (refusjon.refusjonOpphører) {
-        alleEndringer.push(getRefusjonOpphørerEndring(refusjon.refusjonOpphører));
-    }
+        endringerRefusjon,
+    });
 
     return (
         <List>
