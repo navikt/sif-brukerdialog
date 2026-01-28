@@ -1,5 +1,4 @@
-import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { Alert, BodyLong, Box, Button, Switch, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Switch, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
 import { useMemo, useState } from 'react';
 
@@ -8,6 +7,7 @@ import { Inntektsmelding, Sak } from '../../types';
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { getAlleHendelserISak } from '../../utils/sakUtils';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
+import LinkButton from '../link-button/LinkButton';
 import StatusISakHeading from './parts/StatusISakHeading';
 import StatusISakSteps from './StatusISakSteps';
 import { getProcessStepsFraSakshendelser } from './statusISakUtils';
@@ -78,16 +78,9 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
                     <StatusISakSteps steps={visibleSteps} isTruncated={finnesFlereHendelser ? 'end' : undefined} />
                     {finnesFlereHendelser && !visAlleHendelser ? (
                         <div>
-                            <Button
-                                variant="secondary"
-                                type="button"
-                                as={NextLink}
-                                icon={<ArrowRightIcon role="presentation" aria-hidden="true" />}
-                                iconPosition="right"
-                                size="small"
-                                href={`/sak/${sak.saksnummer}/historikk`}>
+                            <LinkButton direction="right" as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
                                 Se tidligere hendelser
-                            </Button>
+                            </LinkButton>
                         </div>
                     ) : null}
                 </VStack>

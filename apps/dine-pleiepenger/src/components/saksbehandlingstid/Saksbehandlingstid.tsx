@@ -1,6 +1,5 @@
 'use client';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { Box, Button, Heading, HGrid, Hide, Link, Skeleton, VStack } from '@navikt/ds-react';
+import { Box, Heading, HGrid, Hide, Link, Skeleton, VStack } from '@navikt/ds-react';
 import axios from 'axios';
 import useSWR from 'swr';
 
@@ -10,6 +9,7 @@ import { Saksbehandlingstid, Venteårsak } from '../../types';
 import { saksbehandlingstidClientSchema } from '../../types/client-schemas/saksbehandlingstidClientSchema';
 import { browserEnv } from '../../utils/env';
 import { swrBaseConfig } from '../../utils/swrBaseConfig';
+import LinkButton from '../link-button/LinkButton';
 import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
 
 interface Props {
@@ -46,17 +46,12 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak, sakErLastet }: Props) => 
                                 saksbehandlingstidUker={saksbehandlingstidUker}
                             />
                             <div>
-                                <Button
-                                    variant="secondary"
-                                    type="button"
+                                <LinkButton
                                     as={Link}
-                                    icon={<ArrowRightIcon role="presentation" aria-hidden="true" />}
-                                    iconPosition="right"
-                                    size="small"
-                                    className="noTextDecoration"
+                                    direction="right"
                                     href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
                                     <AppText id="svarfrist.lesMerLenke" />
-                                </Button>
+                                </LinkButton>
                             </div>
                         </VStack>
                         <Hide below="sm">
