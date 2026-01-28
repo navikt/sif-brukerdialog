@@ -9,7 +9,7 @@
         "typescript": "5.9.3"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "2.1.0",
+        "@grafana/faro-web-sdk": "2.2.0",
         "constate": "3.3.3",
         "react": "19.2.3"
     },
