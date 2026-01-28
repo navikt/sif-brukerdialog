@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/nodejs22-debian12:nonroot
+FROM cgr.dev/chainguard/node:latest
 WORKDIR /app
 
 COPY --chown=nonroot:nonroot /apps/dine-pleiepenger/next.config.ts .

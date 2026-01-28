@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/node:22-slim
+FROM cgr.dev/chainguard/node:latest
 WORKDIR /app
 
 COPY --chown=nonroot:nonroot /apps/omsorgsdager-kalkulator/next.config.js .
