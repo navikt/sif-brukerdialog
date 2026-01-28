@@ -24,7 +24,7 @@
         "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
-        "@grafana/faro-react": "2.1.0",
+        "@grafana/faro-react": "2.2.0",
         "@navikt/aksel-icons": "8.1.0",
         "@navikt/ds-css": "8.1.0",
         "@navikt/ds-react": "8.1.0",
