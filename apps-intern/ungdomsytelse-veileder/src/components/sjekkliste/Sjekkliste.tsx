@@ -16,18 +16,20 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
         legend: '1. Tilhører den unge et kontor som deltar i forsøket?',
         description: (
             <ReadMore header="Les mer om forsøkskontorene">
-                <BodyLong>
-                    Deltakere i ungdomsprogrammet må tilhøre et av følgende kontor som deltar i forsøket: Arendal,
-                    Bergen Sør, Bergen Vest, Kristiansand, Porsgrunn, Sandefjord eller Skien.
-                </BodyLong>
-                <List>
-                    <List.Item>
-                        <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-3">
-                            Les mer om § 2 i rundskriv til forskrift om forsøk med ungdomsprogram og
-                            ungdomsprogramytelse.
-                        </ExternalLink>
-                    </List.Item>
-                </List>
+                <VStack gap="space-8">
+                    <BodyLong>
+                        Deltakere i ungdomsprogrammet må tilhøre et av følgende kontor som deltar i forsøket: Arendal,
+                        Bergen Sør, Bergen Vest, Kristiansand, Porsgrunn, Sandefjord eller Skien.
+                    </BodyLong>
+                    <List>
+                        <List.Item>
+                            <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-3">
+                                Les mer om § 2 i rundskriv til forskrift om forsøk med ungdomsprogram og
+                                ungdomsprogramytelse.
+                            </ExternalLink>
+                        </List.Item>
+                    </List>
+                </VStack>
             </ReadMore>
         ),
     },
@@ -88,19 +90,21 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
         legend: '4. Ønsker den unge å delta i ungdomsprogrammet?',
         description: (
             <ReadMore header="Les mer om ønsket om å delta">
-                <BodyLong>
-                    Den unge må ha gitt uttrykk for å at hen ønsker å delta i programmet. Hen må også ha fått god
-                    informasjon om hvilke forventninger vi stiller, og hvilke aktiviteter som kan inngå, og
-                    egeninnsatsen det krever av den unge.
-                </BodyLong>
-                <List>
-                    <List.Item>
-                        <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
-                            Les mer om § 3 første ledd bokstav d i rundskriv til forskrift om forsøk med ungdomsprogram
-                            og ungdomsprogramytelse.
-                        </ExternalLink>
-                    </List.Item>
-                </List>
+                <VStack gap="space-8">
+                    <BodyLong>
+                        Den unge må ha gitt uttrykk for å at hen ønsker å delta i programmet. Hen må også ha fått god
+                        informasjon om hvilke forventninger vi stiller, og hvilke aktiviteter som kan inngå, og
+                        egeninnsatsen det krever av den unge.
+                    </BodyLong>
+                    <List>
+                        <List.Item>
+                            <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
+                                Les mer om § 3 første ledd bokstav d i rundskriv til forskrift om forsøk med
+                                ungdomsprogram og ungdomsprogramytelse.
+                            </ExternalLink>
+                        </List.Item>
+                    </List>
+                </VStack>
             </ReadMore>
         ),
     },
@@ -132,51 +136,56 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                     </VStack>
                 </ReadMore>
                 <ReadMore header="Les mer om det å kunne bli i stand til å komme i arbeid eller utdanning ">
-                    <BodyLong>
-                        Det må være sannsynlig at den unge gjennom programmet får den oppfølgingen og kvalifiseringen
-                        som er nødvendig for å kunne delta i ordinært arbeid eller utdanning.{' '}
-                    </BodyLong>
+                    <VStack gap="space-8">
+                        <BodyLong>
+                            Det må være sannsynlig at den unge gjennom programmet får den oppfølgingen og
+                            kvalifiseringen som er nødvendig for å kunne delta i ordinært arbeid eller utdanning.{' '}
+                        </BodyLong>
 
-                    <BodyLong>
-                        Ordinær utdanning betyr at den unge kan gjennomføre utdanning uten oppfølging og ytelser fra
-                        Nav.
-                    </BodyLong>
+                        <BodyLong>
+                            Ordinær utdanning betyr at den unge kan gjennomføre utdanning uten oppfølging og ytelser fra
+                            Nav.
+                        </BodyLong>
 
-                    <BodyLong>
-                        I ordinært arbeid kan hjelpemidler og tilrettelegging fremdeles være nødvendig, og det er ikke
-                        en forutsetning at den unge skal jobbe/studere på heltid umiddelbart etter avsluttet program.
-                    </BodyLong>
-                    <List>
-                        <List.Item>
-                            <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
-                                Les mer om § 3 første ledd bokstav e i rundskriv til forskrift om forsøk med
-                                ungdomsprogram og ungdomsprogramytelse.
-                            </ExternalLink>
-                        </List.Item>
-                    </List>
+                        <BodyLong>
+                            I ordinært arbeid kan hjelpemidler og tilrettelegging fremdeles være nødvendig, og det er
+                            ikke en forutsetning at den unge skal jobbe/studere på heltid umiddelbart etter avsluttet
+                            program.
+                        </BodyLong>
+                        <List>
+                            <List.Item>
+                                <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
+                                    Les mer om § 3 første ledd bokstav e i rundskriv til forskrift om forsøk med
+                                    ungdomsprogram og ungdomsprogramytelse.
+                                </ExternalLink>
+                            </List.Item>
+                        </List>
+                    </VStack>
                 </ReadMore>
                 <ReadMore header="Les mer om det at det er hensiktsmessig og nødvendig å delta">
-                    <BodyLong>
-                        Vilkåret om at programmet skal være «nødvendig og hensiktsmessig» betyr at den unge må ha et så
-                        stort behov for bistand at situasjonen tilsier deltakekse i et fulltidsprogram.
-                    </BodyLong>
-                    <BodyLong>
-                        Som veileder vurderer du først hvilke mål den unge har om arbeid eller utdanning, og deretter om
-                        ungdomsprogrammet kan hjelpe hen å nå disse målene.
-                    </BodyLong>
+                    <VStack gap="space-8">
+                        <BodyLong>
+                            Vilkåret om at programmet skal være «nødvendig og hensiktsmessig» betyr at den unge må ha et
+                            så stort behov for bistand at situasjonen tilsier deltakekse i et fulltidsprogram.
+                        </BodyLong>
+                        <BodyLong>
+                            Som veileder vurderer du først hvilke mål den unge har om arbeid eller utdanning, og
+                            deretter om ungdomsprogrammet kan hjelpe hen å nå disse målene.
+                        </BodyLong>
 
-                    <BodyLong>
-                        Programmet anses som nødvendig og hensiktsmessig når det kan bidra til å redusere gapet mellom
-                        den unges forutsetninger og arbeidslivets krav, jf. tiltaksforskriften § 1–3.
-                    </BodyLong>
-                    <List>
-                        <List.Item>
-                            <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
-                                Les mer om § 3 andre ledd i rundskriv til forskrift om forsøk med ungdomsprogram og
-                                ungdomsprogramytelse.
-                            </ExternalLink>
-                        </List.Item>
-                    </List>
+                        <BodyLong>
+                            Programmet anses som nødvendig og hensiktsmessig når det kan bidra til å redusere gapet
+                            mellom den unges forutsetninger og arbeidslivets krav, jf. tiltaksforskriften § 1–3.
+                        </BodyLong>
+                        <List>
+                            <List.Item>
+                                <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
+                                    Les mer om § 3 andre ledd i rundskriv til forskrift om forsøk med ungdomsprogram og
+                                    ungdomsprogramytelse.
+                                </ExternalLink>
+                            </List.Item>
+                        </List>
+                    </VStack>
                 </ReadMore>
             </VStack>
         ),
