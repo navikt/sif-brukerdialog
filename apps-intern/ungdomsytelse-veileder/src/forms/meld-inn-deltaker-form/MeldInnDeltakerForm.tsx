@@ -74,7 +74,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
             renderForm={({ values }) => {
                 const { erVedtaksbrevSendt, harSjekketSjekkliste } = values;
 
-                const kanMeldesInn = Features.sjekkliste ? harSjekketSjekkliste === YesOrNo.YES : false;
+                const kanMeldesInn = Features.sjekkliste ? harSjekketSjekkliste === YesOrNo.YES : true;
 
                 const renderFormPart = () => (
                     <VStack gap="space-16">
