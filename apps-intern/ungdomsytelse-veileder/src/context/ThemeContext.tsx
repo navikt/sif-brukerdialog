@@ -23,7 +23,7 @@ export const ThemeProvider = ({ children }) => {
                 },
             }}>
             <Theme theme={darkMode ? 'dark' : 'light'} hasBackground={__IS_VEILEDER_DEMO__ === false}>
-                {__IS_VEILEDER_DEMO__ ? <div className="demoMode">{children}</div> : children}
+                {children}
             </Theme>
         </ThemeContext.Provider>
     );

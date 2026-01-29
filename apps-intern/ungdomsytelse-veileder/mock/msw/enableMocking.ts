@@ -4,7 +4,7 @@ export async function enableMocking() {
     }
     const { worker } = await import('./browser');
 
-    if (__IS_VEILEDER_DEMO__) {
+    if (__IS_VEILEDER_DEMO__ && __IS_GITHUB_PAGES__) {
         return worker.start({
             onUnhandledRequest: 'bypass',
             serviceWorker: {
