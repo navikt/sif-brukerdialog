@@ -67,6 +67,10 @@ export default defineConfig({
             },
         },
     },
+    define: {
+        __IS_VEILEDER_DEMO__: false,
+        __VIS_DEMO_BRUKERE__: false,
+    },
     base: '/sif-brukerdialog/ungdomsytelse-veileder/',
     build: {
         sourcemap: true,

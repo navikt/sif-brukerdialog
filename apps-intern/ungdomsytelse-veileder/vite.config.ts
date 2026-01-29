@@ -24,6 +24,10 @@ export default defineConfig({
         },
         port: 8088,
     },
+    define: {
+        __IS_VEILEDER_DEMO__: false,
+        __VIS_DEMO_BRUKERE__: false,
+    },
     resolve: {},
     build: {
         sourcemap: true,

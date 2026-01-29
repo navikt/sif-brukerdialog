@@ -9,6 +9,7 @@ import { v4 } from 'uuid';
 import { deltaker2Mock } from '../data/deltaker2';
 import { nyDeltakerMock } from '../data/nyDeltakerMock';
 import { registrertDeltakerMock } from '../data/registrertDeltakerMock';
+import { slettetDeltakerMock } from '../data/slettetDeltakerMock';
 
 interface DbDeltakelse {
     deltakelse: DeltakelseDto;
@@ -29,6 +30,7 @@ const initialDb: TempDB = {
         registrertDeltakerMock.deltakerPersonalia,
         nyDeltakerMock.deltakerPersonalia,
         deltaker2Mock.deltakerPersonalia,
+        slettetDeltakerMock.deltakerPersonalia,
     ],
     deltakelser: [
         {
@@ -38,6 +40,10 @@ const initialDb: TempDB = {
         {
             deltakelse: deltaker2Mock.deltakelse,
             historikk: deltaker2Mock.historikk,
+        },
+        {
+            deltakelse: slettetDeltakerMock.deltakelse,
+            historikk: slettetDeltakerMock.deltakelseHistorikk,
         },
     ],
 };
