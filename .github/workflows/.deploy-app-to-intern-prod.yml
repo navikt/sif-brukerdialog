@@ -10,11 +10,14 @@ on:
                 type: string
                 required: true
 
+permissions: {}
+
 jobs:
     deploy-to-prod:
         name: Deploy ${{ inputs.app-name }} to intern prod
         runs-on: ubuntu-latest
         permissions:
+            contents: read # required: actions/checkout
             id-token: write # required: nais/docker-build-push
         outputs:
             image: ${{ steps.docker-push.outputs.image }}

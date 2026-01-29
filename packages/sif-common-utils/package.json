@@ -3,7 +3,7 @@
     "author": "navikt",
     "description": "Diverse utils for Sykdom i familien teamet",
     "main": "src/index.ts",
-    "version": "3.49.58",
+    "version": "3.49.59",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -14,8 +14,8 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.0.9",
-        "@types/react": "19.2.8",
+        "@types/node": "25.0.10",
+        "@types/react": "19.2.9",
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
         "globals": "17.0.0",
@@ -23,7 +23,7 @@
         "postcss": "8.5.6",
         "react": "19.2.3",
         "react-dom": "19.2.3",
-        "react-intl": "8.1.0",
+        "react-intl": "8.1.1",
         "typescript": "5.9.3",
         "vitest": "4.0.17"
     },
