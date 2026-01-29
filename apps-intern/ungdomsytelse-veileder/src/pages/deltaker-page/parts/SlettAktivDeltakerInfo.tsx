@@ -22,11 +22,7 @@ const SlettAktivDeltakerInfo = ({ deltaker, deltakelse }: Props) => {
                     </Switch>
                     {ekspandert ? (
                         <HGrid gap="space-4" columns={{ sm: 1, md: '1fr 1fr' }}>
-                            <Box
-                                background="warning-moderate"
-                                paddingBlock="space-6 space-8"
-                                paddingInline="space-8"
-                                borderRadius="16">
+                            <Box background="warning-moderate" padding="space-24" borderRadius="16">
                                 <VStack gap="space-0">
                                     <Heading level="3" size="xsmall" spacing>
                                         Registrer slettet deltakelse i ungdomsprogrammet
