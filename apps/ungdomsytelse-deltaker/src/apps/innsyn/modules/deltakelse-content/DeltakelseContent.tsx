@@ -8,6 +8,7 @@ import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
 import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';
+import DeltakelseOpphørtInfo from './parts/DeltakelseOpphørtInfo';
 import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';
 
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
 }
 
 const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
-    const { oppgaver } = deltakelsePeriode;
+    const { oppgaver, harOpphørsvedtak } = deltakelsePeriode;
     const { programPeriode } = deltakelsePeriode;
 
     const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
@@ -36,23 +37,33 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (
         <VStack gap="space-40">
-            {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
-            {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
-            {visInfoOmDeltakelseAvsluttet && programPeriode.to && (
-                <DeltakelseAvsluttetInfo fraOgMed={programPeriode.from} tilOgMed={programPeriode.to} />
+            {harOpphørsvedtak ? (
+                <DeltakelseOpphørtInfo />
+            ) : (
+                <>
+                    {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
+                    {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
+                    {visInfoOmDeltakelseAvsluttet && programPeriode.to && (
+                        <DeltakelseAvsluttetInfo fraOgMed={programPeriode.from} tilOgMed={programPeriode.to} />
+                    )}
+                </>
             )}
-            <VStack gap="space-16" marginBlock={medMelding ? 'space-0' : 'space-24'}>
-                <Heading level="2" size="medium">
-                    <AppText id="deltakelseContent.header" />
-                </Heading>
-                {uløsteOppgaver.length > 0 ? (
-                    <OppgaverList oppgaver={uløsteOppgaver} />
-                ) : (
-                    <BodyLong>
-                        <AppText id="deltakelseContent.ingenUløsteOppgaver" />
-                    </BodyLong>
-                )}
-            </VStack>
+
+            {harOpphørsvedtak ? null : (
+                <VStack gap="space-16" marginBlock={medMelding ? 'space-0' : 'space-24'}>
+                    <Heading level="2" size="medium">
+                        <AppText id="deltakelseContent.dineOppgaver" />
+                    </Heading>
+
+                    {uløsteOppgaver.length > 0 ? (
+                        <OppgaverList oppgaver={uløsteOppgaver} />
+                    ) : (
+                        <BodyLong>
+                            <AppText id="deltakelseContent.ingenUløsteOppgaver" />
+                        </BodyLong>
+                    )}
+                </VStack>
+            )}
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     <AppText id="deltakelseContent.tidligereOppgaver" />
