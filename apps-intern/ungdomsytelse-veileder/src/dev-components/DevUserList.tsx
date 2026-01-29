@@ -24,6 +24,9 @@ const DevUserList = () => {
                             <CopyButton copyText="26430569928" size="small" /> 26430569928 - Registrert deltaker
                         </HStack>
                         <HStack gap="space-8" align="center">
+                            <CopyButton copyText="03867198392" size="small" /> 03867198392 - Registrert deltaker 2
+                        </HStack>
+                        <HStack gap="space-8" align="center">
                             <CopyButton copyText="56857102105" size="small" /> 56857102105 - Ikke registrert
                         </HStack>
                         <HStack gap="space-8" align="center">
