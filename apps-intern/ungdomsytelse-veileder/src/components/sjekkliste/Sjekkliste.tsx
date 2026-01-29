@@ -236,51 +236,73 @@ const Sjekkliste = ({ onChange, visResultat }: Props) => {
     };
 
     return (
-        <VStack gap="space-12">
-            <Heading level="3" size="medium">
-                Sjekkliste
-            </Heading>
-            <BodyLong>Sjekk om den unge kan meldes inn i ungdomsprogrammet ved å svare på punktene nedenfor.</BodyLong>
-            <HStack justify="start">
-                <Button
-                    title="Nullstiller registrerte svar i listen"
-                    variant="tertiary"
-                    size="small"
-                    onClick={resetSjekkliste}
-                    icon={<RecycleIcon role="presentation" />}>
-                    Nullstill sjekkliste
-                </Button>
-            </HStack>
-            <VStack gap="space-4">
-                {spørsmål.map((sp, index) => {
-                    if (!status.synligeSpørsmål.includes(index)) {
-                        return null;
-                    }
-                    const innhold = spørsmålInnhold[index];
-                    return (
-                        <Box
-                            background="neutral-softA"
-                            borderRadius="8"
-                            padding="space-24"
-                            paddingInline="space-32"
-                            key={sp.id}>
-                            <RadioGroup
-                                name={sp.id}
-                                legend={innhold.legend}
-                                value={values[sp.id] || ''}
-                                onChange={(val: JaNei) => setValue(sp.id, val)}
-                                description={<Box marginBlock="space-4">{innhold.description}</Box>}>
-                                <HStack gap="space-40">
-                                    <Radio value="ja">Ja</Radio>
-                                    <Radio value="nei">Nei</Radio>
-                                </HStack>
-                            </RadioGroup>
-                        </Box>
-                    );
-                })}
+        <VStack gap="space-32">
+            <VStack gap="space-16">
+                <Heading level="2" size="large">
+                    Sjekk om den unge kan meldes inn i ungdomsprogrammet
+                </Heading>
+                <BodyLong>
+                    Svar på spørsmålene nedenfor for å se om den unge kan meldes inn i ungdomsprogrammet.
+                </BodyLong>
+                <List>
+                    <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                        <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram">
+                            Rundskriv til forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse
+                        </ExternalLink>
+                    </List.Item>
+                </List>
             </VStack>
-            {visResultat && status.kanMeldesInn && <Alert variant="success">Deltaker kan meldes inn</Alert>}
-            {visResultat && harFeilSvar && <Alert variant="error">Deltaker kan ikke meldes inn.</Alert>}
+
+            <VStack gap="space-12">
+                <Heading level="3" size="small">
+                    Sjekkliste
+                </Heading>
+                <Box>
+                    <Button
+                        title="Nullstiller registrerte svar i listen"
+                        variant="tertiary"
+                        size="small"
+                        onClick={resetSjekkliste}
+                        icon={<RecycleIcon role="presentation" />}>
+                        Nullstill sjekkliste
+                    </Button>
+                </Box>
+
+                <VStack gap="space-4">
+                    {spørsmål.map((sp, index) => {
+                        if (!status.synligeSpørsmål.includes(index)) {
+                            return null;
+                        }
+                        const innhold = spørsmålInnhold[index];
+                        return (
+                            <Box
+                                background="neutral-softA"
+                                borderRadius="8"
+                                padding="space-24"
+                                paddingInline="space-32"
+                                key={sp.id}>
+                                <RadioGroup
+                                    name={sp.id}
+                                    legend={innhold.legend}
+                                    value={values[sp.id] || ''}
+                                    onChange={(val: JaNei) => setValue(sp.id, val)}
+                                    description={<Box marginBlock="space-4">{innhold.description}</Box>}>
+                                    <HStack gap="space-40">
+                                        <Radio value="ja">Ja</Radio>
+                                        <Radio value="nei">Nei</Radio>
+                                    </HStack>
+                                </RadioGroup>
+                            </Box>
+                        );
+                    })}
+                </VStack>
+                {visResultat && status.kanMeldesInn && (
+                    <Alert variant="success">Ja, den unge kan meldes inn i ungdomsprogrammet</Alert>
+                )}
+                {visResultat && harFeilSvar && (
+                    <Alert variant="error">Nei, den unge kan ikke meldes inn i ungdomsprogrammet</Alert>
+                )}
+            </VStack>
         </VStack>
     );
 };
