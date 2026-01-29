@@ -67,7 +67,7 @@ jobs:
       # Bygg ungdomsytelse-veileder demo-app med gh-pages:rebuild
       - name: Build ungdomsytelse-veileder
         run: yarn gh-pages:rebuild
-        working-directory: apps/ungdomsytelse-veileder
+        working-directory: apps-intern/ungdomsytelse-veileder
 
       # Flytt ungdomsytelse-deltaker-output til en subfolder
       - name: Kopier ungdomsytelse-veileder demo til gh-pages
