@@ -78,7 +78,7 @@
         "react-router-dom": "7.12.0",
         "rimraf": "6.1.2",
         "sass-loader": "16.0.6",
-        "storybook": "10.1.11",
+        "storybook": "10.2.0",
         "style-loader": "4.0.0",
         "typescript": "5.9.3",
         "uuid": "13.0.0",
