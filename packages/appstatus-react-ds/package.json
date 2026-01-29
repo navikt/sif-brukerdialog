@@ -17,7 +17,7 @@
         "@navikt/ds-css": "8.1.0",
         "@navikt/ds-react": "8.1.0",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.0.9",
+        "@types/node": "25.0.10",
         "@types/react": "19.2.9",
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
@@ -27,7 +27,7 @@
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "rimraf": "6.1.2",
-        "sass": "1.97.2"
+        "sass": "1.97.3"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
