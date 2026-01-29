@@ -13,11 +13,13 @@ on:
                 type: boolean
                 required: false
 
+permissions: {}
 jobs:
     deploy-to-dev:
         name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})
         runs-on: ubuntu-latest
         permissions:
+            contents: read # required: actions/checkout
             id-token: write # required: nais/docker-build-push
         steps:
             - name: Checkout code

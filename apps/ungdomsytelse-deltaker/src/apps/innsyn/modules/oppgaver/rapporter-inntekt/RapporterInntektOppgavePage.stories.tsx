@@ -1,18 +1,18 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
-import { RapporterInntektOppgave } from '@shared/types/Oppgave';
+import { ParsedOppgavetype, RapporterInntektOppgave } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
 import RapporterInntektOppgavePage from './RapporterInntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/5. Rapporter inntekt',
+    title: 'Innsyn/Oppgaver/8. Rapporter inntekt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };
@@ -22,7 +22,7 @@ type Story = StoryObj;
 
 const oppgave: RapporterInntektOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+    oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-31').toDate(),
@@ -49,7 +49,7 @@ const besvartOppgave: RapporterInntektOppgave = {
 
 const utløptUbesvartOppgave: RapporterInntektOppgave = {
     oppgaveReferanse: 'ab0a18f8-8a6e-485b-b2b6-8d43a438165d',
-    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+    oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {
         fraOgMed: dayjs('2025-09-01').toDate(),
         tilOgMed: dayjs('2025-09-30').toDate(),

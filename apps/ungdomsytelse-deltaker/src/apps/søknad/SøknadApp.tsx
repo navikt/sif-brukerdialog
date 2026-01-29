@@ -1,5 +1,4 @@
 import { Theme } from '@navikt/ds-react';
-import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -9,6 +8,7 @@ import { useAppIntl } from '../../i18n';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenSendSøknadOppgave from '../../pages/IngenSendSøknadOppgave';
 import UngLoadingPage from '../../pages/UngLoadingPage';
+import { ParsedOppgavetype } from '../../types/Oppgave';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { SøknadProvider } from './context/SøknadContext';
 import { useBarn } from './hooks/api/useBarn';
@@ -62,7 +62,7 @@ const SøknadApp = () => {
               };
     };
 
-    const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SØK_YTELSE);
+    const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === ParsedOppgavetype.SØK_YTELSE);
 
     if (!søknadOppgave) {
         return <IngenSendSøknadOppgave />;

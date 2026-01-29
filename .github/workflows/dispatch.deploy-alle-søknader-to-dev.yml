@@ -4,12 +4,15 @@ run-name: Deploy alle søknader to dev (${{github.ref_name}})
 on:
     workflow_dispatch:
 
+permissions: {}
+
 jobs:
     deploy-endringsmelding-pleiepenger:
         name: Deploy endringsmelding-pleiepenger to dev
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "endringsmelding-pleiepenger"
@@ -20,6 +23,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
@@ -30,6 +34,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "omsorgspengesoknad"
@@ -40,6 +45,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "omsorgsdager-aleneomsorg-dialog"
@@ -50,6 +56,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "omsorgspengerutbetaling-soknad"
@@ -60,6 +67,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
@@ -70,6 +78,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "pleiepenger-i-livets-sluttfase-soknad"
@@ -80,6 +89,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "pleiepenger-sykt-barn"
@@ -90,6 +100,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "sif-ettersending"
@@ -100,6 +111,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "opplaringspenger-soknad"
@@ -110,6 +122,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "dine-pleiepenger"
@@ -121,6 +134,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "omsorgsdager-kalkulator"
@@ -131,6 +145,7 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
             app-name: "ungdomsytelse-deltaker"
@@ -141,4 +156,5 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/deploy-veileder-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write

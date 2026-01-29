@@ -66,6 +66,24 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
+            tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(2, 'day').toDate()),
+            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(1, 'days').toDate().toISOString(),
+            deltaker: {
+                id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                deltakerIdent: '234',
+            },
+            oppgaver,
+            erSlettet: false,
+            harOpphørsvedtak: false,
+        },
+    ],
+});
+const createOpphørtDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+    ...deltakerBaseScenarioData,
+    deltakelser: [
+        {
+            id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(6, 'months').toDate()),
             søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate().toISOString(),
             deltaker: {
@@ -73,29 +91,33 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 deltakerIdent: '234',
             },
             oppgaver,
-            erSlettet: false,
-            harOpphørsvedtak: false,
+            erSlettet: true,
+            harOpphørsvedtak: true,
         },
     ],
 });
 
-const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
-    ...deltakerBaseScenarioData,
-    deltakelser: [
-        {
-            id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
-            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate().toISOString(),
-            deltaker: {
+const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => {
+    const fraOgMed = dateToISODate(dayjs().add(1, 'month').startOf('week').toDate());
+    const søktTidspunkt = dayjs(fraOgMed).add(1, 'days').toDate().toISOString();
+    return {
+        ...deltakerBaseScenarioData,
+        deltakelser: [
+            {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-                deltakerIdent: '234',
+                fraOgMed,
+                søktTidspunkt,
+                deltaker: {
+                    id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                    deltakerIdent: '234',
+                },
+                oppgaver,
+                erSlettet: false,
+                harOpphørsvedtak: false,
             },
-            oppgaver,
-            erSlettet: false,
-            harOpphørsvedtak: false,
-        },
-    ],
-});
+        ],
+    };
+};
 
 export const scenarioer: Record<ScenarioType, Scenario> = {
     [ScenarioType.søknad]: {
@@ -113,6 +135,14 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Oppgave med endret startdato',
         data: createSøktDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().endretStartdatoOppgave]),
     },
+    [ScenarioType.endretStartOgSluttdato]: {
+        type: ScenarioType.endretStartOgSluttdato,
+        name: 'Oppgave med endret start- og sluttdato',
+        data: createSøktDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().endretStartOgSluttdatoOppgave,
+        ]),
+    },
     [ScenarioType.meldtUt]: {
         type: ScenarioType.meldtUt,
         name: 'Oppgave med hvor bruker er meldt ut',
@@ -120,6 +150,15 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
             getMockOppgaver().søkYtelseOppgaveLøst,
             getMockOppgaver().endretStartdatoOppgaveLøst,
             getMockOppgaver().meldtUtOppgave,
+        ]),
+    },
+    [ScenarioType.fjernetPeriode]: {
+        type: ScenarioType.fjernetPeriode,
+        name: 'Deltakelse slettet/fjernet periode',
+        data: createSøktDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().endretStartdatoOppgaveLøst,
+            getMockOppgaver().fjernetPeriode,
         ]),
     },
     [ScenarioType.endretSluttdato]: {
@@ -167,6 +206,16 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         type: ScenarioType.avvikInntekt,
         name: 'Avsluttet deltakelse',
         data: createAvsluttetDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().rapporterInntektOppgaveLøst,
+            getMockOppgaver().bekreftAvvikOppgaveLøst,
+        ]),
+    },
+    [ScenarioType.opphørt]: {
+        type: ScenarioType.opphørt,
+        name: 'Opphørt deltakelse',
+        data: createOpphørtDeltakelse([
+            getMockOppgaver().fjernetPeriodeLøst,
             getMockOppgaver().søkYtelseOppgaveLøst,
             getMockOppgaver().rapporterInntektOppgaveLøst,
             getMockOppgaver().bekreftAvvikOppgaveLøst,
