@@ -18,7 +18,7 @@
         "typescript": "5.9.3"
     },
     "devDependencies": {
-        "storybook": "10.1.11"
+        "storybook": "10.2.0"
     },
     "files": [
         "tsconfig-base.json"
