@@ -60,7 +60,7 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
                                     await log(AppHendelse.viserInformasjon);
                                     openDrawer(<SjekklisteDrawer />, {
                                         title: 'Deltakersjekkliste',
-                                        width: DrawerWidth.WIDE,
+                                        width: DrawerWidth.WIDER,
                                     });
                                 }}>
                                 <TasklistIcon fontSize="1.5rem" title="Sjekkliste" />

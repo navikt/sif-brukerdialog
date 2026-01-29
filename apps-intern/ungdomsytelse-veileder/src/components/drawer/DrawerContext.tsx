@@ -17,6 +17,7 @@ type DrawerContextValue = {
 
 export enum DrawerWidth {
     NARROW = 'narrow',
+    WIDER = 'wider',
     WIDE = 'wide',
 }
 

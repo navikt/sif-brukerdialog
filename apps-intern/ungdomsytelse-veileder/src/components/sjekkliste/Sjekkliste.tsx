@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
-import { Alert, BodyLong, Box, Heading, HStack, List, Radio, RadioGroup, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, HStack, List, Radio, RadioGroup, ReadMore, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ReactNode, useEffect, useState } from 'react';
 import { getSjekklisteStatus, JaNei, SjekklisteValues, spørsmål } from './sjekklisteUtils';
 import ExternalLink from '../external-link/ExternalLink';
+import { ParagraphIcon, RecycleIcon } from '@navikt/aksel-icons';
 
 interface SpørsmålInnhold {
     legend: string;
@@ -15,14 +16,14 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
     {
         legend: '1. Tilhører den unge et kontor som deltar i forsøket?',
         description: (
-            <ReadMore header="Les mer om forsøkskontorene">
+            <ReadMore header="Vis mer om forsøkskontorene">
                 <VStack gap="space-8">
                     <BodyLong>
                         Deltakere i ungdomsprogrammet må tilhøre et av følgende kontor som deltar i forsøket: Arendal,
                         Bergen Sør, Bergen Vest, Kristiansand, Porsgrunn, Sandefjord eller Skien.
                     </BodyLong>
                     <List>
-                        <List.Item>
+                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-3">
                                 Les mer om § 2 i rundskriv til forskrift om forsøk med ungdomsprogram og
                                 ungdomsprogramytelse.
@@ -36,20 +37,20 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
     {
         legend: '2. Mottar den unge andre livsoppholdsytelser?',
         description: (
-            <ReadMore header="Les mer om livsoppholdsytelser">
+            <ReadMore header="Vis mer om livsoppholdsytelser">
                 <VStack gap="space-8">
                     <BodyLong>
                         Den unge kan ikke motta ungdomsprogramytelsen samtidig som hen mottar andre livsoppholdsytelser,
                         med noen unntak.
                     </BodyLong>
                     <List>
-                        <List.Item>
+                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_4-6">
                                 Les mer om § 12 i rundskriv til forskrift om forsøk med ungdomsprogram og
                                 ungdomsprogramytelse.
                             </ExternalLink>
                         </List.Item>
-                        <List.Item>
+                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                 Les mer om § 3 i rundskriv til forskrift om forsøk med ungdomsprogram og
                                 ungdomsprogramytelse.
@@ -63,7 +64,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
     {
         legend: '3. Er den unge mellom 18 og 29 år ved oppstart, har hen et fastsatt bistandsbehov fra Nav, og har hen ikke tidligere deltatt i ungdomsprogrammet?',
         description: (
-            <ReadMore header="Les mer om alder, bistandsbehov og tidligere deltakelse">
+            <ReadMore header="Vis mer om alder, bistandsbehov og tidligere deltakelse">
                 <VStack gap="space-8">
                     <BodyLong>
                         Den unge kan tidligst starte i programmet den dagen hen fyller 18 år, og senest dagen før hen
@@ -75,7 +76,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                     </BodyLong>
                     <BodyLong>Den unge kan ikke ha deltatt i ungdomsprogrammet tidligere.</BodyLong>
                     <List>
-                        <List.Item>
+                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                 Les mer om § 3 første ledd bokstav a, b og c i rundskriv til forskrift om forsøk med
                                 ungdomsprogram og ungdomsprogramytelse.
@@ -89,7 +90,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
     {
         legend: '4. Ønsker den unge å delta i ungdomsprogrammet?',
         description: (
-            <ReadMore header="Les mer om ønsket om å delta">
+            <ReadMore header="Vis mer om ønsket om å delta">
                 <VStack gap="space-8">
                     <BodyLong>
                         Den unge må ha gitt uttrykk for å at hen ønsker å delta i programmet. Hen må også ha fått god
@@ -97,7 +98,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                         egeninnsatsen det krever av den unge.
                     </BodyLong>
                     <List>
-                        <List.Item>
+                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                 Les mer om § 3 første ledd bokstav d i rundskriv til forskrift om forsøk med
                                 ungdomsprogram og ungdomsprogramytelse.
@@ -112,7 +113,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
         legend: '5. Er den unge i stand til å delta i programmet på fulltid, vil den unge kunne bli i stand til å komme i arbeid eller utdanning gjennom å delta i programmet, og vil det være hensiktsmessig og nødvendig for den unge å delta?',
         description: (
             <VStack gap="space-6">
-                <ReadMore header="Les mer om det å være i stand til å delta på fulltid">
+                <ReadMore header="Vis mer om det å være i stand til å delta på fulltid">
                     <VStack gap="space-8">
                         <BodyLong>
                             Aktivitetene i planen til den unge skal være individuelt tilpasset, og planen er noe du og
@@ -126,7 +127,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                             egentrening, medisinsk behandling, sosial trening eller deltakelse på lavterskeltilbud.
                         </BodyLong>
                         <List>
-                            <List.Item>
+                            <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
                                 <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                     Les mer om § 3 første ledd bokstav e i rundskriv til forskrift om forsøk med
                                     ungdomsprogram og ungdomsprogramytelse.
@@ -135,7 +136,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                         </List>
                     </VStack>
                 </ReadMore>
-                <ReadMore header="Les mer om det å kunne bli i stand til å komme i arbeid eller utdanning ">
+                <ReadMore header="Vis mer om det å kunne bli i stand til å komme i arbeid eller utdanning ">
                     <VStack gap="space-8">
                         <BodyLong>
                             Det må være sannsynlig at den unge gjennom programmet får den oppfølgingen og
@@ -153,7 +154,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                             program.
                         </BodyLong>
                         <List>
-                            <List.Item>
+                            <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
                                 <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                     Les mer om § 3 første ledd bokstav e i rundskriv til forskrift om forsøk med
                                     ungdomsprogram og ungdomsprogramytelse.
@@ -162,7 +163,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                         </List>
                     </VStack>
                 </ReadMore>
-                <ReadMore header="Les mer om det at det er hensiktsmessig og nødvendig å delta">
+                <ReadMore header="Vis mer om det at det er hensiktsmessig og nødvendig å delta">
                     <VStack gap="space-8">
                         <BodyLong>
                             Vilkåret om at programmet skal være «nødvendig og hensiktsmessig» betyr at den unge må ha et
@@ -178,7 +179,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                             mellom den unges forutsetninger og arbeidslivets krav, jf. tiltaksforskriften § 1–3.
                         </BodyLong>
                         <List>
-                            <List.Item>
+                            <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
                                 <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                     Les mer om § 3 andre ledd i rundskriv til forskrift om forsøk med ungdomsprogram og
                                     ungdomsprogramytelse.
@@ -194,11 +195,10 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
 
 interface Props {
     visResultat?: boolean;
-    showHeader?: boolean;
-    onChange: (kanMeldesInn: boolean) => void;
+    onChange?: (kanMeldesInn: boolean) => void;
 }
 
-const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
+const Sjekkliste = ({ onChange, visResultat }: Props) => {
     const [values, setValues] = useState<SjekklisteValues>({});
 
     const setValue = (id: string, value: JaNei) => {
@@ -209,6 +209,9 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
     const prev = usePrevious(status.kanMeldesInn);
 
     useEffect(() => {
+        if (!onChange) {
+            return;
+        }
         if (prev !== status.kanMeldesInn) {
             onChange(status.kanMeldesInn);
         }
@@ -216,32 +219,46 @@ const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
 
     const harFeilSvar = status.førsteFeilIndex !== undefined;
 
+    const resetSjekkliste = () => {
+        setValues({});
+    };
+
     return (
         <VStack gap="space-8">
-            {showHeader && (
-                <Heading level="3" size="small" spacing>
-                    Sjekkliste for om deltaker kan meldes inn i ungdoms&shy;programmet
-                </Heading>
-            )}
-            <VStack gap="space-40">
+            <HStack justify="end">
+                <Button
+                    variant="secondary"
+                    size="small"
+                    onClick={resetSjekkliste}
+                    icon={<RecycleIcon role="presentation" />}>
+                    Nullstill sjekkliste
+                </Button>
+            </HStack>
+            <VStack gap="space-4">
                 {spørsmål.map((sp, index) => {
                     if (!status.synligeSpørsmål.includes(index)) {
                         return null;
                     }
                     const innhold = spørsmålInnhold[index];
                     return (
-                        <RadioGroup
-                            key={sp.id}
-                            name={sp.id}
-                            legend={innhold.legend}
-                            value={values[sp.id] || ''}
-                            onChange={(val: JaNei) => setValue(sp.id, val)}
-                            description={innhold.description}>
-                            <HStack gap="space-40">
-                                <Radio value="ja">Ja</Radio>
-                                <Radio value="nei">Nei</Radio>
-                            </HStack>
-                        </RadioGroup>
+                        <Box
+                            background="neutral-softA"
+                            borderRadius="8"
+                            padding="space-24"
+                            paddingInline="space-32"
+                            key={sp.id}>
+                            <RadioGroup
+                                name={sp.id}
+                                legend={innhold.legend}
+                                value={values[sp.id] || ''}
+                                onChange={(val: JaNei) => setValue(sp.id, val)}
+                                description={<Box marginBlock="space-4">{innhold.description}</Box>}>
+                                <HStack gap="space-40">
+                                    <Radio value="ja">Ja</Radio>
+                                    <Radio value="nei">Nei</Radio>
+                                </HStack>
+                            </RadioGroup>
+                        </Box>
                     );
                 })}
             </VStack>

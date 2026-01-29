@@ -74,6 +74,9 @@
 .drawer-dialog-narrow {
     width: 40rem;
 }
+.drawer-dialog-wider {
+    width: 50rem;
+}
 .drawer-dialog-wide {
     width: 60rem;
 }
