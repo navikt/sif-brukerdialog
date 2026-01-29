@@ -57,6 +57,14 @@ const historikk: DeltakelseHistorikkDto[] = [
         aktør: 'Z990501 (veileder)',
     },
     {
+        revisjonstype: Revisjonstype.ENDRET,
+        tidspunkt: '2026-01-14T14:26:01.736493Z',
+        endringstype: Endringstype.DELTAKELSE_FJERNET,
+        endring: 'Deltakelsen fra 02.12.2025 og til 06.08.2026 er fjernet.',
+        aktør: 'Z990501 (veileder)',
+    },
+
+    {
         tidspunkt: '2025-05-30T14:58:24.220027Z',
         endringstype: Endringstype.ENDRET_STARTDATO,
         revisjonstype: Revisjonstype.ENDRET,
