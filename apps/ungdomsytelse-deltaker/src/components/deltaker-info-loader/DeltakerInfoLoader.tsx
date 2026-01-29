@@ -1,5 +1,4 @@
 import { ApiError } from '@navikt/ung-common';
-import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
@@ -14,6 +13,7 @@ import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
+import { ParsedOppgavetype } from '../../types/Oppgave';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { logFaroError } from '../../utils/faroUtils';
 
@@ -90,7 +90,7 @@ const DeltakerInfoLoader = () => {
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
     const sendSøknadOppgave = deltakelsePeriode.oppgaver.find(
-        (oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE,
+        (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.SØK_YTELSE,
     );
 
     const deltakerHarSøkt =

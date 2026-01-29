@@ -4,6 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 import { EndretStartdatoOppgave } from '@shared/types/Oppgave';
+import { ReactNode } from 'react';
 
 import EndretStartdatoOppgavetekst from './parts/EndretStartdatoOppgavetekst';
 
@@ -35,7 +36,7 @@ const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
                 <Oppgavebekreftelse.Besvart>
                     <AppText
                         id="endretStartdato.oppsummering"
-                        values={{ formatertDato, strong: (content) => <strong>{content}</strong> }}
+                        values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                     />
                 </Oppgavebekreftelse.Besvart>
 

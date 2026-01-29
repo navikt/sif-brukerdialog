@@ -9,7 +9,7 @@ interface EndretSluttdatoOppsummeringProps {
 const MeldtUtOppsummering = ({ sluttdato }: EndretSluttdatoOppsummeringProps) => {
     return (
         <AppText
-            id="endretSluttdato.oppsummering.meldtUt"
+            id="meldtUt.oppsummering"
             values={{
                 ny: dateFormatter.full(sluttdato),
                 strong: (content: ReactNode) => <strong>{content}</strong>,
