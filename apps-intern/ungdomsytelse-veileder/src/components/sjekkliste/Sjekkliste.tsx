@@ -1,5 +1,17 @@
 /* eslint-disable max-len */
-import { Alert, BodyLong, Box, Button, HStack, List, Radio, RadioGroup, ReadMore, VStack } from '@navikt/ds-react';
+import {
+    Alert,
+    BodyLong,
+    Box,
+    Button,
+    Heading,
+    HStack,
+    List,
+    Radio,
+    RadioGroup,
+    ReadMore,
+    VStack,
+} from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ReactNode, useEffect, useState } from 'react';
 import { getSjekklisteStatus, JaNei, SjekklisteValues, spørsmål } from './sjekklisteUtils';
@@ -224,10 +236,15 @@ const Sjekkliste = ({ onChange, visResultat }: Props) => {
     };
 
     return (
-        <VStack gap="space-8">
-            <HStack justify="end">
+        <VStack gap="space-12">
+            <Heading level="3" size="medium">
+                Sjekkliste
+            </Heading>
+            <BodyLong>Sjekk om den unge kan meldes inn i ungdomsprogrammet ved å svare på punktene nedenfor.</BodyLong>
+            <HStack justify="start">
                 <Button
-                    variant="secondary"
+                    title="Nullstiller registrerte svar i listen"
+                    variant="tertiary"
                     size="small"
                     onClick={resetSjekkliste}
                     icon={<RecycleIcon role="presentation" />}>
@@ -262,16 +279,8 @@ const Sjekkliste = ({ onChange, visResultat }: Props) => {
                     );
                 })}
             </VStack>
-            {visResultat && status.kanMeldesInn && (
-                <Box marginBlock="space-16 space-0">
-                    <Alert variant="success">Deltaker kan meldes inn</Alert>
-                </Box>
-            )}
-            {visResultat && harFeilSvar && (
-                <Box marginBlock="space-16 space-0">
-                    <Alert variant="error">Deltaker kan ikke meldes inn.</Alert>
-                </Box>
-            )}
+            {visResultat && status.kanMeldesInn && <Alert variant="success">Deltaker kan meldes inn</Alert>}
+            {visResultat && harFeilSvar && <Alert variant="error">Deltaker kan ikke meldes inn.</Alert>}
         </VStack>
     );
 };

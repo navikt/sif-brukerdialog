@@ -1,24 +1,22 @@
-import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
+import { Heading, List, VStack } from '@navikt/ds-react';
 import Sjekkliste from './Sjekkliste';
+import ExternalLink from '../external-link/ExternalLink';
+import { ParagraphIcon } from '@navikt/aksel-icons';
 
 const SjekklisteDrawer = () => {
     return (
-        <VStack gap="space-16" paddingBlock="space-0 space-128" paddingInline="space-16 space-24">
-            <VStack gap="space-12">
-                <Heading level="2" size="medium" spacing={true}>
+        <VStack gap="space-32" paddingBlock="space-0 space-128" paddingInline="space-16 space-24">
+            <VStack gap="space-16">
+                <Heading level="2" size="large">
                     Sjekk om den unge kan meldes inn i ungdomsprogrammet
                 </Heading>
-                <BodyLong>
-                    Sjekk om den unge kan meldes inn i ungdomsprogrammet ved å gå gjennom sjekklisten under. Som
-                    bakgrunn kan du lese mer i{' '}
-                    <Link
-                        href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram"
-                        target="_blank"
-                        style={{ display: 'inline' }}
-                        rel="noreferrer noopener">
-                        rundskriv til forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse
-                    </Link>
-                </BodyLong>
+                <List>
+                    <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                        <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram">
+                            Rundskriv til forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse
+                        </ExternalLink>
+                    </List.Item>
+                </List>
             </VStack>
             <Sjekkliste visResultat={true} />
         </VStack>
