@@ -1,6 +1,9 @@
 import { BodyShort, Box, Link, Page, VStack } from '@navikt/ds-react';
 
 const AppFooter = () => {
+    if (__IS_VEILEDER_DEMO__) {
+        return null;
+    }
     return (
         <footer>
             <Box background="neutral-moderateA">

@@ -1,4 +1,4 @@
-import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import Sjekkliste from './Sjekkliste';
 
 const SjekklisteDrawer = () => {
@@ -7,11 +7,21 @@ const SjekklisteDrawer = () => {
             <VStack gap="space-16">
                 <VStack gap="space-4">
                     <Heading level="2" size="medium" spacing={true}>
-                        Kontroller om deltaker kan meldes inn
+                        Sjekk om den unge kan meldes inn i ungdomsprogrammet
                     </Heading>
-                    <BodyLong spacing={true}>
-                        Se om deltaker kan meldes inn i ungdomsprogrammet ved å gå gjennom sjekklisten under.
-                    </BodyLong>
+                    <div>
+                        <BodyLong spacing={true}>
+                            Sjekk om den unge kan meldes inn i ungdomsprogrammet ved å gå gjennom sjekklisten under.
+                        </BodyLong>
+                        <BodyLong spacing={true}>
+                            <Link
+                                href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram"
+                                target="_blank"
+                                rel="noreferrer noopener">
+                                Les mer i rundskriv til forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse
+                            </Link>
+                        </BodyLong>
+                    </div>
                 </VStack>
                 <Sjekkliste onChange={() => {}} showHeader={false} visResultat={true} />
             </VStack>

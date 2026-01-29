@@ -23,9 +23,7 @@ import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
-import { useState } from 'react';
 import { Features } from '../../types/Features';
-import Sjekkliste from '../../components/sjekkliste/Sjekkliste';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -45,8 +43,6 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
 
     const { mutateAsync, isPending, error } = useMeldInnDeltaker(deltaker.deltakerIdent);
     const { log } = useAppEventLogger();
-
-    const [sjekkListeResultat, setSjekkListeResultat] = useState<boolean>(false);
 
     const handleOnSubmit = async (values: FormValues) => {
         const deltakelse = await mutateAsync({
@@ -78,9 +74,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
             renderForm={({ values }) => {
                 const { erVedtaksbrevSendt, harSjekketSjekkliste } = values;
 
-                const kanMeldesInn = Features.sjekkliste
-                    ? sjekkListeResultat === true || harSjekketSjekkliste === YesOrNo.YES
-                    : true;
+                const kanMeldesInn = Features.sjekkliste ? harSjekketSjekkliste === YesOrNo.YES : false;
 
                 const renderFormPart = () => (
                     <VStack gap="space-16">
@@ -152,7 +146,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                                       : undefined
                                             }
                                             // status="completed"
-                                            title="Kontroller om deltaker kan meldes inn"
+                                            title="Kan deltaker meldes inn"
                                             bullet={1}>
                                             <Box paddingBlock="space-16" data-color="accent">
                                                 <FormikYesOrNoQuestion
@@ -161,20 +155,9 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                                     validate={getYesOrNoValidator()}
                                                 />
                                                 {harSjekketSjekkliste === YesOrNo.NO && (
-                                                    // <Bleed marginInline="4">
-                                                    <Box
-                                                        padding="space-32"
-                                                        borderRadius="16"
-                                                        background="default"
-                                                        borderWidth="1"
-                                                        marginBlock="space-0 space-16"
-                                                        borderColor="neutral-subtle">
-                                                        <Sjekkliste
-                                                            onChange={(resultat) => setSjekkListeResultat(resultat)}
-                                                            visResultat={true}
-                                                        />
-                                                    </Box>
-                                                    // </Bleed>
+                                                    <Alert variant="info">
+                                                        Du finner sjekklisten i menyen oppe til høyre.
+                                                    </Alert>
                                                 )}
                                             </Box>
                                         </Process.Event>

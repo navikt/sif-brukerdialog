@@ -13,7 +13,7 @@ import { useVeileder } from '../../context/VeilederContext';
 import DrawerArticles from '../../pages/info-page/DrawerArticles';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
-import { useDrawer } from '../drawer/DrawerContext';
+import { DrawerWidth, useDrawer } from '../drawer/DrawerContext';
 import SjekklisteDrawer from '../sjekkliste/DrawerSjekkliste';
 import { Features } from '../../types/Features';
 
@@ -32,19 +32,21 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
         <InternalHeader>
             <InternalHeader.Title href="/">Deltakerregistrering - ungdomsprogrammet</InternalHeader.Title>
             <Spacer />
-            <InternalHeader.Button
-                aria-label="Bytt mellom lys og mørk modus"
-                onClick={async (e) => {
-                    e.preventDefault();
-                    await log(AppHendelse.togglerDarkMode, { mode: !darkMode });
-                    setDarkMode(!darkMode);
-                }}>
-                {darkMode ? (
-                    <MoonFillIcon aria-label="Mørk modus er aktiv" />
-                ) : (
-                    <SunFillIcon aria-label="Lys modus er aktiv" />
-                )}
-            </InternalHeader.Button>
+            {__IS_VEILEDER_DEMO__ === false && (
+                <InternalHeader.Button
+                    aria-label="Bytt mellom lys og mørk modus"
+                    onClick={async (e) => {
+                        e.preventDefault();
+                        await log(AppHendelse.togglerDarkMode, { mode: !darkMode });
+                        setDarkMode(!darkMode);
+                    }}>
+                    {darkMode ? (
+                        <MoonFillIcon aria-label="Mørk modus er aktiv" />
+                    ) : (
+                        <SunFillIcon aria-label="Lys modus er aktiv" />
+                    )}
+                </InternalHeader.Button>
+            )}
             {Features.sjekkliste && (
                 <ActionMenu>
                     <ActionMenu.Trigger>
@@ -52,7 +54,10 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
                             onClick={async (e) => {
                                 e.preventDefault();
                                 await log(AppHendelse.viserInformasjon);
-                                openDrawer(<SjekklisteDrawer />, { title: 'Deltakersjekkliste' });
+                                openDrawer(<SjekklisteDrawer />, {
+                                    title: 'Deltakersjekkliste',
+                                    width: DrawerWidth.WIDE,
+                                });
                             }}>
                             <TasklistIcon fontSize="1.5rem" title="Sjekkliste" />
                             Deltakersjekkliste
