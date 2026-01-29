@@ -8,7 +8,6 @@ import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
 import ErrorPage from '../error-page/ErrorPage';
 import ErrorPageContent from '../error-page/ErrorPageContent';
 import DeltakelseLoader from './parts/DeltakelseLoader';
-import VeilederDemoInformasjon from '../../demo/VeilederDemoInformasjon';
 
 type DeltakerPageParams = {
     deltakerId: string;
@@ -29,7 +28,6 @@ const DeltakerPage = () => {
 
     return (
         <AppPage>
-            {__IS_VEILEDER_DEMO__ && <VeilederDemoInformasjon />}
             {/* Deltaker - spinner */}
             {deltakerPending ? <Skeleton width="100%" height="6.5rem" variant="rectangle" /> : null}
             {/* Error */}

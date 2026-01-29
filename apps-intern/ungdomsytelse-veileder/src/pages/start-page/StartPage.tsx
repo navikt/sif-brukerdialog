@@ -11,7 +11,6 @@ import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { erÅpnetForRegistrering } from '../../utils/deltakelseUtils';
 import InformasjonIntro from './InformasjonIntro';
-import VeilederDemoInformasjon from '../../demo/VeilederDemoInformasjon';
 
 const StartPage = () => {
     const navigate = useNavigate();
@@ -36,7 +35,6 @@ const StartPage = () => {
         <Box paddingBlock="space-0">
             <AppPage>
                 <Page.Block gutters={true}>
-                    {__IS_VEILEDER_DEMO__ && <VeilederDemoInformasjon />}
                     <HStack align="center" justify="center" paddingBlock="space-56 space-0">
                         <VStack gap="space-32" maxWidth="44rem">
                             <VStack gap="space-16">

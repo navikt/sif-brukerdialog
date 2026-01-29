@@ -1,8 +1,9 @@
 import { BodyShort, Box, Link, Page, VStack } from '@navikt/ds-react';
+import VeilederDemoInformasjon from '../../demo/VeilederDemoInformasjon';
 
 const AppFooter = () => {
     if (__IS_VEILEDER_DEMO__) {
-        return null;
+        return <VeilederDemoInformasjon variant="default" />;
     }
     return (
         <footer>
