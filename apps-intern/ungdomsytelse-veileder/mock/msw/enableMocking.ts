@@ -9,6 +9,9 @@ export async function enableMocking() {
             onUnhandledRequest: 'bypass',
             serviceWorker: {
                 url: import.meta.env.BASE_URL + 'mockServiceWorker.js',
+                options: {
+                    scope: import.meta.env.BASE_URL,
+                },
             },
         });
     }
