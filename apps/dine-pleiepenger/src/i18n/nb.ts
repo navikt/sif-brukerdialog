@@ -162,7 +162,7 @@ export const nb = {
         'Vi har informert arbeidsgiver om at de må sende oss inntektsmelding. Vi må ha en inntektsmelding for å behandle søknaden og beregne hvor mye pleiepenger du kan få.',
     'venteårsakMelding.inntektsmelding.info.2':
         'Hvis arbeidsgiver har sendt inn inntektsmelding allerede, kan det hende at den ikke er gyldig. Sjekk at informasjonen i inntekstmeldingen er riktig, for eksempel at første fraværsdag er den samme som i søknaden din.',
-    'venteårsakMelding.inntektsmelding.info.3': 'Hvis det ikke er riktig, ta kontakt med arbeidsgiveren din.',
+    'venteårsakMelding.inntektsmelding.info.3': 'Hvis informasjonen ikke er riktig, ta kontakt med arbeidsgiveren din.',
 
     'venteårsakMelding.søktForTidlig.tittel': 'Vi kan ikke behandle søknaden din enda',
     'venteårsakMelding.søktForTidlig.info':
