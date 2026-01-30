@@ -16,8 +16,8 @@ const DevUserList = () => {
                     </Heading>
                     <BodyLong>
                         Velg hvilke scenarioer du ønsker å teste ut ved å kopiere fødselsnummeret fra listen under og
-                        søke opp personen. Hvis en gjør endringer kan en null-stille demoen ved å klikke &quot;Nullstill
-                        demo&quot; knappen nederst.
+                        søke opp personen. Hvis en gjør endringer kan en null-stille demoen ved å klikke
+                        &quot;Tilbakestill demo&quot; knappen nederst.
                     </BodyLong>
                     <VStack gap="space-1">
                         <HStack gap="space-8" align="center">

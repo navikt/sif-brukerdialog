@@ -75,7 +75,7 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
                             onClick={async (e) => {
                                 e.preventDefault();
                                 await log(AppHendelse.viserInformasjon);
-                                openDrawer(<DrawerArticles />, { width: DrawerWidth.WIDER });
+                                openDrawer(<DrawerArticles />, { width: DrawerWidth.WIDER, title: 'Hjelpeartikler' });
                             }}>
                             <InformationSquareIcon fontSize="1.5rem" title="Informasjonikon" />
                             Hjelpeartikler
