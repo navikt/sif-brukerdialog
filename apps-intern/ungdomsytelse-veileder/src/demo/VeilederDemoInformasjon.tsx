@@ -21,13 +21,13 @@ const VeilederDemoInformasjon = ({ variant }: Props) => {
             <Box marginBlock="space-12">
                 <GlobalAlert status="warning">
                     <GlobalAlert.Header>
-                        <GlobalAlert.Title>Om demoversjon av veilederapplikasjon</GlobalAlert.Title>
+                        <GlobalAlert.Title>Informasjon om demo</GlobalAlert.Title>
                     </GlobalAlert.Header>
                     <GlobalAlert.Content>
                         <VStack gap="space-8">
                             <BodyLong as="div">
-                                Dette er en demo av hvordan veilederapplikasjonen er for ungdomsprogramytelsen. All
-                                informasjon og datoer som vises i denne er fiktive data.
+                                Denne demoen viser funksjonaliteten og innholdet i veilederappliksjonen for
+                                ungdomsprogramytelsen. All innformasjon som vises er fiktiv og laget kun for demoformål.
                             </BodyLong>
                         </VStack>
                     </GlobalAlert.Content>
