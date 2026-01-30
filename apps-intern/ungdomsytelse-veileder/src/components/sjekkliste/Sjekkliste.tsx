@@ -28,7 +28,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
     {
         legend: '1. Tilhører den unge et kontor som deltar i forsøket?',
         description: (
-            <ReadMore header="Vis mer om forsøkskontorene">
+            <ReadMore header="Mer om forsøkskontorene">
                 <VStack gap="space-8">
                     <BodyLong>
                         Deltakere i ungdomsprogrammet må tilhøre et av følgende kontor som deltar i forsøket: Arendal,
@@ -37,8 +37,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                     <List>
                         <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-3">
-                                Les mer om § 2 i rundskriv til forskrift om forsøk med ungdomsprogram og
-                                ungdomsprogramytelse.
+                                Les om § 2 i rundskrivet
                             </ExternalLink>
                         </List.Item>
                     </List>
@@ -49,7 +48,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
     {
         legend: '2. Mottar den unge andre livsoppholdsytelser?',
         description: (
-            <ReadMore header="Vis mer om livsoppholdsytelser">
+            <ReadMore header="Mer om livsoppholdsytelser">
                 <VStack gap="space-8">
                     <BodyLong>
                         Den unge kan ikke motta ungdomsprogramytelsen samtidig som hen mottar andre livsoppholdsytelser,
@@ -58,14 +57,12 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                     <List>
                         <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_4-6">
-                                Les mer om § 12 i rundskriv til forskrift om forsøk med ungdomsprogram og
-                                ungdomsprogramytelse.
+                                Les om § 12 i rundskrivet
                             </ExternalLink>
                         </List.Item>
                         <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
-                                Les mer om § 3 i rundskriv til forskrift om forsøk med ungdomsprogram og
-                                ungdomsprogramytelse.
+                                Les om § 3 i rundskrivet
                             </ExternalLink>
                         </List.Item>
                     </List>
@@ -76,7 +73,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
     {
         legend: '3. Er den unge mellom 18 og 29 år ved oppstart, har hen et fastsatt bistandsbehov fra Nav, og har hen ikke tidligere deltatt i ungdomsprogrammet?',
         description: (
-            <ReadMore header="Vis mer om alder, bistandsbehov og tidligere deltakelse">
+            <ReadMore header="Mer om alder, bistandsbehov og tidligere deltakelse">
                 <VStack gap="space-8">
                     <BodyLong>
                         Den unge kan tidligst starte i programmet den dagen hen fyller 18 år, og senest dagen før hen
@@ -90,8 +87,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                     <List>
                         <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
-                                Les mer om § 3 første ledd bokstav a, b og c i rundskriv til forskrift om forsøk med
-                                ungdomsprogram og ungdomsprogramytelse.
+                                Les om § 3 første ledd bokstav a, b og c i rundskrivet
                             </ExternalLink>
                         </List.Item>
                     </List>
@@ -102,7 +98,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
     {
         legend: '4. Ønsker den unge å delta i ungdomsprogrammet?',
         description: (
-            <ReadMore header="Vis mer om ønsket om å delta">
+            <ReadMore header="Mer om ønsket om å delta">
                 <VStack gap="space-8">
                     <BodyLong>
                         Den unge må ha gitt uttrykk for å at hen ønsker å delta i programmet. Hen må også ha fått god
@@ -112,8 +108,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                     <List>
                         <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
-                                Les mer om § 3 første ledd bokstav d i rundskriv til forskrift om forsøk med
-                                ungdomsprogram og ungdomsprogramytelse.
+                                Les om § 3 første ledd bokstav d i rundskrivet
                             </ExternalLink>
                         </List.Item>
                     </List>
@@ -125,7 +120,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
         legend: '5. Er den unge i stand til å delta i programmet på fulltid, vil den unge kunne bli i stand til å komme i arbeid eller utdanning gjennom å delta i programmet, og vil det være hensiktsmessig og nødvendig for den unge å delta?',
         description: (
             <VStack gap="space-6">
-                <ReadMore header="Vis mer om det å være i stand til å delta på fulltid">
+                <ReadMore header="Mer om det å være i stand til å delta på fulltid">
                     <VStack gap="space-8">
                         <BodyLong>
                             Aktivitetene i planen til den unge skal være individuelt tilpasset, og planen er noe du og
@@ -141,14 +136,13 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                         <List>
                             <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                                 <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
-                                    Les mer om § 3 første ledd bokstav e i rundskriv til forskrift om forsøk med
-                                    ungdomsprogram og ungdomsprogramytelse.
+                                    Les om § 3 første ledd bokstav e i rundskrivet
                                 </ExternalLink>
                             </List.Item>
                         </List>
                     </VStack>
                 </ReadMore>
-                <ReadMore header="Vis mer om det å kunne bli i stand til å komme i arbeid eller utdanning ">
+                <ReadMore header="Mer om det å kunne bli i stand til å komme i arbeid eller utdanning ">
                     <VStack gap="space-8">
                         <BodyLong>
                             Det må være sannsynlig at den unge gjennom programmet får den oppfølgingen og
@@ -168,14 +162,13 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                         <List>
                             <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                                 <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
-                                    Les mer om § 3 første ledd bokstav e i rundskriv til forskrift om forsøk med
-                                    ungdomsprogram og ungdomsprogramytelse.
+                                    Les om § 3 første ledd bokstav e i rundskrivet
                                 </ExternalLink>
                             </List.Item>
                         </List>
                     </VStack>
                 </ReadMore>
-                <ReadMore header="Vis mer om det at det er hensiktsmessig og nødvendig å delta">
+                <ReadMore header="Mer om det at det er hensiktsmessig og nødvendig å delta">
                     <VStack gap="space-8">
                         <BodyLong>
                             Vilkåret om at programmet skal være «nødvendig og hensiktsmessig» betyr at den unge må ha et
@@ -193,8 +186,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                         <List>
                             <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                                 <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
-                                    Les mer om § 3 andre ledd i rundskriv til forskrift om forsøk med ungdomsprogram og
-                                    ungdomsprogramytelse.
+                                    Les om § 3 andre ledd i rundskrivet
                                 </ExternalLink>
                             </List.Item>
                         </List>

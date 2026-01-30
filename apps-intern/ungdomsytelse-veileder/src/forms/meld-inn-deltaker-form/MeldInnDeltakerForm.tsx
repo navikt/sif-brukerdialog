@@ -221,8 +221,8 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                             />
                                             {harSjekketSjekkliste === YesOrNo.NO && (
                                                 <Alert variant="info">
-                                                    Du kan sjekke om den unge kan meldes inn i sjekklisten som du finner
-                                                    oppe til høyre i menyen.
+                                                    Sjekk om den unge kan meldes inn ved å fylle ut sjekklisten oppe til
+                                                    høyre i menyen.
                                                 </Alert>
                                             )}
 
