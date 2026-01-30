@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Box, Button, Heading } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import Link from 'next/link';
 
 import { AppText } from '../../i18n';
@@ -39,9 +39,17 @@ const VenteårsakMelding = ({ venteårsak }: Props) => {
                     <Heading level="2" size="small" spacing>
                         <AppText id="venteårsakMelding.inntektsmelding.tittel" />
                     </Heading>
-                    <BodyLong>
-                        <AppText id="venteårsakMelding.inntektsmelding.info" />
-                    </BodyLong>
+                    <VStack gap="space-16">
+                        <BodyLong>
+                            <AppText id="venteårsakMelding.inntektsmelding.info.1" />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText id="venteårsakMelding.inntektsmelding.info.2" />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText id="venteårsakMelding.inntektsmelding.info.3" />
+                        </BodyLong>
+                    </VStack>
                 </Alert>
             );
         case Venteårsak.FOR_TIDLIG_SOKNAD:
