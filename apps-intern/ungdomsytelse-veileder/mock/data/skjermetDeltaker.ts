@@ -63,7 +63,6 @@ const historikk: DeltakelseHistorikkDto[] = [
         endring: 'Deltakelsen fra 02.12.2025 og til 06.08.2026 er fjernet.',
         aktør: 'Z990501 (veileder)',
     },
-
     {
         tidspunkt: '2025-05-30T14:58:24.220027Z',
         endringstype: Endringstype.ENDRET_STARTDATO,
@@ -143,7 +142,7 @@ const historikk: DeltakelseHistorikkDto[] = [
     },
 ];
 
-export const deltaker2Mock = {
+export const skjermetDeltakerMock = {
     deltakerPersonalia,
     deltakelse,
     historikk,

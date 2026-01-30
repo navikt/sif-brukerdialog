@@ -68,7 +68,7 @@ export default defineConfig({
         },
     },
     define: {
-        __IS_VEILEDER_DEMO__: true,
+        __IS_VEILEDER_DEMO__: false,
         __IS_GITHUB_PAGES__: false,
         __VIS_DEMO_BRUKERE__: true,
     },

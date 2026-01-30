@@ -29,9 +29,9 @@ const DeltakerHeader = ({
             </HStack>
             <Box>
                 <Button
-                    variant="tertiary-neutral"
+                    variant="secondary-neutral"
                     onClick={onLukkDeltaker}
-                    iconPosition="right"
+                    iconPosition="left"
                     icon={<XMarkIcon aria-hidden={true} />}>
                     Lukk deltaker
                 </Button>

@@ -21,14 +21,15 @@ const DevUserList = () => {
                     </BodyLong>
                     <VStack gap="space-1">
                         <HStack gap="space-8" align="center">
-                            <CopyButton copyText="26430569928" size="small" /> 26430569928 - Registrert deltaker
+                            <CopyButton copyText="56857102105" size="small" /> 56857102105 - Ikke registrert person
+                        </HStack>
+                        <HStack gap="space-8" align="center">
+                            <CopyButton copyText="03867198392" size="small" /> 03867198392 - Registrert deltaker
                         </HStack>
                         {/* <HStack gap="space-8" align="center">
-                            <CopyButton copyText="03867198392" size="small" /> 03867198392 - Registrert deltaker 2
+                            <CopyButton copyText="26430569928" size="small" /> 26430569928 - Skjermet registrert
+                            deltaker
                         </HStack> */}
-                        <HStack gap="space-8" align="center">
-                            <CopyButton copyText="56857102105" size="small" /> 56857102105 - Ikke registrert
-                        </HStack>
                         <HStack gap="space-8" align="center">
                             <CopyButton copyText="27857798800" size="small" /> 27857798800 - Person finnes ikke
                         </HStack>

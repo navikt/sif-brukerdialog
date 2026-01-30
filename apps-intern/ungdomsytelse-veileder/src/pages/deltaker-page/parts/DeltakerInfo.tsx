@@ -16,7 +16,7 @@ interface Props {
 const DeltakerInfo = ({ deltaker, skjulHeader, copyFnrEnabled = true }: Props) => {
     const alder = dayjs().diff(dayjs(deltaker.fødselsdato), 'year');
     return (
-        <VStack gap="space-16">
+        <VStack gap="space-12">
             {!skjulHeader && (
                 <Heading level="2" size="medium">
                     Om Deltaker

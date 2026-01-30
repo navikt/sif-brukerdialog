@@ -15,7 +15,7 @@ const SlettAktivDeltakerInfo = ({ deltaker, deltakelse }: Props) => {
 
     return (
         <>
-            {deltakelse.erSlettet ? null : (
+            {deltakelse.erSlettet || !deltakelse.søktTidspunkt ? null : (
                 <VStack gap="space-8">
                     <Switch checked={ekspandert} onChange={(e) => setEkspandert(e.target.checked)} size="small">
                         Vis unntakshandlinger
