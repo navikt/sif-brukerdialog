@@ -29,6 +29,8 @@ const DeltakerHeader = ({
             </HStack>
             <Box>
                 <Button
+                    data-color="accent"
+                    size="medium"
                     variant="secondary-neutral"
                     onClick={onLukkDeltaker}
                     iconPosition="left"

@@ -8,20 +8,17 @@ import DiskresjonskoderTags from '../../../components/diskresjonskode-tag/Diskre
 import { Deltaker } from '../../../types/Deltaker';
 
 interface Props {
-    skjulHeader?: boolean;
     copyFnrEnabled?: boolean;
     deltaker: Deltaker;
 }
 
-const DeltakerInfo = ({ deltaker, skjulHeader, copyFnrEnabled = true }: Props) => {
+const DeltakerInfo = ({ deltaker, copyFnrEnabled = true }: Props) => {
     const alder = dayjs().diff(dayjs(deltaker.fødselsdato), 'year');
     return (
-        <VStack gap="space-12">
-            {!skjulHeader && (
-                <Heading level="2" size="medium">
-                    Om Deltaker
-                </Heading>
-            )}
+        <VStack gap="space-16">
+            <Heading level="2" size="medium">
+                Om Deltaker
+            </Heading>
             <InfoBox>
                 <VStack gap="space-16">
                     <dl className="ungDefinitionList">
