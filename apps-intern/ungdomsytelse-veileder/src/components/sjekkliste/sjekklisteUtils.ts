@@ -9,7 +9,7 @@ export interface Spørsmål {
 /** Definerer alle spørsmålene i rekkefølge med forventet riktig svar */
 export const spørsmål: Spørsmål[] = [
     { id: 'tilhørerKontor', riktigSvar: 'ja' },
-    { id: 'mottarAndreLivsoppholdsytelser', riktigSvar: 'ja' },
+    { id: 'mottarAndreLivsoppholdsytelser', riktigSvar: 'nei' },
     { id: 'alderBistandOgDeltakelse', riktigSvar: 'ja' },
     { id: 'ønskerÅDelta', riktigSvar: 'ja' },
     { id: 'erIStandTilÅDelta', riktigSvar: 'ja' },
