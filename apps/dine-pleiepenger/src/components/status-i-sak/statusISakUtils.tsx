@@ -1,7 +1,6 @@
 import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { Box, HStack, Link, ReadMore, VStack } from '@navikt/ds-react';
+import { Box, Link } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
-import { FormattedNumber } from 'react-intl';
 
 import { IntlTextFn } from '../../i18n';
 import { InnsendelseISak } from '../../types';
@@ -10,7 +9,6 @@ import { Innsendelsestype } from '../../types/Innsendelsestype';
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { Sakshendelse, Sakshendelser } from '../../types/Sakshendelse';
 import { getImUtils } from '../../utils/inntektsmeldingUtils';
-import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 import EttersendelseStatusContent from './parts/EttersendelseStatusContent';
 import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
@@ -83,37 +81,15 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         title: `Inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
                         content: (
                             <Box marginBlock="space-8 space-0">
-                                <ReadMore header="Vis mer om inntektsmeldingen">
-                                    <VStack gap="space-8" marginBlock="space-0 space-16">
-                                        <HStack gap="space-8">
-                                            <strong>Status: </strong>
-                                            <InntektsmeldingStatusTag
-                                                status={hendelse.inntektsmelding.status}
-                                                showIcon={true}
-                                            />
-                                        </HStack>
-                                        <div>
-                                            <strong>Beregnet månedsinntekt: </strong>
-                                            <FormattedNumber
-                                                value={hendelse.inntektsmelding.inntektBeløp}
-                                                style="currency"
-                                                currency="NOK"
-                                                maximumFractionDigits={2}
-                                                trailingZeroDisplay="stripIfInteger"
-                                            />
-                                            .
-                                        </div>
-                                    </VStack>
-                                    <Link
-                                        as={NextLink}
-                                        href={`/sak/${hendelse.inntektsmelding.saksnummer}/inntektsmelding/${hendelse.inntektsmelding.journalpostId}`}>
-                                        <ArrowRightIcon
-                                            title="Inntektsmelding"
-                                            style={{ width: '1.5rem', height: '1.5rem' }}
-                                        />
-                                        Gå til hele inntektsmeldingen
-                                    </Link>
-                                </ReadMore>
+                                <Link
+                                    as={NextLink}
+                                    href={`/sak/${hendelse.inntektsmelding.saksnummer}/inntektsmelding/${hendelse.inntektsmelding.journalpostId}`}>
+                                    Vis inntektsmelding
+                                    <ArrowRightIcon
+                                        title="Inntektsmelding"
+                                        style={{ width: '1.5rem', height: '1.5rem' }}
+                                    />
+                                </Link>
                             </Box>
                         ),
                         completed: true,

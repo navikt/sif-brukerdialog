@@ -46,11 +46,6 @@ export const sortInnsendelser = (innsendelser: InnsendelseISak[]): InnsendelseIS
 };
 
 export const sortSakshendelse = (hendelse1: Sakshendelse, hendelse2: Sakshendelse): number => {
-    // if (hendelse1.type === Sakshendelser.FORVENTET_SVAR) {
-    //     return 1;
-    // } else if (hendelse2.type === Sakshendelser.FORVENTET_SVAR) {
-    //     return -1;
-    // }
     return (hendelse1.dato?.getTime() || 0) > (hendelse2.dato?.getTime() || 0) ? 1 : -1;
 };
 
