@@ -38,6 +38,8 @@ interface FormValues {
     bekreftRegistrering: boolean;
 }
 
+const brukProcess = false;
+
 const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Props) => {
     const intl = useIntl();
 
@@ -132,78 +134,120 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                         formErrorHandler={getIntlFormErrorHandler(intl, 'meldInnDeltakerForm')}>
                         <VStack gap="space-16" marginBlock="space-16 space-0">
                             {Features.sjekkliste ? (
-                                <>
-                                    <Heading level="2" size="medium">
-                                        Registrer ny deltaker
-                                    </Heading>
-                                    <Process data-color="accent">
-                                        <Process.Event
-                                            status={
-                                                kanMeldesInn
-                                                    ? 'completed'
-                                                    : harSjekketSjekkliste !== YesOrNo.YES
-                                                      ? 'active'
-                                                      : undefined
-                                            }
-                                            // status="completed"
-                                            title="Kan deltaker meldes inn"
-                                            bullet={1}>
-                                            <Box paddingBlock="space-16" data-color="accent">
-                                                <FormikYesOrNoQuestion
-                                                    name="harSjekketSjekkliste"
-                                                    legend="Har du kontrollert at deltaker kan meldes inn i ungdomsprogrammet ved å fylle ut sjekklisten for deltakelse?"
-                                                    validate={getYesOrNoValidator()}
-                                                />
-                                                {harSjekketSjekkliste === YesOrNo.NO && (
-                                                    <Alert variant="info">
-                                                        Du finner sjekklisten i menyen oppe til høyre.
-                                                    </Alert>
-                                                )}
-                                            </Box>
-                                        </Process.Event>
-                                        <Process.Event
-                                            status={
-                                                !kanMeldesInn
-                                                    ? undefined
-                                                    : erVedtaksbrevSendt
-                                                      ? 'completed'
-                                                      : erVedtaksbrevSendt === undefined && kanMeldesInn
-                                                        ? 'active'
-                                                        : undefined
-                                            }
-                                            // status="completed"
-                                            title="Send vedtaksbrev om deltakelse fra gosys"
-                                            bullet={2}>
-                                            {kanMeldesInn && (
-                                                <Box paddingBlock="space-16">
+                                brukProcess ? (
+                                    <>
+                                        <Heading level="2" size="medium">
+                                            Registrer ny deltaker
+                                        </Heading>
+                                        <Process data-color="accent">
+                                            <Process.Event
+                                                status={
+                                                    kanMeldesInn
+                                                        ? 'completed'
+                                                        : harSjekketSjekkliste !== YesOrNo.YES
+                                                          ? 'active'
+                                                          : undefined
+                                                }
+                                                // status="completed"
+                                                title="Kan den unge meldes inn?"
+                                                bullet={1}>
+                                                <Box paddingBlock="space-16" data-color="accent">
                                                     <FormikYesOrNoQuestion
-                                                        name="erVedtaksbrevSendt"
-                                                        legend="Er vedtaksbrev om deltakelse i ungdomsprogrammet sendt fra gosys?"
+                                                        name="harSjekketSjekkliste"
+                                                        legend="Har du sjekket at den unge kan meldes inn i ungdomsprogrammet ved å fylle ut sjekklisten for deltakelse?"
                                                         validate={getYesOrNoValidator()}
                                                     />
+                                                    {harSjekketSjekkliste === YesOrNo.NO && (
+                                                        <Alert variant="info">
+                                                            Du finner sjekklisten i menyen oppe til høyre.
+                                                        </Alert>
+                                                    )}
                                                 </Box>
-                                            )}
-                                        </Process.Event>
-                                        <Process.Event
-                                            title="Registrer oppstartsdato"
-                                            bullet={3}
-                                            // status="completed"
+                                            </Process.Event>
+                                            <Process.Event
+                                                status={
+                                                    !kanMeldesInn
+                                                        ? undefined
+                                                        : erVedtaksbrevSendt
+                                                          ? 'completed'
+                                                          : erVedtaksbrevSendt === undefined && kanMeldesInn
+                                                            ? 'active'
+                                                            : undefined
+                                                }
+                                                // status="completed"
+                                                title="Send vedtaksbrev om deltakelse fra gosys"
+                                                bullet={2}>
+                                                {kanMeldesInn && (
+                                                    <Box paddingBlock="space-16">
+                                                        <FormikYesOrNoQuestion
+                                                            name="erVedtaksbrevSendt"
+                                                            legend="Er vedtaksbrev om deltakelse i ungdomsprogrammet sendt fra gosys?"
+                                                            validate={getYesOrNoValidator()}
+                                                        />
+                                                    </Box>
+                                                )}
+                                            </Process.Event>
+                                            <Process.Event
+                                                title="Registrer oppstartsdato"
+                                                bullet={3}
+                                                // status="completed"
 
-                                            status={erVedtaksbrevSendt === YesOrNo.YES ? 'active' : undefined}>
+                                                status={erVedtaksbrevSendt === YesOrNo.YES ? 'active' : undefined}>
+                                                {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.YES && (
+                                                    <Box paddingBlock="space-16" style={{ minWidth: '33rem' }}>
+                                                        {renderFormPart()}
+                                                    </Box>
+                                                )}
+                                            </Process.Event>
+                                        </Process>
+                                        {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.NO && (
+                                            <Alert variant="warning">
+                                                Deltaker må ha et vedtak om at de er med i ungdomsprogrammet før vi kan
+                                                behandle en søknad om ungdomsprogramytelse.
+                                            </Alert>
+                                        )}
+                                    </>
+                                ) : (
+                                    <>
+                                        <Heading level="2" size="medium">
+                                            Registrer ny deltaker
+                                        </Heading>
+
+                                        <VStack gap="space-16">
+                                            <FormikYesOrNoQuestion
+                                                name="harSjekketSjekkliste"
+                                                legend="Har du sjekket at den unge kan meldes inn i ungdomsprogrammet ved å fylle ut sjekklisten for deltakelse?"
+                                                validate={getYesOrNoValidator()}
+                                            />
+                                            {harSjekketSjekkliste === YesOrNo.NO && (
+                                                <Alert variant="info">
+                                                    Du kan sjekke om den unge kan meldes inn i sjekklisten som du finner
+                                                    oppe til høyre i menyen.
+                                                </Alert>
+                                            )}
+
+                                            {kanMeldesInn && (
+                                                <FormikYesOrNoQuestion
+                                                    name="erVedtaksbrevSendt"
+                                                    legend="Er vedtaksbrev om deltakelse i ungdomsprogrammet sendt fra gosys?"
+                                                    validate={getYesOrNoValidator()}
+                                                />
+                                            )}
+
                                             {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.YES && (
                                                 <Box paddingBlock="space-16" style={{ minWidth: '33rem' }}>
                                                     {renderFormPart()}
                                                 </Box>
                                             )}
-                                        </Process.Event>
-                                    </Process>
-                                    {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.NO && (
-                                        <Alert variant="warning">
-                                            Deltaker må ha et vedtak om at de er med i ungdomsprogrammet før vi kan
-                                            behandle en søknad om ungdomsprogramytelse.
-                                        </Alert>
-                                    )}
-                                </>
+                                            {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.NO && (
+                                                <Alert variant="warning">
+                                                    Deltaker må ha et vedtak om at de er med i ungdomsprogrammet før vi
+                                                    kan behandle en søknad om ungdomsprogramytelse.
+                                                </Alert>
+                                            )}
+                                        </VStack>
+                                    </>
+                                )
                             ) : (
                                 <>
                                     <Heading level="2" size="medium">
