@@ -16,7 +16,7 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 import { ReactNode, useEffect, useState } from 'react';
 import { getSjekklisteStatus, JaNei, SjekklisteValues, spørsmål } from './sjekklisteUtils';
 import ExternalLink from '../external-link/ExternalLink';
-import { ParagraphIcon, RecycleIcon } from '@navikt/aksel-icons';
+import { ExternalLinkIcon, RecycleIcon } from '@navikt/aksel-icons';
 
 interface SpørsmålInnhold {
     legend: string;
@@ -35,7 +35,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                         Bergen Sør, Bergen Vest, Kristiansand, Porsgrunn, Sandefjord eller Skien.
                     </BodyLong>
                     <List>
-                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-3">
                                 Les mer om § 2 i rundskriv til forskrift om forsøk med ungdomsprogram og
                                 ungdomsprogramytelse.
@@ -56,13 +56,13 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                         med noen unntak.
                     </BodyLong>
                     <List>
-                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_4-6">
                                 Les mer om § 12 i rundskriv til forskrift om forsøk med ungdomsprogram og
                                 ungdomsprogramytelse.
                             </ExternalLink>
                         </List.Item>
-                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                 Les mer om § 3 i rundskriv til forskrift om forsøk med ungdomsprogram og
                                 ungdomsprogramytelse.
@@ -88,7 +88,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                     </BodyLong>
                     <BodyLong>Den unge kan ikke ha deltatt i ungdomsprogrammet tidligere.</BodyLong>
                     <List>
-                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                 Les mer om § 3 første ledd bokstav a, b og c i rundskriv til forskrift om forsøk med
                                 ungdomsprogram og ungdomsprogramytelse.
@@ -110,7 +110,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                         egeninnsatsen det krever av den unge.
                     </BodyLong>
                     <List>
-                        <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                             <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                 Les mer om § 3 første ledd bokstav d i rundskriv til forskrift om forsøk med
                                 ungdomsprogram og ungdomsprogramytelse.
@@ -139,7 +139,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                             egentrening, medisinsk behandling, sosial trening eller deltakelse på lavterskeltilbud.
                         </BodyLong>
                         <List>
-                            <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                            <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                                 <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                     Les mer om § 3 første ledd bokstav e i rundskriv til forskrift om forsøk med
                                     ungdomsprogram og ungdomsprogramytelse.
@@ -166,7 +166,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                             program.
                         </BodyLong>
                         <List>
-                            <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                            <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                                 <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                     Les mer om § 3 første ledd bokstav e i rundskriv til forskrift om forsøk med
                                     ungdomsprogram og ungdomsprogramytelse.
@@ -191,7 +191,7 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
                             mellom den unges forutsetninger og arbeidslivets krav, jf. tiltaksforskriften § 1–3.
                         </BodyLong>
                         <List>
-                            <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                            <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                                 <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
                                     Les mer om § 3 andre ledd i rundskriv til forskrift om forsøk med ungdomsprogram og
                                     ungdomsprogramytelse.
@@ -206,11 +206,10 @@ const spørsmålInnhold: SpørsmålInnhold[] = [
 ];
 
 interface Props {
-    visResultat?: boolean;
     onChange?: (kanMeldesInn: boolean) => void;
 }
 
-const Sjekkliste = ({ onChange, visResultat }: Props) => {
+const Sjekkliste = ({ onChange }: Props) => {
     const [values, setValues] = useState<SjekklisteValues>({});
 
     const setValue = (id: string, value: JaNei) => {
@@ -239,13 +238,13 @@ const Sjekkliste = ({ onChange, visResultat }: Props) => {
         <VStack gap="space-32">
             <VStack gap="space-16">
                 <Heading level="2" size="large">
-                    Sjekk om den unge kan meldes inn i ungdomsprogrammet
+                    Sjekk om den unge kan meldes inn i ungdoms&shy;programmet
                 </Heading>
                 <BodyLong>
                     Svar på spørsmålene nedenfor for å se om den unge kan meldes inn i ungdomsprogrammet.
                 </BodyLong>
                 <List>
-                    <List.Item icon={<ParagraphIcon role="presentation" fontSize="1.25rem" />}>
+                    <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
                         <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram">
                             Rundskriv til forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse
                         </ExternalLink>
@@ -296,11 +295,14 @@ const Sjekkliste = ({ onChange, visResultat }: Props) => {
                         );
                     })}
                 </VStack>
-                {visResultat && status.kanMeldesInn && (
+                {status.kanMeldesInn && (
                     <Alert variant="success">Ja, den unge kan meldes inn i ungdomsprogrammet</Alert>
                 )}
-                {visResultat && harFeilSvar && (
-                    <Alert variant="error">Nei, den unge kan ikke meldes inn i ungdomsprogrammet</Alert>
+                {harFeilSvar && <Alert variant="error">Nei, den unge kan ikke meldes inn i ungdomsprogrammet</Alert>}
+                {!status.alleBesvart && (
+                    <Alert variant="info" inline>
+                        Du må svare på alle spørsmålene over for å se om den unge kan meldes inn
+                    </Alert>
                 )}
             </VStack>
         </VStack>

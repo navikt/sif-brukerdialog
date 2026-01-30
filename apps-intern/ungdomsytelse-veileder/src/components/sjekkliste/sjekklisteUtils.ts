@@ -49,8 +49,9 @@ export const getSjekklisteStatus = (values: SjekklisteValues): SjekklisteStatus 
         }
 
         if (svar !== sp.riktigSvar) {
-            // Feil svar - registrer feil og stopp
+            // Feil svar - registrer feil, marker som besvart og stopp
             førsteFeilIndex = i;
+            alleBesvart = true;
             break;
         }
 

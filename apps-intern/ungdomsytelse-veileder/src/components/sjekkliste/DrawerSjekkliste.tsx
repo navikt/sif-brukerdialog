@@ -4,7 +4,7 @@ import Sjekkliste from './Sjekkliste';
 const SjekklisteDrawer = () => {
     return (
         <VStack paddingBlock="space-0 space-128" paddingInline="space-16 space-24">
-            <Sjekkliste visResultat={true} />
+            <Sjekkliste />
         </VStack>
     );
 };
