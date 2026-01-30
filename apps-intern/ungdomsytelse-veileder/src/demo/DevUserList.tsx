@@ -41,19 +41,28 @@ const DevUserList = () => {
                         </HStack>
                     </VStack>
                 </VStack>
-                <Box>
-                    <Button
-                        variant="secondary"
-                        size="small"
-                        icon={<RecycleIcon role="presentation" />}
-                        iconPosition="left"
-                        onClick={() => {
-                            mockUtils.reset();
-                            window.location.reload();
-                        }}>
-                        Nullstill demo
-                    </Button>
-                </Box>
+                <VStack gap="space-12">
+                    <Heading level="3" size="xsmall">
+                        Tilbakestille demo
+                    </Heading>
+                    <BodyLong>
+                        Når en har gjort endringer i demoen så vil disse endringene bli husket. For å tilbakestille
+                        demoen til opprinnelig tilstand, klikk på knappen under.
+                    </BodyLong>
+                    <div>
+                        <Button
+                            variant="secondary"
+                            size="small"
+                            icon={<RecycleIcon role="presentation" />}
+                            iconPosition="left"
+                            onClick={() => {
+                                mockUtils.reset();
+                                window.location.reload();
+                            }}>
+                            Tilbakestill demo
+                        </Button>
+                    </div>
+                </VStack>
             </VStack>
         </Box>
     ) : null;
