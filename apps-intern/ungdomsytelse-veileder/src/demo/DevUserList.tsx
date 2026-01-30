@@ -17,9 +17,8 @@ const DevUserList = () => {
                     <VStack gap="space-16">
                         <BodyLong as="div">
                             <p>
-                                Velg hvilke scenarioer du ønsker å teste ut ved å kopiere fødselsnummeret fra listen
-                                under og søke opp personen. Hvis en gjør endringer kan en null-stille demoen ved å
-                                klikke &quot;Tilbakestill demo&quot; knappen nederst.
+                                Velg hvilke scenarioer du ønsker å teste ut ved å kopiere fødselsnummer fra listen
+                                nedenfor og søke opp personen.
                             </p>
                             <VStack gap="space-8">
                                 <HStack gap="space-8" align="center">
