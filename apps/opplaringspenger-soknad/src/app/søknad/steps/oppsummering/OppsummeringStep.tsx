@@ -172,6 +172,7 @@ const OppsummeringStep = () => {
                                                 from: ISODateToDate(apiData.fraOgMed),
                                                 to: ISODateToDate(apiData.tilOgMed),
                                             }}
+                                            spørOmFraværFraJobb={spørOmFraværFraJobb}
                                             onEdit={
                                                 stepConfig[StepId.ARBEIDSTID]
                                                     ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)

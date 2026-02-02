@@ -17,6 +17,7 @@ interface Props {
     apiValues: SøknadApiData;
     valgteDatoer: Date[];
     søknadsperiode: DateRange;
+    spørOmFraværFraJobb: boolean;
     onEdit?: () => void;
 }
 
@@ -66,6 +67,7 @@ const ArbeidIPeriodenSummary = ({
     apiValues: { arbeidsgivere, frilans, selvstendigNæringsdrivende },
     valgteDatoer,
     søknadsperiode,
+    spørOmFraværFraJobb,
     onEdit,
 }: Props) => {
     const appIntl = useAppIntl();
@@ -125,6 +127,7 @@ const ArbeidIPeriodenSummary = ({
                                                 valgteDatoer={valgteDatoer}
                                                 arbeidIPeriode={forhold.arbeidIPeriode}
                                                 normaltimerUke={forhold.jobberNormaltTimer}
+                                                spørOmFraværFraJobb={spørOmFraværFraJobb}
                                             />
                                         </FormSummary.Value>
                                     </>

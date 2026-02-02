@@ -11,13 +11,14 @@ interface Props {
     valgteDatoer: Date[];
     arbeidIPeriode: ArbeidIPeriodeApiData;
     normaltimerUke: number;
+    spørOmFraværFraJobb: boolean;
 }
 
 export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
 }
 
-const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode }: Props) => {
+const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode, spørOmFraværFraJobb }: Props) => {
     return (
         <VStack gap="space-32">
             <>
@@ -39,7 +40,7 @@ const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode }: Props) => {
                         <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
                     </Heading>
                     <TidEnkeltdager
-                        dager={arbeidIPeriode.enkeltdagerFravær}
+                        dager={spørOmFraværFraJobb ? arbeidIPeriode.enkeltdagerFravær : arbeidIPeriode.enkeltdager}
                         renderAsAccordion={false}
                         headingLevel="5"
                     />
