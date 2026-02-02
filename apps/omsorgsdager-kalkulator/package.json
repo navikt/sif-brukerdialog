@@ -52,9 +52,5 @@
         "tailwindcss": "4.1.18",
         "typescript": "5.9.3",
         "vite": "7.3.1"
-    },
-    "resolutions": {
-        "@types/react": "19.2.10",
-        "@types/react-dom": "19.2.3"
     }
 }
