@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.35.68
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 1.35.67
 
 ### Patch Changes

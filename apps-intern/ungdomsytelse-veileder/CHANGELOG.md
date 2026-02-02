@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.52
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 0.9.51
 
 ### Patch Changes

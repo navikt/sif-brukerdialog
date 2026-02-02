@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.1.1
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 2.1.0
 
 ### Minor Changes

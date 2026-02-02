@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.40.60
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 2.40.59
 
 ### Patch Changes

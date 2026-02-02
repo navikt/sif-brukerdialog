@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.14.1
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 3.14.0
 
 ### Minor Changes

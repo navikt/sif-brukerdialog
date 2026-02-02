@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.37
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 1.4.36
 
 ### Patch Changes
