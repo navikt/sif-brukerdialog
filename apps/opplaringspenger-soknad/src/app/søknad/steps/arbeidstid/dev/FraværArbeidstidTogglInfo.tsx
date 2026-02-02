@@ -15,7 +15,7 @@ const FraværArbeidstidToggleInfo = () => {
                 marginBlock="space-16 space-48"
                 borderRadius="16">
                 <Tag variant="strong" data-color="warning">
-                    Featur: Fravær fra arbeid
+                    Feature: {spørOmFraværFraJobb ? 'Fravær valgt' : 'Arbeidstid valgt'}
                 </Tag>
                 <BodyLong>
                     {spørOmFraværFraJobb ? 'Togglet til å spørre om fravær' : 'Togglet til å spørre om arbeidstid'}. Du
