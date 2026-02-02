@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.1.0
+
+### Minor Changes
+
+- Oppdatere til next16
+
 ## 2.0.28
 
 ### Patch Changes
