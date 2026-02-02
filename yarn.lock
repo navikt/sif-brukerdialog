@@ -5231,7 +5231,7 @@ __metadata:
     copyfiles: "npm:2.4.1"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.19"
-    globals: "npm:17.0.0"
+    globals: "npm:17.1.0"
     intl: "npm:1.2.5"
     less: "npm:4.5.1"
     postcss: "npm:8.5.6"
@@ -5597,7 +5597,7 @@ __metadata:
     dompurify: "npm:3.3.1"
     eslint: "npm:9.39.2"
     eslint-plugin-storybook: "npm:10.2.0"
-    globals: "npm:17.0.0"
+    globals: "npm:17.1.0"
     intl: "npm:1.2.5"
     less: "npm:4.5.1"
     postcss: "npm:8.5.6"
@@ -5621,7 +5621,7 @@ __metadata:
     "@types/react-dom": "npm:19.2.3"
     config: "workspace:*"
     dayjs: "npm:1.11.19"
-    globals: "npm:17.0.0"
+    globals: "npm:17.1.0"
     intl: "npm:1.2.5"
     iso8601-duration: "npm:2.1.3"
     lodash: "npm:4.17.23"
@@ -5680,7 +5680,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     express: "npm:5.2.1"
     formik: "npm:2.4.9"
-    globals: "npm:17.0.0"
+    globals: "npm:17.1.0"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.11"
     http-proxy-middleware: "npm:3.0.5"
@@ -8450,7 +8450,7 @@ __metadata:
     eslint-plugin-simple-import-sort: "npm:12.1.1"
     eslint-plugin-storybook: "npm:10.2.0"
     eslint-plugin-vitest: "npm:0.5.4"
-    globals: "npm:17.0.0"
+    globals: "npm:17.1.0"
     postcss: "npm:8.5.6"
     prettier: "npm:3.8.1"
     storybook: "npm:10.2.0"
@@ -16567,10 +16567,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:17.0.0":
-  version: 17.0.0
-  resolution: "globals@npm:17.0.0"
-  checksum: 10/af6213db9bf5f599b8a609061984c4d5fedb23db336228b866eba70819fe13ea3d11ca507b4799e8afc888331d0f7e5760d01507e38cb988fff9ad3a9635b312
+"globals@npm:17.1.0":
+  version: 17.1.0
+  resolution: "globals@npm:17.1.0"
+  checksum: 10/6e77442a3b80b41b11fb4f986326f0487b9872dee6852cc9373e01696787889f4648d2264a125504315a645be0dde61625200e422b5b8002c106ffbabaaf8fdc
   languageName: node
   linkType: hard
 
@@ -25334,7 +25334,7 @@ __metadata:
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.2"
     eslint-plugin-storybook: "npm:10.2.0"
-    globals: "npm:17.0.0"
+    globals: "npm:17.1.0"
     intl: "npm:1.2.5"
     less: "npm:4.5.1"
     postcss: "npm:8.5.6"
