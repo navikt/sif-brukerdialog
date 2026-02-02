@@ -4,10 +4,10 @@
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
-        "build": "next build",
+        "build": "next build --webpack",
         "clean": "rm -rf node_modules",
         "dev-api": "node ./mock/api-mock-server.mjs",
-        "dev": "next dev -p 8080 | pino-pretty",
+        "dev": "next dev --webpack -p 8080 | pino-pretty",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
@@ -38,7 +38,7 @@
         "jsdom": "27.4.0",
         "lodash.sortby": "4.7.0",
         "lodash.uniq": "4.5.0",
-        "next": "15.5.10",
+        "next": "16.1.6",
         "next-logger": "5.0.2",
         "pino": "10.3.0",
         "react": "19.2.4",
@@ -79,5 +79,8 @@
         "vitest": "4.0.18",
         "webpack": "5.104.1"
     },
-    "_id": "@navikt/dine-pleiepenger@0.3.1"
+    "_id": "@navikt/dine-pleiepenger@0.3.1",
+    "resolutions": {
+        "@types/react": "19.2.10"
+    }
 }
