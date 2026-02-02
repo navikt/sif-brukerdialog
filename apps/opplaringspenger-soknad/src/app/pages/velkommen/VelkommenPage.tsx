@@ -5,9 +5,11 @@ import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
+import FraværArbeidstidToggle from '../../søknad/steps/arbeidstid/dev/FraværArbeidstidToggle';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './OmSøknaden';
 import VelkommenGuideContent from './VelkommenGuideContent';
+const { TOGGLE_ARBEIDSTID } = import.meta.env;
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
@@ -31,6 +33,7 @@ const VelkommenPage = () => {
                 navn: søker.fornavn,
                 content: <VelkommenGuideContent />,
             }}>
+            {TOGGLE_ARBEIDSTID && <FraværArbeidstidToggle />}
             <OmSøknaden />
         </SoknadVelkommenPage>
     );

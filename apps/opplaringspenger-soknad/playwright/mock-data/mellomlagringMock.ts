@@ -131,6 +131,7 @@ const søknadsdata: Søknadsdata = {
                             hours: '0',
                         },
                     },
+                    enkeltdagerFravær: {},
                 },
             },
         },

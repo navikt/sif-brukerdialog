@@ -10,7 +10,7 @@ import {
     getNormalarbeidstidPerDag,
 } from './tidsbrukApiUtils';
 
-export const getArbeidIPeriodeApiDataFromSøknadsdata = ({
+export const getFraværIPeriodeApiDataFromSøknadsdata = ({
     arbeidIPeriodeSøknadsdata,
     periode,
     jobberNormaltTimer,
@@ -24,46 +24,47 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = ({
     if (!arbeidIPeriodeSøknadsdata) {
         return {
             jobberIPerioden: JobberIPeriodeSvar.heltFravær,
-            enkeltdager: getEnkeltdagerIPeriodeApiData(
+            enkeltdager: [],
+            enkeltdagerFravær: getEnkeltdagerIPeriodeApiData(
                 valgteDatoer,
                 getEnkeltdagerMedTidPerDag(valgteDatoer, { hours: '0', minutes: '0' }),
                 periode,
             ),
-            enkeltdagerFravær: [],
         };
     }
     switch (arbeidIPeriodeSøknadsdata.type) {
         case ArbeidIPeriodeType.arbeiderIkke:
-            /** Arbeidstid settes til 0 */
+            /** Fraværstid settes til normalarbeidstid */
             return {
                 jobberIPerioden: JobberIPeriodeSvar.heltFravær,
-                enkeltdagerFravær: getEnkeltdagerIPeriodeApiData(
-                    valgteDatoer,
-                    getEnkeltdagerMedTidPerDag(valgteDatoer, { hours: '0', minutes: '0' }),
-                    periode,
-                ),
                 enkeltdager: [],
-            };
-        case ArbeidIPeriodeType.arbeiderVanlig:
-            /** Arbeidstid settes til normalarbeidstid */
-            return {
-                jobberIPerioden: JobberIPeriodeSvar.somVanlig,
                 enkeltdagerFravær: getEnkeltdagerIPeriodeApiData(
                     valgteDatoer,
                     getEnkeltdagerMedTidPerDag(valgteDatoer, getNormalarbeidstidPerDag(jobberNormaltTimer)),
                     periode,
                 ),
-                enkeltdager: [],
             };
+        case ArbeidIPeriodeType.arbeiderVanlig:
+            /** Fraværstid settes til 0 */
+            return {
+                jobberIPerioden: JobberIPeriodeSvar.somVanlig,
+                enkeltdager: [],
+                enkeltdagerFravær: getEnkeltdagerIPeriodeApiData(
+                    valgteDatoer,
+                    getEnkeltdagerMedTidPerDag(valgteDatoer, { hours: '0', minutes: '0' }),
+                    periode,
+                ),
+            };
+
         case ArbeidIPeriodeType.arbeiderUlikeUkerTimer:
             return {
                 jobberIPerioden: JobberIPeriodeSvar.redusert,
-                enkeltdager: getEnkeltdagerIPeriodeApiData(
+                enkeltdager: [],
+                enkeltdagerFravær: getEnkeltdagerIPeriodeApiData(
                     valgteDatoer,
                     arbeidIPeriodeSøknadsdata.enkeltdager,
                     periode,
                 ),
-                enkeltdagerFravær: [],
             };
     }
 };

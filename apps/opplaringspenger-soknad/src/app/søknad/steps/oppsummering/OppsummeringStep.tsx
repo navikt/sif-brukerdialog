@@ -24,6 +24,7 @@ import KursOppsummering from './components/KursOppsummering';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
+import FraværIPeriodenSummary from './fravær-i-perioden-summary/FraværIPeriodenSummary';
 import OmBarnetSummary from './om-barnet-summary/OmBarnetSummary';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
@@ -43,7 +44,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const { text, intl, locale } = useAppIntl();
     const {
-        state: { søknadsdata, søker, frilansoppdrag, registrerteBarn, institusjoner },
+        state: { søknadsdata, søker, frilansoppdrag, registrerteBarn, institusjoner, spørOmFraværFraJobb = false },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
@@ -66,7 +67,14 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, registrerteBarn, institusjoner, locale);
+    const apiData = getApiDataFromSøknadsdata(
+        søker.fødselsnummer,
+        søknadsdata,
+        registrerteBarn,
+        institusjoner,
+        locale,
+        spørOmFraværFraJobb,
+    );
 
     if (!apiData) {
         return (
@@ -142,20 +150,35 @@ const OppsummeringStep = () => {
                                         frilansoppdrag={frilansoppdrag}
                                         onEdit={() => navigate(stepConfig[StepId.ARBEIDSSITUASJON].route)}
                                     />
-
-                                    <ArbeidIPeriodenSummary
-                                        apiValues={apiData}
-                                        valgteDatoer={valgteDatoer}
-                                        søknadsperiode={{
-                                            from: ISODateToDate(apiData.fraOgMed),
-                                            to: ISODateToDate(apiData.tilOgMed),
-                                        }}
-                                        onEdit={
-                                            stepConfig[StepId.ARBEIDSTID]
-                                                ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)
-                                                : undefined
-                                        }
-                                    />
+                                    {spørOmFraværFraJobb ? (
+                                        <FraværIPeriodenSummary
+                                            apiValues={apiData}
+                                            valgteDatoer={valgteDatoer}
+                                            søknadsperiode={{
+                                                from: ISODateToDate(apiData.fraOgMed),
+                                                to: ISODateToDate(apiData.tilOgMed),
+                                            }}
+                                            onEdit={
+                                                stepConfig[StepId.ARBEIDSTID]
+                                                    ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)
+                                                    : undefined
+                                            }
+                                        />
+                                    ) : (
+                                        <ArbeidIPeriodenSummary
+                                            apiValues={apiData}
+                                            valgteDatoer={valgteDatoer}
+                                            søknadsperiode={{
+                                                from: ISODateToDate(apiData.fraOgMed),
+                                                to: ISODateToDate(apiData.tilOgMed),
+                                            }}
+                                            onEdit={
+                                                stepConfig[StepId.ARBEIDSTID]
+                                                    ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)
+                                                    : undefined
+                                            }
+                                        />
+                                    )}
 
                                     <MedlemskapOppsummering
                                         medlemskap={apiData.medlemskap}

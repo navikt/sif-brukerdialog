@@ -49,6 +49,9 @@ export default defineConfig({
             },
         },
     ],
+    define: {
+        __TOGGLE_ARBEIDSTID__: true,
+    },
     server: {
         port: 8088,
         proxy: {

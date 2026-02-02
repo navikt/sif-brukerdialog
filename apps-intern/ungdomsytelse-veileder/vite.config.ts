@@ -28,4 +28,7 @@ export default defineConfig({
     build: {
         sourcemap: true,
     },
+    define: {
+        __TOGGLE_ARBEIDSTID__: false,
+    },
 });

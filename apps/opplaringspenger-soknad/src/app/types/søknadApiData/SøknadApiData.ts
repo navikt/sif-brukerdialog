@@ -42,6 +42,7 @@ export interface TidEnkeltdagApiData {
 export interface ArbeidIPeriodeApiData {
     jobberIPerioden: JobberIPeriodeSvar;
     enkeltdager: TidEnkeltdagApiData[];
+    enkeltdagerFravær: TidEnkeltdagApiData[];
 }
 
 export interface TidFasteDagerApiData {

@@ -3,7 +3,7 @@ import { expect, Page } from '@playwright/test';
 import { testAccessibility } from '../utils/testAccessibility';
 
 export const fyllUtArbeidstid = async (page: Page) => {
-    await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Fravær fra jobb i søknadsperioden' })).toBeVisible();
     await page.getByRole('group', { name: 'Jobber du noe hos Arbeids- og' }).getByLabel('Jeg jobber noe').check();
     await page.getByRole('group', { name: 'mandag 2. desember' }).getByLabel('Timer').click();
     await page.getByRole('group', { name: 'mandag 2. desember' }).getByLabel('Timer').fill('5');
@@ -20,7 +20,7 @@ export const fyllUtArbeidstid = async (page: Page) => {
 };
 
 export const kontrollerArbeidstidOppsummering = async (page: Page) => {
-    await expect(page.getByRole('heading', { name: 'Jobb i søknadsperioden' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Fravær fra jobb i søknadsperioden' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Arbeids- og velferdsetaten (' }).nth(1)).toBeVisible();
     await expect(page.getByText('Jeg jobber noe de dagene jeg')).toBeVisible();
     await expect(page.getByText('Jeg jobber noe de dagene jeg')).toBeVisible();

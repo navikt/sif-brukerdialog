@@ -73,4 +73,7 @@ export default defineConfig({
         outDir: './dist-playwright',
         emptyOutDir: true,
     },
+    define: {
+        __TOGGLE_ARBEIDSTID__: false,
+    },
 });
