@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-server",
-    "version": "0.4.55",
+    "version": "0.4.56",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -14,18 +14,18 @@
         "@navikt/sif-common-env": "workspace:*",
         "csp-header": "6.3.0",
         "express": "5.2.1",
-        "html-react-parser": "5.2.11",
+        "html-react-parser": "5.2.14",
         "http-proxy-middleware": "3.0.5",
         "jsdom": "27.4.0",
-        "react": "19.2.3",
-        "zod": "4.3.5"
+        "react": "19.2.4",
+        "zod": "4.3.6"
     },
     "devDependencies": {
         "@types/express": "5.0.6",
         "@types/morgan": "1.9.10",
-        "@types/node": "25.0.10",
+        "@types/node": "25.1.0",
         "@vercel/ncc": "0.38.4",
-        "axios": "1.13.2",
+        "axios": "1.13.4",
         "morgan": "1.10.1",
         "postcss": "8.5.6",
         "prettier": "3.8.1",

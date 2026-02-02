@@ -2,7 +2,7 @@
     "name": "@navikt/sif-common-query",
     "main": "src/index.ts",
     "types": "src/index.ts",
-    "version": "0.1.70",
+    "version": "0.1.71",
     "private": true,
     "type": "module",
     "description": "TanStack Query hooks for SIF applications",
@@ -10,18 +10,18 @@
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@tanstack/react-query": "5.90.19",
-        "axios": "1.13.2",
+        "@tanstack/react-query": "5.90.20",
+        "axios": "1.13.4",
         "dayjs": "1.11.19",
         "object-hash": "3.0.0",
         "uuid": "13.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.9",
-        "react": "19.2.3",
+        "@types/react": "19.2.10",
+        "react": "19.2.4",
         "typescript": "5.9.3",
-        "zod": "4.3.5"
+        "zod": "4.3.6"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
