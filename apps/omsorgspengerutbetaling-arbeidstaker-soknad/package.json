@@ -51,7 +51,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.11.0",
-        "@playwright/test": "1.57.0",
+        "@playwright/test": "1.58.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.2.0",
         "@storybook/react-vite": "10.2.0",
