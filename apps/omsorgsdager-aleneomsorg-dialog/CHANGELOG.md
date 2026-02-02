@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.60
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 2.28.59
 
 ### Patch Changes

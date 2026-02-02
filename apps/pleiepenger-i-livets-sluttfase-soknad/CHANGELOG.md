@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.22.60
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 2.22.59
 
 ### Patch Changes

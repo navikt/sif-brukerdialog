@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.63
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 4.11.62
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.61
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 1.41.60
 
 ### Patch Changes

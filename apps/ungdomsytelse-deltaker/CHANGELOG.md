@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.40
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 1.5.39
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.26.60
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 1.26.59
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.61
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 3.49.60
 
 ### Patch Changes
