@@ -6,6 +6,8 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/opplaringspenger',
     GITHUB_REF_NAME: 'branch-name',
 
+    SIF_PUBLIC_FEATURE_TOGGLE_ARBEIDSTID: 'off',
+
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:

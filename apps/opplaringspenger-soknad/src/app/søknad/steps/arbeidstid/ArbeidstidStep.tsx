@@ -11,6 +11,7 @@ import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValue
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
+import { Features } from '../../../types/Features';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -34,8 +35,6 @@ import {
 } from './form-parts/arbeidstidUtils';
 import FraværIPeriodeSpørsmål from './form-parts/fravær-i-periode-spørsmål/FraværIPeriodeSpørsmål';
 import { ArbeidsforholdType } from './form-parts/types';
-
-const { TOGGLE_ARBEIDSTID } = import.meta.env;
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -232,7 +231,7 @@ const ArbeidstidStep = () => {
                                     </p>
                                 </FormLayout.Guide>
 
-                                {TOGGLE_ARBEIDSTID && <FraværArbeidstidToggleInfo />}
+                                {Features.toggleArbeidstidEnabled && <FraværArbeidstidToggleInfo />}
 
                                 <FormLayout.Sections>
                                     {ansattArbeidstid && ansattArbeidstid.length > 0 && (

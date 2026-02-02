@@ -35,7 +35,6 @@ export default defineConfig({
     ],
     define: {
         'import.meta.env.INJECT_DECORATOR': false,
-        'import.meta.env.TOGGLE_ARBEIDSTID': false,
     },
     server: {
         port: 8080,
