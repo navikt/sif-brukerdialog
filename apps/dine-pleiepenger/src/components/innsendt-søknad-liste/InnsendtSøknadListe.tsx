@@ -1,5 +1,5 @@
 import { PlusIcon } from '@navikt/aksel-icons';
-import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { AppText } from '../../i18n';
@@ -61,14 +61,14 @@ const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
                 );
             })}
             {antall < totalt ? (
-                <Box className="flex justify-start">
+                <div>
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSøknader}>
                         <HStack gap="space-8" align="center" wrap={false}>
-                            <PlusIcon role="presentation" />
+                            <PlusIcon role="presentation" aria-hidden="true" />
                             <AppText id="innsendtSøknadListe.visFlereInnsendinger" />
                         </HStack>
                     </Button>
-                </Box>
+                </div>
             ) : null}
         </VStack>
     );

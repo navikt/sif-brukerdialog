@@ -1,1 +1,114 @@
-[]
+[
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "1001F8G",
+        "innsendingstidspunkt": "2026-01-27T13:45:34",
+        "kildesystem": "Dolly",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "DYNAMISK OPPSTEMT HAMSTER KF",
+                "organisasjonsnummer": "311343483"
+            },
+            "privat": null
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454072086",
+        "mottattDato": "2026-01-27",
+        "inntektBeløp": 50000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2025-12-22",
+        "oppgittFravær": [],
+        "refusjon": null,
+        "inntektsmeldingType": null,
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "ERSTATTET_AV_NYERE",
+        "saksnummer": "1001F8G",
+        "innsendingstidspunkt": "2026-01-26T07:58:13",
+        "kildesystem": "Dolly",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "INTERESSANT INTUITIV KATT DIAMETER",
+                "organisasjonsnummer": "315853370"
+            },
+            "privat": null
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454070902",
+        "mottattDato": "2026-01-26",
+        "inntektBeløp": 45000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": ["454070903"],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2025-12-22",
+        "oppgittFravær": [],
+        "refusjon": null,
+        "inntektsmeldingType": null,
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "1001F8G",
+        "innsendingstidspunkt": "2026-01-26T07:58:15",
+        "kildesystem": "Dolly",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "INTERESSANT INTUITIV KATT DIAMETER",
+                "organisasjonsnummer": "315853370"
+            },
+            "privat": null
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454070903",
+        "mottattDato": "2026-01-26",
+        "inntektBeløp": 45000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2025-12-29",
+        "oppgittFravær": [],
+        "refusjon": null,
+        "inntektsmeldingType": null,
+        "endringerRefusjon": []
+    },
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "IKKE_RELEVANT",
+        "saksnummer": "1001F8G",
+        "innsendingstidspunkt": "2026-01-27T13:19:07",
+        "kildesystem": "Dolly",
+        "arbeidsgiver": {
+            "organisasjon": {
+                "navn": "INTERESSANT INTUITIV KATT DIAMETER",
+                "organisasjonsnummer": "315853370"
+            },
+            "privat": null
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454072049",
+        "mottattDato": "2026-01-27",
+        "inntektBeløp": 60000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2025-11-24",
+        "oppgittFravær": [],
+        "refusjon": null,
+        "inntektsmeldingType": null,
+        "endringerRefusjon": []
+    }
+]

@@ -24,7 +24,7 @@ export const InntektsmeldingStatusTag = ({ status, showIcon, ...tagProps }: Prop
             );
         case InntektsmeldingStatus.IKKE_RELEVANT:
             return (
-                <Tag variant="neutral" size="small" {...tagProps}>
+                <Tag variant="neutral" data-color="warning" size="small" {...tagProps}>
                     Ikke relevant
                 </Tag>
             );

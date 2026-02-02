@@ -45,3 +45,7 @@
 .aksel-heading {
     color: var(--ax-text-info);
 }
+
+.aksel-link.noTextDecoration {
+    text-decoration: none;
+}
