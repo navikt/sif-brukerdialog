@@ -54,12 +54,19 @@ export const getFrilansApiDataFromSøknadsdata = (props: {
                 jobberFortsattSomFrilans: true,
                 arbeidsforhold: {
                     jobberNormaltTimer: frilans.jobberNormaltTimer,
-                    arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata({
-                        arbeidIPeriodeSøknadsdata: arbeidIPeriode,
-                        periode: søknadsperiode,
-                        jobberNormaltTimer: frilans.jobberNormaltTimer,
-                        valgteDatoer: dagerMedOpplæring,
-                    }),
+                    arbeidIPeriode: spørOmFraværIPeriode
+                        ? getFraværIPeriodeApiDataFromSøknadsdata({
+                              arbeidIPeriodeSøknadsdata: arbeidIPeriode,
+                              periode: søknadsperiode,
+                              jobberNormaltTimer: frilans.jobberNormaltTimer,
+                              valgteDatoer: dagerMedOpplæring,
+                          })
+                        : getArbeidIPeriodeApiDataFromSøknadsdata({
+                              arbeidIPeriodeSøknadsdata: arbeidIPeriode,
+                              periode: søknadsperiode,
+                              jobberNormaltTimer: frilans.jobberNormaltTimer,
+                              valgteDatoer: dagerMedOpplæring,
+                          }),
                 },
             };
     }
