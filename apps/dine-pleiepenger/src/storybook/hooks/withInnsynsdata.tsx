@@ -10,7 +10,7 @@ export const withInnsynsdata: Decorator = (Story) => (
             sakerMetadata: [
                 {
                     saksnummer: '123',
-                    pleietrengende: { fornavn: 'Test', etternavn: 'Person', fødselsdato: '2010-01-01', aktørId: '123' },
+                    pleietrengende: { fornavn: 'Test', etternavn: 'Person', fødselsdato: '2010-01-01' },
                 } as any,
             ],
             harSak: true,

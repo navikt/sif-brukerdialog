@@ -20,7 +20,6 @@ export const Default: Story = {
     args: {
         saksnr: '123123',
         pleietrengende: {
-            aktørId: '123123123',
             anonymisert: false,
             etternavn: 'Hansen',
             mellomnavn: 'Von',
