@@ -3,7 +3,6 @@ import { z } from 'zod';
 import { zDateFromISODateString } from '../../types/client-schemas/zDateFromString';
 
 const BasePleietrengendeSchema = z.object({
-    aktørId: z.string(),
     fødselsdato: zDateFromISODateString,
 });
 
