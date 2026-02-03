@@ -20,7 +20,7 @@
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger",
         "NPM_CONFIG_CACHE": "/tmp",
 
-        "SIF_PUBLIC_FEATURE_TOGGLE_ARBEIDSTID": "off",
+        "SIF_PUBLIC_FEATURE_TOGGLE_FRAVÆR_FRA_ARBEID": "off",
 
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",

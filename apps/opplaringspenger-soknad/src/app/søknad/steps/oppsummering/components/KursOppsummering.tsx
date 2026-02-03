@@ -22,10 +22,17 @@ interface Props {
     kurs: KursApiData;
     ferieuttakIPerioden?: FerieuttakIPeriodenApiData;
     utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApiData;
+    spørOmFraværFraJobb: boolean;
     onEdit?: () => void;
 }
 
-const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdIPerioden }: Props) => {
+const KursOppsummering = ({
+    onEdit,
+    kurs,
+    ferieuttakIPerioden,
+    utenlandsoppholdIPerioden,
+    spørOmFraværFraJobb,
+}: Props) => {
     const { kursholder, kursperioder, kursdager, enkeltdagEllerPeriode } = kurs;
     const { locale } = useAppIntl();
 
@@ -76,22 +83,26 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                             <List.Item key={kursdag.dato}>
                                                 <div>
                                                     <span>{dateFormatter.full(ISODateToDate(kursdag.dato))}</span>
-                                                </div>{' '}
-                                                Kurs:{' '}
-                                                <DurationText
-                                                    fullText={false}
-                                                    duration={ISODurationToDuration(kursdag.tidKurs)}
-                                                />
-                                                {kursdag.tidReise ? (
+                                                </div>
+                                                {spørOmFraværFraJobb ? null : (
                                                     <>
-                                                        {' '}
-                                                        Reise:{' '}
+                                                        Kurs:{' '}
                                                         <DurationText
                                                             fullText={false}
-                                                            duration={ISODurationToDuration(kursdag.tidReise)}
+                                                            duration={ISODurationToDuration(kursdag.tidKurs)}
                                                         />
+                                                        {kursdag.tidReise ? (
+                                                            <>
+                                                                {' '}
+                                                                Reise:{' '}
+                                                                <DurationText
+                                                                    fullText={false}
+                                                                    duration={ISODurationToDuration(kursdag.tidReise)}
+                                                                />
+                                                            </>
+                                                        ) : null}
                                                     </>
-                                                ) : null}
+                                                )}
                                             </List.Item>
                                         );
                                     })}

@@ -33,7 +33,7 @@ const VelkommenPage = () => {
                 navn: søker.fornavn,
                 content: <VelkommenGuideContent />,
             }}>
-            {Features.toggleArbeidstidEnabled && <FraværArbeidstidToggle />}
+            {Features.toggleFraværFraArbeid && <FraværArbeidstidToggle />}
             <OmSøknaden />
         </SoknadVelkommenPage>
     );

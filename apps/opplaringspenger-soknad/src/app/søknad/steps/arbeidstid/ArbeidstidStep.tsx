@@ -231,7 +231,7 @@ const ArbeidstidStep = () => {
                                     </p>
                                 </FormLayout.Guide>
 
-                                {Features.toggleArbeidstidEnabled && <FraværArbeidstidToggleInfo />}
+                                {Features.toggleFraværFraArbeid && <FraværArbeidstidToggleInfo />}
 
                                 <FormLayout.Sections>
                                     {ansattArbeidstid && ansattArbeidstid.length > 0 && (
