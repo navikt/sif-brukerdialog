@@ -1,4 +1,4 @@
-import { Heading, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 
@@ -27,10 +27,8 @@ const HistorikkPage = ({ sak, inntektsmeldinger = [] }: Props) => {
                 <title>Historikk - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>
 
-            <DefaultPageLayout pageHeader={<PageHeader title="Historikk" hidePleiepengerIcon={true} />}>
-                <Heading level="2" size="medium" spacing>
-                    Hendelser i saken
-                </Heading>
+            <DefaultPageLayout
+                pageHeader={<PageHeader title="Historikk - Dette har skjedd i saken din" hidePleiepengerIcon={true} />}>
                 <VStack gap="space-24">
                     <StatusISak sak={sak} visAlleHendelser={true} inntektsmeldinger={inntektsmeldinger} />
                     <div>

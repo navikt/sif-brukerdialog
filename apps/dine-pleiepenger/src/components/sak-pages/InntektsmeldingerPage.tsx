@@ -5,7 +5,8 @@ import { default as NextLink } from 'next/link';
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { Inntektsmelding, Sak } from '../../types';
 import { browserEnv } from '../../utils/env';
-import InntektsmeldingerListe from '../inntektsmeldinger-liste/InntektsmeldingerListe';
+import { grupperInntektsmeldingerPåArbeidsgiver } from '../../utils/inntektsmeldingUtils';
+import ArbeidsgiverInntektsmeldingerListe from '../arbeidsgiver-inntektsmelding-liste/InntektsmeldingerListe';
 import LinkButton from '../link-button/LinkButton';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import PageHeader from '../page-layout/page-header/PageHeader';
@@ -21,6 +22,8 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
         saksnummer: sak.saksnummer,
     });
 
+    const arbeidsgivereMedInntektsmeldinger = grupperInntektsmeldingerPåArbeidsgiver(inntektsmeldinger);
+
     return (
         <>
             <Head>
@@ -30,7 +33,15 @@ const InntektsmeldingerPage = ({ sak, inntektsmeldinger }: Props) => {
                 <VStack gap="space-24">
                     {inntektsmeldinger && inntektsmeldinger.length > 0 ? (
                         <Box marginBlock="space-0 space-24">
-                            <InntektsmeldingerListe saksnummer={sak.saksnummer} inntektsmeldinger={inntektsmeldinger} />
+                            <VStack gap="space-32">
+                                {arbeidsgivereMedInntektsmeldinger.map((arbeidsgiver) => (
+                                    <ArbeidsgiverInntektsmeldingerListe
+                                        key={arbeidsgiver.arbeidsgiverId}
+                                        saksnummer={sak.saksnummer}
+                                        arbeidsgiver={arbeidsgiver}
+                                    />
+                                ))}
+                            </VStack>
                         </Box>
                     ) : (
                         <>
