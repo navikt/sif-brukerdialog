@@ -39,7 +39,16 @@ export const fetchSakerMetadata = async (
     logger.info(`Response-status from request: ${response.status}`);
 
     logger.info(`Parser SakerMetadata response data`);
-    const parsedData = z.array(zSakerMetadataDtoModified).parse(response.data);
+    const parsedData = z
+        .array(zSakerMetadataDtoModified)
+        .parse(response.data)
+        .sort(sortSakerMetadataEtterSisteInnsending);
     logger.info(`SakerMetadata parsed`);
     return parsedData;
+};
+
+const sortSakerMetadataEtterSisteInnsending = (a: SakerMetadataDtoModified, b: SakerMetadataDtoModified): number => {
+    const dateA = a.sisteInnsendingTidspunkt ? new Date(a.sisteInnsendingTidspunkt).getTime() : 0;
+    const dateB = b.sisteInnsendingTidspunkt ? new Date(b.sisteInnsendingTidspunkt).getTime() : 0;
+    return dateB - dateA;
 };
