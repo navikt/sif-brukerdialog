@@ -8,7 +8,7 @@ import { setNow } from '../../utils/setNow';
 test.beforeEach(async ({ page }) => {
     await setNow(page);
     await routeUtils.resumeFromRoute(page, SøknadRoutes.ARBEIDSTID);
-    await expect(page.getByRole('heading', { name: 'Fravær fra jobb i søknadsperioden' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Jobb i søknadsperioden' })).toBeVisible();
 });
 
 test('Fyll ut arbeidstid steg', async ({ page }) => {
