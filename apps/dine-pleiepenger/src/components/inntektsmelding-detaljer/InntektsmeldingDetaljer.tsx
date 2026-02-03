@@ -1,10 +1,9 @@
-import { BodyLong, BodyShort, ExpansionCard, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, ExpansionCard, HGrid, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
 import { Inntektsmelding } from '../../types';
 import InfoBlock from '../info-block/InfoBlock';
-import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
 import NaturalYtelserInfo from './parts/NaturalYtelserInfo';
 import RefusjonInfo from './parts/RefusjonInfo';
 
@@ -21,13 +20,6 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
     return (
         <VStack gap="space-16">
             <VStack gap="space-40">
-                <HStack gap="space-8" align="center">
-                    <BodyShort weight="semibold" size="large">
-                        Status:
-                    </BodyShort>
-                    <InntektsmeldingStatusTag status={inntektsmelding.status} size="medium" showIcon={true} />
-                </HStack>
-
                 <BodyShort>
                     Arbeidsgiveren din har sendt oss disse opplysningene. Har du spørsmål eller mener noe er feil, må du
                     kontakte arbeidsgiver.

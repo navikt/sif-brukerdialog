@@ -56,14 +56,10 @@ export const getRefusjonEndringListe = ({
     return alleEndringer;
 };
 
-export type InntektsmeldingMedErstatter = Inntektsmelding & {
-    erstatter: Inntektsmelding[];
-};
-
 export type ArbeidsgiverMedInntektsmeldinger = {
     arbeidsgiverId: string;
     arbeidsgiverNavn: string;
-    inntektsmeldinger: InntektsmeldingMedErstatter[];
+    inntektsmeldinger: Inntektsmelding[];
 };
 
 const getArbeidsgiverId = (arbeidsgiver: innsyn.ArbeidsgiverDto): string => {
@@ -92,19 +88,10 @@ export const grupperInntektsmeldingerPåArbeidsgiver = (
 
     // For hver arbeidsgiver, grupper på erstattet-av
     return Object.entries(gruppertPåArbeidsgiver).map(([arbeidsgiverId, ims]) => {
-        const ikkeErstattede = ims
-            .filter((im) => im.erstattetAv.length === 0)
-            .sort(sorterInntektsmeldingerPåInnsendingstidspunkt);
-
         return {
             arbeidsgiverId,
             arbeidsgiverNavn: getArbeidsgiverNavn(ims[0].arbeidsgiver),
-            inntektsmeldinger: ikkeErstattede.map((im) => ({
-                ...im,
-                erstatter: ims
-                    .filter((i) => i.erstattetAv.includes(im.journalpostId))
-                    .sort(sorterInntektsmeldingerPåInnsendingstidspunkt),
-            })),
+            inntektsmeldinger: ims.sort(sorterInntektsmeldingerPåInnsendingstidspunkt),
         };
     });
 };

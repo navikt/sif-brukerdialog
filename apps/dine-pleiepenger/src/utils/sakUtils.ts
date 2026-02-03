@@ -118,7 +118,6 @@ export const getAlleHendelserISak = (sak: Sak, inntektsmeldinger: Inntektsmeldin
         type: Sakshendelser.INNTEKTSMELDING,
         dato: im.innsendingstidspunkt,
         inntektsmelding: im,
-        erstatter: inntektsmeldinger.filter((i) => i.erstattetAv.includes(im.journalpostId)),
     }));
     sakshendelser.push(...inntektsmeldingHendelser);
     return sakshendelser.sort(sortSakshendelse);
