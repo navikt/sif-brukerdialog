@@ -369,6 +369,8 @@ export const zArbeidsgivereDto = z.object({
     frilansoppdrag: z.optional(z.array(zFrilansoppdragDto)),
 });
 
+export const zJsonNode = z.unknown();
+
 export const zPleiepengerSyktBarnSøknadWritable = z.object({
     newVersion: z.optional(z.boolean()),
     apiDataVersjon: z.optional(z.string()),
@@ -456,7 +458,7 @@ export const zGetMellomlagringData = z.object({
 /**
  * OK
  */
-export const zGetMellomlagringResponse = z.string();
+export const zGetMellomlagringResponse = zJsonNode;
 
 export const zCreateMellomlagringData = z.object({
     body: z.record(z.string(), z.unknown()),
@@ -496,7 +498,7 @@ export const zInnsendingPleiepengerSyktBarnSøknadData = z.object({
 export const zSlettVedleggData = z.object({
     body: z.optional(z.never()),
     path: z.object({
-        vedleggId: z.string().min(1),
+        vedleggId: z.string(),
     }),
     query: z.optional(z.never()),
 });
@@ -509,7 +511,7 @@ export const zSlettVedleggResponse = z.void();
 export const zHentVedleggData = z.object({
     body: z.optional(z.never()),
     path: z.object({
-        vedleggId: z.string().min(1),
+        vedleggId: z.string(),
     }),
     query: z.optional(z.never()),
 });

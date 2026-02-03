@@ -158,6 +158,8 @@ export type PrivatArbeidsgiverDto = {
     ansattTom?: string;
 };
 
+export type JsonNode = unknown;
+
 export type OmsorgspengerutbetalingSnfSøknadWritable = {
     språk: string;
     søkerNorskIdent?: string;
@@ -265,7 +267,7 @@ export type GetMellomlagringResponses = {
     /**
      * OK
      */
-    200: string;
+    200: JsonNode;
 };
 
 export type GetMellomlagringResponse = GetMellomlagringResponses[keyof GetMellomlagringResponses];
