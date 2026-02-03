@@ -78,7 +78,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
 
                 case Sakshendelser.INNTEKTSMELDING: {
                     return {
-                        title: `Inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
+                        title: `Vi har fått inntektsmelding fra ${getImUtils(hendelse.inntektsmelding).arbeidsgiverNavn}`,
                         content: (
                             <Box marginBlock="space-8 space-0">
                                 <Link
