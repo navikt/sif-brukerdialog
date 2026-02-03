@@ -22,6 +22,8 @@ const sakerMetadata = [
             etternavn: 'SANS',
         },
         fagsakYtelseType: 'PSB',
+        føresteInnsendingTidspunkt: '2024-12-03T22:49:33.000Z',
+        sisteInnsendingTidspunkt: '2025-07-22T05:56:49.000Z',
     },
     {
         saksnummer: '1001F8G',
@@ -32,6 +34,8 @@ const sakerMetadata = [
             etternavn: 'BALSAM',
         },
         fagsakYtelseType: 'PSB',
+        føresteInnsendingTidspunkt: '2022-01-06T22:49:33.000Z',
+        sisteInnsendingTidspunkt: '2022-01-06T22:49:33.000Z',
     },
 ];
 

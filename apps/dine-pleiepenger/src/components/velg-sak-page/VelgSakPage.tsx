@@ -1,4 +1,4 @@
-import { BodyShort, Box, Heading, LinkCard, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, LinkCard, Tag, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -17,6 +17,42 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [],
     });
+
+    const renderDescription = (sakMetadata: SakerMetadata) => {
+        const {
+            sisteInnsendingTidspunkt,
+            pleietrengende: { fødselsdato, anonymisert },
+        } = sakMetadata;
+
+        if (anonymisert && sisteInnsendingTidspunkt === undefined) {
+            return null;
+        }
+        return (
+            <LinkCard.Description>
+                <VStack gap="space-4">
+                    {anonymisert === false && (
+                        <BodyShort>
+                            <AppText
+                                id="velgSak.barn.fdato"
+                                values={{
+                                    dato: dateFormatter.full(fødselsdato),
+                                }}
+                            />
+                            .
+                        </BodyShort>
+                    )}
+                    {sisteInnsendingTidspunkt ? (
+                        <div>
+                            <Tag variant="moderate" data-color="info" size="small">
+                                Sist innsendt {dateFormatter.compact(sisteInnsendingTidspunkt)}
+                            </Tag>
+                        </div>
+                    ) : null}
+                </VStack>
+            </LinkCard.Description>
+        );
+    };
+
     return (
         <DefaultPageLayout>
             <Head>
@@ -30,7 +66,6 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                 <VStack gap="space-8">
                     {sakerMetadata.map((sakMetadata) => {
                         const { pleietrengende, saksnummer } = sakMetadata;
-                        const fødselsdato = new Date(pleietrengende.fødselsdato);
 
                         const navn = pleietrengende.anonymisert
                             ? `Pleietrengende født ${dateFormatter.compact(pleietrengende.fødselsdato)}`
@@ -43,18 +78,7 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                                         <Link href={`/sak/${saksnummer}`}>{navn}</Link>
                                     </LinkCard.Anchor>
                                 </LinkCard.Title>
-                                {!pleietrengende.anonymisert && (
-                                    <LinkCard.Description>
-                                        <BodyShort>
-                                            <AppText
-                                                id="velgSak.barn.fdato"
-                                                values={{
-                                                    dato: dateFormatter.full(fødselsdato),
-                                                }}
-                                            />
-                                        </BodyShort>
-                                    </LinkCard.Description>
-                                )}
+                                {renderDescription(sakMetadata)}
                             </LinkCard>
                         );
                     })}
