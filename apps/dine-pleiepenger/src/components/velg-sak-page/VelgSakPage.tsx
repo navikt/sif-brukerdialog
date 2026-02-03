@@ -44,7 +44,7 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                     {sisteInnsendingTidspunkt ? (
                         <div>
                             <Tag variant="moderate" data-color="info" size="small">
-                                Sist innsendt {dateFormatter.compact(sisteInnsendingTidspunkt)}
+                                Sist innsendt {dateFormatter.compactWithTime(sisteInnsendingTidspunkt)}
                             </Tag>
                         </div>
                     ) : null}
