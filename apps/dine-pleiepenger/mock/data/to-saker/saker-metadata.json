@@ -9,7 +9,7 @@
             "etternavn": "SANS"
         },
         "fagsakYtelseType": "PSB",
-        "føresteInnsendingTidspunkt": "2025-12-14T22:49:33.000Z",
+        "førsteInnsendingTidspunkt": "2025-12-14T22:49:33.000Z",
         "sisteInnsendingTidspunkt": "2026-01-29T22:49:33.000Z"
     },
     {
@@ -22,7 +22,7 @@
             "etternavn": null
         },
         "fagsakYtelseType": "PSB",
-        "føresteInnsendingTidspunkt": "2022-01-06T22:50:33.000Z",
+        "førsteInnsendingTidspunkt": "2022-01-06T22:50:33.000Z",
         "sisteInnsendingTidspunkt": "2022-01-06T22:50:33.000Z"
     }
 ]

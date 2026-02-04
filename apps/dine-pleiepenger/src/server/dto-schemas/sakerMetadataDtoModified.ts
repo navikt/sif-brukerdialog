@@ -13,7 +13,7 @@ export const zSakerMetadataDtoModified = innsyn.zSakerMetadataDto
     .extend({
         fagsakYtelseType: z.enum(innsyn.FagsakYtelseType),
         pleietrengende: zPleietrengendeDtoModified,
-        føresteInnsendingTidspunkt: z.string().optional(),
+        førsteInnsendingTidspunkt: z.string().optional(),
         sisteInnsendingTidspunkt: z.string().optional(),
     });
 

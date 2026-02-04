@@ -7,6 +7,7 @@ import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { AppText, useAppIntl } from '../../i18n';
 import { SakerMetadata } from '../../types';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
+import { grupperSakerPåPleietrengende } from './velgSakPageUtils';
 
 interface Props {
     sakerMetadata: SakerMetadata[];
@@ -17,6 +18,8 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
     useBreadcrumbs({
         breadcrumbs: [],
     });
+
+    const grupperteSaker = grupperSakerPåPleietrengende(sakerMetadata);
 
     const renderDescription = (sakMetadata: SakerMetadata) => {
         const {
@@ -64,22 +67,25 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                 </Heading>
 
                 <VStack gap="space-8">
-                    {sakerMetadata.map((sakMetadata) => {
-                        const { pleietrengende, saksnummer } = sakMetadata;
-
-                        const navn = pleietrengende.anonymisert
-                            ? `Pleietrengende født ${dateFormatter.compact(pleietrengende.fødselsdato)}`
-                            : `${pleietrengende.fornavn} ${pleietrengende.etternavn}`;
-
+                    {grupperteSaker.map((gruppe) => {
+                        const { pleietrengende, saker } = gruppe;
                         return (
-                            <LinkCard key={saksnummer}>
-                                <LinkCard.Title>
-                                    <LinkCard.Anchor asChild>
-                                        <Link href={`/sak/${saksnummer}`}>{navn}</Link>
-                                    </LinkCard.Anchor>
-                                </LinkCard.Title>
-                                {renderDescription(sakMetadata)}
-                            </LinkCard>
+                            <VStack gap="space-8" key={pleietrengende.fødselsdato.toDateString()}>
+                                {saker.map((sakMetadata) => {
+                                    const { saksnummer } = sakMetadata;
+
+                                    return (
+                                        <LinkCard key={saksnummer}>
+                                            <LinkCard.Title>
+                                                <LinkCard.Anchor asChild>
+                                                    <Link href={`/sak/${saksnummer}`}>{pleietrengende.navn}</Link>
+                                                </LinkCard.Anchor>
+                                            </LinkCard.Title>
+                                            {renderDescription(sakMetadata)}
+                                        </LinkCard>
+                                    );
+                                })}
+                            </VStack>
                         );
                     })}
                 </VStack>
