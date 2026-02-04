@@ -11,6 +11,7 @@ import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValue
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
+import { Features } from '../../../types/Features';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -23,6 +24,7 @@ import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
 import { getArbeidstidSøknadsdataFromFormValues, getArbeidstidStepInitialValues } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
+import FraværArbeidstidToggleInfo from './dev/FraværArbeidstidTogglInfo';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import {
     cleanArbeidIPerioder,
@@ -31,6 +33,7 @@ import {
     harFraværAlleDager,
     harKunValgtJobberSomNormalt,
 } from './form-parts/arbeidstidUtils';
+import FraværIPeriodeSpørsmål from './form-parts/fravær-i-periode-spørsmål/FraværIPeriodeSpørsmål';
 import { ArbeidsforholdType } from './form-parts/types';
 
 export enum ArbeidsaktivitetType {
@@ -71,7 +74,7 @@ const ArbeidstidStep = () => {
     const { text, intl } = appIntl;
 
     const {
-        state: { søknadsdata, tempFormData },
+        state: { søknadsdata, tempFormData, spørOmFraværFraJobb },
         dispatch,
     } = useSøknadContext();
     const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialogType | undefined>(undefined);
@@ -227,6 +230,9 @@ const ArbeidstidStep = () => {
                                         <AppText id="arbeidIPeriode.StepInfo.2" />
                                     </p>
                                 </FormLayout.Guide>
+
+                                {Features.toggleFraværFraArbeid && <FraværArbeidstidToggleInfo />}
+
                                 <FormLayout.Sections>
                                     {ansattArbeidstid && ansattArbeidstid.length > 0 && (
                                         <VStack gap="space-24">
@@ -235,20 +241,37 @@ const ArbeidstidStep = () => {
                                                     <FormLayout.Section
                                                         title={arbeidsforhold.navn}
                                                         key={arbeidsforhold.organisasjonsnummer}>
-                                                        <ArbeidIPeriodeSpørsmål
-                                                            arbeidsstedNavn={arbeidsforhold.navn}
-                                                            arbeidsforholdType={ArbeidsforholdType.ANSATT}
-                                                            arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
-                                                            jobberNormaltTimer={arbeidsforhold.jobberNormaltTimer}
-                                                            valgteDatoer={valgteDatoer}
-                                                            periode={søknadsperiode}
-                                                            parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
-                                                            onArbeidstidVariertChange={oppdatereArbeidstid}
-                                                            onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                                            onArbeidstidEnkeltdagRegistrert={
-                                                                logArbeidEnkeltdagRegistrert
-                                                            }
-                                                        />
+                                                        {spørOmFraværFraJobb ? (
+                                                            <FraværIPeriodeSpørsmål
+                                                                arbeidsstedNavn={arbeidsforhold.navn}
+                                                                arbeidsforholdType={ArbeidsforholdType.ANSATT}
+                                                                arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
+                                                                jobberNormaltTimer={arbeidsforhold.jobberNormaltTimer}
+                                                                valgteDatoer={valgteDatoer}
+                                                                periode={søknadsperiode}
+                                                                parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
+                                                                onArbeidstidVariertChange={oppdatereArbeidstid}
+                                                                onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                                onArbeidstidEnkeltdagRegistrert={
+                                                                    logArbeidEnkeltdagRegistrert
+                                                                }
+                                                            />
+                                                        ) : (
+                                                            <ArbeidIPeriodeSpørsmål
+                                                                arbeidsstedNavn={arbeidsforhold.navn}
+                                                                arbeidsforholdType={ArbeidsforholdType.ANSATT}
+                                                                arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
+                                                                jobberNormaltTimer={arbeidsforhold.jobberNormaltTimer}
+                                                                valgteDatoer={valgteDatoer}
+                                                                periode={søknadsperiode}
+                                                                parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
+                                                                onArbeidstidVariertChange={oppdatereArbeidstid}
+                                                                onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                                onArbeidstidEnkeltdagRegistrert={
+                                                                    logArbeidEnkeltdagRegistrert
+                                                                }
+                                                            />
+                                                        )}
                                                     </FormLayout.Section>
                                                 );
                                             })}
@@ -256,36 +279,70 @@ const ArbeidstidStep = () => {
                                     )}
                                     {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
                                         <FormLayout.Section title={text('arbeidIPeriode.FrilansLabel')}>
-                                            <ArbeidIPeriodeSpørsmål
-                                                arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.frilansoppdrag')}
-                                                arbeidsforholdType={ArbeidsforholdType.FRILANSER}
-                                                arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
-                                                jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
-                                                periode={periodeSomFrilanserISøknadsperiode}
-                                                valgteDatoer={valgteDatoer}
-                                                parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
-                                                onArbeidstidVariertChange={oppdatereArbeidstid}
-                                                onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                                onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                            />
+                                            {spørOmFraværFraJobb ? (
+                                                <FraværIPeriodeSpørsmål
+                                                    arbeidsstedNavn={text(
+                                                        'arbeidIPeriode.arbeidstidSted.frilansoppdrag',
+                                                    )}
+                                                    arbeidsforholdType={ArbeidsforholdType.FRILANSER}
+                                                    arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
+                                                    jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
+                                                    periode={periodeSomFrilanserISøknadsperiode}
+                                                    valgteDatoer={valgteDatoer}
+                                                    parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
+                                                    onArbeidstidVariertChange={oppdatereArbeidstid}
+                                                    onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                    onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                />
+                                            ) : (
+                                                <ArbeidIPeriodeSpørsmål
+                                                    arbeidsstedNavn={text(
+                                                        'arbeidIPeriode.arbeidstidSted.frilansoppdrag',
+                                                    )}
+                                                    arbeidsforholdType={ArbeidsforholdType.FRILANSER}
+                                                    arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
+                                                    jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
+                                                    periode={periodeSomFrilanserISøknadsperiode}
+                                                    valgteDatoer={valgteDatoer}
+                                                    parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
+                                                    onArbeidstidVariertChange={oppdatereArbeidstid}
+                                                    onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                    onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                />
+                                            )}
                                         </FormLayout.Section>
                                     )}
                                     {selvstendigArbeidstid &&
                                         søknadsperiode &&
                                         periodeSomSelvstendigISøknadsperiode && (
                                             <FormLayout.Section title={text('arbeidIPeriode.SNLabel')}>
-                                                <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
-                                                    arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
-                                                    jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
-                                                    arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
-                                                    periode={periodeSomSelvstendigISøknadsperiode}
-                                                    valgteDatoer={valgteDatoer}
-                                                    parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
-                                                    onArbeidstidVariertChange={oppdatereArbeidstid}
-                                                    onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                                    onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                                />
+                                                {spørOmFraværFraJobb ? (
+                                                    <FraværIPeriodeSpørsmål
+                                                        arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
+                                                        arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
+                                                        jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
+                                                        arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
+                                                        periode={periodeSomSelvstendigISøknadsperiode}
+                                                        valgteDatoer={valgteDatoer}
+                                                        parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
+                                                        onArbeidstidVariertChange={oppdatereArbeidstid}
+                                                        onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                        onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                    />
+                                                ) : (
+                                                    <ArbeidIPeriodeSpørsmål
+                                                        arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
+                                                        arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
+                                                        jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
+                                                        arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
+                                                        periode={periodeSomSelvstendigISøknadsperiode}
+                                                        valgteDatoer={valgteDatoer}
+                                                        parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
+                                                        onArbeidstidVariertChange={oppdatereArbeidstid}
+                                                        onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                        onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                    />
+                                                )}
                                             </FormLayout.Section>
                                         )}
                                 </FormLayout.Sections>

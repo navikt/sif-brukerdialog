@@ -30,6 +30,7 @@ const getStepSøknadsdataFromStepFormValues = (
     stepFormValues: StepFormValues,
     state: SøknadContextState,
     registrerteBarn: RegistrertBarn[],
+    spørOmFraværFraJobb: boolean,
 ) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
@@ -40,7 +41,7 @@ const getStepSøknadsdataFromStepFormValues = (
         case StepId.OM_BARNET:
             return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, registrerteBarn);
         case StepId.KURS:
-            return getKursSøknadsdataFromFormValues(formValues as KursFormValues);
+            return getKursSøknadsdataFromFormValues(formValues as KursFormValues, spørOmFraværFraJobb === false);
         case StepId.LEGEERKLÆRING:
             return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.ARBEIDSSITUASJON:
@@ -67,6 +68,7 @@ export const isStepFormValuesAndStepSøknadsdataValid = (
             stepFormValues,
             state,
             state.registrerteBarn,
+            state.spørOmFraværFraJobb || false,
         );
 
         if (!stepSøknadsdata || !isEqual(tempSøknadsdata, stepSøknadsdata)) {

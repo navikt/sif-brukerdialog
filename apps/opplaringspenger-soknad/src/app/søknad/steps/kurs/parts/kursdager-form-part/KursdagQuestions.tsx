@@ -34,6 +34,7 @@ interface Props {
     harFlereDager?: boolean;
     alleDager: Array<Partial<KursdagFormValues>>;
     gyldigSøknadsperiode: DateRange;
+    spørOmVarighetKursOgReise: boolean;
     onRemove?: () => void;
 }
 
@@ -41,7 +42,15 @@ const getValidationErrorKey = (field: KursdagFormFields, error: string) => {
     return `kursdag.form.${field}.validation.${error}`;
 };
 
-const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperiode, values, onRemove }: Props) => {
+const KursdagQuestions = ({
+    index,
+    harFlereDager,
+    alleDager,
+    gyldigSøknadsperiode,
+    values,
+    spørOmVarighetKursOgReise,
+    onRemove,
+}: Props) => {
     const { text } = useAppIntl();
     const minDate = gyldigSøknadsperiode.from;
     const maxDate = gyldigSøknadsperiode.to;
@@ -92,45 +101,50 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
                             : undefined;
                     }}
                 />
-
-                <Form.TimeInput
-                    wide={true}
-                    compact={false}
-                    validate={(value) => {
-                        if (!valgtDato) {
-                            return;
-                        }
-                        const error: any = getTimeValidator({ required: true, min: { hours: 1, minutes: 0 } })(value);
-                        return error
-                            ? {
-                                  key: getValidationErrorKey(KursdagFormFields.tidKurs, error),
-                                  keepKeyUnaltered: true,
-                                  values: { dagNr, dato: dateFormatter.compact(valgtDato), harFlereDager },
-                              }
-                            : undefined;
-                    }}
-                    name={getFieldName(KursdagFormFields.tidKurs)}
-                    label={text('kursdag.form.tidKurs.label')}
-                />
-                <Form.TimeInput
-                    wide={true}
-                    compact={false}
-                    validate={(value?: InputTime) => {
-                        if (!valgtDato) {
-                            return;
-                        }
-                        const error: any = getTimeValidator({ required: false })(value);
-                        return error
-                            ? {
-                                  key: getValidationErrorKey(KursdagFormFields.tidReise, error),
-                                  keepKeyUnaltered: true,
-                                  values: { dato: dateFormatter.compact(valgtDato), harFlereDager },
-                              }
-                            : undefined;
-                    }}
-                    name={getFieldName(KursdagFormFields.tidReise)}
-                    label={text('kursdag.form.tidReise.label')}
-                />
+                {spørOmVarighetKursOgReise && (
+                    <>
+                        <Form.TimeInput
+                            wide={true}
+                            compact={false}
+                            validate={(value) => {
+                                if (!valgtDato) {
+                                    return;
+                                }
+                                const error: any = getTimeValidator({ required: true, min: { hours: 1, minutes: 0 } })(
+                                    value,
+                                );
+                                return error
+                                    ? {
+                                          key: getValidationErrorKey(KursdagFormFields.tidKurs, error),
+                                          keepKeyUnaltered: true,
+                                          values: { dagNr, dato: dateFormatter.compact(valgtDato), harFlereDager },
+                                      }
+                                    : undefined;
+                            }}
+                            name={getFieldName(KursdagFormFields.tidKurs)}
+                            label={text('kursdag.form.tidKurs.label')}
+                        />
+                        <Form.TimeInput
+                            wide={true}
+                            compact={false}
+                            validate={(value?: InputTime) => {
+                                if (!valgtDato) {
+                                    return;
+                                }
+                                const error: any = getTimeValidator({ required: false })(value);
+                                return error
+                                    ? {
+                                          key: getValidationErrorKey(KursdagFormFields.tidReise, error),
+                                          keepKeyUnaltered: true,
+                                          values: { dato: dateFormatter.compact(valgtDato), harFlereDager },
+                                      }
+                                    : undefined;
+                            }}
+                            name={getFieldName(KursdagFormFields.tidReise)}
+                            label={text('kursdag.form.tidReise.label')}
+                        />
+                    </>
+                )}
             </HGrid>
             {harFlereDager && onRemove && (
                 <Box>

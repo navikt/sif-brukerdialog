@@ -44,7 +44,7 @@ const mapKursPeriodeFormValuesToKursperiode = (
     };
 };
 
-const mapKursdagFormValuesToKursdag = (formValues: KursdagFormValues, id: string | undefined): Kursdag => {
+const mapKursdagFormValuesToKursdagMedVariget = (formValues: KursdagFormValues, id: string | undefined): Kursdag => {
     const dato = getDatoFromKursdagFormDato(formValues.dato);
     const tidKurs = durationAsNumberDuration(formValues.tidKurs);
     const tidReise = formValues.tidReise ? durationAsNumberDuration(formValues.tidReise) : undefined;
@@ -57,6 +57,21 @@ const mapKursdagFormValuesToKursdag = (formValues: KursdagFormValues, id: string
         dato,
         tidKurs,
         tidReise,
+    };
+};
+
+const mapKursdagFormValuesToKursdagUtenVarighet = (formValues: KursdagFormValues, id: string | undefined): Kursdag => {
+    const dato = getDatoFromKursdagFormDato(formValues.dato);
+
+    if (!dato) {
+        throw new Error('Kan ikke mappe form values til kursdag');
+    }
+    return {
+        id: id || guid(),
+        dato,
+        /** TODO: Setter disse til 0 frem til det ikke er påkrevd i backend */
+        tidKurs: { hours: 0, minutes: 0 },
+        tidReise: { hours: 0, minutes: 0 },
     };
 };
 
@@ -77,7 +92,8 @@ const kursperiodeOgDagUtils = {
     isValidKursperiode,
     mapKursperiodeToFormValues,
     mapKursPeriodeFormValuesToKursperiode,
-    mapKursdagFormValuesToKursdag,
+    mapKursdagFormValuesToKursdagMedVariget,
+    mapKursdagFormValuesToKursdagUtenVarighet,
     mapKursdagToKursdagFormValues,
     getPeriodeFromKursperiodeFormValue,
     getDatoFromKursdagFormValue,

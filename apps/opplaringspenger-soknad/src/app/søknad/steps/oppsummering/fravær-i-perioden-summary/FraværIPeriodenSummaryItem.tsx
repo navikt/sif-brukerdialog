@@ -11,36 +11,35 @@ interface Props {
     valgteDatoer: Date[];
     arbeidIPeriode: ArbeidIPeriodeApiData;
     normaltimerUke: number;
-    spørOmFraværFraJobb: boolean;
 }
 
-export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
+export interface FraværIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
 }
 
-const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode, spørOmFraværFraJobb }: Props) => {
+const FraværIPeriodenSummaryItem = ({ arbeidIPeriode }: Props) => {
     return (
         <VStack gap="space-32">
             <>
                 {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
                     arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
                     <p style={{ marginTop: 0 }}>
-                        <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
+                        <AppText id={`oppsummering.fraværIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
                     </p>
                 )}
                 {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
                     <p style={{ marginTop: 0 }}>
-                        <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
+                        <AppText id={`oppsummering.fraværIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
                     </p>
                 )}
             </>
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
                 <VStack gap="space-32">
                     <Heading size="small" level="4">
-                        <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
+                        <AppText id="oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
                     </Heading>
                     <TidEnkeltdager
-                        dager={spørOmFraværFraJobb ? arbeidIPeriode.enkeltdagerFravær : arbeidIPeriode.enkeltdager}
+                        dager={arbeidIPeriode.enkeltdagerFravær}
                         renderAsAccordion={false}
                         headingLevel="5"
                     />
@@ -50,4 +49,4 @@ const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode, spørOmFraværFraJobb }: Pr
     );
 };
 
-export default ArbeidIPeriodeSummaryItem;
+export default FraværIPeriodenSummaryItem;

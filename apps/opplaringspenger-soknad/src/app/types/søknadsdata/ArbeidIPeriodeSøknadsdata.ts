@@ -17,6 +17,7 @@ interface ArbeidISøknadsperiodeUlikeUkerTimer {
     arbeiderIPerioden: true;
     arbeiderRedusert: true;
     enkeltdager: DateDurationMap;
+    enkeltdagerFravær: DateDurationMap;
 }
 
 export type ArbeidIPeriodeSøknadsdata =

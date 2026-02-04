@@ -169,13 +169,19 @@ export const leggTilUtenlandsopphold = async (page: Page) => {
 
 export const kontrollerOpplæringEnEnkeltdagOppsummering = async (page: Page) => {
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
-    await expect(page.getByText('2. desember 2024 Kurs: 5 t. 0 m. Reise: 4 t. 30 m.')).toBeVisible();
+    await expect(
+        page.getByRole('listitem').filter({ hasText: '2. desember 2024Kurs: 5 t. 0 m. Reise: 4 t. 30 m.' }),
+    ).toBeVisible();
 };
 
 export const kontrollerOpplæringFlereEnkeltdagerOppsummering = async (page: Page) => {
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
-    await expect(page.getByText('2. desember 2024 Kurs: 5 t. 0 m. Reise: 4 t. 30 m.')).toBeVisible();
-    await expect(page.getByText('11. desember 2024 Kurs: 2 t. 0 m. Reise: 5 t. 0 m.')).toBeVisible();
+    await expect(
+        page.getByRole('listitem').filter({ hasText: '2. desember 2024Kurs: 5 t. 0 m. Reise: 4 t. 30 m.' }),
+    ).toBeVisible();
+    await expect(
+        page.getByRole('listitem').filter({ hasText: '11. desember 2024Kurs: 2 t. 0 m. Reise: 5 t. 0 m.' }),
+    ).toBeVisible();
 };
 
 export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {

@@ -40,4 +40,7 @@ export default defineConfig({
             },
         },
     },
+    define: {
+        'import.meta.env.INJECT_DECORATOR': false,
+    },
 });

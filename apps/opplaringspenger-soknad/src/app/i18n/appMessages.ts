@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+
 import { calendarGridMessages } from '../components/calendar-grid/calendarGridMessages';
 import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedTidMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
@@ -6,6 +7,7 @@ import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages'
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
+import { fraværMessages } from '../søknad/steps/arbeidstid/fraværMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
 import { kursdagMessages } from '../søknad/steps/kurs/parts/kursdager-form-part/kursdagMessages';
 import { kursperiodeMessages } from '../søknad/steps/kurs/parts/kursperioder-form-part/kursperiodeMessages';
@@ -29,6 +31,7 @@ const nb = {
     ...arbeidstidMessages.nb,
     ...omBarnetFormIntlMessages.nb,
     ...kursdagMessages.nb,
+    ...fraværMessages.nb,
 
     'application.title': 'Søknad om opplæringspenger',
 
@@ -233,6 +236,7 @@ const nn: Record<keyof typeof nb, string> = {
     ...validateApiDataMessages.nn,
     ...velkommenPageMessages.nn,
     ...kursdagMessages.nn,
+    ...fraværMessages.nn,
 
     'application.title': 'Søknad om opplæringspengar',
 
@@ -296,9 +300,9 @@ const nn: Record<keyof typeof nb, string> = {
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjonen din',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjonen din',
 
-    'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
-    'step.arbeidstid.pageTitle': 'Jobb i søknadsperioden',
-    'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
+    'step.arbeidstid.stepTitle': 'Fravær fra jobb i søknadsperioden',
+    'step.arbeidstid.pageTitle': 'Fravær fra jobb i søknadsperioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Fravær fra jobb i søknadsperioden',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygda',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygda',
