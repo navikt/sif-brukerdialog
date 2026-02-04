@@ -6,7 +6,6 @@ export interface SakInfo {
     saksnummer: string;
     fagsakYtelseType: string;
     førsteInnsendingTidspunkt?: Date;
-    sisteInnsendingTidspunkt?: Date;
 }
 
 export interface PleietrengendeMedSaker {
