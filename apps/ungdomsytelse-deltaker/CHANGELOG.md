@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.42
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
 ## 1.5.41
 
 ### Patch Changes

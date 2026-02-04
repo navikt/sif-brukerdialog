@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.1
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
 ## 2.2.0
 
 ### Minor Changes

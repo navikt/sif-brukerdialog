@@ -57,7 +57,8 @@
         "server-ungdomsytelse-veileder"
     ],
     "resolutions": {
-        "tar": "7.5.7"
+        "tar": "7.5.7",
+        "@isaacs/brace-expansion": "5.0.1"
     },
     "packageManager": "yarn@4.10.3",
     "private": true
