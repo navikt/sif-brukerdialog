@@ -1,10 +1,11 @@
 import { PlusCircleIcon } from '@navikt/aksel-icons';
-import { Button, Detail, Heading, HStack, VStack } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { usePagination } from '@navikt/sif-common-hooks';
 
 import { Inntektsmelding } from '../../types';
 import { ArbeidsgiverMedInntektsmeldinger } from '../../utils/inntektsmeldingUtils';
 import InntektsmeldingLinkCard from '../inntektsmelding-link-card/InntektsmeldingLinkCard';
+import Organisasjonsnummer from '../organisasjonsnummer/Organisasjonsnummer';
 
 interface Props {
     arbeidsgiver: ArbeidsgiverMedInntektsmeldinger;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const ArbeidsgiverInntektsmeldingerListe = ({
-    arbeidsgiver: { arbeidsgiverId, arbeidsgiverNavn, inntektsmeldinger },
+    arbeidsgiver: { arbeidsgiverId, arbeidsgiverNavn, inntektsmeldinger, erOrganisasjon },
     saksnummer,
 }: Props) => {
     const { visibleItems, hasMoreItems, showMoreItems, showAllItems } = usePagination<Inntektsmelding>(
@@ -24,7 +25,11 @@ const ArbeidsgiverInntektsmeldingerListe = ({
         <VStack gap="space-12">
             <Heading level="3" size="medium">
                 {arbeidsgiverNavn}
-                <Detail>Orgnr. {arbeidsgiverId}</Detail>
+                {erOrganisasjon && (
+                    <BodyShort>
+                        Orgnr. <Organisasjonsnummer orgnr={arbeidsgiverId} />
+                    </BodyShort>
+                )}
             </Heading>
             <VStack gap="space-8">
                 {visibleItems.map((inntektsmelding) => {

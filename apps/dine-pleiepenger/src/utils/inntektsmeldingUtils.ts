@@ -59,6 +59,7 @@ export const getRefusjonEndringListe = ({
 export type ArbeidsgiverMedInntektsmeldinger = {
     arbeidsgiverId: string;
     arbeidsgiverNavn: string;
+    erOrganisasjon: boolean;
     inntektsmeldinger: Inntektsmelding[];
 };
 
@@ -91,6 +92,7 @@ export const grupperInntektsmeldingerPåArbeidsgiver = (
         return {
             arbeidsgiverId,
             arbeidsgiverNavn: getArbeidsgiverNavn(ims[0].arbeidsgiver),
+            erOrganisasjon: ims[0].arbeidsgiver.organisasjon ? true : false,
             inntektsmeldinger: ims.sort(sorterInntektsmeldingerPåInnsendingstidspunkt),
         };
     });

@@ -5,14 +5,13 @@ import { FormattedNumber } from 'react-intl';
 import { Inntektsmelding } from '../../types';
 import InfoBlock from '../info-block/InfoBlock';
 import InntektsmeldingDokumentLenke from '../lenker/InntektsmeldingDokumentLenke';
+import Organisasjonsnummer from '../organisasjonsnummer/Organisasjonsnummer';
 import NaturalYtelserInfo from './parts/NaturalYtelserInfo';
 import RefusjonInfo from './parts/RefusjonInfo';
 
 interface Props {
     inntektsmelding: Inntektsmelding;
 }
-
-const ariaOrgnummer = (orgnummer: string) => orgnummer.split('').join(' ');
 
 const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
     const { startDatoPermisjon, inntektBeløp, refusjon, endringerRefusjon, naturalYtelser, arbeidsgiver } =
@@ -95,12 +94,11 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 {arbeidsgiver.organisasjon && (
                     <VStack gap="space-4">
                         <div>{arbeidsgiver.organisasjon.navn}</div>
-                        <div>
-                            Orgnr.{' '}
-                            <span aria-label={ariaOrgnummer(arbeidsgiver.organisasjon.organisasjonsnummer)}>
-                                {arbeidsgiver.organisasjon.organisasjonsnummer}
-                            </span>
-                        </div>
+                        {arbeidsgiver.organisasjon && (
+                            <div>
+                                Orgnr. <Organisasjonsnummer orgnr={arbeidsgiver.organisasjon.organisasjonsnummer} />
+                            </div>
+                        )}
                     </VStack>
                 )}
                 {arbeidsgiver.privat && (
