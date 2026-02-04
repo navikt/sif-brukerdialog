@@ -1,10 +1,10 @@
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { BodyLong, BodyShort, Box, ExpansionCard, Link, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, ExpansionCard, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
 import { Inntektsmelding } from '../../types';
 import InfoBlock from '../info-block/InfoBlock';
+import InntektsmeldingDokumentLenke from '../lenker/InntektsmeldingDokumentLenke';
 import NaturalYtelserInfo from './parts/NaturalYtelserInfo';
 import RefusjonInfo from './parts/RefusjonInfo';
 
@@ -110,9 +110,10 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 )}
             </InfoBlock>
             <Box marginBlock="space-8 space-0">
-                <Link href="#" target="_blank" rel="noopener noreferrer">
-                    Se hele inntektsmeldingen i dokumentarkivet <ExternalLinkIcon role="presentation" />
-                </Link>
+                <InntektsmeldingDokumentLenke
+                    journalpostId={inntektsmelding.journalpostId}
+                    tekst="Se hele inntektsmeldingen i dokumentarkivet"
+                />
             </Box>
         </VStack>
     );
