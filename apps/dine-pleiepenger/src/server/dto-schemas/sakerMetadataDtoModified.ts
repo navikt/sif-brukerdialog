@@ -8,8 +8,6 @@ export const zSakerMetadataDtoModified = innsyn.zSakerMetadataDto
     .omit({
         fagsakAvsluttetTidspunkt: true,
         pleietrengende: true,
-        førsteInnsendingTidspunkt: true,
-        sisteInnsendingTidspunkt: true,
     })
     .extend({
         fagsakYtelseType: z.enum(innsyn.FagsakYtelseType),
