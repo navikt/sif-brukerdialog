@@ -1,4 +1,5 @@
-import { BodyLong, BodyShort, ExpansionCard, HGrid, VStack } from '@navikt/ds-react';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { BodyLong, BodyShort, Box, ExpansionCard, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
@@ -42,11 +43,11 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 </ExpansionCard.Header>
                 <ExpansionCard.Content>
                     <BodyLong spacing>
-                        Beregnet månedsinntekt skal være et gjennomsnitt av det du tjente de tre siste månedene før din
-                        første dag med pleiepenger.
+                        Beregnet månedsinntekt skal som regel være et gjennomsnitt av det du tjente de tre siste
+                        månedene før din første dag med pleiepenger.
                     </BodyLong>
                     <BodyLong>
-                        Vi bruker denne inntekten for å finne ut hvor mye du kan få utbetalt i pleiepenger.
+                        Vi bruker denne inntekten for å vurdere hvor mye du kan få utbetalt i pleiepenger.
                     </BodyLong>
                 </ExpansionCard.Content>
             </ExpansionCard>
@@ -65,9 +66,10 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 title="Hvordan utbetales pleiepengene?"
                 titleInfo={
                     <>
-                        Pleiepenger kan enten utbetales direkte fra Nav, eller som vanlig lønn fra arbeidsgiver. Hvis
+                        Pleiepenger kan utbetales direkte til deg fra Nav, eller som vanlig lønn fra arbeidsgiver. Hvis
                         arbeidsgiver betaler deg lønn og får pengene tilbake fra Nav, kalles det forskuttering. Noen
-                        arbeidsgivere må forskuttere på grunn av tariffavtaler, mens andre velger det selv.
+                        arbeidsgivere kan være pliktig til å forskuttere på grunn av tariffavtaler, mens andre velger
+                        det selv.
                     </>
                 }>
                 <RefusjonInfo
@@ -88,26 +90,30 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 }>
                 <NaturalYtelserInfo naturalYtelser={naturalYtelser} />
             </InfoBlock>
-            <HGrid columns={{ sm: 1, md: 2 }} gap="space-16">
-                <InfoBlock icon="building" title="Din arbeidsgiver" background="info-softA">
-                    {arbeidsgiver.organisasjon && (
-                        <VStack gap="space-4">
-                            <div>{arbeidsgiver.organisasjon.navn}</div>
-                            <div>
-                                Orgnr.{' '}
-                                <span aria-label={ariaOrgnummer(arbeidsgiver.organisasjon.organisasjonsnummer)}>
-                                    {arbeidsgiver.organisasjon.organisasjonsnummer}
-                                </span>
-                            </div>
-                        </VStack>
-                    )}
-                    {arbeidsgiver.privat && (
-                        <VStack gap="space-4">
-                            <div>{arbeidsgiver.privat.navn}</div>
-                        </VStack>
-                    )}
-                </InfoBlock>
-            </HGrid>
+
+            <InfoBlock icon="building" title="Din arbeidsgiver" background="info-softA">
+                {arbeidsgiver.organisasjon && (
+                    <VStack gap="space-4">
+                        <div>{arbeidsgiver.organisasjon.navn}</div>
+                        <div>
+                            Orgnr.{' '}
+                            <span aria-label={ariaOrgnummer(arbeidsgiver.organisasjon.organisasjonsnummer)}>
+                                {arbeidsgiver.organisasjon.organisasjonsnummer}
+                            </span>
+                        </div>
+                    </VStack>
+                )}
+                {arbeidsgiver.privat && (
+                    <VStack gap="space-4">
+                        <div>{arbeidsgiver.privat.navn}</div>
+                    </VStack>
+                )}
+            </InfoBlock>
+            <Box marginBlock="space-8 space-0">
+                <Link href="#" target="_blank" rel="noopener noreferrer">
+                    Se hele inntektsmeldingen i dokumentarkivet <ExternalLinkIcon role="presentation" />
+                </Link>
+            </Box>
         </VStack>
     );
 };

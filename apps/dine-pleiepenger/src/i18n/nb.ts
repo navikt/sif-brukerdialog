@@ -160,9 +160,11 @@ export const nb = {
     'venteårsakMelding.inntektsmelding.tittel': 'Vi mangler inntektsmelding fra en eller flere arbeidsgivere',
     'venteårsakMelding.inntektsmelding.info.1':
         'Vi har informert arbeidsgiver om at de må sende oss inntektsmelding. Vi må ha en inntektsmelding for å behandle søknaden og beregne hvor mye pleiepenger du kan få.',
-    'venteårsakMelding.inntektsmelding.info.2':
-        'Hvis arbeidsgiver har sendt inn inntektsmelding allerede, kan det hende at den ikke er gyldig. Sjekk at informasjonen i inntekstmeldingen er riktig, for eksempel at første fraværsdag er den samme som i søknaden din.',
-    'venteårsakMelding.inntektsmelding.info.3': 'Hvis informasjonen ikke er riktig, ta kontakt med arbeidsgiveren din.',
+    'venteårsakMelding.inntektsmelding.readMore.tittel': 'Har arbeidsgiver allerede sendt inn inntekstmelding?',
+    'venteårsakMelding.inntektsmelding.readMore.tekst.1':
+        'Hvis arbeidsgiver har sendt inn inntektsmelding allerede, kan det hende at den ikke kan brukes. Dette kan for eksempel skje hvis første fraværsdag i inntektsmeldingen ikke er den samme som i søknaden din.',
+    'venteårsakMelding.inntektsmelding.readMore.tekst.2':
+        'Hvis den ikke er riktig, ta kontakt med arbeidsgiveren din slik at de kan sende inn en ny.',
 
     'venteårsakMelding.søktForTidlig.tittel': 'Vi kan ikke behandle søknaden din enda',
     'venteårsakMelding.søktForTidlig.info':
