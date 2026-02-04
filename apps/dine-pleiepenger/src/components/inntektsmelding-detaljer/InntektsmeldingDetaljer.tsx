@@ -1,18 +1,17 @@
-import { BodyLong, BodyShort, ExpansionCard, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, ExpansionCard, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormattedNumber } from 'react-intl';
 
 import { Inntektsmelding } from '../../types';
 import InfoBlock from '../info-block/InfoBlock';
-import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
+import InntektsmeldingDokumentLenke from '../lenker/InntektsmeldingDokumentLenke';
+import Organisasjonsnummer from '../organisasjonsnummer/Organisasjonsnummer';
 import NaturalYtelserInfo from './parts/NaturalYtelserInfo';
 import RefusjonInfo from './parts/RefusjonInfo';
 
 interface Props {
     inntektsmelding: Inntektsmelding;
 }
-
-const ariaOrgnummer = (orgnummer: string) => orgnummer.split('').join(' ');
 
 const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
     const { startDatoPermisjon, inntektBeløp, refusjon, endringerRefusjon, naturalYtelser, arbeidsgiver } =
@@ -21,13 +20,6 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
     return (
         <VStack gap="space-16">
             <VStack gap="space-40">
-                <HStack gap="space-8" align="center">
-                    <BodyShort weight="semibold" size="large">
-                        Status:
-                    </BodyShort>
-                    <InntektsmeldingStatusTag status={inntektsmelding.status} size="medium" showIcon={true} />
-                </HStack>
-
                 <BodyShort>
                     Arbeidsgiveren din har sendt oss disse opplysningene. Har du spørsmål eller mener noe er feil, må du
                     kontakte arbeidsgiver.
@@ -50,11 +42,11 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 </ExpansionCard.Header>
                 <ExpansionCard.Content>
                     <BodyLong spacing>
-                        Beregnet månedsinntekt skal være et gjennomsnitt av det du tjente de tre siste månedene før din
-                        første dag med pleiepenger.
+                        Beregnet månedsinntekt skal som regel være et gjennomsnitt av det du tjente de tre siste
+                        månedene før din første dag med pleiepenger.
                     </BodyLong>
                     <BodyLong>
-                        Vi bruker denne inntekten for å finne ut hvor mye du kan få utbetalt i pleiepenger.
+                        Vi bruker denne inntekten for å vurdere hvor mye du kan få utbetalt i pleiepenger.
                     </BodyLong>
                 </ExpansionCard.Content>
             </ExpansionCard>
@@ -73,9 +65,10 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 title="Hvordan utbetales pleiepengene?"
                 titleInfo={
                     <>
-                        Pleiepenger kan enten utbetales direkte fra Nav, eller som vanlig lønn fra arbeidsgiver. Hvis
+                        Pleiepenger kan utbetales direkte til deg fra Nav, eller som vanlig lønn fra arbeidsgiver. Hvis
                         arbeidsgiver betaler deg lønn og får pengene tilbake fra Nav, kalles det forskuttering. Noen
-                        arbeidsgivere må forskuttere på grunn av tariffavtaler, mens andre velger det selv.
+                        arbeidsgivere kan være pliktig til å forskuttere på grunn av tariffavtaler, mens andre velger
+                        det selv.
                     </>
                 }>
                 <RefusjonInfo
@@ -96,26 +89,30 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
                 }>
                 <NaturalYtelserInfo naturalYtelser={naturalYtelser} />
             </InfoBlock>
-            <HGrid columns={{ sm: 1, md: 2 }} gap="space-16">
-                <InfoBlock icon="building" title="Din arbeidsgiver" background="info-softA">
-                    {arbeidsgiver.organisasjon && (
-                        <VStack gap="space-4">
-                            <div>{arbeidsgiver.organisasjon.navn}</div>
+
+            <InfoBlock icon="building" title="Din arbeidsgiver" background="info-softA">
+                {arbeidsgiver.organisasjon && (
+                    <VStack gap="space-4">
+                        <div>{arbeidsgiver.organisasjon.navn}</div>
+                        {arbeidsgiver.organisasjon && (
                             <div>
-                                Orgnr.{' '}
-                                <span aria-label={ariaOrgnummer(arbeidsgiver.organisasjon.organisasjonsnummer)}>
-                                    {arbeidsgiver.organisasjon.organisasjonsnummer}
-                                </span>
+                                Orgnr. <Organisasjonsnummer orgnr={arbeidsgiver.organisasjon.organisasjonsnummer} />
                             </div>
-                        </VStack>
-                    )}
-                    {arbeidsgiver.privat && (
-                        <VStack gap="space-4">
-                            <div>{arbeidsgiver.privat.navn}</div>
-                        </VStack>
-                    )}
-                </InfoBlock>
-            </HGrid>
+                        )}
+                    </VStack>
+                )}
+                {arbeidsgiver.privat && (
+                    <VStack gap="space-4">
+                        <div>{arbeidsgiver.privat.navn}</div>
+                    </VStack>
+                )}
+            </InfoBlock>
+            <Box marginBlock="space-8 space-0">
+                <InntektsmeldingDokumentLenke
+                    journalpostId={inntektsmelding.journalpostId}
+                    tekst="Se inntektsmeldingen i dokumentarkivet"
+                />
+            </Box>
         </VStack>
     );
 };

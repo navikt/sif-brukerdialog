@@ -1,7 +1,7 @@
-import { Alert, BodyLong, Box, Button, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import Link from 'next/link';
 
-import { AppText } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
 import { Venteårsak } from '../../types';
 import { browserEnv } from '../../utils/env';
 import DokumentarkivLenke from '../lenker/DokumentarkivLenke';
@@ -11,6 +11,7 @@ interface Props {
 }
 
 const VenteårsakMelding = ({ venteårsak }: Props) => {
+    const { text } = useAppIntl();
     switch (venteårsak) {
         case Venteårsak.MEDISINSK_DOKUMENTASJON:
             return (
@@ -22,7 +23,7 @@ const VenteårsakMelding = ({ venteårsak }: Props) => {
                         <AppText
                             id="venteårsakMelding.legeerklæring.info"
                             values={{
-                                lenke: (text: string) => <DokumentarkivLenke tekst={text} />,
+                                lenke: (t: string) => <DokumentarkivLenke tekst={t} />,
                             }}
                         />
                     </BodyLong>
@@ -43,12 +44,16 @@ const VenteårsakMelding = ({ venteårsak }: Props) => {
                         <BodyLong>
                             <AppText id="venteårsakMelding.inntektsmelding.info.1" />
                         </BodyLong>
-                        <BodyLong>
-                            <AppText id="venteårsakMelding.inntektsmelding.info.2" />
-                        </BodyLong>
-                        <BodyLong>
-                            <AppText id="venteårsakMelding.inntektsmelding.info.3" />
-                        </BodyLong>
+                        <ReadMore
+                            header={text('venteårsakMelding.inntektsmelding.readMore.tittel')}
+                            data-color="accent">
+                            <BodyLong>
+                                <AppText id="venteårsakMelding.inntektsmelding.readMore.tekst.1" />
+                            </BodyLong>
+                            <BodyLong>
+                                <AppText id="venteårsakMelding.inntektsmelding.readMore.tekst.2" />
+                            </BodyLong>
+                        </ReadMore>
                     </VStack>
                 </Alert>
             );

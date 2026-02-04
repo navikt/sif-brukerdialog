@@ -48,7 +48,7 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak, sakErLastet }: Props) => 
                             <div>
                                 <LinkButton
                                     as={Link}
-                                    direction="right"
+                                    direction="external"
                                     href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
                                     <AppText id="svarfrist.lesMerLenke" />
                                 </LinkButton>

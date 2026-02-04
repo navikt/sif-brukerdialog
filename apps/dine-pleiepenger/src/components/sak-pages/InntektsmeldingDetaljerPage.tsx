@@ -66,7 +66,7 @@ const InntektsmeldingDetaljerPage = () => {
                     <Bleed marginBlock="space-16 space-0">{content}</Bleed>
                     <div>
                         <LinkButton direction="left" as={NextLink} href={`/sak/${saksnr}/inntektsmelding`}>
-                            Tilbake til alle inntektsmeldinger
+                            Vis alle inntektsmeldinger
                         </LinkButton>
                     </div>
                 </VStack>

@@ -22,7 +22,6 @@ const lagFullInntektsmelding = (data: {
         journalpostId: data.journalpostId,
         arbeidsgiver: { organisasjon: { organisasjonsnummer: data.orgNr, navn: data.orgNavn } },
         innsendingstidspunkt: data.innsendingstidspunkt,
-        erstattetAv: data.erstattetAv ?? [],
     }) as Inntektsmelding;
 
 describe('inntektsmeldingUtils', () => {
@@ -253,30 +252,6 @@ describe('inntektsmeldingUtils', () => {
             expect(result).toHaveLength(2);
             expect(result.map((r) => r.arbeidsgiverId)).toContain('111111111');
             expect(result.map((r) => r.arbeidsgiverId)).toContain('222222222');
-        });
-
-        it('kobler erstattede inntektsmeldinger til den som erstatter', () => {
-            const gammelIm = lagFullInntektsmelding({
-                journalpostId: 'gammel',
-                orgNr: '111111111',
-                orgNavn: 'Bedrift A',
-                innsendingstidspunkt: new Date('2024-01-01'),
-                erstattetAv: ['ny'],
-            });
-            const nyIm = lagFullInntektsmelding({
-                journalpostId: 'ny',
-                orgNr: '111111111',
-                orgNavn: 'Bedrift A',
-                innsendingstidspunkt: new Date('2024-01-15'),
-            });
-
-            const result = grupperInntektsmeldingerPåArbeidsgiver([gammelIm, nyIm]);
-
-            expect(result).toHaveLength(1);
-            expect(result[0].inntektsmeldinger).toHaveLength(1);
-            expect(result[0].inntektsmeldinger[0].journalpostId).toBe('ny');
-            expect(result[0].inntektsmeldinger[0].erstatter).toHaveLength(1);
-            expect(result[0].inntektsmeldinger[0].erstatter[0].journalpostId).toBe('gammel');
         });
 
         it('sorterer inntektsmeldinger med nyeste først', () => {

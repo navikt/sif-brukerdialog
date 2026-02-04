@@ -7,7 +7,6 @@ const zPleietrengendeDtoModified = innsyn.zPleietrengendeDto.omit({ aktørId: tr
 export const zSakerMetadataDtoModified = innsyn.zSakerMetadataDto
     .omit({
         fagsakAvsluttetTidspunkt: true,
-        fagsakOpprettetTidspunkt: true,
         pleietrengende: true,
     })
     .extend({

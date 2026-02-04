@@ -35,7 +35,7 @@ export const useBreadcrumbs = ({
                 ? [
                       {
                           url: `/sak/${saksnummer}`,
-                          title: harFlereSaker ? `Pleiepengesak` : 'Din pleiepengesak for sykt barn',
+                          title: harFlereSaker ? `Sak` : 'Din pleiepengesak for sykt barn',
                           handleInApp: true,
                       },
                   ]

@@ -101,6 +101,7 @@ export class MellomlagringController {
     ) {
         return (options.client ?? client).get<GetMellomlagringResponses, GetMellomlagringErrors, ThrowOnError>({
             requestValidator: async (data) => await zGetMellomlagringData.parseAsync(data),
+            responseType: 'json',
             responseValidator: async (data) => await zGetMellomlagringResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/mellomlagring/{ytelse}',
