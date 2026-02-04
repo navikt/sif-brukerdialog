@@ -70,7 +70,9 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                     {grupperteSaker.map((gruppe) => {
                         const { pleietrengende, saker } = gruppe;
                         return (
-                            <VStack gap="space-8" key={pleietrengende.fødselsdato.toDateString()}>
+                            <VStack
+                                gap="space-8"
+                                key={`${pleietrengende.fødselsdato.toDateString()}-${pleietrengende.navn}`}>
                                 {saker.map((sakMetadata) => {
                                     const { saksnummer } = sakMetadata;
 

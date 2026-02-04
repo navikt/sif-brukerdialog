@@ -12,7 +12,7 @@ const genererDokumentLenke = (journalpostId: string): string => {
     return `${browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}/${journalpostId}`;
 };
 
-const InntektsmeldingDokumentLenke = ({ tekst, journalpostId }: Props & {}) => {
+const InntektsmeldingDokumentLenke = ({ tekst, journalpostId }: Props) => {
     return (
         <Link href={genererDokumentLenke(journalpostId)}>
             <HStack gap="space-8">

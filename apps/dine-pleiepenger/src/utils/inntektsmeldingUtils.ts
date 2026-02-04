@@ -73,11 +73,9 @@ const getArbeidsgiverId = (arbeidsgiver: innsyn.ArbeidsgiverDto): string => {
     return 'ukjent';
 };
 
-/** Grupperer inntektsmeldinger på arbeidsgiver, og for hver arbeidsgiver grupperes på erstattet-av. Sortert på dato, nyeste først. */
 export const grupperInntektsmeldingerPåArbeidsgiver = (
     inntektsmeldinger: Inntektsmelding[],
 ): ArbeidsgiverMedInntektsmeldinger[] => {
-    // Grupper på arbeidsgiver
     const gruppertPåArbeidsgiver = inntektsmeldinger.reduce<Record<string, Inntektsmelding[]>>((acc, im) => {
         const arbeidsgiverId = getArbeidsgiverId(im.arbeidsgiver);
         if (!acc[arbeidsgiverId]) {
@@ -87,7 +85,6 @@ export const grupperInntektsmeldingerPåArbeidsgiver = (
         return acc;
     }, {});
 
-    // For hver arbeidsgiver, grupper på erstattet-av
     return Object.entries(gruppertPåArbeidsgiver).map(([arbeidsgiverId, ims]) => {
         return {
             arbeidsgiverId,
