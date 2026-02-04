@@ -7,14 +7,13 @@ const zPleietrengendeDtoModified = innsyn.zPleietrengendeDto.omit({ aktørId: tr
 export const zSakerMetadataDtoModified = innsyn.zSakerMetadataDto
     .omit({
         fagsakAvsluttetTidspunkt: true,
-        fagsakOpprettetTidspunkt: true,
         pleietrengende: true,
+        førsteInnsendingTidspunkt: true,
         sisteInnsendingTidspunkt: true,
     })
     .extend({
         fagsakYtelseType: z.enum(innsyn.FagsakYtelseType),
         pleietrengende: zPleietrengendeDtoModified,
-        førsteInnsendingTidspunkt: z.string().optional(),
     });
 
 export type SakerMetadataDtoModified = z.infer<typeof zSakerMetadataDtoModified>;

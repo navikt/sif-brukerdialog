@@ -23,11 +23,11 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
 
     const renderDescription = (sakMetadata: SakerMetadata) => {
         const {
-            førsteInnsendingTidspunkt,
+            fagsakOpprettetTidspunkt,
             pleietrengende: { fødselsdato, anonymisert },
         } = sakMetadata;
 
-        if (anonymisert && førsteInnsendingTidspunkt === undefined) {
+        if (anonymisert && fagsakOpprettetTidspunkt === undefined) {
             return null;
         }
         return (
@@ -44,10 +44,10 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                             .
                         </BodyShort>
                     )}
-                    {førsteInnsendingTidspunkt ? (
+                    {fagsakOpprettetTidspunkt ? (
                         <div>
                             <Tag variant="moderate" data-color="info" size="small">
-                                Opprettet {dateFormatter.compact(førsteInnsendingTidspunkt)}
+                                Opprettet {dateFormatter.compact(fagsakOpprettetTidspunkt)}
                             </Tag>
                         </div>
                     ) : null}

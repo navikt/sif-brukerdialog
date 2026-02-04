@@ -5,7 +5,7 @@ import { Pleietrengende, SakerMetadata } from '../../types';
 export interface SakInfo {
     saksnummer: string;
     fagsakYtelseType: string;
-    førsteInnsendingTidspunkt?: Date;
+    fagsakOpprettetTidspunkt?: Date;
 }
 
 export interface PleietrengendeMedSaker {
@@ -44,7 +44,7 @@ export const grupperSakerPåPleietrengende = (sakerMetadata: SakerMetadata[]): P
     const gruppertMap = new Map<string, PleietrengendeMedSaker>();
 
     for (const sak of sakerMetadata) {
-        const { pleietrengende, saksnummer, fagsakYtelseType, førsteInnsendingTidspunkt } = sak;
+        const { pleietrengende, saksnummer, fagsakYtelseType, fagsakOpprettetTidspunkt } = sak;
         const nøkkel = lagGrupperingsnøkkel(pleietrengende);
 
         if (!gruppertMap.has(nøkkel)) {
@@ -57,19 +57,18 @@ export const grupperSakerPåPleietrengende = (sakerMetadata: SakerMetadata[]): P
         gruppertMap.get(nøkkel)!.saker.push({
             saksnummer,
             fagsakYtelseType,
-            førsteInnsendingTidspunkt,
-
+            fagsakOpprettetTidspunkt,
             pleietrengende,
         });
     }
 
-    // Sorter saker innenfor hver gruppe på førsteInnsendingTidspunkt (nyeste først)
+    // Sorter saker innenfor hver gruppe på fagsakOpprettetTidspunkt (nyeste først)
     const resultat = Array.from(gruppertMap.values());
 
     for (const gruppe of resultat) {
         gruppe.saker.sort((a, b) => {
-            const tidA = a.førsteInnsendingTidspunkt?.getTime() ?? 0;
-            const tidB = b.førsteInnsendingTidspunkt?.getTime() ?? 0;
+            const tidA = a.fagsakOpprettetTidspunkt?.getTime() ?? 0;
+            const tidB = b.fagsakOpprettetTidspunkt?.getTime() ?? 0;
             return tidB - tidA;
         });
     }
