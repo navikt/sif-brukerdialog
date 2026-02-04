@@ -9,12 +9,12 @@ export const zSakerMetadataDtoModified = innsyn.zSakerMetadataDto
         fagsakAvsluttetTidspunkt: true,
         fagsakOpprettetTidspunkt: true,
         pleietrengende: true,
+        sisteInnsendingTidspunkt: true,
     })
     .extend({
         fagsakYtelseType: z.enum(innsyn.FagsakYtelseType),
         pleietrengende: zPleietrengendeDtoModified,
         førsteInnsendingTidspunkt: z.string().optional(),
-        sisteInnsendingTidspunkt: z.string().optional(),
     });
 
 export type SakerMetadataDtoModified = z.infer<typeof zSakerMetadataDtoModified>;

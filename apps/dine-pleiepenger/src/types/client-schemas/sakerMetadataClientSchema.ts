@@ -6,12 +6,9 @@ export const sakerMetadataClientSchema = zSakerMetadataDtoModified
     .extend({
         pleietrengende: pleietrengendeClientSchema,
     })
-    .transform(({ førsteInnsendingTidspunkt, sisteInnsendingTidspunkt, ...rest }) => ({
+    .transform(({ førsteInnsendingTidspunkt, ...rest }) => ({
         ...rest,
         førsteInnsendingTidspunkt: førsteInnsendingTidspunkt
             ? validateAndConvertToUTCDate(førsteInnsendingTidspunkt)
-            : undefined,
-        sisteInnsendingTidspunkt: sisteInnsendingTidspunkt
-            ? validateAndConvertToUTCDate(sisteInnsendingTidspunkt)
             : undefined,
     }));

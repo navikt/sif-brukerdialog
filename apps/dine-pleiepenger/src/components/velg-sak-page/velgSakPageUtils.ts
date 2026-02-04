@@ -45,8 +45,7 @@ export const grupperSakerPåPleietrengende = (sakerMetadata: SakerMetadata[]): P
     const gruppertMap = new Map<string, PleietrengendeMedSaker>();
 
     for (const sak of sakerMetadata) {
-        const { pleietrengende, saksnummer, fagsakYtelseType, førsteInnsendingTidspunkt, sisteInnsendingTidspunkt } =
-            sak;
+        const { pleietrengende, saksnummer, fagsakYtelseType, førsteInnsendingTidspunkt } = sak;
         const nøkkel = lagGrupperingsnøkkel(pleietrengende);
 
         if (!gruppertMap.has(nøkkel)) {
@@ -60,18 +59,18 @@ export const grupperSakerPåPleietrengende = (sakerMetadata: SakerMetadata[]): P
             saksnummer,
             fagsakYtelseType,
             førsteInnsendingTidspunkt,
-            sisteInnsendingTidspunkt,
+
             pleietrengende,
         });
     }
 
-    // Sorter saker innenfor hver gruppe på sisteInnsendingTidspunkt (nyeste først)
+    // Sorter saker innenfor hver gruppe på førsteInnsendingTidspunkt (nyeste først)
     const resultat = Array.from(gruppertMap.values());
 
     for (const gruppe of resultat) {
         gruppe.saker.sort((a, b) => {
-            const tidA = a.sisteInnsendingTidspunkt?.getTime() ?? 0;
-            const tidB = b.sisteInnsendingTidspunkt?.getTime() ?? 0;
+            const tidA = a.førsteInnsendingTidspunkt?.getTime() ?? 0;
+            const tidB = b.førsteInnsendingTidspunkt?.getTime() ?? 0;
             return tidB - tidA;
         });
     }

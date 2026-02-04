@@ -42,13 +42,13 @@ export const fetchSakerMetadata = async (
     const parsedData = z
         .array(zSakerMetadataDtoModified)
         .parse(response.data)
-        .sort(sortSakerMetadataEtterSisteInnsending);
+        .sort(sortSakerMetadataEtterFørsteInnsending);
     logger.info(`SakerMetadata parsed`);
     return parsedData;
 };
 
-const sortSakerMetadataEtterSisteInnsending = (a: SakerMetadataDtoModified, b: SakerMetadataDtoModified): number => {
-    const dateA = a.sisteInnsendingTidspunkt ? new Date(a.sisteInnsendingTidspunkt).getTime() : 0;
-    const dateB = b.sisteInnsendingTidspunkt ? new Date(b.sisteInnsendingTidspunkt).getTime() : 0;
+const sortSakerMetadataEtterFørsteInnsending = (a: SakerMetadataDtoModified, b: SakerMetadataDtoModified): number => {
+    const dateA = a.førsteInnsendingTidspunkt ? new Date(a.førsteInnsendingTidspunkt).getTime() : 0;
+    const dateB = b.førsteInnsendingTidspunkt ? new Date(b.førsteInnsendingTidspunkt).getTime() : 0;
     return dateB - dateA;
 };
