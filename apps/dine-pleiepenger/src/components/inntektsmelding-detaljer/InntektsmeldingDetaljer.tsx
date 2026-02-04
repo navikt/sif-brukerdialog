@@ -110,7 +110,7 @@ const InntektsmeldingDetaljer = ({ inntektsmelding }: Props) => {
             <Box marginBlock="space-8 space-0">
                 <InntektsmeldingDokumentLenke
                     journalpostId={inntektsmelding.journalpostId}
-                    tekst="Se hele inntektsmeldingen i dokumentarkivet"
+                    tekst="Se inntektsmeldingen i dokumentarkivet"
                 />
             </Box>
         </VStack>
