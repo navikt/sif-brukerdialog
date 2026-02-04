@@ -23,7 +23,7 @@ const VenteårsakMelding = ({ venteårsak }: Props) => {
                         <AppText
                             id="venteårsakMelding.legeerklæring.info"
                             values={{
-                                lenke: (text: string) => <DokumentarkivLenke tekst={text} />,
+                                lenke: (t: string) => <DokumentarkivLenke tekst={t} />,
                             }}
                         />
                     </BodyLong>
