@@ -37,23 +37,23 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = ({
             /** Arbeidstid settes til 0 */
             return {
                 jobberIPerioden: JobberIPeriodeSvar.heltFravær,
-                enkeltdagerFravær: getEnkeltdagerIPeriodeApiData(
+                enkeltdager: getEnkeltdagerIPeriodeApiData(
                     valgteDatoer,
                     getEnkeltdagerMedTidPerDag(valgteDatoer, { hours: '0', minutes: '0' }),
                     periode,
                 ),
-                enkeltdager: [],
+                enkeltdagerFravær: [],
             };
         case ArbeidIPeriodeType.arbeiderVanlig:
             /** Arbeidstid settes til normalarbeidstid */
             return {
                 jobberIPerioden: JobberIPeriodeSvar.somVanlig,
-                enkeltdagerFravær: getEnkeltdagerIPeriodeApiData(
+                enkeltdager: getEnkeltdagerIPeriodeApiData(
                     valgteDatoer,
                     getEnkeltdagerMedTidPerDag(valgteDatoer, getNormalarbeidstidPerDag(jobberNormaltTimer)),
                     periode,
                 ),
-                enkeltdager: [],
+                enkeltdagerFravær: [],
             };
         case ArbeidIPeriodeType.arbeiderUlikeUkerTimer:
             return {
