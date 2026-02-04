@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.39
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
 ## 1.4.38
 
 ### Patch Changes

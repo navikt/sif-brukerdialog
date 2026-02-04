@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.63
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
 ## 1.41.62
 
 ### Patch Changes

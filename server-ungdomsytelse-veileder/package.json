@@ -1,6 +1,6 @@
 {
     "name": "@navikt/server-ungdomsytelse-veileder",
-    "version": "0.0.55",
+    "version": "0.0.56",
     "license": "MIT",
     "private": true,
     "type": "module",

@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.63
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
 ## 3.49.62
 
 ### Patch Changes
