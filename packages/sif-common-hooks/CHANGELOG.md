@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.3.10
+
+### Patch Changes
+
+- Inntektsmelding og splitt av sak i Dine pleiepenger. Tilhørende codegen + noe felleskoderoppdateringer
+
 ## 0.3.9
 
 ### Patch Changes

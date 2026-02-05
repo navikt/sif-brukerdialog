@@ -1,5 +1,25 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.26.62
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 1.26.61
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/sif-common-soknad-ds@26.1.37
+
+## 1.26.60
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 1.26.59
 
 ### Patch Changes

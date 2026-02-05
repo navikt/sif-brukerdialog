@@ -1,5 +1,25 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.39
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 1.4.38
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/sif-common-soknad-ds@26.1.37
+
+## 1.4.37
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 1.4.36
 
 ### Patch Changes

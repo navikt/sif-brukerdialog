@@ -24,16 +24,73 @@ export const sorterInntektsmeldingerPåInnsendingstidspunkt = (a: Inntektsmeldin
     return new Date(b.innsendingstidspunkt).getTime() - new Date(a.innsendingstidspunkt).getTime();
 };
 
-export const getRefusjonFørFørsteEndring = (
-    refusjonBeløpPerMnd: number,
-    startDatoPermisjon: Date,
-    førsteEndring: EndringRefusjon,
-): EndringRefusjon | undefined => {
+interface GetRefusjonEndringListeParams {
+    refusjonBeløpPerMnd: number;
+    refusjonOpphører?: Date;
+    startDatoPermisjon: Date;
+    endringerRefusjon: EndringRefusjon[];
+}
+
+export const getRefusjonEndringListe = ({
+    refusjonBeløpPerMnd,
+    refusjonOpphører,
+    startDatoPermisjon,
+    endringerRefusjon,
+}: GetRefusjonEndringListeParams): EndringRefusjon[] => {
+    const alleEndringer: EndringRefusjon[] = [];
+    const førsteEndring = endringerRefusjon[0];
+
+    // Legg til info om refusjon før første endring hvis første endring er etter startdato
     if (førsteEndring && dayjs(førsteEndring.fom).isAfter(startDatoPermisjon, 'day')) {
-        return {
-            fom: startDatoPermisjon,
-            refusjonBeløpPerMnd: refusjonBeløpPerMnd,
-        };
+        alleEndringer.push({ fom: startDatoPermisjon, refusjonBeløpPerMnd });
     }
-    return undefined;
+
+    alleEndringer.push(...endringerRefusjon);
+
+    // Legg til info om opphør av refusjon som siste element hvis det finnes opphør av refusjon.
+    // refusjonOpphører utledes fra siste endring i refusjon.
+    if (refusjonOpphører) {
+        alleEndringer.push({ fom: dayjs(refusjonOpphører).add(1, 'day').toDate(), refusjonBeløpPerMnd: 0 });
+    }
+
+    return alleEndringer;
+};
+
+export type ArbeidsgiverMedInntektsmeldinger = {
+    arbeidsgiverId: string;
+    arbeidsgiverNavn: string;
+    erOrganisasjon: boolean;
+    inntektsmeldinger: Inntektsmelding[];
+};
+
+const getArbeidsgiverId = (arbeidsgiver: innsyn.ArbeidsgiverDto): string => {
+    if (arbeidsgiver.organisasjon) {
+        return arbeidsgiver.organisasjon.organisasjonsnummer;
+    }
+    if (arbeidsgiver.privat) {
+        return arbeidsgiver.privat.fødselsnummer;
+    }
+    return 'ukjent';
+};
+
+export const grupperInntektsmeldingerPåArbeidsgiver = (
+    inntektsmeldinger: Inntektsmelding[],
+): ArbeidsgiverMedInntektsmeldinger[] => {
+    const gruppertPåArbeidsgiver = inntektsmeldinger.reduce<Record<string, Inntektsmelding[]>>((acc, im) => {
+        const arbeidsgiverId = getArbeidsgiverId(im.arbeidsgiver);
+        if (!acc[arbeidsgiverId]) {
+            acc[arbeidsgiverId] = [];
+        }
+        acc[arbeidsgiverId].push(im);
+        return acc;
+    }, {});
+
+    return Object.entries(gruppertPåArbeidsgiver).map(([arbeidsgiverId, ims]) => {
+        return {
+            arbeidsgiverId,
+            arbeidsgiverNavn: getArbeidsgiverNavn(ims[0].arbeidsgiver),
+            erOrganisasjon: ims[0].arbeidsgiver.organisasjon ? true : false,
+            inntektsmeldinger: ims.sort(sorterInntektsmeldingerPåInnsendingstidspunkt),
+        };
+    });
 };

@@ -1,5 +1,25 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.65
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 4.11.64
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/sif-common-soknad-ds@26.1.37
+
+## 4.11.63
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 4.11.62
 
 ### Patch Changes

@@ -1,12 +1,10 @@
 import { InnsendelseISak, Inntektsmelding, Venteårsak } from '.';
-import { Innsendelsestype } from './Innsendelsestype';
 
 export enum Sakshendelser {
     'UKJENT' = 'UKJENT',
     'MOTTATT_SØKNAD' = 'MOTTATT_SØKNAD',
     'AKSJONSPUNKT' = 'AKSJONSPUNKT',
     'FERDIG_BEHANDLET' = 'FERDIG_BEHANDLET',
-    'FORVENTET_SVAR' = 'FORVENTET_SVAR',
     'ETTERSENDELSE' = 'ETTERSENDELSE',
     'INNTEKTSMELDING' = 'INNTEKTSMELDING',
 }
@@ -35,13 +33,7 @@ interface SakshendelseAksjonspunkt extends SakshendelseBase {
     /** Tidspunkt satt på vent */
     dato?: Date;
 }
-export interface SakshendelseForventetSvar extends SakshendelseBase {
-    type: Sakshendelser.FORVENTET_SVAR;
-    /** saksbehandlingFrist */
-    dato?: Date;
-    /** Søknad, endringsmelding eller ettersendelse */
-    innsendelsestyperIBehandling: Innsendelsestype[];
-}
+
 interface SakshendelseFerdigBehandlet extends SakshendelseBase {
     type: Sakshendelser.FERDIG_BEHANDLET;
     /** avsluttet dato */
@@ -53,13 +45,12 @@ interface SakshendelseInntektsmelding extends SakshendelseBase {
     /** avsluttet dato */
     dato: Date;
     inntektsmelding: Inntektsmelding;
-    erstatter: Inntektsmelding[];
 }
 
 export type Sakshendelse =
     | SakshendelseMottattSøknad
     | SakshendelseAksjonspunkt
-    | SakshendelseForventetSvar
+    // | SakshendelseForventetSvar
     | SakshendelseMottattEttersendelse
     | SakshendelseFerdigBehandlet
     | SakshendelseInntektsmelding;

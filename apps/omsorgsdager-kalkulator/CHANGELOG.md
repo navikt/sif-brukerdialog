@@ -1,5 +1,23 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.14.2
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 3.14.1
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
+## 3.14.0
+
+### Minor Changes
+
+- Oppdatere til next16
+
 ## 3.13.23
 
 ### Patch Changes

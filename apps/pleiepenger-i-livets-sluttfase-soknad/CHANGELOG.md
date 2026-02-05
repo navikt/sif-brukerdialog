@@ -1,5 +1,25 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.22.62
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 2.22.61
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/sif-common-soknad-ds@26.1.37
+
+## 2.22.60
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
 ## 2.22.59
 
 ### Patch Changes

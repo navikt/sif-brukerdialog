@@ -4,9 +4,9 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.3.12",
+    "version": "0.3.13",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.90.10",
+        "@hey-api/openapi-ts": "0.91.1",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.13.4",
         "config": "workspace:*",

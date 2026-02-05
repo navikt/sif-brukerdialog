@@ -28,6 +28,7 @@ const nextConfig = {
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
     pageExtensions: ['page.tsx', 'api.ts'],
     transpilePackages: ['tailwind-merge'],
+    serverExternalPackages: ['jsdom'],
     outputFileTracingRoot: path.resolve(__dirname, '../..'),
     outputFileTracingIncludes: {
         '/*': [
@@ -39,9 +40,6 @@ const nextConfig = {
 
     experimental: {
         optimizePackageImports: ['@navikt/aksel-icons', '@navikt/ds-react'],
-    },
-    eslint: {
-        ignoreDuringBuilds: true,
     },
 
     redirects: async () => [

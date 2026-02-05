@@ -6,7 +6,6 @@ export const nb = {
     'velgSak.barn.anonymisert': 'Pleietrengende født {dato}',
     'forside.dokumentTittel': 'Dine pleiepenger for sykt barn',
 
-    'ingeSakPage.saker.tittel': 'Dine pleiengesaker for sykt barn',
     'ingeSakPage.snarveier.tittel': 'Snarveier',
     'ingeSakPage.melding.tittel': 'Vi finner ingen sak om pleiepenger for sykt barn',
     'ingeSakPage.melding.tekst':
@@ -35,7 +34,7 @@ export const nb = {
     'snarveier.omPleiepenger': 'Om pleiepenger for sykt barn',
     'snarveier.søkOmPleiepenger': 'Søk om pleiepenger for sykt barn',
 
-    'statusTag.status.underBehandling': 'Til behandling',
+    'statusTag.status.underBehandling': 'I kø til behandling',
     'statusTag.status.ferdigBehandlet': 'Ferdig behandlet',
     'statusTag.venteårsak.inntektsmelding': 'Venter på inntektsmelding',
     'statusTag.venteårsak.legeerklæring': 'Venter på legeerklæring',
@@ -46,8 +45,7 @@ export const nb = {
     'sakstype.PP_ETTERSENDELSE': 'Ettersendelse av dokumenter - Pleiepenger sykt barn',
     'sakstype.PP_SYKT_BARN_ENDRINGSMELDING': 'Endringsmelding pleiepenger',
 
-    'info.forsinkelse':
-        'Det kan ta opptil 15 minutter før en ny søknad, endringsmelding eller ettersendt legeerklæring vises her.',
+    'info.forsinkelse': 'Det kan ta opptil 15 minutter før nye hendelser vises her.',
 
     'svarfrist.tittel': 'Saksbehandlingstid',
     'svarfrist.forventetBehandlingstid':
@@ -56,14 +54,15 @@ export const nb = {
         'Vi jobber fremdeles med søknaden din. Noen ganger kan det ta lengre tid, spesielt hvis saken er komplisert eller vi har ventet på dokumenter.',
     'svarfrist.fristPassert.2':
         'Hvis du eller arbeidsgiveren din nylig har sendt oss dokumenter, tar det som regel noen dager før vår saksbehandler har vurdert dem.',
-    'svarfrist.lesMerLenke': 'Se saksbehandlingstider',
+    'svarfrist.lesMerLenke': 'Mer om saksbehandlingstid',
     'svarfrist.dokumenterManglerFrist':
         'Fordi vi mangler dokumenter kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
     'svarfrist.forTidligSoknad':
         'Fordi vi ikke kan behandle søknaden din enda, kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
     'svarfrist.forTidligSoknad.fristPassert':
         'Fordi vi ikke kan behandle søknaden din enda, kan saksbehandlingstiden bli lenger enn vanlig.',
-    'svarfrist.generellFrist': 'Du kan forvente svar innen <dato>{frist}</dato>.',
+    'svarfrist.generellFrist.1': 'Du kan forvente svar innen <dato>{frist}</dato>.',
+    'svarfrist.generellFrist.2': 'Du vil få en SMS når du har fått svar på søknaden din.',
 
     'hvaSkjerInfo.tittel': 'Hva skjer etter at du har sendt søknad til oss?',
     'hvaSkjerInfo.innsent.endringsmelding.tittel': 'Saksgang etter innsendt endringsmelding',
@@ -159,8 +158,13 @@ export const nb = {
         'Vi har sendt deg brev om at vi trenger flere medisinske opplysninger for å vurdere retten til pleiepenger. Du finner informasjon om hva vi mangler i brevet, <lenke>se brev i dokumentarkivet</lenke>.',
 
     'venteårsakMelding.inntektsmelding.tittel': 'Vi mangler inntektsmelding fra en eller flere arbeidsgivere',
-    'venteårsakMelding.inntektsmelding.info':
-        'Vi har informert arbeidsgiver om at de må sende oss inntektsmelding. Vi må ha inntektsmelding for å behandle søknaden og beregne hvor mye pleiepenger du kan få.',
+    'venteårsakMelding.inntektsmelding.info.1':
+        'Vi har informert arbeidsgiver om at de må sende oss inntektsmelding. Vi må ha en inntektsmelding for å behandle søknaden og beregne hvor mye pleiepenger du kan få.',
+    'venteårsakMelding.inntektsmelding.readMore.tittel': 'Har arbeidsgiver allerede sendt inn inntektsmelding?',
+    'venteårsakMelding.inntektsmelding.readMore.tekst.1':
+        'Hvis arbeidsgiver har sendt inn inntektsmelding allerede, kan det hende at den ikke kan brukes. Dette kan for eksempel skje hvis første fraværsdag i inntektsmeldingen ikke er den samme som i søknaden din.',
+    'venteårsakMelding.inntektsmelding.readMore.tekst.2':
+        'Hvis den ikke er riktig, ta kontakt med arbeidsgiveren din slik at de kan sende inn en ny.',
 
     'venteårsakMelding.søktForTidlig.tittel': 'Vi kan ikke behandle søknaden din enda',
     'venteårsakMelding.søktForTidlig.info':
@@ -170,9 +174,9 @@ export const nb = {
     'venteårsakMelding.meldekort.info':
         'Vi kan tidligst behandle søknaden din når du har sendt inn det siste meldekortet, før du starter perioden med pleiepenger.',
 
-    'statusISak.søknadStatusContent.readMoreHeader': 'Se dokumenter og bekreftelse til arbeidsgiver',
-    'statusISak.søknadStatusContent.readMoreHeader.ingenArbeidsgiver': 'Se dokumenter',
+    'statusISak.søknadStatusContent.readMoreHeader': 'Vis dokumenter og bekreftelse til arbeidsgiver',
+    'statusISak.søknadStatusContent.readMoreHeader.ingenArbeidsgiver': 'Vis dokumenter',
     'statusISak.søknadStatusContent.dokumenterISøknad': 'Søknad og eventuelle vedlegg i søknad',
     'statusISak.søknadStatusContent.ettersendelse.dokumenter': 'Dokumenter i ettersendelse',
-    'statusISak.søknadStatusContent.ettersendelse.readMoreHeader': 'Se dokumenter',
+    'statusISak.søknadStatusContent.ettersendelse.readMoreHeader': 'Vis dokumenter',
 };

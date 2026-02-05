@@ -251,6 +251,8 @@ export const zArbeidsgivereDto = z.object({
     frilansoppdrag: z.optional(z.array(zFrilansoppdragDto)),
 });
 
+export const zJsonNode = z.unknown();
+
 export const zDeleteMellomlagringData = z.object({
     body: z.optional(z.never()),
     path: z.object({
@@ -270,7 +272,7 @@ export const zGetMellomlagringData = z.object({
 /**
  * OK
  */
-export const zGetMellomlagringResponse = z.string();
+export const zGetMellomlagringResponse = zJsonNode;
 
 export const zCreateMellomlagringData = z.object({
     body: z.record(z.string(), z.unknown()),
@@ -310,7 +312,7 @@ export const zInnsendingEndringsmeldingData = z.object({
 export const zSlettVedleggData = z.object({
     body: z.optional(z.never()),
     path: z.object({
-        vedleggId: z.string().min(1),
+        vedleggId: z.string(),
     }),
     query: z.optional(z.never()),
 });
@@ -323,7 +325,7 @@ export const zSlettVedleggResponse = z.void();
 export const zHentVedleggData = z.object({
     body: z.optional(z.never()),
     path: z.object({
-        vedleggId: z.string().min(1),
+        vedleggId: z.string(),
     }),
     query: z.optional(z.never()),
 });

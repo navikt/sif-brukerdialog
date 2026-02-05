@@ -1,4 +1,4 @@
-import { Box, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import axios from 'axios';
 import useSWR from 'swr';
 
@@ -8,7 +8,6 @@ import { innsendteSøknaderSchema, InnsendtSøknad } from '../../types/client-sc
 import { browserEnv } from '../../utils/env';
 import { swrBaseConfig } from '../../utils/swrBaseConfig';
 import DineInnsendteSøknader from '../dine-innsendte-søknader/DineInnsendteSøknader';
-import HvaSkjer from '../hva-skjer/HvaSkjer';
 import IngenSakEllerSøknadPage from '../ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
 import OppdatereSakLenker from '../oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
@@ -44,24 +43,11 @@ const SøknaderEllerIngenSakFalback = () => {
 
     return (
         <DefaultPageLayout documentTitle={text('forside.dokumentTittel')}>
-            <VStack gap="space-32">
-                <Box className="md:flex md:gap-6">
-                    <div className="md:grow mb-10 md:mb-0">
-                        <DineInnsendteSøknader søknader={innsendteSøknader} />
-                    </div>
-                    <div className="md:mb-none shrink-0 md:w-72">
-                        <SaksbehandlingstidPanel />
-                    </div>
-                </Box>
-                <Box>
-                    <OppdatereSakLenker />
-                </Box>
-                <Box>
-                    <SkrivTilOssLenker />
-                </Box>
-                <Box className="mt-4">
-                    <HvaSkjer />
-                </Box>
+            <VStack gap="space-48">
+                <SaksbehandlingstidPanel />
+                <DineInnsendteSøknader søknader={innsendteSøknader} />
+                <OppdatereSakLenker />
+                <SkrivTilOssLenker />
             </VStack>
         </DefaultPageLayout>
     );

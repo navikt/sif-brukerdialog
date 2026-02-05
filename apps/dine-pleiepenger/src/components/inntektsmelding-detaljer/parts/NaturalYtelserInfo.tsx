@@ -16,13 +16,13 @@ const NaturalYtelserInfo = ({ naturalYtelser }: Props) => {
         return <InlineMessage status="warning">Ikke rapportert</InlineMessage>;
     }
     if (naturalYtelser.length === 0) {
-        return <>Nei, du beholder eventuelle naturalytelser du har.</>;
+        return <>Arbeidsgiver har informert om at du ikke mister naturalytelser.</>;
     }
     return (
         <List>
             {naturalYtelser.map((ytelse, index) => (
                 <List.Item key={index}>
-                    Fra {dateFormatter.compact(ytelse.fom)}{' '}
+                    Fra og med {dateFormatter.compact(ytelse.fom)}{' '}
                     {ytelse.endring === 'mister' ? 'får du ikke lenger ' : 'får du '}
                     {naturalytelseNavn[ytelse.type]}, verdi{' '}
                     <FormattedNumber

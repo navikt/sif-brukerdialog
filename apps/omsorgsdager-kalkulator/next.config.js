@@ -5,6 +5,7 @@ const nextConfig = {
     basePath: '/omsorgspenger/kalkulator-antall-omsorgsdager',
     reactStrictMode: true,
     output: 'standalone',
+    serverExternalPackages: ['jsdom'],
     outputFileTracingRoot: path.join(__dirname, '../..'),
     outputFileTracingIncludes: {
         '/*': [
