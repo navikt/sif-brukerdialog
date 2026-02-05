@@ -258,7 +258,6 @@ jobs:
       app-name: "ungdomsytelse-deltaker"
       working-directory: "apps/ungdomsytelse-deltaker"
       package-name: "@navikt/ungdomsytelse-deltaker"
-      use-turbo-test: true
       e2e-build-command: "e2e:build"
       run-sonar: true
 
@@ -271,6 +270,5 @@ jobs:
       app-name: "ungdomsytelse-veileder"
       working-directory: "apps-intern/ungdomsytelse-veileder"
       package-name: "@navikt/ungdomsytelse-veileder"
-      use-turbo-test: true
       e2e-build-command: "e2e:build"
       run-sonar: true

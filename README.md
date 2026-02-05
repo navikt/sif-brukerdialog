@@ -1,36 +1,76 @@
 # sif-brukerdialog
 
-Samling av kode for søknadsdialoger under Sykdom i familien
+Monorepo for søknadsdialoger og felleskode under Sykdom i familien.
 
-## Script
+## Teknologi
 
--   `yarn clean` - Sletter node_modules og lib foldere.
--   `yarn` - Installerer alle moduler
--   `yarn build` - Bygger alle applikasjoner under apps med produksjonsinnstillinger (se script i app).
--   `yarn test` - Kjører alle tester i apps og packages
+| Kategori | Teknologi                                                                   |
+| -------- | --------------------------------------------------------------------------- |
+| Språk    | TypeScript, React                                                           |
+| Bygg     | Vite (de fleste apper), Next.js (dine-pleiepenger, omsorgsdager-kalkulator) |
+| Monorepo | Turborepo, Yarn Workspaces                                                  |
+| Styling  | Tailwind CSS, NAV Aksel designsystem                                        |
+| Testing  | Vitest, Playwright (e2e)                                                    |
+| Server   | Express                                                                     |
 
-## Utvikle på én applikasjon
+## Struktur
 
--   Kjør `yarn dev` for å starte bygg og watch på alt under packages.
--   Gå til aktuell app og start nødvendige dev-script der.
--   Kopier .env.example til .env i app-folder
--   Dersom det gjøres større endringer i en package, kan det være en må kjøre `yarn build-package` manuelt for at applikasjonen skal få det med seg. I VS Code kan det være en må kjøre "reload windows".
+```
+apps/              # Produksjonsapper (deployes til prod)
+apps-intern/       # Interne apper (deployes til intern-prod)
+packages/          # Delte pakker brukt av appene
+server/            # Felles server for prod-apper
+server-ungdomsytelse-veileder/  # Server for intern-app
+```
 
-## Utvikling, endringer og publisering
+## Kom i gang
 
--   -Vi bruker @changesets/cli for å holde orden på versjoner. Se https://www.npmjs.com/package/@changesets/cli for mer informasjon om hvordan det brukes-.
+```bash
+yarn install       # Installer alle avhengigheter
+yarn dev           # Start bygg og watch på packages
+```
 
-## Produksjonssetting av applikasjoner
+Gå deretter til aktuell app og kjør `yarn dev` der.
 
--   Alle applikasjoner skal prodsettes automatisk dersom det er endringer på main-branchen som berører applikasjonen. Dette gjøres ved å sette opp workflows som fanger opp push til main med endringer under path til applikasjonen.
+## Scripts
 
-### Lage PR fra branch med endret kode, og som medfører versjons-bump
+| Kommando     | Beskrivelse                           |
+| ------------ | ------------------------------------- |
+| `yarn build` | Bygger alle apper og pakker           |
+| `yarn test`  | Kjører alle tester                    |
+| `yarn clean` | Sletter node_modules og build-foldere |
+| `yarn lint`  | Kjører linting på alle pakker         |
 
-#### Oppsummert
+## Utvikling
 
--   Lag PR med oppdatert kode og changeset fil
--   PR merges til main og ny PR med oppdaterte versjoner lages automatisk
--   PR med versjoner merges inn og en publiserer til npmjs
+### Jobbe med én app
+
+1. Kjør `yarn dev` i rot-mappen (starter watch på packages)
+2. Kjør `yarn dev` i app-mappen
+
+### Endringer i packages
+
+Når du endrer kode i `packages/`, vil avhengige apper automatisk oppdateres via Turborepo.
+
+## Deploy
+
+### Automatisk deploy
+
+Ved push til `main` deployes kun apper som er påvirket av endringene. Turborepo analyserer avhengighetstreet og finner ut hvilke apper som må bygges og deployes.
+
+**Eksempel:**
+
+- Endring i `apps/dine-pleiepenger` → kun den appen deployes
+- Endring i `packages/sif-common-core-ds` → alle apper som bruker pakken deployes
+- Endring i `server/` → alle prod-apper deployes
+
+### Manuell deploy
+
+Du kan trigge deploy manuelt via GitHub Actions → "Deploy apps to prod" → "Run workflow".
+
+### Merge-strategi
+
+Ved merge av PR anbefales **squash merge** eller **merge commit**. Unngå rebase merge da dette kan trigge flere deploy-runs.
 
 ## Kode generert av GitHub Copilot
 
