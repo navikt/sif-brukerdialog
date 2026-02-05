@@ -1,5 +1,45 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.42
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 1.5.41
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.13
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.10
+    - @navikt/ung-common@0.0.94
+    - @navikt/sif-common-soknad-ds@26.1.37
+
+## 1.5.40
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
+## 1.5.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.12
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.9
+    - @navikt/sif-common-analytics@0.0.6
+    - @navikt/sif-common-soknad-ds@26.1.36
+    - @navikt/sif-common-forms-ds@21.0.54
+    - @navikt/sif-common-core-ds@10.3.52
+    - @navikt/sif-common-faro@0.2.12
+    - @navikt/sif-common-api@0.4.91
+    - @navikt/sif-common-ui@0.11.53
+    - @navikt/ung-common@0.0.93
+    - @navikt/sif-app-register@0.1.12
+
 ## 1.5.38
 
 ### Patch Changes

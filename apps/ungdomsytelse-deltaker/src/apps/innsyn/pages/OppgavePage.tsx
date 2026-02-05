@@ -4,12 +4,14 @@ import EndretSluttdatoOppgavePage from '@innsyn/modules/oppgaver/endret-sluttdat
 import EndretStartdatoOppgavePage from '@innsyn/modules/oppgaver/endret-startdato/EndretStartdatoOppgavePage';
 import RapporterInntektOppgavePage from '@innsyn/modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
 import SøkYtelseOppgavePage from '@innsyn/modules/oppgaver/søk-ytelse/SøkYtelseOppgavePage';
-import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
+import { ParsedOppgavetype } from '@shared/types/Oppgave';
 import { useParams } from 'react-router-dom';
 
 import AvvikRegisterinntektOppgavePage from '../modules/oppgaver/avvik-registerinntekt/AvvikRegisterinntektOppgavePage';
-import MeldtUtOppgavePage from '../modules/oppgaver/endret-sluttdato/MeldtUtOppgavePage';
+import EndretStartOgSluttdatoOppgavePage from '../modules/oppgaver/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePage';
+import FjernetPeriodeOppgavePage from '../modules/oppgaver/fjernet-periode/FjernetPeriodeOppgavePage';
+import MeldtUtOppgavePage from '../modules/oppgaver/meldt-ut/MeldtUtOppgavePage';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnetPage';
 
 /** Url params */
@@ -33,24 +35,29 @@ const OppgavePage = () => {
     }
 
     switch (oppgave.oppgavetype) {
-        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
+        case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return <AvvikRegisterinntektOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;
 
-        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+        case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
             return <EndretStartdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
 
-        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return oppgave.oppgavetypeData.forrigeSluttdato ? (
-                <EndretSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />
-            ) : (
-                <MeldtUtOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />
-            );
+        case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+            return <EndretSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
 
-        case Oppgavetype.RAPPORTER_INNTEKT:
+        case ParsedOppgavetype.BEKREFT_MELDT_UT:
+            return <MeldtUtOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
+
+        case ParsedOppgavetype.RAPPORTER_INNTEKT:
             return <RapporterInntektOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;
 
-        case Oppgavetype.SØK_YTELSE:
+        case ParsedOppgavetype.SØK_YTELSE:
             return <SøkYtelseOppgavePage oppgave={oppgave} />;
+
+        case ParsedOppgavetype.BEKREFT_FJERNET_PERIODE:
+            return <FjernetPeriodeOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;
+
+        case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
+            return <EndretStartOgSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
     }
 };
 

@@ -41,7 +41,7 @@ const StatusTag = ({ status, venteårsak }: BehandlingsstatusISak) => {
         case BehandlingStatus.OPPRETTET:
         case BehandlingStatus.UNDER_BEHANDLING:
             return (
-                <Tag variant="info" size="small">
+                <Tag variant="info" size="small" data-color="neutral">
                     <AppText id="statusTag.status.underBehandling" />
                 </Tag>
             );

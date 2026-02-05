@@ -4,7 +4,6 @@ import { pleietrengendeClientSchema } from '../pleietrengendeClientSchema';
 
 describe('pleietrengendeClientSchema', () => {
     const baseData = {
-        aktørId: '123456789',
         fødselsdato: '2010-01-01',
     };
 

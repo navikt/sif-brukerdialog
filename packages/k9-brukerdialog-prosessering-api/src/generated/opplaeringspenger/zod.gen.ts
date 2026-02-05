@@ -265,6 +265,8 @@ export const zArbeidsgivereDto = z.object({
     frilansoppdrag: z.optional(z.array(zFrilansoppdragDto)),
 });
 
+export const zJsonNode = z.unknown();
+
 export const zArbeidIPeriodeWritable = z.object({
     jobberIPerioden: z.optional(z.enum(['SOM_VANLIG', 'REDUSERT', 'HELT_FRAVÆR'])),
     enkeltdager: z.optional(z.array(zEnkeltdag)),
@@ -362,7 +364,7 @@ export const zGetMellomlagringData = z.object({
 /**
  * OK
  */
-export const zGetMellomlagringResponse = z.string();
+export const zGetMellomlagringResponse = zJsonNode;
 
 export const zCreateMellomlagringData = z.object({
     body: z.record(z.string(), z.unknown()),
@@ -402,7 +404,7 @@ export const zInnsendingOpplæringspengerSøknadData = z.object({
 export const zSlettVedleggData = z.object({
     body: z.optional(z.never()),
     path: z.object({
-        vedleggId: z.string().min(1),
+        vedleggId: z.string(),
     }),
     query: z.optional(z.never()),
 });
@@ -415,7 +417,7 @@ export const zSlettVedleggResponse = z.void();
 export const zHentVedleggData = z.object({
     body: z.optional(z.never()),
     path: z.object({
-        vedleggId: z.string().min(1),
+        vedleggId: z.string(),
     }),
     query: z.optional(z.never()),
 });

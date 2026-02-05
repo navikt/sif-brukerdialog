@@ -2,8 +2,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 
 import { Behandling, BehandlingStatus, SøknadISak } from '../../types';
 import { Innsendelsestype } from '../../types/Innsendelsestype';
-import { Sakshendelse, Sakshendelser } from '../../types/Sakshendelse';
-import { harBehandlingSøknadEllerEndringsmelding, sortBehandlingerNyesteFørst, sortSakshendelse } from '../sakUtils';
+import { harBehandlingSøknadEllerEndringsmelding, sortBehandlingerNyesteFørst } from '../sakUtils';
 
 const behandling1: Behandling = {
     status: BehandlingStatus.UNDER_BEHANDLING,
@@ -50,36 +49,6 @@ describe('sakUtils', () => {
         });
     });
 
-    describe('sortSakshendelser', () => {
-        const hendelse1: Sakshendelse = {
-            dato: ISODateToDate('2020-01-01'),
-            type: Sakshendelser.FERDIG_BEHANDLET,
-        };
-        const hendelse2: Sakshendelse = {
-            dato: ISODateToDate('2020-01-03'),
-            type: Sakshendelser.MOTTATT_SØKNAD,
-            innsendelse: {} as any,
-        };
-        const hendelse3: Sakshendelse = {
-            dato: ISODateToDate('2020-01-03'),
-            type: Sakshendelser.FERDIG_BEHANDLET,
-        };
-
-        const hendelseForventetSvar: Sakshendelse = {
-            dato: ISODateToDate('2020-01-02'),
-            type: Sakshendelser.FORVENTET_SVAR,
-            innsendelsestyperIBehandling: [Innsendelsestype.SØKNAD],
-        };
-
-        it('sorterer riktig på hendelser som ikke er FORVENTET_SVAR', () => {
-            const result = [hendelse1, hendelse2, hendelse3].sort(sortSakshendelse);
-            expect(result).toEqual([hendelse1, hendelse3, hendelse2]);
-        });
-        it('sorterer alltid FORVENTET_SVAR sist', () => {
-            const result = [hendelseForventetSvar, hendelse1, hendelse2, hendelse3].sort(sortSakshendelse);
-            expect(result).toEqual([hendelse1, hendelse3, hendelse2, hendelseForventetSvar]);
-        });
-    });
     describe('harBehandlingSøknadEllerEndringsmelding', () => {
         it('returnerer true hvis behandling har kun søknad', () => {
             const medSøknad: Behandling = { ...behandling1, innsendelser: [innsendtSøknad] };

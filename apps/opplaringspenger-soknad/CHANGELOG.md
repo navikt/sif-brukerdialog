@@ -1,5 +1,45 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.39
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 1.4.38
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/sif-common-soknad-ds@26.1.37
+
+## 1.4.37
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
+## 1.4.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.6
+    - @navikt/sif-common-formik-ds@2.5.44
+    - @navikt/sif-common-soknad-ds@26.1.36
+    - @navikt/sif-common-forms-ds@21.0.54
+    - @navikt/sif-common-core-ds@10.3.52
+    - @navikt/sif-common-sentry@0.28.62
+    - @navikt/sif-common-hooks@0.3.9
+    - @navikt/sif-common-utils@3.49.60
+    - @navikt/sif-common-faro@0.2.12
+    - @navikt/sif-common-api@0.4.91
+    - @navikt/sif-validation@1.0.19
+    - @navikt/sif-common-ui@0.11.53
+    - @navikt/sif-app-register@0.1.12
+
 ## 1.4.35
 
 ### Patch Changes

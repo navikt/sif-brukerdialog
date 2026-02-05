@@ -1,5 +1,17 @@
 # @navikt/sif-server
 
+## 0.4.57
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 0.4.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.4.55
 
 ### Patch Changes

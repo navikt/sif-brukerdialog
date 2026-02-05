@@ -1,4 +1,4 @@
-import { Alert, Box } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import Head from 'next/head';
 
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
@@ -20,9 +20,7 @@ const SakIkkeFunnetPage = ({ saksnr }: Props) => {
             <Head>
                 <title>Sak ikke funnet</title>
             </Head>
-            <Box className="mb-10">
-                <Alert variant="error">Kunne ikke finne sak med saksnr &quot;{saksnr || 'saksnr mangler'}&quot;</Alert>
-            </Box>
+            <Alert variant="error">Kunne ikke finne sak med saksnr &quot;{saksnr || 'saksnr mangler'}&quot;</Alert>
         </DefaultPageLayout>
     );
 };

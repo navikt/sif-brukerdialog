@@ -11,11 +11,11 @@ interface Props {
 const SnarveierSak = ({ saksnummer }: Props) => {
     const { INNTEKTSMELDING_ENABLED } = Feature;
     return (
-        <>
+        <section>
             <Heading size="medium" level="2" spacing={true}>
                 <AppText id="snarveierSak.tittel" />
             </Heading>
-            <HGrid gap="space-8" columns={{ xs: 1, md: INNTEKTSMELDING_ENABLED ? 2 : 3 }}>
+            <HGrid gap="space-12" columns={{ xs: 1, md: INNTEKTSMELDING_ENABLED ? 2 : 3 }}>
                 <LinkCard>
                     <LinkCard.Title>
                         <LinkCard.Anchor href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}>
@@ -50,7 +50,7 @@ const SnarveierSak = ({ saksnummer }: Props) => {
                     </LinkCard.Title>
                 </LinkCard>
             </HGrid>
-        </>
+        </section>
     );
 };
 

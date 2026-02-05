@@ -1,5 +1,47 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.1
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 2.2.0
+
+### Minor Changes
+
+- Inntektsmelding og splitt av sak i Dine pleiepenger. Tilhørende codegen + noe felleskoderoppdateringer
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.12
+
+## 2.1.1
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
+## 2.1.0
+
+### Minor Changes
+
+- Oppdatere til next16
+
+## 2.0.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.6
+    - @navikt/sif-common-core-ds@10.3.52
+    - @navikt/k9-sak-innsyn-api@0.2.11
+    - @navikt/sif-common-sentry@0.28.62
+    - @navikt/sif-common-utils@3.49.60
+    - @navikt/sif-app-register@0.1.12
+
 ## 2.0.27
 
 ### Patch Changes

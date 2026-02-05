@@ -22,6 +22,7 @@ const sakerMetadata = [
             etternavn: 'SANS',
         },
         fagsakYtelseType: 'PSB',
+        fagsakOpprettetTidspunkt: '2024-12-03T22:49:33.000Z',
     },
     {
         saksnummer: '1001F8G',
@@ -32,6 +33,7 @@ const sakerMetadata = [
             etternavn: 'BALSAM',
         },
         fagsakYtelseType: 'PSB',
+        fagsakOpprettetTidspunkt: '2022-01-06T22:49:33.000Z',
     },
 ];
 

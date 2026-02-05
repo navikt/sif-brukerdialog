@@ -1,5 +1,19 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.13
+
+### Patch Changes
+
+- Inntektsmelding og splitt av sak i Dine pleiepenger. Tilhørende codegen + noe felleskoderoppdateringer
+
+## 0.3.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.91
+
 ## 0.3.11
 
 ### Patch Changes

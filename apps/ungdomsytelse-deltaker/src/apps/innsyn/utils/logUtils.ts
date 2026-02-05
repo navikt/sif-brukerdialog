@@ -1,7 +1,7 @@
 import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
-import { BekreftelseOppgave, SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { BekreftelseOppgave, ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
 import { KontonummerOppslagInfo } from '@søknad/types';
 import dayjs from 'dayjs';
@@ -28,9 +28,11 @@ type DeltakelsePeriodeMeta = {
 const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeriodeMeta => {
     const harSøkt = deltakelse.søktTidspunkt !== undefined;
     const harStartet = dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
-    const erAvsluttet = dayjs(deltakelse.programPeriode.to).isAfter(dayjs());
+    const erAvsluttet = dayjs(deltakelse.programPeriode.to).isBefore(dayjs());
 
-    const søkYtelseOppgave = deltakelse.oppgaver.find((oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE);
+    const søkYtelseOppgave = deltakelse.oppgaver.find(
+        (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.SØK_YTELSE,
+    );
     return {
         harSøkt,
         harStartet,
@@ -47,19 +49,20 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeri
         antallLukkedeOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.LUKKET).length,
         harSluttdato: deltakelse.programPeriode.to !== undefined,
         antallEndretStartdatoOppgaver: deltakelse.oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+            (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
         ).length,
         antallEndretSluttdatoOppgaver: deltakelse.oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+            (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
         ).length,
         antallAvvikInntektOppgaver: deltakelse.oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+            (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
         ).length,
         antallRapporterInntektOppgaver: deltakelse.oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === Oppgavetype.RAPPORTER_INNTEKT,
+            (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.RAPPORTER_INNTEKT,
         ).length,
-        antallSøkYtelseOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE)
-            .length,
+        antallSøkYtelseOppgaver: deltakelse.oppgaver.filter(
+            (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.SØK_YTELSE,
+        ).length,
     };
 };
 

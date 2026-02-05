@@ -5,6 +5,10 @@ import pluginReact from 'eslint-plugin-react';
 import vitest from 'eslint-plugin-vitest';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const OFF = 0;
 const WARNING = 1;
@@ -21,7 +25,13 @@ export default [
         plugins: {
             vitest,
         },
-        languageOptions: { globals: globals.browser },
+        languageOptions: {
+            globals: globals.browser,
+            parserOptions: {
+                projectService: true,
+                tsconfigRootDir: __dirname,
+            },
+        },
     },
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,

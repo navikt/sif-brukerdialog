@@ -4,30 +4,30 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.20.70",
+    "version": "2.20.72",
     "private": true,
     "type": "module",
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "6.0.2",
-        "@sanity/client": "7.14.0"
+        "@sanity/client": "7.14.1"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "8.1.0",
-        "@navikt/ds-css": "8.1.0",
-        "@navikt/ds-react": "8.1.0",
+        "@navikt/aksel-icons": "8.2.2",
+        "@navikt/ds-css": "8.2.2",
+        "@navikt/ds-react": "8.2.2",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.0.9",
-        "@types/react": "19.2.9",
+        "@types/node": "25.1.0",
+        "@types/react": "19.2.10",
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "postcss": "8.5.6",
         "prop-types": "15.8.1",
-        "react": "19.2.3",
-        "react-dom": "19.2.3",
+        "react": "19.2.4",
+        "react-dom": "19.2.4",
         "rimraf": "6.1.2",
-        "sass": "1.97.2"
+        "sass": "1.97.3"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

@@ -1,12 +1,13 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { Alert, BodyLong, Box, Link, Switch, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Switch, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { AppText, useAppIntl } from '../../i18n';
 import { Inntektsmelding, Sak } from '../../types';
+import { ProcessStepData } from '../../types/ProcessStepData';
 import { getAlleHendelserISak } from '../../utils/sakUtils';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
+import LinkButton from '../link-button/LinkButton';
 import StatusISakHeading from './parts/StatusISakHeading';
 import StatusISakSteps from './StatusISakSteps';
 import { getProcessStepsFraSakshendelser } from './statusISakUtils';
@@ -18,16 +19,33 @@ interface Props {
     inntektsmeldinger: Inntektsmelding[];
 }
 
+const sortProcessStepDescending = (a: ProcessStepData, b: ProcessStepData) =>
+    (b.timestamp?.getTime() || 0) - (a.timestamp?.getTime() || 0);
+
+const sortProcessStepAscending = (a: ProcessStepData, b: ProcessStepData) =>
+    (a.timestamp?.getTime() || 0) - (b.timestamp?.getTime() || 0);
+
 const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props) => {
-    const [reverseDirection, setReverseDirection] = useState(false);
+    const [sortDescending, setSortDescending] = useState(true);
     const { text } = useAppIntl();
-    const sakshendelser = getAlleHendelserISak(sak, inntektsmeldinger);
-    const processSteps = getProcessStepsFraSakshendelser(text, sakshendelser);
+
+    const processSteps = useMemo(() => {
+        const sakshendelser = getAlleHendelserISak(sak, inntektsmeldinger);
+        const steps = getProcessStepsFraSakshendelser(text, sakshendelser);
+        return steps.sort(sortDescending ? sortProcessStepDescending : sortProcessStepAscending);
+    }, [sak, inntektsmeldinger, text, sortDescending]);
+
+    const visibleSteps = useMemo(
+        () => (visAlleHendelser ? processSteps : processSteps.slice(0, 3)),
+        [visAlleHendelser, processSteps],
+    );
+
+    const finnesFlereHendelser = visibleSteps.length < processSteps.length;
 
     if (processSteps.length === 0) {
         return (
             <VStack gap="space-12">
-                <StatusISakHeading tittel={tittel} />
+                {tittel ? <StatusISakHeading tittel={tittel} /> : null}
                 <Alert variant="info">
                     <AppText
                         id="statusISak.ingenHendelser"
@@ -41,36 +59,33 @@ const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props)
         );
     }
 
-    if (reverseDirection) {
-        processSteps.reverse();
-    }
-    const visibleSteps = visAlleHendelser ? processSteps : [...processSteps].splice(-3);
-    const finnesFlereHendelser = visibleSteps.length < processSteps.length;
-
     return (
         <VStack gap="space-12">
-            <StatusISakHeading tittel={tittel} />
+            {tittel ? <StatusISakHeading tittel={tittel} /> : null}
             {visAlleHendelser ? (
                 <Box>
                     <Switch
-                        checked={reverseDirection}
+                        checked={sortDescending}
                         onChange={(e) => {
-                            setReverseDirection(e.target.checked);
+                            setSortDescending(e.target.checked);
                         }}>
                         Vis nyeste øverst
                     </Switch>
                 </Box>
             ) : null}
-            <Box className=" p-6 pb-4 pt-6 rounded-large" background="default" borderRadius="16">
+            <Box background="default" borderRadius="16" padding="space-24">
                 <VStack gap="space-32">
-                    <StatusISakSteps steps={visibleSteps} isTruncated={finnesFlereHendelser ? 'start' : undefined} />
-                    {finnesFlereHendelser && visAlleHendelser === undefined ? (
-                        <Box className="ml-4 mb-4">
-                            <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
-                                Se alle hendelser
-                                <ChevronRightIcon role="presentation" />
-                            </Link>
-                        </Box>
+                    <StatusISakSteps
+                        steps={visibleSteps}
+                        isTruncated={finnesFlereHendelser ? 'end' : undefined}
+                        pageSize={visAlleHendelser ? 8 : undefined}
+                    />
+                    {finnesFlereHendelser && !visAlleHendelser ? (
+                        <div>
+                            <LinkButton direction="right" as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
+                                Se tidligere hendelser
+                            </LinkButton>
+                        </div>
                     ) : null}
                 </VStack>
             </Box>

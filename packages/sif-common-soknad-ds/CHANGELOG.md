@@ -1,5 +1,30 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.1.37
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/appstatus-react-ds@2.20.72
+
+## 26.1.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.44
+    - @navikt/sif-common-forms-ds@21.0.54
+    - @navikt/appstatus-react-ds@2.20.71
+    - @navikt/sif-common-core-ds@10.3.52
+    - @navikt/sif-common-sentry@0.28.62
+    - @navikt/sif-common-hooks@0.3.9
+    - @navikt/sif-common-utils@3.49.60
+    - @navikt/sif-common-faro@0.2.12
+    - @navikt/sif-validation@1.0.19
+    - @navikt/sif-common-ui@0.11.53
+
 ## 26.1.35
 
 ### Patch Changes

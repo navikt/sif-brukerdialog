@@ -6,7 +6,6 @@ import { personaliaUtils } from '../personaliaUtils';
 
 const pleietrengendeMedNavn: Pleietrengende = {
     anonymisert: false,
-    aktørId: '123',
     fødselsdato: ISODateToDate('2021-01-01'),
     fornavn: 'Ola',
     etternavn: 'Nordmann',
@@ -15,7 +14,6 @@ const pleietrengendeMedNavn: Pleietrengende = {
 
 const pleietrengendeAnonymisert: Pleietrengende = {
     anonymisert: true,
-    aktørId: '123',
     fødselsdato: ISODateToDate('2021-01-01'),
 };
 

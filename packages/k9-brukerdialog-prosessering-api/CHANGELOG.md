@@ -1,5 +1,17 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.3.10
+
+### Patch Changes
+
+- Inntektsmelding og splitt av sak i Dine pleiepenger. Tilhørende codegen + noe felleskoderoppdateringer
+
+## 0.3.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.3.8
 
 ### Patch Changes

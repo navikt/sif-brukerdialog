@@ -20,8 +20,10 @@ const getEndringstypeTekst = (type: Endringstype): string => {
             return 'Endret sluttdato';
         case Endringstype.ENDRET_STARTDATO:
             return 'Endret startdato';
-        default:
-            return 'Ukjent';
+        case Endringstype.DELTAKELSE_FJERNET:
+            return 'Deltakelse slettet';
+        case Endringstype.UKJENT:
+            return 'Ukjent endringstype';
     }
 };
 

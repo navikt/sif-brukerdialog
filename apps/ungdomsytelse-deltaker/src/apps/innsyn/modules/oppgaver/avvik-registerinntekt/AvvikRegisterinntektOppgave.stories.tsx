@@ -3,7 +3,6 @@ import { Heading, VStack } from '@navikt/ds-react';
 import {
     ArbeidOgFrilansRegisterInntektDto,
     OppgaveStatus,
-    Oppgavetype,
     RegisterinntektDto,
     YtelseRegisterInntektDto,
     YtelseType,
@@ -12,14 +11,14 @@ import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
-import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
+import { AvvikRegisterinntektOppgave, ParsedOppgavetype } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
 import AvvikRegisterinntektOppgavePage from './AvvikRegisterinntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/6. Avvik registerinntekt inntekt',
+    title: 'Innsyn/Oppgaver/7. Avvik registerinntekt inntekt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };
@@ -54,7 +53,7 @@ const registerInntektEnArbeidsgiver: RegisterinntektDto = {
 
 const oppgave: AvvikRegisterinntektOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+    oppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-31').toDate(),

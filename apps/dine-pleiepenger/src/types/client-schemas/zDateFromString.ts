@@ -3,7 +3,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import z from 'zod';
 
-const validateAndConvertToUTCDate = (val: string): Date => {
+export const validateAndConvertToUTCDate = (val: string): Date => {
     if (!dayjs(val).isValid()) {
         throw new Error(`Invalid date string: ${val}`);
     }

@@ -12,7 +12,7 @@
     "dependencies": {
         "glob": "13.0.0",
         "tailwindcss": "4.1.18",
-        "turbo": "2.7.5"
+        "turbo": "2.8.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -20,7 +20,7 @@
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
         "lint-staged": "16.2.7",
-        "prettier": "3.8.0",
+        "prettier": "3.8.1",
         "typescript": "5.9.3"
     },
     "lint-staged": {
@@ -55,13 +55,10 @@
         "server",
         "server-ungdomsytelse-veileder"
     ],
-    "packageManager": "yarn@4.10.3",
-    "private": true,
     "resolutions": {
-        "react": "19.2.3",
-        "react-dom": "19.2.3",
-        "glob@10.4.5": "10.5.0",
-        "glob@npm10.4.5": "10.5.0",
-        "tar": "7.5.6"
-    }
+        "tar": "7.5.7",
+        "@isaacs/brace-expansion": "5.0.1"
+    },
+    "packageManager": "yarn@4.10.3",
+    "private": true
 }
