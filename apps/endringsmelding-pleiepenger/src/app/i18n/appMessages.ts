@@ -1,4 +1,6 @@
 import { infoNormalarbeidstid } from '../components/info-normalarbeidstid/infoNormalarbeidstid.messages';
+import { dagerMedTidMessages } from '../local-sif-common-pleiepenger/components/dager-med-tid-liste/dagerMedTidMessages';
+import { sifCommonPleiepengerMessages_nb } from '../local-sif-common-pleiepenger/i18n/nb';
 import { arbeidstidUkerMessages } from '../modules/arbeidstid-uker/arbeidstidUkerMessages';
 import { endreArbeidstidMessages } from '../modules/endre-arbeidstid-form/endreArbeidstidMessages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
@@ -20,6 +22,17 @@ const nb = {
     ...sifCommonSoknadOverrideMessages.nb,
     ...arbeidstidUkerMessages.nb,
     ...omsorgstilbudMessages_nb,
+    ...sifCommonPleiepengerMessages_nb,
+    ...dagerMedTidMessages.nb,
+
+    'psb.timerOgMinutter':
+        '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
+
+    'mandag.caps': 'Mandag',
+    'tirsdag.caps': 'Tirsdag',
+    'onsdag.caps': 'Onsdag',
+    'torsdag.caps': 'Torsdag',
+    'fredag.caps': 'Fredag',
 
     'lenke.skrivTilOss': 'Skriv til oss',
     'lenke.sendBeskjed': 'Send beskjed',

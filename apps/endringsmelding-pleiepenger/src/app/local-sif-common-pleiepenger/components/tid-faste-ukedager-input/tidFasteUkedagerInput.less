@@ -1,0 +1,29 @@
+.tidFasteUkedagerInput {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: left;
+    > * {
+        padding: 0.25rem 0.5rem;
+        max-width: 8rem;
+        margin-bottom: 1rem;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &:first-child {
+            padding-left: 0;
+        }
+    }
+    &--withHiddenDays {
+        > * {
+            flex: inherit;
+        }
+    }
+
+    .skjemaelement.timeInput__hours {
+        margin-bottom: 0;
+    }
+    .skjemaelement.timeInput__minutes {
+        margin-bottom: 0;
+    }
+}
