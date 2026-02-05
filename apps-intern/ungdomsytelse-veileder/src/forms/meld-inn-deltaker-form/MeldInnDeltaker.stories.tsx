@@ -6,12 +6,13 @@ import MeldInnDeltakerForm from './MeldInnDeltakerForm';
 import { Deltaker } from '../../types/Deltaker';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
+import { withDrawerContext } from '../../../storybook/decorators/withDrawerContext';
 
 const meta: Meta<typeof MeldInnDeltakerForm> = {
     component: MeldInnDeltakerForm,
     title: 'Components/MeldInnDeltakerForm',
     parameters: {},
-    decorators: [withIntl, withVeilederContext, withQueryClientProvider],
+    decorators: [withIntl, withVeilederContext, withQueryClientProvider, withDrawerContext],
 };
 export default meta;
 

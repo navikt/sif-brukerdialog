@@ -64,10 +64,12 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                     {synligeHistorikkInnslag.map(({ tidspunkt, aktør, endring, endringstype }, index) => {
                         return (
                             <Table.Row key={tidspunkt.getTime()} ref={index === focusIndex ? ref : undefined}>
-                                <Table.DataCell width="200">{dateFormatter.compactWithTime(tidspunkt)}</Table.DataCell>
-                                <Table.DataCell>{getEndringstypeTekst(endringstype)}</Table.DataCell>
-                                <Table.DataCell>{endring}</Table.DataCell>
-                                <Table.DataCell>{aktør}</Table.DataCell>
+                                <Table.DataCell width="200" valign="top">
+                                    {dateFormatter.compactWithTime(tidspunkt)}
+                                </Table.DataCell>
+                                <Table.DataCell valign="top">{getEndringstypeTekst(endringstype)}</Table.DataCell>
+                                <Table.DataCell valign="top">{endring}</Table.DataCell>
+                                <Table.DataCell valign="top">{aktør}</Table.DataCell>
                             </Table.Row>
                         );
                     })}

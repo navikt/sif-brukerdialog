@@ -1,9 +1,10 @@
+import '@navikt/ds-css';
+import { UngdomsytelseVeilederApp } from '@navikt/sif-app-register';
+import { FaroProvider } from '@navikt/sif-common-faro';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
-import { BrowserRouter } from 'react-router-dom';
-import { UngdomsytelseVeilederApp } from '@navikt/sif-app-register';
-import { getRequiredEnv } from '@navikt/sif-common-env';
-import { FaroProvider } from '@navikt/sif-common-faro';
+import './app.css';
+import AppRouter from './AppRouter';
 import AppRoutes from './AppRoutes';
 import AppHeader from './components/app-header/AppHeader';
 import { DrawerProvider } from './components/drawer/DrawerContext';
@@ -17,8 +18,6 @@ import { AnalyticsProvider, registerAnalytics } from './utils/analytics';
 import { getAppEnv } from './utils/appEnv';
 import { GlobalQueryLogger } from './utils/globalQueryLogger';
 import { initApiClients } from './utils/initApiClients';
-import '@navikt/ds-css';
-import './app.css';
 
 const queryClient = new QueryClient();
 
@@ -41,7 +40,7 @@ const App = () => {
                             <QueryClientProvider client={queryClient}>
                                 <GlobalQueryLogger />
                                 <IntlProvider locale="nb" messages={appMessages.nb}>
-                                    <BrowserRouter basename={getRequiredEnv('PUBLIC_PATH')}>
+                                    <AppRouter>
                                         <DrawerProvider
                                             initialContent={<DrawerArticles />}
                                             initialOpen={false}
@@ -49,7 +48,7 @@ const App = () => {
                                             <AppHeader />
                                             <AppRoutes />
                                         </DrawerProvider>
-                                    </BrowserRouter>
+                                    </AppRouter>
                                 </IntlProvider>
                             </QueryClientProvider>
                         </AnalyticsProvider>

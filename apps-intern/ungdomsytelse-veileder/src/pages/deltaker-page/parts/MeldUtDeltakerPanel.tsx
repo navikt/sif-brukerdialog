@@ -20,7 +20,7 @@ const MeldUtDeltakerPanel = ({ onClickMeldUtButton }: Props) => (
             </VStack>
             <div>
                 <Button
-                    variant="secondary"
+                    variant="primary"
                     size="small"
                     icon={<PencilFillIcon aria-hidden="true" />}
                     onClick={onClickMeldUtButton}>

@@ -24,7 +24,7 @@ const EndreSluttdatoPanel = ({ tilOgMed, kanEndreSluttdato, onClickEndreSluttdat
             <div>
                 {kanEndreSluttdato ? (
                     <Button
-                        variant="secondary"
+                        variant="primary"
                         size="small"
                         icon={<PencilFillIcon aria-hidden="true" />}
                         onClick={onClickEndreSluttdato}>

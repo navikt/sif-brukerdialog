@@ -29,13 +29,3 @@ test('Endre startdato', async ({ page }) => {
     await page.getByRole('button', { name: 'Ok, lukk' }).click();
     await expect(page.getByText('Startdato:mandag 17.03.')).toBeVisible();
 });
-
-// test('Registrere sluttdato', async ({ page }) => {
-//     await page.getByRole('button', { name: 'Registrer sluttdato' }).click();
-//     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-//     await page.getByRole('button', { name: 'fredag 16' }).click();
-//     await page.getByRole('checkbox', { name: 'Jeg bekrefter' }).check();
-//     await page.getByTestId('typedFormikForm-submitButton').click();
-//     await page.getByRole('button', { name: 'Ok, lukk' }).click();
-//     await expect(page.getByText('Sluttdato:fredag 16.05.')).toBeVisible();
-// });

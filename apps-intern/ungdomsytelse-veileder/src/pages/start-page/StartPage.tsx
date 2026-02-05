@@ -32,7 +32,7 @@ const StartPage = () => {
     };
 
     return (
-        <Box background="default" paddingBlock="space-0">
+        <Box paddingBlock="space-0">
             <AppPage>
                 <Page.Block gutters={true}>
                     <HStack align="center" justify="center" paddingBlock="space-56 space-0">

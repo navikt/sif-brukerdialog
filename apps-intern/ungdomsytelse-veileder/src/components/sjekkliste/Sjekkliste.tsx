@@ -1,168 +1,302 @@
-import { Alert, BodyLong, Box, Heading, HStack, List, Radio, RadioGroup, ReadMore, VStack } from '@navikt/ds-react';
-import { usePrevious } from '@navikt/sif-common-hooks';
-import { useEffect, useState } from 'react';
+/* eslint-disable max-len */
 import {
-    alleSpørsmålBesvart,
-    getAvslagÅrsak,
-    getSjekklisteVisning,
-    JaNei,
-    SjekklisteValues,
-    TypeLivsoppholdsytelse,
-} from './sjekklisteUtils';
+    Alert,
+    BodyLong,
+    Box,
+    Button,
+    Heading,
+    HStack,
+    List,
+    Radio,
+    RadioGroup,
+    ReadMore,
+    VStack,
+} from '@navikt/ds-react';
+import { usePrevious } from '@navikt/sif-common-hooks';
+import { ReactNode, useEffect, useState } from 'react';
+import { getSjekklisteStatus, JaNei, SjekklisteValues, spørsmål } from './sjekklisteUtils';
+import ExternalLink from '../external-link/ExternalLink';
+import { ExternalLinkIcon, RecycleIcon } from '@navikt/aksel-icons';
 
-interface Props {
-    visResultat?: boolean;
-    showHeader?: boolean;
-    onChange: (kanMeldesInn: boolean) => void;
+interface SpørsmålInnhold {
+    legend: string;
+    description: ReactNode;
 }
 
-const Sjekkliste = ({ onChange, visResultat, showHeader = true }: Props) => {
+/** Innhold for hvert spørsmål - legend og description */
+const spørsmålInnhold: SpørsmålInnhold[] = [
+    {
+        legend: '1. Tilhører den unge et kontor som deltar i forsøket?',
+        description: (
+            <ReadMore header="Mer om forsøkskontorene">
+                <VStack gap="space-8">
+                    <BodyLong>
+                        Deltakere i ungdomsprogrammet må tilhøre et av følgende kontor som deltar i forsøket: Arendal,
+                        Bergen Sør, Bergen Vest, Kristiansand, Porsgrunn, Sandefjord eller Skien.
+                    </BodyLong>
+                    <List>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
+                            <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-3">
+                                Les om § 2 i rundskrivet
+                            </ExternalLink>
+                        </List.Item>
+                    </List>
+                </VStack>
+            </ReadMore>
+        ),
+    },
+    {
+        legend: '2. Mottar den unge andre livsoppholdsytelser?',
+        description: (
+            <ReadMore header="Mer om livsoppholdsytelser">
+                <VStack gap="space-8">
+                    <BodyLong>
+                        Den unge kan ikke motta ungdomsprogramytelsen samtidig som hen mottar andre livsoppholdsytelser,
+                        med noen unntak.
+                    </BodyLong>
+                    <List>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
+                            <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_4-6">
+                                Les om § 12 i rundskrivet
+                            </ExternalLink>
+                        </List.Item>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
+                            <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
+                                Les om § 3 i rundskrivet
+                            </ExternalLink>
+                        </List.Item>
+                    </List>
+                </VStack>
+            </ReadMore>
+        ),
+    },
+    {
+        legend: '3. Er den unge mellom 18 og 29 år ved oppstart, har hen et fastsatt bistandsbehov fra Nav, og har hen ikke tidligere deltatt i ungdomsprogrammet?',
+        description: (
+            <ReadMore header="Mer om alder, bistandsbehov og tidligere deltakelse">
+                <VStack gap="space-8">
+                    <BodyLong>
+                        Den unge kan tidligst starte i programmet den dagen hen fyller 18 år, og senest dagen før hen
+                        fyller 29 år.
+                    </BodyLong>
+                    <BodyLong>
+                        Den unge må ha fått en vurdering fra Nav om at hen trenger veiledning og støtte for å komme i
+                        jobb, i henhold til ungdomsgarantien.
+                    </BodyLong>
+                    <BodyLong>Den unge kan ikke ha deltatt i ungdomsprogrammet tidligere.</BodyLong>
+                    <List>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
+                            <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
+                                Les om § 3 første ledd bokstav a, b og c i rundskrivet
+                            </ExternalLink>
+                        </List.Item>
+                    </List>
+                </VStack>
+            </ReadMore>
+        ),
+    },
+    {
+        legend: '4. Ønsker den unge å delta i ungdomsprogrammet?',
+        description: (
+            <ReadMore header="Mer om ønsket om å delta">
+                <VStack gap="space-8">
+                    <BodyLong>
+                        Den unge må ha gitt uttrykk for å at hen ønsker å delta i programmet. Hen må også ha fått god
+                        informasjon om hvilke forventninger vi stiller, og hvilke aktiviteter som kan inngå, og
+                        egeninnsatsen det krever av den unge.
+                    </BodyLong>
+                    <List>
+                        <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
+                            <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
+                                Les om § 3 første ledd bokstav d i rundskrivet
+                            </ExternalLink>
+                        </List.Item>
+                    </List>
+                </VStack>
+            </ReadMore>
+        ),
+    },
+    {
+        legend: '5. Er den unge i stand til å delta i programmet på fulltid, vil den unge kunne bli i stand til å komme i arbeid eller utdanning gjennom å delta i programmet, og vil det være hensiktsmessig og nødvendig for den unge å delta?',
+        description: (
+            <VStack gap="space-6">
+                <ReadMore header="Mer om det å være i stand til å delta på fulltid">
+                    <VStack gap="space-8">
+                        <BodyLong>
+                            Aktivitetene i planen til den unge skal være individuelt tilpasset, og planen er noe du og
+                            den unge skal finne ut av sammen. Når du som veileder skal vurdere om den unge er i stand
+                            til å delta i et fulltidsprogram, er det viktig å huske på dette. Planen kan for eksempel
+                            tilpasses med en større grad av egenaktivitet i den første perioden, med gradvis opptrapping
+                            og tilvenning.
+                        </BodyLong>
+                        <BodyLong>
+                            Aktivitetene kan være for eksempel kartlegging, karriereveiledning, individuell oppfølging,
+                            egentrening, medisinsk behandling, sosial trening eller deltakelse på lavterskeltilbud.
+                        </BodyLong>
+                        <List>
+                            <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
+                                <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
+                                    Les om § 3 første ledd bokstav e i rundskrivet
+                                </ExternalLink>
+                            </List.Item>
+                        </List>
+                    </VStack>
+                </ReadMore>
+                <ReadMore header="Mer om det å kunne bli i stand til å komme i arbeid eller utdanning ">
+                    <VStack gap="space-8">
+                        <BodyLong>
+                            Det må være sannsynlig at den unge gjennom programmet får den oppfølgingen og
+                            kvalifiseringen som er nødvendig for å kunne delta i ordinært arbeid eller utdanning.{' '}
+                        </BodyLong>
+
+                        <BodyLong>
+                            Ordinær utdanning betyr at den unge kan gjennomføre utdanning uten oppfølging og ytelser fra
+                            Nav.
+                        </BodyLong>
+
+                        <BodyLong>
+                            I ordinært arbeid kan hjelpemidler og tilrettelegging fremdeles være nødvendig, og det er
+                            ikke en forutsetning at den unge skal jobbe/studere på heltid umiddelbart etter avsluttet
+                            program.
+                        </BodyLong>
+                        <List>
+                            <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
+                                <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
+                                    Les om § 3 første ledd bokstav e i rundskrivet
+                                </ExternalLink>
+                            </List.Item>
+                        </List>
+                    </VStack>
+                </ReadMore>
+                <ReadMore header="Mer om det at det er hensiktsmessig og nødvendig å delta">
+                    <VStack gap="space-8">
+                        <BodyLong>
+                            Vilkåret om at programmet skal være «nødvendig og hensiktsmessig» betyr at den unge må ha et
+                            så stort behov for bistand at situasjonen tilsier deltakekse i et fulltidsprogram.
+                        </BodyLong>
+                        <BodyLong>
+                            Som veileder vurderer du først hvilke mål den unge har om arbeid eller utdanning, og
+                            deretter om ungdomsprogrammet kan hjelpe hen å nå disse målene.
+                        </BodyLong>
+
+                        <BodyLong>
+                            Programmet anses som nødvendig og hensiktsmessig når det kan bidra til å redusere gapet
+                            mellom den unges forutsetninger og arbeidslivets krav, jf. tiltaksforskriften § 1–3.
+                        </BodyLong>
+                        <List>
+                            <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
+                                <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram#KAPITTEL_2-4">
+                                    Les om § 3 andre ledd i rundskrivet
+                                </ExternalLink>
+                            </List.Item>
+                        </List>
+                    </VStack>
+                </ReadMore>
+            </VStack>
+        ),
+    },
+];
+
+interface Props {
+    onChange?: (kanMeldesInn: boolean) => void;
+}
+
+const Sjekkliste = ({ onChange }: Props) => {
     const [values, setValues] = useState<SjekklisteValues>({});
 
-    const setValue = <K extends keyof SjekklisteValues>(key: K, value: SjekklisteValues[K]) => {
-        setValues((prev) => ({ ...prev, [key]: value }));
+    const setValue = (id: string, value: JaNei) => {
+        setValues((prev) => ({ ...prev, [id]: value }));
     };
 
-    const visning = getSjekklisteVisning(values);
-    const avslagÅrsak = getAvslagÅrsak(values, visning);
-    const kanMeldesInn = alleSpørsmålBesvart(values, visning) && avslagÅrsak === undefined;
-    const prev = usePrevious(kanMeldesInn);
+    const status = getSjekklisteStatus(values);
+    const prev = usePrevious(status.kanMeldesInn);
 
     useEffect(() => {
-        if (prev !== kanMeldesInn) {
-            onChange(kanMeldesInn);
+        if (!onChange) {
+            return;
         }
-    }, [kanMeldesInn, onChange, prev]);
+        if (prev !== status.kanMeldesInn) {
+            onChange(status.kanMeldesInn);
+        }
+    }, [status.kanMeldesInn, onChange, prev]);
+
+    const harFeilSvar = status.førsteFeilIndex !== undefined;
+
+    const resetSjekkliste = () => {
+        setValues({});
+    };
 
     return (
-        <VStack gap="space-8">
-            {showHeader && (
-                <Heading level="3" size="small" spacing>
-                    Sjekkliste for om deltaker kan meldes inn i ungdoms&shy;programmet
+        <VStack gap="space-32">
+            <VStack gap="space-16">
+                <Heading level="2" size="large">
+                    Sjekk om den unge kan meldes inn i ungdoms&shy;programmet
                 </Heading>
-            )}
-            <VStack gap="space-40">
-                <RadioGroup
-                    name="alder"
-                    legend="Er deltaker mellom 18 og 29 år ved oppstart?"
-                    value={values.alder || ''}
-                    onChange={(val: JaNei) => setValue('alder', val)}>
-                    <HStack gap="space-40">
-                        <Radio value="ja">Ja</Radio>
-                        <Radio value="nei">Nei</Radio>
-                    </HStack>
-                </RadioGroup>
+                <BodyLong>
+                    Svar på spørsmålene nedenfor for å se om den unge kan meldes inn i ungdomsprogrammet.
+                </BodyLong>
+                <List>
+                    <List.Item icon={<ExternalLinkIcon role="presentation" fontSize="1.25rem" />}>
+                        <ExternalLink href="https://lovdata.no/nav/rundskriv/r76-13-04-for?q=Ungdomsprogram">
+                            Rundskriv til forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse
+                        </ExternalLink>
+                    </List.Item>
+                </List>
+            </VStack>
 
-                {visning.visBehov && (
-                    <RadioGroup
-                        name="behov"
-                        value={values.behov || ''}
-                        onChange={(val: JaNei) => setValue('behov', val)}
-                        legend="Har deltaker behov for bistand fra Nav og er deltakelsen nødvendig og hensiktsmessig for å komme i arbeid?"
-                        description={
-                            <ReadMore header="Les mer om nødvendighet">
-                                <VStack gap="space-16">
-                                    <BodyLong>
-                                        Punkter som gir eksempler på hvem som ikke kan tas inn (eks: har lån og stipend
-                                        fra lånekassen mm mm)
-                                    </BodyLong>
-                                    <List>
-                                        <List.Item>Har lån og stipend fra lånekassen</List.Item>
-                                        <List.Item>Har skjult formue på Barbados</List.Item>
-                                    </List>
-                                </VStack>
-                            </ReadMore>
-                        }>
-                        <HStack gap="space-40">
-                            <Radio value="ja">Ja</Radio>
-                            <Radio value="nei">Nei</Radio>
-                        </HStack>
-                    </RadioGroup>
+            <VStack gap="space-12">
+                <Heading level="3" size="small">
+                    Sjekkliste
+                </Heading>
+                <Box>
+                    <Button
+                        title="Nullstiller registrerte svar i listen"
+                        variant="tertiary"
+                        size="small"
+                        onClick={resetSjekkliste}
+                        icon={<RecycleIcon role="presentation" />}>
+                        Nullstill sjekkliste
+                    </Button>
+                </Box>
+
+                <VStack gap="space-4">
+                    {spørsmål.map((sp, index) => {
+                        if (!status.synligeSpørsmål.includes(index)) {
+                            return null;
+                        }
+                        const innhold = spørsmålInnhold[index];
+                        return (
+                            <Box
+                                background="neutral-softA"
+                                borderRadius="8"
+                                padding="space-24"
+                                paddingInline="space-32"
+                                key={sp.id}>
+                                <RadioGroup
+                                    name={sp.id}
+                                    legend={innhold.legend}
+                                    value={values[sp.id] || ''}
+                                    onChange={(val: JaNei) => setValue(sp.id, val)}
+                                    description={<Box marginBlock="space-4">{innhold.description}</Box>}>
+                                    <HStack gap="space-40">
+                                        <Radio value="ja">Ja</Radio>
+                                        <Radio value="nei">Nei</Radio>
+                                    </HStack>
+                                </RadioGroup>
+                            </Box>
+                        );
+                    })}
+                </VStack>
+                {status.kanMeldesInn && (
+                    <Alert variant="success">Ja, den unge kan meldes inn i ungdomsprogrammet</Alert>
                 )}
-
-                {visning.visAvklart && (
-                    <RadioGroup
-                        name="avklart"
-                        value={values.avklart || ''}
-                        onChange={(val: JaNei) => setValue('avklart', val)}
-                        legend="Ønsker deltaker å være med, kan delta på fulltid og har ikke tidligere vært med i ungdomsprogrammet?"
-                        description={
-                            <ReadMore header="Les mer om krav til deltakelse på fulltid">
-                                <VStack gap="space-16" marginBlock="space-0 space-16">
-                                    <BodyLong>
-                                        Punkter som gir eksempler på hvem som ikke kan delta på full tid (eks: mottar
-                                        sykepenger, pleiepenger)
-                                    </BodyLong>
-                                </VStack>
-                            </ReadMore>
-                        }>
-                        <HStack gap="space-40">
-                            <Radio value="ja">Ja</Radio>
-                            <Radio value="nei">Nei</Radio>
-                        </HStack>
-                    </RadioGroup>
-                )}
-
-                {visning.visMottarYtelser && (
-                    <RadioGroup
-                        name="livsoppholdsytelser"
-                        legend="Mottar deltakeren andre livsoppholdsytelser fra Nav?"
-                        value={values.mottarYtelser || ''}
-                        onChange={(val: JaNei) => setValue('mottarYtelser', val)}>
-                        <HStack gap="space-40">
-                            <Radio value="ja">Ja</Radio>
-                            <Radio value="nei">Nei</Radio>
-                        </HStack>
-                    </RadioGroup>
-                )}
-
-                {visning.visTypeLivsoppholdsytelse && (
-                    <RadioGroup
-                        name="typeLivsoppholdsytelse"
-                        legend="Hvilken form for livsoppholdsytelse er dette?"
-                        value={values.typeLivsoppholdsytelse || ''}
-                        onChange={(val: TypeLivsoppholdsytelse) => setValue('typeLivsoppholdsytelse', val)}>
-                        <Radio value="økonomisk">Økonomisk bistand</Radio>
-                        <Radio value="annen">Annen livsoppholdsytelse</Radio>
-                    </RadioGroup>
-                )}
-
-                {visning.visSkalStanses && (
-                    <RadioGroup
-                        name="skalStanses"
-                        legend="Skal denne livsoppholdsytelsen stanses?"
-                        value={values.skalStanses || ''}
-                        onChange={(val: JaNei) => setValue('skalStanses', val)}
-                        description={
-                            <ReadMore header="Les mer om krav til deltakelse på fulltid">
-                                <VStack gap="space-16" marginBlock="space-0 space-16">
-                                    <BodyLong>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi quia,
-                                        nesciunt rerum temporibus vitae molestias vel ad eligendi vero ex eos officiis
-                                        magni, libero alias nostrum in dolorem mollitia tenetur?
-                                    </BodyLong>
-                                </VStack>
-                            </ReadMore>
-                        }>
-                        <HStack gap="space-40">
-                            <Radio value="ja">Ja</Radio>
-                            <Radio value="nei">Nei</Radio>
-                        </HStack>
-                    </RadioGroup>
+                {harFeilSvar && <Alert variant="error">Nei, den unge kan ikke meldes inn i ungdomsprogrammet</Alert>}
+                {!status.alleBesvart && (
+                    <Alert variant="info" inline>
+                        Du må svare på alle spørsmålene over for å se om den unge kan meldes inn
+                    </Alert>
                 )}
             </VStack>
-            {visResultat && kanMeldesInn && (
-                <Box marginBlock="space-16 space-0">
-                    <Alert variant="success">Deltaker kan meldes inn</Alert>
-                </Box>
-            )}
-            {visResultat && !kanMeldesInn && avslagÅrsak && (
-                <Box marginBlock="space-16 space-0">
-                    <Alert variant="error">
-                        Deltaker kan ikke meldes inn fordi ... tekst avhengig av årsak ({avslagÅrsak})
-                    </Alert>
-                </Box>
-            )}
         </VStack>
     );
 };

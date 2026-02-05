@@ -5,6 +5,7 @@ import { ExpandIcon, ShrinkIcon } from '@navikt/aksel-icons';
 type DrawerOptions = {
     title?: string;
     position?: 'left' | 'right';
+    width?: DrawerWidth;
     portalContainer?: HTMLElement | null;
 };
 
@@ -16,6 +17,7 @@ type DrawerContextValue = {
 
 export enum DrawerWidth {
     NARROW = 'narrow',
+    WIDER = 'wider',
     WIDE = 'wide',
 }
 
@@ -39,6 +41,7 @@ export const DrawerProvider = ({ children, initialTitle, initialOpen = true, ini
             setIsOpen(true);
             setContent(drawerContent);
             setTitle(options?.title || title);
+            setWidth(options?.width || DrawerWidth.NARROW);
         }
     };
 

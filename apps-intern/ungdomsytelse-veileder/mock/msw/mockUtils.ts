@@ -4,11 +4,16 @@ import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
     DeltakerPersonalia,
+    Endringstype,
+    Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { v4 } from 'uuid';
-import { deltaker2Mock } from '../data/deltaker2';
+import { skjermetDeltakerMock } from '../data/skjermetDeltaker';
 import { nyDeltakerMock } from '../data/nyDeltakerMock';
 import { registrertDeltakerMock } from '../data/registrertDeltakerMock';
+import { slettetDeltakerMock } from '../data/slettetDeltakerMock';
+import dayjs from 'dayjs';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 
 interface DbDeltakelse {
     deltakelse: DeltakelseDto;
@@ -22,13 +27,34 @@ interface TempDB {
 
 const localStorageKey = 'ungdomsytelse-veileder';
 
+const formaterIsoDate = (isoDate: string): string => dateFormatter.compact(ISODateToDate(isoDate));
+
+const getEndretStartdatoHistorikk = (opprinneligDato: string, nyDato: string): DeltakelseHistorikkDto => ({
+    endringstype: Endringstype.ENDRET_STARTDATO,
+    revisjonstype: Revisjonstype.ENDRET,
+    endring: `Startdato for deltakelse er endret fra ${formaterIsoDate(opprinneligDato)} til ${formaterIsoDate(nyDato)}.`,
+    aktør: 'Z990501 (veileder)',
+    tidspunkt: dayjs().toISOString(),
+});
+
+const getEndretSluttdatoHistorikk = (opprinneligDato: string | undefined, nyDato: string): DeltakelseHistorikkDto => ({
+    endringstype: opprinneligDato ? Endringstype.ENDRET_SLUTTDATO : Endringstype.DELTAKER_MELDT_UT,
+    revisjonstype: Revisjonstype.ENDRET,
+    endring: opprinneligDato
+        ? `Sluttdato for deltakelse er endret fra ${formaterIsoDate(opprinneligDato)} til ${formaterIsoDate(nyDato)}.`
+        : `Deltaker meldt ut med sluttdato ${formaterIsoDate(nyDato)}`,
+    aktør: 'Z990501 (veileder)',
+    tidspunkt: dayjs().toISOString(),
+});
+
 /** Data */
 
 const initialDb: TempDB = {
     deltakere: [
         registrertDeltakerMock.deltakerPersonalia,
         nyDeltakerMock.deltakerPersonalia,
-        deltaker2Mock.deltakerPersonalia,
+        skjermetDeltakerMock.deltakerPersonalia,
+        slettetDeltakerMock.deltakerPersonalia,
     ],
     deltakelser: [
         {
@@ -36,8 +62,12 @@ const initialDb: TempDB = {
             historikk: registrertDeltakerMock.deltakelseHistorikk,
         },
         {
-            deltakelse: deltaker2Mock.deltakelse,
-            historikk: deltaker2Mock.historikk,
+            deltakelse: skjermetDeltakerMock.deltakelse,
+            historikk: skjermetDeltakerMock.historikk,
+        },
+        {
+            deltakelse: slettetDeltakerMock.deltakelse,
+            historikk: slettetDeltakerMock.deltakelseHistorikk,
         },
     ],
 };
@@ -101,7 +131,15 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
     };
     db.deltakelser.push({
         deltakelse,
-        historikk: [],
+        historikk: [
+            {
+                revisjonstype: Revisjonstype.OPPRETTET,
+                endringstype: Endringstype.DELTAKER_MELDT_INN,
+                endring: 'Deltaker er meldt inn i programmet',
+                aktør: 'Z990501 (veileder)',
+                tidspunkt: dayjs().toISOString(),
+            },
+        ],
     });
     db.deltakere = db.deltakere.map((d) => {
         if (d.deltakerIdent === deltakerIdent) {
@@ -126,6 +164,7 @@ const endreStartdato = (deltakelseId: string, dato: string) => {
             ...deltakelse.deltakelse,
             fraOgMed: dato,
         },
+        historikk: [...deltakelse.historikk, getEndretStartdatoHistorikk(deltakelse.deltakelse.fraOgMed, dato)],
     };
     db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? dbDeltakelse : d));
     save(db);
@@ -165,6 +204,7 @@ const endreSluttdato = (deltakelseId: string, dato: string) => {
             ...deltakelse.deltakelse,
             tilOgMed: dato,
         },
+        historikk: [...deltakelse.historikk, getEndretSluttdatoHistorikk(deltakelse.deltakelse.tilOgMed, dato)],
     };
     db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? dbDeltakelse : d));
     save(db);

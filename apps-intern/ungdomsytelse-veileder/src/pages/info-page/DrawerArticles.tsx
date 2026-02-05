@@ -139,7 +139,7 @@ const DrawerArticles = () => {
                                     Siden det har vært dialog med veileder før start- eller sluttdato settes er det
                                     forventet at de fleste deltakere ikke har en tilbakemelding. Det er likevel viktig
                                     at de svarer at de ikke vil komme med en uttalelse/tilbakemelding, slik at
-                                    behandlingen raskt kan gjennomføres. Slik begrenes antall feilutbetalingssaker.
+                                    behandlingen raskt kan gjennomføres. Slik beregnes antall feilutbetalingssaker.
                                     Ønsker en deltaker å komme med en uttalelse/tilbakemelding, blir de oppfordret til å
                                     snakke med veileder først.
                                 </BodyLong>

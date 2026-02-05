@@ -32,7 +32,7 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
     }
     if (historikk.isError) {
         return (
-            <VStack gap="space-16">
+            <VStack gap="space-12">
                 <HistorikkHeader />
                 <Alert variant="error" size="small">
                     Det oppstod en feil ved henting av historikk.
@@ -43,7 +43,7 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
     }
 
     return (
-        <VStack gap="space-16">
+        <VStack gap="space-12">
             <HistorikkHeader />
             <DeltakelseHistorikkListe historikkInnslag={getDeltakelseHistorikkTilInnslag(historikk.data || [])} />
         </VStack>

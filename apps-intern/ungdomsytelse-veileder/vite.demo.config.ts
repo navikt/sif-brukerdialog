@@ -6,7 +6,7 @@ import { AppEnv } from './env.schema';
 import tailwindcss from '@tailwindcss/vite';
 
 const appSettings: AppEnv = {
-    ENV: 'development',
+    ENV: 'demo',
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/sif-brukerdialog/ungdomsytelse-veileder',
     GITHUB_REF_NAME: 'local',
@@ -58,6 +58,11 @@ export default defineConfig({
             },
         },
     },
+    define: {
+        __IS_VEILEDER_DEMO__: true,
+        __IS_GITHUB_PAGES__: true,
+        __VIS_DEMO_BRUKERE__: true,
+    },
     preview: {
         port: 8088,
         proxy: {
@@ -67,14 +72,12 @@ export default defineConfig({
             },
         },
     },
-    define: {
-        __IS_VEILEDER_DEMO__: true,
-        __IS_GITHUB_PAGES__: false,
-        __VIS_DEMO_BRUKERE__: true,
-    },
     base: '/sif-brukerdialog/ungdomsytelse-veileder/',
     build: {
         sourcemap: true,
+        rollupOptions: {
+            input: './demo/index.html',
+        },
         outDir: './dist-demo',
         emptyOutDir: true,
     },
