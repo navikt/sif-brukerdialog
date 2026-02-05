@@ -1,5 +1,6 @@
 import { BodyShort, Heading, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { dateRangeFormatter } from '@navikt/sif-common-utils';
 
 import { useSøknadContext } from '../../../hooks';
 import { useStepConfig } from '../../../hooks/useStepConfig';
@@ -32,6 +33,7 @@ const OmsorgstilbudStep = () => {
                     Perioder
                 </Heading>
 
+<<<<<<< HEAD
                 <List>
                     <List.Item>Hvis flere perioder; lage accordion for hver periode</List.Item>
                     <List.Item>En periode kan være lang. Perioder kuttes til innenfor gyldig tidsrom</List.Item>
@@ -46,6 +48,12 @@ const OmsorgstilbudStep = () => {
                     søknadsperioder={sak.søknadsperioder}
                     perioderMedTilsynsordning={sak.tilsynsordning.perioderMedTilsynsordning}
                 />
+=======
+                {sak.søknadsperioder.map((periode) => (
+                    <div key={periode.from.toDateString()}>{dateRangeFormatter.getDateRangeText(periode, 'nb')}</div>
+                ))}
+                <OmsorgstilbudForm goBack={goBack} />
+>>>>>>> e49837d99043368ebf64b6ae7644c24b806f5606
             </VStack>
         </SøknadStep>
     );
