@@ -1,6 +1,5 @@
-import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateRangeFormatter } from '@navikt/sif-common-utils';
 
 import { useSøknadContext } from '../../../hooks';
 import { useStepConfig } from '../../../hooks/useStepConfig';
@@ -33,13 +32,24 @@ const OmsorgstilbudStep = () => {
                     Perioder
                 </Heading>
 
-                {sak.søknadsperioder.map((periode) => (
-                    <div key={periode.from.toDateString()}>{dateRangeFormatter.getDateRangeText(periode, 'nb')}</div>
-                ))}
-                <OmsorgstilbudForm goBack={goBack} />
+                <List>
+                    <List.Item>Hvis flere perioder; lage accordion for hver periode</List.Item>
+                    <List.Item>En periode kan være lang. Perioder kuttes til innenfor gyldig tidsrom</List.Item>
+                    <List.Item>
+                        Innenfor én periode: vise alle dager som en har søkt for. Kan være mange eller få dager.
+                    </List.Item>
+                    <List.Item>Kalender eller liste?</List.Item>
+                </List>
+
+                <OmsorgstilbudForm
+                    goBack={goBack}
+                    søknadsperioder={sak.søknadsperioder}
+                    perioderMedTilsynsordning={sak.tilsynsordning.perioderMedTilsynsordning}
+                />
             </VStack>
         </SøknadStep>
     );
 };
 
 export default OmsorgstilbudStep;
+// aha
