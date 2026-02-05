@@ -33,8 +33,10 @@ import {
     K9SakArbeidstidInfo,
     K9SakArbeidstidPeriodeMap,
     K9SakLovbestemtFerie,
+    K9SakTilsynsordningPeriodeMap,
     PeriodeMedArbeidstid,
     Sak,
+    SakTilsynsordningPeriode,
 } from '@types';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -126,16 +128,26 @@ export const getSakFromK9Sak = (
             frilanser,
             selvstendigNæringsdrivende,
         },
-        omsorgstilbud: {
-            perioderMedOmsorgstilbud: [],
-        },
         lovbestemtFerie: {
             feriedager: getFeriedagerFromLovbestemtFerie(k9sak.ytelse.lovbestemtFerie.perioder),
         },
         utledet: {
             aktiviteterSomKanEndres,
         },
+        tilsynsordning: {
+            perioderMedTilsynsordning: getSakTilsynsordning(k9sak.ytelse.tilsynsordning.perioder),
+        },
     };
+};
+
+/** Henter ut perioder med tilsynsordning  */
+
+export const getSakTilsynsordning = (perioder: K9SakTilsynsordningPeriodeMap): SakTilsynsordningPeriode => {
+    const sakPerioder: SakTilsynsordningPeriode = {};
+    Object.keys(perioder).forEach((key) => {
+        sakPerioder[key] = perioder[key].etablertTilsynTimerPerDag;
+    });
+    return sakPerioder;
 };
 
 /** Henter utk9SakArbeidstakere med arbeidsgiver funnet i AA-reg */

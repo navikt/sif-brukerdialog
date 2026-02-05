@@ -42,6 +42,9 @@ export interface K9FormatUtenlandsopphold {
     årsak: UtenlandsoppholdÅrsak;
 }
 
+export interface K9FormatTilsynsordning {
+    perioder: K9FormatTilsynsordningPerioder;
+}
 interface K9FormatYtelseIkkeIBruk {
     endringsperiode: any;
     trekkKravPerioder: any;
