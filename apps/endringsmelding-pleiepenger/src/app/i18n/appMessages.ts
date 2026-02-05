@@ -3,6 +3,7 @@ import { arbeidstidUkerMessages } from '../modules/arbeidstid-uker/arbeidstidUke
 import { endreArbeidstidMessages } from '../modules/endre-arbeidstid-form/endreArbeidstidMessages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
+import { omsorgstilbudMessages_nb } from '../søknad/steps/omsorgstilbud/i18n/nb';
 import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';
 import { ukjentArbeidsforholdFormMessages } from '../søknad/steps/ukjent-arbeidsforhold/ukjentArbeidsforholdFormMessages';
 import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
@@ -18,6 +19,7 @@ const nb = {
     ...oppsummeringStepMessages.nb,
     ...sifCommonSoknadOverrideMessages.nb,
     ...arbeidstidUkerMessages.nb,
+    ...omsorgstilbudMessages_nb,
 
     'lenke.skrivTilOss': 'Skriv til oss',
     'lenke.sendBeskjed': 'Send beskjed',
@@ -28,6 +30,7 @@ const nb = {
     'step.aktivitet.stepTitle': 'Velg arbeidsforhold',
     'step.arbeidstid.stepTitle': 'Jobb i pleiepengeperioden',
     'step.lovbestemtFerie.stepTitle': 'Ferie i pleiepengeperioden',
+    'step.omsorgstilbud.stepTitle': 'Tid i omsorgstilbud',
     'step.oppsummering.stepTitle': 'Oppsummering',
 
     'arbeidsaktivitetBlockHeader.nyttArbeidsforhold': 'Nytt arbeidsforhold',

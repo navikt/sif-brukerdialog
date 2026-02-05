@@ -49,6 +49,19 @@ export default [
                         },
                     },
                 },
+                omsorgstilbud: {
+                    perioder: {
+                        '2022-12-01/2022-12-01': {
+                            tid: 'PT4H0M',
+                        },
+                        '2022-12-02/2022-12-02': {
+                            tid: 'PT2H0M',
+                        },
+                        '2022-12-03/2022-12-03': {
+                            tid: 'PT4H0M',
+                        },
+                    },
+                },
                 arbeidstid: {
                     arbeidstakerList: [
                         {

@@ -99,10 +99,12 @@ export const getSakFromK9Sak = (
     );
 
     const frilanser = getArbeidsaktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
+
     const selvstendigNæringsdrivende = getArbeidsaktivitetSelvstendigNæringsdrivende(
         selvstendigNæringsdrivendeArbeidstidInfo,
         tillattEndringsperiode,
     );
+
     const aktiviteterSomKanEndres = getAktiviteterSomKanEndres({
         arbeidstakerAktiviteter,
         frilanser,
@@ -123,6 +125,9 @@ export const getSakFromK9Sak = (
             arbeidstakerAktiviteter,
             frilanser,
             selvstendigNæringsdrivende,
+        },
+        omsorgstilbud: {
+            perioderMedOmsorgstilbud: [],
         },
         lovbestemtFerie: {
             feriedager: getFeriedagerFromLovbestemtFerie(k9sak.ytelse.lovbestemtFerie.perioder),

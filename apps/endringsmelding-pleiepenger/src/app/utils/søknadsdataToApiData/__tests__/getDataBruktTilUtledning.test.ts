@@ -15,19 +15,41 @@ import {
 
 describe('getDataBruktTilUtledningAnnetData', () => {
     it('returnerer riktig valgte endringer når kun ferie er valgt', () => {
-        const result = getDataBruktTilUtledningAnnetDataApiData({ lovbestemtFerie: true, arbeidstid: false });
+        const result = getDataBruktTilUtledningAnnetDataApiData({
+            lovbestemtFerie: true,
+            arbeidstid: false,
+            omsorgstilbud: false,
+        });
         expect(result.valgteEndringer.lovbestemtFerie).toBeTruthy();
         expect(result.valgteEndringer.arbeidstid).toBeFalsy();
     });
     it('returnerer riktig valgte endringer når kun arbeidstid er valgt', () => {
-        const result = getDataBruktTilUtledningAnnetDataApiData({ arbeidstid: true, lovbestemtFerie: false });
+        const result = getDataBruktTilUtledningAnnetDataApiData({
+            arbeidstid: true,
+            lovbestemtFerie: false,
+            omsorgstilbud: false,
+        });
         expect(result.valgteEndringer.arbeidstid).toBeTruthy();
         expect(result.valgteEndringer.lovbestemtFerie).toBeFalsy();
     });
     it('returnerer riktig valgte endringer når både ferie og arbeidstid er valgt', () => {
-        const result = getDataBruktTilUtledningAnnetDataApiData({ arbeidstid: true, lovbestemtFerie: true });
+        const result = getDataBruktTilUtledningAnnetDataApiData({
+            arbeidstid: true,
+            lovbestemtFerie: true,
+            omsorgstilbud: false,
+        });
         expect(result.valgteEndringer.lovbestemtFerie).toBeTruthy();
         expect(result.valgteEndringer.arbeidstid).toBeTruthy();
+    });
+    it('returnerer riktig valgte endringer når omsorgstilbud valgt', () => {
+        const result = getDataBruktTilUtledningAnnetDataApiData({
+            arbeidstid: false,
+            lovbestemtFerie: false,
+            omsorgstilbud: true,
+        });
+        expect(result.valgteEndringer.lovbestemtFerie).toBeFalsy();
+        expect(result.valgteEndringer.arbeidstid).toBeFalsy();
+        expect(result.valgteEndringer.omsorgstilbud).toBeTruthy();
     });
 });
 

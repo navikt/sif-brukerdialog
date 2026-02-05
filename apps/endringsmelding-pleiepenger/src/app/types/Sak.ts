@@ -17,6 +17,8 @@ export interface Sak {
     arbeidsaktiviteter: Arbeidsaktiviteter;
     /** Ferie i søknadsperiodene */
     lovbestemtFerie: SakLovbestemtFerie;
+    /** Omsorgstilbud i søknadsperiodene */
+    omsorgstilbud: SakOmsorgstilbud;
     /** Søknadsperioder som er innenfor tillatt endringsperiode. Periodene som overlapper kuttes. */
     søknadsperioder: DateRange[];
     /** DateRange med alle søknadsperioder som er innenfor tillatt endringsperiode */
@@ -109,4 +111,8 @@ export interface Arbeidsaktiviteter {
 
 export interface SakLovbestemtFerie {
     feriedager: FeriedagMap;
+}
+
+export interface SakOmsorgstilbud {
+    perioderMedOmsorgstilbud: any[];
 }
