@@ -52,6 +52,14 @@ const OmsorgstilbudForm = ({
         }
     };
 
+    const handleOnPeriodeChange = (dagerMedTid: DateDurationMap): void => {
+        const newValues = { ...omsorgsdager, ...dagerMedTid };
+        setFieldValue(OmsorgstilbudFormFields.omsorgsdager, newValues);
+        if (onOmsorgstilbudChanged) {
+            onOmsorgstilbudChanged(newValues);
+        }
+    };
+
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudForm')}
@@ -68,6 +76,7 @@ const OmsorgstilbudForm = ({
                             endredeTilsynsdager={omsorgsdager}
                             søknadsperiode={periode}
                             onEnkeltdagChange={handleOnEnkeltdagChange}
+                            onPeriodeChange={handleOnPeriodeChange}
                         />
                     );
                 })}
