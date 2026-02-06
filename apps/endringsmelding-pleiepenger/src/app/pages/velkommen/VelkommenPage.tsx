@@ -77,7 +77,7 @@ const VelkommenPage = () => {
                                             label: text('velkommenPage.endre.jobb'),
                                             value: EndringType.arbeidstid,
                                         },
-                                        ...(isFeatureEnabled(Feature.ENDRE_OMSORGSTILBUD)
+                                        ...(isFeatureEnabled(Feature.SIF_PUBLIC_ENDRE_OMSORGSTILBUD)
                                             ? [
                                                   {
                                                       'data-testid': 'endreOmsorgstilbud',

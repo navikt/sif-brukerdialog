@@ -50,6 +50,6 @@
 
         "DEBUG": "true",
         "VELG_SCENARIO": "on",
-        "ENDRE_OMSORGSTILBUD": "on"
+        "SIF_PUBLIC_ENDRE_OMSORGSTILBUD": "on"
     }
 }
