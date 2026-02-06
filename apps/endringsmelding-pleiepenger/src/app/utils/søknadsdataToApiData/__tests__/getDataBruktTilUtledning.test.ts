@@ -18,7 +18,7 @@ describe('getDataBruktTilUtledningAnnetData', () => {
         const result = getDataBruktTilUtledningAnnetDataApiData({
             lovbestemtFerie: true,
             arbeidstid: false,
-            omsorgstilbud: false,
+            tilsynsordning: false,
         });
         expect(result.valgteEndringer.lovbestemtFerie).toBeTruthy();
         expect(result.valgteEndringer.arbeidstid).toBeFalsy();
@@ -27,7 +27,7 @@ describe('getDataBruktTilUtledningAnnetData', () => {
         const result = getDataBruktTilUtledningAnnetDataApiData({
             arbeidstid: true,
             lovbestemtFerie: false,
-            omsorgstilbud: false,
+            tilsynsordning: false,
         });
         expect(result.valgteEndringer.arbeidstid).toBeTruthy();
         expect(result.valgteEndringer.lovbestemtFerie).toBeFalsy();
@@ -36,7 +36,7 @@ describe('getDataBruktTilUtledningAnnetData', () => {
         const result = getDataBruktTilUtledningAnnetDataApiData({
             arbeidstid: true,
             lovbestemtFerie: true,
-            omsorgstilbud: false,
+            tilsynsordning: false,
         });
         expect(result.valgteEndringer.lovbestemtFerie).toBeTruthy();
         expect(result.valgteEndringer.arbeidstid).toBeTruthy();
@@ -45,11 +45,11 @@ describe('getDataBruktTilUtledningAnnetData', () => {
         const result = getDataBruktTilUtledningAnnetDataApiData({
             arbeidstid: false,
             lovbestemtFerie: false,
-            omsorgstilbud: true,
+            tilsynsordning: true,
         });
         expect(result.valgteEndringer.lovbestemtFerie).toBeFalsy();
         expect(result.valgteEndringer.arbeidstid).toBeFalsy();
-        expect(result.valgteEndringer.omsorgstilbud).toBeTruthy();
+        expect(result.valgteEndringer.tilsynsordning).toBeTruthy();
     });
 });
 

@@ -20,6 +20,7 @@ import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
+import TilsynsordningOppsummering from './TilsynsordningOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -69,14 +70,19 @@ const OppsummeringStep = () => {
     const {
         arbeidstid,
         lovbestemtFerie,
+        tilsynsordning,
         dataBruktTilUtledning: { ukjenteArbeidsforhold },
     } = apiData.ytelse;
 
     const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
     const harGyldigArbeidstid = oppsummeringStepUtils.erArbeidstidEndringerGyldig(arbeidstid);
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
+    const tilsynsordningErEndret = oppsummeringStepUtils.harEndringerITilsynsordningApiData(
+        apiData.ytelse.tilsynsordning,
+    );
 
-    const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
+    const harIngenEndringer =
+        arbeidstidErEndret === false && lovbestemtFerieErEndret === false && tilsynsordningErEndret === false;
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -167,6 +173,17 @@ const OppsummeringStep = () => {
                         ) : (
                             <Alert variant="info">
                                 <AppText id="oppsummeringStep.ferie.ingenEndringer" />
+                            </Alert>
+                        )}
+                    </SummarySection>
+                )}
+                {valgteEndringer.tilsynsordning && (
+                    <SummarySection header={text('oppsummeringStep.tilsynsordning.tittel')}>
+                        {tilsynsordning !== undefined && tilsynsordningErEndret ? (
+                            <TilsynsordningOppsummering tilsynsordning={tilsynsordning} />
+                        ) : (
+                            <Alert variant="info">
+                                <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
                             </Alert>
                         )}
                     </SummarySection>
