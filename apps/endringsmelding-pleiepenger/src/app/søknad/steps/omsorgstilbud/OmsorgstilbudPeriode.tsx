@@ -35,7 +35,7 @@ const OmsorgstilbudPeriode = ({
 
                 <div>
                     <Button type="button" variant="secondary" size="small" onClick={() => setVisPeriodeDialog(true)}>
-                        Oppgi like uker for en periode
+                        Oppgi like uker
                     </Button>
                 </div>
 
