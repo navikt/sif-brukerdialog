@@ -1,4 +1,4 @@
-import { BodyShort, Box, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
 import { ExpansionCardContent } from '@navikt/ds-react/ExpansionCard';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
 import { DurationText } from '@navikt/sif-common-ui';
@@ -22,7 +22,7 @@ interface Props {
     måned: DateRange;
     tidOmsorgstilbud: DateDurationMap;
     tidOmsorgstilbudOpprinnelig?: DateDurationMap;
-    månedTittelHeadingLevel?: '2' | '3';
+    månedTittelHeadingLevel?: '2' | '3' | '4';
     søknadsperiode: DateRange;
     defaultOpen?: boolean;
     onEnkeltdagChange?: EnkeltdagChangeEvent;
@@ -34,6 +34,7 @@ const OmsorgstilbudMåned = ({
     tidOmsorgstilbudOpprinnelig,
     søknadsperiode,
     defaultOpen,
+    månedTittelHeadingLevel,
     onEnkeltdagChange,
 }: Props) => {
     const { text } = useAppIntl();
@@ -57,13 +58,15 @@ const OmsorgstilbudMåned = ({
         <ExpansionCard defaultOpen={defaultOpen} aria-label={label} size="small">
             <ExpansionCard.Header>
                 <VStack gap="space-6">
-                    <ExpansionCard.Title size="small">
+                    <ExpansionCard.Title size="small" as="div">
                         <HStack gap="space-16" justify="start">
                             <Box className="capsFirstLetter" marginBlock="space-2 space-0">
-                                <AppText
-                                    id="omsorgstilbudMåned.ukeOgÅr"
-                                    values={{ ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') }}
-                                />
+                                <Heading level={månedTittelHeadingLevel || '3'} size="small">
+                                    <AppText
+                                        id="omsorgstilbudMåned.ukeOgÅr"
+                                        values={{ ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') }}
+                                    />
+                                </Heading>
                             </Box>
                             {antallDagerEndret === 0 ? null : (
                                 <span>

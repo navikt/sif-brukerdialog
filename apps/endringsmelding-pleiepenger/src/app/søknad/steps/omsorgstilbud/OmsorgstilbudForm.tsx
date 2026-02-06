@@ -74,7 +74,7 @@ const OmsorgstilbudForm = ({
             <div className="arbeidsaktivitetContentHeader">
                 <div className="arbeidsaktivitetContentHeader__title">
                     {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
-                </div>
+                </div>{' '}
                 <TagsContainer>{harEndringer && <EndretTag>Endret</EndretTag>}</TagsContainer>
             </div>
         );
@@ -88,7 +88,7 @@ const OmsorgstilbudForm = ({
             runDelayedFormValidation={true}
             onBack={goBack}>
             <VStack gap="space-16">
-                <Heading level="3" size="small">
+                <Heading level="2" size="small">
                     Dine perioder med pleiepenger
                 </Heading>
                 <DateRangeExpansionCards

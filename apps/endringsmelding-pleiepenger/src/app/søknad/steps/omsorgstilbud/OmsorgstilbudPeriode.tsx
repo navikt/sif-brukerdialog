@@ -30,7 +30,7 @@ const OmsorgstilbudPeriode = ({
             <VStack gap="space-16">
                 <div>
                     <Button type="button" variant="tertiary" size="small" onClick={() => setVisPeriodeDialog(true)}>
-                        Endre flere uker samtidig
+                        Endre flere uker i en periode
                     </Button>
                 </div>
 
