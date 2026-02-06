@@ -65,7 +65,8 @@ const TidsbrukKalender = ({
     Object.keys(dagerMedTidOpprinnelig).forEach((key) => {
         kalenderdager[key] = {
             ...kalenderdager[key],
-            tidOpprinnelig: ensureDuration(dagerMedTidOpprinnelig[key]),
+            // tidOpprinnelig: ensureDuration(dagerMedTidOpprinnelig[key]),
+            tidOpprinnelig: dagerMedTidOpprinnelig[key],
             prosent: (dagerMedTidOpprinnelig as any)[key].prosent,
         };
     });
@@ -94,7 +95,7 @@ const TidsbrukKalender = ({
                         prosent={dag.prosent}
                         tidRenderer={tidRenderer}
                         opprinneligTidRenderer={opprinneligTidRenderer}
-                        tidOpprinnelig={dag.tidOpprinnelig || { hours: '0', minutes: '0' }}
+                        tidOpprinnelig={dag.tidOpprinnelig}
                         visOpprinneligTid={visOpprinneligTid}
                         footerRenderer={footerRenderer}
                     />

@@ -62,11 +62,7 @@ const TidsbrukKalenderDag = ({
                                                 {renderOpprinneligTid(tidOpprinnelig)})
                                             </BodyShort>
                                         </div>
-                                    ) : (
-                                        <BodyShort size="small" as="span">
-                                            (lagt til)
-                                        </BodyShort>
-                                    )}
+                                    ) : null}
                                 </>
                             )}
                         </>
