@@ -111,6 +111,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadSteps,
                 };
             }
+            case SøknadContextActionKeys.SET_SØKNAD_OMSORGSTILBUD:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        omsorgstilbud: {
+                            ...action.payload,
+                        },
+                    },
+                };
 
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
                 return {
@@ -168,6 +178,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         ...action.payload.inputPreferanser,
                     },
                 };
+
             default:
                 // eslint-disable-next-line no-console
                 console.log('Unhandled action', action);

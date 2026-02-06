@@ -42,6 +42,7 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
+import { mapSakTilsynsordningPeriodeToDateDurationMap } from '../søknad/steps/omsorgstilbud/omsorgstilbudStepUtils';
 import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getFeriedagerMapFromPerioder } from './ferieUtils';
@@ -113,6 +114,8 @@ export const getSakFromK9Sak = (
         selvstendigNæringsdrivende,
     });
 
+    const perioderMedTilsynsordning = getSakTilsynsordning(k9sak.ytelse.tilsynsordning.perioder);
+
     return {
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
@@ -135,7 +138,8 @@ export const getSakFromK9Sak = (
             aktiviteterSomKanEndres,
         },
         tilsynsordning: {
-            perioderMedTilsynsordning: getSakTilsynsordning(k9sak.ytelse.tilsynsordning.perioder),
+            perioderMedTilsynsordning,
+            dagerMedTilsynsordning: mapSakTilsynsordningPeriodeToDateDurationMap(perioderMedTilsynsordning),
         },
     };
 };

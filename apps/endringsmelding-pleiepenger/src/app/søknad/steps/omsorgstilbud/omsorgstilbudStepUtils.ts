@@ -1,5 +1,11 @@
-/* eslint-disable no-console */
-import { OmsorgstilbudSøknadsdata, Søknadsdata } from '@types';
+import {
+    DateDurationMap,
+    DateRange,
+    dateToISODate,
+    getDatesInDateRange,
+    ISODateRangeToDateRange,
+} from '@navikt/sif-common-utils';
+import { OmsorgstilbudSøknadsdata, SakTilsynsordningPeriode, Søknadsdata } from '@types';
 
 import { OmsorgstilbudFormValues } from './OmsorgstilbudForm';
 
@@ -12,22 +18,36 @@ export const getOmsorgstilbudStepInitialValues = (
     }
     if (søknadsdata.omsorgstilbud === undefined) {
         return {
-            endringer: {},
+            omsorgsdager: {},
         };
     }
     return {
-        endringer: {},
+        omsorgsdager: søknadsdata.omsorgstilbud.enkeltdager,
     };
 };
 
 export const getOmsorgstilbudSøknadsdataFromFormValues = (
     values: OmsorgstilbudFormValues,
 ): OmsorgstilbudSøknadsdata => {
-    console.log(values);
     return {
-        enkeltdager: [],
+        enkeltdager: values.omsorgsdager,
         enkeltdagerMeta: {
             erEndret: false,
         },
     };
+};
+
+export const mapSakTilsynsordningPeriodeToDateDurationMap = (
+    tilsynsordningPeriode: SakTilsynsordningPeriode,
+): DateDurationMap => {
+    const datesWithDuration: DateDurationMap = {};
+    Object.keys(tilsynsordningPeriode).forEach((key) => {
+        const periode: DateRange = ISODateRangeToDateRange(key);
+        const duration = tilsynsordningPeriode[key];
+        const dates = getDatesInDateRange(periode);
+        dates.forEach((date) => {
+            datesWithDuration[dateToISODate(date)] = duration;
+        });
+    });
+    return datesWithDuration;
 };

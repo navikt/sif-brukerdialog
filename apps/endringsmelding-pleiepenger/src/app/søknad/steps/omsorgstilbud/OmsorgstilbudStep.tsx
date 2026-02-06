@@ -1,22 +1,65 @@
-import { BodyShort, Heading, List, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateRangeFormatter } from '@navikt/sif-common-utils';
+import { DateDurationMap } from '@navikt/sif-common-utils';
+import { useEffect, useState } from 'react';
 
-import { useSøknadContext } from '../../../hooks';
+import { useOnValidSubmit, useSøknadContext } from '../../../hooks';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import { AppText } from '../../../i18n';
+import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
+import { SøknadContextState } from '../../../types';
+import { lagreSøknadState } from '../../../utils';
 import { StepId } from '../../config/StepId';
+import actionsCreator from '../../context/action/actionCreator';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import OmsorgstilbudForm from './OmsorgstilbudForm';
+import OmsorgstilbudForm, { omsorgstilbudFormComponents, OmsorgstilbudFormValues } from './OmsorgstilbudForm';
+import { getOmsorgstilbudSøknadsdataFromFormValues, getOmsorgstilbudStepInitialValues } from './omsorgstilbudStepUtils';
+
+const { FormikWrapper } = omsorgstilbudFormComponents;
 
 const OmsorgstilbudStep = () => {
     const stepId = StepId.OMSORGSTILBUD;
-
     const {
-        state: { sak },
+        dispatch,
+        state: { sak, søknadsdata },
     } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const [omsorgstilbudChanged, setOmsorgstilbudChanged] = useState(false);
+    useEffect(() => {
+        if (omsorgstilbudChanged === true) {
+            setOmsorgstilbudChanged(false);
+            // persistSoknad({ stepID: StepID.OMSORGSTILBUD });
+        }
+    }, [omsorgstilbudChanged]);
+
+    const onValidSubmitHandler = (values: OmsorgstilbudFormValues) => {
+        const omsorgstilbudSøknadsdata = getOmsorgstilbudSøknadsdataFromFormValues(values);
+        if (omsorgstilbudSøknadsdata) {
+            clearStepFormValues(stepId);
+            return [actionsCreator.setSøknadOmsorgstilbud(omsorgstilbudSøknadsdata)];
+        }
+        return [];
+    };
+
+    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+        onValidSubmitHandler,
+        stepId,
+        (state: SøknadContextState) => {
+            return lagreSøknadState(state);
+        },
+    );
+
+    const oppdaterSøknadState = (omsorgsdager: DateDurationMap = {}) => {
+        const omsorgstilbud = getOmsorgstilbudSøknadsdataFromFormValues({ omsorgsdager });
+        dispatch(actionsCreator.setSøknadOmsorgstilbud(omsorgstilbud));
+        dispatch(actionsCreator.requestLagreSøknad());
+    };
+
+    const initialValues = getOmsorgstilbudStepInitialValues(søknadsdata, stepFormValues.omsorgstilbud);
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -29,35 +72,31 @@ const OmsorgstilbudStep = () => {
                 </BodyShort>
             </FormLayout.Guide>
             <VStack gap="space-32">
-                <Heading level="2" size="small">
-                    Perioder
-                </Heading>
-
-<<<<<<< HEAD
-                <List>
-                    <List.Item>Hvis flere perioder; lage accordion for hver periode</List.Item>
-                    <List.Item>En periode kan være lang. Perioder kuttes til innenfor gyldig tidsrom</List.Item>
-                    <List.Item>
-                        Innenfor én periode: vise alle dager som en har søkt for. Kan være mange eller få dager.
-                    </List.Item>
-                    <List.Item>Kalender eller liste?</List.Item>
-                </List>
-
-                <OmsorgstilbudForm
-                    goBack={goBack}
-                    søknadsperioder={sak.søknadsperioder}
-                    perioderMedTilsynsordning={sak.tilsynsordning.perioderMedTilsynsordning}
+                <FormikWrapper
+                    initialValues={initialValues}
+                    onSubmit={handleSubmit}
+                    renderForm={() => {
+                        return (
+                            <>
+                                <PersistStepFormValues stepId={stepId} />
+                                <OmsorgstilbudForm
+                                    goBack={goBack}
+                                    søknadsperioder={sak.søknadsperioder}
+                                    perioderMedTilsynsordning={sak.tilsynsordning.perioderMedTilsynsordning}
+                                    opprinneligTilsynsdager={sak.tilsynsordning.dagerMedTilsynsordning}
+                                    isSubmitting={isSubmitting}
+                                    onOmsorgstilbudChanged={(values) => {
+                                        console.log(values);
+                                        oppdaterSøknadState(values);
+                                    }}
+                                />
+                            </>
+                        );
+                    }}
                 />
-=======
-                {sak.søknadsperioder.map((periode) => (
-                    <div key={periode.from.toDateString()}>{dateRangeFormatter.getDateRangeText(periode, 'nb')}</div>
-                ))}
-                <OmsorgstilbudForm goBack={goBack} />
->>>>>>> e49837d99043368ebf64b6ae7644c24b806f5606
             </VStack>
         </SøknadStep>
     );
 };
 
 export default OmsorgstilbudStep;
-// aha

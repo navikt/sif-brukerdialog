@@ -19,13 +19,14 @@ type Kalenderdager = {
     [dato: string]: KalenderDag;
 };
 interface Props {
-    periode: DateRange;
-    dager: DateDurationMap;
-    dagerOpprinnelig?: DateDurationMap;
+    måned: DateRange;
+    dagerMedTid: DateDurationMap;
+    dagerMedTidOpprinnelig?: DateDurationMap;
     utilgjengeligeDatoer?: Date[];
     utilgjengeligDagInfo?: string;
     skjulTommeDagerIListe?: boolean;
     visOpprinneligTid?: boolean;
+    skjulUkerMedKunUtilgjengeligeDager?: boolean;
     onDateClick?: (date: Date) => void;
     tomUkeContentRenderer?: () => React.ReactNode;
     tidRenderer?: TidRenderer;
@@ -34,13 +35,14 @@ interface Props {
 }
 
 const TidsbrukKalender = ({
-    periode,
-    dager,
-    dagerOpprinnelig = {},
+    måned,
+    dagerMedTid,
+    dagerMedTidOpprinnelig = {},
     utilgjengeligeDatoer,
     utilgjengeligDagInfo,
     skjulTommeDagerIListe,
     visOpprinneligTid,
+    skjulUkerMedKunUtilgjengeligeDager,
     onDateClick,
     tidRenderer,
     opprinneligTidRenderer,
@@ -48,8 +50,8 @@ const TidsbrukKalender = ({
     footerRenderer,
 }: Props) => {
     const kalenderdager: Kalenderdager = {};
-    Object.keys(dager).forEach((key) => {
-        const dag = dager[key];
+    Object.keys(dagerMedTid).forEach((key) => {
+        const dag = dagerMedTid[key];
         kalenderdager[key] = {
             ...kalenderdager[key],
             tid: {
@@ -60,21 +62,21 @@ const TidsbrukKalender = ({
         };
     });
 
-    Object.keys(dagerOpprinnelig).forEach((key) => {
+    Object.keys(dagerMedTidOpprinnelig).forEach((key) => {
         kalenderdager[key] = {
             ...kalenderdager[key],
-            tidOpprinnelig: ensureDuration(dagerOpprinnelig[key]),
-            prosent: (dagerOpprinnelig as any)[key].prosent,
+            tidOpprinnelig: ensureDuration(dagerMedTidOpprinnelig[key]),
+            prosent: (dagerMedTidOpprinnelig as any)[key].prosent,
         };
     });
 
     return (
         <CalendarGrid
-            month={periode}
+            month={måned}
             disabledDates={utilgjengeligeDatoer}
             disabledDateInfo={utilgjengeligDagInfo}
             hideEmptyContentInListMode={skjulTommeDagerIListe}
-            hideWeeksWithOnlyDisabledContent={true}
+            hideWeeksWithOnlyDisabledContent={skjulUkerMedKunUtilgjengeligeDager}
             onDateClick={onDateClick}
             allDaysInWeekDisabledContentRenderer={tomUkeContentRenderer}
             dateRendererShort={(date: Date) => (

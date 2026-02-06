@@ -2,7 +2,12 @@ import { BodyShort, ExpansionCard, Heading } from '@navikt/ds-react';
 import { ExpansionCardContent, ExpansionCardHeader } from '@navikt/ds-react/ExpansionCard';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
 import { DurationText } from '@navikt/sif-common-ui';
-import { DateDurationMap, durationIsZero, getDurationsInDateRange } from '@navikt/sif-common-utils';
+import {
+    DateDurationMap,
+    durationIsZero,
+    getDatesInMonthOutsideDateRange,
+    getDurationsInDateRange,
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 
@@ -11,33 +16,35 @@ import OmsorgstilbudEnkeltdagDialog from '../omsorgstilbud-enkeltdag/Omsorgstilb
 import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TidsbrukKalender from '../tidsbruk-kalender/TidsbrukKalender';
 
+export type EnkeltdagChangeEvent = (evt: TidEnkeltdagEndring) => void;
 interface Props {
     måned: DateRange;
     tidOmsorgstilbud: DateDurationMap;
-    utilgjengeligeDatoer?: Date[];
+    tidOmsorgstilbudOpprinnelig?: DateDurationMap;
     månedTittelHeadingLevel?: '2' | '3';
-    periode: DateRange;
+    søknadsperiode: DateRange;
     defaultOpen?: boolean;
-    onEnkeltdagChange?: (evt: TidEnkeltdagEndring) => void;
+    onEnkeltdagChange?: EnkeltdagChangeEvent;
 }
 
 const OmsorgstilbudMåned = ({
     måned,
     tidOmsorgstilbud,
-    utilgjengeligeDatoer,
+    tidOmsorgstilbudOpprinnelig,
     månedTittelHeadingLevel = '2',
-    periode,
+    søknadsperiode,
     defaultOpen,
     onEnkeltdagChange,
 }: Props) => {
     const { text } = useAppIntl();
     const [editDate, setEditDate] = useState<{ dato: Date; tid: Partial<InputTime> } | undefined>();
 
-    const dager: DateDurationMap = getDurationsInDateRange(tidOmsorgstilbud, måned);
-    const dagerMedRegistrertOmsorgstilbud: string[] = Object.keys(dager).filter((key) => {
-        const datoTid = dager[key];
+    const dagerMedTid: DateDurationMap = getDurationsInDateRange(tidOmsorgstilbud, måned);
+    const dagerMedRegistrertOmsorgstilbud: string[] = Object.keys(dagerMedTid).filter((key) => {
+        const datoTid = dagerMedTid[key];
         return datoTid !== undefined && datoTid !== undefined && durationIsZero(datoTid) === false;
     });
+    const utilgjengeligeDatoer = getDatesInMonthOutsideDateRange(måned.from, måned);
 
     const label = text('omsorgstilbudMåned.ukeOgÅr', { ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') });
     return (
@@ -62,11 +69,13 @@ const OmsorgstilbudMåned = ({
             </ExpansionCardHeader>
             <ExpansionCardContent>
                 <TidsbrukKalender
-                    periode={måned}
-                    dager={dager}
+                    måned={måned}
+                    dagerMedTid={dagerMedTid}
+                    dagerMedTidOpprinnelig={tidOmsorgstilbudOpprinnelig}
                     utilgjengeligeDatoer={utilgjengeligeDatoer}
-                    skjulTommeDagerIListe={true}
-                    visOpprinneligTid={false}
+                    skjulTommeDagerIListe={false}
+                    visOpprinneligTid={true}
+                    skjulUkerMedKunUtilgjengeligeDager={true}
                     tidRenderer={({ tid, prosent }) => {
                         if (prosent !== undefined && prosent > 0) {
                             return (
@@ -86,7 +95,7 @@ const OmsorgstilbudMåned = ({
                     onDateClick={
                         onEnkeltdagChange
                             ? (dato) => {
-                                  const tid: Partial<InputTime> = dager[dateToISOString(dato)] || {
+                                  const tid: Partial<InputTime> = dagerMedTid[dateToISOString(dato)] || {
                                       hours: '',
                                       minutes: '',
                                   };
@@ -99,7 +108,7 @@ const OmsorgstilbudMåned = ({
                     <OmsorgstilbudEnkeltdagDialog
                         open={editDate !== undefined}
                         formProps={{
-                            periode,
+                            periode: søknadsperiode,
                             dato: editDate.dato,
                             tid: editDate.tid,
                             onSubmit: (evt: any) => {

@@ -1,116 +1,78 @@
-import { useOnValidSubmit } from '@hooks';
-import { ExpansionCard, Heading, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { dateFormatter, DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
-import { SakTilsynsordningPeriode, SøknadContextState } from '@types';
-import { FormattedDate, useIntl } from 'react-intl';
+import { DateDurationMap, DateRange } from '@navikt/sif-common-utils';
+import { SakTilsynsordningPeriode } from '@types';
+import { useFormikContext } from 'formik';
+import { useIntl } from 'react-intl';
 
-import TidsbrukKalender from '../../../local-sif-common-pleiepenger/components/tidsbruk-kalender/TidsbrukKalender';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
-import { OmsorgstilbudEndringMap } from '../../../types/OmsorgstilbudEndring';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { StepId } from '../../config/StepId';
-import actionsCreator from '../../context/action/actionCreator';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import { getOmsorgstilbudSøknadsdataFromFormValues } from './omsorgstilbudStepUtils';
+import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
+import OmsorgstilbudPeriode from './OmsorgstilbudPeriode';
 
-const { FormikWrapper, Form } = getTypedFormComponents<
+export const omsorgstilbudFormComponents = getTypedFormComponents<
     OmsorgstilbudFormFields,
     OmsorgstilbudFormValues,
     ValidationError
 >();
 
+const { Form } = omsorgstilbudFormComponents;
 export interface OmsorgstilbudFormValues {
-    endringer: OmsorgstilbudEndringMap;
+    omsorgsdager: DateDurationMap;
 }
 
 export enum OmsorgstilbudFormFields {
-    omsorgstilbud = 'omsorgstilbud',
+    omsorgsdager = 'omsorgsdager',
 }
 
 interface Props {
     søknadsperioder: DateRange[];
     perioderMedTilsynsordning: SakTilsynsordningPeriode;
+    opprinneligTilsynsdager: DateDurationMap;
+    isSubmitting?: boolean;
     goBack?: () => void;
+    onOmsorgstilbudChanged?: (omsorgstilbud: DateDurationMap) => void;
 }
 
-const OmsorgstilbudForm = ({ goBack, søknadsperioder }: Props) => {
-    const stepId = StepId.OMSORGSTILBUD;
+const OmsorgstilbudForm = ({
+    goBack,
+    søknadsperioder,
+    opprinneligTilsynsdager,
+    isSubmitting,
+    onOmsorgstilbudChanged,
+}: Props) => {
     const intl = useIntl();
-    const { clearStepFormValues } = useStepFormValuesContext();
 
-    const onValidSubmitHandler = (values: OmsorgstilbudFormValues) => {
-        const omsorgstilbudSøknadsdata = getOmsorgstilbudSøknadsdataFromFormValues(values);
-        if (omsorgstilbudSøknadsdata) {
-            clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadOmsorgstilbud(omsorgstilbudSøknadsdata)];
+    const { values, setFieldValue } = useFormikContext<OmsorgstilbudFormValues>();
+    const { omsorgsdager } = values;
+
+    const handleOnEnkeltdagChange = (endring: TidEnkeltdagEndring): void => {
+        const newValues = { ...omsorgsdager, ...endring.dagerMedTid };
+        setFieldValue(OmsorgstilbudFormFields.omsorgsdager, newValues);
+        if (onOmsorgstilbudChanged) {
+            onOmsorgstilbudChanged(newValues);
         }
-        return [];
     };
 
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
-        onValidSubmitHandler,
-        stepId,
-        (state: SøknadContextState) => {
-            return lagreSøknadState(state);
-        },
-    );
-
     return (
-        <FormikWrapper
-            initialValues={{}}
-            onSubmit={handleSubmit}
-            renderForm={() => {
-                return (
-                    <>
-                        <PersistStepFormValues stepId={stepId} />
-                        <Form
-                            formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudForm')}
-                            includeValidationSummary={true}
-                            submitPending={isSubmitting}
-                            runDelayedFormValidation={true}
-                            onBack={goBack}>
-                            <VStack gap="space-16">
-                                {søknadsperioder.map((periode) => {
-                                    const månederISøknadsperiode = dateRangeUtils.getMonthsInDateRange(periode);
-                                    const key = periode.from.toDateString();
-                                    return (
-                                        <ExpansionCard key={key} aria-labelledby={`periode-${key}`} size="small">
-                                            <ExpansionCard.Header>
-                                                <ExpansionCard.Title id={`periode-${key}`} size="small">
-                                                    {dateFormatter.full(periode.from)} -{' '}
-                                                    {dateFormatter.full(periode.to)}
-                                                </ExpansionCard.Title>
-                                            </ExpansionCard.Header>
-                                            <ExpansionCard.Content>
-                                                <VStack key={periode.from.toDateString()} gap="space-32">
-                                                    {månederISøknadsperiode.map((måned) => (
-                                                        <div key={måned.from.toDateString()}>
-                                                            <Heading level="3" size="small" className="capitalize">
-                                                                <FormattedDate
-                                                                    value={måned.from}
-                                                                    month="long"
-                                                                    year="numeric"
-                                                                />
-                                                            </Heading>
-                                                            <TidsbrukKalender
-                                                                key={måned.from.toDateString()}
-                                                                dager={{}}
-                                                                periode={måned}
-                                                            />
-                                                        </div>
-                                                    ))}
-                                                </VStack>
-                                            </ExpansionCard.Content>
-                                        </ExpansionCard>
-                                    );
-                                })}
-                            </VStack>
-                        </Form>
-                    </>
-                );
-            }}
-        />
+        <Form
+            formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudForm')}
+            includeValidationSummary={true}
+            submitPending={isSubmitting}
+            runDelayedFormValidation={true}
+            onBack={goBack}>
+            <VStack gap="space-48">
+                {søknadsperioder.map((periode) => {
+                    return (
+                        <OmsorgstilbudPeriode
+                            key={periode.from.toDateString()}
+                            opprinneligTilsynsdager={opprinneligTilsynsdager}
+                            endredeTilsynsdager={omsorgsdager}
+                            søknadsperiode={periode}
+                            onEnkeltdagChange={handleOnEnkeltdagChange}
+                        />
+                    );
+                })}
+            </VStack>
+        </Form>
     );
 };
 

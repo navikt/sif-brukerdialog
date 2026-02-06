@@ -1,4 +1,4 @@
-import { DateRange, Duration, ISODate, ISODateRangeMap } from '@navikt/sif-common-utils';
+import { DateDurationMap, DateRange, Duration, ISODate, ISODateRangeMap } from '@navikt/sif-common-utils';
 
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { Arbeidsgiver } from './Arbeidsgiver';
@@ -117,4 +117,5 @@ export type SakTilsynsordningPeriode = ISODateRangeMap<Duration>;
 
 export interface SakTilsynsordning {
     perioderMedTilsynsordning: SakTilsynsordningPeriode;
+    dagerMedTilsynsordning: DateDurationMap;
 }
