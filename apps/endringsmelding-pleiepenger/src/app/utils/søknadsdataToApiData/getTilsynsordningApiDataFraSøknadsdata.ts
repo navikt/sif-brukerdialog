@@ -1,0 +1,67 @@
+import {
+    DateDurationMap,
+    dateToISODate,
+    durationToISODuration,
+    ISODateRangeMap,
+    ISODuration,
+} from '@navikt/sif-common-utils';
+import { OmsorgstilbudSøknadsdata, TilsynsordningApiData } from '@types';
+
+export const getTilsynsordningApiDataFraSøknadsdata = (
+    omsorgstilbud: OmsorgstilbudSøknadsdata,
+): TilsynsordningApiData => {
+    const perioder = periodiserDateDurationMap(omsorgstilbud.enkeltdager);
+    return {
+        perioder,
+    };
+};
+
+const getNextWeekday = (date: Date): Date => {
+    const next = new Date(date);
+    next.setDate(next.getDate() + 1);
+    while (next.getDay() === 0 || next.getDay() === 6) {
+        next.setDate(next.getDate() + 1);
+    }
+    return next;
+};
+
+const isConsecutiveWeekday = (prevDate: string, currDate: string): boolean => {
+    const expectedNext = getNextWeekday(new Date(prevDate));
+    return dateToISODate(expectedNext) === currDate;
+};
+
+const createPeriodeKey = (startDate: string, endDate: string): string =>
+    startDate === endDate ? startDate : `${startDate}/${endDate}`;
+
+export const periodiserDateDurationMap = (enkeltdager: DateDurationMap): ISODateRangeMap<ISODuration> => {
+    const sortedDates = Object.keys(enkeltdager).sort();
+
+    if (sortedDates.length === 0) {
+        return {};
+    }
+
+    const perioder: ISODateRangeMap<ISODuration> = {};
+    let periodeStart = sortedDates[0];
+    let periodeEnd = periodeStart;
+    let periodeDuration = durationToISODuration(enkeltdager[periodeStart]);
+
+    for (let i = 1; i < sortedDates.length; i++) {
+        const currentDate = sortedDates[i];
+        const currentDuration = durationToISODuration(enkeltdager[currentDate]);
+
+        const canMerge = periodeDuration === currentDuration && isConsecutiveWeekday(periodeEnd, currentDate);
+
+        if (canMerge) {
+            periodeEnd = currentDate;
+        } else {
+            perioder[createPeriodeKey(periodeStart, periodeEnd)] = periodeDuration;
+            periodeStart = currentDate;
+            periodeEnd = currentDate;
+            periodeDuration = currentDuration;
+        }
+    }
+
+    perioder[createPeriodeKey(periodeStart, periodeEnd)] = periodeDuration;
+
+    return perioder;
+};

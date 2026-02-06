@@ -5,6 +5,7 @@ import { Arbeidsgiver, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
+import { getTilsynsordningApiDataFraSøknadsdata } from './getTilsynsordningApiDataFraSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -14,7 +15,7 @@ export const getApiDataFromSøknadsdata = (
     arbeidsgivere: Arbeidsgiver[],
     locale: Locale,
 ): SøknadApiData | undefined => {
-    const { id, arbeidstid, lovbestemtFerie, ukjentArbeidsforhold } = søknadsdata;
+    const { id, arbeidstid, lovbestemtFerie, omsorgstilbud, ukjentArbeidsforhold } = søknadsdata;
 
     if (!arbeidstid && !lovbestemtFerie) {
         return undefined;
@@ -32,6 +33,7 @@ export const getApiDataFromSøknadsdata = (
                 norskIdentitetsnummer: sak.barn.identitetsnummer,
             },
             lovbestemtFerie: lovbestemtFerie ? getLovbestemtFerieApiDataFromSøknadsdata(lovbestemtFerie) : undefined,
+            tilsynsordning: omsorgstilbud ? getTilsynsordningApiDataFraSøknadsdata(omsorgstilbud) : undefined,
             arbeidstid: arbeidstid
                 ? getArbeidstidApiDataFromSøknadsdata(
                       sak.søknadsperioder,
