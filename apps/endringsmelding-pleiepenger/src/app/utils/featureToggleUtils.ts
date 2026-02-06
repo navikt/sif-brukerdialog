@@ -1,6 +1,9 @@
-export enum Feature {}
+import { getMaybeEnv } from '@navikt/sif-common-env';
+
+export enum Feature {
+    ENDRE_OMSORGSTILBUD = 'ENDRE_OMSORGSTILBUD',
+}
 
 export const isFeatureEnabled = (feature: Feature) => {
-    const appSettings = (window as any).appSettings;
-    return appSettings[feature] === 'on' || appSettings[feature] === 'true';
+    return getMaybeEnv(feature) === 'on';
 };

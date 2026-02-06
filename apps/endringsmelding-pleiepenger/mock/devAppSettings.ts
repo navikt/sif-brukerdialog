@@ -28,6 +28,8 @@ export const getDevAppSettings = (isTest?: boolean) => {
         SIF_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:sif-innsyn-api',
         SIF_INNSYN_API_URL: 'http://sif-innsyn-api',
 
+        ENDRE_OMSORGSTILBUD: isTest ? 'off' : 'on',
+
         VELG_SCENARIO: isTest ? 'on' : 'on',
         MSW: isTest ? 'off' : 'on',
         E2E_TEST: isTest ? 'true' : false,

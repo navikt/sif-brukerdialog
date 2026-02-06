@@ -8,6 +8,7 @@ import { getListValidator } from '@navikt/sif-validation';
 import { EndringType } from '@types';
 
 import { AppText, useAppIntl } from '../../i18n';
+import { Feature, isFeatureEnabled } from '../../utils';
 import OmSøknaden from './OmSøknaden';
 
 export enum VelkommenFormFields {
@@ -76,11 +77,15 @@ const VelkommenPage = () => {
                                             label: text('velkommenPage.endre.jobb'),
                                             value: EndringType.arbeidstid,
                                         },
-                                        {
-                                            'data-testid': 'endreOmsorgstilbud',
-                                            label: text('velkommenPage.endre.omsorgstilbud'),
-                                            value: EndringType.omsorgstilbud,
-                                        },
+                                        ...(isFeatureEnabled(Feature.ENDRE_OMSORGSTILBUD)
+                                            ? [
+                                                  {
+                                                      'data-testid': 'endreOmsorgstilbud',
+                                                      label: text('velkommenPage.endre.omsorgstilbud'),
+                                                      value: EndringType.omsorgstilbud,
+                                                  },
+                                              ]
+                                            : []),
                                     ]}
                                 />
 
