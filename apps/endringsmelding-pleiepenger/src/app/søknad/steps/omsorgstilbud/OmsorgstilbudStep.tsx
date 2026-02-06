@@ -86,7 +86,6 @@ const OmsorgstilbudStep = () => {
                                     opprinneligTilsynsdager={sak.tilsynsordning.dagerMedTilsynsordning}
                                     isSubmitting={isSubmitting}
                                     onOmsorgstilbudChanged={(values) => {
-                                        console.log(values);
                                         oppdaterSøknadState(values);
                                     }}
                                 />

@@ -51,10 +51,9 @@ export const sifCommonPleiepengerMessages_nn: Record<keyof typeof sifCommonPleie
     'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.hoursAreNegative':
         'Talet på timar og minutt {dag} kan ikkje vere mindre enn 0 timar og 0 minutt.',
 
-    'omsorgstilbudMåned.ukeOgÅr': 'Omsorgstilbod {ukeOgÅr}',
-    'omsorgstilbudMåned.dagerRegistrert.dager':
-        '{dager, plural, one {# dag} other {# dagar}} med omsorgstilbod registrert.',
-    'omsorgstilbudMåned.dagerRegistrert.ingenDager': 'Ingen dagar med omsorgstilbod registrert.',
+    'omsorgstilbudMåned.ukeOgÅr': '{ukeOgÅr}',
+    'omsorgstilbudMåned.dagerRegistrert.dager': '{dager, plural, one {# dag} other {# dagar}} endra.',
+    'omsorgstilbudMåned.dagerRegistrert.ingenDager': 'Ingen dagar endra.',
     'omsorgstilbudPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbod',
     'omsorgstilbudPeriode.part.skalVære': 'skal vere',
 

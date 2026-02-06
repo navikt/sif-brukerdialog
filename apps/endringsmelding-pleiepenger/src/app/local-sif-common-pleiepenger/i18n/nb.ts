@@ -49,10 +49,9 @@ export const sifCommonPleiepengerMessages_nb = {
     'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.hoursAreNegative':
         'Antall timer og minutter {dag}  kan ikke være mindre enn 0 timer og 0 minutter.',
 
-    'omsorgstilbudMåned.ukeOgÅr': 'Omsorgstilbud {ukeOgÅr}',
-    'omsorgstilbudMåned.dagerRegistrert.dager':
-        '{dager, plural, one {# dag} other {# dager}} med omsorgstilbud endret.',
-    'omsorgstilbudMåned.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud endret.',
+    'omsorgstilbudMåned.ukeOgÅr': '{ukeOgÅr}',
+    'omsorgstilbudMåned.dagerRegistrert.dager': '{dager, plural, one {# dag} other {# dager}} endret',
+    'omsorgstilbudMåned.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud endret',
     'omsorgstilbudPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbud',
     'omsorgstilbudPeriode.part.skalVære': 'skal være',
 

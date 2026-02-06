@@ -1,5 +1,5 @@
-import { Button, Heading, VStack } from '@navikt/ds-react';
-import { DateDurationMap, dateFormatter, DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
+import { Button, VStack } from '@navikt/ds-react';
+import { DateDurationMap, DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
 import OmsorgstilbudPeriodeDialog from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';
@@ -28,14 +28,9 @@ const OmsorgstilbudPeriode = ({
     return (
         <>
             <VStack gap="space-16">
-                <Heading level="3" size="medium">
-                    Søknadsperioden {dateFormatter.dayCompactDate(søknadsperiode.from)} -{' '}
-                    {dateFormatter.dayCompactDate(søknadsperiode.to)}
-                </Heading>
-
                 <div>
-                    <Button type="button" variant="secondary" size="small" onClick={() => setVisPeriodeDialog(true)}>
-                        Oppgi like uker
+                    <Button type="button" variant="tertiary" size="small" onClick={() => setVisPeriodeDialog(true)}>
+                        Endre flere uker samtidig
                     </Button>
                 </div>
 

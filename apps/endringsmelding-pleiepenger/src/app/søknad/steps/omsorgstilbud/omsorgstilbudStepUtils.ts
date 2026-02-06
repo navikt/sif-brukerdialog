@@ -48,7 +48,7 @@ export const mapSakTilsynsordningPeriodeToDateDurationMap = (
     Object.keys(tilsynsordningPeriode).forEach((key) => {
         const periode: DateRange = ISODateRangeToDateRange(key);
         const duration = tilsynsordningPeriode[key];
-        const dates = getDatesInDateRange(periode);
+        const dates = getDatesInDateRange(periode, true);
         dates.forEach((date) => {
             datesWithDuration[dateToISODate(date)] = duration;
         });
