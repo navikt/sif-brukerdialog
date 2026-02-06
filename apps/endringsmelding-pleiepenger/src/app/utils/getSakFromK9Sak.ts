@@ -33,13 +33,16 @@ import {
     K9SakArbeidstidInfo,
     K9SakArbeidstidPeriodeMap,
     K9SakLovbestemtFerie,
+    K9SakTilsynsordningPeriodeMap,
     PeriodeMedArbeidstid,
     Sak,
+    SakTilsynsordningPeriode,
 } from '@types';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
+import { mapSakTilsynsordningPeriodeToDateDurationMap } from '../søknad/steps/omsorgstilbud/omsorgstilbudStepUtils';
 import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getFeriedagerMapFromPerioder } from './ferieUtils';
@@ -99,15 +102,19 @@ export const getSakFromK9Sak = (
     );
 
     const frilanser = getArbeidsaktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
+
     const selvstendigNæringsdrivende = getArbeidsaktivitetSelvstendigNæringsdrivende(
         selvstendigNæringsdrivendeArbeidstidInfo,
         tillattEndringsperiode,
     );
+
     const aktiviteterSomKanEndres = getAktiviteterSomKanEndres({
         arbeidstakerAktiviteter,
         frilanser,
         selvstendigNæringsdrivende,
     });
+
+    const perioderMedTilsynsordning = getSakTilsynsordning(k9sak.ytelse.tilsynsordning.perioder);
 
     return {
         ytelse: {
@@ -130,7 +137,21 @@ export const getSakFromK9Sak = (
         utledet: {
             aktiviteterSomKanEndres,
         },
+        tilsynsordning: {
+            perioderMedTilsynsordning,
+            dagerMedTilsynsordning: mapSakTilsynsordningPeriodeToDateDurationMap(perioderMedTilsynsordning),
+        },
     };
+};
+
+/** Henter ut perioder med tilsynsordning  */
+
+export const getSakTilsynsordning = (perioder: K9SakTilsynsordningPeriodeMap): SakTilsynsordningPeriode => {
+    const sakPerioder: SakTilsynsordningPeriode = {};
+    Object.keys(perioder).forEach((key) => {
+        sakPerioder[key] = perioder[key].etablertTilsynTimerPerDag;
+    });
+    return sakPerioder;
 };
 
 /** Henter utk9SakArbeidstakere med arbeidsgiver funnet i AA-reg */

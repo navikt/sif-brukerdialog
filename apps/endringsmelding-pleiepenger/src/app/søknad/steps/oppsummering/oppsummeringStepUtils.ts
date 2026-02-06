@@ -11,6 +11,7 @@ import {
     ArbeidstidPeriodeApiDataMap,
     LovbestemtFerieApiData,
     Søknadsdata,
+    TilsynsordningApiData,
 } from '@types';
 import { erKortArbeidsuke, getTimerPerUkeFraTimerPerDag } from '@utils';
 
@@ -40,6 +41,13 @@ const harEndringerILovbestemtFerieApiData = (lovbestemtFerie?: LovbestemtFerieAp
         return false;
     }
     return Object.keys(lovbestemtFerie.perioder).length > 0;
+};
+
+const harEndringerITilsynsordningApiData = (tilsynsordning?: TilsynsordningApiData): boolean => {
+    if (!tilsynsordning) {
+        return false;
+    }
+    return Object.keys(tilsynsordning.perioder).length > 0;
 };
 
 const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
@@ -131,6 +139,7 @@ export const oppsummeringStepUtils = {
     getArbeidstidUkerItems,
     harEndringerILovbestemtFerieApiData,
     harEndringerIArbeidstid,
+    harEndringerITilsynsordningApiData,
     erArbeidstidEndringerGyldig,
     getOppsummeringStepInitialValues,
 };

@@ -10,6 +10,8 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
             return SøknadRoutes.ARBEIDSTID;
         case StepId.LOVBESTEMT_FERIE:
             return SøknadRoutes.LOVBESTEMT_FERIE;
+        case StepId.OMSORGSTILBUD:
+            return SøknadRoutes.OMSORGSTILBUD;
         case StepId.OPPSUMMERING:
             return SøknadRoutes.OPPSUMMERING;
         case StepId.MELDING_SENDT:
@@ -22,6 +24,7 @@ export const SøknadStepRoute = {
     [StepId.UKJENT_ARBEIDSFOHOLD]: 'ukjentArbeidsforhold',
     [StepId.ARBEIDSTID]: 'arbeidstid',
     [StepId.LOVBESTEMT_FERIE]: 'lovbestemt-ferie',
+    [StepId.OMSORGSTILBUD]: 'omsorgstilbud',
     [StepId.OPPSUMMERING]: 'oppsummering',
     [StepId.MELDING_SENDT]: 'melding_sendt',
 };
@@ -33,6 +36,7 @@ export enum SøknadRoutes {
     UKJENT_ARBEIDSFOHOLD = '/melding/ukjentArbeidsforhold',
     ARBEIDSTID = '/melding/arbeidstid',
     LOVBESTEMT_FERIE = '/melding/lovbestemt-ferie',
+    OMSORGSTILBUD = '/melding/omsorgstilbud',
     OPPSUMMERING = '/melding/oppsummering',
     SØKNAD_SENDT = '/melding/melding_sendt',
     UKJENT_STEG = '/melding/ukjent-steg',

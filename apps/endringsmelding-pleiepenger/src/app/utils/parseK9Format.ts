@@ -5,6 +5,7 @@ import {
     K9FormatArbeidstidInfo,
     K9FormatBarn,
     K9FormatLovbestemtFeriePerioder,
+    K9FormatTilsynsordning,
     K9FormatUtenlandsoppholdPerioder,
     K9Sak,
     K9SakArbeidstid,
@@ -12,6 +13,8 @@ import {
     K9SakArbeidstidPeriodeMap,
     K9SakBarn,
     K9SakLovbestemtFerie,
+    K9SakTilsynsordning,
+    K9SakTilsynsordningPeriodeMap,
     K9SakUtenlandsopphold,
 } from '@types';
 import dayjs from 'dayjs';
@@ -100,7 +103,6 @@ export const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakAr
 
 /**
  *
- * @param arbeidstid Parse utenlandsopphold
  * @returns
  */
 export const parseK9FormatUtenlandsopphold = (
@@ -115,6 +117,21 @@ export const parseK9FormatUtenlandsopphold = (
             årsak: utenlandsopphold.årsak,
         };
     });
+};
+/**
+ *
+ * @returns
+ */
+export const parseK9FormatTilsynsordning = (tilsynsordning: K9FormatTilsynsordning): K9SakTilsynsordning => {
+    const perioder: K9SakTilsynsordningPeriodeMap = {};
+    Object.keys(tilsynsordning.perioder).map((key) => {
+        perioder[key] = {
+            etablertTilsynTimerPerDag: ISODurationToDuration(tilsynsordning.perioder[key].etablertTilsynTimerPerDag),
+        };
+    });
+    return {
+        perioder,
+    };
 };
 /**
  *
@@ -172,6 +189,7 @@ export const parseK9Format = (data: K9Format): K9Sak => {
                     : undefined,
             },
             arbeidstid: fjernK9SakArbeidstidMedIngenNormalarbeidstid(parseK9FormatArbeidstid(ytelse.arbeidstid)),
+            tilsynsordning: parseK9FormatTilsynsordning(ytelse.tilsynsordning),
         },
     };
     return sak;

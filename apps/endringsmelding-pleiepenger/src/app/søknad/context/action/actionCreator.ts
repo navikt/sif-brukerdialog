@@ -7,6 +7,7 @@ import {
     UkjentArbeidsforholdSøknadsdata,
 } from '@types';
 
+import { OmsorgstilbudSøknadsdata } from '../../../types/OmsorgstilbudSøknadsdata';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { StepId } from '../../config/StepId';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
@@ -21,6 +22,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_UKJENT_ARBEIDSFOHOLD = 'setSøknadUkjentArbeidsforhold',
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
     SET_SØKNAD_LOVBESTEMT_FERIE = 'setSøknadLovbestemtFerie',
+    SET_SØKNAD_OMSORGSTILBUD = 'setSøknadOmsorgstilbud',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -75,6 +77,11 @@ interface SetSøknadLovbestemtFerie {
     payload: LovbestemtFerieSøknadsdata;
 }
 
+interface SetSøknadOmsorgstilbud {
+    type: SøknadContextActionKeys.SET_SØKNAD_OMSORGSTILBUD;
+    payload: OmsorgstilbudSøknadsdata;
+}
+
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
     payload: OppsummeringFormValues;
@@ -118,6 +125,7 @@ const requestLagreSøknad = (): RequestLagreSøknad => ({
 const setSøknadLagret = (): SetSøknadLagret => ({
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET,
 });
+
 const setEndringsmeldingSendt = (): SetEndringsmeldingSendt => ({
     type: SøknadContextActionKeys.SET_ENDRINGSMELDING_SENDT,
 });
@@ -134,6 +142,11 @@ const setSøknadArbeidstid = (payload: ArbeidstidSøknadsdata): SetSøknadArbeid
 
 const setSøknadLovbestemtFerie = (payload: LovbestemtFerieSøknadsdata): SetSøknadLovbestemtFerie => ({
     type: SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE,
+    payload,
+});
+
+const setSøknadOmsorgstilbud = (payload: OmsorgstilbudSøknadsdata): SetSøknadOmsorgstilbud => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_OMSORGSTILBUD,
     payload,
 });
 
@@ -172,6 +185,7 @@ export type SøknadContextAction =
     | SetSøknadUkjentArbeidsforhold
     | SetSøknadArbeidstid
     | SetSøknadLovbestemtFerie
+    | SetSøknadOmsorgstilbud
     | SetSøknadRoute
     | SetEndringsmeldingSendt
     | StartSøknad
@@ -189,6 +203,7 @@ const actionsCreator = {
     setSøknadUkjentArbeidsforhold,
     setSøknadArbeidstid,
     setSøknadLovbestemtFerie,
+    setSøknadOmsorgstilbud,
     setSøknadRoute,
     setEndringsmeldingSendt,
     startSøknad,

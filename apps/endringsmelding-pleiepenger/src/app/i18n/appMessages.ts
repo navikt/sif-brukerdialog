@@ -1,8 +1,11 @@
 import { infoNormalarbeidstid } from '../components/info-normalarbeidstid/infoNormalarbeidstid.messages';
+import { dagerMedTidMessages } from '../local-sif-common-pleiepenger/components/dager-med-tid-liste/dagerMedTidMessages';
+import { sifCommonPleiepengerMessages_nb } from '../local-sif-common-pleiepenger/i18n/nb';
 import { arbeidstidUkerMessages } from '../modules/arbeidstid-uker/arbeidstidUkerMessages';
 import { endreArbeidstidMessages } from '../modules/endre-arbeidstid-form/endreArbeidstidMessages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
+import { omsorgstilbudMessages_nb } from '../søknad/steps/omsorgstilbud/i18n/nb';
 import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';
 import { ukjentArbeidsforholdFormMessages } from '../søknad/steps/ukjent-arbeidsforhold/ukjentArbeidsforholdFormMessages';
 import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
@@ -18,6 +21,18 @@ const nb = {
     ...oppsummeringStepMessages.nb,
     ...sifCommonSoknadOverrideMessages.nb,
     ...arbeidstidUkerMessages.nb,
+    ...omsorgstilbudMessages_nb,
+    ...sifCommonPleiepengerMessages_nb,
+    ...dagerMedTidMessages.nb,
+
+    'psb.timerOgMinutter':
+        '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
+
+    'mandag.caps': 'Mandag',
+    'tirsdag.caps': 'Tirsdag',
+    'onsdag.caps': 'Onsdag',
+    'torsdag.caps': 'Torsdag',
+    'fredag.caps': 'Fredag',
 
     'lenke.skrivTilOss': 'Skriv til oss',
     'lenke.sendBeskjed': 'Send beskjed',
@@ -28,6 +43,7 @@ const nb = {
     'step.aktivitet.stepTitle': 'Velg arbeidsforhold',
     'step.arbeidstid.stepTitle': 'Jobb i pleiepengeperioden',
     'step.lovbestemtFerie.stepTitle': 'Ferie i pleiepengeperioden',
+    'step.omsorgstilbud.stepTitle': 'Tid i omsorgstilbud',
     'step.oppsummering.stepTitle': 'Oppsummering',
 
     'arbeidsaktivitetBlockHeader.nyttArbeidsforhold': 'Nytt arbeidsforhold',

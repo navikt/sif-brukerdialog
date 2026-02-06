@@ -34,6 +34,11 @@ export const getSøknadSteps = (
     ) {
         steps.push(StepId.ARBEIDSTID);
     }
+
+    if (valgteEndringer.omsorgstilbud) {
+        steps.push(StepId.OMSORGSTILBUD);
+    }
+
     steps.push(StepId.OPPSUMMERING);
     return steps;
 };

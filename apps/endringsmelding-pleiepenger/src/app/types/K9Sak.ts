@@ -6,6 +6,16 @@ export interface K9SakArbeidstidPeriode {
     faktiskArbeidTimerPerDag: Duration;
 }
 
+export interface K9SakTilsynsordningPeriode {
+    etablertTilsynTimerPerDag: Duration;
+}
+
+export type K9SakTilsynsordningPeriodeMap = ISODateRangeMap<K9SakTilsynsordningPeriode>;
+
+export interface K9SakTilsynsordning {
+    perioder: K9SakTilsynsordningPeriodeMap;
+}
+
 export type K9SakArbeidstidPeriodeMap = ISODateRangeMap<K9SakArbeidstidPeriode>;
 
 export interface K9SakArbeidstidInfo {
@@ -60,6 +70,7 @@ interface K9SakYtelse {
             jobberFortsattSomFrilanser: boolean;
         };
     };
+    tilsynsordning: K9SakTilsynsordning;
     arbeidstid: K9SakArbeidstid;
 }
 
