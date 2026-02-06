@@ -35,7 +35,7 @@ export const getSøknadSteps = (
         steps.push(StepId.ARBEIDSTID);
     }
 
-    if (valgteEndringer.tilsynsordning) {
+    if (valgteEndringer.omsorgstilbud) {
         steps.push(StepId.OMSORGSTILBUD);
     }
 

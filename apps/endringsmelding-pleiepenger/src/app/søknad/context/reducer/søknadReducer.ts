@@ -13,7 +13,7 @@ const initialSøknadsdata: Søknadsdata = {
 const getValgteEndringer = (endringer: EndringType[]): ValgteEndringer => ({
     arbeidstid: endringer.some((a) => a === EndringType.arbeidstid),
     lovbestemtFerie: endringer.some((a) => a === EndringType.lovbestemtFerie),
-    tilsynsordning: endringer.some((a) => a === EndringType.omsorgstilbud),
+    omsorgstilbud: endringer.some((a) => a === EndringType.omsorgstilbud),
 });
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
@@ -140,7 +140,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     valgteEndringer: {
                         arbeidstid: false,
                         lovbestemtFerie: false,
-                        tilsynsordning: false,
+                        omsorgstilbud: false,
                     },
                     endringsmeldingSendt: true,
                 };
@@ -153,7 +153,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     valgteEndringer: {
                         arbeidstid: false,
                         lovbestemtFerie: false,
-                        tilsynsordning: false,
+                        omsorgstilbud: false,
                     },
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };

@@ -177,7 +177,7 @@ const OppsummeringStep = () => {
                         )}
                     </SummarySection>
                 )}
-                {valgteEndringer.tilsynsordning && (
+                {valgteEndringer.omsorgstilbud && (
                     <SummarySection header={text('oppsummeringStep.tilsynsordning.tittel')}>
                         {tilsynsordning !== undefined && tilsynsordningErEndret ? (
                             <TilsynsordningOppsummering tilsynsordning={tilsynsordning} />

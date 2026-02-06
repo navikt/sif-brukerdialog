@@ -30,8 +30,7 @@ const isConsecutiveWeekday = (prevDate: string, currDate: string): boolean => {
     return dateToISODate(expectedNext) === currDate;
 };
 
-const createPeriodeKey = (startDate: string, endDate: string): string =>
-    startDate === endDate ? startDate : `${startDate}/${endDate}`;
+const createPeriodeKey = (startDate: string, endDate: string): string => `${startDate}/${endDate}`;
 
 export const periodiserDateDurationMap = (enkeltdager: DateDurationMap): ISODateRangeMap<ISODuration> => {
     const sortedDates = Object.keys(enkeltdager).sort();

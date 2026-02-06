@@ -51,8 +51,8 @@ export const sifCommonPleiepengerMessages_nb = {
 
     'omsorgstilbudMåned.ukeOgÅr': 'Omsorgstilbud {ukeOgÅr}',
     'omsorgstilbudMåned.dagerRegistrert.dager':
-        '{dager, plural, one {# dag} other {# dager}} med omsorgstilbud registrert.',
-    'omsorgstilbudMåned.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud registrert.',
+        '{dager, plural, one {# dag} other {# dager}} med omsorgstilbud endret.',
+    'omsorgstilbudMåned.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud endret.',
     'omsorgstilbudPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbud',
     'omsorgstilbudPeriode.part.skalVære': 'skal være',
 

@@ -1,4 +1,4 @@
-import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { DateRange, Duration, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
 import {
     ArbeidstidApiData,
     LovbestemtFerieApiData,
@@ -6,6 +6,7 @@ import {
     Sak,
     SøknadApiData,
     Søknadsdata,
+    TilsynsordningApiData,
     ValgteEndringer,
 } from '@types';
 
@@ -117,4 +118,18 @@ export const getLovbestemtFerieOppsummeringInfo = (lovbestemtFerie: LovbestemtFe
         perioderLagtTil,
         perioderFjernet,
     };
+};
+
+export type PeriodeMedTilsyn = {
+    periode: DateRange;
+    tid: Duration;
+};
+export const getTilsynsordningOppsummeringInfo = (tilsynsordning: TilsynsordningApiData): PeriodeMedTilsyn[] => {
+    const perioder: PeriodeMedTilsyn[] = Object.keys(tilsynsordning.perioder).map((isoDateRange): PeriodeMedTilsyn => {
+        return {
+            periode: ISODateRangeToDateRange(isoDateRange),
+            tid: ISODurationToDuration(tilsynsordning.perioder[isoDateRange]),
+        };
+    });
+    return perioder;
 };

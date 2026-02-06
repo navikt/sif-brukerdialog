@@ -17,7 +17,7 @@ export const initialStateStorybook: SøknadContextState = {
     valgteEndringer: {
         arbeidstid: true,
         lovbestemtFerie: true,
-        tilsynsordning: true,
+        omsorgstilbud: true,
     },
     tillattEndringsperiode: {
         from: new Date(),
