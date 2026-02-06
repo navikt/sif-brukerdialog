@@ -38,8 +38,12 @@ export type LovbestemtFerieApiData = {
     perioder: ISODateRangeMap<LovbestemtFerieType>;
 };
 
+export type TilsynsordningPeriodeApiData = {
+    etablertTilsynTimerPerDag: ISODuration;
+};
+
 export type TilsynsordningApiData = {
-    perioder: ISODateRangeMap<ISODuration>;
+    perioder: ISODateRangeMap<TilsynsordningPeriodeApiData>;
 };
 
 interface BarnApiData {

@@ -128,7 +128,7 @@ export const getTilsynsordningOppsummeringInfo = (tilsynsordning: Tilsynsordning
     const perioder: PeriodeMedTilsyn[] = Object.keys(tilsynsordning.perioder).map((isoDateRange): PeriodeMedTilsyn => {
         return {
             periode: ISODateRangeToDateRange(isoDateRange),
-            tid: ISODurationToDuration(tilsynsordning.perioder[isoDateRange]),
+            tid: ISODurationToDuration(tilsynsordning.perioder[isoDateRange].etablertTilsynTimerPerDag),
         };
     });
     return perioder;

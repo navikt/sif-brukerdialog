@@ -5,15 +5,19 @@ import {
     ISODateRangeMap,
     ISODuration,
 } from '@navikt/sif-common-utils';
-import { OmsorgstilbudSøknadsdata, TilsynsordningApiData } from '@types';
+import { OmsorgstilbudSøknadsdata, TilsynsordningApiData, TilsynsordningPeriodeApiData } from '@types';
 
 export const getTilsynsordningApiDataFraSøknadsdata = (
     omsorgstilbud: OmsorgstilbudSøknadsdata,
 ): TilsynsordningApiData => {
     const perioder = periodiserDateDurationMap(omsorgstilbud.enkeltdager);
-    return {
-        perioder,
-    };
+    const tilsynsordningPerioder: ISODateRangeMap<TilsynsordningPeriodeApiData> = {};
+    Object.keys(perioder).forEach((periodeKey): void => {
+        tilsynsordningPerioder[periodeKey] = {
+            etablertTilsynTimerPerDag: perioder[periodeKey],
+        };
+    });
+    return { perioder: tilsynsordningPerioder };
 };
 
 const getNextWeekday = (date: Date): Date => {
