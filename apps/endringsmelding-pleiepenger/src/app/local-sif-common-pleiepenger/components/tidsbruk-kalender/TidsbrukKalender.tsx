@@ -88,6 +88,7 @@ const TidsbrukKalender = ({
             )}
             dateContentRenderer={(dato: any) => {
                 const dag = kalenderdager[dateToISODate(dato)];
+                console.log(dag);
                 return dag ? (
                     <TidsbrukKalenderDag
                         dato={dato}

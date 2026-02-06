@@ -96,20 +96,7 @@ const OmsorgstilbudMåned = ({
                     skjulTommeDagerIListe={false}
                     visOpprinneligTid={true}
                     skjulUkerMedKunUtilgjengeligeDager={true}
-                    tidRenderer={({ tid, prosent }) => {
-                        if (prosent !== undefined && prosent > 0) {
-                            return (
-                                <>
-                                    <div>{prosent} %</div>
-                                    <div className="beregnetTid">
-                                        (<DurationText duration={tid} />)
-                                    </div>
-                                </>
-                            );
-                        }
-                        if (tid.hours === '0' && tid.minutes === '0') {
-                            return <></>;
-                        }
+                    tidRenderer={({ tid }) => {
                         return <DurationText duration={tid} />;
                     }}
                     onDateClick={
