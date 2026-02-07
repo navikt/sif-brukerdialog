@@ -1,6 +1,5 @@
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { getMaybeEnv } from '@navikt/sif-common-env';
-import MockDate from 'mockdate';
 import { createRoot } from 'react-dom/client';
 
 import { enableMocking } from '../../mock/msw/enableMocking';
@@ -19,7 +18,7 @@ if (import.meta.env.INJECT_DECORATOR) {
 enableMocking().then(() => {
     const envNow = getMaybeEnv('NOW');
     if (envNow) {
-        MockDate.set(new Date(envNow));
+        // MockDate.set(new Date(envNow));
     }
 
     createRoot(document.getElementById('root')!).render(<App />);

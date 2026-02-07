@@ -97,6 +97,9 @@ const OmsorgstilbudMåned = ({
                     visOpprinneligTid={true}
                     skjulUkerMedKunUtilgjengeligeDager={true}
                     tidRenderer={({ tid }) => {
+                        if (tid.hours === '0' && tid.minutes === '0') {
+                            return <></>;
+                        }
                         return <DurationText duration={tid} />;
                     }}
                     onDateClick={
