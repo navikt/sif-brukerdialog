@@ -16,15 +16,15 @@ interface Props {
     onPeriodeChange: (tid: DateDurationMap) => void;
 }
 
-const OmsorgstilbudPeriode = ({
+const OmsorgstilbudSøknadsperiode = ({
     søknadsperiode,
     opprinneligTilsynsdager,
     endredeTilsynsdager = {},
     onEnkeltdagChange,
     onPeriodeChange,
 }: Props) => {
-    const månederISøknadsperiode = dateRangeUtils.getMonthsInDateRange(søknadsperiode);
     const [visPeriodeDialog, setVisPeriodeDialog] = useState(false);
+    const månederISøknadsperiode = dateRangeUtils.getMonthsInDateRange(søknadsperiode);
     return (
         <>
             <VStack gap="space-16">
@@ -37,15 +37,14 @@ const OmsorgstilbudPeriode = ({
                 <VStack gap="space-8">
                     {månederISøknadsperiode.map((måned) => {
                         return (
-                            <div key={måned.from.toDateString()}>
-                                <OmsorgstilbudMåned
-                                    søknadsperiode={måned}
-                                    måned={måned}
-                                    tidOmsorgstilbud={endredeTilsynsdager}
-                                    tidOmsorgstilbudOpprinnelig={opprinneligTilsynsdager}
-                                    onEnkeltdagChange={onEnkeltdagChange}
-                                />
-                            </div>
+                            <OmsorgstilbudMåned
+                                key={måned.from.toDateString()}
+                                søknadsperiode={måned}
+                                måned={måned}
+                                tidOmsorgstilbud={endredeTilsynsdager}
+                                tidOmsorgstilbudOpprinnelig={opprinneligTilsynsdager}
+                                onEnkeltdagChange={onEnkeltdagChange}
+                            />
                         );
                     })}
                 </VStack>
@@ -67,4 +66,4 @@ const OmsorgstilbudPeriode = ({
     );
 };
 
-export default OmsorgstilbudPeriode;
+export default OmsorgstilbudSøknadsperiode;

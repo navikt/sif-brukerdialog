@@ -6,5 +6,4 @@ export interface OmsorgstilbudMeta {
 
 export interface OmsorgstilbudSøknadsdata {
     enkeltdager: DateDurationMap;
-    enkeltdagerMeta: OmsorgstilbudMeta;
 }

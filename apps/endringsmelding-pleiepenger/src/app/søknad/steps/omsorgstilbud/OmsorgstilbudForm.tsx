@@ -9,7 +9,7 @@ import DateRangeExpansionCards from '../../../components/date-range-expansion-ca
 import EndretTag from '../../../components/tags/EndretTag';
 import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
 import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
-import OmsorgstilbudPeriode from './OmsorgstilbudPeriode';
+import OmsorgstilbudSøknadsperiode from './OmsorgstilbudSøknadsperiode';
 
 export const omsorgstilbudFormComponents = getTypedFormComponents<
     OmsorgstilbudFormFields,
@@ -95,7 +95,7 @@ const OmsorgstilbudForm = ({
                     dateRanges={søknadsperioder}
                     renderContent={(periode) => {
                         return (
-                            <OmsorgstilbudPeriode
+                            <OmsorgstilbudSøknadsperiode
                                 key={periode.from.toDateString()}
                                 opprinneligTilsynsdager={opprinneligTilsynsdager}
                                 endredeTilsynsdager={omsorgsdager}

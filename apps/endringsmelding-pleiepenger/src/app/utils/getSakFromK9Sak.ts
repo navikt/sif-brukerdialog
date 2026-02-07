@@ -1,4 +1,5 @@
 import {
+    DateDurationMap,
     DateRange,
     dateRangesCollide,
     dateRangeToISODateRange,
@@ -42,7 +43,6 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
-import { mapSakTilsynsordningPeriodeToDateDurationMap } from '../søknad/steps/omsorgstilbud/omsorgstilbudStepUtils';
 import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getFeriedagerMapFromPerioder } from './ferieUtils';
@@ -152,6 +152,21 @@ export const getSakTilsynsordning = (perioder: K9SakTilsynsordningPeriodeMap): S
         sakPerioder[key] = perioder[key].etablertTilsynTimerPerDag;
     });
     return sakPerioder;
+};
+
+export const mapSakTilsynsordningPeriodeToDateDurationMap = (
+    tilsynsordningPeriode: SakTilsynsordningPeriode,
+): DateDurationMap => {
+    const datesWithDuration: DateDurationMap = {};
+    Object.keys(tilsynsordningPeriode).forEach((key) => {
+        const periode: DateRange = ISODateRangeToDateRange(key);
+        const duration = tilsynsordningPeriode[key];
+        const dates = getDatesInDateRange(periode, true);
+        dates.forEach((date) => {
+            datesWithDuration[dateToISODate(date)] = duration;
+        });
+    });
+    return datesWithDuration;
 };
 
 /** Henter utk9SakArbeidstakere med arbeidsgiver funnet i AA-reg */
