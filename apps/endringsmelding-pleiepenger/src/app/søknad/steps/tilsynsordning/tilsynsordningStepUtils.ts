@@ -24,7 +24,7 @@ export const getTilsynsordningStepInitialValues = (
         };
     }
     return {
-        tilsynsdager: tilsynsordningSøknadsdata.enkeltdager,
+        tilsynsdager: tilsynsordningSøknadsdata.tilsynsdager,
     };
 };
 
@@ -32,7 +32,7 @@ export const getTilsynsordningSøknadsdataFromFormValues = (
     values: OmsorgstilbudFormValues,
 ): TilsynsordningSøknadsdata => {
     return {
-        enkeltdager: values.tilsynsdager,
+        tilsynsdager: values.tilsynsdager,
     };
 };
 

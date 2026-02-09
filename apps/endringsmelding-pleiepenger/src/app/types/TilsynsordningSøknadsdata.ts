@@ -12,5 +12,5 @@ export type TilsynsdagerMap = {
 };
 
 export interface TilsynsordningSøknadsdata {
-    enkeltdager: DateDurationMap;
+    tilsynsdager: DateDurationMap;
 }
