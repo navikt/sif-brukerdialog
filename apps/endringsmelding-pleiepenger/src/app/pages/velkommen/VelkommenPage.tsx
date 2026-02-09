@@ -81,8 +81,8 @@ const VelkommenPage = () => {
                                             ? [
                                                   {
                                                       'data-testid': 'endreOmsorgstilbud',
-                                                      label: text('velkommenPage.endre.omsorgstilbud'),
-                                                      value: EndringType.omsorgstilbud,
+                                                      label: text('velkommenPage.endre.tilsynsordning'),
+                                                      value: EndringType.tilsynsordning,
                                                   },
                                               ]
                                             : []),

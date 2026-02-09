@@ -2,11 +2,11 @@ import { Button, VStack } from '@navikt/ds-react';
 import { DateDurationMap, DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
-import OmsorgstilbudPeriodeDialog from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-måned/components/omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';
+import TilsynsordningPeriodeDialog from '../../../local-sif-common-pleiepenger/components/tilsynsordning-måned/components/tilsynsordning-periode-dialog/TilsynsordningPeriodeDialog';
 import OmsorgstilbudMåned, {
     EnkeltdagChangeEvent,
-} from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-måned/OmsorgstilbudMåned';
-import { oppdaterDagerMedOmsorgstilbudIPeriode } from './omsorgstilbudStepUtils';
+} from '../../../local-sif-common-pleiepenger/components/tilsynsordning-måned/TilsynsordningMåned';
+import { oppdaterDagerMedOmsorgstilbudIPeriode } from './tilsynsordningStepUtils';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -16,7 +16,7 @@ interface Props {
     onPeriodeChange: (tid: DateDurationMap) => void;
 }
 
-const OmsorgstilbudSøknadsperiode = ({
+const TilsynsordningSøknadsperiode = ({
     søknadsperiode,
     opprinneligTilsynsdager,
     endredeTilsynsdager = {},
@@ -41,15 +41,15 @@ const OmsorgstilbudSøknadsperiode = ({
                                 key={måned.from.toDateString()}
                                 søknadsperiode={måned}
                                 måned={måned}
-                                tidOmsorgstilbud={endredeTilsynsdager}
-                                tidOmsorgstilbudOpprinnelig={opprinneligTilsynsdager}
+                                tidTilsynsordning={endredeTilsynsdager}
+                                tidTilsynsordningOpprinnelig={opprinneligTilsynsdager}
                                 onEnkeltdagChange={onEnkeltdagChange}
                             />
                         );
                     })}
                 </VStack>
             </VStack>
-            <OmsorgstilbudPeriodeDialog
+            <TilsynsordningPeriodeDialog
                 isOpen={visPeriodeDialog}
                 formProps={{
                     periode: søknadsperiode,
@@ -66,4 +66,4 @@ const OmsorgstilbudSøknadsperiode = ({
     );
 };
 
-export default OmsorgstilbudSøknadsperiode;
+export default TilsynsordningSøknadsperiode;

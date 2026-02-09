@@ -93,7 +93,7 @@ const prepInitialData = (
                 : {
                       arbeidstid: false,
                       lovbestemtFerie: false,
-                      omsorgstilbud: false,
+                      tilsynsordning: false,
                   },
         søknadsdata: {} as any,
         søknadSteps: [],

@@ -5,34 +5,34 @@ import {
     getDurationForISOWeekdayNumber,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
-import { OmsorgstilbudSøknadsdata } from '@types';
+import { TilsynsordningSøknadsdata } from '@types';
 import dayjs from 'dayjs';
 
-import { OmsorgstilbudPeriodeData } from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-måned/components/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
-import { OmsorgstilbudFormValues } from './OmsorgstilbudForm';
+import { TilsynsordningPeriodeData } from '../../../local-sif-common-pleiepenger/components/tilsynsordning-måned/components/tilsynsordning-periode-form/TilsynsordningPeriodeForm';
+import { OmsorgstilbudFormValues } from './TilsynsordningForm';
 
-export const getOmsorgstilbudStepInitialValues = (
-    omsorgstilbudSøknadsdata: OmsorgstilbudSøknadsdata | undefined,
+export const getTilsynsordningStepInitialValues = (
+    tilsynsordningSøknadsdata: TilsynsordningSøknadsdata | undefined,
     formValues?: OmsorgstilbudFormValues,
 ): OmsorgstilbudFormValues => {
     if (formValues) {
         return formValues;
     }
-    if (omsorgstilbudSøknadsdata === undefined) {
+    if (tilsynsordningSøknadsdata === undefined) {
         return {
-            omsorgsdager: {},
+            tilsynsdager: {},
         };
     }
     return {
-        omsorgsdager: omsorgstilbudSøknadsdata.enkeltdager,
+        tilsynsdager: tilsynsordningSøknadsdata.enkeltdager,
     };
 };
 
-export const getOmsorgstilbudSøknadsdataFromFormValues = (
+export const getTilsynsordningSøknadsdataFromFormValues = (
     values: OmsorgstilbudFormValues,
-): OmsorgstilbudSøknadsdata => {
+): TilsynsordningSøknadsdata => {
     return {
-        enkeltdager: values.omsorgsdager,
+        enkeltdager: values.tilsynsdager,
     };
 };
 
@@ -40,7 +40,7 @@ export const oppdaterDagerMedOmsorgstilbudIPeriode = ({
     fom,
     tom,
     tidFasteDager,
-}: OmsorgstilbudPeriodeData): DateDurationMap => {
+}: TilsynsordningPeriodeData): DateDurationMap => {
     const datoerIPeriode = getDatesInDateRange({ from: fom, to: tom }, true);
     const dagerSomSkalEndres: DateDurationMap = {};
     datoerIPeriode.forEach((dato) => {

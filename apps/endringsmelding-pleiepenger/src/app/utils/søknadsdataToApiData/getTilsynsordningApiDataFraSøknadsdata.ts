@@ -5,12 +5,12 @@ import {
     ISODateRangeMap,
     ISODuration,
 } from '@navikt/sif-common-utils';
-import { OmsorgstilbudSøknadsdata, TilsynsordningApiData, TilsynsordningPeriodeApiData } from '@types';
+import { TilsynsordningApiData, TilsynsordningPeriodeApiData, TilsynsordningSøknadsdata } from '@types';
 
 export const getTilsynsordningApiDataFraSøknadsdata = (
-    omsorgstilbud: OmsorgstilbudSøknadsdata,
+    tilsynsordning: TilsynsordningSøknadsdata,
 ): TilsynsordningApiData => {
-    const perioder = periodiserDateDurationMap(omsorgstilbud.enkeltdager);
+    const perioder = periodiserDateDurationMap(tilsynsordning.enkeltdager);
     const tilsynsordningPerioder: ISODateRangeMap<TilsynsordningPeriodeApiData> = {};
     Object.keys(perioder).forEach((periodeKey): void => {
         tilsynsordningPerioder[periodeKey] = {

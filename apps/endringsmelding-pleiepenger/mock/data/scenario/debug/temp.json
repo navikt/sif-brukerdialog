@@ -189,7 +189,7 @@
                 ]
             }
         },
-        "omsorgstilbud": {
+        "tilsynsordning": {
             "enkeltdager": {
                 "2026-02-10": {
                     "hours": "2",
@@ -221,12 +221,12 @@
         "updatedTimestamp": "2026-02-06T12:10:12.453Z"
     },
     "søknadRoute": "/melding/omsorgstilbud",
-    "søknadSteps": ["lovbestemtFerie", "arbeidstid", "omsorgstilbud", "oppsummering"],
+    "søknadSteps": ["lovbestemtFerie", "arbeidstid", "tilsynsordning", "oppsummering"],
     "harArbeidsgivereIkkeISak": false,
     "versjon": "1.2.0",
     "valgteEndringer": {
         "lovbestemtFerie": true,
-        "omsorgstilbud": true,
+        "tilsynsordning": true,
         "arbeidstid": true
     },
     "barnAktørId": "2977843645893"

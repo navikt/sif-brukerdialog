@@ -7,7 +7,7 @@ import {
     UkjentArbeidsforholdSøknadsdata,
 } from '@types';
 
-import { OmsorgstilbudSøknadsdata } from '../../../types/OmsorgstilbudSøknadsdata';
+import { TilsynsordningSøknadsdata } from '../../../types/TilsynsordningSøknadsdata';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { StepId } from '../../config/StepId';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
@@ -22,7 +22,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_UKJENT_ARBEIDSFOHOLD = 'setSøknadUkjentArbeidsforhold',
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
     SET_SØKNAD_LOVBESTEMT_FERIE = 'setSøknadLovbestemtFerie',
-    SET_SØKNAD_OMSORGSTILBUD = 'setSøknadOmsorgstilbud',
+    SET_SØKNAD_TILSYNSORDNING = 'setSøknadTilsynsordning',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -77,9 +77,9 @@ interface SetSøknadLovbestemtFerie {
     payload: LovbestemtFerieSøknadsdata;
 }
 
-interface SetSøknadOmsorgstilbud {
-    type: SøknadContextActionKeys.SET_SØKNAD_OMSORGSTILBUD;
-    payload: OmsorgstilbudSøknadsdata;
+interface SetSøknadTilsynsordning {
+    type: SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING;
+    payload: TilsynsordningSøknadsdata;
 }
 
 interface SetSøknadHarBekreftetOpplysninger {
@@ -145,8 +145,8 @@ const setSøknadLovbestemtFerie = (payload: LovbestemtFerieSøknadsdata): SetSø
     payload,
 });
 
-const setSøknadOmsorgstilbud = (payload: OmsorgstilbudSøknadsdata): SetSøknadOmsorgstilbud => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_OMSORGSTILBUD,
+const setSøknadTilsynsordning = (payload: TilsynsordningSøknadsdata): SetSøknadTilsynsordning => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING,
     payload,
 });
 
@@ -185,7 +185,7 @@ export type SøknadContextAction =
     | SetSøknadUkjentArbeidsforhold
     | SetSøknadArbeidstid
     | SetSøknadLovbestemtFerie
-    | SetSøknadOmsorgstilbud
+    | SetSøknadTilsynsordning
     | SetSøknadRoute
     | SetEndringsmeldingSendt
     | StartSøknad
@@ -203,7 +203,7 @@ const actionsCreator = {
     setSøknadUkjentArbeidsforhold,
     setSøknadArbeidstid,
     setSøknadLovbestemtFerie,
-    setSøknadOmsorgstilbud,
+    setSøknadTilsynsordning,
     setSøknadRoute,
     setEndringsmeldingSendt,
     startSøknad,

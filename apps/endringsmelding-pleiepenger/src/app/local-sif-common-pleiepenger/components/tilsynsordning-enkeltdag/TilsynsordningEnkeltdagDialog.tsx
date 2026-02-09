@@ -9,20 +9,20 @@ interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps
     formProps: Omit<TidEnkeltdagFormProps, 'hvorMyeSpørsmålRenderer' | 'maksTid'>;
 }
 
-const OmsorgstilbudEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
+const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
     const { text } = useAppIntl();
 
     const hvorMyeSpørsmålRenderer = (dato: Date): string => {
         const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
         return text(
-            erHistorisk ? 'omsorgstilbudEnkeltdagForm.tid.spm.historisk' : 'omsorgstilbudEnkeltdagForm.tid.spm',
+            erHistorisk ? 'tilsynsordningEnkeltdagForm.tid.spm.historisk' : 'tilsynsordningEnkeltdagForm.tid.spm',
             { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
     return (
         <TidEnkeltdagDialog
             open={isOpen}
-            dialogTitle={text('omsorgstilbudEnkeltdagForm.tittel', {
+            dialogTitle={text('tilsynsordningEnkeltdagForm.tittel', {
                 dato: dateFormatter.full(formProps.dato),
             })}
             formProps={{ ...formProps, hvorMyeSpørsmålRenderer, maksTid: { hours: 7, minutes: 30 } }}
@@ -30,4 +30,4 @@ const OmsorgstilbudEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
     );
 };
 
-export default OmsorgstilbudEnkeltdagDialog;
+export default TilsynsordningEnkeltdagDialog;

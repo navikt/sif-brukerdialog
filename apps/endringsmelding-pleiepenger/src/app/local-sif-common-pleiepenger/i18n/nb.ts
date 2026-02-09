@@ -1,63 +1,62 @@
 export const sifCommonPleiepengerMessages_nb = {
-    'omsorgstilbudPeriodeForm.tittel': 'Oppgi periode med omsorgstilbud',
-    'omsorgstilbudPeriodeForm.submitButtonLabel': 'Ok',
-    'omsorgstilbudPeriodeForm.cancelButtonLabel': 'Avbryt',
-    'omsorgstilbudPeriodeForm.periode.legend': 'Velg periode',
-    'omsorgstilbudPeriodeForm.fraOgMed.label': 'Fra og med',
-    'omsorgstilbudPeriodeForm.tilOgMed.label': 'Til og med',
-    'omsorgstilbudPeriodeForm.tidFasteDager.label': 'Fyll ut tiden i omsorgstilbudet som er fast og regelmessig:',
-    'omsorgstilbudPeriodeForm.validation.fom.dateHasNoValue': 'Du må fylle ut periodens fra-dato.',
-    'omsorgstilbudPeriodeForm.validation.fom.dateHasInvalidFormat':
+    'tilsynsordningPeriodeForm.tittel': 'Oppgi periode med omsorgstilbud',
+    'tilsynsordningPeriodeForm.submitButtonLabel': 'Ok',
+    'tilsynsordningPeriodeForm.cancelButtonLabel': 'Avbryt',
+    'tilsynsordningPeriodeForm.periode.legend': 'Velg periode',
+    'tilsynsordningPeriodeForm.fraOgMed.label': 'Fra og med',
+    'tilsynsordningPeriodeForm.tilOgMed.label': 'Til og med',
+    'tilsynsordningPeriodeForm.tidFasteDager.label': 'Fyll ut tiden i omsorgstilbudet som er fast og regelmessig:',
+    'tilsynsordningPeriodeForm.validation.fom.dateHasNoValue': 'Du må fylle ut periodens fra-dato.',
+    'tilsynsordningPeriodeForm.validation.fom.dateHasInvalidFormat':
         'Du må oppgi periodens fra-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
-    'omsorgstilbudPeriodeForm.validation.fom.fromDateIsAfterToDate':
+    'tilsynsordningPeriodeForm.validation.fom.fromDateIsAfterToDate':
         'Fra-datoen kan ikke være etter til-datoen. Skriv inn eller velg dato fra kalenderen.',
-    'omsorgstilbudPeriodeForm.validation.fom.dateIsBeforeMin': 'Fra-datoen kan ikke være før perioden du har søkt om.',
-    'omsorgstilbudPeriodeForm.validation.tom.dateIsBeforeMin': 'Til-datoen kan ikke være før perioden du har søkt om.',
-    'omsorgstilbudPeriodeForm.validation.fom.dateIsAfterMax':
+    'tilsynsordningPeriodeForm.validation.fom.dateIsBeforeMin': 'Fra-datoen kan ikke være før perioden du har søkt om.',
+    'tilsynsordningPeriodeForm.validation.tom.dateIsBeforeMin': 'Til-datoen kan ikke være før perioden du har søkt om.',
+    'tilsynsordningPeriodeForm.validation.fom.dateIsAfterMax':
         'Fra-datoen kan ikke være etter perioden du har søkt for.',
-    'omsorgstilbudPeriodeForm.validation.fom.dateIsNotWeekday':
+    'tilsynsordningPeriodeForm.validation.fom.dateIsNotWeekday':
         'Fra-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-    'omsorgstilbudPeriodeForm.validation.tom.dateHasNoValue': 'Du må fylle ut periodens til-dato.',
-    'omsorgstilbudPeriodeForm.validation.tom.dateHasInvalidFormat':
+    'tilsynsordningPeriodeForm.validation.tom.dateHasNoValue': 'Du må fylle ut periodens til-dato.',
+    'tilsynsordningPeriodeForm.validation.tom.dateHasInvalidFormat':
         'Du må oppgi periodens til-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
-    'omsorgstilbudPeriodeForm.validation.tom.toDateIsBeforeFromDate':
+    'tilsynsordningPeriodeForm.validation.tom.toDateIsBeforeFromDate':
         'Til-datoen kan ikke være før fra-datoen. Skriv inn eller velg dato fra kalenderen.',
-    'omsorgstilbudPeriodeForm.validation.tom.dateIsAfterMax':
+    'tilsynsordningPeriodeForm.validation.tom.dateIsAfterMax':
         'Til-datoen kan ikke være etter perioden du har søkt for.',
-    'omsorgstilbudPeriodeForm.validation.tom.dateIsNotWeekday':
+    'tilsynsordningPeriodeForm.validation.tom.dateIsNotWeekday':
         'Til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.gruppe.ingenTidRegistrert':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.gruppe.ingenTidRegistrert':
         'Du må fylle ut tiden i omsorgstilbudet som er fast og regelmessig.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.gruppe.forMangeTimer':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.gruppe.forMangeTimer':
         'Du kan ikke oppgi mer enn 37 timer og 30 minutter for en uke.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.timeHasNoValue':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.timeHasNoValue':
         'Du må fylle ut timer og minutter for {dag}.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.hoursAreInvalid':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.hoursAreInvalid':
         'Antall timer på {dag} er ikke et gyldig tall.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.minutesAreInvalid':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.minutesAreInvalid':
         'Antall minutter på {dag} er ikke et gyldig tall.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.tooManyHours':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.tooManyHours':
         'Antall timer på {dag} kan ikke overstige 7 timer og 30 minutter.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.tooManyMinutes':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.tooManyMinutes':
         'Antall minutter på {dag} kan ikke overstige 59 minutter.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.durationIsTooLong':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.durationIsTooLong':
         'Antall timer og minutter registrert {dag} er for høyt. Tiden kan ikke overstige 7 timer og 30 minutter hver ukedag.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.durationIsTooShort':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.durationIsTooShort':
         'Antall timer og minutter {dato} {hvor} kan ikke være mindre enn 0 timer og 0 minutter.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.minutesAreNegative':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.minutesAreNegative':
         'Antall timer og minutter {dag}  kan ikke være mindre enn 0 timer og 0 minutter.',
-    'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.hoursAreNegative':
+    'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.hoursAreNegative':
         'Antall timer og minutter {dag}  kan ikke være mindre enn 0 timer og 0 minutter.',
 
-    'omsorgstilbudMåned.ukeOgÅr': '{ukeOgÅr}',
-    'omsorgstilbudMåned.dagerRegistrert.dager': '{dager, plural, one {# dag} other {# dager}} endret',
-    'omsorgstilbudMåned.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud endret',
-    'omsorgstilbudPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbud',
-    'omsorgstilbudPeriode.part.skalVære': 'skal være',
+    'tilsynsordningMåned.ukeOgÅr': '{ukeOgÅr}',
+    'tilsynsordningMåned.dagerRegistrert.dager': '{dager, plural, one {# dag} other {# dager}} endret',
+    'tilsynsordningMåned.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud endret',
+    'tilsynsordningPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbud',
 
-    'omsorgstilbudEnkeltdagForm.tittel': 'Tid i omsorgstilbud {dato}',
-    'omsorgstilbudEnkeltdagForm.tid.spm': 'Hvor mye skal barnet være i omsorgstilbud {dato}?',
-    'omsorgstilbudEnkeltdagForm.tid.spm.historisk': 'Hvor mye var barnet i omsorgstilbud {dato}?',
+    'tilsynsordningEnkeltdagForm.tittel': 'Tid i omsorgstilbud {dato}',
+    'tilsynsordningEnkeltdagForm.tid.spm': 'Hvor mye skal barnet være i omsorgstilbud {dato}?',
+    'tilsynsordningEnkeltdagForm.tid.spm.historisk': 'Hvor mye var barnet i omsorgstilbud {dato}?',
 
     'tidEnkeltdagForm.endretFra': 'Endret fra',
     'tidEnkeltdagForm.gjelderFlereDager.label': 'Gjenta disse timene for flere dager',

@@ -2,10 +2,10 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds'
 import { durationUtils, DurationWeekdays, summarizeDurationInDurationWeekdays } from '@navikt/sif-common-utils';
 import { getTimeValidator } from '@navikt/sif-validation';
 
-export const getOmsorgstilbudFastDagValidator = () =>
+export const getTilsynsordningFastDagValidator = () =>
     getTimeValidator({ max: { hours: 7, minutes: 30 }, min: { hours: 0, minutes: 0 } });
 
-export const validateOmsorgstilbudFasteDager = (
+export const validateTilsynsordningFasteDager = (
     fasteDager: DurationWeekdays | undefined,
 ): ValidationResult<ValidationError> => {
     let error;

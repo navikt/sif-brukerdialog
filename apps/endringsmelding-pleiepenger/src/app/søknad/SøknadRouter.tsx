@@ -24,8 +24,8 @@ import { getSøknadStepRoute, SøknadRoutes, SøknadStepRoute } from './config/S
 import { StepId } from './config/StepId';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
-import OmsorgstilbudStep from './steps/omsorgstilbud/OmsorgstilbudStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import TilsynsordningStep from './steps/tilsynsordning/TilsynsordningStep';
 import UkjentArbeidsforholdStep from './steps/ukjent-arbeidsforhold/UkjentArbeidsforholdStep';
 
 const SøknadRouter = () => {
@@ -99,8 +99,8 @@ const SøknadRouter = () => {
                 {isStepAvailable(StepId.ARBEIDSTID) && (
                     <Route path={SøknadStepRoute[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
                 )}
-                {isStepAvailable(StepId.OMSORGSTILBUD) && (
-                    <Route path={SøknadStepRoute[StepId.OMSORGSTILBUD]} element={<OmsorgstilbudStep />} />
+                {isStepAvailable(StepId.TILSYNSORDNING) && (
+                    <Route path={SøknadStepRoute[StepId.TILSYNSORDNING]} element={<TilsynsordningStep />} />
                 )}
                 {isStepAvailable(StepId.OPPSUMMERING) && (
                     <Route path={SøknadStepRoute[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />

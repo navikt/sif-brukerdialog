@@ -13,7 +13,7 @@ const initialSøknadsdata: Søknadsdata = {
 const getValgteEndringer = (endringer: EndringType[]): ValgteEndringer => ({
     arbeidstid: endringer.some((a) => a === EndringType.arbeidstid),
     lovbestemtFerie: endringer.some((a) => a === EndringType.lovbestemtFerie),
-    omsorgstilbud: endringer.some((a) => a === EndringType.omsorgstilbud),
+    tilsynsordning: endringer.some((a) => a === EndringType.tilsynsordning),
 });
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
@@ -111,12 +111,12 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadSteps,
                 };
             }
-            case SøknadContextActionKeys.SET_SØKNAD_OMSORGSTILBUD:
+            case SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING:
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        omsorgstilbud: {
+                        tilsynsordning: {
                             ...action.payload,
                         },
                     },
@@ -140,7 +140,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     valgteEndringer: {
                         arbeidstid: false,
                         lovbestemtFerie: false,
-                        omsorgstilbud: false,
+                        tilsynsordning: false,
                     },
                     endringsmeldingSendt: true,
                 };
@@ -153,7 +153,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     valgteEndringer: {
                         arbeidstid: false,
                         lovbestemtFerie: false,
-                        omsorgstilbud: false,
+                        tilsynsordning: false,
                     },
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };

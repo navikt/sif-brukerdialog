@@ -12,7 +12,7 @@ const nb = {
     'velkommenPage.endre.spm': 'Hva ønsker du å endre?',
     'velkommenPage.endre.ferie': 'Ferie',
     'velkommenPage.endre.jobb': 'Jobb',
-    'velkommenPage.endre.omsorgstilbud': 'Tid i omsorgstilbud',
+    'velkommenPage.endre.tilsynsordning': 'Tid i omsorgstilbud',
 
     'velkommenPage.omSøknaden.tittel': 'Om utfylling av skjemaet',
     'velkommenPage.omSøknaden.1': 'Du får veiledning underveis om hva du skal fylle ut, og hvordan.',

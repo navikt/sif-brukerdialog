@@ -9,7 +9,7 @@ import DateRangeExpansionCards from '../../../components/date-range-expansion-ca
 import EndretTag from '../../../components/tags/EndretTag';
 import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
 import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
-import OmsorgstilbudSøknadsperiode from './OmsorgstilbudSøknadsperiode';
+import TilsynsordningSøknadsperiode from './TilsynsordningSøknadsperiode';
 
 export const omsorgstilbudFormComponents = getTypedFormComponents<
     OmsorgstilbudFormFields,
@@ -19,11 +19,11 @@ export const omsorgstilbudFormComponents = getTypedFormComponents<
 
 const { Form } = omsorgstilbudFormComponents;
 export interface OmsorgstilbudFormValues {
-    omsorgsdager: DateDurationMap;
+    tilsynsdager: DateDurationMap;
 }
 
 export enum OmsorgstilbudFormFields {
-    omsorgsdager = 'omsorgsdager',
+    tilsynsdager = 'tilsynsdager',
 }
 
 interface Props {
@@ -32,32 +32,32 @@ interface Props {
     opprinneligTilsynsdager: DateDurationMap;
     isSubmitting?: boolean;
     goBack?: () => void;
-    onOmsorgstilbudChanged?: (omsorgstilbud: DateDurationMap) => void;
+    onTilsynsordningChanged?: (tilsynsordning: DateDurationMap) => void;
 }
 
-const OmsorgstilbudForm = ({
+const TilsynsordningForm = ({
     goBack,
     søknadsperioder,
     opprinneligTilsynsdager,
     isSubmitting,
-    onOmsorgstilbudChanged,
+    onTilsynsordningChanged: onOmsorgstilbudChanged,
 }: Props) => {
     const intl = useIntl();
 
     const { values, setFieldValue } = useFormikContext<OmsorgstilbudFormValues>();
-    const { omsorgsdager } = values;
+    const { tilsynsdager } = values;
 
     const handleOnEnkeltdagChange = (endring: TidEnkeltdagEndring): void => {
-        const newValues = { ...omsorgsdager, ...endring.dagerMedTid };
-        setFieldValue(OmsorgstilbudFormFields.omsorgsdager, newValues);
+        const newValues = { ...tilsynsdager, ...endring.dagerMedTid };
+        setFieldValue(OmsorgstilbudFormFields.tilsynsdager, newValues);
         if (onOmsorgstilbudChanged) {
             onOmsorgstilbudChanged(newValues);
         }
     };
 
     const handleOnPeriodeChange = (dagerMedTid: DateDurationMap): void => {
-        const newValues = { ...omsorgsdager, ...dagerMedTid };
-        setFieldValue(OmsorgstilbudFormFields.omsorgsdager, newValues);
+        const newValues = { ...tilsynsdager, ...dagerMedTid };
+        setFieldValue(OmsorgstilbudFormFields.tilsynsdager, newValues);
         if (onOmsorgstilbudChanged) {
             onOmsorgstilbudChanged(newValues);
         }
@@ -65,8 +65,8 @@ const OmsorgstilbudForm = ({
 
     const renderAccordionHeader = (periode: DateRange) => {
         const harEndringer =
-            omsorgsdager !== undefined &&
-            Object.keys(omsorgsdager)
+            tilsynsdager !== undefined &&
+            Object.keys(tilsynsdager)
                 .map(ISODateToDate)
                 .some((date) => isDateInDateRange(date, periode));
 
@@ -95,10 +95,10 @@ const OmsorgstilbudForm = ({
                     dateRanges={søknadsperioder}
                     renderContent={(periode) => {
                         return (
-                            <OmsorgstilbudSøknadsperiode
+                            <TilsynsordningSøknadsperiode
                                 key={periode.from.toDateString()}
                                 opprinneligTilsynsdager={opprinneligTilsynsdager}
-                                endredeTilsynsdager={omsorgsdager}
+                                endredeTilsynsdager={tilsynsdager}
                                 søknadsperiode={periode}
                                 onEnkeltdagChange={handleOnEnkeltdagChange}
                                 onPeriodeChange={handleOnPeriodeChange}
@@ -112,4 +112,4 @@ const OmsorgstilbudForm = ({
     );
 };
 
-export default OmsorgstilbudForm;
+export default TilsynsordningForm;

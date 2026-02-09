@@ -1,4 +1,4 @@
-import './omsorgstilbudMåned.css';
+import './tilsynsordningMåned.css';
 
 import { BodyShort, Box, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
 import { ExpansionCardContent } from '@navikt/ds-react/ExpansionCard';
@@ -15,15 +15,15 @@ import { useState } from 'react';
 
 import EndretTag from '../../../components/tags/EndretTag';
 import { AppText, useAppIntl } from '../../../i18n';
-import OmsorgstilbudEnkeltdagDialog from '../omsorgstilbud-enkeltdag/OmsorgstilbudEnkeltdagDialog';
 import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TidsbrukKalender from '../tidsbruk-kalender/TidsbrukKalender';
+import TilsynsordningEnkeltdagDialog from '../tilsynsordning-enkeltdag/TilsynsordningEnkeltdagDialog';
 
 export type EnkeltdagChangeEvent = (evt: TidEnkeltdagEndring) => void;
 interface Props {
     måned: DateRange;
-    tidOmsorgstilbud: DateDurationMap;
-    tidOmsorgstilbudOpprinnelig?: DateDurationMap;
+    tidTilsynsordning: DateDurationMap;
+    tidTilsynsordningOpprinnelig?: DateDurationMap;
     månedTittelHeadingLevel?: '2' | '3' | '4';
     søknadsperiode: DateRange;
     defaultOpen?: boolean;
@@ -32,8 +32,8 @@ interface Props {
 
 const OmsorgstilbudMåned = ({
     måned,
-    tidOmsorgstilbud,
-    tidOmsorgstilbudOpprinnelig,
+    tidTilsynsordning,
+    tidTilsynsordningOpprinnelig,
     søknadsperiode,
     defaultOpen,
     månedTittelHeadingLevel,
@@ -42,9 +42,9 @@ const OmsorgstilbudMåned = ({
     const { text } = useAppIntl();
     const [editDate, setEditDate] = useState<{ dato: Date; tid: Partial<InputTime> } | undefined>();
 
-    const dagerMedTid: DateDurationMap = getDurationsInDateRange(tidOmsorgstilbud, måned);
-    const dagerMedOpprinnelig: DateDurationMap = tidOmsorgstilbudOpprinnelig
-        ? getDurationsInDateRange(tidOmsorgstilbudOpprinnelig, måned)
+    const dagerMedTid: DateDurationMap = getDurationsInDateRange(tidTilsynsordning, måned);
+    const dagerMedOpprinnelig: DateDurationMap = tidTilsynsordningOpprinnelig
+        ? getDurationsInDateRange(tidTilsynsordningOpprinnelig, måned)
         : {};
 
     const dagerEndret = Object.keys(dagerMedTid).filter((key) => {
@@ -57,12 +57,12 @@ const OmsorgstilbudMåned = ({
 
     const utilgjengeligeDatoer = getDatesInMonthOutsideDateRange(måned.from, måned);
 
-    const antallDagerMedOmsorgstilbud = Object.keys({ ...dagerMedOpprinnelig, ...dagerMedTid }).filter((key) => {
+    const antallDagerMedTilsynsordning = Object.keys({ ...dagerMedOpprinnelig, ...dagerMedTid }).filter((key) => {
         const datoTid = dagerMedTid[key] || dagerMedOpprinnelig[key];
         return datoTid !== undefined && durationIsZero(datoTid) === false;
     }).length;
 
-    const label = text('omsorgstilbudMåned.ukeOgÅr', { ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') });
+    const label = text('tilsynsordningMåned.ukeOgÅr', { ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') });
     const antallDagerEndret = Object.keys(dagerEndret).length;
     return (
         <ExpansionCard defaultOpen={defaultOpen} aria-label={label} size="small">
@@ -73,7 +73,7 @@ const OmsorgstilbudMåned = ({
                             <Box className="capsFirstLetter" marginBlock="space-2 space-0">
                                 <Heading level={månedTittelHeadingLevel || '3'} size="small">
                                     <AppText
-                                        id="omsorgstilbudMåned.ukeOgÅr"
+                                        id="tilsynsordningMåned.ukeOgÅr"
                                         values={{ ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') }}
                                     />
                                 </Heading>
@@ -82,7 +82,7 @@ const OmsorgstilbudMåned = ({
                                 <span>
                                     <EndretTag size="small">
                                         <AppText
-                                            id="omsorgstilbudMåned.dagerRegistrert.dager"
+                                            id="tilsynsordningMåned.dagerRegistrert.dager"
                                             values={{ dager: antallDagerEndret }}
                                         />
                                     </EndretTag>
@@ -92,7 +92,7 @@ const OmsorgstilbudMåned = ({
                     </ExpansionCard.Title>
                     <HStack gap="space-16">
                         <BodyShort as="span" size="small">
-                            {antallDagerMedOmsorgstilbud} dager i omsorgstilbud
+                            {antallDagerMedTilsynsordning} dager i omsorgstilbud
                         </BodyShort>
                     </HStack>
                 </VStack>
@@ -101,7 +101,7 @@ const OmsorgstilbudMåned = ({
                 <TidsbrukKalender
                     måned={måned}
                     dagerMedTid={dagerMedTid}
-                    dagerMedTidOpprinnelig={tidOmsorgstilbudOpprinnelig}
+                    dagerMedTidOpprinnelig={tidTilsynsordningOpprinnelig}
                     utilgjengeligeDatoer={utilgjengeligeDatoer}
                     skjulTommeDagerIListe={false}
                     visOpprinneligTid={true}
@@ -119,7 +119,7 @@ const OmsorgstilbudMåned = ({
                     }
                 />
                 {editDate && onEnkeltdagChange && (
-                    <OmsorgstilbudEnkeltdagDialog
+                    <TilsynsordningEnkeltdagDialog
                         open={editDate !== undefined}
                         formProps={{
                             periode: søknadsperiode,

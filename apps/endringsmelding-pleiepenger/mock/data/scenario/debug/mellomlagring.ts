@@ -189,7 +189,7 @@ export default {
                 ],
             },
         },
-        omsorgstilbud: {
+        tilsynsordning: {
             enkeltdager: {
                 '2026-02-10': {
                     hours: '2',
@@ -226,7 +226,7 @@ export default {
     versjon: '1.2.0',
     valgteEndringer: {
         lovbestemtFerie: true,
-        omsorgstilbud: true,
+        tilsynsordning: true,
         arbeidstid: true,
     },
     barnAktørId: '2977843645893',

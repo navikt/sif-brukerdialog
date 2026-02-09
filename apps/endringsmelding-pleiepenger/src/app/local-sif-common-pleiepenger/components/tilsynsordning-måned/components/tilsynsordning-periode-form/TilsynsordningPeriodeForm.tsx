@@ -13,15 +13,15 @@ import React from 'react';
 
 import { useAppIntl } from '../../../../../i18n';
 import TidFasteUkedagerInput from '../../../tid-faste-ukedager-input/TidFasteUkedagerInput';
-import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudFasteDager } from './omsorgstilbudFormValidation';
+import { getTilsynsordningFastDagValidator, validateTilsynsordningFasteDager } from './tilsynsordningFormValidation';
 
-export interface OmsorgstilbudPeriodeFormProps {
+export interface TilsynsordningPeriodeFormProps {
     periode: DateRange;
-    onSubmit: (data: OmsorgstilbudPeriodeData) => void;
+    onSubmit: (data: TilsynsordningPeriodeData) => void;
     onCancel: () => void;
 }
 
-export type OmsorgstilbudPeriodeData = {
+export type TilsynsordningPeriodeData = {
     fom: Date;
     tom: Date;
     tidFasteDager: DurationWeekdays;
@@ -44,7 +44,7 @@ const initialFormValues: Partial<FormValues> = {};
 
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
-const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ periode, onSubmit, onCancel }) => {
+const TilsynsordningPeriodeForm: React.FC<TilsynsordningPeriodeFormProps> = ({ periode, onSubmit, onCancel }) => {
     const { intl, text } = useAppIntl();
 
     const onValidSubmit = (values: Partial<FormValues>) => {
@@ -52,7 +52,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
         const tom = datepickerUtils.getDateFromDateString(values.tom);
 
         if (!fom || !tom || !values.tidFasteDager) {
-            throw new Error('OmsorgstilbudPeriodeForm. Ugyldig fom/tom eller tidFasteDager ');
+            throw new Error('TilsynsordningPeriodeForm. Ugyldig fom/tom eller tidFasteDager ');
         }
 
         onSubmit({
@@ -73,20 +73,20 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                 return (
                     <FormComponents.Form
                         onCancel={onCancel}
-                        formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudPeriodeForm.validation')}
+                        formErrorHandler={getIntlFormErrorHandler(intl, 'tilsynsordningPeriodeForm.validation')}
                         includeValidationSummary={true}
                         showButtonArrows={false}
-                        submitButtonLabel={text('omsorgstilbudPeriodeForm.submitButtonLabel')}
-                        cancelButtonLabel={text('omsorgstilbudPeriodeForm.cancelButtonLabel')}>
+                        submitButtonLabel={text('tilsynsordningPeriodeForm.submitButtonLabel')}
+                        cancelButtonLabel={text('tilsynsordningPeriodeForm.cancelButtonLabel')}>
                         <FormLayout.Questions>
                             <div style={{ maxWidth: '24rem' }}>
                                 <FormComponents.DateRangePicker
-                                    legend={text('omsorgstilbudPeriodeForm.periode.legend')}
+                                    legend={text('tilsynsordningPeriodeForm.periode.legend')}
                                     disableWeekends={true}
                                     minDate={periode.from}
                                     maxDate={periode.to}
                                     fromInputProps={{
-                                        label: text('omsorgstilbudPeriodeForm.fraOgMed.label'),
+                                        label: text('tilsynsordningPeriodeForm.fraOgMed.label'),
                                         name: FormFields.fom,
                                         defaultMonth: periode.from,
                                         validate: getDateRangeValidator({
@@ -99,7 +99,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                                         }).validateFromDate,
                                     }}
                                     toInputProps={{
-                                        label: text('omsorgstilbudPeriodeForm.tilOgMed.label'),
+                                        label: text('tilsynsordningPeriodeForm.tilOgMed.label'),
                                         name: FormFields.tom,
                                         defaultMonth: from || periode.from,
                                         validate: getDateRangeValidator({
@@ -115,9 +115,9 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                             </div>
 
                             <FormComponents.InputGroup
-                                legend={text('omsorgstilbudPeriodeForm.tidFasteDager.label')}
+                                legend={text('tilsynsordningPeriodeForm.tidFasteDager.label')}
                                 validate={() => {
-                                    const error = validateOmsorgstilbudFasteDager(tidFasteDager);
+                                    const error = validateTilsynsordningFasteDager(tidFasteDager);
                                     return error
                                         ? {
                                               key: `${error}`,
@@ -129,10 +129,10 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                                     <TidFasteUkedagerInput
                                         name={FormFields.tidFasteDager}
                                         validateDag={(dag, value) => {
-                                            const error = getOmsorgstilbudFastDagValidator()(value);
+                                            const error = getTilsynsordningFastDagValidator()(value);
                                             return error
                                                 ? {
-                                                      key: `omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.${error}`,
+                                                      key: `tilsynsordningPeriodeForm.validation.tidFasteDager.tid.${error}`,
                                                       keepKeyUnaltered: true,
                                                       values: { dag },
                                                   }
@@ -151,24 +151,25 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
 
 export const OmsorgstilbudPeriodeFormErrors = {
     [FormFields.fom]: {
-        [ValidateDateError.dateHasNoValue]: 'omsorgstilbudPeriodeForm.validation.fom.dateHasNoValue',
-        [ValidateDateError.dateIsAfterMax]: 'omsorgstilbudPeriodeForm.validation.fom.dateIsAfterMax',
-        [ValidateDateError.dateIsBeforeMin]: 'omsorgstilbudPeriodeForm.validation.fom.dateIsBeforeMin',
-        [ValidateDateError.dateHasInvalidFormat]: 'omsorgstilbudPeriodeForm.validation.fom.dateHasInvalidFormat',
-        [ValidateDateRangeError.fromDateIsAfterToDate]: 'omsorgstilbudPeriodeForm.validation.fom.fromDateIsAfterToDate',
+        [ValidateDateError.dateHasNoValue]: 'tilsynsordningPeriodeForm.validation.fom.dateHasNoValue',
+        [ValidateDateError.dateIsAfterMax]: 'tilsynsordningPeriodeForm.validation.fom.dateIsAfterMax',
+        [ValidateDateError.dateIsBeforeMin]: 'tilsynsordningPeriodeForm.validation.fom.dateIsBeforeMin',
+        [ValidateDateError.dateHasInvalidFormat]: 'tilsynsordningPeriodeForm.validation.fom.dateHasInvalidFormat',
+        [ValidateDateRangeError.fromDateIsAfterToDate]:
+            'tilsynsordningPeriodeForm.validation.fom.fromDateIsAfterToDate',
     },
     [FormFields.tom]: {
-        [ValidateDateError.dateHasNoValue]: 'omsorgstilbudPeriodeForm.validation.tom.dateHasNoValue',
-        [ValidateDateError.dateIsAfterMax]: 'omsorgstilbudPeriodeForm.validation.tom.dateIsAfterMax',
-        [ValidateDateError.dateIsBeforeMin]: 'omsorgstilbudPeriodeForm.validation.tom.dateIsBeforeMin',
-        [ValidateDateError.dateHasInvalidFormat]: 'omsorgstilbudPeriodeForm.validation.tom.dateHasInvalidFormat',
+        [ValidateDateError.dateHasNoValue]: 'tilsynsordningPeriodeForm.validation.tom.dateHasNoValue',
+        [ValidateDateError.dateIsAfterMax]: 'tilsynsordningPeriodeForm.validation.tom.dateIsAfterMax',
+        [ValidateDateError.dateIsBeforeMin]: 'tilsynsordningPeriodeForm.validation.tom.dateIsBeforeMin',
+        [ValidateDateError.dateHasInvalidFormat]: 'tilsynsordningPeriodeForm.validation.tom.dateHasInvalidFormat',
         [ValidateDateRangeError.toDateIsBeforeFromDate]:
-            'omsorgstilbudPeriodeForm.validation.tom.toDateIsBeforeFromDate',
+            'tilsynsordningPeriodeForm.validation.tom.toDateIsBeforeFromDate',
     },
     [FormFields['tidFasteDager.gruppe']]: {
-        ['ingenTidRegistrert']: 'omsorgstilbudPeriodeForm.validation.tidFasteDager.gruppe.ingenTidRegistrert',
-        ['forMangeTimer']: 'omsorgstilbudPeriodeForm.validation.tidFasteDager.gruppe.forMangeTimer',
+        ['ingenTidRegistrert']: 'tilsynsordningPeriodeForm.validation.tidFasteDager.gruppe.ingenTidRegistrert',
+        ['forMangeTimer']: 'tilsynsordningPeriodeForm.validation.tidFasteDager.gruppe.forMangeTimer',
     },
 };
 
-export default OmsorgstilbudPeriodeForm;
+export default TilsynsordningPeriodeForm;

@@ -11,7 +11,7 @@ export * from './K9Sak';
 export * from './LovbestemtFeriePeriode';
 export * from './LovbestemtFerieSøknadsdata';
 export * from './LovbestemtFerieType';
-export * from './OmsorgstilbudSøknadsdata';
+export * from './TilsynsordningSøknadsdata';
 export * from './RequestStatus';
 export * from './Sak';
 export * from './SøknadApiData';

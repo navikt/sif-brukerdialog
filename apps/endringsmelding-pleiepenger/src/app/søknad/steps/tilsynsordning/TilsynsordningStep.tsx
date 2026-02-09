@@ -12,18 +12,21 @@ import { StepId } from '../../config/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import OmsorgstilbudForm, { omsorgstilbudFormComponents, OmsorgstilbudFormValues } from './OmsorgstilbudForm';
-import { getOmsorgstilbudSøknadsdataFromFormValues, getOmsorgstilbudStepInitialValues } from './omsorgstilbudStepUtils';
+import TilsynsordningForm, { omsorgstilbudFormComponents, OmsorgstilbudFormValues } from './TilsynsordningForm';
+import {
+    getTilsynsordningSøknadsdataFromFormValues,
+    getTilsynsordningStepInitialValues,
+} from './tilsynsordningStepUtils';
 
 const { FormikWrapper } = omsorgstilbudFormComponents;
 
-const OmsorgstilbudStep = () => {
-    const stepId = StepId.OMSORGSTILBUD;
+const TilsynsordningStep = () => {
+    const stepId = StepId.TILSYNSORDNING;
     const {
         dispatch,
         state: {
             sak,
-            søknadsdata: { omsorgstilbud },
+            søknadsdata: { tilsynsordning },
         },
     } = useSøknadContext();
 
@@ -31,10 +34,10 @@ const OmsorgstilbudStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: OmsorgstilbudFormValues) => {
-        const omsorgstilbudSøknadsdata = getOmsorgstilbudSøknadsdataFromFormValues(values);
-        if (omsorgstilbudSøknadsdata) {
+        const tilsynsordningSøknadsdata = getTilsynsordningSøknadsdataFromFormValues(values);
+        if (tilsynsordningSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadOmsorgstilbud(omsorgstilbudSøknadsdata)];
+            return [actionsCreator.setSøknadTilsynsordning(tilsynsordningSøknadsdata)];
         }
         return [];
     };
@@ -48,11 +51,15 @@ const OmsorgstilbudStep = () => {
     );
 
     const oppdaterSøknadState = (omsorgsdager: DateDurationMap = {}) => {
-        dispatch(actionsCreator.setSøknadOmsorgstilbud(getOmsorgstilbudSøknadsdataFromFormValues({ omsorgsdager })));
+        dispatch(
+            actionsCreator.setSøknadTilsynsordning(
+                getTilsynsordningSøknadsdataFromFormValues({ tilsynsdager: omsorgsdager }),
+            ),
+        );
         dispatch(actionsCreator.requestLagreSøknad());
     };
 
-    const initialValues = getOmsorgstilbudStepInitialValues(omsorgstilbud, stepFormValues.omsorgstilbud);
+    const initialValues = getTilsynsordningStepInitialValues(tilsynsordning, stepFormValues.tilsynsordning);
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -72,13 +79,13 @@ const OmsorgstilbudStep = () => {
                         return (
                             <>
                                 <PersistStepFormValues stepId={stepId} />
-                                <OmsorgstilbudForm
+                                <TilsynsordningForm
                                     goBack={goBack}
                                     søknadsperioder={sak.søknadsperioder}
                                     perioderMedTilsynsordning={sak.tilsynsordning.perioderMedTilsynsordning}
                                     opprinneligTilsynsdager={sak.tilsynsordning.dagerMedTilsynsordning}
                                     isSubmitting={isSubmitting}
-                                    onOmsorgstilbudChanged={(values) => {
+                                    onTilsynsordningChanged={(values) => {
                                         oppdaterSøknadState(values);
                                     }}
                                 />
@@ -91,4 +98,4 @@ const OmsorgstilbudStep = () => {
     );
 };
 
-export default OmsorgstilbudStep;
+export default TilsynsordningStep;
