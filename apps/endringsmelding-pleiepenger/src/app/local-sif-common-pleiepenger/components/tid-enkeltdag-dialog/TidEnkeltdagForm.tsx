@@ -213,7 +213,7 @@ const TidEnkeltdagForm = ({
                                                         fra: valgtDatoTxt,
                                                         til: sluttDatoTxt,
                                                     },
-                                                    { dagerNavn },
+                                                    { dagerNavn, månedNavn },
                                                 ),
 
                                                 value: GjentagelseType.hverUke,
