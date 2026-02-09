@@ -2,10 +2,10 @@ import { Button, VStack } from '@navikt/ds-react';
 import { DateDurationMap, DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
-import OmsorgstilbudPeriodeDialog from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';
+import OmsorgstilbudPeriodeDialog from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-måned/components/omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';
 import OmsorgstilbudMåned, {
     EnkeltdagChangeEvent,
-} from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/OmsorgstilbudMåned';
+} from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-måned/OmsorgstilbudMåned';
 import { oppdaterDagerMedOmsorgstilbudIPeriode } from './omsorgstilbudStepUtils';
 
 interface Props {

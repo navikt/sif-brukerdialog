@@ -8,7 +8,7 @@ import {
 import { OmsorgstilbudSøknadsdata } from '@types';
 import dayjs from 'dayjs';
 
-import { OmsorgstilbudPeriodeData } from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
+import { OmsorgstilbudPeriodeData } from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-måned/components/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
 import { OmsorgstilbudFormValues } from './OmsorgstilbudForm';
 
 export const getOmsorgstilbudStepInitialValues = (

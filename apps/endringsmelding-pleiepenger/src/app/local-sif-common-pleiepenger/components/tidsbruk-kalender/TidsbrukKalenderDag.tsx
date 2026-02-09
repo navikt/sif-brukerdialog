@@ -51,8 +51,10 @@ const TidsbrukKalenderDag = ({
             {tid && (
                 <>
                     {erEndret ? (
-                        <>
-                            <span className={bem.block}>{renderTid(ensureDuration(tid))}</span>
+                        <span className={bem.element('endret')}>
+                            <BodyShort weight="semibold" as="span" className={bem.block}>
+                                {renderTid(ensureDuration(tid))}
+                            </BodyShort>
                             {visOpprinneligTid && (
                                 <>
                                     {tidOpprinnelig || tid ? (
@@ -65,16 +67,20 @@ const TidsbrukKalenderDag = ({
                                     ) : null}
                                 </>
                             )}
-                        </>
-                    ) : (
-                        <span className={bem.block}>
-                            {renderTid(tid)} <span className="sr-only">(uendret)</span>
                         </span>
+                    ) : (
+                        <BodyShort className={bem.block} size="small">
+                            {renderTid(tid)} <span className="sr-only">(uendret)</span>
+                        </BodyShort>
                     )}
                     {footerRenderer && <>{footerRenderer(dato)}</>}
                 </>
             )}
-            {tidOpprinnelig && !tid && <>{renderTid(tidOpprinnelig)}</>}
+            {tidOpprinnelig && !tid && (
+                <>
+                    <BodyShort size="small">{renderTid(tidOpprinnelig)}</BodyShort>
+                </>
+            )}
         </>
     );
 };

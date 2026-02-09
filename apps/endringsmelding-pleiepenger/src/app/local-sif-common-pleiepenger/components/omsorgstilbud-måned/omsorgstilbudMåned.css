@@ -1,0 +1,3 @@
+.calendarGrid__day:has(.tidsbrukKalenderDag__endret) {
+    background-color: var(--ax-bg-info-moderate);
+}

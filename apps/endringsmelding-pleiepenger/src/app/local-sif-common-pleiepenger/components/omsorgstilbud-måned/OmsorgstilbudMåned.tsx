@@ -1,7 +1,8 @@
+import './omsorgstilbudMåned.css';
+
 import { BodyShort, Box, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
 import { ExpansionCardContent } from '@navikt/ds-react/ExpansionCard';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
-import { DurationText } from '@navikt/sif-common-ui';
 import {
     DateDurationMap,
     durationIsZero,
@@ -105,9 +106,6 @@ const OmsorgstilbudMåned = ({
                     skjulTommeDagerIListe={false}
                     visOpprinneligTid={true}
                     skjulUkerMedKunUtilgjengeligeDager={true}
-                    tidRenderer={({ tid }) => {
-                        return <DurationText duration={tid} />;
-                    }}
                     onDateClick={
                         onEnkeltdagChange
                             ? (dato) => {
