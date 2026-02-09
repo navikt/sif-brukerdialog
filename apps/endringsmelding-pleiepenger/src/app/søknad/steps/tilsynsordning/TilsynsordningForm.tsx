@@ -1,7 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, dateFormatter, DateRange, isDateInDateRange, ISODateToDate } from '@navikt/sif-common-utils';
-import { SakTilsynsordningPeriode } from '@types';
 import { useFormikContext } from 'formik';
 import { useIntl } from 'react-intl';
 
@@ -11,28 +10,28 @@ import TagsContainer from '../../../components/tags/tags-container/TagsContainer
 import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TilsynsordningSøknadsperiode from './TilsynsordningSøknadsperiode';
 
-export const omsorgstilbudFormComponents = getTypedFormComponents<
-    OmsorgstilbudFormFields,
-    OmsorgstilbudFormValues,
+export const tilsynsordningFormComponents = getTypedFormComponents<
+    TilsynsordningFormFields,
+    TilsynsordningFormValues,
     ValidationError
 >();
 
-const { Form } = omsorgstilbudFormComponents;
-export interface OmsorgstilbudFormValues {
+const { Form } = tilsynsordningFormComponents;
+
+export interface TilsynsordningFormValues {
     tilsynsdager: DateDurationMap;
 }
 
-export enum OmsorgstilbudFormFields {
+export enum TilsynsordningFormFields {
     tilsynsdager = 'tilsynsdager',
 }
 
 interface Props {
     søknadsperioder: DateRange[];
-    perioderMedTilsynsordning: SakTilsynsordningPeriode;
     opprinneligTilsynsdager: DateDurationMap;
     isSubmitting?: boolean;
     goBack?: () => void;
-    onTilsynsordningChanged?: (tilsynsordning: DateDurationMap) => void;
+    onTilsynsordningChanged?: (tilsynsdager: DateDurationMap) => void;
 }
 
 const TilsynsordningForm = ({
@@ -40,26 +39,25 @@ const TilsynsordningForm = ({
     søknadsperioder,
     opprinneligTilsynsdager,
     isSubmitting,
-    onTilsynsordningChanged: onOmsorgstilbudChanged,
+    onTilsynsordningChanged,
 }: Props) => {
     const intl = useIntl();
-
-    const { values, setFieldValue } = useFormikContext<OmsorgstilbudFormValues>();
+    const { values, setFieldValue } = useFormikContext<TilsynsordningFormValues>();
     const { tilsynsdager } = values;
 
     const handleOnEnkeltdagChange = (endring: TidEnkeltdagEndring): void => {
         const newValues = { ...tilsynsdager, ...endring.dagerMedTid };
-        setFieldValue(OmsorgstilbudFormFields.tilsynsdager, newValues);
-        if (onOmsorgstilbudChanged) {
-            onOmsorgstilbudChanged(newValues);
+        setFieldValue(TilsynsordningFormFields.tilsynsdager, newValues);
+        if (onTilsynsordningChanged) {
+            onTilsynsordningChanged(newValues);
         }
     };
 
     const handleOnPeriodeChange = (dagerMedTid: DateDurationMap): void => {
         const newValues = { ...tilsynsdager, ...dagerMedTid };
-        setFieldValue(OmsorgstilbudFormFields.tilsynsdager, newValues);
-        if (onOmsorgstilbudChanged) {
-            onOmsorgstilbudChanged(newValues);
+        setFieldValue(TilsynsordningFormFields.tilsynsdager, newValues);
+        if (onTilsynsordningChanged) {
+            onTilsynsordningChanged(newValues);
         }
     };
 

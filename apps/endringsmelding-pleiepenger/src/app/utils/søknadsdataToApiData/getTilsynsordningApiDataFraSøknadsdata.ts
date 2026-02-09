@@ -10,7 +10,7 @@ import { TilsynsordningApiData, TilsynsordningPeriodeApiData, TilsynsordningSøk
 export const getTilsynsordningApiDataFraSøknadsdata = (
     tilsynsordning: TilsynsordningSøknadsdata,
 ): TilsynsordningApiData => {
-    const perioder = periodiserDateDurationMap(tilsynsordning.tilsynsdager);
+    const perioder = periodiserDateDurationMap(tilsynsordning.tilsynsdagerMap);
     const tilsynsordningPerioder: ISODateRangeMap<TilsynsordningPeriodeApiData> = {};
     Object.keys(perioder).forEach((periodeKey): void => {
         tilsynsordningPerioder[periodeKey] = {

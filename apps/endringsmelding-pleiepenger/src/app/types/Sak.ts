@@ -113,13 +113,9 @@ export interface SakLovbestemtFerie {
     feriedager: FeriedagMap;
 }
 
-export interface PeriodeMedOmsorgstilbud extends DateRange {
-    dagerMedTilsynsordning: DateDurationMap;
-}
-
-export type SakTilsynsordningPeriode = ISODateRangeMap<Duration>;
+export type SakTilsynsdagerPeriodeMap = ISODateRangeMap<Duration>;
 
 export interface SakTilsynsordning {
-    perioderMedTilsynsordning: SakTilsynsordningPeriode;
-    dagerMedTilsynsordning: DateDurationMap;
+    // tilsynsdagerPeriodeMap: SakTilsynsdagerPeriodeMap;
+    tilsynsdagerMap: DateDurationMap;
 }

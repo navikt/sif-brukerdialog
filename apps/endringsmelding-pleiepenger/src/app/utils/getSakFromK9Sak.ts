@@ -37,7 +37,7 @@ import {
     K9SakTilsynsordningPeriodeMap,
     PeriodeMedArbeidstid,
     Sak,
-    SakTilsynsordningPeriode,
+    SakTilsynsdagerPeriodeMap,
 } from '@types';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -138,16 +138,15 @@ export const getSakFromK9Sak = (
             aktiviteterSomKanEndres,
         },
         tilsynsordning: {
-            perioderMedTilsynsordning,
-            dagerMedTilsynsordning: mapSakTilsynsordningPeriodeToDateDurationMap(perioderMedTilsynsordning),
+            tilsynsdagerMap: mapSakTilsynsordningPeriodeToDateDurationMap(perioderMedTilsynsordning),
         },
     };
 };
 
 /** Henter ut perioder med tilsynsordning  */
 
-export const getSakTilsynsordning = (perioder: K9SakTilsynsordningPeriodeMap): SakTilsynsordningPeriode => {
-    const sakPerioder: SakTilsynsordningPeriode = {};
+export const getSakTilsynsordning = (perioder: K9SakTilsynsordningPeriodeMap): SakTilsynsdagerPeriodeMap => {
+    const sakPerioder: SakTilsynsdagerPeriodeMap = {};
     Object.keys(perioder).forEach((key) => {
         sakPerioder[key] = perioder[key].etablertTilsynTimerPerDag;
     });
@@ -155,7 +154,7 @@ export const getSakTilsynsordning = (perioder: K9SakTilsynsordningPeriodeMap): S
 };
 
 export const mapSakTilsynsordningPeriodeToDateDurationMap = (
-    tilsynsordningPeriode: SakTilsynsordningPeriode,
+    tilsynsordningPeriode: SakTilsynsdagerPeriodeMap,
 ): DateDurationMap => {
     const datesWithDuration: DateDurationMap = {};
     Object.keys(tilsynsordningPeriode).forEach((key) => {

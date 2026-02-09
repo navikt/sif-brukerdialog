@@ -9,12 +9,12 @@ import { TilsynsordningSøknadsdata } from '@types';
 import dayjs from 'dayjs';
 
 import { TilsynsordningPeriodeData } from '../../../local-sif-common-pleiepenger/components/tilsynsordning-måned/components/tilsynsordning-periode-form/TilsynsordningPeriodeForm';
-import { OmsorgstilbudFormValues } from './TilsynsordningForm';
+import { TilsynsordningFormValues } from './TilsynsordningForm';
 
 export const getTilsynsordningStepInitialValues = (
     tilsynsordningSøknadsdata: TilsynsordningSøknadsdata | undefined,
-    formValues?: OmsorgstilbudFormValues,
-): OmsorgstilbudFormValues => {
+    formValues?: TilsynsordningFormValues,
+): TilsynsordningFormValues => {
     if (formValues) {
         return formValues;
     }
@@ -24,15 +24,15 @@ export const getTilsynsordningStepInitialValues = (
         };
     }
     return {
-        tilsynsdager: tilsynsordningSøknadsdata.tilsynsdager,
+        tilsynsdager: tilsynsordningSøknadsdata.tilsynsdagerMap,
     };
 };
 
 export const getTilsynsordningSøknadsdataFromFormValues = (
-    values: OmsorgstilbudFormValues,
+    values: TilsynsordningFormValues,
 ): TilsynsordningSøknadsdata => {
     return {
-        tilsynsdager: values.tilsynsdager,
+        tilsynsdagerMap: values.tilsynsdager,
     };
 };
 

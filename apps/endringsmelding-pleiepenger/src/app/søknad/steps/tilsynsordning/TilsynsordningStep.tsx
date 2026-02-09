@@ -12,13 +12,13 @@ import { StepId } from '../../config/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import TilsynsordningForm, { omsorgstilbudFormComponents, OmsorgstilbudFormValues } from './TilsynsordningForm';
+import TilsynsordningForm, { tilsynsordningFormComponents, TilsynsordningFormValues } from './TilsynsordningForm';
 import {
     getTilsynsordningSøknadsdataFromFormValues,
     getTilsynsordningStepInitialValues,
 } from './tilsynsordningStepUtils';
 
-const { FormikWrapper } = omsorgstilbudFormComponents;
+const { FormikWrapper } = tilsynsordningFormComponents;
 
 const TilsynsordningStep = () => {
     const stepId = StepId.TILSYNSORDNING;
@@ -33,7 +33,7 @@ const TilsynsordningStep = () => {
     const { goBack, stepConfig } = useStepConfig(stepId);
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const onValidSubmitHandler = (values: OmsorgstilbudFormValues) => {
+    const onValidSubmitHandler = (values: TilsynsordningFormValues) => {
         const tilsynsordningSøknadsdata = getTilsynsordningSøknadsdataFromFormValues(values);
         if (tilsynsordningSøknadsdata) {
             clearStepFormValues(stepId);
@@ -50,12 +50,8 @@ const TilsynsordningStep = () => {
         },
     );
 
-    const oppdaterSøknadState = (omsorgsdager: DateDurationMap = {}) => {
-        dispatch(
-            actionsCreator.setSøknadTilsynsordning(
-                getTilsynsordningSøknadsdataFromFormValues({ tilsynsdager: omsorgsdager }),
-            ),
-        );
+    const oppdaterSøknadState = (tilsynsdager: DateDurationMap = {}) => {
+        dispatch(actionsCreator.setSøknadTilsynsordning(getTilsynsordningSøknadsdataFromFormValues({ tilsynsdager })));
         dispatch(actionsCreator.requestLagreSøknad());
     };
 
@@ -82,8 +78,7 @@ const TilsynsordningStep = () => {
                                 <TilsynsordningForm
                                     goBack={goBack}
                                     søknadsperioder={sak.søknadsperioder}
-                                    perioderMedTilsynsordning={sak.tilsynsordning.perioderMedTilsynsordning}
-                                    opprinneligTilsynsdager={sak.tilsynsordning.dagerMedTilsynsordning}
+                                    opprinneligTilsynsdager={sak.tilsynsordning.tilsynsdagerMap}
                                     isSubmitting={isSubmitting}
                                     onTilsynsordningChanged={(values) => {
                                         oppdaterSøknadState(values);
