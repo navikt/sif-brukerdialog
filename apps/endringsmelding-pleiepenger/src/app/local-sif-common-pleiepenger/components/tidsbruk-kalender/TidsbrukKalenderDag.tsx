@@ -43,7 +43,10 @@ const TidsbrukKalenderDag = ({
         opprinneligTidRenderer ? (
             opprinneligTidRenderer({ tid: duration, dato, prosent })
         ) : (
-            <DurationText duration={duration} />
+            <>
+                sdf
+                <DurationText duration={duration} />
+            </>
         );
 
     return (
@@ -55,11 +58,14 @@ const TidsbrukKalenderDag = ({
                             <span className={bem.block}>{renderTid(ensureDuration(tid))}</span>
                             {visOpprinneligTid && (
                                 <>
-                                    {tidOpprinnelig ? (
+                                    {tidOpprinnelig || tid ? (
                                         <div className={bem.element('opprinneligTidWrapper')}>
                                             <BodyShort size="small" as="span" className={bem.element('opprinneligTid')}>
                                                 (<span className="sr-only">Endret fra: </span>
-                                                {renderOpprinneligTid(tidOpprinnelig)})
+                                                {tidOpprinnelig
+                                                    ? renderOpprinneligTid(ensureDuration(tidOpprinnelig))
+                                                    : 'Ingen tid'}
+                                                ){/* {renderOpprinneligTid(tidOpprinnelig)}) */}
                                             </BodyShort>
                                         </div>
                                     ) : null}

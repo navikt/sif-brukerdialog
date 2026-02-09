@@ -45,6 +45,16 @@ const OmsorgstilbudMåned = ({
         ? getDurationsInDateRange(tidOmsorgstilbudOpprinnelig, måned)
         : {};
 
+    const dagerEndret = Object.keys(dagerMedTid).filter((key) => {
+        const datoTid = dagerMedTid[key];
+        const datoTidOpprinnelig = dagerMedOpprinnelig[key];
+        console.log('datoTid', datoTid, 'datoTidOpprinnelig', datoTidOpprinnelig);
+        return (
+            (datoTid !== undefined && durationIsZero(datoTid) === false) ||
+            (datoTidOpprinnelig !== undefined && durationIsZero(datoTidOpprinnelig) === false)
+        );
+    });
+
     const utilgjengeligeDatoer = getDatesInMonthOutsideDateRange(måned.from, måned);
 
     const antallDagerMedOmsorgstilbud = Object.keys({ ...dagerMedOpprinnelig, ...dagerMedTid }).filter((key) => {
@@ -53,7 +63,7 @@ const OmsorgstilbudMåned = ({
     }).length;
 
     const label = text('omsorgstilbudMåned.ukeOgÅr', { ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') });
-    const antallDagerEndret = Object.keys(dagerMedTid).length;
+    const antallDagerEndret = Object.keys(dagerEndret).length;
     return (
         <ExpansionCard defaultOpen={defaultOpen} aria-label={label} size="small">
             <ExpansionCard.Header>
