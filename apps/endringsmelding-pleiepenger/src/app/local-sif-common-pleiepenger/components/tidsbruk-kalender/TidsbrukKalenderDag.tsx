@@ -3,7 +3,7 @@ import './tidsbrukKalenderDag.less';
 import { BodyShort } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DurationText } from '@navikt/sif-common-ui';
-import { Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
+import { Duration, durationIsGreatherThanZero, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
 import { ReactElement } from 'react';
 
 import { TidRenderer } from './TidsbrukKalender';
@@ -77,9 +77,9 @@ const TidsbrukKalenderDag = ({
                 </>
             )}
             {tidOpprinnelig && !tid && (
-                <>
+                <span className={durationIsGreatherThanZero(tidOpprinnelig) ? bem.element('harTid') : undefined}>
                     <BodyShort size="small">{renderTid(tidOpprinnelig)}</BodyShort>
-                </>
+                </span>
             )}
         </>
     );
