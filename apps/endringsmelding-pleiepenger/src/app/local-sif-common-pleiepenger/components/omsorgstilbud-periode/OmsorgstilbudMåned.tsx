@@ -5,6 +5,7 @@ import { DurationText } from '@navikt/sif-common-ui';
 import {
     DateDurationMap,
     durationIsZero,
+    durationToISODuration,
     getDatesInMonthOutsideDateRange,
     getDurationsInDateRange,
 } from '@navikt/sif-common-utils';
@@ -46,13 +47,11 @@ const OmsorgstilbudMåned = ({
         : {};
 
     const dagerEndret = Object.keys(dagerMedTid).filter((key) => {
-        const datoTid = dagerMedTid[key];
-        const datoTidOpprinnelig = dagerMedOpprinnelig[key];
-        console.log('datoTid', datoTid, 'datoTidOpprinnelig', datoTidOpprinnelig);
-        return (
-            (datoTid !== undefined && durationIsZero(datoTid) === false) ||
-            (datoTidOpprinnelig !== undefined && durationIsZero(datoTidOpprinnelig) === false)
-        );
+        const datoTid = dagerMedTid[key] ? durationToISODuration(dagerMedTid[key]) : undefined;
+        const datoTidOpprinnelig = dagerMedOpprinnelig[key]
+            ? durationToISODuration(dagerMedOpprinnelig[key])
+            : undefined;
+        return datoTid !== datoTidOpprinnelig;
     });
 
     const utilgjengeligeDatoer = getDatesInMonthOutsideDateRange(måned.from, måned);
@@ -107,9 +106,6 @@ const OmsorgstilbudMåned = ({
                     visOpprinneligTid={true}
                     skjulUkerMedKunUtilgjengeligeDager={true}
                     tidRenderer={({ tid }) => {
-                        if (tid.hours === '0' && tid.minutes === '0') {
-                            return <></>;
-                        }
                         return <DurationText duration={tid} />;
                     }}
                     onDateClick={

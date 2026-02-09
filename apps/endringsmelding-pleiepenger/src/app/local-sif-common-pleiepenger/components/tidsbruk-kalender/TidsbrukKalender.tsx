@@ -65,7 +65,6 @@ const TidsbrukKalender = ({
     Object.keys(dagerMedTidOpprinnelig).forEach((key) => {
         kalenderdager[key] = {
             ...kalenderdager[key],
-            // tidOpprinnelig: ensureDuration(dagerMedTidOpprinnelig[key]),
             tidOpprinnelig: dagerMedTidOpprinnelig[key],
             prosent: (dagerMedTidOpprinnelig as any)[key].prosent,
         };
