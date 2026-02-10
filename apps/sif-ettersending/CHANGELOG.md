@@ -1,5 +1,25 @@
 # @navikt/sif-ettersending
 
+## 3.49.64
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
+## 3.49.63
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 3.49.62
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/sif-common-soknad-ds@26.1.37
+
 ## 3.49.61
 
 ### Patch Changes

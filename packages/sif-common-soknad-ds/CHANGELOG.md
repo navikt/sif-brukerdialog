@@ -1,5 +1,13 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.1.37
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/appstatus-react-ds@2.20.72
+
 ## 26.1.36
 
 ### Patch Changes

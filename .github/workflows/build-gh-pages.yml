@@ -64,6 +64,17 @@ jobs:
           mkdir -p deployment/ungdomsytelse-deltaker
           mv apps/ungdomsytelse-deltaker/dist-demo/* deployment/ungdomsytelse-deltaker/
 
+      # Bygg ungdomsytelse-veileder demo-app med gh-pages:rebuild
+      # - name: Build ungdomsytelse-veileder
+      #   run: yarn gh-pages:rebuild
+      #   working-directory: apps-intern/ungdomsytelse-veileder
+
+      # Flytt ungdomsytelse-veileder-output til en subfolder
+      # - name: Kopier ungdomsytelse-veileder demo til gh-pages
+      #   run: |
+      #     mkdir -p deployment/ungdomsytelse-veileder
+      #     mv apps-intern/ungdomsytelse-veileder/dist-demo/* deployment/ungdomsytelse-veileder/
+
       # Bygg ungdomsytelse-deltaker-storybook
       - name: Build ungdomsytelse-deltaker-storybook
         run: yarn storybook:build

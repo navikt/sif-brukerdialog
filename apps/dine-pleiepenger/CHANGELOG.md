@@ -1,5 +1,28 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.2
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
+## 2.2.1
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 2.2.0
+
+### Minor Changes
+
+- Inntektsmelding og splitt av sak i Dine pleiepenger. Tilhørende codegen + noe felleskoderoppdateringer
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.12
+
 ## 2.1.1
 
 ### Patch Changes

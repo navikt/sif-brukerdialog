@@ -42,11 +42,11 @@ const DeltakerPage = () => {
             {deltaker && (
                 <>
                     <Box background="neutral-moderate">
-                        <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
+                        <Page.Block width="lg" gutters={true} className="pt-7 pb-5">
                             <DeltakerHeader deltaker={deltaker} onLukkDeltaker={() => navigate('/')} />
                         </Page.Block>
                     </Box>
-                    <Page.Block width="xl" gutters={true}>
+                    <Page.Block width="lg" gutters={true}>
                         <DeltakelseLoader deltaker={deltaker} />
                     </Page.Block>
                 </>

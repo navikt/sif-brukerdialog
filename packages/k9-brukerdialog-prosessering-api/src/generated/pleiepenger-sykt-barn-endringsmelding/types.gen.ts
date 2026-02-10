@@ -78,6 +78,9 @@ export type Bosteder = {
 export type DataBruktTilUtledning = {
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
+    /**
+     * @deprecated
+     */
     soknadDialogCommitSha?: string;
     annetData?: string;
 };
@@ -279,6 +282,8 @@ export type PrivatArbeidsgiverDto = {
     ansattTom?: string;
 };
 
+export type JsonNode = unknown;
+
 export type DeleteMellomlagringData = {
     body?: never;
     path: {
@@ -350,7 +355,7 @@ export type GetMellomlagringResponses = {
     /**
      * OK
      */
-    200: string;
+    200: JsonNode;
 };
 
 export type GetMellomlagringResponse = GetMellomlagringResponses[keyof GetMellomlagringResponses];

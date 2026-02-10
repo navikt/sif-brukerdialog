@@ -1,5 +1,25 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.22.63
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
+## 2.22.62
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 2.22.61
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/sif-common-soknad-ds@26.1.37
+
 ## 2.22.60
 
 ### Patch Changes

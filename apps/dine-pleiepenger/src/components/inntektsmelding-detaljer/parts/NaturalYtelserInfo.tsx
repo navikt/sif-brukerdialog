@@ -16,7 +16,7 @@ const NaturalYtelserInfo = ({ naturalYtelser }: Props) => {
         return <InlineMessage status="warning">Ikke rapportert</InlineMessage>;
     }
     if (naturalYtelser.length === 0) {
-        return <>Nei, du beholder eventuelle naturalytelser du har.</>;
+        return <>Arbeidsgiver har informert om at du ikke mister naturalytelser.</>;
     }
     return (
         <List>

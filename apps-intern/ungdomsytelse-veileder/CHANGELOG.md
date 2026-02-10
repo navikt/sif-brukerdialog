@@ -1,5 +1,25 @@
 # @navikt/sif-demo-app
 
+## 0.9.55
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
+## 0.9.54
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 0.9.53
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.10
+    - @navikt/ung-common@0.0.94
+
 ## 0.9.52
 
 ### Patch Changes

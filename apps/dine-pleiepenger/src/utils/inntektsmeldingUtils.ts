@@ -56,14 +56,11 @@ export const getRefusjonEndringListe = ({
     return alleEndringer;
 };
 
-export type InntektsmeldingMedErstatter = Inntektsmelding & {
-    erstatter: Inntektsmelding[];
-};
-
 export type ArbeidsgiverMedInntektsmeldinger = {
     arbeidsgiverId: string;
     arbeidsgiverNavn: string;
-    inntektsmeldinger: InntektsmeldingMedErstatter[];
+    erOrganisasjon: boolean;
+    inntektsmeldinger: Inntektsmelding[];
 };
 
 const getArbeidsgiverId = (arbeidsgiver: innsyn.ArbeidsgiverDto): string => {
@@ -76,11 +73,9 @@ const getArbeidsgiverId = (arbeidsgiver: innsyn.ArbeidsgiverDto): string => {
     return 'ukjent';
 };
 
-/** Grupperer inntektsmeldinger på arbeidsgiver, og for hver arbeidsgiver grupperes på erstattet-av. Sortert på dato, nyeste først. */
 export const grupperInntektsmeldingerPåArbeidsgiver = (
     inntektsmeldinger: Inntektsmelding[],
 ): ArbeidsgiverMedInntektsmeldinger[] => {
-    // Grupper på arbeidsgiver
     const gruppertPåArbeidsgiver = inntektsmeldinger.reduce<Record<string, Inntektsmelding[]>>((acc, im) => {
         const arbeidsgiverId = getArbeidsgiverId(im.arbeidsgiver);
         if (!acc[arbeidsgiverId]) {
@@ -90,21 +85,12 @@ export const grupperInntektsmeldingerPåArbeidsgiver = (
         return acc;
     }, {});
 
-    // For hver arbeidsgiver, grupper på erstattet-av
     return Object.entries(gruppertPåArbeidsgiver).map(([arbeidsgiverId, ims]) => {
-        const ikkeErstattede = ims
-            .filter((im) => im.erstattetAv.length === 0)
-            .sort(sorterInntektsmeldingerPåInnsendingstidspunkt);
-
         return {
             arbeidsgiverId,
             arbeidsgiverNavn: getArbeidsgiverNavn(ims[0].arbeidsgiver),
-            inntektsmeldinger: ikkeErstattede.map((im) => ({
-                ...im,
-                erstatter: ims
-                    .filter((i) => i.erstattetAv.includes(im.journalpostId))
-                    .sort(sorterInntektsmeldingerPåInnsendingstidspunkt),
-            })),
+            erOrganisasjon: ims[0].arbeidsgiver.organisasjon ? true : false,
+            inntektsmeldinger: ims.sort(sorterInntektsmeldingerPåInnsendingstidspunkt),
         };
     });
 };

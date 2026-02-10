@@ -4,7 +4,7 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.93",
+    "version": "0.0.94",
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
@@ -13,7 +13,7 @@
     "devDependencies": {
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.13.4",
+        "axios": "1.13.5",
         "config": "workspace:*",
         "dayjs": "1.11.19",
         "postcss": "8.5.6",

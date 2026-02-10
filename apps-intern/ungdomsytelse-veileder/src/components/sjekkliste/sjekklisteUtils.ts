@@ -1,66 +1,77 @@
 export type JaNei = 'ja' | 'nei';
-export type TypeLivsoppholdsytelse = 'økonomisk' | 'annen';
 
-export interface SjekklisteValues {
-    alder?: JaNei;
-    behov?: JaNei;
-    avklart?: JaNei;
-    mottarYtelser?: JaNei;
-    typeLivsoppholdsytelse?: TypeLivsoppholdsytelse;
-    skalStanses?: JaNei;
+/** Hvert spørsmål i sjekklisten har et riktig svar for å kunne meldes inn */
+export interface Spørsmål {
+    id: string;
+    riktigSvar: JaNei;
 }
 
-export enum AvslagÅrsak {
-    alder = 'alder',
-    behov = 'behov',
-    avklart = 'avklart',
-    skalIkkeStanses = 'skalIkkeStanses',
+/** Definerer alle spørsmålene i rekkefølge med forventet riktig svar */
+export const spørsmål: Spørsmål[] = [
+    { id: 'tilhørerKontor', riktigSvar: 'ja' },
+    { id: 'mottarAndreLivsoppholdsytelser', riktigSvar: 'nei' },
+    { id: 'alderBistandOgDeltakelse', riktigSvar: 'ja' },
+    { id: 'ønskerÅDelta', riktigSvar: 'ja' },
+    { id: 'erIStandTilÅDelta', riktigSvar: 'ja' },
+];
+
+export type SjekklisteValues = Partial<Record<string, JaNei>>;
+
+export interface SjekklisteStatus {
+    /** Indekser for spørsmål som skal vises */
+    synligeSpørsmål: number[];
+    /** Indeks for første feil-svar (undefined hvis ingen feil) */
+    førsteFeilIndex: number | undefined;
+    /** Om alle synlige spørsmål er besvart */
+    alleBesvart: boolean;
+    /** Om deltaker kan meldes inn */
+    kanMeldesInn: boolean;
 }
 
-export interface SjekklisteVisning {
-    visBehov: boolean;
-    visAvklart: boolean;
-    visMottarYtelser: boolean;
-    visTypeLivsoppholdsytelse: boolean;
-    visSkalStanses: boolean;
-}
+/**
+ * Beregner status for sjekklisten basert på svarene.
+ * - Viser alltid spørsmål 0
+ * - Viser påfølgende spørsmål kun hvis forrige har riktig svar
+ * - Stopper ved første feil-svar
+ */
+export const getSjekklisteStatus = (values: SjekklisteValues): SjekklisteStatus => {
+    const synligeSpørsmål: number[] = [0]; // Første spørsmål vises alltid
+    let førsteFeilIndex: number | undefined;
+    let alleBesvart = false;
 
-export const getSjekklisteVisning = (values: SjekklisteValues): SjekklisteVisning => {
-    const visBehov = values.alder === 'ja';
-    const visAvklart = visBehov && values.behov === 'ja';
-    const visMottarYtelser = visAvklart && values.avklart === 'ja';
-    const visTypeLivsoppholdsytelse = visMottarYtelser && values.mottarYtelser === 'ja';
-    const visSkalStanses = visTypeLivsoppholdsytelse && values.typeLivsoppholdsytelse === 'annen';
+    for (let i = 0; i < spørsmål.length; i++) {
+        const sp = spørsmål[i];
+        const svar = values[sp.id];
+
+        if (svar === undefined) {
+            // Ikke besvart enda - stopp her
+            break;
+        }
+
+        if (svar !== sp.riktigSvar) {
+            // Feil svar - registrer feil, marker som besvart og stopp
+            førsteFeilIndex = i;
+            alleBesvart = true;
+            break;
+        }
+
+        // Riktig svar - vis neste spørsmål hvis det finnes
+        if (i + 1 < spørsmål.length) {
+            synligeSpørsmål.push(i + 1);
+        }
+
+        // Hvis vi har besvart siste spørsmål riktig
+        if (i === spørsmål.length - 1) {
+            alleBesvart = true;
+        }
+    }
+
+    const kanMeldesInn = alleBesvart && førsteFeilIndex === undefined;
 
     return {
-        visBehov,
-        visAvklart,
-        visMottarYtelser,
-        visTypeLivsoppholdsytelse,
-        visSkalStanses,
+        synligeSpørsmål,
+        førsteFeilIndex,
+        alleBesvart,
+        kanMeldesInn,
     };
-};
-
-export const getAvslagÅrsak = (values: SjekklisteValues, visning: SjekklisteVisning): AvslagÅrsak | undefined => {
-    if (values.alder === 'nei') return AvslagÅrsak.alder;
-    if (values.behov === 'nei') return AvslagÅrsak.behov;
-    if (values.avklart === 'nei') return AvslagÅrsak.avklart;
-    if (visning.visSkalStanses && values.skalStanses === 'nei') return AvslagÅrsak.skalIkkeStanses;
-    return undefined;
-};
-
-export const alleSpørsmålBesvart = (values: SjekklisteValues, visning: SjekklisteVisning): boolean => {
-    if (values.alder === undefined) return false;
-    if (visning.visBehov && values.behov === undefined) return false;
-    if (visning.visAvklart && values.avklart === undefined) return false;
-    if (visning.visMottarYtelser && values.mottarYtelser === undefined) return false;
-    if (visning.visTypeLivsoppholdsytelse && values.typeLivsoppholdsytelse === undefined) return false;
-    if (visning.visSkalStanses && values.skalStanses === undefined) return false;
-    return true;
-};
-
-export const kanDeltakerMeldesInn = (values: SjekklisteValues): boolean => {
-    const visning = getSjekklisteVisning(values);
-    const avslagÅrsak = getAvslagÅrsak(values, visning);
-    return alleSpørsmålBesvart(values, visning) && avslagÅrsak === undefined;
 };

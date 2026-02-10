@@ -4,8 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import Link from 'next/link';
 import { FormattedNumber } from 'react-intl';
 
-import { Inntektsmelding, InntektsmeldingStatus } from '../../types';
-import { InntektsmeldingStatusTag } from '../inntektsmelding-status-tag/InntektsmeldingStatusTag';
+import { Inntektsmelding } from '../../types';
 
 interface Props {
     inntektsmelding: Inntektsmelding;
@@ -13,25 +12,8 @@ interface Props {
 }
 
 const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
-    const erIBruk = inntektsmelding.status === InntektsmeldingStatus.I_BRUK;
-    const erIkkeRelevant = inntektsmelding.status === InntektsmeldingStatus.IKKE_RELEVANT;
-    const erErstattet = inntektsmelding.status === InntektsmeldingStatus.ERSTATTET_AV_NYERE;
-
-    const getClassName = () => {
-        if (erIkkeRelevant) {
-            return 'inntektsmeldingLinkCard--ikkeRelevant';
-        }
-        if (!erIBruk) {
-            return 'inntektsmeldingLinkCard--ikkeIBruk';
-        }
-        return '';
-    };
-
     return (
-        <LinkCard
-            key={inntektsmelding.journalpostId}
-            size={erErstattet ? 'small' : 'medium'}
-            className={`inntektsmeldingLinkCard ${getClassName()}`}>
+        <LinkCard key={inntektsmelding.journalpostId} size="small" className="inntektsmeldingLinkCard">
             <Show above="sm" asChild>
                 <Box asChild borderRadius="full" padding="space-12" background="moderateA">
                     <LinkCard.Icon>
@@ -61,7 +43,6 @@ const InntektsmeldingLinkCard = ({ inntektsmelding, saksnummer }: Props) => {
                     <Tag variant="info" size="small">
                         Mottatt {dateFormatter.compact(inntektsmelding.mottattDato)}
                     </Tag>
-                    <InntektsmeldingStatusTag status={inntektsmelding.status} />
                 </HStack>
             </LinkCard.Footer>
         </LinkCard>

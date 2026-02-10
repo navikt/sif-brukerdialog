@@ -1,5 +1,27 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.43
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
+## 1.5.42
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 1.5.41
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.13
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.10
+    - @navikt/ung-common@0.0.94
+    - @navikt/sif-common-soknad-ds@26.1.37
+
 ## 1.5.40
 
 ### Patch Changes

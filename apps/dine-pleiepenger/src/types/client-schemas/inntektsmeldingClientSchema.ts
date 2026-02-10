@@ -39,11 +39,11 @@ export const utledNaturalYtelseEndring = (periode: { fom: Date; tom: Date }): Na
 };
 
 export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto
+    .omit({ status: true, erstattetAv: true })
     .extend({
         startDatoPermisjon: zDateFromISODateString,
         mottattDato: zDateFromISODateString,
         innsendingstidspunkt: zDateFromDateTimeString,
-        status: z.enum(innsyn.InntektsmeldingStatusDto),
         endringerRefusjon: z.optional(
             z.array(
                 innsyn.zEndringRefusjonDto.extend({

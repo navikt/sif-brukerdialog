@@ -258,6 +258,8 @@ export type PrivatArbeidsgiverDto = {
     ansattTom?: string;
 };
 
+export type JsonNode = unknown;
+
 export type ArbeidIPeriodeWritable = {
     jobberIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
     enkeltdager?: Enkeltdag[];
@@ -402,7 +404,7 @@ export type GetMellomlagringResponses = {
     /**
      * OK
      */
-    200: string;
+    200: JsonNode;
 };
 
 export type GetMellomlagringResponse = GetMellomlagringResponses[keyof GetMellomlagringResponses];

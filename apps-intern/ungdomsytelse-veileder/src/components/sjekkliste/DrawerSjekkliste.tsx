@@ -1,21 +1,11 @@
-import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import Sjekkliste from './Sjekkliste';
 
 const SjekklisteDrawer = () => {
     return (
-        <>
-            <VStack gap="space-16">
-                <VStack gap="space-4">
-                    <Heading level="2" size="medium" spacing={true}>
-                        Kontroller om deltaker kan meldes inn
-                    </Heading>
-                    <BodyLong spacing={true}>
-                        Se om deltaker kan meldes inn i ungdomsprogrammet ved å gå gjennom sjekklisten under.
-                    </BodyLong>
-                </VStack>
-                <Sjekkliste onChange={() => {}} showHeader={false} visResultat={true} />
-            </VStack>
-        </>
+        <VStack paddingBlock="space-0 space-128" paddingInline="space-16 space-24">
+            <Sjekkliste />
+        </VStack>
     );
 };
 
