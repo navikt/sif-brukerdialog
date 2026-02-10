@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.2
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 2.2.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.35.71
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 1.35.70
 
 ### Patch Changes
