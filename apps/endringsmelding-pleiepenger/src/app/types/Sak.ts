@@ -113,9 +113,8 @@ export interface SakLovbestemtFerie {
     feriedager: FeriedagMap;
 }
 
-export type SakTilsynsdagerPeriodeMap = ISODateRangeMap<Duration>;
+export type SakTilsynsperioderMap = ISODateRangeMap<Duration>;
 
 export interface SakTilsynsordning {
-    // tilsynsdagerPeriodeMap: SakTilsynsdagerPeriodeMap;
     tilsynsdagerMap: DateDurationMap;
 }

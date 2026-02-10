@@ -37,7 +37,6 @@ import {
     K9SakTilsynsordningPeriodeMap,
     PeriodeMedArbeidstid,
     Sak,
-    SakTilsynsdagerPeriodeMap,
 } from '@types';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -114,8 +113,6 @@ export const getSakFromK9Sak = (
         selvstendigNæringsdrivende,
     });
 
-    const perioderMedTilsynsordning = getSakTilsynsordning(k9sak.ytelse.tilsynsordning.perioder);
-
     return {
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
@@ -138,34 +135,27 @@ export const getSakFromK9Sak = (
             aktiviteterSomKanEndres,
         },
         tilsynsordning: {
-            tilsynsdagerMap: mapSakTilsynsordningPeriodeToDateDurationMap(perioderMedTilsynsordning),
+            tilsynsdagerMap: getSakTilsynsdagerMapFromK9Sak(k9sak.ytelse.tilsynsordning.perioder),
         },
     };
 };
 
-/** Henter ut perioder med tilsynsordning  */
-
-export const getSakTilsynsordning = (perioder: K9SakTilsynsordningPeriodeMap): SakTilsynsdagerPeriodeMap => {
-    const sakPerioder: SakTilsynsdagerPeriodeMap = {};
+/**
+ * Henter ut dager med tilsynsordning
+ * Går gjennom periodene med tilsynsordning og legger tiden til enkeltdager i periodene
+ */
+export const getSakTilsynsdagerMapFromK9Sak = (perioder: K9SakTilsynsordningPeriodeMap): DateDurationMap => {
+    const tilsynsdagerMap: DateDurationMap = {};
     Object.keys(perioder).forEach((key) => {
-        sakPerioder[key] = perioder[key].etablertTilsynTimerPerDag;
-    });
-    return sakPerioder;
-};
+        const periode = ISODateRangeToDateRange(key);
+        const duration = perioder[key].etablertTilsynTimerPerDag;
 
-export const mapSakTilsynsordningPeriodeToDateDurationMap = (
-    tilsynsordningPeriode: SakTilsynsdagerPeriodeMap,
-): DateDurationMap => {
-    const datesWithDuration: DateDurationMap = {};
-    Object.keys(tilsynsordningPeriode).forEach((key) => {
-        const periode: DateRange = ISODateRangeToDateRange(key);
-        const duration = tilsynsordningPeriode[key];
-        const dates = getDatesInDateRange(periode, true);
-        dates.forEach((date) => {
-            datesWithDuration[dateToISODate(date)] = duration;
+        getDatesInDateRange(periode, true).forEach((date) => {
+            tilsynsdagerMap[dateToISODate(date)] = duration;
         });
     });
-    return datesWithDuration;
+
+    return tilsynsdagerMap;
 };
 
 /** Henter utk9SakArbeidstakere med arbeidsgiver funnet i AA-reg */
