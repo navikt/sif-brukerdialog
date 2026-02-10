@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.26.63
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 1.26.62
 
 ### Patch Changes
