@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.55
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 0.9.54
 
 ### Patch Changes

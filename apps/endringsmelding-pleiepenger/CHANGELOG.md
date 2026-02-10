@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.40.63
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 2.40.62
 
 ### Patch Changes

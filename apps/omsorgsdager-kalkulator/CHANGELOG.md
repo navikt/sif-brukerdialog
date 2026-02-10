@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.14.3
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 3.14.2
 
 ### Patch Changes

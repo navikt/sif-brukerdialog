@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.22.63
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 2.22.62
 
 ### Patch Changes

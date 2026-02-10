@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.64
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 3.49.63
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.16.64
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 1.16.63
 
 ### Patch Changes

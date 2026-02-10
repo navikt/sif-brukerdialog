@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.66
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 4.11.65
 
 ### Patch Changes

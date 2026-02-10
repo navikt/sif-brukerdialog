@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.64
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 1.41.63
 
 ### Patch Changes

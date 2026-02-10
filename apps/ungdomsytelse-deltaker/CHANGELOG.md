@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.43
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 1.5.42
 
 ### Patch Changes

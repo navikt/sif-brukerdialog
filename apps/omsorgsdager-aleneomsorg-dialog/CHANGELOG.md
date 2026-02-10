@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.63
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 2.28.62
 
 ### Patch Changes

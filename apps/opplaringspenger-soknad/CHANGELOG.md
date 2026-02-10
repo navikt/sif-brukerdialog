@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.40
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
 ## 1.4.39
 
 ### Patch Changes
