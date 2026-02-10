@@ -95,7 +95,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                 return (
                     <VStack gap="space-24">
                         {erEndringAvSluttdato === false && (
-                            <ReadMore header="Les mer om å registrere sluttdato for utmeldt deltaker">
+                            <ReadMore header="Vis mer om å registrere sluttdato for utmeldt deltaker">
                                 <BodyLong spacing>
                                     Når du setter en sluttdato blir denne brukt til å opphøre ungdomsprogramytelsen.
                                     Deretter kan ikke deltakeren gis en ny periode.

@@ -7,8 +7,8 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 const deltakerPersonalia: DeltakerPersonalia = {
-    id: '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
-    deltakerIdent: '03867198392',
+    id: '49395468-fca7-42eb-8ea2-6854d81189e2',
+    deltakerIdent: '65430071240',
     navn: {
         fornavn: 'PRESENTABEL',
         etternavn: 'HOFTE',
@@ -20,15 +20,15 @@ const deltakerPersonalia: DeltakerPersonalia = {
 };
 
 const deltakelse: DeltakelseDto = {
-    id: '5e8d1e4c-801c-4d13-8987-abfae3eaaa00',
+    id: '5e8d1e4c-801c-4d13-8987-abfae3eaaa01',
     deltaker: {
-        id: '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
-        deltakerIdent: '03867198392',
+        id: '49395468-fca7-42eb-8ea2-6854d81189e2',
+        deltakerIdent: '65430071240',
     },
     fraOgMed: '2025-03-10',
     tilOgMed: undefined,
-    erSlettet: false,
-    harOpphørsvedtak: false,
+    erSlettet: true,
+    harOpphørsvedtak: true,
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
 };
 
@@ -49,7 +49,7 @@ const deltakelseHistorikk: DeltakelseHistorikkDto[] = [
     },
 ];
 
-export const registrertDeltakerMock = {
+export const slettetDeltakerMock = {
     id: deltakerPersonalia.id!,
     deltakerPersonalia,
     deltakelse,

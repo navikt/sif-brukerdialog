@@ -11,14 +11,14 @@
         "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@tanstack/react-query": "5.90.20",
-        "axios": "1.13.4",
+        "axios": "1.13.5",
         "dayjs": "1.11.19",
         "object-hash": "3.0.0",
         "uuid": "13.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.10",
+        "@types/react": "19.2.13",
         "react": "19.2.4",
         "typescript": "5.9.3",
         "zod": "4.3.6"
