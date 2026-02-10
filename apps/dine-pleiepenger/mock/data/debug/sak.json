@@ -1,1575 +1,284 @@
 {
-    "saksnummer": "10007LM",
-    "utledetStatus": {
-        "status": "AVSLUTTET",
-        "aksjonspunkter": []
-    },
-    "fagsakYtelseType": "PSB",
+    "saksnummer": "1003QQ0",
+    "utledetStatus": { "status": "AVSLUTTET", "aksjonspunkter": [], "saksbehandlingsFrist": null },
+    "saksbehandlingsFrist": null,
+    "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
     "ytelseType": "PSB",
     "behandlinger": [
         {
             "status": "AVSLUTTET",
-            "opprettetTidspunkt": "2025-01-13T06:21:42.000Z",
-            "avsluttetTidspunkt": "2025-01-13T06:37:23.000Z",
+            "opprettetTidspunkt": "2026-02-06T12:54:43.000Z",
+            "avsluttetTidspunkt": "2026-02-06T13:18:12.000Z",
             "innsendelser": [
                 {
-                    "søknadId": "4c96b766-dfef-452d-99ea-8acbdf7fc35d",
-                    "mottattTidspunkt": "2025-01-13T06:20:31Z",
+                    "søknadId": "f56d095c-6552-4c15-bd40-dc0104a65662",
+                    "mottattTidspunkt": "2026-02-06T12:53:36Z",
                     "innsendelsestype": "SØKNAD",
                     "k9FormatInnsendelse": {
-                        "søknadId": "4c96b766-dfef-452d-99ea-8acbdf7fc35d",
+                        "søknadId": "f56d095c-6552-4c15-bd40-dc0104a65662",
                         "versjon": "1.0.0",
-                        "mottattDato": "2025-01-13T06:20:26.784Z",
-                        "søker": {
-                            "norskIdentitetsnummer": "09929198503"
-                        },
+                        "mottattDato": "2026-02-06T12:53:34.193Z",
+                        "søker": { "norskIdentitetsnummer": "18419625937" },
+                        "språk": "nb",
                         "ytelse": {
                             "type": "PLEIEPENGER_SYKT_BARN",
-                            "barn": {
-                                "norskIdentitetsnummer": "23851999701"
-                            },
-                            "søknadsperiode": ["2024-11-01/2024-11-29"],
-                            "endringsperiode": [],
-                            "trekkKravPerioder": [],
-                            "opptjeningAktivitet": {},
                             "annetDataBruktTilUtledning": {
-                                "harForståttRettigheterOgPlikter": true,
+                                "annetData": null,
                                 "harBekreftetOpplysninger": true,
-                                "soknadDialogCommitSha": "2025.01.06-11.14-ca87eb4"
-                            },
-                            "bosteder": {
-                                "perioder": {},
-                                "perioderSomSkalSlettes": {}
-                            },
-                            "utenlandsopphold": {
-                                "perioder": {},
-                                "perioderSomSkalSlettes": {}
-                            },
-                            "beredskap": {
-                                "perioder": {},
-                                "perioderSomSkalSlettes": {}
-                            },
-                            "nattevåk": {
-                                "perioder": {},
-                                "perioderSomSkalSlettes": {}
-                            },
-                            "tilsynsordning": {
-                                "perioder": {
-                                    "2024-11-01/2024-11-29": {
-                                        "etablertTilsynTimerPerDag": "PT0S"
-                                    }
-                                }
-                            },
-                            "lovbestemtFerie": {
-                                "perioder": {}
+                                "harForståttRettigheterOgPlikter": true,
+                                "soknadDialogCommitSha": "2026.02.04-15.25-7c32529"
                             },
                             "arbeidstid": {
                                 "arbeidstakerList": [
                                     {
-                                        "organisasjonsnummer": "315853370",
-                                        "organisasjonsnavn": "INTERESSANT INTUITIV KATT DIAMETER",
                                         "arbeidstidInfo": {
                                             "perioder": {
-                                                "2024-11-01/2024-11-29": {
-                                                    "jobberNormaltTimerPerDag": "PT8H",
-                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                "2025-12-15/2026-01-23": {
+                                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                                    "jobberNormaltTimerPerDag": "PT8H"
                                                 }
                                             }
-                                        }
+                                        },
+                                        "norskIdentitetsnummer": null,
+                                        "organisasjonsnavn": "INTERESSANT INTUITIV KATT DIAMETER",
+                                        "organisasjonsnummer": "315853370"
+                                    },
+                                    {
+                                        "arbeidstidInfo": {
+                                            "perioder": {
+                                                "2025-12-15/2026-01-23": {
+                                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                                    "jobberNormaltTimerPerDag": "PT8H"
+                                                }
+                                            }
+                                        },
+                                        "norskIdentitetsnummer": null,
+                                        "organisasjonsnavn": "LAV BLØT KATT MOSKUS",
+                                        "organisasjonsnummer": "315630304"
                                     }
                                 ],
                                 "frilanserArbeidstidInfo": {
                                     "perioder": {
-                                        "2024-11-01/2024-11-29": {
-                                            "jobberNormaltTimerPerDag": "PT0S",
-                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                        "2025-12-15/2026-01-23": {
+                                            "faktiskArbeidTimerPerDag": "PT0S",
+                                            "jobberNormaltTimerPerDag": "PT0S"
                                         }
                                     }
-                                }
+                                },
+                                "selvstendigNæringsdrivendeArbeidstidInfo": null
                             },
+                            "barn": { "fødselsdato": null, "norskIdentitetsnummer": "29462087649" },
+                            "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "dataBruktTilUtledning": null,
+                            "endringsperiode": [],
+                            "erSammenMedBarnet": null,
+                            "infoFraPunsj": null,
+                            "lovbestemtFerie": { "perioder": {} },
+                            "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "omsorg": { "beskrivelseAvOmsorgsrollen": null, "relasjonTilBarnet": null },
+                            "opptjeningAktivitet": {},
+                            "søknadsperiode": ["2025-12-15/2026-01-23"],
+                            "tilsynsordning": {
+                                "perioder": { "2025-12-15/2026-01-23": { "etablertTilsynTimerPerDag": "PT0S" } }
+                            },
+                            "trekkKravPerioder": [],
+                            "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
                             "uttak": {
-                                "perioder": {
-                                    "2024-11-01/2024-11-29": {
-                                        "timerPleieAvBarnetPerDag": "PT7H30M"
-                                    }
-                                }
-                            },
-                            "omsorg": {}
-                        }
+                                "perioder": { "2025-12-15/2026-01-23": { "timerPleieAvBarnetPerDag": "PT7H30M" } }
+                            }
+                        },
+                        "begrunnelseForInnsending": { "tekst": null },
+                        "journalposter": [],
+                        "kildesystem": "søknadsdialog"
                     },
                     "dokumenter": [
                         {
-                            "journalpostId": "453916412",
-                            "dokumentInfoId": "454318052",
-                            "saksnummer": "10007LM",
+                            "journalpostId": "454078824",
+                            "dokumentInfoId": "454500428",
+                            "saksnummer": "1003QQ0",
                             "tittel": "Søknad om pleiepenger for sykt barn",
                             "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
                             "filtype": "PDF",
                             "harTilgang": true,
-                            "url": "http://sif-innsyn-api/dokument/453916412/454318052/ARKIV",
+                            "url": "http://sif-innsyn-api/dokument/454078824/454500428/ARKIV",
                             "relevanteDatoer": [
-                                {
-                                    "dato": "2025-01-13T07:20:31",
-                                    "datotype": "DATO_OPPRETTET"
-                                },
-                                {
-                                    "dato": "2025-01-13T07:20:31",
-                                    "datotype": "DATO_DOKUMENT"
-                                },
-                                {
-                                    "dato": "2025-01-13T07:20:41",
-                                    "datotype": "DATO_JOURNALFOERT"
-                                },
-                                {
-                                    "dato": "2025-01-13T07:20:26",
-                                    "datotype": "DATO_REGISTRERT"
-                                }
+                                { "dato": "2026-02-06T13:53:36", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2026-02-06T13:53:36", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2026-02-06T13:53:42", "datotype": "DATO_JOURNALFOERT" },
+                                { "dato": "2026-02-06T13:53:34", "datotype": "DATO_REGISTRERT" }
                             ]
                         },
                         {
-                            "journalpostId": "453916412",
-                            "dokumentInfoId": "454318053",
-                            "saksnummer": "10007LM",
-                            "tittel": "Varsel tilbakekreving PSB.pdf",
+                            "journalpostId": "454078824",
+                            "dokumentInfoId": "454500429",
+                            "saksnummer": "1003QQ0",
+                            "tittel": "Innsendelse (1).pdf",
                             "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
                             "filtype": "PDF",
                             "harTilgang": true,
-                            "url": "http://sif-innsyn-api/dokument/453916412/454318053/ARKIV",
+                            "url": "http://sif-innsyn-api/dokument/454078824/454500429/ARKIV",
                             "relevanteDatoer": [
-                                {
-                                    "dato": "2025-01-13T07:20:31",
-                                    "datotype": "DATO_OPPRETTET"
-                                },
-                                {
-                                    "dato": "2025-01-13T07:20:31",
-                                    "datotype": "DATO_DOKUMENT"
-                                },
-                                {
-                                    "dato": "2025-01-13T07:20:41",
-                                    "datotype": "DATO_JOURNALFOERT"
-                                },
-                                {
-                                    "dato": "2025-01-13T07:20:26",
-                                    "datotype": "DATO_REGISTRERT"
-                                }
+                                { "dato": "2026-02-06T13:53:36", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2026-02-06T13:53:36", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2026-02-06T13:53:42", "datotype": "DATO_JOURNALFOERT" },
+                                { "dato": "2026-02-06T13:53:34", "datotype": "DATO_REGISTRERT" }
                             ]
                         }
                     ],
                     "arbeidsgivere": [
-                        {
-                            "organisasjonsnummer": "315853370",
-                            "navn": "INTERESSANT INTUITIV KATT DIAMETER"
-                        }
+                        { "organisasjonsnummer": "315853370", "navn": "INTERESSANT INTUITIV KATT DIAMETER" },
+                        { "organisasjonsnummer": "315630304", "navn": "LAV BLØT KATT MOSKUS" }
                     ]
                 }
             ],
             "aksjonspunkter": [],
             "utgåendeDokumenter": [
                 {
-                    "journalpostId": "453948541",
-                    "dokumentInfoId": "454351528",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948541/454351528/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453948535",
-                    "dokumentInfoId": "454351522",
-                    "saksnummer": "10007LM",
+                    "journalpostId": "454079040",
+                    "dokumentInfoId": "454500656",
+                    "saksnummer": "1003QQ0",
                     "tittel": "Pleiepenger barn Endring",
                     "dokumentType": "VEDTAK_ENDRING",
                     "filtype": "PDF",
                     "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948535/454351522/ARKIV",
+                    "url": "http://sif-innsyn-api/dokument/454079040/454500656/ARKIV",
                     "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_JOURNALFOERT" }
                     ]
                 },
                 {
-                    "journalpostId": "453947923",
-                    "dokumentInfoId": "454350884",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947923/454350884/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:48",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947846",
-                    "dokumentInfoId": "454350747",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947846/454350747/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947775",
-                    "dokumentInfoId": "454350725",
-                    "saksnummer": "10007LM",
+                    "journalpostId": "454078986",
+                    "dokumentInfoId": "454500600",
+                    "saksnummer": "1003QQ0",
                     "tittel": "Pleiepenger barn Innvilgelse",
                     "dokumentType": "VEDTAK_INNVILGELSE",
                     "filtype": "PDF",
                     "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947775/454350725/ARKIV",
+                    "url": "http://sif-innsyn-api/dokument/454078986/454500600/ARKIV",
                     "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947769",
-                    "dokumentInfoId": "454350719",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947769/454350719/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453916444",
-                    "dokumentInfoId": "454318084",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453916444/454318084/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_JOURNALFOERT" }
                     ]
                 }
             ]
         },
         {
             "status": "AVSLUTTET",
-            "opprettetTidspunkt": "2025-02-19T07:52:30.000Z",
-            "avsluttetTidspunkt": "2026-01-07T09:22:44.000Z",
+            "opprettetTidspunkt": "2026-02-06T13:20:19.000Z",
+            "avsluttetTidspunkt": "2026-02-06T13:20:30.000Z",
             "innsendelser": [],
             "aksjonspunkter": [],
             "utgåendeDokumenter": [
                 {
-                    "journalpostId": "453948541",
-                    "dokumentInfoId": "454351528",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948541/454351528/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453948535",
-                    "dokumentInfoId": "454351522",
-                    "saksnummer": "10007LM",
+                    "journalpostId": "454079040",
+                    "dokumentInfoId": "454500656",
+                    "saksnummer": "1003QQ0",
                     "tittel": "Pleiepenger barn Endring",
                     "dokumentType": "VEDTAK_ENDRING",
                     "filtype": "PDF",
                     "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948535/454351522/ARKIV",
+                    "url": "http://sif-innsyn-api/dokument/454079040/454500656/ARKIV",
                     "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_JOURNALFOERT" }
                     ]
                 },
                 {
-                    "journalpostId": "453947923",
-                    "dokumentInfoId": "454350884",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947923/454350884/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:48",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947846",
-                    "dokumentInfoId": "454350747",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947846/454350747/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947775",
-                    "dokumentInfoId": "454350725",
-                    "saksnummer": "10007LM",
+                    "journalpostId": "454078986",
+                    "dokumentInfoId": "454500600",
+                    "saksnummer": "1003QQ0",
                     "tittel": "Pleiepenger barn Innvilgelse",
                     "dokumentType": "VEDTAK_INNVILGELSE",
                     "filtype": "PDF",
                     "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947775/454350725/ARKIV",
+                    "url": "http://sif-innsyn-api/dokument/454078986/454500600/ARKIV",
                     "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947769",
-                    "dokumentInfoId": "454350719",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947769/454350719/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453916444",
-                    "dokumentInfoId": "454318084",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453916444/454318084/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_JOURNALFOERT" }
                     ]
                 }
             ]
         },
         {
             "status": "AVSLUTTET",
-            "opprettetTidspunkt": "2025-02-19T08:10:22.000Z",
-            "avsluttetTidspunkt": "2026-01-07T09:22:44.000Z",
+            "opprettetTidspunkt": "2026-02-06T13:23:23.000Z",
+            "avsluttetTidspunkt": "2026-02-06T13:26:35.000Z",
             "innsendelser": [],
             "aksjonspunkter": [],
             "utgåendeDokumenter": [
                 {
-                    "journalpostId": "453948541",
-                    "dokumentInfoId": "454351528",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948541/454351528/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453948535",
-                    "dokumentInfoId": "454351522",
-                    "saksnummer": "10007LM",
+                    "journalpostId": "454079040",
+                    "dokumentInfoId": "454500656",
+                    "saksnummer": "1003QQ0",
                     "tittel": "Pleiepenger barn Endring",
                     "dokumentType": "VEDTAK_ENDRING",
                     "filtype": "PDF",
                     "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948535/454351522/ARKIV",
+                    "url": "http://sif-innsyn-api/dokument/454079040/454500656/ARKIV",
                     "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_JOURNALFOERT" }
                     ]
                 },
                 {
-                    "journalpostId": "453947923",
-                    "dokumentInfoId": "454350884",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947923/454350884/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:48",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947846",
-                    "dokumentInfoId": "454350747",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947846/454350747/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947775",
-                    "dokumentInfoId": "454350725",
-                    "saksnummer": "10007LM",
+                    "journalpostId": "454078986",
+                    "dokumentInfoId": "454500600",
+                    "saksnummer": "1003QQ0",
                     "tittel": "Pleiepenger barn Innvilgelse",
                     "dokumentType": "VEDTAK_INNVILGELSE",
                     "filtype": "PDF",
                     "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947775/454350725/ARKIV",
+                    "url": "http://sif-innsyn-api/dokument/454078986/454500600/ARKIV",
                     "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947769",
-                    "dokumentInfoId": "454350719",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947769/454350719/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453916444",
-                    "dokumentInfoId": "454318084",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453916444/454318084/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_JOURNALFOERT" }
                     ]
                 }
             ]
         },
         {
             "status": "AVSLUTTET",
-            "opprettetTidspunkt": "2025-01-13T06:43:28.000Z",
-            "avsluttetTidspunkt": "2026-01-07T09:22:44.000Z",
+            "opprettetTidspunkt": "2026-02-06T13:29:00.000Z",
+            "avsluttetTidspunkt": "2026-02-06T13:29:07.000Z",
             "innsendelser": [],
             "aksjonspunkter": [],
             "utgåendeDokumenter": [
                 {
-                    "journalpostId": "453948541",
-                    "dokumentInfoId": "454351528",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948541/454351528/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453948535",
-                    "dokumentInfoId": "454351522",
-                    "saksnummer": "10007LM",
+                    "journalpostId": "454079040",
+                    "dokumentInfoId": "454500656",
+                    "saksnummer": "1003QQ0",
                     "tittel": "Pleiepenger barn Endring",
                     "dokumentType": "VEDTAK_ENDRING",
                     "filtype": "PDF",
                     "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948535/454351522/ARKIV",
+                    "url": "http://sif-innsyn-api/dokument/454079040/454500656/ARKIV",
                     "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_JOURNALFOERT" }
                     ]
                 },
                 {
-                    "journalpostId": "453947923",
-                    "dokumentInfoId": "454350884",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947923/454350884/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:48",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947846",
-                    "dokumentInfoId": "454350747",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947846/454350747/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947775",
-                    "dokumentInfoId": "454350725",
-                    "saksnummer": "10007LM",
+                    "journalpostId": "454078986",
+                    "dokumentInfoId": "454500600",
+                    "saksnummer": "1003QQ0",
                     "tittel": "Pleiepenger barn Innvilgelse",
                     "dokumentType": "VEDTAK_INNVILGELSE",
                     "filtype": "PDF",
                     "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947775/454350725/ARKIV",
+                    "url": "http://sif-innsyn-api/dokument/454078986/454500600/ARKIV",
                     "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947769",
-                    "dokumentInfoId": "454350719",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947769/454350719/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453916444",
-                    "dokumentInfoId": "454318084",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453916444/454318084/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "status": "AVSLUTTET",
-            "opprettetTidspunkt": "2025-02-19T10:23:01.000Z",
-            "avsluttetTidspunkt": "2026-01-07T09:22:44.000Z",
-            "innsendelser": [],
-            "aksjonspunkter": [],
-            "utgåendeDokumenter": [
-                {
-                    "journalpostId": "453948541",
-                    "dokumentInfoId": "454351528",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948541/454351528/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453948535",
-                    "dokumentInfoId": "454351522",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948535/454351522/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947923",
-                    "dokumentInfoId": "454350884",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947923/454350884/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:48",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947846",
-                    "dokumentInfoId": "454350747",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947846/454350747/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947775",
-                    "dokumentInfoId": "454350725",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947775/454350725/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947769",
-                    "dokumentInfoId": "454350719",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947769/454350719/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453916444",
-                    "dokumentInfoId": "454318084",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453916444/454318084/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "status": "AVSLUTTET",
-            "opprettetTidspunkt": "2025-02-19T09:34:05.000Z",
-            "avsluttetTidspunkt": "2026-01-07T09:22:44.000Z",
-            "innsendelser": [],
-            "aksjonspunkter": [],
-            "utgåendeDokumenter": [
-                {
-                    "journalpostId": "453948541",
-                    "dokumentInfoId": "454351528",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948541/454351528/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453948535",
-                    "dokumentInfoId": "454351522",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948535/454351522/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947923",
-                    "dokumentInfoId": "454350884",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947923/454350884/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:48",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947846",
-                    "dokumentInfoId": "454350747",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947846/454350747/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947775",
-                    "dokumentInfoId": "454350725",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947775/454350725/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947769",
-                    "dokumentInfoId": "454350719",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947769/454350719/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453916444",
-                    "dokumentInfoId": "454318084",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453916444/454318084/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "status": "AVSLUTTET",
-            "opprettetTidspunkt": "2025-02-20T05:19:41.000Z",
-            "avsluttetTidspunkt": "2026-01-07T09:22:44.000Z",
-            "innsendelser": [],
-            "aksjonspunkter": [],
-            "utgåendeDokumenter": [
-                {
-                    "journalpostId": "453948541",
-                    "dokumentInfoId": "454351528",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948541/454351528/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453948535",
-                    "dokumentInfoId": "454351522",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948535/454351522/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947923",
-                    "dokumentInfoId": "454350884",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947923/454350884/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:48",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947846",
-                    "dokumentInfoId": "454350747",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947846/454350747/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947775",
-                    "dokumentInfoId": "454350725",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947775/454350725/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947769",
-                    "dokumentInfoId": "454350719",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947769/454350719/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453916444",
-                    "dokumentInfoId": "454318084",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453916444/454318084/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "status": "AVSLUTTET",
-            "opprettetTidspunkt": "2025-02-20T06:34:57.000Z",
-            "avsluttetTidspunkt": "2026-01-07T09:22:45.000Z",
-            "innsendelser": [],
-            "aksjonspunkter": [],
-            "utgåendeDokumenter": [
-                {
-                    "journalpostId": "453948541",
-                    "dokumentInfoId": "454351528",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948541/454351528/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:15",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T07:08:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453948535",
-                    "dokumentInfoId": "454351522",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453948535/454351522/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-20T06:14:58",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947923",
-                    "dokumentInfoId": "454350884",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947923/454350884/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:47",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:59:48",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947846",
-                    "dokumentInfoId": "454350747",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Endring",
-                    "dokumentType": "VEDTAK_ENDRING",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947846/454350747/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T10:16:46",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947775",
-                    "dokumentInfoId": "454350725",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947775/454350725/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:59:16",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453947769",
-                    "dokumentInfoId": "454350719",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453947769/454350719/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-02-19T08:48:41",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
-                    ]
-                },
-                {
-                    "journalpostId": "453916444",
-                    "dokumentInfoId": "454318084",
-                    "saksnummer": "10007LM",
-                    "tittel": "Pleiepenger barn Innvilgelse",
-                    "dokumentType": "VEDTAK_INNVILGELSE",
-                    "filtype": "PDF",
-                    "harTilgang": true,
-                    "url": "http://sif-innsyn-api/dokument/453916444/454318084/ARKIV",
-                    "relevanteDatoer": [
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_OPPRETTET"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_DOKUMENT"
-                        },
-                        {
-                            "dato": "2025-01-13T07:37:36",
-                            "datotype": "DATO_JOURNALFOERT"
-                        }
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_JOURNALFOERT" }
                     ]
                 }
             ]

@@ -45,12 +45,14 @@ const renderEndringListItem = (endring: EndringRefusjon, refusjonBeløpPerMnd: n
 
 const RefusjonInfo = ({ inntektBeløp, refusjon, endringerRefusjon, startDatoPermisjon }: Props) => {
     const harRefusjon = refusjon !== undefined && refusjon.refusjonBeløpPerMnd > 0;
-    const harEndringerIRefusjon = refusjon && endringerRefusjon !== undefined && endringerRefusjon.length > 0;
 
     // Har ikke refusjon - Nav betaler alt
     if (!harRefusjon) {
         return <>Du får pleiepengene utbetalt direkte fra Nav.</>;
     }
+
+    const harEndringerIRefusjon =
+        refusjon !== undefined && ((endringerRefusjon?.length ?? 0) > 0 || refusjon.refusjonOpphører !== undefined);
 
     // Har ikke endringer i refusjon; utled hvem som betaler for hele perioden
     if (!harEndringerIRefusjon) {

@@ -97,7 +97,7 @@ const getMockData = (scenario) => {
     }
 };
 
-const scenario = 'to-saker'; // Velg scenario her
+const scenario = 'debug'; // Velg scenario her
 
 const mockData = getMockData(scenario);
 
