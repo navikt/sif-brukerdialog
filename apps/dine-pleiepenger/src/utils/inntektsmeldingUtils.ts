@@ -28,14 +28,14 @@ interface GetRefusjonEndringListeParams {
     refusjonBeløpPerMnd: number;
     refusjonOpphører?: Date;
     startDatoPermisjon: Date;
-    endringerRefusjon: EndringRefusjon[];
+    endringerRefusjon: EndringRefusjon[] | undefined;
 }
 
 export const getRefusjonEndringListe = ({
     refusjonBeløpPerMnd,
     refusjonOpphører,
     startDatoPermisjon,
-    endringerRefusjon,
+    endringerRefusjon = [],
 }: GetRefusjonEndringListeParams): EndringRefusjon[] => {
     const alleEndringer: EndringRefusjon[] = [];
     const førsteEndring = endringerRefusjon[0];

@@ -1,12 +1,15 @@
 [
     {
-        "saksnummer": "10007LM",
+        "saksnummer": "1003QQ0",
         "pleietrengende": {
-            "fødselsdato": "2019-05-23",
-            "aktørId": "2602899898036",
-            "fornavn": "SNÅL",
-            "etternavn": "PAPPA"
+            "fødselsdato": "2020-06-29",
+            "aktørId": "2600524593203",
+            "fornavn": "SAMARBEIDSVILLIG",
+            "mellomnavn": null,
+            "etternavn": "GREVLING"
         },
-        "fagsakYtelseType": "PSB"
+        "fagsakYtelseType": "PSB",
+        "fagsakOpprettetTidspunkt": "2026-02-06T12:54:43Z",
+        "fagsakAvsluttetTidspunkt": "2026-02-06T13:29:07Z"
     }
 ]
