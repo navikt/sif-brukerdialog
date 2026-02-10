@@ -6,18 +6,6 @@ const slowDown = (ms: number) => (1 + 1 === 1 ? Promise.resolve() : delay(ms));
 
 export const handlers = [
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
-        if (1 + 1 === 3) {
-            return HttpResponse.json(
-                {
-                    type: 'about:blank',
-                    title: 'Title - Deltaker ikke funnet',
-                    status: 404,
-                    detail: 'Detail: Deltaker ikke funnet',
-                    instance: '**/oppslag/deltaker',
-                },
-                { status: 404 },
-            );
-        }
         const formData = await request.json();
         const deltakerIdent = formData.deltakerIdent;
 
@@ -53,18 +41,6 @@ export const handlers = [
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {
         const data = mockUtils.getDeltakelser(params.deltakerId as string);
         await slowDown(500);
-        if (1 + 1 === 3) {
-            return HttpResponse.json(
-                {
-                    type: 'about:blank',
-                    title: 'Not Found',
-                    status: 404,
-                    detail: 'Fant ingen deltaker med id 699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
-                    instance: '/veileder/register/deltaker/699b9f97-b0d7-4b78-9b8e-8758feb9e0fd/deltakelser',
-                },
-                { status: 404 },
-            );
-        }
         return HttpResponse.json(data);
     }),
 

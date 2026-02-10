@@ -5,17 +5,18 @@ import { ExpandIcon, ShrinkIcon } from '@navikt/aksel-icons';
 type DrawerOptions = {
     title?: string;
     position?: 'left' | 'right';
+    width?: DrawerWidth;
     portalContainer?: HTMLElement | null;
 };
 
 type DrawerContextValue = {
     openDrawer: (content: ReactNode, options?: DrawerOptions) => void;
     closeDrawer: () => void;
-    setWidth: (width: DrawerWidth) => void;
 };
 
 export enum DrawerWidth {
     NARROW = 'narrow',
+    WIDER = 'wider',
     WIDE = 'wide',
 }
 
@@ -39,6 +40,7 @@ export const DrawerProvider = ({ children, initialTitle, initialOpen = true, ini
             setIsOpen(true);
             setContent(drawerContent);
             setTitle(options?.title || title);
+            setWidth(options?.width || DrawerWidth.NARROW);
         }
     };
 
@@ -47,7 +49,7 @@ export const DrawerProvider = ({ children, initialTitle, initialOpen = true, ini
     };
 
     return (
-        <DrawerContext.Provider value={{ openDrawer, closeDrawer, setWidth: () => null }}>
+        <DrawerContext.Provider value={{ openDrawer, closeDrawer }}>
             {children}
             <Modal
                 className={`drawer-dialog drawer-dialog-${width}`}

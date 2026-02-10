@@ -2,7 +2,13 @@ import { Box } from '@navikt/ds-react';
 
 const InfoBox = ({ children }) => {
     return (
-        <Box background="info-moderate" paddingBlock="space-28 space-32" paddingInline="space-32" borderRadius="16">
+        <Box
+            background="neutral-soft"
+            paddingBlock="space-16"
+            paddingInline="space-16"
+            borderRadius="8"
+            borderWidth="2"
+            borderColor="neutral-subtle">
             {children}
         </Box>
     );

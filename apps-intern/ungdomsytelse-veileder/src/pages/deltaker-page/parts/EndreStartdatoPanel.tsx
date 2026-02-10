@@ -25,7 +25,7 @@ const EndreStartdatoPanel = ({ dato, kanEndreStartdato, onClickEndreButton }: Da
                     <div>
                         <Button
                             variant="primary"
-                            size="medium"
+                            size="small"
                             icon={<PencilFillIcon aria-hidden="true" />}
                             onClick={onClickEndreButton}>
                             Endre startdato
