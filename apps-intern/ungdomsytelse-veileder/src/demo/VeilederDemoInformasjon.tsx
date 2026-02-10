@@ -26,8 +26,8 @@ const VeilederDemoInformasjon = ({ variant }: Props) => {
                     <GlobalAlert.Content>
                         <VStack gap="space-8">
                             <BodyLong as="div">
-                                Denne demoen viser funksjonaliteten og innholdet i veilederappliksjonen for
-                                ungdomsprogramytelsen. All innformasjon som vises er fiktiv og laget kun for demoformål.
+                                Denne demoen viser funksjonaliteten og innholdet i veilederapplikasjonen for
+                                ungdomsprogramytelsen. All informasjon som vises er fiktiv og laget kun for demoformål.
                             </BodyLong>
                         </VStack>
                     </GlobalAlert.Content>

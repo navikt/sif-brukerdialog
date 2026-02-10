@@ -11,8 +11,6 @@
         "./mock/**/*",
         "./playwright/**/*",
         "./vite-env.d.ts",
-        "./vite-demo-env.d.ts",
-        "./vite-playwright-env.d.ts",
         "./storybook/**/*",
         "./vite.config.ts",
         "vite.playwright.config.ts",

@@ -1,7 +1,8 @@
 import { getRequiredEnv } from '@navikt/sif-common-env';
+import { ReactNode } from 'react';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 
-const AppRouter = ({ children }: { children: React.ReactNode }) => {
+const AppRouter = ({ children }: { children: ReactNode }) => {
     const publicPath = getRequiredEnv('PUBLIC_PATH');
     return __IS_VEILEDER_DEMO__ ? (
         <HashRouter>

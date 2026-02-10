@@ -12,7 +12,6 @@ type DrawerOptions = {
 type DrawerContextValue = {
     openDrawer: (content: ReactNode, options?: DrawerOptions) => void;
     closeDrawer: () => void;
-    setWidth: (width: DrawerWidth) => void;
 };
 
 export enum DrawerWidth {
@@ -50,7 +49,7 @@ export const DrawerProvider = ({ children, initialTitle, initialOpen = true, ini
     };
 
     return (
-        <DrawerContext.Provider value={{ openDrawer, closeDrawer, setWidth: () => null }}>
+        <DrawerContext.Provider value={{ openDrawer, closeDrawer }}>
             {children}
             <Modal
                 className={`drawer-dialog drawer-dialog-${width}`}
