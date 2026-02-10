@@ -45,7 +45,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@testing-library/react": "16.3.2",
-        "axios": "1.13.4",
+        "axios": "1.13.5",
         "csp-header": "6.3.0",
         "dayjs": "1.11.19",
         "formik": "2.4.9",

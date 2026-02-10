@@ -34,7 +34,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@tanstack/react-query": "5.90.20",
         "@testing-library/react": "16.3.2",
-        "axios": "1.13.4",
+        "axios": "1.13.5",
         "busboy": "1.6.0",
         "csp-header": "6.3.0",
         "dayjs": "1.11.19",
