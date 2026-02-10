@@ -1,5 +1,4 @@
 .calendarGrid__day:has(.tidsbrukKalenderDag__endret) {
-    /* background-color: var(--ax-bg-info-moderate); */
     background-color: var(--ax-bg-success-moderateA);
     border-color: var(--ax-border-success);
 }

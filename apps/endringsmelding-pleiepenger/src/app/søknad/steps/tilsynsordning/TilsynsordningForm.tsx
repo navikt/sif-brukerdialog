@@ -46,7 +46,14 @@ const TilsynsordningForm = ({
     const { tilsynsdager } = values;
 
     const handleOnEnkeltdagChange = (endring: TidEnkeltdagEndring): void => {
-        const newValues = { ...tilsynsdager, ...endring.dagerMedTid };
+        const newValues: DateDurationMap = { ...tilsynsdager };
+        Object.entries(endring.dagerMedTid).forEach(([isoDate, tid]) => {
+            if (tid) {
+                newValues[isoDate] = tid;
+            } else {
+                delete newValues[isoDate];
+            }
+        });
         setFieldValue(TilsynsordningFormFields.tilsynsdager, newValues);
         if (onTilsynsordningChanged) {
             onTilsynsordningChanged(newValues);

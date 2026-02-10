@@ -1,3 +1,5 @@
+import { ArrowUndoIcon } from '@navikt/aksel-icons';
+import { Alert, Bleed, Button, HStack } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import {
     DateRange,
@@ -9,7 +11,9 @@ import {
 import { DurationText, FormLayout } from '@navikt/sif-common-ui';
 import {
     DateDurationMap,
+    DateDurationOrUndefinedMap,
     dateFormatter,
+    dateToISODate,
     Duration,
     durationsAreEqual,
     ensureDuration,
@@ -53,7 +57,7 @@ export interface GjentagelseEnkeltdag {
 }
 
 export interface TidEnkeltdagEndring {
-    dagerMedTid: DateDurationMap;
+    dagerMedTid: DateDurationMap | DateDurationOrUndefinedMap;
 }
 
 enum FormFields {
@@ -100,6 +104,12 @@ const TidEnkeltdagForm = ({
                 dagerMedTid: getDagerMedNyTid(periode, dato, values.tid, getGjentagelseEnkeltdagFraFormValues(values)),
             });
         }
+    };
+
+    const onResetEndring = () => {
+        onSubmit({
+            dagerMedTid: { [dateToISODate(dato)]: tidOpprinnelig },
+        });
     };
 
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
@@ -162,10 +172,27 @@ const TidEnkeltdagForm = ({
                             />
                             {tidOpprinnelig && erEndret && (
                                 <FormLayout.QuestionRelatedMessage>
-                                    <p>
-                                        <AppText id="tidEnkeltdagForm.endretFra" />{' '}
-                                        <DurationText duration={tidOpprinnelig} fullText={true} />
-                                    </p>
+                                    <Alert variant="info" size="small" inline>
+                                        <HStack gap="space-16" align="center">
+                                            <div>
+                                                <AppText id="tidEnkeltdagForm.endretFra" />{' '}
+                                                <DurationText duration={tidOpprinnelig} fullText={true} />
+                                            </div>
+                                            {skalGjentas !== true && (
+                                                <Bleed marginBlock="space-8">
+                                                    <Button
+                                                        type="button"
+                                                        variant="tertiary"
+                                                        size="small"
+                                                        iconPosition="left"
+                                                        icon={<ArrowUndoIcon role="presentation" />}
+                                                        onClick={onResetEndring}>
+                                                        Tilbakestill endring
+                                                    </Button>
+                                                </Bleed>
+                                            )}
+                                        </HStack>
+                                    </Alert>
                                 </FormLayout.QuestionRelatedMessage>
                             )}
                             {skalViseValgetGjelderFlereDager && (

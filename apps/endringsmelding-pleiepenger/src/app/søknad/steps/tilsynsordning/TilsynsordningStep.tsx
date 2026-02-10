@@ -20,6 +20,10 @@ import {
 
 const { FormikWrapper } = tilsynsordningFormComponents;
 
+/**
+ * Her gjenbrukes FormiWrapper etc for å ha det likt på tvers av steg. Dette kan skrives bort på sikt, da dette
+ * egentlig ikke er nødvendig fordi det ikke er noen inline skjematikk i steget.
+ */
 const TilsynsordningStep = () => {
     const stepId = StepId.TILSYNSORDNING;
     const {

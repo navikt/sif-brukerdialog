@@ -125,6 +125,7 @@ const OmsorgstilbudMåned = ({
                             periode: søknadsperiode,
                             dato: editDate.dato,
                             tid: editDate.tid,
+                            tidOpprinnelig: dagerMedOpprinnelig[dateToISOString(editDate.dato)],
                             onSubmit: (evt: any) => {
                                 setEditDate(undefined);
                                 setTimeout(() => {
