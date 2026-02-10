@@ -14,10 +14,10 @@ interface Props {
     };
     årstallHeadingLevel?: '2' | '3';
     årstallHeaderRenderer?: (årstall: number) => React.ReactNode;
-    månedContentRenderer: (måned: DateRange, søknadsperioderIMåned: DateRange[], index: number) => React.ReactNode;
+    månedContentRenderer: (måned: DateRange, måneder: DateRange[], index: number) => React.ReactNode;
 }
 
-const SøknadsperioderMånedListe = ({
+const MånedListe = ({
     periode,
     fieldset,
     årstallHeadingLevel = '2',
@@ -60,4 +60,4 @@ const SøknadsperioderMånedListe = ({
     );
 };
 
-export default SøknadsperioderMånedListe;
+export default MånedListe;
