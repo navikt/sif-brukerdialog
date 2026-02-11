@@ -62,7 +62,15 @@ export const sifCommonPleiepengerMessages_nn: Record<keyof typeof sifCommonPleie
     'tilsynsordningEnkeltdagForm.tittel': 'Tid i omsorgstilbod {dato}',
     'tilsynsordningEnkeltdagForm.tid.spm': 'Kor mykje skal barnet vere i omsorgstilbod {dato}?',
     'tilsynsordningEnkeltdagForm.tid.spm.historisk': 'Kor mykje var barnet i omsorgstilbod {dato}?',
+    'tilsynsordningEnkeltdagForm.tid.beskrivelse':
+        'Legg inn timer og minutter barnet er i omsorgstilbudet, eller kryss av for at barnet ikke er det denne dagen.',
+    'tilsynsordningEnkeltdagForm.tid.beskrivelse.historisk':
+        'Legg inn timer og minutter barnet var i omsorgstilbudet, eller kryss av for at barnet ikke var det den dagen.',
+    'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud': 'Barnet var ikke i omsorgstilbud denne dagen',
+    'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud.historisk': 'Barnet var ikke i omsorgstilbud denne dagen',
 
+    'tidEnkeltdagForm.opprinneligTid': 'Opphavleg tid',
+    'tidEnkeltdagForm.ingenOpprinneligTid': 'Ingen tid oppgjeve',
     'tidEnkeltdagForm.endretFra': 'Endra frå',
     'tidEnkeltdagForm.gjelderFlereDager.label': 'Gjenta desse timane for fleire dagar',
     'tidEnkeltdagForm.gjelderFlereDager.info':

@@ -6,7 +6,10 @@ import TidEnkeltdagDialog, { TidEnkeltdagDialogProps } from '../tid-enkeltdag-di
 import { TidEnkeltdagFormProps } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
 
 interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps'> {
-    formProps: Omit<TidEnkeltdagFormProps, 'hvorMyeSpørsmålRenderer' | 'maksTid'>;
+    formProps: Omit<
+        TidEnkeltdagFormProps,
+        'hvorMyeSpørsmålRenderer' | 'beskrivelseRenderer' | 'erIkkeIOmsorgstilbudLabelRenderer' | 'maksTid'
+    >;
 }
 
 const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
@@ -19,13 +22,37 @@ const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
             { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
+    const beskrivelseRenderer = (dato: Date): string => {
+        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
+        return text(
+            erHistorisk
+                ? 'tilsynsordningEnkeltdagForm.tid.beskrivelse.historisk'
+                : 'tilsynsordningEnkeltdagForm.tid.beskrivelse',
+            { dato: dateFormatter.dayDateMonthYear(dato) },
+        );
+    };
+    const erIkkeIOmsorgstilbudLabelRenderer = (dato: Date): string => {
+        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
+        return text(
+            erHistorisk
+                ? 'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud.historisk'
+                : 'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud',
+            { dato: dateFormatter.dayDateMonthYear(dato) },
+        );
+    };
     return (
         <TidEnkeltdagDialog
             open={isOpen}
             dialogTitle={text('tilsynsordningEnkeltdagForm.tittel', {
                 dato: dateFormatter.full(formProps.dato),
             })}
-            formProps={{ ...formProps, hvorMyeSpørsmålRenderer, maksTid: { hours: 7, minutes: 30 } }}
+            formProps={{
+                ...formProps,
+                hvorMyeSpørsmålRenderer,
+                beskrivelseRenderer,
+                erIkkeIOmsorgstilbudLabelRenderer,
+                maksTid: { hours: 7, minutes: 30 },
+            }}
         />
     );
 };

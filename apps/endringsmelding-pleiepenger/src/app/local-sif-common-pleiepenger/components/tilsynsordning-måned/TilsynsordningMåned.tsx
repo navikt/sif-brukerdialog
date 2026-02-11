@@ -30,7 +30,7 @@ interface Props {
     onEnkeltdagChange?: EnkeltdagChangeEvent;
 }
 
-const OmsorgstilbudMåned = ({
+const TilsynsordningMåned = ({
     måned,
     tidTilsynsordning,
     tidTilsynsordningOpprinnelig,
@@ -109,10 +109,7 @@ const OmsorgstilbudMåned = ({
                     onDateClick={
                         onEnkeltdagChange
                             ? (dato) => {
-                                  const tid: Partial<InputTime> = dagerMedTid[dateToISOString(dato)] || {
-                                      hours: '',
-                                      minutes: '',
-                                  };
+                                  const tid: Partial<InputTime> = dagerMedTid[dateToISOString(dato)] || undefined;
                                   setEditDate({ dato, tid });
                               }
                             : undefined
@@ -142,4 +139,4 @@ const OmsorgstilbudMåned = ({
     );
 };
 
-export default OmsorgstilbudMåned;
+export default TilsynsordningMåned;

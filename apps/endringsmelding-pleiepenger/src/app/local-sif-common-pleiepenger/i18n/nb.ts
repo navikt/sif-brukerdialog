@@ -57,11 +57,18 @@ export const sifCommonPleiepengerMessages_nb = {
     'tilsynsordningEnkeltdagForm.tittel': 'Tid i omsorgstilbud {dato}',
     'tilsynsordningEnkeltdagForm.tid.spm': 'Hvor mye skal barnet være i omsorgstilbud {dato}?',
     'tilsynsordningEnkeltdagForm.tid.spm.historisk': 'Hvor mye var barnet i omsorgstilbud {dato}?',
+    'tilsynsordningEnkeltdagForm.tid.beskrivelse':
+        'Legg inn timer og minutter barnet er i omsorgstilbudet, eller kryss av for at barnet ikke er det denne dagen.',
+    'tilsynsordningEnkeltdagForm.tid.beskrivelse.historisk':
+        'Legg inn timer og minutter barnet var i omsorgstilbudet, eller kryss av for at barnet ikke var det den dagen.',
+    'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud': 'Barnet var ikke i omsorgstilbud denne dagen',
+    'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud.historisk': 'Barnet var ikke i omsorgstilbud denne dagen',
 
+    'tidEnkeltdagForm.opprinneligTid': 'Opprinnelig tid: ',
+    'tidEnkeltdagForm.ingenOpprinneligTid': 'Opprinnelig tid: ingen tid registrert',
     'tidEnkeltdagForm.endretFra': 'Endret fra',
-    'tidEnkeltdagForm.gjelderFlereDager.label': 'Gjenta disse timene for flere dager',
-    'tidEnkeltdagForm.gjelderFlereDager.info':
-        'Velg hvilke andre dager i søknadsperioden du ønsker at disse timene skal registreres på:',
+    'tidEnkeltdagForm.gjelderFlereDager.label': 'Gjenta denne tiden for flere dager',
+    'tidEnkeltdagForm.gjelderFlereDager.info': 'Velg hvilke andre dager du ønsker at disse timene skal registreres på:',
     'tidEnkeltdagForm.gjentagelse.helUke': 'Alle dager i uke {ukeNavn}',
     'tidEnkeltdagForm.gjentagelse.delAvUke': 'Alle dager i uke {ukeNavn}',
     'tidEnkeltdagForm.gjentagelse.helMåned': 'Alle dager i {månedNavn}',

@@ -1,6 +1,6 @@
 import './styles/tidEnkeltdagDialog.less';
 
-import { Modal } from '@navikt/ds-react';
+import { Dialog } from '@navikt/ds-react';
 
 import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 
@@ -14,21 +14,22 @@ const TidEnkeltdagDialog = ({ open = false, formProps, dialogTitle }: TidEnkeltd
     if (!open) {
         return null;
     }
-    return open ? (
-        <Modal
-            open={open}
-            onClose={formProps.onCancel}
-            className="tidEnkeltdagDialog"
-            portal={true}
-            header={{
-                heading: dialogTitle,
-                closeButton: true,
-            }}>
-            <Modal.Body>
-                <TidEnkeltdagForm {...formProps} />
-            </Modal.Body>
-        </Modal>
-    ) : null;
+    return (
+        <Dialog
+            open={true}
+            defaultOpen={true}
+            onOpenChange={(isOpen) => isOpen === false && formProps.onCancel()}
+            size="medium">
+            <Dialog.Popup>
+                <Dialog.Header>
+                    <Dialog.Title>{dialogTitle}</Dialog.Title>
+                </Dialog.Header>
+                <Dialog.Body>
+                    <TidEnkeltdagForm {...formProps} />
+                </Dialog.Body>
+            </Dialog.Popup>
+        </Dialog>
+    );
 };
 
 export default TidEnkeltdagDialog;

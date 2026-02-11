@@ -1,4 +1,4 @@
-import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { Heading, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 
@@ -67,9 +67,20 @@ const TilsynsordningStep = () => {
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="omsorgstilbudStep.title" />
                 </Heading>
-                <BodyShort>
-                    <AppText id="omsorgstilbudStep.info.1" />
-                </BodyShort>
+                <List>
+                    <List.Item>Hva kan du endre på her?</List.Item>
+                    <List.Item>Kort recap på omsorgstilbud - her er det mye info i søknaden</List.Item>
+                    <List.Item>Melding/varsel om beredskap og nattvåk</List.Item>
+                    <List.Item>
+                        Hvordan påvirker perioder; f.eks. nattevåk/beredskap i én periode, men ikke annen periode. Hvis
+                        en skal søke om dette i perioder hvor en ikke har søkt om det, må en bruke søknad
+                    </List.Item>
+                    <List.Item>
+                        Få frem at dette er kun informasjon som du har sendt inn - trenger info om eventuell annen part
+                    </List.Item>
+                    <List.Item>Få frem forskjellen på 0 tid og ingen informasjon</List.Item>
+                    <List.Item>Ferie ..</List.Item>
+                </List>
             </FormLayout.Guide>
             <VStack gap="space-32">
                 <FormikWrapper

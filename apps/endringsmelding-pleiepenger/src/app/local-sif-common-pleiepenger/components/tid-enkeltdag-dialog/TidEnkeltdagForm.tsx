@@ -1,5 +1,4 @@
-import { ArrowUndoIcon } from '@navikt/aksel-icons';
-import { Alert, Bleed, Button, HStack } from '@navikt/ds-react';
+import { Alert, BodyLong, VStack } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import {
     DateRange,
@@ -13,10 +12,7 @@ import {
     DateDurationMap,
     DateDurationOrUndefinedMap,
     dateFormatter,
-    dateToISODate,
     Duration,
-    durationsAreEqual,
-    ensureDuration,
     getLastWeekdayOnOrBeforeDate,
     getMonthDateRange,
     getNumberOfDaysInDateRange,
@@ -26,7 +22,8 @@ import {
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
-import { ReactElement } from 'react';
+import { useFormikContext } from 'formik';
+import { ReactElement, useEffect, useRef } from 'react';
 
 import { AppText, useAppIntl } from '../../../i18n';
 import {
@@ -46,7 +43,9 @@ export interface TidEnkeltdagFormProps {
     tidOpprinnelig?: Duration;
     maksTid?: NumberDuration;
     minTid?: NumberDuration;
+    erIkkeIOmsorgstilbudLabelRenderer: (date: Date) => string;
     hvorMyeSpørsmålRenderer: (date: Date) => string;
+    beskrivelseRenderer: (date: Date) => ReactElement | string;
     onSubmit: (dagerMedTid: TidEnkeltdagEndring) => void;
     onCancel: () => void;
 }
@@ -61,6 +60,7 @@ export interface TidEnkeltdagEndring {
 }
 
 enum FormFields {
+    'erIkkeIOmsorgstilbud' = 'erIkkeIOmsorgstilbud',
     'tid' = 'tid',
     'skalGjentas' = 'skalGjentas',
     'gjentagelse' = 'gjentagelse',
@@ -75,6 +75,7 @@ export enum GjentagelseType {
 }
 
 export interface TidEnkeltdagFormValues {
+    [FormFields.erIkkeIOmsorgstilbud]: boolean;
     [FormFields.tid]: InputTime;
     [FormFields.skalGjentas]: boolean;
     [FormFields.gjentagelse]: GjentagelseType;
@@ -85,6 +86,47 @@ const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues
 
 const bem = bemUtils('tidEnkeltdagForm');
 
+/** Lytter på endringer i erIkkeIOmsorgstilbud og oppdaterer tid til 0 når den krysses av */
+const OmsorgstilbudWatcher = () => {
+    const { values, setFieldValue } = useFormikContext<TidEnkeltdagFormValues>();
+    const prevValue = useRef(values.erIkkeIOmsorgstilbud);
+
+    useEffect(() => {
+        // Kun oppdater hvis verdien endres til true (fra false eller undefined)
+        if (values.erIkkeIOmsorgstilbud === true && prevValue.current !== true) {
+            setFieldValue(FormFields.tid, { hours: '0', minutes: '0' });
+        }
+        prevValue.current = values.erIkkeIOmsorgstilbud;
+    }, [values.erIkkeIOmsorgstilbud, setFieldValue]);
+
+    return null;
+};
+
+const getInitialValues = ({
+    tid,
+    tidOpprinnelig,
+}: {
+    tid?: Partial<Duration>;
+    tidOpprinnelig?: Duration;
+    erIkkeIOmsorgstilbud?: boolean;
+}): Partial<TidEnkeltdagFormValues> => {
+    const values: Partial<TidEnkeltdagFormValues> = {};
+    if (tid && tid.hours !== '' && tid.minutes !== '') {
+        values.tid = {
+            hours: tid.hours ?? '',
+            minutes: tid.minutes ?? '',
+        };
+    } else if (tidOpprinnelig) {
+        values.tid = {
+            ...tidOpprinnelig,
+        };
+    }
+    if (values.tid && values.tid.hours === '0' && values.tid.minutes === '0') {
+        values.erIkkeIOmsorgstilbud = true;
+    }
+    return values;
+};
+
 const TidEnkeltdagForm = ({
     dato,
     tid,
@@ -93,6 +135,8 @@ const TidEnkeltdagForm = ({
     maksTid = { hours: 24, minutes: 0 },
     minTid = { hours: 0, minutes: 0 },
     hvorMyeSpørsmålRenderer,
+    erIkkeIOmsorgstilbudLabelRenderer,
+    beskrivelseRenderer,
     onSubmit,
     onCancel,
 }: TidEnkeltdagFormProps) => {
@@ -106,13 +150,6 @@ const TidEnkeltdagForm = ({
         }
     };
 
-    const onResetEndring = () => {
-        onSubmit({
-            dagerMedTid: { [dateToISODate(dato)]: tidOpprinnelig },
-        });
-    };
-
-    const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
     const dagerNavn = `${dayjs(dato).format('dddd')}er`;
     const valgtDatoTxt = dateFormatter.dayDateMonthYear(dato);
 
@@ -139,21 +176,19 @@ const TidEnkeltdagForm = ({
 
     const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(periode) > 2;
 
-    const renderGjentagelseRadioLabel = (
-        key: string,
-        p?: { fra: string; til: string },
-        values?: any,
-        // TODO - fikse nøkkel
-    ): ReactElement => <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...p }} />;
+    const renderGjentagelseRadioLabel = (key: string, p?: { fra: string; til: string }, values?: any): ReactElement => (
+        <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...p }} />
+    );
+
+    const initalValues = getInitialValues({ tid, tidOpprinnelig });
 
     return (
         <FormComponents.FormikWrapper
             enableReinitialize={true}
-            initialValues={{
-                tid: tid ? ensureDuration(tid) : undefined,
-            }}
+            initialValues={initalValues}
             onSubmit={onValidSubmit}
-            renderForm={({ values: { skalGjentas } }) => {
+            renderForm={({ values }) => {
+                const { skalGjentas } = values;
                 return (
                     <FormComponents.Form
                         onCancel={onCancel}
@@ -163,93 +198,98 @@ const TidEnkeltdagForm = ({
                         submitButtonLabel="Lagre"
                         showButtonArrows={false}
                         cancelButtonLabel="Avbryt">
-                        <FormLayout.Questions>
-                            <FormComponents.TimeInput
-                                name={FormFields.tid}
-                                label={hvorMyeSpørsmålRenderer(dato)}
-                                validate={getTidEnkeltdagFormTidValidator(maksTid, minTid)}
-                                timeInputLayout={{ justifyContent: 'left', compact: false, direction: 'vertical' }}
-                            />
-                            {tidOpprinnelig && erEndret && (
-                                <FormLayout.QuestionRelatedMessage>
-                                    <Alert variant="info" size="small" inline>
-                                        <HStack gap="space-16" align="center">
-                                            <div>
-                                                <AppText id="tidEnkeltdagForm.endretFra" />{' '}
-                                                <DurationText duration={tidOpprinnelig} fullText={true} />
-                                            </div>
-                                            {skalGjentas !== true && (
-                                                <Bleed marginBlock="space-8">
-                                                    <Button
-                                                        type="button"
-                                                        variant="tertiary"
-                                                        size="small"
-                                                        iconPosition="left"
-                                                        icon={<ArrowUndoIcon role="presentation" />}
-                                                        onClick={onResetEndring}>
-                                                        Tilbakestill endring
-                                                    </Button>
-                                                </Bleed>
-                                            )}
-                                        </HStack>
-                                    </Alert>
-                                </FormLayout.QuestionRelatedMessage>
-                            )}
-                            {skalViseValgetGjelderFlereDager && (
-                                <FormLayout.QuestionBleedTop>
-                                    <FormComponents.Checkbox
-                                        label={text('tidEnkeltdagForm.gjelderFlereDager.label')}
-                                        name={FormFields.skalGjentas}
-                                    />
-                                </FormLayout.QuestionBleedTop>
-                            )}
-                            {skalGjentas === true && (
+                        <OmsorgstilbudWatcher />
+                        <VStack gap="space-24">
+                            <Alert variant="info" inline>
+                                {tidOpprinnelig ? (
+                                    <>
+                                        <AppText id="tidEnkeltdagForm.opprinneligTid" />{' '}
+                                        <DurationText duration={tidOpprinnelig} fullText={true} />
+                                    </>
+                                ) : (
+                                    <>
+                                        <AppText id="tidEnkeltdagForm.ingenOpprinneligTid" />
+                                    </>
+                                )}
+                            </Alert>
+                            <BodyLong className="noPadding">{beskrivelseRenderer(dato)}</BodyLong>
+                            <FormLayout.Questions>
                                 <FormLayout.Panel>
-                                    <FormComponents.RadioGroup
-                                        legend={text('tidEnkeltdagForm.gjelderFlereDager.info')}
-                                        className={bem.element('gjentagelseOptions')}
-                                        name={FormFields.gjentagelse}
-                                        validate={getRequiredFieldValidator()}
-                                        radios={[
-                                            {
-                                                label: renderGjentagelseRadioLabel(
-                                                    ukeErHel ? 'helUke' : 'delAvUke',
-                                                    {
-                                                        fra: ukePeriodeStartTxt,
-                                                        til: ukePeriodeSluttTxt,
-                                                    },
-                                                    { ukeNavn },
-                                                ),
-                                                value: GjentagelseType.heleUken,
-                                            },
-                                            {
-                                                label: renderGjentagelseRadioLabel(
-                                                    månedErHel ? 'helMåned' : 'delAvMåned',
-                                                    {
-                                                        fra: månedPeriodeStartTxt,
-                                                        til: månedPeriodeSluttTxt,
-                                                    },
-                                                    { månedNavn },
-                                                ),
-                                                value: GjentagelseType.heleMåneden,
-                                            },
-                                            {
-                                                label: renderGjentagelseRadioLabel(
-                                                    'dagerFremover',
-                                                    {
-                                                        fra: valgtDatoTxt,
-                                                        til: sluttDatoTxt,
-                                                    },
-                                                    { dagerNavn, månedNavn },
-                                                ),
-
-                                                value: GjentagelseType.hverUke,
-                                            },
-                                        ]}
-                                    />
+                                    <FormLayout.Questions>
+                                        <FormComponents.TimeInput
+                                            name={FormFields.tid}
+                                            label={hvorMyeSpørsmålRenderer(dato)}
+                                            validate={getTidEnkeltdagFormTidValidator(maksTid, minTid)}
+                                            timeInputLayout={{
+                                                justifyContent: 'left',
+                                                compact: false,
+                                                direction: 'vertical',
+                                            }}
+                                        />
+                                        <FormLayout.QuestionBleedTop>
+                                            <FormComponents.Checkbox
+                                                name={FormFields.erIkkeIOmsorgstilbud}
+                                                label={erIkkeIOmsorgstilbudLabelRenderer(dato)}
+                                            />
+                                        </FormLayout.QuestionBleedTop>
+                                    </FormLayout.Questions>
                                 </FormLayout.Panel>
-                            )}
-                        </FormLayout.Questions>
+                                {skalViseValgetGjelderFlereDager && (
+                                    <FormLayout.QuestionBleedTop>
+                                        <FormComponents.Checkbox
+                                            label={text('tidEnkeltdagForm.gjelderFlereDager.label')}
+                                            name={FormFields.skalGjentas}
+                                        />
+                                    </FormLayout.QuestionBleedTop>
+                                )}
+                                {skalGjentas === true && (
+                                    <FormLayout.Panel>
+                                        <FormComponents.RadioGroup
+                                            legend={text('tidEnkeltdagForm.gjelderFlereDager.info')}
+                                            className={bem.element('gjentagelseOptions')}
+                                            name={FormFields.gjentagelse}
+                                            validate={getRequiredFieldValidator()}
+                                            radios={[
+                                                {
+                                                    label: renderGjentagelseRadioLabel(
+                                                        ukeErHel ? 'helUke' : 'delAvUke',
+                                                        {
+                                                            fra: ukePeriodeStartTxt,
+                                                            til: ukePeriodeSluttTxt,
+                                                        },
+                                                        { ukeNavn },
+                                                    ),
+                                                    value: GjentagelseType.heleUken,
+                                                },
+                                                {
+                                                    label: renderGjentagelseRadioLabel(
+                                                        månedErHel ? 'helMåned' : 'delAvMåned',
+                                                        {
+                                                            fra: månedPeriodeStartTxt,
+                                                            til: månedPeriodeSluttTxt,
+                                                        },
+                                                        { månedNavn },
+                                                    ),
+                                                    value: GjentagelseType.heleMåneden,
+                                                },
+                                                {
+                                                    label: renderGjentagelseRadioLabel(
+                                                        'dagerFremover',
+                                                        {
+                                                            fra: valgtDatoTxt,
+                                                            til: sluttDatoTxt,
+                                                        },
+                                                        { dagerNavn, månedNavn },
+                                                    ),
+
+                                                    value: GjentagelseType.hverUke,
+                                                },
+                                            ]}
+                                        />
+                                    </FormLayout.Panel>
+                                )}
+                            </FormLayout.Questions>
+                        </VStack>
                     </FormComponents.Form>
                 );
             }}
