@@ -153,9 +153,19 @@ const TidEnkeltdagForm = ({
     const { text, intl } = useAppIntl();
 
     const onValidSubmit = (values: Partial<TidEnkeltdagFormValues>) => {
-        if (values.tid) {
+        if (values.tid && values.erBarnetIOmsorgstilbud === YesOrNo.YES) {
             onSubmit({
                 dagerMedTid: getDagerMedNyTid(periode, dato, values.tid, getGjentagelseEnkeltdagFraFormValues(values)),
+            });
+        }
+        if (values.erBarnetIOmsorgstilbud === YesOrNo.NO) {
+            onSubmit({
+                dagerMedTid: getDagerMedNyTid(
+                    periode,
+                    dato,
+                    { hours: '0', minutes: '0' },
+                    getGjentagelseEnkeltdagFraFormValues(values),
+                ),
             });
         }
     };
@@ -210,7 +220,7 @@ const TidEnkeltdagForm = ({
                         cancelButtonLabel="Avbryt">
                         {/* <OmsorgstilbudWatcher /> */}
                         <VStack gap="space-24">
-                            <BodyLong>
+                            <BodyLong className="noPadding">
                                 Velg om barnet er i omsorgstilbud denne dagen, og eventuelt hvor mye tid barnet er i
                                 omsorgstilbudet.
                             </BodyLong>
@@ -227,9 +237,9 @@ const TidEnkeltdagForm = ({
                                 )}
                             </Alert>
                             {/* <BodyLong className="noPadding">{beskrivelseRenderer(dato)}</BodyLong> */}
-                            <FormLayout.Questions>
+                            <VStack gap="space-32">
                                 <FormLayout.Panel>
-                                    <FormLayout.Questions>
+                                    <VStack gap="space-16">
                                         <FormComponents.YesOrNoQuestion
                                             name={FormFields.erBarnetIOmsorgstilbud}
                                             legend={`Er barnet i omsorgstilbud ${dateFormatter.dayCompactDate(dato)}?`}
@@ -248,14 +258,13 @@ const TidEnkeltdagForm = ({
                                                 }}
                                             />
                                         )}
-
                                         {/* <FormLayout.QuestionBleedTop>
                                             <FormComponents.Checkbox
                                                 name={FormFields.erIkkeIOmsorgstilbud}
                                                 label={erIkkeIOmsorgstilbudLabelRenderer(dato)}
                                             />
                                         </FormLayout.QuestionBleedTop> */}
-                                    </FormLayout.Questions>
+                                    </VStack>
                                 </FormLayout.Panel>
                                 {skalViseValgetGjelderFlereDager && erBarnetIOmsorgstilbud !== undefined && (
                                     <FormLayout.QuestionBleedTop>
@@ -311,7 +320,7 @@ const TidEnkeltdagForm = ({
                                         />
                                     </FormLayout.Panel>
                                 )}
-                            </FormLayout.Questions>
+                            </VStack>
                         </VStack>
                     </FormComponents.Form>
                 );
