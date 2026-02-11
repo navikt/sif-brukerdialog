@@ -173,7 +173,7 @@ const TimeInput = ({
 const DisabledInput = ({ className }: { className: string }) => {
     return (
         <div className={className} role="presentation" aria-hidden={true}>
-            <div className="navds-text-field__input navds-form-field--medium fakeDisabledInput"> </div>
+            <div className="aksel-text-field__input navds-form-field--medium fakeDisabledInput"></div>
         </div>
     );
 };

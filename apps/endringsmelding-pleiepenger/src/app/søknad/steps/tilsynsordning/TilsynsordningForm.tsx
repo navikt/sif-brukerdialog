@@ -1,6 +1,14 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { DateDurationMap, dateFormatter, DateRange, isDateInDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import {
+    DateDurationMap,
+    dateFormatter,
+    DateRange,
+    dateToISODate,
+    getDatesInDateRange,
+    isDateInDateRange,
+    ISODateToDate,
+} from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { useIntl } from 'react-intl';
 
@@ -68,19 +76,34 @@ const TilsynsordningForm = ({
         }
     };
 
-    const renderAccordionHeader = (periode: DateRange) => {
-        const harEndringer =
+    const handleOnRevert = (periode: DateRange): void => {
+        const newValues = { ...tilsynsdager };
+        getDatesInDateRange(periode, true).forEach((date) => {
+            delete newValues[dateToISODate(date)];
+        });
+
+        setFieldValue(TilsynsordningFormFields.tilsynsdager, newValues);
+        if (onTilsynsordningChanged) {
+            onTilsynsordningChanged(newValues);
+        }
+    };
+
+    const harPeriodeEndringer = (periode: DateRange) => {
+        return (
             tilsynsdager !== undefined &&
             Object.keys(tilsynsdager)
                 .map(ISODateToDate)
-                .some((date) => isDateInDateRange(date, periode));
+                .some((date) => isDateInDateRange(date, periode))
+        );
+    };
 
+    const renderAccordionHeader = (periode: DateRange) => {
         return (
             <div className="arbeidsaktivitetContentHeader">
                 <div className="arbeidsaktivitetContentHeader__title">
                     {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
                 </div>{' '}
-                <TagsContainer>{harEndringer && <EndretTag>Endret</EndretTag>}</TagsContainer>
+                <TagsContainer>{harPeriodeEndringer(periode) && <EndretTag>Endret</EndretTag>}</TagsContainer>
             </div>
         );
     };
@@ -105,8 +128,10 @@ const TilsynsordningForm = ({
                                 opprinneligTilsynsdager={opprinneligTilsynsdager}
                                 endredeTilsynsdager={tilsynsdager}
                                 søknadsperiode={periode}
+                                harEndringer={harPeriodeEndringer(periode)}
                                 onEnkeltdagChange={handleOnEnkeltdagChange}
                                 onPeriodeChange={handleOnPeriodeChange}
+                                onRevert={handleOnRevert}
                             />
                         );
                     }}

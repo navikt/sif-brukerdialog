@@ -6,6 +6,7 @@ import {
     getTypedFormComponents,
     InputTime,
     ValidationError,
+    YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { DurationText, FormLayout } from '@navikt/sif-common-ui';
 import {
@@ -22,8 +23,7 @@ import {
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
-import { useFormikContext } from 'formik';
-import { ReactElement, useEffect, useRef } from 'react';
+import { ReactElement } from 'react';
 
 import { AppText, useAppIntl } from '../../../i18n';
 import {
@@ -61,6 +61,7 @@ export interface TidEnkeltdagEndring {
 
 enum FormFields {
     'erIkkeIOmsorgstilbud' = 'erIkkeIOmsorgstilbud',
+    'erBarnetIOmsorgstilbud' = 'erBarnetIOmsorgstilbud',
     'tid' = 'tid',
     'skalGjentas' = 'skalGjentas',
     'gjentagelse' = 'gjentagelse',
@@ -76,6 +77,7 @@ export enum GjentagelseType {
 
 export interface TidEnkeltdagFormValues {
     [FormFields.erIkkeIOmsorgstilbud]: boolean;
+    [FormFields.erBarnetIOmsorgstilbud]: YesOrNo;
     [FormFields.tid]: InputTime;
     [FormFields.skalGjentas]: boolean;
     [FormFields.gjentagelse]: GjentagelseType;
@@ -87,20 +89,20 @@ const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues
 const bem = bemUtils('tidEnkeltdagForm');
 
 /** Lytter på endringer i erIkkeIOmsorgstilbud og oppdaterer tid til 0 når den krysses av */
-const OmsorgstilbudWatcher = () => {
-    const { values, setFieldValue } = useFormikContext<TidEnkeltdagFormValues>();
-    const prevValue = useRef(values.erIkkeIOmsorgstilbud);
+// const OmsorgstilbudWatcher = () => {
+//     const { values, setFieldValue } = useFormikContext<TidEnkeltdagFormValues>();
+//     const prevValue = useRef(values.erIkkeIOmsorgstilbud);
 
-    useEffect(() => {
-        // Kun oppdater hvis verdien endres til true (fra false eller undefined)
-        if (values.erIkkeIOmsorgstilbud === true && prevValue.current !== true) {
-            setFieldValue(FormFields.tid, { hours: '0', minutes: '0' });
-        }
-        prevValue.current = values.erIkkeIOmsorgstilbud;
-    }, [values.erIkkeIOmsorgstilbud, setFieldValue]);
+//     useEffect(() => {
+//         // Kun oppdater hvis verdien endres til true (fra false eller undefined)
+//         if (values.erIkkeIOmsorgstilbud === true && prevValue.current !== true) {
+//             setFieldValue(FormFields.tid, { hours: '0', minutes: '0' });
+//         }
+//         prevValue.current = values.erIkkeIOmsorgstilbud;
+//     }, [values.erIkkeIOmsorgstilbud, setFieldValue]);
 
-    return null;
-};
+//     return null;
+// };
 
 const getInitialValues = ({
     tid,
@@ -109,6 +111,7 @@ const getInitialValues = ({
     tid?: Partial<Duration>;
     tidOpprinnelig?: Duration;
     erIkkeIOmsorgstilbud?: boolean;
+    erBarnetIOmsorgstilbud?: YesOrNo;
 }): Partial<TidEnkeltdagFormValues> => {
     const values: Partial<TidEnkeltdagFormValues> = {};
     if (tid && tid.hours !== '' && tid.minutes !== '') {
@@ -121,8 +124,15 @@ const getInitialValues = ({
             ...tidOpprinnelig,
         };
     }
-    if (values.tid && values.tid.hours === '0' && values.tid.minutes === '0') {
-        values.erIkkeIOmsorgstilbud = true;
+    if (values.tid) {
+        if (values.tid.hours === '0' && values.tid.minutes === '0') {
+            // values.erIkkeIOmsorgstilbud = true;
+            values.erBarnetIOmsorgstilbud = YesOrNo.NO;
+        }
+        if (values.tid.hours !== '' || values.tid.minutes !== '') {
+            // values.erIkkeIOmsorgstilbud = true;
+            values.erBarnetIOmsorgstilbud = YesOrNo.YES;
+        }
     }
     return values;
 };
@@ -135,8 +145,8 @@ const TidEnkeltdagForm = ({
     maksTid = { hours: 24, minutes: 0 },
     minTid = { hours: 0, minutes: 0 },
     hvorMyeSpørsmålRenderer,
-    erIkkeIOmsorgstilbudLabelRenderer,
-    beskrivelseRenderer,
+    // erIkkeIOmsorgstilbudLabelRenderer,
+    // beskrivelseRenderer,
     onSubmit,
     onCancel,
 }: TidEnkeltdagFormProps) => {
@@ -188,7 +198,7 @@ const TidEnkeltdagForm = ({
             initialValues={initalValues}
             onSubmit={onValidSubmit}
             renderForm={({ values }) => {
-                const { skalGjentas } = values;
+                const { skalGjentas, erBarnetIOmsorgstilbud } = values;
                 return (
                     <FormComponents.Form
                         onCancel={onCancel}
@@ -198,8 +208,12 @@ const TidEnkeltdagForm = ({
                         submitButtonLabel="Lagre"
                         showButtonArrows={false}
                         cancelButtonLabel="Avbryt">
-                        <OmsorgstilbudWatcher />
+                        {/* <OmsorgstilbudWatcher /> */}
                         <VStack gap="space-24">
+                            <BodyLong>
+                                Velg om barnet er i omsorgstilbud denne dagen, og eventuelt hvor mye tid barnet er i
+                                omsorgstilbudet.
+                            </BodyLong>
                             <Alert variant="info" inline>
                                 {tidOpprinnelig ? (
                                     <>
@@ -212,29 +226,38 @@ const TidEnkeltdagForm = ({
                                     </>
                                 )}
                             </Alert>
-                            <BodyLong className="noPadding">{beskrivelseRenderer(dato)}</BodyLong>
+                            {/* <BodyLong className="noPadding">{beskrivelseRenderer(dato)}</BodyLong> */}
                             <FormLayout.Questions>
                                 <FormLayout.Panel>
                                     <FormLayout.Questions>
-                                        <FormComponents.TimeInput
-                                            name={FormFields.tid}
-                                            label={hvorMyeSpørsmålRenderer(dato)}
-                                            validate={getTidEnkeltdagFormTidValidator(maksTid, minTid)}
-                                            timeInputLayout={{
-                                                justifyContent: 'left',
-                                                compact: false,
-                                                direction: 'vertical',
-                                            }}
+                                        <FormComponents.YesOrNoQuestion
+                                            name={FormFields.erBarnetIOmsorgstilbud}
+                                            legend={`Er barnet i omsorgstilbud ${dateFormatter.dayCompactDate(dato)}?`}
+                                            renderHorizontal={true}
                                         />
-                                        <FormLayout.QuestionBleedTop>
+
+                                        {erBarnetIOmsorgstilbud === YesOrNo.YES && (
+                                            <FormComponents.TimeInput
+                                                name={FormFields.tid}
+                                                label={hvorMyeSpørsmålRenderer(dato)}
+                                                validate={getTidEnkeltdagFormTidValidator(maksTid, minTid)}
+                                                timeInputLayout={{
+                                                    justifyContent: 'left',
+                                                    compact: false,
+                                                    direction: 'vertical',
+                                                }}
+                                            />
+                                        )}
+
+                                        {/* <FormLayout.QuestionBleedTop>
                                             <FormComponents.Checkbox
                                                 name={FormFields.erIkkeIOmsorgstilbud}
                                                 label={erIkkeIOmsorgstilbudLabelRenderer(dato)}
                                             />
-                                        </FormLayout.QuestionBleedTop>
+                                        </FormLayout.QuestionBleedTop> */}
                                     </FormLayout.Questions>
                                 </FormLayout.Panel>
-                                {skalViseValgetGjelderFlereDager && (
+                                {skalViseValgetGjelderFlereDager && erBarnetIOmsorgstilbud !== undefined && (
                                     <FormLayout.QuestionBleedTop>
                                         <FormComponents.Checkbox
                                             label={text('tidEnkeltdagForm.gjelderFlereDager.label')}

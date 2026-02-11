@@ -1,5 +1,6 @@
 import { ArrowUndoIcon, PencilIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, HStack, VStack } from '@navikt/ds-react';
+import { ConfirmationDialog } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
@@ -13,6 +14,8 @@ interface Props {
     søknadsperiode: DateRange;
     endredeTilsynsdager?: DateDurationMap;
     opprinneligTilsynsdager: DateDurationMap;
+    harEndringer: boolean;
+    onRevert: (søknadsperiode: DateRange) => void;
     onEnkeltdagChange?: EnkeltdagChangeEvent;
     onPeriodeChange: (tid: DateDurationMap) => void;
 }
@@ -21,11 +24,19 @@ const TilsynsordningSøknadsperiode = ({
     søknadsperiode,
     opprinneligTilsynsdager,
     endredeTilsynsdager = {},
+    harEndringer,
+    onRevert,
     onEnkeltdagChange,
     onPeriodeChange,
 }: Props) => {
     const [visPeriodeDialog, setVisPeriodeDialog] = useState(false);
+    const [visTilbakestillEndringerDialog, setVisTilbakestillEndringerDialog] = useState(false);
     const månederISøknadsperiode = dateRangeUtils.getMonthsInDateRange(søknadsperiode);
+
+    const tilbakestillAlleEndringer = () => {
+        onRevert(søknadsperiode);
+    };
+
     return (
         <>
             <VStack gap="space-16">
@@ -49,15 +60,17 @@ const TilsynsordningSøknadsperiode = ({
                             icon={<PencilIcon role="presentation" />}>
                             Registrer tid for en periode
                         </Button>
-                        <Button
-                            type="button"
-                            variant="tertiary"
-                            size="small"
-                            data-color="accent"
-                            onClick={() => setVisPeriodeDialog(true)}
-                            icon={<ArrowUndoIcon role="presentation" />}>
-                            Tilbakestill alle endringer
-                        </Button>
+                        {harEndringer && (
+                            <Button
+                                type="button"
+                                variant="tertiary"
+                                size="small"
+                                data-color="accent"
+                                onClick={() => setVisTilbakestillEndringerDialog(true)}
+                                icon={<ArrowUndoIcon role="presentation" />}>
+                                Tilbakestill alle endringer
+                            </Button>
+                        )}
                     </HStack>
                     {månederISøknadsperiode.map((måned) => {
                         return (
@@ -73,6 +86,19 @@ const TilsynsordningSøknadsperiode = ({
                     })}
                 </VStack>
             </VStack>
+            <ConfirmationDialog
+                title="Tilbakestille alle endringer"
+                open={visTilbakestillEndringerDialog}
+                okLabel="Ja, tilbakestill"
+                cancelLabel="Nei, avbryt"
+                onConfirm={() => {
+                    tilbakestillAlleEndringer();
+                    setVisTilbakestillEndringerDialog(false);
+                }}
+                onCancel={() => setVisTilbakestillEndringerDialog(false)}>
+                Bekreft at du ønsker å tilbakestille alle endringer du har gjort for omsorgstilbudet i denne
+                søknadsperioden.
+            </ConfirmationDialog>
             <TilsynsordningPeriodeDialog
                 isOpen={visPeriodeDialog}
                 formProps={{
