@@ -1,12 +1,14 @@
 import './tilsynsordningMåned.css';
 
-import { BodyShort, Box, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Box, Detail, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
 import { ExpansionCardContent } from '@navikt/ds-react/ExpansionCard';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
 import {
     DateDurationMap,
+    dateToISODate,
     durationIsZero,
     durationToISODuration,
+    getDatesInDateRange,
     getDatesInMonthOutsideDateRange,
     getDurationsInDateRange,
 } from '@navikt/sif-common-utils';
@@ -62,6 +64,21 @@ const TilsynsordningMåned = ({
         return datoTid !== undefined && durationIsZero(datoTid) === false;
     }).length;
 
+    const antallDagerUtenTilsynsordning = Object.keys({ ...dagerMedOpprinnelig, ...dagerMedTid }).filter((key) => {
+        const datoTid = dagerMedTid[key] || dagerMedOpprinnelig[key];
+        return datoTid !== undefined && durationIsZero(datoTid) === true;
+    }).length;
+
+    const dagerIMåned = getDatesInDateRange(måned, true);
+
+    const antallDagerUtenInformasjon = dagerIMåned.filter((date) => {
+        const key = dateToISODate(new Date(date));
+        const datoTid = dagerMedTid[key] || dagerMedOpprinnelig[key];
+        return datoTid === undefined; // && durationIsZero(datoTid) === false;
+    }).length;
+
+    const antallDagerIMåned = dagerIMåned.length;
+
     const label = text('tilsynsordningMåned.ukeOgÅr', { ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') });
     const antallDagerEndret = Object.keys(dagerEndret).length;
     return (
@@ -90,10 +107,22 @@ const TilsynsordningMåned = ({
                             )}
                         </HStack>
                     </ExpansionCard.Title>
-                    <HStack gap="space-16">
-                        <BodyShort as="span" size="small">
-                            {antallDagerMedTilsynsordning} dager i omsorgstilbud
-                        </BodyShort>
+
+                    <HStack gap="space-8">
+                        {antallDagerIMåned === antallDagerUtenInformasjon ? (
+                            <>Ingen informasjon registrert</>
+                        ) : (
+                            <>
+                                <Detail as="span">Dager med omsorgstilbud: {antallDagerMedTilsynsordning}</Detail>
+
+                                {antallDagerUtenTilsynsordning > 0 && (
+                                    <Detail as="span">Dager uten omsorgstilbud: {antallDagerUtenTilsynsordning}</Detail>
+                                )}
+                                {antallDagerUtenInformasjon > 0 && (
+                                    <Detail as="span">Ukjente dager: {antallDagerUtenInformasjon}</Detail>
+                                )}
+                            </>
+                        )}
                     </HStack>
                 </VStack>
             </ExpansionCard.Header>

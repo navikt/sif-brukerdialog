@@ -82,7 +82,9 @@ const TidsbrukKalenderDag = ({
             )}
             {tidOpprinnelig && !tid && (
                 <span className={durationIsGreatherThanZero(tidOpprinnelig) ? bem.element('harTid') : undefined}>
-                    <BodyShort size="small">{renderTid(tidOpprinnelig)}</BodyShort>
+                    <BodyShort size="small" style={{ whiteSpace: 'nowrap' }}>
+                        {renderTid(tidOpprinnelig)}
+                    </BodyShort>
                 </span>
             )}
         </>
