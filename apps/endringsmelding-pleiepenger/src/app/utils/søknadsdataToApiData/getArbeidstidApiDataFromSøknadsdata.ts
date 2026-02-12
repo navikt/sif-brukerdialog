@@ -1,13 +1,4 @@
 import {
-    DateRange,
-    dateRangeToISODateRange,
-    Duration,
-    durationToISODuration,
-    getDateRangesFromDates,
-    ISODateToDate,
-    sortDateRange,
-} from '@navikt/sif-common-utils';
-import {
     ArbeiderIPeriodenSvar,
     Arbeidsaktivitet,
     Arbeidsaktiviteter,
@@ -24,7 +15,16 @@ import {
     PeriodeMedArbeidstid,
     TimerEllerProsent,
     UkjentArbeidsforholdSøknadsdata,
-} from '@types';
+} from '@app/types';
+import {
+    DateRange,
+    dateRangeToISODateRange,
+    Duration,
+    durationToISODuration,
+    getDateRangesFromDates,
+    ISODateToDate,
+    sortDateRange,
+} from '@navikt/sif-common-utils';
 
 import { getArbeidsukerIArbeidsaktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';

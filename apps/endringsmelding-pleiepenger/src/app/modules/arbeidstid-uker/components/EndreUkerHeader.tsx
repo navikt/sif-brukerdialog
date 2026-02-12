@@ -1,6 +1,5 @@
+import { AppText } from '@app/i18n';
 import { Alert, Checkbox, VStack } from '@navikt/ds-react';
-
-import { AppText } from '../../../i18n';
 
 interface Props {
     visKorteUkerMelding?: boolean;

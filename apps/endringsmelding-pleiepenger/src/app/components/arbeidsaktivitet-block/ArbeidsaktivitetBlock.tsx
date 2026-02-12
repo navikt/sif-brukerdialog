@@ -1,5 +1,5 @@
+import { ArbeidsaktivitetType, Arbeidsgiver } from '@app/types';
 import { Box, ExpansionCard, VStack } from '@navikt/ds-react';
-import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
 

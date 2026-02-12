@@ -1,6 +1,7 @@
-import './oppsummering.css';
-
-import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
+import IkkeAnsattMelding from '@app/components/ikke-ansatt-melding/IkkeAnsattMelding';
+import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@app/hooks';
+import { AppText, useAppIntl } from '@app/i18n';
+import { getApiDataFromSøknadsdata } from '@app/utils';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
@@ -9,17 +10,15 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 import { DurationText, FormLayout, JaNeiSvar, SummarySection } from '@navikt/sif-common-ui';
 import { ISODurationToDuration } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
-import { getApiDataFromSøknadsdata } from '@utils';
 import { useEffect, useRef } from 'react';
 
-import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { useStepConfig } from '../../../hooks/useStepConfig';
-import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';
-import ArbeidstidOppsummering from './ArbeidstidOppsummering';
-import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
+import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
+import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
+import TilsynsordningOppsummering from './tilsynsordning/TilsynsordningOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -69,14 +68,19 @@ const OppsummeringStep = () => {
     const {
         arbeidstid,
         lovbestemtFerie,
+        tilsynsordning,
         dataBruktTilUtledning: { ukjenteArbeidsforhold },
     } = apiData.ytelse;
 
     const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
     const harGyldigArbeidstid = oppsummeringStepUtils.erArbeidstidEndringerGyldig(arbeidstid);
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
+    const tilsynsordningErEndret = oppsummeringStepUtils.harEndringerITilsynsordningApiData(
+        apiData.ytelse.tilsynsordning,
+    );
 
-    const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
+    const harIngenEndringer =
+        arbeidstidErEndret === false && lovbestemtFerieErEndret === false && tilsynsordningErEndret === false;
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -167,6 +171,20 @@ const OppsummeringStep = () => {
                         ) : (
                             <Alert variant="info">
                                 <AppText id="oppsummeringStep.ferie.ingenEndringer" />
+                            </Alert>
+                        )}
+                    </SummarySection>
+                )}
+                {valgteEndringer.tilsynsordning && (
+                    <SummarySection header={text('oppsummeringStep.tilsynsordning.tittel')}>
+                        {tilsynsordning !== undefined && tilsynsordningErEndret ? (
+                            <TilsynsordningOppsummering
+                                tilsynsordning={tilsynsordning}
+                                tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
+                            />
+                        ) : (
+                            <Alert variant="info">
+                                <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
                             </Alert>
                         )}
                     </SummarySection>

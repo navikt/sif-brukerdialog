@@ -1,5 +1,5 @@
+import { Arbeidsuke } from '@app/types';
 import { getDateRangeText } from '@navikt/sif-common-utils';
-import { Arbeidsuke } from '@types';
 import dayjs from 'dayjs';
 
 import { erKortArbeidsuke, getDagerTekst, sorterArbeidsuker } from '../../utils/arbeidsukeUtils';

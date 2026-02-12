@@ -1,4 +1,4 @@
-import { useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@app/hooks';
 import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { useCallback } from 'react';
 

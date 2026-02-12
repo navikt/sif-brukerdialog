@@ -41,6 +41,9 @@ export const sakMock: Sak = {
         identitetsnummer: '27870899799',
     },
     arbeidsaktivitetMedUkjentArbeidsgiver: [],
+    tilsynsordning: {
+        tilsynsdagerMap: {},
+    },
     arbeidsaktiviteter: {
         arbeidstakerAktiviteter: [
             {
