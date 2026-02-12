@@ -11,10 +11,9 @@ import KursdagQuestions from './KursdagQuestions';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
-    spørOmVarighetKursOgReise: boolean;
 }
 
-const KursdagerFormPart = ({ gyldigSøknadsperiode, spørOmVarighetKursOgReise }: Props) => {
+const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
     const { kursdager } = values;
     const { focusFirstInputElement, setElementRef } = useFocusManagement();
@@ -49,7 +48,6 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode, spørOmVarighetKursOgReise }
                                             index={index}
                                             gyldigSøknadsperiode={gyldigSøknadsperiode}
                                             harFlereDager={harFlereDager}
-                                            spørOmVarighetKursOgReise={spørOmVarighetKursOgReise === false}
                                             alleDager={kursdager}
                                             onRemove={() => {
                                                 const isLastItem = index === kursdager.length - 1;

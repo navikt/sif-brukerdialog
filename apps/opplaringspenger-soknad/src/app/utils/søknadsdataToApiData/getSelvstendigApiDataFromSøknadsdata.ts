@@ -4,7 +4,6 @@ import { mapVirksomhetToVirksomhetApiData } from '@navikt/sif-common-forms-ds/sr
 import { ArbeidsforholdApiData, SelvstendigNæringsdrivendeApiData } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
-import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
 import { getFraværIPeriodeApiDataFromSøknadsdata } from './getFraværIPeriodeApiDataFromSøknadsdata';
 
 export const getSelvstendigApiDataFromSøknadsdata = (props: {
@@ -12,9 +11,8 @@ export const getSelvstendigApiDataFromSøknadsdata = (props: {
     dagerMedOpplæring: Date[];
     selvstendig?: ArbeidSelvstendigSøknadsdata;
     arbeidIperiode: ArbeidIPeriodeSøknadsdata | undefined;
-    spørOmFraværIPeriode: boolean;
 }): SelvstendigNæringsdrivendeApiData | undefined => {
-    const { søknadsperiode, dagerMedOpplæring, selvstendig, arbeidIperiode, spørOmFraværIPeriode } = props;
+    const { søknadsperiode, dagerMedOpplæring, selvstendig, arbeidIperiode } = props;
     if (!selvstendig) {
         return undefined;
     }
@@ -28,19 +26,12 @@ export const getSelvstendigApiDataFromSøknadsdata = (props: {
             const virksomhetApi = mapVirksomhetToVirksomhetApiData('nb', virksomhet, harFlereVirksomheter);
             const arbeidsforhold: ArbeidsforholdApiData = {
                 jobberNormaltTimer,
-                arbeidIPeriode: spørOmFraværIPeriode
-                    ? getFraværIPeriodeApiDataFromSøknadsdata({
-                          arbeidIPeriodeSøknadsdata: arbeidIperiode,
-                          periode: søknadsperiode,
-                          jobberNormaltTimer,
-                          valgteDatoer: dagerMedOpplæring,
-                      })
-                    : getArbeidIPeriodeApiDataFromSøknadsdata({
-                          arbeidIPeriodeSøknadsdata: arbeidIperiode,
-                          periode: søknadsperiode,
-                          jobberNormaltTimer,
-                          valgteDatoer: dagerMedOpplæring,
-                      }),
+                arbeidIPeriode: getFraværIPeriodeApiDataFromSøknadsdata({
+                    arbeidIPeriodeSøknadsdata: arbeidIperiode,
+                    periode: søknadsperiode,
+                    jobberNormaltTimer,
+                    valgteDatoer: dagerMedOpplæring,
+                }),
             };
 
             return { virksomhet: virksomhetApi, arbeidsforhold };

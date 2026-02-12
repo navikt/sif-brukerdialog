@@ -5,11 +5,9 @@ import { ArbeidsgiverApiData } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 import { ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidsgivereSøknadsdata';
 import { ArbeidstidArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidstidArbeidsgivereSøknadsdata';
-import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
 import { getFraværIPeriodeApiDataFromSøknadsdata } from './getFraværIPeriodeApiDataFromSøknadsdata';
 
 export const getArbeidsgivereApiDataFromSøknadsdata = ({
-    spørOmFraværIPeriode,
     søknadsperiode,
     valgteDatoer,
     arbeidsgivere,
@@ -19,7 +17,6 @@ export const getArbeidsgivereApiDataFromSøknadsdata = ({
     valgteDatoer: Date[];
     arbeidsgivere?: ArbeidsgivereSøknadsdata;
     arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata;
-    spørOmFraværIPeriode: boolean;
 }): ArbeidsgiverApiData[] | undefined => {
     if (!arbeidsgivere) {
         // Api sjekker at feltet kan ikke være null
@@ -41,19 +38,13 @@ export const getArbeidsgivereApiDataFromSøknadsdata = ({
                 ? arbeidstidArbeidsgivere[key].arbeidIPeriode
                 : undefined;
 
-        const arbeidIPeriode = spørOmFraværIPeriode
-            ? getFraværIPeriodeApiDataFromSøknadsdata({
-                  arbeidIPeriodeSøknadsdata,
-                  periode: søknadsperiode,
-                  jobberNormaltTimer: value.jobberNormaltTimer,
-                  valgteDatoer,
-              })
-            : getArbeidIPeriodeApiDataFromSøknadsdata({
-                  arbeidIPeriodeSøknadsdata,
-                  periode: søknadsperiode,
-                  jobberNormaltTimer: value.jobberNormaltTimer,
-                  valgteDatoer,
-              });
+        const arbeidIPeriode = getFraværIPeriodeApiDataFromSøknadsdata({
+            arbeidIPeriodeSøknadsdata,
+            periode: søknadsperiode,
+            jobberNormaltTimer: value.jobberNormaltTimer,
+            valgteDatoer,
+        });
+
         arbeidsgiverApiData.push({
             ...arbeidsgiverInfo,
             erAnsatt: value.type === 'pågående',

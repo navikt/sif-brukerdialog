@@ -38,7 +38,6 @@ export const mellomlagringService = {
         søknadRoute,
         søknadSendt,
         tempFormData,
-        spørOmFraværFraJobb,
     }: SøknadContextState) => {
         return service.update({
             søknadHashString: createHashString({ søker }),
@@ -50,7 +49,6 @@ export const mellomlagringService = {
             registrerteBarn: [],
             institusjoner: [],
             versjon: MELLOMLAGRING_VERSJON,
-            spørOmFraværFraJobb,
         });
     },
     isMellomlagringValid,

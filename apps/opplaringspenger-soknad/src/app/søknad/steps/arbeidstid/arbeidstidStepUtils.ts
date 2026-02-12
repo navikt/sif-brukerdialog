@@ -244,7 +244,6 @@ export const getArbeidIPeriodeSøknadsdata = (
             arbeiderIPerioden: true,
             arbeiderRedusert: true,
             enkeltdager: arbeidIPeriode.enkeltdager,
-            enkeltdagerFravær: {},
         };
     }
 

@@ -1,9 +1,7 @@
 import { commonEnvSchema, k9SakInnsynEnvSchema } from '@navikt/sif-common-env';
 import * as z from 'zod';
 
-const localSchema = z.object({
-    SIF_PUBLIC_FEATURE_TOGGLE_FRAVAR_FRA_ARBEID: z.string().optional().default('off'),
-});
+const localSchema = z.object({});
 
 export const appEnvSchema = commonEnvSchema.merge(k9SakInnsynEnvSchema).merge(localSchema);
 

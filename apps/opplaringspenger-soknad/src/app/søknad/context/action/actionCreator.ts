@@ -33,7 +33,6 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_KVITTERING_INFO = '',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
     SYNC_ARBEIDSTID_MED_KURSPERIODER = 'syncArbeidstidMedKursperioder',
-    TOGGLE_FRAVÆR_ARBEIDSTID = 'toggleFraværArbeidstid',
 }
 
 interface ResetSøknad {
@@ -114,12 +113,6 @@ interface SetSøknadKvitteringInfo {
 interface SyncArbeidstidMedKursperioder {
     type: SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_KURSPERIODER;
     payload?: KursSøknadsdata;
-}
-interface ToggleFraværArbeidstid {
-    type: SøknadContextActionKeys.TOGGLE_FRAVÆR_ARBEIDSTID;
-    payload?: {
-        spørOmFravær: boolean;
-    };
 }
 
 const resetSøknad = (): ResetSøknad => ({
@@ -208,11 +201,6 @@ const syncArbeidstidMedKursperioder = (payload: KursSøknadsdata): SyncArbeidsti
     payload,
 });
 
-const toggleFraværArbeidstid = (payload: { spørOmFravær: boolean }): ToggleFraværArbeidstid => ({
-    type: SøknadContextActionKeys.TOGGLE_FRAVÆR_ARBEIDSTID,
-    payload,
-});
-
 export type SøknadContextAction =
     | StartSøknad
     | AvbrytSøknad
@@ -232,8 +220,7 @@ export type SøknadContextAction =
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadKvitteringInfo
     | SetSøknadRoute
-    | SyncArbeidstidMedKursperioder
-    | ToggleFraværArbeidstid;
+    | SyncArbeidstidMedKursperioder;
 
 const actionsCreator = {
     resetSøknad,
@@ -255,7 +242,6 @@ const actionsCreator = {
     setSøknadOmBarnet,
     setSøknadSendt,
     syncArbeidstidMedKursperioder,
-    toggleFraværArbeidstid,
 };
 
 export default actionsCreator;

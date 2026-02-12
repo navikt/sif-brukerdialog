@@ -15,7 +15,7 @@ import { getKursSøknadsdataFromFormValues, getKursStepInitialValues } from './u
 
 const KursStep = () => {
     const {
-        state: { søknadsdata, institusjoner, spørOmFraværFraJobb = false },
+        state: { søknadsdata, institusjoner },
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
@@ -26,7 +26,7 @@ const KursStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values) => {
-        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values, spørOmFraværFraJobb === false);
+        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values);
         if (kursSøknadsdata) {
             clearStepFormValues(stepId);
             return [
@@ -62,7 +62,6 @@ const KursStep = () => {
                                 isSubmitting={isSubmitting}
                                 goBack={goBack}
                                 gyldigSøknadsperiode={gyldigSøknadsperiode}
-                                spørOmVarighetKursOgReise={spørOmFraværFraJobb}
                             />
                         </>
                     );

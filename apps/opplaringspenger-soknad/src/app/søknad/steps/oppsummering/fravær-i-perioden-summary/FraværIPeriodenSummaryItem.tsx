@@ -33,7 +33,7 @@ const FraværIPeriodenSummaryItem = ({ arbeidIPeriode }: Props) => {
                     </p>
                 )}
             </>
-            {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
+            {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdagerFravær && (
                 <VStack gap="space-32">
                     <Heading size="small" level="4">
                         <AppText id="oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />

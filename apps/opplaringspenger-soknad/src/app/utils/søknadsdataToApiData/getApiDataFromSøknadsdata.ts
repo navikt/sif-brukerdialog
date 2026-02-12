@@ -34,7 +34,6 @@ export const getApiDataFromSøknadsdata = (
     registrerteBarn: RegistrertBarn[],
     institusjoner: Institusjoner,
     locale: Locale,
-    spørOmFraværIPeriode: boolean,
 ): SøknadApiData | undefined => {
     const { id, omBarnet, legeerklæring, kurs, arbeidssituasjon, medlemskap, arbeidstid } = søknadsdata;
 
@@ -80,21 +79,18 @@ export const getApiDataFromSøknadsdata = (
             valgteDatoer,
             arbeidsgivere,
             arbeidstidArbeidsgivere: arbeidstid?.arbeidsgivere,
-            spørOmFraværIPeriode,
         }),
         frilans: getFrilansApiDataFromSøknadsdata({
             søknadsperiode,
             dagerMedOpplæring: valgteDatoer,
             frilans,
             arbeidIPeriode: arbeidstid?.frilans,
-            spørOmFraværIPeriode,
         }),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata({
             søknadsperiode,
             dagerMedOpplæring: valgteDatoer,
             selvstendig,
             arbeidIperiode: arbeidstid?.selvstendig,
-            spørOmFraværIPeriode,
         }),
         opptjeningIUtlandet: getOpptjeningUtlandApiDataFromSøknadsdata(språk, arbeidssituasjon.opptjeningUtland),
         utenlandskNæring: getUtenlandskNæringApiDataFromSøknadsdata(språk, arbeidssituasjon.utenlandskNæring),

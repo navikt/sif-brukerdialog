@@ -69,18 +69,10 @@ interface Props {
     institusjoner: Institusjon[];
     gyldigSøknadsperiode: DateRange;
     isSubmitting: boolean;
-    spørOmVarighetKursOgReise: boolean;
     goBack?: () => void;
 }
 
-const KursStepForm = ({
-    values,
-    institusjoner,
-    gyldigSøknadsperiode,
-    isSubmitting,
-    spørOmVarighetKursOgReise,
-    goBack,
-}: Props) => {
+const KursStepForm = ({ values, institusjoner, gyldigSøknadsperiode, isSubmitting, goBack }: Props) => {
     const { intl } = useAppIntl();
 
     const søknadsperiode = useMemo(
@@ -181,10 +173,7 @@ const KursStepForm = ({
                             name={KursFormFields.kursdager}
                             errorPropagation={false}
                             validate={getKursperioderValidator}>
-                            <KursdagerFormPart
-                                gyldigSøknadsperiode={gyldigSøknadsperiode}
-                                spørOmVarighetKursOgReise={spørOmVarighetKursOgReise}
-                            />
+                            <KursdagerFormPart gyldigSøknadsperiode={gyldigSøknadsperiode} />
                         </FormikInputGroup>
                     )}
                 </FormLayout.Questions>

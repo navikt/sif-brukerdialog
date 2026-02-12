@@ -5,8 +5,6 @@ import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import FraværArbeidstidToggle from '../../søknad/steps/arbeidstid/dev/FraværArbeidstidToggle';
-import { Features } from '../../types/Features';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './OmSøknaden';
 import VelkommenGuideContent from './VelkommenGuideContent';
@@ -33,7 +31,6 @@ const VelkommenPage = () => {
                 navn: søker.fornavn,
                 content: <VelkommenGuideContent />,
             }}>
-            {Features.toggleFraværFraArbeid && <FraværArbeidstidToggle />}
             <OmSøknaden />
         </SoknadVelkommenPage>
     );

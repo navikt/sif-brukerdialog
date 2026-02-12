@@ -70,10 +70,7 @@ const sortKursdag = (a: Kursdag, b: Kursdag) => {
     return dayjs(a.dato).isBefore(dayjs(b.dato)) ? -1 : 1;
 };
 
-export const getKursSøknadsdataFromFormValues = (
-    values: KursFormValues,
-    spørOmVarighetKursOgReise: boolean,
-): KursSøknadsdata | undefined => {
+export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursSøknadsdata | undefined => {
     const {
         opplæringsinstitusjon,
         kursperioder: kursperioderValues,
@@ -118,15 +115,7 @@ export const getKursSøknadsdataFromFormValues = (
         /** Enkeltdager */
         const kursdager = kursdagerValues
             .map((dag, index) => {
-                return spørOmVarighetKursOgReise
-                    ? kursperiodeOgDagUtils.mapKursdagFormValuesToKursdagMedVariget(
-                          dag as KursdagFormValues,
-                          `${index}`,
-                      )
-                    : kursperiodeOgDagUtils.mapKursdagFormValuesToKursdagUtenVarighet(
-                          dag as KursdagFormValues,
-                          `${index}`,
-                      );
+                return kursperiodeOgDagUtils.mapKursdagFormValuesToKursdag(dag as KursdagFormValues, `${index}`);
             })
             .sort(sortKursdag);
 

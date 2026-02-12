@@ -18,7 +18,6 @@ import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
-import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import KursOppsummering from './components/KursOppsummering';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
@@ -44,7 +43,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const { text, intl, locale } = useAppIntl();
     const {
-        state: { søknadsdata, søker, frilansoppdrag, registrerteBarn, institusjoner, spørOmFraværFraJobb = false },
+        state: { søknadsdata, søker, frilansoppdrag, registrerteBarn, institusjoner },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
@@ -67,14 +66,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(
-        søker.fødselsnummer,
-        søknadsdata,
-        registrerteBarn,
-        institusjoner,
-        locale,
-        spørOmFraværFraJobb,
-    );
+    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, registrerteBarn, institusjoner, locale);
 
     if (!apiData) {
         return (
@@ -138,7 +130,6 @@ const OppsummeringStep = () => {
                                         kurs={apiData.kurs}
                                         ferieuttakIPerioden={apiData.ferieuttakIPerioden}
                                         utenlandsoppholdIPerioden={apiData.utenlandsoppholdIPerioden}
-                                        spørOmFraværFraJobb={spørOmFraværFraJobb}
                                         onEdit={() => navigate(stepConfig[StepId.KURS].route)}
                                     />
 
@@ -151,36 +142,20 @@ const OppsummeringStep = () => {
                                         frilansoppdrag={frilansoppdrag}
                                         onEdit={() => navigate(stepConfig[StepId.ARBEIDSSITUASJON].route)}
                                     />
-                                    {spørOmFraværFraJobb ? (
-                                        <FraværIPeriodenSummary
-                                            apiValues={apiData}
-                                            valgteDatoer={valgteDatoer}
-                                            søknadsperiode={{
-                                                from: ISODateToDate(apiData.fraOgMed),
-                                                to: ISODateToDate(apiData.tilOgMed),
-                                            }}
-                                            onEdit={
-                                                stepConfig[StepId.ARBEIDSTID]
-                                                    ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)
-                                                    : undefined
-                                            }
-                                        />
-                                    ) : (
-                                        <ArbeidIPeriodenSummary
-                                            apiValues={apiData}
-                                            valgteDatoer={valgteDatoer}
-                                            søknadsperiode={{
-                                                from: ISODateToDate(apiData.fraOgMed),
-                                                to: ISODateToDate(apiData.tilOgMed),
-                                            }}
-                                            spørOmFraværFraJobb={spørOmFraværFraJobb}
-                                            onEdit={
-                                                stepConfig[StepId.ARBEIDSTID]
-                                                    ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)
-                                                    : undefined
-                                            }
-                                        />
-                                    )}
+
+                                    <FraværIPeriodenSummary
+                                        apiValues={apiData}
+                                        valgteDatoer={valgteDatoer}
+                                        søknadsperiode={{
+                                            from: ISODateToDate(apiData.fraOgMed),
+                                            to: ISODateToDate(apiData.tilOgMed),
+                                        }}
+                                        onEdit={
+                                            stepConfig[StepId.ARBEIDSTID]
+                                                ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)
+                                                : undefined
+                                        }
+                                    />
 
                                     <MedlemskapOppsummering
                                         medlemskap={apiData.medlemskap}

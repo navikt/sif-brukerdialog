@@ -189,9 +189,7 @@ const FraværIPeriodeSpørsmål = ({
                                 renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
                                 accordionOpen={hasEnkeltdagerMedFeil}
                                 validateDate={(value: any, date: Date) => {
-                                    const error = getTimeValidator({ min: { hours: 0, minutes: 1 }, required: true })(
-                                        value,
-                                    );
+                                    const error = getTimeValidator({ min: { hours: 0, minutes: 0 } })(value);
                                     if (error) {
                                         return {
                                             key: `fraværIPeriode.validation.timerDag.${error}`,

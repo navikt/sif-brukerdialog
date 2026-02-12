@@ -1,13 +1,12 @@
 import { FormSummary, HStack, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
-import { DurationText, JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import {
     capsFirstCharacter,
     dateFormatter,
     dateRangeFormatter,
     ISODateRangeToDateRange,
     ISODateToDate,
-    ISODurationToDuration,
 } from '@navikt/sif-common-utils';
 
 import { AppText, useAppIntl } from '../../../../i18n';
@@ -22,17 +21,10 @@ interface Props {
     kurs: KursApiData;
     ferieuttakIPerioden?: FerieuttakIPeriodenApiData;
     utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApiData;
-    spørOmFraværFraJobb: boolean;
     onEdit?: () => void;
 }
 
-const KursOppsummering = ({
-    onEdit,
-    kurs,
-    ferieuttakIPerioden,
-    utenlandsoppholdIPerioden,
-    spørOmFraværFraJobb,
-}: Props) => {
+const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdIPerioden }: Props) => {
     const { kursholder, kursperioder, kursdager, enkeltdagEllerPeriode } = kurs;
     const { locale } = useAppIntl();
 
@@ -84,25 +76,6 @@ const KursOppsummering = ({
                                                 <div>
                                                     <span>{dateFormatter.full(ISODateToDate(kursdag.dato))}</span>
                                                 </div>
-                                                {spørOmFraværFraJobb ? null : (
-                                                    <>
-                                                        Kurs:{' '}
-                                                        <DurationText
-                                                            fullText={false}
-                                                            duration={ISODurationToDuration(kursdag.tidKurs)}
-                                                        />
-                                                        {kursdag.tidReise ? (
-                                                            <>
-                                                                {' '}
-                                                                Reise:{' '}
-                                                                <DurationText
-                                                                    fullText={false}
-                                                                    duration={ISODurationToDuration(kursdag.tidReise)}
-                                                                />
-                                                            </>
-                                                        ) : null}
-                                                    </>
-                                                )}
                                             </List.Item>
                                         );
                                     })}

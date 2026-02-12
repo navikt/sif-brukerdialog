@@ -167,11 +167,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                             : undefined,
                     },
                 };
-            case SøknadContextActionKeys.TOGGLE_FRAVÆR_ARBEIDSTID:
-                return {
-                    ...state,
-                    spørOmFraværFraJobb: action.payload?.spørOmFravær === true,
-                };
             default:
                 // eslint-disable-next-line no-console
                 console.error(`Missing handler for ${action.type}`);
