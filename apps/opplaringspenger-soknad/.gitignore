@@ -4,3 +4,5 @@ node_modules/
 /playwright/.cache/
 demo/
 dist-e2e
+dist-demo
+docs/

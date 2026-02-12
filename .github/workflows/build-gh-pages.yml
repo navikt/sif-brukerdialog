@@ -75,6 +75,17 @@ jobs:
       #     mkdir -p deployment/ungdomsytelse-veileder
       #     mv apps-intern/ungdomsytelse-veileder/dist-demo/* deployment/ungdomsytelse-veileder/
 
+      # Bygg opplaringspenger-soknad demo-app med gh-pages:rebuild
+      - name: Build opplaringspenger-soknad
+        run: yarn gh-pages:rebuild
+        working-directory: apps/opplaringspenger-soknad
+
+      # Flytt opplaringspenger-soknad-output til en subfolder
+      - name: Kopier opplaringspenger-soknad til gh-pages
+        run: |
+          mkdir -p deployment/opplaringspenger-soknad
+          mv apps/opplaringspenger-soknad/dist-demo/* deployment/opplaringspenger-soknad/
+
       # Bygg ungdomsytelse-deltaker-storybook
       - name: Build ungdomsytelse-deltaker-storybook
         run: yarn storybook:build
