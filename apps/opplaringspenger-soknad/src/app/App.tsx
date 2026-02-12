@@ -32,6 +32,8 @@ const {
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 const queryClient = new QueryClient();
 
+const isGitHubPages = typeof __IS_GITHUB_PAGES__ !== 'undefined' && __IS_GITHUB_PAGES__;
+
 const App = () => {
     return (
         <Theme>
@@ -43,6 +45,7 @@ const App = () => {
                     appTitle={OpplæringspengerApp.tittel.nb}
                     intlMessages={applicationIntlMessages}
                     useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
+                    useHashRouter={isGitHubPages}
                     appStatus={{
                         sanityConfig: {
                             projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
