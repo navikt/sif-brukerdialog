@@ -1,5 +1,6 @@
 import './calendarGrid.less';
 
+import { AppText } from '@app/i18n';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
@@ -16,7 +17,6 @@ import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
 import React, { useRef } from 'react';
 
-import { AppText } from '../../../i18n';
 import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
 import { hasIncreasedFontSize } from '../../utils';
 import CalendarGridDate from './CalendarGridDate';

@@ -2,8 +2,8 @@ import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
 
 import { ArbeidstidFormValues } from '../steps/arbeidstid/ArbeidstidForm';
 import { LovbestemtFerieFormValues } from '../steps/lovbestemt-ferie/LovbestemtFerieStep';
-import { TilsynsordningFormValues } from '../steps/tilsynsordning/TilsynsordningForm';
 import { OppsummeringFormValues } from '../steps/oppsummering/OppsummeringStep';
+import { TilsynsordningFormValues } from '../steps/tilsynsordning/TilsynsordningForm';
 import { UkjentArbeidsforholdFormValues } from '../steps/ukjent-arbeidsforhold/UkjentArbeidsforholdForm';
 import { StepId } from './StepId';
 

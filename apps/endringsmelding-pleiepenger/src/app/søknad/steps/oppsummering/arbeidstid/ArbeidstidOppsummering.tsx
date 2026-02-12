@@ -1,10 +1,10 @@
+import { AppText, useAppIntl } from '@app/i18n';
+import ArbeidstidUker from '@app/modules/arbeidstid-uker/ArbeidstidUker';
+import { Arbeidsgiver, ArbeidstidApiData } from '@app/types';
 import { Heading, VStack } from '@navikt/ds-react';
-import { Arbeidsgiver, ArbeidstidApiData } from '@types';
 
-import { AppText, useAppIntl } from '../../../i18n';
-import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
+import { oppsummeringStepUtils } from '../oppsummeringStepUtils';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
-import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;

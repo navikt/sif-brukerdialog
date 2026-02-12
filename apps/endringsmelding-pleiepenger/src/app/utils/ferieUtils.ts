@@ -1,3 +1,4 @@
+import { LovbestemtFerieSøknadsdata } from '@app/types';
 import {
     dateFormatter,
     DateRange,
@@ -11,7 +12,6 @@ import {
     sortDateRange,
     sortDates,
 } from '@navikt/sif-common-utils';
-import { LovbestemtFerieSøknadsdata } from '@types';
 import dayjs from 'dayjs';
 
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';

@@ -1,11 +1,11 @@
+import { AppText } from '@app/i18n';
+import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
 import { Heading, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 
 import { useOnValidSubmit, useSøknadContext } from '../../../hooks';
 import { useStepConfig } from '../../../hooks/useStepConfig';
-import { AppText } from '../../../i18n';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { SøknadContextState } from '../../../types';
 import { lagreSøknadState } from '../../../utils';
 import { StepId } from '../../config/StepId';

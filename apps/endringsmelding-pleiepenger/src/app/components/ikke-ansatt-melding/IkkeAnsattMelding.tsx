@@ -1,6 +1,5 @@
+import { AppText } from '@app/i18n';
 import { Alert } from '@navikt/ds-react';
-
-import { AppText } from '../../i18n';
 
 const IkkeAnsattMelding = () => {
     return (

@@ -1,10 +1,9 @@
+import { AppText } from '@app/i18n';
+import { LovbestemtFerieApiData } from '@app/types';
+import { getLovbestemtFerieOppsummeringInfo } from '@app/utils';
 import { Heading, List, VStack } from '@navikt/ds-react';
 import { dateRangeToISODateRange, getDateRangeText } from '@navikt/sif-common-utils';
-import { LovbestemtFerieApiData } from '@types';
-import { getLovbestemtFerieOppsummeringInfo } from '@utils';
 import { useIntl } from 'react-intl';
-
-import { AppText } from '../../../i18n';
 
 interface Props {
     lovbestemtFerie: LovbestemtFerieApiData;
@@ -23,7 +22,7 @@ const LovbestemtFerieOppsummering = ({ lovbestemtFerie }: Props) => {
                     <List>
                         {perioderLagtTil.map((periode) => (
                             <List.Item key={dateRangeToISODateRange(periode)}>
-                                <div className="capsFirstChar">
+                                <div className="capsFirstLetter">
                                     {getDateRangeText(periode, locale, {
                                         compact: true,
                                         includeDayName: true,
@@ -42,7 +41,7 @@ const LovbestemtFerieOppsummering = ({ lovbestemtFerie }: Props) => {
                     <List>
                         {perioderFjernet.map((periode) => (
                             <List.Item key={dateRangeToISODateRange(periode)}>
-                                <div className="capsFirstChar">
+                                <div className="capsFirstLetter">
                                     {getDateRangeText(periode, locale, {
                                         compact: true,
                                         includeDayName: true,

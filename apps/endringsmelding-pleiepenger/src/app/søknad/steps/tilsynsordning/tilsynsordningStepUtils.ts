@@ -1,3 +1,5 @@
+import { TilsynsordningPeriodeData } from '@app/modules/tilsynsordning-måned/components/tilsynsordning-periode-form/TilsynsordningPeriodeForm';
+import { TilsynsordningSøknadsdata } from '@app/types';
 import {
     DateDurationMap,
     dateToISODate,
@@ -5,10 +7,8 @@ import {
     getDurationForISOWeekdayNumber,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
-import { TilsynsordningSøknadsdata } from '@types';
 import dayjs from 'dayjs';
 
-import { TilsynsordningPeriodeData } from '../../../local-sif-common-pleiepenger/components/tilsynsordning-måned/components/tilsynsordning-periode-form/TilsynsordningPeriodeForm';
 import { TilsynsordningFormValues } from './TilsynsordningForm';
 
 export const getTilsynsordningStepInitialValues = (

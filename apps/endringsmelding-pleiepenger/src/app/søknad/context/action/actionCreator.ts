@@ -5,7 +5,7 @@ import {
     Sak,
     SøknadContextInputPreferanse,
     UkjentArbeidsforholdSøknadsdata,
-} from '@types';
+} from '@app/types';
 
 import { TilsynsordningSøknadsdata } from '../../../types/TilsynsordningSøknadsdata';
 import { SøknadRoutes } from '../../config/SøknadRoutes';

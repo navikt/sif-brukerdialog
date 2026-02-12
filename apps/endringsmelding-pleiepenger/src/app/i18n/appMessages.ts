@@ -1,8 +1,9 @@
-import { infoNormalarbeidstid } from '../components/info-normalarbeidstid/infoNormalarbeidstid.messages';
+import { infoNormalarbeidstid } from '@app/components/info-normalarbeidstid/infoNormalarbeidstid.messages';
+import { arbeidstidUkerMessages } from '@app/modules/arbeidstid-uker/arbeidstidUkerMessages';
+import { endreArbeidstidMessages } from '@app/modules/endre-arbeidstid-form/endreArbeidstidMessages';
+
 import { dagerMedTidMessages } from '../local-sif-common-pleiepenger/components/dager-med-tid-liste/dagerMedTidMessages';
 import { sifCommonPleiepengerMessages_nb } from '../local-sif-common-pleiepenger/i18n/nb';
-import { arbeidstidUkerMessages } from '../modules/arbeidstid-uker/arbeidstidUkerMessages';
-import { endreArbeidstidMessages } from '../modules/endre-arbeidstid-form/endreArbeidstidMessages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
 import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';

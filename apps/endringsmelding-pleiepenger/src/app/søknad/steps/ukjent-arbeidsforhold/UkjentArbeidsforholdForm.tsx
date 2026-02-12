@@ -1,3 +1,8 @@
+import ArbeidsaktivitetBlock from '@app/components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
+import IkkeAnsattMelding from '@app/components/ikke-ansatt-melding/IkkeAnsattMelding';
+import InfoNormalarbeidstid from '@app/components/info-normalarbeidstid/InfoNormalarbeidstid';
+import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
+import { ArbeidsaktivitetType, Arbeidsgiver, SøknadContextState, UkjentArbeidsforholdSøknadsdata } from '@app/types';
 import { VStack } from '@navikt/ds-react';
 import {
     FormikNumberInput,
@@ -8,14 +13,9 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { ArbeidsaktivitetType, Arbeidsgiver, SøknadContextState, UkjentArbeidsforholdSøknadsdata } from '@types';
 import { useIntl } from 'react-intl';
 
-import ArbeidsaktivitetBlock from '../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
-import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
-import InfoNormalarbeidstid from '../../../components/info-normalarbeidstid/InfoNormalarbeidstid';
 import { useOnValidSubmit } from '../../../hooks';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
 import actionsCreator from '../../context/action/actionCreator';

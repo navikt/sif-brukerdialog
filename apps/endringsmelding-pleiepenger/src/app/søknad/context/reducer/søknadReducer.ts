@@ -1,6 +1,6 @@
+import { EndringType, SøknadContextState, Søknadsdata, ValgteEndringer } from '@app/types';
+import { getFeriedagerMeta } from '@app/utils';
 import { guid } from '@navikt/sif-common-utils';
-import { EndringType, SøknadContextState, Søknadsdata, ValgteEndringer } from '@types';
-import { getFeriedagerMeta } from '@utils';
 
 import { getSøknadStepRoute, SøknadRoutes } from '../../config/SøknadRoutes';
 import { getSøknadSteps } from '../../config/søknadStepConfig';

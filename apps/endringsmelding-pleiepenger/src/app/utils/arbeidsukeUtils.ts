@@ -1,3 +1,4 @@
+import { ArbeidstidEnkeltdagMap, Arbeidsuke, ArbeidsukeTimer } from '@app/types';
 import {
     dateFormatter,
     DateRange,
@@ -8,7 +9,6 @@ import {
     ISODate,
     numberDurationAsDuration,
 } from '@navikt/sif-common-utils';
-import { ArbeidstidEnkeltdagMap, Arbeidsuke, ArbeidsukeTimer } from '@types';
 import dayjs from 'dayjs';
 
 import { beregnSnittTimerPerDag } from './beregnUtils';

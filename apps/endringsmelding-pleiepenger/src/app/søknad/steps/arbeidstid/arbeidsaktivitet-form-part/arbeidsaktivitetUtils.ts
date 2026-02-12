@@ -1,4 +1,4 @@
-import { durationUtils } from '@navikt/sif-common-utils';
+import { ArbeidstidUkerItem } from '@app/modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import {
     ArbeidstidEndring,
     ArbeidstidEndringMap,
@@ -6,17 +6,16 @@ import {
     ArbeidsukeMap,
     LovbestemtFerieSøknadsdata,
     TimerEllerProsent,
-} from '@types';
+} from '@app/types';
 import {
     beregnEndretFaktiskArbeidstidPerDag,
     erKortArbeidsuke,
     getLovbestemtFerieSøknadsdataForPeriode,
     getTimerPerUkeFraTimerPerDag,
-} from '@utils';
+} from '@app/utils';
+import { durationUtils } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { uniqBy } from 'lodash';
-
-import { ArbeidstidUkerItem } from '../../../../modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 
 const sorterItemsPåStartdato = (u1: ArbeidstidUkerItem, u2: ArbeidstidUkerItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;

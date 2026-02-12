@@ -1,6 +1,4 @@
-import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getMaybeEnv } from '@navikt/sif-common-env';
-import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@types';
+import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@app/types';
 import {
     appSentryLogger,
     getEndringsdato,
@@ -8,7 +6,9 @@ import {
     isK9SakErInnenforGyldigEndringsperiode,
     maskString,
     parseK9Format,
-} from '@utils';
+} from '@app/utils';
+import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { isAxiosError } from 'axios';
 
 import { verifyK9Format } from '../../utils/verifyk9Format';

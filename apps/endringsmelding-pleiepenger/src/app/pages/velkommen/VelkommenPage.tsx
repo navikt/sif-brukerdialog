@@ -1,13 +1,13 @@
-import { useSakUtledet as useSakInfo, useStartSøknad } from '@hooks';
+import { useSakUtledet as useSakInfo, useStartSøknad } from '@app/hooks';
+import { AppText, useAppIntl } from '@app/i18n';
+import { EndringType } from '@app/types';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getListValidator } from '@navikt/sif-validation';
-import { EndringType } from '@types';
 
-import { AppText, useAppIntl } from '../../i18n';
 import { Feature, isFeatureEnabled } from '../../utils';
 import OmSøknaden from './OmSøknaden';
 

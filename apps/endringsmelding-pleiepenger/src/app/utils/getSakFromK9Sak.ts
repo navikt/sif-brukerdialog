@@ -1,23 +1,4 @@
 import {
-    DateDurationMap,
-    DateRange,
-    dateRangesCollide,
-    dateRangeToISODateRange,
-    dateRangeUtils,
-    dateToISODate,
-    durationUtils,
-    getDateRangesFromISODateRangeMap,
-    getDatesInDateRange,
-    getISODatesInISODateRange,
-    getIsoWeekDateRangeForDate,
-    getLastDateInDateRanges,
-    isDateInDateRange,
-    ISODateRangeToDateRange,
-    ISODateToDate,
-    joinAdjacentDateRanges,
-    numberDurationAsDuration,
-} from '@navikt/sif-common-utils';
-import {
     Arbeidsaktivitet,
     ArbeidsaktivitetArbeidstaker,
     Arbeidsaktiviteter,
@@ -37,7 +18,26 @@ import {
     K9SakTilsynsordningPeriodeMap,
     PeriodeMedArbeidstid,
     Sak,
-} from '@types';
+} from '@app/types';
+import {
+    DateDurationMap,
+    DateRange,
+    dateRangesCollide,
+    dateRangeToISODateRange,
+    dateRangeUtils,
+    dateToISODate,
+    durationUtils,
+    getDateRangesFromISODateRangeMap,
+    getDatesInDateRange,
+    getISODatesInISODateRange,
+    getIsoWeekDateRangeForDate,
+    getLastDateInDateRanges,
+    isDateInDateRange,
+    ISODateRangeToDateRange,
+    ISODateToDate,
+    joinAdjacentDateRanges,
+    numberDurationAsDuration,
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 

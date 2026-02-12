@@ -1,5 +1,7 @@
 import './tilsynsordningMåned.css';
 
+import EndretTag from '@app/components/tags/EndretTag';
+import { AppText, useAppIntl } from '@app/i18n';
 import { Box, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
 import { ExpansionCardContent } from '@navikt/ds-react/ExpansionCard';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
@@ -12,11 +14,9 @@ import {
 import dayjs from 'dayjs';
 import { useState } from 'react';
 
-import EndretTag from '../../../components/tags/EndretTag';
-import { AppText, useAppIntl } from '../../../i18n';
-import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
-import TidsbrukKalender from '../tidsbruk-kalender/TidsbrukKalender';
-import TilsynsordningEnkeltdagDialog from '../tilsynsordning-enkeltdag/TilsynsordningEnkeltdagDialog';
+import { TidEnkeltdagEndring } from '../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
+import TidsbrukKalender from '../../local-sif-common-pleiepenger/components/tidsbruk-kalender/TidsbrukKalender';
+import TilsynsordningEnkeltdagDialog from '../../local-sif-common-pleiepenger/components/tilsynsordning-enkeltdag/TilsynsordningEnkeltdagDialog';
 
 export type EnkeltdagChangeEvent = (evt: TidEnkeltdagEndring) => void;
 interface Props {

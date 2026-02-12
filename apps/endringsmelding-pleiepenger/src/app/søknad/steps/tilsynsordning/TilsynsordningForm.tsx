@@ -1,3 +1,6 @@
+import DateRangeExpansionCards from '@app/components/date-range-expansion-cards/DateRangeExpansionCards';
+import EndretTag from '@app/components/tags/EndretTag';
+import TagsContainer from '@app/components/tags/tags-container/TagsContainer';
 import { Heading, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
@@ -12,9 +15,6 @@ import {
 import { useFormikContext } from 'formik';
 import { useIntl } from 'react-intl';
 
-import DateRangeExpansionCards from '../../../components/date-range-expansion-cards/DateRangeExpansionCards';
-import EndretTag from '../../../components/tags/EndretTag';
-import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
 import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TilsynsordningSøknadsperiode from './TilsynsordningSøknadsperiode';
 

@@ -1,4 +1,4 @@
-import { SøknadApiData } from '@types';
+import { SøknadApiData } from '@app/types';
 
 import api from '../api';
 import { ApiEndpointPsb } from './';

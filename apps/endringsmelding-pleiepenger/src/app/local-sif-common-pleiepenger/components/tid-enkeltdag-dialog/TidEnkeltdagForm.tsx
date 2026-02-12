@@ -1,3 +1,4 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import { Alert, BodyLong, VStack } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import {
@@ -25,7 +26,6 @@ import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { ReactElement } from 'react';
 
-import { AppText, useAppIntl } from '../../../i18n';
 import {
     getDagerMedNyTid,
     getDateRangeWithinDateRange,

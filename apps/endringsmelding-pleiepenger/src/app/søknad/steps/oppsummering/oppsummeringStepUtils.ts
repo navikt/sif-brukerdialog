@@ -1,10 +1,4 @@
-import {
-    getDatesInDateRange,
-    ISODateRange,
-    ISODateRangeToDateRange,
-    ISODurationToDecimalDuration,
-    ISODurationToDuration,
-} from '@navikt/sif-common-utils';
+import { ArbeidstidUkerItem } from '@app/modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import {
     ArbeidstidApiData,
     ArbeidstidPeriodeApiData,
@@ -12,10 +6,16 @@ import {
     LovbestemtFerieApiData,
     Søknadsdata,
     TilsynsordningApiData,
-} from '@types';
-import { erKortArbeidsuke, getTimerPerUkeFraTimerPerDag } from '@utils';
+} from '@app/types';
+import { erKortArbeidsuke, getTimerPerUkeFraTimerPerDag } from '@app/utils';
+import {
+    getDatesInDateRange,
+    ISODateRange,
+    ISODateRangeToDateRange,
+    ISODurationToDecimalDuration,
+    ISODurationToDuration,
+} from '@navikt/sif-common-utils';
 
-import { ArbeidstidUkerItem } from '../../../modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import { OppsummeringFormValues } from './OppsummeringStep';
 
 export const getOppsummeringStepInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => {

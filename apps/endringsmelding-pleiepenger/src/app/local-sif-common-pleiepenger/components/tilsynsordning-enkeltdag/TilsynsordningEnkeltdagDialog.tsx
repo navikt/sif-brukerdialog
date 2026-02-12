@@ -1,7 +1,7 @@
+import { useAppIntl } from '@app/i18n';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
-import { useAppIntl } from '../../../i18n';
 import TidEnkeltdagDialog, { TidEnkeltdagDialogProps } from '../tid-enkeltdag-dialog/TidEnkeltdagDialog';
 import { TidEnkeltdagFormProps } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
 

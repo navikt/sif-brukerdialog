@@ -1,3 +1,4 @@
+import { TilsynsordningApiData, TilsynsordningPeriodeApiData, TilsynsordningSøknadsdata } from '@app/types';
 import {
     DateDurationMap,
     dateToISODate,
@@ -5,12 +6,16 @@ import {
     ISODateRangeMap,
     ISODuration,
 } from '@navikt/sif-common-utils';
-import { TilsynsordningApiData, TilsynsordningPeriodeApiData, TilsynsordningSøknadsdata } from '@types';
 
+/**
+ *
+ * @param tilsynsordning
+ * @returns Map hvor hver periode er én dag - for enkelheltsskyld
+ */
 export const getTilsynsordningApiDataFraSøknadsdata = (
     tilsynsordning: TilsynsordningSøknadsdata,
 ): TilsynsordningApiData => {
-    const perioder = periodiserDateDurationMap(tilsynsordning.tilsynsdagerMap);
+    const perioder = dateDurationMapToISODateRangeMap(tilsynsordning.tilsynsdagerMap);
     const tilsynsordningPerioder: ISODateRangeMap<TilsynsordningPeriodeApiData> = {};
     Object.keys(perioder).forEach((periodeKey): void => {
         tilsynsordningPerioder[periodeKey] = {
@@ -35,6 +40,17 @@ const isConsecutiveWeekday = (prevDate: string, currDate: string): boolean => {
 };
 
 const createPeriodeKey = (startDate: string, endDate: string): string => `${startDate}/${endDate}`;
+
+export const dateDurationMapToISODateRangeMap = (enkeltdager: DateDurationMap): ISODateRangeMap<ISODuration> => {
+    const perioder: ISODateRangeMap<ISODuration> = {};
+    const sortedDates = Object.keys(enkeltdager).sort();
+    for (let i = 1; i < sortedDates.length; i++) {
+        const currentDate = sortedDates[i];
+        const currentDuration = durationToISODuration(enkeltdager[currentDate]);
+        perioder[createPeriodeKey(currentDate, currentDate)] = currentDuration;
+    }
+    return perioder;
+};
 
 export const periodiserDateDurationMap = (enkeltdager: DateDurationMap): ISODateRangeMap<ISODuration> => {
     const sortedDates = Object.keys(enkeltdager).sort();

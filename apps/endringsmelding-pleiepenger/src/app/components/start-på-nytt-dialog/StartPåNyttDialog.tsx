@@ -1,7 +1,6 @@
+import { AppText } from '@app/i18n';
 import { BodyShort } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
-
-import { AppText } from '../../i18n';
 
 interface Props {
     open: boolean;

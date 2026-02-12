@@ -1,7 +1,3 @@
-import { Søker } from '@navikt/sif-common-api';
-import { getMaybeEnv } from '@navikt/sif-common-env';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { DateRange } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,
     IngenTilgangÅrsak,
@@ -11,8 +7,12 @@ import {
     SøknadContextState,
     SøknadInitialDataState,
     TimerEllerProsent,
-} from '@types';
-import { appSentryLogger } from '@utils';
+} from '@app/types';
+import { appSentryLogger } from '@app/utils';
+import { Søker } from '@navikt/sif-common-api';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { DateRange } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
 import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';

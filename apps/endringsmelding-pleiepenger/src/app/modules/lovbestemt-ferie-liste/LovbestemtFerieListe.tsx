@@ -1,13 +1,12 @@
 import './lovbestemtFerieListe.scss';
 
+import DeleteButton from '@app/components/buttons/DeleteButton';
+import EditButton from '@app/components/buttons/EditButton';
+import FerieTag from '@app/components/tags/FerieTag';
+import { AppText, useAppIntl } from '@app/i18n';
+import { LovbestemtFeriePeriode } from '@app/types';
 import { Alert, Button } from '@navikt/ds-react';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils';
-import { LovbestemtFeriePeriode } from '@types';
-
-import DeleteButton from '../../components/buttons/DeleteButton';
-import EditButton from '../../components/buttons/EditButton';
-import FerieTag from '../../components/tags/FerieTag';
-import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
     perioder: LovbestemtFeriePeriode[];

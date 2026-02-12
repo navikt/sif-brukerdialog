@@ -1,4 +1,3 @@
-import { durationUtils, ISODateRangeToDateRange, ISODateToDate, ISODurationToDuration } from '@navikt/sif-common-utils';
 import {
     K9Format,
     K9FormatArbeidstid,
@@ -16,7 +15,8 @@ import {
     K9SakTilsynsordning,
     K9SakTilsynsordningPeriodeMap,
     K9SakUtenlandsopphold,
-} from '@types';
+} from '@app/types';
+import { durationUtils, ISODateRangeToDateRange, ISODateToDate, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
 /**

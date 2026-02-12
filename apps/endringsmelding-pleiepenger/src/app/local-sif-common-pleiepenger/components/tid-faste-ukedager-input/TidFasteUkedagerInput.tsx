@@ -1,11 +1,11 @@
 import './tidFasteUkedagerInput.less';
 
+import { useAppIntl } from '@app/i18n';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { FormikTimeInput, TestProps, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
 
-import { useAppIntl } from '../../../i18n';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
 
 interface OwnProps {

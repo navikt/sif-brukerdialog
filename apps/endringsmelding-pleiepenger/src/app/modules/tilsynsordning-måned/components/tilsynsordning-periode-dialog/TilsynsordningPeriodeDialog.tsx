@@ -1,8 +1,8 @@
 import './tilsynsordningPeriodeDialog.less';
 
+import { useAppIntl } from '@app/i18n';
 import { Modal } from '@navikt/ds-react';
 
-import { useAppIntl } from '../../../../../i18n';
 import TilsynsordningPeriodeForm, {
     TilsynsordningPeriodeFormProps,
 } from '../tilsynsordning-periode-form/TilsynsordningPeriodeForm';

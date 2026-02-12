@@ -1,4 +1,3 @@
-import { DateRange, Duration, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
 import {
     ArbeidstidApiData,
     LovbestemtFerieApiData,
@@ -8,7 +7,15 @@ import {
     Søknadsdata,
     TilsynsordningApiData,
     ValgteEndringer,
-} from '@types';
+} from '@app/types';
+import {
+    DateDurationMap,
+    dateToISODate,
+    Duration,
+    getDatesInDateRange,
+    ISODateRangeToDateRange,
+    ISODurationToDuration,
+} from '@navikt/sif-common-utils';
 
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
 
@@ -120,16 +127,41 @@ export const getLovbestemtFerieOppsummeringInfo = (lovbestemtFerie: LovbestemtFe
     };
 };
 
-export type PeriodeMedTilsyn = {
-    periode: DateRange;
+export type DagMedEndretTilsyn = {
+    dato: Date;
     tid: Duration;
+    tidOpprinnelig?: Duration;
 };
-export const getTilsynsordningOppsummeringInfo = (tilsynsordning: TilsynsordningApiData): PeriodeMedTilsyn[] => {
-    const perioder: PeriodeMedTilsyn[] = Object.keys(tilsynsordning.perioder).map((isoDateRange): PeriodeMedTilsyn => {
-        return {
-            periode: ISODateRangeToDateRange(isoDateRange),
-            tid: ISODurationToDuration(tilsynsordning.perioder[isoDateRange].etablertTilsynTimerPerDag),
-        };
+
+export const getTilsynsordningOppsummeringInfo = (
+    tilsynsordning: TilsynsordningApiData,
+    tidOpprinnelig?: DateDurationMap,
+): DagMedEndretTilsyn[] => {
+    const dagerMedEndretTilsyn: DagMedEndretTilsyn[] = [];
+    const dagerMedTilsyn: DateDurationMap = {};
+    /** Hent ut igjen alle dager som er endret ut fra periodene som sendes inn  */
+    Object.keys(tilsynsordning.perioder).forEach((isoDateRange) => {
+        const duration = ISODurationToDuration(tilsynsordning.perioder[isoDateRange].etablertTilsynTimerPerDag);
+        const dateRange = ISODateRangeToDateRange(isoDateRange);
+        getDatesInDateRange(dateRange, true).forEach((dato) => {
+            const isoDateKey = dateToISODate(dato);
+            dagerMedTilsyn[isoDateKey] = duration;
+            const tidDagOpprinnelig = tidOpprinnelig ? tidOpprinnelig[isoDateKey] : undefined;
+            const dagMedEndretTilsyn: DagMedEndretTilsyn = {
+                dato,
+                tid: duration,
+                tidOpprinnelig: tidDagOpprinnelig,
+            };
+            dagerMedEndretTilsyn.push(dagMedEndretTilsyn);
+        });
     });
-    return perioder;
+    // const perioder: DagerMedEndretTilsyn[] = Object.keys(tilsynsordning.perioder).map((isoDateRange): DagerMedEndretTilsyn => {
+    //     return {
+    //         periode: ISODateRangeToDateRange(isoDateRange),
+    //         tid: ISODurationToDuration(tilsynsordning.perioder[isoDateRange].etablertTilsynTimerPerDag),
+    //         opprinneligTid:
+    //     };
+    // });
+
+    return dagerMedEndretTilsyn;
 };
