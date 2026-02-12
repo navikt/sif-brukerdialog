@@ -155,13 +155,5 @@ export const getTilsynsordningOppsummeringInfo = (
             dagerMedEndretTilsyn.push(dagMedEndretTilsyn);
         });
     });
-    // const perioder: DagerMedEndretTilsyn[] = Object.keys(tilsynsordning.perioder).map((isoDateRange): DagerMedEndretTilsyn => {
-    //     return {
-    //         periode: ISODateRangeToDateRange(isoDateRange),
-    //         tid: ISODurationToDuration(tilsynsordning.perioder[isoDateRange].etablertTilsynTimerPerDag),
-    //         opprinneligTid:
-    //     };
-    // });
-
     return dagerMedEndretTilsyn;
 };

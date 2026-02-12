@@ -7,8 +7,15 @@ import {
     Søknadsdata,
     TilsynsordningApiData,
 } from '@app/types';
-import { erKortArbeidsuke, getTimerPerUkeFraTimerPerDag } from '@app/utils';
 import {
+    DagMedEndretTilsyn,
+    erKortArbeidsuke,
+    getTilsynsordningOppsummeringInfo,
+    getTimerPerUkeFraTimerPerDag,
+} from '@app/utils';
+import {
+    DateDurationMap,
+    dateFormatter,
     getDatesInDateRange,
     ISODateRange,
     ISODateRangeToDateRange,
@@ -135,11 +142,33 @@ const erArbeidstidEndringerGyldig = (arbeidstid?: ArbeidstidApiData): boolean =>
     return ugyldigArbeidstid.length === 0;
 };
 
+export type MånedMedDagerMedEndretTilsyn = {
+    måned: Date;
+    dagerMedEndretTilsyn: DagMedEndretTilsyn[];
+};
+export const getMånederMedDagerEndretTilsyn = (
+    tilsynsordning: TilsynsordningApiData,
+    tidOpprinnelig: DateDurationMap | undefined,
+): MånedMedDagerMedEndretTilsyn[] => {
+    const dagerMedEndretTilsyn = getTilsynsordningOppsummeringInfo(tilsynsordning, tidOpprinnelig);
+
+    const månederMedDager: Record<string, MånedMedDagerMedEndretTilsyn> = {};
+    for (const dag of dagerMedEndretTilsyn) {
+        const måned = dateFormatter.monthFullYear(dag.dato);
+        if (!månederMedDager[måned]) {
+            månederMedDager[måned] = { måned: dag.dato, dagerMedEndretTilsyn: [] };
+        }
+        månederMedDager[måned].dagerMedEndretTilsyn.push(dag);
+    }
+    return Object.values(månederMedDager);
+};
+
 export const oppsummeringStepUtils = {
     getArbeidstidUkerItems,
     harEndringerILovbestemtFerieApiData,
     harEndringerIArbeidstid,
     harEndringerITilsynsordningApiData,
     erArbeidstidEndringerGyldig,
+    getMånederMedDagerEndretTilsyn,
     getOppsummeringStepInitialValues,
 };
