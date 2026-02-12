@@ -24,7 +24,7 @@ const nb = {
     'oppsummeringStep.ferie.lagtTil': 'Ferie som er lagt til',
     'oppsummeringStep.ferie.fjernet': 'Ferie som er fjernet',
 
-    'oppsummeringStep.tilsynsordning.tittel': 'Omsorgstilbud',
+    'oppsummeringStep.tilsynsordning.tittel': 'Endringer i omsorgstilbud',
     'oppsummeringStep.tilsynsordning.ingenEndringer': 'Det er ikke registrert noen endringer i omsorgstilbud',
 
     'oppsummeringStep.forrige': 'Forrige steg',

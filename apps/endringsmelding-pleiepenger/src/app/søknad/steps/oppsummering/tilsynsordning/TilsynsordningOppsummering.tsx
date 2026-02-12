@@ -1,5 +1,5 @@
 import { TilsynsordningApiData } from '@app/types';
-import { Accordion, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, ExpansionCard, VStack } from '@navikt/ds-react';
 import { DateDurationMap, dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 
 import { getMånederMedDagerEndretTilsyn } from '../oppsummeringStepUtils';
@@ -14,27 +14,30 @@ const TilsynsordningOppsummering = ({ tilsynsordning, tidOpprinnelig }: Props) =
     const månederMedDager = getMånederMedDagerEndretTilsyn(tilsynsordning, tidOpprinnelig);
 
     return (
-        <VStack gap="space-16">
-            <Heading level="3" size="small" spacing={true}>
-                Endringer i omsorgstilbud
-            </Heading>
-            <Accordion>
-                {månederMedDager.map(({ måned, dagerMedEndretTilsyn }) => {
-                    const antallDagerEndret = dagerMedEndretTilsyn.length;
-                    return (
-                        <Accordion.Item key={dateToISODate(måned)}>
-                            <Accordion.Header>
+        <VStack gap="space-8">
+            {månederMedDager.map(({ måned, dagerMedEndretTilsyn }) => {
+                const tittelId = `tittel-${dateToISODate(måned)}`;
+                const antallDagerEndret = dagerMedEndretTilsyn.length;
+
+                return (
+                    <ExpansionCard aria-labelledby={tittelId} key={tittelId} size="small">
+                        <ExpansionCard.Header>
+                            <ExpansionCard.Title size="small" id={tittelId}>
                                 <div className="capsFirstLetter">
-                                    {dateFormatter.monthFullYear(måned)} - {antallDagerEndret} dager endret
+                                    {`${dateFormatter.monthFullYear(måned)}`}
+                                    <BodyShort as="span" weight="regular">
+                                        {' '}
+                                        - {antallDagerEndret} dager endret
+                                    </BodyShort>
                                 </div>
-                            </Accordion.Header>
-                            <Accordion.Content>
-                                <EndretTilsynTabell dagerMedEndretTilsyn={dagerMedEndretTilsyn} />
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    );
-                })}
-            </Accordion>
+                            </ExpansionCard.Title>
+                        </ExpansionCard.Header>
+                        <ExpansionCard.Content>
+                            <EndretTilsynTabell dagerMedEndretTilsyn={dagerMedEndretTilsyn} />
+                        </ExpansionCard.Content>
+                    </ExpansionCard>
+                );
+            })}
         </VStack>
     );
 };
