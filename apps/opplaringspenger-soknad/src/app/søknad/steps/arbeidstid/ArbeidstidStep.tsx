@@ -1,6 +1,7 @@
 import { VStack } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { useState } from 'react';
 
@@ -14,6 +15,7 @@ import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { getSøknadStepRoute } from '../../../utils/søknadRoutesUtils';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -71,7 +73,7 @@ const ArbeidstidStep = () => {
     const { text, intl } = appIntl;
 
     const {
-        state: { søknadsdata, tempFormData },
+        state: { søknadsdata, tempFormData, søknadRoute },
         dispatch,
     } = useSøknadContext();
     const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialogType | undefined>(undefined);
@@ -80,6 +82,14 @@ const ArbeidstidStep = () => {
 
     const stepId = StepId.ARBEIDSTID;
     const step = getSøknadStepConfigForStep(stepId, søknadsdata);
+
+    useEffectOnce(() => {
+        /** Ekstralagring for å sørge for at riktig route lagres på mellomlagringen (pga steget ikke alltid er med) */
+        if (søknadRoute !== getSøknadStepRoute(stepId)) {
+            dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(stepId)));
+            dispatch(actionsCreator.requestLagreSøknad());
+        }
+    });
 
     const { goBack } = useStepNavigation(step);
 

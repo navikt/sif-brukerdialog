@@ -44,7 +44,7 @@ const App = () => {
                 </Box>
             )}
             <QueryClientProvider client={queryClient}>
-                <div className="demoMode">
+                <div className={__IS_GITHUB_PAGES__ ? 'demoMode' : undefined}>
                     <SoknadApplication
                         appVersion={APP_VERSION}
                         appKey={OpplæringspengerApp.key}
