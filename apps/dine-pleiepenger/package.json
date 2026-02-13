@@ -62,7 +62,7 @@
         "@types/react": "19.2.13",
         "classnames": "2.5.1",
         "dayjs": "1.11.19",
-        "eslint": "10.0.0",
+        "eslint": "9.39.2",
         "eslint-plugin-storybook": "10.2.7",
         "formik": "2.4.9",
         "node-fetch": "3.3.2",
