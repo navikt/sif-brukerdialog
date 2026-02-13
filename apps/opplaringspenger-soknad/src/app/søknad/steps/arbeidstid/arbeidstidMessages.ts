@@ -1,8 +1,10 @@
 const nb = {
     'arbeidIPeriode.StepInfo.1':
-        'Her fyller du ut om du har hatt fullt fravær eller jobber noe de dagene du er på kurs eller har opplæring.',
+        'Her skal du svare på hvor mye fravær fra jobb du har i perioden du søker om, altså hvor mye du er borte fra jobb mens du er på opplæring.',
     'arbeidIPeriode.StepInfo.2':
-        'Hvis du søker for første gang, eller du har hatt et opphold i minst fire uker, vil vi kontakte arbeidsgivere som du har helt eller delvis fravær fra for å innhente inntektsmelding.',
+        'Du får kun dekket tiden du bruker på opplæringen, og tiden du bruker på reise. Det vil for eksempel si at hvis opplæringen varer i fire timer, og du bruker to timer på å reise til og fra opplæringen, vil du kun få dekket til sammen seks timer av arbeidsdagen, og ikke hele arbeidsdagen.',
+    'arbeidIPeriode.StepInfo.3':
+        'Hvis du søker for første gang, eller hvis du har hatt et opphold i opplæringspengene i minst fire uker, kontakter vi arbeidsgiverne som du har fravær fra, for å hente inn inntektsmelding.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
     'arbeidIPeriode.jobberIPerioden.spm': 'Jobber du noe {hvor} i søknadsperioden?',
@@ -40,9 +42,11 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'arbeidIPeriode.StepInfo.1':
-        'Her fyller du ut om du har hatt fullt fråvær eller jobbar noko dei dagane du er på kurs eller har opplæring.',
+        'Her skal du svare på hvor mye fravær fra jobb du har i perioden du søker om, altså hvor mye du er borte fra jobb mens du er på opplæring.',
     'arbeidIPeriode.StepInfo.2':
-        'Viss du søkjer for fyrste gong, eller du har hatt eit opphald i minst fire veker, vil vi kontakte arbeidsgjevarar som du har heilt eller delvis fråvær frå for å innhente inntektsmelding.',
+        'Du får kun dekket tiden du bruker på opplæringen, og tiden du bruker på reise. Det vil for eksempel si at hvis opplæringen varer i fire timer, og du bruker to timer på å reise til og fra opplæringen, vil du kun få dekket til sammen seks timer av arbeidsdagen, og ikke hele arbeidsdagen.',
+    'arbeidIPeriode.StepInfo.3':
+        'Hvis du søker for første gang, eller hvis du har hatt et opphold i opplæringspengene i minst fire uker, kontakter vi arbeidsgiverne som du har fravær fra, for å hente inn inntektsmelding.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
     'arbeidIPeriode.jobberIPerioden.spm': 'Jobbar du noko {hvor} i søknadsperioden?',

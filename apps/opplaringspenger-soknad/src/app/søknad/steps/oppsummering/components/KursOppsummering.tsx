@@ -1,13 +1,12 @@
 import { FormSummary, HStack, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
-import { DurationText, JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import {
     capsFirstCharacter,
     dateFormatter,
     dateRangeFormatter,
     ISODateRangeToDateRange,
     ISODateToDate,
-    ISODurationToDuration,
 } from '@navikt/sif-common-utils';
 
 import { AppText, useAppIntl } from '../../../../i18n';
@@ -76,22 +75,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                             <List.Item key={kursdag.dato}>
                                                 <div>
                                                     <span>{dateFormatter.full(ISODateToDate(kursdag.dato))}</span>
-                                                </div>{' '}
-                                                Kurs:{' '}
-                                                <DurationText
-                                                    fullText={false}
-                                                    duration={ISODurationToDuration(kursdag.tidKurs)}
-                                                />
-                                                {kursdag.tidReise ? (
-                                                    <>
-                                                        {' '}
-                                                        Reise:{' '}
-                                                        <DurationText
-                                                            fullText={false}
-                                                            duration={ISODurationToDuration(kursdag.tidReise)}
-                                                        />
-                                                    </>
-                                                ) : null}
+                                                </div>
                                             </List.Item>
                                         );
                                     })}

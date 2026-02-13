@@ -1,6 +1,7 @@
 import { VStack } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { useState } from 'react';
 
@@ -14,6 +15,7 @@ import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { getSøknadStepRoute } from '../../../utils/søknadRoutesUtils';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -23,7 +25,6 @@ import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
 import { getArbeidstidSøknadsdataFromFormValues, getArbeidstidStepInitialValues } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
-import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import {
     cleanArbeidIPerioder,
     getAlleArbeidIPerioder,
@@ -31,6 +32,7 @@ import {
     harFraværAlleDager,
     harKunValgtJobberSomNormalt,
 } from './form-parts/arbeidstidUtils';
+import FraværIPeriodeSpørsmål from './form-parts/fravær-i-periode-spørsmål/FraværIPeriodeSpørsmål';
 import { ArbeidsforholdType } from './form-parts/types';
 
 export enum ArbeidsaktivitetType {
@@ -71,7 +73,7 @@ const ArbeidstidStep = () => {
     const { text, intl } = appIntl;
 
     const {
-        state: { søknadsdata, tempFormData },
+        state: { søknadsdata, tempFormData, søknadRoute },
         dispatch,
     } = useSøknadContext();
     const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialogType | undefined>(undefined);
@@ -80,6 +82,14 @@ const ArbeidstidStep = () => {
 
     const stepId = StepId.ARBEIDSTID;
     const step = getSøknadStepConfigForStep(stepId, søknadsdata);
+
+    useEffectOnce(() => {
+        /** Ekstralagring for å sørge for at riktig route lagres på mellomlagringen (pga steget ikke alltid er med) */
+        if (søknadRoute !== getSøknadStepRoute(stepId)) {
+            dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(stepId)));
+            dispatch(actionsCreator.requestLagreSøknad());
+        }
+    });
 
     const { goBack } = useStepNavigation(step);
 
@@ -226,7 +236,11 @@ const ArbeidstidStep = () => {
                                     <p>
                                         <AppText id="arbeidIPeriode.StepInfo.2" />
                                     </p>
+                                    <p>
+                                        <AppText id="arbeidIPeriode.StepInfo.3" />
+                                    </p>
                                 </FormLayout.Guide>
+
                                 <FormLayout.Sections>
                                     {ansattArbeidstid && ansattArbeidstid.length > 0 && (
                                         <VStack gap="space-24">
@@ -235,7 +249,7 @@ const ArbeidstidStep = () => {
                                                     <FormLayout.Section
                                                         title={arbeidsforhold.navn}
                                                         key={arbeidsforhold.organisasjonsnummer}>
-                                                        <ArbeidIPeriodeSpørsmål
+                                                        <FraværIPeriodeSpørsmål
                                                             arbeidsstedNavn={arbeidsforhold.navn}
                                                             arbeidsforholdType={ArbeidsforholdType.ANSATT}
                                                             arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
@@ -256,7 +270,7 @@ const ArbeidstidStep = () => {
                                     )}
                                     {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
                                         <FormLayout.Section title={text('arbeidIPeriode.FrilansLabel')}>
-                                            <ArbeidIPeriodeSpørsmål
+                                            <FraværIPeriodeSpørsmål
                                                 arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.frilansoppdrag')}
                                                 arbeidsforholdType={ArbeidsforholdType.FRILANSER}
                                                 arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
@@ -274,7 +288,7 @@ const ArbeidstidStep = () => {
                                         søknadsperiode &&
                                         periodeSomSelvstendigISøknadsperiode && (
                                             <FormLayout.Section title={text('arbeidIPeriode.SNLabel')}>
-                                                <ArbeidIPeriodeSpørsmål
+                                                <FraværIPeriodeSpørsmål
                                                     arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
                                                     arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
                                                     jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}

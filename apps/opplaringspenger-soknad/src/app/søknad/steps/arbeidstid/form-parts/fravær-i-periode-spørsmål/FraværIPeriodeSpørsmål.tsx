@@ -47,7 +47,7 @@ interface Props extends ArbeidstidRegistrertLogProps {
     onArbeidstidVariertChange: () => void;
 }
 
-const ArbeidIPeriodeSpørsmål = ({
+const FraværIPeriodeSpørsmål = ({
     parentFieldName,
     jobberNormaltTimer,
     arbeidIPeriode,
@@ -121,7 +121,7 @@ const ArbeidIPeriodeSpørsmål = ({
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
                         <AppText
-                            id="arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader"
+                            id="fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader"
                             values={{ numDatesInMonthWithDuration, enabledDatesInMonth }}
                         />
                     </Tag>
@@ -134,7 +134,7 @@ const ArbeidIPeriodeSpørsmål = ({
             <>
                 <Heading size="small" level="3" spacing={true}>
                     <AppText
-                        id="arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion"
+                        id="fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion"
                         values={{ date: dayjs(month).format('MMMM YYYY') }}
                     />
                 </Heading>
@@ -149,7 +149,7 @@ const ArbeidIPeriodeSpørsmål = ({
             {!skjulJobberNormaltValg && (
                 <RadioGroup
                     name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
-                    legend={text(`arbeidIPeriode.jobberIPerioden.spm`, intlValues)}
+                    legend={text(`fraværIPeriode.jobberIPerioden.spm`, intlValues)}
                     validate={getJobberIPeriodenValidator(intlValues)}
                     radios={getJobberIPeriodenRadios(appIntl, skjulJobberNormaltValg)}
                 />
@@ -159,13 +159,13 @@ const ArbeidIPeriodeSpørsmål = ({
                     <InputGroup
                         id={`${fieldName}_group`}
                         name={`${fieldName}_group` as any}
-                        legend={text('arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}
+                        legend={text('fraværIPeriode.enkeltdager_gruppe.legend', intlValues)}
                         validate={() => {
                             const { jobberIPerioden: jip, enkeltdager: ed = {} } = arbeidIPeriode || {};
                             if (jip === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
                                 if (durationToDecimalDuration(summarizeDateDurationMap(ed)) === 0) {
                                     return {
-                                        key: 'arbeidIPeriode.validation.ingenTidRegistrert',
+                                        key: 'fraværIPeriode.validation.ingenTidRegistrert',
                                         values: intlValues,
                                         keepKeyUnaltered: true,
                                     };
@@ -176,7 +176,7 @@ const ArbeidIPeriodeSpørsmål = ({
                         description={
                             <Box paddingBlock="space-8 space-0">
                                 <Alert variant="info" inline={true}>
-                                    <AppText id="arbeidIPeriode.enkeltdager_gruppe.description" />
+                                    <AppText id="fraværIPeriode.enkeltdager_gruppe.description" />
                                 </Alert>
                             </Box>
                         }>
@@ -189,10 +189,10 @@ const ArbeidIPeriodeSpørsmål = ({
                                 renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
                                 accordionOpen={hasEnkeltdagerMedFeil}
                                 validateDate={(value: any, date: Date) => {
-                                    const error = getTimeValidator()(value);
+                                    const error = getTimeValidator({ min: { hours: 0, minutes: 0 } })(value);
                                     if (error) {
                                         return {
-                                            key: `arbeidIPeriode.validation.timerDag.${error}`,
+                                            key: `fraværIPeriode.validation.timerDag.${error}`,
                                             keepKeyUnaltered: true,
                                             values: {
                                                 ...intlValues,
@@ -213,18 +213,18 @@ const ArbeidIPeriodeSpørsmål = ({
 
 const getJobberIPeriodenRadios = ({ text }: AppIntlShape, skjulJobberNormaltValg: boolean) => [
     {
-        label: text('arbeidIPeriode.jobberIPerioden.jobberIkke'),
+        label: text('fraværIPeriode.jobberIPerioden.jobberIkke'),
         value: JobberIPeriodeSvar.heltFravær,
     },
     {
-        label: text('arbeidIPeriode.jobberIPerioden.jobberRedusert'),
+        label: text('fraværIPeriode.jobberIPerioden.jobberRedusert'),
         value: JobberIPeriodeSvar.redusert,
     },
     ...(skjulJobberNormaltValg
         ? []
         : [
               {
-                  label: text('arbeidIPeriode.jobberIPerioden.jobberVanlig'),
+                  label: text('fraværIPeriode.jobberIPerioden.jobberVanlig'),
                   value: JobberIPeriodeSvar.somVanlig,
               },
           ]),
@@ -234,4 +234,4 @@ const getDagerSomSkalDisables = (dateRange: DateRange, valgteDatoer: Date[]): Da
     return getDatesInDateRange(dateRange).filter((d) => isDateInDates(d, valgteDatoer) === false);
 };
 
-export default ArbeidIPeriodeSpørsmål;
+export default FraværIPeriodeSpørsmål;
