@@ -22,7 +22,7 @@ interface Props {
 
 const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjentAktivitet }: Props) => {
     return (
-        <Box marginBlock={type !== ArbeidsaktivitetType.arbeidstaker ? 'space-16 space-0' : undefined}>
+        <Box>
             <div className="arbeidsaktivitetBlockHeader">
                 <div className="arbeidsaktivitetBlockHeader__icon">
                     <Buildings3Icon role="presentation" aria-hidden={true} />

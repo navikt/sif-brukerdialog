@@ -36,7 +36,7 @@ const ArbeidsaktivitetBlock = ({
         );
     };
     return renderAsExpansionCard ? (
-        <ExpansionCard aria-label={navn} defaultOpen={expansionCardDefaultOpen}>
+        <ExpansionCard aria-label={navn} defaultOpen={expansionCardDefaultOpen} size="small">
             <ExpansionCard.Header>{renderHeader()}</ExpansionCard.Header>
             <ExpansionCard.Content data-color="accent">{children}</ExpansionCard.Content>
         </ExpansionCard>
