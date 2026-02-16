@@ -13,7 +13,7 @@ const LovbestemtFerieOppsummering = ({ lovbestemtFerie }: Props) => {
     const { locale } = useIntl();
     const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieOppsummeringInfo(lovbestemtFerie);
     return (
-        <VStack gap="space-32">
+        <VStack gap="space-16">
             {perioderLagtTil.length > 0 && (
                 <FormSummary>
                     <FormSummary.Header>
