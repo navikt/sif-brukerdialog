@@ -1,14 +1,12 @@
-import IkkeAnsattMelding from '@app/components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@app/hooks';
 import { AppText, useAppIntl } from '@app/i18n';
 import { getApiDataFromSøknadsdata } from '@app/utils';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Button, ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { DurationText, FormLayout, JaNeiSvar, SummarySection } from '@navikt/sif-common-ui';
-import { ISODurationToDuration } from '@navikt/sif-common-utils';
+import { FormLayout, SummarySection } from '@navikt/sif-common-ui';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffect, useRef } from 'react';
 
@@ -17,6 +15,7 @@ import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
+import NyttArbeidsforholdSummary from './nytt-arbeidsforhold/NyttArbeidsforholdSummary';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import TilsynsordningOppsummering from './tilsynsordning/TilsynsordningOppsummering';
 
@@ -91,56 +90,10 @@ const OppsummeringStep = () => {
             </FormLayout.Guide>
             <VStack gap="space-48">
                 {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
-                    <SummarySection header={text('oppsummeringStep.nyttArbeidsforhold.tittel')}>
-                        <VStack gap="space-40">
-                            {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
-                                const arbeidsforhold = ukjenteArbeidsforhold.find(
-                                    (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
-                                );
-
-                                if (!arbeidsforhold) {
-                                    return;
-                                }
-                                const getTestKey = (key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
-                                return (
-                                    <VStack gap="space-16" key={arbeidsgiver.key}>
-                                        <Heading level="3" size="small">
-                                            {arbeidsgiver.navn}
-                                        </Heading>
-                                        <VStack gap="space-4">
-                                            <Heading level="4" size="xsmall">
-                                                <AppText
-                                                    id="oppsummeringStep.arbeidsgiver.erAnsatt"
-                                                    values={{ arbeidsgivernavn: arbeidsgiver.navn }}
-                                                />
-                                            </Heading>
-                                            <div data-testid={getTestKey('erAnsatt')}>
-                                                <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
-                                            </div>
-                                        </VStack>
-                                        {arbeidsforhold.erAnsatt === false && <IkkeAnsattMelding />}
-                                        {arbeidsforhold.erAnsatt && (
-                                            <VStack gap="space-4">
-                                                <Heading level="4" size="xsmall">
-                                                    <AppText
-                                                        id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
-                                                        values={{ arbeidsgivernavn: arbeidsgiver.navn }}
-                                                    />
-                                                </Heading>
-                                                <div data-testid={getTestKey('timerPerUke')}>
-                                                    <DurationText
-                                                        duration={ISODurationToDuration(
-                                                            arbeidsforhold.normalarbeidstid.timerPerUke,
-                                                        )}
-                                                    />
-                                                </div>
-                                            </VStack>
-                                        )}
-                                    </VStack>
-                                );
-                            })}
-                        </VStack>
-                    </SummarySection>
+                    <NyttArbeidsforholdSummary
+                        arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
+                        ukjenteArbeidsforhold={ukjenteArbeidsforhold}
+                    />
                 )}
 
                 {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
