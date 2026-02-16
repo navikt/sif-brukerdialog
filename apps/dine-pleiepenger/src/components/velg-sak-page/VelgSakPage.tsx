@@ -47,7 +47,7 @@ const VelgSakPage = ({ sakerMetadata }: Props) => {
                     {fagsakOpprettetTidspunkt ? (
                         <div>
                             <Tag variant="moderate" data-color="info" size="small">
-                                Opprettet {dateFormatter.compact(fagsakOpprettetTidspunkt)}
+                                Opprettet {fagsakOpprettetTidspunkt.getFullYear()}
                             </Tag>
                         </div>
                     ) : null}
