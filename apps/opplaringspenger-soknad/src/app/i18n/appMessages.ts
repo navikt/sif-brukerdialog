@@ -5,7 +5,6 @@ import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedT
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
-import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
 import { fraværMessages } from '../søknad/steps/arbeidstid/fraværMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
@@ -28,7 +27,6 @@ const nb = {
     ...calendarGridMessages.nb,
     ...dagerMedTidMessages.nb,
     ...kursperiodeMessages.nb,
-    ...arbeidstidMessages.nb,
     ...omBarnetFormIntlMessages.nb,
     ...kursdagMessages.nb,
     ...fraværMessages.nb,
@@ -223,7 +221,6 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     ...arbeidssituasjonMessages.nn,
-    ...arbeidstidMessages.nn,
     ...arbeidstidPeriodeMessages.nn,
     ...calendarGridMessages.nn,
     ...dagerMedTidMessages.nn,

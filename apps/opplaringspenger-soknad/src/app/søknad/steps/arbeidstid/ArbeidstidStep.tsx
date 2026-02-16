@@ -1,4 +1,4 @@
-import { VStack } from '@navikt/ds-react';
+import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -230,15 +230,15 @@ const ArbeidstidStep = () => {
                                 )}
 
                                 <FormLayout.Guide>
-                                    <p>
-                                        <AppText id="arbeidIPeriode.StepInfo.1" />
-                                    </p>
-                                    <p>
-                                        <AppText id="arbeidIPeriode.StepInfo.2" />
-                                    </p>
-                                    <p>
-                                        <AppText id="arbeidIPeriode.StepInfo.3" />
-                                    </p>
+                                    <BodyLong spacing>
+                                        <AppText id="fraværIPeriode.StepInfo.1" />
+                                    </BodyLong>
+                                    <BodyLong spacing>
+                                        <AppText id="fraværIPeriode.StepInfo.2" />
+                                    </BodyLong>
+                                    <ReadMore header={text('fraværIPeriode.StepInfo.3.header')}>
+                                        <AppText id="fraværIPeriode.StepInfo.3.text" />
+                                    </ReadMore>
                                 </FormLayout.Guide>
 
                                 <FormLayout.Sections>
@@ -269,9 +269,9 @@ const ArbeidstidStep = () => {
                                         </VStack>
                                     )}
                                     {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
-                                        <FormLayout.Section title={text('arbeidIPeriode.FrilansLabel')}>
+                                        <FormLayout.Section title={text('fraværIPeriode.FrilansLabel')}>
                                             <FraværIPeriodeSpørsmål
-                                                arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.frilansoppdrag')}
+                                                arbeidsstedNavn={text('fraværIPeriode.arbeidstidSted.frilansoppdrag')}
                                                 arbeidsforholdType={ArbeidsforholdType.FRILANSER}
                                                 arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
                                                 jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
@@ -287,9 +287,9 @@ const ArbeidstidStep = () => {
                                     {selvstendigArbeidstid &&
                                         søknadsperiode &&
                                         periodeSomSelvstendigISøknadsperiode && (
-                                            <FormLayout.Section title={text('arbeidIPeriode.SNLabel')}>
+                                            <FormLayout.Section title={text('fraværIPeriode.SNLabel')}>
                                                 <FraværIPeriodeSpørsmål
-                                                    arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
+                                                    arbeidsstedNavn={text('fraværIPeriode.arbeidstidSted.sn')}
                                                     arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
                                                     jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
                                                     arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
