@@ -12,9 +12,11 @@ const EndretTilsynTabell = ({ dagerMedEndretTilsyn }: Props) => {
     return (
         <Table>
             <Table.Header>
-                <Table.HeaderCell>Dato</Table.HeaderCell>
-                <Table.HeaderCell>Endret fra</Table.HeaderCell>
-                <Table.HeaderCell>Endret til</Table.HeaderCell>
+                <Table.Row>
+                    <Table.HeaderCell>Dato</Table.HeaderCell>
+                    <Table.HeaderCell>Endret fra</Table.HeaderCell>
+                    <Table.HeaderCell>Endret til</Table.HeaderCell>
+                </Table.Row>
             </Table.Header>
             <Table.Body>
                 {dagerMedEndretTilsyn.map((dag) => (
