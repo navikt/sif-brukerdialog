@@ -20,6 +20,7 @@ import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 import { relocateToWelcomePage } from './utils/navigationUtils';
+import UxSignalsPage from './uxsignals/UxSignalsPage';
 
 const {
     PUBLIC_PATH,
@@ -72,6 +73,7 @@ const App = () => {
                                         />
                                     }
                                 />,
+                                <Route path="/uxsignals" key="ukjent" element={<UxSignalsPage />} />,
                                 <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                             ]}
                         />
