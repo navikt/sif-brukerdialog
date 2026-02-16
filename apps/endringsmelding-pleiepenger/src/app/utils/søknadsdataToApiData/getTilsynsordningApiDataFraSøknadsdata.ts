@@ -44,7 +44,7 @@ const createPeriodeKey = (startDate: string, endDate: string): string => `${star
 export const dateDurationMapToISODateRangeMap = (enkeltdager: DateDurationMap): ISODateRangeMap<ISODuration> => {
     const perioder: ISODateRangeMap<ISODuration> = {};
     const sortedDates = Object.keys(enkeltdager).sort();
-    for (let i = 1; i < sortedDates.length; i++) {
+    for (let i = 0; i < sortedDates.length; i++) {
         const currentDate = sortedDates[i];
         const currentDuration = durationToISODuration(enkeltdager[currentDate]);
         perioder[createPeriodeKey(currentDate, currentDate)] = currentDuration;

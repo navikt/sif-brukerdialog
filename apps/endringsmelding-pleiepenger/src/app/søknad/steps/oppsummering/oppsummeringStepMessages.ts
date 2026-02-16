@@ -26,6 +26,7 @@ const nb = {
 
     'oppsummeringStep.tilsynsordning.tittel': 'Endringer i omsorgstilbud',
     'oppsummeringStep.tilsynsordning.ingenEndringer': 'Det er ikke registrert noen endringer i omsorgstilbud',
+    'oppsummeringStep.tilsynsordning.dagerEndret': ' - {antall} {antall, plural, one {dag} other {dager}} endret',
 
     'oppsummeringStep.forrige': 'Forrige steg',
     'oppsummeringStep.forrige.ariaLabel': 'Pil venstre',
