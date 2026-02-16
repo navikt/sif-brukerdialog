@@ -1,4 +1,4 @@
-import { FormSummary, VStack } from '@navikt/ds-react';
+import { FormSummary, Heading, VStack } from '@navikt/ds-react';
 import { DurationText, JaNeiSvar } from '@navikt/sif-common-ui';
 import { ISODurationToDuration } from '@navikt/sif-common-utils';
 
@@ -28,59 +28,59 @@ const NyttArbeidsforholdSummary = ({ arbeidsgivereIkkeISak, ukjenteArbeidsforhol
     }
 
     return (
-        <FormSummary>
-            <FormSummary.Header>
-                <FormSummary.Heading level="2">
-                    <AppText id="oppsummeringStep.nyttArbeidsforhold.tittel" />
-                </FormSummary.Heading>
-            </FormSummary.Header>
-            <FormSummary.Answers>
-                {nyeArbeidsforhold.map(({ arbeidsgiver, arbeidsforhold }) => (
-                    <FormSummary.Answer key={arbeidsgiver.key}>
-                        <FormSummary.Label>{arbeidsgiver.navn}</FormSummary.Label>
-                        <FormSummary.Value>
-                            <FormSummary.Answers>
-                                <FormSummary.Answer>
-                                    <FormSummary.Label>
-                                        <AppText
-                                            id="oppsummeringStep.arbeidsgiver.erAnsatt"
-                                            values={{ arbeidsgivernavn: arbeidsgiver.navn }}
+        <VStack gap="space-16">
+            <Heading level="2" size="medium">
+                <AppText id="oppsummeringStep.nyttArbeidsforhold.tittel" />
+            </Heading>
+            {nyeArbeidsforhold.map(({ arbeidsgiver, arbeidsforhold }) => (
+                <FormSummary key={arbeidsgiver.key}>
+                    <FormSummary.Header>
+                        <FormSummary.Heading level="3">
+                            <Heading as="span" size="small">
+                                {arbeidsgiver.navn}
+                            </Heading>
+                        </FormSummary.Heading>
+                    </FormSummary.Header>
+                    <FormSummary.Answers>
+                        <FormSummary.Answer>
+                            <FormSummary.Label>
+                                <AppText
+                                    id="oppsummeringStep.arbeidsgiver.erAnsatt"
+                                    values={{ arbeidsgivernavn: arbeidsgiver.navn }}
+                                />
+                            </FormSummary.Label>
+                            <FormSummary.Value>
+                                <VStack gap="space-12">
+                                    <div data-testid={getTestKey(arbeidsgiver, 'erAnsatt')}>
+                                        <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
+                                    </div>
+                                    {arbeidsforhold.erAnsatt === false && <IkkeAnsattMelding />}
+                                </VStack>
+                            </FormSummary.Value>
+                        </FormSummary.Answer>
+                        {arbeidsforhold.erAnsatt && (
+                            <FormSummary.Answer>
+                                <FormSummary.Label>
+                                    <AppText
+                                        id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
+                                        values={{ arbeidsgivernavn: arbeidsgiver.navn }}
+                                    />
+                                </FormSummary.Label>
+                                <FormSummary.Value>
+                                    <div data-testid={getTestKey(arbeidsgiver, 'timerPerUke')}>
+                                        <DurationText
+                                            duration={ISODurationToDuration(
+                                                arbeidsforhold.normalarbeidstid.timerPerUke,
+                                            )}
                                         />
-                                    </FormSummary.Label>
-                                    <FormSummary.Value>
-                                        <VStack gap="space-12">
-                                            <div data-testid={getTestKey(arbeidsgiver, 'erAnsatt')}>
-                                                <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
-                                            </div>
-                                            {arbeidsforhold.erAnsatt === false && <IkkeAnsattMelding />}
-                                        </VStack>
-                                    </FormSummary.Value>
-                                </FormSummary.Answer>
-                                {arbeidsforhold.erAnsatt && (
-                                    <FormSummary.Answer>
-                                        <FormSummary.Label>
-                                            <AppText
-                                                id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
-                                                values={{ arbeidsgivernavn: arbeidsgiver.navn }}
-                                            />
-                                        </FormSummary.Label>
-                                        <FormSummary.Value>
-                                            <div data-testid={getTestKey(arbeidsgiver, 'timerPerUke')}>
-                                                <DurationText
-                                                    duration={ISODurationToDuration(
-                                                        arbeidsforhold.normalarbeidstid.timerPerUke,
-                                                    )}
-                                                />
-                                            </div>
-                                        </FormSummary.Value>
-                                    </FormSummary.Answer>
-                                )}
-                            </FormSummary.Answers>
-                        </FormSummary.Value>
-                    </FormSummary.Answer>
-                ))}
-            </FormSummary.Answers>
-        </FormSummary>
+                                    </div>
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                        )}
+                    </FormSummary.Answers>
+                </FormSummary>
+            ))}
+        </VStack>
     );
 };
 

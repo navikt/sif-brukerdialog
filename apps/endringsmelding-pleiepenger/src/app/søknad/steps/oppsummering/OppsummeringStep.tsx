@@ -88,6 +88,7 @@ const OppsummeringStep = () => {
                     <AppText id="oppsummeringStep.guide" />
                 </p>
             </FormLayout.Guide>
+
             <VStack gap="space-48">
                 {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
                     <NyttArbeidsforholdSummary
@@ -97,25 +98,12 @@ const OppsummeringStep = () => {
                 )}
 
                 {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
-                    <SummarySection header={text('oppsummeringStep.arbeidstid.tittel')}>
-                        {arbeidstid && arbeidstidErEndret ? (
-                            <>
-                                <ArbeidstidOppsummering
-                                    arbeidstid={arbeidstid}
-                                    arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
-                                />
-                                {!harGyldigArbeidstid && (
-                                    <Alert variant="error">
-                                        <AppText id="oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig" />
-                                    </Alert>
-                                )}
-                            </>
-                        ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.arbeidstid.ingenEndringer" />
-                            </Alert>
-                        )}
-                    </SummarySection>
+                    <ArbeidstidOppsummering
+                        arbeidstid={arbeidstid}
+                        arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
+                        arbeidstidErEndret={arbeidstidErEndret}
+                        harGyldigArbeidstid={harGyldigArbeidstid}
+                    />
                 )}
                 {valgteEndringer.lovbestemtFerie && (
                     <SummarySection header={text('oppsummeringStep.ferie.tittel')}>

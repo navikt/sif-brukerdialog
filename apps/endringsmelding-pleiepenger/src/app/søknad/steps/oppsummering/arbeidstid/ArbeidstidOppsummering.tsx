@@ -1,67 +1,35 @@
-import { AppText, useAppIntl } from '@app/i18n';
-import ArbeidstidUker from '@app/modules/arbeidstid-uker/ArbeidstidUker';
-import { Arbeidsgiver, ArbeidstidApiData } from '@app/types';
-import { Heading, VStack } from '@navikt/ds-react';
+import { Alert, Heading, VStack } from '@navikt/ds-react';
 
-import { oppsummeringStepUtils } from '../oppsummeringStepUtils';
-import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
+import { AppText } from '../../../../i18n';
+import { Arbeidsgiver, ArbeidstidApiData } from '../../../../types';
+import ArbeidstidArbeidsforholdOppsummering from './ArbeidstidArbeidsforholdOppsummering';
 
 interface Props {
-    arbeidstid: ArbeidstidApiData;
+    arbeidstid?: ArbeidstidApiData;
     arbeidsgivere: Arbeidsgiver[];
+    arbeidstidErEndret: boolean;
+    harGyldigArbeidstid: boolean;
 }
 
-const ArbeidstidOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {
-    const { text } = useAppIntl();
-    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
-    const arbeidstidKolonneTittel = text('oppsummeringStep.arbeidstid.kolonne.endretArbeidstid');
-
-    const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === false);
-    const ukjenteArbeidsforhold = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === true);
+const ArbeidstidOppsummering = ({ arbeidsgivere, arbeidstid, arbeidstidErEndret, harGyldigArbeidstid }: Props) => {
     return (
-        <VStack gap="space-32">
-            {ukjenteArbeidsforhold &&
-                Object.keys(ukjenteArbeidsforhold).map((key) => (
-                    <ArbeidstidArbeidstakerOppsummering
-                        key={key}
-                        arbeidstaker={ukjenteArbeidsforhold[key]}
-                        arbeidsgivere={arbeidsgivere}
-                        arbeidstidKolonneTittel={text('oppsummeringStep.arbeidstid.kolonne.iPerioden')}
-                    />
-                ))}
-            {eksisterendeArbeidstakere &&
-                Object.keys(eksisterendeArbeidstakere).map((key) => (
-                    <ArbeidstidArbeidstakerOppsummering
-                        key={key}
-                        arbeidstaker={eksisterendeArbeidstakere[key]}
-                        arbeidsgivere={arbeidsgivere}
-                    />
-                ))}
-            {frilanserArbeidstidInfo && (
+        <VStack gap="space-16">
+            <Heading level="2" size="medium">
+                <AppText id="oppsummeringStep.arbeidstid.tittel" />
+            </Heading>
+            {arbeidstid && arbeidstidErEndret ? (
                 <>
-                    <Heading level="3" size="small">
-                        <AppText id="oppsummeringStep.arbeidstid.frilanser.tittel" />
-                    </Heading>
-
-                    <ArbeidstidUker
-                        listItems={oppsummeringStepUtils.getArbeidstidUkerItems(frilanserArbeidstidInfo.perioder)}
-                        arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                    />
+                    <ArbeidstidArbeidsforholdOppsummering arbeidstid={arbeidstid} arbeidsgivere={arbeidsgivere} />
+                    {!harGyldigArbeidstid && (
+                        <Alert variant="error">
+                            <AppText id="oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig" />
+                        </Alert>
+                    )}
                 </>
-            )}
-            {selvstendigNæringsdrivendeArbeidstidInfo && (
-                <>
-                    <Heading level="3" size="small">
-                        <AppText id="oppsummeringStep.arbeidstid.sn.tittel" />
-                    </Heading>
-
-                    <ArbeidstidUker
-                        listItems={oppsummeringStepUtils.getArbeidstidUkerItems(
-                            selvstendigNæringsdrivendeArbeidstidInfo.perioder,
-                        )}
-                        arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                    />
-                </>
+            ) : (
+                <Alert variant="info">
+                    <AppText id="oppsummeringStep.arbeidstid.ingenEndringer" />
+                </Alert>
             )}
         </VStack>
     );
