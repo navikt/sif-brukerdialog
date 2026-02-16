@@ -6,6 +6,7 @@ import { useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
+import UXArbeidstidTilFravær from '../../uxsignals/UXArbeidstidTilFravær';
 import OmSøknaden from './OmSøknaden';
 import VelkommenGuideContent from './VelkommenGuideContent';
 
@@ -32,6 +33,7 @@ const VelkommenPage = () => {
                 content: <VelkommenGuideContent />,
             }}>
             <OmSøknaden />
+            <UXArbeidstidTilFravær />
         </SoknadVelkommenPage>
     );
 };
