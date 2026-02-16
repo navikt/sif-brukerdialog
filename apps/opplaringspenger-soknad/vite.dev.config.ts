@@ -29,6 +29,7 @@ export default defineConfig({
     ],
     define: {
         'import.meta.env.INJECT_DECORATOR': true,
+        'import.meta.env.ENABLED_UXSIGNALS': true,
     },
     server: {
         port: 8080,
