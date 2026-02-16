@@ -3,7 +3,7 @@ import { useUxSignalsLoader, UxSignalsPanel } from '@navikt/sif-common-core-ds';
 const UXArbeidstidTilFravær = () => {
     useUxSignalsLoader(true);
 
-    if (!import.meta.env.INJECT_DECORATOR) {
+    if (import.meta.env.IS_PLAYWRIGHT) {
         return;
     }
 

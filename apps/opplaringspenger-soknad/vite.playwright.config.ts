@@ -35,7 +35,7 @@ export default defineConfig({
     ],
     define: {
         'import.meta.env.INJECT_DECORATOR': false,
-        'import.meta.env.ENABLED_UXSIGNALS': false,
+        'import.meta.env.IS_PLAYWRIGHT': true,
     },
     server: {
         port: 8080,

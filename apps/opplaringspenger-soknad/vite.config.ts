@@ -33,10 +33,6 @@ export default defineConfig({
             },
         },
     },
-    define: {
-        'import.meta.env.ENABLED_UXSIGNALS': true,
-    },
-
     css: {
         preprocessorOptions: {
             scss: {

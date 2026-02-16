@@ -2,7 +2,7 @@
 
 interface ImportMetaEnv {
     readonly INJECT_DECORATOR: boolean;
-    readonly ENABLED_UXSIGNALS: boolean;
+    readonly IS_PLAYWRIGHT: boolean | undefined;
 }
 
 interface ImportMeta {
