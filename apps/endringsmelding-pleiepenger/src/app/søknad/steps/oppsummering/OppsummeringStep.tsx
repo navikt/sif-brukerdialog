@@ -2,11 +2,11 @@ import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@app/h
 import { AppText, useAppIntl } from '@app/i18n';
 import { getApiDataFromSøknadsdata } from '@app/utils';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Button, ErrorSummary, VStack } from '@navikt/ds-react';
+import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { FormLayout, SummarySection } from '@navikt/sif-common-ui';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffect, useRef } from 'react';
 
@@ -106,7 +106,10 @@ const OppsummeringStep = () => {
                     />
                 )}
                 {valgteEndringer.lovbestemtFerie && (
-                    <SummarySection header={text('oppsummeringStep.ferie.tittel')}>
+                    <VStack gap="space-16">
+                        <Heading level="2" size="medium">
+                            <AppText id="oppsummeringStep.ferie.tittel" />
+                        </Heading>
                         {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
                             <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
                         ) : (
@@ -114,10 +117,13 @@ const OppsummeringStep = () => {
                                 <AppText id="oppsummeringStep.ferie.ingenEndringer" />
                             </Alert>
                         )}
-                    </SummarySection>
+                    </VStack>
                 )}
                 {valgteEndringer.tilsynsordning && (
-                    <SummarySection header={text('oppsummeringStep.tilsynsordning.tittel')}>
+                    <VStack gap="space-16">
+                        <Heading level="2" size="medium">
+                            <AppText id="oppsummeringStep.tilsynsordning.tittel" />
+                        </Heading>
                         {tilsynsordning !== undefined && tilsynsordningErEndret ? (
                             <TilsynsordningOppsummering
                                 tilsynsordning={tilsynsordning}
@@ -128,7 +134,7 @@ const OppsummeringStep = () => {
                                 <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
                             </Alert>
                         )}
-                    </SummarySection>
+                    </VStack>
                 )}
                 {harIngenEndringer ? (
                     <div>
