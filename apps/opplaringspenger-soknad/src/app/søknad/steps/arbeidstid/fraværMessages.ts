@@ -10,7 +10,7 @@ const nb = {
     'fraværIPeriode.SNLabel': 'Selvstendig næringsdrivende',
     'fraværIPeriode.jobberIPerioden.spm': 'Hvor mye fravær har du fra jobb {hvor} på grunn av opplæring og reisetid?',
     'fraværIPeriode.enkeltdager_gruppe.legend':
-        'Fyll inn antall timer du er borte fra jobb på grunn av opplæring og reisetid:',
+        'Fyll inn antall timer du er borte fra jobb på grunn av opplæring og reisetid',
     'fraværIPeriode.enkeltdager_gruppe.description': 'Du trenger ikke fylle ut for dager du ikke har fravær',
 
     'fraværIPeriode.jobberIPerioden.jobberIkke': 'Jeg er helt borte fra jobb fordi jeg er på opplæring (fullt fravær)',
