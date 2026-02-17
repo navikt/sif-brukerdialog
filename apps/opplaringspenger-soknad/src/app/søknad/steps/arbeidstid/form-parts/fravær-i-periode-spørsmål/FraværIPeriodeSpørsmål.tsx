@@ -118,7 +118,7 @@ const FraværIPeriodeSpørsmål = ({
 
         return (
             <HStack gap="space-16" align="center">
-                <div style={{ minWidth: '10rem' }}>Timer med jobb {dayjs(month).format('MMMM YYYY')}</div>
+                <div style={{ minWidth: '10rem' }}>Timer med fravær {dayjs(month).format('MMMM YYYY')}</div>
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
                         <AppText
