@@ -29,7 +29,9 @@ const TilsynsordningSøknadsperiode = ({
 }: Props) => {
     const [visPeriodeDialog, setVisPeriodeDialog] = useState(false);
     const [visTilbakestillEndringerDialog, setVisTilbakestillEndringerDialog] = useState(false);
-    const månederISøknadsperiode = dateRangeUtils.getMonthsInDateRange(søknadsperiode);
+    const månederISøknadsperiode = dateRangeUtils
+        .getMonthsInDateRange(søknadsperiode)
+        .filter(dateRangeUtils.dateRangeIncludesWeekdays);
 
     const tilbakestillAlleEndringer = () => {
         onRevert(søknadsperiode);
