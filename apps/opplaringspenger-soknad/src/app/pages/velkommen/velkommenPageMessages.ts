@@ -24,10 +24,9 @@ const nb = {
     'personopplysninger.2':
         'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste.',
     'personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
-    'personopplysninger.4':
-        'Opplysningene vi innhenter kommer enten fra deg, arbeidsgiver eller fra offentlige registre:',
+    'personopplysninger.4': 'Opplysningene vi innhenter kommer enten fra deg eller fra offentlige registre:',
     'personopplysninger.4.1': 'opplysninger om helsen til den du skal søke opplæringspenger for',
-    'personopplysninger.4.2': 'arbeidsforholdene dine og inntekten din',
+    'personopplysninger.4.2': 'arbeidsforholdene dine og inntekten din hos arbeidsgivere du har fravær fra',
     'personopplysninger.4.3': 'ytelser du mottar fra Nav',
     'personopplysninger.4.4': 'tilknytningen din til Norge',
     'personopplysninger.4.5':
