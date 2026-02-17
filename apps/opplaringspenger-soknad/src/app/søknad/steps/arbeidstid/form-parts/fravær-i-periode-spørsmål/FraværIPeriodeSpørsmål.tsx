@@ -1,4 +1,4 @@
-import { Alert, Box, Heading, HStack, Tag } from '@navikt/ds-react';
+import { Alert, Box, HStack, Tag } from '@navikt/ds-react';
 import {
     DateRange,
     getErrorForField,
@@ -9,6 +9,7 @@ import {
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
+    capsFirstCharacter,
     dateFormatter,
     durationToDecimalDuration,
     getDatesInDateRange,
@@ -129,18 +130,6 @@ const FraværIPeriodeSpørsmål = ({
             </HStack>
         );
     };
-    const renderMonthHeaderNoAccordion = (month: Date) => {
-        return (
-            <>
-                <Heading size="small" level="3" spacing={true}>
-                    <AppText
-                        id="fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion"
-                        values={{ date: dayjs(month).format('MMMM YYYY') }}
-                    />
-                </Heading>
-            </>
-        );
-    };
 
     const useAccordion = skjulJobberNormaltValg !== true && getMonthsInDateRange(periode).length > 1;
 
@@ -160,6 +149,13 @@ const FraværIPeriodeSpørsmål = ({
                         id={`${fieldName}_group`}
                         name={`${fieldName}_group` as any}
                         legend={text('fraværIPeriode.enkeltdager_gruppe.legend', intlValues)}
+                        description={
+                            <Box paddingBlock="space-8 space-0">
+                                <Alert variant="info" inline={true}>
+                                    <AppText id="fraværIPeriode.enkeltdager_gruppe.description" />
+                                </Alert>
+                            </Box>
+                        }
                         validate={() => {
                             const { jobberIPerioden: jip, enkeltdager: ed = {} } = arbeidIPeriode || {};
                             if (jip === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
@@ -172,21 +168,22 @@ const FraværIPeriodeSpørsmål = ({
                                 }
                             }
                             return undefined;
-                        }}
-                        description={
-                            <Box paddingBlock="space-8 space-0">
-                                <Alert variant="info" inline={true}>
-                                    <AppText id="fraværIPeriode.enkeltdager_gruppe.description" />
-                                </Alert>
-                            </Box>
-                        }>
+                        }}>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput
                                 dateRange={begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(periode)}
                                 disabledDates={getDagerSomSkalDisables(periode, valgteDatoer)}
                                 formikFieldName={fieldName}
                                 useExpansionCards={useAccordion}
-                                renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
+                                renderMonthHeader={useAccordion ? renderMonthHeader : undefined}
+                                renderWeekHeader={(fullWeek) =>
+                                    capsFirstCharacter(
+                                        text('fraværIPeriode.arbeidIPeriodeSpørsmål.weekHeader', {
+                                            månedOgÅr: dateFormatter.monthFullYear(fullWeek.from),
+                                            ukenummer: dayjs(fullWeek.from).isoWeek(),
+                                        }),
+                                    )
+                                }
                                 accordionOpen={hasEnkeltdagerMedFeil}
                                 validateDate={(value: any, date: Date) => {
                                     const error = getTimeValidator({ min: { hours: 0, minutes: 0 } })(value);

@@ -2,15 +2,15 @@ const nb = {
     'fraværIPeriode.StepInfo.1':
         'Her skal du svare på hvor mye fravær fra jobb du har i perioden du søker om, altså hvor mye du er borte fra jobb mens du er på opplæring.',
     'fraværIPeriode.StepInfo.2':
-        'Du får kun dekket tiden du bruker på opplæringen, og tiden du bruker på reise. Det vil for eksempel si at hvis opplæringen varer i fire timer, og du bruker to timer på å reise til og fra opplæringen, vil du kun få dekket til sammen seks timer av arbeidsdagen, og ikke hele arbeidsdagen.',
+        'Du får dekket tiden du bruker på opplæringen, og tiden du bruker på reise. Det vil for eksempel si at hvis opplæringen varer i fire timer, og du bruker to timer på å reise til og fra opplæringen, vil du få dekket til sammen seks timer av arbeidsdagen.',
     'fraværIPeriode.StepInfo.3.header': 'Når henter vi inntektsmelding fra arbeidsgiveren din?',
     'fraværIPeriode.StepInfo.3.text':
         'Hvis du søker for første gang, eller hvis du har hatt et opphold i opplæringspengene i minst fire uker, kontakter vi arbeidsgiverne som du har fravær fra, for å hente inn inntektsmelding.',
     'fraværIPeriode.FrilansLabel': 'Frilans',
     'fraværIPeriode.SNLabel': 'Selvstendig næringsdrivende',
-    'fraværIPeriode.jobberIPerioden.spm': 'Har du fravær {hvor} på grunn av kurs eller reisetid i søknadsperioden?',
+    'fraværIPeriode.jobberIPerioden.spm': 'Hvor mye fravær har du fra jobb {hvor} på grunn av opplæring og reisetid?',
     'fraværIPeriode.enkeltdager_gruppe.legend':
-        'Oppgi hvor mye fravær du har {hvor} på grunn av kurs eller reisetid i søknadsperioden.',
+        'Fyll inn antall timer du er borte fra jobb på grunn av opplæring og reisetid:',
     'fraværIPeriode.enkeltdager_gruppe.description': 'Du trenger ikke fylle ut for dager du ikke har fravær',
 
     'fraværIPeriode.jobberIPerioden.jobberIkke': 'Jeg er helt borte fra jobb fordi jeg er på opplæring (fullt fravær)',
@@ -24,9 +24,10 @@ const nb = {
     'fraværIPeriode.arbeidstidSted.sn': 'Selvstendig næringsdrivende',
 
     'fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader':
-        'Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager',
+        '{numDatesInMonthWithDuration, plural, one {# dag} other {# dager}} med fravær',
     'fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion':
         'Timer med fravær fra jobb {date} på grunn av kurs og reise',
+    'fraværIPeriode.arbeidIPeriodeSpørsmål.weekHeader': '{månedOgÅr} -  uke {ukenummer}',
 
     'fraværIPeriode.validation.timerDag.timeHasNoValue': 'Du må fylle ut tid med fravær for {dato} {hvor}.',
     'fraværIPeriode.validation.timerDag.hoursAreInvalid': 'Antall timer med fravær på {dato} er ikke et gyldig tall.',

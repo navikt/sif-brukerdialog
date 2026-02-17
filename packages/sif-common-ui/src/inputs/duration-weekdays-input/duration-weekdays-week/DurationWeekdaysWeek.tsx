@@ -25,6 +25,8 @@ interface Props {
     disabledDates?: Date[];
     /** Formik field name */
     formikFieldName: string;
+    /** Optional custom render function for week header. Default header is "Uke {weekNumber}" */
+    renderWeekHeader?: (week: DateRange) => React.ReactNode;
     /** Heading level */
     headingLevel: '1' | '2' | '3' | '4' | '5' | '6';
     /** Date validation */
@@ -38,6 +40,7 @@ const DurationWeekdaysWeek = ({
     disabledDates = [],
     formikFieldName,
     headingLevel = '3',
+    renderWeekHeader,
     validateDate,
 }: Props) => {
     const { locale } = useIntl();
@@ -60,8 +63,14 @@ const DurationWeekdaysWeek = ({
         <div className={bem.block}>
             <Fieldset
                 legend={
-                    <Heading size="xsmall" level={headingLevel} className={bem.element('weekNumber')}>
-                        {text('@ui.durationWeekdaysInput.uke')} {isoWeek}
+                    <Heading
+                        size="xsmall"
+                        level={headingLevel}
+                        className={bem.element('weekNumber')}
+                        style={{ width: '100%' }}>
+                        {renderWeekHeader
+                            ? renderWeekHeader(fullWeek)
+                            : `${text('@ui.durationWeekdaysInput.uke')} ${isoWeek}`}
                     </Heading>
                 }>
                 <div className={bem.element('daysWrapper')}>
@@ -84,7 +93,7 @@ const DurationWeekdaysWeek = ({
                                                         <span
                                                             className={bem.element(
                                                                 'dayName',
-                                                            )}>{`${dayName}. ${date.getDate()}.`}</span>
+                                                            )}>{`${dayName}. ${date.getDate()}. ${date.getMonth() + 1}.`}</span>
                                                     }
                                                     ariaText={dateFormatter.dayDateMonth(date)}
                                                 />
