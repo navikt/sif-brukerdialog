@@ -1,11 +1,5 @@
-import { Alert, Box, HStack, Tag } from '@navikt/ds-react';
-import {
-    DateRange,
-    getErrorForField,
-    getTypedFormComponents,
-    TypedFormikFormContext,
-    ValidationError,
-} from '@navikt/sif-common-formik-ds';
+import { Alert } from '@navikt/ds-react';
+import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
@@ -13,16 +7,15 @@ import {
     dateFormatter,
     durationToDecimalDuration,
     getDatesInDateRange,
-    getMonthsInDateRange,
     isDateInDates,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils';
 import { getTimeValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { AppIntlShape, AppText, useAppIntl } from '../../../../../i18n';
+import { AppIntlShape, useAppIntl } from '../../../../../i18n';
 import { getArbeidstidIPeriodeIntlValues } from '../../arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../../arbeidstidStepUtils';
@@ -64,7 +57,6 @@ const FraværIPeriodeSpørsmål = ({
 
     const [arbeidstidChanged, setArbeidstidChanged] = useState(false);
 
-    const context = useContext(TypedFormikFormContext);
     const formik = useFormikContext<ArbeidstidFormValues>();
 
     useEffect(() => {
@@ -96,42 +88,7 @@ const FraværIPeriodeSpørsmål = ({
     const getFieldName = (field: ArbeidIPeriodeField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
     const fieldName = getFieldName(ArbeidIPeriodeField.enkeltdager);
 
-    const hasEnkeltdagerMedFeil =
-        formik.isValid === false && context?.showErrors && getErrorForField(fieldName, formik.errors) !== undefined;
-
     const { jobberIPerioden } = arbeidIPeriode || {};
-
-    const { enkeltdager } = arbeidIPeriode || {};
-    const datesWithDuration = enkeltdager
-        ? Object.keys(enkeltdager)
-              .map((key) => ({
-                  date: key,
-                  duration: enkeltdager[key] ? durationToDecimalDuration(enkeltdager[key]) : undefined,
-              }))
-              .filter((d) => d.duration && d.duration > 0)
-        : [];
-
-    const renderMonthHeader = (month: Date, enabledDatesInMonth: number) => {
-        const numDatesInMonthWithDuration = datesWithDuration.filter((d) =>
-            dayjs(d.date).isSame(month, 'month'),
-        ).length;
-
-        return (
-            <HStack gap="space-16" align="center">
-                <div style={{ minWidth: '10rem' }}>Timer med fravær {dayjs(month).format('MMMM YYYY')}</div>
-                {numDatesInMonthWithDuration > 0 && (
-                    <Tag variant="info" size="small">
-                        <AppText
-                            id="fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader"
-                            values={{ numDatesInMonthWithDuration, enabledDatesInMonth }}
-                        />
-                    </Tag>
-                )}
-            </HStack>
-        );
-    };
-
-    const useAccordion = skjulJobberNormaltValg !== true && getMonthsInDateRange(periode).length > 1;
 
     return (
         <FormLayout.Questions>
@@ -149,20 +106,16 @@ const FraværIPeriodeSpørsmål = ({
                         id={`${fieldName}_group`}
                         name={`${fieldName}_group` as any}
                         legend={text('fraværIPeriode.enkeltdager_gruppe.legend', intlValues)}
-                        description={
-                            <Box paddingBlock="space-8 space-0">
-                                <Alert variant="info" inline={true}>
-                                    <AppText id="fraværIPeriode.enkeltdager_gruppe.description" />
-                                </Alert>
-                            </Box>
-                        }
                         validate={() => {
                             const { jobberIPerioden: jip, enkeltdager: ed = {} } = arbeidIPeriode || {};
                             if (jip === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
                                 if (durationToDecimalDuration(summarizeDateDurationMap(ed)) === 0) {
                                     return {
                                         key: 'fraværIPeriode.validation.ingenTidRegistrert',
-                                        values: intlValues,
+                                        values: {
+                                            ...intlValues,
+                                            ingenFraværSpørsmål: text('fraværIPeriode.jobberIPerioden.jobberVanlig'),
+                                        },
                                         keepKeyUnaltered: true,
                                     };
                                 }
@@ -174,8 +127,7 @@ const FraværIPeriodeSpørsmål = ({
                                 dateRange={begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(periode)}
                                 disabledDates={getDagerSomSkalDisables(periode, valgteDatoer)}
                                 formikFieldName={fieldName}
-                                useExpansionCards={useAccordion}
-                                renderMonthHeader={useAccordion ? renderMonthHeader : undefined}
+                                useExpansionCards={false}
                                 renderWeekHeader={(fullWeek) =>
                                     capsFirstCharacter(
                                         text('fraværIPeriode.arbeidIPeriodeSpørsmål.weekHeader', {
@@ -184,7 +136,7 @@ const FraværIPeriodeSpørsmål = ({
                                         }),
                                     )
                                 }
-                                accordionOpen={hasEnkeltdagerMedFeil}
+                                renderMonthHeader={() => null}
                                 validateDate={(value: any, date: Date) => {
                                     const error = getTimeValidator({ min: { hours: 0, minutes: 0 } })(value);
                                     if (error) {

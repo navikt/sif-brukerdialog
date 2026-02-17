@@ -17,8 +17,7 @@ const nb = {
     'steg.kurs.enkeltdagEllerPeriode.periode': 'Sammenhengende periode',
 
     'steg.kurs.enkeltdager.tittel': 'Hvilke dager søker du opplæringspenger?',
-    'steg.kurs.enkeltdager.tekst':
-        'Legg til dag og antall timer du er på opplæring, og eventuell reisetid til og fra opplæringen. Hvis du ikke reiser, trenger du ikke fylle ut timer med reise.',
+    'steg.kurs.enkeltdager.tekst': 'Legg til dager du er på opplæring eller kurs.',
     'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
     'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
 
@@ -130,8 +129,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.enkeltdagEllerPeriode.periode': 'Samanhengande periode',
 
     'steg.kurs.enkeltdager.tittel': 'Kva dagar søkjer du opplæringspengar?',
-    'steg.kurs.enkeltdager.tekst':
-        'Legg til dag og talet timar du er på opplæring, og eventuell reisetid til og frå opplæringa. Viss du ikkje reiser, treng du ikkje fylle ut timar med reise.',
+    'steg.kurs.enkeltdager.tekst': 'Legg til dager du er på opplæring eller kurs.',
     'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
     'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
 

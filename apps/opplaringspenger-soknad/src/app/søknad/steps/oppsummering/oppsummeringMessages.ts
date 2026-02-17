@@ -97,8 +97,7 @@ const nb = {
     'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
         'Jeg har {prosent} prosent fravær fra jobb, i snitt {timer} hver ukedag',
     'oppsummering.fraværIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om fravær i perioden mangler',
-    'oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
-        'Fravær fra jobb på grunn av kurs eller reise de dagene søker for',
+    'oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Timer med fravær',
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 

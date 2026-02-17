@@ -28,8 +28,6 @@ import { ArbeidIPeriode } from './ArbeidstidTypes';
 import {
     cleanArbeidIPerioder,
     getAlleArbeidIPerioder,
-    getDagerMedArbeidstid,
-    harFraværAlleDager,
     harKunValgtJobberSomNormalt,
 } from './form-parts/arbeidstidUtils';
 import FraværIPeriodeSpørsmål from './form-parts/fravær-i-periode-spørsmål/FraværIPeriodeSpørsmål';
@@ -99,10 +97,8 @@ const ArbeidstidStep = () => {
         return new Promise((resolve) => {
             const perioderMedArbeid = cleanArbeidIPerioder(getAlleArbeidIPerioder(values));
             const jobberKunSomNormalt = harKunValgtJobberSomNormalt(perioderMedArbeid);
-            const jobberNormaltEnkeltdager =
-                !jobberKunSomNormalt && harFraværAlleDager(getDagerMedArbeidstid(perioderMedArbeid)) === false;
 
-            if (jobberKunSomNormalt || jobberNormaltEnkeltdager) {
+            if (jobberKunSomNormalt) {
                 const antallDagerSøktFor = søknadsdata.kurs?.søknadsdatoer.length;
                 setTimeout(() => {
                     setConfirmationDialog({

@@ -3,7 +3,7 @@ const nb = {
         'Her skal du svare på hvor mye fravær fra jobb du har i perioden du søker om, altså hvor mye du er borte fra jobb mens du er på opplæring.',
     'fraværIPeriode.StepInfo.2':
         'Du får dekket tiden du bruker på opplæringen, og tiden du bruker på reise. Det vil for eksempel si at hvis opplæringen varer i fire timer, og du bruker to timer på å reise til og fra opplæringen, vil du få dekket til sammen seks timer av arbeidsdagen.',
-    'fraværIPeriode.StepInfo.3.header': 'Når henter vi inntektsmelding fra arbeidsgiveren din?',
+    'fraværIPeriode.StepInfo.3.header': 'Når kontakter vi arbeidsgiveren din?',
     'fraværIPeriode.StepInfo.3.text':
         'Hvis du søker for første gang, eller hvis du har hatt et opphold i opplæringspengene i minst fire uker, kontakter vi arbeidsgiverne som du har fravær fra, for å hente inn inntektsmelding.',
     'fraværIPeriode.FrilansLabel': 'Frilans',
@@ -11,7 +11,6 @@ const nb = {
     'fraværIPeriode.jobberIPerioden.spm': 'Hvor mye fravær har du fra jobb {hvor} på grunn av opplæring og reisetid?',
     'fraværIPeriode.enkeltdager_gruppe.legend':
         'Fyll inn antall timer du er borte fra jobb på grunn av opplæring og reisetid',
-    'fraværIPeriode.enkeltdager_gruppe.description': 'Du trenger ikke fylle ut for dager du ikke har fravær',
 
     'fraværIPeriode.jobberIPerioden.jobberIkke': 'Jeg er helt borte fra jobb fordi jeg er på opplæring (fullt fravær)',
     'fraværIPeriode.jobberIPerioden.jobberVanlig':
@@ -45,7 +44,7 @@ const nb = {
     'fraværIPeriode.validation.timerDag.hoursAreNegative':
         'Antall timer og minutter med fravær {dato}  kan ikke være mindre enn 0 timer og 0 minutter.',
     'fraværIPeriode.validation.ingenTidRegistrert':
-        'Du har ikke oppgitt noe tid med fravær {hvor} på dagene du har søkt om. Hvis dette stemmer, skal du velge "Jeg jobber ikke de dagene jeg søker om" på spørsmålet ovenfor.',
+        'Du har ikke fylt inn timer med fravær {hvor} på dagene du har søkt om. Hvis dette stemmer, skal du velge "{ingenFraværSpørsmål}" på spørsmålet ovenfor.',
 };
 
 const nn: Record<keyof typeof nb, string> = {

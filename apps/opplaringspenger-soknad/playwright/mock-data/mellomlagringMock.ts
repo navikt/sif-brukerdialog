@@ -85,7 +85,7 @@ const søknadsdata: Søknadsdata = {
                     type: ArbeidsgiverType.ORGANISASJON,
                     id: '123451234',
                     organisasjonsnummer: '123451234',
-                    navn: 'Arbeids- og velferdsetaten',
+                    navn: 'SNODIG FISKER',
                 },
                 erAnsattISøknadsperiode: true,
                 jobberNormaltTimer: 20,
@@ -112,7 +112,7 @@ const søknadsdata: Søknadsdata = {
     arbeidstid: {
         arbeidsgivere: {
             '123451234': {
-                navn: 'Arbeids- og velferdsetaten',
+                navn: 'SNODIG FISKER',
                 arbeidIPeriode: {
                     type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
                     arbeiderIPerioden: true,
