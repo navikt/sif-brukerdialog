@@ -7,7 +7,7 @@ export const fyllUtArbeidstid = async (page: Page) => {
         page.getByRole('heading', { level: 1, name: 'Fravær fra jobb på dagene du er i opplæring' }),
     ).toBeVisible();
     await page
-        .getByRole('group', { name: 'Hvor mye fravær har du fra jobb hos Arbeids- og' })
+        .getByRole('group', { name: 'Hvor mye fravær har du fra jobb hos SNODIG FISKER' })
         .getByLabel('Jeg er delvis borte')
         .check();
     await page.getByRole('group', { name: 'mandag 2. desember' }).getByLabel('Timer').click();
@@ -25,7 +25,7 @@ export const fyllUtArbeidstid = async (page: Page) => {
 };
 
 export const kontrollerArbeidstidOppsummering = async (page: Page) => {
-    await expect(page.getByRole('heading', { name: 'Fravær fra jobb på grunn av kurs' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Timer med fravær' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'SNODIG FISKER (' }).nth(1)).toBeVisible();
     await expect(page.getByText('Jeg har noe fravær fra jobb på grunn')).toBeVisible();
     await expect(page.getByText('mandag 02.12.2024:5 timer 0')).toBeVisible();
