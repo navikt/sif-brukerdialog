@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import { Box, Heading, Panel } from '@navikt/ds-react';
-import * as React from 'react';
-import { Accept } from 'react-dropzone';
-import { useIntl } from 'react-intl';
 import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import * as React from 'react';
+import { useIntl } from 'react-intl';
+
 import { getIntlFormErrorHandler } from '../../../src';
 import { ISODateString } from '../../../src/components/formik-datepicker/dateFormatUtils';
 import FormikValidationErrorSummary from '../../../src/components/formik-validation-error-summary/FormikValidationErrorSummary';
@@ -52,11 +52,7 @@ const Form = getTypedFormComponents<Fields, FieldValues, ValidationError>();
 
 const ExampleForm: React.FunctionComponent = () => {
     const intl = useIntl();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const accept: Accept = {
-        'image/png': ['.png'],
-        'text/html': ['.html', '.htm'],
-    };
+
     return (
         <Panel border={true} style={{ margin: '1rem' }}>
             <Heading size="medium">Example form</Heading>
@@ -173,7 +169,9 @@ const ExampleForm: React.FunctionComponent = () => {
                                     Please confirm that you do not like cats
                                 </Form.ConfirmationCheckbox>
                             </Box>
-                            <FormikValidationErrorSummary wrapper={(summary) => <Box marginBlock="space-32">{summary}</Box>} />
+                            <FormikValidationErrorSummary
+                                wrapper={(summary) => <Box marginBlock="space-32">{summary}</Box>}
+                            />
                         </Form.Form>
                     );
                 }}
