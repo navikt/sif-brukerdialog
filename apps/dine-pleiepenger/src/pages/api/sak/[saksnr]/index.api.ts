@@ -60,10 +60,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.json({ sak, inntektsmeldinger });
     } catch (err) {
         const logger = getLogger(req);
-        logger.error(
-            `Hent sak ${Feature.INNTEKTSMELDING_ENABLED ? 'og inntektsmeldinger ' : ''}feilet`,
-            prepApiError(err),
-        );
+        if (Feature.INNTEKTSMELDING_ENABLED) {
+            logger.error(`Hent sak og inntektsmeldinger feilet`, prepApiError(err));
+        } else {
+            logger.error(`Hent sak feilet`, prepApiError(err));
+        }
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     }
 }

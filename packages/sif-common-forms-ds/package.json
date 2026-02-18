@@ -20,9 +20,9 @@
     },
     "devDependencies": {
         "@formatjs/intl-pluralrules": "6.2.2",
-        "@navikt/aksel-icons": "8.4.1",
-        "@navikt/ds-css": "8.4.1",
-        "@navikt/ds-react": "8.4.1",
+        "@navikt/aksel-icons": "8.5.1",
+        "@navikt/ds-css": "8.5.1",
+        "@navikt/ds-react": "8.5.1",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
