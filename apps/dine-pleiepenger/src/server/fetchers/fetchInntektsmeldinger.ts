@@ -10,6 +10,8 @@ import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
 import { validateSaksnummer } from '../utils/validatePathSegment';
 
+const inntektsmeldingSchemaModified = innsyn.zSakInntektsmeldingDto.omit({ utsettelsePerioder: true });
+
 /**
  * Henter inntektsmeldinger for en sak
  * @param req
@@ -45,7 +47,7 @@ export const fetchInntektsmeldinger = async (
     logger.info(`Response-status from request: ${response.status}`);
 
     logger.info(`Parser response data`);
-    const parsedData = z.array(innsyn.zSakInntektsmeldingDto).parse(response.data) as innsyn.SakInntektsmeldingDto[];
+    const parsedData = z.array(inntektsmeldingSchemaModified).parse(response.data) as innsyn.SakInntektsmeldingDto[];
     logger.info(`Inntektsmeldinger parsed`);
     return parsedData;
 };
