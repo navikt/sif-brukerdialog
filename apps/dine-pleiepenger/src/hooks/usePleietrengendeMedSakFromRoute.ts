@@ -84,7 +84,7 @@ export const usePleietrengendeMedSakFromRoute = (): {
                 JSON.stringify({ error: error.message }),
             );
         }
-    }, [error, saksnr]);
+    }, [error]);
 
     return {
         pleietrengendeMedSak,
