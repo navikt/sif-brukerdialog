@@ -16,7 +16,12 @@
         "erstattetAv": [],
         "graderinger": [],
         "naturalYtelser": [],
-        "utsettelsePerioder": [],
+        "utsettelsePerioder": [
+            {
+                "periode": { "fom": "2025-12-15", "tom": "2025-12-31" },
+                "årsak": "FERIE"
+            }
+        ],
         "startDatoPermisjon": "2025-12-15",
         "oppgittFravær": [],
         "refusjon": { "refusjonBeløpPerMnd": 45000, "refusjonOpphører": "2025-12-31" },
