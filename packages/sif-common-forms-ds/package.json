@@ -43,7 +43,7 @@
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.19",
-        "eslint": "9.39.2",
+        "eslint": "10.0.0",
         "eslint-plugin-storybook": "10.2.8",
         "flat": "6.0.1",
         "formik": "2.4.9",

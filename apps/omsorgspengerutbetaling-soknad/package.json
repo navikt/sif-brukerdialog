@@ -63,7 +63,7 @@
         "@vitejs/plugin-react": "5.1.4",
         "busboy": "1.6.0",
         "compression": "1.8.1",
-        "eslint": "9.39.2",
+        "eslint": "10.0.0",
         "eslint-plugin-storybook": "10.2.8",
         "express": "5.2.1",
         "helmet": "8.1.0",
