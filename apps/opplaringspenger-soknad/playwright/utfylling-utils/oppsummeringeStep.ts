@@ -27,5 +27,6 @@ export const sendInnSøknad = async (page: Page) => {
     await page.getByLabel('Jeg bekrefter at').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Vi har mottatt søknad om oppl' })).toBeVisible();
+    await page.waitForLoadState('networkidle');
     await testAccessibility(page);
 };

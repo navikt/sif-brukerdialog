@@ -85,7 +85,7 @@ export type Kurs = {
 
 export type KursDag = {
     dato: string;
-    tidKurs: string;
+    tidKurs?: string;
     tidReise?: string;
 };
 
@@ -263,6 +263,7 @@ export type JsonNode = unknown;
 export type ArbeidIPeriodeWritable = {
     jobberIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
     enkeltdager?: Enkeltdag[];
+    enkeltdagerFravær?: Enkeltdag[];
 };
 
 export type ArbeidsforholdOlpWritable = {
