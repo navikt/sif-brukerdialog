@@ -5,6 +5,7 @@ import useSWR from 'swr';
 
 import { PleietrengendeMedSak, SakMedInntektsmeldinger } from '../types';
 import { sakMedInntektsmeldingerClientSchema } from '../types/client-schemas/sakMedInntektsmeldingerClientSchema';
+import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
 import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
@@ -74,6 +75,16 @@ export const usePleietrengendeMedSakFromRoute = (): {
             setSaksdata(saksnr, pleietrengendeMedSak);
         }
     }, [pleietrengendeMedSak, saksnr, cachedSak, setSaksdata]);
+
+    // Logg feil til Sentry
+    useEffect(() => {
+        if (error) {
+            appSentryLogger.logError(
+                'usePleietrengendeMedSakFromRoute-failed',
+                JSON.stringify({ error: error.message }),
+            );
+        }
+    }, [error, saksnr]);
 
     return {
         pleietrengendeMedSak,
