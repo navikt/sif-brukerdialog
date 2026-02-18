@@ -47,7 +47,7 @@
     "devDependencies": {
         "@axe-core/playwright": "4.11.1",
         "@eslint/eslintrc": "3.3.3",
-        "@eslint/js": "10.0.1",
+        "@eslint/js": "9.39.2",
         "@playwright/test": "1.58.2",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.2.8",

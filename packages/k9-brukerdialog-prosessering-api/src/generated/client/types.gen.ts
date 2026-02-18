@@ -568,7 +568,7 @@ export type Kurs = {
 
 export type KursDag = {
     dato: string;
-    tidKurs: string;
+    tidKurs?: string;
     tidReise?: string;
 };
 

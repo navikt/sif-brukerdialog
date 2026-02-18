@@ -32,6 +32,11 @@ export enum AktivitetFravær {
     SELVSTENDIG_VIRKSOMHET = 'SELVSTENDIG_VIRKSOMHET',
 }
 
+export type Aktivitetspenger = Omit<Ytelse, 'type'> & {
+    søknadsperiode: string;
+    type: 'Aktivitetspenger';
+};
+
 export type AnnenAktivitet = {
     periode: string;
     annenAktivitetType: AnnenAktivitetType;
@@ -273,6 +278,7 @@ export type Opplæringspenger = Omit<Ytelse, 'type'> & {
     uttak: Uttak;
     omsorg: Omsorg;
     kurs?: Kurs;
+    skalEttersendeVedlegg?: boolean;
     type: 'Opplæringspenger';
 };
 
@@ -383,6 +389,7 @@ export type Søknad = {
     søker: Søker;
     språk?: Språk;
     ytelse:
+        | Aktivitetspenger
         | OmsorgspengerAleneOmsorg
         | OmsorgspengerKroniskSyktBarn
         | OmsorgspengerMidlertidigAlene
@@ -565,10 +572,10 @@ export enum Innsendelsestype {
 }
 
 export type Innsending = {
-    søknadId?: string;
-    søker?: Søker;
     versjon?: string;
     mottattDato?: string;
+    søker?: Søker;
+    søknadId?: string;
 };
 
 export type Organisasjon = {
