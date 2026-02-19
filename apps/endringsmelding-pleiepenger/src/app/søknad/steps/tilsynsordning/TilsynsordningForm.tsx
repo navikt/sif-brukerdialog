@@ -1,0 +1,145 @@
+import DateRangeExpansionCards from '@app/components/date-range-expansion-cards/DateRangeExpansionCards';
+import EndretTag from '@app/components/tags/EndretTag';
+import TagsContainer from '@app/components/tags/tags-container/TagsContainer';
+import { Heading, VStack } from '@navikt/ds-react';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import {
+    DateDurationMap,
+    dateFormatter,
+    DateRange,
+    dateToISODate,
+    getDatesInDateRange,
+    isDateInDateRange,
+    ISODateToDate,
+} from '@navikt/sif-common-utils';
+import { useFormikContext } from 'formik';
+import { useIntl } from 'react-intl';
+
+import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
+import TilsynsordningSøknadsperiode from './TilsynsordningSøknadsperiode';
+
+export const tilsynsordningFormComponents = getTypedFormComponents<
+    TilsynsordningFormFields,
+    TilsynsordningFormValues,
+    ValidationError
+>();
+
+const { Form } = tilsynsordningFormComponents;
+
+export interface TilsynsordningFormValues {
+    tilsynsdager: DateDurationMap;
+}
+
+export enum TilsynsordningFormFields {
+    tilsynsdager = 'tilsynsdager',
+}
+
+interface Props {
+    søknadsperioder: DateRange[];
+    opprinneligTilsynsdager: DateDurationMap;
+    isSubmitting?: boolean;
+    goBack?: () => void;
+    onTilsynsordningChanged?: (tilsynsdager: DateDurationMap) => void;
+}
+
+const TilsynsordningForm = ({
+    goBack,
+    søknadsperioder,
+    opprinneligTilsynsdager,
+    isSubmitting,
+    onTilsynsordningChanged,
+}: Props) => {
+    const intl = useIntl();
+    const { values, setFieldValue } = useFormikContext<TilsynsordningFormValues>();
+    const { tilsynsdager } = values;
+
+    const handleOnEnkeltdagChange = (endring: TidEnkeltdagEndring): void => {
+        const newValues: DateDurationMap = { ...tilsynsdager };
+        Object.entries(endring.dagerMedTid).forEach(([isoDate, tid]) => {
+            if (tid) {
+                newValues[isoDate] = tid;
+            } else {
+                delete newValues[isoDate];
+            }
+        });
+        setFieldValue(TilsynsordningFormFields.tilsynsdager, newValues);
+        if (onTilsynsordningChanged) {
+            onTilsynsordningChanged(newValues);
+        }
+    };
+
+    const handleOnPeriodeChange = (dagerMedTid: DateDurationMap): void => {
+        const newValues = { ...tilsynsdager, ...dagerMedTid };
+        setFieldValue(TilsynsordningFormFields.tilsynsdager, newValues);
+        if (onTilsynsordningChanged) {
+            onTilsynsordningChanged(newValues);
+        }
+    };
+
+    const handleOnRevert = (periode: DateRange): void => {
+        const newValues = { ...tilsynsdager };
+        getDatesInDateRange(periode, true).forEach((date) => {
+            delete newValues[dateToISODate(date)];
+        });
+
+        setFieldValue(TilsynsordningFormFields.tilsynsdager, newValues);
+        if (onTilsynsordningChanged) {
+            onTilsynsordningChanged(newValues);
+        }
+    };
+
+    const harPeriodeEndringer = (periode: DateRange) => {
+        return (
+            tilsynsdager !== undefined &&
+            Object.keys(tilsynsdager)
+                .map(ISODateToDate)
+                .some((date) => isDateInDateRange(date, periode))
+        );
+    };
+
+    const renderAccordionHeader = (periode: DateRange) => {
+        return (
+            <div className="arbeidsaktivitetContentHeader">
+                <div className="arbeidsaktivitetContentHeader__title">
+                    {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
+                </div>{' '}
+                <TagsContainer>{harPeriodeEndringer(periode) && <EndretTag>Endret</EndretTag>}</TagsContainer>
+            </div>
+        );
+    };
+
+    return (
+        <Form
+            formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudForm')}
+            includeValidationSummary={true}
+            submitPending={isSubmitting}
+            runDelayedFormValidation={true}
+            onBack={goBack}>
+            <VStack gap="space-16">
+                <Heading level="2" size="small">
+                    Dine perioder med pleiepenger
+                </Heading>
+                <DateRangeExpansionCards
+                    dateRanges={søknadsperioder}
+                    renderContent={(periode) => {
+                        return (
+                            <TilsynsordningSøknadsperiode
+                                key={periode.from.toDateString()}
+                                opprinneligTilsynsdager={opprinneligTilsynsdager}
+                                endredeTilsynsdager={tilsynsdager}
+                                søknadsperiode={periode}
+                                harEndringer={harPeriodeEndringer(periode)}
+                                onEnkeltdagChange={handleOnEnkeltdagChange}
+                                onPeriodeChange={handleOnPeriodeChange}
+                                onRevert={handleOnRevert}
+                            />
+                        );
+                    }}
+                    renderHeader={(periode) => renderAccordionHeader(periode)}
+                />
+            </VStack>
+        </Form>
+    );
+};
+
+export default TilsynsordningForm;

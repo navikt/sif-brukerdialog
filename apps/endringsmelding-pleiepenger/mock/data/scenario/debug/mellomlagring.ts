@@ -1,0 +1,233 @@
+export default {
+    søknadHashString: 'bdf00efd00aa1fbe10291ade1fa7294910ffaca1',
+    søknadsdata: {
+        velkommen: {
+            harForståttRettigheterOgPlikter: true,
+        },
+        arbeidstid: {
+            arbeidsaktivitet: {
+                a_967170232: {
+                    endringer: {
+                        '2026-02-23/2026-03-01': {
+                            type: 'prosent',
+                            prosent: 20,
+                        },
+                    },
+                },
+            },
+        },
+        id: '76b5eeb2-6300-4395-ada7-edd78a7dbd41',
+        lovbestemtFerie: {
+            feriedager: {
+                '2026-02-20': {
+                    liggerISak: false,
+                    dato: '2026-02-20T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-10': {
+                    liggerISak: false,
+                    dato: '2026-02-10T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-21': {
+                    liggerISak: false,
+                    dato: '2026-02-21T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-19': {
+                    liggerISak: false,
+                    dato: '2026-02-19T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-09': {
+                    liggerISak: false,
+                    dato: '2026-02-09T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-06': {
+                    liggerISak: true,
+                    dato: '2026-02-06T00:00:00.000Z',
+                    skalHaFerie: false,
+                },
+                '2026-02-17': {
+                    liggerISak: false,
+                    dato: '2026-02-17T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-18': {
+                    liggerISak: false,
+                    dato: '2026-02-18T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-04': {
+                    liggerISak: true,
+                    dato: '2026-02-04T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-15': {
+                    liggerISak: false,
+                    dato: '2026-02-15T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-05': {
+                    liggerISak: true,
+                    dato: '2026-02-05T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-16': {
+                    liggerISak: false,
+                    dato: '2026-02-16T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-13': {
+                    liggerISak: false,
+                    dato: '2026-02-13T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-03': {
+                    liggerISak: true,
+                    dato: '2026-02-03T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-14': {
+                    liggerISak: false,
+                    dato: '2026-02-14T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-11': {
+                    liggerISak: false,
+                    dato: '2026-02-11T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-22': {
+                    liggerISak: false,
+                    dato: '2026-02-22T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+                '2026-02-12': {
+                    liggerISak: false,
+                    dato: '2026-02-12T00:00:00.000Z',
+                    skalHaFerie: true,
+                },
+            },
+            feriedagerMeta: {
+                datoerFjernet: ['2026-02-06T00:00:00.000Z'],
+                perioderFjernet: [
+                    {
+                        from: '2026-02-06T00:00:00.000Z',
+                        to: '2026-02-06T00:00:00.000Z',
+                    },
+                ],
+                perioderUendret: [
+                    {
+                        from: '2026-02-03T00:00:00.000Z',
+                        to: '2026-02-05T00:00:00.000Z',
+                    },
+                ],
+                perioderLagtTil: [
+                    {
+                        from: '2026-02-09T00:00:00.000Z',
+                        to: '2026-02-22T00:00:00.000Z',
+                    },
+                ],
+                datoerUendret: ['2026-02-03T00:00:00.000Z', '2026-02-04T00:00:00.000Z', '2026-02-05T00:00:00.000Z'],
+                ferieperioder: [
+                    {
+                        from: '2026-02-03T00:00:00.000Z',
+                        to: '2026-02-05T00:00:00.000Z',
+                        liggerISak: true,
+                        skalHaFerie: true,
+                    },
+                    {
+                        from: '2026-02-06T00:00:00.000Z',
+                        to: '2026-02-06T00:00:00.000Z',
+                        liggerISak: true,
+                        skalHaFerie: false,
+                    },
+                    {
+                        from: '2026-02-09T00:00:00.000Z',
+                        to: '2026-02-22T00:00:00.000Z',
+                        liggerISak: false,
+                        skalHaFerie: true,
+                    },
+                ],
+                datoerMedFerie: [
+                    '2026-02-03T00:00:00.000Z',
+                    '2026-02-04T00:00:00.000Z',
+                    '2026-02-05T00:00:00.000Z',
+                    '2026-02-09T00:00:00.000Z',
+                    '2026-02-10T00:00:00.000Z',
+                    '2026-02-11T00:00:00.000Z',
+                    '2026-02-12T00:00:00.000Z',
+                    '2026-02-13T00:00:00.000Z',
+                    '2026-02-14T00:00:00.000Z',
+                    '2026-02-15T00:00:00.000Z',
+                    '2026-02-16T00:00:00.000Z',
+                    '2026-02-17T00:00:00.000Z',
+                    '2026-02-18T00:00:00.000Z',
+                    '2026-02-19T00:00:00.000Z',
+                    '2026-02-20T00:00:00.000Z',
+                    '2026-02-21T00:00:00.000Z',
+                    '2026-02-22T00:00:00.000Z',
+                ],
+                erEndret: true,
+                datoerLagtTil: [
+                    '2026-02-09T00:00:00.000Z',
+                    '2026-02-10T00:00:00.000Z',
+                    '2026-02-11T00:00:00.000Z',
+                    '2026-02-12T00:00:00.000Z',
+                    '2026-02-13T00:00:00.000Z',
+                    '2026-02-14T00:00:00.000Z',
+                    '2026-02-15T00:00:00.000Z',
+                    '2026-02-16T00:00:00.000Z',
+                    '2026-02-17T00:00:00.000Z',
+                    '2026-02-18T00:00:00.000Z',
+                    '2026-02-19T00:00:00.000Z',
+                    '2026-02-20T00:00:00.000Z',
+                    '2026-02-21T00:00:00.000Z',
+                    '2026-02-22T00:00:00.000Z',
+                ],
+            },
+        },
+        tilsynsordning: {
+            enkeltdager: {
+                '2026-02-10': {
+                    hours: '2',
+                    minutes: '0',
+                },
+                '2026-02-13': {
+                    hours: '2',
+                    minutes: '0',
+                },
+                '2026-02-11': {
+                    hours: '2',
+                    minutes: '0',
+                },
+                '2026-02-09': {
+                    hours: '2',
+                    minutes: '0',
+                },
+                '2026-02-12': {
+                    hours: '2',
+                    minutes: '0',
+                },
+            },
+            enkeltdagerMeta: {
+                erEndret: false,
+            },
+        },
+    },
+    metadata: {
+        updatedTimestamp: '2026-02-06T12:10:12.453Z',
+    },
+    søknadRoute: '/melding/omsorgstilbud',
+    søknadSteps: ['lovbestemtFerie', 'arbeidstid', 'omsorgstilbud', 'oppsummering'],
+    harArbeidsgivereIkkeISak: false,
+    versjon: '1.2.0',
+    valgteEndringer: {
+        lovbestemtFerie: true,
+        tilsynsordning: true,
+        arbeidstid: true,
+    },
+    barnAktørId: '2977843645893',
+};

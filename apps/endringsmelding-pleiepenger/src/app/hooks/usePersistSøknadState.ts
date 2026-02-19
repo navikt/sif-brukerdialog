@@ -1,4 +1,4 @@
-import { useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@app/hooks';
 import { useEffect, useState } from 'react';
 
 import actionsCreator from '../søknad/context/action/actionCreator';

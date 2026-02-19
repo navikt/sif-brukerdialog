@@ -1,4 +1,4 @@
-import { useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@app/hooks';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getDateRangeText } from '@navikt/sif-common-utils';
 import { useIntl } from 'react-intl';

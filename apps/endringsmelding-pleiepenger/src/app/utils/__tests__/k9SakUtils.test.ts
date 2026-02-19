@@ -1,5 +1,5 @@
+import { K9Sak } from '@app/types';
 import { DateRange, dateToISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
-import { K9Sak } from '@types';
 
 import { getSamletDateRangeForK9Saker, isK9SakErInnenforGyldigEndringsperiode } from '../k9SakUtils';
 

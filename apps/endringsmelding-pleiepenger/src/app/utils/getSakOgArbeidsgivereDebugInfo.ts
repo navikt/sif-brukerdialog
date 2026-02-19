@@ -1,5 +1,5 @@
+import { Arbeidsgiver, K9Sak, K9SakArbeidstaker, Sak } from '@app/types';
 import { DateRange } from '@navikt/sif-common-utils';
-import { Arbeidsgiver, K9Sak, K9SakArbeidstaker, Sak } from '@types';
 
 import { maskString } from './maskString';
 

@@ -1,4 +1,8 @@
-import { useOnValidSubmit, useSøknadContext } from '@hooks';
+import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
+import { AppText } from '@app/i18n';
+import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
+import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@app/types';
+import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@app/utils';
 import { Alert, Link, VStack } from '@navikt/ds-react';
 import {
     getIntlFormErrorHandler,
@@ -6,13 +10,9 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@types';
-import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@utils';
 import { useIntl } from 'react-intl';
 
-import { AppText } from '../../../i18n';
 import { getLenker } from '../../../lenker';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
 import actionsCreator from '../../context/action/actionCreator';

@@ -1,4 +1,3 @@
-import { durationToISODuration } from '@navikt/sif-common-utils';
 import {
     ArbeiderIPeriodenSvar,
     Arbeidsforhold,
@@ -9,7 +8,8 @@ import {
     UkjentArbeidsforholdApiData,
     UkjentArbeidsforholdSøknadsdata,
     ValgteEndringer,
-} from '@types';
+} from '@app/types';
+import { durationToISODuration } from '@navikt/sif-common-utils';
 
 import { getOrgNummerFromArbeidsgiverKey } from '../arbeidsgiverUtils';
 
