@@ -573,8 +573,8 @@ export enum Innsendelsestype {
 
 export type Innsending = {
     versjon?: string;
-    mottattDato?: string;
     søker?: Søker;
+    mottattDato?: string;
     søknadId?: string;
 };
 
@@ -749,7 +749,7 @@ export type SakInntektsmeldingDto = {
 
 export type UtsettelseDto = {
     periode: PeriodeDto;
-    getårsak: UtsettelseÅrsakDto;
+    årsak: UtsettelseÅrsakDto;
 };
 
 export enum UtsettelseÅrsakDto {
