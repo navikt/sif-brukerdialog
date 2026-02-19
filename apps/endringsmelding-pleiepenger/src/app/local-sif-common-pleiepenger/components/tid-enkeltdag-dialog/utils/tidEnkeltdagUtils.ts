@@ -9,6 +9,7 @@ import {
     getLastWeekdayOnOrBeforeDate,
     getMonthDateRange,
     getWeekDateRange,
+    isDateInDateRange,
     isDateWeekDay,
     ISODate,
     nthItemFilter,
@@ -40,18 +41,15 @@ const getGjentagendeDager = (endringsperiode: DateRange, dato: Date, gjentagelse
             gjentagendeDatoer = getDagerMedInterval(2, periode);
         }
         if (gjentagelse.gjentagelsetype === GjentagelseType.heleUken) {
-            const weekDateRange = getWeekDateRange(periode.from, true);
-            /** Avgrens dager til endringsperioden */
-            const datesWithinEndringsperiode = getDateRangeWithinDateRange(weekDateRange, endringsperiode);
-            gjentagendeDatoer = getDatesInDateRange(datesWithinEndringsperiode, true);
+            gjentagendeDatoer = getDatesInDateRange(getWeekDateRange(periode.from, true), true);
         }
         if (gjentagelse.gjentagelsetype === GjentagelseType.heleMåneden) {
-            const monthDateRange = getMonthDateRange(periode.from);
-            /** Avgrens dager til endringsperioden */
-            const datesWithinEndringsperiode = getDateRangeWithinDateRange(monthDateRange, endringsperiode);
-            gjentagendeDatoer = getDatesInDateRange(datesWithinEndringsperiode, true);
+            gjentagendeDatoer = getDatesInDateRange(getMonthDateRange(periode.from), true);
         }
-        return gjentagendeDatoer.filter(isDateWeekDay).map((date) => dateToISODate(date));
+        return gjentagendeDatoer
+            .filter(isDateWeekDay)
+            .filter((d) => isDateInDateRange(d, endringsperiode))
+            .map((date) => dateToISODate(date));
     }
     return [dateToISODate(dato)];
 };
