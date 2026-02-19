@@ -164,7 +164,7 @@ const nb = {
         'Du må svare på på om du utøvde verneplikt på tidspunktet du søker opplæringspenger fra.',
     'virksomhetForm.næringstype.noValue': 'Du må velge hvilken type virksomhet du har.',
 
-    'validation.arbeidIPeriode.jobber': 'Du må svare på om du jobber noe {hvor} i søknadsperioden.',
+    'validation.arbeidIPeriode.jobber': 'Du må svare på om du har fravær {hvor} i søknadsperioden.',
 
     'validation.opptjeningUtland.listIsEmpty': 'Du må legge til jobb i et annet EØS-land.',
     'validation.harOpptjeningUtland.yesOrNoIsUnanswered':
@@ -369,7 +369,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Du må svare på om du utførte verneplikt på tidspunktet du søkjer opplæringspengar frå.',
     'virksomhetForm.næringstype.noValue': 'Du må velje kva type verksemd du har.',
 
-    'validation.arbeidIPeriode.jobber': 'Du må svare på om du jobbar noko {hvor} i søknadsperioden.',
+    'validation.arbeidIPeriode.jobber': 'Du må svare på om du har fråvær {hvor} i søknadsperioden.',
 
     'validation.opptjeningUtland.listIsEmpty': 'Du må leggje til jobb i eit anna EØS-land.',
     'validation.harOpptjeningUtland.yesOrNoIsUnanswered':

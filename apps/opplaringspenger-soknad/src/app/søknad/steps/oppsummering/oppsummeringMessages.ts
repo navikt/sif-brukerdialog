@@ -78,11 +78,11 @@ const nb = {
     'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fravær fra jobb i søknadsperioden',
     'oppsummering.fraværIPeriode.jobberIPerioden.ja': 'jobber',
     'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR':
-        'Jeg har fullt fravær fra jobb på grunn av kurs og reise de dagene jeg søker for',
+        'Jeg er helt borte fra jobb fordi jeg er på opplæring (fullt fravær)',
     'oppsummering.fraværIPeriode.jobberIPerioden.REDUSERT':
-        'Jeg har noe fravær fra jobb på grunn av kurs og reise de dagene jeg søker for',
+        'Jeg er delvis borte fra jobb fordi jeg er på opplæring (noe fravær)',
     'oppsummering.fraværIPeriode.jobberIPerioden.SOM_VANLIG':
-        'Jeg har ikke fravær fra jobb på grunn av kurs og reise de dagene jeg søker for',
+        'Jeg jobber som normalt og er ikke borte fra jobb på grunn av opplæring (ikke fravær)',
     'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Jeg har likt fravær hver uke',
     'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
         'Jeg har {prosent} prosent fravær fra jobb, i snitt {timer} hver ukedag',

@@ -12,9 +12,9 @@ const ReiseInfo = () => {
             <p>
                 <AppText id="steg.kurs.reiserUtenforKursdager.info.tekst.2" />
             </p>
-            <p>
+            {/* <p>
                 <AppText id="steg.kurs.reiserUtenforKursdager.info.tekst.3" />
-            </p>
+            </p> */}
         </ExpandableInfo>
     );
 };
