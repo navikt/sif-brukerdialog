@@ -1,5 +1,12 @@
 # @navikt/ung-common
 
+## 0.0.95
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.11
+
 ## 0.0.94
 
 ### Patch Changes

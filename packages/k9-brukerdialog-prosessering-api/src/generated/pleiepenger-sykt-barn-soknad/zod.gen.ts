@@ -21,7 +21,7 @@ export const zBarnDetaljer = z.object({
     fødselsdato: z.optional(z.iso.date()),
     aktørId: z.optional(z.string()),
     navn: z.string().min(1),
-    getårsakManglerIdentitetsnummer: z.optional(z.enum(['NYFØDT', 'BARNET_BOR_I_UTLANDET', 'ANNET'])),
+    årsakManglerIdentitetsnummer: z.optional(z.enum(['NYFØDT', 'BARNET_BOR_I_UTLANDET', 'ANNET'])),
 });
 
 export const zBeredskap = z.object({
@@ -226,7 +226,7 @@ export const zUtenlandsopphold = z.object({
     erSammenMedBarnet: z.optional(z.boolean()),
     erBarnetInnlagt: z.optional(z.boolean()),
     perioderBarnetErInnlagt: z.array(zPeriode),
-    getårsak: z.optional(
+    årsak: z.optional(
         z.enum([
             'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING',
             'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD',

@@ -15,7 +15,7 @@ import { initialValues, SøknadFormField, SøknadFormValues } from '../types/sø
 import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getFeatureToggles } from '../utils/featureToggleUtils';
-import { relocateToLoginPage, userIsCurrentlyOnErrorPage } from '../utils/navigationUtils';
+import { relocateToLoginPage } from '../utils/navigationUtils';
 
 interface Props {
     onUgyldigMellomlagring: () => void;
@@ -106,9 +106,6 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
 
         this.updateSøkerdata(formValuesToUse, søkerdata, mellomlagring?.metadata, () => {
             this.stopLoading();
-            if (userIsCurrentlyOnErrorPage()) {
-                this.props.onError();
-            }
         });
     }
 
@@ -140,17 +137,11 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
             relocateToLoginPage();
         } else if (apiUtils.isForbidden(error)) {
             this.setState({ ...this.state, harIkkeTilgang: true });
-        } else if (!userIsCurrentlyOnErrorPage()) {
+        } else {
             appSentryLogger.logApiError(error, 'fetchSøkerdata');
             this.props.onError();
         }
-        /**
-         * this timeout is set because if isLoading is updated in the state too soon,
-         * the contentLoadedRenderer() will be called while the user is still on the wrong route,
-         * because the redirect to routeConfig.ERROR_PAGE_ROUTE will not have happened yet.
-         */
-
-        setTimeout(this.stopLoading, 200);
+        this.stopLoading();
     }
 
     render() {

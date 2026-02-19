@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "module",
     "private": true,
-    "version": "0.9.55",
+    "version": "0.9.56",
     "scripts": {
         "dev": "vite --base=/sif-brukerdialog/ungdomsytelse-veileder --config vite.dev.config.ts --port 8088",
         "dev:debug": "vite --debug",
@@ -32,10 +32,10 @@
     },
     "dependencies": {
         "@grafana/faro-react": "2.2.3",
-        "@navikt/aksel-icons": "8.5.1",
-        "@navikt/ds-css": "8.5.1",
-        "@navikt/ds-react": "8.5.1",
-        "@navikt/ds-tailwind": "8.5.1",
+        "@navikt/aksel-icons": "8.5.2",
+        "@navikt/ds-css": "8.5.2",
+        "@navikt/ds-react": "8.5.2",
+        "@navikt/ds-tailwind": "8.5.2",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/nav-dekoratoren-moduler": "3.6.2",
         "@navikt/sif-app-register": "workspace:*",

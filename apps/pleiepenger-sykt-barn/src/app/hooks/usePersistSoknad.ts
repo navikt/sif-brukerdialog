@@ -2,12 +2,11 @@ import { ApiError, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { AxiosError } from 'axios';
 import { useFormikContext } from 'formik';
-import { useNavigate } from 'react-router-dom';
 
 import { persist } from '../api/api';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { StepID } from '../types/StepID';
-import { navigateToErrorPage, relocateToLoginPage } from '../utils/navigationUtils';
+import { relocateToLoginPage } from '../utils/navigationUtils';
 
 interface PersistSoknadProps {
     stepID?: StepID;
@@ -21,8 +20,6 @@ interface PersistSoknadProps {
 function usePersistSoknad() {
     const { logUserLoggedOut, logApiError } = useAnalyticsInstance();
     const { values: stateFormValues } = useFormikContext<SøknadFormValues>();
-
-    const navigate = useNavigate();
 
     async function doPersist({ stepID, formValues }: PersistSoknadProps) {
         return persist({
@@ -40,7 +37,6 @@ function usePersistSoknad() {
                 relocateToLoginPage();
             } else {
                 logApiError(ApiError.mellomlagring, { stepID });
-                return navigateToErrorPage(navigate);
             }
         });
     }

@@ -56,6 +56,9 @@
         "server",
         "server-ungdomsytelse-veileder"
     ],
+    "resolutions": {
+        "tar": "7.5.8"
+    },
     "packageManager": "yarn@4.10.3",
     "private": true
 }
