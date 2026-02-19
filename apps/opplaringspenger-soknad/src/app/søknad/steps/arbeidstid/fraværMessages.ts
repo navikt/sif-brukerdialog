@@ -48,7 +48,51 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    'fraværIPeriode.StepInfo.1':
+        'Her skal du svare på kor mykje fråvær frå jobb du har i perioden du søkjer om, altså kor mykje du er borte frå jobb medan du er på opplæring.',
+    'fraværIPeriode.StepInfo.2':
+        'Du får dekt tida du brukar på opplæringa, og tida du brukar på reise. Det vil til dømes sei at viss opplæringa varar i fire timar, og du brukar to timar på å reise til og frå opplæringa, vil du få dekt til samen seks timar av arbeidsdagen.',
+    'fraværIPeriode.StepInfo.3.header': 'Når kontaktar me arbeidsgjevaren din?',
+    'fraværIPeriode.StepInfo.3.text':
+        'Viss du søkjer for fyrste gong, eller viss du har hatt eit opphald i opplæringspengane i minst fire veker, kontaktar me arbeidsgjevaren som du har fråvær frå, for å hente inn inntektsmelding.',
+    'fraværIPeriode.FrilansLabel': 'Frilans',
+    'fraværIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
+    'fraværIPeriode.jobberIPerioden.spm': 'Kor mykje fråvær har du frå jobb {hvor} på grunn av opplæring og reisetid?',
+    'fraværIPeriode.enkeltdager_gruppe.legend':
+        'Fyll inn talet på timar du er borte frå jobb på grunn av opplæring og reisetid',
+    'fraværIPeriode.jobberIPerioden.jobberIkke': 'Eg er heilt borte frå jobb fordi eg er på opplæring (fullt fråvær)',
+    'fraværIPeriode.jobberIPerioden.jobberVanlig':
+        'Eg jobbar som normalt og er ikkje borte frå jobb på grunn av opplæring (ikkje fråvær)',
+    'fraværIPeriode.jobberIPerioden.jobberRedusert':
+        'Eg er delvis borte frå jobb fordi eg er på opplæring (noko fråvær)',
+    'fraværIPeriode.iDag.utledet': 'timar i veka',
+    'fraværIPeriode.prosent.utledet.medTimer': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
+    'fraværIPeriode.arbeidstidSted.frilansoppdrag': 'Frilansoppdrag',
+    'fraværIPeriode.arbeidstidSted.sn': 'Sjølvstendig næringsdrivande',
+    'fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader':
+        '{numDatesInMonthWithDuration, plural, one {# dag} other {# dager}} med fråvær',
+    'fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion':
+        'Timar med fråvær frå jobb {date} på grunn av kurs og reise',
+    'fraværIPeriode.arbeidIPeriodeSpørsmål.weekHeader': '{månedOgÅr} - veke {ukenummer}',
+    'fraværIPeriode.validation.timerDag.timeHasNoValue': 'Du må fylle ut tid med fråvær for {dato} {hvor}.',
+    'fraværIPeriode.validation.timerDag.hoursAreInvalid':
+        'Talet på timar med fråvær på {dato} er ikkje eit gyldig tal.',
+    'fraværIPeriode.validation.timerDag.minutesAreInvalid':
+        'Talet på minutt med fråvær på {dato} er ikkje eit gyldig tal.',
+    'fraværIPeriode.validation.timerDag.tooManyHours':
+        'Talet på timar med fråvær på {dato} kan ikkje overstige 24 timar.',
+    'fraværIPeriode.validation.timerDag.tooManyMinutes':
+        'Talet på minutt med fråvær på {dato} kan ikkje overstige 59 minutt.',
+    'fraværIPeriode.validation.timerDag.durationIsTooLong':
+        'Talet på timar og minutt med fråvær registrert {dato} er for høgt. Tida kan ikkje overstige 24 timar kvar vekedag.',
+    'fraværIPeriode.validation.timerDag.durationIsTooShort':
+        'Talet på timar og minutt med fråvær {dato} kan ikkje vere mindre enn 0 timar og 0 minutt.',
+    'fraværIPeriode.validation.timerDag.minutesAreNegative':
+        'Talet på timar og minutt med fråvær {dato} kan ikkje vere mindre enn 0 timar og 0 minutt.',
+    'fraværIPeriode.validation.timerDag.hoursAreNegative':
+        'Talet på timar og minutt med fråvær {dato} kan ikkje vere mindre enn 0 timar og 0 minutt.',
+    'fraværIPeriode.validation.ingenTidRegistrert':
+        'Du har ikkje fylt inn timar med fråvær {hvor} på dagane du har søkt om. Dersom dette stemmer, skal du velje "{ingenFraværSpørsmål}" på spørsmålet ovanfor.',
 };
 
 export const fraværMessages = {

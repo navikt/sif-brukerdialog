@@ -68,9 +68,9 @@ const nn: Record<keyof typeof nb, string> = {
         'Me hentar inn og mottar opplysningar om deg for å behandle saka di. Det er nødvendig for at du skal få riktig teneste.',
     'personopplysninger.3': 'Kva for opplysningar hentar me inn?',
     'personopplysninger.4':
-        'Opplysningane me hentar inn kjem anten frå deg, arbeidsgivar eller frå offentlege register:',
+        'Opplysningane vi innhentar, kjem anten frå deg, arbeidsgjevar eller frå offentlege register:',
     'personopplysninger.4.1': 'opplysningar om helsa til den du skal søkje opplæringspengar for',
-    'personopplysninger.4.2': 'arbeidsforholda dine og inntekta di',
+    'personopplysninger.4.2': 'arbeidsforholda dine og inntekta di hos arbeidsgjevarar du har fråvær frå',
     'personopplysninger.4.3': 'ytingar du mottar frå Nav',
     'personopplysninger.4.4': 'tilknytinga di til Noreg',
     'personopplysninger.4.5':

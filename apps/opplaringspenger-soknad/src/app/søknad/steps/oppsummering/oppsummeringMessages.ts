@@ -223,19 +223,19 @@ const nn: Record<keyof typeof nb, string> = {
     'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsverksemder i andre EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsverksemd i anna EØS-land',
 
-    'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fravær fra jobb i søknadsperioden',
-    'oppsummering.fraværIPeriode.jobberIPerioden.ja': 'jobber',
+    'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fråvær frå jobb i søknadsperioden',
+    'oppsummering.fraværIPeriode.jobberIPerioden.ja': 'jobbar',
     'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR':
-        'Jeg har fullt fravær fra jobb på grunn av kurs og reise de dagene jeg søker for',
+        'Eg har fullt fråvær frå jobb på grunn av kurs og reise dei dagane eg søkjer for',
     'oppsummering.fraværIPeriode.jobberIPerioden.REDUSERT':
-        'Jeg har noe fravær fra jobb på grunn av kurs og reise de dagene jeg søker for',
+        'Eg har noko fråvær frå jobb på grunn av kurs og reise dei dagane eg søkjer for',
     'oppsummering.fraværIPeriode.jobberIPerioden.SOM_VANLIG':
-        'Jeg har ikke fravær fra jobb på grunn av kurs og reise de dagene jeg søker for',
-    'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Jeg har likt fravær hver uke',
+        'Eg har ikkje fråvær frå jobb på grunn av kurs og reise dei dagane eg søkjer for',
+    'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Eg har likt fråvær kvar veke',
     'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
-        'Jeg har {prosent} prosent fravær fra jobb, i snitt {timer} hver ukedag',
-    'oppsummering.fraværIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om fravær i perioden mangler',
-    'oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Timer med fravær',
+        'Eg har {prosent} prosent fråvær frå jobb, i snitt {timer} kvar vekedag',
+    'oppsummering.fraværIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om fråvær i perioden manglar',
+    'oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Timar med fråvær',
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsverksemd som du har lagt inn',
 

@@ -129,7 +129,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.enkeltdagEllerPeriode.periode': 'Samanhengande periode',
 
     'steg.kurs.enkeltdager.tittel': 'Kva dagar søkjer du opplæringspengar?',
-    'steg.kurs.enkeltdager.tekst': 'Legg til dager du er på opplæring eller kurs.',
+    'steg.kurs.enkeltdager.tekst': 'Legg til dagar du er på opplæring eller kurs.',
     'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
     'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
 

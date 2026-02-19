@@ -299,7 +299,7 @@ const nn: Record<keyof typeof nb, string> = {
 
     'step.arbeidstid.stepTitle': 'Fravær fra jobb i søknadsperioden',
     'step.arbeidstid.pageTitle': 'Fravær fra jobb i søknadsperioden',
-    'step.arbeidstid.stepIndicatorLabel': 'Fravær fra jobb i søknadsperioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Fråvær frå jobb på dagane du er i opplæring',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygda',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygda',
