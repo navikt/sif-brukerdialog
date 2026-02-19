@@ -27,9 +27,9 @@ export const fyllUtArbeidstid = async (page: Page) => {
 export const kontrollerArbeidstidOppsummering = async (page: Page) => {
     await expect(page.getByRole('heading', { name: 'Timer med fravær' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'SNODIG FISKER (' }).nth(1)).toBeVisible();
-    await expect(page.getByText('Jeg har noe fravær fra jobb på grunn')).toBeVisible();
+    await expect(page.getByText('Jeg er delvis borte fra jobb fordi jeg er på')).toBeVisible();
     await expect(page.getByText('mandag 02.12.2024:5 timer 0')).toBeVisible();
     await expect(page.getByText('fredag 06.12.2024:0 timer 30')).toBeVisible();
     await expect(page.getByText('fredag 06.12.2024:0 timer 30')).toBeVisible();
-    await expect(page.getByText('FrilanserJeg har ikke fravær fra jobb')).toBeVisible();
+    await expect(page.getByText('FrilanserJeg jobber som normalt')).toBeVisible();
 };
