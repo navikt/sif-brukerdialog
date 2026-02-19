@@ -46,7 +46,10 @@ const getGjentagendeDager = (endringsperiode: DateRange, dato: Date, gjentagelse
             gjentagendeDatoer = getDatesInDateRange(datesWithinEndringsperiode, true);
         }
         if (gjentagelse.gjentagelsetype === GjentagelseType.heleMåneden) {
-            gjentagendeDatoer = getDatesInDateRange(getMonthDateRange(periode.from), true);
+            const monthDateRange = getMonthDateRange(periode.from);
+            /** Avgrens dager til endringsperioden */
+            const datesWithinEndringsperiode = getDateRangeWithinDateRange(monthDateRange, endringsperiode);
+            gjentagendeDatoer = getDatesInDateRange(datesWithinEndringsperiode, true);
         }
         return gjentagendeDatoer.filter(isDateWeekDay).map((date) => dateToISODate(date));
     }
