@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.2.13
+
+### Patch Changes
+
+- Fix pga feil generering av properties som startet med æøå i specen som er grunnlaget
+
 ## 0.2.12
 
 ### Patch Changes

@@ -30,7 +30,7 @@ export const zBarnDetaljer = z.object({
     fødselsdato: z.optional(z.iso.date()),
     aktørId: z.optional(z.string()),
     navn: z.string().min(1),
-    getårsakManglerIdentitetsnummer: z.optional(z.enum(['NYFØDT', 'BARNET_BOR_I_UTLANDET', 'ANNET'])),
+    årsakManglerIdentitetsnummer: z.optional(z.enum(['NYFØDT', 'BARNET_BOR_I_UTLANDET', 'ANNET'])),
     relasjonTilBarnet: z.optional(z.enum(['MOR', 'MEDMOR', 'FAR', 'FOSTERFORELDER', 'ANNET'])),
     relasjonTilBarnetBeskrivelse: z.optional(z.string()),
     fødselsattestVedleggUrls: z.optional(z.array(z.string())),

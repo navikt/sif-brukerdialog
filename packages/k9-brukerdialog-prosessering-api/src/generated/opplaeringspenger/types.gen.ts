@@ -33,7 +33,7 @@ export type BarnDetaljer = {
     fødselsdato?: string;
     aktørId?: string;
     navn: string;
-    getårsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
+    årsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
     relasjonTilBarnet?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
     relasjonTilBarnetBeskrivelse?: string;
     fødselsattestVedleggUrls?: string[];

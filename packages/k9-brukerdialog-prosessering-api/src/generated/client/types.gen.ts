@@ -95,7 +95,7 @@ export type BarnDetaljer = {
     fødselsdato?: string;
     aktørId?: string;
     navn: string;
-    getårsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
+    årsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
 };
 
 export type Beredskap = {
@@ -298,7 +298,7 @@ export type Utenlandsopphold = {
     erSammenMedBarnet?: boolean;
     erBarnetInnlagt?: boolean;
     perioderBarnetErInnlagt: Periode[];
-    getårsak?:
+    årsak?:
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING'
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD'
         | 'ANNET';
@@ -513,7 +513,7 @@ export type Pleietrengende = {
     norskIdentitetsnummer?: string;
     fødselsdato?: string;
     navn: string;
-    getårsakManglerIdentitetsnummer?: 'BOR_I_UTLANDET' | 'ANNET';
+    årsakManglerIdentitetsnummer?: 'BOR_I_UTLANDET' | 'ANNET';
 };
 
 export type FamiliePdfPostRequest = {
