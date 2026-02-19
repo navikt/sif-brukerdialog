@@ -145,8 +145,6 @@ const TidEnkeltdagForm = ({
     maksTid = { hours: 24, minutes: 0 },
     minTid = { hours: 0, minutes: 0 },
     hvorMyeSpørsmålRenderer,
-    // erIkkeIOmsorgstilbudLabelRenderer,
-    // beskrivelseRenderer,
     onSubmit,
     onCancel,
 }: TidEnkeltdagFormProps) => {
@@ -218,7 +216,6 @@ const TidEnkeltdagForm = ({
                         submitButtonLabel="Lagre"
                         showButtonArrows={false}
                         cancelButtonLabel="Avbryt">
-                        {/* <OmsorgstilbudWatcher /> */}
                         <VStack gap="space-24">
                             <BodyLong className="noPadding">
                                 Velg om barnet er i omsorgstilbud denne dagen, og eventuelt hvor mye tid barnet er i
@@ -236,7 +233,6 @@ const TidEnkeltdagForm = ({
                                     </>
                                 )}
                             </Alert>
-                            {/* <BodyLong className="noPadding">{beskrivelseRenderer(dato)}</BodyLong> */}
                             <VStack gap="space-32">
                                 <FormLayout.Panel>
                                     <VStack gap="space-16">
@@ -258,12 +254,6 @@ const TidEnkeltdagForm = ({
                                                 }}
                                             />
                                         )}
-                                        {/* <FormLayout.QuestionBleedTop>
-                                            <FormComponents.Checkbox
-                                                name={FormFields.erIkkeIOmsorgstilbud}
-                                                label={erIkkeIOmsorgstilbudLabelRenderer(dato)}
-                                            />
-                                        </FormLayout.QuestionBleedTop> */}
                                     </VStack>
                                 </FormLayout.Panel>
                                 {skalViseValgetGjelderFlereDager && erBarnetIOmsorgstilbud !== undefined && (

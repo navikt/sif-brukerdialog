@@ -40,7 +40,10 @@ const getGjentagendeDager = (endringsperiode: DateRange, dato: Date, gjentagelse
             gjentagendeDatoer = getDagerMedInterval(2, periode);
         }
         if (gjentagelse.gjentagelsetype === GjentagelseType.heleUken) {
-            gjentagendeDatoer = getDatesInDateRange(getWeekDateRange(periode.from), true);
+            const weekDateRange = getWeekDateRange(periode.from, true);
+            /** Avgrens dager til endringsperioden */
+            const datesWithinEndringsperiode = getDateRangeWithinDateRange(weekDateRange, endringsperiode);
+            gjentagendeDatoer = getDatesInDateRange(datesWithinEndringsperiode, true);
         }
         if (gjentagelse.gjentagelsetype === GjentagelseType.heleMåneden) {
             gjentagendeDatoer = getDatesInDateRange(getMonthDateRange(periode.from), true);
