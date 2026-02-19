@@ -19,7 +19,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { purge, sendApplication } from '../../api/api';
-import routeConfig from '../../config/routeConfig';
 import { SøkerdataContextConsumer } from '../../context/SøkerdataContext';
 import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
 import { AppText } from '../../i18n';
@@ -57,6 +56,7 @@ interface Props {
 const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) => {
     const [sendingInProgress, setSendingInProgress] = useState<boolean>(false);
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
+    const [sendSoknadFailed, setSendSoknadFailed] = useState<boolean>(false);
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>();
 
     const appIntl = useAppIntl();
@@ -79,6 +79,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
         }
         setInvalidParameters(undefined);
         setSendingInProgress(true);
+        setSendSoknadFailed(false);
         try {
             await sendApplication(apiValues);
             await logSoknadSent(PleiepengerSyktBarnApp.key, locale);
@@ -89,17 +90,21 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
             setSoknadSent(true);
             onApplicationSent(apiValues, søkerdata);
         } catch (error: any) {
-            if (isAxiosError(error) && isInvalidParameterErrorResponse(error.response?.data)) {
+            if (isAxiosError(error)) {
                 setSendingInProgress(false);
-                setInvalidParameters(error.response.data.violations);
+                setSendSoknadFailed(true);
+                if (isInvalidParameterErrorResponse(error.response?.data)) {
+                    setInvalidParameters(error.response.data.violations);
+                }
                 appSentryLogger.logApiError(error as any, 'sendSøknad-invalidParameters');
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
             } else {
+                setSendingInProgress(false);
+                setSendSoknadFailed(true);
                 await logSoknadFailed(PleiepengerSyktBarnApp.navn);
                 appSentryLogger.logApiError(error, 'sendSøknad');
-                navigate(routeConfig.ERROR_PAGE_ROUTE);
             }
         }
     };
@@ -164,7 +169,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         showSubmitButton={apiValuesValidationErrors === undefined}
                         isFinalSubmit={true}
                         buttonDisabled={sendingInProgress}
-                        showButtonSpinner={sendingInProgress}>
+                        requestPending={sendingInProgress}>
                         <FormLayout.Guide>
                             <p>
                                 <AppText id="steg.oppsummering.info" />
@@ -253,6 +258,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 {invalidParameters && (
                                     <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />
                                 )}
+                                {sendSoknadFailed && !invalidParameters && <InnsendingFeiletInformasjon />}
                             </div>
                         </VStack>
                     </SøknadFormStep>

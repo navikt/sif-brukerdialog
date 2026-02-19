@@ -17,7 +17,6 @@ import { purge } from './api/api';
 import RouteConfig from './config/routeConfig';
 import { appEnv } from './env/appEnv';
 import { applicationIntlMessages } from './i18n';
-import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import Søknad from './søknad/Søknad';
 import appSentryLogger from './utils/appSentryLogger';
 import { relocateToSoknad } from './utils/navigationUtils';
@@ -79,11 +78,6 @@ const App = () => {
                                 element={<Navigate to={RouteConfig.SØKNAD_ROUTE_PREFIX} replace={true} />}
                             />,
                             <Route key="søknad" path={`${RouteConfig.SØKNAD_ROUTE_PREFIX}/*`} element={<Søknad />} />,
-                            <Route
-                                key="errorpage"
-                                path={RouteConfig.ERROR_PAGE_ROUTE}
-                                element={<GeneralErrorPage />}
-                            />,
                         ]}
                     />
                 </SoknadApplication>
