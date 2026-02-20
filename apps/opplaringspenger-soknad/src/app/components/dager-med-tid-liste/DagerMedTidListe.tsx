@@ -23,10 +23,16 @@ const renderDagMedTid = (dag: DagMedTid, visNormaltid?: boolean): React.ReactNod
             <HGrid gap="space-8" columns={{ sm: '12rem auto', xs: '1fr' }} align="center">
                 <span className="capsFirstLetter">{dayjs(dag.dato).format('dddd DD.MM.YYYY')}:</span>
                 <span>
-                    <DurationText duration={{ hours: timer, minutes: minutter }} fullText={true} />
-                    {visNormaltid && dag.normaltid && (
+                    {timer === '0' && minutter === '0' ? (
+                        <>-</>
+                    ) : (
                         <>
-                            . Normalt <DurationText duration={dag.normaltid} fullText={true} />.
+                            <DurationText duration={{ hours: timer, minutes: minutter }} fullText={true} />
+                            {visNormaltid && dag.normaltid && (
+                                <>
+                                    . Normalt <DurationText duration={dag.normaltid} fullText={true} />.
+                                </>
+                            )}
                         </>
                     )}
                 </span>

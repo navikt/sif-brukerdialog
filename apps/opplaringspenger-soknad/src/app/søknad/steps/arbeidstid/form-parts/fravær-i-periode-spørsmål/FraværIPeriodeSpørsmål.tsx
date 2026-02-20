@@ -1,27 +1,21 @@
-import { Alert, Box, Heading, HStack, Tag } from '@navikt/ds-react';
-import {
-    DateRange,
-    getErrorForField,
-    getTypedFormComponents,
-    TypedFormikFormContext,
-    ValidationError,
-} from '@navikt/sif-common-formik-ds';
+import { Alert } from '@navikt/ds-react';
+import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
+    capsFirstCharacter,
     dateFormatter,
     durationToDecimalDuration,
     getDatesInDateRange,
-    getMonthsInDateRange,
     isDateInDates,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils';
 import { getTimeValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { AppIntlShape, AppText, useAppIntl } from '../../../../../i18n';
+import { AppIntlShape, useAppIntl } from '../../../../../i18n';
 import { getArbeidstidIPeriodeIntlValues } from '../../arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../../arbeidstidStepUtils';
@@ -47,7 +41,7 @@ interface Props extends ArbeidstidRegistrertLogProps {
     onArbeidstidVariertChange: () => void;
 }
 
-const ArbeidIPeriodeSpørsmål = ({
+const FraværIPeriodeSpørsmål = ({
     parentFieldName,
     jobberNormaltTimer,
     arbeidIPeriode,
@@ -63,7 +57,6 @@ const ArbeidIPeriodeSpørsmål = ({
 
     const [arbeidstidChanged, setArbeidstidChanged] = useState(false);
 
-    const context = useContext(TypedFormikFormContext);
     const formik = useFormikContext<ArbeidstidFormValues>();
 
     useEffect(() => {
@@ -95,61 +88,14 @@ const ArbeidIPeriodeSpørsmål = ({
     const getFieldName = (field: ArbeidIPeriodeField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
     const fieldName = getFieldName(ArbeidIPeriodeField.enkeltdager);
 
-    const hasEnkeltdagerMedFeil =
-        formik.isValid === false && context?.showErrors && getErrorForField(fieldName, formik.errors) !== undefined;
-
     const { jobberIPerioden } = arbeidIPeriode || {};
-
-    const { enkeltdager } = arbeidIPeriode || {};
-    const datesWithDuration = enkeltdager
-        ? Object.keys(enkeltdager)
-              .map((key) => ({
-                  date: key,
-                  duration: enkeltdager[key] ? durationToDecimalDuration(enkeltdager[key]) : undefined,
-              }))
-              .filter((d) => d.duration && d.duration > 0)
-        : [];
-
-    const renderMonthHeader = (month: Date, enabledDatesInMonth: number) => {
-        const numDatesInMonthWithDuration = datesWithDuration.filter((d) =>
-            dayjs(d.date).isSame(month, 'month'),
-        ).length;
-
-        return (
-            <HStack gap="space-16" align="center">
-                <div style={{ minWidth: '10rem' }}>Timer med jobb {dayjs(month).format('MMMM YYYY')}</div>
-                {numDatesInMonthWithDuration > 0 && (
-                    <Tag variant="info" size="small">
-                        <AppText
-                            id="arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader"
-                            values={{ numDatesInMonthWithDuration, enabledDatesInMonth }}
-                        />
-                    </Tag>
-                )}
-            </HStack>
-        );
-    };
-    const renderMonthHeaderNoAccordion = (month: Date) => {
-        return (
-            <>
-                <Heading size="small" level="3" spacing={true}>
-                    <AppText
-                        id="arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion"
-                        values={{ date: dayjs(month).format('MMMM YYYY') }}
-                    />
-                </Heading>
-            </>
-        );
-    };
-
-    const useAccordion = skjulJobberNormaltValg !== true && getMonthsInDateRange(periode).length > 1;
 
     return (
         <FormLayout.Questions>
             {!skjulJobberNormaltValg && (
                 <RadioGroup
                     name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
-                    legend={text(`arbeidIPeriode.jobberIPerioden.spm`, intlValues)}
+                    legend={text(`fraværIPeriode.jobberIPerioden.spm`, intlValues)}
                     validate={getJobberIPeriodenValidator(intlValues)}
                     radios={getJobberIPeriodenRadios(appIntl, skjulJobberNormaltValg)}
                 />
@@ -159,40 +105,43 @@ const ArbeidIPeriodeSpørsmål = ({
                     <InputGroup
                         id={`${fieldName}_group`}
                         name={`${fieldName}_group` as any}
-                        legend={text('arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}
+                        legend={text('fraværIPeriode.enkeltdager_gruppe.legend', intlValues)}
                         validate={() => {
                             const { jobberIPerioden: jip, enkeltdager: ed = {} } = arbeidIPeriode || {};
                             if (jip === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
                                 if (durationToDecimalDuration(summarizeDateDurationMap(ed)) === 0) {
                                     return {
-                                        key: 'arbeidIPeriode.validation.ingenTidRegistrert',
-                                        values: intlValues,
+                                        key: 'fraværIPeriode.validation.ingenTidRegistrert',
+                                        values: {
+                                            ...intlValues,
+                                            ingenFraværSpørsmål: text('fraværIPeriode.jobberIPerioden.jobberVanlig'),
+                                        },
                                         keepKeyUnaltered: true,
                                     };
                                 }
                             }
                             return undefined;
-                        }}
-                        description={
-                            <Box paddingBlock="space-8 space-0">
-                                <Alert variant="info" inline={true}>
-                                    <AppText id="arbeidIPeriode.enkeltdager_gruppe.description" />
-                                </Alert>
-                            </Box>
-                        }>
+                        }}>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput
                                 dateRange={begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(periode)}
                                 disabledDates={getDagerSomSkalDisables(periode, valgteDatoer)}
                                 formikFieldName={fieldName}
-                                useExpansionCards={useAccordion}
-                                renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
-                                accordionOpen={hasEnkeltdagerMedFeil}
+                                useExpansionCards={false}
+                                renderWeekHeader={(fullWeek) =>
+                                    capsFirstCharacter(
+                                        text('fraværIPeriode.arbeidIPeriodeSpørsmål.weekHeader', {
+                                            månedOgÅr: dateFormatter.monthFullYear(fullWeek.from),
+                                            ukenummer: dayjs(fullWeek.from).isoWeek(),
+                                        }),
+                                    )
+                                }
+                                renderMonthHeader={() => null}
                                 validateDate={(value: any, date: Date) => {
-                                    const error = getTimeValidator()(value);
+                                    const error = getTimeValidator({ min: { hours: 0, minutes: 0 } })(value);
                                     if (error) {
                                         return {
-                                            key: `arbeidIPeriode.validation.timerDag.${error}`,
+                                            key: `fraværIPeriode.validation.timerDag.${error}`,
                                             keepKeyUnaltered: true,
                                             values: {
                                                 ...intlValues,
@@ -213,18 +162,18 @@ const ArbeidIPeriodeSpørsmål = ({
 
 const getJobberIPeriodenRadios = ({ text }: AppIntlShape, skjulJobberNormaltValg: boolean) => [
     {
-        label: text('arbeidIPeriode.jobberIPerioden.jobberIkke'),
+        label: text('fraværIPeriode.jobberIPerioden.jobberIkke'),
         value: JobberIPeriodeSvar.heltFravær,
     },
     {
-        label: text('arbeidIPeriode.jobberIPerioden.jobberRedusert'),
+        label: text('fraværIPeriode.jobberIPerioden.jobberRedusert'),
         value: JobberIPeriodeSvar.redusert,
     },
     ...(skjulJobberNormaltValg
         ? []
         : [
               {
-                  label: text('arbeidIPeriode.jobberIPerioden.jobberVanlig'),
+                  label: text('fraværIPeriode.jobberIPerioden.jobberVanlig'),
                   value: JobberIPeriodeSvar.somVanlig,
               },
           ]),
@@ -234,4 +183,4 @@ const getDagerSomSkalDisables = (dateRange: DateRange, valgteDatoer: Date[]): Da
     return getDatesInDateRange(dateRange).filter((d) => isDateInDates(d, valgteDatoer) === false);
 };
 
-export default ArbeidIPeriodeSpørsmål;
+export default FraværIPeriodeSpørsmål;
