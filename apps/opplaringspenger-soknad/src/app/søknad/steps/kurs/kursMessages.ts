@@ -142,12 +142,11 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva tyder dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
-        'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
+        'Dersom du må vere borte frå jobb fleire dagar enn du har opplæring, kan du ha rett til opplæringspengar også dei dagane du er på reise.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.2':
-        'Her informerer du oss om hvilke dager i søknadsperioden du må bruke for å reise til opplæringsstedet, og derfor ikke kunne jobbe som vanlig. Du kan kun registrere reisesdager som er innenfor perioden du søker om opplæringspenger.',
+        'Her informerer du oss om kva dagar i søknadsperioden du må bruke for å reise til opplæringsstaden, og difor ikkje kunne jobbe som vanleg. Du kan berre registrere reisedagar som er innanfor perioden du søkjer om opplæringspengar.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.3':
-        'Du trenger ikke å fylle ut noe her hvis du reiser til og fra opplæringen samme dag som du har opplæring.',
-
+        'Du treng ikkje å fylle ut noko her dersom du reiser til og frå opplæringa same dag som du har opplæring.',
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive kvar opplæringa føregår med minst 2 teikn.',
     'steg.kurs.validation.enkeltdagEllerPeriode.noValue':
