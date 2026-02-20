@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.53
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.92
+
 ## 10.3.52
 
 ### Patch Changes

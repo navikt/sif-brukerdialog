@@ -1,5 +1,12 @@
 # @navikt/sif-common-ui
 
+## 0.4.92
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-sentry@0.28.63
+
 ## 0.4.91
 
 ### Patch Changes
