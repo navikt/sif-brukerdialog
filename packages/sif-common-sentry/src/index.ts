@@ -126,6 +126,12 @@ const initSentryForSIF = (initProps: SentryInitProps = {}) => {
         environment: setSentryEnvironmentFromHost(),
         ...initProps,
         ...setupIgnoreErrorsAndAllowUrls(initProps),
+        beforeSend(event) {
+            const frames = event.exception?.values?.flatMap((v) => v.stacktrace?.frames ?? []) ?? [];
+            const fromDecorator = frames.some((f) => (f.filename ?? '').includes('www.nav.no/dekoratoren/'));
+            if (fromDecorator) return null;
+            return event;
+        },
     });
 };
 
