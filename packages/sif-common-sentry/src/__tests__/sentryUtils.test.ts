@@ -57,4 +57,18 @@ describe('beforeSendFilter', () => {
         } as ErrorEvent;
         expect(beforeSendFilter(event)).toBe(event);
     });
+
+    it('filtrerer bort UnhandledRejection med Request timeout fra dekoratoren', () => {
+        const event = {
+            exception: {
+                values: [
+                    {
+                        type: 'UnhandledRejection',
+                        value: 'Non-Error promise rejection captured with value: Request timeout',
+                    },
+                ],
+            },
+        } as ErrorEvent;
+        expect(beforeSendFilter(event)).toBeNull();
+    });
 });
