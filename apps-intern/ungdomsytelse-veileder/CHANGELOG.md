@@ -1,5 +1,14 @@
 # @navikt/sif-demo-app
 
+## 0.9.57
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.92
+- @navikt/sif-common-core-ds@10.3.53
+- @navikt/sif-common-ui@0.11.54
+- @navikt/ung-common@0.0.96
+
 ## 0.9.56
 
 ### Patch Changes

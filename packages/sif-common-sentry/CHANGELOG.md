@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.63
+
+### Patch Changes
+
+- Filtrere bort feil fra dekoratøren
+
 ## 0.28.62
 
 ### Patch Changes
