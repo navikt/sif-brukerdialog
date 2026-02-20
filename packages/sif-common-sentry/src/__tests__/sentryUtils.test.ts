@@ -1,4 +1,6 @@
-import { SentryEnvironment, setSentryEnvironment, setupIgnoreErrorsAndAllowUrls } from '../';
+import type { ErrorEvent } from '@sentry/browser';
+
+import { beforeSendFilter, SentryEnvironment, setSentryEnvironment, setupIgnoreErrorsAndAllowUrls } from '../';
 
 describe('routeUtils', () => {
     it('sentry environment is set correctly', () => {
@@ -22,5 +24,37 @@ describe('setupIgnoreErrorsAndAllowUrls', () => {
         });
         expect(allowUrls).toBeDefined();
         expect(ignoreErrors).toBeDefined();
+    });
+});
+
+describe('beforeSendFilter', () => {
+    it('filtrerer bort feil fra nav.no/dekoratoren', () => {
+        const event = {
+            exception: {
+                values: [
+                    {
+                        stacktrace: {
+                            frames: [{ filename: 'https://www.nav.no/dekoratoren/api/ta' }],
+                        },
+                    },
+                ],
+            },
+        } as ErrorEvent;
+        expect(beforeSendFilter(event)).toBeNull();
+    });
+
+    it('sender videre feil som ikke er fra dekoratoren', () => {
+        const event = {
+            exception: {
+                values: [
+                    {
+                        stacktrace: {
+                            frames: [{ filename: 'https://www.nav.no/familie/' }],
+                        },
+                    },
+                ],
+            },
+        } as ErrorEvent;
+        expect(beforeSendFilter(event)).toBe(event);
     });
 });

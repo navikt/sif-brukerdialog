@@ -120,18 +120,25 @@ export const setupIgnoreErrorsAndAllowUrls = (
     return { allowUrls, ignoreErrors };
 };
 
+export const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
+    const frames = event.exception?.values?.flatMap((v) => v.stacktrace?.frames ?? []) ?? [];
+    return frames.some((f) => (f.filename ?? '').includes('www.nav.no/dekoratoren/'));
+};
+
+export const beforeSendFilter = (event: Sentry.ErrorEvent): Sentry.ErrorEvent | null => {
+    if (isErrorFromDekoratøren(event)) {
+        return null;
+    }
+    return event;
+};
+
 const initSentryForSIF = (initProps: SentryInitProps = {}) => {
     Sentry.init({
         dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
         environment: setSentryEnvironmentFromHost(),
         ...initProps,
         ...setupIgnoreErrorsAndAllowUrls(initProps),
-        beforeSend(event) {
-            const frames = event.exception?.values?.flatMap((v) => v.stacktrace?.frames ?? []) ?? [];
-            const fromDecorator = frames.some((f) => (f.filename ?? '').includes('www.nav.no/dekoratoren/'));
-            if (fromDecorator) return null;
-            return event;
-        },
+        beforeSend: beforeSendFilter,
     });
 };
 
