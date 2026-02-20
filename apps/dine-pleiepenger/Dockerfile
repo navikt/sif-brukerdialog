@@ -2,7 +2,9 @@ FROM node:22-alpine
 
 RUN apk add --no-cache tini \
     && addgroup --system --gid 1069 nodejs \
-    && adduser --system --uid 1069 nextjs
+    && adduser --system --uid 1069 nextjs \
+    && npm uninstall -g npm \
+    && rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx
 
 WORKDIR /app
 
