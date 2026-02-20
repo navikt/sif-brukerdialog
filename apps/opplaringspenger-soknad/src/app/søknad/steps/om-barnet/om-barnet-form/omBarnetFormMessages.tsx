@@ -122,23 +122,23 @@ const nn: Record<keyof typeof nb, string> = {
     'omBarnetForm.fødselsattest.vedlegg.legend': 'Dokument',
     'omBarnetForm.validation.barnetSøknadenGjelder.noValue':
         'Du må velje kva barn søknaden gjeld, eller velje at søknaden gjeld eit anna barn.',
-    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Skriv inn barnets fødselsnummer.',
+    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Skriv inn fødselsnummer til barnet.',
     'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsInvalid':
         'Du har oppgitt eit ugyldig fødselsnummer. Kontroller at du har skrive inn rett.',
     'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
         'Du har oppgitt eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
     'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed':
-        'Du har oppgitt ditt eige fødselsnummer som barnets fødselsnummer. Skriv inn barnets fødselsnummer.',
+        'Du har oppgitt ditt eige fødselsnummer som fødselsnummer til barnet. Skriv inn fødselsnummer til barnet.',
     'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
         'Du har oppgitt eit fødselsnummer som ikkje er tillate.',
-    'omBarnetForm.validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn barnets fødselsdato.',
+    'omBarnetForm.validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn fødselsdato til barnet.',
     'omBarnetForm.validation.barnetsFødselsdato.dateHasInvalidFormat':
-        'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
+        'Fødselsdato til barnet er ugyldig. Gyldig format er dd.mm.åååå.',
     'omBarnetForm.validation.barnetsFødselsdato.dateIsAfterMax':
         'Fødselsdato kan ikkje vere etter dagens dato. Skriv inn eller vel dato frå datoveljar.',
-    'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets namn.',
+    'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn namn til barnet.',
     'omBarnetForm.validation.barnetsNavn.stringIsTooLong':
-        'Namnet på barnet kan ikkje innehalde meir enn {maks} teikn.',
+        'Namnet til barnet kan ikkje innehalde meir enn {maks} teikn.',
     'omBarnetForm.validation.relasjonTilBarnet.noValue': 'Du må velje din relasjon til barnet.',
     'omBarnetForm.validation.relasjonTilBarnetBeskrivelse.stringHasNoValue':
         'Du må skildre kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer for.',
