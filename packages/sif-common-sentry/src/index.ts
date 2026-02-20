@@ -122,7 +122,7 @@ export const setupIgnoreErrorsAndAllowUrls = (
 
 export const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
     const frames = event.exception?.values?.flatMap((v) => v.stacktrace?.frames ?? []) ?? [];
-    return frames.some((f) => (f.filename ?? '').includes('www.nav.no/dekoratoren/'));
+    return frames.some((f) => (f.filename ?? '').includes('/dekoratoren/'));
 };
 
 export const beforeSendFilter = (event: Sentry.ErrorEvent): Sentry.ErrorEvent | null => {
