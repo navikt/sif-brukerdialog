@@ -58,7 +58,7 @@ class ErrorBoundary extends Component<PropsWithChildren, State> {
             return (
                 <Page>
                     <Page.Block width="xl">
-                        <ErrorFallback userRequestId={userRequestId || getUserRequestId()} />
+                        <ErrorFallback />
                     </Page.Block>
                 </Page>
             );
