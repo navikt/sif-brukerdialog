@@ -88,6 +88,6 @@ FROM server
 
 COPY --from=client-build /public ./public
 
-CMD ["node", "index.js"]
+CMD ["node", "index.cjs"]
 
 
