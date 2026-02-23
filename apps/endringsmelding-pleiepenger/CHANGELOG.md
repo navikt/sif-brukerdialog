@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.40.65
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 2.40.64
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.35.73
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 1.35.72
 
 ### Patch Changes

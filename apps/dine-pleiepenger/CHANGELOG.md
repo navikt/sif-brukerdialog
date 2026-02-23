@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 2.2.4
 
 ### Patch Changes

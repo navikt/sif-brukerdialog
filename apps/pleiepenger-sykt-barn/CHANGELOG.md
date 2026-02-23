@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.68
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 4.11.67
 
 ### Patch Changes

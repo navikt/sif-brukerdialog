@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.16.66
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 1.16.65
 
 ### Patch Changes

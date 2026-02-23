@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 1.5.45
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.66
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 1.41.65
 
 ### Patch Changes

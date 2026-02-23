@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.66
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 3.49.65
 
 ### Patch Changes

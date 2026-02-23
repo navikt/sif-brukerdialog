@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.65
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 2.28.64
 
 ### Patch Changes
