@@ -18,6 +18,10 @@ function getUserRequestId(): string {
     return userRequestId;
 }
 
+function isDecoratorNoise(error: Error): boolean {
+    return typeof error?.message === 'string' && error.message.includes('Non-Error promise rejection');
+}
+
 class ErrorBoundary extends Component<PropsWithChildren, State> {
     private childLogger = createChildLogger(getUserRequestId());
 
@@ -26,11 +30,18 @@ class ErrorBoundary extends Component<PropsWithChildren, State> {
         this.state = { hasError: false };
     }
 
-    static getDerivedStateFromError(): State {
+    static getDerivedStateFromError(error: Error): State {
+        if (isDecoratorNoise(error)) {
+            return { hasError: false };
+        }
         return { hasError: true };
     }
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+        if (isDecoratorNoise(error)) {
+            return;
+        }
+
         this.childLogger.error(
             new Error(
                 `Caught error in ErrorBoundary's componentDidCatch hasError: ${error != null}, hasErrorInfo:${
@@ -47,7 +58,7 @@ class ErrorBoundary extends Component<PropsWithChildren, State> {
             return (
                 <Page>
                     <Page.Block width="xl">
-                        <ErrorFallback />
+                        <ErrorFallback userRequestId={userRequestId || getUserRequestId()} />
                     </Page.Block>
                 </Page>
             );
