@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
 ## 1.4.41
 
 ### Patch Changes
