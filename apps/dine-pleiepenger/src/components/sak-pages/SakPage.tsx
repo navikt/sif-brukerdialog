@@ -1,4 +1,5 @@
-import { Alert, BodyLong, BodyShort, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, Button, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import * as Sentry from '@sentry/nextjs';
 import Head from 'next/head';
 
 import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
@@ -122,6 +123,17 @@ const SakPage = ({ saksnr, pleietrengendeMedSak, isLoading, isError }: Props) =>
                     <SkrivTilOssLenker />
 
                     <SnarveierSak saksnummer={saksnr} />
+
+                    {/* TODO: Fjern før commit - kun for Sentry-testing */}
+                    <Button
+                        variant="danger"
+                        onClick={() => {
+                            Sentry.captureException(new Error('Test-feil fra SakPage'));
+                            Sentry.captureMessage('Test-melding fra SakPage');
+                            alert('Sentry test sendt!');
+                        }}>
+                        Test Sentry
+                    </Button>
                 </VStack>
             </DefaultPageLayout>
         </>

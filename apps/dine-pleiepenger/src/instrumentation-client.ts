@@ -12,7 +12,8 @@ const getEnvironment = (): string => {
 Sentry.init({
     dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
     environment: getEnvironment(),
-    enabled: typeof window !== 'undefined' && !window.location.host.includes('localhost'),
+    enabled: true, // TODO: Sett tilbake til: typeof window !== 'undefined' && !window.location.host.includes('localhost')
+    debug: true,
     tracesSampleRate: 0.1,
     replaysSessionSampleRate: 0,
     replaysOnErrorSampleRate: 0,
@@ -36,3 +37,8 @@ Sentry.init({
 });
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+
+// For testing i konsollen - fjern før commit
+if (typeof window !== 'undefined') {
+    (window as unknown as { Sentry: typeof Sentry }).Sentry = Sentry;
+}
