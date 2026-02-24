@@ -79,6 +79,7 @@ const sentryConfig = {
     silent: !process.env.CI,
     sourcemaps: {
         deleteSourcemapsAfterUpload: true,
+        ignore: ['node_modules/**', '**/dev/**'],
     },
     bundleSizeOptimizations: {
         excludeDebugStatements: true,

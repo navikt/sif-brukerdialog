@@ -14,12 +14,12 @@ Sentry.init({
     dsn: SENTRY_DSN,
     environment: getEnvironment(),
     enabled: true, // TODO: Sett tilbake til: typeof window !== 'undefined' && !window.location.host.includes('localhost')
-    debug: true,
+    debug: false, // Sett til true for verbose Sentry-logging
     tracesSampleRate: 0.1,
     replaysSessionSampleRate: 0,
     replaysOnErrorSampleRate: 0,
     ignoreErrors: SENTRY_IGNORE_ERRORS,
-    allowUrls: [/https?:\/\/[^/]*nav\.no/],
+    allowUrls: [/https?:\/\/[^/]*nav\.no/, /https?:\/\/localhost/],
     beforeSend(event) {
         const frames = event.exception?.values?.flatMap((v) => v.stacktrace?.frames ?? []) ?? [];
         if (isErrorFromDekoratoren(frames)) {
