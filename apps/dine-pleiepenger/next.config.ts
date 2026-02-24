@@ -72,9 +72,9 @@ const nextConfig = {
     productionBrowserSourceMaps: true,
 };
 
-export default withSentryConfig(nextConfig, {
-    org: process.env.SENTRY_ORG || 'nav',
-    project: process.env.SENTRY_PROJECT || 'sif-innsyn',
+const sentryConfig = {
+    org: 'nav',
+    project: 'sif-innsyn',
     authToken: process.env.SENTRY_AUTH_TOKEN,
     silent: !process.env.CI,
     sourcemaps: {
@@ -83,4 +83,6 @@ export default withSentryConfig(nextConfig, {
     bundleSizeOptimizations: {
         excludeDebugStatements: true,
     },
-});
+};
+
+export default process.env.SENTRY_AUTH_TOKEN ? withSentryConfig(nextConfig, sentryConfig) : nextConfig;
