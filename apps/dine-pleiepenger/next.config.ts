@@ -76,6 +76,7 @@ const sentryConfig = {
     org: 'nav',
     project: 'sif-innsyn',
     authToken: process.env.SENTRY_AUTH_TOKEN,
+    url: 'https://sentry.gc.nav.no',
     silent: !process.env.CI,
     sourcemaps: {
         deleteSourcemapsAfterUpload: true,
