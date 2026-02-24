@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/nextjs';
+import { isErrorFromDekoratoren, maskUrlIds, SENTRY_DSN, SENTRY_IGNORE_ERRORS } from './utils/sentryUtils';
 
 const getSentryEnvironment = (): string => {
     const env = process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT;
@@ -8,23 +9,21 @@ const getSentryEnvironment = (): string => {
 };
 
 const getCommonSentryOptions = () => ({
-    dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
+    dsn: SENTRY_DSN,
     environment: getSentryEnvironment(),
     enabled: process.env.NODE_ENV === 'production',
     tracesSampleRate: 0.1,
-    ignoreErrors: [
-        'TypeError: Failed to fetch',
-        'TypeError: Load failed',
-        'TypeError: NetworkError when attempting to fetch resource.',
-        'TypeError: cancelled',
-        'Request failed with status code 401',
-        /\[401\]/,
-        /\[0\]/,
-    ],
+    ignoreErrors: SENTRY_IGNORE_ERRORS,
     beforeSend(event: Sentry.ErrorEvent) {
         const frames = event.exception?.values?.flatMap((v) => v.stacktrace?.frames ?? []) ?? [];
-        if (frames.some((f) => (f.filename ?? '').includes('/dekoratoren/'))) {
+        if (isErrorFromDekoratoren(frames)) {
             return null;
+        }
+        if (event.request?.url) {
+            event.request.url = maskUrlIds(event.request.url);
+        }
+        if (event.transaction) {
+            event.transaction = maskUrlIds(event.transaction);
         }
         return event;
     },
