@@ -68,6 +68,10 @@ jobs:
               run: yarn turbo run build --filter=@navikt/${{ inputs.app-name }}
               env:
                   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+                  SENTRY_URL: https://sentry.gc.nav.no
+                  SENTRY_ORG: nav
+                  SENTRY_PROJECT: sif-innsyn
+                  SENTRY_LOG_LEVEL: debug
 
             - name: Build and publish docker image
               uses: nais/docker-build-push@v0
