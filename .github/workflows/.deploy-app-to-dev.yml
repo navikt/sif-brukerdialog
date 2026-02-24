@@ -12,13 +12,6 @@ on:
             is-next-app:
                 type: boolean
                 required: false
-        secrets:
-            READER_TOKEN:
-                required: true
-            NAIS_WORKLOAD_IDENTITY_PROVIDER:
-                required: true
-            SENTRY_AUTH_TOKEN:
-                required: false
 
 permissions: {}
 jobs:
