@@ -80,7 +80,6 @@ export default withSentryConfig(nextConfig, {
     sourcemaps: {
         deleteSourcemapsAfterUpload: true,
     },
-    hideSourceMaps: true,
     bundleSizeOptimizations: {
         excludeDebugStatements: true,
     },
