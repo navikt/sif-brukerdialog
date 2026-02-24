@@ -26,7 +26,7 @@ Sentry.init({
         /\[401\]/,
         /\[0\]/,
     ],
-    allowUrls: [/https?:\/\/((dev|www)\.)?nav\.no/],
+    allowUrls: [/https?:\/\/[^/]*nav\.no/],
     beforeSend(event) {
         const frames = event.exception?.values?.flatMap((v) => v.stacktrace?.frames ?? []) ?? [];
         if (frames.some((f) => (f.filename ?? '').includes('/dekoratoren/'))) {

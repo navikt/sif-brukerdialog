@@ -110,7 +110,7 @@ export const setupIgnoreErrorsAndAllowUrls = (
     allowUrls: AllowUrlsType;
     ignoreErrors: IgnoreErrorsType;
 } => {
-    const allowUrls: AllowUrlsType = initProps.allowUrls || [/https?:\/\/((dev|www)\.)?nav\.no/];
+    const allowUrls: AllowUrlsType = initProps.allowUrls || [/https?:\/\/[^/]*nav\.no/];
     const ignoreErrors: IgnoreErrorsType = initProps.ignoreErrors || [];
     try {
         ignoreErrors.push(...errorsToIgnore);
