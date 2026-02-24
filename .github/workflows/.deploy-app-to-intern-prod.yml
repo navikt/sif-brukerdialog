@@ -47,6 +47,8 @@ jobs:
 
             - name: Build application
               run: yarn turbo run build --filter=@navikt/${{ inputs.app-name }}
+              env:
+                  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
             - name: Build and publish docker image
               uses: nais/docker-build-push@v0

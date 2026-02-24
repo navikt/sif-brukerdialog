@@ -2,6 +2,7 @@
 //     enabled: process.env.ANALYZE === 'true',
 // });
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { withSentryConfig } from '@sentry/nextjs';
 import * as path from 'path';
 
 const appDirectives = {
@@ -13,6 +14,7 @@ const appDirectives = {
         "'self'",
         'https://*.nav.no',
         'https://*.uxsignals.com',
+        'https://sentry.gc.nav.no',
         'http://localhost:1234',
         'http://localhost:12347',
         'http://*.api.sanity.io',
@@ -70,4 +72,16 @@ const nextConfig = {
     productionBrowserSourceMaps: true,
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+    org: process.env.SENTRY_ORG || 'nav',
+    project: process.env.SENTRY_PROJECT || 'sif-innsyn',
+    authToken: process.env.SENTRY_AUTH_TOKEN,
+    silent: !process.env.CI,
+    sourcemaps: {
+        deleteSourcemapsAfterUpload: true,
+    },
+    hideSourceMaps: true,
+    bundleSizeOptimizations: {
+        excludeDebugStatements: true,
+    },
+});
