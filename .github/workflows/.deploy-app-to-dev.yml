@@ -12,6 +12,13 @@ on:
             is-next-app:
                 type: boolean
                 required: false
+        secrets:
+            READER_TOKEN:
+                required: true
+            NAIS_WORKLOAD_IDENTITY_PROVIDER:
+                required: true
+            SENTRY_AUTH_TOKEN:
+                required: false
 
 permissions: {}
 jobs:
@@ -53,6 +60,16 @@ jobs:
               run: |
                   echo "Copying .env.dev to app root"
                   cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/.env.production
+
+            - name: Check Sentry auth token
+              run: |
+                  if [ -n "$SENTRY_AUTH_TOKEN" ]; then
+                    echo "SENTRY_AUTH_TOKEN is set (length: ${#SENTRY_AUTH_TOKEN})"
+                  else
+                    echo "SENTRY_AUTH_TOKEN is NOT set"
+                  fi
+              env:
+                  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
             - name: Build application
               run: yarn turbo run build --filter=@navikt/${{ inputs.app-name }}
