@@ -31,6 +31,7 @@
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@sentry/nextjs": "10.39.0",
+        "@sentry/webpack-plugin": "4.9.1",
         "@types/lodash.sortby": "4.7.9",
         "axios": "1.13.5",
         "csp-header": "6.3.0",

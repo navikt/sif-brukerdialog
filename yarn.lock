@@ -4238,6 +4238,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": "npm:1.58.2"
     "@sentry/nextjs": "npm:10.39.0"
+    "@sentry/webpack-plugin": "npm:4.9.1"
     "@sif/eslint-config": "workspace:*"
     "@storybook/nextjs": "npm:10.2.10"
     "@tailwindcss/postcss": "npm:4.2.0"
@@ -8887,7 +8888,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/webpack-plugin@npm:^4.8.0":
+"@sentry/webpack-plugin@npm:4.9.1, @sentry/webpack-plugin@npm:^4.8.0":
   version: 4.9.1
   resolution: "@sentry/webpack-plugin@npm:4.9.1"
   dependencies:
