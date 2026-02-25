@@ -18,9 +18,10 @@ const nb = {
 
     'oppsummering.kurs.header': 'Om opplæringen',
     'oppsummering.kurs.institusjon': 'Hvor foregår opplæringen?',
-    'oppsummering.kurs.perioder': 'Hvilke perioder søker du opplæringspenger?',
-    'oppsummering.kurs.enkeltdager': 'Hvilke dager søker du opplæringspenger?',
-    'oppsummering.kurs.reisedager': 'Reiser du på dager du ikke har kurs eller opplæring?',
+    'oppsummering.kurs.perioder': 'Hvilke perioder søker du opplæringspenger for?',
+    'oppsummering.kurs.enkeltdager': 'Hvilke dager søker du opplæringspenger for?',
+    'oppsummering.kurs.reisedager':
+        'Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.?',
 
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
     'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',

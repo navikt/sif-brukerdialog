@@ -22,12 +22,13 @@ const nb = {
     'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
 
     'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
-    'steg.kurs.kursperioder.tittel': 'Hvilke perioder søker du opplæringspenger?',
+    'steg.kurs.kursperioder.tittel': 'Hvilke perioder søker du opplæringspenger for?',
     'steg.kurs.kursperioder.tekst':
-        'Du kan få opplæringspenger for perioder du er på opplæring, og eventuell reisetid til og fra opplæringen.',
+        'Du kan legge til perioder du er på opplæring, og eventuelle reisedager til og fra opplæringen.',
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
 
-    'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
+    'steg.kurs.reiserUtenforKursdager.label':
+        'Er noen av dagene i {antallPerioder, plural, one {perioden} other {periodene}} som du søker for, kun reisedager?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
         'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',

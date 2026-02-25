@@ -85,7 +85,10 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                     )}
                     {kurs.reise ? (
                         <FormSummary.Answer>
-                            <FormSummary.Label>Reiser du på dager du ikke har kurs eller opplæring?</FormSummary.Label>
+                            <FormSummary.Label>
+                                Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er
+                                opplæring.?
+                            </FormSummary.Label>
                             <FormSummary.Value>
                                 <JaNeiSvar harSvartJa={kurs.reise.reiserUtenforKursdager} />
                             </FormSummary.Value>
