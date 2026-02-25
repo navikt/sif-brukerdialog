@@ -53,7 +53,7 @@ const SøknadApp = ({ søker }: Props) => {
     };
 
     return (
-        <Theme hasBackground={!__IS_VEILEDER_DEMO__}>
+        <Theme hasBackground={true}>
             <AppRouter>
                 <SøknadProvider søker={søker} kontonummerInfo={getKontonummerInfo()} barn={barn.data || []}>
                     <SøknadRoutes />

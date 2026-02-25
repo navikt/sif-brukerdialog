@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Button, Heading } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 
 import { ScenarioType } from '../../mock/scenarios/types';
@@ -24,13 +24,6 @@ const AppErrorPage = ({ error }: Props) => {
                 <Alert variant="error" inline>
                     <BodyShort>{error}</BodyShort>
                 </Alert>
-                {__IS_VEILEDER_DEMO__ && (
-                    <Box marginBlock="space-40 space-0">
-                        <Button size="small" type="button" onClick={resetMockScenario}>
-                            Reset mockdata
-                        </Button>
-                    </Box>
-                )}
             </SifGuidePanel>
         </ErrorPage>
     );

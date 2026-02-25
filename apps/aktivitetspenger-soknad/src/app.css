@@ -12,15 +12,6 @@
         margin: auto;
     }
 }
-
-body.innsynAppBody {
-    background-color: var(--ax-bg-info-soft);
-}
-
-.innsynApp {
-    /* --a-text-default: var(--ax-text-info); */
-    color: var(--ax-text-neutral);
-}
 .demoMode {
     position: relative;
 }

@@ -1,3 +1,3 @@
-export enum DeltakerSkjemaId {
+export enum SøknadSkjemaId {
     SØKNAD = 'aktivitetspenger_søknad',
 }
