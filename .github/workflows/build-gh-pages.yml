@@ -65,15 +65,15 @@ jobs:
           mv apps/ungdomsytelse-deltaker/dist-demo/* deployment/ungdomsytelse-deltaker/
 
       # Bygg ungdomsytelse-veileder demo-app med gh-pages:rebuild
-      - name: Build ungdomsytelse-veileder
-        run: yarn gh-pages:rebuild
-        working-directory: apps-intern/ungdomsytelse-veileder
+      # - name: Build ungdomsytelse-veileder
+      #   run: yarn gh-pages:rebuild
+      #   working-directory: apps-intern/ungdomsytelse-veileder
 
       # Flytt ungdomsytelse-veileder-output til en subfolder
-      - name: Kopier ungdomsytelse-veileder demo til gh-pages
-        run: |
-          mkdir -p deployment/ungdomsytelse-veileder
-          mv apps-intern/ungdomsytelse-veileder/dist-demo/* deployment/ungdomsytelse-veileder/
+      # - name: Kopier ungdomsytelse-veileder demo til gh-pages
+      #   run: |
+      #     mkdir -p deployment/ungdomsytelse-veileder
+      #     mv apps-intern/ungdomsytelse-veileder/dist-demo/* deployment/ungdomsytelse-veileder/
 
       # Bygg opplaringspenger-soknad demo-app med gh-pages:rebuild
       - name: Build opplaringspenger-soknad

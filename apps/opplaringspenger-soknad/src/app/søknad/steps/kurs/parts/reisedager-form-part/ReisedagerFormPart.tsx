@@ -1,5 +1,5 @@
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Tooltip } from '@navikt/ds-react';
+import { Alert, BodyShort, HStack, Tooltip } from '@navikt/ds-react';
 import { isValidationErrorsVisible } from '@navikt/sif-common-formik-ds';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import EnkeltdatoListAndDialog from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/EnkeltdatoListAndDialog';
@@ -8,7 +8,7 @@ import { capsFirstCharacter, dateFormatter, DateRange } from '@navikt/sif-common
 import { getStringValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 
-import { useAppIntl } from '../../../../../i18n';
+import { AppText, useAppIntl } from '../../../../../i18n';
 import { KursFormComponents, KursFormFields } from '../../KursStepForm';
 import { getDatoerUtenforSøknadsperioder, getReisedagerValidator } from '../../utils/kursStepUtils';
 
@@ -38,11 +38,15 @@ const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, k
                         addLabel: text('steg.kurs.reisedagerFormPart.modal.addLabel'),
                         modalTitle: text('steg.kurs.reisedagerFormPart.modal.modalTitle'),
                         listTitle: text('steg.kurs.reisedagerFormPart.modal.listTitle'),
-                        modalDescription: text('steg.kurs.reisedagerFormPart.modal.modalDescription'),
+                        modalDescription: (
+                            <Alert variant="info">
+                                <AppText id="steg.kurs.reisedagerFormPart.modal.modalDescription" />
+                            </Alert>
+                        ),
                     }}
                     minDate={søknadsperiode.from}
                     maxDate={søknadsperiode.to}
-                    disableWeekends={true}
+                    disableWeekends={false}
                     labelRenderer={(dato: Enkeltdato) => {
                         const erUtenforSøknadsperiode = reisedagerUtenforSøknadsperioder.includes(dato.dato);
                         if (erUtenforSøknadsperiode && visFeil) {
