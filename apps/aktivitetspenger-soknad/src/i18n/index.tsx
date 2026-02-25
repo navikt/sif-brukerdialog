@@ -1,5 +1,6 @@
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { uiMessages } from '@navikt/sif-common-ui';
+import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { ungSoknadMessages } from '../søknad/i18n';
@@ -7,11 +8,13 @@ import { ungSoknadMessages } from '../søknad/i18n';
 const nb = {
     ...ungSoknadMessages.nb,
     ...uiMessages.nb,
+    ...soknadMessages.nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
     ...ungSoknadMessages.nn,
     ...uiMessages.nn,
+    ...soknadMessages.nn,
 };
 
 export type AppMessageKeys = keyof typeof nb;

@@ -1,33 +1,29 @@
-import { ApiError } from '@navikt/ung-common';
 import { useSøker } from '../../api/hooks/useSøker';
 import ErrorPage from '../../pages/HentAppInfoErrorPage';
 import UngLoadingPage from '../../pages/LoadingPage';
 import { logFaroError } from '../../utils/faroUtils';
 import { ApiErrorKey, useAnalyticsInstance } from '../../analytics/analytics';
 import SøknadApp from '../../søknad/SøknadApp';
-
-const getErrorInfoToLog = (error: ApiError | null) => {
-    if (!error || error === null) {
-        return null;
-    }
-    const { context, message, type } = error;
-    return { context, message, type };
-};
+import { NoAccessPage } from '@navikt/sif-common-soknad-ds';
 
 const AppInfoLoader = () => {
     const søker = useSøker();
     const { logApiError } = useAnalyticsInstance();
 
     const isLoading = søker.isLoading;
-    const error = søker.isError;
+    const isError = søker.isError;
 
     if (isLoading) {
         return <UngLoadingPage />;
     }
 
-    if (error) {
-        const søkerError = getErrorInfoToLog(søker.error);
-        logApiError(ApiErrorKey.oppstartsinfo, { søkerError });
+    if (isError) {
+        const { error } = søker;
+        logApiError(ApiErrorKey.oppstartsinfo, { error });
+
+        if (error.status === 403) {
+            return <NoAccessPage tittelIntlKey="application.title" />;
+        }
         return <ErrorPage error="Feil ved henting av info" />;
     }
 

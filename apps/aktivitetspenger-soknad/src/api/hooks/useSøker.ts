@@ -1,14 +1,14 @@
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
-import { ApiError } from '@navikt/ung-common';
 import { useQuery } from '@tanstack/react-query';
 
 import { commonQueryKeys } from '../queries/commonQueries';
+import { AxiosError } from 'axios';
 
 /**
  * Henter informasjon om innlogget bruker
  */
 export const useSøker = (enabled = true) => {
-    return useQuery<Søker, ApiError>({
+    return useQuery<Søker, AxiosError>({
         queryKey: commonQueryKeys.søker,
         queryFn: () => fetchSøker(),
         enabled,

@@ -13,7 +13,7 @@ export const getHandlers = () => [
         // return HttpResponse.json({ error: { message: '503' } }, { status: 503 });
     }),
 
-    http.get('**/oppslag/soker', () => HttpResponse.json(store.get().søker)),
+    http.get('**/oppslag/soker', () => HttpResponse.json(store.get().søker, { status: 403 })),
 
     http.get('**/oppslag/barn', () => HttpResponse.json(store.get().barn)),
 
