@@ -3,7 +3,7 @@ import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
 import { SøknadSvar, Spørsmål, Steg } from '../types';
 
-export const søknadSteg = [Steg.KONTONUMMER, Steg.BARN, Steg.OPPSUMMERING];
+export const søknadSteg = [Steg.KONTONUMMER, Steg.BOSTED, Steg.MEDLEMSKAP, Steg.BARN, Steg.OPPSUMMERING];
 
 export const getSkjemaStegIndex = (steg: Steg): number => {
     return søknadSteg.indexOf(steg);
@@ -14,6 +14,17 @@ export const getStegFraPath = (path: string): Steg | undefined => {
     if (steg) {
         return steg;
     }
+};
+
+export const getNextSteg = (steg: Steg): Steg => {
+    const index = getSkjemaStegIndex(steg);
+    if (index === -1) {
+        throw new Error(`Steg ${steg} finnes ikke i søknaden`);
+    }
+    if (index === søknadSteg.length - 1) {
+        throw new Error(`Steg ${steg} er siste steg i søknaden`);
+    }
+    return søknadSteg[index + 1];
 };
 
 export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: KontonummerInfo): Steg[] => {
@@ -28,6 +39,12 @@ export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: Kontonu
         tilgjengeligeSteg.push(Steg.KONTONUMMER);
     }
     if (kontonummerOk) {
+        tilgjengeligeSteg.push(Steg.BOSTED);
+    }
+    if (true) {
+        tilgjengeligeSteg.push(Steg.MEDLEMSKAP);
+    }
+    if (true) {
         tilgjengeligeSteg.push(Steg.BARN);
     }
     if (barnOk) {

@@ -92,7 +92,7 @@ const BarnSteg = () => {
                     <SkjemaFooter
                         forrige={{
                             tittel: text('søknadApp.forrigeSteg.label'),
-                            onClick: () => gotoSteg(Steg.KONTONUMMER),
+                            onClick: () => gotoSteg(Steg.MEDLEMSKAP),
                         }}
                         submit={{ tittel: text('søknadApp.nesteSteg.label'), erSendInn: false }}
                     />

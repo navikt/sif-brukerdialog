@@ -47,10 +47,16 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                             activeStep={activeIndex}
                             onStepChange={handleOnProgressStepChange}>
                             <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
-                                {text('kontonummerSteg.tittel')}
+                                Kontonumer
                             </FormProgress.Step>
                             <FormProgress.Step completed={activeIndex > 1} interactive={activeIndex > 1}>
-                                {text('barnSteg.tittel')}
+                                Bosted
+                            </FormProgress.Step>
+                            <FormProgress.Step completed={activeIndex > 3} interactive={activeIndex > 3}>
+                                Medlemskap
+                            </FormProgress.Step>
+                            <FormProgress.Step completed={activeIndex > 4} interactive={activeIndex > 4}>
+                                Barn
                             </FormProgress.Step>
                             <FormProgress.Step interactive={false}>{text('oppsummeringSteg.tittel')}</FormProgress.Step>
                         </FormProgress>

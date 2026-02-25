@@ -14,6 +14,7 @@ import { useState } from 'react';
 
 import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
+import { getNextSteg } from '../../utils/stegUtils';
 
 const KontonummerSteg = () => {
     const { text } = useAppIntl();
@@ -32,7 +33,7 @@ const KontonummerSteg = () => {
             }
             setError(undefined);
         }
-        gotoSteg(Steg.BARN);
+        gotoSteg(getNextSteg(Steg.KONTONUMMER));
     };
 
     return (

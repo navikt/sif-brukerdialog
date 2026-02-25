@@ -10,6 +10,8 @@ import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
 import { Steg } from './types';
 import { getSøknadStegRoute, SøknadRoutePaths } from './utils/søknadRouteUtils';
+import BostedSteg from './steg/bosted/BostedSteg';
+import MedlemskapSteg from './steg/medlemskap/MedlemskapSteg';
 
 const SøknadRoutes = () => {
     const { søknadSendt, søknadStartet } = useSøknadContext();
@@ -55,8 +57,10 @@ const SøknadRoutes = () => {
     return (
         <Routes>
             <Route index element={<VelkommenPage />} />
-            <Route path="steg/barn" element={<BarnSteg />} />
             <Route path="steg/kontonummer" element={<KontonummerSteg />} />
+            <Route path="steg/bosted" element={<BostedSteg />} />
+            <Route path="steg/medlemskap" element={<MedlemskapSteg />} />
+            <Route path="steg/barn" element={<BarnSteg />} />
             <Route path="steg/oppsummering" element={<OppsummeringSteg />} />
             <Route path="kvittering" element={<KvitteringPage />} />
         </Routes>
