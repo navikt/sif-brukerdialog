@@ -1,7 +1,7 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { DateRange } from '@navikt/sif-common-utils';
+import { BostedUtland } from '@navikt/sif-common-forms-ds';
 
 export enum Steg {
     'KONTONUMMER' = 'kontonummer',
@@ -20,17 +20,12 @@ export enum Spørsmål {
     BARN = 'barn',
 }
 
-type Utenlandsopphold = {
-    land: string;
-    periode: DateRange;
-};
-
 export type SøknadSvar = {
     [Spørsmål.FORSTÅR_PLIKTER]?: boolean;
     [Spørsmål.KONTONUMMER]?: YesOrNo;
     [Spørsmål.BOSTED]?: YesOrNo;
     [Spørsmål.MEDLEMSKAP]?: YesOrNo;
-    [Spørsmål.MEDLEMSKAP_PERIODER]?: Utenlandsopphold[];
+    [Spørsmål.MEDLEMSKAP_PERIODER]?: BostedUtland[];
     [Spørsmål.BARN]?: YesOrNo;
 };
 
