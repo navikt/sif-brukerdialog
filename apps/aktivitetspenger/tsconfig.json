@@ -1,0 +1,52 @@
+{
+    "extends": "../../packages/config/tsconfig-apps.json",
+    "compilerOptions": {
+        "outDir": "build/dist",
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/types"],
+        "baseUrl": "./",
+        "paths": {
+            "@shared/types/*": ["src/types/*"],
+            "@shared/utils/*": ["src/utils/*"],
+            "@shared/i18n": ["src/i18n/index"],
+            "@shared/i18n/*": ["src/i18n/*"],
+            "@shared/api/*": ["src/api/*"],
+            "@shared/context/*": ["src/context/*"],
+            "@shared/components/*": ["src/components/*"],
+            "@shared/hooks/*": ["src/hooks/*"],
+            "@shared/pages/*": ["src/pages/*"],
+            "@shared/mock/*": ["mock/*"],
+            "@shared/storybook/*": ["storybook/*"],
+
+            "@søknad/*": ["src/søknad/*"],
+            "@søknad/components/*": ["src/søknad/components/*"],
+            "@søknad/pages/*": ["src/søknad/pages/*"],
+            "@søknad/hooks/*": ["src/søknad/hooks/*"],
+            "@søknad/utils/*": ["src/søknad/utils/*"],
+            "@søknad/api/*": ["src/søknad/api/*"],
+            "@søknad/steg/*": ["src/søknad/steg/*"],
+            "@søknad/context/*": ["src/søknad/context/*"],
+            "@søknad/types/*": ["src/søknad/types/*"]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "src/build",
+        "**.js",
+        "dist",
+        "dist-demo",
+        "demo",
+        "**/node_modules/@types/react-router/**",
+        "**/node_modules/@types/react-router-dom/**"
+    ],
+    "include": [
+        "./src/**/*",
+        "./mock/**/*",
+        "./playwright-config.ts",
+        "./env.schema.ts",
+        "./playwright/**/*.ts",
+        "./vite-env.d.ts",
+        "./tailwind.config.ts",
+        "./postcss.config.ts",
+        "./storybook/**/*"
+    ]
+}

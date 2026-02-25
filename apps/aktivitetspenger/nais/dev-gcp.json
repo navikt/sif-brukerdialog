@@ -1,0 +1,66 @@
+{
+    "app": "aktivitetspenger-soknad",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "ingresses": ["https://aktivitetspenger-soknad.intern.dev.nav.no"],
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" }
+    ],
+    "minReplicas": 1,
+    "maxReplicas": 1,
+    "resources": {
+        "requests": {
+            "memory": "64Mi",
+            "cpu": "20m"
+        },
+        "limits": {
+            "memory": "256Mi"
+        }
+    },
+    "cluster": "dev-gcp",
+    "observabilityEnabled": "true",
+    "faro": true,
+    "env": {
+        "ENV": "dev",
+        "APP_VERSION": "dev",
+        "NODE_ENV": "development",
+        "PUBLIC_PATH": "/aktivitetspenger-soknad",
+        "NPM_CONFIG_CACHE": "/tmp",
+
+        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+        "SIF_PUBLIC_USE_ANALYTICS": "true",
+        "SIF_PUBLIC_APPSTATUS_DATASET": "production",
+
+        "SIF_PUBLIC_USE_FARO": "true",
+        "SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL": "https://telemetry.ekstern.dev.nav.no/collect",
+
+        "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
+        "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
+        "SIF_PUBLIC_FULL_DEKORATOR": "on",
+        "SIF_PUBLIC_FEATURE_NYNORSK": "on",
+        "SIF_PUBLIC_LOGIN_URL": "https://aktivitetspenger-soknad.intern.dev.nav.no/oauth2/login?redirect=/aktivitetspenger-soknad",
+        "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
+        "SIF_PUBLIC_URL_DOKUMENTARKIV": "https://www.ansatt.dev.nav.no/dokumentarkiv/tema/UNG",
+
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+
+        "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "dev-gcp:k9saksbehandling:ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
+
+        "SIF_PUBLIC_URL_RETT_OG_PLIKT": "https://www.ansatt.dev.nav.no/endringer",
+        "SIF_PUBLIC_URL_PERSONOPPLYSNINGER": "https://www.ansatt.dev.nav.no/person/personopplysninger/nb/",
+        "SIF_PUBLIC_URL_PERSONVERN": "https://www.ansatt.dev.nav.no/personvernerklaering",
+        "SIF_PUBLIC_URL_SKATTEETATEN": "https://www.skatteetaten.no",
+        "SIF_PUBLIC_URL_SKATTEKORT": "https://www.skatteetaten.no/person/skatt/skattekort/",
+        "SIF_PUBLIC_URL_LOVDATA_INNTEKT": "https://lovdata.no/dokument/NL/lov/1999-03-26-14/KAPITTEL_6-2#%C2%A75-10",
+        "SIF_PUBLIC_URL_ENDRE_KONTONUMMER": "https://www.ansatt.dev.nav.no/start/soknad-endring-bankkontonummer",
+        "SIF_PUBLIC_URL_SKRIV_TIL_OSS": "https://www.ansatt.dev.nav.no/skriv-til-oss"
+    }
+}

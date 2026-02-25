@@ -1,4 +1,5 @@
 export enum SifAppKeys {
+    AktivitetspengerApp = 'aktivitetspenger',
     PleiepengerSyktBarn = 'pleiepengesoknad',
     EndringsmeldingPsb = 'endringsmelding-pleiepenger',
     PleiepengerLivetsSlutt = 'pleiepenger-i-livets-sluttfase-soknad',
@@ -248,6 +249,19 @@ export const UngdomsytelseVeilederApp: AppInfo = {
     lenker: {
         q: 'https://ungdomsytelse-veileder.intern.dev.nav.no',
         prod: '',
+    },
+};
+
+export const AktivitetspengerApp: AppInfo = {
+    key: SifAppKeys.AktivitetspengerApp,
+    navn: 'Aktivitetspenger',
+    tittel: {
+        nb: 'Aktivitetspenger',
+        nn: 'Aktivitetspengar',
+    },
+    lenker: {
+        q: 'https://aktivitetspenger.intern.dev.nav.no',
+        prod: 'https://www.nav.no/aktivitetspenger/ytelse',
     },
 };
 
