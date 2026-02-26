@@ -32,10 +32,10 @@
     },
     "dependencies": {
         "@grafana/faro-react": "2.2.4",
-        "@navikt/aksel-icons": "8.5.2",
-        "@navikt/ds-css": "8.5.2",
-        "@navikt/ds-react": "8.5.2",
-        "@navikt/ds-tailwind": "8.5.2",
+        "@navikt/aksel-icons": "8.6.0",
+        "@navikt/ds-css": "8.6.0",
+        "@navikt/ds-react": "8.6.0",
+        "@navikt/ds-tailwind": "8.6.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/nav-dekoratoren-moduler": "3.6.2",
         "@navikt/sif-app-register": "workspace:*",
@@ -75,7 +75,7 @@
     "devDependencies": {
         "@axe-core/playwright": "4.11.1",
         "@eslint/eslintrc": "3.3.3",
-        "@eslint/js": "9.39.2",
+        "@eslint/js": "9.39.3",
         "@navikt/nav-dekoratoren-moduler": "3.6.2",
         "@playwright/test": "1.58.2",
         "@storybook/react-vite": "10.2.10",
