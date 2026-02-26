@@ -1,6 +1,6 @@
 {
     "name": "appstatus-sanity-config",
-    "version": "1.2.59",
+    "version": "1.2.60",
     "description": "",
     "main": "package.json",
     "author": "frodehansen2 <frode.hansen@bekk.no>",
@@ -16,7 +16,7 @@
         "sanity"
     ],
     "dependencies": {
-        "@sanity/vision": "5.11.0",
+        "@sanity/vision": "5.12.0",
         "react": "19.2.4",
         "react-dom": "19.2.4",
         "sanity": "5.11.0",

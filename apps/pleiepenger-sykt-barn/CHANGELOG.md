@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.69
+
+### Patch Changes
+
+- @navikt/sif-common-soknad-ds@26.1.39
+
 ## 4.11.68
 
 ### Patch Changes

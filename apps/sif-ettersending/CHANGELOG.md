@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.67
+
+### Patch Changes
+
+- @navikt/sif-common-soknad-ds@26.1.39
+
 ## 3.49.66
 
 ### Patch Changes
