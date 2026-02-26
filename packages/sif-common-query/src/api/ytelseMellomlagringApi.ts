@@ -2,6 +2,7 @@ import { MellomlagringController } from '@navikt/k9-brukerdialog-prosessering-ap
 
 import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
 import { ytelseMellomlagringJsonParser } from '../utils/ytelseMellomlagringJsonParser';
+import { handleApiError } from '../utils/errorHandlers';
 
 /**
  * Henter mellomlagrede data for en spesifikk ytelse fra k9-brukerdialog-prosessering-api
@@ -13,12 +14,16 @@ import { ytelseMellomlagringJsonParser } from '../utils/ytelseMellomlagringJsonP
 export const hentYtelseMellomlagring = async (
     ytelse: MellomlagringYtelse,
 ): Promise<Record<string, unknown> | undefined> => {
-    const { data } = await MellomlagringController.getMellomlagring({
-        path: { ytelse },
-    });
-    return ytelseMellomlagringJsonParser<Record<string, unknown>>(
-        typeof data === 'string' ? data : JSON.stringify(data),
-    );
+    try {
+        const { data } = await MellomlagringController.getMellomlagring({
+            path: { ytelse },
+        });
+        return ytelseMellomlagringJsonParser<Record<string, unknown>>(
+            typeof data === 'string' ? data : JSON.stringify(data),
+        );
+    } catch (e) {
+        throw handleApiError(e, 'hentYtelseMellomlagring');
+    }
 };
 
 /**
@@ -30,11 +35,15 @@ export const hentYtelseMellomlagring = async (
  * @throws Error hvis API-kallet feiler
  */
 export const opprettYtelseMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
-    const response = await MellomlagringController.createMellomlagring({
-        path: { ytelse },
-        body: data,
-    });
-    return response.data;
+    try {
+        const response = await MellomlagringController.createMellomlagring({
+            path: { ytelse },
+            body: data,
+        });
+        return response.data;
+    } catch (e) {
+        throw handleApiError(e, 'opprettYtelseMellomlagring');
+    }
 };
 
 /**
@@ -46,11 +55,15 @@ export const opprettYtelseMellomlagring = async (ytelse: MellomlagringYtelse, da
  * @throws Error hvis API-kallet feiler
  */
 export const oppdaterYtelseMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
-    const response = await MellomlagringController.updateMellomlagring({
-        path: { ytelse },
-        body: data,
-    });
-    return response.data;
+    try {
+        const response = await MellomlagringController.updateMellomlagring({
+            path: { ytelse },
+            body: data,
+        });
+        return response.data;
+    } catch (e) {
+        throw handleApiError(e, 'oppdaterYtelseMellomlagring');
+    }
 };
 
 /**
@@ -61,8 +74,12 @@ export const oppdaterYtelseMellomlagring = async (ytelse: MellomlagringYtelse, d
  * @throws Error hvis API-kallet feiler
  */
 export const slettYtelseMellomlagring = async (ytelse: MellomlagringYtelse) => {
-    const response = await MellomlagringController.deleteMellomlagring({
-        path: { ytelse },
-    });
-    return response.data;
+    try {
+        const response = await MellomlagringController.deleteMellomlagring({
+            path: { ytelse },
+        });
+        return response.data;
+    } catch (e) {
+        throw handleApiError(e, 'hentArbeidsgivere');
+    }
 };

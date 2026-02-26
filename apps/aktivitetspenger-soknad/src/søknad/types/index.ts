@@ -1,5 +1,5 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { BostedUtland } from '@navikt/sif-common-forms-ds';
 

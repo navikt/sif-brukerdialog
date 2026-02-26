@@ -22,6 +22,4 @@ export * from './api';
 // Alle utils
 export * from './utils/ytelseMellomlagringUtils';
 export * from './utils/initApiClient';
-
-// API client initialization and error types
-export * from './api-clients';
+export * from './utils/errorHandlers';

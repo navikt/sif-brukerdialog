@@ -1,5 +1,5 @@
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import React, { createContext, useMemo, useState } from 'react';
 

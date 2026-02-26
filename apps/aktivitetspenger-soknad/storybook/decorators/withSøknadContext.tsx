@@ -1,5 +1,5 @@
 import { Theme } from '@navikt/ds-react';
-import { barnResponseSchema } from '@navikt/sif-common-api';
+import { registrerteBarnListeSchema } from '@navikt/sif-common-query';
 
 import { getScenarioMockData } from '../../mock/scenarios/scenarioer';
 import { ScenarioType } from '../../mock/scenarios/types';
@@ -10,7 +10,7 @@ import { HarKontonummerEnum } from '../../src/søknad/steg/oppsummering/oppsumme
 const data = getScenarioMockData(ScenarioType.søknad);
 
 export const withSøknadContext = (Story: any, context?: Partial<SøknadContextType>) => {
-    const { barn } = barnResponseSchema.parse(data.barn);
+    const { barn } = registrerteBarnListeSchema.parse(data.barn);
 
     return (
         <Theme>

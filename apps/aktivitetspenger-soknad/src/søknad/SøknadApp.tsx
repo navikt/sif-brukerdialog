@@ -1,7 +1,6 @@
 import { Theme } from '@navikt/ds-react';
 
 import { SøknadProvider } from './context/SøknadContext';
-import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRoutes from './SøknadRouter';
 import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
@@ -11,7 +10,7 @@ import { useAppIntl } from '../i18n';
 import { ApiErrorKey, useAnalyticsInstance } from '../analytics/analytics';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import AppErrorPage from '../pages/HentAppInfoErrorPage';
-import { Søker } from '@navikt/sif-common-api';
+import { Søker, useRegistrerteBarn } from '@navikt/sif-common-query';
 import AppRouter from '../AppRouter';
 
 interface Props {
@@ -20,7 +19,7 @@ interface Props {
 
 const SøknadApp = ({ søker }: Props) => {
     const kontonummer = useKontonummer();
-    const barn = useBarn();
+    const barn = useRegistrerteBarn();
     const { text } = useAppIntl();
     const { logApiError } = useAnalyticsInstance();
 
@@ -31,6 +30,7 @@ const SøknadApp = ({ søker }: Props) => {
     if (barn.isError) {
         const { context, message, type } = barn.error;
         logApiError(ApiErrorKey.barn, { error: { context, message, type } });
+
         return <AppErrorPage error={text('søknadApp.loading.error')} />;
     }
 
