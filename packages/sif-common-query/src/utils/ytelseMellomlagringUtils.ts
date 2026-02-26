@@ -22,8 +22,8 @@ interface YtelseMellomlagringUtils<State, Metadata = unknown> {
 }
 
 interface YtelseMellomlagringWrapper<State> {
-    data: State;
-    hash: string;
+    søknadsdata: State;
+    søknadHashString: string;
 }
 
 /**
@@ -37,7 +37,11 @@ export const ytelseMellomlagringUtils = <State, MetaData = unknown>(
             return false;
         }
         const castedWrapper = wrapper as YtelseMellomlagringWrapper<State>;
-        return 'data' in castedWrapper && 'hash' in castedWrapper && typeof castedWrapper.hash === 'string';
+        return (
+            'søknadsdata' in castedWrapper &&
+            'søknadHashString' in castedWrapper &&
+            typeof castedWrapper.søknadHashString === 'string'
+        );
     };
 
     const createHash = (metaData: MetaData): string => {
@@ -49,12 +53,13 @@ export const ytelseMellomlagringUtils = <State, MetaData = unknown>(
             try {
                 const wrapper = await hentYtelseMellomlagring(ytelse);
                 if (isValidMellomlagringWrapper(wrapper)) {
-                    const erGyldig = wrapper.hash === createHash(metaData);
+                    const metadataHash = createHash(metaData);
+                    const erGyldig = wrapper.søknadHashString === metadataHash;
                     if (!erGyldig) {
                         await slettYtelseMellomlagring(ytelse);
                         return null;
                     }
-                    return wrapper.data;
+                    return wrapper.søknadsdata;
                 } else {
                     return null;
                 }
@@ -66,8 +71,8 @@ export const ytelseMellomlagringUtils = <State, MetaData = unknown>(
 
         async lagre(data: State, metaData: MetaData): Promise<void> {
             const wrapper: YtelseMellomlagringWrapper<State> = {
-                data,
-                hash: createHash(metaData),
+                søknadsdata: data,
+                søknadHashString: createHash(metaData),
             };
             await oppdaterYtelseMellomlagring(ytelse, wrapper as unknown as Record<string, unknown>);
         },
