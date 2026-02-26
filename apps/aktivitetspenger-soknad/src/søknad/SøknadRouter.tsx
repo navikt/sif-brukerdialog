@@ -6,12 +6,12 @@ import { useSøknadContext } from './hooks/context/useSøknadContext';
 import KvitteringPage from './pages/KvitteringPage';
 import VelkommenPage from './pages/VelkommenPage';
 import BarnSteg from './steg/barn/BarnSteg';
+import BostedSteg from './steg/bosted/BostedSteg';
 import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
+import MedlemskapSteg from './steg/medlemskap/MedlemskapSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
 import { Steg } from './types';
 import { getSøknadStegRoute, SøknadRoutePaths } from './utils/søknadRouteUtils';
-import BostedSteg from './steg/bosted/BostedSteg';
-import MedlemskapSteg from './steg/medlemskap/MedlemskapSteg';
 
 const SøknadRoutes = () => {
     const { søknadSendt, søknadStartet } = useSøknadContext();

@@ -11,9 +11,9 @@ import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation'
 import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
+import { useAnalyticsInstance } from '../../../analytics/analytics';
 import BarnInfo from '../barn/BarnInfo';
 import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
-import { useAnalyticsInstance } from '../../../analytics/analytics';
 
 const OppsummeringSteg = () => {
     const { text } = useAppIntl();

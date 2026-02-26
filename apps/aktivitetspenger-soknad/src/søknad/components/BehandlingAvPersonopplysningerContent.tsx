@@ -1,4 +1,5 @@
 import { Box, Heading, List, VStack } from '@navikt/ds-react';
+
 import ExternalLink from '../../components/external-link/ExternalLink';
 import { AppText } from '../../i18n';
 import getLenker from '../../utils/lenker';

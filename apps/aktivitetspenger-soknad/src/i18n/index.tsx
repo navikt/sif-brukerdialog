@@ -1,7 +1,7 @@
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { uiMessages } from '@navikt/sif-common-ui';
 import { bostedUtlandMessages } from '@navikt/sif-common-forms-ds';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
+import { uiMessages } from '@navikt/sif-common-ui';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { ungSoknadMessages } from '../søknad/i18n';

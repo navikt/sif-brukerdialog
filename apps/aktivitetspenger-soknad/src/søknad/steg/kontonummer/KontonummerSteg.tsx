@@ -3,6 +3,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
+import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
@@ -12,9 +13,8 @@ import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation'
 import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
-import ExternalLink from '@shared/components/external-link/ExternalLink';
-import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
 import { getNextSteg } from '../../utils/stegUtils';
+import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
 
 const KontonummerSteg = () => {
     const { text } = useAppIntl();

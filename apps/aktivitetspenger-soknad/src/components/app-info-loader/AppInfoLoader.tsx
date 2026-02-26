@@ -1,12 +1,12 @@
 import { useSøker } from '@navikt/sif-common-query';
 import { NoAccessPage } from '@navikt/sif-common-soknad-ds';
 import { isAxiosError } from 'axios';
+
 import { ApiErrorKey, useAnalyticsInstance } from '../../analytics/analytics';
 import ErrorPage from '../../pages/HentAppInfoErrorPage';
 import UngLoadingPage from '../../pages/LoadingPage';
-import { logFaroError } from '../../utils/faroUtils';
-
 import SøknadApp from '../../søknad/SøknadApp';
+import { logFaroError } from '../../utils/faroUtils';
 
 const AppInfoLoader = () => {
     const søker = useSøker();

@@ -15,6 +15,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MockDate from 'mockdate';
 
 import { getMockToday } from '../mock/utils/mockDate';
+import { AnalyticsProvider } from './analytics/analytics';
 import AppInfoLoader from './components/app-info-loader/AppInfoLoader';
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
@@ -22,7 +23,6 @@ import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import { getAppEnv } from './utils/appEnv';
 import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
-import { AnalyticsProvider } from './analytics/analytics';
 
 initSentry();
 initApiClients();

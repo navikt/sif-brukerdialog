@@ -1,11 +1,11 @@
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
-import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import React, { createContext, useMemo, useState } from 'react';
 
+import { ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { KontonummerOppslagInfo, SøknadContextType, SøknadSvar, Spørsmål, Steg } from '../types';
-import { ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 

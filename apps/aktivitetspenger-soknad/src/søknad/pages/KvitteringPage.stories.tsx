@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import KvitteringPage from './KvitteringPage';
 import { withIntl } from '../../../storybook/decorators/withIntl';
-import { withSøknadContext } from '../../../storybook/decorators/withSøknadContext';
 import { withRouter } from '../../../storybook/decorators/withRouter';
+import { withSøknadContext } from '../../../storybook/decorators/withSøknadContext';
+import KvitteringPage from './KvitteringPage';
 
 const meta: Meta = {
     title: 'Søknad/Sider/Kvittering',

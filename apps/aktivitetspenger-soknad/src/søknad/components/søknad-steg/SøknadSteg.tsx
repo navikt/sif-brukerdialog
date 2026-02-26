@@ -1,14 +1,14 @@
 import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
-import { useAppIntl } from '../../../i18n';
 
+import { useAppIntl } from '../../../i18n';
+import DefaultPageLayout from '../../../pages/layout/DefaultPageLayout';
+import { useSøknadContext } from '../../hooks/context/useSøknadContext';
+import { useKontrollerOmStegErTilgjengelig } from '../../hooks/utils/useKontrollerOmStegErTilgjengelig';
+import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
+import { Steg } from '../../types';
+import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
 import SøknadHeader from '../søknad-header/SøknadHeader';
 import StegFooter from './StegFooter';
-import { useKontrollerOmStegErTilgjengelig } from '../../hooks/utils/useKontrollerOmStegErTilgjengelig';
-import { Steg } from '../../types';
-import { useSøknadContext } from '../../hooks/context/useSøknadContext';
-import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
-import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
-import DefaultPageLayout from '../../../pages/layout/DefaultPageLayout';
 
 interface Props {
     steg: Steg;

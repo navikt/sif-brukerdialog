@@ -1,6 +1,6 @@
 import { List } from '@navikt/ds-react';
-import { RegistrertBarn } from '@navikt/sif-common-query';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { RegistrertBarn } from '@navikt/sif-common-query';
 
 interface Props {
     barn: RegistrertBarn[];
