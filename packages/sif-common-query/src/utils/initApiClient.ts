@@ -67,7 +67,7 @@ export const initApiClient = (client: ApiClient, frontendPath: string, options?:
      */
     client.instance.interceptors.request.use(
         (config) => {
-            config.headers.set('X-Correlation-ID', v4());
+            config.headers['X-Correlation-ID'] = v4();
             return config;
         },
         (error) => Promise.reject(error),
