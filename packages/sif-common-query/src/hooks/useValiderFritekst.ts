@@ -1,14 +1,11 @@
-import {
-    handleApiError,
-    InvalidParameterViolation,
-    isApiAxiosError,
-    sifCommonQueryKeys,
-    validerFritekst,
-} from '@navikt/sif-common-query';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 import { getInvalidParameterViolations } from '../utils/getInvalidParameterViolations';
+import { validerFritekst } from '../api';
+import { sifCommonQueryKeys } from '../queryKeys';
+import { InvalidParameterViolation } from '@navikt/sif-common-api';
+import { handleApiError, isApiAxiosError } from '../api-clients';
 
 export const useValiderFritekst = (fritekst?: string) => {
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>(undefined);
