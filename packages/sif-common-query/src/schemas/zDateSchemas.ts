@@ -7,11 +7,11 @@ dayjs.extend(utc);
 
 /** Validerer og konverterer en ISO datetime-streng til UTC Date */
 const parseUTCDate = (val: string): Date => {
-    const parsed = dayjs(val);
+    const parsed = dayjs.utc(val);
     if (!parsed.isValid()) {
         throw new Error(`Ugyldig datostreng: ${val}`);
     }
-    return dayjs.utc(val).toDate();
+    return parsed.toDate();
 };
 
 /** Schema for ISO datetime-streng (f.eks. "2024-01-15T10:30:00Z") → Date */

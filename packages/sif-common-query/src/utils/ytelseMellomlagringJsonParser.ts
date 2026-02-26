@@ -15,10 +15,13 @@ const dateStringToDateObjectMapper = (_key: string, value: any) => {
 };
 
 /**
- * Erstatter date-strenger i JSON med Date-objekter (kun ISO datetime)
+ * Parser JSON-streng og konverterer ISO datetime-strenger til Date-objekter.
+ * Lar YYYY-MM-DD datostenger være uendret.
+ * @returns Parset objekt, eller undefined hvis input er tom/falsy
  */
-export const ytelseMellomlagringJsonParser = (storageResponse: string) => {
-    if (storageResponse) {
-        return JSON.parse(storageResponse, dateStringToDateObjectMapper);
+export const ytelseMellomlagringJsonParser = <T = unknown>(storageResponse: string): T | undefined => {
+    if (!storageResponse) {
+        return undefined;
     }
+    return JSON.parse(storageResponse, dateStringToDateObjectMapper);
 };

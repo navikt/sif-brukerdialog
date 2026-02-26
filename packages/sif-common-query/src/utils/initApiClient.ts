@@ -25,11 +25,8 @@ export type InitApiClientOptions = {
 };
 
 export const initApiClient = (client: ApiClient, frontendPath: string, options?: InitApiClientOptions) => {
-    // Konfigurasjonsvalidering
-    if (!frontendPath.startsWith('/')) {
-        // eslint-disable-next-line no-console
-        console.warn('frontendPath bør starte med /', frontendPath);
-    }
+    // Normaliser frontendPath til å alltid starte med /
+    const normalizedPath = frontendPath.startsWith('/') ? frontendPath : `/${frontendPath}`;
 
     const apiBaseUrl = (typeof window !== 'undefined' && window.location.origin) || '';
 
@@ -37,7 +34,7 @@ export const initApiClient = (client: ApiClient, frontendPath: string, options?:
     client.setConfig({
         withCredentials: false,
         headers: { ...commonRequestHeader, ...options?.headers },
-        baseURL: `${apiBaseUrl}${frontendPath}`,
+        baseURL: `${apiBaseUrl}${normalizedPath}`,
     });
 
     /**

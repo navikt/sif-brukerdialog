@@ -48,7 +48,7 @@ export const useValiderFritekst = (fritekst?: string) => {
         } else {
             setInvalidParameters(undefined);
         }
-    }, [isError, error, enabled]);
+    }, [isError, error, fritekst]);
 
     return {
         isPending: enabled && isPending,
