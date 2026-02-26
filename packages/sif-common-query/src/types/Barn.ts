@@ -1,7 +1,7 @@
 import { zBarnOppslag, zBarnOppslagListe } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
-import { zNullableISODate } from '../schemas/zJsonDateSchemas';
+import { zNullableISODate } from '../schemas/zDateSchemas';
 
 // Schema for barn oppdatert med date for fødselsdato
 const registrertBarnSchema = zBarnOppslag.extend({

@@ -6,22 +6,24 @@ import {
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
-import { zNullableDateTime } from '../schemas/zJsonDateSchemas';
+import { zNullableDateTime } from '../schemas/zDateSchemas';
+
+const zAnsattPeriode = z.object({
+    ansattFom: zNullableDateTime.optional(),
+    ansattTom: zNullableDateTime.optional(),
+});
 
 // Schema som konverterer string-dato til Date
 const organisasjonSchema = zOrganisasjonDto.extend({
-    ansattFom: zNullableDateTime,
-    ansattTom: zNullableDateTime,
+    ...zAnsattPeriode.shape,
 });
 
 const privatArbeidsgiverSchema = zPrivatArbeidsgiverDto.extend({
-    ansattFom: zNullableDateTime,
-    ansattTom: zNullableDateTime,
+    ...zAnsattPeriode.shape,
 });
 
 const frilansoppdragSchema = zFrilansoppdragDto.extend({
-    ansattFom: zNullableDateTime,
-    ansattTom: zNullableDateTime,
+    ...zAnsattPeriode.shape,
 });
 
 export const arbeidsgivereSchema = zArbeidsgivereDto.extend({

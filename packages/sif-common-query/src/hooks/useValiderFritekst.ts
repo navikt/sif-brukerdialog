@@ -10,10 +10,12 @@ import { InvalidParameterViolation } from '../types/invalidParameterProblemDetai
 export const useValiderFritekst = (fritekst?: string) => {
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>(undefined);
 
-    const { isPending, isError, error, isEnabled } = useQuery({
+    const enabled = !!fritekst && fritekst.trim().length > 0;
+
+    const { isPending, isError, error } = useQuery({
         queryKey: [...sifCommonQueryKeys.validerFritekst, fritekst],
         queryFn: () => validerFritekst({ verdi: fritekst! }),
-        enabled: !!fritekst && fritekst.trim().length > 0,
+        enabled,
         retry: 0,
         refetchOnMount: false,
         refetchOnWindowFocus: false,
@@ -21,7 +23,7 @@ export const useValiderFritekst = (fritekst?: string) => {
     });
 
     useEffect(() => {
-        if (!isEnabled) {
+        if (!enabled) {
             return;
         }
         if (isError) {
@@ -41,10 +43,10 @@ export const useValiderFritekst = (fritekst?: string) => {
         } else {
             setInvalidParameters(undefined);
         }
-    }, [isError, error, isEnabled]);
+    }, [isError, error, enabled]);
 
     return {
-        isPending: isEnabled && isPending,
+        isPending: enabled && isPending,
         invalidParameters,
     };
 };
