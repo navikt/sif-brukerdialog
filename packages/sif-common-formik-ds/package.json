@@ -22,9 +22,9 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "8.5.2",
-        "@navikt/ds-css": "8.5.2",
-        "@navikt/ds-react": "8.5.2",
+        "@navikt/aksel-icons": "8.6.0",
+        "@navikt/ds-css": "8.6.0",
+        "@navikt/ds-react": "8.6.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.2.10",
