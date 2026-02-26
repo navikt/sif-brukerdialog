@@ -1,11 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
-import { getInvalidParameterViolations } from '../utils/getInvalidParameterViolations';
 import { validerFritekst } from '../api';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { handleApiError, isApiAxiosError } from '../api-clients';
-import { InvalidParameterViolation } from '../types/invalidParameterProblemDetail';
+import { invalidParameterProblemDetailSchema, InvalidParameterViolation } from '../types/invalidParameterProblemDetail';
+import { AxiosError } from 'axios';
+
+const getInvalidParameterViolations = (error: AxiosError<any>): InvalidParameterViolation[] => {
+    const result = invalidParameterProblemDetailSchema.safeParse(error.response?.data);
+    return result.success && result.data.violations ? result.data.violations : [];
+};
 
 export const useValiderFritekst = (fritekst?: string) => {
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>(undefined);
