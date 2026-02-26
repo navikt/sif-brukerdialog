@@ -1,10 +1,10 @@
+import { useSøknadNavigation } from '@app/hooks/utils/useSøknadNavigation';
+import { useAppIntl } from '@app/i18n';
 import { YesOrNo } from '@navikt/sif-common-core-ds';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { BostedUtland, BostedUtlandListAndDialog } from '@navikt/sif-common-forms-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateRangesCollide, dateRangesExceedsRange } from '@navikt/sif-common-utils';
-import { useSøknadNavigation } from '@shared/hooks/utils/useSøknadNavigation';
-import { useAppIntl } from '@shared/i18n';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
 import { SøknadSvar, Spørsmål, Steg } from '@søknad/types';

@@ -1,13 +1,13 @@
+import { useSendSøknad } from '@app/hooks/api/useSendSøknad';
+import { useSøknadContext } from '@app/hooks/context/useSøknadContext';
+import { useSøknadNavigation } from '@app/hooks/utils/useSøknadNavigation';
+import { AppText, useAppIntl } from '@app/i18n';
+import { SøknadSkjemaId } from '@app/types/SøknadSkjemaId';
 import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { ApiErrorAlert } from '@navikt/sif-common-query';
-import { useSendSøknad } from '@shared/hooks/api/useSendSøknad';
-import { useSøknadContext } from '@shared/hooks/context/useSøknadContext';
-import { useSøknadNavigation } from '@shared/hooks/utils/useSøknadNavigation';
-import { AppText, useAppIntl } from '@shared/i18n';
-import { SøknadSkjemaId } from '@shared/types/SøknadSkjemaId';
-import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
+import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
