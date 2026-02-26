@@ -12,6 +12,7 @@ export * from './types/Søker';
 export * from './hooks/useArbeidsgivere';
 export * from './hooks/useRegistrerteBarn';
 export * from './hooks/useSøker';
+export * from './hooks/useValiderFritekst';
 export * from './hooks/useVedlegg';
 export * from './hooks/useYtelseMellomlagring';
 
