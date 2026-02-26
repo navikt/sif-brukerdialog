@@ -11,7 +11,7 @@ export const SøknadContext = createContext<SøknadContextType | undefined>(unde
 
 interface SøknadProviderProps {
     children: React.ReactNode;
-    barn: RegistrertBarn[];
+    registrerteBarn: RegistrertBarn[];
     kontonummerInfo: KontonummerOppslagInfo;
     søker: Søker;
     initialSvar?: SøknadSvar;
@@ -19,7 +19,13 @@ interface SøknadProviderProps {
 
 const initialData: SøknadSvar = {};
 
-export const SøknadProvider = ({ children, kontonummerInfo, barn, initialSvar, søker }: SøknadProviderProps) => {
+export const SøknadProvider = ({
+    children,
+    kontonummerInfo,
+    registrerteBarn,
+    initialSvar,
+    søker,
+}: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>(initialSvar || initialData);
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
     const { logHendelse, logSkjemaStartet } = useAnalyticsInstance();
@@ -62,11 +68,13 @@ export const SøknadProvider = ({ children, kontonummerInfo, barn, initialSvar, 
 
     const value: SøknadContextType = useMemo(
         () => ({
-            svar,
-            søknadSendt,
+            søknadsdata: {
+                svar,
+                søknadStartet,
+                søknadSendt,
+            },
             kontonummerInfo,
-            barn,
-            søknadStartet,
+            registrerteBarn,
             søker,
             setSpørsmålSvar: oppdaterSvar,
             setSøknadSendt: doSetSøknadSendt,
@@ -77,7 +85,7 @@ export const SøknadProvider = ({ children, kontonummerInfo, barn, initialSvar, 
             svar,
             søknadSendt,
             kontonummerInfo,
-            barn,
+            registrerteBarn,
             søknadStartet,
             søker,
             oppdaterSvar,

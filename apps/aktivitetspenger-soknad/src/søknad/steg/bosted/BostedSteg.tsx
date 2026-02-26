@@ -14,7 +14,10 @@ import { getNextSteg } from '../../utils/stegUtils';
 
 const BostedSteg = () => {
     const { text } = useAppIntl();
-    const { setSpørsmålSvar, svar } = useSøknadContext();
+    const {
+        setSpørsmålSvar,
+        søknadsdata: { svar },
+    } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
     const [error, setError] = useState<string | undefined>(undefined);
     const borITrondheim = svar[Spørsmål.BOSTED];

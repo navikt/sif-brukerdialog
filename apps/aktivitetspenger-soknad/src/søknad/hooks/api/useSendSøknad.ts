@@ -1,4 +1,4 @@
-import { ApiError } from '@navikt/ung-common';
+import { ApiError } from '@navikt/sif-common-query';
 import { useMutation } from '@tanstack/react-query';
 
 import { sendSøknad } from '../../api/søknad/sendSøknad';

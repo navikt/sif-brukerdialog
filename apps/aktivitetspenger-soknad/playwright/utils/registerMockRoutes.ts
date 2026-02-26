@@ -41,7 +41,7 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().barn),
+            body: JSON.stringify(memoryStore.get().registrerteBarn),
         });
     });
 

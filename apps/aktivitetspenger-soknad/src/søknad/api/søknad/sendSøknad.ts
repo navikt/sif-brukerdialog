@@ -1,4 +1,4 @@
-import { handleApiError } from '@navikt/ung-common';
+import { handleApiError } from '@navikt/sif-common-query';
 
 import { SøknadApiData } from '../../types/SøknadApiData';
 

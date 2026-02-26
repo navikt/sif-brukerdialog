@@ -14,7 +14,9 @@ import { Steg } from './types';
 import { getSøknadStegRoute, SøknadRoutePaths } from './utils/søknadRouteUtils';
 
 const SøknadRoutes = () => {
-    const { søknadSendt, søknadStartet } = useSøknadContext();
+    const {
+        søknadsdata: { søknadSendt, søknadStartet },
+    } = useSøknadContext();
     const { pathname } = useLocation();
 
     const previousSøknadStartet = usePrevious(søknadStartet);

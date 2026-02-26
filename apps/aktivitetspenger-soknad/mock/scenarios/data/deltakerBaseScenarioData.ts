@@ -9,7 +9,7 @@ export const deltakerBaseScenarioData: ScenarioData = {
         mellomnavn: undefined,
         etternavn: 'Brukeresen',
     },
-    barn: {
+    registrerteBarn: {
         barn: [
             {
                 fornavn: 'ALFABETISK',

@@ -20,7 +20,7 @@ export const IngenBarn: Story = {
     decorators: [
         (Story) =>
             withSøknadContext(Story, {
-                barn: [],
+                registrerteBarn: [],
             }),
     ],
 };
@@ -35,7 +35,7 @@ export const ToBarn: Story = {
     decorators: [
         (Story) =>
             withSøknadContext(Story, {
-                barn: [
+                registrerteBarn: [
                     { aktørId: '123', fornavn: 'SVAL', etternavn: 'FOTBALLBINGE', fødselsdato: new Date('2010-01-01') },
                     { aktørId: '456', fornavn: 'UNDERFUNDIG', etternavn: 'SKRUE', fødselsdato: new Date('2023-10-23') },
                 ],

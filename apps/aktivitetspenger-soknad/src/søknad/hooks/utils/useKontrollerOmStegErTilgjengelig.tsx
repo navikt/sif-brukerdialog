@@ -6,7 +6,10 @@ import { useSøknadContext } from '../context/useSøknadContext';
 import { useSøknadNavigation } from './useSøknadNavigation';
 
 export const useKontrollerOmStegErTilgjengelig = (steg: Steg) => {
-    const { svar, kontonummerInfo } = useSøknadContext();
+    const {
+        søknadsdata: { svar },
+        kontonummerInfo,
+    } = useSøknadContext();
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
 
     useEffect(() => {

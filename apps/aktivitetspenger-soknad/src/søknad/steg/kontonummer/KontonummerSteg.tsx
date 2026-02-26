@@ -18,7 +18,11 @@ import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
 
 const KontonummerSteg = () => {
     const { text } = useAppIntl();
-    const { setSpørsmålSvar, svar, kontonummerInfo } = useSøknadContext();
+    const {
+        setSpørsmålSvar,
+        søknadsdata: { svar },
+        kontonummerInfo,
+    } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
 
     const infoStemmer = svar[Spørsmål.KONTONUMMER];

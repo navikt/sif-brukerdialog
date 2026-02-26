@@ -13,7 +13,11 @@ import { Spørsmål } from '../types';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
-    const { søker, startSøknad, svar } = useSøknadContext();
+    const {
+        søker,
+        startSøknad,
+        søknadsdata: { svar },
+    } = useSøknadContext();
 
     const [infoStemmer, setInfoStemmer] = useState<boolean>(svar[Spørsmål.FORSTÅR_PLIKTER] || false);
     const [error, setError] = useState<string | undefined>(undefined);

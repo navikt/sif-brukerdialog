@@ -17,7 +17,7 @@ export enum ScenarioType {
 
 export interface ScenarioData {
     søker: any;
-    barn: { barn: any[] };
+    registrerteBarn: { barn: any[] };
     arbeidsgiver: any[];
     deltakelser: any[];
 }

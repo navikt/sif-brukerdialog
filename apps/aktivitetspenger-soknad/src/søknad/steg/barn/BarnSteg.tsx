@@ -17,7 +17,11 @@ import BarnInfo from './BarnInfo';
 
 const BarnSteg = () => {
     const { text } = useAppIntl();
-    const { setSpørsmålSvar, svar, barn } = useSøknadContext();
+    const {
+        setSpørsmålSvar,
+        søknadsdata: { svar },
+        registrerteBarn,
+    } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
 
     const infoStemmer = svar[Spørsmål.BARN];
@@ -49,13 +53,16 @@ const BarnSteg = () => {
                             {text('barnSteg.registrerteBarn.tittel')}
                         </RegistrerteBarnListeHeading>
 
-                        <BarnInfo barn={barn} />
+                        <BarnInfo barn={registrerteBarn} />
                     </VStack>
 
                     <RadioGroup
-                        legend={text(barn.length === 0 ? 'barnSteg.spørsmål.ingenBarn' : 'barnSteg.spørsmål.harBarn', {
-                            antallBarn: barn.length,
-                        })}
+                        legend={text(
+                            registrerteBarn.length === 0 ? 'barnSteg.spørsmål.ingenBarn' : 'barnSteg.spørsmål.harBarn',
+                            {
+                                antallBarn: registrerteBarn.length,
+                            },
+                        )}
                         error={error}
                         value={infoStemmer}
                         onChange={(value: YesOrNo) => {

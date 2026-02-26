@@ -14,10 +14,14 @@ const meta: Meta = {
         withIntl,
         (Story) =>
             withSøknadContext(Story, {
-                svar: {
-                    harForståttRettigheterOgPlikter: true,
-                    barn: YesOrNo.YES,
-                    kontonummer: YesOrNo.YES,
+                søknadsdata: {
+                    svar: {
+                        harForståttRettigheterOgPlikter: true,
+                        barn: YesOrNo.YES,
+                        kontonummer: YesOrNo.YES,
+                    },
+                    søknadSendt: false,
+                    søknadStartet: true,
                 },
             }),
         withRouter,

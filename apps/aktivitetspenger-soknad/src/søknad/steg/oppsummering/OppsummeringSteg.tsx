@@ -1,6 +1,6 @@
 import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
+import { ApiErrorAlert } from '@navikt/sif-common-query';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { SøknadSkjemaId } from '@shared/types/SøknadSkjemaId';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
@@ -17,7 +17,13 @@ import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
 
 const OppsummeringSteg = () => {
     const { text } = useAppIntl();
-    const { søker, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
+    const {
+        søker,
+        setSøknadSendt,
+        kontonummerInfo,
+        registrerteBarn,
+        søknadsdata: { svar },
+    } = useSøknadContext();
     const { gotoSteg, gotoKvittering } = useSøknadNavigation();
     const { logSkjemaFeilet } = useAnalyticsInstance();
 
@@ -128,19 +134,19 @@ const OppsummeringSteg = () => {
                                     <AppText id="barnSteg.registrerteBarn.tittel" />
                                 </FormSummary.Label>
                                 <FormSummary.Value>
-                                    <BarnInfo barn={barn} />
+                                    <BarnInfo barn={registrerteBarn} />
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                             <FormSummary.Answer>
                                 <FormSummary.Label>
                                     <AppText
                                         id={
-                                            barn.length === 0
+                                            registrerteBarn.length === 0
                                                 ? 'barnSteg.spørsmål.ingenBarn'
                                                 : 'barnSteg.spørsmål.harBarn'
                                         }
                                         values={{
-                                            antallBarn: barn.length,
+                                            antallBarn: registrerteBarn.length,
                                         }}
                                     />
                                 </FormSummary.Label>

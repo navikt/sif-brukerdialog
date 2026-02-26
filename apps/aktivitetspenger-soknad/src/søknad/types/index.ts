@@ -34,12 +34,14 @@ export type KontonummerOppslagInfo = Omit<KontonummerInfo, 'kontonummerErRiktig'
 };
 
 export interface SøknadContextType {
+    søknadsdata: {
+        svar: SøknadSvar;
+        søknadStartet: boolean;
+        søknadSendt: boolean;
+    };
     søker: Søker;
-    svar: SøknadSvar;
-    søknadStartet: boolean;
-    søknadSendt: boolean;
     kontonummerInfo: KontonummerOppslagInfo;
-    barn: RegistrertBarn[];
+    registrerteBarn: RegistrertBarn[];
     setSpørsmålSvar: (key: Spørsmål, value: unknown) => void;
     setSøknadSendt: () => void;
     startSøknad: (bekrefter: true) => void;

@@ -10,6 +10,7 @@ export * from './types/Søker';
 
 // Alle hooks
 export * from './hooks/useArbeidsgivere';
+export * from './hooks/useKontonummer';
 export * from './hooks/useRegistrerteBarn';
 export * from './hooks/useSøker';
 export * from './hooks/useValiderFritekst';
@@ -20,6 +21,9 @@ export * from './hooks/useYtelseMellomlagring';
 export * from './api';
 
 // Alle utils
-export * from './utils/ytelseMellomlagringUtils';
-export * from './utils/initApiClient';
 export * from './utils/errorHandlers';
+export * from './utils/initApiClient';
+export * from './utils/ytelseMellomlagringUtils';
+
+// Komponenter
+export { ApiErrorAlert } from './components/ApiErrorAlert';

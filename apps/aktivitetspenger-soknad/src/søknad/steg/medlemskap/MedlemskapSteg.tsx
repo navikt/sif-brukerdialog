@@ -7,7 +7,7 @@ import { useAppIntl } from '@shared/i18n';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
 import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
-import { SøknadSvar,Spørsmål, Steg } from '@søknad/types';
+import { SøknadSvar, Spørsmål, Steg } from '@søknad/types';
 import dayjs from 'dayjs';
 
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
@@ -53,7 +53,10 @@ export const validateBostedUtlandetSiste5År = (formValue: any): string | undefi
 
 const MedlemskapSteg = () => {
     const { text } = useAppIntl();
-    const { setSpørsmålSvar, svar } = useSøknadContext();
+    const {
+        setSpørsmålSvar,
+        søknadsdata: { svar },
+    } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
 
     const handleOnSubmit = (values: MedlemskapFormValue) => {

@@ -1,5 +1,5 @@
 import { Theme } from '@navikt/ds-react';
-import { Søker, useRegistrerteBarn } from '@navikt/sif-common-query';
+import { Søker, useKontonummer, useRegistrerteBarn } from '@navikt/sif-common-query';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 
 import { ApiErrorKey, useAnalyticsInstance } from '../analytics/analytics';
@@ -7,7 +7,6 @@ import AppRouter from '../AppRouter';
 import { useAppIntl } from '../i18n';
 import AppErrorPage from '../pages/HentAppInfoErrorPage';
 import { SøknadProvider } from './context/SøknadContext';
-import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRoutes from './SøknadRouter';
 import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
 import { KontonummerOppslagInfo } from './types';
@@ -55,7 +54,7 @@ const SøknadApp = ({ søker }: Props) => {
     return (
         <Theme hasBackground={true}>
             <AppRouter>
-                <SøknadProvider søker={søker} kontonummerInfo={getKontonummerInfo()} barn={barn.data || []}>
+                <SøknadProvider søker={søker} kontonummerInfo={getKontonummerInfo()} registrerteBarn={barn.data || []}>
                     <SøknadRoutes />
                 </SøknadProvider>
             </AppRouter>
