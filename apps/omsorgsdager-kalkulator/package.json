@@ -14,10 +14,10 @@
         "test": "jest"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.5.2",
-        "@navikt/ds-css": "8.5.2",
-        "@navikt/ds-react": "8.5.2",
-        "@navikt/ds-tailwind": "8.5.2",
+        "@navikt/aksel-icons": "8.6.0",
+        "@navikt/ds-css": "8.6.0",
+        "@navikt/ds-react": "8.6.0",
+        "@navikt/ds-tailwind": "8.6.0",
         "@navikt/nav-dekoratoren-moduler": "3.6.2",
         "classnames": "2.5.1",
         "csp-header": "6.3.0",
