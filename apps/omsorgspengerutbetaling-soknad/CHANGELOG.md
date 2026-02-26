@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.26.66
+
+### Patch Changes
+
+- @navikt/sif-common-soknad-ds@26.1.39
+
 ## 1.26.65
 
 ### Patch Changes
