@@ -1,9 +1,9 @@
 import { Alert, BodyLong, Button, Heading, VStack } from '@navikt/ds-react';
 
 import { AppText, useAppIntl } from '../i18n';
-import DefaultPageLayout from './layout/DefaultPageLayout';
-import getLenker from '../utils/lenker';
 import SøknadHeader from '../søknad/components/søknad-header/SøknadHeader';
+import getLenker from '../utils/lenker';
+import DefaultPageLayout from './layout/DefaultPageLayout';
 
 const KvitteringPage = () => {
     const { text } = useAppIntl();

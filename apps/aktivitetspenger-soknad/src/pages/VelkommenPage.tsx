@@ -5,11 +5,11 @@ import { useState } from 'react';
 import ExternalLink from '../components/external-link/ExternalLink';
 import { useSøknadContext } from '../hooks/context/useSøknadContext';
 import { AppText, useAppIntl } from '../i18n';
-import DefaultPageLayout from './layout/DefaultPageLayout';
-import getLenker from '../utils/lenker';
 import SøknadHeader from '../søknad/components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../søknad/components/VelkommenMelding';
 import { Spørsmål } from '../søknad/types';
+import getLenker from '../utils/lenker';
+import DefaultPageLayout from './layout/DefaultPageLayout';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();

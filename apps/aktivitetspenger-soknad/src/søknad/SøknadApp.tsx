@@ -6,11 +6,11 @@ import { ApiErrorKey, useAnalyticsInstance } from '../analytics/analytics';
 import AppRouter from '../AppRouter';
 import { useAppIntl } from '../i18n';
 import AppErrorPage from '../pages/HentAppInfoErrorPage';
+import { formaterKontonummer } from '../utils/formaterKontonummer';
 import { SøknadProvider } from './context/SøknadContext';
 import SøknadRoutes from './SøknadRouter';
 import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
 import { KontonummerOppslagInfo } from './types';
-import { formaterKontonummer } from '../utils/formaterKontonummer';
 
 interface Props {
     søker: Søker;
