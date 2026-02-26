@@ -93,7 +93,6 @@
         "eslint-plugin-prettier": "5.5.5",
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-react-hooks": "7.0.1",
-        "eslint-plugin-simple-import-sort": "12.1.1",
         "eslint-plugin-storybook": "10.2.10",
         "eslint-plugin-vitest": "0.5.4",
         "express": "5.2.1",
