@@ -82,3 +82,33 @@ export const ytelseMellomlagringUtils = <State, MetaData = unknown>(
         },
     };
 };
+
+/* Eksempel på bruk:
+
+import { MellomlagringYtelse, ytelseMellomlagringUtils } from '@navikt/sif-common-query';
+import { Mellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
+
+export const mellomlagringUtils = ytelseMellomlagringUtils<Mellomlagring, MellomlagringMetaData>(
+    MellomlagringYtelse.OMSORGSPENGER_UTVIDET_RETT,
+);
+
+
+export const useMellomlagring = () => {
+    const {
+        state: { søker, registrerteBarn },
+    } = useSøknadContext();
+
+    const metaData: MellomlagringMetaData = {
+        MELLOMLAGRING_VERSJON,
+        søker,
+        registrerteBarn,
+    };
+
+    return {
+        hentMellomlagring: () => mellomlagringUtils.hent(metaData),
+        slettMellomlagring: mellomlagringUtils.slett,
+        lagreMellomlagring: (data: Mellomlagring) => mellomlagringUtils.lagre(data, metaData),
+    };
+};
+
+*/
