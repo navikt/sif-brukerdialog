@@ -4171,7 +4171,7 @@ __metadata:
     "@navikt/ds-react": "npm:8.6.0"
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": "npm:6.0.2"
-    "@sanity/client": "npm:7.15.0"
+    "@sanity/client": "npm:7.16.0"
     "@sif/eslint-config": "workspace:*"
     "@types/node": "npm:25.3.0"
     "@types/react": "npm:19.2.14"
@@ -7353,15 +7353,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:7.15.0, @sanity/client@npm:^7.15.0":
-  version: 7.15.0
-  resolution: "@sanity/client@npm:7.15.0"
+"@sanity/client@npm:7.16.0":
+  version: 7.16.0
+  resolution: "@sanity/client@npm:7.16.0"
   dependencies:
     "@sanity/eventsource": "npm:^5.0.2"
     get-it: "npm:^8.7.0"
     nanoid: "npm:^3.3.11"
     rxjs: "npm:^7.0.0"
-  checksum: 10/8ebca4f94fa42d43b6de752ca472e55b69c46c1a8f5ee7c996b5c738a3b571d3d3d09e5a4b01bbdcb84ef32831d7fed6ab05bea3d264a110183dca154a922146
+  checksum: 10/6a9b2b0f056a4b2ae9b329ef28a68f93916df990cb112d04c9f9f2aab5ed81639f650955d64ef670c2a927a6fb63614739107fb781208a8f219811ae2dcc2399
   languageName: node
   linkType: hard
 
@@ -7374,6 +7374,18 @@ __metadata:
     nanoid: "npm:^3.3.11"
     rxjs: "npm:^7.0.0"
   checksum: 10/a3fcd1d1a8412ca07b42dd262b51c54de3bb6355214a0da5351d94e25c647c955b1ed657970c9df985e8e2326559e318d53a3522b2422172a70db5ac4e7f1669
+  languageName: node
+  linkType: hard
+
+"@sanity/client@npm:^7.15.0":
+  version: 7.15.0
+  resolution: "@sanity/client@npm:7.15.0"
+  dependencies:
+    "@sanity/eventsource": "npm:^5.0.2"
+    get-it: "npm:^8.7.0"
+    nanoid: "npm:^3.3.11"
+    rxjs: "npm:^7.0.0"
+  checksum: 10/8ebca4f94fa42d43b6de752ca472e55b69c46c1a8f5ee7c996b5c738a3b571d3d3d09e5a4b01bbdcb84ef32831d7fed6ab05bea3d264a110183dca154a922146
   languageName: node
   linkType: hard
 
@@ -7975,9 +7987,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:5.11.0":
-  version: 5.11.0
-  resolution: "@sanity/vision@npm:5.11.0"
+"@sanity/vision@npm:5.12.0":
+  version: 5.12.0
+  resolution: "@sanity/vision@npm:5.12.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.20.0"
     "@codemirror/commands": "npm:^6.10.1"
@@ -7986,7 +7998,6 @@ __metadata:
     "@codemirror/search": "npm:^6.6.0"
     "@codemirror/state": "npm:^6.5.4"
     "@codemirror/view": "npm:^6.39.11"
-    "@juggle/resize-observer": "npm:^3.4.0"
     "@lezer/highlight": "npm:^1.2.3"
     "@rexxars/react-json-inspector": "npm:^9.0.1"
     "@rexxars/react-split-pane": "npm:^1.0.0"
@@ -8007,7 +8018,7 @@ __metadata:
     react: ^19.2.2
     sanity: ^4.0.0-0 || ^5.0.0-0
     styled-components: ^6.1.15
-  checksum: 10/a7b4758759931f31c4a9157748f247507b65d4def4876019257b23724273fe319f59a441e3cc63e89f8703588cbcc38739189ab8342c3d04eb7254933f8b17c9
+  checksum: 10/b3a6c5f11e7b435535c14d6b3fe74385b82a5bdda35439ddaa942ce07922d91b7bdea4d7b2a7a31e084ee118bcdacd0fc16f26941a8a4472cef04268146e52d2
   languageName: node
   linkType: hard
 
@@ -11158,7 +11169,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:6.0.0"
-    "@sanity/vision": "npm:5.11.0"
+    "@sanity/vision": "npm:5.12.0"
     "@types/react": "npm:19.2.14"
     dayjs: "npm:1.11.19"
     eslint: "npm:9.39.2"
