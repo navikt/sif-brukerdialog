@@ -2,14 +2,14 @@ import { Alert, Radio, RadioGroup } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { useSøknadNavigation } from '@shared/hooks/utils/useSøknadNavigation';
 import { useAppIntl } from '@shared/i18n';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
-import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
-import { useSøknadContext } from '../../hooks/context/useSøknadContext';
+import { useSøknadContext } from '../../../hooks/context/useSøknadContext';
 import { getNextSteg } from '../../utils/stegUtils';
 
 const BostedSteg = () => {

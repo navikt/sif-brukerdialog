@@ -2,9 +2,9 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
-import { useSøknadContext } from './hooks/context/useSøknadContext';
-import KvitteringPage from './pages/KvitteringPage';
-import VelkommenPage from './pages/VelkommenPage';
+import { useSøknadContext } from '../hooks/context/useSøknadContext';
+import KvitteringPage from '../pages/KvitteringPage';
+import VelkommenPage from '../pages/VelkommenPage';
 import BarnSteg from './steg/barn/BarnSteg';
 import BostedSteg from './steg/bosted/BostedSteg';
 import KontonummerSteg from './steg/kontonummer/KontonummerSteg';

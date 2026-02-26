@@ -2,14 +2,14 @@ import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Button, Checkbox, CheckboxGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
-import ExternalLink from '../../components/external-link/ExternalLink';
-import { AppText, useAppIntl } from '../../i18n';
-import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
-import getLenker from '../../utils/lenker';
-import SøknadHeader from '../components/søknad-header/SøknadHeader';
-import VelkommenMelding from '../components/VelkommenMelding';
+import ExternalLink from '../components/external-link/ExternalLink';
 import { useSøknadContext } from '../hooks/context/useSøknadContext';
-import { Spørsmål } from '../types';
+import { AppText, useAppIntl } from '../i18n';
+import DefaultPageLayout from './layout/DefaultPageLayout';
+import getLenker from '../utils/lenker';
+import SøknadHeader from '../søknad/components/søknad-header/SøknadHeader';
+import VelkommenMelding from '../søknad/components/VelkommenMelding';
+import { Spørsmål } from '../søknad/types';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();

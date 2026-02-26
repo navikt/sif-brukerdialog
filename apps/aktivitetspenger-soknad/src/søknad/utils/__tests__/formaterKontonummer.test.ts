@@ -1,4 +1,4 @@
-import { formaterKontonummer } from '../formaterKontonummer';
+import { formaterKontonummer } from '../../../utils/formaterKontonummer';
 
 describe('formatKontonummer', () => {
     it('should format a valid kontonummer', () => {

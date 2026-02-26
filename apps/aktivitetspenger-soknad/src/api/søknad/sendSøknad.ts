@@ -1,6 +1,6 @@
 import { handleApiError } from '@navikt/sif-common-query';
 
-import { SøknadApiData } from '../../types/SøknadApiData';
+import { SøknadApiData } from '../../søknad/types/SøknadApiData';
 
 export const sendSøknad = async (data: SøknadApiData): Promise<any> => {
     try {

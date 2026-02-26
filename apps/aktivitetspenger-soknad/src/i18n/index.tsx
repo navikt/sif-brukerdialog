@@ -4,17 +4,18 @@ import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { ungSoknadMessages } from '../søknad/i18n';
+import { soknadMessages_nb } from './messages/nb';
+import { soknadMessages_nn } from './messages/nn';
 
 const nb = {
-    ...ungSoknadMessages.nb,
+    ...soknadMessages_nb,
     ...uiMessages.nb,
     ...soknadMessages.nb,
     ...bostedUtlandMessages.nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...ungSoknadMessages.nn,
+    ...soknadMessages_nn,
     ...uiMessages.nn,
     ...soknadMessages.nn,
     ...bostedUtlandMessages.nn,

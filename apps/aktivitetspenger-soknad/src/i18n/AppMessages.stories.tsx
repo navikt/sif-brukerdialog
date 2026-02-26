@@ -3,8 +3,8 @@ import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messa
 import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { withIntl } from '../../storybook/decorators/withIntl';
-import { soknadMessages_nb } from '../søknad/i18n/messages/nb';
-import { soknadMessages_nn } from '../søknad/i18n/messages/nn';
+import { soknadMessages_nb } from './messages/nb';
+import { soknadMessages_nn } from './messages/nn';
 
 const meta: Meta = {
     title: 'i18n',

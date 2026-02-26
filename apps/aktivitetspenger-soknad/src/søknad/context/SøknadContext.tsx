@@ -4,7 +4,7 @@ import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import React, { createContext, useMemo, useState } from 'react';
 
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
-import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
+import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { KontonummerOppslagInfo, SøknadContextType, SøknadSvar, Spørsmål, Steg } from '../types';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
@@ -55,15 +55,6 @@ export const SøknadProvider = ({
 
     const doSetSøknadSendt = () => {
         setSøknadSendt(true);
-        // logSkjemaFullført(
-        //     DeltakerSkjemaId.SØKNAD,
-        //     logUtils.getSøknadInnsendingMeta(deltakelsePeriode, søknadOppgave, {
-        //         antallBarn: barn.length,
-        //         barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
-        //         kontonummerStemmer: svar[Spørsmål.KONTONUMMER] === YesOrNo.YES,
-        //         kontonummerOppslagInfo: kontonummerInfo,
-        //     }),
-        // );
     };
 
     const value: SøknadContextType = useMemo(

@@ -4,12 +4,12 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
 import ExternalLink from '@shared/components/external-link/ExternalLink';
+import { useSøknadContext } from '@shared/hooks/context/useSøknadContext';
+import { useSøknadNavigation } from '@shared/hooks/utils/useSøknadNavigation';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
-import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
-import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 

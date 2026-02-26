@@ -3,14 +3,14 @@ import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-form
 import { BostedUtland, BostedUtlandListAndDialog } from '@navikt/sif-common-forms-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateRangesCollide, dateRangesExceedsRange } from '@navikt/sif-common-utils';
+import { useSøknadNavigation } from '@shared/hooks/utils/useSøknadNavigation';
 import { useAppIntl } from '@shared/i18n';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
-import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
 import { SøknadSvar, Spørsmål, Steg } from '@søknad/types';
 import dayjs from 'dayjs';
 
-import { useSøknadContext } from '../../hooks/context/useSøknadContext';
+import { useSøknadContext } from '../../../hooks/context/useSøknadContext';
 import { getNextSteg } from '../../utils/stegUtils';
 
 type MedlemskapFormValue = {

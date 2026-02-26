@@ -10,7 +10,7 @@ import { SøknadProvider } from './context/SøknadContext';
 import SøknadRoutes from './SøknadRouter';
 import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
 import { KontonummerOppslagInfo } from './types';
-import { formaterKontonummer } from './utils/formaterKontonummer';
+import { formaterKontonummer } from '../utils/formaterKontonummer';
 
 interface Props {
     søker: Søker;

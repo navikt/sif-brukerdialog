@@ -20,9 +20,9 @@
             "@søknad/*": ["src/søknad/*"],
             "@søknad/components/*": ["src/søknad/components/*"],
             "@søknad/pages/*": ["src/søknad/pages/*"],
-            "@søknad/hooks/*": ["src/søknad/hooks/*"],
+            "@søknad/hooks/*": ["src/hooks/*"],
             "@søknad/utils/*": ["src/søknad/utils/*"],
-            "@søknad/api/*": ["src/søknad/api/*"],
+            "@søknad/api/*": ["src/api/*"],
             "@søknad/steg/*": ["src/søknad/steg/*"],
             "@søknad/context/*": ["src/søknad/context/*"],
             "@søknad/types/*": ["src/søknad/types/*"]

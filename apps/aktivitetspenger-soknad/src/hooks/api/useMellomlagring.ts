@@ -1,6 +1,6 @@
-import { MELLOMLAGRING_VERSJON } from '../../../constants/MELLOMLAGRING_VERSJON';
-import { Mellomlagring, MellomlagringMetaData } from '../../../types/Mellomlagring';
-import { mellomlagringUtils } from '../../../utils/mellomlagringUtils';
+import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
+import { Mellomlagring, MellomlagringMetaData } from '../../types/Mellomlagring';
+import { mellomlagringUtils } from '../../utils/mellomlagringUtils';
 import { useSøknadContext } from '../context/useSøknadContext';
 
 export const useMellomlagring = () => {

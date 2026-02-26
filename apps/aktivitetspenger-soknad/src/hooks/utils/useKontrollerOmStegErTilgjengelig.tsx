@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import { Steg } from '../../types';
-import { erStegTilgjengelig, getSkjemaStegIndex, getTilgjengeligeSteg, søknadSteg } from '../../utils/stegUtils';
+import { Steg } from '../../søknad/types';
+import { erStegTilgjengelig, getSkjemaStegIndex, getTilgjengeligeSteg, søknadSteg } from '../../søknad/utils/stegUtils';
 import { useSøknadContext } from '../context/useSøknadContext';
 import { useSøknadNavigation } from './useSøknadNavigation';
 
