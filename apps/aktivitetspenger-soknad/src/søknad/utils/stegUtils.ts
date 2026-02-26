@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 
 import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
