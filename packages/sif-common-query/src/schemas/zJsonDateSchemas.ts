@@ -1,6 +1,9 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { z } from 'zod';
+
+dayjs.extend(utc);
 
 /** Validerer og konverterer en ISO datetime-streng til UTC Date */
 const parseUTCDate = (val: string): Date => {
