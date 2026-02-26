@@ -10,12 +10,15 @@ import { ytelseMellomlagringJsonParser } from '../utils/ytelseMellomlagringJsonP
  * @returns Promise med mellomlagrede data
  * @throws Error hvis API-kallet feiler eller data ikke kan parses
  */
-export const hentYtelseMellomlagring = async (ytelse: MellomlagringYtelse): Promise<Record<string, unknown>> => {
+export const hentYtelseMellomlagring = async (
+    ytelse: MellomlagringYtelse,
+): Promise<Record<string, unknown> | undefined> => {
     const { data } = await MellomlagringController.getMellomlagring({
         path: { ytelse },
     });
-    const parsedData = await ytelseMellomlagringJsonParser(typeof data === 'string' ? data : JSON.stringify(data));
-    return parsedData;
+    return ytelseMellomlagringJsonParser<Record<string, unknown>>(
+        typeof data === 'string' ? data : JSON.stringify(data),
+    );
 };
 
 /**
