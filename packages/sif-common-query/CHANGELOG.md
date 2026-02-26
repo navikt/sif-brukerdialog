@@ -1,5 +1,90 @@
 # Changelog
 
+## 0.1.73
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.11
+    - @navikt/k9-sak-innsyn-api@0.2.13
+
+## 0.1.72
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.10
+    - @navikt/k9-sak-innsyn-api@0.2.12
+
+## 0.1.71
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.9
+    - @navikt/k9-sak-innsyn-api@0.2.11
+    - @navikt/sif-common-utils@3.49.60
+
+## 0.1.70
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.8
+    - @navikt/k9-sak-innsyn-api@0.2.10
+    - @navikt/sif-common-utils@3.49.59
+
+## 0.1.69
+
+### Patch Changes
+
+- Updated dependencies [522fe9f]
+    - @navikt/sif-common-utils@3.49.58
+
+## 0.1.68
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.7
+    - @navikt/k9-sak-innsyn-api@0.2.9
+    - @navikt/sif-common-utils@3.49.57
+
+## 0.1.67
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.56
+
+## 0.1.66
+
+### Patch Changes
+
+- Updated dependencies [69fe53c]
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.6
+    - @navikt/k9-sak-innsyn-api@0.2.8
+    - @navikt/sif-common-utils@3.49.55
+
+## 0.1.65
+
+### Patch Changes
+
+- Updated dependencies [fc216a0]
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.5
+    - @navikt/k9-sak-innsyn-api@0.2.7
+    - @navikt/sif-common-utils@3.49.55
+
+## 0.1.64
+
+### Patch Changes
+
+- e8491a9: Pakkeoppdateringer - minor/patch
+
 ## 0.1.63
 
 ### Patch Changes
