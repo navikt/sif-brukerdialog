@@ -4185,7 +4185,6 @@ __metadata:
     "@navikt/sif-common-query": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
-    "@navikt/ung-common": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@playwright/test": "npm:1.58.2"
     "@sentry/react": "npm:10.39.0"
