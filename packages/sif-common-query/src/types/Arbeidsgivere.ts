@@ -6,22 +6,22 @@ import {
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
-import { jsonParseUtils } from '../utils/jsonParseUtils';
+import { zNullableDateTime } from '../schemas/zJsonDateSchemas';
 
 // Schema som konverterer string-dato til Date
 const organisasjonSchema = zOrganisasjonDto.extend({
-    ansattFom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
-    ansattTom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattFom: zNullableDateTime,
+    ansattTom: zNullableDateTime,
 });
 
 const privatArbeidsgiverSchema = zPrivatArbeidsgiverDto.extend({
-    ansattFom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
-    ansattTom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattFom: zNullableDateTime,
+    ansattTom: zNullableDateTime,
 });
 
 const frilansoppdragSchema = zFrilansoppdragDto.extend({
-    ansattFom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
-    ansattTom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattFom: zNullableDateTime,
+    ansattTom: zNullableDateTime,
 });
 
 export const arbeidsgivereSchema = zArbeidsgivereDto.extend({

@@ -28,26 +28,6 @@ const ytelseMellomlagringJsonParser = (storageResponse: string) => {
     }
 };
 
-/**
- * Parser en streng (YYYY-MM-DD eller ISO datetime) til Date-objekt, eller undefined/null hvis ugyldig/ikke string
- */
-const getDateFromString = (value?: string): Date | undefined => {
-    if (typeof value !== 'string') return undefined;
-    const date = isoDateRegExp.test(value) ? dayjs.utc(value, 'YYYY-MM-DD') : dayjs.utc(value);
-    if (date.isValid()) {
-        return date.toDate();
-    }
-    throw new Error(`Could not parse date string: ${value}`);
-};
-
-const parseMaybeDateStringToDate = (value: any): Date | undefined => {
-    if (value === null || value === undefined) {
-        return undefined;
-    }
-    return getDateFromString(value);
-};
-
 export const jsonParseUtils = {
     ytelseMellomlagringJsonParser,
-    parseMaybeDateStringToDate,
 };

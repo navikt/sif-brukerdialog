@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { getInvalidParameterViolations } from '../utils/getInvalidParameterViolations';
 import { validerFritekst } from '../api';
 import { sifCommonQueryKeys } from '../queryKeys';
-import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import { handleApiError, isApiAxiosError } from '../api-clients';
+import { InvalidParameterViolation } from '../types/invalidParameterProblemDetail';
 
 export const useValiderFritekst = (fritekst?: string) => {
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>(undefined);
