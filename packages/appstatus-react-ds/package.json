@@ -4,13 +4,13 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.20.72",
+    "version": "2.20.73",
     "private": true,
     "type": "module",
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "6.0.2",
-        "@sanity/client": "7.15.0"
+        "@sanity/client": "7.16.0"
     },
     "devDependencies": {
         "@navikt/aksel-icons": "8.6.0",

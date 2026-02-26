@@ -1,5 +1,12 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.1.39
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.73
+
 ## 26.1.38
 
 ### Patch Changes
