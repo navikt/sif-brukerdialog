@@ -1,9 +1,9 @@
 // Legacy export (for bakoverkompatibilitet)
 export * from './generated/client';
+export * from './generated/client/client.gen';
 export * from './generated/client/sdk.gen';
 export * from './generated/client/types.gen';
 export * from './generated/client/zod.gen';
-export * from './generated/client/client.gen';
 
 // Omsorgspenger API
 export * as omsorgspenger from './generated/omsorgspenger';
@@ -38,4 +38,5 @@ export * as pleiepengerSyktBarnEndringsmelding from './generated/pleiepenger-syk
 // Pleiepenger Sykt Barn Søknad API
 export * as pleiepengerSyktBarnSoknad from './generated/pleiepenger-sykt-barn-soknad';
 
+// Init funksjon for alle API-klienter i k9-brukerdialog-prosessering
 export * from './initK9BrukerdialogProsesseringApiClients';
