@@ -49,6 +49,7 @@
         "SIF_INNSYN_API_SCOPE": "dev-gcp:dusseldorf:sif-innsyn-api",
 
         "DEBUG": "true",
-        "VELG_SCENARIO": "on"
+        "VELG_SCENARIO": "on",
+        "SIF_PUBLIC_ENDRE_OMSORGSTILBUD": "on"
     }
 }

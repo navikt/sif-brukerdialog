@@ -1,5 +1,7 @@
 import './arbeidstidUker.scss';
 
+import EditButton from '@app/components/buttons/EditButton';
+import { AppText, useAppIntl } from '@app/i18n';
 import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { Button, HStack, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
@@ -7,10 +9,8 @@ import { getDateRangeText } from '@navikt/sif-common-utils';
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-import EditButton from '../../components/buttons/EditButton';
 import { usePagination } from '../../hooks/usePagination';
 import { useSelectableList } from '../../hooks/useSelectableList';
-import { AppText, useAppIntl } from '../../i18n';
 import ArbeidstidUkeListe from './components/ArbeidstidUkeListe';
 import ArbeidstidUkeTabell from './components/ArbeidstidUkeTabell';
 import EndreUkerFooter from './components/EndreUkerFooter';

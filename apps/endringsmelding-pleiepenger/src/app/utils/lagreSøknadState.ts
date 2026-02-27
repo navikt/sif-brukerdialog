@@ -1,4 +1,4 @@
-import { SøknadContextState } from '@types';
+import { SøknadContextState } from '@app/types';
 
 import søknadStateEndpoint from '../api/endpoints/søknadStateEndpoint';
 

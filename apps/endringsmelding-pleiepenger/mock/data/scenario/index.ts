@@ -33,6 +33,7 @@ export interface ScenarioData {
     søker: any;
     sak: any;
     arbeidsgiver: any;
+    mellomlagring?: any;
 }
 
 export const getScenarioMockData = (scenario: ScenarioType) => {

@@ -1,6 +1,16 @@
 import './endreArbeidstidForm.scss';
 
-import { useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@app/hooks';
+import { AppIntlShape, AppText, useAppIntl } from '@app/i18n';
+import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@app/types';
+import {
+    arbeidsukerHarLikNormaltidPerDag,
+    erKortArbeidsuke,
+    getArbeidsukeUkenummer,
+    getDagerTekst,
+    getFeriedagerIUke,
+    getFeriedagerIUkeTekst,
+} from '@app/utils';
 import { Alert, BodyShort, Heading, ToggleGroup, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
@@ -12,18 +22,8 @@ import {
 import { FormLayout, getDurationString } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { getNumberValidator } from '@navikt/sif-validation';
-import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@types';
-import {
-    arbeidsukerHarLikNormaltidPerDag,
-    erKortArbeidsuke,
-    getArbeidsukeUkenummer,
-    getDagerTekst,
-    getFeriedagerIUke,
-    getFeriedagerIUkeTekst,
-} from '@utils';
 import dayjs from 'dayjs';
 
-import { AppIntlShape, AppText, useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
@@ -270,7 +270,7 @@ const getUkerOgÅrBeskrivelse = (
             : [];
         return (
             <VStack gap="space-8">
-                <BodyShort as="div" className="capsFirstChar">
+                <BodyShort as="div" className="capsFirstLetter">
                     {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
                 </BodyShort>
                 {dagerMedFerie.length > 0 && <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />}

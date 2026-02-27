@@ -1,3 +1,5 @@
+import StartPåNyttDialog from '@app/components/start-på-nytt-dialog/StartPåNyttDialog';
+import { appSentryLogger } from '@app/utils';
 import { BodyShort, Button, VStack } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId } from '@navikt/sif-common-api';
@@ -8,10 +10,8 @@ import {
     useVerifyUserOnWindowFocus,
 } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { appSentryLogger } from '@utils';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
-import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
@@ -25,6 +25,7 @@ import { StepId } from './config/StepId';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import TilsynsordningStep from './steps/tilsynsordning/TilsynsordningStep';
 import UkjentArbeidsforholdStep from './steps/ukjent-arbeidsforhold/UkjentArbeidsforholdStep';
 
 const SøknadRouter = () => {
@@ -97,6 +98,9 @@ const SøknadRouter = () => {
                 )}
                 {isStepAvailable(StepId.ARBEIDSTID) && (
                     <Route path={SøknadStepRoute[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
+                )}
+                {isStepAvailable(StepId.TILSYNSORDNING) && (
+                    <Route path={SøknadStepRoute[StepId.TILSYNSORDNING]} element={<TilsynsordningStep />} />
                 )}
                 {isStepAvailable(StepId.OPPSUMMERING) && (
                     <Route path={SøknadStepRoute[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />

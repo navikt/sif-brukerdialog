@@ -1,17 +1,17 @@
-import { useOnValidSubmit, useSøknadContext } from '@hooks';
+import DateRangeExpansionCards from '@app/components/date-range-expansion-cards/DateRangeExpansionCards';
+import EndretTag from '@app/components/tags/EndretTag';
+import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
+import { AppText } from '@app/i18n';
+import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
+import { SøknadContextState } from '@app/types';
+import { erFeriedagerEndretIPeriode } from '@app/utils';
 import { Alert, Box, Heading, List, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
-import { SøknadContextState } from '@types';
-import { erFeriedagerEndretIPeriode } from '@utils';
 import { useIntl } from 'react-intl';
 
-import DateRangeExpansionCards from '../../../components/date-range-expansion-cards/DateRangeExpansionCards';
-import EndretTag from '../../../components/tags/EndretTag';
 import { useStepConfig } from '../../../hooks/useStepConfig';
-import { AppText } from '../../../i18n';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
 import actionsCreator from '../../context/action/actionCreator';

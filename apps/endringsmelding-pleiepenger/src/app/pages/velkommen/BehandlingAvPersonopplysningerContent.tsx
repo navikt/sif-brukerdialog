@@ -1,7 +1,7 @@
+import { AppText } from '@app/i18n';
 import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import React from 'react';
 
-import { AppText } from '../../i18n';
 import { getLenker } from '../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {

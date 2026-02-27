@@ -1,5 +1,5 @@
+import { Arbeidsgiver, K9Sak, K9SakArbeidstaker } from '@app/types';
 import { DateRange, dateRangeUtils, getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
-import { Arbeidsgiver, K9Sak, K9SakArbeidstaker } from '@types';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 

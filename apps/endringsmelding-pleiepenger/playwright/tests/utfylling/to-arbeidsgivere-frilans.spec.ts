@@ -32,7 +32,7 @@ test('test', async ({ page }) => {
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('aktivitet_a_947064640').getByRole('button', { name: 'Vis mer' }).click();
     await page.getByTestId('dateRangeAccordion_1_header').click();
-    await page.getByRole('cell', { name: 'Endre uke 4 (23.01.2023 - 29.' }).click();
+    await page.getByRole('button', { name: 'Endre uke 4 (23.01.2023 - 29.' }).click();
     await page.getByTestId('prosent-verdi').click();
     await page.getByTestId('prosent-verdi').fill('5');
     await page.getByRole('button', { name: 'Ok', exact: true }).click();

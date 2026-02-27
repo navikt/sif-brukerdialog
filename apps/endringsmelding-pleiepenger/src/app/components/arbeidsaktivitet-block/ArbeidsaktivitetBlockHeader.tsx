@@ -1,11 +1,11 @@
 import './arbeidsaktivitetBlockHeader.scss';
 
+import { AppText } from '@app/i18n';
+import { ArbeidsaktivitetType, Arbeidsgiver } from '@app/types';
 import { Buildings3Icon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 
-import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
 import TagsContainer from '../tags/tags-container/TagsContainer';
@@ -22,7 +22,7 @@ interface Props {
 
 const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjentAktivitet }: Props) => {
     return (
-        <Box marginBlock={type !== ArbeidsaktivitetType.arbeidstaker ? 'space-16 space-0' : undefined}>
+        <Box>
             <div className="arbeidsaktivitetBlockHeader">
                 <div className="arbeidsaktivitetBlockHeader__icon">
                     <Buildings3Icon role="presentation" aria-hidden={true} />

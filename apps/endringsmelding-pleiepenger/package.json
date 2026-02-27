@@ -37,6 +37,7 @@
         "intl": "1.2.5",
         "jsdom": "28.1.0",
         "lodash": "4.17.23",
+        "lodash.groupby": "4.6.0",
         "object-hash": "3.0.0",
         "react": "19.2.4",
         "react-day-picker": "9.13.2",
