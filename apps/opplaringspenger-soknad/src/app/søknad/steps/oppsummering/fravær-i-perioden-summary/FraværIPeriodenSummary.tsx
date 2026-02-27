@@ -11,7 +11,7 @@ import {
     ArbeidsgiverApiData,
     SøknadApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
-import ArbeidIPeriodeSummaryItem from './ArbeidIPeriodenSummaryItem';
+import FraværIPeriodenSummaryItem from './FraværIPeriodenSummaryItem';
 
 interface Props {
     apiValues: SøknadApiData;
@@ -20,7 +20,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
+export interface FraværIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
     erAktivIPeriode: boolean;
 }
@@ -62,7 +62,7 @@ const getArbeidsgiverTittel = ({ text }: AppIntlShape, arbeidsgiver: Arbeidsgive
     }
 };
 
-const ArbeidIPeriodenSummary = ({
+const FraværIPeriodenSummary = ({
     apiValues: { arbeidsgivere, frilans, selvstendigNæringsdrivende },
     valgteDatoer,
     søknadsperiode,
@@ -70,7 +70,7 @@ const ArbeidIPeriodenSummary = ({
 }: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
-    const alleArbeidsforhold: ArbeidIPeriodenSummaryItemType[] = [];
+    const alleArbeidsforhold: FraværIPeriodenSummaryItemType[] = [];
 
     if (arbeidsgivere) {
         arbeidsgivere.forEach((arbeidsgiverApiData) => {
@@ -106,7 +106,7 @@ const ArbeidIPeriodenSummary = ({
                 <FormSummary>
                     <FormSummary.Header>
                         <FormSummary.Heading level="2">
-                            <AppText id="oppsummering.arbeidIPeriode.jobbIPerioden.header" />
+                            <AppText id="oppsummering.fraværIPeriode.jobbIPerioden.header" />
                         </FormSummary.Heading>
                     </FormSummary.Header>
                     <FormSummary.Answers>
@@ -120,7 +120,7 @@ const ArbeidIPeriodenSummary = ({
                                             </Heading>
                                         </FormSummary.Label>
                                         <FormSummary.Value>
-                                            <ArbeidIPeriodeSummaryItem
+                                            <FraværIPeriodenSummaryItem
                                                 periode={søknadsperiode}
                                                 valgteDatoer={valgteDatoer}
                                                 arbeidIPeriode={forhold.arbeidIPeriode}
@@ -130,7 +130,7 @@ const ArbeidIPeriodenSummary = ({
                                     </>
                                 ) : (
                                     <FormSummary.Value>
-                                        <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler" />
+                                        <AppText id="oppsummering.fraværIPeriode.jobberIPerioden.informasjonMangler" />
                                     </FormSummary.Value>
                                 )}
                             </FormSummary.Answer>
@@ -147,4 +147,4 @@ const ArbeidIPeriodenSummary = ({
     );
 };
 
-export default ArbeidIPeriodenSummary;
+export default FraværIPeriodenSummary;

@@ -89,7 +89,7 @@ export const søknadContextMock: SøknadContextState = {
                         type: ArbeidsgiverType.ORGANISASJON,
                         id: '123451234',
                         organisasjonsnummer: '123451234',
-                        navn: 'Arbeids- og velferdsetaten',
+                        navn: 'SNODIG FISKER',
                     },
                     erAnsattISøknadsperiode: true,
                     jobberNormaltTimer: 20,

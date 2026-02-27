@@ -18,9 +18,10 @@ const nb = {
 
     'oppsummering.kurs.header': 'Om opplæringen',
     'oppsummering.kurs.institusjon': 'Hvor foregår opplæringen?',
-    'oppsummering.kurs.perioder': 'Hvilke perioder søker du opplæringspenger?',
-    'oppsummering.kurs.enkeltdager': 'Hvilke dager søker du opplæringspenger?',
-    'oppsummering.kurs.reisedager': 'Reiser du på dager du ikke har kurs eller opplæring?',
+    'oppsummering.kurs.perioder': 'Hvilke perioder søker du opplæringspenger for?',
+    'oppsummering.kurs.enkeltdager': 'Hvilke dager søker du opplæringspenger for?',
+    'oppsummering.kurs.reisedager':
+        'Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.?',
 
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
     'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
@@ -75,15 +76,19 @@ const nb = {
     'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
 
-    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg søker for',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg jobber noe de dagene jeg søker for',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær fra jobb',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jeg jobber likt hver uke',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Jeg jobber {prosent} prosent, i snitt {timer} hver ukedag',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om arbeid i perioden mangler',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Dager jeg skal jobbe',
+    'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fravær fra jobb i søknadsperioden',
+    'oppsummering.fraværIPeriode.jobberIPerioden.ja': 'jobber',
+    'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR':
+        'Jeg er helt borte fra jobb fordi jeg er på opplæring (fullt fravær)',
+    'oppsummering.fraværIPeriode.jobberIPerioden.REDUSERT':
+        'Jeg er delvis borte fra jobb fordi jeg er på opplæring (noe fravær)',
+    'oppsummering.fraværIPeriode.jobberIPerioden.SOM_VANLIG':
+        'Jeg jobber som normalt og er ikke borte fra jobb på grunn av opplæring (ikke fravær)',
+    'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Jeg har likt fravær hver uke',
+    'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
+        'Jeg har {prosent} prosent fravær fra jobb, i snitt {timer} hver ukedag',
+    'oppsummering.fraværIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om fravær i perioden mangler',
+    'oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Timer med fravær',
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 
@@ -219,15 +224,19 @@ const nn: Record<keyof typeof nb, string> = {
     'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsverksemder i andre EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsverksemd i anna EØS-land',
 
-    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobbar',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Eg jobbar ikkje her dei dagane eg søkjer for',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Eg jobbar noko dei dagane eg søkjer for',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Eg jobbar som normalt, og har ikkje fråvær frå jobb',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Eg jobbar likt kvar veke',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Eg jobbar {prosent} prosent, i snitt {timer} kvar vekedag',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om arbeid i perioden manglar',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Dagar eg skal jobbe',
+    'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fråvær frå jobb i søknadsperioden',
+    'oppsummering.fraværIPeriode.jobberIPerioden.ja': 'jobbar',
+    'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR':
+        'Eg har fullt fråvær frå jobb på grunn av kurs og reise dei dagane eg søkjer for',
+    'oppsummering.fraværIPeriode.jobberIPerioden.REDUSERT':
+        'Eg har noko fråvær frå jobb på grunn av kurs og reise dei dagane eg søkjer for',
+    'oppsummering.fraværIPeriode.jobberIPerioden.SOM_VANLIG':
+        'Eg har ikkje fråvær frå jobb på grunn av kurs og reise dei dagane eg søkjer for',
+    'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Eg har likt fråvær kvar veke',
+    'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
+        'Eg har {prosent} prosent fråvær frå jobb, i snitt {timer} kvar vekedag',
+    'oppsummering.fraværIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om fråvær i perioden manglar',
+    'oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Timar med fråvær',
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsverksemd som du har lagt inn',
 

@@ -114,9 +114,9 @@ export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursS
     } else {
         /** Enkeltdager */
         const kursdager = kursdagerValues
-            .map((dag, index) =>
-                kursperiodeOgDagUtils.mapKursdagFormValuesToKursdag(dag as KursdagFormValues, `${index}`),
-            )
+            .map((dag, index) => {
+                return kursperiodeOgDagUtils.mapKursdagFormValuesToKursdag(dag as KursdagFormValues, `${index}`);
+            })
             .sort(sortKursdag);
 
         const søknadsdatoer = kursdager.map((dag) => dag.dato);

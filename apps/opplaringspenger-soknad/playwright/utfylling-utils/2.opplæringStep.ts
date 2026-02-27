@@ -12,12 +12,6 @@ export const fyllUtOpplæringEnkeltdag = async (page: Page) => {
     await page.getByRole('radio', { name: 'Enkeltdag' }).check();
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();
-    await page.getByRole('group', { name: 'Timer med opplæring' }).getByLabel('Timer').click();
-    await page.getByRole('group', { name: 'Timer med opplæring' }).getByLabel('Timer').fill('5');
-    await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').click();
-    await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').fill('4');
-    await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').press('Tab');
-    await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Minutter').fill('30');
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
@@ -32,20 +26,10 @@ export const fyllUtOpplæringFlereEnkeltdager = async (page: Page) => {
     await page.getByRole('radio', { name: 'Enkeltdag' }).check();
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();
-    await page.getByRole('group', { name: 'Timer med opplæring' }).getByLabel('Timer').click();
-    await page.getByRole('group', { name: 'Timer med opplæring' }).getByLabel('Timer').fill('5');
-    await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').click();
-    await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').fill('4');
-    await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').press('Tab');
-    await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Minutter').fill('30');
     await testAccessibility(page);
     await page.getByRole('button', { name: 'Legg til ny dag' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
     await page.getByRole('button', { name: 'onsdag 11' }).click();
-    await page.getByRole('textbox', { name: 'Timer' }).nth(2).click();
-    await page.getByRole('textbox', { name: 'Timer' }).nth(2).fill('2');
-    await page.getByRole('textbox', { name: 'Timer' }).nth(3).click();
-    await page.getByRole('textbox', { name: 'Timer' }).nth(3).fill('5');
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
@@ -98,7 +82,9 @@ const leggTilPeriode2 = async (page: Page) => {
 
 const leggTilReisedag = async (page: Page) => {
     await page
-        .getByRole('group', { name: 'Reiser du på dager du ikke har kurs eller opplæring' })
+        .getByRole('group', {
+            name: 'Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.',
+        })
         .getByLabel('Ja')
         .check();
     await page.getByRole('button', { name: 'Legg til reisedag' }).click();
@@ -169,19 +155,21 @@ export const leggTilUtenlandsopphold = async (page: Page) => {
 
 export const kontrollerOpplæringEnEnkeltdagOppsummering = async (page: Page) => {
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
-    await expect(page.getByText('2. desember 2024 Kurs: 5 t. 0 m. Reise: 4 t. 30 m.')).toBeVisible();
+    await expect(page.getByRole('listitem').filter({ hasText: '2. desember 2024' })).toBeVisible();
 };
 
 export const kontrollerOpplæringFlereEnkeltdagerOppsummering = async (page: Page) => {
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
-    await expect(page.getByText('2. desember 2024 Kurs: 5 t. 0 m. Reise: 4 t. 30 m.')).toBeVisible();
-    await expect(page.getByText('11. desember 2024 Kurs: 2 t. 0 m. Reise: 5 t. 0 m.')).toBeVisible();
+    await expect(page.getByRole('listitem').filter({ hasText: '2. desember 2024' })).toBeVisible();
+    await expect(page.getByRole('listitem').filter({ hasText: '11. desember 2024' })).toBeVisible();
 };
 
 export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
     await expect(page.locator('li').filter({ hasText: '2. desember 2024 - 8. desember 2024' })).toBeVisible();
-    await expect(page.getByText('Reiser du på dager du ikke har kurs eller opplæring?Ja')).toBeVisible();
+    await expect(
+        page.getByText('Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.?Ja'),
+    ).toBeVisible();
     await expect(page.getByText('Reisedager uten kurs eller opplæring3. des')).toBeVisible();
     await expect(page.getByText('Årsak til reisetidkombinerer')).toBeVisible();
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
@@ -194,10 +182,12 @@ export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) 
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
     await expect(
         page.getByText(
-            'Hvilke perioder søker du opplæringspenger?2. desember 2024 - 8. desember 202416. desember 2024 -',
+            'Hvilke perioder søker du opplæringspenger for?2. desember 2024 - 8. desember 202416. desember 2024 -',
         ),
     ).toBeVisible();
-    await expect(page.getByText('Reiser du på dager du ikke har kurs eller opplæring?Ja')).toBeVisible();
+    await expect(
+        page.getByText('Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.?Ja'),
+    ).toBeVisible();
     await expect(page.getByText('Reisedager uten kurs eller opplæring3. des')).toBeVisible();
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
     await expect(page.getByText('Ferie i perioden4. desember 2024 - 5. desember 2024')).toBeVisible();

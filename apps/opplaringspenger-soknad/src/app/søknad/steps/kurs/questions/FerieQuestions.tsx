@@ -7,6 +7,7 @@ import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { KursFormFields, KursFormValues } from '../KursStepForm';
 import { getFerieperioderValidator } from '../utils/kursStepUtils';
+import { Alert } from '@navikt/ds-react';
 
 interface Props {
     values: Partial<KursFormValues>;
@@ -36,7 +37,11 @@ const FerieQuestions = ({ values, gyldigSøknadsperiode, søknadsperiode, disabl
                                 addLabel: text('steg.kurs.ferie.addLabel'),
                                 modalTitle: text('steg.kurs.ferie.modalTitle'),
                                 listTitle: text('steg.kurs.ferie.listTitle'),
-                                modalDescription: <AppText id="steg.kurs.ferie.modalDescription" />,
+                                modalDescription: (
+                                    <Alert variant="info">
+                                        <AppText id="steg.kurs.ferie.modalDescription" />
+                                    </Alert>
+                                ),
                             }}
                             name={KursFormFields.ferieuttak}
                             minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}

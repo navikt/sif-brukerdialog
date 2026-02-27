@@ -25,9 +25,9 @@ const nb = {
         'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste.',
     'personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
     'personopplysninger.4':
-        'Opplysningene vi innhenter kommer enten fra deg, arbeidsgiver eller fra offentlige registre:',
+        'Opplysningene vi innhenter, kommer enten fra deg, arbeidsgiver eller fra offentlige registre:',
     'personopplysninger.4.1': 'opplysninger om helsen til den du skal søke opplæringspenger for',
-    'personopplysninger.4.2': 'arbeidsforholdene dine og inntekten din',
+    'personopplysninger.4.2': 'arbeidsforholdene dine og inntekten din hos arbeidsgivere du har fravær fra',
     'personopplysninger.4.3': 'ytelser du mottar fra Nav',
     'personopplysninger.4.4': 'tilknytningen din til Norge',
     'personopplysninger.4.5':
@@ -68,9 +68,9 @@ const nn: Record<keyof typeof nb, string> = {
         'Me hentar inn og mottar opplysningar om deg for å behandle saka di. Det er nødvendig for at du skal få riktig teneste.',
     'personopplysninger.3': 'Kva for opplysningar hentar me inn?',
     'personopplysninger.4':
-        'Opplysningane me hentar inn kjem anten frå deg, arbeidsgivar eller frå offentlege register:',
+        'Opplysningane vi innhentar, kjem anten frå deg, arbeidsgjevar eller frå offentlege register:',
     'personopplysninger.4.1': 'opplysningar om helsa til den du skal søkje opplæringspengar for',
-    'personopplysninger.4.2': 'arbeidsforholda dine og inntekta di',
+    'personopplysninger.4.2': 'arbeidsforholda dine og inntekta di hos arbeidsgjevarar du har fråvær frå',
     'personopplysninger.4.3': 'ytingar du mottar frå Nav',
     'personopplysninger.4.4': 'tilknytinga di til Noreg',
     'personopplysninger.4.5':
