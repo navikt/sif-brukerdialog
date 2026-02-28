@@ -1,2 +1,1 @@
-// StegGuard og UgyldigNavigasjonPanel
-export {};
+export { useStegTilgang } from './useStegTilgang';

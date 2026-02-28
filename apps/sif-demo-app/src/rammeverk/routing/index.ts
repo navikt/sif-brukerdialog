@@ -1,2 +1,1 @@
-// Routing utilities
-export {};
+export { getStegRoute, getStegIdFromRoute } from './routeUtils';

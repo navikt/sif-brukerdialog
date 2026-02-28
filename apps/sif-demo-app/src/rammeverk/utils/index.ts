@@ -1,2 +1,2 @@
 // Utilities: hash, validering, etc.
-export {};
+// Legges til når mellomlagring implementeres
