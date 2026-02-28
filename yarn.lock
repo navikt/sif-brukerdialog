@@ -5723,6 +5723,33 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/sif-demo-app@workspace:apps/sif-demo-app":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
+  dependencies:
+    "@navikt/aksel-icons": "npm:8.5.2"
+    "@navikt/ds-css": "npm:8.5.2"
+    "@navikt/ds-react": "npm:8.5.2"
+    "@navikt/ds-tailwind": "npm:8.5.2"
+    "@tailwindcss/vite": "npm:4.2.0"
+    "@tanstack/react-query": "npm:5.90.21"
+    "@types/node": "npm:25.3.0"
+    "@types/react": "npm:19.2.14"
+    "@types/react-dom": "npm:19.2.3"
+    "@vitejs/plugin-react": "npm:5.1.4"
+    msw: "npm:2.12.10"
+    react: "npm:19.2.4"
+    react-dom: "npm:19.2.4"
+    react-router-dom: "npm:7.13.0"
+    tailwindcss: "npm:4.2.0"
+    typescript: "npm:5.9.3"
+    vite: "npm:7.3.1"
+    vite-plugin-checker: "npm:0.12.0"
+    vitest: "npm:4.0.18"
+    zustand: "npm:5.0.11"
+  languageName: unknown
+  linkType: soft
+
 "@navikt/sif-ettersending@workspace:apps/sif-ettersending":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-ettersending@workspace:apps/sif-ettersending"

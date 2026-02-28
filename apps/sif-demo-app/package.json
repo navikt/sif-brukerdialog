@@ -1,0 +1,42 @@
+{
+    "name": "@navikt/sif-demo-app",
+    "type": "module",
+    "private": true,
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "vite --base=/sif-demo --port 8080",
+        "build": "vite build --base=/sif-demo",
+        "check:types": "tsc --noemit",
+        "clean": "rm -rf node_modules dist",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@navikt/aksel-icons": "8.5.2",
+        "@navikt/ds-css": "8.5.2",
+        "@navikt/ds-react": "8.5.2",
+        "@navikt/ds-tailwind": "8.5.2",
+        "@tanstack/react-query": "5.90.21",
+        "react": "19.2.4",
+        "react-dom": "19.2.4",
+        "react-router-dom": "7.13.0",
+        "zustand": "5.0.11"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "4.2.0",
+        "@types/node": "25.3.0",
+        "@types/react": "19.2.14",
+        "@types/react-dom": "19.2.3",
+        "@vitejs/plugin-react": "5.1.4",
+        "msw": "2.12.10",
+        "tailwindcss": "4.2.0",
+        "typescript": "5.9.3",
+        "vite": "7.3.1",
+        "vite-plugin-checker": "0.12.0",
+        "vitest": "4.0.18"
+    },
+    "msw": {
+        "workerDirectory": [
+            "public"
+        ]
+    }
+}
