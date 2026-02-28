@@ -1,2 +1,0 @@
-// Velkommen, Kvittering, IkkeTilgang
-export {};

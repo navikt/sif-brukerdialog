@@ -1,2 +1,0 @@
-// stegConfig og stegRekkefølge
-export {};
