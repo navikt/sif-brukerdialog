@@ -128,7 +128,7 @@ Når du lager typede app-hooks, **re-eksporter** rammeverkets store med type-cas
 
 ```tsx
 // Riktig:
-<VStack gap="space-4">
+<VStack gap="space-16">
 ```
 
 ### Bruk av StegId

@@ -5,7 +5,7 @@ export const KvitteringPage = () => {
     const navigate = useNavigate();
 
     return (
-        <VStack gap="space-4">
+        <VStack gap="space-16">
             <Heading size="xlarge">Kvittering</Heading>
             <Alert variant="success">Søknaden din er sendt inn!</Alert>
             <Button variant="secondary" onClick={() => navigate('/')}>

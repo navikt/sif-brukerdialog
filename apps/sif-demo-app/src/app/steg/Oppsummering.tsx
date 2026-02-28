@@ -1,6 +1,7 @@
 import { Alert, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
+import { SøknadFooter } from '@rammeverk/components';
 import { useStegTilgang } from '@rammeverk/guards';
 import { useSøknadState, useStegNavigasjon } from '@rammeverk/state';
 
@@ -30,26 +31,29 @@ export const Oppsummering = () => {
     };
 
     return (
-        <VStack gap="space-4">
-            <Heading size="large">Oppsummering</Heading>
-            <Alert variant="info">
-                <VStack gap="space-2">
-                    <p>
-                        <strong>Navn:</strong> {søknadsdata[StegId.PERSONALIA]?.navn}
-                    </p>
-                    <p>
-                        <strong>E-post:</strong> {søknadsdata[StegId.KONTAKT]?.epost}
-                    </p>
-                </VStack>
-            </Alert>
-            <HStack gap="space-4">
-                <Button type="button" variant="secondary" onClick={gåTilForrige}>
-                    Forrige
-                </Button>
-                <Button type="button" onClick={handleSendInn}>
-                    Send inn søknad
-                </Button>
-            </HStack>
+        <VStack gap="space-24">
+            <VStack gap="space-16">
+                <Heading size="large">Oppsummering</Heading>
+                <Alert variant="info">
+                    <VStack gap="space-2">
+                        <p>
+                            <strong>Navn:</strong> {søknadsdata[StegId.PERSONALIA]?.navn}
+                        </p>
+                        <p>
+                            <strong>E-post:</strong> {søknadsdata[StegId.KONTAKT]?.epost}
+                        </p>
+                    </VStack>
+                </Alert>
+                <HStack gap="space-16" justify={'start'}>
+                    <Button type="button" variant="secondary" onClick={gåTilForrige}>
+                        Forrige
+                    </Button>
+                    <Button type="button" onClick={handleSendInn}>
+                        Send inn søknad
+                    </Button>
+                </HStack>
+            </VStack>
+            <SøknadFooter />
         </VStack>
     );
 };

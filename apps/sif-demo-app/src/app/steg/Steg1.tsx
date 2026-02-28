@@ -1,6 +1,7 @@
 import { Alert, Button, Heading, TextField, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
+import { SøknadFooter } from '@rammeverk/components';
 import { useStegTilgang } from '@rammeverk/guards';
 import { useSteg, useStegNavigasjon } from '@rammeverk/state';
 
@@ -33,12 +34,17 @@ export const Steg1 = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <VStack gap="space-4">
-                <Heading size="large">Steg 1: Personalia</Heading>
-                <TextField label="Navn" value={navn} onChange={(e) => setNavn(e.target.value)} />
-                <Button type="submit">Neste</Button>
-            </VStack>
-        </form>
+        <VStack gap="space-24">
+            <form onSubmit={handleSubmit}>
+                <VStack gap="space-16">
+                    <Heading size="large">Steg 1: Personalia</Heading>
+                    <TextField label="Navn" value={navn} onChange={(e) => setNavn(e.target.value)} />
+                    <div>
+                        <Button type="submit">Neste</Button>
+                    </div>
+                </VStack>
+            </form>
+            <SøknadFooter />
+        </VStack>
     );
 };

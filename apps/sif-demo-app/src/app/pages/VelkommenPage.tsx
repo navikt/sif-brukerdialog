@@ -20,7 +20,7 @@ export const VelkommenPage = () => {
     };
 
     return (
-        <VStack gap="space-4">
+        <VStack gap="space-16">
             <Heading size="xlarge">Velkommen til demo-søknaden</Heading>
             <p>Dette er en demo av soknad-rammeverk.</p>
             <Button onClick={handleStart}>{harPåbegyntSøknad ? 'Fortsett søknad' : 'Start søknad'}</Button>

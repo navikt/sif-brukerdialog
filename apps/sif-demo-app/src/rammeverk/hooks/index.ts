@@ -1,0 +1,1 @@
+export { useAvbrytSøknad } from './useAvbrytSøknad';
