@@ -1,115 +1,178 @@
 # soknad-rammeverk – Plan
 
-## Status
+## Visjon
 
-**Fase:** Pilot-implementasjon i `sif-demo-app`
+Bygge et gjenbrukbart rammeverk for stegbaserte søknadsapper i React. Rammeverket skal være:
 
-**Ferdig:**
-
-- [x] Prosjektoppsett (Vite, TypeScript, Tailwind, Aksel, React Query, Zustand, React Router)
-- [x] Mappestruktur (`src/rammeverk/` og `src/app/`)
-- [x] Kjerntyper (`StegDefinisjon`, `StegProps`, `StegConfig`)
-- [x] Zustand store (`useSøknadState`)
-- [x] Hooks (`useSteg`, `useStegFlyt`, `useStegNavigasjon`)
-- [x] Guards (`StegGuard`, `UgyldigNavigasjonPanel`)
-- [x] Route utilities (`getStegRoute`, `getStegIdFromRoute`)
-- [x] Demo stegConfig med 3 steg
-- [x] Demo stegkomponenter (Steg1, Steg2, Oppsummering)
-- [x] Sider (VelkommenPage, KvitteringPage)
-- [x] SøknadRouter med routing
-- [x] App.tsx ferdig wired
-- [x] TypeScript kompilerer uten feil
-- [x] Dev server kjører (`yarn dev` → http://localhost:8080/sif-demo)
-
-**Pågår:**
-
-- [ ] Gjennomgang av tilbakemeldinger på siste implementasjon
-- [ ] Verifisere at flyten fungerer (Velkommen → Steg1 → Steg2 → Oppsummering → Kvittering)
-
-**Gjenstår:**
-
-- [ ] Test og fiks tilbakemeldinger
-- [ ] Back/forward-blokkering
-- [ ] MellomlagringObserver
-- [ ] Hash/validering for mellomlagring
-- [ ] Hydration ved oppstart
+- **Skjema-agnostisk** – fungerer med Formik, React Hook Form, eller ren React state
+- **Transparent** – ingen "magi", composable byggesteiner
+- **Fleksibelt** – støtter lineær og dynamisk stegflyt
 
 ---
 
-## Arkitektur (kompakt)
+## Arkitektur
 
 ### Tre lag
 
-| Lag                | Ansvar                                            |
-| ------------------ | ------------------------------------------------- |
-| soknad-rammeverk   | Flyt, state, routing, guards, mellomlagring       |
-| soknad-ui          | Layout, header, stegindikator, navigasjonsknapper |
-| skjema-komponenter | Gjenbrukbare skjemafelt                           |
+| Lag                    | Ansvar                                 |
+| ---------------------- | -------------------------------------- |
+| **soknad-rammeverk**   | Flyt, state, routing, mellomlagring    |
+| **soknad-ui**          | Layout, header, stegindikator (kommer) |
+| **skjema-komponenter** | Gjenbrukbare skjemafelt (separat)      |
 
 ### Mappestruktur
 
 ```
 src/
-  rammeverk/         # → pakke senere
-    state/           # Zustand, hooks
-    guards/          # StegGuard, UgyldigNavigasjonPanel
-    routing/         # Route utilities
-    mellomlagring/   # (kommer)
-    types.ts
-    index.ts
-  app/               # App-spesifikk kode
-    config/          # stegConfig
-    steg/            # Stegkomponenter
-    pages/           # Velkommen, Kvittering
-    SøknadRouter.tsx
+├── rammeverk/           # → pakke senere
+│   ├── state/           # Zustand store, hooks
+│   ├── guards/          # useStegTilgang
+│   ├── routing/         # Route utilities
+│   ├── types.ts         # Typer og utilities
+│   └── index.ts         # Public API
+├── app/                 # App-spesifikk kode
+│   ├── config/          # StegId enum, stegConfig, søknadsdata-type
+│   ├── steg/            # Stegkomponenter (med egen skjemadata)
+│   ├── pages/           # Velkommen, Kvittering
+│   └── SøknadRouter.tsx
 ```
 
-### Nøkkelbeslutninger
+---
 
-1. **Skjema-agnostisk** – Rammeverket er uavhengig av Formik/RHF. Steg mottar `initialData` og callbacks.
+## Nøkkelbeslutninger
 
-2. **To routere** – AppRouter (velkommen, kvittering) + SøknadRouter (alle steg)
+### 1. StegId enum
 
-3. **Appen eier routes** – stegConfig har kun logikk, appen definerer faktiske routes og komponenter
+Alle steg har en enum-verdi som brukes konsekvent:
 
-4. **Zustand = single source of truth** – React Query kun for persistens
+- Som key i `stegConfig`
+- Som key i `søknadsdata`
+- Som URL-route (med valgfri override via `route`)
 
-5. **Back/forward** – Blokkér og vis panel, ikke auto-redirect
+```typescript
+export enum StegId {
+    PERSONALIA = 'personalia',
+    KONTAKT = 'kontakt',
+    OPPSUMMERING = 'oppsummering',
+}
+```
 
-6. **Byggesteiner** – Composable hooks, ikke "magiske" komponenter
+### 2. stegConfig – kun metadata
 
-### State (Zustand)
+Ingen logikk for tilgjengelighet i config. Dynamiske steg bruker `skalVises`:
+
+```typescript
+export const stegConfig: StegConfig<DemoSøknadsdata> = {
+    [StegId.PERSONALIA]: {
+        id: StegId.PERSONALIA,
+        route: 'om-deg', // Valgfri URL-override
+        tittel: 'Personalia',
+        // skalVises: (data) => ..., // Kun for dynamiske steg
+    },
+};
+```
+
+### 3. Skjemadata isolert til steg
+
+Skjemadata er intern til hvert steg. Defineres lokalt i stegkomponenten:
+
+```typescript
+// I Steg1.tsx
+interface Steg1Skjemadata {
+    navn: string;
+}
+
+export const Steg1 = () => {
+    const { søknadsdata, submitSøknadsdata } = useSteg<DemoSøknadsdata>();
+    const [navn, setNavn] = useState(søknadsdata[StegId.PERSONALIA]?.navn ?? '');
+
+    const handleSubmit = () => {
+        submitSøknadsdata({ [StegId.PERSONALIA]: { navn } });
+        gåTilNeste();
+    };
+};
+```
+
+### 4. Lineær flyt utledes automatisk
+
+`getAktiveSteg()` utility beregner:
+
+- **skalVises** – filtrerer ut dynamiske steg
+- **erTilgjengelig** – alle foregående må være fullført
+- **erFullført** – søknadsdata for steget eksisterer
+
+```typescript
+const aktiveSteg = getAktiveSteg(stegRekkefølge, stegConfig, søknadsdata);
+// [{ stegId, erTilgjengelig, erFullført }, ...]
+```
+
+### 5. Tilgang håndteres i stegkomponenter
+
+Ingen StegGuard-komponent. Hvert steg bruker `useStegTilgang`:
+
+```typescript
+const { erTilgjengelig, sisteGyldigeStegId } = useStegTilgang({
+    stegId: StegId.PERSONALIA,
+    stegConfig,
+    stegRekkefølge,
+});
+
+if (!erTilgjengelig) {
+    return <MinEgenUgyldigMelding />;
+}
+```
+
+### 6. State (Zustand)
 
 ```typescript
 {
-    currentStegId: string | undefined;
-    søknadsdata: Partial<T>;
-    currentStegSkjemadata: Record<string, unknown>;
+    currentStegId: string | null;
+    søknadsdata: Partial<TSøknadsdata>;
     børMellomlagres: boolean;
     isSubmittingSteg: boolean;
     erSendt: boolean;
 }
 ```
 
-### Hooks
+### 7. Navngivning
 
-| Hook                  | Returnerer                                     |
-| --------------------- | ---------------------------------------------- |
-| `useSøknadState()`    | Hele Zustand store                             |
-| `useSteg(stegId)`     | initialData, onSkjemadataChange, onStegSubmit  |
-| `useStegFlyt()`       | aktiveSteg, currentStegId, forrige/neste, etc. |
-| `useStegNavigasjon()` | gåTilSteg, gåTilNeste, gåTilForrige            |
-
-### Navngivning
-
-- Domene (norsk): søknad, steg, mellomlagring
-- Teknisk (engelsk): state, guard, provider, hook
+- **Domene (norsk):** søknad, steg, mellomlagring
+- **Teknisk (engelsk):** state, guard, provider, hook
 
 ---
 
-## Neste steg
+## Hooks
 
-Se [log.md](log.md) for detaljert fremdrift og tilbakemeldinger som må håndteres.
+| Hook                  | Returnerer                                                   |
+| --------------------- | ------------------------------------------------------------ |
+| `useSøknadState()`    | Hele Zustand store                                           |
+| `useSteg<T>()`        | `{ søknadsdata, submitSøknadsdata }`                         |
+| `useStegFlyt()`       | `{ aktiveSteg, currentStegId, forrige/neste, getStegRoute }` |
+| `useStegNavigasjon()` | `{ gåTilSteg, gåTilNeste, gåTilForrige }`                    |
+| `useStegTilgang()`    | `{ erTilgjengelig, erFullført, sisteGyldigeStegId }`         |
+
+---
+
+## Status
+
+Se [log.md](log.md) for detaljert fremdrift.
+
+**Ferdig:**
+
+- [x] Prosjektoppsett med Vite, TypeScript, Aksel 8, Zustand, React Query, React Router
+- [x] Rammeverk-kjerne: types, state, guards, routing
+- [x] Demo med 3 steg (Personalia, Kontakt, Oppsummering)
+- [x] StegId enum og forenklet stegConfig
+- [x] `getAktiveSteg()` utility for lineær flyt
+- [x] Hook-basert tilgangskontroll (`useStegTilgang`)
+
+**Gjenstår:**
+
+- [ ] Test full flyt i browser
+- [ ] MellomlagringObserver
+- [ ] Hydration fra mellomlagring
+- [ ] Back/forward-håndtering
+- [ ] Trekk ut til `packages/soknad-rammeverk/`
 
 ---
 

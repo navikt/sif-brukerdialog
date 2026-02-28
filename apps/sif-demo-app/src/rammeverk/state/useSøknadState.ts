@@ -1,18 +1,16 @@
 import { create } from 'zustand';
 
-export interface SøknadState<TSøknadsdata = Record<string, unknown>, TSkjemadata = unknown> {
+export interface SøknadState<TSøknadsdata = Record<string, unknown>> {
     // State
     currentStegId: string | null;
     søknadsdata: Partial<TSøknadsdata>;
-    currentStegSkjemadata: TSkjemadata | null;
     børMellomlagres: boolean;
     isSubmittingSteg: boolean;
     erSendt: boolean;
 
     // Actions
     setCurrentSteg: (stegId: string) => void;
-    updateSkjemadata: (data: TSkjemadata) => void;
-    submitSteg: (stegId: string, søknadsdataForSteg: Partial<TSøknadsdata>) => void;
+    submitSteg: (søknadsdataForSteg: Partial<TSøknadsdata>) => void;
     setBørMellomlagres: (verdi: boolean) => void;
     setIsSubmittingSteg: (verdi: boolean) => void;
     setSøknadSendt: () => void;
@@ -23,33 +21,25 @@ export interface SøknadState<TSøknadsdata = Record<string, unknown>, TSkjemada
 const initialState = {
     currentStegId: null,
     søknadsdata: {},
-    currentStegSkjemadata: null,
     børMellomlagres: false,
     isSubmittingSteg: false,
     erSendt: false,
 };
 
-export const createSøknadStore = <TSøknadsdata, TSkjemadata>() =>
-    create<SøknadState<TSøknadsdata, TSkjemadata>>((set) => ({
+export const createSøknadStore = <TSøknadsdata>() =>
+    create<SøknadState<TSøknadsdata>>((set) => ({
         ...initialState,
 
         setCurrentSteg: (stegId) =>
             set({
                 currentStegId: stegId,
-                currentStegSkjemadata: null,
             }),
 
-        updateSkjemadata: (data) =>
-            set({
-                currentStegSkjemadata: data,
-            }),
-
-        submitSteg: (stegId, søknadsdataForSteg) =>
+        submitSteg: (søknadsdataForSteg) =>
             set((state) => ({
-                currentStegId: stegId,
                 søknadsdata: { ...state.søknadsdata, ...søknadsdataForSteg },
-                currentStegSkjemadata: null,
                 børMellomlagres: true,
+                isSubmittingSteg: false,
             })),
 
         setBørMellomlagres: (verdi) =>

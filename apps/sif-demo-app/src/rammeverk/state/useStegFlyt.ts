@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { StegConfig } from '../types';
+import { AktivtSteg, getAktiveSteg, StegConfig } from '../types';
 
 import { useSøknadState } from './useSøknadState';
 
@@ -13,23 +13,25 @@ export const useStegFlyt = <TSøknadsdata>({ stegConfig, stegRekkefølge }: UseS
     const søknadsdata = useSøknadState((s) => s.søknadsdata) as Partial<TSøknadsdata>;
     const currentStegId = useSøknadState((s) => s.currentStegId);
 
-    const aktiveSteg = useMemo(
-        () => stegRekkefølge.filter((id) => stegConfig[id]?.erTilgjengelig(søknadsdata)),
+    const aktiveSteg: AktivtSteg[] = useMemo(
+        () => getAktiveSteg(stegRekkefølge, stegConfig, søknadsdata),
         [stegRekkefølge, stegConfig, søknadsdata],
     );
 
-    const currentIndex = currentStegId ? aktiveSteg.indexOf(currentStegId) : -1;
+    const aktiveStegIds = aktiveSteg.map((s) => s.stegId);
+    const currentIndex = currentStegId ? aktiveStegIds.indexOf(currentStegId) : -1;
 
     return {
         aktiveSteg,
+        aktiveStegIds,
         currentStegId,
         currentIndex,
-        forrigeStegId: currentIndex > 0 ? aktiveSteg[currentIndex - 1] : null,
-        nesteStegId: currentIndex < aktiveSteg.length - 1 ? aktiveSteg[currentIndex + 1] : null,
+        forrigeStegId: currentIndex > 0 ? aktiveStegIds[currentIndex - 1] : null,
+        nesteStegId: currentIndex < aktiveStegIds.length - 1 ? aktiveStegIds[currentIndex + 1] : null,
         erFørsteSteg: currentIndex === 0,
-        erSisteSteg: currentIndex === aktiveSteg.length - 1,
-        antallSteg: aktiveSteg.length,
+        erSisteSteg: currentIndex === aktiveStegIds.length - 1,
+        antallSteg: aktiveStegIds.length,
         getStegInfo: (id: string) => stegConfig[id],
-        getStegRoute: (id: string) => stegConfig[id]?.route ?? id,
+        getStegRoute: (id: string) => stegConfig[id]?.route ?? stegConfig[id]?.id ?? id,
     };
 };

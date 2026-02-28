@@ -4,23 +4,23 @@ import { useState } from 'react';
 import { useStegTilgang } from '@rammeverk/guards';
 import { useSteg, useStegNavigasjon } from '@rammeverk/state';
 
-import { DemoSøknadsdata, Steg1Skjemadata, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { DemoSøknadsdata, StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+
+interface Steg1Skjemadata {
+    navn: string;
+}
 
 export const Steg1 = () => {
     const { erTilgjengelig } = useStegTilgang({
-        stegId: 'steg1',
+        stegId: StegId.PERSONALIA,
         stegConfig,
         stegRekkefølge,
     });
 
-    const { initialData, onSkjemadataChange, onStegSubmit } = useSteg<DemoSøknadsdata, Steg1Skjemadata>({
-        stegId: 'steg1',
-        stegConfig,
-    });
-
+    const { søknadsdata, submitSøknadsdata } = useSteg<DemoSøknadsdata>();
     const { gåTilNeste } = useStegNavigasjon({ stegConfig, stegRekkefølge });
 
-    const [navn, setNavn] = useState(initialData.navn);
+    const [navn, setNavn] = useState<Steg1Skjemadata['navn']>(søknadsdata[StegId.PERSONALIA]?.navn ?? '');
 
     if (!erTilgjengelig) {
         return <Alert variant="warning">Du kan ikke gå til dette steget ennå.</Alert>;
@@ -28,7 +28,7 @@ export const Steg1 = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onStegSubmit({ navn });
+        submitSøknadsdata({ [StegId.PERSONALIA]: { navn } });
         gåTilNeste();
     };
 
@@ -36,14 +36,7 @@ export const Steg1 = () => {
         <form onSubmit={handleSubmit}>
             <VStack gap="space-4">
                 <Heading size="large">Steg 1: Personalia</Heading>
-                <TextField
-                    label="Navn"
-                    value={navn}
-                    onChange={(e) => {
-                        setNavn(e.target.value);
-                        onSkjemadataChange({ navn: e.target.value });
-                    }}
-                />
+                <TextField label="Navn" value={navn} onChange={(e) => setNavn(e.target.value)} />
                 <Button type="submit">Neste</Button>
             </VStack>
         </form>

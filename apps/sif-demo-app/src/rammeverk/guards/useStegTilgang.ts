@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 
-import { StegConfig } from '../types';
+import { getAktiveSteg, StegConfig } from '../types';
 import { useSøknadState } from '../state/useSøknadState';
 
 interface UseStegTilgangOptions<TSøknadsdata> {
@@ -11,6 +11,7 @@ interface UseStegTilgangOptions<TSøknadsdata> {
 
 interface StegTilgangResult {
     erTilgjengelig: boolean;
+    erFullført: boolean;
     sisteGyldigeStegId: string;
 }
 
@@ -22,24 +23,20 @@ export const useStegTilgang = <TSøknadsdata>({
     const søknadsdata = useSøknadState((s) => s.søknadsdata) as Partial<TSøknadsdata>;
     const setCurrentSteg = useSøknadState((s) => s.setCurrentSteg);
 
-    const stegDef = stegConfig[stegId];
+    const aktiveSteg = useMemo(
+        () => getAktiveSteg(stegRekkefølge, stegConfig, søknadsdata),
+        [stegRekkefølge, stegConfig, søknadsdata],
+    );
 
-    const erTilgjengelig = useMemo(() => stegDef?.erTilgjengelig(søknadsdata) ?? false, [stegDef, søknadsdata]);
+    const currentStegInfo = useMemo(() => aktiveSteg.find((s) => s.stegId === stegId), [aktiveSteg, stegId]);
+
+    const erTilgjengelig = currentStegInfo?.erTilgjengelig ?? false;
+    const erFullført = currentStegInfo?.erFullført ?? false;
 
     const sisteGyldigeStegId = useMemo(() => {
-        for (let i = stegRekkefølge.length - 1; i >= 0; i--) {
-            const id = stegRekkefølge[i];
-            const def = stegConfig[id];
-            if (def?.erTilgjengelig(søknadsdata)) {
-                const stegIndex = stegRekkefølge.indexOf(stegId);
-                const candidateIndex = stegRekkefølge.indexOf(id);
-                if (candidateIndex < stegIndex) {
-                    return id;
-                }
-            }
-        }
-        return stegRekkefølge[0];
-    }, [stegRekkefølge, stegConfig, søknadsdata, stegId]);
+        const tilgjengelige = aktiveSteg.filter((s) => s.erTilgjengelig);
+        return tilgjengelige.length > 0 ? tilgjengelige[tilgjengelige.length - 1].stegId : stegRekkefølge[0];
+    }, [aktiveSteg, stegRekkefølge]);
 
     useEffect(() => {
         if (erTilgjengelig) {
@@ -47,5 +44,5 @@ export const useStegTilgang = <TSøknadsdata>({
         }
     }, [erTilgjengelig, stegId, setCurrentSteg]);
 
-    return { erTilgjengelig, sisteGyldigeStegId };
+    return { erTilgjengelig, erFullført, sisteGyldigeStegId };
 };

@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useStegTilgang } from '@rammeverk/guards';
 import { useSøknadState, useStegNavigasjon } from '@rammeverk/state';
 
-import { DemoSøknadsdata, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { DemoSøknadsdata, StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
 
 export const Oppsummering = () => {
     const { erTilgjengelig } = useStegTilgang({
-        stegId: 'oppsummering',
+        stegId: StegId.OPPSUMMERING,
         stegConfig,
         stegRekkefølge,
     });
@@ -24,7 +24,6 @@ export const Oppsummering = () => {
     }
 
     const handleSendInn = () => {
-        // Her ville du normalt kalt API
         console.log('Sender inn søknad:', søknadsdata);
         setSøknadSendt();
         navigate('/kvittering');
@@ -36,10 +35,10 @@ export const Oppsummering = () => {
             <Alert variant="info">
                 <VStack gap="space-2">
                     <p>
-                        <strong>Navn:</strong> {søknadsdata.steg1?.navn}
+                        <strong>Navn:</strong> {søknadsdata[StegId.PERSONALIA]?.navn}
                     </p>
                     <p>
-                        <strong>E-post:</strong> {søknadsdata.steg2?.epost}
+                        <strong>E-post:</strong> {søknadsdata[StegId.KONTAKT]?.epost}
                     </p>
                 </VStack>
             </Alert>

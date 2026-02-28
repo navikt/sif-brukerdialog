@@ -1,10 +1,11 @@
 import { StegConfig } from '../types';
 
 /**
- * Henter URL-route for et steg
+ * Henter URL-route for et steg (bruker route hvis definert, ellers id)
  */
 export const getStegRoute = <TSøknadsdata>(stegConfig: StegConfig<TSøknadsdata>, stegId: string): string => {
-    return stegConfig[stegId]?.route ?? stegId;
+    const steg = stegConfig[stegId];
+    return steg?.route ?? steg?.id ?? stegId;
 };
 
 /**
@@ -14,6 +15,11 @@ export const getStegIdFromRoute = <TSøknadsdata>(
     stegConfig: StegConfig<TSøknadsdata>,
     route: string,
 ): string | null => {
-    const entry = Object.entries(stegConfig).find(([id, def]) => (def.route ?? id) === route);
-    return entry ? entry[0] : null;
+    for (const [stegId, steg] of Object.entries(stegConfig)) {
+        const stegRoute = steg.route ?? steg.id;
+        if (stegRoute === route) {
+            return stegId;
+        }
+    }
+    return null;
 };
