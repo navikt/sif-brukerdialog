@@ -29,6 +29,10 @@ export const localStorageStore = {
     set: (state: ScenarioData) => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     },
+    update: (partial: Partial<ScenarioData>) => {
+        const current = localStorageStore.get();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, ...partial }));
+    },
     reset: () => {
         const key = localStorage.getItem(SCENARIO_KEY) as ScenarioType;
         if (!key) throw new Error('Ingen scenario valgt i localStorage');

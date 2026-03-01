@@ -22,4 +22,5 @@ export interface Barn {
 export interface ScenarioData {
     søker: Søker;
     barn: Barn[];
+    mellomlagring?: Record<string, unknown>;
 }

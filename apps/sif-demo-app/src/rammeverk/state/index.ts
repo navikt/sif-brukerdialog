@@ -1,5 +1,4 @@
-export { createSøknadStore, useSøknadState } from './useSøknadState';
-export type { SøknadState } from './useSøknadState';
-export { useSteg } from './useSteg';
+export { useSøknadFlyt } from './useSøknadState';
+export type { SøknadFlytState } from './useSøknadState';
 export { useStegFlyt } from './useStegFlyt';
 export { useStegNavigasjon } from './useStegNavigasjon';

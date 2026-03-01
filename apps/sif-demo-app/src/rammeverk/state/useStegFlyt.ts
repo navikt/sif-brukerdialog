@@ -1,21 +1,21 @@
 import { useMemo } from 'react';
 
-import { AktivtSteg, getAktiveSteg, StegConfig } from '../types';
+import { AktivtSteg, getAktiveSteg, StegConfig, StegStatusCallbacks } from '../types';
 
-import { useSøknadState } from './useSøknadState';
+import { useSøknadFlyt } from './useSøknadState';
 
-interface UseStegFlytOptions<TSøknadsdata> {
-    stegConfig: StegConfig<TSøknadsdata>;
+interface UseStegFlytOptions {
+    stegConfig: StegConfig;
     stegRekkefølge: string[];
+    stegStatus: StegStatusCallbacks;
 }
 
-export const useStegFlyt = <TSøknadsdata>({ stegConfig, stegRekkefølge }: UseStegFlytOptions<TSøknadsdata>) => {
-    const søknadsdata = useSøknadState((s) => s.søknadsdata) as Partial<TSøknadsdata>;
-    const currentStegId = useSøknadState((s) => s.currentStegId);
+export const useStegFlyt = ({ stegConfig, stegRekkefølge, stegStatus }: UseStegFlytOptions) => {
+    const currentStegId = useSøknadFlyt((s) => s.currentStegId);
 
     const aktiveSteg: AktivtSteg[] = useMemo(
-        () => getAktiveSteg(stegRekkefølge, stegConfig, søknadsdata),
-        [stegRekkefølge, stegConfig, søknadsdata],
+        () => getAktiveSteg(stegRekkefølge, stegStatus),
+        [stegRekkefølge, stegStatus],
     );
 
     const aktiveStegIds = aktiveSteg.map((s) => s.stegId);

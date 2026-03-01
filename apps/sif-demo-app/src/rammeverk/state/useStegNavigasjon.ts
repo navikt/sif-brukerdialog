@@ -1,25 +1,27 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { StegConfig } from '../types';
+import { StegConfig, StegStatusCallbacks } from '../types';
 
 import { useStegFlyt } from './useStegFlyt';
-import { useSøknadState } from './useSøknadState';
+import { useSøknadFlyt } from './useSøknadState';
 
-interface UseStegNavigasjonOptions<TSøknadsdata> {
-    stegConfig: StegConfig<TSøknadsdata>;
+interface UseStegNavigasjonOptions {
+    stegConfig: StegConfig;
     stegRekkefølge: string[];
+    stegStatus: StegStatusCallbacks;
     basePath?: string;
 }
 
-export const useStegNavigasjon = <TSøknadsdata>({
+export const useStegNavigasjon = ({
     stegConfig,
     stegRekkefølge,
+    stegStatus,
     basePath = '/soknad',
-}: UseStegNavigasjonOptions<TSøknadsdata>) => {
+}: UseStegNavigasjonOptions) => {
     const navigate = useNavigate();
-    const setCurrentSteg = useSøknadState((s) => s.setCurrentSteg);
-    const { forrigeStegId, nesteStegId } = useStegFlyt({ stegConfig, stegRekkefølge });
+    const setCurrentSteg = useSøknadFlyt((s) => s.setAktivtSteg);
+    const { forrigeStegId, nesteStegId } = useStegFlyt({ stegConfig, stegRekkefølge, stegStatus });
 
     const gåTilSteg = useCallback(
         (stegId: string) => {
@@ -27,7 +29,7 @@ export const useStegNavigasjon = <TSøknadsdata>({
             const route = stegConfig[stegId].route;
             navigate(`${basePath}/${route}`);
         },
-        [setCurrentSteg, navigate, basePath],
+        [setCurrentSteg, navigate, basePath, stegConfig],
     );
 
     const gåTilNeste = useCallback(() => {

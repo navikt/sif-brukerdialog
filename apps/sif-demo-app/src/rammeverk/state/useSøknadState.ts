@@ -1,71 +1,40 @@
 import { create } from 'zustand';
 
-export interface SøknadState<TSøknadsdata = Record<string, unknown>> {
-    // State
+export interface SøknadFlytState {
     currentStegId: string | null;
-    søknadsdata: Partial<TSøknadsdata>;
     børMellomlagres: boolean;
-    isSubmittingSteg: boolean;
     erSendt: boolean;
 
-    // Actions
-    setCurrentSteg: (stegId: string) => void;
-    submitSteg: (søknadsdataForSteg: Partial<TSøknadsdata>) => void;
+    setAktivtSteg: (stegId: string) => void;
     setBørMellomlagres: (verdi: boolean) => void;
-    setIsSubmittingSteg: (verdi: boolean) => void;
     setSøknadSendt: () => void;
-    hydrate: (data: { currentStegId: string; søknadsdata: Partial<TSøknadsdata> }) => void;
     reset: () => void;
 }
 
 const initialState = {
     currentStegId: null,
-    søknadsdata: {},
     børMellomlagres: false,
-    isSubmittingSteg: false,
     erSendt: false,
 };
 
-export const createSøknadStore = <TSøknadsdata>() =>
-    create<SøknadState<TSøknadsdata>>((set) => ({
-        ...initialState,
+export const useSøknadFlyt = create<SøknadFlytState>((set) => ({
+    ...initialState,
 
-        setCurrentSteg: (stegId) =>
-            set({
-                currentStegId: stegId,
-            }),
+    setAktivtSteg: (stegId) =>
+        set({
+            currentStegId: stegId,
+        }),
 
-        submitSteg: (søknadsdataForSteg) =>
-            set((state) => ({
-                søknadsdata: { ...state.søknadsdata, ...søknadsdataForSteg },
-                børMellomlagres: true,
-                isSubmittingSteg: false,
-            })),
+    setBørMellomlagres: (verdi) =>
+        set({
+            børMellomlagres: verdi,
+        }),
 
-        setBørMellomlagres: (verdi) =>
-            set({
-                børMellomlagres: verdi,
-            }),
+    setSøknadSendt: () =>
+        set({
+            ...initialState,
+            erSendt: true,
+        }),
 
-        setIsSubmittingSteg: (verdi) =>
-            set({
-                isSubmittingSteg: verdi,
-            }),
-
-        setSøknadSendt: () =>
-            set({
-                ...initialState,
-                erSendt: true,
-            }),
-
-        hydrate: (data) =>
-            set({
-                currentStegId: data.currentStegId,
-                søknadsdata: data.søknadsdata,
-            }),
-
-        reset: () => set(initialState),
-    }));
-
-// Default store for enkel bruk
-export const useSøknadState = createSøknadStore();
+    reset: () => set(initialState),
+}));

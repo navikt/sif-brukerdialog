@@ -1,12 +1,12 @@
 import { useEffect, useMemo } from 'react';
 
-import { getAktiveSteg, StegConfig } from '../types';
-import { useSøknadState } from '../state/useSøknadState';
+import { getAktiveSteg, StegStatusCallbacks } from '../types';
+import { useSøknadFlyt } from '../state/useSøknadState';
 
-interface UseStegTilgangOptions<TSøknadsdata> {
+interface UseStegTilgangOptions {
     stegId: string;
-    stegConfig: StegConfig<TSøknadsdata>;
     stegRekkefølge: string[];
+    stegStatus: StegStatusCallbacks;
 }
 
 interface StegTilgangResult {
@@ -15,18 +15,10 @@ interface StegTilgangResult {
     sisteGyldigeStegId: string;
 }
 
-export const useStegTilgang = <TSøknadsdata>({
-    stegId,
-    stegConfig,
-    stegRekkefølge,
-}: UseStegTilgangOptions<TSøknadsdata>): StegTilgangResult => {
-    const søknadsdata = useSøknadState((s) => s.søknadsdata) as Partial<TSøknadsdata>;
-    const setCurrentSteg = useSøknadState((s) => s.setCurrentSteg);
+export const useStegTilgang = ({ stegId, stegRekkefølge, stegStatus }: UseStegTilgangOptions): StegTilgangResult => {
+    const setCurrentSteg = useSøknadFlyt((s) => s.setAktivtSteg);
 
-    const aktiveSteg = useMemo(
-        () => getAktiveSteg(stegRekkefølge, stegConfig, søknadsdata),
-        [stegRekkefølge, stegConfig, søknadsdata],
-    );
+    const aktiveSteg = useMemo(() => getAktiveSteg(stegRekkefølge, stegStatus), [stegRekkefølge, stegStatus]);
 
     const currentStegInfo = useMemo(() => aktiveSteg.find((s) => s.stegId === stegId), [aktiveSteg, stegId]);
 

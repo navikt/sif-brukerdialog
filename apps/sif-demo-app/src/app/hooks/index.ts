@@ -1,1 +1,1 @@
-export { useSøknadsdata } from './useSøknadsdata';
+export { useSøknadState } from './useSøknadState';

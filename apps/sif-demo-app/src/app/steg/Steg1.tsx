@@ -3,25 +3,31 @@ import { useState } from 'react';
 
 import { SøknadFooter } from '@rammeverk/components';
 import { useStegTilgang } from '@rammeverk/guards';
-import { useSteg, useStegNavigasjon } from '@rammeverk/state';
+import { useStegNavigasjon } from '@rammeverk/state';
 
-import { DemoSøknadsdata, StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { useSøknadState } from '../hooks/useSøknadState';
 
 interface Steg1Skjemadata {
     navn: string;
 }
 
 export const Steg1 = () => {
+    const søknadsdata = useSøknadState((s) => s.søknadsdata);
+    const submitSteg = useSøknadState((s) => s.submitSteg);
+    const erStegFullført = useSøknadState((s) => s.erStegFullført);
+
+    const stegStatus = { erFullført: erStegFullført };
+
     const { erTilgjengelig } = useStegTilgang({
         stegId: StegId.PERSONALIA,
-        stegConfig,
         stegRekkefølge,
+        stegStatus,
     });
 
-    const { søknadsdata, submitSøknadsdata } = useSteg<DemoSøknadsdata>();
-    const { gåTilNeste } = useStegNavigasjon({ stegConfig, stegRekkefølge });
+    const { gåTilNeste } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
 
-    const [navn, setNavn] = useState<Steg1Skjemadata['navn']>(søknadsdata[StegId.PERSONALIA]?.navn ?? '');
+    const [navn, setNavn] = useState<Steg1Skjemadata['navn']>(søknadsdata?.stegData[StegId.PERSONALIA]?.navn ?? '');
 
     if (!erTilgjengelig) {
         return <Alert variant="warning">Du kan ikke gå til dette steget ennå.</Alert>;
@@ -29,7 +35,7 @@ export const Steg1 = () => {
 
     const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
-        submitSøknadsdata({ [StegId.PERSONALIA]: { navn } });
+        submitSteg({ [StegId.PERSONALIA]: { navn } });
         gåTilNeste();
     };
 
@@ -44,7 +50,7 @@ export const Steg1 = () => {
                     </div>
                 </VStack>
             </form>
-            <SøknadFooter />
+            <SøknadFooter avbrytCallback={useSøknadState.getState().reset} />
         </VStack>
     );
 };

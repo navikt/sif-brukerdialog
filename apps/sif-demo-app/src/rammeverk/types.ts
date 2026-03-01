@@ -1,27 +1,17 @@
 /**
- * Props som steg-komponenter mottar fra rammeverket
- */
-export interface StegProps<TSøknadsdata> {
-    søknadsdata: Partial<TSøknadsdata>;
-    submitSøknadsdata: (data: Partial<TSøknadsdata>) => void;
-}
-
-/**
  * Definisjon av et steg i søknadsflyten
  */
-export interface StegDefinisjon<TSøknadsdata> {
-    /** Intern identifikator (brukes som key i søknadsdata) */
+export interface StegDefinisjon {
+    /** Intern identifikator */
     id: string;
     /** URL-segment */
     route: string;
-    /** Avgjør om steget skal vises i flyten (dynamiske steg). Default: alltid synlig */
-    skalVises?: (søknadsdata: Partial<TSøknadsdata>) => boolean;
 }
 
 /**
  * Konfigurasjon for alle steg
  */
-export type StegConfig<TSøknadsdata> = Record<string, StegDefinisjon<TSøknadsdata>>;
+export type StegConfig = Record<string, StegDefinisjon>;
 
 /**
  * Info om et aktivt steg
@@ -33,31 +23,28 @@ export interface AktivtSteg {
 }
 
 /**
- * Sjekker om et steg er fullført basert på søknadsdata
+ * Callbacks for å bestemme steg-status.
+ * Må leveres av appen siden rammeverket ikke eier søknadsdata.
  */
-export const erStegFullført = <TSøknadsdata>(stegId: string, søknadsdata: Partial<TSøknadsdata>): boolean => {
-    return søknadsdata[stegId as keyof TSøknadsdata] !== undefined;
-};
+export interface StegStatusCallbacks {
+    /** Returnerer true hvis steget har data og er ferdig utfylt */
+    erFullført: (stegId: string) => boolean;
+    /** Returnerer true hvis steget skal vises (for dynamiske steg). Default: alltid synlig */
+    skalVises?: (stegId: string) => boolean;
+}
 
 /**
  * Returnerer liste over aktive steg med tilgjengelighet og fullført-status.
  * Lineær flyt: et steg er tilgjengelig hvis alle foregående er fullført.
  */
-export const getAktiveSteg = <TSøknadsdata>(
-    stegRekkefølge: string[],
-    stegConfig: StegConfig<TSøknadsdata>,
-    søknadsdata: Partial<TSøknadsdata>,
-): AktivtSteg[] => {
+export const getAktiveSteg = (stegRekkefølge: string[], callbacks: StegStatusCallbacks): AktivtSteg[] => {
     const synligeSteg = stegRekkefølge.filter((id) => {
-        const steg = stegConfig[id];
-        return steg?.skalVises?.(søknadsdata) ?? true;
+        return callbacks.skalVises?.(id) ?? true;
     });
 
     return synligeSteg.map((stegId, index) => {
-        const erFullført = søknadsdata[stegId as keyof TSøknadsdata] !== undefined;
-        const erTilgjengelig =
-            index === 0 ||
-            synligeSteg.slice(0, index).every((id) => søknadsdata[id as keyof TSøknadsdata] !== undefined);
+        const erFullført = callbacks.erFullført(stegId);
+        const erTilgjengelig = index === 0 || synligeSteg.slice(0, index).every((id) => callbacks.erFullført(id));
 
         return { stegId, erTilgjengelig, erFullført };
     });

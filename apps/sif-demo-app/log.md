@@ -1,5 +1,77 @@
 # soknad-rammeverk – Utviklingslogg
 
+## 2026-03-01: Separasjon av søknadsdata fra rammeverket
+
+### Motivasjon
+
+Rammeverket eide `søknadsdata` i sin Zustand-store, noe som skapte for tett kobling mellom rammeverk og app. Appen måtte type-caste for å få riktig typing.
+
+### Endringer
+
+**1. Rammeverket eier kun flyt-metadata**
+
+- Omdøpt `useSøknadState` → `useSøknadFlyt`
+- Fjernet `søknadsdata`, `submitSteg`, `isSubmittingSteg`, `hydrate`
+- Beholder: `currentStegId`, `børMellomlagres`, `erSendt`, `setCurrentSteg`, `setSøknadSendt`, `reset`
+
+**2. Søknadsdata eies av appen**
+
+- Appen oppretter egen Zustand-store i `src/app/hooks/useSøknadsdata.ts`
+- Full typing uten generics eller type-casting
+- Eksponerer `erStegFullført(stegId)` callback
+
+**3. Callback-basert steg-status**
+
+- `StegStatusCallbacks` interface: `{ erFullført, skalVises? }`
+- `getAktiveSteg()` tar callbacks i stedet for søknadsdata
+- `useStegFlyt`, `useStegTilgang`, `useStegNavigasjon` tar `stegStatus` prop
+
+**4. Fjernet generics fra rammeverket**
+
+- `StegConfig` og `StegDefinisjon` er ikke lenger generisk
+- `SøknadIndexRedirect`, `getStegIdFromRoute` forenklet
+- Rammeverket har nå ingen avhengighet til app-spesifikke typer
+
+**5. Fjernet `useSteg` hook**
+
+- Erstattet av app-spesifikk `useSøknadsdata` hook
+- Appen har full kontroll over sin egen state
+
+### Ny arkitektur
+
+```
+Rammeverk (flyt):              App (data):
+┌─────────────────┐           ┌─────────────────┐
+│ useSøknadFlyt   │           │ useSøknadsdata  │
+│ - currentStegId │           │ - søknadsdata   │
+│ - erSendt       │           │ - submitSteg    │
+│ - reset()       │◄──────────│ - erStegFullført│
+└─────────────────┘ callbacks └─────────────────┘
+```
+
+### Bruk i steg-komponenter
+
+```typescript
+export const Steg1 = () => {
+    const søknadsdata = useSøknadsdata((s) => s.søknadsdata);
+    const submitSteg = useSøknadsdata((s) => s.submitSteg);
+    const erStegFullført = useSøknadsdata((s) => s.erStegFullført);
+
+    const stegStatus = { erFullført: erStegFullført };
+
+    const { erTilgjengelig } = useStegTilgang({
+        stegId: StegId.PERSONALIA,
+        stegRekkefølge,
+        stegStatus,
+    });
+
+    const { gåTilNeste } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
+    // ...
+};
+```
+
+---
+
 ## 2026-02-28: Refaktorering og forenkling
 
 ### Endringer basert på tilbakemeldinger
@@ -102,11 +174,10 @@ SøknadRouter.tsx
 
 - [ ] Test full flyt i browser (verifiser at alt fungerer)
 - [ ] Legg til et dynamisk steg med `skalVises` for å teste
-- [ ] Vurder om `useStegTilgang` bør sette `currentStegId` (kanskje flyttes til `useStegFlyt`?)
 
 ### Kort sikt
 
-- [ ] MellomlagringObserver
+- [ ] MellomlagringObserver (koordiner mellom flyt-store og søknadsdata-store)
 - [ ] Hydration fra mellomlagring
 - [ ] Back/forward-håndtering (blokkér og vis panel)
 
@@ -120,7 +191,9 @@ SøknadRouter.tsx
 
 ## Notater
 
-### ⚠️ Zustand store-gotcha
+### Separasjon av ansvar
+
+Rammeverket eier flyt-logikk, appen eier data. Kommunikasjon skjer via callbacks:
 
 Når du lager typede app-hooks, **re-eksporter** rammeverkets store med type-cast - **ikke** bruk `createSøknadStore()` som oppretter en ny separat store!
 

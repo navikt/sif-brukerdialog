@@ -17,6 +17,9 @@ export const memoryStore = {
     getScenario: () => currentScenario,
     get: (): ScenarioData => currentData,
     set: (state: ScenarioData) => (currentData = state),
+    update: (partial: Partial<ScenarioData>) => {
+        currentData = { ...currentData, ...partial };
+    },
     reset: () => {
         if (currentScenario === undefined) throw new Error('Scenario is not set.');
         currentData = structuredClone(getScenarioMockData(currentScenario));

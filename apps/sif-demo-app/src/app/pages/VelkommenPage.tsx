@@ -1,15 +1,17 @@
 import { Button, Heading, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
+import { useSøknadFlyt } from '@rammeverk/state';
+
 import { StegId, stegConfig } from '../config/stegConfig';
-import { useSøknadsdata } from '../hooks';
+import { useSøknadState } from '../hooks';
 
 export const VelkommenPage = () => {
     const navigate = useNavigate();
-    const setCurrentSteg = useSøknadsdata((s) => s.setCurrentSteg);
-    const søknadsdata = useSøknadsdata((s) => s.søknadsdata);
+    const setCurrentSteg = useSøknadFlyt((s) => s.setAktivtSteg);
+    const søknadsdata = useSøknadState((s) => s.søknadsdata);
 
-    const harPåbegyntSøknad = Object.keys(søknadsdata).length > 0;
+    const harPåbegyntSøknad = søknadsdata && Object.keys(søknadsdata.stegData).length > 0;
 
     const handleStart = () => {
         const førsteSteg = stegConfig[StegId.PERSONALIA];

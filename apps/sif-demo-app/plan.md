@@ -59,15 +59,13 @@ export enum StegId {
 
 ### 2. stegConfig – kun metadata
 
-Ingen logikk for tilgjengelighet i config. Dynamiske steg bruker `skalVises`:
+Ingen logikk for tilgjengelighet i config:
 
 ```typescript
-export const stegConfig: StegConfig<DemoSøknadsdata> = {
+export const stegConfig: StegConfig = {
     [StegId.PERSONALIA]: {
         id: StegId.PERSONALIA,
-        route: 'om-deg', // Valgfri URL-override
-        tittel: 'Personalia',
-        // skalVises: (data) => ..., // Kun for dynamiske steg
+        route: 'om-deg',
     },
 };
 ```
@@ -95,26 +93,27 @@ export const Steg1 = () => {
 
 ### 4. Lineær flyt utledes automatisk
 
-`getAktiveSteg()` utility beregner:
+`getAktiveSteg()` utility beregner via callbacks fra appen:
 
-- **skalVises** – filtrerer ut dynamiske steg
+- **skalVises** – callback for dynamiske steg
 - **erTilgjengelig** – alle foregående må være fullført
-- **erFullført** – søknadsdata for steget eksisterer
+- **erFullført** – callback fra appen
 
 ```typescript
-const aktiveSteg = getAktiveSteg(stegRekkefølge, stegConfig, søknadsdata);
-// [{ stegId, erTilgjengelig, erFullført }, ...]
+const stegStatus = { erFullført: (id) => soknaddata[id] !== undefined };
+const aktiveSteg = getAktiveSteg(stegRekkefølge, stegStatus);
 ```
 
 ### 5. Tilgang håndteres i stegkomponenter
 
-Ingen StegGuard-komponent. Hvert steg bruker `useStegTilgang`:
+Ingen StegGuard-komponent. Hvert steg bruker `useStegTilgang` med callbacks:
 
 ```typescript
+const stegStatus = { erFullført: erStegFullført };
 const { erTilgjengelig, sisteGyldigeStegId } = useStegTilgang({
     stegId: StegId.PERSONALIA,
-    stegConfig,
     stegRekkefølge,
+    stegStatus,
 });
 
 if (!erTilgjengelig) {
@@ -124,13 +123,23 @@ if (!erTilgjengelig) {
 
 ### 6. State (Zustand)
 
+**Rammeverk (flyt):**
+
 ```typescript
 {
     currentStegId: string | null;
-    søknadsdata: Partial<TSøknadsdata>;
     børMellomlagres: boolean;
-    isSubmittingSteg: boolean;
     erSendt: boolean;
+}
+```
+
+**App (søknadsdata):**
+
+```typescript
+{
+    søknadsdata: DemoSøknadsdata;
+    submitSteg: (data) => void;
+    erStegFullført: (stegId) => boolean;
 }
 ```
 
@@ -145,11 +154,11 @@ if (!erTilgjengelig) {
 
 | Hook                  | Returnerer                                           |
 | --------------------- | ---------------------------------------------------- |
-| `useSøknadState()`    | Hele Zustand store                                   |
-| `useSteg<T>()`        | `{ søknadsdata, submitSøknadsdata }`                 |
-| `useStegFlyt()`       | `{ aktiveSteg, currentStegId, forrige/neste,  }`     |
+| `useSøknadFlyt()`     | Rammeverkets flyt-state                              |
+| `useStegFlyt()`       | `{ aktiveSteg, currentStegId, forrige/neste }`       |
 | `useStegNavigasjon()` | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
 | `useStegTilgang()`    | `{ erTilgjengelig, erFullført, sisteGyldigeStegId }` |
+| `useSøknadsdata()`    | App-spesifikk søknadsdata store                      |
 
 ---
 
@@ -165,11 +174,12 @@ Se [log.md](log.md) for detaljert fremdrift.
 - [x] StegId enum og forenklet stegConfig
 - [x] `getAktiveSteg()` utility for lineær flyt
 - [x] Hook-basert tilgangskontroll (`useStegTilgang`)
+- [x] Separasjon av søknadsdata fra rammeverket (callback-basert)
 
 **Gjenstår:**
 
 - [ ] Test full flyt i browser
-- [ ] MellomlagringObserver
+- [ ] MellomlagringObserver (koordiner flyt + søknadsdata)
 - [ ] Hydration fra mellomlagring
 - [ ] Back/forward-håndtering
 - [ ] Trekk ut til `packages/soknad-rammeverk/`

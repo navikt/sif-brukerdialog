@@ -18,6 +18,7 @@ const defaultScenarioData: ScenarioData = {
             fødselsnummer: '08061999573',
         },
     ],
+    mellomlagring: undefined,
 };
 
 const scenarioData: Record<ScenarioType, ScenarioData> = {

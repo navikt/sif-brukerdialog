@@ -3,22 +3,28 @@ import { useNavigate } from 'react-router-dom';
 
 import { SøknadFooter } from '@rammeverk/components';
 import { useStegTilgang } from '@rammeverk/guards';
-import { useSøknadState, useStegNavigasjon } from '@rammeverk/state';
+import { useSøknadFlyt, useStegNavigasjon } from '@rammeverk/state';
 
-import { DemoSøknadsdata, StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { useSøknadState } from '../hooks/useSøknadState';
 
 export const Oppsummering = () => {
+    const søknadsdata = useSøknadState((s) => s.søknadsdata);
+    const erStegFullført = useSøknadState((s) => s.erStegFullført);
+    const resetSøknadsdata = useSøknadState((s) => s.reset);
+
+    const stegStatus = { erFullført: erStegFullført };
+
     const { erTilgjengelig } = useStegTilgang({
         stegId: StegId.OPPSUMMERING,
-        stegConfig,
         stegRekkefølge,
+        stegStatus,
     });
 
     const navigate = useNavigate();
-    const søknadsdata = useSøknadState((s) => s.søknadsdata) as Partial<DemoSøknadsdata>;
-    const setSøknadSendt = useSøknadState((s) => s.setSøknadSendt);
+    const setSøknadSendt = useSøknadFlyt((s) => s.setSøknadSendt);
 
-    const { gåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge });
+    const { gåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
 
     if (!erTilgjengelig) {
         return <Alert variant="warning">Du kan ikke gå til dette steget ennå.</Alert>;
@@ -28,6 +34,7 @@ export const Oppsummering = () => {
         evt.preventDefault();
         console.log('Sender inn søknad:', søknadsdata);
         setSøknadSendt();
+        resetSøknadsdata();
         navigate('/kvittering');
     };
 
@@ -38,10 +45,10 @@ export const Oppsummering = () => {
                 <Alert variant="info">
                     <VStack gap="space-2">
                         <p>
-                            <strong>Navn:</strong> {søknadsdata[StegId.PERSONALIA]?.navn}
+                            <strong>Navn:</strong> {søknadsdata?.stegData[StegId.PERSONALIA]?.navn}
                         </p>
                         <p>
-                            <strong>E-post:</strong> {søknadsdata[StegId.KONTAKT]?.epost}
+                            <strong>E-post:</strong> {søknadsdata?.stegData[StegId.KONTAKT]?.epost}
                         </p>
                     </VStack>
                 </Alert>
@@ -54,7 +61,7 @@ export const Oppsummering = () => {
                     </HStack>
                 </form>
             </VStack>
-            <SøknadFooter />
+            <SøknadFooter avbrytCallback={resetSøknadsdata} />
         </VStack>
     );
 };

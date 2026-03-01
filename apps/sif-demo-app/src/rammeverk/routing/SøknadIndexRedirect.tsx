@@ -2,8 +2,8 @@ import { Navigate } from 'react-router-dom';
 
 import { StegConfig } from '../types';
 
-interface SøknadIndexRedirectProps<TSøknadsdata> {
-    stegConfig: StegConfig<TSøknadsdata>;
+interface SøknadIndexRedirectProps {
+    stegConfig: StegConfig;
     stegRekkefølge: string[];
     mellomlagretStegId?: string | null;
 }
@@ -11,11 +11,7 @@ interface SøknadIndexRedirectProps<TSøknadsdata> {
 /**
  * Redirect fra /soknad til første steg, eller mellomlagret steg hvis det finnes
  */
-export const SøknadIndexRedirect = <TSøknadsdata,>({
-    stegConfig,
-    stegRekkefølge,
-    mellomlagretStegId,
-}: SøknadIndexRedirectProps<TSøknadsdata>) => {
+export const SøknadIndexRedirect = ({ stegConfig, stegRekkefølge, mellomlagretStegId }: SøknadIndexRedirectProps) => {
     const targetStegId = mellomlagretStegId ?? stegRekkefølge[0];
     const targetRoute = stegConfig[targetStegId].route;
 

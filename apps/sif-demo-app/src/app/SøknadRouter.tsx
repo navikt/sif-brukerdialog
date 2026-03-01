@@ -1,15 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { SøknadIndexRedirect } from '@rammeverk/routing';
+import { useSøknadFlyt } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from './config/stegConfig';
-import { useSøknadsdata } from './hooks';
 import { Oppsummering } from './steg/Oppsummering';
 import { Steg1 } from './steg/Steg1';
 import { Steg2 } from './steg/Steg2';
 
 export const SøknadRouter = () => {
-    const { currentStegId } = useSøknadsdata();
+    const currentStegId = useSøknadFlyt((s) => s.currentStegId);
 
     return (
         <Routes>
