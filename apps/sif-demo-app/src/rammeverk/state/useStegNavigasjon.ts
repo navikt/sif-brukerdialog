@@ -20,7 +20,7 @@ export const useStegNavigasjon = ({
     basePath = '/soknad',
 }: UseStegNavigasjonOptions) => {
     const navigate = useNavigate();
-    const setCurrentSteg = useSøknadFlyt((s) => s.setAktivtSteg);
+    const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
     const { forrigeStegId, nesteStegId } = useStegFlyt({ stegConfig, stegRekkefølge, stegStatus });
 
     const gåTilSteg = useCallback(

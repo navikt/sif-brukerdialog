@@ -5,7 +5,7 @@ export interface SøknadFlytState {
     børMellomlagres: boolean;
     erSendt: boolean;
 
-    setAktivtSteg: (stegId: string) => void;
+    setCurrentSteg: (stegId: string) => void;
     setBørMellomlagres: (verdi: boolean) => void;
     setSøknadSendt: () => void;
     reset: () => void;
@@ -20,7 +20,7 @@ const initialState = {
 export const useSøknadFlyt = create<SøknadFlytState>((set) => ({
     ...initialState,
 
-    setAktivtSteg: (stegId) =>
+    setCurrentSteg: (stegId) =>
         set({
             currentStegId: stegId,
         }),

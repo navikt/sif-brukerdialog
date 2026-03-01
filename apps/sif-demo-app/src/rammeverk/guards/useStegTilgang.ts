@@ -16,7 +16,7 @@ interface StegTilgangResult {
 }
 
 export const useStegTilgang = ({ stegId, stegRekkefølge, stegStatus }: UseStegTilgangOptions): StegTilgangResult => {
-    const setCurrentSteg = useSøknadFlyt((s) => s.setAktivtSteg);
+    const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
 
     const aktiveSteg = useMemo(() => getAktiveSteg(stegRekkefølge, stegStatus), [stegRekkefølge, stegStatus]);
 

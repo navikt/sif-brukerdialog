@@ -8,7 +8,7 @@ import { useSøknadState } from '../hooks';
 
 export const VelkommenPage = () => {
     const navigate = useNavigate();
-    const setCurrentSteg = useSøknadFlyt((s) => s.setAktivtSteg);
+    const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
     const søknadsdata = useSøknadState((s) => s.søknadsdata);
 
     const harPåbegyntSøknad = søknadsdata && Object.keys(søknadsdata.stegData).length > 0;
