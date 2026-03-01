@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { getStegRoute, SøknadIndexRedirect } from '@rammeverk/routing';
+import { SøknadIndexRedirect } from '@rammeverk/routing';
 
 import { StegId, stegConfig, stegRekkefølge } from './config/stegConfig';
 import { useSøknadsdata } from './hooks';
@@ -23,9 +23,9 @@ export const SøknadRouter = () => {
                     />
                 }
             />
-            <Route path={getStegRoute(stegConfig, StegId.PERSONALIA)} element={<Steg1 />} />
-            <Route path={getStegRoute(stegConfig, StegId.KONTAKT)} element={<Steg2 />} />
-            <Route path={getStegRoute(stegConfig, StegId.OPPSUMMERING)} element={<Oppsummering />} />
+            <Route path={stegConfig[StegId.KONTAKT].route} element={<Steg2 />} />
+            <Route path={stegConfig[StegId.PERSONALIA].route} element={<Steg1 />} />
+            <Route path={stegConfig[StegId.OPPSUMMERING].route} element={<Oppsummering />} />
         </Routes>
     );
 };

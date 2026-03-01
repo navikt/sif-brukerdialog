@@ -1,7 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
 import { StegConfig } from '../types';
-import { getStegRoute } from './routeUtils';
 
 interface SøknadIndexRedirectProps<TSøknadsdata> {
     stegConfig: StegConfig<TSøknadsdata>;
@@ -18,7 +17,7 @@ export const SøknadIndexRedirect = <TSøknadsdata,>({
     mellomlagretStegId,
 }: SøknadIndexRedirectProps<TSøknadsdata>) => {
     const targetStegId = mellomlagretStegId ?? stegRekkefølge[0];
-    const targetRoute = getStegRoute(stegConfig, targetStegId);
+    const targetRoute = stegConfig[targetStegId].route;
 
     return <Navigate to={targetRoute} replace />;
 };

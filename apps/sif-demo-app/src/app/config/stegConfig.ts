@@ -19,16 +19,14 @@ export const stegConfig: StegConfig<DemoSøknadsdata> = {
     [StegId.PERSONALIA]: {
         id: StegId.PERSONALIA,
         route: 'om-deg',
-        tittel: 'Personalia',
     },
     [StegId.KONTAKT]: {
         id: StegId.KONTAKT,
         route: 'kontaktinfo',
-        tittel: 'Kontaktinfo',
     },
     [StegId.OPPSUMMERING]: {
         id: StegId.OPPSUMMERING,
-        tittel: 'Oppsummering',
+        route: 'oppsummering',
     },
 };
 

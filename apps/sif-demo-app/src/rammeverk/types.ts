@@ -12,10 +12,8 @@ export interface StegProps<TSøknadsdata> {
 export interface StegDefinisjon<TSøknadsdata> {
     /** Intern identifikator (brukes som key i søknadsdata) */
     id: string;
-    /** URL-segment (valgfri, default = id) */
-    route?: string;
-    /** Visningstekst */
-    tittel: string;
+    /** URL-segment */
+    route: string;
     /** Avgjør om steget skal vises i flyten (dynamiske steg). Default: alltid synlig */
     skalVises?: (søknadsdata: Partial<TSøknadsdata>) => boolean;
 }

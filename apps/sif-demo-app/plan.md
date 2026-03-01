@@ -143,13 +143,13 @@ if (!erTilgjengelig) {
 
 ## Hooks
 
-| Hook                  | Returnerer                                                   |
-| --------------------- | ------------------------------------------------------------ |
-| `useSøknadState()`    | Hele Zustand store                                           |
-| `useSteg<T>()`        | `{ søknadsdata, submitSøknadsdata }`                         |
-| `useStegFlyt()`       | `{ aktiveSteg, currentStegId, forrige/neste, getStegRoute }` |
-| `useStegNavigasjon()` | `{ gåTilSteg, gåTilNeste, gåTilForrige }`                    |
-| `useStegTilgang()`    | `{ erTilgjengelig, erFullført, sisteGyldigeStegId }`         |
+| Hook                  | Returnerer                                           |
+| --------------------- | ---------------------------------------------------- |
+| `useSøknadState()`    | Hele Zustand store                                   |
+| `useSteg<T>()`        | `{ søknadsdata, submitSøknadsdata }`                 |
+| `useStegFlyt()`       | `{ aktiveSteg, currentStegId, forrige/neste,  }`     |
+| `useStegNavigasjon()` | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
+| `useStegTilgang()`    | `{ erTilgjengelig, erFullført, sisteGyldigeStegId }` |
 
 ---
 

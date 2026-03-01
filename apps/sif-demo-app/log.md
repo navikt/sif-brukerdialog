@@ -67,7 +67,7 @@ state/
 guards/
   useStegTilgang.ts  – Tilgangs-hook
 routing/
-  routeUtils.ts      – getStegRoute, getStegIdFromRoute
+  routeUtils.ts      –  getStegIdFromRoute
 types.ts             – StegDefinisjon, StegConfig, getAktiveSteg, AktivtSteg
 ```
 

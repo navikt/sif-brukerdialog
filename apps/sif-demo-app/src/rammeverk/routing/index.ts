@@ -1,2 +1,2 @@
-export { getStegRoute, getStegIdFromRoute } from './routeUtils';
+export { getStegIdFromRoute } from './routeUtils';
 export { SøknadIndexRedirect } from './SøknadIndexRedirect';

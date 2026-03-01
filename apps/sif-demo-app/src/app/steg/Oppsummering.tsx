@@ -24,7 +24,8 @@ export const Oppsummering = () => {
         return <Alert variant="warning">Du kan ikke gå til dette steget ennå.</Alert>;
     }
 
-    const handleSendInn = () => {
+    const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {
+        evt.preventDefault();
         console.log('Sender inn søknad:', søknadsdata);
         setSøknadSendt();
         navigate('/kvittering');
@@ -44,14 +45,14 @@ export const Oppsummering = () => {
                         </p>
                     </VStack>
                 </Alert>
-                <HStack gap="space-16" justify={'start'}>
-                    <Button type="button" variant="secondary" onClick={gåTilForrige}>
-                        Forrige
-                    </Button>
-                    <Button type="button" onClick={handleSendInn}>
-                        Send inn søknad
-                    </Button>
-                </HStack>
+                <form onSubmit={handleSubmit}>
+                    <HStack gap="space-16" justify={'start'}>
+                        <Button type="button" variant="secondary" onClick={gåTilForrige}>
+                            Forrige
+                        </Button>
+                        <Button type="submit">Send inn søknad</Button>
+                    </HStack>
+                </form>
             </VStack>
             <SøknadFooter />
         </VStack>

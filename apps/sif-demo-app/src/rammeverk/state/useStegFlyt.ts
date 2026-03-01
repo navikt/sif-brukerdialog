@@ -32,6 +32,5 @@ export const useStegFlyt = <TSøknadsdata>({ stegConfig, stegRekkefølge }: UseS
         erSisteSteg: currentIndex === aktiveStegIds.length - 1,
         antallSteg: aktiveStegIds.length,
         getStegInfo: (id: string) => stegConfig[id],
-        getStegRoute: (id: string) => stegConfig[id]?.route ?? stegConfig[id]?.id ?? id,
     };
 };

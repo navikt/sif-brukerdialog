@@ -19,15 +19,15 @@ export const useStegNavigasjon = <TSøknadsdata>({
 }: UseStegNavigasjonOptions<TSøknadsdata>) => {
     const navigate = useNavigate();
     const setCurrentSteg = useSøknadState((s) => s.setCurrentSteg);
-    const { forrigeStegId, nesteStegId, getStegRoute } = useStegFlyt({ stegConfig, stegRekkefølge });
+    const { forrigeStegId, nesteStegId } = useStegFlyt({ stegConfig, stegRekkefølge });
 
     const gåTilSteg = useCallback(
         (stegId: string) => {
             setCurrentSteg(stegId);
-            const route = getStegRoute(stegId);
+            const route = stegConfig[stegId].route;
             navigate(`${basePath}/${route}`);
         },
-        [setCurrentSteg, getStegRoute, navigate, basePath],
+        [setCurrentSteg, navigate, basePath],
     );
 
     const gåTilNeste = useCallback(() => {

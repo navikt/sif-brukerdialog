@@ -27,7 +27,7 @@ export const Steg1 = () => {
         return <Alert variant="warning">Du kan ikke gå til dette steget ennå.</Alert>;
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
         submitSøknadsdata({ [StegId.PERSONALIA]: { navn } });
         gåTilNeste();
