@@ -19,8 +19,18 @@ export default defineConfig({
             '@app': resolve(__dirname, './src/app'),
         },
     },
+    base: '/sif-demo/',
+    preview: {
+        port: 8080,
+    },
     server: {
         port: 8080,
+        proxy: {
+            '/mockServiceWorker.js': {
+                target: 'http://localhost:8080', // Adjust target URL if needed
+                rewrite: () => '/sif-demo/mockServiceWorker.js',
+            },
+        },
     },
     build: {
         sourcemap: true,

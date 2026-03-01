@@ -1,8 +1,10 @@
 import { AxiosError, AxiosInstance, HttpStatusCode } from 'axios';
 import { v4 } from 'uuid';
 
-const isUnauthorized = (error: AxiosError): boolean =>
-    error !== undefined && error.response !== undefined && error.response.status === HttpStatusCode.Unauthorized;
+const isUnauthorized = (error: AxiosError): boolean => {
+    debugger;
+    return error !== undefined && error.response !== undefined && error.response.status === HttpStatusCode.Unauthorized;
+};
 
 const commonRequestHeader = {
     'Content-type': 'application/json; charset=utf-8',

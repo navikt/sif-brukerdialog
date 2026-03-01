@@ -4,8 +4,7 @@
     "private": true,
     "version": "0.0.1",
     "scripts": {
-        "dev": "vite --base=/sif-demo --port 8080",
-        "dev:msw": "vite --base=/sif-demo --port 8080 --mode msw",
+        "dev": "vite --base=/sif-demo --port 8080 --mode msw",
         "build": "vite build --base=/sif-demo",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",

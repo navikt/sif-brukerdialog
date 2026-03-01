@@ -1,4 +1,5 @@
 import {
+    client,
     ettersendelse,
     omsorgspenger,
     omsorgspengerAleneomsorg,
@@ -15,6 +16,7 @@ import { initApiClient } from './utils/initApiClient';
 
 export const initK9BrukerdialogProsesseringApiClients = (config: { frontendPath: string; loginURL: string }) => {
     const { frontendPath, loginURL } = config;
+    initApiClient(client, frontendPath, loginURL);
     initApiClient(omsorgspenger.client, frontendPath, loginURL);
     initApiClient(ungdomsytelse.client, frontendPath, loginURL);
     initApiClient(ettersendelse.client, frontendPath, loginURL);
