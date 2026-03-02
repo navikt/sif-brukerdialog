@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 
-import { StegId, stegConfig, stegRekkefølge } from './config/stegConfig';
+import { StegId, stegConfig } from './config/stegConfig';
 import { useAppStore, useMellomlagring } from './hooks';
 import { KvitteringPage } from './pages/KvitteringPage';
 import { VelkommenPage } from './pages/VelkommenPage';
@@ -11,7 +11,7 @@ import { Oppsummering } from './steg/Oppsummering';
 import { Steg1 } from './steg/Steg1';
 import { Steg2 } from './steg/Steg2';
 import { Mellomlagring } from './types/Mellomlagring';
-import { MellomlagringObserver, SøknadIndexRedirect, useSøknadFlyt } from '../rammeverk';
+import { MellomlagringObserver, StegRoute, SøknadIndexRedirect, useSøknadFlyt } from '../rammeverk';
 
 interface Props {
     søker: Søker;
@@ -20,8 +20,8 @@ interface Props {
 }
 
 const AppMellomlagringObserver = () => {
-    const { getData, lagre } = useMellomlagring();
-    return <MellomlagringObserver callbacks={{ getData, lagre }} />;
+    const { hentMellomlagring, lagreMellomlagring } = useMellomlagring();
+    return <MellomlagringObserver callbacks={{ hentMellomlagring, lagreMellomlagring }} />;
 };
 
 export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
@@ -46,17 +46,13 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                 <Route path="/soknad">
                     <Route
                         index
-                        element={
-                            <SøknadIndexRedirect
-                                stegConfig={stegConfig}
-                                stegRekkefølge={stegRekkefølge}
-                                mellomlagretStegId={currentStegId}
-                            />
-                        }
+                        element={<SøknadIndexRedirect stegConfig={stegConfig} mellomlagretStegId={currentStegId} />}
                     />
-                    <Route path={stegConfig[StegId.KONTAKT].route} element={<Steg2 />} />
-                    <Route path={stegConfig[StegId.PERSONALIA].route} element={<Steg1 />} />
-                    <Route path={stegConfig[StegId.OPPSUMMERING].route} element={<Oppsummering />} />
+                    <Route element={<StegRoute erInitialisert={!!søknadState} />}>
+                        <Route path={stegConfig[StegId.PERSONALIA].route} element={<Steg1 />} />
+                        <Route path={stegConfig[StegId.KONTAKT].route} element={<Steg2 />} />
+                        <Route path={stegConfig[StegId.OPPSUMMERING].route} element={<Oppsummering />} />
+                    </Route>
                 </Route>
             </Routes>
         </div>

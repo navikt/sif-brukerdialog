@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react';
 import { useSøknadFlyt } from '../state';
 
 export interface MellomlagringCallbacks<Data = unknown> {
-    getData: () => Data;
-    lagre: (data: Data) => Promise<void>;
+    hentMellomlagring: () => Data;
+    lagreMellomlagring: (data: Data) => Promise<void>;
 }
 
 interface Props<Data = unknown> {
@@ -23,10 +23,10 @@ export const MellomlagringObserver = <Data,>({ callbacks }: Props<Data>) => {
     useEffect(() => {
         if (børMellomlagres && !isLagring.current) {
             isLagring.current = true;
-            const data = callbacks.getData();
+            const data = callbacks.hentMellomlagring();
 
             callbacks
-                .lagre(data)
+                .lagreMellomlagring(data)
                 .catch(() => {
                     // Silent fail - mellomlagringsfeil blokkerer ikke bruker
                 })

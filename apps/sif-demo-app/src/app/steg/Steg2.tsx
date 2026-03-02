@@ -6,6 +6,7 @@ import { useStegTilgang } from '@rammeverk/guards';
 import { useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { useAvbrytSøknadHandler } from '../hooks/useAvbrytSøknadHandler';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
 interface Steg2Skjemadata {
@@ -16,6 +17,7 @@ export const Steg2 = () => {
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitSteg);
     const erStegFullført = useSøknadStore((s) => s.erStegFullført);
+    const { avbrytHandler } = useAvbrytSøknadHandler();
 
     const stegStatus = { erFullført: erStegFullført };
 
@@ -53,7 +55,7 @@ export const Steg2 = () => {
                     </HStack>
                 </VStack>
             </form>
-            <SøknadFooter avbrytCallback={useSøknadStore.getState().resetSøknad} />
+            <SøknadFooter avbrytCallback={avbrytHandler} />
         </VStack>
     );
 };

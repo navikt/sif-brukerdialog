@@ -6,12 +6,16 @@ import { useStegTilgang } from '@rammeverk/guards';
 import { useSøknadFlyt, useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { useAvbrytSøknadHandler } from '../hooks/useAvbrytSøknadHandler';
+import { useMellomlagring } from '../hooks/useMellomlagring';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
 export const Oppsummering = () => {
     const appState = useSøknadStore((s) => s.søknadState);
     const erStegFullført = useSøknadStore((s) => s.erStegFullført);
     const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
+    const { avbrytHandler } = useAvbrytSøknadHandler();
+    const { slettMellomlagring } = useMellomlagring();
 
     const stegStatus = { erFullført: erStegFullført };
 
@@ -35,6 +39,7 @@ export const Oppsummering = () => {
         console.log('Sender inn søknad:', appState);
         setSøknadSendt();
         resetSøknadsdata();
+        slettMellomlagring().catch(() => {});
         navigate('/kvittering');
     };
 
@@ -61,7 +66,7 @@ export const Oppsummering = () => {
                     </HStack>
                 </form>
             </VStack>
-            <SøknadFooter avbrytCallback={resetSøknadsdata} />
+            <SøknadFooter avbrytCallback={avbrytHandler} />
         </VStack>
     );
 };

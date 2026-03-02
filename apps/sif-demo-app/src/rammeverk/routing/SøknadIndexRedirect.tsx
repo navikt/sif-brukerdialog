@@ -4,16 +4,22 @@ import { StegConfig } from '../types';
 
 interface SøknadIndexRedirectProps {
     stegConfig: StegConfig;
-    stegRekkefølge: string[];
     mellomlagretStegId?: string | null;
+    velkommenPath?: string;
 }
 
 /**
- * Redirect fra /soknad til første steg, eller mellomlagret steg hvis det finnes
+ * Redirect fra /soknad til mellomlagret steg, eller velkommen hvis ingen mellomlagring finnes.
  */
-export const SøknadIndexRedirect = ({ stegConfig, stegRekkefølge, mellomlagretStegId }: SøknadIndexRedirectProps) => {
-    const targetStegId = mellomlagretStegId ?? stegRekkefølge[0];
-    const targetRoute = stegConfig[targetStegId].route;
+export const SøknadIndexRedirect = ({
+    stegConfig,
+    mellomlagretStegId,
+    velkommenPath = '/',
+}: SøknadIndexRedirectProps) => {
+    if (!mellomlagretStegId) {
+        return <Navigate to={velkommenPath} replace />;
+    }
 
+    const targetRoute = stegConfig[mellomlagretStegId].route;
     return <Navigate to={targetRoute} replace />;
 };

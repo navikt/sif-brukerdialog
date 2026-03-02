@@ -28,15 +28,15 @@ export const useMellomlagring = () => {
 
     const mellomlagring = useYtelseMellomlagring<Mellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
-    const getData = (): Mellomlagring => ({
+    const hentMellomlagring = (): Mellomlagring => ({
         søknadsdata,
         currentStegId,
     });
 
     return {
-        getData,
-        lagre: mellomlagring.lagre,
-        slett: mellomlagring.slett,
-        isLagring: mellomlagring.isLagring,
+        hentMellomlagring,
+        lagreMellomlagring: mellomlagring.lagre,
+        slettMellomlagring: mellomlagring.slett,
+        isPending: mellomlagring.isLagring,
     };
 };
