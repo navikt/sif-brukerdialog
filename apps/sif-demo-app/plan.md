@@ -175,12 +175,13 @@ Se [log.md](log.md) for detaljert fremdrift.
 - [x] `getAktiveSteg()` utility for lineær flyt
 - [x] Hook-basert tilgangskontroll (`useStegTilgang`)
 - [x] Separasjon av søknadsdata fra rammeverket (callback-basert)
+- [x] MellomlagringObserver i rammeverket
+- [x] Hydration fra mellomlagring
+- [x] Hash-basert metadata-validering (i sif-common-query)
 
 **Gjenstår:**
 
 - [ ] Test full flyt i browser
-- [ ] MellomlagringObserver (koordiner flyt + søknadsdata)
-- [ ] Hydration fra mellomlagring
 - [ ] Back/forward-håndtering
 - [ ] Trekk ut til `packages/soknad-rammeverk/`
 

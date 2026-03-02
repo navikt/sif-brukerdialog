@@ -1,5 +1,154 @@
 # soknad-rammeverk – Utviklingslogg
 
+## 2026-03-02: Mellomlagring-implementasjon
+
+### Motivasjon
+
+Mellomlagring skal fungere likt for alle søknader som bruker rammeverket. Datastruktur og validering holdes i delt pakke (sif-common-query), mens app-spesifikk logikk ligger i hver app.
+
+### Arkitektur
+
+```
+┌────────────────────────────────────────────────────┐
+│              sif-common-query                      │
+│  useYtelseMellomlagring<State, MetaData>           │
+│  - Hent, lagre, slett                              │
+│  - Hash-basert metadata-validering                 │
+│  - Automatisk slett ved ugyldig metadata           │
+└────────────────────────────────────────────────────┘
+                          ▲
+                          │
+┌────────────────────────┴───────────────────────────┐
+│                  Rammeverk                          │
+│  MellomlagringObserver                              │
+│  - Lytter på børMellomlagres-flagg                  │
+│  - Kaller app-callbacks for å hente/lagre data      │
+└────────────────────────────────────────────────────┘
+                          ▲
+                          │
+┌────────────────────────┴───────────────────────────┐
+│                    App                              │
+│  useMellomlagring (kobler state + useYtelse...)     │
+│  - Definerer metadata ({ søker, barn, versjon })    │
+│  - getData(): { søknadsdata, currentStegId }        │
+└────────────────────────────────────────────────────┘
+```
+
+### MellomlagringPayload-struktur
+
+Data som sendes til/fra API:
+
+```typescript
+interface MellomlagringPayload<State> {
+    søknadsdata: State; // App-spesifikk søknadsdata
+    søknadHashString: string; // Hash av metadata
+}
+```
+
+App definerer hva som inngår i mellomlagringen:
+
+```typescript
+// types/Mellomlagring.ts
+interface Mellomlagring {
+    søknadsdata: Søknadsdata;
+    currentStegId: string | null;
+}
+
+interface MellomlagringMetaData {
+    MELLOMLAGRING_VERSJON: string;
+    søker: Søker;
+    barn: RegistrertBarn[];
+}
+```
+
+### Implementerte komponenter
+
+**1. MellomlagringObserver (rammeverk)**
+
+Generisk observer som lytter på børMellomlagres-flagget:
+
+```typescript
+interface MellomlagringCallbacks<Data> {
+    getData: () => Data;
+    lagre: (data: Data) => Promise<void>;
+}
+
+const MellomlagringObserver = <Data>({ callbacks }: Props<Data>) => {
+    const børMellomlagres = useSøknadFlyt((s) => s.børMellomlagres);
+    // Trigger lagring når flagget settes
+};
+```
+
+**2. useYtelseMellomlagring (sif-common-query)**
+
+Samlet hook for all mellomlagringslogikk med validering:
+
+```typescript
+const mellomlagring = useYtelseMellomlagring<Mellomlagring, MetaData>(ytelse, metadata);
+
+// Returnerer:
+// - data: Mellomlagring | null (null hvis ugyldig/mangler)
+// - lagre(data): Promise<void>
+// - slett(): Promise<void>
+// - isLoading, isFetched, isLagring, isSletting
+```
+
+**3. useMellomlagring (app-hook)**
+
+Kobler useYtelseMellomlagring med app-state:
+
+```typescript
+const useMellomlagring = () => {
+    const metadata = { MELLOMLAGRING_VERSJON, søker, barn };
+    const mellomlagring = useYtelseMellomlagring<Mellomlagring, MetaData>(ytelse, metadata);
+
+    const getData = () => ({ søknadsdata, currentStegId });
+    return { getData, lagre: mellomlagring.lagre, ... };
+};
+```
+
+### Hydration-flyt
+
+1. AppInfoLoader henter søker, barn og mellomlagring parallelt
+2. Venter på mellomlagring.isFetched før rendering
+3. Sender mellomlagring.data til Søknad-komponent
+4. Søknad initialiserer state med useEffectOnce:
+    - Initialiserer søknadState med eventuell mellomlagret søknadsdata
+    - Setter currentStegId fra mellomlagring
+
+```typescript
+useEffectOnce(() => {
+    init(søker, barn, mellomlagring?.søknadsdata);
+    if (mellomlagring?.currentStegId) {
+        setCurrentSteg(mellomlagring.currentStegId);
+    }
+});
+```
+
+### Lagring trigges av
+
+- submitSteg() i useSøknadStore setter børMellomlagres = true
+- MellomlagringObserver lytter og kaller lagre()
+- Silent fail - feil blokkerer ikke bruker
+
+### Endringer i sif-common-query
+
+Refaktorerte mellomlagring-hooks til én samlet hook:
+
+**Fjernet:**
+
+- `useValidertMellomlagring.ts`
+- `ytelseMellomlagringUtils.ts`
+
+**Ny:** `useYtelseMellomlagring<State, MetaData>()` som:
+
+- Henter, lagrer og sletter mellomlagring
+- Validerer metadata-hash automatisk
+- Sletter automatisk hvis metadata har endret seg
+- Returnerer `{ data, lagre, slett, isLoading, isFetched, isLagring, isSletting }`
+
+---
+
 ## 2026-03-01: Separasjon av søknadsdata fra rammeverket
 
 ### Motivasjon
@@ -131,29 +280,45 @@ export const useSøknadsdata = useSøknadState as {
 **Rammeverk (`src/rammeverk/`):**
 
 ```
+components/
+  MellomlagringObserver.tsx – Observer for automatisk lagring
+  SøknadFooter.tsx          – Footer med navigasjonsknapper
 state/
-  useSøknadState.ts  – Zustand store
-  useSteg.ts         – { søknadsdata, submitSøknadsdata }
-  useStegFlyt.ts     – Aktive steg, navigasjon-info
+  useSøknadFlyt.ts    – Zustand store (currentStegId, børMellomlagres, erSendt)
+  useStegFlyt.ts      – Aktive steg, navigasjon-info
   useStegNavigasjon.ts – gåTilSteg, gåTilNeste, gåTilForrige
 guards/
-  useStegTilgang.ts  – Tilgangs-hook
+  useStegTilgang.ts   – Tilgangs-hook
 routing/
-  routeUtils.ts      –  getStegIdFromRoute
-types.ts             – StegDefinisjon, StegConfig, getAktiveSteg, AktivtSteg
+  routeUtils.ts       – getStegIdFromRoute, SøknadIndexRedirect
+types.ts              – StegDefinisjon, StegConfig, getAktiveSteg, AktivtSteg
 ```
 
 **Demo-app (`src/app/`):**
 
 ```
-config/stegConfig.ts – StegId enum, DemoSøknadsdata, stegConfig, stegRekkefølge
-hooks/useSøknadsdata.ts – Typet wrapper rundt createSøknadStore
-steg/Steg1.tsx       – Personalia (navn)
-steg/Steg2.tsx       – Kontakt (epost)
-steg/Oppsummering.tsx – Viser data, send inn
-pages/VelkommenPage.tsx
-pages/KvitteringPage.tsx
-SøknadRouter.tsx
+components/
+  AppInfoLoader.tsx  – Laster søker, barn, mellomlagring
+config/
+  appConfig.ts       – APP_YTELSE, MELLOMLAGRING_VERSJON
+  stegConfig.ts      – StegId enum, Søknadsdata, stegConfig, stegRekkefølge
+hooks/
+  useMellomlagring.ts – App-spesifikk mellomlagring-hook
+  useSøknadStore.ts  – App-state (søknadState, init, submitSteg)
+  useAppStore.ts     – Re-export av useSøknadStore
+types/
+  Mellomlagring.ts   – Mellomlagring, MellomlagringMetaData
+  Søknadsdata.ts     – Søknadsdata-type
+steg/
+  Steg1.tsx          – Personalia (navn)
+  Steg2.tsx          – Kontakt (epost)
+  Oppsummering.tsx   – Viser data, send inn
+pages/
+  VelkommenPage.tsx
+  KvitteringPage.tsx
+  ErrorPage.tsx
+  LoadingPage.tsx
+Søknad.tsx           – Hovedkomponent med routing og initialisering
 ```
 
 ### Nåværende routes
@@ -177,8 +342,6 @@ SøknadRouter.tsx
 
 ### Kort sikt
 
-- [ ] MellomlagringObserver (koordiner mellom flyt-store og søknadsdata-store)
-- [ ] Hydration fra mellomlagring
 - [ ] Back/forward-håndtering (blokkér og vis panel)
 
 ### Lengre sikt
@@ -229,39 +392,61 @@ submitSøknadsdata({ [StegId.PERSONALIA]: { navn } });
 
 ---
 
+## Hooks oversikt
+
+| Hook                       | Pakke            | Returnerer                                           |
+| -------------------------- | ---------------- | ---------------------------------------------------- |
+| `useSøknadFlyt()`          | rammeverk        | Flyt-state (currentStegId, børMellomlagres, erSendt) |
+| `useStegFlyt()`            | rammeverk        | `{ aktiveSteg, currentStegId, forrige/neste }`       |
+| `useStegNavigasjon()`      | rammeverk        | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
+| `useStegTilgang()`         | rammeverk        | `{ erTilgjengelig, erFullført, sisteGyldigeStegId }` |
+| `useYtelseMellomlagring()` | sif-common-query | `{ data, lagre, slett, isLoading, ... }`             |
+| `useSøknadStore()`         | app              | App-state (søknadState, init, submitSteg)            |
+| `useMellomlagring()`       | app              | `{ getData, lagre, slett, isLagring }`               |
+
+---
+
 ## Filstruktur
 
 ```
 src/
 ├── rammeverk/
+│   ├── components/
+│   │   ├── MellomlagringObserver.tsx
+│   │   ├── SøknadFooter.tsx
+│   │   └── index.ts
 │   ├── guards/
 │   │   ├── useStegTilgang.ts
+│   │   └── index.ts
+│   ├── hooks/
 │   │   └── index.ts
 │   ├── routing/
 │   │   ├── routeUtils.ts
 │   │   └── index.ts
 │   ├── state/
-│   │   ├── useSøknadState.ts
-│   │   ├── useSteg.ts
+│   │   ├── useSøknadFlyt.ts
 │   │   ├── useStegFlyt.ts
 │   │   ├── useStegNavigasjon.ts
 │   │   └── index.ts
+│   ├── utils/
 │   ├── types.ts
 │   └── index.ts
 ├── app/
+│   ├── components/
+│   │   └── AppInfoLoader.tsx
 │   ├── config/
+│   │   ├── appConfig.ts
 │   │   └── stegConfig.ts
 │   ├── hooks/
-│   │   ├── useSøknadsdata.ts
+│   │   ├── useMellomlagring.ts
+│   │   ├── useSøknadStore.ts
 │   │   └── index.ts
 │   ├── pages/
-│   │   ├── VelkommenPage.tsx
-│   │   └── KvitteringPage.tsx
 │   ├── steg/
-│   │   ├── Steg1.tsx
-│   │   ├── Steg2.tsx
-│   │   └── Oppsummering.tsx
-│   └── SøknadRouter.tsx
+│   ├── types/
+│   │   ├── Mellomlagring.ts
+│   │   └── Søknadsdata.ts
+│   └── Søknad.tsx
 ├── App.tsx
 └── main.tsx
 ```
