@@ -1,7 +1,16 @@
 import { create } from 'zustand';
 
-import { StegId } from '../config/stegConfig';
-import { SøknadStore } from '../types/SøknadStore';
+import { StegId, SøknadState } from '../config/stegConfig';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
+import { Søknadsdata } from '../types/Søknadsdata';
+
+interface SøknadStore {
+    søknadState: SøknadState | undefined;
+    init: (søker: Søker, barn: RegistrertBarn[], mellomlagretSøknadsdata?: Søknadsdata) => void;
+    submitSteg: (data: Partial<Søknadsdata>) => void;
+    erStegFullført: (stegId: string) => boolean;
+    resetSøknad: () => void;
+}
 
 export const useSøknadStore = create<SøknadStore>((set, get) => ({
     søknadState: undefined,
