@@ -70,7 +70,7 @@ const leggTilPeriode1 = async (page: Page) => {
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(0).click();
     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
-    await page.getByRole('button', { name: 'søndag 8' }).click();
+    await page.getByRole('button', { name: 'fredag 6' }).click();
 };
 
 const leggTilPeriode2 = async (page: Page) => {
@@ -83,7 +83,7 @@ const leggTilPeriode2 = async (page: Page) => {
 const leggTilReisedag = async (page: Page) => {
     await page
         .getByRole('group', {
-            name: 'Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.',
+            name: 'Er noen av dagene i perioden',
         })
         .getByLabel('Ja')
         .check();
@@ -147,7 +147,7 @@ export const leggTilUtenlandsopphold = async (page: Page) => {
         .filter({ hasText: /^Til og medÅpne datovelger$/ })
         .getByRole('button')
         .click();
-    await page.getByRole('button', { name: 'lørdag 7' }).click();
+    await page.getByRole('button', { name: 'fredag 6' }).click();
     await page.getByLabel('Velg land').selectOption('ABW');
     await testAccessibility(page);
     await page.getByRole('button', { name: 'Ok' }).click();
@@ -166,7 +166,7 @@ export const kontrollerOpplæringFlereEnkeltdagerOppsummering = async (page: Pag
 
 export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
-    await expect(page.locator('li').filter({ hasText: '2. desember 2024 - 8. desember 2024' })).toBeVisible();
+    await expect(page.locator('li').filter({ hasText: '2. desember 2024 - 6. desember 2024' })).toBeVisible();
     await expect(
         page.getByText('Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.?Ja'),
     ).toBeVisible();
@@ -182,7 +182,7 @@ export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) 
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
     await expect(
         page.getByText(
-            'Hvilke perioder søker du opplæringspenger for?2. desember 2024 - 8. desember 202416. desember 2024 -',
+            'Hvilke perioder søker du opplæringspenger for?2. desember 2024 - 6. desember 202416. desember 2024 -',
         ),
     ).toBeVisible();
     await expect(

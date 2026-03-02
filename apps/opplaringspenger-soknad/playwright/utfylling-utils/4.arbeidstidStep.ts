@@ -3,22 +3,20 @@ import { expect, Page } from '@playwright/test';
 import { testAccessibility } from '../utils/testAccessibility';
 
 export const fyllUtArbeidstid = async (page: Page) => {
-    await expect(
-        page.getByRole('heading', { level: 1, name: 'Fravær fra jobb på dagene du er i opplæring' }),
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Fravær i søknadsperioden' })).toBeVisible();
     await page
-        .getByRole('group', { name: 'Hvor mye fravær har du fra jobb hos SNODIG FISKER' })
+        .getByRole('group', { name: 'Hvor mye fravær har du hos SNODIG FISKER' })
         .getByLabel('Jeg er delvis borte')
         .check();
-    await page.getByRole('group', { name: 'mandag 2. desember' }).getByLabel('Timer').click();
     await page.getByRole('group', { name: 'mandag 2. desember' }).getByLabel('Timer').fill('5');
-    await page.getByRole('group', { name: 'Uke 49' }).getByLabel('Timer').first().click();
-    await page.getByRole('group', { name: 'Uke 49' }).getByLabel('Timer').first().fill('5');
-    await page.getByRole('group', { name: 'fredag 6. desember' }).getByLabel('Minutt').click();
+    await page.getByRole('group', { name: 'tirsdag 3. desember' }).getByLabel('Timer').fill('0');
+    await page.getByRole('group', { name: 'onsdag 4. desember' }).getByLabel('Timer').fill('0');
+    await page.getByRole('group', { name: 'torsdag 5. desember' }).getByLabel('Timer').fill('0');
     await page.getByRole('group', { name: 'fredag 6. desember' }).getByLabel('Minutt').fill('30');
+
     await page
-        .getByRole('group', { name: 'Hvor mye fravær har du fra jobb som frilanser' })
-        .getByLabel('Jeg jobber som normalt')
+        .getByRole('group', { name: 'Hvor mye fravær har du som frilanser' })
+        .getByLabel('Jeg er ikke borte')
         .check();
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();

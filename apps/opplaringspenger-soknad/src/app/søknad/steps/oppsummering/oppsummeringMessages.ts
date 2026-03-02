@@ -76,7 +76,7 @@ const nb = {
     'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
 
-    'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fravær fra jobb i søknadsperioden',
+    'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fravær i søknadsperioden',
     'oppsummering.fraværIPeriode.jobberIPerioden.ja': 'jobber',
     'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR':
         'Jeg er helt borte fra jobb fordi jeg er på opplæring (fullt fravær)',
@@ -86,7 +86,7 @@ const nb = {
         'Jeg jobber som normalt og er ikke borte fra jobb på grunn av opplæring (ikke fravær)',
     'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Jeg har likt fravær hver uke',
     'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
-        'Jeg har {prosent} prosent fravær fra jobb, i snitt {timer} hver ukedag',
+        'Jeg har {prosent} prosent fravær, i snitt {timer} hver ukedag',
     'oppsummering.fraværIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om fravær i perioden mangler',
     'oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Timer med fravær',
 

@@ -93,9 +93,9 @@ const nb = {
     'step.arbeidssituasjon.pageTitle': 'Din arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Din arbeidssituasjon',
 
-    'step.arbeidstid.stepTitle': 'Fravær på dagene du er i opplæring',
-    'step.arbeidstid.pageTitle': 'Fravær på dagene du er i opplæring',
-    'step.arbeidstid.stepIndicatorLabel': 'Fravær på dagene du er i opplæring',
+    'step.arbeidstid.stepTitle': 'Fravær i søknadsperioden',
+    'step.arbeidstid.pageTitle': 'Fravær i søknadsperioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Fravær i søknadsperioden',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
@@ -213,10 +213,10 @@ const nb = {
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikke',
     'ingenFraværConfirmation.content':
-        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring, eller er borte fra jobb på grunn av reise til opplæringsstedet. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
+        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du vært borte fra jobb fordi du skal delta på opplæring, eller er borte fra jobb på grunn av reise til opplæringsstedet. Stemmer det at du ikke har fravær i dagene du søker for?',
     'ingenFraværConfirmation.enkeltdag.content':
-        'Du har oppgitt at du jobber 7,5 timer eller mer på {antallDager, plural, one {dagen} other {dager}} du har opplæring. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring. Stemmer det at du ikke har fravær fra jobb {antallDager, plural, one {dagen} other {noen av dagene}} du søker for?',
-    'ingenFraværConfirmation.heading': 'Fravær fra jobb',
+        'Du har oppgitt at du jobber 7,5 timer eller mer på {antallDager, plural, one {dagen} other {dager}} du har opplæring. For å ha rett til opplæringspenger må du være borte fra jobb fordi du skal delta på opplæring. Stemmer det at du ikke har fravær {antallDager, plural, one {dagen} other {noen av dagene}} du søker for?',
+    'ingenFraværConfirmation.heading': 'Fravær',
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -297,9 +297,9 @@ const nn: Record<keyof typeof nb, string> = {
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjonen din',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjonen din',
 
-    'step.arbeidstid.stepTitle': 'Fravær fra jobb i søknadsperioden',
-    'step.arbeidstid.pageTitle': 'Fravær fra jobb i søknadsperioden',
-    'step.arbeidstid.stepIndicatorLabel': 'Fråvær frå jobb på dagane du er i opplæring',
+    'step.arbeidstid.stepTitle': 'Fråvær i søknadsperioden',
+    'step.arbeidstid.pageTitle': 'Fråvær i søknadsperioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Fråvær i søknadsperioden',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygda',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygda',

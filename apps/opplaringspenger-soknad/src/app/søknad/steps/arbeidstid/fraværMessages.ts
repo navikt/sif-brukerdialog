@@ -26,7 +26,7 @@ const nb = {
     'fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader':
         '{numDatesInMonthWithDuration, plural, one {# dag} other {# dager}} med fravær',
     'fraværIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion':
-        'Timer med fravær fra jobb {date} på grunn av kurs og reise',
+        'Timer med fravær {date} på grunn av kurs og reise',
     'fraværIPeriode.arbeidIPeriodeSpørsmål.weekHeader': '{månedOgÅr} -  uke {ukenummer}',
 
     'fraværIPeriode.validation.timerDag.timeHasNoValue': 'Du må fylle ut tid med fravær for {dato} {hvor}.',
