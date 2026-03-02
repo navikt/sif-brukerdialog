@@ -78,6 +78,7 @@ export const useYtelseMellomlagring = <State, MetaData>(
                 }
 
                 const metadataHash = createHash(metadata);
+
                 if (payload.søknadHashString !== metadataHash) {
                     await slettYtelseMellomlagring(ytelse);
                     return null;
@@ -124,6 +125,7 @@ export const useYtelseMellomlagring = <State, MetaData>(
         lagre: async (data: State): Promise<void> => {
             await lagreMutation.mutateAsync(data);
         },
+
         slett: async (): Promise<void> => {
             await slettMutation.mutateAsync();
         },

@@ -13,13 +13,13 @@ export const AppInfoLoader = () => {
     const registrerteBarn = useRegistrerteBarn();
 
     const metadata = useMemo<MellomlagringMetaData | undefined>(() => {
-        if (!søker.data) return undefined;
+        if (!søker.isFetched || !registrerteBarn.isFetched || !søker.data) return undefined;
         return {
             MELLOMLAGRING_VERSJON,
             søker: søker.data,
             barn: registrerteBarn.data || [],
         };
-    }, [søker.data, registrerteBarn.data]);
+    }, [søker.isFetched, registrerteBarn.isFetched, søker.data, registrerteBarn.data]);
 
     const mellomlagring = useYtelseMellomlagring<Mellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
