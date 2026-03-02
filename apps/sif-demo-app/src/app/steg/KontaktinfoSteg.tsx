@@ -1,4 +1,4 @@
-import { Alert, Button, Heading, TextField, VStack } from '@navikt/ds-react';
+import { Alert, Button, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
 import { SøknadFooter } from '@rammeverk/components';
@@ -9,11 +9,13 @@ import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
 import { useAvbrytSøknadHandler } from '../hooks/useAvbrytSøknadHandler';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
-interface Steg1Skjemadata {
-    navn: string;
+interface Skjemadata {
+    epost: string;
 }
 
-export const Steg1 = () => {
+export const KontaktinfoSteg = () => {
+    const stegId = StegId.KONTAKT;
+
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitSteg);
     const erStegFullført = useSøknadStore((s) => s.erStegFullført);
@@ -22,14 +24,14 @@ export const Steg1 = () => {
     const stegStatus = { erFullført: erStegFullført };
 
     const { erTilgjengelig } = useStegTilgang({
-        stegId: StegId.PERSONALIA,
+        stegId,
         stegRekkefølge,
         stegStatus,
     });
 
-    const { gåTilNeste } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
+    const { gåTilNeste, gåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
 
-    const [navn, setNavn] = useState<Steg1Skjemadata['navn']>(appState?.søknadsdata[StegId.PERSONALIA]?.navn ?? '');
+    const [epost, setEpost] = useState<Skjemadata['epost']>(appState?.søknadsdata[stegId]?.epost ?? '');
 
     if (!erTilgjengelig) {
         return <Alert variant="warning">Du kan ikke gå til dette steget ennå.</Alert>;
@@ -37,7 +39,7 @@ export const Steg1 = () => {
 
     const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
-        submitSteg({ [StegId.PERSONALIA]: { navn } });
+        submitSteg({ [stegId]: { epost } });
         gåTilNeste();
     };
 
@@ -45,11 +47,14 @@ export const Steg1 = () => {
         <VStack gap="space-24">
             <form onSubmit={handleSubmit}>
                 <VStack gap="space-16">
-                    <Heading size="large">Steg 1: Personalia</Heading>
-                    <TextField label="Navn" value={navn} onChange={(e) => setNavn(e.target.value)} />
-                    <div>
+                    <Heading size="large">Kontaktinfo</Heading>
+                    <TextField label="E-post" type="email" value={epost} onChange={(e) => setEpost(e.target.value)} />
+                    <HStack gap="space-16" justify="start">
+                        <Button type="button" variant="secondary" onClick={gåTilForrige}>
+                            Forrige
+                        </Button>
                         <Button type="submit">Neste</Button>
-                    </div>
+                    </HStack>
                 </VStack>
             </form>
             <SøknadFooter avbrytCallback={avbrytHandler} />

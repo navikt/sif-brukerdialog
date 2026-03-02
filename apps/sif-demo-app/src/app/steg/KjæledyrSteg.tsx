@@ -9,11 +9,13 @@ import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
 import { useAvbrytSøknadHandler } from '../hooks/useAvbrytSøknadHandler';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
-interface Steg2Skjemadata {
-    epost: string;
+interface Skjemadata {
+    navn: string;
 }
 
-export const Steg2 = () => {
+export const KjæledyrSteg = () => {
+    const stegId = StegId.KJÆLEDYR;
+
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitSteg);
     const erStegFullført = useSøknadStore((s) => s.erStegFullført);
@@ -22,14 +24,14 @@ export const Steg2 = () => {
     const stegStatus = { erFullført: erStegFullført };
 
     const { erTilgjengelig } = useStegTilgang({
-        stegId: StegId.KONTAKT,
+        stegId,
         stegRekkefølge,
         stegStatus,
     });
 
     const { gåTilNeste, gåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
 
-    const [epost, setEpost] = useState<Steg2Skjemadata['epost']>(appState?.søknadsdata[StegId.KONTAKT]?.epost ?? '');
+    const [navn, setNavn] = useState<Skjemadata['navn']>(appState?.søknadsdata[stegId]?.navn ?? '');
 
     if (!erTilgjengelig) {
         return <Alert variant="warning">Du kan ikke gå til dette steget ennå.</Alert>;
@@ -37,7 +39,11 @@ export const Steg2 = () => {
 
     const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
-        submitSteg({ [StegId.KONTAKT]: { epost } });
+        if (!navn) {
+            alert('Vennligst fyll ut alle feltene før du går videre.');
+            return;
+        }
+        submitSteg({ [stegId]: { navn } });
         gåTilNeste();
     };
 
@@ -45,8 +51,9 @@ export const Steg2 = () => {
         <VStack gap="space-24">
             <form onSubmit={handleSubmit}>
                 <VStack gap="space-16">
-                    <Heading size="large">Steg 2: Kontaktinfo</Heading>
-                    <TextField label="E-post" type="email" value={epost} onChange={(e) => setEpost(e.target.value)} />
+                    <Heading size="large">Navn på kjæledyr</Heading>
+                    <TextField label="Navn" value={navn} onChange={(e) => setNavn(e.target.value)} />
+
                     <HStack gap="space-16" justify="start">
                         <Button type="button" variant="secondary" onClick={gåTilForrige}>
                             Forrige

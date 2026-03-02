@@ -5,6 +5,7 @@ import { Søknadsdata } from '../types/Søknadsdata';
 
 export enum StegId {
     PERSONALIA = 'personalia',
+    KJÆLEDYR = 'kjæledyr',
     KONTAKT = 'kontakt',
     OPPSUMMERING = 'oppsummering',
 }
@@ -20,6 +21,10 @@ export const stegConfig: StegConfig = {
         id: StegId.PERSONALIA,
         route: 'om-deg',
     },
+    [StegId.KJÆLEDYR]: {
+        id: StegId.KJÆLEDYR,
+        route: 'kjaledyr',
+    },
     [StegId.KONTAKT]: {
         id: StegId.KONTAKT,
         route: 'kontaktinfo',
@@ -30,4 +35,4 @@ export const stegConfig: StegConfig = {
     },
 };
 
-export const stegRekkefølge: StegId[] = [StegId.PERSONALIA, StegId.KONTAKT, StegId.OPPSUMMERING];
+export const stegRekkefølge: StegId[] = [StegId.PERSONALIA, StegId.KJÆLEDYR, StegId.KONTAKT, StegId.OPPSUMMERING];

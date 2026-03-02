@@ -27,14 +27,14 @@ src/
 ├── rammeverk/           # → pakke senere
 │   ├── state/           # Zustand store, hooks
 │   ├── guards/          # useStegTilgang
-│   ├── routing/         # Route utilities
+│   ├── routing/         # Route utilities, StegRoute guard
 │   ├── types.ts         # Typer og utilities
 │   └── index.ts         # Public API
 ├── app/                 # App-spesifikk kode
 │   ├── config/          # StegId enum, stegConfig, søknadsdata-type
 │   ├── steg/            # Stegkomponenter (med egen skjemadata)
 │   ├── pages/           # Velkommen, Kvittering
-│   └── SøknadRouter.tsx
+│   └── Søknad.tsx       # Hovedkomponent med routing
 ```
 
 ---
