@@ -6,16 +6,16 @@ import { useStegTilgang } from '@rammeverk/guards';
 import { useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
-import { useSøknadState } from '../hooks/useSøknadState';
+import { useAppStore } from '../hooks/useAppStore';
 
 interface Steg1Skjemadata {
     navn: string;
 }
 
 export const Steg1 = () => {
-    const søknadsdata = useSøknadState((s) => s.søknadsdata);
-    const submitSteg = useSøknadState((s) => s.submitSteg);
-    const erStegFullført = useSøknadState((s) => s.erStegFullført);
+    const appState = useAppStore((s) => s.appState);
+    const submitSteg = useAppStore((s) => s.submitSteg);
+    const erStegFullført = useAppStore((s) => s.erStegFullført);
 
     const stegStatus = { erFullført: erStegFullført };
 
@@ -27,7 +27,7 @@ export const Steg1 = () => {
 
     const { gåTilNeste } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
 
-    const [navn, setNavn] = useState<Steg1Skjemadata['navn']>(søknadsdata?.stegData[StegId.PERSONALIA]?.navn ?? '');
+    const [navn, setNavn] = useState<Steg1Skjemadata['navn']>(appState?.søknadsdata[StegId.PERSONALIA]?.navn ?? '');
 
     if (!erTilgjengelig) {
         return <Alert variant="warning">Du kan ikke gå til dette steget ennå.</Alert>;
@@ -50,7 +50,7 @@ export const Steg1 = () => {
                     </div>
                 </VStack>
             </form>
-            <SøknadFooter avbrytCallback={useSøknadState.getState().resetStegData} />
+            <SøknadFooter avbrytCallback={useAppStore.getState().resetSøknad} />
         </VStack>
     );
 };

@@ -3,32 +3,33 @@ import { Route, Routes } from 'react-router-dom';
 
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 
-import { StegData, StegId, stegConfig, stegRekkefølge } from './config/stegConfig';
-import { useSøknadState } from './hooks';
+import { StegId, stegConfig, stegRekkefølge } from './config/stegConfig';
+import { useAppStore } from './hooks';
 import { KvitteringPage } from './pages/KvitteringPage';
 import { VelkommenPage } from './pages/VelkommenPage';
 import { Oppsummering } from './steg/Oppsummering';
 import { Steg1 } from './steg/Steg1';
 import { Steg2 } from './steg/Steg2';
+import { Søknadsdata } from './types/Søknadsdata';
 import { SøknadIndexRedirect, useSøknadFlyt } from '../rammeverk';
 
 interface Props {
     søker: Søker;
     barn: RegistrertBarn[];
-    mellomlagretStegData?: StegData;
+    mellomlagretSøknadsdata?: Søknadsdata;
 }
 
-export const Søknad = ({ søker, barn, mellomlagretStegData }: Props) => {
-    const init = useSøknadState((s) => s.init);
+export const Søknad = ({ søker, barn, mellomlagretSøknadsdata }: Props) => {
+    const init = useAppStore((s) => s.init);
     const currentStegId = useSøknadFlyt((s) => s.currentStegId);
     const hasInitialized = useRef(false);
 
     useEffect(() => {
         if (!hasInitialized.current) {
-            init(søker, barn, mellomlagretStegData);
+            init(søker, barn, mellomlagretSøknadsdata);
             hasInitialized.current = true;
         }
-    }, [søker, barn, mellomlagretStegData, init]);
+    }, [søker, barn, mellomlagretSøknadsdata, init]);
 
     return (
         <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>

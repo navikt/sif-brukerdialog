@@ -1,6 +1,7 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 
 import { StegConfig } from '@rammeverk/types';
+import { Søknadsdata } from '../types/Søknadsdata';
 
 export enum StegId {
     PERSONALIA = 'personalia',
@@ -8,19 +9,10 @@ export enum StegId {
     OPPSUMMERING = 'oppsummering',
 }
 
-export interface StegData {
-    [StegId.PERSONALIA]?: {
-        navn: string;
-    };
-    [StegId.KONTAKT]?: {
-        epost: string;
-    };
-}
-
-export interface Søknadsdata {
+export interface AppState {
     søker: Søker;
     barn: RegistrertBarn[];
-    stegData: StegData;
+    søknadsdata: Søknadsdata;
 }
 
 export const stegConfig: StegConfig = {

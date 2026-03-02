@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { useSøknadFlyt } from '@rammeverk/state';
 
 import { StegId, stegConfig } from '../config/stegConfig';
-import { useSøknadState } from '../hooks';
+import { useAppStore } from '../hooks';
 
 export const VelkommenPage = () => {
     const navigate = useNavigate();
     const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
-    const søknadsdata = useSøknadState((s) => s.søknadsdata);
+    const appState = useAppStore((s) => s.appState);
 
-    const harPåbegyntSøknad = søknadsdata && Object.keys(søknadsdata.stegData).length > 0;
+    const harPåbegyntSøknad = appState && Object.keys(appState.søknadsdata).length > 0;
 
     const handleStart = () => {
         const førsteSteg = stegConfig[StegId.PERSONALIA];

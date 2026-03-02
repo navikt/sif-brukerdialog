@@ -6,12 +6,12 @@ import { useStegTilgang } from '@rammeverk/guards';
 import { useSøknadFlyt, useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
-import { useSøknadState } from '../hooks/useSøknadState';
+import { useAppStore } from '../hooks/useAppStore';
 
 export const Oppsummering = () => {
-    const søknadsdata = useSøknadState((s) => s.søknadsdata);
-    const erStegFullført = useSøknadState((s) => s.erStegFullført);
-    const resetSøknadsdata = useSøknadState((s) => s.resetStegData);
+    const appState = useAppStore((s) => s.appState);
+    const erStegFullført = useAppStore((s) => s.erStegFullført);
+    const resetSøknadsdata = useAppStore((s) => s.resetSøknad);
 
     const stegStatus = { erFullført: erStegFullført };
 
@@ -32,7 +32,7 @@ export const Oppsummering = () => {
 
     const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {
         evt.preventDefault();
-        console.log('Sender inn søknad:', søknadsdata);
+        console.log('Sender inn søknad:', appState);
         setSøknadSendt();
         resetSøknadsdata();
         navigate('/kvittering');
@@ -45,10 +45,10 @@ export const Oppsummering = () => {
                 <Alert variant="info">
                     <VStack gap="space-2">
                         <p>
-                            <strong>Navn:</strong> {søknadsdata?.stegData[StegId.PERSONALIA]?.navn}
+                            <strong>Navn:</strong> {appState?.søknadsdata[StegId.PERSONALIA]?.navn}
                         </p>
                         <p>
-                            <strong>E-post:</strong> {søknadsdata?.stegData[StegId.KONTAKT]?.epost}
+                            <strong>E-post:</strong> {appState?.søknadsdata[StegId.KONTAKT]?.epost}
                         </p>
                     </VStack>
                 </Alert>

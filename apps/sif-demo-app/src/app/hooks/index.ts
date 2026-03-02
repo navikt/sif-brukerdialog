@@ -1,1 +1,1 @@
-export { useSøknadState } from './useSøknadState';
+export { useAppStore } from './useAppStore';

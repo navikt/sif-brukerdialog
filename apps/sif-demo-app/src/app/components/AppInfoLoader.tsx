@@ -34,5 +34,5 @@ export const AppInfoLoader = () => {
         return <ErrorPage error="Søker-data mangler" />;
     }
 
-    return <Søknad søker={søker.data} barn={registrerteBarn.data || []} mellomlagretStegData={mellomlagring.data} />;
+    return <Søknad søker={søker.data} barn={registrerteBarn.data || []} mellomlagretSøknadsdata={mellomlagring.data} />;
 };
