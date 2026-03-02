@@ -9,7 +9,7 @@ import { useAppStore } from '../hooks';
 export const VelkommenPage = () => {
     const navigate = useNavigate();
     const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
-    const appState = useAppStore((s) => s.appState);
+    const appState = useAppStore((s) => s.søknadState);
 
     const harPåbegyntSøknad = appState && Object.keys(appState.søknadsdata).length > 0;
 

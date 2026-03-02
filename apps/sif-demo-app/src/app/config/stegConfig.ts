@@ -9,7 +9,7 @@ export enum StegId {
     OPPSUMMERING = 'oppsummering',
 }
 
-export interface AppState {
+export interface SøknadState {
     søker: Søker;
     barn: RegistrertBarn[];
     søknadsdata: Søknadsdata;

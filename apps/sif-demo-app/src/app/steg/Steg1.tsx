@@ -6,16 +6,16 @@ import { useStegTilgang } from '@rammeverk/guards';
 import { useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
-import { useAppStore } from '../hooks/useAppStore';
+import { useSøknadStore } from '../hooks/useSøknadStore';
 
 interface Steg1Skjemadata {
     navn: string;
 }
 
 export const Steg1 = () => {
-    const appState = useAppStore((s) => s.appState);
-    const submitSteg = useAppStore((s) => s.submitSteg);
-    const erStegFullført = useAppStore((s) => s.erStegFullført);
+    const appState = useSøknadStore((s) => s.søknadState);
+    const submitSteg = useSøknadStore((s) => s.submitSteg);
+    const erStegFullført = useSøknadStore((s) => s.erStegFullført);
 
     const stegStatus = { erFullført: erStegFullført };
 
@@ -50,7 +50,7 @@ export const Steg1 = () => {
                     </div>
                 </VStack>
             </form>
-            <SøknadFooter avbrytCallback={useAppStore.getState().resetSøknad} />
+            <SøknadFooter avbrytCallback={useSøknadStore.getState().resetSøknad} />
         </VStack>
     );
 };

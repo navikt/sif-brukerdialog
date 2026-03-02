@@ -6,12 +6,12 @@ import { useStegTilgang } from '@rammeverk/guards';
 import { useSøknadFlyt, useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
-import { useAppStore } from '../hooks/useAppStore';
+import { useSøknadStore } from '../hooks/useSøknadStore';
 
 export const Oppsummering = () => {
-    const appState = useAppStore((s) => s.appState);
-    const erStegFullført = useAppStore((s) => s.erStegFullført);
-    const resetSøknadsdata = useAppStore((s) => s.resetSøknad);
+    const appState = useSøknadStore((s) => s.søknadState);
+    const erStegFullført = useSøknadStore((s) => s.erStegFullført);
+    const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
 
     const stegStatus = { erFullført: erStegFullført };
 
