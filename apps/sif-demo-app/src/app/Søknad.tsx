@@ -20,8 +20,8 @@ interface Props {
 }
 
 const AppMellomlagringObserver = () => {
-    const { getData, lagreMellomlagring } = useMellomlagring();
-    return <MellomlagringObserver callbacks={{ getData, lagre: lagreMellomlagring }} />;
+    const { getData, lagre } = useMellomlagring();
+    return <MellomlagringObserver callbacks={{ getData, lagre }} />;
 };
 
 export const Søknad = ({ søker, barn, mellomlagring }: Props) => {

@@ -1,8 +1,10 @@
-import { useSøknadFlyt } from '../../rammeverk';
+import { useMemo } from 'react';
 
-import { MELLOMLAGRING_VERSJON } from '../config/appConfig';
+import { useYtelseMellomlagring } from '@navikt/sif-common-query';
+
+import { useSøknadFlyt } from '../../rammeverk';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config/appConfig';
 import { Mellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
-import { mellomlagringUtils } from '../utils/mellomlagringUtils';
 import { useSøknadStore } from './useSøknadStore';
 
 export const useMellomlagring = () => {
@@ -15,11 +17,16 @@ export const useMellomlagring = () => {
 
     const { søker, barn, søknadsdata } = søknadState;
 
-    const metaData: MellomlagringMetaData = {
-        MELLOMLAGRING_VERSJON,
-        søker,
-        barn,
-    };
+    const metadata = useMemo<MellomlagringMetaData>(
+        () => ({
+            MELLOMLAGRING_VERSJON,
+            søker,
+            barn,
+        }),
+        [søker, barn],
+    );
+
+    const mellomlagring = useYtelseMellomlagring<Mellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
     const getData = (): Mellomlagring => ({
         søknadsdata,
@@ -28,8 +35,8 @@ export const useMellomlagring = () => {
 
     return {
         getData,
-        hentMellomlagring: () => mellomlagringUtils.hent(metaData),
-        slettMellomlagring: mellomlagringUtils.slett,
-        lagreMellomlagring: (data: Mellomlagring) => mellomlagringUtils.lagre(data, metaData),
+        lagre: mellomlagring.lagre,
+        slett: mellomlagring.slett,
+        isLagring: mellomlagring.isLagring,
     };
 };

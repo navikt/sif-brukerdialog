@@ -23,7 +23,6 @@ export * from './api';
 // Alle utils
 export * from './utils/errorHandlers';
 export * from './utils/initApiClient';
-export * from './utils/ytelseMellomlagringUtils';
 
 // Komponenter
 export { ApiErrorAlert } from './components/ApiErrorAlert';

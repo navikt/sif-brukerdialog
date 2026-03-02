@@ -1,32 +1,27 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 
-import { useRegistrerteBarn, useSøker } from '@navikt/sif-common-query';
+import { useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@navikt/sif-common-query';
 
-import { MELLOMLAGRING_VERSJON } from '../config/appConfig';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config/appConfig';
 import { Søknad } from '../Søknad';
 import { ErrorPage } from '../pages/ErrorPage';
 import { LoadingPage } from '../pages/LoadingPage';
 import { Mellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
-import { mellomlagringUtils } from '../utils/mellomlagringUtils';
 
 export const AppInfoLoader = () => {
     const søker = useSøker();
     const registrerteBarn = useRegistrerteBarn();
 
-    const mellomlagring = useQuery<Mellomlagring | null>({
-        queryKey: ['mellomlagring-validated', søker.data?.aktørId],
-        queryFn: async () => {
-            if (!søker.data) return null;
-            const metaData: MellomlagringMetaData = {
-                MELLOMLAGRING_VERSJON,
-                søker: søker.data,
-                barn: registrerteBarn.data || [],
-            };
-            return mellomlagringUtils.hent(metaData);
-        },
-        enabled: !!søker.data,
-        staleTime: 30 * 1000,
-    });
+    const metadata = useMemo<MellomlagringMetaData | undefined>(() => {
+        if (!søker.data) return undefined;
+        return {
+            MELLOMLAGRING_VERSJON,
+            søker: søker.data,
+            barn: registrerteBarn.data || [],
+        };
+    }, [søker.data, registrerteBarn.data]);
+
+    const mellomlagring = useYtelseMellomlagring<Mellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
     const isLoading = søker.isLoading || registrerteBarn.isLoading || (!!søker.data && !mellomlagring.isFetched);
     const isError = søker.isError || registrerteBarn.isError || mellomlagring.isError;

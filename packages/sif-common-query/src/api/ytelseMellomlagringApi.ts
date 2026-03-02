@@ -1,8 +1,8 @@
 import { MellomlagringController } from '@navikt/k9-brukerdialog-prosessering-api';
 
 import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
-import { ytelseMellomlagringJsonParser } from '../utils/ytelseMellomlagringJsonParser';
 import { handleApiError } from '../utils/errorHandlers';
+import { ytelseMellomlagringJsonParser } from '../utils/ytelseMellomlagringJsonParser';
 
 /**
  * Henter mellomlagrede data for en spesifikk ytelse fra k9-brukerdialog-prosessering-api
