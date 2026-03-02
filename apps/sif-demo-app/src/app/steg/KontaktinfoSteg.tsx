@@ -27,8 +27,7 @@ export const KontaktinfoSteg = () => {
 
     const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
-        submitSteg({ [stegId]: { epost } });
-        gåTilNeste();
+        submitSteg({ [stegId]: { epost } }, { onSuccess: gåTilNeste });
     };
 
     return (

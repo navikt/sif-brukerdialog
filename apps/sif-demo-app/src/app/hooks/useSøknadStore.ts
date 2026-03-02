@@ -5,10 +5,14 @@ import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { StegId, SøknadState } from '../config/stegConfig';
 import { Søknadsdata } from '../types/Søknadsdata';
 
+interface SubmitStegOptions {
+    onSuccess?: () => void;
+}
+
 interface SøknadStore {
     søknadState: SøknadState | undefined;
     init: (søker: Søker, barn: RegistrertBarn[], mellomlagretSøknadsdata?: Søknadsdata) => void;
-    submitSteg: (data: Partial<Søknadsdata>) => void;
+    submitSteg: (data: Partial<Søknadsdata>, options?: SubmitStegOptions) => void;
     erStegFullført: (stegId: string) => boolean;
     resetSøknad: () => void;
 }
@@ -25,7 +29,7 @@ export const useSøknadStore = create<SøknadStore>((set, get) => ({
             },
         }),
 
-    submitSteg: (data) => {
+    submitSteg: (data, options) => {
         set((state) => {
             if (!state.søknadState) return state;
             return {
@@ -35,6 +39,7 @@ export const useSøknadStore = create<SøknadStore>((set, get) => ({
                 },
             };
         });
+        options?.onSuccess?.();
     },
 
     erStegFullført: (stegId) => {

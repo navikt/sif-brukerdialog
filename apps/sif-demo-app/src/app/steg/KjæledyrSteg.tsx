@@ -31,8 +31,7 @@ export const KjæledyrSteg = () => {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitSteg({ [stegId]: { navn } });
-        gåTilNeste();
+        submitSteg({ [stegId]: { navn } }, { onSuccess: gåTilNeste });
     };
 
     return (
