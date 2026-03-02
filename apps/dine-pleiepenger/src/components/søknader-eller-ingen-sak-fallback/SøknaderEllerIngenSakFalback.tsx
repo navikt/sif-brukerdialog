@@ -44,7 +44,7 @@ const SøknaderEllerIngenSakFalback = () => {
     return (
         <DefaultPageLayout documentTitle={text('forside.dokumentTittel')}>
             <VStack gap="space-48">
-                <SaksbehandlingstidPanel />
+                <SaksbehandlingstidPanel sakErLastet={true} />
                 <DineInnsendteSøknader søknader={innsendteSøknader} />
                 <OppdatereSakLenker />
                 <SkrivTilOssLenker />

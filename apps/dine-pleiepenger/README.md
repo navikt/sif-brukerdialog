@@ -6,12 +6,17 @@ Innsynsløsning på nav.no for dem som har søkt om Pleiepenger for sykt barn.
 # Installer prosjekt
 yarn install
 
-# Start next server på http://localhost:8080
-yarn dev
+# Start Next.js med MSW mocking (ingen backend nødvendig)
+yarn dev:mock
 
-# Start mock server på http://localhost:1234.
-# Denne simulerer sin-innsyn-api og k9-brukerdialog-api
-yarn dev-api
+# Start Next.js mot ekte backend (krever VPN/tilgang)
+yarn dev
+```
+
+**Bytte mock-scenario:**
+
+```bash
+MOCK_SCENARIO=en-sak yarn dev:mock
 ```
 
 #### Storybook

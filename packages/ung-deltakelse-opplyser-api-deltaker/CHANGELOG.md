@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.14
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.92
+
 ## 0.3.13
 
 ### Patch Changes
