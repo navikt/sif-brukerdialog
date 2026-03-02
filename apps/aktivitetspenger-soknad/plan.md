@@ -72,7 +72,7 @@ Rammeverket er helt uavhengig av skjemabibliotek (Formik, React Hook Form, etc.)
 | Router | Innhold |
 |--------|---------|
 | **AppRouter** | Velkommen, Kvittering, IkkeTilgangSide, Loading/bootstrap |
-| **SøknadRouter** | Alle steg inkludert oppsummering |
+| **Søknad** | Alle steg inkludert oppsummering |
 
 **URL-struktur:** `/soknad/{steg-id}` (navngitte steg, ikke numeriske)
 
@@ -91,7 +91,6 @@ Appen definerer sine egne routes og stegkomponenter. stegConfig inneholder kun l
 
 ```
 stegConfig = { logikk per steg }
-SøknadRouter = app-spesifikke routes med StegGuard
 Steg = app-spesifikke komponenter som bruker useSteg()
 ```
 
@@ -138,7 +137,7 @@ Stegflyten varierer basert på brukerens svar.
 
 ### Oppsummering er siste steg
 
-Oppsummering håndteres i SøknadRouter som et vanlig steg, men:
+Oppsummering håndteres i Søknad som et vanlig steg, men:
 
 - Har egen logikk for "Send inn"-knapp
 - Er alltid siste steg i flyten
@@ -273,7 +272,7 @@ Ved lasting av appen:
 | Domene | Norsk | søknad, steg, mellomlagring |
 | Teknisk | Engelsk | state, guard, provider, hook |
 
-Eksempler: `useSøknadState`, `StegGuard`, `MellomlagringObserver`, `SøknadRouter`
+Eksempler: `useSøknadState`, `StegGuard`, `MellomlagringObserver`
 
 ---
 
