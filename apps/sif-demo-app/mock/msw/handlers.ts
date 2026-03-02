@@ -8,7 +8,7 @@ store.init(ScenarioType.default);
 export const handlers = [
     http.get(`**/oppslag/soker`, () => HttpResponse.json(store.get().søker)),
 
-    http.get(`**/oppslag/barn`, () => HttpResponse.json({ barn: store.get().barn })),
+    http.get(`**/oppslag/barn`, () => HttpResponse.json(store.get().barn)),
 
     http.get(`**/mellomlagring/:ytelse`, () => HttpResponse.json(store.get().mellomlagring ?? {})),
 

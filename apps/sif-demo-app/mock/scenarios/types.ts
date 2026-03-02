@@ -1,26 +1,12 @@
+import { z } from 'zod';
+import { zBarnOppslag, zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
+
 export enum ScenarioType {
     default = 'default',
 }
 
-export interface Søker {
-    aktørId: string;
-    fødselsdato: string;
-    fødselsnummer: string;
-    fornavn: string;
-    mellomnavn?: string;
-    etternavn: string;
-}
-
-export interface Barn {
-    fornavn: string;
-    etternavn: string;
-    aktørId: string;
-    fødselsdato: string;
-    fødselsnummer: string;
-}
-
 export interface ScenarioData {
-    søker: Søker;
-    barn: Barn[];
+    søker: z.infer<typeof zSøker>;
+    barn: z.infer<typeof zBarnOppslag>[];
     mellomlagring?: Record<string, unknown>;
 }
