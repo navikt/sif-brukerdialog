@@ -1,3 +1,4 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import { Box, Checkbox, Table } from '@navikt/ds-react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
@@ -6,7 +7,6 @@ import dayjs from 'dayjs';
 import { ReactElement } from 'react';
 
 import { SelectableListType } from '../../../hooks/useSelectableList';
-import { AppText, useAppIntl } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
 import UkeInfoIkon from './UkeInfo';

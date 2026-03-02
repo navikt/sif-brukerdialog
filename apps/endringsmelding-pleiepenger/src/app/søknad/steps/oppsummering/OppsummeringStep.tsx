@@ -1,25 +1,23 @@
-import './oppsummering.css';
-
-import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
+import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@app/hooks';
+import { AppText, useAppIntl } from '@app/i18n';
+import { getApiDataFromSøknadsdata } from '@app/utils';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { DurationText, FormLayout, JaNeiSvar, SummarySection } from '@navikt/sif-common-ui';
-import { ISODurationToDuration } from '@navikt/sif-common-utils';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getCheckedValidator } from '@navikt/sif-validation';
-import { getApiDataFromSøknadsdata } from '@utils';
 import { useEffect, useRef } from 'react';
 
-import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { useStepConfig } from '../../../hooks/useStepConfig';
-import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';
-import ArbeidstidOppsummering from './ArbeidstidOppsummering';
-import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
+import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
+import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
+import NyttArbeidsforholdSummary from './nytt-arbeidsforhold/NyttArbeidsforholdSummary';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
+import TilsynsordningOppsummering from './tilsynsordning/TilsynsordningOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -69,14 +67,19 @@ const OppsummeringStep = () => {
     const {
         arbeidstid,
         lovbestemtFerie,
+        tilsynsordning,
         dataBruktTilUtledning: { ukjenteArbeidsforhold },
     } = apiData.ytelse;
 
     const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
     const harGyldigArbeidstid = oppsummeringStepUtils.erArbeidstidEndringerGyldig(arbeidstid);
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
+    const tilsynsordningErEndret = oppsummeringStepUtils.harEndringerITilsynsordningApiData(
+        apiData.ytelse.tilsynsordning,
+    );
 
-    const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
+    const harIngenEndringer =
+        arbeidstidErEndret === false && lovbestemtFerieErEndret === false && tilsynsordningErEndret === false;
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -85,83 +88,28 @@ const OppsummeringStep = () => {
                     <AppText id="oppsummeringStep.guide" />
                 </p>
             </FormLayout.Guide>
+
             <VStack gap="space-48">
                 {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
-                    <SummarySection header={text('oppsummeringStep.nyttArbeidsforhold.tittel')}>
-                        <VStack gap="space-40">
-                            {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
-                                const arbeidsforhold = ukjenteArbeidsforhold.find(
-                                    (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
-                                );
-
-                                if (!arbeidsforhold) {
-                                    return;
-                                }
-                                const getTestKey = (key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
-                                return (
-                                    <VStack gap="space-16" key={arbeidsgiver.key}>
-                                        <Heading level="3" size="small">
-                                            {arbeidsgiver.navn}
-                                        </Heading>
-                                        <VStack gap="space-4">
-                                            <Heading level="4" size="xsmall">
-                                                <AppText
-                                                    id="oppsummeringStep.arbeidsgiver.erAnsatt"
-                                                    values={{ arbeidsgivernavn: arbeidsgiver.navn }}
-                                                />
-                                            </Heading>
-                                            <div data-testid={getTestKey('erAnsatt')}>
-                                                <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
-                                            </div>
-                                        </VStack>
-                                        {arbeidsforhold.erAnsatt === false && <IkkeAnsattMelding />}
-                                        {arbeidsforhold.erAnsatt && (
-                                            <VStack gap="space-4">
-                                                <Heading level="4" size="xsmall">
-                                                    <AppText
-                                                        id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
-                                                        values={{ arbeidsgivernavn: arbeidsgiver.navn }}
-                                                    />
-                                                </Heading>
-                                                <div data-testid={getTestKey('timerPerUke')}>
-                                                    <DurationText
-                                                        duration={ISODurationToDuration(
-                                                            arbeidsforhold.normalarbeidstid.timerPerUke,
-                                                        )}
-                                                    />
-                                                </div>
-                                            </VStack>
-                                        )}
-                                    </VStack>
-                                );
-                            })}
-                        </VStack>
-                    </SummarySection>
+                    <NyttArbeidsforholdSummary
+                        arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
+                        ukjenteArbeidsforhold={ukjenteArbeidsforhold}
+                    />
                 )}
 
                 {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
-                    <SummarySection header={text('oppsummeringStep.arbeidstid.tittel')}>
-                        {arbeidstid && arbeidstidErEndret ? (
-                            <>
-                                <ArbeidstidOppsummering
-                                    arbeidstid={arbeidstid}
-                                    arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
-                                />
-                                {!harGyldigArbeidstid && (
-                                    <Alert variant="error">
-                                        <AppText id="oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig" />
-                                    </Alert>
-                                )}
-                            </>
-                        ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.arbeidstid.ingenEndringer" />
-                            </Alert>
-                        )}
-                    </SummarySection>
+                    <ArbeidstidOppsummering
+                        arbeidstid={arbeidstid}
+                        arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
+                        arbeidstidErEndret={arbeidstidErEndret}
+                        harGyldigArbeidstid={harGyldigArbeidstid}
+                    />
                 )}
                 {valgteEndringer.lovbestemtFerie && (
-                    <SummarySection header={text('oppsummeringStep.ferie.tittel')}>
+                    <VStack gap="space-16">
+                        <Heading level="2" size="medium">
+                            <AppText id="oppsummeringStep.ferie.tittel" />
+                        </Heading>
                         {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
                             <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
                         ) : (
@@ -169,7 +117,24 @@ const OppsummeringStep = () => {
                                 <AppText id="oppsummeringStep.ferie.ingenEndringer" />
                             </Alert>
                         )}
-                    </SummarySection>
+                    </VStack>
+                )}
+                {valgteEndringer.tilsynsordning && (
+                    <VStack gap="space-16">
+                        <Heading level="2" size="medium">
+                            <AppText id="oppsummeringStep.tilsynsordning.tittel" />
+                        </Heading>
+                        {tilsynsordning !== undefined && tilsynsordningErEndret ? (
+                            <TilsynsordningOppsummering
+                                tilsynsordning={tilsynsordning}
+                                tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
+                            />
+                        ) : (
+                            <Alert variant="info">
+                                <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
+                            </Alert>
+                        )}
+                    </VStack>
                 )}
                 {harIngenEndringer ? (
                     <div>

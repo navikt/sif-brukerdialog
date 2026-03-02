@@ -1,5 +1,5 @@
+import { ArbeidstidEndring, TimerEllerProsent } from '@app/types';
 import { decimalDurationToDuration, Duration, durationToDecimalDuration } from '@navikt/sif-common-utils';
-import { ArbeidstidEndring, TimerEllerProsent } from '@types';
 
 export const beregnEndretArbeidstidForUke = (
     endring: ArbeidstidEndring,

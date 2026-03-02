@@ -1,5 +1,5 @@
+import { ArbeidsaktivitetType, Arbeidsgiver } from '@app/types';
 import { Box, ExpansionCard, VStack } from '@navikt/ds-react';
-import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
 
@@ -36,7 +36,7 @@ const ArbeidsaktivitetBlock = ({
         );
     };
     return renderAsExpansionCard ? (
-        <ExpansionCard aria-label={navn} defaultOpen={expansionCardDefaultOpen}>
+        <ExpansionCard aria-label={navn} defaultOpen={expansionCardDefaultOpen} size="small">
             <ExpansionCard.Header>{renderHeader()}</ExpansionCard.Header>
             <ExpansionCard.Content data-color="accent">{children}</ExpansionCard.Content>
         </ExpansionCard>

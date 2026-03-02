@@ -13,6 +13,7 @@ const nb = {
     'oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig':
         'Det er registrert flere timer enn det er tilgjengelig for en periode. Vennligst gå tilbake til steget for arbeidstid og korriger dette.',
     'oppsummeringStep.arbeidstid.ingenEndringer': 'Det er ikke registrert noen endringer i arbeidstid',
+    'oppsummeringStep.arbeidstid.endringerIArbeidstid': 'Endringer i arbeidstid',
     'oppsummeringStep.arbeidstid.kolonne.endretArbeidstid': 'Endret arbeidstid',
     'oppsummeringStep.arbeidstid.kolonne.iPerioden': 'I perioden',
     'oppsummeringStep.arbeidstid.frilanser.tittel': 'Frilanser',
@@ -23,6 +24,10 @@ const nb = {
 
     'oppsummeringStep.ferie.lagtTil': 'Ferie som er lagt til',
     'oppsummeringStep.ferie.fjernet': 'Ferie som er fjernet',
+
+    'oppsummeringStep.tilsynsordning.tittel': 'Endringer i omsorgstilbud',
+    'oppsummeringStep.tilsynsordning.ingenEndringer': 'Det er ikke registrert noen endringer i omsorgstilbud',
+    'oppsummeringStep.tilsynsordning.dagerEndret': ' - {antall} {antall, plural, one {dag} other {dager}} endret',
 
     'oppsummeringStep.forrige': 'Forrige steg',
     'oppsummeringStep.forrige.ariaLabel': 'Pil venstre',

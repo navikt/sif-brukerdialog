@@ -1,5 +1,5 @@
-import { SøknadInitialData } from '@hooks';
-import { SøknadContextState } from '@types';
+import { SøknadInitialData } from '@app/hooks';
+import { SøknadContextState } from '@app/types';
 import { createContext, Dispatch, FunctionComponent, ReactNode, useMemo, useReducer } from 'react';
 
 import { SøknadContextAction } from './action/actionCreator';

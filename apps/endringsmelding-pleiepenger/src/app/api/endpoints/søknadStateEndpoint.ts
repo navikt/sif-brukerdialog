@@ -1,7 +1,7 @@
+import { K9Sak, Søknadsdata, ValgteEndringer } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
-import { K9Sak, Søknadsdata, ValgteEndringer } from '@types';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 
@@ -29,8 +29,10 @@ interface SøknadStateHashInfo {
     barnAktørId: string;
 }
 
-interface SøknadStatePersistenceEndpoint
-    extends Omit<PersistenceInterface<SøknadStatePersistence>, 'update' | 'rehydrate'> {
+interface SøknadStatePersistenceEndpoint extends Omit<
+    PersistenceInterface<SøknadStatePersistence>,
+    'update' | 'rehydrate'
+> {
     update: (state: Omit<SøknadStatePersistence, 'søknadHashString'>, søker: Søker) => Promise<AxiosResponse>;
     fetch: () => Promise<SøknadStatePersistence | undefined>;
 }
