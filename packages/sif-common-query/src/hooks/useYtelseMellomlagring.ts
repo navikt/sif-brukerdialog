@@ -90,7 +90,7 @@ export const useYtelseMellomlagring = <State, MetaData>(
             }
         },
         enabled: (options?.enabled ?? true) && !!metadata,
-        staleTime: 30 * 1000,
+        staleTime: Infinity,
         gcTime: 5 * 60 * 1000,
     });
 
@@ -104,9 +104,6 @@ export const useYtelseMellomlagring = <State, MetaData>(
                 søknadHashString: createHash(metadata),
             };
             return oppdaterYtelseMellomlagring(ytelse, payload as unknown as Record<string, unknown>);
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey });
         },
     });
 
