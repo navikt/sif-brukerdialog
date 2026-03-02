@@ -8,7 +8,7 @@ const nb = {
         'Hvis du søker for første gang, eller hvis du har hatt et opphold i opplæringspengene i minst fire uker, kontakter vi arbeidsgiverne som du har fravær fra, for å hente inn inntektsmelding.',
 
     'fraværIPeriode.endring.tittel': 'Obs! Vi har endret søknaden.',
-    'fraværIPeriode.endring.info': 'Vi har endret fra å spørre om hvor mye du jobbet, til hvor mye fravær du har.',
+    'fraværIPeriode.endring.info': 'Vi har endret fra å spørre om hvor mye du jobber, til hvor mye fravær du har.',
 
     'fraværIPeriode.FrilansLabel': 'Frilans',
     'fraværIPeriode.SNLabel': 'Selvstendig næringsdrivende',
@@ -58,7 +58,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Viss du søkjer for fyrste gong, eller viss du har hatt eit opphald i opplæringspengane i minst fire veker, kontaktar me arbeidsgjevaren som du har fråvær frå, for å hente inn inntektsmelding.',
 
     'fraværIPeriode.endring.tittel': 'Obs! Vi har endret søknaden.',
-    'fraværIPeriode.endring.info': 'Vi har endret fra å spørre om hvor mye du jobbet, til hvor mye fravær du har.',
+    'fraværIPeriode.endring.info': 'Vi har endret fra å spørre om hvor mye du jobber, til hvor mye fravær du har.',
 
     'fraværIPeriode.FrilansLabel': 'Frilans',
     'fraværIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
