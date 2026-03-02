@@ -46,7 +46,7 @@ const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, k
                     }}
                     minDate={søknadsperiode.from}
                     maxDate={søknadsperiode.to}
-                    disableWeekends={false}
+                    disableWeekends={true}
                     labelRenderer={(dato: Enkeltdato) => {
                         const erUtenforSøknadsperiode = reisedagerUtenforSøknadsperioder.includes(dato.dato);
                         if (erUtenforSøknadsperiode && visFeil) {

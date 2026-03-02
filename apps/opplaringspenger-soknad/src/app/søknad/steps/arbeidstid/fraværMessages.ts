@@ -1,22 +1,23 @@
 const nb = {
-    'fraværIPeriode.StepInfo.1':
-        'Her skal du svare på hvor mye fravær fra jobb du har i perioden du søker om, altså hvor mye du er borte fra jobb mens du er på opplæring.',
+    'fraværIPeriode.StepInfo.1': 'Her skal du svare på hvor mye du er borte fra jobb mens du er på opplæring.',
+    'fraværIPeriode.StepInfo.1.b': 'Du får dekket tiden du bruker på opplæringen, og tiden du bruker på reise.',
     'fraværIPeriode.StepInfo.2':
-        'Du får dekket tiden du bruker på opplæringen, og tiden du bruker på reise. Det vil for eksempel si at hvis opplæringen varer i fire timer, og du bruker to timer på å reise til og fra opplæringen, vil du få dekket til sammen seks timer av arbeidsdagen.',
+        ' Det vil for eksempel si at hvis opplæringen varer i fire timer, og du bruker to timer på å reise til og fra opplæringen, vil du få dekket til sammen seks timer av arbeidsdagen.',
     'fraværIPeriode.StepInfo.3.header': 'Når kontakter vi arbeidsgiveren din?',
     'fraværIPeriode.StepInfo.3.text':
         'Hvis du søker for første gang, eller hvis du har hatt et opphold i opplæringspengene i minst fire uker, kontakter vi arbeidsgiverne som du har fravær fra, for å hente inn inntektsmelding.',
+
+    'fraværIPeriode.endring.tittel': 'Obs! Vi har endret søknaden.',
+    'fraværIPeriode.endring.info': 'Vi har endret fra å spørre om hvor mye du jobbet, til hvor mye fravær du har.',
+
     'fraværIPeriode.FrilansLabel': 'Frilans',
     'fraværIPeriode.SNLabel': 'Selvstendig næringsdrivende',
-    'fraværIPeriode.jobberIPerioden.spm': 'Hvor mye fravær har du fra jobb {hvor} på grunn av opplæring og reisetid?',
-    'fraværIPeriode.enkeltdager_gruppe.legend':
-        'Fyll inn antall timer du er borte fra jobb på grunn av opplæring og reisetid',
+    'fraværIPeriode.jobberIPerioden.spm': 'Hvor mye fravær har du {hvor} på grunn av opplæring og reisetid?',
+    'fraværIPeriode.enkeltdager_gruppe.legend': 'Fyll inn timer med fravær ',
 
-    'fraværIPeriode.jobberIPerioden.jobberIkke': 'Jeg er helt borte fra jobb fordi jeg er på opplæring (fullt fravær)',
-    'fraværIPeriode.jobberIPerioden.jobberVanlig':
-        'Jeg jobber som normalt og er ikke borte fra jobb på grunn av opplæring (ikke fravær)',
-    'fraværIPeriode.jobberIPerioden.jobberRedusert':
-        'Jeg er delvis borte fra jobb fordi jeg er på opplæring (noe fravær)',
+    'fraværIPeriode.jobberIPerioden.jobberIkke': 'Jeg er helt borte fra jobb fordi jeg er på opplæring',
+    'fraværIPeriode.jobberIPerioden.jobberVanlig': 'Jeg er ikke borte fra jobb på grunn av opplæring',
+    'fraværIPeriode.jobberIPerioden.jobberRedusert': 'Jeg er delvis borte fra jobb fordi jeg er på opplæring',
     'fraværIPeriode.iDag.utledet': 'timer i uka',
     'fraværIPeriode.prosent.utledet.medTimer': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
     'fraværIPeriode.arbeidstidSted.frilansoppdrag': 'Frilansoppdrag',
@@ -48,13 +49,17 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'fraværIPeriode.StepInfo.1':
-        'Her skal du svare på kor mykje fråvær frå jobb du har i perioden du søkjer om, altså kor mykje du er borte frå jobb medan du er på opplæring.',
+    'fraværIPeriode.StepInfo.1': 'Her skal du svare på kor mykje du er borte frå jobb i tida du er på opplæring',
+    'fraværIPeriode.StepInfo.1.b': 'Du får dekt tida du brukar på opplæringa, og tida du brukar på reise.',
     'fraværIPeriode.StepInfo.2':
-        'Du får dekt tida du brukar på opplæringa, og tida du brukar på reise. Det vil til dømes sei at viss opplæringa varar i fire timar, og du brukar to timar på å reise til og frå opplæringa, vil du få dekt til samen seks timar av arbeidsdagen.',
+        'Det vil til dømes sei at viss opplæringa varar i fire timar, og du brukar to timar på å reise til og frå opplæringa, vil du få dekt til samen seks timar av arbeidsdagen.',
     'fraværIPeriode.StepInfo.3.header': 'Når kontaktar me arbeidsgjevaren din?',
     'fraværIPeriode.StepInfo.3.text':
         'Viss du søkjer for fyrste gong, eller viss du har hatt eit opphald i opplæringspengane i minst fire veker, kontaktar me arbeidsgjevaren som du har fråvær frå, for å hente inn inntektsmelding.',
+
+    'fraværIPeriode.endring.tittel': 'Obs! Vi har endret søknaden.',
+    'fraværIPeriode.endring.info': 'Vi har endret fra å spørre om hvor mye du jobbet, til hvor mye fravær du har.',
+
     'fraværIPeriode.FrilansLabel': 'Frilans',
     'fraværIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
     'fraværIPeriode.jobberIPerioden.spm': 'Kor mykje fråvær har du frå jobb {hvor} på grunn av opplæring og reisetid?',

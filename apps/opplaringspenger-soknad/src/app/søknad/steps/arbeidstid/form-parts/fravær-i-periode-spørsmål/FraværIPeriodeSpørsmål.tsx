@@ -1,4 +1,4 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
@@ -15,7 +15,7 @@ import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { useEffect, useState } from 'react';
 
-import { AppIntlShape, useAppIntl } from '../../../../../i18n';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../../i18n';
 import { getArbeidstidIPeriodeIntlValues } from '../../arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../../arbeidstidStepUtils';
@@ -100,61 +100,79 @@ const FraværIPeriodeSpørsmål = ({
                     radios={getJobberIPeriodenRadios(appIntl, skjulJobberNormaltValg)}
                 />
             )}
+
             {(jobberIPerioden === JobberIPeriodeSvar.redusert || skjulJobberNormaltValg) && (
-                <FormLayout.Panel bleedTop={true}>
-                    <InputGroup
-                        id={`${fieldName}_group`}
-                        name={`${fieldName}_group` as any}
-                        legend={text('fraværIPeriode.enkeltdager_gruppe.legend', intlValues)}
-                        validate={() => {
-                            const { jobberIPerioden: jip, enkeltdager: ed = {} } = arbeidIPeriode || {};
-                            if (jip === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
-                                if (durationToDecimalDuration(summarizeDateDurationMap(ed)) === 0) {
-                                    return {
-                                        key: 'fraværIPeriode.validation.ingenTidRegistrert',
-                                        values: {
-                                            ...intlValues,
-                                            ingenFraværSpørsmål: text('fraværIPeriode.jobberIPerioden.jobberVanlig'),
-                                        },
-                                        keepKeyUnaltered: true,
-                                    };
-                                }
-                            }
-                            return undefined;
-                        }}>
-                        <div style={{ marginTop: '1.5rem' }}>
-                            <DurationWeekdaysInput
-                                dateRange={begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(periode)}
-                                disabledDates={getDagerSomSkalDisables(periode, valgteDatoer)}
-                                formikFieldName={fieldName}
-                                useExpansionCards={false}
-                                renderWeekHeader={(fullWeek) =>
-                                    capsFirstCharacter(
-                                        text('fraværIPeriode.arbeidIPeriodeSpørsmål.weekHeader', {
-                                            månedOgÅr: dateFormatter.monthFullYear(fullWeek.from),
-                                            ukenummer: dayjs(fullWeek.from).isoWeek(),
-                                        }),
-                                    )
-                                }
-                                renderMonthHeader={() => null}
-                                validateDate={(value: any, date: Date) => {
-                                    const error = getTimeValidator({ min: { hours: 0, minutes: 0 } })(value);
-                                    if (error) {
+                <>
+                    <Box marginBlock="space-0 space-16">
+                        <Alert variant="info">
+                            <VStack gap="space-4">
+                                <Heading level="3" size="xsmall">
+                                    <AppText id="fraværIPeriode.endring.tittel" />
+                                </Heading>
+                                <AppText id="fraværIPeriode.endring.info" />
+                            </VStack>
+                        </Alert>
+                    </Box>
+                    <FormLayout.Panel bleedTop={true}>
+                        <InputGroup
+                            id={`${fieldName}_group`}
+                            name={`${fieldName}_group` as any}
+                            legend={text('fraværIPeriode.enkeltdager_gruppe.legend', intlValues)}
+                            validate={() => {
+                                const { jobberIPerioden: jip, enkeltdager: ed = {} } = arbeidIPeriode || {};
+                                if (jip === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
+                                    if (durationToDecimalDuration(summarizeDateDurationMap(ed)) === 0) {
                                         return {
-                                            key: `fraværIPeriode.validation.timerDag.${error}`,
-                                            keepKeyUnaltered: true,
+                                            key: 'fraværIPeriode.validation.ingenTidRegistrert',
                                             values: {
                                                 ...intlValues,
-                                                dato: dateFormatter.compact(date),
+                                                ingenFraværSpørsmål: text(
+                                                    'fraværIPeriode.jobberIPerioden.jobberVanlig',
+                                                ),
                                             },
+                                            keepKeyUnaltered: true,
                                         };
                                     }
-                                    return undefined;
-                                }}
-                            />
-                        </div>
-                    </InputGroup>
-                </FormLayout.Panel>
+                                }
+                                return undefined;
+                            }}>
+                            <div style={{ marginTop: '1.5rem' }}>
+                                <DurationWeekdaysInput
+                                    dateRange={begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(periode)}
+                                    disabledDates={getDagerSomSkalDisables(periode, valgteDatoer)}
+                                    formikFieldName={fieldName}
+                                    useExpansionCards={false}
+                                    renderWeekHeader={(fullWeek) =>
+                                        capsFirstCharacter(
+                                            text('fraværIPeriode.arbeidIPeriodeSpørsmål.weekHeader', {
+                                                månedOgÅr: dateFormatter.monthFullYear(fullWeek.from),
+                                                ukenummer: dayjs(fullWeek.from).isoWeek(),
+                                            }),
+                                        )
+                                    }
+                                    renderMonthHeader={() => null}
+                                    validateDate={(value: any, date: Date) => {
+                                        const error = getTimeValidator({
+                                            min: { hours: 0, minutes: 0 },
+                                            required: true,
+                                        })(value);
+                                        if (error) {
+                                            return {
+                                                key: `fraværIPeriode.validation.timerDag.${error}`,
+                                                keepKeyUnaltered: true,
+                                                values: {
+                                                    ...intlValues,
+                                                    dato: dateFormatter.compact(date),
+                                                },
+                                            };
+                                        }
+                                        return undefined;
+                                    }}
+                                />
+                            </div>
+                        </InputGroup>
+                    </FormLayout.Panel>
+                </>
             )}
         </FormLayout.Questions>
     );

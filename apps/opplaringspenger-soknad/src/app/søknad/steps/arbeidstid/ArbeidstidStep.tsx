@@ -229,6 +229,9 @@ const ArbeidstidStep = () => {
                                     <BodyLong spacing>
                                         <AppText id="fraværIPeriode.StepInfo.1" />
                                     </BodyLong>
+                                    <BodyLong spacing weight="semibold">
+                                        <AppText id="fraværIPeriode.StepInfo.1.b" />
+                                    </BodyLong>
                                     <BodyLong spacing>
                                         <AppText id="fraværIPeriode.StepInfo.2" />
                                     </BodyLong>

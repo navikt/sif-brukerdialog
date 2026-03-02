@@ -93,9 +93,9 @@ const nb = {
     'step.arbeidssituasjon.pageTitle': 'Din arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Din arbeidssituasjon',
 
-    'step.arbeidstid.stepTitle': 'Fravær fra jobb på dagene du er i opplæring',
-    'step.arbeidstid.pageTitle': 'Fravær fra jobb på dagene du er i opplæring',
-    'step.arbeidstid.stepIndicatorLabel': 'Fravær fra jobb på dagene du er i opplæring',
+    'step.arbeidstid.stepTitle': 'Fravær på dagene du er i opplæring',
+    'step.arbeidstid.pageTitle': 'Fravær på dagene du er i opplæring',
+    'step.arbeidstid.stepIndicatorLabel': 'Fravær på dagene du er i opplæring',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
