@@ -1,9 +1,8 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { StegConfig, StegStatusCallbacks } from '../types';
+import { getAktiveSteg, StegConfig, StegStatusCallbacks } from '../types';
 
-import { useStegFlyt } from './useStegFlyt';
 import { useSøknadFlyt } from './useSøknadState';
 
 interface UseStegNavigasjonOptions {
@@ -13,6 +12,25 @@ interface UseStegNavigasjonOptions {
     basePath?: string;
 }
 
+/**
+ * Beregner neste/forrige steg basert på fresh state.
+ * Viktig for navigasjon etter state-oppdatering i samme event handler.
+ */
+const getNesteForrigeSteg = (
+    stegRekkefølge: string[],
+    stegStatus: StegStatusCallbacks,
+    currentStegId: string | null,
+) => {
+    const aktiveSteg = getAktiveSteg(stegRekkefølge, stegStatus);
+    const aktiveStegIds = aktiveSteg.map((s) => s.stegId);
+    const currentIndex = currentStegId ? aktiveStegIds.indexOf(currentStegId) : -1;
+
+    return {
+        forrigeStegId: currentIndex > 0 ? aktiveStegIds[currentIndex - 1] : null,
+        nesteStegId: currentIndex < aktiveStegIds.length - 1 ? aktiveStegIds[currentIndex + 1] : null,
+    };
+};
+
 export const useStegNavigasjon = ({
     stegConfig,
     stegRekkefølge,
@@ -21,7 +39,7 @@ export const useStegNavigasjon = ({
 }: UseStegNavigasjonOptions) => {
     const navigate = useNavigate();
     const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
-    const { forrigeStegId, nesteStegId } = useStegFlyt({ stegConfig, stegRekkefølge, stegStatus });
+    const currentStegId = useSøknadFlyt((s) => s.currentStegId);
 
     const gåTilSteg = useCallback(
         (stegId: string) => {
@@ -33,16 +51,23 @@ export const useStegNavigasjon = ({
     );
 
     const gåTilNeste = useCallback(() => {
+        // Beregn fresh nesteStegId for å få med siste state-endringer
+        const { nesteStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, currentStegId);
         if (nesteStegId) {
             gåTilSteg(nesteStegId);
         }
-    }, [nesteStegId, gåTilSteg]);
+    }, [stegRekkefølge, stegStatus, currentStegId, gåTilSteg]);
 
     const gåTilForrige = useCallback(() => {
+        // Beregn fresh forrigeStegId for å få med siste state-endringer
+        const { forrigeStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, currentStegId);
         if (forrigeStegId) {
             gåTilSteg(forrigeStegId);
         }
-    }, [forrigeStegId, gåTilSteg]);
+    }, [stegRekkefølge, stegStatus, currentStegId, gåTilSteg]);
+
+    // For UI-formål (disable knapper etc) - kan bruke cached verdier
+    const { forrigeStegId, nesteStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, currentStegId);
 
     return {
         gåTilSteg,

@@ -2,7 +2,6 @@ import { Alert, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
 import { SøknadFooter } from '@rammeverk/components';
-import { useStegTilgang } from '@rammeverk/guards';
 import { useSøknadFlyt, useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
@@ -18,21 +17,10 @@ export const Oppsummering = () => {
     const { slettMellomlagring } = useMellomlagring();
 
     const stegStatus = useStegStatus();
-
-    const { erTilgjengelig } = useStegTilgang({
-        stegId: StegId.OPPSUMMERING,
-        stegRekkefølge,
-        stegStatus,
-    });
-
     const navigate = useNavigate();
     const setSøknadSendt = useSøknadFlyt((s) => s.setSøknadSendt);
 
     const { gåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
-
-    if (!erTilgjengelig) {
-        return <Alert variant="warning">Du kan ikke gå til dette steget ennå.</Alert>;
-    }
 
     const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {
         evt.preventDefault();

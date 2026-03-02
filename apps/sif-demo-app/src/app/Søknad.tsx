@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 
-import { StegId, stegConfig } from './config/stegConfig';
+import { skalStegVises, StegId, stegConfig, stegRekkefølge } from './config/stegConfig';
 import { useAppStore, useMellomlagring } from './hooks';
 import { KvitteringPage } from './pages/KvitteringPage';
 import { VelkommenPage } from './pages/VelkommenPage';
@@ -11,8 +11,16 @@ import { Oppsummering } from './steg/Oppsummering';
 import { PersonaliaSteg } from './steg/PersonaliaSteg';
 import { KontaktinfoSteg } from './steg/KontaktinfoSteg';
 import { Mellomlagring } from './types/Mellomlagring';
-import { MellomlagringObserver, StegRoute, SøknadIndexRedirect, useSøknadFlyt } from '../rammeverk';
+import { MellomlagringObserver, StegRouteGuard, SøknadIndexRedirect, useSøknadFlyt } from '../rammeverk';
 import { KjæledyrSteg } from './steg/KjæledyrSteg';
+
+const getStegIdFraPath = (path: string): string | undefined => {
+    return stegRekkefølge.find((id) => path.includes(stegConfig[id].route));
+};
+
+const getPathForSteg = (stegId: string): string => {
+    return `/soknad/${stegConfig[stegId as StegId]?.route}`;
+};
 
 interface Props {
     søker: Søker;
@@ -49,7 +57,15 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                         index
                         element={<SøknadIndexRedirect stegConfig={stegConfig} mellomlagretStegId={currentStegId} />}
                     />
-                    <Route element={<StegRoute erInitialisert={!!søknadState} />}>
+                    <Route
+                        element={
+                            <StegRouteGuard
+                                erInitialisert={!!søknadState}
+                                skalStegVises={(stegId) => skalStegVises(stegId, søknadState?.søknadsdata ?? {})}
+                                getStegIdFraPath={getStegIdFraPath}
+                                getPathForSteg={getPathForSteg}
+                            />
+                        }>
                         <Route path={stegConfig[StegId.PERSONALIA].route} element={<PersonaliaSteg />} />
                         <Route path={stegConfig[StegId.KJÆLEDYR].route} element={<KjæledyrSteg />} />
                         <Route path={stegConfig[StegId.KONTAKT].route} element={<KontaktinfoSteg />} />

@@ -6,10 +6,13 @@ import { useSøknadStore } from './useSøknadStore';
 
 export const useStegStatus = (): StegStatusCallbacks => {
     const erStegFullført = useSøknadStore((s) => s.erStegFullført);
-    const søknadsdata = useSøknadStore((s) => s.søknadState?.søknadsdata) ?? ({} as Søknadsdata);
 
     return {
         erFullført: erStegFullført,
-        skalVises: (stegId: string) => skalStegVises(stegId, søknadsdata),
+        skalVises: (stegId: string) => {
+            // Les fresh state fra store for å unngå closure over gammel søknadsdata
+            const søknadsdata = useSøknadStore.getState().søknadState?.søknadsdata ?? ({} as Søknadsdata);
+            return skalStegVises(stegId, søknadsdata);
+        },
     };
 };
