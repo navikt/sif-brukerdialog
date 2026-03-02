@@ -36,3 +36,12 @@ export const stegConfig: StegConfig = {
 };
 
 export const stegRekkefølge: StegId[] = [StegId.PERSONALIA, StegId.KJÆLEDYR, StegId.KONTAKT, StegId.OPPSUMMERING];
+
+export const skalStegVises = (stegId: string, søknadsdata: Søknadsdata): boolean => {
+    switch (stegId) {
+        case StegId.KJÆLEDYR:
+            return søknadsdata[StegId.PERSONALIA]?.harKjæledyr === 'ja';
+        default:
+            return true;
+    }
+};

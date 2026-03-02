@@ -7,6 +7,7 @@ import { useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
 import { useAvbrytSøknadHandler } from '../hooks/useAvbrytSøknadHandler';
+import { useStegStatus } from '../hooks/useStegStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
 interface Skjemadata {
@@ -18,10 +19,9 @@ export const KjæledyrSteg = () => {
 
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitSteg);
-    const erStegFullført = useSøknadStore((s) => s.erStegFullført);
     const { avbrytHandler } = useAvbrytSøknadHandler();
 
-    const stegStatus = { erFullført: erStegFullført };
+    const stegStatus = useStegStatus();
 
     const { erTilgjengelig } = useStegTilgang({
         stegId,
