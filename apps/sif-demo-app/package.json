@@ -16,6 +16,7 @@
         "@navikt/ds-react": "8.5.2",
         "@navikt/ds-tailwind": "8.5.2",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-query": "workspace:*",
         "@tanstack/react-query": "5.90.21",
         "dayjs": "1.11.13",

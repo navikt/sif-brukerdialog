@@ -5732,6 +5732,7 @@ __metadata:
     "@navikt/ds-react": "npm:8.5.2"
     "@navikt/ds-tailwind": "npm:8.5.2"
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
+    "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-query": "workspace:*"
     "@tailwindcss/vite": "npm:4.2.0"
     "@tanstack/react-query": "npm:5.90.21"

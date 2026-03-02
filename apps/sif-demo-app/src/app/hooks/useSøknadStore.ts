@@ -1,7 +1,9 @@
 import { create } from 'zustand';
 
-import { StegId, SøknadState } from '../config/stegConfig';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
+
+import { useSøknadFlyt } from '../../rammeverk';
+import { StegId, SøknadState } from '../config/stegConfig';
 import { Søknadsdata } from '../types/Søknadsdata';
 
 interface SøknadStore {
@@ -24,7 +26,7 @@ export const useSøknadStore = create<SøknadStore>((set, get) => ({
             },
         }),
 
-    submitSteg: (data) =>
+    submitSteg: (data) => {
         set((state) => {
             if (!state.søknadState) return state;
             return {
@@ -33,7 +35,9 @@ export const useSøknadStore = create<SøknadStore>((set, get) => ({
                     søknadsdata: { ...state.søknadState.søknadsdata, ...data },
                 },
             };
-        }),
+        });
+        useSøknadFlyt.getState().setBørMellomlagres(true);
+    },
 
     erStegFullført: (stegId) => {
         const appState = get().søknadState;

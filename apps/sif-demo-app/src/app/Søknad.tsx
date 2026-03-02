@@ -1,38 +1,45 @@
-import { useEffect, useRef } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 
 import { StegId, stegConfig, stegRekkefølge } from './config/stegConfig';
-import { useAppStore } from './hooks';
+import { useAppStore, useMellomlagring } from './hooks';
 import { KvitteringPage } from './pages/KvitteringPage';
 import { VelkommenPage } from './pages/VelkommenPage';
 import { Oppsummering } from './steg/Oppsummering';
 import { Steg1 } from './steg/Steg1';
 import { Steg2 } from './steg/Steg2';
-import { Søknadsdata } from './types/Søknadsdata';
-import { SøknadIndexRedirect, useSøknadFlyt } from '../rammeverk';
+import { Mellomlagring } from './types/Mellomlagring';
+import { MellomlagringObserver, SøknadIndexRedirect, useSøknadFlyt } from '../rammeverk';
 
 interface Props {
     søker: Søker;
     barn: RegistrertBarn[];
-    mellomlagretSøknadsdata?: Søknadsdata;
+    mellomlagring?: Mellomlagring;
 }
 
-export const Søknad = ({ søker, barn, mellomlagretSøknadsdata }: Props) => {
-    const init = useAppStore((s) => s.init);
-    const currentStegId = useSøknadFlyt((s) => s.currentStegId);
-    const hasInitialized = useRef(false);
+const AppMellomlagringObserver = () => {
+    const { getData, lagreMellomlagring } = useMellomlagring();
+    return <MellomlagringObserver callbacks={{ getData, lagre: lagreMellomlagring }} />;
+};
 
-    useEffect(() => {
-        if (!hasInitialized.current) {
-            init(søker, barn, mellomlagretSøknadsdata);
-            hasInitialized.current = true;
+export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
+    const init = useAppStore((s) => s.init);
+    const søknadState = useAppStore((s) => s.søknadState);
+    const currentStegId = useSøknadFlyt((s) => s.currentStegId);
+    const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
+
+    useEffectOnce(() => {
+        init(søker, barn, mellomlagring?.søknadsdata);
+        if (mellomlagring?.currentStegId) {
+            setCurrentSteg(mellomlagring.currentStegId);
         }
-    }, [søker, barn, mellomlagretSøknadsdata, init]);
+    });
 
     return (
         <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+            {søknadState ? <AppMellomlagringObserver /> : <>Ingen søknadstate</>}
             <Routes>
                 <Route path="/" element={<VelkommenPage />} />
                 <Route path="/kvittering" element={<KvitteringPage />} />

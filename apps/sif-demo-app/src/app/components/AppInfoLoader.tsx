@@ -1,20 +1,34 @@
-import {
-    MellomlagringYtelse,
-    useRegistrerteBarn,
-    useSøker,
-    useYtelseMellomlagringService,
-} from '@navikt/sif-common-query';
+import { useQuery } from '@tanstack/react-query';
 
+import { useRegistrerteBarn, useSøker } from '@navikt/sif-common-query';
+
+import { MELLOMLAGRING_VERSJON } from '../config/appConfig';
 import { Søknad } from '../Søknad';
 import { ErrorPage } from '../pages/ErrorPage';
 import { LoadingPage } from '../pages/LoadingPage';
+import { Mellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
+import { mellomlagringUtils } from '../utils/mellomlagringUtils';
 
 export const AppInfoLoader = () => {
     const søker = useSøker();
     const registrerteBarn = useRegistrerteBarn();
-    const mellomlagring = useYtelseMellomlagringService(MellomlagringYtelse.AKTIVITETSPENGER);
 
-    const isLoading = søker.isLoading || registrerteBarn.isLoading || mellomlagring.isLoading;
+    const mellomlagring = useQuery<Mellomlagring | null>({
+        queryKey: ['mellomlagring-validated', søker.data?.aktørId],
+        queryFn: async () => {
+            if (!søker.data) return null;
+            const metaData: MellomlagringMetaData = {
+                MELLOMLAGRING_VERSJON,
+                søker: søker.data,
+                barn: registrerteBarn.data || [],
+            };
+            return mellomlagringUtils.hent(metaData);
+        },
+        enabled: !!søker.data,
+        staleTime: 30 * 1000,
+    });
+
+    const isLoading = søker.isLoading || registrerteBarn.isLoading || (!!søker.data && !mellomlagring.isFetched);
     const isError = søker.isError || registrerteBarn.isError || mellomlagring.isError;
 
     if (isLoading) {
@@ -34,5 +48,7 @@ export const AppInfoLoader = () => {
         return <ErrorPage error="Søker-data mangler" />;
     }
 
-    return <Søknad søker={søker.data} barn={registrerteBarn.data || []} mellomlagretSøknadsdata={mellomlagring.data} />;
+    return (
+        <Søknad søker={søker.data} barn={registrerteBarn.data || []} mellomlagring={mellomlagring.data ?? undefined} />
+    );
 };
