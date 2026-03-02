@@ -11,6 +11,7 @@ import { useStegStatus } from '../hooks/useStegStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
 export const Oppsummering = () => {
+    const stegId = StegId.OPPSUMMERING;
     const appState = useSøknadStore((s) => s.søknadState);
     const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
     const { avbrytHandler } = useAvbrytSøknadHandler();
@@ -47,7 +48,7 @@ export const Oppsummering = () => {
                 </Alert>
                 <form onSubmit={handleSubmit}>
                     <HStack gap="space-16" justify={'start'}>
-                        <Button type="button" variant="secondary" onClick={gåTilForrige}>
+                        <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
                             Forrige
                         </Button>
                         <Button type="submit">Send inn søknad</Button>

@@ -31,7 +31,7 @@ export const KjæledyrSteg = () => {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitSteg({ [stegId]: { navn } }, { onSuccess: gåTilNeste });
+        submitSteg({ [stegId]: { navn } }, { onSuccess: () => gåTilNeste(stegId) });
     };
 
     return (
@@ -42,7 +42,7 @@ export const KjæledyrSteg = () => {
                     <TextField label="Navn" value={navn} onChange={(e) => setNavn(e.target.value)} />
 
                     <HStack gap="space-16" justify="start">
-                        <Button type="button" variant="secondary" onClick={gåTilForrige}>
+                        <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
                             Forrige
                         </Button>
                         <Button type="submit">Neste</Button>

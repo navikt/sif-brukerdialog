@@ -39,8 +39,6 @@ export const useStegNavigasjon = ({
 }: UseStegNavigasjonOptions) => {
     const navigate = useNavigate();
     const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
-    const currentStegId = useSøknadFlyt((s) => s.currentStegId);
-
     const setBørMellomlagres = useSøknadFlyt((s) => s.setBørMellomlagres);
 
     const gåTilSteg = useCallback(
@@ -54,30 +52,47 @@ export const useStegNavigasjon = ({
         [setCurrentSteg, setBørMellomlagres, navigate, basePath, stegConfig],
     );
 
-    const gåTilNeste = useCallback(() => {
-        // Beregn fresh nesteStegId for å få med siste state-endringer
-        const { nesteStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, currentStegId);
-        if (nesteStegId) {
-            gåTilSteg(nesteStegId);
-        }
-    }, [stegRekkefølge, stegStatus, currentStegId, gåTilSteg]);
+    const gåTilNeste = useCallback(
+        (fraStegId: string) => {
+            const { nesteStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, fraStegId);
+            if (nesteStegId) {
+                gåTilSteg(nesteStegId);
+            }
+        },
+        [stegRekkefølge, stegStatus, gåTilSteg],
+    );
 
-    const gåTilForrige = useCallback(() => {
-        // Beregn fresh forrigeStegId for å få med siste state-endringer
-        const { forrigeStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, currentStegId);
-        if (forrigeStegId) {
-            gåTilSteg(forrigeStegId);
-        }
-    }, [stegRekkefølge, stegStatus, currentStegId, gåTilSteg]);
+    const gåTilForrige = useCallback(
+        (fraStegId: string) => {
+            const { forrigeStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, fraStegId);
+            if (forrigeStegId) {
+                gåTilSteg(forrigeStegId);
+            }
+        },
+        [stegRekkefølge, stegStatus, gåTilSteg],
+    );
 
-    // For UI-formål (disable knapper etc) - kan bruke cached verdier
-    const { forrigeStegId, nesteStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, currentStegId);
+    const kanGåTilNeste = useCallback(
+        (fraStegId: string) => {
+            const { nesteStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, fraStegId);
+            return nesteStegId !== null;
+        },
+        [stegRekkefølge, stegStatus],
+    );
+
+    const kanGåTilForrige = useCallback(
+        (fraStegId: string) => {
+            const { forrigeStegId } = getNesteForrigeSteg(stegRekkefølge, stegStatus, fraStegId);
+            return forrigeStegId !== null;
+        },
+        [stegRekkefølge, stegStatus],
+    );
 
     return {
         gåTilSteg,
         gåTilNeste,
         gåTilForrige,
-        kanGåTilNeste: nesteStegId !== null,
-        kanGåTilForrige: forrigeStegId !== null,
+        kanGåTilNeste,
+        kanGåTilForrige,
     };
 };

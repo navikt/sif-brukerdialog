@@ -34,7 +34,7 @@ export const PersonaliaSteg = () => {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitSteg({ [stegId]: { navn, harKjæledyr } }, { onSuccess: gåTilNeste });
+        submitSteg({ [stegId]: { navn, harKjæledyr } }, { onSuccess: () => gåTilNeste(stegId) });
     };
 
     return (

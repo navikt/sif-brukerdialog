@@ -27,7 +27,7 @@ export const KontaktinfoSteg = () => {
 
     const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
-        submitSteg({ [stegId]: { epost } }, { onSuccess: gåTilNeste });
+        submitSteg({ [stegId]: { epost } }, { onSuccess: () => gåTilNeste(stegId) });
     };
 
     return (
@@ -37,7 +37,7 @@ export const KontaktinfoSteg = () => {
                     <Heading size="large">Kontaktinfo</Heading>
                     <TextField label="E-post" type="email" value={epost} onChange={(e) => setEpost(e.target.value)} />
                     <HStack gap="space-16" justify="start">
-                        <Button type="button" variant="secondary" onClick={gåTilForrige}>
+                        <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
                             Forrige
                         </Button>
                         <Button type="submit">Neste</Button>

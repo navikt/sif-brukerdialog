@@ -20,10 +20,12 @@ const initialState = {
 export const useSøknadFlyt = create<SøknadFlytState>((set) => ({
     ...initialState,
 
-    setCurrentSteg: (stegId) =>
+    setCurrentSteg: (stegId) => {
+        console.log('Setter currentStegId til:', stegId);
         set({
             currentStegId: stegId,
-        }),
+        });
+    },
 
     setBørMellomlagres: (verdi) =>
         set({
