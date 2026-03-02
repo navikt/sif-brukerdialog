@@ -8,7 +8,7 @@ interface SøknadState {
     init: (søker: Søker, barn: RegistrertBarn[], mellomlagretStegData?: StegData) => void;
     submitSteg: (data: Partial<StegData>) => void;
     erStegFullført: (stegId: string) => boolean;
-    reset: () => void;
+    resetStegData: () => void;
 }
 
 export const useSøknadState = create<SøknadState>((set, get) => ({
@@ -39,5 +39,14 @@ export const useSøknadState = create<SøknadState>((set, get) => ({
         return søknadsdata?.stegData[stegId as StegId] !== undefined;
     },
 
-    reset: () => set({ søknadsdata: undefined }),
+    resetStegData: () =>
+        set((state) => {
+            if (!state.søknadsdata) return state;
+            return {
+                søknadsdata: {
+                    ...state.søknadsdata,
+                    stegData: {},
+                },
+            };
+        }),
 }));

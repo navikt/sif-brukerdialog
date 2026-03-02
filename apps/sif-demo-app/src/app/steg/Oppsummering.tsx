@@ -11,7 +11,7 @@ import { useSøknadState } from '../hooks/useSøknadState';
 export const Oppsummering = () => {
     const søknadsdata = useSøknadState((s) => s.søknadsdata);
     const erStegFullført = useSøknadState((s) => s.erStegFullført);
-    const resetSøknadsdata = useSøknadState((s) => s.reset);
+    const resetSøknadsdata = useSøknadState((s) => s.resetStegData);
 
     const stegStatus = { erFullført: erStegFullført };
 

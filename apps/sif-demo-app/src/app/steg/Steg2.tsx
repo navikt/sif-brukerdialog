@@ -53,7 +53,7 @@ export const Steg2 = () => {
                     </HStack>
                 </VStack>
             </form>
-            <SøknadFooter avbrytCallback={useSøknadState.getState().reset} />
+            <SøknadFooter avbrytCallback={useSøknadState.getState().resetStegData} />
         </VStack>
     );
 };

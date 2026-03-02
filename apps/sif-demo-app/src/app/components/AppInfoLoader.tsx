@@ -1,5 +1,3 @@
-import { PropsWithChildren, useEffect, useRef } from 'react';
-
 import {
     MellomlagringYtelse,
     useRegistrerteBarn,
@@ -7,27 +5,17 @@ import {
     useYtelseMellomlagringService,
 } from '@navikt/sif-common-query';
 
-import { useSøknadState } from '../hooks';
+import { Søknad } from '../Søknad';
 import { ErrorPage } from '../pages/ErrorPage';
 import { LoadingPage } from '../pages/LoadingPage';
 
-export const AppInfoLoader = ({ children }: PropsWithChildren) => {
+export const AppInfoLoader = () => {
     const søker = useSøker();
     const registrerteBarn = useRegistrerteBarn();
     const mellomlagring = useYtelseMellomlagringService(MellomlagringYtelse.AKTIVITETSPENGER);
-    const init = useSøknadState((s) => s.init);
-    const søknadsdata = useSøknadState((s) => s.søknadsdata);
-    const hasInitialized = useRef(false);
 
     const isLoading = søker.isLoading || registrerteBarn.isLoading || mellomlagring.isLoading;
     const isError = søker.isError || registrerteBarn.isError || mellomlagring.isError;
-
-    useEffect(() => {
-        if (!hasInitialized.current && søker.data && !isLoading) {
-            init(søker.data, registrerteBarn.data || [], mellomlagring.data);
-            hasInitialized.current = true;
-        }
-    }, [søker.data, registrerteBarn.data, mellomlagring.data, isLoading, init]);
 
     if (isLoading) {
         return <LoadingPage />;
@@ -42,9 +30,9 @@ export const AppInfoLoader = ({ children }: PropsWithChildren) => {
         return <ErrorPage error={errorMessages.join(', ') || 'Ukjent feil ved innlasting'} />;
     }
 
-    if (!søknadsdata) {
-        return <LoadingPage />;
+    if (!søker.data) {
+        return <ErrorPage error="Søker-data mangler" />;
     }
 
-    return <>{children}</>;
+    return <Søknad søker={søker.data} barn={registrerteBarn.data || []} mellomlagretStegData={mellomlagring.data} />;
 };
