@@ -7,7 +7,7 @@ interface UseStepNavigationOptions {
     stepConfig: StepConfig;
     stepOrder: string[];
     stepStatus: StepStatusCallbacks;
-    setCurrentStepId: (stepId: string) => void;
+    setCurrentStep: (stepId: string) => void;
     basePath?: string;
 }
 
@@ -30,18 +30,18 @@ export const useStepNavigation = ({
     stepConfig,
     stepOrder,
     stepStatus,
-    setCurrentStepId,
+    setCurrentStep,
     basePath = '/soknad',
 }: UseStepNavigationOptions) => {
     const navigate = useNavigate();
 
     const navigateToStep = useCallback(
         (stepId: string) => {
-            setCurrentStepId(stepId);
+            setCurrentStep(stepId);
             const route = stepConfig[stepId].route;
             navigate(`${basePath}/${route}`);
         },
-        [setCurrentStepId, navigate, basePath, stepConfig],
+        [setCurrentStep, navigate, basePath, stepConfig],
     );
 
     const navigateToNextStep = useCallback(

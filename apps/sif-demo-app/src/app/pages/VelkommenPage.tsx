@@ -1,6 +1,6 @@
 import { Button, Heading, VStack } from '@navikt/ds-react';
 
-import { stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { søknadStepConfig, søknadStepOrder } from '../config/søknadStepConfig';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ export const VelkommenPage = () => {
     const startSøknad = useSøknadStore((s) => s.startSøknad);
 
     const handleStart = () => {
-        const førsteSteg = stegConfig[stegRekkefølge[0]];
+        const førsteSteg = søknadStepConfig[søknadStepOrder[0]];
         startSøknad(førsteSteg.id);
         navigate(`/soknad/${førsteSteg.route}`);
     };

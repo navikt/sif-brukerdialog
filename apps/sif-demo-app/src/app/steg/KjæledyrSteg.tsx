@@ -5,9 +5,9 @@ import { SøknadFooter } from '@rammeverk/components';
 import { useStepNavigation } from '@rammeverk/state';
 
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
-import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { søknadStepOrder as stepOrder, søknadStepConfig as stepConfig, SøknadStepId } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useStegStatus } from '../hooks/useStegStatus';
+import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
 interface Skjemadata {
@@ -15,44 +15,40 @@ interface Skjemadata {
 }
 
 export const KjæledyrSteg = () => {
-    const stegId = StegId.KJÆLEDYR;
+    const stepId = SøknadStepId.KJÆLEDYR;
 
     const appState = useSøknadStore((s) => s.søknadState);
-    const submitSteg = useSøknadStore((s) => s.submitStep);
-    const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
+    const submitStep = useSøknadStore((s) => s.submitStep);
+    const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
 
-    const stegStatus = useStegStatus();
-    const {
-        navigateToNextStep: gåTilNeste,
-        navigateToPreviousStep: gåTilForrige,
-        canGoPrevious: kanGåTilForrige,
-    } = useStepNavigation({
-        stepConfig: stegConfig,
-        stepOrder: stegRekkefølge,
-        stepStatus: stegStatus,
-        setCurrentStepId: setCurrentSteg,
+    const stepStatus = useSøknadStepStatus();
+    const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
+        stepConfig,
+        stepOrder,
+        stepStatus,
+        setCurrentStep,
     });
 
     const { register, handleSubmit, getValues } = useForm<Skjemadata>({
         defaultValues: {
-            navn: appState?.søknadsdata[stegId]?.navn ?? '',
+            navn: appState?.søknadsdata[stepId]?.navn ?? '',
         },
     });
 
-    const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({ stegId, getValues: () => getValues() });
+    const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({ stepId, getValues: () => getValues() });
 
     const onSubmit = (data: Skjemadata) => {
         if (!data.navn) {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitSteg(
-            { [stegId]: { navn: data.navn } },
+        submitStep(
+            { [stepId]: { navn: data.navn } },
             {
                 onSuccess: () => {
                     clearFormValues();
-                    gåTilNeste(stegId);
+                    navigateToNextStep(stepId);
                 },
             },
         );
@@ -67,8 +63,8 @@ export const KjæledyrSteg = () => {
                     <TextField label="Navn" {...register('navn')} />
 
                     <HStack gap="space-16" justify="start">
-                        {kanGåTilForrige(stegId) && (
-                            <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
+                        {canGoPrevious(stepId) && (
+                            <Button type="button" variant="secondary" onClick={() => navigateToPreviousStep(stepId)}>
                                 Forrige
                             </Button>
                         )}

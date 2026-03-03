@@ -4,28 +4,28 @@ import { useNavigate } from 'react-router-dom';
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepNavigation } from '@rammeverk/state';
 
-import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { SøknadStepId, søknadStepConfig, søknadStepOrder } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useMellomlagring } from '../hooks/useMellomlagring';
-import { useStegStatus } from '../hooks/useStegStatus';
+import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
 export const Oppsummering = () => {
-    const stegId = StegId.OPPSUMMERING;
+    const stegId = SøknadStepId.OPPSUMMERING;
     const appState = useSøknadStore((s) => s.søknadState);
     const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
     const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
     const { slettMellomlagring } = useMellomlagring();
 
-    const stegStatus = useStegStatus();
+    const stegStatus = useSøknadStepStatus();
     const navigate = useNavigate();
 
     const { navigateToPreviousStep: gåTilForrige, canGoPrevious: kanGåTilForrige } = useStepNavigation({
-        stepConfig: stegConfig,
-        stepOrder: stegRekkefølge,
+        stepConfig: søknadStepConfig,
+        stepOrder: søknadStepOrder,
         stepStatus: stegStatus,
-        setCurrentStepId: setCurrentSteg,
+        setCurrentStep: setCurrentSteg,
     });
 
     const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {
@@ -42,10 +42,10 @@ export const Oppsummering = () => {
                 <Alert variant="info">
                     <VStack gap="space-2">
                         <p>
-                            <strong>Navn:</strong> {appState?.søknadsdata[StegId.PERSONALIA]?.navn}
+                            <strong>Navn:</strong> {appState?.søknadsdata[SøknadStepId.PERSONALIA]?.navn}
                         </p>
                         <p>
-                            <strong>E-post:</strong> {appState?.søknadsdata[StegId.KONTAKT]?.epost}
+                            <strong>E-post:</strong> {appState?.søknadsdata[SøknadStepId.KONTAKT]?.epost}
                         </p>
                     </VStack>
                 </Alert>

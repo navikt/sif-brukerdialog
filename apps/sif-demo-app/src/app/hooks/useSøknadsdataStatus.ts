@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useStepFormValuesStatus } from '@rammeverk/hooks';
-import { StegId, stegRekkefølge } from '../config/stegConfig';
+import { SøknadStepId, søknadStepOrder } from '../config/søknadStepConfig';
 import { useSøknadStore } from './useSøknadStore';
 import { Søknadsdata } from '../types/Søknadsdata';
 
@@ -13,16 +13,16 @@ type FormValues = Record<string, unknown>;
  */
 const formValuesToSøknadsdata = (stegId: string, formValues: FormValues): Record<string, unknown> | undefined => {
     switch (stegId) {
-        case StegId.PERSONALIA:
+        case SøknadStepId.PERSONALIA:
             return {
                 navn: formValues.navn,
                 harKjæledyr: formValues.harKjæledyr,
             };
-        case StegId.KJÆLEDYR:
+        case SøknadStepId.KJÆLEDYR:
             return {
                 navn: formValues.navn,
             };
-        case StegId.KONTAKT:
+        case SøknadStepId.KONTAKT:
             return {
                 epost: formValues.epost,
             };
@@ -47,7 +47,7 @@ export const useSøknadsdataStatus = (currentStegId: string) => {
 
     return useStepFormValuesStatus({
         currentStepId: currentStegId,
-        stepOrder: stegRekkefølge,
+        stepOrder: søknadStepOrder,
         formValuesToSøknadsdata,
         getSøknadsdataForStep: getSøknadsdataForSteg,
     });

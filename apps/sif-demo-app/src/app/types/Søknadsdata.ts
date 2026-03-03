@@ -1,14 +1,14 @@
-import { StegId } from '../config/stegConfig';
+import { SøknadStepId } from '../config/søknadStepConfig';
 
 export interface Søknadsdata {
-    [StegId.PERSONALIA]?: {
+    [SøknadStepId.PERSONALIA]?: {
         navn: string;
         harKjæledyr: 'ja' | 'nei';
     };
-    [StegId.KJÆLEDYR]?: {
+    [SøknadStepId.KJÆLEDYR]?: {
         navn: string;
     };
-    [StegId.KONTAKT]?: {
+    [SøknadStepId.KONTAKT]?: {
         epost: string;
     };
 }

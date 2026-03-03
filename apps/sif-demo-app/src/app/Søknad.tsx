@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 
-import { skalStegVises, StegId, stegConfig, stegRekkefølge } from './config/stegConfig';
+import { isStepIncluded, SøknadStepId, søknadStepConfig, søknadStepOrder } from './config/søknadStepConfig';
 import { useAppStore, useMellomlagring } from './hooks';
 import { KvitteringPage } from './pages/KvitteringPage';
 import { VelkommenPage } from './pages/VelkommenPage';
@@ -16,11 +16,11 @@ import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext
 import { KjæledyrSteg } from './steg/KjæledyrSteg';
 
 const getStepIdFraPath = (path: string): string | undefined => {
-    return stegRekkefølge.find((id) => path.includes(stegConfig[id].route));
+    return søknadStepOrder.find((id) => path.includes(søknadStepConfig[id].route));
 };
 
 const getPathForStep = (stepId: string): string => {
-    return `/soknad/${stegConfig[stepId as StegId]?.route}`;
+    return `/soknad/${søknadStepConfig[stepId as SøknadStepId]?.route}`;
 };
 
 interface Props {
@@ -66,22 +66,30 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                     <Route path="/soknad">
                         <Route
                             index
-                            element={<SøknadIndexRedirect stepConfig={stegConfig} mellomlagretStepId={currentStepId} />}
+                            element={
+                                <SøknadIndexRedirect stepConfig={søknadStepConfig} mellomlagretStepId={currentStepId} />
+                            }
                         />
                         <Route
                             element={
                                 <StegRouteGuard
                                     currentStepId={currentStepId}
                                     isInitialized={!!søknadState}
-                                    isStepIncluded={(stegId) => skalStegVises(stegId, søknadState?.søknadsdata ?? {})}
+                                    isStepIncluded={(stepId) => isStepIncluded(stepId, søknadState?.søknadsdata ?? {})}
                                     getStepIdFromPath={getStepIdFraPath}
                                     getPathForStep={getPathForStep}
                                 />
                             }>
-                            <Route path={stegConfig[StegId.PERSONALIA].route} element={<PersonaliaSteg />} />
-                            <Route path={stegConfig[StegId.KJÆLEDYR].route} element={<KjæledyrSteg />} />
-                            <Route path={stegConfig[StegId.KONTAKT].route} element={<KontaktinfoSteg />} />
-                            <Route path={stegConfig[StegId.OPPSUMMERING].route} element={<Oppsummering />} />
+                            <Route
+                                path={søknadStepConfig[SøknadStepId.PERSONALIA].route}
+                                element={<PersonaliaSteg />}
+                            />
+                            <Route path={søknadStepConfig[SøknadStepId.KJÆLEDYR].route} element={<KjæledyrSteg />} />
+                            <Route path={søknadStepConfig[SøknadStepId.KONTAKT].route} element={<KontaktinfoSteg />} />
+                            <Route
+                                path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route}
+                                element={<Oppsummering />}
+                            />
                         </Route>
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </Route>

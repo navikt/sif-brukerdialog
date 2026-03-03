@@ -5,9 +5,9 @@ import { SøknadFooter } from '@rammeverk/components';
 import { useStepNavigation } from '@rammeverk/state';
 
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
-import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { SøknadStepId, søknadStepConfig as stepConfig, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useStegStatus } from '../hooks/useStegStatus';
+import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
 interface Skjemadata {
@@ -15,23 +15,19 @@ interface Skjemadata {
 }
 
 export const KontaktinfoSteg = () => {
-    const stegId = StegId.KONTAKT;
+    const stegId = SøknadStepId.KONTAKT;
 
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitStep);
-    const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
+    const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
 
-    const stegStatus = useStegStatus();
-    const {
-        navigateToNextStep: gåTilNeste,
-        navigateToPreviousStep: gåTilForrige,
-        canGoPrevious: kanGåTilForrige,
-    } = useStepNavigation({
-        stepConfig: stegConfig,
-        stepOrder: stegRekkefølge,
-        stepStatus: stegStatus,
-        setCurrentStepId: setCurrentSteg,
+    const stepStatus = useSøknadStepStatus();
+    const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
+        stepConfig,
+        stepOrder,
+        stepStatus,
+        setCurrentStep: setCurrentStepId,
     });
 
     const { register, handleSubmit, getValues } = useForm<Skjemadata>({
@@ -40,7 +36,10 @@ export const KontaktinfoSteg = () => {
         },
     });
 
-    const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({ stegId, getValues: () => getValues() });
+    const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({
+        stepId: stegId,
+        getValues: () => getValues(),
+    });
 
     const onSubmit = (data: Skjemadata) => {
         submitSteg(
@@ -48,7 +47,7 @@ export const KontaktinfoSteg = () => {
             {
                 onSuccess: () => {
                     clearFormValues();
-                    gåTilNeste(stegId);
+                    navigateToNextStep(stegId);
                 },
             },
         );
@@ -62,8 +61,8 @@ export const KontaktinfoSteg = () => {
                     <Heading size="large">Kontaktinfo</Heading>
                     <TextField label="E-post" type="email" {...register('epost')} />
                     <HStack gap="space-16" justify="start">
-                        {kanGåTilForrige(stegId) && (
-                            <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
+                        {canGoPrevious(stegId) && (
+                            <Button type="button" variant="secondary" onClick={() => navigateToPreviousStep(stegId)}>
                                 Forrige
                             </Button>
                         )}

@@ -5,9 +5,9 @@ import { SøknadFooter } from '@rammeverk/components';
 import { useStepNavigation } from '@rammeverk/state';
 
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
-import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
+import { SøknadStepId, søknadStepConfig as stepConfig, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useStegStatus } from '../hooks/useStegStatus';
+import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
 interface Skjemadata {
@@ -16,18 +16,18 @@ interface Skjemadata {
 }
 
 export const PersonaliaSteg = () => {
-    const stegId = StegId.PERSONALIA;
+    const stegId = SøknadStepId.PERSONALIA;
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitStep);
-    const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
+    const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
 
-    const stegStatus = useStegStatus();
-    const { navigateToNextStep: gåTilNeste } = useStepNavigation({
-        stepConfig: stegConfig,
-        stepOrder: stegRekkefølge,
-        stepStatus: stegStatus,
-        setCurrentStepId: setCurrentSteg,
+    const stepStatus = useSøknadStepStatus();
+    const { navigateToNextStep } = useStepNavigation({
+        stepConfig,
+        stepOrder,
+        stepStatus,
+        setCurrentStep: setCurrentStepId,
     });
 
     const { register, handleSubmit, watch, setValue, getValues } = useForm<Skjemadata>({
@@ -39,7 +39,10 @@ export const PersonaliaSteg = () => {
 
     const harKjæledyr = watch('harKjæledyr');
 
-    const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({ stegId, getValues: () => getValues() });
+    const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({
+        stepId: stegId,
+        getValues: () => getValues(),
+    });
 
     const onSubmit = (data: Skjemadata) => {
         if (!data.navn || !data.harKjæledyr) {
@@ -51,7 +54,7 @@ export const PersonaliaSteg = () => {
             {
                 onSuccess: () => {
                     clearFormValues();
-                    gåTilNeste(stegId);
+                    navigateToNextStep(stegId);
                 },
             },
         );

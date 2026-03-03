@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { InvalidStepInfo } from '@rammeverk/components';
 import { usePersistFormValues } from '@rammeverk/hooks';
 import { useStepFormValues } from '@rammeverk/state';
-import { StegId, stegConfig, stegTitler } from '../config/stegConfig';
+import { SøknadStepId, søknadStepConfig, stepTitles } from '../config/søknadStepConfig';
 import { useSøknadsdataStatus } from '../hooks/useSøknadsdataStatus';
 
 interface UseFormSubmitGuardOptions<T extends object> {
-    stegId: StegId;
+    stepId: SøknadStepId;
     getValues: () => T;
 }
 
@@ -30,25 +30,25 @@ interface UseFormSubmitGuardResult {
  * - clearFormValues: Funksjon å kalle FØR navigasjon ved submit for å unngå timing-issues
  */
 export const useFormSubmitGuard = <T extends object>({
-    stegId,
+    stepId,
     getValues,
 }: UseFormSubmitGuardOptions<T>): UseFormSubmitGuardResult => {
     const navigate = useNavigate();
-    const { invalidSteps } = useSøknadsdataStatus(stegId);
+    const { invalidSteps } = useSøknadsdataStatus(stepId);
     const { clearStepFormValues } = useStepFormValues();
 
-    usePersistFormValues(stegId, getValues);
+    usePersistFormValues(stepId, getValues);
 
     const clearFormValues = useCallback(() => {
-        clearStepFormValues(stegId);
-    }, [stegId, clearStepFormValues]);
+        clearStepFormValues(stepId);
+    }, [stepId, clearStepFormValues]);
 
     const FormSubmitGuardInfo = useCallback(
         () => (
             <InvalidStepInfo
                 invalidSteps={invalidSteps}
-                getStepTitle={(id) => stegTitler[id as StegId]}
-                onNavigateToStep={(id) => navigate(`/soknad/${stegConfig[id as StegId].route}`)}
+                getStepTitle={(id) => stepTitles[id as SøknadStepId]}
+                onNavigateToStep={(id) => navigate(`/soknad/${søknadStepConfig[id as SøknadStepId].route}`)}
             />
         ),
         [invalidSteps, navigate],
