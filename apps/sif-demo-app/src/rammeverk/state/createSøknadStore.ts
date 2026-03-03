@@ -19,13 +19,17 @@ export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     søknadState: TState | undefined;
     børMellomlagres: boolean;
     currentStegId?: string;
-    setCurrentSteg: (stegId: string) => void;
-    init: (initialState: Omit<TState, 'søknadsdata'>, mellomlagretSøknadsdata?: TSøknadsdata) => void;
+    init: (
+        initialState: Omit<TState, 'søknadsdata'>,
+        mellomlagretSøknadsdata?: TSøknadsdata,
+        currentStegId?: string,
+    ) => void;
     submitSteg: (data: Partial<TSøknadsdata>, options?: SubmitStegOptions) => void;
     resetSøknad: () => void;
     startSøknad: (førsteStegId: string) => void;
     erStegFullført: (stegId: string) => boolean;
     setBørMellomlagres: (verdi: boolean) => void;
+    setCurrentSteg: (stegId: string) => void;
 }
 
 type EmptySøknadsdata = Record<string, never>;
@@ -53,12 +57,13 @@ export const createSøknadStore = <
         børMellomlagres: false,
         currentStegId: undefined,
 
-        init: (initialState, mellomlagretSøknadsdata) =>
+        init: (initialState, mellomlagretSøknadsdata, currentStegId) =>
             set({
                 søknadState: {
                     ...initialState,
                     søknadsdata: mellomlagretSøknadsdata ?? ({} as TSøknadsdata),
                 } as TState,
+                currentStegId,
             }),
 
         startSøknad: (førsteStegId: string) =>

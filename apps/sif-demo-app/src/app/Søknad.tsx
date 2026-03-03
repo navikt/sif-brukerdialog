@@ -46,13 +46,9 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const init = useAppStore((s) => s.init);
     const søknadState = useAppStore((s) => s.søknadState);
     const currentStegId = useAppStore((s) => s.currentStegId);
-    const setCurrentSteg = useAppStore((s) => s.setCurrentSteg);
 
     useEffectOnce(() => {
-        init({ søker, barn }, mellomlagring?.søknadsdata);
-        if (mellomlagring?.currentStegId) {
-            setCurrentSteg(mellomlagring.currentStegId);
-        }
+        init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStegId);
     });
 
     return (

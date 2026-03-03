@@ -13,11 +13,11 @@ export const AppInfoLoader = () => {
     const registrerteBarn = useRegistrerteBarn();
 
     const metadata = useMemo<MellomlagringMetaData | undefined>(() => {
-        if (!søker.isFetched || !registrerteBarn.isFetched || !søker.data) return undefined;
+        if (!søker.isFetched || !registrerteBarn.isFetched || !søker.data || !registrerteBarn.data) return undefined;
         return {
             MELLOMLAGRING_VERSJON,
             søker: søker.data,
-            barn: registrerteBarn.data || [],
+            barn: registrerteBarn.data,
         };
     }, [søker.isFetched, registrerteBarn.isFetched, søker.data, registrerteBarn.data]);
 
@@ -40,10 +40,11 @@ export const AppInfoLoader = () => {
     }
 
     if (!søker.data) {
-        return <ErrorPage error="Søker-data mangler" />;
+        return <ErrorPage error="Søkerdata mangler" />;
+    }
+    if (!registrerteBarn.data) {
+        return <ErrorPage error="Barnedata mangler" />;
     }
 
-    return (
-        <Søknad søker={søker.data} barn={registrerteBarn.data || []} mellomlagring={mellomlagring.data ?? undefined} />
-    );
+    return <Søknad søker={søker.data} barn={registrerteBarn.data} mellomlagring={mellomlagring.data ?? undefined} />;
 };

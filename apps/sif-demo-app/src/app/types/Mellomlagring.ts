@@ -5,7 +5,7 @@ import { Søknadsdata } from './Søknadsdata';
 /** App-specific mellomlagring type */
 export interface Mellomlagring {
     søknadsdata: Søknadsdata;
-    currentStegId: string | null;
+    currentStegId?: string;
 }
 
 /** App-specific metadata for hash validation */
