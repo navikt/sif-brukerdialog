@@ -13,7 +13,6 @@ interface Props<Data = unknown> {
 
 /**
  * Observer som lytter på børMellomlagres-flagget og trigger lagring.
- * Rammeverket er "dumt" - kjenner ikke til datastruktur, kun kaller callbacks.
  */
 export const MellomlagringObserver = <Data,>({ callbacks }: Props<Data>) => {
     const børMellomlagres = useSøknadFlyt((s) => s.børMellomlagres);

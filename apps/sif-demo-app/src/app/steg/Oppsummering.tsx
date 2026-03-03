@@ -2,7 +2,7 @@ import { Alert, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
 import { SøknadFooter } from '@rammeverk/components';
-import { useSøknadFlyt, useStegNavigasjon } from '@rammeverk/state';
+import { useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
 import { useAvbrytSøknadHandler } from '../hooks/useAvbrytSøknadHandler';
@@ -19,14 +19,11 @@ export const Oppsummering = () => {
 
     const stegStatus = useStegStatus();
     const navigate = useNavigate();
-    const setSøknadSendt = useSøknadFlyt((s) => s.setSøknadSendt);
 
     const { gåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
 
     const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {
         evt.preventDefault();
-        console.log('Sender inn søknad:', appState);
-        setSøknadSendt();
         resetSøknadsdata();
         slettMellomlagring().catch(() => {});
         navigate('/kvittering');
