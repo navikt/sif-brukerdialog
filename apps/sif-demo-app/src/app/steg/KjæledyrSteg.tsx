@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { SøknadFooter } from '@rammeverk/components';
 import { useStegNavigasjon } from '@rammeverk/state';
 
-import { useStegValidering } from '../components/StegValidering';
+import { useFormSubmitGuard } from '../components/FormSubmitGuard';
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useStegStatus } from '../hooks/useStegStatus';
@@ -36,7 +36,7 @@ export const KjæledyrSteg = () => {
         },
     });
 
-    const { StegValideringInfo, clearFormValues } = useStegValidering({ stegId, getValues: () => getValues() });
+    const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({ stegId, getValues: () => getValues() });
 
     const onSubmit = (data: Skjemadata) => {
         if (!data.navn) {
@@ -56,7 +56,7 @@ export const KjæledyrSteg = () => {
 
     return (
         <VStack gap="space-24">
-            <StegValideringInfo />
+            <FormSubmitGuardInfo />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <VStack gap="space-16">
                     <Heading size="large">Navn på kjæledyr</Heading>
