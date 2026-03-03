@@ -112,7 +112,7 @@ export const createSøknadStore = <
                 };
             }),
 
-        setBørMellomlagres: (verdi) => set({ børMellomlagres: verdi }),
+        setBørMellomlagres: (børMellomlagres) => set({ børMellomlagres }),
     });
 
     return create(storeCreator);
