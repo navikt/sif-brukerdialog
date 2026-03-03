@@ -49,7 +49,7 @@ export const stepTitles: Record<SøknadStepId, string> = {
     [SøknadStepId.OPPSUMMERING]: 'Oppsummering',
 };
 
-export const isStepIncluded = (stepId: string, søknadsdata: Søknadsdata): boolean => {
+export const isSøknadStepIncluded = (stepId: string, søknadsdata: Søknadsdata): boolean => {
     switch (stepId) {
         case SøknadStepId.KJÆLEDYR:
             return søknadsdata[SøknadStepId.PERSONALIA]?.harKjæledyr === 'ja';

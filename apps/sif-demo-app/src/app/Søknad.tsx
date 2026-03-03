@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 
-import { isStepIncluded, SøknadStepId, søknadStepConfig, søknadStepOrder } from './config/søknadStepConfig';
+import { isSøknadStepIncluded, SøknadStepId, søknadStepConfig, søknadStepOrder } from './config/søknadStepConfig';
 import { useAppStore, useMellomlagring } from './hooks';
 import { KvitteringPage } from './pages/KvitteringPage';
 import { VelkommenPage } from './pages/VelkommenPage';
@@ -59,7 +59,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     return (
         <StepFormValuesProvider>
             <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-                <SøknadMellomlagringObserver />
+                {søknadState && <SøknadMellomlagringObserver />}
                 <Routes>
                     <Route path="/" element={<VelkommenPage />} />
                     <Route path="/kvittering" element={<KvitteringPage />} />
@@ -75,7 +75,9 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                                 <StegRouteGuard
                                     currentStepId={currentStepId}
                                     isInitialized={!!søknadState}
-                                    isStepIncluded={(stepId) => isStepIncluded(stepId, søknadState?.søknadsdata ?? {})}
+                                    isStepIncluded={(stepId) =>
+                                        isSøknadStepIncluded(stepId, søknadState?.søknadsdata ?? {})
+                                    }
                                     getStepIdFromPath={getStepIdFraPath}
                                     getPathForStep={getPathForStep}
                                 />
