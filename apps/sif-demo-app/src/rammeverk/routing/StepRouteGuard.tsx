@@ -10,13 +10,9 @@ interface Props {
 }
 
 /**
- * Guard for steg-routes. Redirecter til velkommen hvis søknad ikke er startet
- * (currentStegId er null - f.eks. ved direktenavigasjon til /soknad/* uten gyldig mellomlagring).
- *
- * Venter med å redirecte til etter initialisering er ferdig (erInitialisert=true).
- *
- * Hvis skalStegVises er satt, sjekker den om det aktuelle steget skal vises.
- * Hvis ikke, redirecter til currentStegId.
+ * Guard for steg-routes. Redirecter til initialPath hvis currentStepId mangler.
+ * Venter til isInitialized=true før redirect. Hvis isStepIncluded er satt,
+ * sjekkes om steget skal vises - ellers redirect til currentStepId.
  */
 export const StepRouteGuard = ({
     currentStepId,
