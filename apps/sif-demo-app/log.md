@@ -1,5 +1,117 @@
 # soknad-rammeverk – Utviklingslogg
 
+## 2026-03-03: Forenkling av factories og fjerning av Zustand-typer
+
+### Motivasjon
+
+Zustand-typene (`UseBoundStore<StoreApi<...>>`) var verbose og vanskelige å lese. Factories tok inn store-referanser med komplekse typer, noe som gjorde koden unødvendig kompleks.
+
+### Endringer
+
+**1. createMellomlagringHook tar hook i stedet for store**
+
+Før:
+```typescript
+createMellomlagringHook({
+    store: useSøknadStore,  // UseBoundStore<StoreApi<SøknadStoreActions<...>>>
+    ...
+});
+```
+
+Etter:
+```typescript
+createMellomlagringHook({
+    useSøknadState: () => useSøknadStore((s) => s.søknadState),  // enkel funksjon
+    ...
+});
+```
+
+**2. Fjernet createAvbrytHandler**
+
+Factory ga liten verdi - bare to funksjoner kalt etter hverandre. Erstattet med enkel app-hook:
+
+```typescript
+export const useAvbrytSøknad = () => {
+    const resetSøknad = useSøknadStore((s) => s.resetSøknad);
+    const { slettMellomlagring } = useMellomlagring();
+
+    return useCallback(() => {
+        resetSøknad();
+        slettMellomlagring().catch(() => {});
+    }, [resetSøknad, slettMellomlagring]);
+};
+```
+
+**3. Fjernet SøknadStoreBase og SøknadStoreBaseActions**
+
+Disse typene var kun brukt internt i factories - ikke lenger nødvendige.
+
+**4. Fjernet SøknadStoreForMellomlagring**
+
+Erstattet med enkel hook-basert interface.
+
+**5. Forenklet MellomlagringObserver**
+
+Før:
+```typescript
+<MellomlagringObserver
+    callbacks={{ hentMellomlagring, lagreMellomlagring }}
+    ...
+/>
+```
+
+Etter:
+```typescript
+<MellomlagringObserver
+    lagreMellomlagring={lagreMellomlagring}
+    ...
+/>
+```
+
+**6. Fjernet hentMellomlagring fra useMellomlagring**
+
+`lagreMellomlagring` bygger nå dataene internt - ingen grunn til å eksponere en separat funksjon.
+
+**7. MellomlagringData er nå intern type**
+
+Ikke lenger eksportert - appen definerer sin egen Mellomlagring-type.
+
+### Resultat
+
+**Rammeverk eksporterer nå:**
+- `createSøknadStore` - factory for app store
+- `createMellomlagringHook` - factory for mellomlagring (tar hooks, ikke stores)
+- `useSøknadFlyt` - global flyt-state
+- `useStegNavigasjon`, `useStegTilgang` - navigasjonshooks
+- `MellomlagringObserver`, `SøknadFooter` - komponenter
+
+**App-hooks (minimal kode):**
+```typescript
+// useSøknadStore.ts - 7 linjer
+export const useSøknadStore = createSøknadStore<SøknadState, Søknadsdata>();
+
+// useMellomlagring.ts - 13 linjer
+export const useMellomlagring = createMellomlagringHook({...});
+
+// useAvbrytSøknad.ts - 14 linjer (ingen factory)
+export const useAvbrytSøknad = () => {...};
+```
+
+### Filendringer
+
+**Slettet:**
+- `rammeverk/hooks/createAvbrytHandler.ts`
+
+**Omdøpt:**
+- `app/hooks/useAvbrytSøknadHandler.ts` → `app/hooks/useAvbrytSøknad.ts`
+
+**Forenklet:**
+- `rammeverk/state/createSøknadStore.ts` - fjernet SøknadStoreBase* typer
+- `rammeverk/hooks/createMellomlagringHook.ts` - tar hook i stedet for store
+- `rammeverk/components/MellomlagringObserver.tsx` - enklere props
+
+---
+
 ## 2026-03-02: Mellomlagring-implementasjon
 
 ### Motivasjon
@@ -338,11 +450,11 @@ Søknad.tsx           – Hovedkomponent med routing og initialisering
 ### Neste sesjon
 
 - [ ] Test full flyt i browser (verifiser at alt fungerer)
-- [ ] Legg til et dynamisk steg med `skalVises` for å teste
 
 ### Kort sikt
 
 - [ ] Back/forward-håndtering (blokkér og vis panel)
+- [ ] Legg til et dynamisk steg med `skalVises` for å teste
 
 ### Lengre sikt
 
@@ -396,13 +508,15 @@ submitSøknadsdata({ [StegId.PERSONALIA]: { navn } });
 
 | Hook                       | Pakke            | Returnerer                                           |
 | -------------------------- | ---------------- | ---------------------------------------------------- |
-| `useSøknadFlyt()`          | rammeverk        | Flyt-state (currentStegId, børMellomlagres, erSendt) |
-| `useStegFlyt()`            | rammeverk        | `{ aktiveSteg, currentStegId, forrige/neste }`       |
+| `useSøknadFlyt()`          | rammeverk        | Flyt-state (currentStegId)                           |
 | `useStegNavigasjon()`      | rammeverk        | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
 | `useStegTilgang()`         | rammeverk        | `{ erTilgjengelig, erFullført, sisteGyldigeStegId }` |
+| `createSøknadStore()`      | rammeverk        | Factory for app Zustand store                        |
+| `createMellomlagringHook()`| rammeverk        | Factory for mellomlagring hook                       |
 | `useYtelseMellomlagring()` | sif-common-query | `{ data, lagre, slett, isLoading, ... }`             |
-| `useSøknadStore()`         | app              | App-state (søknadState, init, submitSteg)            |
-| `useMellomlagring()`       | app              | `{ getData, lagre, slett, isLagring }`               |
+| `useSøknadStore()`         | app              | App-state (søknadState, init, submitSteg, ...)       |
+| `useMellomlagring()`       | app              | `{ lagreMellomlagring, slettMellomlagring }`         |
+| `useAvbrytSøknad()`        | app              | Callback for å avbryte søknad                        |
 
 ---
 
@@ -419,13 +533,16 @@ src/
 │   │   ├── useStegTilgang.ts
 │   │   └── index.ts
 │   ├── hooks/
+│   │   ├── createMellomlagringHook.ts
 │   │   └── index.ts
 │   ├── routing/
 │   │   ├── routeUtils.ts
+│   │   ├── StegRouteGuard.tsx
+│   │   ├── SøknadIndexRedirect.tsx
 │   │   └── index.ts
 │   ├── state/
-│   │   ├── useSøknadFlyt.ts
-│   │   ├── useStegFlyt.ts
+│   │   ├── createSøknadStore.ts
+│   │   ├── useSøknadState.ts
 │   │   ├── useStegNavigasjon.ts
 │   │   └── index.ts
 │   ├── utils/
@@ -438,7 +555,9 @@ src/
 │   │   ├── appConfig.ts
 │   │   └── stegConfig.ts
 │   ├── hooks/
+│   │   ├── useAvbrytSøknad.ts
 │   │   ├── useMellomlagring.ts
+│   │   ├── useStegStatus.ts
 │   │   ├── useSøknadStore.ts
 │   │   └── index.ts
 │   ├── pages/
