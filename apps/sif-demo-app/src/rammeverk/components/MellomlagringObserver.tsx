@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { useSøknadStore } from '../../app/hooks/useSøknadStore';
+import { useSøknadFlyt } from '../state/useSøknadState';
 
 export interface MellomlagringCallbacks<Data = unknown> {
     hentMellomlagring: () => Data;
@@ -15,8 +15,8 @@ interface Props<Data = unknown> {
  * Observer som lytter på børMellomlagres-flagget og trigger lagring.
  */
 export const MellomlagringObserver = <Data,>({ callbacks }: Props<Data>) => {
-    const børMellomlagres = useSøknadStore((s) => s.børMellomlagres);
-    const setBørMellomlagres = useSøknadStore((s) => s.setBørMellomlagres);
+    const børMellomlagres = useSøknadFlyt((s) => s.børMellomlagres);
+    const setBørMellomlagres = useSøknadFlyt((s) => s.setBørMellomlagres);
     const isLagrer = useRef(false);
 
     useEffect(() => {

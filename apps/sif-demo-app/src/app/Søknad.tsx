@@ -40,7 +40,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
 
     useEffectOnce(() => {
-        init(søker, barn, mellomlagring?.søknadsdata);
+        init({ søker, barn }, mellomlagring?.søknadsdata);
         if (mellomlagring?.currentStegId) {
             setCurrentSteg(mellomlagring.currentStegId);
         }
