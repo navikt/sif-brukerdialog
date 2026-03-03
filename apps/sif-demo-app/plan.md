@@ -165,6 +165,14 @@ const activeSteps = getActiveStep(stepOrder, stepStatus);
 
 ---
 
+## Gjenstår å vurdere
+
+### Layout-komponenter
+
+Rammeverket kan utvides med felles layout-komponenter som sikrer lik opplevelse på tvers av alle søknader. Disse komponentene vil samle logikk som ellers måtte dupliseres i hver app. Avventer implementasjon for å se hvor tett de bør være knyttet til rammeverket.
+
+---
+
 ## Status
 
 Se [log.md](log.md) for detaljert fremdrift.
