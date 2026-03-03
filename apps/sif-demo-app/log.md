@@ -1,6 +1,34 @@
 # soknad-rammeverk – Utviklingslogg
 
-## 2026-03-03: Forward-knapp-beskyttelse med StegValidering
+## 2026-03-03: Navnekonvensjoner og kommentargjennomgang
+
+### Navnekonvensjoner
+
+Besluttet å bruke engelske navn for tekniske konsepter, men beholde norske domeneord:
+
+**Engelske navn:**
+
+- `submitStep`, `setCurrentStep`, `navigateToStep`, `navigateToNextStep`
+- `isStepCompleted`, `isInitialized`, `stepOrder`, `stepConfig`
+- `getActiveStep`, `ActiveStep`, `StepStatusCallbacks`
+
+**Norske domeneord (beholdes):**
+
+- `søknad`, `søknadsdata`, `søker` - domenespesifikke begreper
+- `mellomlagring` - beholdes pga. eksterne avhengigheter (`MellomlagringYtelse`, `useYtelseMellomlagring`)
+- `børMellomlagres` - beholdes for konsistens med mellomlagring
+
+### Kommentargjennomgang
+
+Gått gjennom alle filer i `rammeverk/` og oppdatert kommentarer:
+
+- Fjernet avvik mellom kommentarer og implementasjon
+- Kortet ned verbose kommentarer
+- Sørget for at variabelnavn i kommentarer matcher faktiske navn
+
+---
+
+## 2026-03-03: Forward-knapp-beskyttelse med FormSubmitGuard
 
 ### Problem
 
@@ -38,18 +66,18 @@ Implementert mønster fra omsorgspengesoknad-appen:
 └─────────────────────────────────────────────────────┘
 ```
 
-### StegValidering-komponent
+### FormSubmitGuard-komponent
 
 App-spesifikk komponent som kombinerer alt:
 
 ```typescript
-// StegValidering.tsx - kombinerer persistering og validering
-export const StegValidering = <T extends object>({ stegId, getValues }: Props<T>) => {
+// FormSubmitGuard.tsx - kombinerer persistering og validering
+export const FormSubmitGuard = <T extends object>({ stepId, getValues }: Props<T>) => {
     const navigate = useNavigate();
     const { invalidSteps } = useSøknadsdataStatus(stegId);
-    
+
     usePersistFormValues(stegId, getValues);
-    
+
     return (
         <InvalidStepInfo
             invalidSteps={invalidSteps}
@@ -63,6 +91,7 @@ export const StegValidering = <T extends object>({ stegId, getValues }: Props<T>
 ### Forenklet bruk i stegene
 
 Før - mange imports og manuell oppsett:
+
 ```typescript
 const { invalidSteps } = useSøknadsdataStatus(stegId);
 usePersistFormValues(stegId, () => getValues());
@@ -75,8 +104,9 @@ usePersistFormValues(stegId, () => getValues());
 ```
 
 Etter - én linje:
+
 ```typescript
-<StegValidering stegId={stegId} getValues={() => getValues()} />
+<FormSubmitGuard stepId={stepId} getValues={() => getValues()} />
 ```
 
 ### Konvertert til react-hook-form
@@ -102,8 +132,8 @@ const { register, handleSubmit, getValues } = useForm<Skjemadata>({
 
 ### Nye filer i app
 
-- `app/components/StegValidering.tsx` - Kombinerer alt for enkel bruk
-- `app/hooks/useSøknadsdataStatus.ts` - App-spesifikk konvertering
+- `app/components/FormSubmitGuard.tsx` - Kombinerer persistering og validering
+- `app/hooks/useSøknadsdataStatus.ts` - App-spesifikk wrapper
 
 ---
 
