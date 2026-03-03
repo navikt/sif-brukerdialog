@@ -5,9 +5,9 @@ import { MellomlagringYtelse, useYtelseMellomlagring } from '@navikt/sif-common-
 import { useSøknadFlyt } from '../state/useSøknadState';
 
 /**
- * Standard structure for mellomlagring data.
+ * Internal structure for mellomlagring data.
  */
-export interface MellomlagringData {
+interface MellomlagringData {
     søknadsdata: object;
     currentStegId: string | null;
 }
@@ -53,14 +53,16 @@ export const createMellomlagringHook = <TState extends { søknadsdata: object }>
 
         const mellomlagring = useYtelseMellomlagring<MellomlagringData, object>(ytelse, metadata);
 
-        const hentMellomlagring = (): MellomlagringData => ({
-            søknadsdata: søknadState.søknadsdata,
-            currentStegId,
-        });
+        const lagreMellomlagring = async (): Promise<void> => {
+            const data: MellomlagringData = {
+                søknadsdata: søknadState.søknadsdata,
+                currentStegId,
+            };
+            await mellomlagring.lagre(data);
+        };
 
         return {
-            hentMellomlagring,
-            lagreMellomlagring: mellomlagring.lagre,
+            lagreMellomlagring,
             slettMellomlagring: mellomlagring.slett,
             isPending: mellomlagring.isLagring,
         };

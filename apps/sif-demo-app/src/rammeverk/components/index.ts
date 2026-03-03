@@ -1,2 +1,2 @@
-export { MellomlagringObserver, type MellomlagringCallbacks } from './MellomlagringObserver';
+export { MellomlagringObserver } from './MellomlagringObserver';
 export { SøknadFooter } from './SøknadFooter';

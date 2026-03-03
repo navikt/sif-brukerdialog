@@ -1,29 +1,22 @@
 import { useEffect, useRef } from 'react';
 
-export interface MellomlagringCallbacks<Data = unknown> {
-    hentMellomlagring: () => Data;
-    lagreMellomlagring: (data: Data) => Promise<void>;
-}
-
-interface Props<Data = unknown> {
+interface Props {
     børMellomlagres: boolean;
     setBørMellomlagres: (verdi: boolean) => void;
-    callbacks: MellomlagringCallbacks<Data>;
+    lagreMellomlagring: () => Promise<void>;
 }
 
 /**
  * Observer som lytter på børMellomlagres-flagget og trigger lagring.
  */
-export const MellomlagringObserver = <Data,>({ børMellomlagres, setBørMellomlagres, callbacks }: Props<Data>) => {
+export const MellomlagringObserver = ({ børMellomlagres, setBørMellomlagres, lagreMellomlagring }: Props) => {
     const isLagrer = useRef(false);
 
     useEffect(() => {
         if (børMellomlagres && !isLagrer.current) {
             isLagrer.current = true;
-            const data = callbacks.hentMellomlagring();
 
-            callbacks
-                .lagreMellomlagring(data)
+            lagreMellomlagring()
                 .catch(() => {
                     // Silent fail - mellomlagringsfeil blokkerer ikke bruker
                 })
@@ -32,7 +25,7 @@ export const MellomlagringObserver = <Data,>({ børMellomlagres, setBørMellomla
                     isLagrer.current = false;
                 });
         }
-    }, [børMellomlagres, callbacks, setBørMellomlagres]);
+    }, [børMellomlagres, lagreMellomlagring, setBørMellomlagres]);
 
     return null;
 };
