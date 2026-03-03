@@ -21,7 +21,7 @@ export const KontaktinfoSteg = () => {
     const { avbrytHandler } = useAvbrytSøknadHandler();
 
     const stegStatus = useStegStatus();
-    const { gåTilNeste, gåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
+    const { gåTilNeste, gåTilForrige, kanGåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
 
     const [epost, setEpost] = useState<Skjemadata['epost']>(appState?.søknadsdata[stegId]?.epost ?? '');
 
@@ -37,9 +37,11 @@ export const KontaktinfoSteg = () => {
                     <Heading size="large">Kontaktinfo</Heading>
                     <TextField label="E-post" type="email" value={epost} onChange={(e) => setEpost(e.target.value)} />
                     <HStack gap="space-16" justify="start">
-                        <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
-                            Forrige
-                        </Button>
+                        {kanGåTilForrige(stegId) && (
+                            <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
+                                Forrige
+                            </Button>
+                        )}
                         <Button type="submit">Neste</Button>
                     </HStack>
                 </VStack>

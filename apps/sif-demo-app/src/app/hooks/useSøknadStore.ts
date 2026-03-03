@@ -10,11 +10,13 @@ interface SubmitStegOptions {
 }
 
 interface SøknadStore {
+    børMellomlagres?: boolean;
     søknadState: SøknadState | undefined;
-    init: (søker: Søker, barn: RegistrertBarn[], mellomlagretSøknadsdata?: Søknadsdata) => void;
-    submitSteg: (data: Partial<Søknadsdata>, options?: SubmitStegOptions) => void;
     erStegFullført: (stegId: string) => boolean;
+    init: (søker: Søker, barn: RegistrertBarn[], mellomlagretSøknadsdata?: Søknadsdata) => void;
     resetSøknad: () => void;
+    setBørMellomlagres: (verdi: boolean) => void;
+    submitSteg: (data: Partial<Søknadsdata>, options?: SubmitStegOptions) => void;
 }
 
 export const useSøknadStore = create<SøknadStore>((set, get) => ({
@@ -41,6 +43,11 @@ export const useSøknadStore = create<SøknadStore>((set, get) => ({
         });
         options?.onSuccess?.();
     },
+
+    setBørMellomlagres: (verdi) =>
+        set({
+            børMellomlagres: verdi,
+        }),
 
     erStegFullført: (stegId) => {
         const appState = get().søknadState;

@@ -20,7 +20,7 @@ export const Oppsummering = () => {
     const stegStatus = useStegStatus();
     const navigate = useNavigate();
 
-    const { gåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
+    const { gåTilForrige, kanGåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
 
     const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {
         evt.preventDefault();
@@ -45,9 +45,11 @@ export const Oppsummering = () => {
                 </Alert>
                 <form onSubmit={handleSubmit}>
                     <HStack gap="space-16" justify={'start'}>
-                        <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
-                            Forrige
-                        </Button>
+                        {kanGåTilForrige(stegId) && (
+                            <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
+                                Forrige
+                            </Button>
+                        )}
                         <Button type="submit">Send inn søknad</Button>
                     </HStack>
                 </form>

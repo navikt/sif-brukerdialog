@@ -21,7 +21,7 @@ export const KjæledyrSteg = () => {
     const { avbrytHandler } = useAvbrytSøknadHandler();
 
     const stegStatus = useStegStatus();
-    const { gåTilNeste, gåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
+    const { gåTilNeste, gåTilForrige, kanGåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
 
     const [navn, setNavn] = useState<Skjemadata['navn']>(appState?.søknadsdata[stegId]?.navn ?? '');
 
@@ -42,9 +42,11 @@ export const KjæledyrSteg = () => {
                     <TextField label="Navn" value={navn} onChange={(e) => setNavn(e.target.value)} />
 
                     <HStack gap="space-16" justify="start">
-                        <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
-                            Forrige
-                        </Button>
+                        {kanGåTilForrige(stegId) && (
+                            <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
+                                Forrige
+                            </Button>
+                        )}
                         <Button type="submit">Neste</Button>
                     </HStack>
                 </VStack>

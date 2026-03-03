@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAktiveSteg, StegConfig, StegStatusCallbacks } from '../types';
 
 import { useSøknadFlyt } from './useSøknadState';
+import { useSøknadStore } from '../../app/hooks/useSøknadStore';
 
 interface UseStegNavigasjonOptions {
     stegConfig: StegConfig;
@@ -39,12 +40,11 @@ export const useStegNavigasjon = ({
 }: UseStegNavigasjonOptions) => {
     const navigate = useNavigate();
     const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
-    const setBørMellomlagres = useSøknadFlyt((s) => s.setBørMellomlagres);
+    const setBørMellomlagres = useSøknadStore((s) => s.setBørMellomlagres);
 
     const gåTilSteg = useCallback(
         (stegId: string) => {
             setCurrentSteg(stegId);
-            console.log('Må mellomlagres');
             setBørMellomlagres(true);
             const route = stegConfig[stegId].route;
             navigate(`${basePath}/${route}`);
