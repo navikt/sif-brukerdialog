@@ -17,10 +17,12 @@ export interface BaseSøknadState<TSøknadsdata extends object> {
  */
 export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     søknadState: TState | undefined;
+    børMellomlagres: boolean;
     init: (initialState: Omit<TState, 'søknadsdata'>, mellomlagretSøknadsdata?: TSøknadsdata) => void;
     submitSteg: (data: Partial<TSøknadsdata>, options?: SubmitStegOptions) => void;
     resetSøknad: () => void;
     erStegFullført: (stegId: string) => boolean;
+    setBørMellomlagres: (verdi: boolean) => void;
 }
 
 type EmptySøknadsdata = Record<string, never>;
@@ -45,6 +47,7 @@ export const createSøknadStore = <
 >(): UseBoundStore<StoreApi<SøknadStoreActions<TState, TSøknadsdata>>> => {
     const storeCreator: StateCreator<SøknadStoreActions<TState, TSøknadsdata>> = (set, get) => ({
         søknadState: undefined,
+        børMellomlagres: false,
 
         init: (initialState, mellomlagretSøknadsdata) =>
             set({
@@ -62,6 +65,7 @@ export const createSøknadStore = <
                         ...state.søknadState,
                         søknadsdata: { ...state.søknadState.søknadsdata, ...data },
                     } as TState,
+                    børMellomlagres: true,
                 };
             });
             options?.onSuccess?.();
@@ -82,6 +86,8 @@ export const createSøknadStore = <
                     } as TState,
                 };
             }),
+
+        setBørMellomlagres: (verdi) => set({ børMellomlagres: verdi }),
     });
 
     return create(storeCreator);

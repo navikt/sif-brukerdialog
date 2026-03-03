@@ -39,16 +39,14 @@ export const useStegNavigasjon = ({
 }: UseStegNavigasjonOptions) => {
     const navigate = useNavigate();
     const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
-    const setBørMellomlagres = useSøknadFlyt((s) => s.setBørMellomlagres);
 
     const gåTilSteg = useCallback(
         (stegId: string) => {
             setCurrentSteg(stegId);
-            setBørMellomlagres(true);
             const route = stegConfig[stegId].route;
             navigate(`${basePath}/${route}`);
         },
-        [setCurrentSteg, setBørMellomlagres, navigate, basePath, stegConfig],
+        [setCurrentSteg, navigate, basePath, stegConfig],
     );
 
     const gåTilNeste = useCallback(

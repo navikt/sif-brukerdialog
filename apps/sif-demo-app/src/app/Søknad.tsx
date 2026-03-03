@@ -29,8 +29,16 @@ interface Props {
 }
 
 const AppMellomlagringObserver = () => {
+    const børMellomlagres = useAppStore((s) => s.børMellomlagres);
+    const setBørMellomlagres = useAppStore((s) => s.setBørMellomlagres);
     const { hentMellomlagring, lagreMellomlagring } = useMellomlagring();
-    return <MellomlagringObserver callbacks={{ hentMellomlagring, lagreMellomlagring }} />;
+    return (
+        <MellomlagringObserver
+            børMellomlagres={børMellomlagres}
+            setBørMellomlagres={setBørMellomlagres}
+            callbacks={{ hentMellomlagring, lagreMellomlagring }}
+        />
+    );
 };
 
 export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
