@@ -15,12 +15,12 @@ import { MellomlagringObserver, StegRouteGuard, SøknadIndexRedirect } from '../
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
 import { KjæledyrSteg } from './steg/KjæledyrSteg';
 
-const getStegIdFraPath = (path: string): string | undefined => {
+const getStepIdFraPath = (path: string): string | undefined => {
     return stegRekkefølge.find((id) => path.includes(stegConfig[id].route));
 };
 
-const getPathForSteg = (stegId: string): string => {
-    return `/soknad/${stegConfig[stegId as StegId]?.route}`;
+const getPathForStep = (stepId: string): string => {
+    return `/soknad/${stegConfig[stepId as StegId]?.route}`;
 };
 
 interface Props {
@@ -50,10 +50,10 @@ const AppMellomlagringObserver = () => {
 export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const init = useAppStore((s) => s.init);
     const søknadState = useAppStore((s) => s.søknadState);
-    const currentStegId = useAppStore((s) => s.currentStegId);
+    const currentStepId = useAppStore((s) => s.currentStepId);
 
     useEffectOnce(() => {
-        init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStegId);
+        init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
     });
 
     return (
@@ -66,16 +66,16 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                     <Route path="/soknad">
                         <Route
                             index
-                            element={<SøknadIndexRedirect stegConfig={stegConfig} mellomlagretStegId={currentStegId} />}
+                            element={<SøknadIndexRedirect stepConfig={stegConfig} mellomlagretStepId={currentStepId} />}
                         />
                         <Route
                             element={
                                 <StegRouteGuard
-                                    currentStegId={currentStegId}
-                                    erInitialisert={!!søknadState}
-                                    skalStegVises={(stegId) => skalStegVises(stegId, søknadState?.søknadsdata ?? {})}
-                                    getStegIdFraPath={getStegIdFraPath}
-                                    getPathForSteg={getPathForSteg}
+                                    currentStepId={currentStepId}
+                                    isInitialized={!!søknadState}
+                                    isStepIncluded={(stegId) => skalStegVises(stegId, søknadState?.søknadsdata ?? {})}
+                                    getStepIdFromPath={getStepIdFraPath}
+                                    getPathForStep={getPathForStep}
                                 />
                             }>
                             <Route path={stegConfig[StegId.PERSONALIA].route} element={<PersonaliaSteg />} />

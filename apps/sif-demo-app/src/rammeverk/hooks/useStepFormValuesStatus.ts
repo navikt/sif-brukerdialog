@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react';
 import { useStepFormValues } from '../state/StepFormValuesContext';
 
 type FormValuesToSøknadsdataFn = (
-    stegId: string,
+    stepId: string,
     formValues: Record<string, unknown>,
 ) => Record<string, unknown> | undefined;
 
-type GetSøknadsdataForStegFn = (stegId: string) => Record<string, unknown> | undefined;
+type GetSøknadsdataForStepFn = (stepId: string) => Record<string, unknown> | undefined;
 
 interface UseStepFormValuesStatusOptions {
-    currentStegId: string;
-    stegRekkefølge: string[];
+    currentStepId: string;
+    stepOrder: string[];
     formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
-    getSøknadsdataForSteg: GetSøknadsdataForStegFn;
+    getSøknadsdataForStep: GetSøknadsdataForStepFn;
     isEqual?: (a: unknown, b: unknown) => boolean;
 }
 
@@ -27,41 +27,41 @@ const defaultIsEqual = (a: unknown, b: unknown): boolean => {
  * @returns invalidSteps - Liste over stegId-er hvor formValues ikke matcher søknadsdata
  */
 export const useStepFormValuesStatus = ({
-    currentStegId,
-    stegRekkefølge,
+    currentStepId,
+    stepOrder,
     formValuesToSøknadsdata,
-    getSøknadsdataForSteg,
+    getSøknadsdataForStep,
     isEqual = defaultIsEqual,
 }: UseStepFormValuesStatusOptions) => {
     const [invalidSteps, setInvalidSteps] = useState<string[]>([]);
     const { stepFormValues } = useStepFormValues();
 
     useEffect(() => {
-        const currentIndex = stegRekkefølge.indexOf(currentStegId);
+        const currentIndex = stepOrder.indexOf(currentStepId);
         if (currentIndex <= 0) {
             setInvalidSteps([]);
             return;
         }
 
-        const precedingSteps = stegRekkefølge.slice(0, currentIndex);
+        const precedingSteps = stepOrder.slice(0, currentIndex);
         const invalid: string[] = [];
 
-        precedingSteps.forEach((stegId) => {
-            const formValues = stepFormValues[stegId];
+        precedingSteps.forEach((stepId) => {
+            const formValues = stepFormValues[stepId];
             if (!formValues) {
                 return;
             }
 
-            const søknadsdata = getSøknadsdataForSteg(stegId);
-            const convertedFormValues = formValuesToSøknadsdata(stegId, formValues);
+            const søknadsdata = getSøknadsdataForStep(stepId);
+            const convertedFormValues = formValuesToSøknadsdata(stepId, formValues);
 
             if (!søknadsdata || !isEqual(convertedFormValues, søknadsdata)) {
-                invalid.push(stegId);
+                invalid.push(stepId);
             }
         });
 
         setInvalidSteps(invalid);
-    }, [currentStegId, stegRekkefølge, stepFormValues, formValuesToSøknadsdata, getSøknadsdataForSteg, isEqual]);
+    }, [currentStepId, stepOrder, stepFormValues, formValuesToSøknadsdata, getSøknadsdataForStep, isEqual]);
 
     return {
         invalidSteps,

@@ -1,6 +1,6 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 
-import { StegConfig } from '@rammeverk/types';
+import { StepConfig } from '@rammeverk/types';
 import { Søknadsdata } from '../types/Søknadsdata';
 
 export enum StegId {
@@ -16,7 +16,7 @@ export interface SøknadState {
     søknadsdata: Søknadsdata;
 }
 
-export const stegConfig: StegConfig = {
+export const stegConfig: StepConfig = {
     [StegId.PERSONALIA]: {
         id: StegId.PERSONALIA,
         route: 'om-deg',

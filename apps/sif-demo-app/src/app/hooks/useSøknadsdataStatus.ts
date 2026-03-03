@@ -46,9 +46,9 @@ export const useSøknadsdataStatus = (currentStegId: string) => {
     );
 
     return useStepFormValuesStatus({
-        currentStegId,
-        stegRekkefølge,
+        currentStepId: currentStegId,
+        stepOrder: stegRekkefølge,
         formValuesToSøknadsdata,
-        getSøknadsdataForSteg,
+        getSøknadsdataForStep: getSøknadsdataForSteg,
     });
 };

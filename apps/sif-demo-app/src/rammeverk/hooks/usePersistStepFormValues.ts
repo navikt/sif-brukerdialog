@@ -5,16 +5,16 @@ import { useStepFormValues } from '../state/StepFormValuesContext';
  * Hook som lagrer skjemaverdier til StepFormValuesContext ved unmount.
  * Dette fanger endringer når bruker navigerer bort fra steget uten å submitte.
  *
- * @param stegId - Identifikator for steget
+ * @param stepId - Identifikator for steget
  * @param getValues - Funksjon fra react-hook-form som returnerer nåværende skjemaverdier
  *
  * @example
  * ```tsx
  * const { getValues } = useForm();
- * usePersistFormValues(stegId, getValues);
+ * usePersistFormValues(stepId, getValues);
  * ```
  */
-export const usePersistFormValues = <T extends object>(stegId: string, getValues: () => T) => {
+export const useStepPersistFormValues = <T extends object>(stepId: string, getValues: () => T) => {
     const { setStepFormValues } = useStepFormValues();
     const getValuesRef = useRef(getValues);
 
@@ -27,7 +27,7 @@ export const usePersistFormValues = <T extends object>(stegId: string, getValues
         return () => {
             // Ved unmount: lagre nåværende verdier
             const values = getValuesRef.current();
-            setStepFormValues(stegId, values as Record<string, unknown>);
+            setStepFormValues(stepId, values as Record<string, unknown>);
         };
-    }, [stegId, setStepFormValues]);
+    }, [stepId, setStepFormValues]);
 };

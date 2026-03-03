@@ -2,7 +2,7 @@ import { Alert, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
 import { SøknadFooter } from '@rammeverk/components';
-import { useStegNavigasjon } from '@rammeverk/state';
+import { useStepNavigation } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
@@ -14,18 +14,18 @@ export const Oppsummering = () => {
     const stegId = StegId.OPPSUMMERING;
     const appState = useSøknadStore((s) => s.søknadState);
     const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
-    const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
+    const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
     const { slettMellomlagring } = useMellomlagring();
 
     const stegStatus = useStegStatus();
     const navigate = useNavigate();
 
-    const { gåTilForrige, kanGåTilForrige } = useStegNavigasjon({
-        stegConfig,
-        stegRekkefølge,
-        stegStatus,
-        setCurrentSteg,
+    const { navigateToPreviousStep: gåTilForrige, canGoPrevious: kanGåTilForrige } = useStepNavigation({
+        stepConfig: stegConfig,
+        stepOrder: stegRekkefølge,
+        stepStatus: stegStatus,
+        setCurrentStepId: setCurrentSteg,
     });
 
     const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {

@@ -22,8 +22,8 @@ type StepFormValues = Record<string, Record<string, unknown> | undefined>;
 
 interface StepFormValuesContextValue {
     stepFormValues: StepFormValues;
-    setStepFormValues: (stegId: string, formValues: Record<string, unknown>) => void;
-    clearStepFormValues: (stegId: string) => void;
+    setStepFormValues: (stepId: string, formValues: Record<string, unknown>) => void;
+    clearStepFormValues: (stepId: string) => void;
     clearAllSteps: () => void;
 }
 
@@ -37,12 +37,12 @@ interface Props {
 export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
     const [values, setValues] = useState<StepFormValues>(initialValues ?? {});
 
-    const setStepFormValues = useCallback((stegId: string, formValues: Record<string, unknown>) => {
-        setValues((prev) => ({ ...prev, [stegId]: formValues }));
+    const setStepFormValues = useCallback((stepId: string, formValues: Record<string, unknown>) => {
+        setValues((prev) => ({ ...prev, [stepId]: formValues }));
     }, []);
 
-    const clearStepFormValues = useCallback((stegId: string) => {
-        setValues((prev) => ({ ...prev, [stegId]: undefined }));
+    const clearStepFormValues = useCallback((stepId: string) => {
+        setValues((prev) => ({ ...prev, [stepId]: undefined }));
     }, []);
 
     const clearAllSteps = useCallback(() => {

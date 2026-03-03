@@ -5,7 +5,7 @@ import { useSøknadStore } from './useSøknadStore';
 
 export const useMellomlagring = createMellomlagringHook({
     useSøknadState: () => useSøknadStore((s) => s.søknadState),
-    useCurrentStegId: () => useSøknadStore((s) => s.currentStegId),
+    useCurrentStepId: () => useSøknadStore((s) => s.currentStepId),
     ytelse: APP_YTELSE,
     getMetadata: (state) => ({
         MELLOMLAGRING_VERSJON,

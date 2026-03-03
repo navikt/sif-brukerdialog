@@ -1,3 +1,3 @@
 export { MellomlagringObserver } from './MellomlagringObserver';
 export { SøknadFooter } from './SøknadFooter';
-export { InvalidStepInfo } from './InvalidStepInfo';
+export { InvalidStepInfo as InvalidStepInfo } from './InvalidStepInfo';

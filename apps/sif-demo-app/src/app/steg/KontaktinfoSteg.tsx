@@ -2,7 +2,7 @@ import { Button, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useForm } from 'react-hook-form';
 
 import { SøknadFooter } from '@rammeverk/components';
-import { useStegNavigasjon } from '@rammeverk/state';
+import { useStepNavigation } from '@rammeverk/state';
 
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
@@ -18,16 +18,20 @@ export const KontaktinfoSteg = () => {
     const stegId = StegId.KONTAKT;
 
     const appState = useSøknadStore((s) => s.søknadState);
-    const submitSteg = useSøknadStore((s) => s.submitSteg);
-    const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
+    const submitSteg = useSøknadStore((s) => s.submitStep);
+    const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
 
     const stegStatus = useStegStatus();
-    const { gåTilNeste, gåTilForrige, kanGåTilForrige } = useStegNavigasjon({
-        stegConfig,
-        stegRekkefølge,
-        stegStatus,
-        setCurrentSteg,
+    const {
+        navigateToNextStep: gåTilNeste,
+        navigateToPreviousStep: gåTilForrige,
+        canGoPrevious: kanGåTilForrige,
+    } = useStepNavigation({
+        stepConfig: stegConfig,
+        stepOrder: stegRekkefølge,
+        stepStatus: stegStatus,
+        setCurrentStepId: setCurrentSteg,
     });
 
     const { register, handleSubmit, getValues } = useForm<Skjemadata>({

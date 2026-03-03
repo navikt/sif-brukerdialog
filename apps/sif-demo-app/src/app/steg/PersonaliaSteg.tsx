@@ -2,7 +2,7 @@ import { Button, Heading, Radio, RadioGroup, TextField, VStack } from '@navikt/d
 import { useForm } from 'react-hook-form';
 
 import { SøknadFooter } from '@rammeverk/components';
-import { useStegNavigasjon } from '@rammeverk/state';
+import { useStepNavigation } from '@rammeverk/state';
 
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
@@ -18,12 +18,17 @@ interface Skjemadata {
 export const PersonaliaSteg = () => {
     const stegId = StegId.PERSONALIA;
     const appState = useSøknadStore((s) => s.søknadState);
-    const submitSteg = useSøknadStore((s) => s.submitSteg);
-    const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
+    const submitSteg = useSøknadStore((s) => s.submitStep);
+    const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
 
     const stegStatus = useStegStatus();
-    const { gåTilNeste } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus, setCurrentSteg });
+    const { navigateToNextStep: gåTilNeste } = useStepNavigation({
+        stepConfig: stegConfig,
+        stepOrder: stegRekkefølge,
+        stepStatus: stegStatus,
+        setCurrentStepId: setCurrentSteg,
+    });
 
     const { register, handleSubmit, watch, setValue, getValues } = useForm<Skjemadata>({
         defaultValues: {

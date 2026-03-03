@@ -4,13 +4,13 @@
  */
 export interface Mellomlagring<Søknadsdata> {
     søknadsdata: Søknadsdata;
-    currentStegId?: string;
+    currentStepId?: string;
 }
 
 /**
  * Definisjon av et steg i søknadsflyten
  */
-export interface StegDefinisjon {
+export interface StepDefinition {
     /** Intern identifikator */
     id: string;
     /** URL-segment */
@@ -20,41 +20,41 @@ export interface StegDefinisjon {
 /**
  * Konfigurasjon for alle steg
  */
-export type StegConfig = Record<string, StegDefinisjon>;
+export type StepConfig = Record<string, StepDefinition>;
 
 /**
  * Info om et aktivt steg
  */
-export interface AktivtSteg {
-    stegId: string;
-    erTilgjengelig: boolean;
-    erFullført: boolean;
+export interface ActiveStep {
+    stepId: string;
+    isAvailable: boolean;
+    isCompleted: boolean;
 }
 
 /**
  * Callbacks for å bestemme steg-status.
  * Må leveres av appen siden rammeverket ikke eier søknadsdata.
  */
-export interface StegStatusCallbacks {
+export interface StepStatusCallbacks {
     /** Returnerer true hvis steget har data og er ferdig utfylt */
-    erFullført: (stegId: string) => boolean;
+    isCompleted: (stepId: string) => boolean;
     /** Returnerer true hvis steget skal vises (for dynamiske steg). Default: alltid synlig */
-    skalVises?: (stegId: string) => boolean;
+    isIncluded?: (stepId: string) => boolean;
 }
 
 /**
  * Returnerer liste over aktive steg med tilgjengelighet og fullført-status.
  * Lineær flyt: et steg er tilgjengelig hvis alle foregående er fullført.
  */
-export const getAktiveSteg = (stegRekkefølge: string[], callbacks: StegStatusCallbacks): AktivtSteg[] => {
-    const synligeSteg = stegRekkefølge.filter((id) => {
-        return callbacks.skalVises?.(id) ?? true;
+export const getActiveStep = (stepOrder: string[], callbacks: StepStatusCallbacks): ActiveStep[] => {
+    const includedSteps = stepOrder.filter((id) => {
+        return callbacks.isIncluded?.(id) ?? true;
     });
 
-    return synligeSteg.map((stegId, index) => {
-        const erFullført = callbacks.erFullført(stegId);
-        const erTilgjengelig = index === 0 || synligeSteg.slice(0, index).every((id) => callbacks.erFullført(id));
+    return includedSteps.map((stepId, index) => {
+        const isCompleted = callbacks.isCompleted(stepId);
+        const isAvailable = index === 0 || includedSteps.slice(0, index).every((id) => callbacks.isCompleted(id));
 
-        return { stegId, erTilgjengelig, erFullført };
+        return { stepId, isAvailable, isCompleted };
     });
 };

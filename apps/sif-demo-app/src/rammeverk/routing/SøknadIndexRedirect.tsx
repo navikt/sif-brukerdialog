@@ -1,25 +1,25 @@
 import { Navigate } from 'react-router-dom';
 
-import { StegConfig } from '../types';
+import { StepConfig } from '../types';
 
 interface SøknadIndexRedirectProps {
-    stegConfig: StegConfig;
-    mellomlagretStegId?: string | null;
-    velkommenPath?: string;
+    stepConfig: StepConfig;
+    mellomlagretStepId?: string | null;
+    initialPath?: string;
 }
 
 /**
  * Redirect fra /soknad til mellomlagret steg, eller velkommen hvis ingen mellomlagring finnes.
  */
 export const SøknadIndexRedirect = ({
-    stegConfig,
-    mellomlagretStegId,
-    velkommenPath = '/',
+    stepConfig,
+    mellomlagretStepId,
+    initialPath = '/',
 }: SøknadIndexRedirectProps) => {
-    if (!mellomlagretStegId) {
-        return <Navigate to={velkommenPath} replace />;
+    if (!mellomlagretStepId) {
+        return <Navigate to={initialPath} replace />;
     }
 
-    const targetRoute = stegConfig[mellomlagretStegId].route;
+    const targetRoute = stepConfig[mellomlagretStepId].route;
     return <Navigate to={targetRoute} replace />;
 };

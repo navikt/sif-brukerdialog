@@ -1,6 +1,6 @@
 import { create, StateCreator, StoreApi, UseBoundStore } from 'zustand';
 
-interface SubmitStegOptions {
+interface SubmitStepOptions {
     onSuccess?: () => void;
 }
 
@@ -18,18 +18,18 @@ export interface BaseSøknadState<TSøknadsdata extends object> {
 export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     søknadState: TState | undefined;
     børMellomlagres: boolean;
-    currentStegId?: string;
+    currentStepId?: string;
     init: (
         initialState: Omit<TState, 'søknadsdata'>,
         mellomlagretSøknadsdata?: TSøknadsdata,
-        currentStegId?: string,
+        currentStepId?: string,
     ) => void;
-    submitSteg: (data: Partial<TSøknadsdata>, options?: SubmitStegOptions) => void;
+    submitStep: (data: Partial<TSøknadsdata>, options?: SubmitStepOptions) => void;
     resetSøknad: () => void;
-    startSøknad: (førsteStegId: string) => void;
-    erStegFullført: (stegId: string) => boolean;
+    startSøknad: (firstStepId: string) => void;
+    isStepCompleted: (stepId: string) => boolean;
     setBørMellomlagres: (verdi: boolean) => void;
-    setCurrentSteg: (stegId: string) => void;
+    setCurrentStep: (stepId: string) => void;
 }
 
 type EmptySøknadsdata = Record<string, never>;
@@ -55,18 +55,18 @@ export const createSøknadStore = <
     const storeCreator: StateCreator<SøknadStoreActions<TState, TSøknadsdata>> = (set, get) => ({
         søknadState: undefined,
         børMellomlagres: false,
-        currentStegId: undefined,
+        currentStepId: undefined,
 
-        init: (initialState, mellomlagretSøknadsdata, currentStegId) =>
+        init: (initialState, mellomlagretSøknadsdata, currentStepId) =>
             set({
                 søknadState: {
                     ...initialState,
                     søknadsdata: mellomlagretSøknadsdata ?? ({} as TSøknadsdata),
                 } as TState,
-                currentStegId,
+                currentStepId,
             }),
 
-        startSøknad: (førsteStegId: string) =>
+        startSøknad: (firstStepId: string) =>
             set((state) => {
                 if (!state.søknadState) return state;
                 return {
@@ -74,12 +74,12 @@ export const createSøknadStore = <
                         ...state.søknadState,
                         søknadsdata: {} as TSøknadsdata,
                     },
-                    currentStegId: førsteStegId,
+                    currentStepId: firstStepId,
                     børMellomlagres: true,
                 };
             }),
 
-        submitSteg: (data, options) => {
+        submitStep: (data, options) => {
             set((state) => {
                 if (!state.søknadState) return state;
                 return {
@@ -93,18 +93,18 @@ export const createSøknadStore = <
             options?.onSuccess?.();
         },
 
-        setCurrentSteg: (stegId) => set({ currentStegId: stegId }),
+        setCurrentStep: (stepId) => set({ currentStepId: stepId }),
 
-        erStegFullført: (stegId) => {
+        isStepCompleted: (stepId) => {
             const appState = get().søknadState;
-            return appState?.søknadsdata[stegId] !== undefined;
+            return appState?.søknadsdata[stepId] !== undefined;
         },
 
         resetSøknad: () =>
             set((state) => {
                 if (!state.søknadState) return state;
                 return {
-                    currentStegId: undefined,
+                    currentStepId: undefined,
                     søknadState: {
                         ...state.søknadState,
                         søknadsdata: {} as TSøknadsdata,

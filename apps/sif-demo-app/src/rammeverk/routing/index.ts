@@ -1,3 +1,2 @@
-export { getStegIdFromRoute } from './routeUtils';
-export { StegRouteGuard } from './StegRouteGuard';
+export { StepRouteGuard as StegRouteGuard } from './StepRouteGuard';
 export { SøknadIndexRedirect } from './SøknadIndexRedirect';
