@@ -59,7 +59,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     return (
         <StepFormValuesProvider>
             <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-                {søknadState ? <SøknadMellomlagringObserver /> : <>Ingen søknadstate</>}
+                <SøknadMellomlagringObserver />
                 <Routes>
                     <Route path="/" element={<VelkommenPage />} />
                     <Route path="/kvittering" element={<KvitteringPage />} />
