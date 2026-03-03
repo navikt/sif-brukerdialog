@@ -1,5 +1,23 @@
 import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 
+/**
+ * StepFormValuesContext
+ *
+ * Brukes til å oppdage når bruker navigerer med nettleserens forward-knapp
+ * uten å submitte skjemadata.
+ *
+ * Flyt:
+ * 1. Når bruker forlater et steg → usePersistFormValues lagrer getValues() hit
+ * 2. Når bruker lander på neste steg → useStepFormValuesStatus sammenligner
+ *    lagrede formValues med faktisk søknadsdata
+ * 3. Hvis ulik → bruker har endret data uten å submitte (forward-knapp)
+ * 4. Ved submit → clearStepFormValues() kalles FØR navigasjon for å unngå
+ *    falske positiver
+ *
+ * Viktig: Denne context'en holder IKKE på faktisk søknadsdata, kun en
+ * midlertidig kopi av skjemaverdier for validering.
+ */
+
 type StepFormValues = Record<string, Record<string, unknown> | undefined>;
 
 interface StepFormValuesContextValue {
