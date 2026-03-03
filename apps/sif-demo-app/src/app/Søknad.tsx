@@ -34,7 +34,7 @@ interface Props {
  * tilfelle hvis MellomlagringObserver og tilhørende logikk lå i Søknad-komponenten
  * */
 
-const AppMellomlagringObserver = () => {
+const SøknadMellomlagringObserver = () => {
     const børMellomlagres = useAppStore((s) => s.børMellomlagres);
     const setBørMellomlagres = useAppStore((s) => s.setBørMellomlagres);
     const { lagreMellomlagring } = useMellomlagring();
@@ -59,7 +59,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     return (
         <StepFormValuesProvider>
             <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-                {søknadState ? <AppMellomlagringObserver /> : <>Ingen søknadstate</>}
+                {søknadState ? <SøknadMellomlagringObserver /> : <>Ingen søknadstate</>}
                 <Routes>
                     <Route path="/" element={<VelkommenPage />} />
                     <Route path="/kvittering" element={<KvitteringPage />} />
