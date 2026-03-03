@@ -1,20 +1,16 @@
 import { Button, Heading, VStack } from '@navikt/ds-react';
-import { useNavigate } from 'react-router-dom';
 
-import { StegId, stegConfig } from '../config/stegConfig';
-import { useAppStore } from '../hooks';
+import { stegConfig, stegRekkefølge } from '../config/stegConfig';
 import { useSøknadStore } from '../hooks/useSøknadStore';
+import { useNavigate } from 'react-router-dom';
 
 export const VelkommenPage = () => {
     const navigate = useNavigate();
-    const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
-    const appState = useAppStore((s) => s.søknadState);
-
-    const harPåbegyntSøknad = appState && Object.keys(appState.søknadsdata).length > 0;
+    const startSøknad = useSøknadStore((s) => s.startSøknad);
 
     const handleStart = () => {
-        const førsteSteg = stegConfig[StegId.PERSONALIA];
-        setCurrentSteg(førsteSteg.id);
+        const førsteSteg = stegConfig[stegRekkefølge[0]];
+        startSøknad(førsteSteg.id);
         navigate(`/soknad/${førsteSteg.route}`);
     };
 
@@ -22,7 +18,7 @@ export const VelkommenPage = () => {
         <VStack gap="space-16">
             <Heading size="xlarge">Velkommen til demo-søknaden</Heading>
             <p>Dette er en demo av soknad-rammeverk.</p>
-            <Button onClick={handleStart}>{harPåbegyntSøknad ? 'Fortsett søknad' : 'Start søknad'}</Button>
+            <Button onClick={handleStart}>Start søknad</Button>
         </VStack>
     );
 };

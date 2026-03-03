@@ -23,6 +23,7 @@ export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     init: (initialState: Omit<TState, 'søknadsdata'>, mellomlagretSøknadsdata?: TSøknadsdata) => void;
     submitSteg: (data: Partial<TSøknadsdata>, options?: SubmitStegOptions) => void;
     resetSøknad: () => void;
+    startSøknad: (førsteStegId: string) => void;
     erStegFullført: (stegId: string) => boolean;
     setBørMellomlagres: (verdi: boolean) => void;
 }
@@ -58,6 +59,19 @@ export const createSøknadStore = <
                     ...initialState,
                     søknadsdata: mellomlagretSøknadsdata ?? ({} as TSøknadsdata),
                 } as TState,
+            }),
+
+        startSøknad: (førsteStegId: string) =>
+            set((state) => {
+                if (!state.søknadState) return state;
+                return {
+                    søknadState: {
+                        ...state.søknadState,
+                        søknadsdata: {} as TSøknadsdata,
+                    },
+                    currentStegId: førsteStegId,
+                    børMellomlagres: true,
+                };
             }),
 
         submitSteg: (data, options) => {
