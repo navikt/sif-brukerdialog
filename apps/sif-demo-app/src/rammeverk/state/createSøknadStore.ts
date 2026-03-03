@@ -18,6 +18,8 @@ export interface BaseSøknadState<TSøknadsdata extends object> {
 export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     søknadState: TState | undefined;
     børMellomlagres: boolean;
+    currentStegId?: string;
+    setCurrentSteg: (stegId: string) => void;
     init: (initialState: Omit<TState, 'søknadsdata'>, mellomlagretSøknadsdata?: TSøknadsdata) => void;
     submitSteg: (data: Partial<TSøknadsdata>, options?: SubmitStegOptions) => void;
     resetSøknad: () => void;
@@ -48,6 +50,7 @@ export const createSøknadStore = <
     const storeCreator: StateCreator<SøknadStoreActions<TState, TSøknadsdata>> = (set, get) => ({
         søknadState: undefined,
         børMellomlagres: false,
+        currentStegId: undefined,
 
         init: (initialState, mellomlagretSøknadsdata) =>
             set({
@@ -71,6 +74,8 @@ export const createSøknadStore = <
             options?.onSuccess?.();
         },
 
+        setCurrentSteg: (stegId) => set({ currentStegId: stegId }),
+
         erStegFullført: (stegId) => {
             const appState = get().søknadState;
             return appState?.søknadsdata[stegId] !== undefined;
@@ -80,6 +85,7 @@ export const createSøknadStore = <
             set((state) => {
                 if (!state.søknadState) return state;
                 return {
+                    currentStegId: undefined,
                     søknadState: {
                         ...state.søknadState,
                         søknadsdata: {} as TSøknadsdata,

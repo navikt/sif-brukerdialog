@@ -11,7 +11,7 @@ import { Oppsummering } from './steg/Oppsummering';
 import { PersonaliaSteg } from './steg/PersonaliaSteg';
 import { KontaktinfoSteg } from './steg/KontaktinfoSteg';
 import { Mellomlagring } from './types/Mellomlagring';
-import { MellomlagringObserver, StegRouteGuard, SøknadIndexRedirect, useSøknadFlyt } from '../rammeverk';
+import { MellomlagringObserver, StegRouteGuard, SøknadIndexRedirect } from '../rammeverk';
 import { KjæledyrSteg } from './steg/KjæledyrSteg';
 
 const getStegIdFraPath = (path: string): string | undefined => {
@@ -44,8 +44,8 @@ const AppMellomlagringObserver = () => {
 export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const init = useAppStore((s) => s.init);
     const søknadState = useAppStore((s) => s.søknadState);
-    const currentStegId = useSøknadFlyt((s) => s.currentStegId);
-    const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
+    const currentStegId = useAppStore((s) => s.currentStegId);
+    const setCurrentSteg = useAppStore((s) => s.setCurrentSteg);
 
     useEffectOnce(() => {
         init({ søker, barn }, mellomlagring?.søknadsdata);
@@ -68,6 +68,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                     <Route
                         element={
                             <StegRouteGuard
+                                currentStegId={currentStegId}
                                 erInitialisert={!!søknadState}
                                 skalStegVises={(stegId) => skalStegVises(stegId, søknadState?.søknadsdata ?? {})}
                                 getStegIdFraPath={getStegIdFraPath}

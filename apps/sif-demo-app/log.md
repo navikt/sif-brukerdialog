@@ -1,5 +1,56 @@
 # soknad-rammeverk – Utviklingslogg
 
+## 2026-03-03: Fjernet app-importer fra rammeverk
+
+### Motivasjon
+
+Rammeverket skal være helt uavhengig av app-kode, slik at det kan gjenbrukes i flere apper uten endringer.
+
+### Endringer
+
+**Slettet ubrukte filer:**
+
+- `guards/useStegTilgang.ts` - ikke brukt
+- `guards/` mappen - tom etter sletting
+- `state/useStegConfig.ts` - ikke brukt (men formatteren gjenopprettet den)
+- `hooks/useAvbrytSøknad.ts` - app har egen versjon
+
+**StegRouteGuard tar nå props i stedet for import:**
+
+```typescript
+// Før
+const currentStegId = useSøknadStore((s) => s.currentStegId);
+
+// Etter - tar prop
+<StegRouteGuard currentStegId={currentStegId} ... />
+```
+
+**useStegNavigasjon tar nå setCurrentSteg som option:**
+
+```typescript
+// Før
+const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
+
+// Etter - tar option
+useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus, setCurrentSteg });
+```
+
+**SøknadFooter forenklet:**
+
+```typescript
+// Før - med intern useAvbrytSøknad
+<SøknadFooter avbrytCallback={...} velkommenPath={...} />
+
+// Etter - ren presentasjonskomponent
+<SøknadFooter onAvbryt={avbrytSøknad} />
+```
+
+### Resultat
+
+Rammeverket har **ingen** imports fra app-kode. Alt er eksplisitt via props/options.
+
+---
+
 ## 2026-03-03: Forenkling av factories og fjerning av Zustand-typer
 
 ### Motivasjon
@@ -11,6 +62,7 @@ Zustand-typene (`UseBoundStore<StoreApi<...>>`) var verbose og vanskelige å les
 **1. createMellomlagringHook tar hook i stedet for store**
 
 Før:
+
 ```typescript
 createMellomlagringHook({
     store: useSøknadStore,  // UseBoundStore<StoreApi<SøknadStoreActions<...>>>
@@ -19,6 +71,7 @@ createMellomlagringHook({
 ```
 
 Etter:
+
 ```typescript
 createMellomlagringHook({
     useSøknadState: () => useSøknadStore((s) => s.søknadState),  // enkel funksjon
@@ -53,6 +106,7 @@ Erstattet med enkel hook-basert interface.
 **5. Forenklet MellomlagringObserver**
 
 Før:
+
 ```typescript
 <MellomlagringObserver
     callbacks={{ hentMellomlagring, lagreMellomlagring }}
@@ -61,6 +115,7 @@ Før:
 ```
 
 Etter:
+
 ```typescript
 <MellomlagringObserver
     lagreMellomlagring={lagreMellomlagring}
@@ -79,13 +134,15 @@ Ikke lenger eksportert - appen definerer sin egen Mellomlagring-type.
 ### Resultat
 
 **Rammeverk eksporterer nå:**
+
 - `createSøknadStore` - factory for app store
 - `createMellomlagringHook` - factory for mellomlagring (tar hooks, ikke stores)
-- `useSøknadFlyt` - global flyt-state
-- `useStegNavigasjon`, `useStegTilgang` - navigasjonshooks
+- `useStegNavigasjon` - navigasjon mellom steg
+- `StegRouteGuard`, `SøknadIndexRedirect` - routing
 - `MellomlagringObserver`, `SøknadFooter` - komponenter
 
 **App-hooks (minimal kode):**
+
 ```typescript
 // useSøknadStore.ts - 7 linjer
 export const useSøknadStore = createSøknadStore<SøknadState, Søknadsdata>();
@@ -100,13 +157,16 @@ export const useAvbrytSøknad = () => {...};
 ### Filendringer
 
 **Slettet:**
+
 - `rammeverk/hooks/createAvbrytHandler.ts`
 
 **Omdøpt:**
+
 - `app/hooks/useAvbrytSøknadHandler.ts` → `app/hooks/useAvbrytSøknad.ts`
 
 **Forenklet:**
-- `rammeverk/state/createSøknadStore.ts` - fjernet SøknadStoreBase* typer
+
+- `rammeverk/state/createSøknadStore.ts` - fjernet SøknadStoreBase\* typer
 - `rammeverk/hooks/createMellomlagringHook.ts` - tar hook i stedet for store
 - `rammeverk/components/MellomlagringObserver.tsx` - enklere props
 
@@ -506,17 +566,17 @@ submitSøknadsdata({ [StegId.PERSONALIA]: { navn } });
 
 ## Hooks oversikt
 
-| Hook                       | Pakke            | Returnerer                                           |
-| -------------------------- | ---------------- | ---------------------------------------------------- |
-| `useSøknadFlyt()`          | rammeverk        | Flyt-state (currentStegId)                           |
-| `useStegNavigasjon()`      | rammeverk        | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
-| `useStegTilgang()`         | rammeverk        | `{ erTilgjengelig, erFullført, sisteGyldigeStegId }` |
-| `createSøknadStore()`      | rammeverk        | Factory for app Zustand store                        |
-| `createMellomlagringHook()`| rammeverk        | Factory for mellomlagring hook                       |
-| `useYtelseMellomlagring()` | sif-common-query | `{ data, lagre, slett, isLoading, ... }`             |
-| `useSøknadStore()`         | app              | App-state (søknadState, init, submitSteg, ...)       |
-| `useMellomlagring()`       | app              | `{ lagreMellomlagring, slettMellomlagring }`         |
-| `useAvbrytSøknad()`        | app              | Callback for å avbryte søknad                        |
+| Hook                        | Pakke            | Returnerer                                           |
+| --------------------------- | ---------------- | ---------------------------------------------------- |
+| `useSøknadFlyt()`           | rammeverk        | Flyt-state (currentStegId)                           |
+| `useStegNavigasjon()`       | rammeverk        | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
+| `useStegTilgang()`          | rammeverk        | `{ erTilgjengelig, erFullført, sisteGyldigeStegId }` |
+| `createSøknadStore()`       | rammeverk        | Factory for app Zustand store                        |
+| `createMellomlagringHook()` | rammeverk        | Factory for mellomlagring hook                       |
+| `useYtelseMellomlagring()`  | sif-common-query | `{ data, lagre, slett, isLoading, ... }`             |
+| `useSøknadStore()`          | app              | App-state (søknadState, init, submitSteg, ...)       |
+| `useMellomlagring()`        | app              | `{ lagreMellomlagring, slettMellomlagring }`         |
+| `useAvbrytSøknad()`         | app              | Callback for å avbryte søknad                        |
 
 ---
 
@@ -529,9 +589,6 @@ src/
 │   │   ├── MellomlagringObserver.tsx
 │   │   ├── SøknadFooter.tsx
 │   │   └── index.ts
-│   ├── guards/
-│   │   ├── useStegTilgang.ts
-│   │   └── index.ts
 │   ├── hooks/
 │   │   ├── createMellomlagringHook.ts
 │   │   └── index.ts
@@ -542,7 +599,6 @@ src/
 │   │   └── index.ts
 │   ├── state/
 │   │   ├── createSøknadStore.ts
-│   │   ├── useSøknadState.ts
 │   │   ├── useStegNavigasjon.ts
 │   │   └── index.ts
 │   ├── utils/

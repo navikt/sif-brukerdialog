@@ -33,8 +33,7 @@ Bygge et gjenbrukbart rammeverk for stegbaserte søknadsapper i React. Rammeverk
 ```
 src/
 ├── rammeverk/           # → pakke senere
-│   ├── state/           # createSøknadStore, useSøknadFlyt, useStegNavigasjon
-│   ├── guards/          # useStegTilgang
+│   ├── state/           # createSøknadStore, useStegNavigasjon, useStegConfig
 │   ├── routing/         # Route utilities, StegRouteGuard
 │   ├── hooks/           # createMellomlagringHook
 │   ├── components/      # MellomlagringObserver, SøknadFooter
@@ -143,19 +142,20 @@ const aktiveSteg = getAktiveSteg(stegRekkefølge, stegStatus);
 
 ---
 
-## Hooks
+## Hooks og komponenter
 
-| Hook                       | Pakke            | Returnerer                                           |
-| -------------------------- | ---------------- | ---------------------------------------------------- |
-| `useSøknadFlyt()`          | rammeverk        | Flyt-state (currentStegId)                           |
-| `useStegNavigasjon()`      | rammeverk        | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
-| `useStegTilgang()`         | rammeverk        | `{ erTilgjengelig, erFullført, sisteGyldigeStegId }` |
-| `createSøknadStore()`      | rammeverk        | Factory for app Zustand store                        |
-| `createMellomlagringHook()`| rammeverk        | Factory for mellomlagring hook                       |
-| `useYtelseMellomlagring()` | sif-common-query | `{ data, lagre, slett, isLoading, ... }`             |
-| `useSøknadStore()`         | app              | App-state (søknadState, init, submitSteg, ...)       |
-| `useMellomlagring()`       | app              | `{ lagreMellomlagring, slettMellomlagring }`         |
-| `useAvbrytSøknad()`        | app              | Callback for å avbryte søknad                        |
+| API                         | Pakke            | Returnerer/Props                                     |
+| --------------------------- | ---------------- | ---------------------------------------------------- |
+| `createSøknadStore()`       | rammeverk        | Factory for app Zustand store                        |
+| `createMellomlagringHook()` | rammeverk        | Factory for mellomlagring hook                       |
+| `useStegNavigasjon()`       | rammeverk        | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
+| `StegRouteGuard`            | rammeverk        | Routing guard (props: currentStegId, erInitialisert) |
+| `MellomlagringObserver`     | rammeverk        | Auto-lagrer ved børMellomlagres                      |
+| `SøknadFooter`              | rammeverk        | Footer med avbryt-knapp (prop: onAvbryt)             |
+| `useYtelseMellomlagring()`  | sif-common-query | `{ data, lagre, slett, isLoading, ... }`             |
+| `useSøknadStore()`          | app              | App-state (søknadState, init, submitSteg, ...)       |
+| `useMellomlagring()`        | app              | `{ lagreMellomlagring, slettMellomlagring }`         |
+| `useAvbrytSøknad()`         | app              | Callback for å avbryte søknad                        |
 
 ---
 
@@ -166,17 +166,17 @@ Se [log.md](log.md) for detaljert fremdrift.
 **Ferdig:**
 
 - [x] Prosjektoppsett med Vite, TypeScript, Aksel 8, Zustand, React Query, React Router
-- [x] Rammeverk-kjerne: types, state, guards, routing
+- [x] Rammeverk-kjerne: types, state, routing, hooks, components
 - [x] Demo med 4 steg (Personalia, Kontakt, Kjæledyr, Oppsummering)
 - [x] StegId enum og forenklet stegConfig
 - [x] `getAktiveSteg()` utility for lineær flyt
-- [x] Hook-basert tilgangskontroll (`useStegTilgang`)
 - [x] Separasjon av søknadsdata fra rammeverket (callback-basert)
 - [x] `createSøknadStore` factory med automatisk børMellomlagres
 - [x] `createMellomlagringHook` factory uten Zustand-typer
-- [x] Forenklet MellomlagringObserver
+- [x] Forenklet MellomlagringObserver og SøknadFooter
 - [x] Hydration fra mellomlagring
 - [x] Hash-basert metadata-validering (i sif-common-query)
+- [x] **Ingen app-importer i rammeverket** - alt via props/options
 
 **Gjenstår:**
 

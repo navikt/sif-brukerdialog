@@ -18,10 +18,16 @@ export const KjæledyrSteg = () => {
 
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitSteg);
+    const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
     const avbrytSøknad = useAvbrytSøknad();
 
     const stegStatus = useStegStatus();
-    const { gåTilNeste, gåTilForrige, kanGåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
+    const { gåTilNeste, gåTilForrige, kanGåTilForrige } = useStegNavigasjon({
+        stegConfig,
+        stegRekkefølge,
+        stegStatus,
+        setCurrentSteg,
+    });
 
     const [navn, setNavn] = useState<Skjemadata['navn']>(appState?.søknadsdata[stegId]?.navn ?? '');
 
@@ -51,7 +57,7 @@ export const KjæledyrSteg = () => {
                     </HStack>
                 </VStack>
             </form>
-            <SøknadFooter avbrytCallback={avbrytSøknad} />
+            <SøknadFooter onAvbryt={avbrytSøknad} />
         </VStack>
     );
 };

@@ -1,1 +1,0 @@
-export { useStegTilgang } from './useStegTilgang';

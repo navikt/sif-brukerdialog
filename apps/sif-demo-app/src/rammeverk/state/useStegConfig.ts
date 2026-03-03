@@ -2,17 +2,14 @@ import { useMemo } from 'react';
 
 import { AktivtSteg, getAktiveSteg, StegConfig, StegStatusCallbacks } from '../types';
 
-import { useSøknadFlyt } from './useSøknadState';
-
 interface UseStegFlytOptions {
     stegConfig: StegConfig;
     stegRekkefølge: string[];
     stegStatus: StegStatusCallbacks;
+    currentStegId: string | null;
 }
 
-export const useStegFlyt = ({ stegConfig, stegRekkefølge, stegStatus }: UseStegFlytOptions) => {
-    const currentStegId = useSøknadFlyt((s) => s.currentStegId);
-
+export const useStegConfig = ({ stegConfig, stegRekkefølge, stegStatus, currentStegId }: UseStegFlytOptions) => {
     const aktiveSteg: AktivtSteg[] = useMemo(
         () => getAktiveSteg(stegRekkefølge, stegStatus),
         [stegRekkefølge, stegStatus],

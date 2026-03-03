@@ -14,13 +14,19 @@ export const Oppsummering = () => {
     const stegId = StegId.OPPSUMMERING;
     const appState = useSøknadStore((s) => s.søknadState);
     const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
+    const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
     const avbrytSøknad = useAvbrytSøknad();
     const { slettMellomlagring } = useMellomlagring();
 
     const stegStatus = useStegStatus();
     const navigate = useNavigate();
 
-    const { gåTilForrige, kanGåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
+    const { gåTilForrige, kanGåTilForrige } = useStegNavigasjon({
+        stegConfig,
+        stegRekkefølge,
+        stegStatus,
+        setCurrentSteg,
+    });
 
     const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {
         evt.preventDefault();
@@ -54,7 +60,7 @@ export const Oppsummering = () => {
                     </HStack>
                 </form>
             </VStack>
-            <SøknadFooter avbrytCallback={avbrytSøknad} />
+            <SøknadFooter onAvbryt={avbrytSøknad} />
         </VStack>
     );
 };

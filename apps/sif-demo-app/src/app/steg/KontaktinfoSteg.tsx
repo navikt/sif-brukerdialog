@@ -18,10 +18,16 @@ export const KontaktinfoSteg = () => {
 
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitSteg);
+    const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
     const avbrytSøknad = useAvbrytSøknad();
 
     const stegStatus = useStegStatus();
-    const { gåTilNeste, gåTilForrige, kanGåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
+    const { gåTilNeste, gåTilForrige, kanGåTilForrige } = useStegNavigasjon({
+        stegConfig,
+        stegRekkefølge,
+        stegStatus,
+        setCurrentSteg,
+    });
 
     const [epost, setEpost] = useState<Skjemadata['epost']>(appState?.søknadsdata[stegId]?.epost ?? '');
 
@@ -46,7 +52,7 @@ export const KontaktinfoSteg = () => {
                     </HStack>
                 </VStack>
             </form>
-            <SøknadFooter avbrytCallback={avbrytSøknad} />
+            <SøknadFooter onAvbryt={avbrytSøknad} />
         </VStack>
     );
 };

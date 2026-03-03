@@ -18,10 +18,11 @@ export const PersonaliaSteg = () => {
     const stegId = StegId.PERSONALIA;
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitSteg);
+    const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
     const avbrytSøknad = useAvbrytSøknad();
 
     const stegStatus = useStegStatus();
-    const { gåTilNeste } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
+    const { gåTilNeste } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus, setCurrentSteg });
 
     const [navn, setNavn] = useState<Skjemadata['navn']>(appState?.søknadsdata[stegId]?.navn ?? '');
     const [harKjæledyr, setHarKjæledyr] = useState<Skjemadata['harKjæledyr']>(
@@ -57,7 +58,7 @@ export const PersonaliaSteg = () => {
                     </div>
                 </VStack>
             </form>
-            <SøknadFooter avbrytCallback={avbrytSøknad} />
+            <SøknadFooter onAvbryt={avbrytSøknad} />
         </VStack>
     );
 };

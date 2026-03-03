@@ -1,14 +1,13 @@
 import { Button, Heading, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
-import { useSøknadFlyt } from '@rammeverk/state';
-
 import { StegId, stegConfig } from '../config/stegConfig';
 import { useAppStore } from '../hooks';
+import { useSøknadStore } from '../hooks/useSøknadStore';
 
 export const VelkommenPage = () => {
     const navigate = useNavigate();
-    const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
+    const setCurrentSteg = useSøknadStore((s) => s.setCurrentSteg);
     const appState = useAppStore((s) => s.søknadState);
 
     const harPåbegyntSøknad = appState && Object.keys(appState.søknadsdata).length > 0;

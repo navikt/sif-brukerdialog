@@ -1,8 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
-import { useSøknadFlyt } from '../state';
-
 interface Props {
+    currentStegId?: string;
     erInitialisert: boolean;
     velkommenPath?: string;
     skalStegVises?: (stegId: string) => boolean;
@@ -20,13 +19,13 @@ interface Props {
  * Hvis ikke, redirecter til currentStegId.
  */
 export const StegRouteGuard = ({
+    currentStegId,
     erInitialisert,
     velkommenPath = '/',
     skalStegVises,
     getStegIdFraPath,
     getPathForSteg,
 }: Props) => {
-    const currentStegId = useSøknadFlyt((s) => s.currentStegId);
     const location = useLocation();
 
     // Vent til initialisering er ferdig før vi sjekker

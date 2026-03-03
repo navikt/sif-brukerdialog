@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { getAktiveSteg, StegConfig, StegStatusCallbacks } from '../types';
 
-import { useSøknadFlyt } from './useSøknadState';
-
 interface UseStegNavigasjonOptions {
     stegConfig: StegConfig;
     stegRekkefølge: string[];
     stegStatus: StegStatusCallbacks;
+    setCurrentSteg: (stegId: string) => void;
     basePath?: string;
 }
 
@@ -35,10 +34,10 @@ export const useStegNavigasjon = ({
     stegConfig,
     stegRekkefølge,
     stegStatus,
+    setCurrentSteg,
     basePath = '/soknad',
 }: UseStegNavigasjonOptions) => {
     const navigate = useNavigate();
-    const setCurrentSteg = useSøknadFlyt((s) => s.setCurrentSteg);
 
     const gåTilSteg = useCallback(
         (stegId: string) => {
