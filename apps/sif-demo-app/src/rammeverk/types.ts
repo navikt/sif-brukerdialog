@@ -1,4 +1,13 @@
 /**
+ * Generisk mellomlagring-type.
+ * Appen bruker denne med sin egen Søknadsdata-type.
+ */
+export interface Mellomlagring<Søknadsdata> {
+    søknadsdata: Søknadsdata;
+    currentStegId?: string;
+}
+
+/**
  * Definisjon av et steg i søknadsflyten
  */
 export interface StegDefinisjon {

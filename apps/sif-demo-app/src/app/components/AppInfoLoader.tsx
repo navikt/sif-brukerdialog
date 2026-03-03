@@ -6,7 +6,7 @@ import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config/appConfig';
 import { Søknad } from '../Søknad';
 import { ErrorPage } from '../pages/ErrorPage';
 import { LoadingPage } from '../pages/LoadingPage';
-import { Mellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
+import { AppMellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
 
 export const AppInfoLoader = () => {
     const søker = useSøker();
@@ -21,7 +21,7 @@ export const AppInfoLoader = () => {
         };
     }, [søker.isFetched, registrerteBarn.isFetched, søker.data, registrerteBarn.data]);
 
-    const mellomlagring = useYtelseMellomlagring<Mellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
+    const mellomlagring = useYtelseMellomlagring<AppMellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
     const isLoading = søker.isLoading || registrerteBarn.isLoading || (!!søker.data && !mellomlagring.isFetched);
     const isError = søker.isError || registrerteBarn.isError || mellomlagring.isError;

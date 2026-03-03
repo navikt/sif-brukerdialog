@@ -10,7 +10,7 @@ import { VelkommenPage } from './pages/VelkommenPage';
 import { Oppsummering } from './steg/Oppsummering';
 import { PersonaliaSteg } from './steg/PersonaliaSteg';
 import { KontaktinfoSteg } from './steg/KontaktinfoSteg';
-import { Mellomlagring } from './types/Mellomlagring';
+import { AppMellomlagring } from './types/Mellomlagring';
 import { MellomlagringObserver, StegRouteGuard, SøknadIndexRedirect } from '../rammeverk';
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
 import { KjæledyrSteg } from './steg/KjæledyrSteg';
@@ -26,8 +26,13 @@ const getPathForSteg = (stegId: string): string => {
 interface Props {
     søker: Søker;
     barn: RegistrertBarn[];
-    mellomlagring?: Mellomlagring;
+    mellomlagring?: AppMellomlagring;
 }
+
+/**
+ * Egen komponent for å unngå unødvendige re-renders som ville vært
+ * tilfelle hvis MellomlagringObserver og tilhørende logikk lå i Søknad-komponenten
+ * */
 
 const AppMellomlagringObserver = () => {
     const børMellomlagres = useAppStore((s) => s.børMellomlagres);
