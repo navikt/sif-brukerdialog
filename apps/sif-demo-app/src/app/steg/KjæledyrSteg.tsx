@@ -1,9 +1,10 @@
 import { Button, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { SøknadFooter } from '@rammeverk/components';
 import { useStegNavigasjon } from '@rammeverk/state';
 
+import { useStegValidering } from '../components/StegValidering';
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useStegStatus } from '../hooks/useStegStatus';
@@ -29,23 +30,37 @@ export const KjæledyrSteg = () => {
         setCurrentSteg,
     });
 
-    const [navn, setNavn] = useState<Skjemadata['navn']>(appState?.søknadsdata[stegId]?.navn ?? '');
+    const { register, handleSubmit, getValues } = useForm<Skjemadata>({
+        defaultValues: {
+            navn: appState?.søknadsdata[stegId]?.navn ?? '',
+        },
+    });
 
-    const handleSubmit = (e: React.SubmitEvent) => {
-        e.preventDefault();
-        if (!navn) {
+    const { StegValideringInfo, clearFormValues } = useStegValidering({ stegId, getValues: () => getValues() });
+
+    const onSubmit = (data: Skjemadata) => {
+        if (!data.navn) {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitSteg({ [stegId]: { navn } }, { onSuccess: () => gåTilNeste(stegId) });
+        submitSteg(
+            { [stegId]: { navn: data.navn } },
+            {
+                onSuccess: () => {
+                    clearFormValues();
+                    gåTilNeste(stegId);
+                },
+            },
+        );
     };
 
     return (
         <VStack gap="space-24">
-            <form onSubmit={handleSubmit}>
+            <StegValideringInfo />
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <VStack gap="space-16">
                     <Heading size="large">Navn på kjæledyr</Heading>
-                    <TextField label="Navn" value={navn} onChange={(e) => setNavn(e.target.value)} />
+                    <TextField label="Navn" {...register('navn')} />
 
                     <HStack gap="space-16" justify="start">
                         {kanGåTilForrige(stegId) && (

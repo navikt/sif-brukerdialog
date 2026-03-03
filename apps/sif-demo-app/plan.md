@@ -144,18 +144,24 @@ const aktiveSteg = getAktiveSteg(stegRekkefølge, stegStatus);
 
 ## Hooks og komponenter
 
-| API                         | Pakke            | Returnerer/Props                                     |
-| --------------------------- | ---------------- | ---------------------------------------------------- |
-| `createSøknadStore()`       | rammeverk        | Factory for app Zustand store                        |
-| `createMellomlagringHook()` | rammeverk        | Factory for mellomlagring hook                       |
-| `useStegNavigasjon()`       | rammeverk        | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
-| `StegRouteGuard`            | rammeverk        | Routing guard (props: currentStegId, erInitialisert) |
-| `MellomlagringObserver`     | rammeverk        | Auto-lagrer ved børMellomlagres                      |
-| `SøknadFooter`              | rammeverk        | Footer med avbryt-knapp (prop: onAvbryt)             |
-| `useYtelseMellomlagring()`  | sif-common-query | `{ data, lagre, slett, isLoading, ... }`             |
-| `useSøknadStore()`          | app              | App-state (søknadState, init, submitSteg, ...)       |
-| `useMellomlagring()`        | app              | `{ lagreMellomlagring, slettMellomlagring }`         |
-| `useAvbrytSøknad()`         | app              | Callback for å avbryte søknad                        |
+| API                           | Pakke            | Returnerer/Props                                     |
+| ----------------------------- | ---------------- | ---------------------------------------------------- |
+| `createSøknadStore()`         | rammeverk        | Factory for app Zustand store                        |
+| `createMellomlagringHook()`   | rammeverk        | Factory for mellomlagring hook                       |
+| `useStegNavigasjon()`         | rammeverk        | `{ gåTilSteg, gåTilNeste, gåTilForrige }`            |
+| `usePersistFormValues()`      | rammeverk        | Lagrer formValues ved unmount                        |
+| `useStepFormValuesStatus()`   | rammeverk        | Validerer at tidligere steg er submittet             |
+| `StegRouteGuard`              | rammeverk        | Routing guard (props: currentStegId, erInitialisert) |
+| `MellomlagringObserver`       | rammeverk        | Auto-lagrer ved børMellomlagres                      |
+| `SøknadFooter`                | rammeverk        | Footer med avbryt-knapp (prop: onAvbryt)             |
+| `InvalidStepInfo`             | rammeverk        | Advarsel når bruker har brukt forward-knapp          |
+| `StepFormValuesProvider`      | rammeverk        | Context provider for step form values                |
+| `useYtelseMellomlagring()`    | sif-common-query | `{ data, lagre, slett, isLoading, ... }`             |
+| `useSøknadStore()`            | app              | App-state (søknadState, init, submitSteg, ...)       |
+| `useMellomlagring()`          | app              | `{ lagreMellomlagring, slettMellomlagring }`         |
+| `useAvbrytSøknad()`           | app              | Callback for å avbryte søknad                        |
+| `useSøknadsdataStatus()`      | app              | App-spesifikk wrapper for useStepFormValuesStatus    |
+| `StegValidering`              | app              | Kombinerer persistering og validering                |
 
 ---
 
@@ -177,9 +183,10 @@ Se [log.md](log.md) for detaljert fremdrift.
 - [x] Hydration fra mellomlagring
 - [x] Hash-basert metadata-validering (i sif-common-query)
 - [x] **Ingen app-importer i rammeverket** - alt via props/options
+- [x] **Forward-knapp-beskyttelse** - oppdager usubmittede endringer og viser advarsel
+- [x] **StegValidering-komponent** - kombinerer persistering og validering
 
 **Gjenstår:**
 
 - [ ] Test full flyt i browser
-- [ ] Back/forward-håndtering
 - [ ] Trekk ut til `packages/soknad-rammeverk/`

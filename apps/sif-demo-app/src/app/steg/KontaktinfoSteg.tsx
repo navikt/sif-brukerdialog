@@ -1,9 +1,10 @@
 import { Button, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { SøknadFooter } from '@rammeverk/components';
 import { useStegNavigasjon } from '@rammeverk/state';
 
+import { useStegValidering } from '../components/StegValidering';
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useStegStatus } from '../hooks/useStegStatus';
@@ -29,19 +30,33 @@ export const KontaktinfoSteg = () => {
         setCurrentSteg,
     });
 
-    const [epost, setEpost] = useState<Skjemadata['epost']>(appState?.søknadsdata[stegId]?.epost ?? '');
+    const { register, handleSubmit, getValues } = useForm<Skjemadata>({
+        defaultValues: {
+            epost: appState?.søknadsdata[stegId]?.epost ?? '',
+        },
+    });
 
-    const handleSubmit = (e: React.SubmitEvent) => {
-        e.preventDefault();
-        submitSteg({ [stegId]: { epost } }, { onSuccess: () => gåTilNeste(stegId) });
+    const { StegValideringInfo, clearFormValues } = useStegValidering({ stegId, getValues: () => getValues() });
+
+    const onSubmit = (data: Skjemadata) => {
+        submitSteg(
+            { [stegId]: { epost: data.epost } },
+            {
+                onSuccess: () => {
+                    clearFormValues();
+                    gåTilNeste(stegId);
+                },
+            },
+        );
     };
 
     return (
         <VStack gap="space-24">
-            <form onSubmit={handleSubmit}>
+            <StegValideringInfo />
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <VStack gap="space-16">
                     <Heading size="large">Kontaktinfo</Heading>
-                    <TextField label="E-post" type="email" value={epost} onChange={(e) => setEpost(e.target.value)} />
+                    <TextField label="E-post" type="email" {...register('epost')} />
                     <HStack gap="space-16" justify="start">
                         {kanGåTilForrige(stegId) && (
                             <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>

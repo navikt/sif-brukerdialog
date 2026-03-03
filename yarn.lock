@@ -5744,6 +5744,7 @@ __metadata:
     msw: "npm:2.12.10"
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
+    react-hook-form: "npm:^7.71.2"
     react-router-dom: "npm:7.13.0"
     tailwindcss: "npm:4.2.0"
     typescript: "npm:5.9.3"
@@ -23110,7 +23111,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.71.2":
+"react-hook-form@npm:7.71.2, react-hook-form@npm:^7.71.2":
   version: 7.71.2
   resolution: "react-hook-form@npm:7.71.2"
   peerDependencies:

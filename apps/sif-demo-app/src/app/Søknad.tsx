@@ -12,6 +12,7 @@ import { PersonaliaSteg } from './steg/PersonaliaSteg';
 import { KontaktinfoSteg } from './steg/KontaktinfoSteg';
 import { Mellomlagring } from './types/Mellomlagring';
 import { MellomlagringObserver, StegRouteGuard, SøknadIndexRedirect } from '../rammeverk';
+import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
 import { KjæledyrSteg } from './steg/KjæledyrSteg';
 
 const getStegIdFraPath = (path: string): string | undefined => {
@@ -55,35 +56,37 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     });
 
     return (
-        <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-            {søknadState ? <AppMellomlagringObserver /> : <>Ingen søknadstate</>}
-            <Routes>
-                <Route path="/" element={<VelkommenPage />} />
-                <Route path="/kvittering" element={<KvitteringPage />} />
-                <Route path="/soknad">
-                    <Route
-                        index
-                        element={<SøknadIndexRedirect stegConfig={stegConfig} mellomlagretStegId={currentStegId} />}
-                    />
-                    <Route
-                        element={
-                            <StegRouteGuard
-                                currentStegId={currentStegId}
-                                erInitialisert={!!søknadState}
-                                skalStegVises={(stegId) => skalStegVises(stegId, søknadState?.søknadsdata ?? {})}
-                                getStegIdFraPath={getStegIdFraPath}
-                                getPathForSteg={getPathForSteg}
-                            />
-                        }>
-                        <Route path={stegConfig[StegId.PERSONALIA].route} element={<PersonaliaSteg />} />
-                        <Route path={stegConfig[StegId.KJÆLEDYR].route} element={<KjæledyrSteg />} />
-                        <Route path={stegConfig[StegId.KONTAKT].route} element={<KontaktinfoSteg />} />
-                        <Route path={stegConfig[StegId.OPPSUMMERING].route} element={<Oppsummering />} />
+        <StepFormValuesProvider>
+            <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+                {søknadState ? <AppMellomlagringObserver /> : <>Ingen søknadstate</>}
+                <Routes>
+                    <Route path="/" element={<VelkommenPage />} />
+                    <Route path="/kvittering" element={<KvitteringPage />} />
+                    <Route path="/soknad">
+                        <Route
+                            index
+                            element={<SøknadIndexRedirect stegConfig={stegConfig} mellomlagretStegId={currentStegId} />}
+                        />
+                        <Route
+                            element={
+                                <StegRouteGuard
+                                    currentStegId={currentStegId}
+                                    erInitialisert={!!søknadState}
+                                    skalStegVises={(stegId) => skalStegVises(stegId, søknadState?.søknadsdata ?? {})}
+                                    getStegIdFraPath={getStegIdFraPath}
+                                    getPathForSteg={getPathForSteg}
+                                />
+                            }>
+                            <Route path={stegConfig[StegId.PERSONALIA].route} element={<PersonaliaSteg />} />
+                            <Route path={stegConfig[StegId.KJÆLEDYR].route} element={<KjæledyrSteg />} />
+                            <Route path={stegConfig[StegId.KONTAKT].route} element={<KontaktinfoSteg />} />
+                            <Route path={stegConfig[StegId.OPPSUMMERING].route} element={<Oppsummering />} />
+                        </Route>
+                        <Route path="*" element={<Navigate to="/" replace />} />
                     </Route>
                     <Route path="*" element={<Navigate to="/" replace />} />
-                </Route>
-                <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-        </div>
+                </Routes>
+            </div>
+        </StepFormValuesProvider>
     );
 };

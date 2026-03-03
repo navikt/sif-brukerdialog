@@ -1,5 +1,112 @@
 # soknad-rammeverk – Utviklingslogg
 
+## 2026-03-03: Forward-knapp-beskyttelse med StegValidering
+
+### Problem
+
+Brukere kan bruke nettleserens forward-knapp for å hoppe over steg uten å submitte skjemadata. Dette fører til at data i skjemaet ikke lagres.
+
+### Løsning
+
+Implementert mønster fra omsorgspengesoknad-appen:
+
+1. **StepFormValuesContext** - React Context for å lagre skjemaverdier per steg
+2. **usePersistFormValues** - Hook som lagrer skjemaverdier ved unmount
+3. **useStepFormValuesStatus** - Sammenligner formValues med søknadsdata for tidligere steg
+4. **InvalidStepInfo** - Viser advarsel hvis bruker har brukt forward-knappen
+
+### Arkitektur
+
+```
+┌─────────────────────────────────────────────────────┐
+│              StepFormValuesContext                   │
+│  Lagrer skjemaverdier per steg i React Context       │
+│  { [stegId]: formValues }                            │
+└─────────────────────────────────────────────────────┘
+                          ▲
+                          │
+┌─────────────────────────┴───────────────────────────┐
+│              usePersistFormValues                    │
+│  Ved unmount → lagrer getValues() til Context        │
+└─────────────────────────────────────────────────────┘
+                          ▲
+                          │
+┌─────────────────────────┴───────────────────────────┐
+│              useStepFormValuesStatus                 │
+│  Sammenligner formValues med søknadsdata             │
+│  Returnerer: invalidSteps, hasInvalidSteps           │
+└─────────────────────────────────────────────────────┘
+```
+
+### StegValidering-komponent
+
+App-spesifikk komponent som kombinerer alt:
+
+```typescript
+// StegValidering.tsx - kombinerer persistering og validering
+export const StegValidering = <T extends object>({ stegId, getValues }: Props<T>) => {
+    const navigate = useNavigate();
+    const { invalidSteps } = useSøknadsdataStatus(stegId);
+    
+    usePersistFormValues(stegId, getValues);
+    
+    return (
+        <InvalidStepInfo
+            invalidSteps={invalidSteps}
+            getStepTitle={(id) => stegTitler[id as StegId]}
+            onNavigateToStep={(id) => navigate(`/soknad/${stegConfig[id as StegId].route}`)}
+        />
+    );
+};
+```
+
+### Forenklet bruk i stegene
+
+Før - mange imports og manuell oppsett:
+```typescript
+const { invalidSteps } = useSøknadsdataStatus(stegId);
+usePersistFormValues(stegId, () => getValues());
+// ... i JSX:
+<InvalidStepInfo
+    invalidSteps={invalidSteps}
+    getStepTitle={(id) => stegTitler[id as StegId]}
+    onNavigateToStep={(id) => navigate(...)}
+/>
+```
+
+Etter - én linje:
+```typescript
+<StegValidering stegId={stegId} getValues={() => getValues()} />
+```
+
+### Konvertert til react-hook-form
+
+Alle steg-komponenter er konvertert fra useState til react-hook-form:
+
+```typescript
+// Før
+const [navn, setNavn] = useState(appState?.søknadsdata[stegId]?.navn ?? '');
+
+// Etter
+const { register, handleSubmit, getValues } = useForm<Skjemadata>({
+    defaultValues: { navn: appState?.søknadsdata[stegId]?.navn ?? '' },
+});
+```
+
+### Nye filer i rammeverk
+
+- `rammeverk/state/StepFormValuesContext.tsx` - Context for formValues
+- `rammeverk/hooks/usePersistFormValues.ts` - Lagrer ved unmount
+- `rammeverk/hooks/useStepFormValuesStatus.ts` - Validerer tidligere steg
+- `rammeverk/components/InvalidStepInfo.tsx` - Advarsel-komponent
+
+### Nye filer i app
+
+- `app/components/StegValidering.tsx` - Kombinerer alt for enkel bruk
+- `app/hooks/useSøknadsdataStatus.ts` - App-spesifikk konvertering
+
+---
+
 ## 2026-03-03: Fjernet app-importer fra rammeverk
 
 ### Motivasjon

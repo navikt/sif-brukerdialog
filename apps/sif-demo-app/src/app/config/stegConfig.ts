@@ -37,6 +37,13 @@ export const stegConfig: StegConfig = {
 
 export const stegRekkefølge: StegId[] = [StegId.PERSONALIA, StegId.KJÆLEDYR, StegId.KONTAKT, StegId.OPPSUMMERING];
 
+export const stegTitler: Record<StegId, string> = {
+    [StegId.PERSONALIA]: 'Personalia',
+    [StegId.KJÆLEDYR]: 'Kjæledyr',
+    [StegId.KONTAKT]: 'Kontaktinfo',
+    [StegId.OPPSUMMERING]: 'Oppsummering',
+};
+
 export const skalStegVises = (stegId: string, søknadsdata: Søknadsdata): boolean => {
     switch (stegId) {
         case StegId.KJÆLEDYR:
