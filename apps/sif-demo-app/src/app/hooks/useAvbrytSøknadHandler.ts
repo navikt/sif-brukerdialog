@@ -1,16 +1,9 @@
-import { useCallback } from 'react';
+import { createAvbrytHandler } from '@rammeverk/hooks';
 
 import { useMellomlagring } from './useMellomlagring';
 import { useSøknadStore } from './useSøknadStore';
 
-export const useAvbrytSøknadHandler = () => {
-    const resetSøknad = useSøknadStore((s) => s.resetSøknad);
-    const { slettMellomlagring } = useMellomlagring();
-
-    const avbrytHandler = useCallback(() => {
-        resetSøknad();
-        slettMellomlagring().catch(() => {});
-    }, [resetSøknad, slettMellomlagring]);
-
-    return { avbrytHandler };
-};
+export const useAvbrytSøknadHandler = createAvbrytHandler({
+    useResetSøknad: () => useSøknadStore((s) => s.resetSøknad),
+    useSlettMellomlagring: () => useMellomlagring().slettMellomlagring,
+});
