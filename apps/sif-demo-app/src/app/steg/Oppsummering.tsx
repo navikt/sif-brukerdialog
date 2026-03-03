@@ -5,7 +5,7 @@ import { SøknadFooter } from '@rammeverk/components';
 import { useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
-import { useAvbrytSøknadHandler } from '../hooks/useAvbrytSøknadHandler';
+import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { useStegStatus } from '../hooks/useStegStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
@@ -14,7 +14,7 @@ export const Oppsummering = () => {
     const stegId = StegId.OPPSUMMERING;
     const appState = useSøknadStore((s) => s.søknadState);
     const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
-    const { avbrytHandler } = useAvbrytSøknadHandler();
+    const avbrytSøknad = useAvbrytSøknad();
     const { slettMellomlagring } = useMellomlagring();
 
     const stegStatus = useStegStatus();
@@ -54,7 +54,7 @@ export const Oppsummering = () => {
                     </HStack>
                 </form>
             </VStack>
-            <SøknadFooter avbrytCallback={avbrytHandler} />
+            <SøknadFooter avbrytCallback={avbrytSøknad} />
         </VStack>
     );
 };

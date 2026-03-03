@@ -5,7 +5,7 @@ import { SøknadFooter } from '@rammeverk/components';
 import { useStegNavigasjon } from '@rammeverk/state';
 
 import { StegId, stegConfig, stegRekkefølge } from '../config/stegConfig';
-import { useAvbrytSøknadHandler } from '../hooks/useAvbrytSøknadHandler';
+import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useStegStatus } from '../hooks/useStegStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
@@ -18,7 +18,7 @@ export const KjæledyrSteg = () => {
 
     const appState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitSteg);
-    const { avbrytHandler } = useAvbrytSøknadHandler();
+    const avbrytSøknad = useAvbrytSøknad();
 
     const stegStatus = useStegStatus();
     const { gåTilNeste, gåTilForrige, kanGåTilForrige } = useStegNavigasjon({ stegConfig, stegRekkefølge, stegStatus });
@@ -51,7 +51,7 @@ export const KjæledyrSteg = () => {
                     </HStack>
                 </VStack>
             </form>
-            <SøknadFooter avbrytCallback={avbrytHandler} />
+            <SøknadFooter avbrytCallback={avbrytSøknad} />
         </VStack>
     );
 };
