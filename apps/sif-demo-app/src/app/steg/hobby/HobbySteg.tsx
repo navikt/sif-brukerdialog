@@ -1,10 +1,6 @@
-import { Alert, Link } from '@navikt/ds-react';
-import { useNavigate } from 'react-router-dom';
-
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
-import { SøknadStepGuard } from '../../components/SøknadStepGuard';
 import {
     søknadStepOrder as stepOrder,
     søknadStepConfig as stepConfig,
@@ -18,6 +14,7 @@ import { HobbySøknadsdata } from '../../types/Søknadsdata';
 import { useSøknadMellomlagring } from '../../hooks';
 import SøknadStep from '../../../rammeverk/components/SøknadStep';
 import HobbyForm, { HobbySkjemadata } from './HobbyForm';
+import { SøknadStepGuard } from '../../components/SøknadStepGuard';
 
 const getDefaultValues = (
     stepFormValues: Partial<HobbySkjemadata> | undefined,
@@ -36,7 +33,6 @@ const getDefaultValues = (
 
 export const HobbySteg = () => {
     const stepId = SøknadStepId.HOBBY;
-    const navigate = useNavigate();
 
     const søknadState = useSøknadStore((s) => s.søknadState);
     const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
@@ -70,24 +66,8 @@ export const HobbySteg = () => {
     };
 
     return (
-        <SøknadStep title={stepTitles[stepId]} stepId={stepId}>
-            <SøknadStepGuard stepId={stepId}>
-                {(invalidStepId) =>
-                    invalidStepId && (
-                        <Alert variant="warning">
-                            Du har ulagrede endringer i {stepTitles[invalidStepId as SøknadStepId]}.{' '}
-                            <Link
-                                href="#"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    navigate(`/soknad/${stepConfig[invalidStepId as SøknadStepId].route}`);
-                                }}>
-                                Gå tilbake
-                            </Link>
-                        </Alert>
-                    )
-                }
-            </SøknadStepGuard>
+        <SøknadStep title={stepTitles[stepId]}>
+            <SøknadStepGuard stepId={stepId} />
             <HobbyForm
                 defaultValues={defaultValues}
                 isPending={isPending}

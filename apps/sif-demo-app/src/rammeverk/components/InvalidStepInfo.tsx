@@ -1,12 +1,12 @@
 import { Alert, Box, Heading, Link } from '@navikt/ds-react';
 
 interface InvalidStepInfoProps {
-    /** Liste over stepId-er som har ugyldige/ulagrede endringer */
-    invalidStep?: string;
+    /** StepId som har ugyldige/ulagrede endringer */
+    invalidStep: string;
     /** Funksjon som returnerer visningsnavn for et steg */
-    getStepTitle: (stepId: string) => string;
+    stepTitle: string;
     /** Funksjon som navigerer til et steg */
-    onNavigateToStep: (stepId: string) => void;
+    onNavigateToStep: () => void;
     /** Valgfri overskrift */
     heading?: string;
     /** Valgfri beskrivelse */
@@ -19,7 +19,7 @@ interface InvalidStepInfoProps {
  */
 export const InvalidStepInfo = ({
     invalidStep,
-    getStepTitle,
+    stepTitle,
     onNavigateToStep,
     heading = 'Oops, dette stemmer ikke helt',
     description,
@@ -28,13 +28,10 @@ export const InvalidStepInfo = ({
         return null;
     }
 
-    const firstInvalidStep = invalidStep[0];
-    const stepTitle = getStepTitle(invalidStep);
-
     const handleClick = (evt: React.MouseEvent) => {
         evt.preventDefault();
         evt.stopPropagation();
-        onNavigateToStep(firstInvalidStep);
+        onNavigateToStep();
     };
 
     const defaultDescription = `Vennligst gå tilbake til steget "${stepTitle}", og bruk knappene nederst i skjemaet for å gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.`;

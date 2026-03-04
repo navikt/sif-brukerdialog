@@ -1,5 +1,4 @@
-import { Alert, Link, VStack } from '@navikt/ds-react';
-import { useNavigate } from 'react-router-dom';
+import { VStack } from '@navikt/ds-react';
 
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
@@ -9,7 +8,6 @@ import {
     SøknadStepId,
     søknadStepConfig as stepConfig,
     søknadStepOrder as stepOrder,
-    stepTitles,
 } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
@@ -36,7 +34,7 @@ const getDefaultValues = (
 
 export const PersonaliaSteg = () => {
     const stepId = SøknadStepId.PERSONALIA;
-    const navigate = useNavigate();
+
     const søknadState = useSøknadStore((s) => s.søknadState);
     const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
@@ -70,23 +68,7 @@ export const PersonaliaSteg = () => {
 
     return (
         <VStack gap="space-24">
-            <SøknadStepGuard stepId={stepId}>
-                {(invalidStepId) =>
-                    invalidStepId && (
-                        <Alert variant="warning">
-                            Du har ulagrede endringer i {stepTitles[invalidStepId as SøknadStepId]}.{' '}
-                            <Link
-                                href="#"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    navigate(`/soknad/${stepConfig[invalidStepId as SøknadStepId].route}`);
-                                }}>
-                                Gå tilbake
-                            </Link>
-                        </Alert>
-                    )
-                }
-            </SøknadStepGuard>
+            <SøknadStepGuard stepId={stepId} />
             <PersonaliaForm defaultValues={defaultValues} isPending={isPending} onSubmit={handleOnSubmit} />
             <SøknadFooter onAvbryt={avbrytSøknad} />
         </VStack>
