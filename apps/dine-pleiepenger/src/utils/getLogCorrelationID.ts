@@ -7,8 +7,8 @@ const isDebugEnabled = process.env.LOG_LEVEL === 'debug' || process.env.NODE_ENV
 
 export const getChildLoggerContext = (xRequestId: string, context?: Record<string, unknown>) => {
     return {
-        correlation_id: xRequestId,
         ...context,
+        correlation_id: xRequestId,
     };
 };
 
@@ -39,7 +39,7 @@ export const getLogger = (req: NextApiRequest): Logger => {
         },
         debug: (message: string, context?: LogContext) => {
             if (isDebugEnabled) {
-                childLogger.info(getChildLoggerContext(reqId, { ...baseContext, ...context, level: 'debug' }), message);
+                childLogger.debug(getChildLoggerContext(reqId, { ...baseContext, ...context }), message);
             }
         },
         withContext: (additionalContext: LogContext) => {

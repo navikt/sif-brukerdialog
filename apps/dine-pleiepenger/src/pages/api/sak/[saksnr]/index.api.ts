@@ -32,14 +32,21 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         logger.info('Starter henting av saksdetaljer');
 
         const sakTimer = logger.startTimer('fetch-sak');
-        const sak = await fetchSak(req, saksnr, unparsed);
-        sakTimer();
+        let sak;
+        try {
+            sak = await fetchSak(req, saksnr, unparsed);
+        } finally {
+            sakTimer();
+        }
 
         let inntektsmeldinger: innsyn.SakInntektsmeldingDto[] = [];
         if (Feature.INNTEKTSMELDING_ENABLED) {
             const imTimer = logger.startTimer('fetch-inntektsmeldinger');
-            inntektsmeldinger = await fetchInntektsmeldinger(req, saksnr, unparsed);
-            imTimer();
+            try {
+                inntektsmeldinger = await fetchInntektsmeldinger(req, saksnr, unparsed);
+            } finally {
+                imTimer();
+            }
         }
 
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
@@ -52,7 +59,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             return res.status(404).json({ error: 'Sak ikke funnet' });
         }
 
-        totalTimer();
         return res.json({ sak, inntektsmeldinger });
     } catch (err) {
         const errorDetails = prepApiError(err);
@@ -61,6 +67,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             errorType: err instanceof Error ? err.constructor.name : typeof err,
         });
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
+    } finally {
+        totalTimer();
     }
 }
 
