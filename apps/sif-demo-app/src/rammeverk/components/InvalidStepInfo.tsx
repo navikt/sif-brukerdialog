@@ -2,7 +2,7 @@ import { Alert, Box, Heading, Link } from '@navikt/ds-react';
 
 interface InvalidStepInfoProps {
     /** Liste over stepId-er som har ugyldige/ulagrede endringer */
-    invalidSteps: string[];
+    invalidStep?: string;
     /** Funksjon som returnerer visningsnavn for et steg */
     getStepTitle: (stepId: string) => string;
     /** Funksjon som navigerer til et steg */
@@ -18,18 +18,18 @@ interface InvalidStepInfoProps {
  * på et tidligere steg. Ber bruker gå tilbake og bruke skjemaets navigasjonsknapper.
  */
 export const InvalidStepInfo = ({
-    invalidSteps,
+    invalidStep,
     getStepTitle,
     onNavigateToStep,
     heading = 'Oops, dette stemmer ikke helt',
     description,
 }: InvalidStepInfoProps) => {
-    if (invalidSteps.length === 0) {
+    if (!invalidStep) {
         return null;
     }
 
-    const firstInvalidStep = invalidSteps[0];
-    const stepTitle = getStepTitle(firstInvalidStep);
+    const firstInvalidStep = invalidStep[0];
+    const stepTitle = getStepTitle(invalidStep);
 
     const handleClick = (evt: React.MouseEvent) => {
         evt.preventDefault();

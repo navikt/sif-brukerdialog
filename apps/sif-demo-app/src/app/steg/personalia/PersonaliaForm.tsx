@@ -1,5 +1,7 @@
 import { Button, Heading, Radio, RadioGroup, TextField, VStack } from '@navikt/ds-react';
-import { useForm } from 'react-hook-form';
+import { DefaultValues, useForm } from 'react-hook-form';
+import { usePersistStepFormValues } from '@rammeverk/hooks';
+import { SøknadStepId } from '../../config/søknadStepConfig';
 
 export interface PersonaliaSkjemadata {
     navn: string;
@@ -7,13 +9,17 @@ export interface PersonaliaSkjemadata {
 }
 
 interface Props {
-    hookForm: ReturnType<typeof useForm<PersonaliaSkjemadata>>;
+    defaultValues: DefaultValues<PersonaliaSkjemadata>;
     onSubmit: (data: PersonaliaSkjemadata) => void;
     isPending: boolean;
 }
 
-const PersonaliaForm = ({ isPending, onSubmit, hookForm }: Props) => {
-    const { register, handleSubmit, watch, setValue } = hookForm;
+const PersonaliaForm = ({ isPending, onSubmit, defaultValues }: Props) => {
+    const { register, handleSubmit, watch, setValue, getValues } = useForm<PersonaliaSkjemadata>({
+        defaultValues,
+    });
+
+    usePersistStepFormValues(SøknadStepId.PERSONALIA, () => getValues());
 
     const harHobby = watch('harHobby');
 

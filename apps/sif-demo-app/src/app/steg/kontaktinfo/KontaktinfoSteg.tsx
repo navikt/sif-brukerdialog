@@ -1,29 +1,27 @@
-import { Button, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
-import { useForm } from 'react-hook-form';
+import { Alert, Link, VStack } from '@navikt/ds-react';
+import { useNavigate } from 'react-router-dom';
 
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
-import { useFormSubmitGuard } from '../../hooks/useFormSubmitGuard';
+import { SøknadStepGuard } from '../../components/SøknadStepGuard';
 import {
     SøknadStepId,
     søknadStepConfig as stepConfig,
     søknadStepOrder as stepOrder,
+    stepTitles,
 } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { KontaktSøknadsdata } from '../../types/Søknadsdata';
 import { useSøknadMellomlagring } from '../../hooks';
-
-interface Skjemadata {
-    epost: string;
-}
+import KontaktinfoForm, { KontaktSkjemadata } from './KontaktinfoForm';
 
 const getDefaultValues = (
-    stepFormValues: Partial<Skjemadata> | undefined,
+    stepFormValues: Partial<KontaktSkjemadata> | undefined,
     søknadsdata?: KontaktSøknadsdata,
-): Partial<Skjemadata> => {
+): Partial<KontaktSkjemadata> => {
     if (stepFormValues) {
         return stepFormValues;
     }
@@ -37,15 +35,17 @@ const getDefaultValues = (
 
 export const KontaktinfoSteg = () => {
     const stepId = SøknadStepId.KONTAKT;
+    const navigate = useNavigate();
 
     const søknadState = useSøknadStore((s) => s.søknadState);
     const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
+    const { clearAllSteps } = useStepFormValues();
 
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
-    const formValues = useStepFormValues().getStepFormValues(stepId);
+    const stepFormValues = useStepFormValues().getStepFormValues(stepId) as Partial<KontaktSkjemadata> | undefined;
 
     const stepStatus = useSøknadStepStatus();
     const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
@@ -55,41 +55,41 @@ export const KontaktinfoSteg = () => {
         setCurrentStep: setCurrentStepId,
     });
 
-    const { register, handleSubmit, getValues } = useForm<Skjemadata>({
-        defaultValues: getDefaultValues(formValues, søknadState?.søknadsdata[stepId]),
-    });
+    const defaultValues = getDefaultValues(stepFormValues, søknadState?.søknadsdata[stepId]);
 
-    const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({
-        stepId: stepId,
-        getValues: () => getValues(),
-    });
-
-    const onSubmit = async (data: Skjemadata) => {
+    const onSubmit = async (data: KontaktSkjemadata) => {
         setSøknadsdata({ [stepId]: { epost: data.epost } });
         await lagreSøknad();
-        clearFormValues();
+        clearAllSteps();
         navigateToNextStep(stepId);
     };
 
     return (
         <VStack gap="space-24">
-            <FormSubmitGuardInfo />
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <VStack gap="space-16">
-                    <Heading size="large">Kontaktinfo</Heading>
-                    <TextField label="E-post" type="email" {...register('epost')} />
-                    <HStack gap="space-16" justify="start">
-                        {canGoPrevious(stepId) && (
-                            <Button type="button" variant="secondary" onClick={() => navigateToPreviousStep(stepId)}>
-                                Forrige
-                            </Button>
-                        )}
-                        <Button type="submit" disabled={isPending} loading={isPending}>
-                            Neste
-                        </Button>
-                    </HStack>
-                </VStack>
-            </form>
+            <SøknadStepGuard stepId={stepId}>
+                {(invalidStepId) =>
+                    invalidStepId && (
+                        <Alert variant="warning">
+                            Du har ulagrede endringer i {stepTitles[invalidStepId as SøknadStepId]}.{' '}
+                            <Link
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    navigate(`/soknad/${stepConfig[invalidStepId as SøknadStepId].route}`);
+                                }}>
+                                Gå tilbake
+                            </Link>
+                        </Alert>
+                    )
+                }
+            </SøknadStepGuard>
+            <KontaktinfoForm
+                defaultValues={defaultValues}
+                isPending={isPending}
+                onSubmit={onSubmit}
+                canGoPrevious={canGoPrevious(stepId)}
+                onPrevious={() => navigateToPreviousStep(stepId)}
+            />
             <SøknadFooter onAvbryt={avbrytSøknad} />
         </VStack>
     );

@@ -37,9 +37,9 @@ export interface ActiveStep {
  */
 export interface StepStatusCallbacks {
     /** Returnerer true hvis steget har data og er ferdig utfylt */
-    isCompleted: (stepId: string) => boolean;
+    isStepCompleted: (stepId: string) => boolean;
     /** Returnerer true hvis steget skal vises (for dynamiske steg). Default: alltid synlig */
-    isIncluded?: (stepId: string) => boolean;
+    isStepIncluded?: (stepId: string) => boolean;
 }
 
 /**
@@ -48,12 +48,12 @@ export interface StepStatusCallbacks {
  */
 export const getActiveStep = (stepOrder: string[], callbacks: StepStatusCallbacks): ActiveStep[] => {
     const includedSteps = stepOrder.filter((id) => {
-        return callbacks.isIncluded?.(id) ?? true;
+        return callbacks.isStepIncluded?.(id) ?? true;
     });
 
     return includedSteps.map((stepId, index) => {
-        const isCompleted = callbacks.isCompleted(stepId);
-        const isAvailable = index === 0 || includedSteps.slice(0, index).every((id) => callbacks.isCompleted(id));
+        const isCompleted = callbacks.isStepCompleted(stepId);
+        const isAvailable = index === 0 || includedSteps.slice(0, index).every((id) => callbacks.isStepCompleted(id));
 
         return { stepId, isAvailable, isCompleted };
     });

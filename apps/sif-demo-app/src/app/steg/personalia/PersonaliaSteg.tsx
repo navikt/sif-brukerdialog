@@ -1,13 +1,15 @@
-import { VStack } from '@navikt/ds-react';
+import { Alert, Link, VStack } from '@navikt/ds-react';
+import { useNavigate } from 'react-router-dom';
 
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
-import { useFormSubmitGuard } from '../../hooks/useFormSubmitGuard';
+import { SøknadStepGuard } from '../../components/SøknadStepGuard';
 import {
     SøknadStepId,
     søknadStepConfig as stepConfig,
     søknadStepOrder as stepOrder,
+    stepTitles,
 } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
@@ -15,7 +17,6 @@ import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { PersonaliaSøknadsdata } from '../../types/Søknadsdata';
 import PersonaliaForm, { PersonaliaSkjemadata } from './PersonaliaForm';
-import { useForm } from 'react-hook-form';
 
 const getDefaultValues = (
     stepFormValues: Partial<PersonaliaSkjemadata> | undefined,
@@ -35,13 +36,15 @@ const getDefaultValues = (
 
 export const PersonaliaSteg = () => {
     const stepId = SøknadStepId.PERSONALIA;
+    const navigate = useNavigate();
     const søknadState = useSøknadStore((s) => s.søknadState);
     const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
+    const { clearAllSteps } = useStepFormValues();
 
-    const stepFormValues = useStepFormValues().getStepFormValues(stepId);
+    const stepFormValues = useStepFormValues().getStepFormValues(stepId) as Partial<PersonaliaSkjemadata> | undefined;
 
     const stepStatus = useSøknadStepStatus();
 
@@ -52,32 +55,39 @@ export const PersonaliaSteg = () => {
         setCurrentStep: setCurrentStepId,
     });
 
-    const hookForm = useForm<PersonaliaSkjemadata>({
-        defaultValues: getDefaultValues(stepFormValues, søknadState?.søknadsdata[stepId]),
-    });
+    const defaultValues = getDefaultValues(stepFormValues, søknadState?.søknadsdata[stepId]);
 
-    const { getValues } = hookForm;
-
-    const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({
-        stepId: stepId,
-        getValues: () => getValues(),
-    });
-
-    const onSubmit = async (data: PersonaliaSkjemadata) => {
+    const handleOnSubmit = async (data: PersonaliaSkjemadata) => {
         if (!data.navn || !data.harHobby) {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
         setSøknadsdata({ [stepId]: { navn: data.navn, harHobby: data.harHobby } });
         await lagreSøknad();
-        clearFormValues();
+        clearAllSteps();
         navigateToNextStep(stepId);
     };
 
     return (
         <VStack gap="space-24">
-            <FormSubmitGuardInfo />
-            <PersonaliaForm hookForm={hookForm} isPending={isPending} onSubmit={onSubmit} />
+            <SøknadStepGuard stepId={stepId}>
+                {(invalidStepId) =>
+                    invalidStepId && (
+                        <Alert variant="warning">
+                            Du har ulagrede endringer i {stepTitles[invalidStepId as SøknadStepId]}.{' '}
+                            <Link
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    navigate(`/soknad/${stepConfig[invalidStepId as SøknadStepId].route}`);
+                                }}>
+                                Gå tilbake
+                            </Link>
+                        </Alert>
+                    )
+                }
+            </SøknadStepGuard>
+            <PersonaliaForm defaultValues={defaultValues} isPending={isPending} onSubmit={handleOnSubmit} />
             <SøknadFooter onAvbryt={avbrytSøknad} />
         </VStack>
     );
