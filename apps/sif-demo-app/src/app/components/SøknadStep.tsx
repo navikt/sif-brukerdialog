@@ -24,15 +24,15 @@ interface RenderProps<TSkjemadata> {
 
 interface Props<TSkjemadata, TSøknadsdata> {
     stepId: SøknadStepId;
-    mapToSøknadsdata: (data: TSkjemadata) => TSøknadsdata;
-    getDefaultValues?: (søknadsdata: TSøknadsdata | undefined) => Partial<TSkjemadata>;
+    toSøknadsdata: (data: TSkjemadata) => TSøknadsdata;
+    toFormValues?: (søknadsdata: TSøknadsdata | undefined) => Partial<TSkjemadata>;
     children: (props: RenderProps<TSkjemadata>) => React.ReactNode;
 }
 
 function SøknadStep<TSkjemadata, TSøknadsdata>({
     stepId,
-    mapToSøknadsdata,
-    getDefaultValues: getDefaultValuesFromSøknadsdata,
+    toSøknadsdata,
+    toFormValues,
     children,
 }: Props<TSkjemadata, TSøknadsdata>) {
     const søknadState = useSøknadStore((s) => s.søknadState);
@@ -56,12 +56,12 @@ function SøknadStep<TSkjemadata, TSøknadsdata>({
 
     const defaultValues: Partial<TSkjemadata> = stepFormValues
         ? stepFormValues
-        : getDefaultValuesFromSøknadsdata
-          ? getDefaultValuesFromSøknadsdata(søknadsdata)
+        : toFormValues
+          ? toFormValues(søknadsdata)
           : {};
 
     const onSubmit = async (data: TSkjemadata) => {
-        const mapped = mapToSøknadsdata(data);
+        const mapped = toSøknadsdata(data);
         setSøknadsdata({ [stepId]: mapped } as Partial<Søknadsdata>);
         await lagreSøknad();
         clearAllSteps();

@@ -3,11 +3,15 @@ import { HobbySøknadsdata } from '../../types/Søknadsdata';
 import HobbyForm, { HobbySkjemadata } from './HobbyForm';
 import SøknadStep from '../../components/SøknadStep';
 
+const toSøknadsdata = (data) => ({ navn: data.navn });
+
+const toFormValues = (søknadsdata) => ({ navn: søknadsdata?.navn });
+
 export const HobbySteg = () => (
     <SøknadStep<HobbySkjemadata, HobbySøknadsdata>
         stepId={SøknadStepId.HOBBY}
-        mapToSøknadsdata={(data) => ({ navn: data.navn })}
-        getDefaultValues={(søknadsdata) => ({ navn: søknadsdata?.navn })}>
+        toSøknadsdata={toSøknadsdata}
+        toFormValues={toFormValues}>
         {({ defaultValues, onSubmit, isPending, onPrevious }) => (
             <HobbyForm
                 defaultValues={defaultValues}

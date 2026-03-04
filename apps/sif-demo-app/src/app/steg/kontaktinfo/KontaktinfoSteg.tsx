@@ -3,11 +3,15 @@ import { KontaktSøknadsdata } from '../../types/Søknadsdata';
 import KontaktinfoForm, { KontaktSkjemadata } from './KontaktinfoForm';
 import SøknadStep from '../../components/SøknadStep';
 
+const toSøknadsdata = (data) => ({ epost: data.epost });
+
+const toFormValues = (søknadsdata) => ({ epost: søknadsdata?.epost });
+
 export const KontaktinfoSteg = () => (
     <SøknadStep<KontaktSkjemadata, KontaktSøknadsdata>
         stepId={SøknadStepId.KONTAKT}
-        mapToSøknadsdata={(data) => ({ epost: data.epost })}
-        getDefaultValues={(søknadsdata) => ({ epost: søknadsdata?.epost })}>
+        toSøknadsdata={toSøknadsdata}
+        toFormValues={toFormValues}>
         {({ defaultValues, onSubmit, isPending, onPrevious }) => (
             <KontaktinfoForm
                 defaultValues={defaultValues}
