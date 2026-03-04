@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useYtelseMellomlagring } from '@navikt/sif-common-query';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config/appConfig';
 import { SøknadStepId } from '../config/søknadStepConfig';
-import { AppMellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
+import { SøknadMellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
 import { useSøknadStore } from './useSøknadStore';
 
 export const useSøknadMellomlagring = () => {
@@ -17,7 +17,7 @@ export const useSøknadMellomlagring = () => {
         };
     }, [søknadState]);
 
-    const mellomlagring = useYtelseMellomlagring<AppMellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
+    const mellomlagring = useYtelseMellomlagring<SøknadMellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
     /**
      * Lagre ved submit av steg. Clearer skjemadata siden søknadsdata nå er master.

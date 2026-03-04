@@ -4,11 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepNavigation } from '@rammeverk/state';
 
-import { SøknadStepId, søknadStepConfig as stepConfig, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
-import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
-import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
-import { useSøknadStore } from '../hooks/useSøknadStore';
+import {
+    SøknadStepId,
+    søknadStepConfig as stepConfig,
+    søknadStepOrder as stepOrder,
+} from '../../config/søknadStepConfig';
+import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
+import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
+import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
+import { useSøknadStore } from '../../hooks/useSøknadStore';
 
 export const Oppsummering = () => {
     const stepId = SøknadStepId.OPPSUMMERING;

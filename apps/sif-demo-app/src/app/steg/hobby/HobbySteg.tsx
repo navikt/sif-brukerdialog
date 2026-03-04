@@ -4,12 +4,16 @@ import { useForm } from 'react-hook-form';
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
-import { useFormSubmitGuard } from '../components/FormSubmitGuard';
-import { søknadStepOrder as stepOrder, søknadStepConfig as stepConfig, SøknadStepId } from '../config/søknadStepConfig';
-import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
-import { useSøknadStore } from '../hooks/useSøknadStore';
-import { HobbySøknadsdata } from '../types/Søknadsdata';
+import { useFormSubmitGuard } from '../../components/FormSubmitGuard';
+import {
+    søknadStepOrder as stepOrder,
+    søknadStepConfig as stepConfig,
+    SøknadStepId,
+} from '../../config/søknadStepConfig';
+import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
+import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
+import { useSøknadStore } from '../../hooks/useSøknadStore';
+import { HobbySøknadsdata } from '../../types/Søknadsdata';
 
 interface Skjemadata {
     navn: string;
