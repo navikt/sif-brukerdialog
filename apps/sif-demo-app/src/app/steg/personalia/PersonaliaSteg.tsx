@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
-import { useFormSubmitGuard } from '../../components/FormSubmitGuard';
+import { useFormSubmitGuard } from '../../hooks/useFormSubmitGuard';
 import {
     SøknadStepId,
     søknadStepConfig as stepConfig,

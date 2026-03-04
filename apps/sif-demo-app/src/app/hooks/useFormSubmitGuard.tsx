@@ -4,7 +4,7 @@ import { InvalidStepInfo } from '@rammeverk/components';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
 import { useStepFormValues } from '@rammeverk/state';
 import { SøknadStepId, søknadStepConfig, stepTitles } from '../config/søknadStepConfig';
-import { useSøknadsdataStatus } from '../hooks/useSøknadsdataStatus';
+import { useSøknadsdataStatus } from './useSøknadsdataStatus';
 
 interface UseFormSubmitGuardOptions<T extends object> {
     stepId: SøknadStepId;
