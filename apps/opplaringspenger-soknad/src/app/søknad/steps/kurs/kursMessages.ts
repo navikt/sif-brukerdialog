@@ -17,18 +17,18 @@ const nb = {
     'steg.kurs.enkeltdagEllerPeriode.periode': 'Sammenhengende periode',
 
     'steg.kurs.enkeltdager.tittel': 'Hvilke dager søker du opplæringspenger?',
-    'steg.kurs.enkeltdager.tekst':
-        'Legg til dag og antall timer du er på opplæring, og eventuell reisetid til og fra opplæringen. Hvis du ikke reiser, trenger du ikke fylle ut timer med reise.',
+    'steg.kurs.enkeltdager.tekst': 'Legg til dager du er på opplæring eller kurs.',
     'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
     'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
 
     'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
-    'steg.kurs.kursperioder.tittel': 'Hvilke perioder søker du opplæringspenger?',
+    'steg.kurs.kursperioder.tittel': 'Hvilke perioder søker du opplæringspenger for?',
     'steg.kurs.kursperioder.tekst':
-        'Du kan få opplæringspenger for perioder du er på opplæring, og eventuell reisetid til og fra opplæringen.',
+        'Du kan legge til perioder du er på opplæring, og eventuelle reisedager til og fra opplæringen.',
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
 
-    'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
+    'steg.kurs.reiserUtenforKursdager.label':
+        'Er noen av dagene i {antallPerioder, plural, one {perioden} other {periodene}} som du søker for, kun reisedager?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
         'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
@@ -39,7 +39,7 @@ const nb = {
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
-    'steg.kurs.validation.enkeltdagEllerPeriode':
+    'steg.kurs.validation.enkeltdagEllerPeriode.noValue':
         'Du må velge om søknaden gjelder enkeltdag eller sammenhengende periode.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
         'Du må svare på om du reiser på dager du ikke har kurs eller opplæring.',
@@ -130,8 +130,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.enkeltdagEllerPeriode.periode': 'Samanhengande periode',
 
     'steg.kurs.enkeltdager.tittel': 'Kva dagar søkjer du opplæringspengar?',
-    'steg.kurs.enkeltdager.tekst':
-        'Legg til dag og talet timar du er på opplæring, og eventuell reisetid til og frå opplæringa. Viss du ikkje reiser, treng du ikkje fylle ut timar med reise.',
+    'steg.kurs.enkeltdager.tekst': 'Legg til dagar du er på opplæring eller kurs.',
     'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
     'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
 
@@ -144,15 +143,14 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva tyder dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
-        'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
+        'Dersom du må vere borte frå jobb fleire dagar enn du har opplæring, kan du ha rett til opplæringspengar også dei dagane du er på reise.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.2':
-        'Her informerer du oss om hvilke dager i søknadsperioden du må bruke for å reise til opplæringsstedet, og derfor ikke kunne jobbe som vanlig. Du kan kun registrere reisesdager som er innenfor perioden du søker om opplæringspenger.',
+        'Her informerer du oss om kva dagar i søknadsperioden du må bruke for å reise til opplæringsstaden, og difor ikkje kunne jobbe som vanleg. Du kan berre registrere reisedagar som er innanfor perioden du søkjer om opplæringspengar.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.3':
-        'Du trenger ikke å fylle ut noe her hvis du reiser til og fra opplæringen samme dag som du har opplæring.',
-
+        'Du treng ikkje å fylle ut noko her dersom du reiser til og frå opplæringa same dag som du har opplæring.',
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive kvar opplæringa føregår med minst 2 teikn.',
-    'steg.kurs.validation.enkeltdagEllerPeriode':
+    'steg.kurs.validation.enkeltdagEllerPeriode.noValue':
         'Du må velje om søknaden gjeld enkeltdag eller samanhengande periode.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
         'Du må svare på om du reiser på dagar du ikkje har kurs eller opplæring.',

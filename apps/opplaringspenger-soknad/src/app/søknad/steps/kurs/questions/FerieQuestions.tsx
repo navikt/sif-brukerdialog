@@ -1,3 +1,4 @@
+import { Alert } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
@@ -36,7 +37,11 @@ const FerieQuestions = ({ values, gyldigSøknadsperiode, søknadsperiode, disabl
                                 addLabel: text('steg.kurs.ferie.addLabel'),
                                 modalTitle: text('steg.kurs.ferie.modalTitle'),
                                 listTitle: text('steg.kurs.ferie.listTitle'),
-                                modalDescription: <AppText id="steg.kurs.ferie.modalDescription" />,
+                                modalDescription: (
+                                    <Alert variant="info">
+                                        <AppText id="steg.kurs.ferie.modalDescription" />
+                                    </Alert>
+                                ),
                             }}
                             name={KursFormFields.ferieuttak}
                             minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}

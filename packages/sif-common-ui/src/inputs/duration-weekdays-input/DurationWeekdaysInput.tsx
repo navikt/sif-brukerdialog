@@ -1,6 +1,7 @@
 import { Accordion, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import {
+    capsFirstCharacter,
     DateRange,
     dateToISODate,
     getDatesInDateRange,
@@ -24,6 +25,7 @@ export interface DurationWeekdaysInputProps {
     useAccordion?: boolean;
     useExpansionCards?: boolean;
     accordionOpen?: boolean;
+    renderWeekHeader?: (week: DateRange) => React.ReactNode;
     renderMonthHeader?: (month: Date, enabledDatesInMonth: number) => React.ReactNode;
     validateDate: DurationWeekdaysDateValidator;
 }
@@ -36,6 +38,7 @@ const DurationWeekdaysInput = ({
     useExpansionCards,
     accordionOpen,
     renderMonthHeader,
+    renderWeekHeader,
     validateDate,
 }: DurationWeekdaysInputProps) => {
     const months = getMonthsInDateRange(dateRange);
@@ -61,6 +64,7 @@ const DurationWeekdaysInput = ({
                             disabledDates={disabledDates}
                             formikFieldName={formikFieldName}
                             headingLevel="3"
+                            renderWeekHeader={renderWeekHeader}
                             validateDate={validateDate}
                         />
                     );
@@ -89,7 +93,7 @@ const DurationWeekdaysInput = ({
                                 <ExpansionCard.Title size="small" id={monthTitleId}>
                                     {renderMonthHeader
                                         ? renderMonthHeader(month.from, enabledDatesInMonth.length)
-                                        : dayjs(month.from).format('MMMM YYYY')}
+                                        : capsFirstCharacter(dayjs(month.from).format('MMMM YYYY'))}
                                 </ExpansionCard.Title>
                             </ExpansionCard.Header>
                             <ExpansionCard.Content>{renderWeeks(weeks)}</ExpansionCard.Content>

@@ -74,12 +74,12 @@ export const getApiDataFromSøknadsdata = (
         utenlandsoppholdIPerioden: kurs.utenlandsopphold
             ? getUtenlansoppholdApiDataFromSøknadsdata(språk, kurs.utenlandsopphold)
             : undefined,
-        arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
+        arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata({
             søknadsperiode,
             valgteDatoer,
             arbeidsgivere,
-            arbeidstid?.arbeidsgivere,
-        ),
+            arbeidstidArbeidsgivere: arbeidstid?.arbeidsgivere,
+        }),
         frilans: getFrilansApiDataFromSøknadsdata({
             søknadsperiode,
             dagerMedOpplæring: valgteDatoer,
