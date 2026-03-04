@@ -21,7 +21,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.send(data);
     } catch (err) {
         const logger = getLogger(req);
-        logger.error(`Hent inntektsmeldinger feilet: ${prepApiError(err)}`);
+        logger.error(`Hent inntektsmeldinger feilet`, prepApiError(err));
         return res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
     }
 }
