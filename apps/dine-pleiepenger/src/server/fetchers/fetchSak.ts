@@ -4,12 +4,12 @@ import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { z } from 'zod';
 
-import { getContextForApiHandler, serverResponseTransform } from '../../utils/apiUtils';
+import { getContextForApiHandler, prepApiError, serverResponseTransform } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
-import { validateSaksnummer } from '../utils/validatePathSegment';
+import { assertValidSaksnummer } from '../utils/validatePathSegment';
 
 export const zSakDtoExtended = innsyn.zSakDto.extend({
     // zSakDto har feil format i forhold til generert skjema; transformeres her
@@ -67,7 +67,7 @@ export const fetchSak = async (
     saksnummer: string,
     unparsed?: boolean,
 ): Promise<SakDtoExtended> => {
-    validateSaksnummer(saksnummer);
+    assertValidSaksnummer(saksnummer);
 
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
@@ -98,21 +98,7 @@ export const fetchSak = async (
 
         return fjernUkjenteInnsendelserISak(parsedData);
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-            logger.error('Feil ved henting av sak', {
-                status: error.response?.status,
-                statusText: error.response?.statusText,
-                errorCode: error.code,
-            });
-        } else if (error instanceof z.ZodError) {
-            logger.error('Valideringsfeil ved parsing av sak', {
-                issues: error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })),
-            });
-        } else {
-            logger.error('Ukjent feil ved henting av sak', {
-                errorMessage: error instanceof Error ? error.message : String(error),
-            });
-        }
+        logger.error('Feil ved henting av sak', prepApiError(error));
         throw error;
     }
 };

@@ -51,16 +51,16 @@ export function validatePathSegment(segment: string, paramName: string = 'path s
  * @param saksnummer - Saksnummeret som skal valideres
  * @throws Error hvis saksnummeret er ugyldig
  */
-export function validateSaksnummer(saksnummer: string): void {
+export function assertValidSaksnummer(saksnummer: string): void {
     validatePathSegment(saksnummer, 'Saksnummer');
 }
 
-export const saksnummerPathValueIsValid = (value: unknown): value is string => {
+export const isValidSaksnummer = (value: unknown): value is string => {
     if (typeof value !== 'string' || value.length === 0) {
         return false;
     }
     try {
-        validateSaksnummer(value);
+        assertValidSaksnummer(value);
         return true;
     } catch {
         return false;
