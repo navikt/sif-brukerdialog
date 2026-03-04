@@ -5,16 +5,14 @@ import {
     søknadStepOrder as stepOrder,
     søknadStepConfig as stepConfig,
     SøknadStepId,
-    stepTitles,
 } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { HobbySøknadsdata } from '../../types/Søknadsdata';
 import { useSøknadMellomlagring } from '../../hooks';
-import SøknadStep from '../../../rammeverk/components/SøknadStep';
 import HobbyForm, { HobbySkjemadata } from './HobbyForm';
-import { SøknadStepGuard } from '../../components/SøknadStepGuard';
+import SøknadStep from '../../components/SøknadStep';
 
 const getDefaultValues = (
     stepFormValues: Partial<HobbySkjemadata> | undefined,
@@ -66,8 +64,7 @@ export const HobbySteg = () => {
     };
 
     return (
-        <SøknadStep title={stepTitles[stepId]}>
-            <SøknadStepGuard stepId={stepId} />
+        <SøknadStep stepId={stepId}>
             <HobbyForm
                 defaultValues={defaultValues}
                 isPending={isPending}
