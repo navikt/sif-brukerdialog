@@ -58,7 +58,7 @@ export const serverResponseTransform = (data: string): unknown => {
     }
 };
 
-export const prepApiError = (err: unknown): unknown => {
+export const prepApiError = (err: unknown): Record<string, unknown> => {
     if (isAxiosError(err)) {
         const { code, message, response } = err;
         return { axiosError: { code, message, response: response ? { status: response.status } : undefined } };
@@ -66,6 +66,8 @@ export const prepApiError = (err: unknown): unknown => {
         return { zodError: JSON.stringify(getZodErrorsInfo(err)) };
     } else if (typeof err === 'string') {
         return { stringError: err };
+    } else if (err instanceof Error) {
+        return { error: err.message, name: err.name };
     }
-    return err;
+    return { unknownError: String(err) };
 };

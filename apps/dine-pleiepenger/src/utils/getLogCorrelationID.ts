@@ -3,26 +3,59 @@ import { NextApiRequest } from 'next';
 
 import { getXRequestId } from './apiUtils';
 
-export const getChildLoggerContext = (xRequestId: string, context?: any) => {
+const isDebugEnabled = process.env.LOG_LEVEL === 'debug' || process.env.NODE_ENV === 'development';
+
+export const getChildLoggerContext = (xRequestId: string, context?: Record<string, unknown>) => {
     return {
         correlation_id: xRequestId,
         ...context,
     };
 };
 
-export const getLogger = (req: NextApiRequest) => {
+export type LogContext = Record<string, unknown>;
+
+export interface Logger {
+    info: (message: string, context?: LogContext) => void;
+    warn: (message: string, context?: LogContext) => void;
+    error: (message: string, context?: LogContext) => void;
+    debug: (message: string, context?: LogContext) => void;
+    withContext: (baseContext: LogContext) => Logger;
+    startTimer: (operation: string) => () => void;
+}
+
+export const getLogger = (req: NextApiRequest): Logger => {
     const reqId = getXRequestId(req);
     const childLogger = createChildLogger(reqId);
 
-    return {
-        info: (message: string, obj?: unknown) => {
-            childLogger.info(getChildLoggerContext(reqId, obj), message);
+    const createLoggerWithContext = (baseContext: LogContext = {}): Logger => ({
+        info: (message: string, context?: LogContext) => {
+            childLogger.info(getChildLoggerContext(reqId, { ...baseContext, ...context }), message);
         },
-        warn: (message: string, obj?: unknown) => {
-            childLogger.warn(getChildLoggerContext(reqId, obj), message);
+        warn: (message: string, context?: LogContext) => {
+            childLogger.warn(getChildLoggerContext(reqId, { ...baseContext, ...context }), message);
         },
-        error: (message: string, obj?: unknown) => {
-            childLogger.error(getChildLoggerContext(reqId, obj), message);
+        error: (message: string, context?: LogContext) => {
+            childLogger.error(getChildLoggerContext(reqId, { ...baseContext, ...context }), message);
         },
-    };
+        debug: (message: string, context?: LogContext) => {
+            if (isDebugEnabled) {
+                childLogger.info(getChildLoggerContext(reqId, { ...baseContext, ...context, level: 'debug' }), message);
+            }
+        },
+        withContext: (additionalContext: LogContext) => {
+            return createLoggerWithContext({ ...baseContext, ...additionalContext });
+        },
+        startTimer: (operation: string) => {
+            const start = performance.now();
+            return () => {
+                const durationMs = Math.round(performance.now() - start);
+                childLogger.info(
+                    getChildLoggerContext(reqId, { ...baseContext, operation, durationMs }),
+                    `${operation} completed`,
+                );
+            };
+        },
+    });
+
+    return createLoggerWithContext();
 };

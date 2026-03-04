@@ -24,7 +24,6 @@ export const fetchInntektsmeldinger = async (
     saksnr: string,
     unparsed?: boolean,
 ): Promise<innsyn.SakInntektsmeldingDto[]> => {
-    // Validerer saksnummer for å beskytte mot SSRF
     validateSaksnummer(saksnr);
 
     const context = getContextForApiHandler(req);
@@ -34,20 +33,41 @@ export const fetchInntektsmeldinger = async (
         `sak/${saksnr}/inntektsmeldinger`,
         'application/json',
     );
-    const logger = getLogger(req);
+    const logger = getLogger(req).withContext({ operation: 'fetchInntektsmeldinger', saksnummer: saksnr });
 
-    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-        logger.info(`Unparsed, fetching raw data from ${url}`);
-        const response = await axios.get(url, { headers });
-        return response.data;
+    try {
+        if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
+            logger.debug('Returnerer uparsed data');
+            const response = await axios.get(url, { headers });
+            return response.data;
+        }
+
+        logger.debug('Henter inntektsmeldinger fra upstream');
+        const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
+        logger.debug('Respons mottatt', { status: response.status });
+
+        const parsedData = z
+            .array(inntektsmeldingSchemaModified)
+            .parse(response.data) as innsyn.SakInntektsmeldingDto[];
+        logger.debug('Inntektsmeldinger parset', { antall: parsedData.length });
+
+        return parsedData;
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            logger.error('Feil ved henting av inntektsmeldinger', {
+                status: error.response?.status,
+                statusText: error.response?.statusText,
+                errorCode: error.code,
+            });
+        } else if (error instanceof z.ZodError) {
+            logger.error('Valideringsfeil ved parsing av inntektsmeldinger', {
+                issues: error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })),
+            });
+        } else {
+            logger.error('Ukjent feil ved henting av inntektsmeldinger', {
+                errorMessage: error instanceof Error ? error.message : String(error),
+            });
+        }
+        throw error;
     }
-
-    logger.info(`Fetching inntektsmeldinger`);
-    const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
-    logger.info(`Response-status from request: ${response.status}`);
-
-    logger.info(`Parser response data`);
-    const parsedData = z.array(inntektsmeldingSchemaModified).parse(response.data) as innsyn.SakInntektsmeldingDto[];
-    logger.info(`Inntektsmeldinger parsed`);
-    return parsedData;
 };

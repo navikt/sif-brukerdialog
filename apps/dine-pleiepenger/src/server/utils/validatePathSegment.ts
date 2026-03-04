@@ -46,6 +46,7 @@ export function validatePathSegment(segment: string, paramName: string = 'path s
 /**
  * Validerer et saksnummer.
  * Saksnummer er typisk UUID eller numerisk ID.
+ * Validerer for å beskytte mot SSRF
  *
  * @param saksnummer - Saksnummeret som skal valideres
  * @throws Error hvis saksnummeret er ugyldig

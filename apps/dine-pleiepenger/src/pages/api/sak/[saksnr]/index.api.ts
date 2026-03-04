@@ -11,60 +11,55 @@ import { Feature } from '../../../../utils/features';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const baseLogger = getLogger(req);
+    const { saksnr } = req.query;
+    const unparsed = req.query.unparsed === 'true';
+
+    if (!saksnummerPathValueIsValid(saksnr)) {
+        baseLogger.error('Saksnummer mangler eller er ugyldig', { saksnr });
+        return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
+    }
+
+    const logger = baseLogger.withContext({
+        saksnummer: saksnr,
+        unparsed,
+        imEnabled: Feature.INNTEKTSMELDING_ENABLED,
+    });
+
+    const totalTimer = logger.startTimer('hent-sak-detaljer');
+
     try {
-        const logger = getLogger(req);
-        const { saksnr } = req.query;
+        logger.info('Starter henting av saksdetaljer');
 
-        if (!saksnummerPathValueIsValid(saksnr)) {
-            logger.error(`Saksnummer mangler eller er ugyldig`);
-            return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
-        }
-
-        logger.info(`Henter saksdetaljer for saksnummer: ${saksnr}`);
-
-        const unparsed = req.query.unparsed === 'true';
+        const sakTimer = logger.startTimer('fetch-sak');
         const sak = await fetchSak(req, saksnr, unparsed);
+        sakTimer();
 
-        // Hent inntektsmeldinger hvis feature er aktivert
         let inntektsmeldinger: innsyn.SakInntektsmeldingDto[] = [];
         if (Feature.INNTEKTSMELDING_ENABLED) {
+            const imTimer = logger.startTimer('fetch-inntektsmeldinger');
             inntektsmeldinger = await fetchInntektsmeldinger(req, saksnr, unparsed);
-        } else {
-            logger.info(
-                `Henter ikke inntektsmeldinger. Feature.INNTEKTSMELDING_ENABLED=${Feature.INNTEKTSMELDING_ENABLED}`,
-            );
+            imTimer();
         }
 
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-            return res.json({
-                sak,
-                inntektsmeldinger,
-            });
+            logger.debug('Returnerer unparsed data');
+            return res.json({ sak, inntektsmeldinger });
         }
 
         if (!sak) {
-            logger.warn(`Sak ${saksnr} ikke funnet`);
+            logger.warn('Sak ikke funnet');
             return res.status(404).json({ error: 'Sak ikke funnet' });
         }
-        if (!inntektsmeldinger) {
-            logger.warn(`Inntektsmeldinger for sak ${saksnr} ikke funnet`);
-            return res.status(404).json({ error: 'Inntektsmeldinger ikke funnet' });
-        }
 
-        // Suksess
-        if (Feature.INNTEKTSMELDING_ENABLED) {
-            logger.info(`Sak og inntektsmeldinger hentet for saksnummer: ${saksnr}`);
-        } else {
-            logger.info(`Sak hentet for saksnummer: ${saksnr}`);
-        }
+        totalTimer();
         return res.json({ sak, inntektsmeldinger });
     } catch (err) {
-        const logger = getLogger(req);
-        if (Feature.INNTEKTSMELDING_ENABLED) {
-            logger.error(`Hent sak og inntektsmeldinger feilet`, prepApiError(err));
-        } else {
-            logger.error(`Hent sak feilet`, prepApiError(err));
-        }
+        const errorDetails = prepApiError(err);
+        logger.error('Henting av saksdetaljer feilet', {
+            errorDetails,
+            errorType: err instanceof Error ? err.constructor.name : typeof err,
+        });
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     }
 }
