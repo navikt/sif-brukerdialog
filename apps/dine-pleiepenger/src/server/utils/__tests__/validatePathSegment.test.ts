@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+    assertValidSaksnummer,
     validateDokumentTittel,
     validateOrganisasjonsnummer,
     validatePathSegment,
     validateRelativeApiPath,
-    validateSaksnummer,
 } from '../validatePathSegment';
 
 describe('validatePathSegment', () => {
@@ -116,21 +116,21 @@ describe('validatePathSegment', () => {
     });
 });
 
-describe('validateSaksnummer', () => {
+describe('assertValidSaksnummer', () => {
     it('aksepterer gyldig saksnummer', () => {
-        expect(() => validateSaksnummer('12345678')).not.toThrow();
+        expect(() => assertValidSaksnummer('12345678')).not.toThrow();
     });
 
     it('aksepterer UUID som saksnummer', () => {
-        expect(() => validateSaksnummer('550e8400-e29b-41d4-a716-446655440000')).not.toThrow();
+        expect(() => assertValidSaksnummer('550e8400-e29b-41d4-a716-446655440000')).not.toThrow();
     });
 
     it('avviser ugyldig saksnummer med feilmelding som inneholder "Saksnummer"', () => {
-        expect(() => validateSaksnummer('../etc')).toThrow('Saksnummer inneholder ugyldige tegn');
+        expect(() => assertValidSaksnummer('../etc')).toThrow('Saksnummer inneholder ugyldige tegn');
     });
 
     it('avviser tomt saksnummer', () => {
-        expect(() => validateSaksnummer('')).toThrow('Saksnummer er påkrevd og må være en streng');
+        expect(() => assertValidSaksnummer('')).toThrow('Saksnummer er påkrevd og må være en streng');
     });
 });
 
