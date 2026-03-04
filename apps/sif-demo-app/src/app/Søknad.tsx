@@ -6,7 +6,7 @@ import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { StegRouteGuard, SøknadIndexRedirect } from '../rammeverk';
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
 import { isSøknadStepIncluded, søknadStepConfig, SøknadStepId, søknadStepOrder } from './config/søknadStepConfig';
-import { useAppStore } from './hooks';
+import { useSøknadStore } from './hooks';
 import { KvitteringPage, VelkommenPage } from './pages';
 
 import { HobbySteg, KontaktinfoSteg, Oppsummering, PersonaliaSteg } from './steg';
@@ -27,9 +27,9 @@ interface Props {
 }
 
 export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
-    const init = useAppStore((s) => s.init);
-    const søknadState = useAppStore((s) => s.søknadState);
-    const currentStepId = useAppStore((s) => s.currentStepId);
+    const init = useSøknadStore((s) => s.init);
+    const søknadState = useSøknadStore((s) => s.søknadState);
+    const currentStepId = useSøknadStore((s) => s.currentStepId);
 
     useEffectOnce(() => {
         init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);

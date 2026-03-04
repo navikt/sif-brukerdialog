@@ -1,4 +1,5 @@
-export { useSøknadMellomlagring as useLagreSøknad } from './useSøknadMellomlagring';
-export { useSøknadStepStatus as useStegStatus } from './useSøknadStepStatus';
-export { useSøknadStore as useAppStore } from './useSøknadStore';
+export { useAvbrytSøknad } from './useAvbrytSøknad';
+export { useSøknadMellomlagring } from './useSøknadMellomlagring';
 export { useSøknadsdataStatus } from './useSøknadsdataStatus';
+export { useSøknadStepStatus } from './useSøknadStepStatus';
+export { useSøknadStore } from './useSøknadStore';
