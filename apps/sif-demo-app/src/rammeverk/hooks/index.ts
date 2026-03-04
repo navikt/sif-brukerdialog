@@ -1,2 +1,2 @@
-export { useStepPersistFormValues } from './usePersistStepFormValues';
+export { usePersistStepFormValues } from './usePersistStepFormValues';
 export { useStepFormValuesStatus } from './useStepFormValuesStatus';

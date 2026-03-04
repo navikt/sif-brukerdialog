@@ -11,10 +11,10 @@ import { useStepFormValues } from '../state/StepFormValuesContext';
  * @example
  * ```tsx
  * const { getValues } = useForm();
- * usePersistFormValues(stepId, getValues);
+ * usePersistStepFormValues(stepId, getValues);
  * ```
  */
-export const useStepPersistFormValues = <T extends object>(stepId: string, getValues: () => T) => {
+export const usePersistStepFormValues = <T extends object>(stepId: string, getValues: () => T) => {
     const { setStepFormValues } = useStepFormValues();
     const getValuesRef = useRef(getValues);
 

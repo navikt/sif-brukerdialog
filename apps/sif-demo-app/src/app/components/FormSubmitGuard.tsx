@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { InvalidStepInfo } from '@rammeverk/components';
-import { useStepPersistFormValues } from '@rammeverk/hooks';
+import { usePersistStepFormValues } from '@rammeverk/hooks';
 import { useStepFormValues } from '@rammeverk/state';
 import { SøknadStepId, søknadStepConfig, stepTitles } from '../config/søknadStepConfig';
 import { useSøknadsdataStatus } from '../hooks/useSøknadsdataStatus';
@@ -37,7 +37,7 @@ export const useFormSubmitGuard = <T extends object>({
     const { invalidSteps } = useSøknadsdataStatus(stepId);
     const { clearAllSteps } = useStepFormValues();
 
-    useStepPersistFormValues(stepId, getValues);
+    usePersistStepFormValues(stepId, getValues);
 
     const clearFormValues = useCallback(() => {
         clearAllSteps();
