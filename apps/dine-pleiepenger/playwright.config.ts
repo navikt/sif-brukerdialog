@@ -20,7 +20,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn dev',
+        command: 'yarn dev:mock',
         url: 'http://localhost:8080/innsyn',
         reuseExistingServer: true,
         env: {
