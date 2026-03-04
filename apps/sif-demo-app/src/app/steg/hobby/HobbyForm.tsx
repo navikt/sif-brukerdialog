@@ -11,11 +11,10 @@ interface Props {
     defaultValues: DefaultValues<HobbySkjemadata>;
     onSubmit: (data: HobbySkjemadata) => void;
     isPending: boolean;
-    canGoPrevious: boolean;
-    onPrevious: () => void;
+    onPrevious?: () => void;
 }
 
-const HobbyForm = ({ defaultValues, onSubmit, isPending, canGoPrevious, onPrevious }: Props) => {
+const HobbyForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Props) => {
     const { register, handleSubmit, getValues } = useForm<HobbySkjemadata>({
         defaultValues,
     });
@@ -29,7 +28,7 @@ const HobbyForm = ({ defaultValues, onSubmit, isPending, canGoPrevious, onPrevio
                 <TextField label="Navn" {...register('navn')} />
 
                 <HStack gap="space-16" justify="start">
-                    {canGoPrevious && (
+                    {onPrevious && (
                         <Button type="button" variant="secondary" onClick={onPrevious}>
                             Forrige
                         </Button>

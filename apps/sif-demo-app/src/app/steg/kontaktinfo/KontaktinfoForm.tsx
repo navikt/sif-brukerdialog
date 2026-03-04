@@ -11,11 +11,10 @@ interface Props {
     defaultValues: DefaultValues<KontaktSkjemadata>;
     onSubmit: (data: KontaktSkjemadata) => void;
     isPending: boolean;
-    canGoPrevious: boolean;
-    onPrevious: () => void;
+    onPrevious?: () => void;
 }
 
-const KontaktinfoForm = ({ defaultValues, onSubmit, isPending, canGoPrevious, onPrevious }: Props) => {
+const KontaktinfoForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Props) => {
     const { register, handleSubmit, getValues } = useForm<KontaktSkjemadata>({
         defaultValues,
     });
@@ -28,7 +27,7 @@ const KontaktinfoForm = ({ defaultValues, onSubmit, isPending, canGoPrevious, on
                 <Heading size="large">Kontaktinfo</Heading>
                 <TextField label="E-post" type="email" {...register('epost')} />
                 <HStack gap="space-16" justify="start">
-                    {canGoPrevious && (
+                    {onPrevious && (
                         <Button type="button" variant="secondary" onClick={onPrevious}>
                             Forrige
                         </Button>
