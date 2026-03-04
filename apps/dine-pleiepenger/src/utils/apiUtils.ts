@@ -4,7 +4,6 @@ import z from 'zod';
 
 import { createDemoRequestContext, createRequestContext } from '../auth/withAuthentication';
 import { isLocal } from './env';
-import { getZodErrorsInfo } from './zodUtils';
 
 export const getXRequestId = (req: NextApiRequest): string => {
     return (req.headers['x-request-id'] as string) || 'undefined-x-request-id';
@@ -58,14 +57,26 @@ export const serverResponseTransform = (data: string): unknown => {
     }
 };
 
-export const prepApiError = (err: unknown): unknown => {
+export const prepApiError = (err: unknown): Record<string, unknown> => {
     if (isAxiosError(err)) {
         const { code, message, response } = err;
-        return { axiosError: { code, message, response: response ? { status: response.status } : undefined } };
+        return {
+            axiosError: {
+                code,
+                message,
+                response: response ? { status: response.status, statusText: response.statusText } : undefined,
+            },
+        };
     } else if (err instanceof z.ZodError) {
-        return { zodError: JSON.stringify(getZodErrorsInfo(err)) };
+        return {
+            zodError: {
+                issues: err.issues.map((i) => ({ path: i.path.join('.'), message: i.message })),
+            },
+        };
     } else if (typeof err === 'string') {
         return { stringError: err };
+    } else if (err instanceof Error) {
+        return { error: err.message, name: err.name };
     }
-    return err;
+    return { unknownError: String(err) };
 };
