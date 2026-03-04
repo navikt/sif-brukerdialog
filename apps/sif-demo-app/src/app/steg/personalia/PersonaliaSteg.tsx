@@ -1,5 +1,4 @@
-import { Button, Heading, Radio, RadioGroup, TextField, VStack } from '@navikt/ds-react';
-import { useForm } from 'react-hook-form';
+import { VStack } from '@navikt/ds-react';
 
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
@@ -15,16 +14,13 @@ import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { PersonaliaSøknadsdata } from '../../types/Søknadsdata';
-
-interface Skjemadata {
-    navn: string;
-    harHobby?: 'ja' | 'nei';
-}
+import PersonaliaForm, { PersonaliaSkjemadata } from './PersonaliaForm';
+import { useForm } from 'react-hook-form';
 
 const getDefaultValues = (
-    stepFormValues: Partial<Skjemadata> | undefined,
+    stepFormValues: Partial<PersonaliaSkjemadata> | undefined,
     søknadsdata?: PersonaliaSøknadsdata,
-): Partial<Skjemadata> => {
+): Partial<PersonaliaSkjemadata> => {
     if (stepFormValues) {
         return stepFormValues;
     }
@@ -45,9 +41,10 @@ export const PersonaliaSteg = () => {
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
-    const formValues = useStepFormValues().getStepFormValues(stepId);
+    const stepFormValues = useStepFormValues().getStepFormValues(stepId);
 
     const stepStatus = useSøknadStepStatus();
+
     const { navigateToNextStep } = useStepNavigation({
         stepConfig,
         stepOrder,
@@ -55,18 +52,18 @@ export const PersonaliaSteg = () => {
         setCurrentStep: setCurrentStepId,
     });
 
-    const { register, handleSubmit, watch, setValue, getValues } = useForm<Skjemadata>({
-        defaultValues: getDefaultValues(formValues, søknadState?.søknadsdata[stepId]),
+    const hookForm = useForm<PersonaliaSkjemadata>({
+        defaultValues: getDefaultValues(stepFormValues, søknadState?.søknadsdata[stepId]),
     });
 
-    const harHobby = watch('harHobby');
+    const { getValues } = hookForm;
 
     const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({
         stepId: stepId,
         getValues: () => getValues(),
     });
 
-    const onSubmit = async (data: Skjemadata) => {
+    const onSubmit = async (data: PersonaliaSkjemadata) => {
         if (!data.navn || !data.harHobby) {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
@@ -80,24 +77,7 @@ export const PersonaliaSteg = () => {
     return (
         <VStack gap="space-24">
             <FormSubmitGuardInfo />
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <VStack gap="space-16">
-                    <Heading size="large">Personalia</Heading>
-                    <TextField label="Navn" {...register('navn')} />
-                    <RadioGroup
-                        legend="Har du hobby?"
-                        value={harHobby}
-                        onChange={(value) => setValue('harHobby', value)}>
-                        <Radio value="ja">Ja</Radio>
-                        <Radio value="nei">Nei</Radio>
-                    </RadioGroup>
-                    <div>
-                        <Button type="submit" disabled={isPending} loading={isPending}>
-                            Neste
-                        </Button>
-                    </div>
-                </VStack>
-            </form>
+            <PersonaliaForm hookForm={hookForm} isPending={isPending} onSubmit={onSubmit} />
             <SøknadFooter onAvbryt={avbrytSøknad} />
         </VStack>
     );
