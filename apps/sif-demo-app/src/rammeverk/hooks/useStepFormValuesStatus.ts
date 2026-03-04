@@ -24,7 +24,7 @@ const defaultIsEqual = (a: unknown, b: unknown): boolean => {
  * Hook som sjekker om formValues for tidligere steg matcher lagret søknadsdata.
  * Brukes for å oppdage om bruker har endret data uten å submitte.
  *
- * @returns invalidSteps - Liste over stegId-er hvor formValues ikke matcher søknadsdata
+ * @returns invalidSteps - Liste over stepId-er hvor formValues ikke matcher søknadsdata
  */
 export const useStepFormValuesStatus = ({
     currentStepId,

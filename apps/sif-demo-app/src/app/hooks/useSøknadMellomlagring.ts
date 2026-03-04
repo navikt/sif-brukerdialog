@@ -56,7 +56,7 @@ export const useSøknadMellomlagring = () => {
     return {
         lagreSøknad,
         lagreSøknadOgSkjemadata,
-        slett: mellomlagring.slett,
+        slettMellomlagring: mellomlagring.slett,
         isPending: mellomlagring.isLagring,
     };
 };

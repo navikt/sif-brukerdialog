@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useStepFormValuesStatus } from '@rammeverk/hooks';
-import { SøknadStepId, søknadStepOrder } from '../config/søknadStepConfig';
+import { SøknadStepId, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
 import { useSøknadStore } from './useSøknadStore';
 import { Søknadsdata } from '../types/Søknadsdata';
 
@@ -11,8 +11,8 @@ type FormValues = Record<string, unknown>;
  * I denne demo-appen er formatet identisk, men i en reell app
  * kan konverteringen være mer kompleks.
  */
-const formValuesToSøknadsdata = (stegId: string, formValues: FormValues): Record<string, unknown> | undefined => {
-    switch (stegId) {
+const formValuesToSøknadsdata = (stepId: string, formValues: FormValues): Record<string, unknown> | undefined => {
+    switch (stepId) {
         case SøknadStepId.PERSONALIA:
             return {
                 navn: formValues.navn,
@@ -35,20 +35,20 @@ const formValuesToSøknadsdata = (stegId: string, formValues: FormValues): Recor
  * Hook som sjekker om formValues for tidligere steg matcher lagret søknadsdata.
  * Brukes for å oppdage om bruker har endret data uten å submitte (f.eks. via nettleserens forward-knapp).
  */
-export const useSøknadsdataStatus = (currentStegId: string) => {
+export const useSøknadsdataStatus = (currentStepId: string) => {
     const søknadsdata = useSøknadStore((s) => s.søknadState?.søknadsdata);
 
-    const getSøknadsdataForSteg = useCallback(
-        (stegId: string): Record<string, unknown> | undefined => {
-            return søknadsdata?.[stegId as keyof Søknadsdata];
+    const getSøknadsdataForStep = useCallback(
+        (stepId: string): Record<string, unknown> | undefined => {
+            return søknadsdata?.[stepId as keyof Søknadsdata];
         },
         [søknadsdata],
     );
 
     return useStepFormValuesStatus({
-        currentStepId: currentStegId,
-        stepOrder: søknadStepOrder,
+        currentStepId,
+        stepOrder,
         formValuesToSøknadsdata,
-        getSøknadsdataForStep: getSøknadsdataForSteg,
+        getSøknadsdataForStep,
     });
 };

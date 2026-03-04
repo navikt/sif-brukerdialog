@@ -1,12 +1,12 @@
 import { Alert, Box, Heading, Link } from '@navikt/ds-react';
 
 interface InvalidStepInfoProps {
-    /** Liste over stegId-er som har ugyldige/ulagrede endringer */
+    /** Liste over stepId-er som har ugyldige/ulagrede endringer */
     invalidSteps: string[];
     /** Funksjon som returnerer visningsnavn for et steg */
-    getStepTitle: (stegId: string) => string;
+    getStepTitle: (stepId: string) => string;
     /** Funksjon som navigerer til et steg */
-    onNavigateToStep: (stegId: string) => void;
+    onNavigateToStep: (stepId: string) => void;
     /** Valgfri overskrift */
     heading?: string;
     /** Valgfri beskrivelse */

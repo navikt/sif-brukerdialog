@@ -5,10 +5,10 @@ import { useSøknadStore } from './useSøknadStore';
 
 export const useAvbrytSøknad = () => {
     const resetSøknad = useSøknadStore((s) => s.resetSøknad);
-    const { slett } = useSøknadMellomlagring();
+    const { slettMellomlagring } = useSøknadMellomlagring();
 
     return useCallback(() => {
         resetSøknad();
-        slett().catch(() => {});
-    }, [resetSøknad, slett]);
+        slettMellomlagring().catch(() => {});
+    }, [resetSøknad, slettMellomlagring]);
 };

@@ -4,34 +4,34 @@ import { useNavigate } from 'react-router-dom';
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepNavigation } from '@rammeverk/state';
 
-import { SøknadStepId, søknadStepConfig, søknadStepOrder } from '../config/søknadStepConfig';
+import { SøknadStepId, søknadStepConfig as stepConfig, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
 export const Oppsummering = () => {
-    const stegId = SøknadStepId.OPPSUMMERING;
-    const appState = useSøknadStore((s) => s.søknadState);
+    const stepId = SøknadStepId.OPPSUMMERING;
+    const søknadState = useSøknadStore((s) => s.søknadState);
     const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
-    const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
-    const { slett } = useSøknadMellomlagring();
+    const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
+    const { slettMellomlagring } = useSøknadMellomlagring();
     const avbrytSøknad = useAvbrytSøknad();
 
-    const stegStatus = useSøknadStepStatus();
+    const stepStatus = useSøknadStepStatus();
     const navigate = useNavigate();
 
-    const { navigateToPreviousStep: gåTilForrige, canGoPrevious: kanGåTilForrige } = useStepNavigation({
-        stepConfig: søknadStepConfig,
-        stepOrder: søknadStepOrder,
-        stepStatus: stegStatus,
-        setCurrentStep: setCurrentSteg,
+    const { navigateToPreviousStep, canGoPrevious } = useStepNavigation({
+        stepConfig,
+        stepOrder,
+        stepStatus,
+        setCurrentStep,
     });
 
     const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {
         evt.preventDefault();
         resetSøknadsdata();
-        slett().catch(() => {});
+        slettMellomlagring().catch(() => {});
         navigate('/kvittering');
     };
 
@@ -42,17 +42,17 @@ export const Oppsummering = () => {
                 <Alert variant="info">
                     <VStack gap="space-2">
                         <p>
-                            <strong>Navn:</strong> {appState?.søknadsdata[SøknadStepId.PERSONALIA]?.navn}
+                            <strong>Navn:</strong> {søknadState?.søknadsdata[SøknadStepId.PERSONALIA]?.navn}
                         </p>
                         <p>
-                            <strong>E-post:</strong> {appState?.søknadsdata[SøknadStepId.KONTAKT]?.epost}
+                            <strong>E-post:</strong> {søknadState?.søknadsdata[SøknadStepId.KONTAKT]?.epost}
                         </p>
                     </VStack>
                 </Alert>
                 <form onSubmit={handleSubmit}>
                     <HStack gap="space-16" justify={'start'}>
-                        {kanGåTilForrige(stegId) && (
-                            <Button type="button" variant="secondary" onClick={() => gåTilForrige(stegId)}>
+                        {canGoPrevious(stepId) && (
+                            <Button type="button" variant="secondary" onClick={() => navigateToPreviousStep(stepId)}>
                                 Forrige
                             </Button>
                         )}
