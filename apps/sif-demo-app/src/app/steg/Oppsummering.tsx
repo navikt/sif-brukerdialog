@@ -6,7 +6,7 @@ import { useStepNavigation } from '@rammeverk/state';
 
 import { SøknadStepId, søknadStepConfig, søknadStepOrder } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useMellomlagring } from '../hooks/useMellomlagring';
+import { useLagreSøknad } from '../hooks/useLagreSøknad';
 import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
@@ -15,8 +15,8 @@ export const Oppsummering = () => {
     const appState = useSøknadStore((s) => s.søknadState);
     const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
     const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
+    const { slett } = useLagreSøknad();
     const avbrytSøknad = useAvbrytSøknad();
-    const { slettMellomlagring } = useMellomlagring();
 
     const stegStatus = useSøknadStepStatus();
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ export const Oppsummering = () => {
     const handleSubmit = (evt: React.SubmitEvent<HTMLFormElement>) => {
         evt.preventDefault();
         resetSøknadsdata();
-        slettMellomlagring().catch(() => {});
+        slett().catch(() => {});
         navigate('/kvittering');
     };
 

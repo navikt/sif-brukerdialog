@@ -4,14 +4,14 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 
 import { isSøknadStepIncluded, SøknadStepId, søknadStepConfig, søknadStepOrder } from './config/søknadStepConfig';
-import { useAppStore, useMellomlagring } from './hooks';
+import { useAppStore } from './hooks';
 import { KvitteringPage } from './pages/KvitteringPage';
 import { VelkommenPage } from './pages/VelkommenPage';
 import { Oppsummering } from './steg/Oppsummering';
 import { PersonaliaSteg } from './steg/PersonaliaSteg';
 import { KontaktinfoSteg } from './steg/KontaktinfoSteg';
 import { AppMellomlagring } from './types/Mellomlagring';
-import { MellomlagringObserver, StegRouteGuard, SøknadIndexRedirect } from '../rammeverk';
+import { StegRouteGuard, SøknadIndexRedirect } from '../rammeverk';
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
 import { KjæledyrSteg } from './steg/KjæledyrSteg';
 
@@ -29,24 +29,6 @@ interface Props {
     mellomlagring?: AppMellomlagring;
 }
 
-/**
- * Egen komponent for å unngå unødvendige re-renders som ville vært
- * tilfelle hvis MellomlagringObserver og tilhørende logikk lå i Søknad-komponenten
- * */
-
-const SøknadMellomlagringObserver = () => {
-    const børMellomlagres = useAppStore((s) => s.børMellomlagres);
-    const setBørMellomlagres = useAppStore((s) => s.setBørMellomlagres);
-    const { lagreMellomlagring } = useMellomlagring();
-    return (
-        <MellomlagringObserver
-            børMellomlagres={børMellomlagres}
-            setBørMellomlagres={setBørMellomlagres}
-            lagreMellomlagring={lagreMellomlagring}
-        />
-    );
-};
-
 export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const init = useAppStore((s) => s.init);
     const søknadState = useAppStore((s) => s.søknadState);
@@ -59,7 +41,6 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     return (
         <StepFormValuesProvider>
             <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-                {søknadState && <SøknadMellomlagringObserver />}
                 <Routes>
                     <Route path="/" element={<VelkommenPage />} />
                     <Route path="/kvittering" element={<KvitteringPage />} />

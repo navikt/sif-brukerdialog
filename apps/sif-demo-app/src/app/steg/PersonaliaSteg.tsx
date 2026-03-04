@@ -7,6 +7,7 @@ import { useStepNavigation } from '@rammeverk/state';
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
 import { SøknadStepId, søknadStepConfig as stepConfig, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
+import { useLagreSøknad } from '../hooks/useLagreSøknad';
 import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
@@ -21,6 +22,7 @@ export const PersonaliaSteg = () => {
     const submitSteg = useSøknadStore((s) => s.submitStep);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
+    const { lagre, isPending } = useLagreSøknad();
 
     const stepStatus = useSøknadStepStatus();
     const { navigateToNextStep } = useStepNavigation({
@@ -44,20 +46,15 @@ export const PersonaliaSteg = () => {
         getValues: () => getValues(),
     });
 
-    const onSubmit = (data: Skjemadata) => {
+    const onSubmit = async (data: Skjemadata) => {
         if (!data.navn || !data.harKjæledyr) {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitSteg(
-            { [stegId]: { navn: data.navn, harKjæledyr: data.harKjæledyr } },
-            {
-                onSuccess: () => {
-                    clearFormValues();
-                    navigateToNextStep(stegId);
-                },
-            },
-        );
+        submitSteg({ [stegId]: { navn: data.navn, harKjæledyr: data.harKjæledyr } });
+        await lagre();
+        clearFormValues();
+        navigateToNextStep(stegId);
     };
 
     return (
@@ -75,7 +72,9 @@ export const PersonaliaSteg = () => {
                         <Radio value="nei">Nei</Radio>
                     </RadioGroup>
                     <div>
-                        <Button type="submit">Neste</Button>
+                        <Button type="submit" disabled={isPending} loading={isPending}>
+                            Neste
+                        </Button>
                     </div>
                 </VStack>
             </form>

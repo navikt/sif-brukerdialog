@@ -1,3 +1,4 @@
+export { useLagreSøknad } from './useLagreSøknad';
 export { useMellomlagring } from './useMellomlagring';
 export { useSøknadStepStatus as useStegStatus } from './useSøknadStepStatus';
 export { useSøknadStore as useAppStore } from './useSøknadStore';
