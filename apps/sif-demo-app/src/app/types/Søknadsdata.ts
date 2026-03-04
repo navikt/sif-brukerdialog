@@ -1,14 +1,20 @@
 import { SøknadStepId } from '../config/søknadStepConfig';
 
+export type PersonaliaSøknadsdata = {
+    navn: string;
+    harKjæledyr: 'ja' | 'nei';
+};
+
+export type KjæledyrSøknadsdata = {
+    navn: string;
+};
+
+export type KontaktSøknadsdata = {
+    epost: string;
+};
+
 export interface Søknadsdata {
-    [SøknadStepId.PERSONALIA]?: {
-        navn: string;
-        harKjæledyr: 'ja' | 'nei';
-    };
-    [SøknadStepId.KJÆLEDYR]?: {
-        navn: string;
-    };
-    [SøknadStepId.KONTAKT]?: {
-        epost: string;
-    };
+    [SøknadStepId.PERSONALIA]?: PersonaliaSøknadsdata;
+    [SøknadStepId.KJÆLEDYR]?: KjæledyrSøknadsdata;
+    [SøknadStepId.KONTAKT]?: KontaktSøknadsdata;
 }

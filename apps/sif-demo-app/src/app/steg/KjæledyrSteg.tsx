@@ -2,17 +2,33 @@ import { Button, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useForm } from 'react-hook-form';
 
 import { SøknadFooter } from '@rammeverk/components';
-import { useStepNavigation } from '@rammeverk/state';
+import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
 import { søknadStepOrder as stepOrder, søknadStepConfig as stepConfig, SøknadStepId } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
+import { KjæledyrSøknadsdata } from '../types/Søknadsdata';
 
 interface Skjemadata {
     navn: string;
 }
+
+const getDefaultValues = (
+    stepFormValues: Partial<Skjemadata> | undefined,
+    søknadsdata?: KjæledyrSøknadsdata,
+): Partial<Skjemadata> => {
+    if (stepFormValues) {
+        return stepFormValues;
+    }
+    if (søknadsdata) {
+        return {
+            navn: søknadsdata.navn,
+        };
+    }
+    return {};
+};
 
 export const KjæledyrSteg = () => {
     const stepId = SøknadStepId.KJÆLEDYR;
@@ -21,6 +37,8 @@ export const KjæledyrSteg = () => {
     const submitStep = useSøknadStore((s) => s.submitStep);
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
+
+    const formValues = useStepFormValues().getStepFormValues(stepId);
 
     const stepStatus = useSøknadStepStatus();
     const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
@@ -31,9 +49,7 @@ export const KjæledyrSteg = () => {
     });
 
     const { register, handleSubmit, getValues } = useForm<Skjemadata>({
-        defaultValues: {
-            navn: søknadState?.søknadsdata[stepId]?.navn ?? '',
-        },
+        defaultValues: getDefaultValues(formValues, søknadState?.søknadsdata[stepId]),
     });
 
     const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({ stepId, getValues: () => getValues() });

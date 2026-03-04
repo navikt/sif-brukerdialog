@@ -25,17 +25,18 @@ interface StepFormValuesContextValue {
     setStepFormValues: (stepId: string, formValues: Record<string, unknown>) => void;
     clearStepFormValues: (stepId: string) => void;
     clearAllSteps: () => void;
+    getStepFormValues: (stepId: string) => Record<string, unknown> | undefined;
 }
 
 const StepFormValuesContext = createContext<StepFormValuesContextValue | null>(null);
 
 interface Props {
     children: ReactNode;
-    initialValues?: StepFormValues;
+    initialValues?: Record<string, object | undefined>;
 }
 
 export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
-    const [values, setValues] = useState<StepFormValues>(initialValues ?? {});
+    const [values, setValues] = useState<StepFormValues>((initialValues as StepFormValues) ?? {});
 
     const setStepFormValues = useCallback((stepId: string, formValues: Record<string, unknown>) => {
         setValues((prev) => ({ ...prev, [stepId]: formValues }));
@@ -49,6 +50,13 @@ export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
         setValues({});
     }, []);
 
+    const getStepFormValues = useCallback(
+        (stepId: string): Record<string, unknown> | undefined => {
+            return values[stepId];
+        },
+        [values],
+    );
+
     return (
         <StepFormValuesContext.Provider
             value={{
@@ -56,6 +64,7 @@ export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
                 setStepFormValues,
                 clearStepFormValues,
                 clearAllSteps,
+                getStepFormValues,
             }}>
             {children}
         </StepFormValuesContext.Provider>

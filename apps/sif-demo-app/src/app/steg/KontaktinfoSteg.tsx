@@ -2,25 +2,43 @@ import { Button, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useForm } from 'react-hook-form';
 
 import { SøknadFooter } from '@rammeverk/components';
-import { useStepNavigation } from '@rammeverk/state';
+import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
 import { SøknadStepId, søknadStepConfig as stepConfig, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
+import { KontaktSøknadsdata } from '../types/Søknadsdata';
 
 interface Skjemadata {
     epost: string;
 }
 
+const getDefaultValues = (
+    stepFormValues: Partial<Skjemadata> | undefined,
+    søknadsdata?: KontaktSøknadsdata,
+): Partial<Skjemadata> => {
+    if (stepFormValues) {
+        return stepFormValues;
+    }
+    if (søknadsdata) {
+        return {
+            epost: søknadsdata.epost,
+        };
+    }
+    return {};
+};
+
 export const KontaktinfoSteg = () => {
-    const stegId = SøknadStepId.KONTAKT;
+    const stepId = SøknadStepId.KONTAKT;
 
     const søknadState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitStep);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
+
+    const formValues = useStepFormValues().getStepFormValues(stepId);
 
     const stepStatus = useSøknadStepStatus();
     const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
@@ -31,23 +49,21 @@ export const KontaktinfoSteg = () => {
     });
 
     const { register, handleSubmit, getValues } = useForm<Skjemadata>({
-        defaultValues: {
-            epost: søknadState?.søknadsdata[stegId]?.epost ?? '',
-        },
+        defaultValues: getDefaultValues(formValues, søknadState?.søknadsdata[stepId]),
     });
 
     const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({
-        stepId: stegId,
+        stepId: stepId,
         getValues: () => getValues(),
     });
 
     const onSubmit = (data: Skjemadata) => {
         submitSteg(
-            { [stegId]: { epost: data.epost } },
+            { [stepId]: { epost: data.epost } },
             {
                 onSuccess: () => {
                     clearFormValues();
-                    navigateToNextStep(stegId);
+                    navigateToNextStep(stepId);
                 },
             },
         );
@@ -61,8 +77,8 @@ export const KontaktinfoSteg = () => {
                     <Heading size="large">Kontaktinfo</Heading>
                     <TextField label="E-post" type="email" {...register('epost')} />
                     <HStack gap="space-16" justify="start">
-                        {canGoPrevious(stegId) && (
-                            <Button type="button" variant="secondary" onClick={() => navigateToPreviousStep(stegId)}>
+                        {canGoPrevious(stepId) && (
+                            <Button type="button" variant="secondary" onClick={() => navigateToPreviousStep(stepId)}>
                                 Forrige
                             </Button>
                         )}

@@ -2,7 +2,7 @@ import { Button, Heading, Radio, RadioGroup, TextField, VStack } from '@navikt/d
 import { useForm } from 'react-hook-form';
 
 import { SøknadFooter } from '@rammeverk/components';
-import { useStepNavigation } from '@rammeverk/state';
+import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
 import { SøknadStepId, søknadStepConfig as stepConfig, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
@@ -10,19 +10,38 @@ import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
+import { PersonaliaSøknadsdata } from '../types/Søknadsdata';
 
 interface Skjemadata {
     navn: string;
     harKjæledyr?: 'ja' | 'nei';
 }
 
+const getDefaultValues = (
+    stepFormValues: Partial<Skjemadata> | undefined,
+    søknadsdata?: PersonaliaSøknadsdata,
+): Partial<Skjemadata> => {
+    if (stepFormValues) {
+        return stepFormValues;
+    }
+    if (søknadsdata) {
+        return {
+            navn: søknadsdata.navn,
+            harKjæledyr: søknadsdata.harKjæledyr,
+        };
+    }
+    return {};
+};
+
 export const PersonaliaSteg = () => {
-    const stegId = SøknadStepId.PERSONALIA;
+    const stepId = SøknadStepId.PERSONALIA;
     const søknadState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitStep);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagre, isPending } = useSøknadMellomlagring();
+
+    const formValues = useStepFormValues().getStepFormValues(stepId);
 
     const stepStatus = useSøknadStepStatus();
     const { navigateToNextStep } = useStepNavigation({
@@ -33,16 +52,13 @@ export const PersonaliaSteg = () => {
     });
 
     const { register, handleSubmit, watch, setValue, getValues } = useForm<Skjemadata>({
-        defaultValues: {
-            navn: søknadState?.søknadsdata[stegId]?.navn ?? '',
-            harKjæledyr: søknadState?.søknadsdata[stegId]?.harKjæledyr,
-        },
+        defaultValues: getDefaultValues(formValues, søknadState?.søknadsdata[stepId]),
     });
 
     const harKjæledyr = watch('harKjæledyr');
 
     const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({
-        stepId: stegId,
+        stepId: stepId,
         getValues: () => getValues(),
     });
 
@@ -51,10 +67,10 @@ export const PersonaliaSteg = () => {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitSteg({ [stegId]: { navn: data.navn, harKjæledyr: data.harKjæledyr } });
+        submitSteg({ [stepId]: { navn: data.navn, harKjæledyr: data.harKjæledyr } });
         await lagre();
         clearFormValues();
-        navigateToNextStep(stegId);
+        navigateToNextStep(stepId);
     };
 
     return (
