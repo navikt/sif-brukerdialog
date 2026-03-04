@@ -38,11 +38,11 @@ export const KontaktinfoSteg = () => {
     const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
-    const { clearAllSteps } = useStepFormValues();
+    const { clearAllSteps, getStepFormValues } = useStepFormValues();
 
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
-    const stepFormValues = useStepFormValues().getStepFormValues(stepId) as Partial<KontaktSkjemadata> | undefined;
+    const stepFormValues = getStepFormValues<KontaktSkjemadata>(stepId);
 
     const stepStatus = useSøknadStepStatus();
     const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({

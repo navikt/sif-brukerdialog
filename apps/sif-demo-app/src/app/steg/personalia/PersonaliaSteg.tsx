@@ -40,9 +40,9 @@ export const PersonaliaSteg = () => {
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
-    const { clearAllSteps } = useStepFormValues();
+    const { clearAllSteps, getStepFormValues } = useStepFormValues();
 
-    const stepFormValues = useStepFormValues().getStepFormValues(stepId) as Partial<PersonaliaSkjemadata> | undefined;
+    const stepFormValues = getStepFormValues<PersonaliaSkjemadata>(stepId);
 
     const stepStatus = useSøknadStepStatus();
 

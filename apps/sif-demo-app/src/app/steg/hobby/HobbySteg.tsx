@@ -39,9 +39,9 @@ export const HobbySteg = () => {
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
-    const { clearAllSteps } = useStepFormValues();
+    const { clearAllSteps, getStepFormValues } = useStepFormValues();
 
-    const stepFormValues = useStepFormValues().getStepFormValues(stepId) as Partial<HobbySkjemadata> | undefined;
+    const stepFormValues = getStepFormValues<HobbySkjemadata>(stepId);
 
     const stepStatus = useSøknadStepStatus();
 

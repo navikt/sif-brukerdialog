@@ -17,7 +17,7 @@ interface StepFormValuesContextValue {
     setStepFormValues: (stepId: string, formValues: Record<string, unknown>) => void;
     clearStepFormValues: (stepId: string) => void;
     clearAllSteps: () => void;
-    getStepFormValues: (stepId: string) => Record<string, unknown> | undefined;
+    getStepFormValues: <T = Record<string, unknown>>(stepId: string) => Partial<T> | undefined;
 }
 
 const StepFormValuesContext = createContext<StepFormValuesContextValue | null>(null);
@@ -43,8 +43,8 @@ export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
     }, []);
 
     const getStepFormValues = useCallback(
-        (stepId: string): Record<string, unknown> | undefined => {
-            return values[stepId];
+        <T = Record<string, unknown>,>(stepId: string): Partial<T> | undefined => {
+            return values[stepId] as Partial<T> | undefined;
         },
         [values],
     );
