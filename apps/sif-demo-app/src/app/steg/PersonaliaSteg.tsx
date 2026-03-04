@@ -39,7 +39,7 @@ export const PersonaliaSteg = () => {
     const submitSteg = useSøknadStore((s) => s.submitStep);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
-    const { lagre, isPending } = useSøknadMellomlagring();
+    const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
     const formValues = useStepFormValues().getStepFormValues(stepId);
 
@@ -68,7 +68,7 @@ export const PersonaliaSteg = () => {
             return;
         }
         submitSteg({ [stepId]: { navn: data.navn, harKjæledyr: data.harKjæledyr } });
-        await lagre();
+        await lagreSøknad();
         clearFormValues();
         navigateToNextStep(stepId);
     };

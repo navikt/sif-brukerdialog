@@ -5,10 +5,6 @@ import { SøknadStepId } from '../config/søknadStepConfig';
 import { AppMellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
 import { useSøknadStore } from './useSøknadStore';
 
-interface LagreOptions {
-    skjemadata?: Partial<Record<SøknadStepId, object>>;
-}
-
 export const useSøknadMellomlagring = () => {
     const søknadState = useSøknadStore((s) => s.søknadState);
 
@@ -23,7 +19,10 @@ export const useSøknadMellomlagring = () => {
 
     const mellomlagring = useYtelseMellomlagring<AppMellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
-    const lagre = async (opts?: LagreOptions) => {
+    /**
+     * Lagre ved submit av steg. Clearer skjemadata siden søknadsdata nå er master.
+     */
+    const lagreSøknad = async () => {
         const state = useSøknadStore.getState();
         const søknadsdata = state.søknadState?.søknadsdata;
         const currentStepId = state.currentStepId;
@@ -32,13 +31,31 @@ export const useSøknadMellomlagring = () => {
             await mellomlagring.lagre({
                 søknadsdata,
                 currentStepId,
-                skjemadata: opts?.skjemadata,
+                skjemadata: undefined,
+            });
+        }
+    };
+
+    /**
+     * Lagre midt i et steg. Bevarer skjemadata for usubmittede verdier.
+     */
+    const lagreSøknadOgSkjemadata = async (skjemadata: Partial<Record<SøknadStepId, object>>) => {
+        const state = useSøknadStore.getState();
+        const søknadsdata = state.søknadState?.søknadsdata;
+        const currentStepId = state.currentStepId;
+
+        if (søknadsdata && currentStepId) {
+            await mellomlagring.lagre({
+                søknadsdata,
+                currentStepId,
+                skjemadata,
             });
         }
     };
 
     return {
-        lagre,
+        lagreSøknad,
+        lagreSøknadOgSkjemadata,
         slett: mellomlagring.slett,
         isPending: mellomlagring.isLagring,
     };

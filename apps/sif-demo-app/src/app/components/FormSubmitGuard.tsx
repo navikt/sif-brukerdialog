@@ -35,13 +35,13 @@ export const useFormSubmitGuard = <T extends object>({
 }: UseFormSubmitGuardOptions<T>): UseFormSubmitGuardResult => {
     const navigate = useNavigate();
     const { invalidSteps } = useSøknadsdataStatus(stepId);
-    const { clearStepFormValues } = useStepFormValues();
+    const { clearAllSteps } = useStepFormValues();
 
     usePersistFormValues(stepId, getValues);
 
     const clearFormValues = useCallback(() => {
-        clearStepFormValues(stepId);
-    }, [stepId, clearStepFormValues]);
+        clearAllSteps();
+    }, [clearAllSteps]);
 
     const FormSubmitGuardInfo = useCallback(
         () => (
