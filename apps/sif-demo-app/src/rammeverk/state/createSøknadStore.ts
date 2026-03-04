@@ -1,9 +1,5 @@
 import { create, StateCreator, StoreApi, UseBoundStore } from 'zustand';
 
-interface SubmitStepOptions {
-    onSuccess?: () => void;
-}
-
 /**
  * Base interface for søknad state.
  * Apps must have a søknadsdata property that is an object.
@@ -23,7 +19,7 @@ export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
         mellomlagretSøknadsdata?: TSøknadsdata,
         currentStepId?: string,
     ) => void;
-    submitStep: (data: Partial<TSøknadsdata>, options?: SubmitStepOptions) => void;
+    setSøknadsdata: (data: Partial<TSøknadsdata>) => void;
     resetSøknad: () => void;
     startSøknad: (firstStepId: string) => void;
     isStepCompleted: (stepId: string) => boolean;
@@ -75,7 +71,7 @@ export const createSøknadStore = <
                 };
             }),
 
-        submitStep: (data, options) => {
+        setSøknadsdata: (data) => {
             set((state) => {
                 if (!state.søknadState) return state;
                 return {
@@ -85,7 +81,6 @@ export const createSøknadStore = <
                     } as TState,
                 };
             });
-            options?.onSuccess?.();
         },
 
         setCurrentStep: (stepId) => set({ currentStepId: stepId }),

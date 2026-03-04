@@ -36,7 +36,7 @@ const getDefaultValues = (
 export const PersonaliaSteg = () => {
     const stepId = SøknadStepId.PERSONALIA;
     const søknadState = useSøknadStore((s) => s.søknadState);
-    const submitSteg = useSøknadStore((s) => s.submitStep);
+    const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
@@ -68,7 +68,7 @@ export const PersonaliaSteg = () => {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitSteg({ [stepId]: { navn: data.navn, harHobby: data.harHobby } });
+        setSøknadsdata({ [stepId]: { navn: data.navn, harHobby: data.harHobby } });
         await lagreSøknad();
         clearFormValues();
         navigateToNextStep(stepId);

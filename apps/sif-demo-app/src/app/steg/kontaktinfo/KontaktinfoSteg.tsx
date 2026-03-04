@@ -14,6 +14,7 @@ import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { KontaktSøknadsdata } from '../../types/Søknadsdata';
+import { useSøknadMellomlagring } from '../../hooks';
 
 interface Skjemadata {
     epost: string;
@@ -38,9 +39,11 @@ export const KontaktinfoSteg = () => {
     const stepId = SøknadStepId.KONTAKT;
 
     const søknadState = useSøknadStore((s) => s.søknadState);
-    const submitSteg = useSøknadStore((s) => s.submitStep);
+    const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
+
+    const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
     const formValues = useStepFormValues().getStepFormValues(stepId);
 
@@ -61,16 +64,11 @@ export const KontaktinfoSteg = () => {
         getValues: () => getValues(),
     });
 
-    const onSubmit = (data: Skjemadata) => {
-        submitSteg(
-            { [stepId]: { epost: data.epost } },
-            {
-                onSuccess: () => {
-                    clearFormValues();
-                    navigateToNextStep(stepId);
-                },
-            },
-        );
+    const onSubmit = async (data: Skjemadata) => {
+        setSøknadsdata({ [stepId]: { epost: data.epost } });
+        await lagreSøknad();
+        clearFormValues();
+        navigateToNextStep(stepId);
     };
 
     return (
@@ -86,7 +84,9 @@ export const KontaktinfoSteg = () => {
                                 Forrige
                             </Button>
                         )}
-                        <Button type="submit">Neste</Button>
+                        <Button type="submit" disabled={isPending} loading={isPending}>
+                            Neste
+                        </Button>
                     </HStack>
                 </VStack>
             </form>

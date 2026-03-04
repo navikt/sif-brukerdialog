@@ -14,6 +14,7 @@ import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { HobbySøknadsdata } from '../../types/Søknadsdata';
+import { useSøknadMellomlagring } from '../../hooks';
 
 interface Skjemadata {
     navn: string;
@@ -38,9 +39,10 @@ export const HobbySteg = () => {
     const stepId = SøknadStepId.HOBBY;
 
     const søknadState = useSøknadStore((s) => s.søknadState);
-    const submitStep = useSøknadStore((s) => s.submitStep);
+    const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
+    const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
     const formValues = useStepFormValues().getStepFormValues(stepId);
 
@@ -58,20 +60,15 @@ export const HobbySteg = () => {
 
     const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({ stepId, getValues: () => getValues() });
 
-    const onSubmit = (data: Skjemadata) => {
+    const onSubmit = async (data: Skjemadata) => {
         if (!data.navn) {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitStep(
-            { [stepId]: { navn: data.navn } },
-            {
-                onSuccess: () => {
-                    clearFormValues();
-                    navigateToNextStep(stepId);
-                },
-            },
-        );
+        setSøknadsdata({ [stepId]: { navn: data.navn } });
+        await lagreSøknad();
+        clearFormValues();
+        navigateToNextStep(stepId);
     };
 
     return (
@@ -88,7 +85,9 @@ export const HobbySteg = () => {
                                 Forrige
                             </Button>
                         )}
-                        <Button type="submit">Neste</Button>
+                        <Button type="submit" disabled={isPending} loading={isPending}>
+                            Neste
+                        </Button>
                     </HStack>
                 </VStack>
             </form>
