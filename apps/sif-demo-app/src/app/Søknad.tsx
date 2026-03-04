@@ -13,7 +13,7 @@ import { KontaktinfoSteg } from './steg/KontaktinfoSteg';
 import { AppMellomlagring } from './types/Mellomlagring';
 import { StegRouteGuard, SøknadIndexRedirect } from '../rammeverk';
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
-import { KjæledyrSteg } from './steg/KjæledyrSteg';
+import { HobbySteg } from './steg/HobbySteg';
 
 const getStepIdFraPath = (path: string): string | undefined => {
     return søknadStepOrder.find((id) => path.includes(søknadStepConfig[id].route));
@@ -67,7 +67,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                                 path={søknadStepConfig[SøknadStepId.PERSONALIA].route}
                                 element={<PersonaliaSteg />}
                             />
-                            <Route path={søknadStepConfig[SøknadStepId.KJÆLEDYR].route} element={<KjæledyrSteg />} />
+                            <Route path={søknadStepConfig[SøknadStepId.HOBBY].route} element={<HobbySteg />} />
                             <Route path={søknadStepConfig[SøknadStepId.KONTAKT].route} element={<KontaktinfoSteg />} />
                             <Route
                                 path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route}

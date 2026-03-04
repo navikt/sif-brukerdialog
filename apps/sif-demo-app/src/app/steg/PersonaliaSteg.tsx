@@ -14,7 +14,7 @@ import { PersonaliaSøknadsdata } from '../types/Søknadsdata';
 
 interface Skjemadata {
     navn: string;
-    harKjæledyr?: 'ja' | 'nei';
+    harHobby?: 'ja' | 'nei';
 }
 
 const getDefaultValues = (
@@ -27,7 +27,7 @@ const getDefaultValues = (
     if (søknadsdata) {
         return {
             navn: søknadsdata.navn,
-            harKjæledyr: søknadsdata.harKjæledyr,
+            harHobby: søknadsdata.harHobby,
         };
     }
     return {};
@@ -55,7 +55,7 @@ export const PersonaliaSteg = () => {
         defaultValues: getDefaultValues(formValues, søknadState?.søknadsdata[stepId]),
     });
 
-    const harKjæledyr = watch('harKjæledyr');
+    const harHobby = watch('harHobby');
 
     const { FormSubmitGuardInfo, clearFormValues } = useFormSubmitGuard({
         stepId: stepId,
@@ -63,11 +63,11 @@ export const PersonaliaSteg = () => {
     });
 
     const onSubmit = async (data: Skjemadata) => {
-        if (!data.navn || !data.harKjæledyr) {
+        if (!data.navn || !data.harHobby) {
             alert('Vennligst fyll ut alle feltene før du går videre.');
             return;
         }
-        submitSteg({ [stepId]: { navn: data.navn, harKjæledyr: data.harKjæledyr } });
+        submitSteg({ [stepId]: { navn: data.navn, harHobby: data.harHobby } });
         await lagreSøknad();
         clearFormValues();
         navigateToNextStep(stepId);
@@ -81,9 +81,9 @@ export const PersonaliaSteg = () => {
                     <Heading size="large">Personalia</Heading>
                     <TextField label="Navn" {...register('navn')} />
                     <RadioGroup
-                        legend="Har du kjæledyr?"
-                        value={harKjæledyr}
-                        onChange={(value) => setValue('harKjæledyr', value)}>
+                        legend="Har du hobby?"
+                        value={harHobby}
+                        onChange={(value) => setValue('harHobby', value)}>
                         <Radio value="ja">Ja</Radio>
                         <Radio value="nei">Nei</Radio>
                     </RadioGroup>

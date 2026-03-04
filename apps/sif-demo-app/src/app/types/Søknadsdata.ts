@@ -2,10 +2,10 @@ import { SøknadStepId } from '../config/søknadStepConfig';
 
 export type PersonaliaSøknadsdata = {
     navn: string;
-    harKjæledyr: 'ja' | 'nei';
+    harHobby: 'ja' | 'nei';
 };
 
-export type KjæledyrSøknadsdata = {
+export type HobbySøknadsdata = {
     navn: string;
 };
 
@@ -15,6 +15,6 @@ export type KontaktSøknadsdata = {
 
 export interface Søknadsdata {
     [SøknadStepId.PERSONALIA]?: PersonaliaSøknadsdata;
-    [SøknadStepId.KJÆLEDYR]?: KjæledyrSøknadsdata;
+    [SøknadStepId.HOBBY]?: HobbySøknadsdata;
     [SøknadStepId.KONTAKT]?: KontaktSøknadsdata;
 }

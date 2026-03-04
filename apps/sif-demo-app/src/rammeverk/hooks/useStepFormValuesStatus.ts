@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useStepFormValues } from '../state/StepFormValuesContext';
 
-type FormValuesToSøknadsdataFn = (
+export type FormValuesToSøknadsdataFn = (
     stepId: string,
     formValues: Record<string, unknown>,
 ) => Record<string, unknown> | undefined;
 
-type GetSøknadsdataForStepFn = (stepId: string) => Record<string, unknown> | undefined;
+export type GetSøknadsdataForStepFn = (stepId: string) => Record<string, unknown> | undefined;
 
 interface UseStepFormValuesStatusOptions {
     currentStepId: string;

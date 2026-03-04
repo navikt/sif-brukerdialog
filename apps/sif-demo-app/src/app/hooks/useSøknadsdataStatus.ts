@@ -3,6 +3,7 @@ import { useStepFormValuesStatus } from '@rammeverk/hooks';
 import { SøknadStepId, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
 import { useSøknadStore } from './useSøknadStore';
 import { Søknadsdata } from '../types/Søknadsdata';
+import { FormValuesToSøknadsdataFn } from '../../rammeverk/hooks/useStepFormValuesStatus';
 
 type FormValues = Record<string, unknown>;
 
@@ -11,14 +12,17 @@ type FormValues = Record<string, unknown>;
  * I denne demo-appen er formatet identisk, men i en reell app
  * kan konverteringen være mer kompleks.
  */
-const formValuesToSøknadsdata = (stepId: string, formValues: FormValues): Record<string, unknown> | undefined => {
+const formValuesToSøknadsdata: FormValuesToSøknadsdataFn = (
+    stepId: string,
+    formValues: FormValues,
+): Record<string, unknown> | undefined => {
     switch (stepId) {
         case SøknadStepId.PERSONALIA:
             return {
                 navn: formValues.navn,
-                harKjæledyr: formValues.harKjæledyr,
+                harHobby: formValues.harHobby,
             };
-        case SøknadStepId.KJÆLEDYR:
+        case SøknadStepId.HOBBY:
             return {
                 navn: formValues.navn,
             };

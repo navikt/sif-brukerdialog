@@ -9,7 +9,7 @@ import { søknadStepOrder as stepOrder, søknadStepConfig as stepConfig, Søknad
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
-import { KjæledyrSøknadsdata } from '../types/Søknadsdata';
+import { HobbySøknadsdata } from '../types/Søknadsdata';
 
 interface Skjemadata {
     navn: string;
@@ -17,7 +17,7 @@ interface Skjemadata {
 
 const getDefaultValues = (
     stepFormValues: Partial<Skjemadata> | undefined,
-    søknadsdata?: KjæledyrSøknadsdata,
+    søknadsdata?: HobbySøknadsdata,
 ): Partial<Skjemadata> => {
     if (stepFormValues) {
         return stepFormValues;
@@ -30,8 +30,8 @@ const getDefaultValues = (
     return {};
 };
 
-export const KjæledyrSteg = () => {
-    const stepId = SøknadStepId.KJÆLEDYR;
+export const HobbySteg = () => {
+    const stepId = SøknadStepId.HOBBY;
 
     const søknadState = useSøknadStore((s) => s.søknadState);
     const submitStep = useSøknadStore((s) => s.submitStep);
@@ -75,7 +75,7 @@ export const KjæledyrSteg = () => {
             <FormSubmitGuardInfo />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <VStack gap="space-16">
-                    <Heading size="large">Navn på kjæledyr</Heading>
+                    <Heading size="large">Navn på hobby</Heading>
                     <TextField label="Navn" {...register('navn')} />
 
                     <HStack gap="space-16" justify="start">
