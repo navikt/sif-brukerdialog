@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppInfoLoader } from '@app/components/AppInfoLoader';
 
 import { initApiClients } from './utils/initApiClients';
+import { IntlProvider } from 'react-intl';
+import { applicationIntlMessages } from './app/i18n';
 
 initApiClients();
 
@@ -15,7 +17,9 @@ export const App = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <BrowserRouter basename="/sif-demo">
-                <AppInfoLoader />
+                <IntlProvider locale={'nb'} messages={applicationIntlMessages.nb}>
+                    <AppInfoLoader />
+                </IntlProvider>
             </BrowserRouter>
         </QueryClientProvider>
     );
