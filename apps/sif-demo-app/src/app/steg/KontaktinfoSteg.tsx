@@ -17,7 +17,7 @@ interface Skjemadata {
 export const KontaktinfoSteg = () => {
     const stegId = SøknadStepId.KONTAKT;
 
-    const appState = useSøknadStore((s) => s.søknadState);
+    const søknadState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitStep);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
@@ -32,7 +32,7 @@ export const KontaktinfoSteg = () => {
 
     const { register, handleSubmit, getValues } = useForm<Skjemadata>({
         defaultValues: {
-            epost: appState?.søknadsdata[stegId]?.epost ?? '',
+            epost: søknadState?.søknadsdata[stegId]?.epost ?? '',
         },
     });
 

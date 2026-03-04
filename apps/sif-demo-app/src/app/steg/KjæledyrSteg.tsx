@@ -17,7 +17,7 @@ interface Skjemadata {
 export const KjæledyrSteg = () => {
     const stepId = SøknadStepId.KJÆLEDYR;
 
-    const appState = useSøknadStore((s) => s.søknadState);
+    const søknadState = useSøknadStore((s) => s.søknadState);
     const submitStep = useSøknadStore((s) => s.submitStep);
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
@@ -32,7 +32,7 @@ export const KjæledyrSteg = () => {
 
     const { register, handleSubmit, getValues } = useForm<Skjemadata>({
         defaultValues: {
-            navn: appState?.søknadsdata[stepId]?.navn ?? '',
+            navn: søknadState?.søknadsdata[stepId]?.navn ?? '',
         },
     });
 

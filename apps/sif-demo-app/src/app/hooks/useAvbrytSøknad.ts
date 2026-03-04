@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 
-import { useLagreSøknad } from './useLagreSøknad';
+import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 import { useSøknadStore } from './useSøknadStore';
 
 export const useAvbrytSøknad = () => {
     const resetSøknad = useSøknadStore((s) => s.resetSøknad);
-    const { slett } = useLagreSøknad();
+    const { slett } = useSøknadMellomlagring();
 
     return useCallback(() => {
         resetSøknad();

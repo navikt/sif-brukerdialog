@@ -7,7 +7,7 @@ import { useStepNavigation } from '@rammeverk/state';
 import { useFormSubmitGuard } from '../components/FormSubmitGuard';
 import { SøknadStepId, søknadStepConfig as stepConfig, søknadStepOrder as stepOrder } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useLagreSøknad } from '../hooks/useLagreSøknad';
+import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
@@ -18,11 +18,11 @@ interface Skjemadata {
 
 export const PersonaliaSteg = () => {
     const stegId = SøknadStepId.PERSONALIA;
-    const appState = useSøknadStore((s) => s.søknadState);
+    const søknadState = useSøknadStore((s) => s.søknadState);
     const submitSteg = useSøknadStore((s) => s.submitStep);
     const setCurrentStepId = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
-    const { lagre, isPending } = useLagreSøknad();
+    const { lagre, isPending } = useSøknadMellomlagring();
 
     const stepStatus = useSøknadStepStatus();
     const { navigateToNextStep } = useStepNavigation({
@@ -34,8 +34,8 @@ export const PersonaliaSteg = () => {
 
     const { register, handleSubmit, watch, setValue, getValues } = useForm<Skjemadata>({
         defaultValues: {
-            navn: appState?.søknadsdata[stegId]?.navn ?? '',
-            harKjæledyr: appState?.søknadsdata[stegId]?.harKjæledyr,
+            navn: søknadState?.søknadsdata[stegId]?.navn ?? '',
+            harKjæledyr: søknadState?.søknadsdata[stegId]?.harKjæledyr,
         },
     });
 

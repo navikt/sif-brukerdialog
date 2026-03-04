@@ -6,7 +6,7 @@ import { useStepNavigation } from '@rammeverk/state';
 
 import { SøknadStepId, søknadStepConfig, søknadStepOrder } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useLagreSøknad } from '../hooks/useLagreSøknad';
+import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
@@ -15,7 +15,7 @@ export const Oppsummering = () => {
     const appState = useSøknadStore((s) => s.søknadState);
     const resetSøknadsdata = useSøknadStore((s) => s.resetSøknad);
     const setCurrentSteg = useSøknadStore((s) => s.setCurrentStep);
-    const { slett } = useLagreSøknad();
+    const { slett } = useSøknadMellomlagring();
     const avbrytSøknad = useAvbrytSøknad();
 
     const stegStatus = useSøknadStepStatus();
