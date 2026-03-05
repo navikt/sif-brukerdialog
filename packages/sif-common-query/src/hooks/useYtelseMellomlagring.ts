@@ -130,8 +130,7 @@ export const useYtelseMellomlagring = <State, MetaData>(
             await slettMutation.mutateAsync();
         },
 
-        isLagring: lagreMutation.isPending,
-        isSletting: slettMutation.isPending,
+        isPending: lagreMutation.isPending || slettMutation.isPending,
 
         refetch: () => query.refetch(),
     };

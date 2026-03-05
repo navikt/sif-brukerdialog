@@ -24,7 +24,7 @@ export const søknadStepConfig: StepConfig<Søknadsdata> = {
     },
     [SøknadStepId.HOBBY]: {
         id: SøknadStepId.HOBBY,
-        route: 'kjaledyr',
+        route: 'hobby',
         isIncluded: (s) => s.personalia?.harHobby === 'ja',
         isCompleted: (s) => s.hobby !== undefined,
     },

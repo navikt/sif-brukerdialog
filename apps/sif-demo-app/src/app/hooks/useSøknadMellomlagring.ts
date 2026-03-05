@@ -3,9 +3,14 @@ import { useMemo } from 'react';
 
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config/appConfig';
 import { SøknadStepId } from '../config/søknadStepConfig';
-import { MellomlagringMetaData,SøknadMellomlagring } from '../types/Mellomlagring';
+import { MellomlagringMetaData, SøknadMellomlagring } from '../types/Mellomlagring';
 import { useSøknadStore } from './useSøknadStore';
 
+/**
+ * Bruker useYtelseMellomlagring fra sif-common-query til å håndtere
+ * mellomlagring av søknadsdata og skjemadata.
+ * Skjemadata er data som ikke er submittet enda.
+ */
 export const useSøknadMellomlagring = () => {
     const søknadState = useSøknadStore((s) => s.søknadState);
 
@@ -58,6 +63,6 @@ export const useSøknadMellomlagring = () => {
         lagreSøknad,
         lagreSøknadOgSkjemadata,
         slettMellomlagring: mellomlagring.slett,
-        isPending: mellomlagring.isLagring,
+        isPending: mellomlagring.isPending,
     };
 };
