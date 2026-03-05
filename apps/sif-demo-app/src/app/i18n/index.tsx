@@ -1,6 +1,6 @@
+import { typedIntlHelper } from '@common/utils/intlUtils';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { typedIntlHelper } from '../../common/utils/intlUtils';
 import { stepMessages_nb } from './nb/stepMessages';
 
 const nb = {

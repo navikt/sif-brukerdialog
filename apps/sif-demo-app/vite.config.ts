@@ -1,7 +1,6 @@
-import { resolve } from 'path';
-
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
@@ -17,6 +16,7 @@ export default defineConfig({
         alias: {
             '@rammeverk': resolve(__dirname, './src/rammeverk'),
             '@app': resolve(__dirname, './src/app'),
+            '@common': resolve(__dirname, './src/common'),
         },
     },
     base: '/sif-demo/',

@@ -20,7 +20,7 @@ const SøknadApp = ({ søker }: Props) => {
     const kontonummer = useKontonummer();
     const barn = useRegistrerteBarn();
     const { text } = useAppIntl();
-    const { logApiError } = useAnalyticsInstance();
+    const { logApiErrorToAnalytics: logApiError } = useAnalyticsInstance();
 
     if (barn.isLoading || kontonummer.isLoading) {
         return <LoadingPage />;

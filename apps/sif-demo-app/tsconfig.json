@@ -6,7 +6,8 @@
         "baseUrl": "./",
         "paths": {
             "@rammeverk/*": ["src/rammeverk/*"],
-            "@app/*": ["src/app/*"]
+            "@app/*": ["src/app/*"],
+            "@common/*": ["src/common/*"]
         }
     },
     "exclude": ["node_modules", "dist", "**.js"],
