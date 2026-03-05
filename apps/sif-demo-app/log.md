@@ -1,5 +1,24 @@
 # soknad-rammeverk – Utviklingslogg
 
+## 2026-03-05: Derivert stegstatus i store
+
+Refaktorert stegstatus fra callback-basert til derivert state i store:
+
+- `includedSteps` lagres i store, oppdateres atomisk ved endring av søknadsdata
+- `StepDefinition` har nå `isCompleted`/`isIncluded` callbacks i config
+- `createSøknadStore` tar `stepOrder` og `stepConfig` som options
+- `useStepNavigation` tar `getIncludedSteps: () => IncludedStep[]` for fersk state ved navigasjon
+- `StepRouteGuard` forenklet til `{ steps, currentStepId, isInitialized }`
+- Fjernet `useSøknadStepStatus` hook (ikke lenger nødvendig)
+
+Fikset routing ved mellomlagring:
+
+- `SøknadIndexRedirect` navigerer til absolutt path
+- `StepRouteGuard` venter på initialisering før redirect
+- Root-route redirecter til `/soknad` hvis mellomlagring finnes
+
+---
+
 ## 2026-03-03: Navnekonvensjoner og kommentargjennomgang
 
 ### Navnekonvensjoner
