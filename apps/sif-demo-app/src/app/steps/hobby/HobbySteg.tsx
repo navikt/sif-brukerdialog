@@ -1,4 +1,4 @@
-import { AppSøknadStep } from '../../components/app-søknad-step/AppSøknadStep';
+import { SøknadStep } from '../../components/søknad-step/SøknadStep';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { HobbySøknadsdata } from '../../types/Søknadsdata';
 import { HobbyForm, HobbySkjemadata } from './HobbyForm';
@@ -8,7 +8,7 @@ const toSøknadsdata = (data) => ({ navn: data.navn });
 const toFormValues = (søknadsdata) => ({ navn: søknadsdata?.navn });
 
 export const HobbySteg = () => (
-    <AppSøknadStep<HobbySkjemadata, HobbySøknadsdata>
+    <SøknadStep<HobbySkjemadata, HobbySøknadsdata>
         stepId={SøknadStepId.HOBBY}
         toSøknadsdata={toSøknadsdata}
         toFormValues={toFormValues}>
@@ -20,5 +20,5 @@ export const HobbySteg = () => (
                 onPrevious={onPrevious}
             />
         )}
-    </AppSøknadStep>
+    </SøknadStep>
 );

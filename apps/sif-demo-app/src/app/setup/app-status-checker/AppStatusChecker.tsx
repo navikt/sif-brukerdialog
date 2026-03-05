@@ -18,7 +18,7 @@ const getSanityConfig = (): SanityConfig => {
     };
 };
 
-export const SøknadTilgjengeligGuard = (props: Props) =>
+export const AppStatusChecker = (props: Props) =>
     props.active ? (
         <AppStatusWrapper
             applicationKey={AktivitetspengerApp.key}

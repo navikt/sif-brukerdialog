@@ -6,9 +6,9 @@ import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../.
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
+import { AppStepConsistencyChecker } from '../../setup/app-step-consistency-checker/AppStepConsistencyChecker';
 import { Søknadsdata } from '../../types/Søknadsdata';
 import { AppPage } from '../app-page/AppPage';
-import { AppStepConsistencyChecker } from '../app-step-consistency-checker/AppStepConsistencyChecker';
 
 interface RenderProps<TSkjemadata> {
     defaultValues: Partial<TSkjemadata>;
@@ -24,7 +24,7 @@ interface Props<TSkjemadata, TSøknadsdata> {
     children: (props: RenderProps<TSkjemadata>) => React.ReactNode;
 }
 
-export function AppSøknadStep<TSkjemadata, TSøknadsdata>({
+export function SøknadStep<TSkjemadata, TSøknadsdata>({
     stepId,
     toSøknadsdata,
     toFormValues,

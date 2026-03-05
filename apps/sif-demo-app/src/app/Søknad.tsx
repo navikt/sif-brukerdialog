@@ -7,7 +7,7 @@ import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext
 import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
 import { KvitteringPage, VelkommenPage } from './pages';
-import { HobbySteg, KontaktinfoSteg, Oppsummering, PersonaliaSteg } from './steg';
+import { HobbySteg, KontaktinfoSteg, Oppsummering, PersonaliaSteg } from './steps';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 
 interface Props {

@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import { enableMocking } from '../mock/enableMocking';
 import { App } from './App';
-import { AppErrorBoundary } from './app/components/app-error-boundary/AppErrorBoundary';
+import { AppErrorBoundary } from './app/setup/app-error-boundary/AppErrorBoundary';
 
 enableMocking().then(() => {
     createRoot(document.getElementById('root')!).render(
