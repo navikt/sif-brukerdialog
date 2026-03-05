@@ -1,3 +1,5 @@
+import { ProgressStep } from '@navikt/sif-common-ui';
+
 import { IncludedStep, StepConfig } from '../types';
 
 /**
@@ -16,4 +18,13 @@ export const getIncludedSteps = <TSøknadsdata>(
         const completed = step?.isCompleted?.(søknadsdata) ?? false;
         return { stepId, stepRoute: step.route, completed };
     });
+};
+
+export const getProgressSteps = (includedSteps: IncludedStep[], stepTitles: Record<string, string>): ProgressStep[] => {
+    return includedSteps.map((s, index) => ({
+        id: s.stepId,
+        index,
+        label: stepTitles[s.stepId],
+        completed: s.completed,
+    }));
 };

@@ -29,20 +29,7 @@ export const KontaktinfoForm = ({ defaultValues, isPending, onSubmit, onPrevious
                 <FormLayout.Questions>
                     <TextField label="E-post" type="email" {...register('epost')} />
                 </FormLayout.Questions>
-                <FormLayout.FormButtons
-                    back={
-                        onPrevious && {
-                            label: 'Forrige',
-                            onClick: onPrevious,
-                        }
-                    }
-                    next={{
-                        label: 'Neste',
-                        onClick: () => handleSubmit(onSubmit)(),
-                        disabled: isPending,
-                        pending: isPending,
-                    }}
-                />
+                <FormLayout.FormButtons submitPending={isPending} onPrevious={onPrevious} />
             </FormLayout.Content>
         </form>
     );

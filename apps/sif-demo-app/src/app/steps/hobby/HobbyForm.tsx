@@ -29,20 +29,7 @@ export const HobbyForm = ({ defaultValues, isPending, onSubmit, onPrevious }: Pr
                 <FormLayout.Questions>
                     <TextField label="Navn" {...register('navn')} />
                 </FormLayout.Questions>
-                <FormLayout.FormButtons
-                    back={
-                        onPrevious && {
-                            label: 'Forrige',
-                            onClick: onPrevious,
-                        }
-                    }
-                    next={{
-                        label: 'Neste',
-                        onClick: () => handleSubmit(onSubmit)(),
-                        disabled: isPending,
-                        pending: isPending,
-                    }}
-                />
+                <FormLayout.FormButtons submitPending={isPending} onPrevious={onPrevious} />
             </FormLayout.Content>
         </form>
     );

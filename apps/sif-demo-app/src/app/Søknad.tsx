@@ -7,7 +7,7 @@ import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext
 import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
 import { KvitteringPage, VelkommenPage } from './pages';
-import { HobbySteg, KontaktinfoSteg, Oppsummering, PersonaliaSteg } from './steps';
+import { HobbySteg, KontaktinfoSteg, OppsummeringSteg, PersonaliaSteg } from './steps';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 
 interface Props {
@@ -53,7 +53,10 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                         <Route path={søknadStepConfig[SøknadStepId.PERSONALIA].route} element={<PersonaliaSteg />} />
                         <Route path={søknadStepConfig[SøknadStepId.HOBBY].route} element={<HobbySteg />} />
                         <Route path={søknadStepConfig[SøknadStepId.KONTAKT].route} element={<KontaktinfoSteg />} />
-                        <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<Oppsummering />} />
+                        <Route
+                            path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route}
+                            element={<OppsummeringSteg />}
+                        />
                     </Route>
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Route>

@@ -38,14 +38,7 @@ export const PersonaliaForm = ({ isPending, defaultValues, onSubmit }: Props) =>
                         <Radio value="nei">Nei</Radio>
                     </RadioGroup>
                 </FormLayout.Questions>
-                <FormLayout.FormButtons
-                    next={{
-                        label: 'Neste',
-                        onClick: () => handleSubmit(onSubmit)(),
-                        disabled: isPending,
-                        pending: isPending,
-                    }}
-                />
+                <FormLayout.FormButtons submitPending={isPending} />
             </FormLayout.Content>
         </form>
     );

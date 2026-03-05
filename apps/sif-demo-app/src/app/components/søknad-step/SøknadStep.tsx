@@ -1,7 +1,6 @@
-import { ProgressStep } from '@navikt/sif-common-ui/';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
-import { IncludedStep } from '../../../rammeverk';
+import { getProgressSteps } from '../../../rammeverk';
 import { SøknadStepPage } from '../../../rammeverk/components/søknad-step-page/SøknadStepPage';
 import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
@@ -23,15 +22,6 @@ interface Props<TSkjemadata, TSøknadsdata> {
     toFormValues?: (søknadsdata: TSøknadsdata | undefined) => Partial<TSkjemadata>;
     children: (props: RenderProps<TSkjemadata>) => React.ReactNode;
 }
-
-const getProgressSteps = (includedSteps: IncludedStep[]): ProgressStep[] => {
-    return includedSteps.map((s, index) => ({
-        id: s.stepId,
-        index,
-        label: stepTitles[s.stepId],
-        completed: s.completed,
-    }));
-};
 
 export function SøknadStep<TSkjemadata, TSøknadsdata>({
     stepId,
@@ -80,7 +70,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             documentTitle={stepTitles[stepId]}
             applicationTitle={text('application.title')}
             stepId={stepId}
-            steps={getProgressSteps(includedSteps)}
+            steps={getProgressSteps(includedSteps, stepTitles)}
             onStepSelect={navigateToStep}
             onAbort={avbrytSøknad}>
             {children({ defaultValues, isPending, onSubmit, onPrevious })}
