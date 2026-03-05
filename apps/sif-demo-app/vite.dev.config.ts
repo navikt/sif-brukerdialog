@@ -29,9 +29,9 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@rammeverk': resolve(__dirname, './src/rammeverk'),
             '@app': resolve(__dirname, './src/app'),
             '@common': resolve(__dirname, './src/common'),
+            '@rammeverk': resolve(__dirname, './src/rammeverk'),
         },
     },
     base: '/sif-demo/',
