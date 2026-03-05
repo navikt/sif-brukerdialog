@@ -1,4 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
@@ -40,23 +40,54 @@ export const OppsummeringSteg = () => {
             onStepSelect={navigateToStep}
             onAbort={avbrytSøknad}>
             <form onSubmit={onSubmit}>
-                <FormLayout.Content>
-                    <Alert variant="info">
-                        <VStack gap="space-2">
-                            <p>
-                                <strong>Navn:</strong> {søknadState?.søknadsdata[SøknadStepId.PERSONALIA]?.navn}
-                            </p>
-                            <p>
-                                <strong>E-post:</strong> {søknadState?.søknadsdata[SøknadStepId.KONTAKT]?.epost}
-                            </p>
-                        </VStack>
-                    </Alert>
+                <FormLayout.Summary>
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="2">Personalia</FormSummary.Heading>
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>Navn</FormSummary.Label>
+                                <FormSummary.Value>
+                                    {søknadState?.søknadsdata[SøknadStepId.PERSONALIA]?.navn}
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                        </FormSummary.Answers>
+                    </FormSummary>
+                    {søknadState?.søknadsdata[SøknadStepId.HOBBY] && (
+                        <FormSummary>
+                            <FormSummary.Header>
+                                <FormSummary.Heading level="2">Hobby</FormSummary.Heading>
+                            </FormSummary.Header>
+                            <FormSummary.Answers>
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>Hobby</FormSummary.Label>
+                                    <FormSummary.Value>
+                                        {søknadState?.søknadsdata[SøknadStepId.HOBBY]?.navn}
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            </FormSummary.Answers>
+                        </FormSummary>
+                    )}
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="2">Kontaktinformasjon</FormSummary.Heading>
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>E-post</FormSummary.Label>
+                                <FormSummary.Value>
+                                    {søknadState?.søknadsdata[SøknadStepId.KONTAKT]?.epost}
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                        </FormSummary.Answers>
+                    </FormSummary>
                     <FormLayout.FormButtons
                         onPrevious={onPrevious}
                         isFinalSubmit={true}
                         submitLabel="Send inn søknad"
                     />
-                </FormLayout.Content>
+                </FormLayout.Summary>
             </form>
         </SøknadStepPage>
     );

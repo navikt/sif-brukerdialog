@@ -173,6 +173,10 @@ const Content = ({ children }: { children: React.ReactNode }) => {
     return <VStack gap="space-48">{children}</VStack>;
 };
 
+const Summary = ({ children }: { children: React.ReactNode }) => {
+    return <VStack gap="space-24">{children}</VStack>;
+};
+
 export const FormLayout = {
     Guide,
     Panel,
@@ -186,4 +190,5 @@ export const FormLayout = {
     StepGuideWrapper,
     FormButtons,
     Content,
+    Summary,
 };
