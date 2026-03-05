@@ -2,9 +2,16 @@ import { useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@navikt/s
 import { useMemo } from 'react';
 
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../../config/appConfig';
+import { søknadStepConfig } from '../../config/søknadStepConfig';
 import { ErrorPage, LoadingPage } from '../../pages';
 import { Søknad } from '../../Søknad';
 import { MellomlagringMetaData, SøknadMellomlagring } from '../../types/Mellomlagring';
+
+const getValidertMellomlagring = (data: SøknadMellomlagring | null | undefined): SøknadMellomlagring | undefined => {
+    if (!data) return undefined;
+    const currentStepId = data.currentStepId && søknadStepConfig[data.currentStepId] ? data.currentStepId : undefined;
+    return { ...data, currentStepId };
+};
 
 export const AppInfoLoader = () => {
     const søker = useSøker();
@@ -44,5 +51,11 @@ export const AppInfoLoader = () => {
         return <ErrorPage error="Barnedata mangler" />;
     }
 
-    return <Søknad søker={søker.data} barn={registrerteBarn.data} mellomlagring={mellomlagring.data ?? undefined} />;
+    return (
+        <Søknad
+            søker={søker.data}
+            barn={registrerteBarn.data}
+            mellomlagring={getValidertMellomlagring(mellomlagring.data)}
+        />
+    );
 };

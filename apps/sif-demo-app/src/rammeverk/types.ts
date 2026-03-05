@@ -2,8 +2,9 @@
  * Generisk mellomlagring-type.
  * Appen bruker denne med sin egen Søknadsdata-type.
  */
-export interface Mellomlagring<Søknadsdata> {
+export interface Mellomlagring<Søknadsdata, Skjemadata> {
     søknadsdata: Søknadsdata;
+    skjemadata?: Skjemadata;
     currentStepId?: string;
 }
 
