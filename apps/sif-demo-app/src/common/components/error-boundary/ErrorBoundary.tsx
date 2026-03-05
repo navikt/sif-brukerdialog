@@ -7,7 +7,7 @@ interface ErrorBoundaryProps {
     children: React.ReactNode;
 }
 
-const ErrorBoundary = ({ fallback, onError, children }: ErrorBoundaryProps) => {
+export const ErrorBoundary = ({ fallback, onError, children }: ErrorBoundaryProps) => {
     return (
         <Sentry.ErrorBoundary
             fallback={fallback}
@@ -20,5 +20,3 @@ const ErrorBoundary = ({ fallback, onError, children }: ErrorBoundaryProps) => {
         </Sentry.ErrorBoundary>
     );
 };
-
-export default ErrorBoundary;

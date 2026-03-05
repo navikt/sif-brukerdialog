@@ -15,7 +15,7 @@ interface Props {
     isPending: boolean;
 }
 
-const PersonaliaForm = ({ isPending, onSubmit, defaultValues }: Props) => {
+export const PersonaliaForm = ({ isPending, onSubmit, defaultValues }: Props) => {
     const { register, handleSubmit, watch, setValue, getValues } = useForm<PersonaliaSkjemadata>({
         defaultValues,
     });
@@ -41,5 +41,3 @@ const PersonaliaForm = ({ isPending, onSubmit, defaultValues }: Props) => {
         </form>
     );
 };
-
-export default PersonaliaForm;

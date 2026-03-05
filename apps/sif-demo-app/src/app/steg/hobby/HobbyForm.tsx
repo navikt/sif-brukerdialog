@@ -15,7 +15,7 @@ interface Props {
     onPrevious?: () => void;
 }
 
-const HobbyForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Props) => {
+export const HobbyForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Props) => {
     const { register, handleSubmit, getValues } = useForm<HobbySkjemadata>({
         defaultValues,
     });
@@ -41,5 +41,3 @@ const HobbyForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Props) =>
         </form>
     );
 };
-
-export default HobbyForm;

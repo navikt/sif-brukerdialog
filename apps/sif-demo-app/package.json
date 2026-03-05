@@ -4,7 +4,7 @@
     "private": true,
     "version": "0.0.1",
     "scripts": {
-        "dev": "vite --base=/sif-demo --port 8080 --mode msw",
+        "dev": "vite --base=/sif-demo --config vite.dev.config.ts",
         "build": "vite build --base=/sif-demo",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
@@ -14,10 +14,13 @@
     },
     "dependencies": {
         "@navikt/aksel-icons": "8.5.2",
+        "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "8.5.2",
         "@navikt/ds-react": "8.5.2",
         "@navikt/ds-tailwind": "8.5.2",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/sif-app-register": "workspace:*",
+        "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-query": "workspace:*",

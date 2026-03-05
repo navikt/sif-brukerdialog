@@ -3,7 +3,7 @@ import { FormatNumberOptions, IntlShape } from 'react-intl';
 
 export type Locale = 'nb' | 'nn';
 
-const intlHelper = (
+export const intlHelper = (
     intl: IntlShape,
     id: string,
     value?: Record<string, string | number | boolean | null | undefined | Date>,
@@ -34,4 +34,3 @@ const getLocaleFromIntl = (intl: IntlShape): Locale => {
             return 'nb';
     }
 };
-export default intlHelper;

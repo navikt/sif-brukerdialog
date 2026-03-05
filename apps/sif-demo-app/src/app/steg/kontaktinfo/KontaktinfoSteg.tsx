@@ -1,7 +1,7 @@
-import SøknadStep from '../../components/SøknadStep';
+import { SøknadStep } from '../../components/SøknadStep';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { KontaktSøknadsdata } from '../../types/Søknadsdata';
-import KontaktinfoForm, { KontaktSkjemadata } from './KontaktinfoForm';
+import { KontaktinfoForm, KontaktSkjemadata } from './KontaktinfoForm';
 
 const toSøknadsdata = (data) => ({ epost: data.epost });
 

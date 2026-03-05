@@ -15,7 +15,7 @@ interface Props {
     onPrevious?: () => void;
 }
 
-const KontaktinfoForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Props) => {
+export const KontaktinfoForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Props) => {
     const { register, handleSubmit, getValues } = useForm<KontaktSkjemadata>({
         defaultValues,
     });
@@ -40,5 +40,3 @@ const KontaktinfoForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Pro
         </form>
     );
 };
-
-export default KontaktinfoForm;

@@ -11,5 +11,5 @@
         }
     },
     "exclude": ["node_modules", "dist", "**.js"],
-    "include": ["./src/**/*", "./mock/**/*", "./vite-env.d.ts", "./tailwind.config.ts"]
+    "include": ["./src/**/*", "./mock/**/*", "./vite-env.d.ts", "./tailwind.config.ts", "env.schema.ts"]
 }

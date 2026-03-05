@@ -5746,10 +5746,13 @@ __metadata:
   resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
   dependencies:
     "@navikt/aksel-icons": "npm:8.5.2"
+    "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:8.5.2"
     "@navikt/ds-react": "npm:8.5.2"
     "@navikt/ds-tailwind": "npm:8.5.2"
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
+    "@navikt/sif-app-register": "workspace:*"
+    "@navikt/sif-common-env": "workspace:*"
     "@navikt/sif-common-faro": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-query": "workspace:*"

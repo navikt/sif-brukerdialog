@@ -29,7 +29,7 @@ interface Props<TSkjemadata, TSøknadsdata> {
     children: (props: RenderProps<TSkjemadata>) => React.ReactNode;
 }
 
-function SøknadStep<TSkjemadata, TSøknadsdata>({
+export function SøknadStep<TSkjemadata, TSøknadsdata>({
     stepId,
     toSøknadsdata,
     toFormValues,
@@ -81,5 +81,3 @@ function SøknadStep<TSkjemadata, TSøknadsdata>({
         </VStack>
     );
 }
-
-export default SøknadStep;

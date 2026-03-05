@@ -3,11 +3,14 @@ import { createRoot } from 'react-dom/client';
 
 import { enableMocking } from '../mock/enableMocking';
 import { App } from './App';
+import { AppErrorBoundary } from './app/components/app-error-boundary/AppErrorBoundary';
 
 enableMocking().then(() => {
     createRoot(document.getElementById('root')!).render(
         <StrictMode>
-            <App />
+            <AppErrorBoundary>
+                <App />
+            </AppErrorBoundary>
         </StrictMode>,
     );
 });
