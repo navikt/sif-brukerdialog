@@ -1,12 +1,11 @@
 import { Alert, Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import { useNavigate } from 'react-router-dom';
-
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepNavigation } from '@rammeverk/state';
+import { useNavigate } from 'react-router-dom';
 
 import {
-    SøknadStepId,
     søknadStepConfig as stepConfig,
+    SøknadStepId,
     søknadStepOrder as stepOrder,
 } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
@@ -54,7 +53,7 @@ export const Oppsummering = () => {
                     </VStack>
                 </Alert>
                 <form onSubmit={handleSubmit}>
-                    <HStack gap="space-16" justify={'start'}>
+                    <HStack gap="space-16" justify="start">
                         {canGoPrevious(stepId) && (
                             <Button type="button" variant="secondary" onClick={() => navigateToPreviousStep(stepId)}>
                                 Forrige

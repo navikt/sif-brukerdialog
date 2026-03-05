@@ -1,7 +1,7 @@
+import SøknadStep from '../../components/SøknadStep';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { HobbySøknadsdata } from '../../types/Søknadsdata';
 import HobbyForm, { HobbySkjemadata } from './HobbyForm';
-import SøknadStep from '../../components/SøknadStep';
 
 const toSøknadsdata = (data) => ({ navn: data.navn });
 

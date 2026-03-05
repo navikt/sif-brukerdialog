@@ -1,6 +1,6 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
-
 import { StepConfig } from '@rammeverk/types';
+
 import { Søknadsdata } from '../types/Søknadsdata';
 
 export enum SøknadStepId {

@@ -1,6 +1,7 @@
 import { Button, HStack, TextField, VStack } from '@navikt/ds-react';
-import { DefaultValues, useForm } from 'react-hook-form';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
+import { DefaultValues, useForm } from 'react-hook-form';
+
 import { SøknadStepId } from '../../config/søknadStepConfig';
 
 export interface KontaktSkjemadata {

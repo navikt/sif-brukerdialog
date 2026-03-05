@@ -5752,6 +5752,7 @@ __metadata:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-query": "workspace:*"
+    "@sif/eslint-config": "workspace:*"
     "@tailwindcss/vite": "npm:4.2.0"
     "@tanstack/react-query": "npm:5.90.21"
     "@types/node": "npm:25.3.0"

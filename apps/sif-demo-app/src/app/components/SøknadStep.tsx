@@ -1,12 +1,12 @@
 import { Box, Heading, VStack } from '@navikt/ds-react';
-import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 import { SøknadFooter } from '@rammeverk/components';
+import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
 import {
-    stepTitles,
-    SøknadStepId,
     søknadStepConfig as stepConfig,
+    SøknadStepId,
     søknadStepOrder as stepOrder,
+    stepTitles,
 } from '../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';

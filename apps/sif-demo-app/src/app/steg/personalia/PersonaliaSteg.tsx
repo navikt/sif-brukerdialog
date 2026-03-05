@@ -1,7 +1,7 @@
+import SøknadStep from '../../components/SøknadStep';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { PersonaliaSøknadsdata } from '../../types/Søknadsdata';
 import PersonaliaForm, { PersonaliaSkjemadata } from './PersonaliaForm';
-import SøknadStep from '../../components/SøknadStep';
 
 const toFormValues = (søknadsdata: PersonaliaSøknadsdata | undefined): Partial<PersonaliaSkjemadata> => ({
     navn: søknadsdata?.navn,

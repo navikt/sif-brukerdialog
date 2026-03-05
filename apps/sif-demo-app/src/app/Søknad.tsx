@@ -1,14 +1,12 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { StegRouteGuard, SøknadIndexRedirect } from '../rammeverk';
+import { SøknadIndexRedirect,StegRouteGuard } from '../rammeverk';
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
 import { isSøknadStepIncluded, søknadStepConfig, SøknadStepId, søknadStepOrder } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
 import { KvitteringPage, VelkommenPage } from './pages';
-
 import { HobbySteg, KontaktinfoSteg, Oppsummering, PersonaliaSteg } from './steg';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 

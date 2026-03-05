@@ -1,8 +1,8 @@
 import { Button, Heading, VStack } from '@navikt/ds-react';
+import { useNavigate } from 'react-router-dom';
 
 import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
-import { useNavigate } from 'react-router-dom';
 
 export const VelkommenPage = () => {
     const navigate = useNavigate();
