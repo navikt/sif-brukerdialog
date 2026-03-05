@@ -1,4 +1,4 @@
-import { Button, Heading, Radio, RadioGroup, TextField, VStack } from '@navikt/ds-react';
+import { Button, Radio, RadioGroup, TextField, VStack } from '@navikt/ds-react';
 import { DefaultValues, useForm } from 'react-hook-form';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
 import { SøknadStepId } from '../../config/søknadStepConfig';
@@ -26,7 +26,6 @@ const PersonaliaForm = ({ isPending, onSubmit, defaultValues }: Props) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <VStack gap="space-16">
-                <Heading size="large">Personalia</Heading>
                 <TextField label="Navn" {...register('navn')} />
                 <RadioGroup legend="Har du hobby?" value={harHobby} onChange={(value) => setValue('harHobby', value)}>
                     <Radio value="ja">Ja</Radio>

@@ -1,4 +1,4 @@
-import { Button, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
+import { Button, HStack, TextField, VStack } from '@navikt/ds-react';
 import { DefaultValues, useForm } from 'react-hook-form';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
 import { SøknadStepId } from '../../config/søknadStepConfig';
@@ -24,7 +24,6 @@ const KontaktinfoForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Pro
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <VStack gap="space-16">
-                <Heading size="large">Kontaktinfo</Heading>
                 <TextField label="E-post" type="email" {...register('epost')} />
                 <HStack gap="space-16" justify="start">
                     {onPrevious && (

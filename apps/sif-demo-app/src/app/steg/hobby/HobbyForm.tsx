@@ -1,4 +1,4 @@
-import { Button, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
+import { Button, HStack, TextField, VStack } from '@navikt/ds-react';
 import { DefaultValues, useForm } from 'react-hook-form';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
 import { SøknadStepId } from '../../config/søknadStepConfig';
@@ -24,7 +24,6 @@ const HobbyForm = ({ defaultValues, onSubmit, isPending, onPrevious }: Props) =>
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <VStack gap="space-16">
-                <Heading size="large">Navn på hobby</Heading>
                 <TextField label="Navn" {...register('navn')} />
 
                 <HStack gap="space-16" justify="start">
