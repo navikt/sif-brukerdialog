@@ -31,7 +31,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
             <Routes>
                 <Route
                     path="/"
-                    element={mellomlagring?.currentStepId ? <Navigate to="/soknad" replace /> : <VelkommenPage />}
+                    element={currentStepId ? <Navigate to="/soknad" replace /> : <VelkommenPage />}
                 />
                 <Route path="/kvittering" element={<KvitteringPage />} />
                 <Route path="/soknad">
@@ -40,7 +40,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                         element={
                             <SøknadIndexRedirect
                                 stepConfig={søknadStepConfig}
-                                mellomlagretStepId={mellomlagring?.currentStepId}
+                                mellomlagretStepId={currentStepId}
                             />
                         }
                     />
