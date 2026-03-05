@@ -8,7 +8,7 @@ import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { AppStepConsistencyChecker } from '../../setup/app-step-consistency-checker/AppStepConsistencyChecker';
 import { Søknadsdata } from '../../types/Søknadsdata';
-import { AppPage } from '../app-page/AppPage';
+import { DefaultPage } from '../default-page/DefaultPage';
 
 interface RenderProps<TSkjemadata> {
     defaultValues: Partial<TSkjemadata>;
@@ -65,7 +65,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
     const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
 
     return (
-        <AppPage>
+        <DefaultPage documentTitle={stepTitles[stepId]}>
             <AppStepConsistencyChecker stepId={stepId} />
             <Heading level="1" size="large">
                 {stepTitles[stepId]}
@@ -73,6 +73,6 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             {includedSteps.map((s) => s.stepId)}
             <Box>{children({ defaultValues, onSubmit, isPending, onPrevious })}</Box>
             <SøknadFooter onAvbryt={avbrytSøknad} />
-        </AppPage>
+        </DefaultPage>
     );
 }

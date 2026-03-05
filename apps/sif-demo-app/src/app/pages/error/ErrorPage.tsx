@@ -1,6 +1,6 @@
 import { Alert, Heading } from '@navikt/ds-react';
 
-import { AppPage } from '../../components/app-page/AppPage';
+import { DefaultPage } from '../../components/default-page/DefaultPage';
 
 interface ErrorPageProps {
     error: string;
@@ -8,9 +8,9 @@ interface ErrorPageProps {
 
 export const ErrorPage = ({ error }: ErrorPageProps) => {
     return (
-        <AppPage>
+        <DefaultPage documentTitle="Noe gikk galt">
             <Heading size="large">Noe gikk galt</Heading>
             <Alert variant="error">{error}</Alert>
-        </AppPage>
+        </DefaultPage>
     );
 };

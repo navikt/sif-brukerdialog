@@ -2,7 +2,7 @@ import { Button, Heading } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
 import { useStepFormValues } from '../../../rammeverk';
-import { AppPage } from '../../components/app-page/AppPage';
+import { DefaultPage } from '../../components/default-page/DefaultPage';
 import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 
@@ -19,10 +19,10 @@ export const VelkommenPage = () => {
     };
 
     return (
-        <AppPage>
+        <DefaultPage documentTitle="Velkommen">
             <Heading size="xlarge">Velkommen til demo-søknaden</Heading>
             <p>Dette er en demo av soknad-rammeverk.</p>
             <Button onClick={handleStart}>Start søknad</Button>
-        </AppPage>
+        </DefaultPage>
     );
 };
