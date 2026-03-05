@@ -23,9 +23,9 @@ export interface StepDefinition {
 export type StepConfig = Record<string, StepDefinition>;
 
 /**
- * Info om et aktivt steg
+ * Info om et inkludert steg
  */
-export interface ActiveStep {
+export interface IncludedStep {
     stepId: string;
     isAvailable: boolean;
     isCompleted: boolean;
@@ -46,7 +46,7 @@ export interface StepStatusCallbacks {
  * Returnerer liste over aktive steg med tilgjengelighet og fullført-status.
  * Lineær flyt: et steg er tilgjengelig hvis alle foregående er fullført.
  */
-export const getActiveStep = (stepOrder: string[], callbacks: StepStatusCallbacks): ActiveStep[] => {
+export const getIncludedSteps = (stepOrder: string[], callbacks: StepStatusCallbacks): IncludedStep[] => {
     const includedSteps = stepOrder.filter((id) => {
         return callbacks.isStepIncluded?.(id) ?? true;
     });

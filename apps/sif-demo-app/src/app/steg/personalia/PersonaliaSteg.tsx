@@ -1,4 +1,4 @@
-import { SøknadStep } from '../../components/søknad-step/SøknadStep';
+import { AppSøknadStep } from '../../components/app-søknad-step/AppSøknadStep';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { PersonaliaSøknadsdata } from '../../types/Søknadsdata';
 import { PersonaliaForm, PersonaliaSkjemadata } from './PersonaliaForm';
@@ -14,12 +14,12 @@ const toSøknadsdata = (data: PersonaliaSkjemadata): PersonaliaSøknadsdata => (
 });
 
 export const PersonaliaSteg = () => (
-    <SøknadStep<PersonaliaSkjemadata, PersonaliaSøknadsdata>
+    <AppSøknadStep<PersonaliaSkjemadata, PersonaliaSøknadsdata>
         stepId={SøknadStepId.PERSONALIA}
         toSøknadsdata={toSøknadsdata}
         toFormValues={toFormValues}>
         {({ defaultValues, onSubmit, isPending }) => (
             <PersonaliaForm defaultValues={defaultValues} isPending={isPending} onSubmit={onSubmit} />
         )}
-    </SøknadStep>
+    </AppSøknadStep>
 );

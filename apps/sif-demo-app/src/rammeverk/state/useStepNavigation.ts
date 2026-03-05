@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getActiveStep, StepConfig, StepStatusCallbacks } from '../types';
+import { getIncludedSteps, StepConfig, StepStatusCallbacks } from '../types';
 
 interface UseStepNavigationOptions {
     stepConfig: StepConfig;
@@ -16,13 +16,13 @@ interface UseStepNavigationOptions {
  * Viktig for navigasjon etter state-oppdatering i samme event handler.
  */
 const getPreviousNextStep = (stepOrder: string[], stepStatus: StepStatusCallbacks, currentStepId: string | null) => {
-    const activeStep = getActiveStep(stepOrder, stepStatus);
-    const activeStepIds = activeStep.map((s) => s.stepId);
-    const currentIndex = currentStepId ? activeStepIds.indexOf(currentStepId) : -1;
+    const includedSteps = getIncludedSteps(stepOrder, stepStatus);
+    const includedStepIds = includedSteps.map((s) => s.stepId);
+    const currentIndex = currentStepId ? includedStepIds.indexOf(currentStepId) : -1;
 
     return {
-        previousStepId: currentIndex > 0 ? activeStepIds[currentIndex - 1] : null,
-        nextStepId: currentIndex < activeStepIds.length - 1 ? activeStepIds[currentIndex + 1] : null,
+        previousStepId: currentIndex > 0 ? includedStepIds[currentIndex - 1] : null,
+        nextStepId: currentIndex < includedStepIds.length - 1 ? includedStepIds[currentIndex + 1] : null,
     };
 };
 

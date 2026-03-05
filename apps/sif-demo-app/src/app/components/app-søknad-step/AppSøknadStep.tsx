@@ -30,7 +30,7 @@ interface Props<TSkjemadata, TSøknadsdata> {
     children: (props: RenderProps<TSkjemadata>) => React.ReactNode;
 }
 
-export function SøknadStep<TSkjemadata, TSøknadsdata>({
+export function AppSøknadStep<TSkjemadata, TSøknadsdata>({
     stepId,
     toSøknadsdata,
     toFormValues,
@@ -74,6 +74,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
     return (
         <AppPage>
             <SøknadStepGuard stepId={stepId} />
+            {/* <SøknadStepHeader steps={}/> */}
             <Heading level="1" size="large">
                 {stepTitles[stepId]}
             </Heading>
