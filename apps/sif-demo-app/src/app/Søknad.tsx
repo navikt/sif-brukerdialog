@@ -29,19 +29,13 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     return (
         <StepFormValuesProvider initialValues={mellomlagring?.skjemadata}>
             <Routes>
-                <Route
-                    path="/"
-                    element={currentStepId ? <Navigate to="/soknad" replace /> : <VelkommenPage />}
-                />
+                <Route path="/" element={currentStepId ? <Navigate to="/soknad" replace /> : <VelkommenPage />} />
                 <Route path="/kvittering" element={<KvitteringPage />} />
                 <Route path="/soknad">
                     <Route
                         index
                         element={
-                            <SøknadIndexRedirect
-                                stepConfig={søknadStepConfig}
-                                mellomlagretStepId={currentStepId}
-                            />
+                            <SøknadIndexRedirect stepConfig={søknadStepConfig} mellomlagretStepId={currentStepId} />
                         }
                     />
                     <Route
