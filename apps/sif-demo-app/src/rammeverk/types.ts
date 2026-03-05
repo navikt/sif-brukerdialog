@@ -31,7 +31,6 @@ export type StepConfig<TSøknadsdata = unknown> = Record<string, StepDefinition<
  */
 export interface IncludedStep {
     stepId: string;
-    route: string;
-    isAvailable: boolean;
-    isCompleted: boolean;
+    stepRoute: string;
+    completed: boolean;
 }

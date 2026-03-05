@@ -1,6 +1,3 @@
-// soknad-rammeverk public API
-// Eksporterer alle byggesteiner for søknadsapper
-
 export * from './components';
 export * from './hooks';
 export * from './routing';

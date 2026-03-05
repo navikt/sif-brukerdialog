@@ -32,9 +32,9 @@ export const StepRouteGuard = ({
         return <Navigate to={initialPath} replace />;
     }
 
-    const stepAtPath = steps.find((s) => location.pathname.includes(s.route));
+    const stepAtPath = steps.find((s) => location.pathname.includes(s.stepRoute));
     if (!stepAtPath) {
-        const currentRoute = steps.find((s) => s.stepId === currentStepId)?.route;
+        const currentRoute = steps.find((s) => s.stepId === currentStepId)?.stepRoute;
         if (currentRoute) {
             return <Navigate to={`${basePath}/${currentRoute}`} replace />;
         }

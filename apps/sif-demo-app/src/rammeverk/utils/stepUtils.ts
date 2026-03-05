@@ -11,13 +11,9 @@ export const getIncludedSteps = <TSøknadsdata>(
 ): IncludedStep[] => {
     const includedIds = stepOrder.filter((id) => stepConfig[id]?.isIncluded?.(søknadsdata) ?? true);
 
-    return includedIds.map((stepId, index) => {
+    return includedIds.map((stepId) => {
         const step = stepConfig[stepId];
-        const isCompleted = step?.isCompleted?.(søknadsdata) ?? false;
-        const isAvailable =
-            index === 0 ||
-            includedIds.slice(0, index).every((id) => stepConfig[id]?.isCompleted?.(søknadsdata) ?? false);
-
-        return { stepId, route: step.route, isAvailable, isCompleted };
+        const completed = step?.isCompleted?.(søknadsdata) ?? false;
+        return { stepId, stepRoute: step.route, completed };
     });
 };
