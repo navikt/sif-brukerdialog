@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { delay, http, HttpResponse } from 'msw';
 
 import { ScenarioType } from '../scenarios/types';
 import { store } from '../state/store';
@@ -13,14 +13,14 @@ export const handlers = [
     http.get(`**/mellomlagring/:ytelse`, () => HttpResponse.json(store.get().mellomlagring ?? {})),
 
     http.post(`**/mellomlagring/:ytelse`, async ({ request }) => {
-        await setTimeout(() => {}, 2000);
+        await delay(400);
         const data = (await request.json()) as Record<string, unknown>;
         store.update({ mellomlagring: data });
         return HttpResponse.json({});
     }),
 
     http.put(`**/mellomlagring/:ytelse`, async ({ request }) => {
-        await setTimeout(() => {}, 2000);
+        await delay(400);
         const data = (await request.json()) as Record<string, unknown>;
         store.update({ mellomlagring: data });
         return HttpResponse.json({});
