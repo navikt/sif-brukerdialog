@@ -2,7 +2,7 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { SøknadIndexRedirect, StegRouteGuard } from '../rammeverk';
+import { SøknadIndexRedirect, StepRouteGuard } from '../rammeverk';
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
 import { isSøknadStepIncluded, søknadStepConfig, SøknadStepId, søknadStepOrder } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
@@ -47,7 +47,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                     />
                     <Route
                         element={
-                            <StegRouteGuard
+                            <StepRouteGuard
                                 currentStepId={currentStepId}
                                 isInitialized={!!søknadState}
                                 isStepIncluded={(stepId) =>
