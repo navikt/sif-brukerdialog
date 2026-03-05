@@ -4,19 +4,11 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { SøknadIndexRedirect, StepRouteGuard } from '../rammeverk';
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
-import { isSøknadStepIncluded, søknadStepConfig, SøknadStepId, søknadStepOrder } from './config/søknadStepConfig';
+import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
 import { KvitteringPage, VelkommenPage } from './pages';
 import { HobbySteg, KontaktinfoSteg, Oppsummering, PersonaliaSteg } from './steg';
 import { SøknadMellomlagring } from './types/Mellomlagring';
-
-const getStepIdFraPath = (path: string): string | undefined => {
-    return søknadStepOrder.find((id) => path.includes(søknadStepConfig[id].route));
-};
-
-const getPathForStep = (stepId: string): string => {
-    return `/soknad/${søknadStepConfig[stepId as SøknadStepId]?.route}`;
-};
 
 interface Props {
     søker: Søker;
@@ -28,6 +20,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const init = useSøknadStore((s) => s.init);
     const søknadState = useSøknadStore((s) => s.søknadState);
     const currentStepId = useSøknadStore((s) => s.currentStepId);
+    const includedSteps = useSøknadStore((s) => s.includedSteps);
 
     useEffectOnce(() => {
         init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
@@ -36,25 +29,27 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     return (
         <StepFormValuesProvider initialValues={mellomlagring?.skjemadata}>
             <Routes>
-                <Route path="/" element={<VelkommenPage />} />
+                <Route
+                    path="/"
+                    element={mellomlagring?.currentStepId ? <Navigate to="/soknad" replace /> : <VelkommenPage />}
+                />
                 <Route path="/kvittering" element={<KvitteringPage />} />
                 <Route path="/soknad">
                     <Route
                         index
                         element={
-                            <SøknadIndexRedirect stepConfig={søknadStepConfig} mellomlagretStepId={currentStepId} />
+                            <SøknadIndexRedirect
+                                stepConfig={søknadStepConfig}
+                                mellomlagretStepId={mellomlagring?.currentStepId}
+                            />
                         }
                     />
                     <Route
                         element={
                             <StepRouteGuard
+                                steps={includedSteps}
                                 currentStepId={currentStepId}
                                 isInitialized={!!søknadState}
-                                isStepIncluded={(stepId) =>
-                                    isSøknadStepIncluded(stepId, søknadState?.søknadsdata ?? {})
-                                }
-                                getStepIdFromPath={getStepIdFraPath}
-                                getPathForStep={getPathForStep}
                             />
                         }>
                         <Route path={søknadStepConfig[SøknadStepId.PERSONALIA].route} element={<PersonaliaSteg />} />

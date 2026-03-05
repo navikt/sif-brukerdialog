@@ -2,16 +2,9 @@ import { Box, Heading } from '@navikt/ds-react';
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
-import { getIncludedSteps } from '../../../rammeverk';
-import {
-    søknadStepConfig as stepConfig,
-    SøknadStepId,
-    søknadStepOrder as stepOrder,
-    stepTitles,
-} from '../../config/søknadStepConfig';
+import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
-import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { Søknadsdata } from '../../types/Søknadsdata';
 import { AppPage } from '../app-page/AppPage';
@@ -40,18 +33,16 @@ export function AppSøknadStep<TSkjemadata, TSøknadsdata>({
     const søknadState = useSøknadStore((s) => s.søknadState);
     const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
+    const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
     const { clearAllStepFormValues, getStepFormValues } = useStepFormValues();
 
     const stepFormValues = getStepFormValues<TSkjemadata>(stepId);
-    const stepStatus = useSøknadStepStatus();
-    const steps = getIncludedSteps(stepOrder, stepStatus);
 
     const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
         stepConfig,
-        stepOrder,
-        stepStatus,
+        getIncludedSteps: () => useSøknadStore.getState().includedSteps,
         setCurrentStep,
     });
 
@@ -79,7 +70,7 @@ export function AppSøknadStep<TSkjemadata, TSøknadsdata>({
             <Heading level="1" size="large">
                 {stepTitles[stepId]}
             </Heading>
-            {steps.map((s) => s.stepId)}
+            {includedSteps.map((s) => s.stepId)}
             <Box>{children({ defaultValues, onSubmit, isPending, onPrevious })}</Box>
             <SøknadFooter onAvbryt={avbrytSøknad} />
         </AppPage>

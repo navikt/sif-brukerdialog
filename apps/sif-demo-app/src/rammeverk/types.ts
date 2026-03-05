@@ -10,34 +10,28 @@ export interface Mellomlagring<Søknadsdata> {
 /**
  * Definisjon av et steg i søknadsflyten
  */
-export interface StepDefinition {
+export interface StepDefinition<TSøknadsdata = unknown> {
     /** Intern identifikator */
     id: string;
     /** URL-segment */
     route: string;
+    /** Returnerer true hvis steget er ferdig utfylt */
+    isCompleted?: (søknadsdata: TSøknadsdata) => boolean;
+    /** Returnerer true hvis steget skal vises (for dynamiske steg). Default: alltid synlig */
+    isIncluded?: (søknadsdata: TSøknadsdata) => boolean;
 }
 
 /**
  * Konfigurasjon for alle steg
  */
-export type StepConfig = Record<string, StepDefinition>;
+export type StepConfig<TSøknadsdata = unknown> = Record<string, StepDefinition<TSøknadsdata>>;
 
 /**
  * Info om et inkludert steg
  */
 export interface IncludedStep {
     stepId: string;
+    route: string;
     isAvailable: boolean;
     isCompleted: boolean;
-}
-
-/**
- * Callbacks for å bestemme steg-status.
- * Må leveres av appen siden rammeverket ikke eier søknadsdata.
- */
-export interface StepStatusCallbacks {
-    /** Returnerer true hvis steget har data og er ferdig utfylt */
-    isStepCompleted: (stepId: string) => boolean;
-    /** Returnerer true hvis steget skal vises (for dynamiske steg). Default: alltid synlig */
-    isStepIncluded?: (stepId: string) => boolean;
 }

@@ -3,14 +3,9 @@ import { SøknadFooter } from '@rammeverk/components';
 import { useStepNavigation } from '@rammeverk/state';
 import { useNavigate } from 'react-router-dom';
 
-import {
-    søknadStepConfig as stepConfig,
-    SøknadStepId,
-    søknadStepOrder as stepOrder,
-} from '../../config/søknadStepConfig';
+import { søknadStepConfig as stepConfig, SøknadStepId } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
-import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 
 export const Oppsummering = () => {
@@ -21,13 +16,11 @@ export const Oppsummering = () => {
     const { slettMellomlagring } = useSøknadMellomlagring();
     const avbrytSøknad = useAvbrytSøknad();
 
-    const stepStatus = useSøknadStepStatus();
     const navigate = useNavigate();
 
     const { navigateToPreviousStep, canGoPrevious } = useStepNavigation({
         stepConfig,
-        stepOrder,
-        stepStatus,
+        getIncludedSteps: () => useSøknadStore.getState().includedSteps,
         setCurrentStep,
     });
 

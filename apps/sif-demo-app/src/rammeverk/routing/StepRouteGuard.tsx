@@ -1,30 +1,29 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
+import { IncludedStep } from '../types';
+
 interface Props {
+    steps: IncludedStep[];
     currentStepId?: string;
-    isInitialized: boolean;
+    isInitialized?: boolean;
+    basePath?: string;
     initialPath?: string;
-    isStepIncluded?: (stepId: string) => boolean;
-    getStepIdFromPath?: (path: string) => string | undefined;
-    getPathForStep?: (stepId: string) => string;
 }
 
 /**
- * Guard for steg-routes. Redirecter til initialPath hvis currentStepId mangler.
- * Venter til isInitialized=true før redirect. Hvis isStepIncluded er satt,
- * sjekkes om steget skal vises - ellers redirect til currentStepId.
+ * Guard for steg-routes. Venter på initialisering før den gjør noe.
+ * Redirecter til initialPath hvis currentStepId mangler.
+ * Hvis steget i URL-en ikke er inkludert, redirectes til currentStepId.
  */
 export const StepRouteGuard = ({
+    steps,
     currentStepId,
-    isInitialized,
+    isInitialized = true,
+    basePath = '/soknad',
     initialPath = '/',
-    isStepIncluded,
-    getStepIdFromPath,
-    getPathForStep,
 }: Props) => {
     const location = useLocation();
 
-    // Vent til initialisering er ferdig før vi sjekker
     if (!isInitialized) {
         return null;
     }
@@ -33,11 +32,11 @@ export const StepRouteGuard = ({
         return <Navigate to={initialPath} replace />;
     }
 
-    // Sjekk om steget skal være synlig
-    if (isStepIncluded && getStepIdFromPath && getPathForStep) {
-        const stepId = getStepIdFromPath(location.pathname);
-        if (stepId && !isStepIncluded(stepId)) {
-            return <Navigate to={getPathForStep(currentStepId)} replace />;
+    const stepAtPath = steps.find((s) => location.pathname.includes(s.route));
+    if (!stepAtPath) {
+        const currentRoute = steps.find((s) => s.stepId === currentStepId)?.route;
+        if (currentRoute) {
+            return <Navigate to={`${basePath}/${currentRoute}`} replace />;
         }
     }
 

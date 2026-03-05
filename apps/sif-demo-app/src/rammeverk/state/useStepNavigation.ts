@@ -1,13 +1,11 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { StepConfig, StepStatusCallbacks } from '../types';
-import { getIncludedSteps } from '../utils/stepUtils';
+import { IncludedStep, StepConfig } from '../types';
 
 interface UseStepNavigationOptions {
     stepConfig: StepConfig;
-    stepOrder: string[];
-    stepStatus: StepStatusCallbacks;
+    getIncludedSteps: () => IncludedStep[];
     setCurrentStep: (stepId: string) => void;
     basePath?: string;
 }
@@ -16,8 +14,7 @@ interface UseStepNavigationOptions {
  * Beregner neste/forrige steg basert på fresh state.
  * Viktig for navigasjon etter state-oppdatering i samme event handler.
  */
-const getPreviousNextStep = (stepOrder: string[], stepStatus: StepStatusCallbacks, currentStepId: string | null) => {
-    const includedSteps = getIncludedSteps(stepOrder, stepStatus);
+const getPreviousNextStep = (includedSteps: IncludedStep[], currentStepId: string | null) => {
     const includedStepIds = includedSteps.map((s) => s.stepId);
     const currentIndex = currentStepId ? includedStepIds.indexOf(currentStepId) : -1;
 
@@ -29,8 +26,7 @@ const getPreviousNextStep = (stepOrder: string[], stepStatus: StepStatusCallback
 
 export const useStepNavigation = ({
     stepConfig,
-    stepOrder,
-    stepStatus,
+    getIncludedSteps,
     setCurrentStep,
     basePath = '/soknad',
 }: UseStepNavigationOptions) => {
@@ -47,38 +43,38 @@ export const useStepNavigation = ({
 
     const navigateToNextStep = useCallback(
         (fromStepId: string) => {
-            const { nextStepId } = getPreviousNextStep(stepOrder, stepStatus, fromStepId);
+            const { nextStepId } = getPreviousNextStep(getIncludedSteps(), fromStepId);
             if (nextStepId) {
                 navigateToStep(nextStepId);
             }
         },
-        [stepOrder, stepStatus, navigateToStep],
+        [getIncludedSteps, navigateToStep],
     );
 
     const navigateToPreviousStep = useCallback(
         (fromStepId: string) => {
-            const { previousStepId } = getPreviousNextStep(stepOrder, stepStatus, fromStepId);
+            const { previousStepId } = getPreviousNextStep(getIncludedSteps(), fromStepId);
             if (previousStepId) {
                 navigateToStep(previousStepId);
             }
         },
-        [stepOrder, stepStatus, navigateToStep],
+        [getIncludedSteps, navigateToStep],
     );
 
     const canGoNext = useCallback(
         (fromStepId: string) => {
-            const { nextStepId } = getPreviousNextStep(stepOrder, stepStatus, fromStepId);
+            const { nextStepId } = getPreviousNextStep(getIncludedSteps(), fromStepId);
             return nextStepId !== null;
         },
-        [stepOrder, stepStatus],
+        [getIncludedSteps],
     );
 
     const canGoPrevious = useCallback(
         (fromStepId: string) => {
-            const { previousStepId } = getPreviousNextStep(stepOrder, stepStatus, fromStepId);
+            const { previousStepId } = getPreviousNextStep(getIncludedSteps(), fromStepId);
             return previousStepId !== null;
         },
-        [stepOrder, stepStatus],
+        [getIncludedSteps],
     );
 
     return {

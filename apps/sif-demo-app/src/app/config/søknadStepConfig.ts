@@ -16,18 +16,22 @@ export interface SøknadState {
     søknadsdata: Søknadsdata;
 }
 
-export const søknadStepConfig: StepConfig = {
+export const søknadStepConfig: StepConfig<Søknadsdata> = {
     [SøknadStepId.PERSONALIA]: {
         id: SøknadStepId.PERSONALIA,
         route: 'om-deg',
+        isCompleted: (s) => s.personalia !== undefined,
     },
     [SøknadStepId.HOBBY]: {
         id: SøknadStepId.HOBBY,
         route: 'kjaledyr',
+        isIncluded: (s) => s.personalia?.harHobby === 'ja',
+        isCompleted: (s) => s.hobby !== undefined,
     },
     [SøknadStepId.KONTAKT]: {
         id: SøknadStepId.KONTAKT,
         route: 'kontaktinfo',
+        isCompleted: (s) => s.kontakt !== undefined,
     },
     [SøknadStepId.OPPSUMMERING]: {
         id: SøknadStepId.OPPSUMMERING,
@@ -47,13 +51,4 @@ export const stepTitles: Record<SøknadStepId, string> = {
     [SøknadStepId.HOBBY]: 'Hobby',
     [SøknadStepId.KONTAKT]: 'Kontaktinfo',
     [SøknadStepId.OPPSUMMERING]: 'Oppsummering',
-};
-
-export const isSøknadStepIncluded = (stepId: string, søknadsdata: Søknadsdata): boolean => {
-    switch (stepId) {
-        case SøknadStepId.HOBBY:
-            return søknadsdata[SøknadStepId.PERSONALIA]?.harHobby === 'ja';
-        default:
-            return true;
-    }
 };

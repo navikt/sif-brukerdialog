@@ -1,5 +1,8 @@
 import { create, StateCreator, StoreApi, UseBoundStore } from 'zustand';
 
+import { IncludedStep, StepConfig } from '../types';
+import { getIncludedSteps } from '../utils/stepUtils';
+
 /**
  * Base interface for søknad state.
  * Apps must have a søknadsdata property that is an object.
@@ -14,6 +17,7 @@ export interface BaseSøknadState<TSøknadsdata extends object> {
 export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     søknadState: TState | undefined;
     currentStepId?: string;
+    includedSteps: IncludedStep[];
     init: (
         initialState: Omit<TState, 'søknadsdata'>,
         mellomlagretSøknadsdata?: TSøknadsdata,
@@ -22,11 +26,15 @@ export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     setSøknadsdata: (data: Partial<TSøknadsdata>) => void;
     resetSøknad: () => void;
     startSøknad: (firstStepId: string) => void;
-    isStepCompleted: (stepId: string) => boolean;
     setCurrentStep: (stepId: string) => void;
 }
 
 type EmptySøknadsdata = Record<string, never>;
+
+interface StoreOptions<TSøknadsdata> {
+    stepOrder: string[];
+    stepConfig: StepConfig<TSøknadsdata>;
+}
 
 /**
  * Creates a typed søknad store with common functionality.
@@ -39,66 +47,80 @@ type EmptySøknadsdata = Record<string, never>;
  *   søknadsdata: Søknadsdata;
  * }
  *
- * export const useSøknadStore = createSøknadStore<SøknadState, Søknadsdata>();
+ * export const useSøknadStore = createSøknadStore<SøknadState, Søknadsdata>({
+ *   stepOrder: søknadStepOrder,
+ *   stepConfig: søknadStepConfig,
+ * });
  * ```
  */
 export const createSøknadStore = <
     TState extends BaseSøknadState<TSøknadsdata>,
     TSøknadsdata extends object = EmptySøknadsdata,
->(): UseBoundStore<StoreApi<SøknadStoreActions<TState, TSøknadsdata>>> => {
-    const storeCreator: StateCreator<SøknadStoreActions<TState, TSøknadsdata>> = (set, get) => ({
+>(
+    options: StoreOptions<TSøknadsdata>,
+): UseBoundStore<StoreApi<SøknadStoreActions<TState, TSøknadsdata>>> => {
+    const { stepOrder, stepConfig } = options;
+
+    const computeSteps = (søknadsdata: TSøknadsdata) => getIncludedSteps(stepOrder, stepConfig, søknadsdata);
+
+    const storeCreator: StateCreator<SøknadStoreActions<TState, TSøknadsdata>> = (set) => ({
         søknadState: undefined,
         currentStepId: undefined,
+        includedSteps: [],
 
-        init: (initialState, mellomlagretSøknadsdata, currentStepId) =>
+        init: (initialState, mellomlagretSøknadsdata, currentStepId) => {
+            const søknadsdata = mellomlagretSøknadsdata ?? ({} as TSøknadsdata);
             set({
                 søknadState: {
                     ...initialState,
-                    søknadsdata: mellomlagretSøknadsdata ?? ({} as TSøknadsdata),
+                    søknadsdata,
                 } as TState,
                 currentStepId,
-            }),
+                includedSteps: computeSteps(søknadsdata),
+            });
+        },
 
         startSøknad: (firstStepId: string) =>
             set((state) => {
                 if (!state.søknadState) return state;
+                const søknadsdata = {} as TSøknadsdata;
                 return {
                     søknadState: {
                         ...state.søknadState,
-                        søknadsdata: {} as TSøknadsdata,
+                        søknadsdata,
                     },
                     currentStepId: firstStepId,
+                    includedSteps: computeSteps(søknadsdata),
                 };
             }),
 
         setSøknadsdata: (data) => {
             set((state) => {
                 if (!state.søknadState) return state;
+                const søknadsdata = { ...state.søknadState.søknadsdata, ...data };
                 return {
                     søknadState: {
                         ...state.søknadState,
-                        søknadsdata: { ...state.søknadState.søknadsdata, ...data },
+                        søknadsdata,
                     } as TState,
+                    includedSteps: computeSteps(søknadsdata),
                 };
             });
         },
 
         setCurrentStep: (stepId) => set({ currentStepId: stepId }),
 
-        isStepCompleted: (stepId) => {
-            const appState = get().søknadState;
-            return appState?.søknadsdata[stepId] !== undefined;
-        },
-
         resetSøknad: () =>
             set((state) => {
                 if (!state.søknadState) return state;
+                const søknadsdata = {} as TSøknadsdata;
                 return {
                     currentStepId: undefined,
                     søknadState: {
                         ...state.søknadState,
-                        søknadsdata: {} as TSøknadsdata,
+                        søknadsdata,
                     } as TState,
+                    includedSteps: computeSteps(søknadsdata),
                 };
             }),
     });

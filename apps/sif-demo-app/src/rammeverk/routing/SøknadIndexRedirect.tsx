@@ -6,6 +6,7 @@ interface SøknadIndexRedirectProps {
     stepConfig: StepConfig;
     mellomlagretStepId?: string | null;
     initialPath?: string;
+    basePath?: string;
 }
 
 /**
@@ -15,11 +16,16 @@ export const SøknadIndexRedirect = ({
     stepConfig,
     mellomlagretStepId,
     initialPath = '/',
+    basePath = '/soknad',
 }: SøknadIndexRedirectProps) => {
     if (!mellomlagretStepId) {
         return <Navigate to={initialPath} replace />;
     }
 
-    const targetRoute = stepConfig[mellomlagretStepId].route;
-    return <Navigate to={targetRoute} replace />;
+    const targetRoute = stepConfig[mellomlagretStepId]?.route;
+    if (!targetRoute) {
+        return <Navigate to={initialPath} replace />;
+    }
+
+    return <Navigate to={`${basePath}/${targetRoute}`} replace />;
 };
