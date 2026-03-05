@@ -2,6 +2,7 @@ import { Box, Heading } from '@navikt/ds-react';
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
+import { getIncludedSteps } from '../../../rammeverk';
 import {
     søknadStepConfig as stepConfig,
     SøknadStepId,
@@ -14,7 +15,7 @@ import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { Søknadsdata } from '../../types/Søknadsdata';
 import { AppPage } from '../app-page/AppPage';
-import { SøknadStepGuard } from '../søknad-step-guard/SøknadStepGuard';
+import { ValidSøknadStepGuard } from '../valid-søknad-step-guard/ValidSøknadStepGuard';
 
 interface RenderProps<TSkjemadata> {
     defaultValues: Partial<TSkjemadata>;
@@ -45,6 +46,7 @@ export function AppSøknadStep<TSkjemadata, TSøknadsdata>({
 
     const stepFormValues = getStepFormValues<TSkjemadata>(stepId);
     const stepStatus = useSøknadStepStatus();
+    const steps = getIncludedSteps(stepOrder, stepStatus);
 
     const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
         stepConfig,
@@ -73,11 +75,11 @@ export function AppSøknadStep<TSkjemadata, TSøknadsdata>({
 
     return (
         <AppPage>
-            <SøknadStepGuard stepId={stepId} />
-            {/* <SøknadStepHeader steps={}/> */}
+            <ValidSøknadStepGuard stepId={stepId} />
             <Heading level="1" size="large">
                 {stepTitles[stepId]}
             </Heading>
+            {steps.map((s) => s.stepId)}
             <Box>{children({ defaultValues, onSubmit, isPending, onPrevious })}</Box>
             <SøknadFooter onAvbryt={avbrytSøknad} />
         </AppPage>

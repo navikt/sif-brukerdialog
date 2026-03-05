@@ -6,7 +6,7 @@ import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { Søknadsdata } from '../../types/Søknadsdata';
 import { formValuesToSøknadsdata } from '../../utils/formValuesToSøknadsdata';
 
-interface SøknadStepGuardProps {
+interface ValidSøknadStepGuardProps {
     stepId: SøknadStepId;
 }
 
@@ -14,7 +14,7 @@ interface SøknadStepGuardProps {
  * App-spesifikk wrapper rundt StepFormValuesGuard.
  * Injiserer søknadsdata og viser ugyldig steg-informasjon.
  */
-export const SøknadStepGuard = ({ stepId }: SøknadStepGuardProps) => {
+export const ValidSøknadStepGuard = ({ stepId }: ValidSøknadStepGuardProps) => {
     const navigate = useNavigate();
     const søknadsdata = useSøknadStore((s) => s.søknadState?.søknadsdata);
 

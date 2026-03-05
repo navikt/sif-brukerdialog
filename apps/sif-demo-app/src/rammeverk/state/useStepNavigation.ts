@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getIncludedSteps, StepConfig, StepStatusCallbacks } from '../types';
+import { StepConfig, StepStatusCallbacks } from '../types';
+import { getIncludedSteps } from '../utils/stepUtils';
 
 interface UseStepNavigationOptions {
     stepConfig: StepConfig;
