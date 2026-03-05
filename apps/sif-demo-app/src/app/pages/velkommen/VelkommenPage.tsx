@@ -2,7 +2,7 @@ import { Button, Heading } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
 import { useStepFormValues } from '../../../rammeverk';
-import { DefaultPage } from '../../components/default-page/DefaultPage';
+import { DefaultPage } from '../../../rammeverk/components/default-page/DefaultPage';
 import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 

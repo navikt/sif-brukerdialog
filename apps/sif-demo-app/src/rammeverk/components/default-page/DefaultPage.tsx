@@ -1,4 +1,4 @@
-import { Page, VStack } from '@navikt/ds-react';
+import { Page } from '@navikt/ds-react';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useEffect } from 'react';
 
@@ -16,7 +16,7 @@ export const DefaultPage = ({ documentTitle, children }: Props) => {
     return (
         <Page>
             <Page.Block as="main" width="md" gutters>
-                <VStack gap="space-24">{children}</VStack>
+                {children}
             </Page.Block>
         </Page>
     );

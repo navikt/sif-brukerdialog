@@ -1,6 +1,6 @@
 import { Alert, Heading } from '@navikt/ds-react';
 
-import { DefaultPage } from '../../components/default-page/DefaultPage';
+import { DefaultPage } from '../../../rammeverk/components/default-page/DefaultPage';
 
 interface ErrorPageProps {
     error: string;

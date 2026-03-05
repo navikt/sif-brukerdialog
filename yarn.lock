@@ -5756,6 +5756,7 @@ __metadata:
     "@navikt/sif-common-faro": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-query": "workspace:*"
+    "@navikt/sif-common-ui": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@tailwindcss/vite": "npm:4.2.0"
     "@tanstack/react-query": "npm:5.90.21"

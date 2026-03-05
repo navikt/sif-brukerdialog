@@ -1,4 +1,5 @@
-import { Bleed, Box, BoxNewProps, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
+import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
+import { Bleed, Box, BoxNewProps, Button, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
 import SifGuidePanel, {
     SifGuidePanelProps,
 } from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -124,6 +125,53 @@ const Guide = (props: SifGuidePanelProps) => {
     );
 };
 
+interface FormButtonProps {
+    back?: {
+        label: string;
+        onClick: (values: any) => void;
+        disabled?: boolean;
+    };
+    next: {
+        label: string;
+        onClick: (values: any) => void;
+        disabled?: boolean;
+        pending?: boolean;
+        isFinalSubmit?: boolean;
+    };
+}
+
+const FormButtons = ({ back, next }: FormButtonProps) => {
+    return (
+        <HStack gap="space-16" justify="start">
+            {back && (
+                <Button
+                    variant="secondary"
+                    type="button"
+                    onClick={back.onClick}
+                    disabled={back.disabled}
+                    icon={<ArrowLeftIcon aria-hidden />}>
+                    {back.label}
+                </Button>
+            )}
+            {next && (
+                <Button
+                    variant="primary"
+                    type="submit"
+                    loading={next.pending}
+                    disabled={next.disabled}
+                    iconPosition="right"
+                    icon={next.isFinalSubmit ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}>
+                    {next.label}
+                </Button>
+            )}
+        </HStack>
+    );
+};
+
+const Content = ({ children }: { children: React.ReactNode }) => {
+    return <VStack gap="space-48">{children}</VStack>;
+};
+
 export const FormLayout = {
     Guide,
     Panel,
@@ -135,4 +183,6 @@ export const FormLayout = {
     SectionHeading,
     Sections,
     StepGuideWrapper,
+    FormButtons,
+    Content,
 };

@@ -1,4 +1,5 @@
-import { Button, HStack, TextField, VStack } from '@navikt/ds-react';
+import { TextField } from '@navikt/ds-react';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
 import { DefaultValues, useForm } from 'react-hook-form';
 
@@ -24,19 +25,25 @@ export const KontaktinfoForm = ({ defaultValues, onSubmit, isPending, onPrevious
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <VStack gap="space-16">
-                <TextField label="E-post" type="email" {...register('epost')} />
-                <HStack gap="space-16" justify="start">
-                    {onPrevious && (
-                        <Button type="button" variant="secondary" onClick={onPrevious}>
-                            Forrige
-                        </Button>
-                    )}
-                    <Button type="submit" disabled={isPending} loading={isPending}>
-                        Neste
-                    </Button>
-                </HStack>
-            </VStack>
+            <FormLayout.Content>
+                <FormLayout.Questions>
+                    <TextField label="E-post" type="email" {...register('epost')} />
+                </FormLayout.Questions>
+                <FormLayout.FormButtons
+                    back={
+                        onPrevious && {
+                            label: 'Forrige',
+                            onClick: onPrevious,
+                        }
+                    }
+                    next={{
+                        label: 'Neste',
+                        onClick: () => handleSubmit(onSubmit)(),
+                        disabled: isPending,
+                        pending: isPending,
+                    }}
+                />
+            </FormLayout.Content>
         </form>
     );
 };

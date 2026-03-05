@@ -1,9 +1,18 @@
 import { typedIntlHelper } from '@common/utils/intlUtils';
+import { uiMessages } from '@navikt/sif-common-ui';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { appMessages_nb } from './nb/appMessages';
 import { stepMessages_nb } from './nb/stepMessages';
 
+const libMessages = {
+    nb: {
+        ...uiMessages.nb,
+    },
+};
 const nb = {
+    ...libMessages.nb,
+    ...appMessages_nb,
     ...stepMessages_nb,
 };
 

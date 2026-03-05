@@ -1,4 +1,5 @@
-import { Button, Radio, RadioGroup, TextField, VStack } from '@navikt/ds-react';
+import { Radio, RadioGroup, TextField } from '@navikt/ds-react';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
 import { DefaultValues, useForm } from 'react-hook-form';
 
@@ -26,18 +27,26 @@ export const PersonaliaForm = ({ isPending, onSubmit, defaultValues }: Props) =>
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <VStack gap="space-16">
-                <TextField label="Navn" {...register('navn')} />
-                <RadioGroup legend="Har du hobby?" value={harHobby} onChange={(value) => setValue('harHobby', value)}>
-                    <Radio value="ja">Ja</Radio>
-                    <Radio value="nei">Nei</Radio>
-                </RadioGroup>
-                <div>
-                    <Button type="submit" disabled={isPending} loading={isPending}>
-                        Neste
-                    </Button>
-                </div>
-            </VStack>
+            <FormLayout.Content>
+                <FormLayout.Questions>
+                    <TextField label="Navn" {...register('navn')} />
+                    <RadioGroup
+                        legend="Har du hobby?"
+                        value={harHobby}
+                        onChange={(value) => setValue('harHobby', value)}>
+                        <Radio value="ja">Ja</Radio>
+                        <Radio value="nei">Nei</Radio>
+                    </RadioGroup>
+                </FormLayout.Questions>
+                <FormLayout.FormButtons
+                    next={{
+                        label: 'Neste',
+                        onClick: () => handleSubmit(onSubmit)(),
+                        disabled: isPending,
+                        pending: isPending,
+                    }}
+                />
+            </FormLayout.Content>
         </form>
     );
 };

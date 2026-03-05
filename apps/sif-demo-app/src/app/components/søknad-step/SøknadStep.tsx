@@ -1,14 +1,14 @@
-import { Box, Heading } from '@navikt/ds-react';
-import { SøknadFooter } from '@rammeverk/components';
+import { ProgressStep } from '@navikt/sif-common-ui/';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
+import { IncludedStep } from '../../../rammeverk';
+import { SøknadStepPage } from '../../../rammeverk/components/søknad-step-page/SøknadStepPage';
 import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
-import { AppStepConsistencyChecker } from '../../setup/app-step-consistency-checker/AppStepConsistencyChecker';
+import { useAppIntl } from '../../i18n';
 import { Søknadsdata } from '../../types/Søknadsdata';
-import { DefaultPage } from '../default-page/DefaultPage';
 
 interface RenderProps<TSkjemadata> {
     defaultValues: Partial<TSkjemadata>;
@@ -24,12 +24,23 @@ interface Props<TSkjemadata, TSøknadsdata> {
     children: (props: RenderProps<TSkjemadata>) => React.ReactNode;
 }
 
+const getProgressSteps = (includedSteps: IncludedStep[]): ProgressStep[] => {
+    return includedSteps.map((s, index) => ({
+        id: s.stepId,
+        index,
+        label: stepTitles[s.stepId],
+        completed: s.completed,
+    }));
+};
+
 export function SøknadStep<TSkjemadata, TSøknadsdata>({
     stepId,
     toSøknadsdata,
     toFormValues,
     children,
 }: Props<TSkjemadata, TSøknadsdata>) {
+    const { text } = useAppIntl();
+
     const søknadState = useSøknadStore((s) => s.søknadState);
     const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
@@ -40,7 +51,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
 
     const stepFormValues = getStepFormValues<TSkjemadata>(stepId);
 
-    const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
+    const { navigateToNextStep, navigateToPreviousStep, canGoPrevious, navigateToStep } = useStepNavigation({
         stepConfig,
         getIncludedSteps: () => useSøknadStore.getState().includedSteps,
         setCurrentStep,
@@ -65,14 +76,14 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
     const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
 
     return (
-        <DefaultPage documentTitle={stepTitles[stepId]}>
-            <AppStepConsistencyChecker stepId={stepId} />
-            <Heading level="1" size="large">
-                {stepTitles[stepId]}
-            </Heading>
-            {includedSteps.map((s) => s.stepId)}
-            <Box>{children({ defaultValues, onSubmit, isPending, onPrevious })}</Box>
-            <SøknadFooter onAvbryt={avbrytSøknad} />
-        </DefaultPage>
+        <SøknadStepPage
+            documentTitle={stepTitles[stepId]}
+            applicationTitle={text('application.title')}
+            stepId={stepId}
+            steps={getProgressSteps(includedSteps)}
+            onStepSelect={navigateToStep}
+            onAbort={avbrytSøknad}>
+            {children({ defaultValues, onSubmit, isPending, onPrevious })}
+        </SøknadStepPage>
     );
 }

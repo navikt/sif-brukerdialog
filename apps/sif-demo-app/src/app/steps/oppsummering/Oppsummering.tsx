@@ -1,8 +1,8 @@
 import { Alert, Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import { SøknadFooter } from '@rammeverk/components';
 import { useStepNavigation } from '@rammeverk/state';
 import { useNavigate } from 'react-router-dom';
 
+import { StepFooter } from '../../../rammeverk';
 import { søknadStepConfig as stepConfig, SøknadStepId } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
@@ -56,7 +56,7 @@ export const Oppsummering = () => {
                     </HStack>
                 </form>
             </VStack>
-            <SøknadFooter onAvbryt={avbrytSøknad} />
+            <StepFooter onAbort={avbrytSøknad} />
         </VStack>
     );
 };
