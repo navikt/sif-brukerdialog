@@ -83,7 +83,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             steps={getProgressSteps(includedSteps)}
             onStepSelect={navigateToStep}
             onAbort={avbrytSøknad}>
-            {children({ defaultValues, onSubmit, isPending, onPrevious })}
+            {children({ defaultValues, isPending, onSubmit, onPrevious })}
         </SøknadStepPage>
     );
 }

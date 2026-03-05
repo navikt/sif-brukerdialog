@@ -12,11 +12,11 @@ export interface PersonaliaSkjemadata {
 
 interface Props {
     defaultValues: DefaultValues<PersonaliaSkjemadata>;
-    onSubmit: (data: PersonaliaSkjemadata) => void;
     isPending: boolean;
+    onSubmit: (data: PersonaliaSkjemadata) => void;
 }
 
-export const PersonaliaForm = ({ isPending, onSubmit, defaultValues }: Props) => {
+export const PersonaliaForm = ({ isPending, defaultValues, onSubmit }: Props) => {
     const { register, handleSubmit, watch, setValue, getValues } = useForm<PersonaliaSkjemadata>({
         defaultValues,
     });

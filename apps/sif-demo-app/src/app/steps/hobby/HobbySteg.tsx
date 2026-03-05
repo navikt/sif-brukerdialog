@@ -12,7 +12,7 @@ export const HobbySteg = () => (
         stepId={SøknadStepId.HOBBY}
         toSøknadsdata={toSøknadsdata}
         toFormValues={toFormValues}>
-        {({ defaultValues, onSubmit, isPending, onPrevious }) => (
+        {({ defaultValues, isPending, onSubmit, onPrevious }) => (
             <HobbyForm
                 defaultValues={defaultValues}
                 isPending={isPending}

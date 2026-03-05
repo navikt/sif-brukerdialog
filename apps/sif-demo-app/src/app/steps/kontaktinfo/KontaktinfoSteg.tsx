@@ -12,7 +12,7 @@ export const KontaktinfoSteg = () => (
         stepId={SøknadStepId.KONTAKT}
         toSøknadsdata={toSøknadsdata}
         toFormValues={toFormValues}>
-        {({ defaultValues, onSubmit, isPending, onPrevious }) => (
+        {({ defaultValues, isPending, onSubmit, onPrevious }) => (
             <KontaktinfoForm
                 defaultValues={defaultValues}
                 isPending={isPending}
