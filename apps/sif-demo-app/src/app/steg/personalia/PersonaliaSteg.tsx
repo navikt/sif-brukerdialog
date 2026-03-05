@@ -1,4 +1,4 @@
-import { SøknadStep } from '../../components/SøknadStep';
+import { SøknadStep } from '../../components/søknad-step/SøknadStep';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { PersonaliaSøknadsdata } from '../../types/Søknadsdata';
 import { PersonaliaForm, PersonaliaSkjemadata } from './PersonaliaForm';

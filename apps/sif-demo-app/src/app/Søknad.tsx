@@ -2,7 +2,7 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { SøknadIndexRedirect,StegRouteGuard } from '../rammeverk';
+import { SøknadIndexRedirect, StegRouteGuard } from '../rammeverk';
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
 import { isSøknadStepIncluded, søknadStepConfig, SøknadStepId, søknadStepOrder } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
@@ -35,45 +35,37 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
 
     return (
         <StepFormValuesProvider initialValues={mellomlagring?.skjemadata}>
-            <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-                <Routes>
-                    <Route path="/" element={<VelkommenPage />} />
-                    <Route path="/kvittering" element={<KvitteringPage />} />
-                    <Route path="/soknad">
-                        <Route
-                            index
-                            element={
-                                <SøknadIndexRedirect stepConfig={søknadStepConfig} mellomlagretStepId={currentStepId} />
-                            }
-                        />
-                        <Route
-                            element={
-                                <StegRouteGuard
-                                    currentStepId={currentStepId}
-                                    isInitialized={!!søknadState}
-                                    isStepIncluded={(stepId) =>
-                                        isSøknadStepIncluded(stepId, søknadState?.søknadsdata ?? {})
-                                    }
-                                    getStepIdFromPath={getStepIdFraPath}
-                                    getPathForStep={getPathForStep}
-                                />
-                            }>
-                            <Route
-                                path={søknadStepConfig[SøknadStepId.PERSONALIA].route}
-                                element={<PersonaliaSteg />}
+            <Routes>
+                <Route path="/" element={<VelkommenPage />} />
+                <Route path="/kvittering" element={<KvitteringPage />} />
+                <Route path="/soknad">
+                    <Route
+                        index
+                        element={
+                            <SøknadIndexRedirect stepConfig={søknadStepConfig} mellomlagretStepId={currentStepId} />
+                        }
+                    />
+                    <Route
+                        element={
+                            <StegRouteGuard
+                                currentStepId={currentStepId}
+                                isInitialized={!!søknadState}
+                                isStepIncluded={(stepId) =>
+                                    isSøknadStepIncluded(stepId, søknadState?.søknadsdata ?? {})
+                                }
+                                getStepIdFromPath={getStepIdFraPath}
+                                getPathForStep={getPathForStep}
                             />
-                            <Route path={søknadStepConfig[SøknadStepId.HOBBY].route} element={<HobbySteg />} />
-                            <Route path={søknadStepConfig[SøknadStepId.KONTAKT].route} element={<KontaktinfoSteg />} />
-                            <Route
-                                path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route}
-                                element={<Oppsummering />}
-                            />
-                        </Route>
-                        <Route path="*" element={<Navigate to="/" replace />} />
+                        }>
+                        <Route path={søknadStepConfig[SøknadStepId.PERSONALIA].route} element={<PersonaliaSteg />} />
+                        <Route path={søknadStepConfig[SøknadStepId.HOBBY].route} element={<HobbySteg />} />
+                        <Route path={søknadStepConfig[SøknadStepId.KONTAKT].route} element={<KontaktinfoSteg />} />
+                        <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<Oppsummering />} />
                     </Route>
                     <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-            </div>
+                </Route>
+                <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
         </StepFormValuesProvider>
     );
 };

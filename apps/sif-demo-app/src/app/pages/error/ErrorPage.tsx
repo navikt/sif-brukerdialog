@@ -1,4 +1,6 @@
-import { Alert, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
+
+import { AppPage } from '../../components/app-page/AppPage';
 
 interface ErrorPageProps {
     error: string;
@@ -6,9 +8,9 @@ interface ErrorPageProps {
 
 export const ErrorPage = ({ error }: ErrorPageProps) => {
     return (
-        <VStack gap="space-16" style={{ minHeight: '50vh' }}>
+        <AppPage>
             <Heading size="large">Noe gikk galt</Heading>
             <Alert variant="error">{error}</Alert>
-        </VStack>
+        </AppPage>
     );
 };

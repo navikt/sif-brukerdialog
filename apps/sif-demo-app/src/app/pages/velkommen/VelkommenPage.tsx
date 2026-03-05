@@ -1,6 +1,7 @@
-import { Button, Heading, VStack } from '@navikt/ds-react';
+import { Button, Heading } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
+import { AppPage } from '../../components/app-page/AppPage';
 import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 
@@ -15,10 +16,10 @@ export const VelkommenPage = () => {
     };
 
     return (
-        <VStack gap="space-16">
+        <AppPage>
             <Heading size="xlarge">Velkommen til demo-søknaden</Heading>
             <p>Dette er en demo av soknad-rammeverk.</p>
             <Button onClick={handleStart}>Start søknad</Button>
-        </VStack>
+        </AppPage>
     );
 };

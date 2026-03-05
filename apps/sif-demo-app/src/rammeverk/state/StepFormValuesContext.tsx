@@ -1,4 +1,4 @@
-import { createContext, ReactNode,useCallback, useContext, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 
 /**
  * StepFormValuesContext
@@ -7,7 +7,7 @@ import { createContext, ReactNode,useCallback, useContext, useState } from 'reac
  * 1. Gjenopprette skjemaverdier ved browser back/forward
  * 2. Initialisere fra mellomlagret skjemadata ved reload
  *
- * Ved submit → clearAllSteps() kalles for å fjerne usubmittede verdier.
+ * Ved submit → clearAllStepFormValues() kalles for å fjerne usubmittede verdier.
  */
 
 type StepFormValues = Record<string, Record<string, unknown> | undefined>;
@@ -16,7 +16,7 @@ interface StepFormValuesContextValue {
     stepFormValues: StepFormValues;
     setStepFormValues: (stepId: string, formValues: Record<string, unknown>) => void;
     clearStepFormValues: (stepId: string) => void;
-    clearAllSteps: () => void;
+    clearAllStepFormValues: () => void;
     getStepFormValues: <T = Record<string, unknown>>(stepId: string) => Partial<T> | undefined;
 }
 
@@ -27,6 +27,11 @@ interface Props {
     initialValues?: Record<string, object | undefined>;
 }
 
+/**
+ * StepFormValuesProvider
+ * Provider for StepFormValuesContext. Skal wrappe hele søknadsflyten for å sikre at
+ * skjemadata bevares ved back/forward navigering i nettleser og reload.
+ */
 export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
     const [values, setValues] = useState<StepFormValues>((initialValues as StepFormValues) ?? {});
 
@@ -38,7 +43,7 @@ export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
         setValues((prev) => ({ ...prev, [stepId]: undefined }));
     }, []);
 
-    const clearAllSteps = useCallback(() => {
+    const clearAllStepFormValues = useCallback(() => {
         setValues({});
     }, []);
 
@@ -55,7 +60,7 @@ export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
                 stepFormValues: values,
                 setStepFormValues,
                 clearStepFormValues,
-                clearAllSteps,
+                clearAllStepFormValues,
                 getStepFormValues,
             }}>
             {children}

@@ -1,10 +1,10 @@
 import { InvalidStepInfo, StepFormValuesGuard } from '@rammeverk/components';
 import { useNavigate } from 'react-router-dom';
 
-import { søknadStepConfig, SøknadStepId, søknadStepOrder,stepTitles } from '../config/søknadStepConfig';
-import { useSøknadStore } from '../hooks/useSøknadStore';
-import { Søknadsdata } from '../types/Søknadsdata';
-import { formValuesToSøknadsdata } from '../utils/formValuesToSøknadsdata';
+import { søknadStepConfig, SøknadStepId, søknadStepOrder, stepTitles } from '../../config/søknadStepConfig';
+import { useSøknadStore } from '../../hooks/useSøknadStore';
+import { Søknadsdata } from '../../types/Søknadsdata';
+import { formValuesToSøknadsdata } from '../../utils/formValuesToSøknadsdata';
 
 interface SøknadStepGuardProps {
     stepId: SøknadStepId;

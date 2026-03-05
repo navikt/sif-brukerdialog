@@ -1,4 +1,4 @@
-import { SøknadStep } from '../../components/SøknadStep';
+import { SøknadStep } from '../../components/søknad-step/SøknadStep';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { HobbySøknadsdata } from '../../types/Søknadsdata';
 import { HobbyForm, HobbySkjemadata } from './HobbyForm';

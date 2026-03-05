@@ -1,4 +1,4 @@
-import { Box, Heading, VStack } from '@navikt/ds-react';
+import { Box, Heading } from '@navikt/ds-react';
 import { SøknadFooter } from '@rammeverk/components';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
@@ -7,13 +7,14 @@ import {
     SøknadStepId,
     søknadStepOrder as stepOrder,
     stepTitles,
-} from '../config/søknadStepConfig';
-import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
-import { useSøknadStepStatus } from '../hooks/useSøknadStepStatus';
-import { useSøknadStore } from '../hooks/useSøknadStore';
-import { Søknadsdata } from '../types/Søknadsdata';
-import { SøknadStepGuard } from './SøknadStepGuard';
+} from '../../config/søknadStepConfig';
+import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
+import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
+import { useSøknadStepStatus } from '../../hooks/useSøknadStepStatus';
+import { useSøknadStore } from '../../hooks/useSøknadStore';
+import { Søknadsdata } from '../../types/Søknadsdata';
+import { AppPage } from '../app-page/AppPage';
+import { SøknadStepGuard } from '../søknad-step-guard/SøknadStepGuard';
 
 interface RenderProps<TSkjemadata> {
     defaultValues: Partial<TSkjemadata>;
@@ -40,7 +41,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
-    const { clearAllSteps, getStepFormValues } = useStepFormValues();
+    const { clearAllStepFormValues, getStepFormValues } = useStepFormValues();
 
     const stepFormValues = getStepFormValues<TSkjemadata>(stepId);
     const stepStatus = useSøknadStepStatus();
@@ -64,20 +65,20 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
         const mapped = toSøknadsdata(data);
         setSøknadsdata({ [stepId]: mapped } as Partial<Søknadsdata>);
         await lagreSøknad();
-        clearAllSteps();
+        clearAllStepFormValues();
         navigateToNextStep(stepId);
     };
 
     const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
 
     return (
-        <VStack gap="space-24">
+        <AppPage>
             <SøknadStepGuard stepId={stepId} />
             <Heading level="1" size="large">
                 {stepTitles[stepId]}
             </Heading>
             <Box>{children({ defaultValues, onSubmit, isPending, onPrevious })}</Box>
             <SøknadFooter onAvbryt={avbrytSøknad} />
-        </VStack>
+        </AppPage>
     );
 }

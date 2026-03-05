@@ -1,10 +1,10 @@
 import { useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@navikt/sif-common-query';
 import { useMemo } from 'react';
 
-import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config/appConfig';
-import { ErrorPage, LoadingPage } from '../pages';
-import { Søknad } from '../Søknad';
-import { MellomlagringMetaData,SøknadMellomlagring } from '../types/Mellomlagring';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../../config/appConfig';
+import { ErrorPage, LoadingPage } from '../../pages';
+import { Søknad } from '../../Søknad';
+import { MellomlagringMetaData, SøknadMellomlagring } from '../../types/Mellomlagring';
 
 export const AppInfoLoader = () => {
     const søker = useSøker();

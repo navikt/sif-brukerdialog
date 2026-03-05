@@ -1,6 +1,6 @@
 import '@navikt/ds-css';
 
-import { AppInfoLoader } from '@app/components/AppInfoLoader';
+import { AppInfoLoader } from '@app/components/app-info-loader/AppInfoLoader';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
@@ -11,7 +11,7 @@ import { initApiClients } from './utils/initApiClients';
 
 initApiClients();
 
-import { SøknadTilgjengeligGuard } from './app/components/søknad-app-status-guard/SøknadTilgjengeligGuard';
+import { SøknadTilgjengeligGuard } from './app/components/app-tilgjengelig-guard/AppTilgjengeligGuard';
 
 const queryClient = new QueryClient();
 
