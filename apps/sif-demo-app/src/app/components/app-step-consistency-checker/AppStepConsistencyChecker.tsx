@@ -1,4 +1,4 @@
-import { InvalidStepInfo, StepFormValuesGuard } from '@rammeverk/components';
+import { InvalidStepInfo, StepConsistencyChecker } from '@rammeverk/components';
 import { useNavigate } from 'react-router-dom';
 
 import { søknadStepConfig, SøknadStepId, søknadStepOrder, stepTitles } from '../../config/søknadStepConfig';
@@ -6,15 +6,16 @@ import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { Søknadsdata } from '../../types/Søknadsdata';
 import { formValuesToSøknadsdata } from '../../utils/formValuesToSøknadsdata';
 
-interface ValidSøknadStepGuardProps {
+interface Props {
     stepId: SøknadStepId;
 }
 
 /**
- * App-spesifikk wrapper rundt StepFormValuesGuard.
- * Injiserer søknadsdata og viser ugyldig steg-informasjon.
+ * App-spesifikk wrapper rundt StepConsistencyChecker.
+ * Injiserer søknadsdata og viser ugyldig steg-informasjon hvis skjemdata
+ * og søknadsdata ikke stemmer overens.
  */
-export const ValidSøknadStepGuard = ({ stepId }: ValidSøknadStepGuardProps) => {
+export const AppStepConsistencyChecker = ({ stepId }: Props) => {
     const navigate = useNavigate();
     const søknadsdata = useSøknadStore((s) => s.søknadState?.søknadsdata);
 
@@ -23,7 +24,7 @@ export const ValidSøknadStepGuard = ({ stepId }: ValidSøknadStepGuardProps) =>
     };
 
     return (
-        <StepFormValuesGuard
+        <StepConsistencyChecker
             currentStepId={stepId}
             stepOrder={søknadStepOrder}
             getSøknadsdataForStep={getSøknadsdataForStep}
@@ -39,6 +40,6 @@ export const ValidSøknadStepGuard = ({ stepId }: ValidSøknadStepGuardProps) =>
                     />
                 )
             }
-        </StepFormValuesGuard>
+        </StepConsistencyChecker>
     );
 };

@@ -8,7 +8,7 @@ import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { Søknadsdata } from '../../types/Søknadsdata';
 import { AppPage } from '../app-page/AppPage';
-import { ValidSøknadStepGuard } from '../valid-søknad-step-guard/ValidSøknadStepGuard';
+import { AppStepConsistencyChecker } from '../app-step-consistency-checker/AppStepConsistencyChecker';
 
 interface RenderProps<TSkjemadata> {
     defaultValues: Partial<TSkjemadata>;
@@ -66,7 +66,7 @@ export function AppSøknadStep<TSkjemadata, TSøknadsdata>({
 
     return (
         <AppPage>
-            <ValidSøknadStepGuard stepId={stepId} />
+            <AppStepConsistencyChecker stepId={stepId} />
             <Heading level="1" size="large">
                 {stepTitles[stepId]}
             </Heading>

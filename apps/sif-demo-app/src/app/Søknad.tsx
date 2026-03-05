@@ -2,7 +2,7 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { SøknadIndexRedirect, StepRouteGuard } from '../rammeverk';
+import { StepRouteGuard } from '../rammeverk';
 import { StepFormValuesProvider } from '../rammeverk/state/StepFormValuesContext';
 import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
@@ -35,7 +35,11 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                     <Route
                         index
                         element={
-                            <SøknadIndexRedirect stepConfig={søknadStepConfig} mellomlagretStepId={currentStepId} />
+                            currentStepId && søknadStepConfig[currentStepId]?.route ? (
+                                <Navigate to={`/soknad/${søknadStepConfig[currentStepId].route}`} replace />
+                            ) : (
+                                <Navigate to="/" replace />
+                            )
                         }
                     />
                     <Route

@@ -1,4 +1,4 @@
-import { ReactNode,useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 
 import { useStepFormValues } from '../state/StepFormValuesContext';
 
@@ -9,7 +9,7 @@ type FormValuesToSøknadsdataFn = (
 
 type GetSøknadsdataForStepFn = (stepId: string) => Record<string, unknown> | undefined;
 
-interface StepFormValuesGuardProps {
+interface StepConsistencyCheckerProps {
     currentStepId: string;
     stepOrder: string[];
     getSøknadsdataForStep: GetSøknadsdataForStepFn;
@@ -23,31 +23,31 @@ const defaultIsEqual = (a: unknown, b: unknown): boolean => {
 };
 
 /**
- * Komponent som sjekker om formValues for tidligere steg matcher lagret søknadsdata.
+ * Sjekker om formValues for tidligere steg matcher lagret søknadsdata.
  * Brukes for å oppdage om bruker har endret data uten å submitte (f.eks. via nettleserens forward-knapp).
  *
  * Render prop-pattern gir appen full kontroll over hvordan advarselen rendres.
  *
  * @example
  * ```tsx
- * <StepFormValuesGuard
+ * <StepConsistencyChecker
  *   currentStepId={stepId}
  *   stepOrder={stepOrder}
  *   getSøknadsdataForStep={(id) => søknadsdata[id]}
  *   formValuesToSøknadsdata={formValuesToSøknadsdata}
  * >
  *   {(invalidStepId) => invalidStepId && <Alert>Du har ulagrede endringer</Alert>}
- * </StepFormValuesGuard>
+ * </StepConsistencyChecker>
  * ```
  */
-export const StepFormValuesGuard = ({
+export const StepConsistencyChecker = ({
     currentStepId,
     stepOrder,
     getSøknadsdataForStep,
     formValuesToSøknadsdata,
     isEqual = defaultIsEqual,
     children,
-}: StepFormValuesGuardProps) => {
+}: StepConsistencyCheckerProps) => {
     const { stepFormValues } = useStepFormValues();
 
     const invalidStepId = useMemo(() => {
