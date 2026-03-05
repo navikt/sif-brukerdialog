@@ -1,7 +1,7 @@
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
 import { getProgressSteps } from '../../../rammeverk';
-import { SøknadStepPage } from '../../../rammeverk/components/søknad-step-page/SøknadStepPage';
+import { StepPage } from '../../../rammeverk/components/step-page/StepPage';
 import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
@@ -66,7 +66,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
     const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
 
     return (
-        <SøknadStepPage
+        <StepPage
             documentTitle={stepTitles[stepId]}
             applicationTitle={text('application.title')}
             stepId={stepId}
@@ -74,6 +74,6 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             onStepSelect={navigateToStep}
             onAbort={avbrytSøknad}>
             {children({ defaultValues, isPending, onSubmit, onPrevious })}
-        </SøknadStepPage>
+        </StepPage>
     );
 }

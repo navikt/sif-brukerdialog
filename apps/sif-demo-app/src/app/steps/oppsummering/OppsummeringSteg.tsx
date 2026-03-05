@@ -3,7 +3,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
 import { getProgressSteps } from '../../../rammeverk';
-import { SøknadStepPage } from '../../../rammeverk/components/søknad-step-page/SøknadStepPage';
+import { StepPage } from '../../../rammeverk/components/step-page/StepPage';
 import { søknadStepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
@@ -32,7 +32,7 @@ export const OppsummeringSteg = () => {
     };
 
     return (
-        <SøknadStepPage
+        <StepPage
             documentTitle="Oppsummering"
             applicationTitle={text('application.title')}
             stepId={stepId}
@@ -89,6 +89,6 @@ export const OppsummeringSteg = () => {
                     />
                 </FormLayout.Summary>
             </form>
-        </SøknadStepPage>
+        </StepPage>
     );
 };

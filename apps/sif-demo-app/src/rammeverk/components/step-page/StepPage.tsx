@@ -16,7 +16,7 @@ interface Props {
     onResumeLater?: () => void;
 }
 
-export function SøknadStepPage({
+export function StepPage({
     documentTitle,
     applicationTitle,
     stepId,
