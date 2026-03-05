@@ -13,14 +13,14 @@ export const handlers = [
     http.get(`**/mellomlagring/:ytelse`, () => HttpResponse.json(store.get().mellomlagring ?? {})),
 
     http.post(`**/mellomlagring/:ytelse`, async ({ request }) => {
-        await delay(400);
+        await delay(50);
         const data = (await request.json()) as Record<string, unknown>;
         store.update({ mellomlagring: data });
         return HttpResponse.json({});
     }),
 
     http.put(`**/mellomlagring/:ytelse`, async ({ request }) => {
-        await delay(400);
+        await delay(50);
         const data = (await request.json()) as Record<string, unknown>;
         store.update({ mellomlagring: data });
         return HttpResponse.json({});
