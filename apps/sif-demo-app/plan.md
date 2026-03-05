@@ -131,37 +131,58 @@ export enum StegId {
 }
 ```
 
-### 7. Callback-basert stegstatus
+### 7. Derivert stegstatus i store
 
-`getActiveStep()` og hooks tar callbacks fra appen:
+`includedSteps` beregnes og lagres atomisk i store når søknadsdata endres.
+Stegkonfig definerer `isCompleted`/`isIncluded` callbacks:
 
 ```typescript
-const stepStatus = { isCompleted: (id) => søknadsdata[id] !== undefined };
-const activeSteps = getActiveStep(stepOrder, stepStatus);
+const stepConfig: StepConfig<Søknadsdata> = {
+    [StepId.PERSONALIA]: {
+        id: StepId.PERSONALIA,
+        route: 'om-deg',
+        isCompleted: (s) => s.personalia !== undefined,
+    },
+    [StepId.HOBBY]: {
+        id: StepId.HOBBY,
+        route: 'hobby',
+        isIncluded: (s) => s.personalia?.harHobby === 'ja',
+        isCompleted: (s) => s.hobby !== undefined,
+    },
+};
+
+// Store opprettes med stepOrder og stepConfig
+export const useSøknadStore = createSøknadStore<SøknadState, Søknadsdata>({
+    stepOrder,
+    stepConfig,
+});
+
+// includedSteps er alltid synkronisert med søknadsdata
+const includedSteps = useSøknadStore((s) => s.includedSteps);
 ```
 
 ---
 
 ## Hooks og komponenter
 
-| API                         | Pakke            | Returnerer/Props                                                 |
-| --------------------------- | ---------------- | ---------------------------------------------------------------- |
-| `createSøknadStore()`       | rammeverk        | Factory for app Zustand store                                    |
-| `createMellomlagringHook()` | rammeverk        | Factory for mellomlagring hook                                   |
-| `useStepNavigation()`       | rammeverk        | `{ navigateToStep, navigateToNextStep, navigateToPreviousStep }` |
-| `usePersistFormValues()`    | rammeverk        | Lagrer formValues ved unmount                                    |
-| `useStepFormValuesStatus()` | rammeverk        | Validerer at tidligere steg er submittet                         |
-| `StepRouteGuard`            | rammeverk        | Routing guard (props: currentStepId, isInitialized)              |
-| `MellomlagringObserver`     | rammeverk        | Auto-lagrer ved børMellomlagres                                  |
-| `SøknadFooter`              | rammeverk        | Footer med avbryt-knapp (prop: onAvbryt)                         |
-| `InvalidStepInfo`           | rammeverk        | Advarsel når bruker har usubmittede endringer                    |
-| `StepFormValuesProvider`    | rammeverk        | Context provider for step form values                            |
-| `useYtelseMellomlagring()`  | sif-common-query | `{ data, lagre, slett, isLoading, ... }`                         |
-| `useSøknadStore()`          | app              | App-state (søknadState, init, submitStep, ...)                   |
-| `useMellomlagring()`        | app              | `{ lagreMellomlagring, slettMellomlagring }`                     |
-| `useAvbrytSøknad()`         | app              | Callback for å avbryte søknad                                    |
-| `useSøknadsdataStatus()`    | app              | App-spesifikk wrapper for useStepFormValuesStatus                |
-| `FormSubmitGuard`           | app              | Kombinerer persistering og validering                            |
+| API                         | Pakke            | Returnerer/Props                                           |
+| --------------------------- | ---------------- | ---------------------------------------------------------- |
+| `createSøknadStore()`       | rammeverk        | Factory for app Zustand store                              |
+| `createMellomlagringHook()` | rammeverk        | Factory for mellomlagring hook                             |
+| `useStepNavigation()`       | rammeverk        | Navigasjon med fersk state via `getIncludedSteps` callback |
+| `usePersistFormValues()`    | rammeverk        | Lagrer formValues ved unmount                              |
+| `useStepFormValuesStatus()` | rammeverk        | Validerer at tidligere steg er submittet                   |
+| `StepRouteGuard`            | rammeverk        | Routing guard (props: steps, currentStepId, isInitialized) |
+| `MellomlagringObserver`     | rammeverk        | Auto-lagrer ved børMellomlagres                            |
+| `SøknadFooter`              | rammeverk        | Footer med avbryt-knapp (prop: onAvbryt)                   |
+| `InvalidStepInfo`           | rammeverk        | Advarsel når bruker har usubmittede endringer              |
+| `StepFormValuesProvider`    | rammeverk        | Context provider for step form values                      |
+| `useYtelseMellomlagring()`  | sif-common-query | `{ data, lagre, slett, isLoading, ... }`                   |
+| `useSøknadStore()`          | app              | App-state (søknadState, init, submitStep, ...)             |
+| `useMellomlagring()`        | app              | `{ lagreMellomlagring, slettMellomlagring }`               |
+| `useAvbrytSøknad()`         | app              | Callback for å avbryte søknad                              |
+| `useSøknadsdataStatus()`    | app              | App-spesifikk wrapper for useStepFormValuesStatus          |
+| `FormSubmitGuard`           | app              | Kombinerer persistering og validering                      |
 
 ---
 
@@ -183,8 +204,9 @@ Se [log.md](log.md) for detaljert fremdrift.
 - [x] Rammeverk-kjerne: types, state, routing, hooks, components
 - [x] Demo med 4 steg (Personalia, Kontakt, Kjæledyr, Oppsummering)
 - [x] StegId enum og forenklet stegConfig
-- [x] `getActiveStep()` utility for lineær flyt
-- [x] Separasjon av søknadsdata fra rammeverket (callback-basert)
+- [x] `getIncludedSteps()` utility for lineær flyt med dynamiske steg
+- [x] Separasjon av søknadsdata fra rammeverket
+- [x] **Derivert stegstatus** - `includedSteps` beregnes atomisk i store
 - [x] `createSøknadStore` factory med automatisk børMellomlagres
 - [x] `createMellomlagringHook` factory uten Zustand-typer
 - [x] Forenklet MellomlagringObserver og SøknadFooter
