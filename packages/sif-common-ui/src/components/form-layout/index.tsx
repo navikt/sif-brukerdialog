@@ -153,7 +153,7 @@ const FormButtons = ({
                     onClick={onPrevious}
                     disabled={previousDisabled}
                     icon={<ArrowLeftIcon aria-hidden />}>
-                    {previousLabel || 'Tilbake'}
+                    {previousLabel || 'Forrige steg'}
                 </Button>
             )}
             <Button
@@ -163,7 +163,7 @@ const FormButtons = ({
                 disabled={submitPending || submitDisabled}
                 iconPosition="right"
                 icon={isFinalSubmit ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}>
-                {submitLabel || isFinalSubmit ? 'Send inn' : 'Neste'}
+                {submitLabel || isFinalSubmit ? 'Send inn' : 'Neste steg'}
             </Button>
         </HStack>
     );
