@@ -55,8 +55,9 @@ export const StartPage = ({ title, guide, children, onStart }: Props) => {
                     <div>
                         <Box paddingBlock="space-0 space-32">
                             <CheckboxGroup
-                                legend="Transportmiddel"
-                                error={error ? 'Du må bekrefte før du kan starte søknaden.' : undefined}>
+                                legend="Jeg bekrefter at jeg vil svare så riktig som jeg kan"
+                                hideLegend={true}
+                                error={error ? 'Du må bekrefte at du vil svare så riktig som du kan' : undefined}>
                                 <Checkbox
                                     name="bekrefter"
                                     onChange={(evt) => {
