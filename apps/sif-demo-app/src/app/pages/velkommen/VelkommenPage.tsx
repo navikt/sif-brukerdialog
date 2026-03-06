@@ -1,6 +1,6 @@
 import { BodyLong, Link, VStack } from '@navikt/ds-react';
 import { useStepFormValues } from '@rammeverk';
-import SoknadVelkommenPage from '@rammeverk/components/velkommen-page/VelkommenPage';
+import { StartPage } from '@rammeverk/components/start-page/StartPage';
 import { useNavigate } from 'react-router-dom';
 
 import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
@@ -23,7 +23,7 @@ export const VelkommenPage = () => {
     };
 
     return (
-        <SoknadVelkommenPage
+        <StartPage
             onStart={handleStart}
             guide={{
                 navn: søknadState?.søker.fornavn || '',
@@ -45,6 +45,6 @@ export const VelkommenPage = () => {
                     </Link>
                 </BodyLong>
             </VStack>
-        </SoknadVelkommenPage>
+        </StartPage>
     );
 };
