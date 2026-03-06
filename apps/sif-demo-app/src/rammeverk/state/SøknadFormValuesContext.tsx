@@ -8,16 +8,16 @@ import { createContext, ReactNode, useCallback, useContext, useState } from 'rea
  * 2. Initialisere fra mellomlagret skjemadata ved reload
  */
 
-export type FormValues = Record<string, unknown>;
+export type StepFormValues = Record<string, unknown>;
 
-export type SøknadFormValues = Record<string, FormValues | undefined>;
+export type SøknadFormValues = Record<string, StepFormValues | undefined>;
 
 interface SøknadFormValuesContextValue {
     søknadFormValues: SøknadFormValues;
     clearSøknadFormValues: () => void;
-    setFormValuesForStep: (stepId: string, formValues: FormValues) => void;
+    setFormValuesForStep: (stepId: string, formValues: StepFormValues) => void;
     clearFormValuesForStep: (stepId: string) => void;
-    getFormValuesForStep: <T = FormValues>(stepId: string) => Partial<T> | undefined;
+    getFormValuesForStep: <T = StepFormValues>(stepId: string) => Partial<T> | undefined;
 }
 
 const SøknadFormValuesContext = createContext<SøknadFormValuesContextValue | null>(null);
@@ -39,7 +39,7 @@ export const SøknadFormValuesProvider = ({ children, initialValues }: Props) =>
         setValues({});
     }, []);
 
-    const setFormValuesForStep = useCallback((stepId: string, formValues: FormValues) => {
+    const setFormValuesForStep = useCallback((stepId: string, formValues: StepFormValues) => {
         setValues((prev) => ({ ...prev, [stepId]: formValues }));
     }, []);
 
@@ -48,7 +48,7 @@ export const SøknadFormValuesProvider = ({ children, initialValues }: Props) =>
     }, []);
 
     const getFormValuesForStep = useCallback(
-        <T = FormValues,>(stepId: string): Partial<T> | undefined => {
+        <T = StepFormValues,>(stepId: string): Partial<T> | undefined => {
             return values[stepId] as Partial<T> | undefined;
         },
         [values],

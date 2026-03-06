@@ -1,12 +1,12 @@
 import { Alert, Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
-import { FormValues } from '@rammeverk/state/SøknadFormValuesContext';
+import { StepFormValues } from '@rammeverk/state/SøknadFormValuesContext';
 import { DefaultValues, useForm } from 'react-hook-form';
 
 import { SøknadStepId } from '../../config/søknadStepConfig';
 
-export interface BarnFormValues extends FormValues {
+export interface BarnFormValues extends StepFormValues {
     stemmerInfoOmBarn: 'ja' | 'nei';
 }
 

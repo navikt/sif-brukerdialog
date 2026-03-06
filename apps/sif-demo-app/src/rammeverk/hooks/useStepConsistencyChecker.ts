@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 
 import { useSøknadFormValues } from '../state';
-import { FormValues } from '../state/SøknadFormValuesContext';
+import { StepFormValues } from '../state/SøknadFormValuesContext';
 import { StepSøknadsdata } from '../types';
 
-type FormValuesToSøknadsdataFn = (stepId: string, formValues: FormValues) => StepSøknadsdata | undefined;
+type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => StepSøknadsdata | undefined;
 
 type GetSøknadsdataForStepFn = (stepId: string) => StepSøknadsdata | undefined;
 
