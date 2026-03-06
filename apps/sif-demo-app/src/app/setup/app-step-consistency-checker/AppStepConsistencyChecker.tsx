@@ -1,4 +1,5 @@
 import { StepConsistencyChecker, StepInconsistencyMessage } from '@rammeverk/components';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { søknadStepConfig, SøknadStepId, søknadStepOrder, stepTitles } from '../../config/søknadStepConfig';
@@ -19,9 +20,10 @@ export const AppStepConsistencyChecker = ({ stepId }: Props) => {
     const navigate = useNavigate();
     const søknadsdata = useSøknadStore((s) => s.søknadState?.søknadsdata);
 
-    const getSøknadsdataForStep = (id: string): Record<string, unknown> | undefined => {
-        return søknadsdata?.[id as keyof Søknadsdata];
-    };
+    const getSøknadsdataForStep = useCallback(
+        (id: string): Record<string, unknown> | undefined => søknadsdata?.[id as keyof Søknadsdata],
+        [søknadsdata],
+    );
 
     return (
         <StepConsistencyChecker
