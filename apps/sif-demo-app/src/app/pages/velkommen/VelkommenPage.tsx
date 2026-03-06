@@ -1,8 +1,8 @@
 import { BodyLong, Link, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
-import { useStepFormValues } from '../../../rammeverk';
-import SoknadVelkommenPage from '../../../rammeverk/components/velkommen-page/VelkommenPage';
+import { useStepFormValues } from '@rammeverk';
+import SoknadVelkommenPage from '@rammeverk/components/velkommen-page/VelkommenPage';
 import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';

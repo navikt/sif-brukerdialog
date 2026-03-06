@@ -1,6 +1,6 @@
 import { Loader, VStack } from '@navikt/ds-react';
 
-import { DefaultPage } from '../../../rammeverk/components/default-page/DefaultPage';
+import { DefaultPage } from '@rammeverk/components/default-page/DefaultPage';
 
 export const LoadingPage = () => {
     return (

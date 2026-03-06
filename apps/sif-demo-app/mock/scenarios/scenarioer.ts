@@ -10,14 +10,16 @@ const defaultScenarioData: ScenarioData = {
         etternavn: 'Testesen',
     },
 
-    barn: [
-        {
-            fornavn: 'Alfa',
-            etternavn: 'Testesen',
-            aktørId: '2811762539343',
-            fødselsdato: '2019-06-08',
-        },
-    ],
+    barn: {
+        barn: [
+            {
+                fornavn: 'Alfa',
+                etternavn: 'Testesen',
+                aktørId: '2811762539343',
+                fødselsdato: '2019-06-08',
+            },
+        ],
+    },
 
     mellomlagring: undefined,
 };

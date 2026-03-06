@@ -18,7 +18,9 @@ export const AppInfoLoader = () => {
     const registrerteBarn = useRegistrerteBarn();
 
     const metadata = useMemo<MellomlagringMetaData | undefined>(() => {
-        if (!søker.isFetched || !registrerteBarn.isFetched || !søker.data || !registrerteBarn.data) return undefined;
+        if (!søker.isFetched || !registrerteBarn.isFetched || !søker.data || !registrerteBarn.data) {
+            return undefined;
+        }
         return {
             MELLOMLAGRING_VERSJON,
             søker: søker.data,
@@ -28,7 +30,7 @@ export const AppInfoLoader = () => {
 
     const mellomlagring = useYtelseMellomlagring<SøknadMellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
-    const isLoading = søker.isLoading || registrerteBarn.isLoading || (!!søker.data && !mellomlagring.isFetched);
+    const isLoading = søker.isLoading || registrerteBarn.isLoading || (metadata && mellomlagring.isLoading);
     const isError = søker.isError || registrerteBarn.isError || mellomlagring.isError;
 
     if (isLoading) {
