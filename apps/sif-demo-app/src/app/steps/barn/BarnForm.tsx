@@ -3,8 +3,8 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
 import { DefaultValues, useForm } from 'react-hook-form';
 
+import { FormValues } from '../../../rammeverk/state/StepFormValuesContext';
 import { SøknadStepId } from '../../config/søknadStepConfig';
-import { FormValues } from '../../utils/formValuesToSøknadsdata';
 
 export interface BarnFormValues extends FormValues {
     stemmerInfoOmBarn: 'ja' | 'nei';

@@ -1,11 +1,9 @@
 import { useMemo } from 'react';
 
 import { useStepFormValues } from '../state';
+import { FormValues } from '../state/StepFormValuesContext';
 
-type FormValuesToSøknadsdataFn = (
-    stepId: string,
-    formValues: Record<string, unknown>,
-) => Record<string, unknown> | undefined;
+type FormValuesToSøknadsdataFn = (stepId: string, formValues: FormValues) => Record<string, unknown> | undefined;
 
 type GetSøknadsdataForStepFn = (stepId: string) => Record<string, unknown> | undefined;
 
@@ -26,7 +24,7 @@ export const useStepConsistencyChecker = ({
     formValuesToSøknadsdata,
     isEqual = defaultIsEqual,
 }: UseStepConsistencyCheckerProps): string | null => {
-    const { stepFormValues } = useStepFormValues();
+    const { stepsFormValues } = useStepFormValues();
 
     return useMemo(() => {
         const currentIndex = stepOrder.indexOf(currentStepId);
@@ -35,7 +33,7 @@ export const useStepConsistencyChecker = ({
         const precedingSteps = stepOrder.slice(0, currentIndex);
 
         for (const stepId of precedingSteps) {
-            const formValues = stepFormValues[stepId];
+            const formValues = stepsFormValues[stepId];
             if (!formValues) continue;
 
             const søknadsdata = getSøknadsdataForStep(stepId);
@@ -46,5 +44,5 @@ export const useStepConsistencyChecker = ({
             }
         }
         return null;
-    }, [currentStepId, stepOrder, stepFormValues, getSøknadsdataForStep, formValuesToSøknadsdata, isEqual]);
+    }, [currentStepId, stepOrder, stepsFormValues, getSøknadsdataForStep, formValuesToSøknadsdata, isEqual]);
 };

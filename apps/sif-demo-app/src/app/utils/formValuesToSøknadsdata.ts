@@ -1,10 +1,9 @@
+import { FormValues } from '../../rammeverk/state/StepFormValuesContext';
 import { SøknadStepId } from '../config/søknadStepConfig';
 import { BarnFormValues } from '../steps/barn/BarnForm';
 import { toBarnSøknadsdata } from '../steps/barn/barnStegUtils';
 import { BostedFormValues } from '../steps/bosted/BostedForm';
 import { toBostedSøknadsdata } from '../steps/bosted/bostedStegUtils';
-
-export type FormValues = Record<string, unknown>;
 
 export const formValuesToSøknadsdata = (
     stepId: string,

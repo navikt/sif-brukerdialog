@@ -10,10 +10,11 @@ import { createContext, ReactNode, useCallback, useContext, useState } from 'rea
  * Ved submit → clearAllStepFormValues() kalles for å fjerne usubmittede verdier.
  */
 
-type StepFormValues = Record<string, Record<string, unknown> | undefined>;
+export type FormValues = Record<string, unknown>;
+export type StepsFormValues = Record<string, FormValues | undefined>;
 
 interface StepFormValuesContextValue {
-    stepFormValues: StepFormValues;
+    stepsFormValues: StepsFormValues;
     setStepFormValues: (stepId: string, formValues: Record<string, unknown>) => void;
     clearStepFormValues: (stepId: string) => void;
     clearAllStepFormValues: () => void;
@@ -28,12 +29,12 @@ interface Props {
 }
 
 /**
- * StepFormValuesProvider
+ * StepsFormValuesProvider
  * Provider for StepFormValuesContext. Skal wrappe hele søknadsflyten for å sikre at
  * skjemadata bevares ved back/forward navigering i nettleser og reload.
  */
-export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
-    const [values, setValues] = useState<StepFormValues>((initialValues as StepFormValues) ?? {});
+export const StepsFormValuesProvider = ({ children, initialValues }: Props) => {
+    const [values, setValues] = useState<StepsFormValues>((initialValues as StepsFormValues) ?? {});
 
     const setStepFormValues = useCallback((stepId: string, formValues: Record<string, unknown>) => {
         setValues((prev) => ({ ...prev, [stepId]: formValues }));
@@ -43,7 +44,7 @@ export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
         setValues((prev) => ({ ...prev, [stepId]: undefined }));
     }, []);
 
-    const clearAllStepFormValues = useCallback(() => {
+    const clearAllStepsFormValues = useCallback(() => {
         setValues({});
     }, []);
 
@@ -57,10 +58,10 @@ export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
     return (
         <StepFormValuesContext.Provider
             value={{
-                stepFormValues: values,
+                stepsFormValues: values,
                 setStepFormValues,
                 clearStepFormValues,
-                clearAllStepFormValues,
+                clearAllStepFormValues: clearAllStepsFormValues,
                 getStepFormValues,
             }}>
             {children}
@@ -68,7 +69,7 @@ export const StepFormValuesProvider = ({ children, initialValues }: Props) => {
     );
 };
 
-export const useStepFormValues = (): StepFormValuesContextValue => {
+export const useStepsFormValues = (): StepFormValuesContextValue => {
     const context = useContext(StepFormValuesContext);
     if (!context) {
         throw new Error('useStepFormValues must be used within StepFormValuesProvider');

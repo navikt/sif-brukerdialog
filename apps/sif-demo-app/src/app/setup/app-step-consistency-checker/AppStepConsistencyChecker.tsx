@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { søknadStepConfig, SøknadStepId, søknadStepOrder, stepTitles } from '../../config/søknadStepConfig';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
-import { Søknadsdata } from '../../types/Søknadsdata';
 import { formValuesToSøknadsdata } from '../../utils/formValuesToSøknadsdata';
 
 interface Props {
@@ -17,7 +16,7 @@ export const AppStepConsistencyChecker = ({ stepId }: Props) => {
     const søknadsdata = useSøknadStore((s) => s.søknadState?.søknadsdata);
 
     const getSøknadsdataForStep = useCallback(
-        (id: string): Record<string, unknown> | undefined => søknadsdata?.[id as keyof Søknadsdata],
+        (id: SøknadStepId): Record<string, unknown> | undefined => søknadsdata?.[id],
         [søknadsdata],
     );
 

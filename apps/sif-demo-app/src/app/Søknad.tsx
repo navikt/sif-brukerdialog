@@ -1,7 +1,7 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { StepRouteGuard } from '@rammeverk';
-import { StepFormValuesProvider } from '@rammeverk/state/StepFormValuesContext';
+import { StepsFormValuesProvider } from '@rammeverk/state/StepFormValuesContext';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
@@ -27,7 +27,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     });
 
     return (
-        <StepFormValuesProvider initialValues={mellomlagring?.skjemadata}>
+        <StepsFormValuesProvider initialValues={mellomlagring?.skjemadata}>
             <Routes>
                 <Route path="/" element={currentStepId ? <Navigate to="/soknad" replace /> : <VelkommenPage />} />
                 <Route path="/kvittering" element={<KvitteringPage />} />
@@ -61,6 +61,6 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-        </StepFormValuesProvider>
+        </StepsFormValuesProvider>
     );
 };

@@ -1,4 +1,4 @@
-import { useStepFormValues } from '@rammeverk/state/StepFormValuesContext';
+import { useStepsFormValues } from '@rammeverk/state/StepFormValuesContext';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ export const useAvbrytSøknad = () => {
     const navigate = useNavigate();
     const resetSøknad = useSøknadStore((s) => s.resetSøknad);
     const { slettMellomlagring } = useSøknadMellomlagring();
-    const { clearAllStepFormValues } = useStepFormValues();
+    const { clearAllStepFormValues } = useStepsFormValues();
 
     return useCallback(() => {
         resetSøknad();
