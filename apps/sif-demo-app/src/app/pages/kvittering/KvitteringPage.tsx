@@ -1,7 +1,7 @@
 import { Alert, Button, Heading } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 
-import { SøknadPage } from '../../components/app-page/SøknadPage';
+import { SøknadPage } from '../../components/søknad-page/SøknadPage';
 
 export const KvitteringPage = () => {
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { Alert, Heading } from '@navikt/ds-react';
 
-import { SøknadPage } from '../../components/app-page/SøknadPage';
+import { SøknadPage } from '../../components/søknad-page/SøknadPage';
 
 interface ErrorPageProps {
     error: string;

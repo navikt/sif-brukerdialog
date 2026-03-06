@@ -1,7 +1,7 @@
 import { useYtelseMellomlagring } from '@navikt/sif-common-query';
 import { useMemo } from 'react';
 
-import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config/appConfig';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config';
 import { MellomlagringMetaData, SøknadMellomlagring, SøknadSkjemadata } from '../types/Mellomlagring';
 import { useSøknadStore } from './useSøknadStore';
 
