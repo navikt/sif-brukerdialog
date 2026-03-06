@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { useSøknadFormValues } from '../state/SøknadFormValuesContext';
+import { FormValues, useSøknadFormValues } from '../state/SøknadFormValuesContext';
 
 /**
  * Hook som lagrer skjemaverdier til StepFormValuesContext ved unmount.
@@ -28,7 +28,7 @@ export const usePersistStepFormValues = <T extends object>(stepId: string, getVa
         return () => {
             // Ved unmount: lagre nåværende verdier
             const values = getValuesRef.current();
-            setStepFormValues(stepId, values as Record<string, unknown>);
+            setStepFormValues(stepId, values as FormValues);
         };
     }, [stepId, setStepFormValues]);
 };

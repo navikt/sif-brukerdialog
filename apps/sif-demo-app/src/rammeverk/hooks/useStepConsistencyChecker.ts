@@ -2,10 +2,11 @@ import { useMemo } from 'react';
 
 import { useSøknadFormValues } from '../state';
 import { FormValues } from '../state/SøknadFormValuesContext';
+import { StepSøknadsdata } from '../types';
 
-type FormValuesToSøknadsdataFn = (stepId: string, formValues: FormValues) => Record<string, unknown> | undefined;
+type FormValuesToSøknadsdataFn = (stepId: string, formValues: FormValues) => StepSøknadsdata | undefined;
 
-type GetSøknadsdataForStepFn = (stepId: string) => Record<string, unknown> | undefined;
+type GetSøknadsdataForStepFn = (stepId: string) => StepSøknadsdata | undefined;
 
 interface UseStepConsistencyCheckerProps {
     currentStepId: string;

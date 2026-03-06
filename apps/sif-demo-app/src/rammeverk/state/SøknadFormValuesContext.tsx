@@ -9,6 +9,7 @@ import { createContext, ReactNode, useCallback, useContext, useState } from 'rea
  */
 
 export type FormValues = Record<string, unknown>;
+
 export type SøknadFormValues = Record<string, FormValues | undefined>;
 
 interface SøknadFormValuesContextValue {

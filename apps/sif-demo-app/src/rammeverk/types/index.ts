@@ -1,3 +1,7 @@
+/** Basetype for søknadsdata for ett steg */
+
+export type StepSøknadsdata = Record<string, unknown>;
+
 /**
  * Generisk mellomlagring-type.
  * Appen bruker denne med sin egen Søknadsdata-type.
@@ -11,7 +15,7 @@ export interface Mellomlagring<Søknadsdata, Skjemadata> {
 /**
  * Definisjon av et steg i søknadsflyten
  */
-export interface StepDefinition<TSøknadsdata = unknown> {
+export interface StepDefinition<TSøknadsdata = StepSøknadsdata> {
     /** Intern identifikator */
     id: string;
     /** URL-segment */
@@ -25,7 +29,7 @@ export interface StepDefinition<TSøknadsdata = unknown> {
 /**
  * Konfigurasjon for alle steg
  */
-export type StepConfig<TSøknadsdata = unknown> = Record<string, StepDefinition<TSøknadsdata>>;
+export type StepConfig<TSøknadsdata = StepSøknadsdata> = Record<string, StepDefinition<TSøknadsdata>>;
 
 /**
  * Info om et inkludert steg
