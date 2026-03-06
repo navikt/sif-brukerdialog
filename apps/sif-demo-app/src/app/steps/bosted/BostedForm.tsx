@@ -6,8 +6,12 @@ import { DefaultValues, useForm } from 'react-hook-form';
 
 import { SøknadStepId } from '../../config/søknadStepConfig';
 
+export enum BostedFormFields {
+    borITrondheim = 'borITrondheim',
+}
+
 export interface BostedFormValues extends StepFormValues {
-    borITrondheim: 'ja' | 'nei';
+    [BostedFormFields.borITrondheim]?: 'ja' | 'nei';
 }
 
 interface Props {
@@ -24,15 +28,15 @@ export const BostedForm = ({ defaultValues, isPending, onSubmit, onPrevious }: P
 
     usePersistStepFormValues(SøknadStepId.BOSTED, () => getValues());
 
-    const stemmerInfoOmBosted = watch('stemmerInfoOmBosted');
+    const borITrondheim = watch(BostedFormFields.borITrondheim);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <FormLayout.Content>
                 <RadioGroup
                     legend="Bor du i Trondheim"
-                    onChange={(value) => setValue('stemmerInfoOmBosted', value)}
-                    value={stemmerInfoOmBosted}>
+                    onChange={(value) => setValue(BostedFormFields.borITrondheim, value)}
+                    value={borITrondheim}>
                     <Radio value="ja">Ja</Radio>
                     <Radio value="nei">Nei</Radio>
                 </RadioGroup>

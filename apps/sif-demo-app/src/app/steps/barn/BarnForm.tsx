@@ -6,8 +6,12 @@ import { DefaultValues, useForm } from 'react-hook-form';
 
 import { SøknadStepId } from '../../config/søknadStepConfig';
 
+export enum BarnFormFields {
+    stemmerInfoOmBarn = 'stemmerInfoOmBarn',
+}
+
 export interface BarnFormValues extends StepFormValues {
-    stemmerInfoOmBarn: 'ja' | 'nei';
+    [BarnFormFields.stemmerInfoOmBarn]: 'ja' | 'nei';
 }
 
 interface Props {
@@ -24,7 +28,7 @@ export const BarnForm = ({ isPending, defaultValues, onSubmit, onPrevious }: Pro
 
     usePersistStepFormValues(SøknadStepId.BARN, () => getValues());
 
-    const stemmerInfoOmBarn = watch('stemmerInfoOmBarn');
+    const stemmerInfoOmBarn = watch(BarnFormFields.stemmerInfoOmBarn);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -33,7 +37,7 @@ export const BarnForm = ({ isPending, defaultValues, onSubmit, onPrevious }: Pro
                     <Alert variant="info">TODO</Alert>
                     <RadioGroup
                         legend="Stemmer informasjonen om barn?"
-                        onChange={(value) => setValue('stemmerInfoOmBarn', value)}
+                        onChange={(value) => setValue(BarnFormFields.stemmerInfoOmBarn, value)}
                         value={stemmerInfoOmBarn}>
                         <Radio value="ja">Ja</Radio>
                         <Radio value="nei">Nei</Radio>
