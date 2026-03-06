@@ -7,6 +7,7 @@ import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
+import { AppStepConsistencyChecker } from '../../setup/app-step-consistency-checker/AppStepConsistencyChecker';
 import { Søknadsdata } from '../../types/Søknadsdata';
 
 interface RenderProps<TSkjemadata> {
@@ -73,6 +74,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             steps={getProgressSteps(includedSteps, stepTitles)}
             onStepSelect={navigateToStep}
             onAbort={avbrytSøknad}>
+            <AppStepConsistencyChecker stepId={stepId} />
             {children({ defaultValues, isPending, onSubmit, onPrevious })}
         </StepPage>
     );
