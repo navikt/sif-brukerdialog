@@ -1,136 +1,137 @@
+import { jsonSort } from '@navikt/sif-common-utils';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import objectHash from 'object-hash';
 
 import {
     hentYtelseMellomlagring,
     oppdaterYtelseMellomlagring,
-    opprettYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from '../api/ytelseMellomlagringApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
 
-// Hook for fetching mellomlagring data for a specific ytelse
-const useGetYtelseMellomlagring = (
-    ytelse: MellomlagringYtelse,
-    options?: {
-        enabled?: boolean;
-    },
-) => {
-    return useQuery({
-        queryKey: [...sifCommonQueryKeys.mellomlagring, ytelse],
-        queryFn: () => hentYtelseMellomlagring(ytelse),
-        enabled: options?.enabled ?? !!ytelse,
-        staleTime: 30 * 1000, // 30 seconds - intermediate storage is fairly dynamic
-        gcTime: 5 * 60 * 1000, // 5 minutes
-    });
+interface MellomlagringPayload<State> {
+    søknadsdata: State;
+    søknadHashString: string;
+}
+
+const createHash = <MetaData>(metaData: MetaData): string => {
+    return objectHash(jsonSort(metaData));
 };
 
-// Hook for creating mellomlagring data
-const useCreateYtelseMellomlagring = () => {
-    const queryClient = useQueryClient();
-
-    return useMutation({
-        mutationFn: async ({ ytelse, data }: { ytelse: MellomlagringYtelse; data: Record<string, unknown> }) => {
-            return opprettYtelseMellomlagring(ytelse, data);
-        },
-        onSuccess: (_data, variables) => {
-            // Invalidate and refetch the specific mellomlagring
-            queryClient.invalidateQueries({
-                queryKey: [...sifCommonQueryKeys.mellomlagring, variables.ytelse],
-            });
-        },
-    });
-};
-
-// Hook for updating mellomlagring data
-const useUpdateYtelseMellomlagring = () => {
-    const queryClient = useQueryClient();
-
-    return useMutation({
-        mutationFn: async ({ ytelse, data }: { ytelse: MellomlagringYtelse; data: Record<string, unknown> }) => {
-            return oppdaterYtelseMellomlagring(ytelse, data);
-        },
-        onSuccess: (_data, variables) => {
-            // Invalidate and refetch the specific mellomlagring
-            queryClient.invalidateQueries({
-                queryKey: [...sifCommonQueryKeys.mellomlagring, variables.ytelse],
-            });
-        },
-    });
-};
-
-// Hook for deleting mellomlagring data
-const useDeleteYtelseMellomlagring = () => {
-    const queryClient = useQueryClient();
-
-    return useMutation({
-        mutationFn: slettYtelseMellomlagring,
-        onSuccess: (_data, ytelse) => {
-            // Remove the specific mellomlagring from cache
-            queryClient.removeQueries({
-                queryKey: [...sifCommonQueryKeys.mellomlagring, ytelse],
-            });
-            // Invalidate other mellomlagring queries
-            queryClient.invalidateQueries({
-                queryKey: sifCommonQueryKeys.mellomlagring,
-            });
-        },
-    });
+const isValidPayload = <State>(payload: unknown): payload is MellomlagringPayload<State> => {
+    if (typeof payload !== 'object' || payload === null) {
+        return false;
+    }
+    const p = payload as MellomlagringPayload<State>;
+    return 'søknadsdata' in p && 'søknadHashString' in p && typeof p.søknadHashString === 'string';
 };
 
 /**
- * Convenience hook that provides a complete mellomlagring interface for a specific ytelse
- * Similar to the legacy getMellomlagringService but using React Query patterns
+ * Hook for mellomlagring med metadata-validering.
  *
- * The raw data from API is a JSON string. If you need to parse it, use JSON.parse() on the data.
+ * Henter mellomlagret data og validerer at metadata-hash matcher.
+ * Hvis metadata har endret seg siden lagring, returneres null og mellomlagring slettes automatisk.
+ *
+ * @param ytelse - Hvilken ytelse mellomlagringen gjelder
+ * @param metadata - App-spesifikk metadata for hash-validering (søker, barn, versjon, etc.)
+ * @param options - Query options
+ *
+ * @example
+ * ```tsx
+ * const metadata = { MELLOMLAGRING_VERSJON, søker, barn };
+ * const mellomlagring = useYtelseMellomlagring<Mellomlagring, typeof metadata>(
+ *     MellomlagringYtelse.AKTIVITETSPENGER,
+ *     metadata,
+ * );
+ *
+ * // Hent data
+ * const data = mellomlagring.data;
+ *
+ * // Lagre data
+ * mellomlagring.lagre({ søknadsdata: {...}, currentStegId: 'steg1' });
+ *
+ * // Slett
+ * mellomlagring.slett();
+ * ```
  */
-export const useYtelseMellomlagringService = (
+export const useYtelseMellomlagring = <State, MetaData>(
     ytelse: MellomlagringYtelse,
+    metadata: MetaData | undefined,
     options?: {
         enabled?: boolean;
     },
 ) => {
-    const fetch = useGetYtelseMellomlagring(ytelse, {
-        enabled: options?.enabled,
+    const queryClient = useQueryClient();
+    const queryKey = [...sifCommonQueryKeys.mellomlagring, ytelse, 'validated'];
+
+    const query = useQuery<State | null>({
+        queryKey,
+        queryFn: async () => {
+            if (!metadata) return null;
+
+            try {
+                const payload = await hentYtelseMellomlagring(ytelse);
+
+                if (!isValidPayload<State>(payload)) {
+                    return null;
+                }
+
+                const metadataHash = createHash(metadata);
+
+                if (payload.søknadHashString !== metadataHash) {
+                    await slettYtelseMellomlagring(ytelse);
+                    return null;
+                }
+
+                return payload.søknadsdata;
+            } catch {
+                await slettYtelseMellomlagring(ytelse).catch(() => {});
+                return null;
+            }
+        },
+        enabled: (options?.enabled ?? true) && !!metadata,
+        staleTime: Infinity,
+        gcTime: 5 * 60 * 1000,
     });
 
-    const createMutation = useCreateYtelseMellomlagring();
-    const updateMutation = useUpdateYtelseMellomlagring();
-    const deleteMutation = useDeleteYtelseMellomlagring();
+    const lagreMutation = useMutation({
+        mutationFn: async (data: State) => {
+            if (!metadata) {
+                throw new Error('Metadata mangler');
+            }
+            const payload: MellomlagringPayload<State> = {
+                søknadsdata: data,
+                søknadHashString: createHash(metadata),
+            };
+            return oppdaterYtelseMellomlagring(ytelse, payload as unknown as Record<string, unknown>);
+        },
+    });
+
+    const slettMutation = useMutation({
+        mutationFn: () => slettYtelseMellomlagring(ytelse),
+        onSuccess: () => {
+            queryClient.removeQueries({ queryKey });
+        },
+    });
 
     return {
-        // Data and query state
-        data: fetch.data,
-        isLoading: fetch.isLoading,
-        isError: fetch.isError,
-        error: fetch.error,
+        data: query.data,
+        isLoading: query.isLoading,
+        isFetched: query.isFetched,
+        isError: query.isError,
+        error: query.error,
 
-        // Actions
-        fetch: () => fetch.refetch(),
-        create: (data?: Record<string, unknown>) => {
-            return createMutation.mutate({
-                ytelse,
-                data: data || {},
-            });
+        lagre: async (data: State): Promise<void> => {
+            await lagreMutation.mutateAsync(data);
         },
-        update: (data: Record<string, unknown>) => {
-            return updateMutation.mutate({
-                ytelse,
-                data,
-            });
-        },
-        purge: () => deleteMutation.mutate(ytelse),
 
-        // Mutation states
-        isCreating: createMutation.isPending,
-        isUpdating: updateMutation.isPending,
-        isDeleting: deleteMutation.isPending,
-
-        // Direct access to mutations for more control
-        mutations: {
-            create: createMutation,
-            update: updateMutation,
-            delete: deleteMutation,
+        slett: async (): Promise<void> => {
+            await slettMutation.mutateAsync();
         },
+
+        isPending: lagreMutation.isPending || slettMutation.isPending,
+
+        refetch: () => query.refetch(),
     };
 };
