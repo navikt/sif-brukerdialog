@@ -33,7 +33,6 @@ export const BarnForm = ({ isPending, defaultValues, onSubmit, onPrevious }: Pro
                     <Alert variant="info">TODO</Alert>
                     <RadioGroup
                         legend="Stemmer informasjonen om barn?"
-                        // {...register('stemmerInfoOmBarn', { required: true })}
                         onChange={(value) => setValue('stemmerInfoOmBarn', value)}
                         value={stemmerInfoOmBarn}>
                         <Radio value="ja">Ja</Radio>

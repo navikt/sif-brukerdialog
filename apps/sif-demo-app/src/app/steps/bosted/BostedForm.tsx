@@ -18,16 +18,21 @@ interface Props {
 }
 
 export const BostedForm = ({ defaultValues, isPending, onSubmit, onPrevious }: Props) => {
-    const { register, handleSubmit, getValues } = useForm<BostedFormValues>({
+    const { handleSubmit, getValues, setValue, watch } = useForm<BostedFormValues>({
         defaultValues,
     });
 
     usePersistStepFormValues(SøknadStepId.BOSTED, () => getValues());
 
+    const stemmerInfoOmBosted = watch('stemmerInfoOmBosted');
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <FormLayout.Content>
-                <RadioGroup legend="Bor du i Trondheim" {...register('borITrondheim', { required: true })}>
+                <RadioGroup
+                    legend="Bor du i Trondheim"
+                    onChange={(value) => setValue('stemmerInfoOmBosted', value)}
+                    value={stemmerInfoOmBosted}>
                     <Radio value="ja">Ja</Radio>
                     <Radio value="nei">Nei</Radio>
                 </RadioGroup>
