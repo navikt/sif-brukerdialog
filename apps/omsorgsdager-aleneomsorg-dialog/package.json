@@ -53,7 +53,7 @@
         "jsdom": "28.1.0",
         "object-hash": "3.0.0",
         "react": "19.2.4",
-        "react-day-picker": "9.13.2",
+        "react-day-picker": "9.14.0",
         "react-dom": "19.2.4",
         "react-fast-compare": "3.2.2",
         "react-intl": "8.1.3",
