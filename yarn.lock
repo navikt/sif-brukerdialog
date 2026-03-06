@@ -5948,6 +5948,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api":
+  version: 0.0.0-use.local
+  resolution: "@navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api"
+  dependencies:
+    "@hey-api/client-axios": "npm:0.9.1"
+    "@hey-api/client-fetch": "npm:0.13.1"
+    "@hey-api/openapi-ts": "npm:0.93.1"
+    "@sif/eslint-config": "workspace:*"
+    axios: "npm:1.13.6"
+    config: "workspace:*"
+    postcss: "npm:8.5.6"
+    typescript: "npm:5.9.3"
+    vitest: "npm:4.0.18"
+    zod: "npm:4.3.6"
+  peerDependencies:
+    dayjs: "*"
+    uuid: "*"
+  languageName: unknown
+  linkType: soft
+
 "@navikt/ung-common@workspace:*, @navikt/ung-common@workspace:packages/ung-common":
   version: 0.0.0-use.local
   resolution: "@navikt/ung-common@workspace:packages/ung-common"
