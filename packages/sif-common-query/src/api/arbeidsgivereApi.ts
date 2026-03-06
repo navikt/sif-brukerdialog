@@ -1,6 +1,7 @@
 import { ArbeidsgivereController } from '@navikt/k9-brukerdialog-prosessering-api';
 
 import { Arbeidsgivere, arbeidsgivereSchema } from '../types/Arbeidsgivere';
+import { handleApiError } from '../utils/errorHandlers';
 
 /**
  * Henter informasjon om arbeidsgivere fra k9-brukerdialog-prosessering-api
@@ -20,12 +21,16 @@ export const hentArbeidsgivere = async (
         privateArbeidsgivere?: boolean;
     },
 ): Promise<Arbeidsgivere> => {
-    const response = await ArbeidsgivereController.hentArbeidsgivere({
-        query: {
-            fra_og_med: fraOgMed,
-            til_og_med: tilOgMed,
-            ...options,
-        },
-    });
-    return arbeidsgivereSchema.parse(response.data);
+    try {
+        const response = await ArbeidsgivereController.hentArbeidsgivere({
+            query: {
+                fra_og_med: fraOgMed,
+                til_og_med: tilOgMed,
+                ...options,
+            },
+        });
+        return arbeidsgivereSchema.parse(response.data);
+    } catch (e) {
+        throw handleApiError(e, 'hentArbeidsgivere');
+    }
 };

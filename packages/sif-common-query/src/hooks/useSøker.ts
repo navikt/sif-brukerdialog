@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { hentSøker } from '../api/søkerApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { Søker } from '../types/Søker';
+import { ApiError } from '../utils/errorHandlers';
 
 /**
  * Hook for å hente informasjon om innlogget bruker fra k9-brukerdialog-prosessering-api
@@ -13,7 +14,7 @@ import { Søker } from '../types/Søker';
  * - Ingen refetch på focus/mount/reconnect
  */
 export const useSøker = (enabled = true) => {
-    return useQuery<Søker, Error>({
+    return useQuery<Søker, ApiError>({
         queryKey: sifCommonQueryKeys.søker,
         queryFn: hentSøker,
         enabled,

@@ -4,3 +4,5 @@ export * from './BostedUtlandListAndDialog';
 export * from './i18n';
 export * from './i18n';
 export * from './types';
+
+export { default as BostedUtlandListAndDialog } from './BostedUtlandListAndDialog';

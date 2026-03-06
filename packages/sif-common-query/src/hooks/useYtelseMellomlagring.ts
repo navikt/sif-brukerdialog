@@ -8,6 +8,7 @@ import {
 } from '../api/ytelseMellomlagringApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
+import { ApiError } from '../utils/errorHandlers';
 
 // Hook for fetching mellomlagring data for a specific ytelse
 const useGetYtelseMellomlagring = (
@@ -16,7 +17,7 @@ const useGetYtelseMellomlagring = (
         enabled?: boolean;
     },
 ) => {
-    return useQuery({
+    return useQuery<Record<string, unknown> | undefined, ApiError>({
         queryKey: [...sifCommonQueryKeys.mellomlagring, ytelse],
         queryFn: () => hentYtelseMellomlagring(ytelse),
         enabled: options?.enabled ?? !!ytelse,
