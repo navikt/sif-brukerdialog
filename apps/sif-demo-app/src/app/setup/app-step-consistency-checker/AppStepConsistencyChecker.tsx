@@ -1,4 +1,4 @@
-import { InvalidStepInfo, StepConsistencyChecker } from '@rammeverk/components';
+import { StepConsistencyChecker, StepInconsistencyMessage } from '@rammeverk/components';
 import { useNavigate } from 'react-router-dom';
 
 import { søknadStepConfig, SøknadStepId, søknadStepOrder, stepTitles } from '../../config/søknadStepConfig';
@@ -31,7 +31,7 @@ export const AppStepConsistencyChecker = ({ stepId }: Props) => {
             formValuesToSøknadsdata={formValuesToSøknadsdata}>
             {(invalidStepId) =>
                 invalidStepId && (
-                    <InvalidStepInfo
+                    <StepInconsistencyMessage
                         invalidStep={invalidStepId}
                         stepTitle={stepTitles[invalidStepId as SøknadStepId]}
                         onNavigateToStep={() =>

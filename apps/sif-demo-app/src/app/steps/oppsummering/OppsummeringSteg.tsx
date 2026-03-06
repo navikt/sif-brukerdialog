@@ -1,7 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getProgressSteps } from '@rammeverk';
-import { StepPage } from '@rammeverk/components/step-page/StepPage';
+import { StepPage } from '@rammeverk/pages';
 import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
 
 import { søknadStepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';

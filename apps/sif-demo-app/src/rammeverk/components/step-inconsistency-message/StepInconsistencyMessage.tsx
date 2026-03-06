@@ -1,6 +1,6 @@
 import { Alert, Box, Heading, Link } from '@navikt/ds-react';
 
-interface InvalidStepInfoProps {
+interface Props {
     /** StepId som har ugyldige/ulagrede endringer */
     invalidStep: string;
     /** Funksjon som returnerer visningsnavn for et steg */
@@ -17,13 +17,13 @@ interface InvalidStepInfoProps {
  * Viser en advarsel når bruker har navigert til et steg uten å submitte endringer
  * på et tidligere steg. Ber bruker gå tilbake og bruke skjemaets navigasjonsknapper.
  */
-export const InvalidStepInfo = ({
+export const StepInconsistencyMessage = ({
     invalidStep,
     stepTitle,
     onNavigateToStep,
     heading = 'Oops, dette stemmer ikke helt',
     description,
-}: InvalidStepInfoProps) => {
+}: Props) => {
     if (!invalidStep) {
         return null;
     }

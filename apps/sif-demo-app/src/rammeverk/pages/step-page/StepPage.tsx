@@ -2,7 +2,7 @@ import { VStack } from '@navikt/ds-react';
 import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui/';
 
 import { ApplicationPage } from '../application-page/ApplicationPage';
-import { StepFooter } from '../StepFooter';
+import { StepFooter } from './StepFooter';
 
 interface Props {
     documentTitle: string;

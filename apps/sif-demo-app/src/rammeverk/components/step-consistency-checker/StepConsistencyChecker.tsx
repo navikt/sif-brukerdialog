@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from 'react';
 
-import { useStepFormValues } from '../state/StepFormValuesContext';
+import { useStepFormValues } from '../../state';
 
 type FormValuesToSøknadsdataFn = (
     stepId: string,
