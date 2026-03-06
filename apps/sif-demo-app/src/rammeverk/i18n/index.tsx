@@ -1,4 +1,4 @@
-import { typedIntlHelper } from '@common/utils/intlUtils';
+import { typedIntlHelper } from '@rammeverk/utils/intlUtils';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { stepPageMessages_nb } from '../pages/step-page/i18n/nb';

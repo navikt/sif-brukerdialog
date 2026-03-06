@@ -1,4 +1,4 @@
-import { ApplicationPage } from '../../../rammeverk';
+import { ApplicationPage } from '@rammeverk';
 
 interface Props {
     documentTitle?: string;

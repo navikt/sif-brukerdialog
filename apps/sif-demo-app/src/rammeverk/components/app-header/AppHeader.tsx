@@ -7,7 +7,7 @@ interface Props {
     level?: '1' | '2';
 }
 
-const SøknadHeader = ({ title, level = '1' }: Props) => {
+const AppHeader = ({ title, level = '1' }: Props) => {
     return (
         <VStack gap="space-0">
             <Bleed marginInline={{ lg: `${level === '1' ? 'space-128' : 'space-96'}` }}>
@@ -39,4 +39,4 @@ const SøknadHeader = ({ title, level = '1' }: Props) => {
     );
 };
 
-export default SøknadHeader;
+export default AppHeader;

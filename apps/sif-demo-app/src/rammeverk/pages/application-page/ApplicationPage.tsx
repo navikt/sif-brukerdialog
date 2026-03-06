@@ -2,7 +2,7 @@ import { Page, VStack } from '@navikt/ds-react';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useEffect } from 'react';
 
-import SøknadHeader from '../../../common/components/søknad-header/SøknadHeader';
+import AppHeader from '../../components/app-header/AppHeader';
 
 interface Props {
     documentTitle?: string;
@@ -24,7 +24,7 @@ export function ApplicationPage({ documentTitle, applicationTitle, headerLevel =
         <Page>
             <Page.Block as="main" width="md" gutters>
                 <VStack gap="space-40">
-                    <SøknadHeader title={applicationTitle} level={headerLevel} />
+                    <AppHeader title={applicationTitle} level={headerLevel} />
                     <div>{children}</div>
                 </VStack>
             </Page.Block>

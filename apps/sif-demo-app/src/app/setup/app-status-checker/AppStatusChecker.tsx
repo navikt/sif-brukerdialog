@@ -1,11 +1,8 @@
 import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { BodyShort, GuidePanel } from '@navikt/ds-react';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
+import { AppStatusWrapper, AppStatusWrapperProps } from '@rammeverk/components/app-status-wrapper/AppStatusWrapper';
 
-import {
-    AppStatusWrapper,
-    AppStatusWrapperProps,
-} from '../../../common/components/app-status-wrapper/AppStatusWrapper';
 import { getAppEnv } from '../../env/appEnv';
 
 type Props = Pick<AppStatusWrapperProps, 'contentRenderer'> & { active: boolean };
@@ -18,12 +15,12 @@ const getSanityConfig = (): SanityConfig => {
     };
 };
 
-export const AppStatusChecker = (props: Props) =>
-    props.active ? (
+export const AppStatusChecker = ({ active, contentRenderer }: Props) =>
+    active ? (
         <AppStatusWrapper
             applicationKey={AktivitetspengerApp.key}
             sanityConfig={getSanityConfig()}
-            contentRenderer={props.contentRenderer}
+            contentRenderer={contentRenderer}
             unavailableContentRenderer={() => (
                 <GuidePanel>
                     <BodyShort className="pt-4" size="large">
@@ -34,5 +31,5 @@ export const AppStatusChecker = (props: Props) =>
             )}
         />
     ) : (
-        props.contentRenderer()
+        contentRenderer()
     );
