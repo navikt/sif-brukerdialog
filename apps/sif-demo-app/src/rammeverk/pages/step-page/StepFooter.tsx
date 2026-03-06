@@ -13,18 +13,16 @@ export const StepFooter = ({ onDelete, onResumeLater }: StepfooterProps) => {
         return null;
     }
     return (
-        <>
-            <Box
-                paddingBlock="space-24 space-0"
-                borderColor="neutral-subtle"
-                borderWidth="1 0 0 0"
-                style={{ borderStyle: 'dashed' }}>
-                <HStack gap="space-16">
-                    <ResumeLagerDialogAndTrigger onResumeLater={onResumeLater} />
-                    <DeleteDialogAndTrigger onDelete={onDelete} />
-                </HStack>
-            </Box>
-        </>
+        <Box
+            paddingBlock="space-24 space-0"
+            borderColor="neutral-subtle"
+            borderWidth="1 0 0 0"
+            style={{ borderStyle: 'dashed' }}>
+            <HStack gap="space-16">
+                <ResumeLagerDialogAndTrigger onResumeLater={onResumeLater} />
+                <DeleteDialogAndTrigger onDelete={onDelete} />
+            </HStack>
+        </Box>
     );
 };
 
