@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
-import { useStepFormValues } from '../state';
-import { FormValues } from '../state/StepFormValuesContext';
+import { useSøknadFormValues } from '../state';
+import { FormValues } from '../state/SøknadFormValuesContext';
 
 type FormValuesToSøknadsdataFn = (stepId: string, formValues: FormValues) => Record<string, unknown> | undefined;
 
@@ -24,7 +24,7 @@ export const useStepConsistencyChecker = ({
     formValuesToSøknadsdata,
     isEqual = defaultIsEqual,
 }: UseStepConsistencyCheckerProps): string | null => {
-    const { stepsFormValues } = useStepFormValues();
+    const { søknadFormValues: stepsFormValues } = useSøknadFormValues();
 
     return useMemo(() => {
         const currentIndex = stepOrder.indexOf(currentStepId);

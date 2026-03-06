@@ -1,11 +1,11 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
-import { StepsFormValues } from '@rammeverk/state/StepFormValuesContext';
+import { SøknadFormValues } from '@rammeverk/state/SøknadFormValuesContext';
 import { Mellomlagring } from '@rammeverk/types';
 
 import { Søknadsdata } from './Søknadsdata';
 
 /** Søknad-specific mellomlagring med Søknadsdata og StepsFormValues */
-export type SøknadMellomlagring = Mellomlagring<Søknadsdata, StepsFormValues>;
+export type SøknadMellomlagring = Mellomlagring<Søknadsdata, SøknadFormValues>;
 
 /** Søknad-specific metadata for hash validation */
 export interface MellomlagringMetaData {

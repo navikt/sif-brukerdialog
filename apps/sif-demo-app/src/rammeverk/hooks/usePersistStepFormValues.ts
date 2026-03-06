@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { useStepsFormValues } from '../state/StepFormValuesContext';
+import { useSøknadFormValues } from '../state/SøknadFormValuesContext';
 
 /**
  * Hook som lagrer skjemaverdier til StepFormValuesContext ved unmount.
@@ -16,7 +16,7 @@ import { useStepsFormValues } from '../state/StepFormValuesContext';
  * ```
  */
 export const usePersistStepFormValues = <T extends object>(stepId: string, getValues: () => T) => {
-    const { setStepFormValues } = useStepsFormValues();
+    const { setStepFormValues } = useSøknadFormValues();
     const getValuesRef = useRef(getValues);
 
     // Hold referansen oppdatert uten å trigge effect

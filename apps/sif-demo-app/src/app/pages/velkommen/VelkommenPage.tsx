@@ -1,5 +1,5 @@
 import { BodyLong, Link, VStack } from '@navikt/ds-react';
-import { useStepFormValues } from '@rammeverk';
+import { useSøknadFormValues } from '@rammeverk';
 import { StartPage } from '@rammeverk/pages';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ export const VelkommenPage = () => {
     const navigate = useNavigate();
     const startSøknad = useSøknadStore((s) => s.startSøknad);
     const søknadState = useSøknadStore((s) => s.søknadState);
-    const { clearAllStepFormValues } = useStepFormValues();
+    const { clearSøknadFormValues: clearAllStepFormValues } = useSøknadFormValues();
 
     const handleStart = () => {
         const førsteSteg = søknadStepConfig[søknadStepOrder[0]];

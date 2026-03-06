@@ -1,7 +1,7 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { usePersistStepFormValues } from '@rammeverk/hooks';
-import { FormValues } from '@rammeverk/state/StepFormValuesContext';
+import { FormValues } from '@rammeverk/state/SøknadFormValuesContext';
 import { DefaultValues, useForm } from 'react-hook-form';
 
 import { SøknadStepId } from '../../config/søknadStepConfig';

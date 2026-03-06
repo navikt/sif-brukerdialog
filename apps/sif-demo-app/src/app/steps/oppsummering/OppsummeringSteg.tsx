@@ -2,7 +2,7 @@ import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getProgressSteps } from '@rammeverk';
 import { StepPage } from '@rammeverk/pages';
-import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
+import { useSøknadFormValues, useStepNavigation } from '@rammeverk/state';
 
 import { søknadStepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
@@ -17,7 +17,7 @@ export const OppsummeringSteg = () => {
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
-    const { clearAllStepFormValues } = useStepFormValues();
+    const { clearSøknadFormValues: clearAllStepFormValues } = useSøknadFormValues();
 
     const { navigateToStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
         stepConfig: søknadStepConfig,

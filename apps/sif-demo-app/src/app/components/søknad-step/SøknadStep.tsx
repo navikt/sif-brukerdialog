@@ -1,6 +1,6 @@
 import { getProgressSteps } from '@rammeverk';
 import { StepPage } from '@rammeverk/pages';
-import { useStepFormValues, useStepNavigation } from '@rammeverk/state';
+import { useSøknadFormValues, useStepNavigation } from '@rammeverk/state';
 
 import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
@@ -39,7 +39,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
     const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
-    const { clearStepFormValues, getStepFormValues } = useStepFormValues();
+    const { clearStepFormValues, getStepFormValues } = useSøknadFormValues();
 
     const stepFormValues = getStepFormValues<TSkjemadata>(stepId);
 
