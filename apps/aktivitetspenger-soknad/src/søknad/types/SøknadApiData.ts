@@ -1,10 +1,3 @@
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
+import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 
-export type SøknadApiData = {
-    språk: string;
-    søkerNorskIdent: string;
-    barnErRiktig: boolean;
-    kontonummerInfo: KontonummerInfo;
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-};
+export type SøknadApiData = aktivitetspenger.Aktivitetspengersøknad;

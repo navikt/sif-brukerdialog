@@ -24,6 +24,9 @@ import type {
     HentVedleggData,
     HentVedleggErrors,
     HentVedleggResponses,
+    InnsendingAktivitetspengersøknadData,
+    InnsendingAktivitetspengersøknadErrors,
+    InnsendingAktivitetspengersøknadResponses,
     InnsendingEndringsmeldingData,
     InnsendingEndringsmeldingErrors,
     InnsendingEndringsmeldingResponses,
@@ -92,6 +95,7 @@ import {
     zHentSøkerResponse,
     zHentVedleggData,
     zHentVedleggResponse,
+    zInnsendingAktivitetspengersøknadData,
     zInnsendingEndringsmeldingData,
     zInnsendingEttersendelseData,
     zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadData,
@@ -512,6 +516,27 @@ export class EttersendingController {
             requestValidator: async (data) => await zInnsendingEttersendelseData.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/ettersending/innsending',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers,
+            },
+        });
+    }
+}
+
+export class AktivitetspengerController {
+    public static innsendingAktivitetspengersøknad<ThrowOnError extends boolean = true>(
+        options: Options<InnsendingAktivitetspengersøknadData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).post<
+            InnsendingAktivitetspengersøknadResponses,
+            InnsendingAktivitetspengersøknadErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) => await zInnsendingAktivitetspengersøknadData.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/aktivitetspenger/soknad/innsending',
             ...options,
             headers: {
                 'Content-Type': 'application/json',

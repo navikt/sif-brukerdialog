@@ -78,7 +78,7 @@ const MedlemskapSteg = () => {
                             <FormLayout.Questions>
                                 <YesOrNoQuestion
                                     name={MedlemskapFormFields.harBoddIUtlandet}
-                                    legend="Har du bodd fast i utlandet de siste 5 årene?"
+                                    legend="Har du bodd i utlandet de siste 5 årene?"
                                 />
                                 {harBoddIUtlandet === YesOrNo.YES && (
                                     <BostedUtlandListAndDialog

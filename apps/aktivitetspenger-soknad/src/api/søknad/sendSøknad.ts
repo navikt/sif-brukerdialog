@@ -1,11 +1,17 @@
+import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { handleApiError } from '@navikt/sif-common-query';
 
-import { SøknadApiData } from '../../søknad/types/SøknadApiData';
+const commonRequestHeader = {
+    'Content-type': 'application/json; charset=utf-8',
+    'X-Brukerdialog-Git-Sha': 'overskrives-av-server',
+} as any;
 
-export const sendSøknad = async (data: SøknadApiData): Promise<any> => {
+export const sendSøknad = async (data: aktivitetspenger.Aktivitetspengersøknad): Promise<any> => {
     try {
-        // eslint-disable-next-line no-console
-        console.log(data);
+        await aktivitetspenger.AktivitetspengerController.innsendingAktivitetspengersøknad({
+            body: data,
+            headers: commonRequestHeader,
+        });
         await Promise.resolve();
     } catch (e) {
         throw handleApiError(e, 'sendSøknad');
