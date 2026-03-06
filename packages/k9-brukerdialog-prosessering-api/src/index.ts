@@ -5,6 +5,9 @@ export * from './generated/client/sdk.gen';
 export * from './generated/client/types.gen';
 export * from './generated/client/zod.gen';
 
+// Aktivitetspenger API
+export * as aktivitetspenger from './generated/aktivitetspenger';
+
 // Omsorgspenger API
 export * as omsorgspenger from './generated/omsorgspenger';
 
