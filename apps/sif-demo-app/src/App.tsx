@@ -7,7 +7,7 @@ import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
 import { applicationIntlMessages } from './app/i18n';
-import { initApiClients } from './utils/initApiClients';
+import { initApiClients } from './app/setup/initApiClients';
 
 initApiClients();
 
