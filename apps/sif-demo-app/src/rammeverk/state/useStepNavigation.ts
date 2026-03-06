@@ -24,6 +24,9 @@ const getPreviousNextStep = (includedSteps: IncludedStep[], currentStepId: strin
     };
 };
 
+/**
+ * Hook for å håndtere navigasjon mellom steg i en søknadsprosess. Beregner neste og forrige steg basert på inkluderte steg og oppdatert state.
+ */
 export const useStepNavigation = ({
     stepConfig,
     getIncludedSteps,

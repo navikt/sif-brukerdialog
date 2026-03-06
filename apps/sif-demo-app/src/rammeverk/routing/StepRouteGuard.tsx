@@ -12,7 +12,7 @@ interface Props {
 
 /**
  * Guard for steg-routes. Venter på initialisering før den gjør noe.
- * Redirecter til initialPath hvis currentStepId mangler.
+ * Redirecter til initialPath hvis currentStepId ikke er definert.
  * Hvis steget i URL-en ikke er inkludert, redirectes til currentStepId.
  */
 export const StepRouteGuard = ({
