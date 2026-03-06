@@ -9,12 +9,12 @@ export const useAvbrytSøknad = () => {
     const navigate = useNavigate();
     const resetSøknad = useSøknadStore((s) => s.resetSøknad);
     const { slettMellomlagring } = useSøknadMellomlagring();
-    const { clearSøknadFormValues: clearAllStepFormValues } = useSøknadFormValues();
+    const { clearSøknadFormValues } = useSøknadFormValues();
 
     return useCallback(() => {
         resetSøknad();
-        clearAllStepFormValues();
+        clearSøknadFormValues();
         slettMellomlagring().catch(() => {});
         navigate('/');
-    }, [resetSøknad, clearAllStepFormValues, slettMellomlagring, navigate]);
+    }, [resetSøknad, clearSøknadFormValues, slettMellomlagring, navigate]);
 };

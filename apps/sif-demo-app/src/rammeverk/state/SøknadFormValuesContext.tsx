@@ -13,10 +13,10 @@ export type SøknadFormValues = Record<string, FormValues | undefined>;
 
 interface SøknadFormValuesContextValue {
     søknadFormValues: SøknadFormValues;
-    setStepFormValues: (stepId: string, formValues: FormValues) => void;
-    clearStepFormValues: (stepId: string) => void;
     clearSøknadFormValues: () => void;
-    getStepFormValues: <T = FormValues>(stepId: string) => Partial<T> | undefined;
+    setFormValuesForStep: (stepId: string, formValues: FormValues) => void;
+    clearFormValuesForStep: (stepId: string) => void;
+    getFormValuesForStep: <T = FormValues>(stepId: string) => Partial<T> | undefined;
 }
 
 const SøknadFormValuesContext = createContext<SøknadFormValuesContextValue | null>(null);
@@ -34,19 +34,19 @@ interface Props {
 export const SøknadFormValuesProvider = ({ children, initialValues }: Props) => {
     const [values, setValues] = useState<SøknadFormValues>((initialValues as SøknadFormValues) ?? {});
 
-    const setStepFormValues = useCallback((stepId: string, formValues: FormValues) => {
-        setValues((prev) => ({ ...prev, [stepId]: formValues }));
-    }, []);
-
-    const clearStepFormValues = useCallback((stepId: string) => {
-        setValues((prev) => ({ ...prev, [stepId]: undefined }));
-    }, []);
-
     const clearSøknadFormValues = useCallback(() => {
         setValues({});
     }, []);
 
-    const getStepFormValues = useCallback(
+    const setFormValuesForStep = useCallback((stepId: string, formValues: FormValues) => {
+        setValues((prev) => ({ ...prev, [stepId]: formValues }));
+    }, []);
+
+    const clearFormValuesForStep = useCallback((stepId: string) => {
+        setValues((prev) => ({ ...prev, [stepId]: undefined }));
+    }, []);
+
+    const getFormValuesForStep = useCallback(
         <T = FormValues,>(stepId: string): Partial<T> | undefined => {
             return values[stepId] as Partial<T> | undefined;
         },
@@ -57,10 +57,10 @@ export const SøknadFormValuesProvider = ({ children, initialValues }: Props) =>
         <SøknadFormValuesContext.Provider
             value={{
                 søknadFormValues: values,
-                setStepFormValues,
-                clearStepFormValues,
                 clearSøknadFormValues,
-                getStepFormValues,
+                setFormValuesForStep,
+                clearFormValuesForStep,
+                getFormValuesForStep,
             }}>
             {children}
         </SøknadFormValuesContext.Provider>

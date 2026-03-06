@@ -13,11 +13,10 @@ export const OppsummeringSteg = () => {
     const { text } = useAppIntl();
 
     const stepId = SøknadStepId.OPPSUMMERING;
-    // const søknadState = useSøknadStore((s) => s.søknadState);
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
-    const { clearSøknadFormValues: clearAllStepFormValues } = useSøknadFormValues();
+    const { clearSøknadFormValues } = useSøknadFormValues();
 
     const { navigateToStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
         stepConfig: søknadStepConfig,
@@ -28,7 +27,7 @@ export const OppsummeringSteg = () => {
     const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
 
     const onSubmit = async () => {
-        clearAllStepFormValues();
+        clearSøknadFormValues();
     };
 
     return (

@@ -39,9 +39,9 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
     const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
-    const { clearStepFormValues, getStepFormValues } = useSøknadFormValues();
+    const { clearFormValuesForStep, getFormValuesForStep } = useSøknadFormValues();
 
-    const stepFormValues = getStepFormValues<TSkjemadata>(stepId);
+    const stepFormValues = getFormValuesForStep<TSkjemadata>(stepId);
 
     const { navigateToNextStep, navigateToPreviousStep, canGoPrevious, navigateToStep } = useStepNavigation({
         stepConfig,
@@ -61,7 +61,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
         const mapped = toSøknadsdata(data);
         setSøknadsdata({ [stepId]: mapped } as Partial<Søknadsdata>);
         await lagreSøknad();
-        clearStepFormValues(stepId);
+        clearFormValuesForStep(stepId);
         navigateToNextStep(stepId);
     };
 

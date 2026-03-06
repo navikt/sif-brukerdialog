@@ -13,11 +13,11 @@ export const VelkommenPage = () => {
     const navigate = useNavigate();
     const startSøknad = useSøknadStore((s) => s.startSøknad);
     const søknadState = useSøknadStore((s) => s.søknadState);
-    const { clearSøknadFormValues: clearAllStepFormValues } = useSøknadFormValues();
+    const { clearSøknadFormValues } = useSøknadFormValues();
 
     const handleStart = () => {
         const førsteSteg = søknadStepConfig[søknadStepOrder[0]];
-        clearAllStepFormValues();
+        clearSøknadFormValues();
         startSøknad(førsteSteg.id);
         navigate(`/soknad/${førsteSteg.route}`);
     };

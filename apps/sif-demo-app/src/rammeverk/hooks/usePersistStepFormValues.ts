@@ -16,7 +16,7 @@ import { useSøknadFormValues } from '../state/SøknadFormValuesContext';
  * ```
  */
 export const usePersistStepFormValues = <T extends object>(stepId: string, getValues: () => T) => {
-    const { setStepFormValues } = useSøknadFormValues();
+    const { setFormValuesForStep: setStepFormValues } = useSøknadFormValues();
     const getValuesRef = useRef(getValues);
 
     // Hold referansen oppdatert uten å trigge effect
