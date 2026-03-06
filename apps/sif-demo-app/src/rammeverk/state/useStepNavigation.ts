@@ -35,6 +35,10 @@ export const useStepNavigation = ({
 }: UseStepNavigationOptions) => {
     const navigate = useNavigate();
 
+    const navigateToStart = useCallback(() => {
+        navigate(basePath);
+    }, [navigate, basePath]);
+
     const navigateToStep = useCallback(
         (stepId: string) => {
             setCurrentStep(stepId);
@@ -85,6 +89,7 @@ export const useStepNavigation = ({
         navigateToNextStep,
         navigateToPreviousStep,
         canGoNext,
+        navigateToStart,
         canGoPrevious,
     };
 };

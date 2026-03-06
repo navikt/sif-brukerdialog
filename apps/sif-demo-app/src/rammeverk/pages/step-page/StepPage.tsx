@@ -38,7 +38,7 @@ export function StepPage({
                         <div>{children}</div>
                     </VStack>
                 </section>
-                <StepFooter onAbort={onAbort} onResumeLater={onResumeLater} />
+                <StepFooter onDelete={onAbort} onResumeLater={onResumeLater} />
             </VStack>
         </ApplicationPage>
     );

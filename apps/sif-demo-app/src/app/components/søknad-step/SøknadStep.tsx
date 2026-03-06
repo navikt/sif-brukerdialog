@@ -7,6 +7,7 @@ import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
+import { getLenker } from '../../lenker';
 import { AppStepConsistencyChecker } from '../../setup/app-step-consistency-checker/AppStepConsistencyChecker';
 import { Søknadsdata } from '../../types/Søknadsdata';
 
@@ -66,6 +67,11 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
 
     const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
 
+    const fortsettSenere = async () => {
+        await lagreSøknad();
+        window.location.href = getLenker().minSide;
+    };
+
     return (
         <StepPage
             documentTitle={stepTitles[stepId]}
@@ -73,7 +79,8 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             stepId={stepId}
             steps={getProgressSteps(includedSteps, stepTitles)}
             onStepSelect={navigateToStep}
-            onAbort={avbrytSøknad}>
+            onAbort={avbrytSøknad}
+            onResumeLater={fortsettSenere}>
             <AppStepConsistencyChecker stepId={stepId} />
             {children({ defaultValues, isPending, onSubmit, onPrevious })}
         </StepPage>

@@ -2,6 +2,7 @@ import { typedIntlHelper } from '@common/utils/intlUtils';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { rammeverkMessages } from '../../rammeverk/i18n';
 import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
 import { appMessages_nb } from './nb/appMessages';
 import { stepMessages_nb } from './nb/stepMessages';
@@ -9,6 +10,7 @@ import { stepMessages_nb } from './nb/stepMessages';
 const libMessages = {
     nb: {
         ...uiMessages.nb,
+        ...rammeverkMessages.nb,
     },
 };
 
