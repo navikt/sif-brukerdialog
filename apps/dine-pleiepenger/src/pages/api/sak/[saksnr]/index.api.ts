@@ -5,67 +5,70 @@ import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchInntektsmeldinger } from '../../../../server/fetchers/fetchInntektsmeldinger';
 import { fetchSak } from '../../../../server/fetchers/fetchSak';
 import { serverApiUtils } from '../../../../server/utils/serverApiUtils';
-import { saksnummerPathValueIsValid } from '../../../../server/utils/validatePathSegment';
+import { isValidSaksnummer } from '../../../../server/utils/validatePathSegment';
 import { prepApiError } from '../../../../utils/apiUtils';
 import { Feature } from '../../../../utils/features';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-    try {
-        const logger = getLogger(req);
-        const { saksnr } = req.query;
+    const baseLogger = getLogger(req);
+    const { saksnr } = req.query;
+    const unparsed = req.query.unparsed === 'true';
 
-        if (!saksnummerPathValueIsValid(saksnr)) {
-            logger.error(`Saksnummer mangler eller er ugyldig`);
-            return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
+    if (!isValidSaksnummer(saksnr)) {
+        baseLogger.error('Saksnummer mangler eller er ugyldig', { saksnr });
+        return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
+    }
+
+    const logger = baseLogger.withContext({
+        saksnummer: saksnr,
+        unparsed,
+        imEnabled: Feature.INNTEKTSMELDING_ENABLED,
+    });
+
+    const totalTimer = logger.startTimer('hent-sak-detaljer');
+
+    try {
+        logger.info('Starter henting av saksdetaljer');
+
+        const sakTimer = logger.startTimer('fetch-sak');
+        let sak;
+        try {
+            sak = await fetchSak(req, saksnr, unparsed);
+        } finally {
+            sakTimer();
         }
 
-        logger.info(`Henter saksdetaljer for saksnummer: ${saksnr}`);
-
-        const unparsed = req.query.unparsed === 'true';
-        const sak = await fetchSak(req, saksnr, unparsed);
-
-        // Hent inntektsmeldinger hvis feature er aktivert
         let inntektsmeldinger: innsyn.SakInntektsmeldingDto[] = [];
         if (Feature.INNTEKTSMELDING_ENABLED) {
-            inntektsmeldinger = await fetchInntektsmeldinger(req, saksnr, unparsed);
-        } else {
-            logger.info(
-                `Henter ikke inntektsmeldinger. Feature.INNTEKTSMELDING_ENABLED=${Feature.INNTEKTSMELDING_ENABLED}`,
-            );
+            const imTimer = logger.startTimer('fetch-inntektsmeldinger');
+            try {
+                inntektsmeldinger = await fetchInntektsmeldinger(req, saksnr, unparsed);
+            } finally {
+                imTimer();
+            }
         }
 
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-            return res.json({
-                sak,
-                inntektsmeldinger,
-            });
+            logger.debug('Returnerer unparsed data');
+            return res.json({ sak, inntektsmeldinger });
         }
 
         if (!sak) {
-            logger.warn(`Sak ${saksnr} ikke funnet`);
+            logger.warn('Sak ikke funnet');
             return res.status(404).json({ error: 'Sak ikke funnet' });
         }
-        if (!inntektsmeldinger) {
-            logger.warn(`Inntektsmeldinger for sak ${saksnr} ikke funnet`);
-            return res.status(404).json({ error: 'Inntektsmeldinger ikke funnet' });
-        }
 
-        // Suksess
-        if (Feature.INNTEKTSMELDING_ENABLED) {
-            logger.info(`Sak og inntektsmeldinger hentet for saksnummer: ${saksnr}`);
-        } else {
-            logger.info(`Sak hentet for saksnummer: ${saksnr}`);
-        }
         return res.json({ sak, inntektsmeldinger });
     } catch (err) {
-        const logger = getLogger(req);
-        if (Feature.INNTEKTSMELDING_ENABLED) {
-            logger.error(`Hent sak og inntektsmeldinger feilet`, prepApiError(err));
-        } else {
-            logger.error(`Hent sak feilet`, prepApiError(err));
-        }
+        const errorDetails = prepApiError(err);
+        logger.error('Henting av saksdetaljer feilet', {
+            errorDetails,
+            errorType: err instanceof Error ? err.constructor.name : typeof err,
+        });
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
+    } finally {
+        totalTimer();
     }
 }
 

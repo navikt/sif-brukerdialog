@@ -17,12 +17,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         // Hent søkerinformasjon
         const søker = await fetchSøker(req, unparsed);
+        logger.info(`Hentet søkerinformasjon`);
 
         // Hent oversikt over saker
         const sakerMetadata = await fetchSakerMetadata(req, unparsed);
+        logger.info(`Hentet metadata`);
 
         // Hent appstatus som sier om appen er tilgjengelig eller ikke
         const appStatus = await fetchAppStatus();
+        logger.info(`Hentet appstatus`);
 
         logger.info(`Hentet innsynsdata. Antall saker: ${sakerMetadata.length}`);
 
@@ -34,7 +37,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         };
         return res.json(innsynsdata);
     } catch (err) {
-        logger.error(`Hent innsynsdata feilet: ${prepApiError(err)}`);
+        logger.error(`Hent innsynsdata feilet`, prepApiError(err));
         if (
             isAxiosError(err) &&
             (err.response?.status === HttpStatusCode.Forbidden ||

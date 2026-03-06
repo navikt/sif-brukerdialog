@@ -3,12 +3,12 @@ import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { z } from 'zod';
 
-import { getContextForApiHandler, serverResponseTransform } from '../../utils/apiUtils';
+import { getContextForApiHandler, prepApiError, serverResponseTransform } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
-import { validateSaksnummer } from '../utils/validatePathSegment';
+import { assertValidSaksnummer } from '../utils/validatePathSegment';
 
 const inntektsmeldingSchemaModified = innsyn.zSakInntektsmeldingDto.omit({ utsettelsePerioder: true });
 
@@ -24,8 +24,7 @@ export const fetchInntektsmeldinger = async (
     saksnr: string,
     unparsed?: boolean,
 ): Promise<innsyn.SakInntektsmeldingDto[]> => {
-    // Validerer saksnummer for å beskytte mot SSRF
-    validateSaksnummer(saksnr);
+    assertValidSaksnummer(saksnr);
 
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
@@ -34,20 +33,27 @@ export const fetchInntektsmeldinger = async (
         `sak/${saksnr}/inntektsmeldinger`,
         'application/json',
     );
-    const logger = getLogger(req);
+    const logger = getLogger(req).withContext({ operation: 'fetchInntektsmeldinger', saksnummer: saksnr });
 
-    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-        logger.info(`Unparsed, fetching raw data from ${url}`);
-        const response = await axios.get(url, { headers });
-        return response.data;
+    try {
+        if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
+            logger.debug('Returnerer uparsed data');
+            const response = await axios.get(url, { headers });
+            return response.data;
+        }
+
+        logger.debug('Henter inntektsmeldinger fra upstream');
+        const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
+        logger.debug('Respons mottatt', { status: response.status });
+
+        const parsedData = z
+            .array(inntektsmeldingSchemaModified)
+            .parse(response.data) as innsyn.SakInntektsmeldingDto[];
+        logger.debug('Inntektsmeldinger parset', { antall: parsedData.length });
+
+        return parsedData;
+    } catch (error) {
+        logger.error('Feil ved henting av inntektsmeldinger', prepApiError(error));
+        throw error;
     }
-
-    logger.info(`Fetching inntektsmeldinger`);
-    const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
-    logger.info(`Response-status from request: ${response.status}`);
-
-    logger.info(`Parser response data`);
-    const parsedData = z.array(inntektsmeldingSchemaModified).parse(response.data) as innsyn.SakInntektsmeldingDto[];
-    logger.info(`Inntektsmeldinger parsed`);
-    return parsedData;
 };
