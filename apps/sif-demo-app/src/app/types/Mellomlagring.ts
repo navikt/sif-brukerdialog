@@ -1,6 +1,6 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
-
 import { Mellomlagring } from '@rammeverk/types';
+
 // import { SøknadStepId } from '../config/søknadStepConfig';
 import { Søknadsdata } from './Søknadsdata';
 

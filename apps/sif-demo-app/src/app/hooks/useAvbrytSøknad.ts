@@ -1,7 +1,7 @@
+import { useStepFormValues } from '@rammeverk/state/StepFormValuesContext';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useStepFormValues } from '@rammeverk/state/StepFormValuesContext';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 import { useSøknadStore } from './useSøknadStore';
 

@@ -1,7 +1,6 @@
 import { Alert, Button, Heading } from '@navikt/ds-react';
-import { useNavigate } from 'react-router-dom';
-
 import { DefaultPage } from '@rammeverk/components/default-page/DefaultPage';
+import { useNavigate } from 'react-router-dom';
 
 export const KvitteringPage = () => {
     const navigate = useNavigate();
