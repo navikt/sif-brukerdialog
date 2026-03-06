@@ -1,25 +1,20 @@
 import { SøknadStepId } from '../config/søknadStepConfig';
+import { BarnFormValues } from '../steps/barn/BarnForm';
+import { toBarnSøknadsdata } from '../steps/barn/barnStegUtils';
+import { BostedFormValues } from '../steps/bosted/BostedForm';
+import { toBostedSøknadsdata } from '../steps/bosted/bostedStegUtils';
 
-type FormValues = Record<string, unknown>;
+export type FormValues = Record<string, unknown>;
 
 export const formValuesToSøknadsdata = (
     stepId: string,
     formValues: FormValues,
 ): Record<string, unknown> | undefined => {
     switch (stepId) {
-        case SøknadStepId.PERSONALIA:
-            return {
-                navn: formValues.navn,
-                harHobby: formValues.harHobby,
-            };
-        case SøknadStepId.HOBBY:
-            return {
-                navn: formValues.navn,
-            };
-        case SøknadStepId.KONTAKT:
-            return {
-                epost: formValues.epost,
-            };
+        case SøknadStepId.BARN:
+            return toBarnSøknadsdata(formValues as BarnFormValues);
+        case SøknadStepId.BOSTED:
+            return toBostedSøknadsdata(formValues as BostedFormValues);
         default:
             return undefined;
     }

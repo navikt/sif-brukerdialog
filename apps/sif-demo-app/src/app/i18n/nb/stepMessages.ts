@@ -1,13 +1,10 @@
 export const stepMessages_nb = {
-    'step.personalia.title': 'Personalia',
-    'step.personalia.documentTitle': 'Fyll inn personalia for å komme videre',
+    'step.barn.title': 'Barn',
+    'step.barn.documentTitle': 'Barn',
 
-    'step.hobby.title': 'Hobby',
-    'step.hobby.documentTitle': 'Fyll inn hobby for å komme videre',
-
-    'step.kontaktinfo.title': 'Kontaktinfo',
-    'step.kontaktinfo.documentTitle': 'Fyll inn kontaktinfo for å komme videre',
+    'step.bosted.title': 'Bosted',
+    'step.bosted.documentTitle': 'Bosted',
 
     'step.oppsummering.title': 'Oppsummering',
-    'step.oppsummering.documentTitle': 'Sjekk at informasjonen er korrekt før du sender inn',
+    'step.oppsummering.documentTitle': 'Oppsummering',
 };

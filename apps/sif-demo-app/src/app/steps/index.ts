@@ -1,4 +1,3 @@
-export * from './hobby/HobbySteg';
-export * from './kontaktinfo/KontaktinfoSteg';
+export * from './barn/BarnSteg';
+export * from './bosted/BostedSteg';
 export * from './oppsummering/OppsummeringSteg';
-export * from './personalia/PersonaliaSteg';

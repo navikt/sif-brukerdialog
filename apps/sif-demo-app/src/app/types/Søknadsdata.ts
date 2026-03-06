@@ -1,12 +1,11 @@
 import { SøknadStepId } from '../config/søknadStepConfig';
 
-export type PersonaliaSøknadsdata = {
-    navn: string;
-    harHobby: 'ja' | 'nei';
+export type BarnSøknadsdata = {
+    stemmerInfoOmBarn: boolean;
 };
 
-export type HobbySøknadsdata = {
-    navn: string;
+export type BostedSøknadsdata = {
+    borITrondheim: boolean;
 };
 
 export type KontaktSøknadsdata = {
@@ -14,7 +13,6 @@ export type KontaktSøknadsdata = {
 };
 
 export interface Søknadsdata {
-    [SøknadStepId.PERSONALIA]?: PersonaliaSøknadsdata;
-    [SøknadStepId.HOBBY]?: HobbySøknadsdata;
-    [SøknadStepId.KONTAKT]?: KontaktSøknadsdata;
+    [SøknadStepId.BARN]?: BarnSøknadsdata;
+    [SøknadStepId.BOSTED]?: BostedSøknadsdata;
 }

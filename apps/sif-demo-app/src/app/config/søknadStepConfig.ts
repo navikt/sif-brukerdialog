@@ -4,9 +4,8 @@ import { StepConfig } from '@rammeverk/types';
 import { Søknadsdata } from '../types/Søknadsdata';
 
 export enum SøknadStepId {
-    PERSONALIA = 'personalia',
-    HOBBY = 'hobby',
-    KONTAKT = 'kontakt',
+    BOSTED = 'bosted',
+    BARN = 'barn',
     OPPSUMMERING = 'oppsummering',
 }
 
@@ -17,21 +16,15 @@ export interface SøknadState {
 }
 
 export const søknadStepConfig: StepConfig<Søknadsdata> = {
-    [SøknadStepId.PERSONALIA]: {
-        id: SøknadStepId.PERSONALIA,
-        route: 'om-deg',
-        isCompleted: (s) => s.personalia !== undefined,
+    [SøknadStepId.BARN]: {
+        id: SøknadStepId.BARN,
+        route: 'barn',
+        isCompleted: (s) => s.barn !== undefined,
     },
-    [SøknadStepId.HOBBY]: {
-        id: SøknadStepId.HOBBY,
-        route: 'hobby',
-        isIncluded: (s) => s.personalia?.harHobby === 'ja',
-        isCompleted: (s) => s.hobby !== undefined,
-    },
-    [SøknadStepId.KONTAKT]: {
-        id: SøknadStepId.KONTAKT,
-        route: 'kontaktinfo',
-        isCompleted: (s) => s.kontakt !== undefined,
+    [SøknadStepId.BOSTED]: {
+        id: SøknadStepId.BOSTED,
+        route: 'bosted',
+        isCompleted: (s) => s.bosted !== undefined,
     },
     [SøknadStepId.OPPSUMMERING]: {
         id: SøknadStepId.OPPSUMMERING,
@@ -39,16 +32,10 @@ export const søknadStepConfig: StepConfig<Søknadsdata> = {
     },
 };
 
-export const søknadStepOrder: SøknadStepId[] = [
-    SøknadStepId.PERSONALIA,
-    SøknadStepId.HOBBY,
-    SøknadStepId.KONTAKT,
-    SøknadStepId.OPPSUMMERING,
-];
+export const søknadStepOrder: SøknadStepId[] = [SøknadStepId.BOSTED, SøknadStepId.BARN, SøknadStepId.OPPSUMMERING];
 
 export const stepTitles: Record<SøknadStepId, string> = {
-    [SøknadStepId.PERSONALIA]: 'Personalia',
-    [SøknadStepId.HOBBY]: 'Hobby',
-    [SøknadStepId.KONTAKT]: 'Kontaktinfo',
+    [SøknadStepId.BARN]: 'Barn',
+    [SøknadStepId.BOSTED]: 'Bosted',
     [SøknadStepId.OPPSUMMERING]: 'Oppsummering',
 };

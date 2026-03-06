@@ -7,7 +7,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
 import { KvitteringPage, VelkommenPage } from './pages';
-import { HobbySteg, KontaktinfoSteg, OppsummeringSteg, PersonaliaSteg } from './steps';
+import { BarnSteg, BostedSteg, OppsummeringSteg } from './steps';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 
 interface Props {
@@ -50,9 +50,8 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                                 isInitialized={!!søknadState}
                             />
                         }>
-                        <Route path={søknadStepConfig[SøknadStepId.PERSONALIA].route} element={<PersonaliaSteg />} />
-                        <Route path={søknadStepConfig[SøknadStepId.HOBBY].route} element={<HobbySteg />} />
-                        <Route path={søknadStepConfig[SøknadStepId.KONTAKT].route} element={<KontaktinfoSteg />} />
+                        <Route path={søknadStepConfig[SøknadStepId.BARN].route} element={<BarnSteg />} />
+                        <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedSteg />} />
                         <Route
                             path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route}
                             element={<OppsummeringSteg />}

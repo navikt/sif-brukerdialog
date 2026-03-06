@@ -13,7 +13,7 @@ export const OppsummeringSteg = () => {
     const { text } = useAppIntl();
 
     const stepId = SøknadStepId.OPPSUMMERING;
-    const søknadState = useSøknadStore((s) => s.søknadState);
+    // const søknadState = useSøknadStore((s) => s.søknadState);
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
@@ -43,44 +43,8 @@ export const OppsummeringSteg = () => {
                 <FormLayout.Summary>
                     <FormSummary>
                         <FormSummary.Header>
-                            <FormSummary.Heading level="2">Personalia</FormSummary.Heading>
+                            <FormSummary.Heading level="2">Informasjon du har oppgitt</FormSummary.Heading>
                         </FormSummary.Header>
-                        <FormSummary.Answers>
-                            <FormSummary.Answer>
-                                <FormSummary.Label>Navn</FormSummary.Label>
-                                <FormSummary.Value>
-                                    {søknadState?.søknadsdata[SøknadStepId.PERSONALIA]?.navn}
-                                </FormSummary.Value>
-                            </FormSummary.Answer>
-                        </FormSummary.Answers>
-                    </FormSummary>
-                    {søknadState?.søknadsdata[SøknadStepId.HOBBY] && (
-                        <FormSummary>
-                            <FormSummary.Header>
-                                <FormSummary.Heading level="2">Hobby</FormSummary.Heading>
-                            </FormSummary.Header>
-                            <FormSummary.Answers>
-                                <FormSummary.Answer>
-                                    <FormSummary.Label>Hobby</FormSummary.Label>
-                                    <FormSummary.Value>
-                                        {søknadState?.søknadsdata[SøknadStepId.HOBBY]?.navn}
-                                    </FormSummary.Value>
-                                </FormSummary.Answer>
-                            </FormSummary.Answers>
-                        </FormSummary>
-                    )}
-                    <FormSummary>
-                        <FormSummary.Header>
-                            <FormSummary.Heading level="2">Kontaktinformasjon</FormSummary.Heading>
-                        </FormSummary.Header>
-                        <FormSummary.Answers>
-                            <FormSummary.Answer>
-                                <FormSummary.Label>E-post</FormSummary.Label>
-                                <FormSummary.Value>
-                                    {søknadState?.søknadsdata[SøknadStepId.KONTAKT]?.epost}
-                                </FormSummary.Value>
-                            </FormSummary.Answer>
-                        </FormSummary.Answers>
                     </FormSummary>
                     <FormLayout.FormButtons
                         onPrevious={onPrevious}
