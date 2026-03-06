@@ -1,8 +1,9 @@
 import { useYtelseMellomlagring } from '@navikt/sif-common-query';
+import { StepsFormValues } from '@rammeverk/state/StepFormValuesContext';
 import { useMemo } from 'react';
 
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config';
-import { MellomlagringMetaData, SøknadMellomlagring, SøknadSkjemadata } from '../types/Mellomlagring';
+import { MellomlagringMetaData, SøknadMellomlagring } from '../types/Mellomlagring';
 import { useSøknadStore } from './useSøknadStore';
 
 /**
@@ -44,7 +45,7 @@ export const useSøknadMellomlagring = () => {
     /**
      * Lagre midt i et steg. Bevarer skjemadata for usubmittede verdier.
      */
-    const lagreSøknadOgSkjemadata = async (skjemadata: SøknadSkjemadata) => {
+    const lagreSøknadOgSkjemadata = async (skjemadata: StepsFormValues) => {
         const state = useSøknadStore.getState();
         const søknadsdata = state.søknadState?.søknadsdata;
         const currentStepId = state.currentStepId;

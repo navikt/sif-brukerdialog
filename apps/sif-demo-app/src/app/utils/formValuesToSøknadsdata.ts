@@ -1,4 +1,5 @@
-import { FormValues } from '../../rammeverk/state/StepFormValuesContext';
+import { FormValues } from '@rammeverk/state/StepFormValuesContext';
+
 import { SøknadStepId } from '../config/søknadStepConfig';
 import { BarnFormValues } from '../steps/barn/BarnForm';
 import { toBarnSøknadsdata } from '../steps/barn/barnStegUtils';

@@ -25,7 +25,7 @@ const StepFormValuesContext = createContext<StepFormValuesContextValue | null>(n
 
 interface Props {
     children: ReactNode;
-    initialValues?: Record<string, object | undefined>;
+    initialValues?: StepsFormValues;
 }
 
 /**
@@ -36,7 +36,7 @@ interface Props {
 export const StepsFormValuesProvider = ({ children, initialValues }: Props) => {
     const [values, setValues] = useState<StepsFormValues>((initialValues as StepsFormValues) ?? {});
 
-    const setStepFormValues = useCallback((stepId: string, formValues: Record<string, unknown>) => {
+    const setStepFormValues = useCallback((stepId: string, formValues: FormValues) => {
         setValues((prev) => ({ ...prev, [stepId]: formValues }));
     }, []);
 
@@ -49,7 +49,7 @@ export const StepsFormValuesProvider = ({ children, initialValues }: Props) => {
     }, []);
 
     const getStepFormValues = useCallback(
-        <T = Record<string, unknown>,>(stepId: string): Partial<T> | undefined => {
+        <T = FormValues,>(stepId: string): Partial<T> | undefined => {
             return values[stepId] as Partial<T> | undefined;
         },
         [values],
