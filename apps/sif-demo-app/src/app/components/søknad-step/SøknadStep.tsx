@@ -39,7 +39,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
     const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
-    const { clearAllStepFormValues, getStepFormValues } = useStepFormValues();
+    const { clearStepFormValues, getStepFormValues } = useStepFormValues();
 
     const stepFormValues = getStepFormValues<TSkjemadata>(stepId);
 
@@ -61,7 +61,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
         const mapped = toSøknadsdata(data);
         setSøknadsdata({ [stepId]: mapped } as Partial<Søknadsdata>);
         await lagreSøknad();
-        clearAllStepFormValues();
+        clearStepFormValues(stepId);
         navigateToNextStep(stepId);
     };
 
