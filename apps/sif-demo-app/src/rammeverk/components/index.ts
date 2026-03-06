@@ -1,2 +1,1 @@
-export { StepConsistencyChecker } from './step-consistency-checker/StepConsistencyChecker';
-export { StepInconsistencyMessage } from './step-inconsistency-message/StepInconsistencyMessage';
+export { InconsistentStepMessage } from './inconsistent-step-message/InconsistentStepMessage';

@@ -1,4 +1,5 @@
-import { StepConsistencyChecker, StepInconsistencyMessage } from '@rammeverk/components';
+import { InconsistentStepMessage } from '@rammeverk/components';
+import { useStepConsistencyChecker } from '@rammeverk/hooks';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,11 +12,6 @@ interface Props {
     stepId: SøknadStepId;
 }
 
-/**
- * App-spesifikk wrapper rundt StepConsistencyChecker.
- * Injiserer søknadsdata og viser ugyldig steg-informasjon hvis skjemdata
- * og søknadsdata ikke stemmer overens.
- */
 export const AppStepConsistencyChecker = ({ stepId }: Props) => {
     const navigate = useNavigate();
     const søknadsdata = useSøknadStore((s) => s.søknadState?.søknadsdata);
@@ -25,23 +21,20 @@ export const AppStepConsistencyChecker = ({ stepId }: Props) => {
         [søknadsdata],
     );
 
+    const inconsistentStepId = useStepConsistencyChecker({
+        currentStepId: stepId,
+        stepOrder: søknadStepOrder,
+        getSøknadsdataForStep,
+        formValuesToSøknadsdata,
+    });
+
+    if (!inconsistentStepId) return null;
+
     return (
-        <StepConsistencyChecker
-            currentStepId={stepId}
-            stepOrder={søknadStepOrder}
-            getSøknadsdataForStep={getSøknadsdataForStep}
-            formValuesToSøknadsdata={formValuesToSøknadsdata}>
-            {(invalidStepId) =>
-                invalidStepId && (
-                    <StepInconsistencyMessage
-                        invalidStep={invalidStepId}
-                        stepTitle={stepTitles[invalidStepId as SøknadStepId]}
-                        onNavigateToStep={() =>
-                            navigate(`/soknad/${søknadStepConfig[invalidStepId as SøknadStepId].route}`)
-                        }
-                    />
-                )
-            }
-        </StepConsistencyChecker>
+        <InconsistentStepMessage
+            stepId={inconsistentStepId}
+            stepTitle={stepTitles[inconsistentStepId as SøknadStepId]}
+            onNavigateToStep={() => navigate(`/soknad/${søknadStepConfig[inconsistentStepId as SøknadStepId].route}`)}
+        />
     );
 };

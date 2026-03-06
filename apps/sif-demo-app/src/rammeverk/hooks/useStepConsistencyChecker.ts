@@ -1,6 +1,6 @@
-import { ReactNode, useMemo } from 'react';
+import { useMemo } from 'react';
 
-import { useStepFormValues } from '../../state';
+import { useStepFormValues } from '../state';
 
 type FormValuesToSøknadsdataFn = (
     stepId: string,
@@ -9,48 +9,26 @@ type FormValuesToSøknadsdataFn = (
 
 type GetSøknadsdataForStepFn = (stepId: string) => Record<string, unknown> | undefined;
 
-interface StepConsistencyCheckerProps {
+interface UseStepConsistencyCheckerProps {
     currentStepId: string;
     stepOrder: string[];
     getSøknadsdataForStep: GetSøknadsdataForStepFn;
     formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
     isEqual?: (a: unknown, b: unknown) => boolean;
-    children: (invalidStepId: string | null) => ReactNode;
 }
 
-const defaultIsEqual = (a: unknown, b: unknown): boolean => {
-    return JSON.stringify(a) === JSON.stringify(b);
-};
+const defaultIsEqual = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b);
 
-/**
- * Sjekker om formValues for tidligere steg matcher lagret søknadsdata.
- * Brukes for å oppdage om bruker har endret data uten å submitte (f.eks. via nettleserens forward-knapp).
- *
- * Render prop-pattern gir appen full kontroll over hvordan advarselen rendres.
- *
- * @example
- * ```tsx
- * <StepConsistencyChecker
- *   currentStepId={stepId}
- *   stepOrder={stepOrder}
- *   getSøknadsdataForStep={(id) => søknadsdata[id]}
- *   formValuesToSøknadsdata={formValuesToSøknadsdata}
- * >
- *   {(invalidStepId) => invalidStepId && <Alert>Du har ulagrede endringer</Alert>}
- * </StepConsistencyChecker>
- * ```
- */
-export const StepConsistencyChecker = ({
+export const useStepConsistencyChecker = ({
     currentStepId,
     stepOrder,
     getSøknadsdataForStep,
     formValuesToSøknadsdata,
     isEqual = defaultIsEqual,
-    children,
-}: StepConsistencyCheckerProps) => {
+}: UseStepConsistencyCheckerProps): string | null => {
     const { stepFormValues } = useStepFormValues();
 
-    const invalidStepId = useMemo(() => {
+    return useMemo(() => {
         const currentIndex = stepOrder.indexOf(currentStepId);
         if (currentIndex <= 0) return null;
 
@@ -69,6 +47,4 @@ export const StepConsistencyChecker = ({
         }
         return null;
     }, [currentStepId, stepOrder, stepFormValues, getSøknadsdataForStep, formValuesToSøknadsdata, isEqual]);
-
-    return <>{children(invalidStepId)}</>;
 };
