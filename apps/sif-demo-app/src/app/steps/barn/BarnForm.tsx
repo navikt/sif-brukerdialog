@@ -1,6 +1,6 @@
 import { Alert, Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { usePersistStepFormValues } from '@rammeverk/hooks';
+import { useSaveFormValuesForSøknadStep } from '@rammeverk/hooks';
 import { StepFormValues } from '@rammeverk/state/SøknadFormValuesContext';
 import { DefaultValues, useForm } from 'react-hook-form';
 
@@ -26,7 +26,7 @@ export const BarnForm = ({ isPending, defaultValues, onSubmit, onPrevious }: Pro
         defaultValues,
     });
 
-    usePersistStepFormValues(SøknadStepId.BARN, () => getValues());
+    useSaveFormValuesForSøknadStep(SøknadStepId.BARN, () => getValues());
 
     const stemmerInfoOmBarn = watch(BarnFormFields.stemmerInfoOmBarn);
 

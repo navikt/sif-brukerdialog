@@ -8,7 +8,7 @@ type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) =
 
 type GetSøknadsdataForStepFn = (stepId: string) => StepSøknadsdata | undefined;
 
-interface UseStepConsistencyCheckerProps {
+interface Props {
     currentStepId: string;
     stepOrder: string[];
     getSøknadsdataForStep: GetSøknadsdataForStepFn;
@@ -18,13 +18,13 @@ interface UseStepConsistencyCheckerProps {
 
 const defaultIsEqual = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b);
 
-export const useStepConsistencyChecker = ({
+export const useSøknadsdataConsistencyChecker = ({
     currentStepId,
     stepOrder,
     getSøknadsdataForStep,
     formValuesToSøknadsdata,
     isEqual = defaultIsEqual,
-}: UseStepConsistencyCheckerProps): string | null => {
+}: Props): string | null => {
     const { søknadFormValues: stepsFormValues } = useSøknadFormValues();
 
     return useMemo(() => {

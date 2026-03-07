@@ -11,6 +11,9 @@ export interface AppStatusWrapperProps {
     unavailableContentRenderer: () => React.ReactNode;
 }
 
+/**
+ * Wrapper som bruker useAppStatus for å se om applikasjon skal vises eller ikke.
+ */
 export const AppStatusWrapper = ({
     applicationKey,
     contentRenderer,

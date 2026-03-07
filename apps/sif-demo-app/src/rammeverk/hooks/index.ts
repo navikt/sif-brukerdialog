@@ -1,2 +1,2 @@
-export { usePersistStepFormValues } from './usePersistStepFormValues';
-export { useStepConsistencyChecker } from './useStepConsistencyChecker';
+export { useSaveFormValuesForSøknadStep } from './useSaveFormValuesForSøknadStep';
+export { useSøknadsdataConsistencyChecker } from './useSøknadsdataConsistencyChecker';

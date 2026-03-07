@@ -1,1 +1,1 @@
-export { InconsistentStepMessage } from './inconsistent-step-message/InconsistentStepMessage';
+export { InconsistentSøknadsdataMessage } from './inconsistent-søknadsdata-message/InconsistentSøknadsdataMessage';
