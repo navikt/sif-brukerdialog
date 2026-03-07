@@ -1,6 +1,6 @@
 import { uiMessages } from '@navikt/sif-common-ui';
 import { rammeverkMessages } from '@rammeverk/i18n';
-import { typedIntlHelper } from '@rammeverk/utils/intlUtils';
+import { typedIntlHelper } from '@rammeverk/utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';

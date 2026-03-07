@@ -1,7 +1,3 @@
-export * from './components';
-export * from './hooks';
-export * from './pages';
-export * from './routing';
-export * from './state';
-export * from './types';
-export * from './utils';
+export * as consistency from './consistency';
+export * as foundation from './foundation';
+export * as navigation from './navigation';

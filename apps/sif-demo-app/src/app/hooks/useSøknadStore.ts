@@ -1,4 +1,4 @@
-import { createSøknadStore } from '@rammeverk/state';
+import { createSøknadStore } from '@rammeverk/foundation';
 
 import { SøknadState, søknadStepConfig, søknadStepOrder } from '../config/søknadStepConfig';
 import { Søknadsdata } from '../types/Søknadsdata';

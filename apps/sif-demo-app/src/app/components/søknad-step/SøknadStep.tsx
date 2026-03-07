@@ -1,6 +1,7 @@
-import { getProgressSteps } from '@rammeverk';
+import { getProgressSteps } from '@rammeverk/foundation';
+import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
-import { useSøknadFormValues, useStepNavigation } from '@rammeverk/state';
+import { useSøknadFormValues } from '@rammeverk/state';
 
 import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';

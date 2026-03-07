@@ -1,7 +1,7 @@
 import { create, StateCreator, StoreApi, UseBoundStore } from 'zustand';
 
 import { IncludedStep, StepConfig } from '../types';
-import { getIncludedSteps } from '../utils/stepUtils';
+import { getIncludedSteps } from './stepUtils';
 
 export interface BaseSøknadsdata {
     bekrefterVilkår?: boolean;

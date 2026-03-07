@@ -1,4 +1,2 @@
-export type { BaseSøknadState, SøknadStoreActions } from './createSøknadStore';
-export { createSøknadStore } from './createSøknadStore';
+export type { SøknadFormValues, StepFormValues } from './SøknadFormValuesContext';
 export { SøknadFormValuesProvider, useSøknadFormValues } from './SøknadFormValuesContext';
-export { useStepNavigation } from './useStepNavigation';

@@ -1,4 +1,4 @@
-import { useSøknadFormValues } from '@rammeverk/state/SøknadFormValuesContext';
+import { useSøknadFormValues } from '@rammeverk/state';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 

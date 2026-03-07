@@ -1,6 +1,5 @@
-import { AppErrorFallback } from '@rammeverk/components/error-boundary/AppErrorFallback';
-import { ErrorBoundary } from '@rammeverk/components/error-boundary/ErrorBoundary';
-import { logErrorToFaro } from '@rammeverk/utils/faroErrorLogger';
+import { AppErrorFallback, ErrorBoundary } from '@rammeverk/components';
+import { logErrorToFaro } from '@rammeverk/utils';
 import React from 'react';
 
 interface Props {

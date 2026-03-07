@@ -1,10 +1,9 @@
 import { Box } from '@navikt/ds-react';
-import { InconsistentSøknadsdataMessage } from '@rammeverk/components';
-import { useSøknadsdataConsistencyChecker } from '@rammeverk/hooks';
+import { InconsistentSøknadsdataMessage, useSøknadsdataConsistencyChecker } from '@rammeverk/consistency';
+import { StepSøknadsdata } from '@rammeverk/types';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { StepSøknadsdata } from '../../../rammeverk';
 import { søknadStepConfig, SøknadStepId, søknadStepOrder, stepTitles } from '../../config/søknadStepConfig';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { formValuesToSøknadsdata } from '../../utils/formValuesToSøknadsdata';

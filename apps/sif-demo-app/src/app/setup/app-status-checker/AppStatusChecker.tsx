@@ -1,7 +1,7 @@
 import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { BodyShort, GuidePanel } from '@navikt/ds-react';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
-import { AppStatusWrapper, AppStatusWrapperProps } from '@rammeverk/components/app-status-wrapper/AppStatusWrapper';
+import { AppStatusWrapper, AppStatusWrapperProps } from '@rammeverk/components';
 
 import { getAppEnv } from '../../env/appEnv';
 
