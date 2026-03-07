@@ -3,7 +3,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { getProgressSteps } from '@rammeverk/foundation';
 import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
-import { useSøknadFormValues } from '@rammeverk/state';
+import { useSøknadFormValues } from '@rammeverk/consistency';
 
 import { søknadStepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';

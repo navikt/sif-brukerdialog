@@ -1,7 +1,7 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { useSaveFormValuesForSøknadStep } from '@rammeverk/consistency';
-import { StepFormValues } from '@rammeverk/state';
+import { useSaveSøknadFormValues } from '@rammeverk/consistency';
+import { StepFormValues } from '@rammeverk/consistency';
 import { DefaultValues, useForm } from 'react-hook-form';
 
 import { SøknadStepId } from '../../config/søknadStepConfig';
@@ -26,7 +26,7 @@ export const BostedForm = ({ defaultValues, isPending, onSubmit, onPrevious }: P
         defaultValues,
     });
 
-    useSaveFormValuesForSøknadStep(SøknadStepId.BOSTED, () => getValues());
+    useSaveSøknadFormValues(SøknadStepId.BOSTED, () => getValues());
 
     const borITrondheim = watch(BostedFormFields.borITrondheim);
 

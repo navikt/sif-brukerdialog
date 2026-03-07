@@ -1,9 +1,10 @@
 import { Box } from '@navikt/ds-react';
-import { InconsistentSøknadsdataMessage, useSøknadsdataConsistencyChecker } from '@rammeverk/consistency';
+import { useVerifySøknadsdata } from '@rammeverk/consistency';
 import { StepSøknadsdata } from '@rammeverk/types';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { InconsistentFormValuesMessage } from '../../../rammeverk/consistency/InconsistentFormValuesMessage';
 import { søknadStepConfig, SøknadStepId, søknadStepOrder, stepTitles } from '../../config/søknadStepConfig';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { formValuesToSøknadsdata } from '../../utils/formValuesToSøknadsdata';
@@ -21,7 +22,7 @@ export const AppStepConsistencyChecker = ({ stepId }: Props) => {
         [søknadsdata],
     );
 
-    const inconsistentStepId = useSøknadsdataConsistencyChecker({
+    const inconsistentStepId = useVerifySøknadsdata({
         currentStepId: stepId,
         stepOrder: søknadStepOrder,
         getSøknadsdataForStep,
@@ -32,7 +33,7 @@ export const AppStepConsistencyChecker = ({ stepId }: Props) => {
 
     return (
         <Box marginBlock="space-0 space-32">
-            <InconsistentSøknadsdataMessage
+            <InconsistentFormValuesMessage
                 stepId={inconsistentStepId}
                 stepTitle={stepTitles[inconsistentStepId as SøknadStepId]}
                 onNavigateToStep={() =>

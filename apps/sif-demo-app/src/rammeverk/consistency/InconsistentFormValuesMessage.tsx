@@ -17,7 +17,7 @@ interface Props {
  * Viser en advarsel når bruker har navigert til et steg uten å submitte endringer
  * på et tidligere steg. Ber bruker gå tilbake og bruke skjemaets navigasjonsknapper.
  */
-export const InconsistentSøknadsdataMessage = ({
+export const InconsistentFormValuesMessage = ({
     stepId,
     stepTitle,
     onNavigateToStep,

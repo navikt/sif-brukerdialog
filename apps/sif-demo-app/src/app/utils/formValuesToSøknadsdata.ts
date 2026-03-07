@@ -1,4 +1,4 @@
-import { StepFormValues } from '@rammeverk/state';
+import { StepFormValues } from '@rammeverk/consistency';
 import { StepSøknadsdata } from '@rammeverk/types';
 
 import { SøknadStepId } from '../config/søknadStepConfig';

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
-import { StepFormValues, useSøknadFormValues } from '../state';
 import { StepSøknadsdata } from '../types';
+import { StepFormValues, useSøknadFormValues } from './';
 
 type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => StepSøknadsdata | undefined;
 
@@ -17,7 +17,7 @@ interface Props {
 
 const defaultIsEqual = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b);
 
-export const useSøknadsdataConsistencyChecker = ({
+export const useVerifySøknadsdata = ({
     currentStepId,
     stepOrder,
     getSøknadsdataForStep,
