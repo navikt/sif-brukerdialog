@@ -13,7 +13,7 @@ interface Props {
         /** Innhold i guide */
         content: ReactNode;
     };
-    onStart: () => void;
+    onStart: (bekrefterVilkår: true) => void;
     /** Innhold mellom guide og skjema */
     children: ReactNode;
 }
@@ -34,7 +34,7 @@ export const StartPage = ({ title, guide, children, onStart }: Props) => {
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         if (isValid()) {
-            onStart();
+            onStart(true);
         }
     };
 

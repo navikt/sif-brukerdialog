@@ -1,3 +1,5 @@
+import { BaseSøknadsdata } from '@rammeverk/state/createSøknadStore';
+
 import { SøknadStepId } from '../config/søknadStepConfig';
 
 export type BarnSøknadsdata = {
@@ -12,7 +14,7 @@ export type KontaktSøknadsdata = {
     epost: string;
 };
 
-export interface Søknadsdata {
+export interface Søknadsdata extends BaseSøknadsdata {
     [SøknadStepId.BARN]?: BarnSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;
 }

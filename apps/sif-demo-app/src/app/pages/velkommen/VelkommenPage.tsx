@@ -15,10 +15,10 @@ export const VelkommenPage = () => {
     const søknadState = useSøknadStore((s) => s.søknadState);
     const { clearSøknadFormValues } = useSøknadFormValues();
 
-    const handleStart = () => {
+    const handleStart = (bekrefter: true) => {
         const førsteSteg = søknadStepConfig[søknadStepOrder[0]];
         clearSøknadFormValues();
-        startSøknad(førsteSteg.id);
+        startSøknad(førsteSteg.id, bekrefter);
         navigate(`/soknad/${førsteSteg.route}`);
     };
 

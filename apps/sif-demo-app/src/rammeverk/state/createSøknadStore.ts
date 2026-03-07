@@ -3,11 +3,16 @@ import { create, StateCreator, StoreApi, UseBoundStore } from 'zustand';
 import { IncludedStep, StepConfig } from '../types';
 import { getIncludedSteps } from '../utils/stepUtils';
 
+export interface BaseSøknadsdata {
+    bekrefterVilkår?: boolean;
+    bekrefterRiktigeOpplysninger?: boolean;
+}
+
 /**
  * Base interface for søknad state.
- * Apps must have a søknadsdata property that is an object.
+ * Apps must have a søknadsdata property that is an object extending BaseSøknadsdata.
  */
-export interface BaseSøknadState<TSøknadsdata extends object> {
+export interface BaseSøknadState<TSøknadsdata extends BaseSøknadsdata> {
     søknadsdata: TSøknadsdata;
 }
 
@@ -25,7 +30,7 @@ export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     ) => void;
     setSøknadsdata: (data: Partial<TSøknadsdata>) => void;
     resetSøknad: () => void;
-    startSøknad: (firstStepId: string) => void;
+    startSøknad: (firstStepId: string, bekrefterVilkår: true) => void;
     setCurrentStep: (stepId: string) => void;
 }
 
@@ -80,10 +85,12 @@ export const createSøknadStore = <
             });
         },
 
-        startSøknad: (firstStepId: string) =>
+        startSøknad: (firstStepId: string, bekrefterVilkår: true) =>
             set((state) => {
                 if (!state.søknadState) return state;
-                const søknadsdata = {} as TSøknadsdata;
+                const søknadsdata = {
+                    bekrefterVilkår,
+                } as TSøknadsdata;
                 return {
                     søknadState: {
                         ...state.søknadState,
