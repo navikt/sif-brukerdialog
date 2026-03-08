@@ -1,5 +1,5 @@
 import { Box } from '@navikt/ds-react';
-import { useVerifySøknadsdata } from '@rammeverk/consistency';
+import { useCheckSøknadStepData } from '@rammeverk/consistency';
 import { StepSøknadsdata } from '@rammeverk/types';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -22,7 +22,7 @@ export const AppConsistencyChecker = ({ stepId }: Props) => {
         [søknadsdata],
     );
 
-    const inconsistentStepId = useVerifySøknadsdata({
+    const inconsistentStepId = useCheckSøknadStepData({
         currentStepId: stepId,
         stepOrder: søknadStepOrder,
         getSøknadsdataForStep,
