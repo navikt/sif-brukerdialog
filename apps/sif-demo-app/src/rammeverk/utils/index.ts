@@ -1,3 +1,3 @@
-export * from './faroErrorLogger';
+export * from './faroUtils';
 export * from './intlUtils';
 export * from './stepUtils';

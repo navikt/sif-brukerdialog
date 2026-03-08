@@ -28,10 +28,7 @@ const getIncludedSteps = <TSøknadsdata>(
     });
 };
 
-/**
- * Store actions provided by the framework.
- */
-export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
+interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     søknadState: TState | undefined;
     currentStepId?: string;
     includedSteps: IncludedStep[];
@@ -52,7 +49,7 @@ interface StoreOptions<TSøknadsdata> {
 }
 
 /**
- * Creates a typed søknad store with common functionality.
+ * Oppretter en søknadsstore med standard logikk for å håndtere søknadsdata, inkluderte steg og navigasjon.
  */
 export const createSøknadStore = <
     TState extends BaseState<TSøknadsdata>,

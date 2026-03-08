@@ -12,17 +12,18 @@ interface Props {
     stepOrder: string[];
     getSøknadsdataForStep: GetSøknadsdataForStepFn;
     formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
-    isEqual?: (a: unknown, b: unknown) => boolean;
 }
 
-const defaultIsEqual = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b);
-
+/**
+ * Sjekker om skjemadata for et steg er konsistent med lagrede søknadsdata. Fanger
+ * opp om skjemadata har endret seg uten at dette er commitet til store. F.eks. hvis
+ * bruker går frem og tilbake uten å bruke submit.
+ */
 export const useCheckSøknadStepData = ({
     currentStepId,
     stepOrder,
     getSøknadsdataForStep,
     formValuesToSøknadsdata,
-    isEqual = defaultIsEqual,
 }: Props): string | null => {
     const { søknadFormValues: stepsFormValues } = useSøknadFormValues();
 
@@ -39,10 +40,10 @@ export const useCheckSøknadStepData = ({
             const søknadsdata = getSøknadsdataForStep(stepId);
             const converted = formValuesToSøknadsdata(stepId, formValues);
 
-            if (!søknadsdata || !isEqual(converted, søknadsdata)) {
+            if (!søknadsdata || JSON.stringify(converted) !== JSON.stringify(søknadsdata)) {
                 return stepId;
             }
         }
         return null;
-    }, [currentStepId, stepOrder, stepsFormValues, getSøknadsdataForStep, formValuesToSøknadsdata, isEqual]);
+    }, [currentStepId, stepOrder, stepsFormValues, getSøknadsdataForStep, formValuesToSøknadsdata]);
 };
