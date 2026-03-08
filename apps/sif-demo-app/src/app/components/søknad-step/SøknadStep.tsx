@@ -1,7 +1,7 @@
 import { useSøknadFormValues } from '@rammeverk/consistency';
-import { getProgressSteps } from '@rammeverk/store';
 import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
+import { getProgressSteps } from '@rammeverk/store';
 
 import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';

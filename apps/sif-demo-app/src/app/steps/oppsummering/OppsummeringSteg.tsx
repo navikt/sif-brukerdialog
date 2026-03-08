@@ -1,9 +1,9 @@
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getProgressSteps } from '@rammeverk/store';
+import { useSøknadFormValues } from '@rammeverk/consistency';
 import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
-import { useSøknadFormValues } from '@rammeverk/consistency';
+import { getProgressSteps } from '@rammeverk/store';
 
 import { søknadStepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';

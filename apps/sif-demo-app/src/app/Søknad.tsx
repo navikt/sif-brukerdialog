@@ -1,7 +1,7 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
-import { StepRouteGuard } from '@rammeverk/navigation';
 import { SøknadFormValuesProvider } from '@rammeverk/consistency';
+import { StepRouteGuard } from '@rammeverk/navigation';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
