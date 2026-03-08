@@ -3,7 +3,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { useSøknadFormValues } from '@rammeverk/consistency';
 import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
-import { getProgressSteps } from '@rammeverk/store';
+import { getProgressSteps } from '@rammeverk/utils';
 
 import { søknadStepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
@@ -21,7 +21,7 @@ export const OppsummeringSteg = () => {
 
     const { navigateToStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
         stepConfig: søknadStepConfig,
-        getIncludedSteps: () => useSøknadStore.getState().includedSteps,
+        getSøknadSteps: () => useSøknadStore.getState().includedSteps,
         setCurrentStep,
     });
 

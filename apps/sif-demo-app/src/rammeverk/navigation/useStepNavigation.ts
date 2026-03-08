@@ -5,7 +5,7 @@ import { IncludedStep, StepConfig } from '../types';
 
 interface UseStepNavigationOptions {
     stepConfig: StepConfig;
-    getIncludedSteps: () => IncludedStep[];
+    getSøknadSteps: () => IncludedStep[];
     setCurrentStep: (stepId: string) => void;
     basePath?: string;
 }
@@ -29,7 +29,7 @@ const getPreviousNextStep = (includedSteps: IncludedStep[], currentStepId: strin
  */
 export const useStepNavigation = ({
     stepConfig,
-    getIncludedSteps,
+    getSøknadSteps,
     setCurrentStep,
     basePath = '/soknad',
 }: UseStepNavigationOptions) => {
@@ -50,38 +50,38 @@ export const useStepNavigation = ({
 
     const navigateToNextStep = useCallback(
         (fromStepId: string) => {
-            const { nextStepId } = getPreviousNextStep(getIncludedSteps(), fromStepId);
+            const { nextStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             if (nextStepId) {
                 navigateToStep(nextStepId);
             }
         },
-        [getIncludedSteps, navigateToStep],
+        [getSøknadSteps, navigateToStep],
     );
 
     const navigateToPreviousStep = useCallback(
         (fromStepId: string) => {
-            const { previousStepId } = getPreviousNextStep(getIncludedSteps(), fromStepId);
+            const { previousStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             if (previousStepId) {
                 navigateToStep(previousStepId);
             }
         },
-        [getIncludedSteps, navigateToStep],
+        [getSøknadSteps, navigateToStep],
     );
 
     const canGoNext = useCallback(
         (fromStepId: string) => {
-            const { nextStepId } = getPreviousNextStep(getIncludedSteps(), fromStepId);
+            const { nextStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             return nextStepId !== null;
         },
-        [getIncludedSteps],
+        [getSøknadSteps],
     );
 
     const canGoPrevious = useCallback(
         (fromStepId: string) => {
-            const { previousStepId } = getPreviousNextStep(getIncludedSteps(), fromStepId);
+            const { previousStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             return previousStepId !== null;
         },
-        [getIncludedSteps],
+        [getSøknadSteps],
     );
 
     return {

@@ -1,20 +1,32 @@
 import { create, StateCreator, StoreApi, UseBoundStore } from 'zustand';
 
-import { IncludedStep, StepConfig } from '../types';
-import { getIncludedSteps } from './stepUtils';
+import { BaseSøknadsdata, IncludedStep, StepConfig } from '../types';
 
-export interface BaseSøknadsdata {
-    bekrefterVilkår?: boolean;
-    bekrefterRiktigeOpplysninger?: boolean;
+/**
+ * Base type for søknad state.
+ * Alle søknader må ha en søknadsdata-egenskap som er et objekt som extends BaseSøknadsdata.
+ */
+interface BaseState<TSøknadsdata extends BaseSøknadsdata> {
+    søknadsdata: TSøknadsdata;
 }
 
 /**
- * Base interface for søknad state.
- * Apps must have a søknadsdata property that is an object extending BaseSøknadsdata.
+ * Returnerer liste over inkluderte steg med tilgjengelighet og fullført-status.
+ * Lineær flyt: et steg er tilgjengelig hvis alle foregående er fullført.
  */
-interface BaseSøknadState<TSøknadsdata extends BaseSøknadsdata> {
-    søknadsdata: TSøknadsdata;
-}
+const getIncludedSteps = <TSøknadsdata>(
+    stepOrder: string[],
+    stepConfig: StepConfig<TSøknadsdata>,
+    søknadsdata: TSøknadsdata,
+): IncludedStep[] => {
+    const includedIds = stepOrder.filter((id) => stepConfig[id]?.isIncluded?.(søknadsdata) ?? true);
+
+    return includedIds.map((stepId) => {
+        const step = stepConfig[stepId];
+        const completed = step?.isCompleted?.(søknadsdata) ?? false;
+        return { stepId, stepRoute: step.route, completed };
+    });
+};
 
 /**
  * Store actions provided by the framework.
@@ -41,23 +53,9 @@ interface StoreOptions<TSøknadsdata> {
 
 /**
  * Creates a typed søknad store with common functionality.
- *
- * @example
- * ```typescript
- * interface SøknadState {
- *   søker: Søker;
- *   barn: RegistrertBarn[];
- *   søknadsdata: Søknadsdata;
- * }
- *
- * export const useSøknadStore = createSøknadStore<SøknadState, Søknadsdata>({
- *   stepOrder: søknadStepOrder,
- *   stepConfig: søknadStepConfig,
- * });
- * ```
  */
 export const createSøknadStore = <
-    TState extends BaseSøknadState<TSøknadsdata>,
+    TState extends BaseState<TSøknadsdata>,
     TSøknadsdata extends object = Record<string, never>,
 >(
     options: StoreOptions<TSøknadsdata>,

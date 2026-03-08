@@ -1,8 +1,25 @@
+/**
+ * Skjemadata for ett steg
+ */
 export type StepFormValues = Record<string, unknown>;
 
+/**
+ * Skjemadata for alle steg
+ */
 export type SøknadFormValues = Record<string, StepFormValues | undefined>;
 
+/**
+ * Søknadsdata for alle steg
+ */
 export type StepSøknadsdata = Record<string, unknown>;
+
+/**
+ * Base type for søknadsdata - noe alle søknader har.
+ */
+export type BaseSøknadsdata = {
+    bekrefterVilkår?: boolean;
+    bekrefterRiktigeOpplysninger?: boolean;
+};
 
 /**
  * Generisk mellomlagring-type.
@@ -34,7 +51,7 @@ export interface StepDefinition<TSøknadsdata = StepSøknadsdata> {
 export type StepConfig<TSøknadsdata = unknown> = Record<string, StepDefinition<TSøknadsdata>>;
 
 /**
- * Info om et inkludert steg
+ * Info om et inkludert steg - dette vil si et steg som er med i søknadsflyten
  */
 export interface IncludedStep {
     stepId: string;

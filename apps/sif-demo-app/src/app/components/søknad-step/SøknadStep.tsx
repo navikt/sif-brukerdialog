@@ -1,7 +1,7 @@
 import { useSøknadFormValues } from '@rammeverk/consistency';
 import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
-import { getProgressSteps } from '@rammeverk/store';
+import { getProgressSteps } from '@rammeverk/utils';
 
 import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
@@ -46,7 +46,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
 
     const { navigateToNextStep, navigateToPreviousStep, canGoPrevious, navigateToStep } = useStepNavigation({
         stepConfig,
-        getIncludedSteps: () => useSøknadStore.getState().includedSteps,
+        getSøknadSteps: () => useSøknadStore.getState().includedSteps,
         setCurrentStep,
     });
 
