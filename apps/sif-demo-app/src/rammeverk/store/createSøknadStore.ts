@@ -12,7 +12,7 @@ export interface BaseSøknadsdata {
  * Base interface for søknad state.
  * Apps must have a søknadsdata property that is an object extending BaseSøknadsdata.
  */
-export interface BaseSøknadState<TSøknadsdata extends BaseSøknadsdata> {
+interface BaseSøknadState<TSøknadsdata extends BaseSøknadsdata> {
     søknadsdata: TSøknadsdata;
 }
 
@@ -33,8 +33,6 @@ export interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     startSøknad: (firstStepId: string, bekrefterVilkår: true) => void;
     setCurrentStep: (stepId: string) => void;
 }
-
-type EmptySøknadsdata = Record<string, never>;
 
 interface StoreOptions<TSøknadsdata> {
     stepOrder: string[];
@@ -60,7 +58,7 @@ interface StoreOptions<TSøknadsdata> {
  */
 export const createSøknadStore = <
     TState extends BaseSøknadState<TSøknadsdata>,
-    TSøknadsdata extends object = EmptySøknadsdata,
+    TSøknadsdata extends object = Record<string, never>,
 >(
     options: StoreOptions<TSøknadsdata>,
 ): UseBoundStore<StoreApi<SøknadStoreActions<TState, TSøknadsdata>>> => {

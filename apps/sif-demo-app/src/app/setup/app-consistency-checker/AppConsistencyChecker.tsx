@@ -13,7 +13,7 @@ interface Props {
     stepId: SøknadStepId;
 }
 
-export const AppStepConsistencyChecker = ({ stepId }: Props) => {
+export const AppConsistencyChecker = ({ stepId }: Props) => {
     const navigate = useNavigate();
     const søknadsdata = useSøknadStore((s) => s.søknadState?.søknadsdata);
 

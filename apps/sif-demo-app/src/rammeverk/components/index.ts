@@ -1,6 +1,6 @@
-export { default as AppHeader } from './app-header/AppHeader';
+export { AppHeader } from './app-header/AppHeader';
 export { ApplicationPictogram } from './app-header/ApplicationPictogram';
-export type { AppStatusWrapperProps } from './app-status-wrapper/AppStatusWrapper';
-export { AppStatusWrapper } from './app-status-wrapper/AppStatusWrapper';
 export { AppErrorFallback } from './error-boundary/AppErrorFallback';
 export { ErrorBoundary } from './error-boundary/ErrorBoundary';
+export type { SanityAppStatusProps } from './sanity-app-status/SanityAppStatus';
+export { SanityAppStatus } from './sanity-app-status/SanityAppStatus';

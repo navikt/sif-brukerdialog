@@ -1,5 +1,5 @@
 import { useYtelseMellomlagring } from '@navikt/sif-common-query';
-import { SøknadFormValues } from '@rammeverk/consistency';
+import { SøknadFormValues } from '@rammeverk/types';
 import { useMemo } from 'react';
 
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../config';

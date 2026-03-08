@@ -7,7 +7,7 @@ interface Props {
     level?: '1' | '2';
 }
 
-const AppHeader = ({ title, level = '1' }: Props) => {
+export const AppHeader = ({ title, level = '1' }: Props) => {
     return (
         <VStack gap="space-0">
             <Bleed marginInline={{ lg: `${level === '1' ? 'space-128' : 'space-96'}` }}>
@@ -38,5 +38,3 @@ const AppHeader = ({ title, level = '1' }: Props) => {
         </VStack>
     );
 };
-
-export default AppHeader;

@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 
+import { SøknadFormValues, StepFormValues } from '../types';
+
 /**
  * SøknadFormValuesContext
  *
@@ -7,10 +9,6 @@ import { createContext, ReactNode, useCallback, useContext, useState } from 'rea
  * 1. Gjenopprette skjemaverdier ved browser back/forward
  * 2. Initialisere fra mellomlagret skjemadata ved reload
  */
-
-export type StepFormValues = Record<string, unknown>;
-
-export type SøknadFormValues = Record<string, StepFormValues | undefined>;
 
 interface SøknadFormValuesContextValue {
     søknadFormValues: SøknadFormValues;

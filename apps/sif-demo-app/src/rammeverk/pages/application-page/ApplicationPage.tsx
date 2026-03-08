@@ -2,7 +2,7 @@ import { Page, VStack } from '@navikt/ds-react';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useEffect } from 'react';
 
-import AppHeader from '../../components/app-header/AppHeader';
+import { AppHeader } from '../../components/app-header/AppHeader';
 
 interface Props {
     documentTitle?: string;

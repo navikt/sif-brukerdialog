@@ -1,6 +1,9 @@
-/** Basetype for søknadsdata for ett steg */
+export type StepFormValues = Record<string, unknown>;
+
+export type SøknadFormValues = Record<string, StepFormValues | undefined>;
 
 export type StepSøknadsdata = Record<string, unknown>;
+
 /**
  * Generisk mellomlagring-type.
  * Appen bruker denne med sin egen Søknadsdata-type.

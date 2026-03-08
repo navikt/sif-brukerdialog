@@ -9,7 +9,7 @@ import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
 import { getLenker } from '../../lenker';
-import { AppStepConsistencyChecker } from '../../setup/app-step-consistency-checker/AppStepConsistencyChecker';
+import { AppConsistencyChecker } from '../../setup/app-consistency-checker/AppConsistencyChecker';
 import { Søknadsdata } from '../../types/Søknadsdata';
 
 interface RenderProps<TSkjemadata> {
@@ -82,7 +82,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             onStepSelect={navigateToStep}
             onAbort={avbrytSøknad}
             onResumeLater={fortsettSenere}>
-            <AppStepConsistencyChecker stepId={stepId} />
+            <AppConsistencyChecker stepId={stepId} />
             {children({ defaultValues, isPending, onSubmit, onPrevious })}
         </StepPage>
     );

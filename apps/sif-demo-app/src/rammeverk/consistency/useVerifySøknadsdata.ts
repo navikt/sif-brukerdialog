@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
-import { StepSøknadsdata } from '../types';
-import { StepFormValues, useSøknadFormValues } from './';
+import { StepFormValues, StepSøknadsdata } from '../types';
+import { useSøknadFormValues } from './';
 
 type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => StepSøknadsdata | undefined;
 

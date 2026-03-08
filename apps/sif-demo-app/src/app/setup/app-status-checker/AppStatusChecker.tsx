@@ -1,11 +1,11 @@
 import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { BodyShort, GuidePanel } from '@navikt/ds-react';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
-import { AppStatusWrapper, AppStatusWrapperProps } from '@rammeverk/components';
+import { SanityAppStatus, SanityAppStatusProps } from '@rammeverk/components';
 
 import { getAppEnv } from '../../env/appEnv';
 
-type Props = Pick<AppStatusWrapperProps, 'contentRenderer'> & { active: boolean };
+type Props = Pick<SanityAppStatusProps, 'contentRenderer'> & { active: boolean };
 
 const getSanityConfig = (): SanityConfig => {
     const env = getAppEnv();
@@ -17,7 +17,7 @@ const getSanityConfig = (): SanityConfig => {
 
 export const AppStatusChecker = ({ active, contentRenderer }: Props) =>
     active ? (
-        <AppStatusWrapper
+        <SanityAppStatus
             applicationKey={AktivitetspengerApp.key}
             sanityConfig={getSanityConfig()}
             contentRenderer={contentRenderer}

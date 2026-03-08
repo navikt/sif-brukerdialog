@@ -4,7 +4,7 @@ import React from 'react';
 
 import { LoadingSpinner } from './LoadingSpinner';
 
-export interface AppStatusWrapperProps {
+export interface SanityAppStatusProps {
     applicationKey: string;
     sanityConfig: SanityConfig;
     contentRenderer: () => React.ReactNode;
@@ -14,12 +14,12 @@ export interface AppStatusWrapperProps {
 /**
  * Wrapper som bruker useAppStatus for å se om applikasjon skal vises eller ikke.
  */
-export const AppStatusWrapper = ({
+export const SanityAppStatus = ({
     applicationKey,
     contentRenderer,
     sanityConfig,
     unavailableContentRenderer,
-}: AppStatusWrapperProps) => {
+}: SanityAppStatusProps) => {
     const { status, message, isLoading } = useAppStatus(applicationKey, sanityConfig);
 
     const renderContent = () => {

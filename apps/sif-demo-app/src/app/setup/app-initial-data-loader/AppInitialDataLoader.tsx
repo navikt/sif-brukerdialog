@@ -13,7 +13,7 @@ const getValidertMellomlagring = (data: SøknadMellomlagring | null | undefined)
     return { ...data, currentStepId };
 };
 
-export const AppInfoLoader = () => {
+export const AppInitialDataLoader = () => {
     const søker = useSøker();
     const registrerteBarn = useRegistrerteBarn();
 
