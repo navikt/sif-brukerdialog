@@ -9,8 +9,8 @@ import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
 import { getLenker } from '../../lenker';
-import { AppConsistencyChecker } from '../../setup/app-consistency-checker/AppConsistencyChecker';
 import { Søknadsdata } from '../../types/Søknadsdata';
+import { AppConsistencyChecker } from '../app-consistency-checker/AppConsistencyChecker';
 
 interface RenderProps<TSkjemadata> {
     defaultValues: Partial<TSkjemadata>;

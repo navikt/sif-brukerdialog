@@ -1,4 +1,4 @@
-import { SøknadStep } from '../../components/søknad-step/SøknadStep';
+import { SøknadStep } from '../../setup/søknad-step/SøknadStep';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { BarnSøknadsdata } from '../../types/Søknadsdata';
 import { BarnForm, BarnFormValues } from './BarnForm';

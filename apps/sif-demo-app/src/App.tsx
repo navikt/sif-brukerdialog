@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { applicationIntlMessages } from './app/i18n';
 // import { AppStatusChecker } from './app/setup/app-status-checker/AppStatusChecker';
-import { initApiClients } from './app/setup/initApiClients';
+import { initApiClients } from './app/setup/api/initApiClients';
 
 initApiClients();
 
