@@ -13,6 +13,12 @@ const getValidertMellomlagring = (data: SøknadMellomlagring | null | undefined)
     return { ...data, currentStepId };
 };
 
+/**
+ * DataLoader for hele søknaden
+ * - Gjør alle initielle data-kall for søknaden, og håndterer loading og error states.
+ * - Validerer mellomlagring mot gjeldende steg-konfigurasjon
+ * - Sender inn data og mellomlagring til Søknad-komponenten når alt er klart
+ */
 export const AppInitialDataLoader = () => {
     const søker = useSøker();
     const registrerteBarn = useRegistrerteBarn();

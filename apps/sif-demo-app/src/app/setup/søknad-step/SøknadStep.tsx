@@ -28,6 +28,17 @@ interface Props<TSkjemadata, TSøknadsdata> {
     children: (props: RenderProps<TSkjemadata>) => React.ReactNode;
 }
 
+/**
+ * Hovedkomponent for alle steg i søknadsprosessen.
+ * - Setter opp rammeverkskomponenter og -hooks.
+ * - Håndterer navigasjon, mellomlagring, avbryt og fortsett senere
+ * - Setter opp konsistenssjekk mellom skjemadata og søknadsdata
+ *
+ * Bruker children som render prop for å rendre det faktiske skjemasteget,
+ * og sender inn nødvendige props for å håndtere skjemadata og navigasjon.
+ *
+ */
+
 export function SøknadStep<TSkjemadata, TSøknadsdata>({
     stepId,
     toSøknadsdata,

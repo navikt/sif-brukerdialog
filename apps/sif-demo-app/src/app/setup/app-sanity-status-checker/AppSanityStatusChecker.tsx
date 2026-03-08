@@ -15,7 +15,7 @@ const getSanityConfig = (): SanityConfig => {
     };
 };
 
-export const AppStatusChecker = ({ active, contentRenderer }: Props) =>
+export const AppSanityStatusChecker = ({ active, contentRenderer }: Props) =>
     active ? (
         <SanityAppStatus
             applicationKey={AktivitetspengerApp.key}
