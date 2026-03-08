@@ -1,5 +1,5 @@
 import { useSøknadFormValues } from '@rammeverk/consistency';
-import { getProgressSteps } from '@rammeverk/foundation';
+import { getProgressSteps } from '@rammeverk/store';
 import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
 

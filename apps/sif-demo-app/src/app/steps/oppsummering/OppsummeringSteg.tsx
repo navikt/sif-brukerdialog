@@ -1,6 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getProgressSteps } from '@rammeverk/foundation';
+import { getProgressSteps } from '@rammeverk/store';
 import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
 import { useSøknadFormValues } from '@rammeverk/consistency';

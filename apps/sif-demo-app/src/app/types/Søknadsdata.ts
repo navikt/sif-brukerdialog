@@ -1,4 +1,4 @@
-import { BaseSøknadsdata } from '@rammeverk/foundation';
+import { BaseSøknadsdata } from '@rammeverk/store';
 
 import { SøknadStepId } from '../config/søknadStepConfig';
 
