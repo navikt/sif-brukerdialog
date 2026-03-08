@@ -17,11 +17,12 @@ export interface BostedFormValues extends StepFormValues {
 interface Props {
     defaultValues: DefaultValues<BostedFormValues>;
     onSubmit: (data: BostedFormValues) => void;
+    submitDisabled?: boolean;
     isPending: boolean;
     onPrevious?: () => void;
 }
 
-export const BostedForm = ({ defaultValues, isPending, onSubmit, onPrevious }: Props) => {
+export const BostedForm = ({ defaultValues, isPending, onSubmit, onPrevious, submitDisabled }: Props) => {
     const { handleSubmit, getValues, setValue, watch } = useForm<BostedFormValues>({
         defaultValues,
     });
@@ -40,7 +41,11 @@ export const BostedForm = ({ defaultValues, isPending, onSubmit, onPrevious }: P
                     <Radio value="ja">Ja</Radio>
                     <Radio value="nei">Nei</Radio>
                 </RadioGroup>
-                <FormLayout.FormButtons submitPending={isPending} onPrevious={onPrevious} />
+                <FormLayout.FormButtons
+                    submitDisabled={submitDisabled}
+                    submitPending={isPending}
+                    onPrevious={onPrevious}
+                />
             </FormLayout.Content>
         </form>
     );

@@ -1,5 +1,5 @@
-import { SøknadStep } from '../../setup/søknad-step/SøknadStep';
 import { SøknadStepId } from '../../config/søknadStepConfig';
+import { SøknadStep } from '../../setup/søknad-step/SøknadStep';
 import { BarnSøknadsdata } from '../../types/Søknadsdata';
 import { BarnForm, BarnFormValues } from './BarnForm';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
@@ -9,8 +9,14 @@ export const BarnSteg = () => (
         stepId={SøknadStepId.BARN}
         toSøknadsdata={toBarnSøknadsdata}
         toFormValues={toBarnFormValues}>
-        {({ defaultValues, onSubmit, onPrevious, isPending }) => (
-            <BarnForm defaultValues={defaultValues} isPending={isPending} onSubmit={onSubmit} onPrevious={onPrevious} />
+        {({ defaultValues, onSubmit, onPrevious, isPending, submitDisabled }) => (
+            <BarnForm
+                defaultValues={defaultValues}
+                isPending={isPending}
+                submitDisabled={submitDisabled}
+                onSubmit={onSubmit}
+                onPrevious={onPrevious}
+            />
         )}
     </SøknadStep>
 );

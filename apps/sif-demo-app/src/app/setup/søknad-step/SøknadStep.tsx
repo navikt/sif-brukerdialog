@@ -10,12 +10,14 @@ import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
 import { getLenker } from '../../lenker';
 import { Søknadsdata } from '../../types/Søknadsdata';
-import { AppConsistencyChecker } from '../app-consistency-checker/AppConsistencyChecker';
+import { InconsistentStepAlert } from '../app-consistency-checker/InconsistentStepAlert';
+import { useAppConsistencyChecker } from '../app-consistency-checker/useAppConsistencyChecker';
 
 interface RenderProps<TSkjemadata> {
     defaultValues: Partial<TSkjemadata>;
     onSubmit: (data: TSkjemadata) => Promise<void>;
     isPending: boolean;
+    submitDisabled?: boolean;
     onPrevious: (() => void) | undefined;
 }
 
@@ -73,6 +75,8 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
         window.location.href = getLenker().minSide;
     };
 
+    const { inconsistentStepId } = useAppConsistencyChecker(stepId);
+
     return (
         <StepPage
             documentTitle={stepTitles[stepId]}
@@ -82,8 +86,14 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             onStepSelect={navigateToStep}
             onAbort={avbrytSøknad}
             onResumeLater={fortsettSenere}>
-            <AppConsistencyChecker stepId={stepId} />
-            {children({ defaultValues, isPending, onSubmit, onPrevious })}
+            {inconsistentStepId ? <InconsistentStepAlert stepId={inconsistentStepId} /> : null}
+            {children({
+                defaultValues,
+                isPending,
+                submitDisabled: inconsistentStepId !== undefined,
+                onSubmit,
+                onPrevious,
+            })}
         </StepPage>
     );
 }

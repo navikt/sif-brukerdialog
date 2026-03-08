@@ -17,11 +17,12 @@ export interface BarnFormValues extends StepFormValues {
 interface Props {
     defaultValues: DefaultValues<BarnFormValues>;
     isPending: boolean;
+    submitDisabled?: boolean;
     onPrevious?: () => void;
     onSubmit: (data: BarnFormValues) => void;
 }
 
-export const BarnForm = ({ isPending, defaultValues, onSubmit, onPrevious }: Props) => {
+export const BarnForm = ({ isPending, defaultValues, onSubmit, onPrevious, submitDisabled }: Props) => {
     const { setValue, handleSubmit, watch, getValues } = useForm<BarnFormValues>({
         defaultValues,
     });
@@ -43,7 +44,11 @@ export const BarnForm = ({ isPending, defaultValues, onSubmit, onPrevious }: Pro
                         <Radio value="nei">Nei</Radio>
                     </RadioGroup>
                 </FormLayout.Questions>
-                <FormLayout.FormButtons submitPending={isPending} onPrevious={onPrevious} />
+                <FormLayout.FormButtons
+                    submitPending={isPending}
+                    submitDisabled={submitDisabled}
+                    onPrevious={onPrevious}
+                />
             </FormLayout.Content>
         </form>
     );

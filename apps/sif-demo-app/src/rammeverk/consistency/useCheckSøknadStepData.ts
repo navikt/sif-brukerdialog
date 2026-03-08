@@ -19,17 +19,17 @@ interface Props {
  * opp om skjemadata har endret seg uten at dette er commitet til store. F.eks. hvis
  * bruker går frem og tilbake uten å bruke submit.
  */
-export const useCheckSøknadStepData = ({
+export const useCheckSøknadStepData = <StepId>({
     currentStepId,
     stepOrder,
     getSøknadsdataForStep,
     formValuesToSøknadsdata,
-}: Props): string | null => {
+}: Props): StepId | undefined => {
     const { søknadFormValues: stepsFormValues } = useSøknadFormValues();
 
     return useMemo(() => {
         const currentIndex = stepOrder.indexOf(currentStepId);
-        if (currentIndex <= 0) return null;
+        if (currentIndex <= 0) return undefined;
 
         const precedingSteps = stepOrder.slice(0, currentIndex);
 
@@ -41,9 +41,9 @@ export const useCheckSøknadStepData = ({
             const converted = formValuesToSøknadsdata(stepId, formValues);
 
             if (!søknadsdata || JSON.stringify(converted) !== JSON.stringify(søknadsdata)) {
-                return stepId;
+                return stepId as StepId;
             }
         }
-        return null;
+        return undefined;
     }, [currentStepId, stepOrder, stepsFormValues, getSøknadsdataForStep, formValuesToSøknadsdata]);
 };
