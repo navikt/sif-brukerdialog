@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.7
+
+### Patch Changes
+
+- Codegen:prod
+
 ## 0.3.6
 
 ### Patch Changes

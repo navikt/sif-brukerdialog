@@ -3,17 +3,16 @@
 import * as z from 'zod';
 
 export const zProblemDetail = z.object({
-    type: z.optional(z.url()),
-    title: z.optional(z.string()),
-    status: z.optional(
-        z
-            .int()
-            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    ),
-    detail: z.optional(z.string()),
-    instance: z.optional(z.url()),
-    properties: z.optional(z.record(z.string(), z.unknown())),
+    type: z.url().optional(),
+    title: z.string().optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    detail: z.string().optional(),
+    instance: z.url().optional(),
+    properties: z.record(z.string(), z.unknown()).optional(),
 });
 
 export const zEndrePeriodeDatoDto = z.object({
@@ -21,18 +20,18 @@ export const zEndrePeriodeDatoDto = z.object({
 });
 
 export const zDeltakerDto = z.object({
-    id: z.optional(z.uuid()),
+    id: z.uuid().optional(),
     deltakerIdent: z.string(),
 });
 
 export const zDeltakelseDto = z.object({
-    id: z.optional(z.uuid()),
+    id: z.uuid().optional(),
     deltaker: zDeltakerDto,
     fraOgMed: z.iso.date(),
-    tilOgMed: z.optional(z.iso.date()),
+    tilOgMed: z.iso.date().optional(),
     erSlettet: z.boolean(),
     harOpphørsvedtak: z.boolean(),
-    søktTidspunkt: z.optional(z.iso.datetime({ local: true })),
+    søktTidspunkt: z.iso.datetime({ local: true }).optional(),
 });
 
 export const zDeltakelseUtmeldingDto = z.object({
@@ -48,12 +47,12 @@ export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
 
 export const zNavn = z.object({
     fornavn: z.string(),
-    mellomnavn: z.optional(z.string()),
+    mellomnavn: z.string().optional(),
     etternavn: z.string(),
 });
 
 export const zDeltakerPersonalia = z.object({
-    id: z.optional(z.uuid()),
+    id: z.uuid().optional(),
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.iso.date(),
@@ -87,7 +86,7 @@ export const zEndreStartdatoData = z.object({
     path: z.object({
         deltakelseId: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -100,7 +99,7 @@ export const zEndreSluttdatoData = z.object({
     path: z.object({
         deltakelseId: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -113,7 +112,7 @@ export const zMeldUtDeltakerData = z.object({
     path: z.object({
         deltakelseId: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -123,8 +122,8 @@ export const zMeldUtDeltakerResponse = zDeltakelseDto;
 
 export const zMeldInnDeltakerData = z.object({
     body: zDeltakelseInnmeldingDto,
-    path: z.optional(z.never()),
-    query: z.optional(z.never()),
+    path: z.never().optional(),
+    query: z.never().optional(),
 });
 
 /**
@@ -134,8 +133,8 @@ export const zMeldInnDeltakerResponse = zDeltakelseDto;
 
 export const zHentDeltakerInfoGittDeltakerData = z.object({
     body: zDeltakerDto,
-    path: z.optional(z.never()),
-    query: z.optional(z.never()),
+    path: z.never().optional(),
+    query: z.never().optional(),
 });
 
 /**
@@ -144,11 +143,11 @@ export const zHentDeltakerInfoGittDeltakerData = z.object({
 export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
 
 export const zHentAlleDeltakelserGittDeltakerIdData = z.object({
-    body: z.optional(z.never()),
+    body: z.never().optional(),
     path: z.object({
         deltakerId: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -157,11 +156,11 @@ export const zHentAlleDeltakelserGittDeltakerIdData = z.object({
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseDto);
 
 export const zDeltakelseHistorikkData = z.object({
-    body: z.optional(z.never()),
+    body: z.never().optional(),
     path: z.object({
         deltakelseId: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -170,11 +169,11 @@ export const zDeltakelseHistorikkData = z.object({
 export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
 
 export const zHentDeltakerInfoGittDeltakerIdData = z.object({
-    body: z.optional(z.never()),
+    body: z.never().optional(),
     path: z.object({
         id: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -183,11 +182,11 @@ export const zHentDeltakerInfoGittDeltakerIdData = z.object({
 export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 
 export const zFjernFraProgramData = z.object({
-    body: z.optional(z.never()),
+    body: z.never().optional(),
     path: z.object({
         deltakerId: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
