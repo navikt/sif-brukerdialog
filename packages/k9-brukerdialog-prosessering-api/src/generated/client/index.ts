@@ -2,6 +2,7 @@
 
 export { client, type CreateClientConfig } from './client.gen';
 export {
+    AktivitetspengerController,
     ArbeidsgivereController,
     BarnController,
     EndringsmeldingController,
@@ -23,6 +24,7 @@ export {
     VedleggController,
 } from './sdk.gen';
 export type {
+    Aktivitetspengersøknad,
     AnnenAktivitet,
     AnnenForelder,
     ArbeidIPeriode,
@@ -100,6 +102,10 @@ export type {
     HentVedleggResponse,
     HentVedleggResponses,
     InfoFraPunsj,
+    InnsendingAktivitetspengersøknadData,
+    InnsendingAktivitetspengersøknadError,
+    InnsendingAktivitetspengersøknadErrors,
+    InnsendingAktivitetspengersøknadResponses,
     InnsendingEndringsmeldingData,
     InnsendingEndringsmeldingError,
     InnsendingEndringsmeldingErrors,
@@ -245,6 +251,7 @@ export type {
     YrkesaktivSisteTreFerdigliknedeArene,
 } from './types.gen';
 export {
+    zAktivitetspengersøknad,
     zAnnenAktivitet,
     zAnnenForelder,
     zArbeidIPeriode,
@@ -300,6 +307,7 @@ export {
     zHentVedleggData,
     zHentVedleggResponse,
     zInfoFraPunsj,
+    zInnsendingAktivitetspengersøknadData,
     zInnsendingEndringsmeldingData,
     zInnsendingEttersendelseData,
     zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadData,

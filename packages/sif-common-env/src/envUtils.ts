@@ -4,6 +4,7 @@ import {
     EnvKey,
     K9SakInnsynBrowserEnv,
     SifInnsynBrowserEnv,
+    UngBrukerdialogApiBrowserEnv,
     UngDeltakelseOpplyserBrowserEnv,
 } from './schemas';
 
@@ -89,10 +90,19 @@ export const getSifInnsynBrowserEnv = (): SifInnsynBrowserEnv => {
         [EnvKey.SIF_INNSYN_API_URL]: getRequiredEnv(EnvKey.SIF_INNSYN_API_URL),
     };
 };
+
 export const getUngDeltakelseOpplyserBrowserEnv = (): UngDeltakelseOpplyserBrowserEnv => {
     return {
         [EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH]: getRequiredEnv(EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH),
         [EnvKey.UNG_DELTAKELSE_OPPLYSER_API_SCOPE]: getRequiredEnv(EnvKey.UNG_DELTAKELSE_OPPLYSER_API_SCOPE),
         [EnvKey.UNG_DELTAKELSE_OPPLYSER_API_URL]: getRequiredEnv(EnvKey.UNG_DELTAKELSE_OPPLYSER_API_URL),
+    };
+};
+
+export const getUngBrukerdialogApiBrowserEnv = (): UngBrukerdialogApiBrowserEnv => {
+    return {
+        [EnvKey.UNG_BRUKERDIALOG_API_FRONTEND_PATH]: getRequiredEnv(EnvKey.UNG_BRUKERDIALOG_API_FRONTEND_PATH),
+        [EnvKey.UNG_BRUKERDIALOG_API_API_SCOPE]: getRequiredEnv(EnvKey.UNG_BRUKERDIALOG_API_API_SCOPE),
+        [EnvKey.UNG_BRUKERDIALOG_API_API_URL]: getRequiredEnv(EnvKey.UNG_BRUKERDIALOG_API_API_URL),
     };
 };

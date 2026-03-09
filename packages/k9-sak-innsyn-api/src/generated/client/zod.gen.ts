@@ -3,17 +3,16 @@
 import * as z from 'zod';
 
 export const zProblemDetail = z.object({
-    type: z.optional(z.url()),
-    title: z.optional(z.string()),
-    status: z.optional(
-        z
-            .int()
-            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    ),
-    detail: z.optional(z.string()),
-    instance: z.optional(z.url()),
-    properties: z.optional(z.record(z.string(), z.unknown())),
+    type: z.url().optional(),
+    title: z.string().optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    detail: z.string().optional(),
+    instance: z.url().optional(),
+    properties: z.record(z.string(), z.unknown()).optional(),
 });
 
 export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({
@@ -22,8 +21,8 @@ export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({
 
 export const zHentSisteGyldigeVedtakForAktorIdResponse = z.object({
     harInnvilgedeBehandlinger: z.boolean(),
-    saksnummer: z.optional(z.string()),
-    vedtaksdato: z.optional(z.iso.date()),
+    saksnummer: z.string().optional(),
+    vedtaksdato: z.iso.date().optional(),
 });
 
 export const zPeriode = z.object({
@@ -39,8 +38,8 @@ export const zOpplæringsinstitusjon = z.object({
 
 export const zHentSisteGyldigeVedtakForAktorIdData = z.object({
     body: zOmsorgsdagerKronsinskSuktBarnRequestDto,
-    path: z.optional(z.never()),
-    query: z.optional(z.never()),
+    path: z.never().optional(),
+    query: z.never().optional(),
 });
 
 /**
@@ -49,9 +48,9 @@ export const zHentSisteGyldigeVedtakForAktorIdData = z.object({
 export const zHentSisteGyldigeVedtakForAktorIdResponse2 = zHentSisteGyldigeVedtakForAktorIdResponse;
 
 export const zHentOpplæringsinstitusjonerData = z.object({
-    body: z.optional(z.never()),
-    path: z.optional(z.never()),
-    query: z.optional(z.never()),
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
 });
 
 /**
@@ -60,9 +59,9 @@ export const zHentOpplæringsinstitusjonerData = z.object({
 export const zHentOpplæringsinstitusjonerResponse = z.array(zOpplæringsinstitusjon);
 
 export const zHentAktiveOpplæringsinstitusjonerData = z.object({
-    body: z.optional(z.never()),
-    path: z.optional(z.never()),
-    query: z.optional(z.never()),
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
 });
 
 /**

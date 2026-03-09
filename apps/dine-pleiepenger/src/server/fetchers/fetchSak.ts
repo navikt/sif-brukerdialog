@@ -4,12 +4,12 @@ import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { z } from 'zod';
 
-import { getContextForApiHandler, serverResponseTransform } from '../../utils/apiUtils';
+import { getContextForApiHandler, prepApiError, serverResponseTransform } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogCorrelationID';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
-import { validateSaksnummer } from '../utils/validatePathSegment';
+import { assertValidSaksnummer } from '../utils/validatePathSegment';
 
 export const zSakDtoExtended = innsyn.zSakDto.extend({
     // zSakDto har feil format i forhold til generert skjema; transformeres her
@@ -67,8 +67,7 @@ export const fetchSak = async (
     saksnummer: string,
     unparsed?: boolean,
 ): Promise<SakDtoExtended> => {
-    // Validerer saksnummer for å beskytte mot SSRF
-    validateSaksnummer(saksnummer);
+    assertValidSaksnummer(saksnummer);
 
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
@@ -77,26 +76,29 @@ export const fetchSak = async (
         `sak/${saksnummer}`,
         'application/json',
     );
-    const logger = getLogger(req);
+    const logger = getLogger(req).withContext({ operation: 'fetchSak', saksnummer });
 
-    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-        logger.info(`Unparsed, fetching raw data from ${url}`);
-        const response = await axios.get(url, { headers });
-        return response.data;
+    try {
+        if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
+            logger.debug('Returnerer uparsed data');
+            const response = await axios.get(url, { headers });
+            return response.data;
+        }
+
+        logger.debug('Henter sak fra upstream');
+        const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
+        logger.debug('Respons mottatt', { status: response.status });
+
+        if (typeof response.data !== 'object' || response.data === null) {
+            throw new Error(`Sak response data er ikke et objekt [typeof=${typeof response.data}]`);
+        }
+
+        const parsedData = zSakDtoExtended.parse(response.data) as innsyn.SakDto;
+        logger.debug('Sak parset og validert');
+
+        return fjernUkjenteInnsendelserISak(parsedData);
+    } catch (error) {
+        logger.error('Feil ved henting av sak', prepApiError(error));
+        throw error;
     }
-
-    logger.info(`Fetching sak ${saksnummer} from url: ${url}`);
-    const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
-    logger.info(`Response-status from request: ${response.status}`);
-
-    if (typeof response.data !== 'object' || response.data === null) {
-        throw new Error(`Sak response data er ikke et objekt eller er null. [typeof=${typeof response.data}]`);
-    }
-
-    logger.info(`Parser response data`);
-    const parsedData = zSakDtoExtended.parse(response.data) as innsyn.SakDto;
-    logger.info(`Sak parsed`);
-
-    /** Fjerner innsendelser som har type UKJENT - disse har ingen verdi for bruker */
-    return fjernUkjenteInnsendelserISak(parsedData);
 };
