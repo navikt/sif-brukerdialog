@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM node:25-alpine
 
 RUN apk add --no-cache tini \
     && addgroup --system --gid 1069 nodejs \
