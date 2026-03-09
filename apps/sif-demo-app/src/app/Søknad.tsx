@@ -1,9 +1,10 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { SøknadFormValuesProvider } from '@rammeverk/consistency';
-import { StepRouteGuard } from '@rammeverk/navigation';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
+import { StepRouteGuard } from '../rammeverk/navigation';
 import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
 import { KvitteringPage, VelkommenPage } from './pages';
@@ -18,36 +19,46 @@ interface Props {
 
 export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const init = useSøknadStore((s) => s.init);
-    const søknadState = useSøknadStore((s) => s.søknadState);
     const søknadSendt = useSøknadStore((s) => s.søknadSendt);
+    const søknadState = useSøknadStore((s) => s.søknadState);
     const currentStepId = useSøknadStore((s) => s.currentStepId);
     const includedSteps = useSøknadStore((s) => s.includedSteps);
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffectOnce(() => {
         init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
     });
 
+    useEffect(() => {
+        if (søknadSendt && location.pathname !== '/kvittering') {
+            navigate('/kvittering', { replace: true });
+        } else if (!søknadSendt && location.pathname === '/kvittering') {
+            navigate('/', { replace: true });
+        }
+    }, [søknadSendt, location.pathname, navigate]);
+
     const currentStepRoute = currentStepId ? søknadStepConfig[currentStepId]?.route : undefined;
 
+    useEffect(() => {
+        if (currentStepRoute && location.pathname === '/') {
+            navigate(`/soknad/${currentStepRoute}`, { replace: true });
+        }
+    }, [currentStepRoute, location.pathname, navigate]);
+
     if (søknadSendt && location.pathname !== '/kvittering') {
-        return <Navigate to="/kvittering" replace />;
+        return <KvitteringPage />;
     }
     if (!søknadSendt && location.pathname === '/kvittering') {
-        return <Navigate to="/" replace />;
+        return <VelkommenPage />;
     }
 
     return (
         <SøknadFormValuesProvider initialValues={mellomlagring?.skjemadata}>
             <Routes>
+                <Route path="/" element={<VelkommenPage />} />
                 <Route path="/kvittering" element={<KvitteringPage />} />
-                <Route
-                    path="/"
-                    element={
-                        currentStepRoute ? <Navigate to={`/soknad/${currentStepRoute}`} replace /> : <VelkommenPage />
-                    }
-                />
                 <Route
                     path="/soknad"
                     element={

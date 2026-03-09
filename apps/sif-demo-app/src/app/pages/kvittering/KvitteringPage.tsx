@@ -4,7 +4,7 @@ import { SøknadPage } from '../../components/søknad-page/SøknadPage';
 
 export const KvitteringPage = () => {
     const onRestart = () => {
-        window.location.reload();
+        window.location.replace('/sif-demo');
     };
 
     return (
