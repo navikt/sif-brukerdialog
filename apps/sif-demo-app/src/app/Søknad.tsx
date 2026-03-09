@@ -2,7 +2,7 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { SøknadFormValuesProvider } from '@rammeverk/consistency';
 import { StepRouteGuard } from '@rammeverk/navigation';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
 import { useSøknadStore } from './hooks';
@@ -19,8 +19,11 @@ interface Props {
 export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const init = useSøknadStore((s) => s.init);
     const søknadState = useSøknadStore((s) => s.søknadState);
+    const søknadSendt = useSøknadStore((s) => s.søknadSendt);
     const currentStepId = useSøknadStore((s) => s.currentStepId);
     const includedSteps = useSøknadStore((s) => s.includedSteps);
+
+    const location = useLocation();
 
     useEffectOnce(() => {
         init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
@@ -28,16 +31,23 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
 
     const currentStepRoute = currentStepId ? søknadStepConfig[currentStepId]?.route : undefined;
 
+    if (søknadSendt && location.pathname !== '/kvittering') {
+        return <Navigate to="/kvittering" />;
+    }
+    if (!søknadSendt && location.pathname === '/kvittering') {
+        return <Navigate to="/" />;
+    }
+
     return (
         <SøknadFormValuesProvider initialValues={mellomlagring?.skjemadata}>
             <Routes>
+                <Route path="/kvittering" element={<KvitteringPage />} />
                 <Route
                     path="/"
                     element={
                         currentStepRoute ? <Navigate to={`/soknad/${currentStepRoute}`} replace /> : <VelkommenPage />
                     }
                 />
-                <Route path="/kvittering" element={<KvitteringPage />} />
                 <Route
                     path="/soknad"
                     element={

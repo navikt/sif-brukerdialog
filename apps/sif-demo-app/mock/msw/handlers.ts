@@ -12,6 +12,10 @@ export const handlers = [
         return HttpResponse.json(store.get().barn || { barn: [] });
     }),
 
+    http.post(`**/api/send`, () => {
+        return HttpResponse.json({}, { status: 200 });
+    }),
+
     http.get(`**/mellomlagring/:ytelse`, () => HttpResponse.json(store.get().mellomlagring ?? {})),
 
     http.post(`**/mellomlagring/:ytelse`, async ({ request }) => {
@@ -32,4 +36,6 @@ export const handlers = [
         store.update({ mellomlagring: undefined });
         return HttpResponse.json({});
     }),
+
+    http.get(`*`, () => HttpResponse.json({}, { status: 200 })),
 ];

@@ -32,6 +32,7 @@ interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     søknadState: TState | undefined;
     currentStepId?: string;
     includedSteps: IncludedStep[];
+    søknadSendt?: boolean;
     init: (
         initialState: Omit<TState, 'søknadsdata'>,
         mellomlagretSøknadsdata?: TSøknadsdata,
@@ -40,6 +41,7 @@ interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     setSøknadsdata: (data: Partial<TSøknadsdata>) => void;
     resetSøknad: () => void;
     startSøknad: (firstStepId: string, bekrefterVilkår: true) => void;
+    setSøknadSendt: () => void;
     setCurrentStep: (stepId: string) => void;
 }
 
@@ -74,6 +76,7 @@ export const createSøknadStore = <
                     søknadsdata,
                 } as TState,
                 currentStepId,
+                søknadSendt: false,
                 includedSteps: computeSteps(søknadsdata),
             });
         },
@@ -89,6 +92,7 @@ export const createSøknadStore = <
                         ...state.søknadState,
                         søknadsdata,
                     },
+                    søknadSendt: false,
                     currentStepId: firstStepId,
                     includedSteps: computeSteps(søknadsdata),
                 };
@@ -116,11 +120,25 @@ export const createSøknadStore = <
                 const søknadsdata = {} as TSøknadsdata;
                 return {
                     currentStepId: undefined,
+                    søknadSendt: false,
                     søknadState: {
                         ...state.søknadState,
                         søknadsdata,
                     } as TState,
                     includedSteps: computeSteps(søknadsdata),
+                };
+            }),
+
+        setSøknadSendt: () =>
+            set((state) => {
+                return {
+                    currentStepId: undefined,
+                    søknadSendt: true,
+                    søknadState: {
+                        ...state.søknadState,
+                        søknadsdata: {} as TSøknadsdata,
+                    } as TState,
+                    includedSteps: [],
                 };
             }),
     });

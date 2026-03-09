@@ -1,12 +1,14 @@
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { useSøknadFormValues } from '@rammeverk/consistency';
 import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
 import { getProgressSteps } from '@rammeverk/utils';
 
+import { useSøknadFormValues } from '../../../rammeverk/consistency';
 import { søknadStepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
+import { useSøknadMellomlagring } from '../../hooks';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
+import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
 import { InconsistencyAlert } from '../../setup/app-consistency-checker/InconsistencyAlert';
@@ -14,13 +16,17 @@ import { useAppConsistencyChecker } from '../../setup/app-consistency-checker/us
 
 export const OppsummeringSteg = () => {
     const { text } = useAppIntl();
+    // const navigate = useNavigate();
 
     const stepId = SøknadStepId.OPPSUMMERING;
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
+    const setSøknadSendt = useSøknadStore((s) => s.setSøknadSendt);
     const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
     const { clearSøknadFormValues } = useSøknadFormValues();
+    const { slettMellomlagring } = useSøknadMellomlagring();
 
+    const { isPending, mutateAsync } = useSendSøknad();
     const { navigateToStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
         stepConfig: søknadStepConfig,
         getSøknadSteps: () => useSøknadStore.getState().includedSteps,
@@ -29,8 +35,16 @@ export const OppsummeringSteg = () => {
 
     const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
 
-    const onSubmit = async () => {
-        clearSøknadFormValues();
+    const onSubmit = async (evt: React.SubmitEvent<HTMLFormElement>) => {
+        evt.preventDefault();
+        try {
+            await mutateAsync({} as any);
+            await slettMellomlagring();
+            clearSøknadFormValues();
+            setSøknadSendt();
+        } catch (e) {
+            alert(e);
+        }
     };
 
     const { inconsistentStepId } = useAppConsistencyChecker(stepId);
@@ -54,7 +68,8 @@ export const OppsummeringSteg = () => {
                     <FormLayout.FormButtons
                         onPrevious={onPrevious}
                         isFinalSubmit={true}
-                        submitDisabled={!!inconsistentStepId}
+                        submitPending={isPending}
+                        submitDisabled={!!inconsistentStepId || isPending}
                         submitLabel="Send inn søknad"
                     />
                 </FormLayout.Summary>
