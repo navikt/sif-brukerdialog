@@ -26,37 +26,30 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
         init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
     });
 
+    const currentStepRoute = currentStepId ? søknadStepConfig[currentStepId]?.route : undefined;
+
     return (
         <SøknadFormValuesProvider initialValues={mellomlagring?.skjemadata}>
             <Routes>
-                <Route path="/" element={currentStepId ? <Navigate to="/soknad" replace /> : <VelkommenPage />} />
+                <Route
+                    path="/"
+                    element={
+                        currentStepRoute ? <Navigate to={`/soknad/${currentStepRoute}`} replace /> : <VelkommenPage />
+                    }
+                />
                 <Route path="/kvittering" element={<KvitteringPage />} />
-                <Route path="/soknad">
-                    <Route
-                        index
-                        element={
-                            currentStepId && søknadStepConfig[currentStepId]?.route ? (
-                                <Navigate to={`/soknad/${søknadStepConfig[currentStepId].route}`} replace />
-                            ) : (
-                                <Navigate to="/" replace />
-                            )
-                        }
-                    />
-                    <Route
-                        element={
-                            <StepRouteGuard
-                                steps={includedSteps}
-                                currentStepId={currentStepId}
-                                isInitialized={!!søknadState}
-                            />
-                        }>
-                        <Route path={søknadStepConfig[SøknadStepId.BARN].route} element={<BarnSteg />} />
-                        <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedSteg />} />
-                        <Route
-                            path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route}
-                            element={<OppsummeringSteg />}
+                <Route
+                    path="/soknad"
+                    element={
+                        <StepRouteGuard
+                            steps={includedSteps}
+                            currentStepId={currentStepId}
+                            isInitialized={!!søknadState}
                         />
-                    </Route>
+                    }>
+                    <Route path={søknadStepConfig[SøknadStepId.BARN].route} element={<BarnSteg />} />
+                    <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedSteg />} />
+                    <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<OppsummeringSteg />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />

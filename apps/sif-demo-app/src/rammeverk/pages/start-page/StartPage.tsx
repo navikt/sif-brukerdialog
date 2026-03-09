@@ -13,12 +13,13 @@ interface Props {
         /** Innhold i guide */
         content: ReactNode;
     };
+    isPending: boolean;
     onStart: (bekrefterVilkår: true) => void;
     /** Innhold mellom guide og skjema */
     children: ReactNode;
 }
 
-export const StartPage = ({ title, guide, children, onStart }: Props) => {
+export const StartPage = ({ title, guide, children, onStart, isPending }: Props) => {
     const [error, setError] = useState(false);
     const [bekrefter, setBekrefter] = useState(false);
 
@@ -70,7 +71,9 @@ export const StartPage = ({ title, guide, children, onStart }: Props) => {
                                 </Checkbox>
                             </CheckboxGroup>
                         </Box>
-                        <Button type="submit">Start søknad</Button>
+                        <Button type="submit" loading={isPending} disabled={isPending}>
+                            Start søknad
+                        </Button>
                     </div>
                 </form>
             </VStack>

@@ -4,6 +4,7 @@ import { StartPage } from '@rammeverk/pages';
 import { useNavigate } from 'react-router-dom';
 
 import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
+import { useSøknadMellomlagring } from '../../hooks';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
 import OmSøknaden from './OmSøknaden';
@@ -14,17 +15,20 @@ export const VelkommenPage = () => {
     const startSøknad = useSøknadStore((s) => s.startSøknad);
     const søknadState = useSøknadStore((s) => s.søknadState);
     const { clearSøknadFormValues } = useSøknadFormValues();
+    const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
-    const handleStart = (bekrefter: true) => {
+    const handleStart = async (bekrefter: true) => {
         const førsteSteg = søknadStepConfig[søknadStepOrder[0]];
         clearSøknadFormValues();
         startSøknad(førsteSteg.id, bekrefter);
+        await lagreSøknad();
         navigate(`/soknad/${førsteSteg.route}`);
     };
 
     return (
         <StartPage
             onStart={handleStart}
+            isPending={isPending}
             guide={{
                 navn: søknadState?.søker.fornavn || '',
                 content: (
