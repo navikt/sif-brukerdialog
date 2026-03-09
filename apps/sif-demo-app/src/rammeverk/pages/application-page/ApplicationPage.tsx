@@ -23,7 +23,7 @@ export function ApplicationPage({ documentTitle, applicationTitle, headerLevel =
     return (
         <Page>
             <Page.Block as="main" width="md" gutters>
-                <VStack gap="space-40">
+                <VStack gap="space-40" marginBlock="space-24">
                     <AppHeader title={applicationTitle} level={headerLevel} />
                     <div>{children}</div>
                 </VStack>
