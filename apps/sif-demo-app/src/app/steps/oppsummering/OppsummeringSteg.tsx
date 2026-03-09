@@ -9,7 +9,7 @@ import { søknadStepConfig, SøknadStepId, stepTitles } from '../../config/søkn
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
-import { InconsistentStepAlert } from '../../setup/app-consistency-checker/InconsistentStepAlert';
+import { InconsistencyAlert } from '../../setup/app-consistency-checker/InconsistencyAlert';
 import { useAppConsistencyChecker } from '../../setup/app-consistency-checker/useAppConsistencyChecker';
 
 export const OppsummeringSteg = () => {
@@ -43,7 +43,7 @@ export const OppsummeringSteg = () => {
             steps={getProgressSteps(includedSteps, stepTitles)}
             onStepSelect={navigateToStep}
             onAbort={avbrytSøknad}>
-            {inconsistentStepId ? <InconsistentStepAlert stepId={inconsistentStepId} /> : null}
+            {inconsistentStepId ? <InconsistencyAlert stepId={inconsistentStepId} /> : null}
             <form onSubmit={onSubmit}>
                 <FormLayout.Summary>
                     <FormSummary>

@@ -10,7 +10,7 @@ import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
 import { getLenker } from '../../lenker';
 import { Søknadsdata } from '../../types/Søknadsdata';
-import { InconsistentStepAlert } from '../app-consistency-checker/InconsistentStepAlert';
+import { InconsistencyAlert } from '../app-consistency-checker/InconsistencyAlert';
 import { useAppConsistencyChecker } from '../app-consistency-checker/useAppConsistencyChecker';
 
 interface RenderProps<TSkjemadata> {
@@ -97,7 +97,7 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             onStepSelect={navigateToStep}
             onAbort={avbrytSøknad}
             onResumeLater={fortsettSenere}>
-            {inconsistentStepId ? <InconsistentStepAlert stepId={inconsistentStepId} /> : null}
+            {inconsistentStepId ? <InconsistencyAlert stepId={inconsistentStepId} /> : null}
             {children({
                 defaultValues,
                 isPending,

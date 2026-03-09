@@ -8,7 +8,7 @@ interface Props {
     stepId: SøknadStepId;
 }
 
-export const InconsistentStepAlert = ({ stepId }: Props) => {
+export const InconsistencyAlert = ({ stepId }: Props) => {
     const navigate = useNavigate();
     return (
         <Box marginBlock="space-0 space-32">
