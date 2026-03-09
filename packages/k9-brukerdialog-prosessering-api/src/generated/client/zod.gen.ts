@@ -742,7 +742,6 @@ export const zEttersendelse = z.object({
 });
 
 export const zAktivitetspengersøknad = z.object({
-    søknadId: z.string(),
     språk: z.string(),
     startdato: z.iso.date(),
     søkerNorskIdent: z.string(),
