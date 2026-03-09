@@ -32,10 +32,10 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const currentStepRoute = currentStepId ? søknadStepConfig[currentStepId]?.route : undefined;
 
     if (søknadSendt && location.pathname !== '/kvittering') {
-        return <Navigate to="/kvittering" />;
+        return <Navigate to="/kvittering" replace />;
     }
     if (!søknadSendt && location.pathname === '/kvittering') {
-        return <Navigate to="/" />;
+        return <Navigate to="/" replace />;
     }
 
     return (

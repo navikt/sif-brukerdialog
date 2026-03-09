@@ -61,6 +61,7 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                                 error={error ? 'Du må bekrefte at du vil svare så riktig som du kan' : undefined}>
                                 <Checkbox
                                     name="bekrefter"
+                                    value="bekrefter"
                                     onChange={(evt) => {
                                         setBekrefter(evt.target.checked);
                                         if (evt.target.checked) {
