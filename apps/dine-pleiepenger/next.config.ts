@@ -75,7 +75,9 @@ const nextConfig = {
 export default withSentryConfig(nextConfig, {
     // Automatisk source map upload til Sentry
     silent: true,
-    hideSourceMaps: false,
+    sourcemaps: {
+        deleteSourcemapsAfterUpload: false,
+    },
     webpack: {
         treeshake: {
             removeDebugLogging: true,
