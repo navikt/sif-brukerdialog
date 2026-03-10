@@ -66,9 +66,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         if (!sak) {
             logger.warn('Sak ikke funnet');
+            Sentry.setTag('sak.status', 'not_found');
             return res.status(404).json({ error: 'Sak ikke funnet' });
         }
 
+        Sentry.setTag('sak.status', 'success');
         return res.json({ sak, inntektsmeldinger });
     } catch (err) {
         const errorDetails = prepApiError(err);
@@ -77,6 +79,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             errorType: err instanceof Error ? err.constructor.name : typeof err,
         });
 
+        Sentry.setTag('sak.status', 'error');
         Sentry.captureException(err, {
             tags: { endpoint: 'hent-sak', saksnummer: saksnr },
             extra: { errorDetails },

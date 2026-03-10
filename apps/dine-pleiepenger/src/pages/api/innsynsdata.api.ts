@@ -35,6 +35,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         logger.info(`Hentet innsynsdata. Antall saker: ${sakerMetadata.length}`);
 
+        // Logg til Sentry
+        Sentry.setTag('innsynsdata.status', 'success');
+        Sentry.setContext('innsynsdata', { antallSaker: sakerMetadata.length });
+
         const innsynsdata: InnsynsdataDto = {
             appStatus,
             søker,
@@ -45,6 +49,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     } catch (err) {
         logger.error(`Hent innsynsdata feilet`, prepApiError(err));
 
+        Sentry.setTag('innsynsdata.status', 'error');
         Sentry.captureException(err, {
             tags: { endpoint: 'innsynsdata' },
             extra: { errorDetails: prepApiError(err) },
