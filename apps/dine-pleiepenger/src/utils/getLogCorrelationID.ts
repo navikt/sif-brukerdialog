@@ -39,7 +39,7 @@ export const getLogger = (req: NextApiRequest): Logger => {
         },
         debug: (message: string, context?: LogContext) => {
             if (isDebugEnabled) {
-                childLogger.debug(getChildLoggerContext(reqId, { ...baseContext, ...context }), message);
+                childlogger.info(getChildLoggerContext(reqId, { ...baseContext, ...context }), message);
             }
         },
         withContext: (additionalContext: LogContext) => {

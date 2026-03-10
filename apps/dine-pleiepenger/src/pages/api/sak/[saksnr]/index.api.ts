@@ -50,7 +50,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         }
 
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-            logger.debug('Returnerer unparsed data');
+            logger.info('Returnerer unparsed data');
             return res.json({ sak, inntektsmeldinger });
         }
 
