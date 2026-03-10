@@ -51,12 +51,12 @@ Sentry.init({
     dsn: SENTRY_DSN,
     environment: getEnvironment(),
 
-    tracesSampleRate: 0.1,
+    tracesSampleRate: 0.1, // 100% for testing, reduser til 0.1 i prod
     replaysSessionSampleRate: 0,
     replaysOnErrorSampleRate: 0.1,
 
     ignoreErrors: errorsToIgnore,
-    allowUrls: [/https?:\/\/((dev|www)\.)?nav\.no/],
+    allowUrls: [/https?:\/\/.*\.?nav\.no/],
 
     beforeSend(event) {
         if (isErrorFromDekoratøren(event)) {

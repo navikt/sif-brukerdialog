@@ -9,12 +9,14 @@ const getEnvironment = (): string => {
     return 'localhost';
 };
 
+const isEnabled = getEnvironment() !== 'localhost';
+
 Sentry.init({
     dsn: SENTRY_DSN,
     environment: getEnvironment(),
 
-    tracesSampleRate: 0.1,
+    tracesSampleRate: 1.0, // 100% for testing, reduser til 0.1 i prod
 
-    // Ikke kjør i localhost
-    enabled: getEnvironment() !== 'localhost',
+    enabled: isEnabled,
+    debug: isEnabled, // Midlertidig for debugging
 });
