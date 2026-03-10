@@ -3,7 +3,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { StepFormValues } from '@rammeverk/types';
 import { DefaultValues } from 'react-hook-form';
 
-import { SøknadFormButtons } from '../../components/søknad-form-buttons/SøknadFormButtons';
+import { SøknadFormButtons } from '../../setup/søknad-form-buttons/SøknadFormButtons';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { useSøknadForm } from '../../hooks/useSøknadForm';
 

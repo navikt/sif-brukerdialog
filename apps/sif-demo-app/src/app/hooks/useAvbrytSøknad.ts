@@ -3,13 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSøknadContext } from '../context/søknadContext';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
-import { useSøknadStore } from './useSøknadStore';
 
 export const useAvbrytSøknad = () => {
     const navigate = useNavigate();
-    const resetSøknad = useSøknadStore((s) => s.resetSøknad);
+    const { resetSøknad, clearAllFormValues } = useSøknadContext();
     const { slettMellomlagring } = useSøknadMellomlagring();
-    const { clearAllFormValues } = useSøknadContext();
 
     return useCallback(() => {
         resetSøknad();

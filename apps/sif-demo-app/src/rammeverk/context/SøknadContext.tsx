@@ -55,6 +55,7 @@ interface SøknadContextValue<TSøknadsdata> {
     currentStepId: string | undefined;
     includedSteps: IncludedStep[];
     setSøknadsdata: (data: Partial<TSøknadsdata>) => void;
+    resetSøknad: () => void;
 
     // Navigasjon
     navigateToStep: (stepId: string) => void;
@@ -106,6 +107,7 @@ export function createSøknadContext<TSøknadsdata extends object>(config: Søkn
         const includedSteps = useStore((s) => s.includedSteps);
         const setSøknadsdata = useStore((s) => s.setSøknadsdata);
         const setCurrentStep = useStore((s) => s.setCurrentStep);
+        const resetSøknad = useStore((s) => s.resetSøknad);
 
         // Skjemaverdier (usubmittede)
         const [formValues, setFormValues] = useState<SøknadFormValues>(initialFormValues ?? {});
@@ -218,6 +220,7 @@ export function createSøknadContext<TSøknadsdata extends object>(config: Søkn
                 currentStepId,
                 includedSteps,
                 setSøknadsdata,
+                resetSøknad,
 
                 // Navigasjon
                 navigateToStep,
@@ -246,6 +249,7 @@ export function createSøknadContext<TSøknadsdata extends object>(config: Søkn
                 currentStepId,
                 includedSteps,
                 setSøknadsdata,
+                resetSøknad,
                 navigateToStep,
                 navigateToNextStep,
                 navigateToPreviousStep,

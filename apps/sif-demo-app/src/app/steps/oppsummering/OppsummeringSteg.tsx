@@ -1,12 +1,12 @@
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 
-import { SøknadFormButtons } from '../../components/søknad-form-buttons/SøknadFormButtons';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/søknadContext';
 import { useSøknadMellomlagring } from '../../hooks';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
+import { SøknadFormButtons } from '../../setup/søknad-form-buttons/SøknadFormButtons';
 import { SøknadStep } from '../../setup/søknad-step/SøknadStep';
 import { getSøknadApiDataFromSøknad } from '../../utils/søknadsdataToSøknadApiData';
 

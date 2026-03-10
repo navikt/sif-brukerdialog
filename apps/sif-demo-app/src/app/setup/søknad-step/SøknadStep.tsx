@@ -5,7 +5,6 @@ import { SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/søknadContext';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
-import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
 import { getLenker } from '../../lenker';
 import { InconsistencyAlert } from '../app-consistency-checker/InconsistencyAlert';
@@ -24,7 +23,6 @@ interface Props {
 export function SøknadStep({ stepId, children }: Props) {
     const { text } = useAppIntl();
     const ctx = useSøknadContext();
-    const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad } = useSøknadMellomlagring();
 
@@ -41,7 +39,7 @@ export function SøknadStep({ stepId, children }: Props) {
             documentTitle={stepTitles[stepId]}
             applicationTitle={text('application.title')}
             stepId={stepId}
-            steps={getProgressSteps(includedSteps, stepTitles)}
+            steps={getProgressSteps(ctx.includedSteps, stepTitles)}
             onStepSelect={ctx.navigateToStep}
             onAbort={avbrytSøknad}
             onResumeLater={fortsettSenere}>
