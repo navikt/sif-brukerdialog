@@ -1,5 +1,6 @@
 import { ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
-import { OppgaveDto, zDeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
+import { zDeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 import { z } from 'zod';
 
@@ -18,7 +19,7 @@ export const deltakelsePeriodeSchema = zDeltakelseKomposittDto
         return {
             ...rest,
             programPeriode,
-            oppgaver: parseOppgaverElement(data.oppgaver as OppgaveDto[]), // Bruker as pga generert type ikke godtas
+            oppgaver: parseOppgaverElement(data.oppgaver as BrukerdialogOppgaveDto[]), // Bruker as pga generert type ikke godtas
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
             erSlettet: data.erSlettet,
             harOpphørsvedtak: data.harOpphørsvedtak,

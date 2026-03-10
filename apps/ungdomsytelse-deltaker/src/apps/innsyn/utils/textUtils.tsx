@@ -1,5 +1,5 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { AppIntlShape } from '@shared/i18n';
 import { BekreftelseOppgave, Oppgave, ParsedOppgaveBase, ParsedOppgavetype } from '@shared/types/Oppgave';
 
@@ -64,8 +64,6 @@ export const getOppgaveStatusText = (oppgave: ParsedOppgaveBase): string => {
             return `Frist: senest ${dateFormatter.full(oppgave.sisteDatoEnKanSvare)}`;
         case OppgaveStatus.AVBRUTT:
             return 'Oppgave er avbrutt';
-        case OppgaveStatus.LUKKET:
-            return `Lukket ${renderDatoOgKlokkeslett(oppgave.lukketDato)}`;
         case OppgaveStatus.UTLØPT:
             return `Oppgave er utløpt`;
     }

@@ -2,7 +2,7 @@ import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { erDeltakelseAvsluttet, erDeltakelseStartet } from '@innsyn/utils/deltakelseUtils';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { AppText } from '@shared/i18n';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 

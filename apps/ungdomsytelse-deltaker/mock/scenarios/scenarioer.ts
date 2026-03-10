@@ -1,4 +1,4 @@
-import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../utils/dateUtils';
@@ -42,7 +42,7 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
     ],
 });
 
-const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
@@ -60,7 +60,7 @@ const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
         },
     ],
 });
-const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
@@ -78,7 +78,7 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
         },
     ],
 });
-const createOpphørtDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
@@ -97,7 +97,7 @@ const createOpphørtDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
     ],
 });
 
-const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => {
+const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => {
     const fraOgMed = dateToISODate(dayjs().add(1, 'month').startOf('week').toDate());
     const søktTidspunkt = dayjs(fraOgMed).add(1, 'days').toDate().toISOString();
     return {

@@ -1,5 +1,5 @@
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
-import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
 
 import { RapporterInntektOppgave } from '../../src/types/Oppgave';
 import { store } from '../state/store';
@@ -45,7 +45,7 @@ export const mockUtils = {
     },
 
     setRapportertInntekt: (ref: string, data: UngdomsytelseInntektsrapportering) => {
-        const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<OppgaveDto> =>
+        const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<BrukerdialogOppgaveDto> =>
             ({
                 oppgavetypeData: {
                     ...oppgave.oppgavetypeData,
@@ -69,7 +69,7 @@ export const mockUtils = {
             }));
         }, 2500);
 
-        return updateOppgave(ref, (oppgave): OppgaveDto => {
+        return updateOppgave(ref, (oppgave): BrukerdialogOppgaveDto => {
             return {
                 ...oppgave,
                 løstDato: getMockToday().toISOString(),

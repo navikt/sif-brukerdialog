@@ -1,4 +1,4 @@
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { withDeltakerContext } from '@shared/storybook/decorators/withDeltakerContext';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';

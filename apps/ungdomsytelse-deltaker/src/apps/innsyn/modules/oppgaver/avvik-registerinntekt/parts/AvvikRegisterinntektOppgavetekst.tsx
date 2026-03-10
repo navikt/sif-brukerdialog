@@ -23,7 +23,7 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
     const rapporteringsmånedOgÅr = dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed);
 
     const {
-        registerinntekt: { ytelseInntekter, arbeidOgFrilansInntekter },
+        registerinntekt: { ytelseInntekter = [], arbeidOgFrilansInntekter = [] },
     } = oppgave.oppgavetypeData;
 
     const inntekt = [
@@ -63,9 +63,9 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                     </Box>
                     {oppgave.oppgavetypeData.gjelderDelerAvMåned ? (
                         // Når perioden oppgaven ikke gjelder alle virkedager i måneden
-                        (<BodyLong>
+                        <BodyLong>
                             <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt.delerAvMåned" />
-                        </BodyLong>)
+                        </BodyLong>
                     ) : (
                         <BodyLong>
                             {harKunYtelseInntekt ? (

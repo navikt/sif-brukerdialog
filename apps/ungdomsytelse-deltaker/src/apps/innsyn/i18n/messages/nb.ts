@@ -5,12 +5,14 @@ export const innsynMessages_nb = {
     Nei: 'Nei',
     Oppsummering: 'Oppsummering',
 
+    'ytelse.DAGPENGER': 'Dagpenger',
     'ytelse.SYKEPENGER': 'Sykepenger',
+    'ytelse.FORELDREPENGER': 'Foreldrepenger',
     'ytelse.OMSORGSPENGER': 'Omsorgspenger',
     'ytelse.PLEIEPENGER': 'Pleiepenger',
-    'ytelse.PLEIEPENGER_SYKT_BARN': 'Pleiepenger',
-    'ytelse.PLEIEPENGER_LIVETS_SLUTTFASE': 'Pleiepenger',
-    'ytelse.OPPLAERINGSPENGER': 'Opplæringspenger',
+    'ytelse.OPPLÆRINGSPENGER': 'Opplæringspenger',
+    'ytelse.AAP': 'Arbeidsavklaringspenger',
+    'ytelse.ANNET': 'Annet',
 
     'forsideLenkeButton.tekst': 'Tilbake til oversikten',
 

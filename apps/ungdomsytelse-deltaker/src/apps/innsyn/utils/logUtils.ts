@@ -1,5 +1,5 @@
 import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { BekreftelseOppgave, ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
@@ -14,7 +14,6 @@ type DeltakelsePeriodeMeta = {
     antallLøsteOppgaver: number;
     antallUløsteOppgaver: number;
     antallAvbrutteOppgaver: number;
-    antallLukkedeOppgaver: number;
     harSluttdato: boolean;
     antallEndretStartdatoOppgaver: number;
     antallEndretSluttdatoOppgaver: number;
@@ -46,7 +45,6 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeri
         antallUløsteOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST).length,
         antallAvbrutteOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.AVBRUTT)
             .length,
-        antallLukkedeOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.LUKKET).length,
         harSluttdato: deltakelse.programPeriode.to !== undefined,
         antallEndretStartdatoOppgaver: deltakelse.oppgaver.filter(
             (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,

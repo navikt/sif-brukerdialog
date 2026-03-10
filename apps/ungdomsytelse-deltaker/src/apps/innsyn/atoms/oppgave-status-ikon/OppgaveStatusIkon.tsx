@@ -5,7 +5,7 @@ import {
     HourglassBottomFilledIcon,
     PencilFillIcon,
 } from '@navikt/aksel-icons';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
 interface Props {
     oppgavestatus: OppgaveStatus;
@@ -19,7 +19,6 @@ const OppgaveStatusIkon = ({ oppgavestatus, size = 'medium', fill = true }: Prop
     switch (oppgavestatus) {
         case OppgaveStatus.ULØST:
             return <PencilFillIcon color="#C95100" width={widthHeight} height={widthHeight} aria-hidden="true" />;
-        case OppgaveStatus.LUKKET:
         case OppgaveStatus.LØST:
             return (
                 <CheckmarkCircleFillIcon color="#00893c" width={widthHeight} height={widthHeight} aria-hidden="true" />

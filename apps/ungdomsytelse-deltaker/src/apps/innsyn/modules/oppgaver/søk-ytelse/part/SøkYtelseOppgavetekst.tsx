@@ -3,7 +3,7 @@ import OppgaveStatusTag from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag'
 import { getOppgaveStatusText } from '@innsyn/utils/textUtils';
 import { Alert, FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { AppText } from '@shared/i18n';
 import { SøkYtelseOppgave } from '@shared/types/Oppgave';
 import getLenker from '@shared/utils/lenker';

@@ -1,6 +1,6 @@
 import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
 import { VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useAppIntl } from '@shared/i18n';
 import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';

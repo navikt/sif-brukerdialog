@@ -1,5 +1,5 @@
 import { logUtils } from '@innsyn/utils/logUtils';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';

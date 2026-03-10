@@ -11,7 +11,7 @@ interface AvvikRegisterinntektOppsummeringProps {
 const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsummeringProps) => {
     const intl = useAppIntl();
     const {
-        registerinntekt: { arbeidOgFrilansInntekter, ytelseInntekter },
+        registerinntekt: { arbeidOgFrilansInntekter = [], ytelseInntekter = [] },
         fraOgMed,
     } = oppgave.oppgavetypeData;
 
