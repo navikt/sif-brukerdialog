@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 
 import { useSøknadContext } from '../context/søknadContext';
-import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 import { Søknadsdata } from '../types/Søknadsdata';
+import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
 interface UseStepSubmitOptions<TFormValues, TStepSøknadsdata> {
     stepId: string;

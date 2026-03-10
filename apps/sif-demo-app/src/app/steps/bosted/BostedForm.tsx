@@ -1,11 +1,14 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { StepFormValues } from '@rammeverk/types';
-import { DefaultValues } from 'react-hook-form';
 
-import { SøknadFormButtons } from '../../setup/søknad-form-buttons/SøknadFormButtons';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { useSøknadForm } from '../../hooks/useSøknadForm';
+import { useStepDefaultValues } from '../../hooks/useStepDefaultValues';
+import { useStepSubmit } from '../../hooks/useStepSubmit';
+import { SøknadFormButtons } from '../../setup/søknad-form-buttons/SøknadFormButtons';
+import { BostedSøknadsdata } from '../../types/Søknadsdata';
+import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 
 export enum BostedFormFields {
     borITrondheim = 'borITrondheim',
@@ -15,14 +18,19 @@ export interface BostedFormValues extends StepFormValues {
     [BostedFormFields.borITrondheim]?: 'ja' | 'nei';
 }
 
-interface Props {
-    stepId: SøknadStepId;
-    isPending: boolean;
-    defaultValues: DefaultValues<BostedFormValues>;
-    onSubmit: (data: BostedFormValues) => void;
-}
+const stepId = SøknadStepId.BOSTED;
 
-export const BostedForm = ({ stepId, isPending, defaultValues, onSubmit }: Props) => {
+export const BostedForm = () => {
+    const defaultValues = useStepDefaultValues<BostedFormValues, BostedSøknadsdata>({
+        stepId,
+        toFormValues: toBostedFormValues,
+    });
+
+    const { onSubmit, isPending } = useStepSubmit<BostedFormValues, BostedSøknadsdata>({
+        stepId,
+        toSøknadsdata: toBostedSøknadsdata,
+    });
+
     const { handleSubmit, setValue, watch } = useSøknadForm(stepId, defaultValues);
 
     const borITrondheim = watch(BostedFormFields.borITrondheim);

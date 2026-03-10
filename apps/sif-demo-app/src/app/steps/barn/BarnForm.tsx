@@ -1,11 +1,14 @@
 import { Alert, Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { StepFormValues } from '@rammeverk/types';
-import { DefaultValues } from 'react-hook-form';
 
-import { SøknadFormButtons } from '../../setup/søknad-form-buttons/SøknadFormButtons';
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { useSøknadForm } from '../../hooks/useSøknadForm';
+import { useStepDefaultValues } from '../../hooks/useStepDefaultValues';
+import { useStepSubmit } from '../../hooks/useStepSubmit';
+import { SøknadFormButtons } from '../../setup/søknad-form-buttons/SøknadFormButtons';
+import { BarnSøknadsdata } from '../../types/Søknadsdata';
+import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 
 export enum BarnFormFields {
     stemmerInfoOmBarn = 'stemmerInfoOmBarn',
@@ -15,14 +18,19 @@ export interface BarnFormValues extends StepFormValues {
     [BarnFormFields.stemmerInfoOmBarn]: 'ja' | 'nei';
 }
 
-interface Props {
-    stepId: SøknadStepId;
-    isPending: boolean;
-    defaultValues: DefaultValues<BarnFormValues>;
-    onSubmit: (data: BarnFormValues) => void;
-}
+const stepId = SøknadStepId.BARN;
 
-export const BarnForm = ({ stepId, isPending, defaultValues, onSubmit }: Props) => {
+export const BarnForm = () => {
+    const defaultValues = useStepDefaultValues<BarnFormValues, BarnSøknadsdata>({
+        stepId,
+        toFormValues: toBarnFormValues,
+    });
+
+    const { onSubmit, isPending } = useStepSubmit<BarnFormValues, BarnSøknadsdata>({
+        stepId,
+        toSøknadsdata: toBarnSøknadsdata,
+    });
+
     const { setValue, handleSubmit, watch } = useSøknadForm(stepId, defaultValues);
 
     const stemmerInfoOmBarn = watch(BarnFormFields.stemmerInfoOmBarn);
