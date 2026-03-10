@@ -4,13 +4,13 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.93.1",
+        "@hey-api/openapi-ts": "0.94.0",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.13.6",
         "config": "workspace:*",
-        "postcss": "8.5.6",
+        "postcss": "8.5.8",
         "typescript": "5.9.3",
         "vitest": "4.0.18",
         "zod": "4.3.6"
@@ -28,7 +28,6 @@
         "gen-types:fixed": "yarn gen-types && yarn fix-regexp",
         "gen-types": "openapi-ts -f openapi-ts.ung-brukerdialog-api.config.ts",
         "codegen:dev": "CODEGEN_ENV=dev yarn gen-types:fixed",
-        "codegen:prod": "CODEGEN_ENV=prod yarn gen-types:fixed",
         "lint:eslint": "eslint './src/ung-brukerdialog-api/client/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/ung-brukerdialog-api/client/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
