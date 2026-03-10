@@ -1,6 +1,6 @@
+import * as Sentry from '@sentry/nextjs';
 import { HttpStatusCode, isAxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import * as Sentry from '@sentry/nextjs';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { InnsynsdataDto } from '../../server/dto-schemas/innsynsdataDtoSchema';
@@ -8,24 +8,29 @@ import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
 import { fetchSøker } from '../../server/fetchers/fetchSøker';
 import { prepApiError } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogCorrelationID';
+import { addBreadcrumb, withApiBreadcrumb } from '../../utils/sentryBreadcrumbs';
 import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const logger = getLogger(req);
     logger.info(`Henter innsynsdata`);
+    addBreadcrumb({ category: 'api', message: 'Henter innsynsdata' });
+
     try {
         const unparsed = req.query.unparsed === 'true';
 
         // Hent søkerinformasjon
-        const søker = await fetchSøker(req, unparsed);
+        const søker = await withApiBreadcrumb('sif-innsyn-api', 'fetchSøker', () => fetchSøker(req, unparsed));
         logger.info(`Hentet søkerinformasjon`);
 
         // Hent oversikt over saker
-        const sakerMetadata = await fetchSakerMetadata(req, unparsed);
+        const sakerMetadata = await withApiBreadcrumb('k9-sak-innsyn', 'fetchSakerMetadata', () =>
+            fetchSakerMetadata(req, unparsed),
+        );
         logger.info(`Hentet metadata`);
 
         // Hent appstatus som sier om appen er tilgjengelig eller ikke
-        const appStatus = await fetchAppStatus();
+        const appStatus = await withApiBreadcrumb('sanity', 'fetchAppStatus', () => fetchAppStatus());
         logger.info(`Hentet appstatus`);
 
         logger.info(`Hentet innsynsdata. Antall saker: ${sakerMetadata.length}`);

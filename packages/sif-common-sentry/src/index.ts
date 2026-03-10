@@ -71,6 +71,32 @@ interface CaptureExceptionOptions {
 
 export type { CaptureExceptionOptions };
 
+type BreadcrumbCategory = 'api' | 'fetch' | 'navigation' | 'user' | 'system';
+
+interface BreadcrumbOptions {
+    category: BreadcrumbCategory;
+    message: string;
+    data?: Record<string, unknown>;
+    level?: Sentry.SeverityLevel;
+}
+
+export type { BreadcrumbOptions };
+
+const addBreadcrumbToSentry = ({ category, message, data, level = 'info' }: BreadcrumbOptions): void => {
+    if (isRunningLocally(window.location.hostname)) {
+        // eslint-disable-next-line no-console
+        console.debug(`[Sentry Breadcrumb] ${category}: ${message}`, data);
+        return;
+    }
+    Sentry.addBreadcrumb({
+        category,
+        message,
+        data,
+        level,
+        timestamp: Date.now() / 1000,
+    });
+};
+
 const captureExceptionToSentryOrConsole = (
     error: Error | unknown,
     application: string,
@@ -211,6 +237,7 @@ const getSentryLoggerForApp = (application: string, allowUrls: AllowUrlsType, ig
         logToSentry(message, severity, application, payload ? { info: payload } : undefined),
     captureException: (error: Error | unknown, options?: CaptureExceptionOptions) =>
         captureExceptionToSentryOrConsole(error, application, options),
+    addBreadcrumb: (options: BreadcrumbOptions) => addBreadcrumbToSentry(options),
 });
 
 export default getSentryLoggerForApp;

@@ -1,8 +1,8 @@
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
 //     enabled: process.env.ANALYZE === 'true',
 // });
-import { withSentryConfig } from '@sentry/nextjs';
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { withSentryConfig } from '@sentry/nextjs';
 import * as path from 'path';
 
 const appDirectives = {
