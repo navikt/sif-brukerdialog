@@ -12,9 +12,8 @@ import OmSøknaden from './OmSøknaden';
 export const VelkommenPage = () => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
-    const startSøknad = useSøknadStore((s) => s.startSøknad);
     const søknadState = useSøknadStore((s) => s.søknadState);
-    const { clearAllFormValues } = useSøknadContext();
+    const { clearAllFormValues, startSøknad } = useSøknadContext();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {

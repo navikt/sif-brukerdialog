@@ -11,16 +11,14 @@ import { SøknadStep } from '../../setup/søknad-step/SøknadStep';
 import { getSøknadApiDataFromSøknad } from '../../utils/søknadsdataToSøknadApiData';
 
 export const OppsummeringSteg = () => {
-    const ctx = useSøknadContext();
-    const state = useSøknadStore((s) => s.søknadState);
-    const setSøknadSendt = useSøknadStore((s) => s.setSøknadSendt);
+    const { søknadsdata, clearAllFormValues, setSøknadSendt } = useSøknadContext();
+    const søker = useSøknadStore((s) => s.søknadState?.søker);
     const { slettMellomlagring } = useSøknadMellomlagring();
     const { isPending, mutateAsync } = useSendSøknad();
 
-    if (!state) {
+    if (!søknadsdata || !søker) {
         throw new Error('Søknadsdata mangler i oppsummering');
     }
-    const { søker, søknadsdata } = state;
 
     const apiData = getSøknadApiDataFromSøknad({ søker, søknadsdata });
     console.log(apiData);
@@ -29,7 +27,7 @@ export const OppsummeringSteg = () => {
         try {
             await mutateAsync({} as any);
             await slettMellomlagring();
-            ctx.clearAllFormValues();
+            clearAllFormValues();
             setSøknadSendt();
         } catch (e) {
             alert(JSON.stringify(e));
