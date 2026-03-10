@@ -1,92 +1,40 @@
-import { useSøknadFormValues } from '@rammeverk/consistency';
-import { useStepNavigation } from '@rammeverk/navigation';
 import { StepPage } from '@rammeverk/pages';
 import { getProgressSteps } from '@rammeverk/utils';
 
-import { søknadStepConfig as stepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
+import { SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
+import { useSøknadContext } from '../../context/søknadContext';
 import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
 import { getLenker } from '../../lenker';
-import { Søknadsdata } from '../../types/Søknadsdata';
 import { InconsistencyAlert } from '../app-consistency-checker/InconsistencyAlert';
-import { useAppConsistencyChecker } from '../app-consistency-checker/useAppConsistencyChecker';
 
-interface RenderProps<TSkjemadata> {
-    defaultValues: Partial<TSkjemadata>;
-    onSubmit: (data: TSkjemadata) => Promise<void>;
-    isPending: boolean;
-    submitDisabled?: boolean;
-    onPrevious: (() => void) | undefined;
-}
-
-interface Props<TSkjemadata, TSøknadsdata> {
+interface Props {
     stepId: SøknadStepId;
-    toSøknadsdata: (data: TSkjemadata) => TSøknadsdata;
-    toFormValues?: (søknadsdata: TSøknadsdata | undefined) => Partial<TSkjemadata>;
-    children: (props: RenderProps<TSkjemadata>) => React.ReactNode;
+    children: React.ReactNode;
 }
 
 /**
- * Hovedkomponent for alle steg i søknadsprosessen.
- * - Setter opp rammeverkskomponenter og -hooks.
- * - Håndterer navigasjon, mellomlagring, avbryt og fortsett senere
- * - Setter opp konsistenssjekk mellom skjemadata og søknadsdata
+ * Container for søknadssteg.
+ * Setter opp page-layout, navigasjon og consistency-sjekk.
  *
- * Bruker children som render prop for å rendre det faktiske skjemasteget,
- * og sender inn nødvendige props for å håndtere skjemadata og navigasjon.
- *
+ * Stegene selv håndterer sin submit-logikk via useStepSubmit hook.
  */
-
-export function SøknadStep<TSkjemadata, TSøknadsdata>({
-    stepId,
-    toSøknadsdata,
-    toFormValues,
-    children,
-}: Props<TSkjemadata, TSøknadsdata>) {
+export function SøknadStep({ stepId, children }: Props) {
     const { text } = useAppIntl();
-
-    const søknadState = useSøknadStore((s) => s.søknadState);
-    const setSøknadsdata = useSøknadStore((s) => s.setSøknadsdata);
-    const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
+    const ctx = useSøknadContext();
     const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
-    const { lagreSøknad, isPending } = useSøknadMellomlagring();
-    const { clearFormValuesForStep, getFormValuesForStep } = useSøknadFormValues();
-
-    const stepFormValues = getFormValuesForStep<TSkjemadata>(stepId);
-
-    const { navigateToNextStep, navigateToPreviousStep, canGoPrevious, navigateToStep } = useStepNavigation({
-        stepConfig,
-        getSøknadSteps: () => useSøknadStore.getState().includedSteps,
-        setCurrentStep,
-    });
-
-    const søknadsdata = søknadState?.søknadsdata[stepId] as TSøknadsdata | undefined;
-
-    const defaultValues: Partial<TSkjemadata> = stepFormValues
-        ? stepFormValues
-        : toFormValues
-          ? toFormValues(søknadsdata)
-          : {};
-
-    const onSubmit = async (data: TSkjemadata) => {
-        const mapped = toSøknadsdata(data);
-        setSøknadsdata({ [stepId]: mapped } as Partial<Søknadsdata>);
-        await lagreSøknad();
-        clearFormValuesForStep(stepId);
-        navigateToNextStep(stepId);
-    };
-
-    const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
+    const { lagreSøknad } = useSøknadMellomlagring();
 
     const fortsettSenere = async () => {
         await lagreSøknad();
         window.location.href = getLenker().minSide;
     };
 
-    const { inconsistentStepId } = useAppConsistencyChecker(stepId);
+    // Consistency-sjekk
+    const inconsistentStepId = ctx.checkConsistency(stepId) as SøknadStepId | undefined;
 
     return (
         <StepPage
@@ -94,17 +42,11 @@ export function SøknadStep<TSkjemadata, TSøknadsdata>({
             applicationTitle={text('application.title')}
             stepId={stepId}
             steps={getProgressSteps(includedSteps, stepTitles)}
-            onStepSelect={navigateToStep}
+            onStepSelect={ctx.navigateToStep}
             onAbort={avbrytSøknad}
             onResumeLater={fortsettSenere}>
             {inconsistentStepId ? <InconsistencyAlert stepId={inconsistentStepId} /> : null}
-            {children({
-                defaultValues,
-                isPending,
-                submitDisabled: inconsistentStepId !== undefined,
-                onSubmit,
-                onPrevious,
-            })}
+            {children}
         </StepPage>
     );
 }

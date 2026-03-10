@@ -1,0 +1,34 @@
+import { useMemo } from 'react';
+
+import { useSøknadContext } from '../context/søknadContext';
+import { Søknadsdata } from '../types/Søknadsdata';
+
+interface UseStepDefaultValuesOptions<TFormValues, TStepSøknadsdata> {
+    stepId: string;
+    toFormValues?: (søknadsdata: TStepSøknadsdata | undefined) => Partial<TFormValues>;
+}
+
+/**
+ * Hook for å hente default-verdier for et skjemasteg.
+ * Prioriterer lagrede skjemaverdier (fra browser back/forward) over søknadsdata.
+ */
+export function useStepDefaultValues<TFormValues, TStepSøknadsdata>({
+    stepId,
+    toFormValues,
+}: UseStepDefaultValuesOptions<TFormValues, TStepSøknadsdata>): Partial<TFormValues> {
+    const ctx = useSøknadContext();
+
+    return useMemo(() => {
+        const stepFormValues = ctx.getFormValuesForStep<TFormValues>(stepId);
+        if (stepFormValues) {
+            return stepFormValues;
+        }
+
+        if (toFormValues) {
+            const søknadsdata = ctx.søknadsdata?.[stepId as keyof Søknadsdata] as TStepSøknadsdata | undefined;
+            return toFormValues(søknadsdata);
+        }
+
+        return {};
+    }, [ctx, stepId, toFormValues]);
+}

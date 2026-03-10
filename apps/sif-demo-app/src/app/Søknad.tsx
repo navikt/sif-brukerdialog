@@ -1,11 +1,11 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
-import { SøknadFormValuesProvider } from '@rammeverk/consistency';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { StepRouteGuard } from '../rammeverk/navigation';
 import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
+import { SøknadContextProvider } from './context/søknadContext';
 import { useSøknadStore } from './hooks';
 import { KvitteringPage, VelkommenPage } from './pages';
 import { BarnSteg, BostedSteg, OppsummeringSteg } from './steps';
@@ -55,7 +55,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     }
 
     return (
-        <SøknadFormValuesProvider initialValues={mellomlagring?.skjemadata}>
+        <SøknadContextProvider initialFormValues={mellomlagring?.skjemadata}>
             <Routes>
                 <Route path="/" element={<VelkommenPage />} />
                 <Route path="/kvittering" element={<KvitteringPage />} />
@@ -75,6 +75,6 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-        </SøknadFormValuesProvider>
+        </SøknadContextProvider>
     );
 };

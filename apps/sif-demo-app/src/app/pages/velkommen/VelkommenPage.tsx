@@ -1,9 +1,9 @@
 import { BodyLong, Link, VStack } from '@navikt/ds-react';
-import { useSøknadFormValues } from '@rammeverk/consistency';
 import { StartPage } from '@rammeverk/pages';
 import { useNavigate } from 'react-router-dom';
 
 import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
+import { useSøknadContext } from '../../context/søknadContext';
 import { useSøknadMellomlagring } from '../../hooks';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
@@ -14,12 +14,12 @@ export const VelkommenPage = () => {
     const navigate = useNavigate();
     const startSøknad = useSøknadStore((s) => s.startSøknad);
     const søknadState = useSøknadStore((s) => s.søknadState);
-    const { clearSøknadFormValues } = useSøknadFormValues();
+    const { clearAllFormValues } = useSøknadContext();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {
         const førsteSteg = søknadStepConfig[søknadStepOrder[0]];
-        clearSøknadFormValues();
+        clearAllFormValues();
         startSøknad(førsteSteg.id, harForståttRettigheterOgPlikter);
         await lagreSøknad();
         navigate(`/soknad/${førsteSteg.route}`);

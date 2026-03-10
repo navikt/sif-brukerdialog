@@ -1,10 +1,11 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { useSaveSøknadFormValues } from '@rammeverk/consistency';
 import { StepFormValues } from '@rammeverk/types';
-import { DefaultValues, useForm } from 'react-hook-form';
+import { DefaultValues } from 'react-hook-form';
 
+import { SøknadFormButtons } from '../../components/søknad-form-buttons/SøknadFormButtons';
 import { SøknadStepId } from '../../config/søknadStepConfig';
+import { useSøknadForm } from '../../hooks/useSøknadForm';
 
 export enum BostedFormFields {
     borITrondheim = 'borITrondheim',
@@ -15,19 +16,14 @@ export interface BostedFormValues extends StepFormValues {
 }
 
 interface Props {
+    stepId: SøknadStepId;
+    isPending: boolean;
     defaultValues: DefaultValues<BostedFormValues>;
     onSubmit: (data: BostedFormValues) => void;
-    submitDisabled?: boolean;
-    isPending: boolean;
-    onPrevious?: () => void;
 }
 
-export const BostedForm = ({ defaultValues, isPending, onSubmit, onPrevious, submitDisabled }: Props) => {
-    const { handleSubmit, getValues, setValue, watch } = useForm<BostedFormValues>({
-        defaultValues,
-    });
-
-    useSaveSøknadFormValues(SøknadStepId.BOSTED, () => getValues());
+export const BostedForm = ({ stepId, isPending, defaultValues, onSubmit }: Props) => {
+    const { handleSubmit, setValue, watch } = useSøknadForm(stepId, defaultValues);
 
     const borITrondheim = watch(BostedFormFields.borITrondheim);
 
@@ -41,11 +37,7 @@ export const BostedForm = ({ defaultValues, isPending, onSubmit, onPrevious, sub
                     <Radio value="ja">Ja</Radio>
                     <Radio value="nei">Nei</Radio>
                 </RadioGroup>
-                <FormLayout.FormButtons
-                    submitDisabled={submitDisabled}
-                    submitPending={isPending}
-                    onPrevious={onPrevious}
-                />
+                <SøknadFormButtons stepId={stepId} isPending={isPending} />
             </FormLayout.Content>
         </form>
     );

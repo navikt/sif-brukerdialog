@@ -1,10 +1,11 @@
 import { Alert, Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { useSaveSøknadFormValues } from '@rammeverk/consistency';
 import { StepFormValues } from '@rammeverk/types';
-import { DefaultValues, useForm } from 'react-hook-form';
+import { DefaultValues } from 'react-hook-form';
 
+import { SøknadFormButtons } from '../../components/søknad-form-buttons/SøknadFormButtons';
 import { SøknadStepId } from '../../config/søknadStepConfig';
+import { useSøknadForm } from '../../hooks/useSøknadForm';
 
 export enum BarnFormFields {
     stemmerInfoOmBarn = 'stemmerInfoOmBarn',
@@ -15,19 +16,14 @@ export interface BarnFormValues extends StepFormValues {
 }
 
 interface Props {
-    defaultValues: DefaultValues<BarnFormValues>;
+    stepId: SøknadStepId;
     isPending: boolean;
-    submitDisabled?: boolean;
-    onPrevious?: () => void;
+    defaultValues: DefaultValues<BarnFormValues>;
     onSubmit: (data: BarnFormValues) => void;
 }
 
-export const BarnForm = ({ isPending, defaultValues, onSubmit, onPrevious, submitDisabled }: Props) => {
-    const { setValue, handleSubmit, watch, getValues } = useForm<BarnFormValues>({
-        defaultValues,
-    });
-
-    useSaveSøknadFormValues(SøknadStepId.BARN, () => getValues());
+export const BarnForm = ({ stepId, isPending, defaultValues, onSubmit }: Props) => {
+    const { setValue, handleSubmit, watch } = useSøknadForm(stepId, defaultValues);
 
     const stemmerInfoOmBarn = watch(BarnFormFields.stemmerInfoOmBarn);
 
@@ -44,11 +40,7 @@ export const BarnForm = ({ isPending, defaultValues, onSubmit, onPrevious, submi
                         <Radio value="nei">Nei</Radio>
                     </RadioGroup>
                 </FormLayout.Questions>
-                <FormLayout.FormButtons
-                    submitPending={isPending}
-                    submitDisabled={submitDisabled}
-                    onPrevious={onPrevious}
-                />
+                <SøknadFormButtons stepId={stepId} isPending={isPending} />
             </FormLayout.Content>
         </form>
     );
