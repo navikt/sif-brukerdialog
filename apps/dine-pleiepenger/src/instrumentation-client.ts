@@ -58,7 +58,7 @@ Sentry.init({
     ignoreErrors: errorsToIgnore,
     allowUrls: [/https?:\/\/.*\.?nav\.no/],
 
-    beforeSend(event) {
+    beforeSend(event: any) {
         if (isErrorFromDekoratøren(event)) {
             return null;
         }
