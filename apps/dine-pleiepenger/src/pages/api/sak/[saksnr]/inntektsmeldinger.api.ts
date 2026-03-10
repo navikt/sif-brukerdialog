@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
@@ -21,7 +22,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.send(data);
     } catch (err) {
         const logger = getLogger(req);
+        const { saksnr } = req.query;
         logger.error(`Hent inntektsmeldinger feilet`, prepApiError(err));
+
+        Sentry.captureException(err, {
+            tags: { endpoint: 'inntektsmeldinger', saksnummer: String(saksnr) },
+            extra: { errorDetails: prepApiError(err) },
+        });
+
         return res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
     }
 }

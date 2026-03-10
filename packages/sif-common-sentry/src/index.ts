@@ -63,6 +63,46 @@ const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string
     });
 };
 
+interface CaptureExceptionOptions {
+    tags?: Record<string, string>;
+    extra?: Extras;
+    context?: string;
+}
+
+export type { CaptureExceptionOptions };
+
+const captureExceptionToSentryOrConsole = (
+    error: Error | unknown,
+    application: string,
+    options?: CaptureExceptionOptions,
+): void => {
+    if (isRunningLocally(window.location.hostname)) {
+        // eslint-disable-next-line no-console
+        console.error(`[Sentry] Exception captured:`, error, options);
+        return;
+    }
+
+    Sentry.withScope((scope) => {
+        scope.setTag(TAG_APPLICATION, application);
+
+        if (options?.tags) {
+            Object.entries(options.tags).forEach(([key, value]) => {
+                scope.setTag(key, value);
+            });
+        }
+
+        if (options?.extra) {
+            scope.setExtras(options.extra);
+        }
+
+        if (options?.context) {
+            scope.setTransactionName(options.context);
+        }
+
+        Sentry.captureException(error);
+    });
+};
+
 export const setSentryEnvironment = (maybeHost: string | undefined): SentryEnvironment => {
     if (maybeHost && typeof maybeHost === 'string') {
         if (maybeHost.indexOf('localhost') > -1) {
@@ -169,6 +209,8 @@ const getSentryLoggerForApp = (application: string, allowUrls: AllowUrlsType, ig
     logApiError: (error: AxiosError, context?: string) => logApiCallErrorToSentryOrConsole(error, application, context),
     logToSentry: (message: string, severity: Sentry.SeverityLevel, payload?: string) =>
         logToSentry(message, severity, application, payload ? { info: payload } : undefined),
+    captureException: (error: Error | unknown, options?: CaptureExceptionOptions) =>
+        captureExceptionToSentryOrConsole(error, application, options),
 });
 
 export default getSentryLoggerForApp;

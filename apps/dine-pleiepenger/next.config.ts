@@ -1,6 +1,7 @@
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
 //     enabled: process.env.ANALYZE === 'true',
 // });
+import { withSentryConfig } from '@sentry/nextjs';
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
 import * as path from 'path';
 
@@ -16,6 +17,7 @@ const appDirectives = {
         'http://localhost:1234',
         'http://localhost:12347',
         'http://*.api.sanity.io',
+        'https://sentry.gc.nav.no',
     ],
 };
 
@@ -70,4 +72,9 @@ const nextConfig = {
     productionBrowserSourceMaps: true,
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+    // Automatisk source map upload til Sentry
+    silent: true,
+    hideSourceMaps: false,
+    disableLogger: true,
+});

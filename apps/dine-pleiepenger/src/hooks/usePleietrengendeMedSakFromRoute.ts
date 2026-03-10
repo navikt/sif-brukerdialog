@@ -79,12 +79,13 @@ export const usePleietrengendeMedSakFromRoute = (): {
     // Logg feil til Sentry
     useEffect(() => {
         if (error) {
-            appSentryLogger.logError(
-                'usePleietrengendeMedSakFromRoute-failed',
-                JSON.stringify({ error: error.message }),
-            );
+            appSentryLogger.captureException(error, {
+                context: 'usePleietrengendeMedSakFromRoute',
+                tags: { saksnummer: saksnr || 'unknown' },
+                extra: { errorMessage: error.message },
+            });
         }
-    }, [error]);
+    }, [error, saksnr]);
 
     return {
         pleietrengendeMedSak,

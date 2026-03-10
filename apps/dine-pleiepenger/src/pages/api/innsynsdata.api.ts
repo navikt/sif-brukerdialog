@@ -1,5 +1,6 @@
 import { HttpStatusCode, isAxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import * as Sentry from '@sentry/nextjs';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { InnsynsdataDto } from '../../server/dto-schemas/innsynsdataDtoSchema';
@@ -38,6 +39,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.json(innsynsdata);
     } catch (err) {
         logger.error(`Hent innsynsdata feilet`, prepApiError(err));
+
+        Sentry.captureException(err, {
+            tags: { endpoint: 'innsynsdata' },
+            extra: { errorDetails: prepApiError(err) },
+        });
+
         if (
             isAxiosError(err) &&
             (err.response?.status === HttpStatusCode.Forbidden ||
