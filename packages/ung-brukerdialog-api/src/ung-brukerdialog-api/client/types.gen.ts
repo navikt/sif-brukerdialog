@@ -4,29 +4,29 @@ export type ClientOptions = {
     baseURL: `${string}://${string}/ung/brukerdialog` | (string & {});
 };
 
-export type UngBrukerdialogKontraktOppgaverBekreftelseDto = (
+export type BekreftelseDto = (
     | ({
           type: 'VARSEL_SVAR';
-      } & UngBrukerdialogKontraktOppgaverSvarPåVarselDto)
+      } & SvarPåVarselDto)
     | ({
           type: 'RAPPORTERT_INNTEKT';
-      } & UngBrukerdialogKontraktOppgaverTyperInntektsrapporteringRapportertInntektDto)
+      } & InntektsrapporteringRapportertInntektDto)
 ) & {
     type: string;
 };
 
-export type UngBrukerdialogKontraktOppgaverBrukerdialogOppgaveDto = {
-    bekreftelse?: UngBrukerdialogKontraktOppgaverBekreftelseDto;
+export type BrukerdialogOppgaveDto = {
+    bekreftelse?: BekreftelseDto;
     frist?: string;
     løstDato?: string;
     oppgaveReferanse: string;
-    oppgavetype: UngBrukerdialogKontraktOppgaverOppgaveType;
-    oppgavetypeData: UngBrukerdialogKontraktOppgaverOppgavetypeDataDto;
+    oppgavetype: OppgaveType;
+    oppgavetypeData: OppgavetypeDataDto;
     opprettetDato: string;
-    status: UngBrukerdialogKontraktOppgaverOppgaveStatus;
+    status: OppgaveStatus;
 };
 
-export enum UngBrukerdialogKontraktOppgaverOppgaveStatus {
+export enum OppgaveStatus {
     /**
      * LØST
      */
@@ -45,7 +45,7 @@ export enum UngBrukerdialogKontraktOppgaverOppgaveStatus {
     UTLØPT = 'UTLØPT',
 }
 
-export enum UngBrukerdialogKontraktOppgaverOppgaveType {
+export enum OppgaveType {
     /**
      * BEKREFT_ENDRET_STARTDATO
      */
@@ -76,49 +76,49 @@ export enum UngBrukerdialogKontraktOppgaverOppgaveType {
     SØK_YTELSE = 'SØK_YTELSE',
 }
 
-export type UngBrukerdialogKontraktOppgaverOppgavetypeDataDto = (
+export type OppgavetypeDataDto = (
     | ({
           type: 'ENDRET_PERIODE';
-      } & UngBrukerdialogKontraktOppgaverTyperEndretperiodeEndretPeriodeDataDto)
+      } & EndretperiodeEndretPeriodeDataDto)
     | ({
           type: 'ENDRET_SLUTTDATO';
-      } & UngBrukerdialogKontraktOppgaverTyperEndretsluttdatoEndretSluttdatoDataDto)
+      } & EndretsluttdatoEndretSluttdatoDataDto)
     | ({
           type: 'ENDRET_STARTDATO';
-      } & UngBrukerdialogKontraktOppgaverTyperEndretstartdatoEndretStartdatoDataDto)
+      } & EndretstartdatoEndretStartdatoDataDto)
     | ({
           type: 'FJERNET_PERIODE';
-      } & UngBrukerdialogKontraktOppgaverTyperFjernperiodeFjernetPeriodeDataDto)
+      } & FjernperiodeFjernetPeriodeDataDto)
     | ({
           type: 'INNTEKTSRAPPORTERING';
-      } & UngBrukerdialogKontraktOppgaverTyperInntektsrapporteringInntektsrapporteringOppgavetypeDataDto)
+      } & InntektsrapporteringInntektsrapporteringOppgavetypeDataDto)
     | ({
           type: 'KONTROLLER_REGISTERINNTEKT';
-      } & UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto)
+      } & KontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto)
     | ({
           type: 'SØK_YTELSE';
-      } & UngBrukerdialogKontraktOppgaverTyperSøkytelseSøkYtelseOppgavetypeDataDto)
+      } & SøkytelseSøkYtelseOppgavetypeDataDto)
 ) & {
     type: string;
 };
 
-export type UngBrukerdialogKontraktOppgaverSvarPåVarselDto = {
+export type SvarPåVarselDto = {
     harUttalelse: boolean;
     uttalelseFraBruker?: string;
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperEndretperiodeEndretPeriodeDataDto = {
-    endringer: UngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeEndringType[];
-    forrigePeriode?: UngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeDto;
-    nyPeriode?: UngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeDto;
+export type EndretperiodeEndretPeriodeDataDto = {
+    endringer: EndretperiodePeriodeEndringType[];
+    forrigePeriode?: EndretperiodePeriodeDto;
+    nyPeriode?: EndretperiodePeriodeDto;
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeDto = {
+export type EndretperiodePeriodeDto = {
     fomDato?: string;
     tomDato?: string;
 };
 
-export enum UngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeEndringType {
+export enum EndretperiodePeriodeEndringType {
     /**
      * ENDRET_STARTDATO
      */
@@ -137,61 +137,61 @@ export enum UngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeEndringType 
     ANDRE_ENDRINGER = 'ANDRE_ENDRINGER',
 }
 
-export type UngBrukerdialogKontraktOppgaverTyperEndretsluttdatoEndretSluttdatoDataDto = {
+export type EndretsluttdatoEndretSluttdatoDataDto = {
     forrigeSluttdato?: string;
     nySluttdato: string;
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperEndretstartdatoEndretStartdatoDataDto = {
+export type EndretstartdatoEndretStartdatoDataDto = {
     forrigeStartdato: string;
     nyStartdato: string;
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperFjernperiodeFjernetPeriodeDataDto = {
+export type FjernperiodeFjernetPeriodeDataDto = {
     forrigeSluttdato?: string;
     forrigeStartdato: string;
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperInntektsrapporteringInntektsrapporteringOppgavetypeDataDto = {
+export type InntektsrapporteringInntektsrapporteringOppgavetypeDataDto = {
     fraOgMed: string;
     gjelderDelerAvMåned: boolean;
     tilOgMed: string;
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperInntektsrapporteringRapportertInntektDto = {
+export type InntektsrapporteringRapportertInntektDto = {
     arbeidstakerOgFrilansInntekt: number;
     fraOgMed: string;
     tilOgMed: string;
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektArbeidOgFrilansRegisterInntektDto = {
+export type KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto = {
     arbeidsgiver?: string;
     arbeidsgiverIdentifikator: string;
     arbeidsgiverNavn?: string;
     inntekt: number;
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto = {
+export type KontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto = {
     fraOgMed: string;
     gjelderDelerAvMåned: boolean;
-    registerinntekt: UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektRegisterinntektDto;
+    registerinntekt: KontrollerregisterinntektRegisterinntektDto;
     tilOgMed: string;
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektRegisterinntektDto = {
-    arbeidOgFrilansInntekter?: UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektArbeidOgFrilansRegisterInntektDto[];
+export type KontrollerregisterinntektRegisterinntektDto = {
+    arbeidOgFrilansInntekter?: KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto[];
     totalInntekt: number;
     totalInntektArbeidOgFrilans: number;
     totalInntektYtelse: number;
-    ytelseInntekter?: UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtelseRegisterInntektDto[];
+    ytelseInntekter?: KontrollerregisterinntektYtelseRegisterInntektDto[];
 };
 
-export type UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtelseRegisterInntektDto = {
+export type KontrollerregisterinntektYtelseRegisterInntektDto = {
     inntekt: number;
-    ytelsetype: UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtelseType;
+    ytelsetype: KontrollerregisterinntektYtelseType;
 };
 
-export enum UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtelseType {
+export enum KontrollerregisterinntektYtelseType {
     /**
      * DAGPENGER
      */
@@ -226,7 +226,7 @@ export enum UngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtelseT
     ANNET = 'ANNET',
 }
 
-export type UngBrukerdialogKontraktOppgaverTyperSøkytelseSøkYtelseOppgavetypeDataDto = {
+export type SøkytelseSøkYtelseOppgavetypeDataDto = {
     fomDato: string;
 };
 
@@ -241,7 +241,7 @@ export type HentAlleOppgaverResponses = {
     /**
      * default response
      */
-    default: UngBrukerdialogKontraktOppgaverBrukerdialogOppgaveDto[];
+    default: BrukerdialogOppgaveDto[];
 };
 
 export type HentAlleOppgaverResponse = HentAlleOppgaverResponses[keyof HentAlleOppgaverResponses];
@@ -262,7 +262,7 @@ export type HentOppgaveResponses = {
     /**
      * default response
      */
-    default: UngBrukerdialogKontraktOppgaverBrukerdialogOppgaveDto;
+    default: BrukerdialogOppgaveDto;
 };
 
 export type HentOppgaveResponse = HentOppgaveResponses[keyof HentOppgaveResponses];

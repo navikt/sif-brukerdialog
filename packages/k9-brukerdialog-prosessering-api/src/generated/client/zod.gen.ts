@@ -741,16 +741,6 @@ export const zEttersendelse = z.object({
     harForståttRettigheterOgPlikter: z.boolean(),
 });
 
-export const zAktivitetspengersøknad = z.object({
-    språk: z.string(),
-    startdato: z.iso.date(),
-    søkerNorskIdent: z.string(),
-    barnErRiktig: z.boolean(),
-    kontonummerInfo: zKontonummerInfo,
-    harBekreftetOpplysninger: z.boolean(),
-    harForståttRettigheterOgPlikter: z.boolean(),
-});
-
 export const zSøker = z.object({
     aktørId: z.string(),
     fødselsdato: z.iso.date(),
@@ -1146,19 +1136,10 @@ export const zInnsendingEttersendelseData = z.object({
     }),
 });
 
-export const zInnsendingAktivitetspengersøknadData = z.object({
-    body: zAktivitetspengersøknad,
-    path: z.never().optional(),
-    query: z.never().optional(),
-    headers: z.object({
-        'X-Brukerdialog-Git-Sha': z.string(),
-    }),
-});
-
 export const zSlettVedleggData = z.object({
     body: z.never().optional(),
     path: z.object({
-        vedleggId: z.string(),
+        vedleggId: z.string().min(1),
     }),
     query: z.never().optional(),
 });
@@ -1171,7 +1152,7 @@ export const zSlettVedleggResponse = z.void();
 export const zHentVedleggData = z.object({
     body: z.never().optional(),
     path: z.object({
-        vedleggId: z.string(),
+        vedleggId: z.string().min(1),
     }),
     query: z.never().optional(),
 });

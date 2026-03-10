@@ -731,16 +731,6 @@ export type Ettersendelse = {
     harForståttRettigheterOgPlikter: boolean;
 };
 
-export type Aktivitetspengersøknad = {
-    språk: string;
-    startdato: string;
-    søkerNorskIdent: string;
-    barnErRiktig: boolean;
-    kontonummerInfo: KontonummerInfo;
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-};
-
 export type Søker = {
     aktørId: string;
     fødselsdato: string;
@@ -1711,45 +1701,6 @@ export type InnsendingEttersendelseErrors = {
 export type InnsendingEttersendelseError = InnsendingEttersendelseErrors[keyof InnsendingEttersendelseErrors];
 
 export type InnsendingEttersendelseResponses = {
-    /**
-     * Accepted
-     */
-    202: unknown;
-};
-
-export type InnsendingAktivitetspengersøknadData = {
-    body: Aktivitetspengersøknad;
-    headers: {
-        'X-Brukerdialog-Git-Sha': string;
-    };
-    path?: never;
-    query?: never;
-    url: '/aktivitetspenger/soknad/innsending';
-};
-
-export type InnsendingAktivitetspengersøknadErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type InnsendingAktivitetspengersøknadError =
-    InnsendingAktivitetspengersøknadErrors[keyof InnsendingAktivitetspengersøknadErrors];
-
-export type InnsendingAktivitetspengersøknadResponses = {
     /**
      * Accepted
      */

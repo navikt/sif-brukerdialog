@@ -2,9 +2,9 @@
 
 import * as z from 'zod';
 
-export const zUngBrukerdialogKontraktOppgaverOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT']);
+export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT']);
 
-export const zUngBrukerdialogKontraktOppgaverOppgaveType = z.enum([
+export const zOppgaveType = z.enum([
     'BEKREFT_ENDRET_STARTDATO',
     'BEKREFT_ENDRET_SLUTTDATO',
     'BEKREFT_ENDRET_PERIODE',
@@ -14,89 +14,90 @@ export const zUngBrukerdialogKontraktOppgaverOppgaveType = z.enum([
     'SØK_YTELSE',
 ]);
 
-export const zUngBrukerdialogKontraktOppgaverSvarPåVarselDto = z.object({
+export const zSvarPåVarselDto = z.object({
     harUttalelse: z.boolean(),
-    uttalelseFraBruker: z.string().min(0).max(4000).optional(),
+    uttalelseFraBruker: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
 });
 
-export const zUngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeDto = z.object({
+export const zEndretperiodePeriodeDto = z.object({
     fomDato: z.iso.date().optional(),
     tomDato: z.iso.date().optional(),
 });
 
-export const zUngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeEndringType = z.enum([
+export const zEndretperiodePeriodeEndringType = z.enum([
     'ENDRET_STARTDATO',
     'ENDRET_SLUTTDATO',
     'FJERNET_PERIODE',
     'ANDRE_ENDRINGER',
 ]);
 
-export const zUngBrukerdialogKontraktOppgaverTyperEndretperiodeEndretPeriodeDataDto = z.object({
-    endringer: z.array(zUngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeEndringType).min(0).max(4),
-    forrigePeriode: zUngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeDto.optional(),
-    nyPeriode: zUngBrukerdialogKontraktOppgaverTyperEndretperiodePeriodeDto.optional(),
+export const zEndretperiodeEndretPeriodeDataDto = z.object({
+    endringer: z.array(zEndretperiodePeriodeEndringType).min(0).max(4),
+    forrigePeriode: zEndretperiodePeriodeDto.optional(),
+    nyPeriode: zEndretperiodePeriodeDto.optional(),
 });
 
-export const zUngBrukerdialogKontraktOppgaverTyperEndretsluttdatoEndretSluttdatoDataDto = z.object({
+export const zEndretsluttdatoEndretSluttdatoDataDto = z.object({
     forrigeSluttdato: z.iso.date().optional(),
     nySluttdato: z.iso.date(),
 });
 
-export const zUngBrukerdialogKontraktOppgaverTyperEndretstartdatoEndretStartdatoDataDto = z.object({
+export const zEndretstartdatoEndretStartdatoDataDto = z.object({
     forrigeStartdato: z.iso.date(),
     nyStartdato: z.iso.date(),
 });
 
-export const zUngBrukerdialogKontraktOppgaverTyperFjernperiodeFjernetPeriodeDataDto = z.object({
+export const zFjernperiodeFjernetPeriodeDataDto = z.object({
     forrigeSluttdato: z.iso.date().optional(),
     forrigeStartdato: z.iso.date(),
 });
 
-export const zUngBrukerdialogKontraktOppgaverTyperInntektsrapporteringInntektsrapporteringOppgavetypeDataDto = z.object(
-    {
-        fraOgMed: z.iso.date(),
-        gjelderDelerAvMåned: z.boolean(),
-        tilOgMed: z.iso.date(),
-    },
-);
+export const zInntektsrapporteringInntektsrapporteringOppgavetypeDataDto = z.object({
+    fraOgMed: z.iso.date(),
+    gjelderDelerAvMåned: z.boolean(),
+    tilOgMed: z.iso.date(),
+});
 
-export const zUngBrukerdialogKontraktOppgaverTyperInntektsrapporteringRapportertInntektDto = z.object({
+export const zInntektsrapporteringRapportertInntektDto = z.object({
     arbeidstakerOgFrilansInntekt: z.number().gte(0).lte(999999),
     fraOgMed: z.iso.date(),
     tilOgMed: z.iso.date(),
 });
 
-export const zUngBrukerdialogKontraktOppgaverBekreftelseDto = z.intersection(
+export const zBekreftelseDto = z.intersection(
     z.union([
         z
             .object({
                 type: z.literal('VARSEL_SVAR'),
             })
-            .and(zUngBrukerdialogKontraktOppgaverSvarPåVarselDto),
+            .and(zSvarPåVarselDto),
         z
             .object({
                 type: z.literal('RAPPORTERT_INNTEKT'),
             })
-            .and(zUngBrukerdialogKontraktOppgaverTyperInntektsrapporteringRapportertInntektDto),
+            .and(zInntektsrapporteringRapportertInntektDto),
     ]),
     z.object({
         type: z.string(),
     }),
 );
 
-export const zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektArbeidOgFrilansRegisterInntektDto = z.object(
-    {
-        arbeidsgiver: z.string().optional(),
-        arbeidsgiverIdentifikator: z.string(),
-        arbeidsgiverNavn: z.string().optional(),
-        inntekt: z
-            .int()
-            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    },
-);
+export const zKontrollerregisterinntektArbeidOgFrilansRegisterInntektDto = z.object({
+    arbeidsgiver: z.string().optional(),
+    arbeidsgiverIdentifikator: z.string(),
+    arbeidsgiverNavn: z.string().optional(),
+    inntekt: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+});
 
-export const zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtelseType = z.enum([
+export const zKontrollerregisterinntektYtelseType = z.enum([
     'DAGPENGER',
     'SYKEPENGER',
     'FORELDREPENGER',
@@ -107,17 +108,17 @@ export const zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtels
     'ANNET',
 ]);
 
-export const zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtelseRegisterInntektDto = z.object({
+export const zKontrollerregisterinntektYtelseRegisterInntektDto = z.object({
     inntekt: z
         .int()
         .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
         .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    ytelsetype: zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtelseType,
+    ytelsetype: zKontrollerregisterinntektYtelseType,
 });
 
-export const zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektRegisterinntektDto = z.object({
+export const zKontrollerregisterinntektRegisterinntektDto = z.object({
     arbeidOgFrilansInntekter: z
-        .array(zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektArbeidOgFrilansRegisterInntektDto)
+        .array(zKontrollerregisterinntektArbeidOgFrilansRegisterInntektDto)
         .min(0)
         .max(100)
         .optional(),
@@ -133,79 +134,72 @@ export const zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektRegis
         .int()
         .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
         .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    ytelseInntekter: z
-        .array(zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektYtelseRegisterInntektDto)
-        .min(0)
-        .max(100)
-        .optional(),
+    ytelseInntekter: z.array(zKontrollerregisterinntektYtelseRegisterInntektDto).min(0).max(100).optional(),
 });
 
-export const zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto =
-    z.object({
-        fraOgMed: z.iso.date(),
-        gjelderDelerAvMåned: z.boolean(),
-        registerinntekt: zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektRegisterinntektDto,
-        tilOgMed: z.iso.date(),
-    });
+export const zKontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto = z.object({
+    fraOgMed: z.iso.date(),
+    gjelderDelerAvMåned: z.boolean(),
+    registerinntekt: zKontrollerregisterinntektRegisterinntektDto,
+    tilOgMed: z.iso.date(),
+});
 
-export const zUngBrukerdialogKontraktOppgaverTyperSøkytelseSøkYtelseOppgavetypeDataDto = z.object({
+export const zSøkytelseSøkYtelseOppgavetypeDataDto = z.object({
     fomDato: z.iso.date(),
 });
 
-export const zUngBrukerdialogKontraktOppgaverOppgavetypeDataDto = z.intersection(
+export const zOppgavetypeDataDto = z.intersection(
     z.union([
         z
             .object({
                 type: z.literal('ENDRET_PERIODE'),
             })
-            .and(zUngBrukerdialogKontraktOppgaverTyperEndretperiodeEndretPeriodeDataDto),
+            .and(zEndretperiodeEndretPeriodeDataDto),
         z
             .object({
                 type: z.literal('ENDRET_SLUTTDATO'),
             })
-            .and(zUngBrukerdialogKontraktOppgaverTyperEndretsluttdatoEndretSluttdatoDataDto),
+            .and(zEndretsluttdatoEndretSluttdatoDataDto),
         z
             .object({
                 type: z.literal('ENDRET_STARTDATO'),
             })
-            .and(zUngBrukerdialogKontraktOppgaverTyperEndretstartdatoEndretStartdatoDataDto),
+            .and(zEndretstartdatoEndretStartdatoDataDto),
         z
             .object({
                 type: z.literal('FJERNET_PERIODE'),
             })
-            .and(zUngBrukerdialogKontraktOppgaverTyperFjernperiodeFjernetPeriodeDataDto),
+            .and(zFjernperiodeFjernetPeriodeDataDto),
         z
             .object({
                 type: z.literal('INNTEKTSRAPPORTERING'),
             })
-            .and(zUngBrukerdialogKontraktOppgaverTyperInntektsrapporteringInntektsrapporteringOppgavetypeDataDto),
+            .and(zInntektsrapporteringInntektsrapporteringOppgavetypeDataDto),
         z
             .object({
                 type: z.literal('KONTROLLER_REGISTERINNTEKT'),
             })
-            .and(
-                zUngBrukerdialogKontraktOppgaverTyperKontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto,
-            ),
+            .and(zKontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto),
         z
             .object({
                 type: z.literal('SØK_YTELSE'),
             })
-            .and(zUngBrukerdialogKontraktOppgaverTyperSøkytelseSøkYtelseOppgavetypeDataDto),
+            .and(zSøkytelseSøkYtelseOppgavetypeDataDto),
     ]),
     z.object({
         type: z.string(),
     }),
 );
 
-export const zUngBrukerdialogKontraktOppgaverBrukerdialogOppgaveDto = z.object({
-    bekreftelse: zUngBrukerdialogKontraktOppgaverBekreftelseDto.optional(),
+export const zBrukerdialogOppgaveDto = z.object({
+    bekreftelse: zBekreftelseDto.optional(),
     frist: z.iso.datetime({ local: true }).optional(),
     løstDato: z.iso.datetime({ local: true }).optional(),
     oppgaveReferanse: z.uuid(),
-    oppgavetype: zUngBrukerdialogKontraktOppgaverOppgaveType,
-    oppgavetypeData: zUngBrukerdialogKontraktOppgaverOppgavetypeDataDto,
+    oppgavetype: zOppgaveType,
+    oppgavetypeData: zOppgavetypeDataDto,
     opprettetDato: z.iso.datetime({ local: true }),
-    status: zUngBrukerdialogKontraktOppgaverOppgaveStatus,
+    status: zOppgaveStatus,
 });
 
 export const zHentAlleOppgaverData = z.object({
@@ -217,7 +211,7 @@ export const zHentAlleOppgaverData = z.object({
 /**
  * default response
  */
-export const zHentAlleOppgaverResponse = z.array(zUngBrukerdialogKontraktOppgaverBrukerdialogOppgaveDto);
+export const zHentAlleOppgaverResponse = z.array(zBrukerdialogOppgaveDto);
 
 export const zHentOppgaveData = z.object({
     body: z.never().optional(),
@@ -230,4 +224,4 @@ export const zHentOppgaveData = z.object({
 /**
  * default response
  */
-export const zHentOppgaveResponse = zUngBrukerdialogKontraktOppgaverBrukerdialogOppgaveDto;
+export const zHentOppgaveResponse = zBrukerdialogOppgaveDto;
