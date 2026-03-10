@@ -11,20 +11,22 @@ import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { useAppIntl } from '../../i18n';
+import { getLenker } from '../../lenker';
 import { InconsistencyAlert } from '../../setup/app-consistency-checker/InconsistencyAlert';
 import { useAppConsistencyChecker } from '../../setup/app-consistency-checker/useAppConsistencyChecker';
+import { getSøknadApiDataFromSøknad } from '../../utils/søknadsdataToSøknadApiData';
 
 export const OppsummeringSteg = () => {
     const { text } = useAppIntl();
-    // const navigate = useNavigate();
 
     const stepId = SøknadStepId.OPPSUMMERING;
+    const state = useSøknadStore((s) => s.søknadState);
     const setCurrentStep = useSøknadStore((s) => s.setCurrentStep);
     const setSøknadSendt = useSøknadStore((s) => s.setSøknadSendt);
     const includedSteps = useSøknadStore((s) => s.includedSteps);
     const avbrytSøknad = useAvbrytSøknad();
     const { clearSøknadFormValues } = useSøknadFormValues();
-    const { slettMellomlagring } = useSøknadMellomlagring();
+    const { slettMellomlagring, lagreSøknad } = useSøknadMellomlagring();
 
     const { isPending, mutateAsync } = useSendSøknad();
     const { navigateToStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
@@ -33,7 +35,20 @@ export const OppsummeringSteg = () => {
         setCurrentStep,
     });
 
+    if (!state) {
+        throw new Error('Søknadsdata mangler i oppsummering');
+    }
+    const { søker, søknadsdata } = state;
+
+    const apiData = getSøknadApiDataFromSøknad({ søker, søknadsdata });
+    console.log(apiData);
+
     const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
+
+    const fortsettSenere = async () => {
+        await lagreSøknad();
+        window.location.href = getLenker().minSide;
+    };
 
     const onSubmit = async (evt: React.SubmitEvent<HTMLFormElement>) => {
         evt.preventDefault();
@@ -56,6 +71,7 @@ export const OppsummeringSteg = () => {
             stepId={stepId}
             steps={getProgressSteps(includedSteps, stepTitles)}
             onStepSelect={navigateToStep}
+            onResumeLater={fortsettSenere}
             onAbort={avbrytSøknad}>
             {inconsistentStepId ? <InconsistencyAlert stepId={inconsistentStepId} /> : null}
             <form onSubmit={onSubmit}>

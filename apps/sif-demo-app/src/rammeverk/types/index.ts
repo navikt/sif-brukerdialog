@@ -17,8 +17,8 @@ export type StepSøknadsdata = Record<string, unknown>;
  * Base type for søknadsdata - noe alle søknader har.
  */
 export type BaseSøknadsdata = {
-    bekrefterVilkår?: boolean;
-    bekrefterRiktigeOpplysninger?: boolean;
+    harForståttRettigheterOgPlikter?: boolean;
+    // harBekreftetOpplysninger?: boolean;
 };
 
 /**

@@ -40,7 +40,7 @@ interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     ) => void;
     setSøknadsdata: (data: Partial<TSøknadsdata>) => void;
     resetSøknad: () => void;
-    startSøknad: (firstStepId: string, bekrefterVilkår: true) => void;
+    startSøknad: (firstStepId: string, harForståttRettigheterOgPlikter: true) => void;
     setSøknadSendt: () => void;
     setCurrentStep: (stepId: string) => void;
 }
@@ -81,12 +81,12 @@ export const createSøknadStore = <
             });
         },
 
-        startSøknad: (firstStepId: string, bekrefterVilkår: true) =>
+        startSøknad: (firstStepId: string, harForståttRettigheterOgPlikter: true) =>
             set((state) => {
                 if (!state.søknadState) return state;
-                const søknadsdata = {
-                    bekrefterVilkår,
-                } as TSøknadsdata;
+                const søknadsdata: BaseSøknadsdata = {
+                    harForståttRettigheterOgPlikter,
+                };
                 return {
                     søknadState: {
                         ...state.søknadState,
@@ -94,7 +94,7 @@ export const createSøknadStore = <
                     },
                     søknadSendt: false,
                     currentStepId: firstStepId,
-                    includedSteps: computeSteps(søknadsdata),
+                    includedSteps: computeSteps(søknadsdata as TSøknadsdata),
                 };
             }),
 

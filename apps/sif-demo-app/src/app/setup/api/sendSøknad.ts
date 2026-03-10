@@ -1,13 +1,12 @@
-import { handleApiError } from '@navikt/ung-common';
+import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import { commonRequestHeader, handleApiError } from '@navikt/ung-common';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const sendSøknad = async (_: any): Promise<any> => {
+export const sendSøknad = async (data: aktivitetspenger.Aktivitetspengersøknad): Promise<any> => {
     try {
-        await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve(null);
-            }, 200),
-        );
+        await aktivitetspenger.AktivitetspengerController.innsendingAktivitetspengersøknad({
+            body: data,
+            headers: commonRequestHeader,
+        });
     } catch (e) {
         throw handleApiError(e, 'sendSøknad');
     }
