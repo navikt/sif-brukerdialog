@@ -14,7 +14,6 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
             to: dayjs().add(30, 'days').toDate(),
         },
         søktTidspunkt: dayjs().toDate(),
-        oppgaver: [],
         deltaker: {
             deltakerIdent: 'test-ident',
             id: 'deltaker-id',

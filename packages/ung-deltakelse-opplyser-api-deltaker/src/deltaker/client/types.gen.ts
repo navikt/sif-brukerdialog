@@ -34,7 +34,7 @@ export type DeltakelseKomposittDto = {
     erSlettet: boolean;
     harOpphørsvedtak: boolean;
     søktTidspunkt?: string;
-    oppgaver: OppgaveDto[];
+    // oppgaver: OppgaveDto[];
 };
 
 export type DeltakerDto = {

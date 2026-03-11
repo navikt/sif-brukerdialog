@@ -20,4 +20,5 @@ export interface ScenarioData {
     barn: { barn: any[] };
     arbeidsgiver: any[];
     deltakelser: any[];
+    oppgaver: any[];
 }

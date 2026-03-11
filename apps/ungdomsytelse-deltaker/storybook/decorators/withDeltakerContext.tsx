@@ -11,6 +11,7 @@ export const withDeltakerContext = (Story) => {
         <DeltakerContextProvider
             søker={søkerResponseSchema.parse(søker)}
             deltakelsePeriode={deltakelsePeriodeSchema.parse(deltakelser[0])}
+            oppgaver={[]}
             refetchDeltakelser={async () => {}}>
             <Story />
         </DeltakerContextProvider>

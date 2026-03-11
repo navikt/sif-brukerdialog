@@ -35,11 +35,11 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
             },
-            oppgaver: [getMockOppgaver().søkYtelseOppgave],
             erSlettet: false,
             harOpphørsvedtak: false,
         },
     ],
+    oppgaver: [getMockOppgaver().søkYtelseOppgave],
 });
 
 const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
@@ -54,11 +54,11 @@ const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
             },
-            oppgaver,
             erSlettet: false,
             harOpphørsvedtak: false,
         },
     ],
+    oppgaver,
 });
 const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
@@ -72,11 +72,11 @@ const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenario
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
             },
-            oppgaver,
             erSlettet: false,
             harOpphørsvedtak: false,
         },
     ],
+    oppgaver,
 });
 const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
@@ -90,11 +90,11 @@ const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioD
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
             },
-            oppgaver,
             erSlettet: true,
             harOpphørsvedtak: true,
         },
     ],
+    oppgaver,
 });
 
 const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => {
@@ -111,11 +111,11 @@ const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenar
                     id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                     deltakerIdent: '234',
                 },
-                oppgaver,
                 erSlettet: false,
                 harOpphørsvedtak: false,
             },
         ],
+        oppgaver,
     };
 };
 

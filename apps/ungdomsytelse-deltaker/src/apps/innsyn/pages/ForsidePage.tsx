@@ -11,7 +11,7 @@ import ForsidePageFooter from './parts/ForsidePageFooter';
 
 const ForsidePage = () => {
     const { text } = useAppIntl();
-    const { deltakelsePeriode } = useDeltakerContext();
+    const { deltakelsePeriode, oppgaver } = useDeltakerContext();
 
     useInnsynBreadcrumbs();
 
@@ -23,7 +23,7 @@ const ForsidePage = () => {
                     harOpphørsvedtak={deltakelsePeriode.harOpphørsvedtak}
                 />
                 <UXRapportertInntekt />
-                <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
+                <DeltakelseContent deltakelsePeriode={deltakelsePeriode} oppgaver={oppgaver} />
             </VStack>
         </ForsidePageLayout>
     );

@@ -6,6 +6,7 @@ import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { AppText } from '@shared/i18n';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 
+import { Oppgave } from '../../../../types/Oppgave';
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
 import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';
 import DeltakelseOpphørtInfo from './parts/DeltakelseOpphørtInfo';
@@ -13,10 +14,11 @@ import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
+    oppgaver: Oppgave[];
 }
 
-const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
-    const { oppgaver, harOpphørsvedtak } = deltakelsePeriode;
+const DeltakelseContent = ({ deltakelsePeriode, oppgaver }: Props) => {
+    const { harOpphørsvedtak } = deltakelsePeriode;
     const { programPeriode } = deltakelsePeriode;
 
     const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);

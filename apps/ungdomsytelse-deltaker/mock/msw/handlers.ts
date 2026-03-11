@@ -79,6 +79,11 @@ export const getHandlers = () => [
 
     http.put('**/deltakelse/register/:id/marker-har-sokt', () => new HttpResponse(null, { status: 500 })),
 
+    http.get('**/oppgave/hent/alle', () => {
+        const oppgaver = store.get().oppgaver;
+        return HttpResponse.json(oppgaver);
+    }),
+
     http.post('**/ungdomsytelse/soknad/innsending', () => {
         store.setScenario(ScenarioType.søknadSendt);
         return HttpResponse.json({});

@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
+import { useDeltakerOppgaver } from '../../api/hooks/useDeltakerOppgaver';
 import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
@@ -33,6 +34,7 @@ const OppgaveRedirect = () => {
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
+    const oppgaver = useDeltakerOppgaver();
     const { logApiError, logHendelse } = useAnalyticsInstance();
 
     // Sjekk om URL inneholder skyra/test - dette er en midlertidig testside for å teste skyra-integrasjon
@@ -40,8 +42,8 @@ const DeltakerInfoLoader = () => {
         return <SkyraTestPage />;
     }
 
-    const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
-    const error = søker.isError || deltakelsePerioder.isError;
+    const isLoading = søker.isLoading || deltakelsePerioder.isLoading || oppgaver.isLoading;
+    const error = søker.isError || deltakelsePerioder.isError || oppgaver.isError;
 
     if (isLoading) {
         return <UngLoadingPage />;
@@ -50,17 +52,19 @@ const DeltakerInfoLoader = () => {
     if (error) {
         const søkerError = getErrorInfoToLog(søker.error);
         const deltakelsePerioderError = getErrorInfoToLog(deltakelsePerioder.error);
-        logApiError(ApiErrorKey.oppstartsinfo, { søkerError, deltakelsePerioderError });
+        const oppgaverError = getErrorInfoToLog(oppgaver.error);
+        logApiError(ApiErrorKey.oppstartsinfo, { søkerError, deltakelsePerioderError, oppgaverError });
         return <HentDeltakerErrorPage error="Feil ved henting av info" />;
     }
 
-    if (!deltakelsePerioder.data || !søker.data) {
+    if (!deltakelsePerioder.data || !søker.data || !oppgaver.data) {
         logApiError(ApiErrorKey.oppstartsinfo, { info: 'Ingen data lastet' });
         logFaroError(
             'DeltakerInfoLoader.ManglendeData',
             JSON.stringify({
                 søkerHarData: søker.data !== undefined,
-                deltakelsePerioder: deltakelsePerioder.data !== undefined,
+                deltakelsePerioderHarData: deltakelsePerioder.data !== undefined,
+                oppgaverHarData: oppgaver.data !== undefined,
             }),
         );
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
@@ -78,6 +82,7 @@ const DeltakerInfoLoader = () => {
             JSON.stringify({
                 søker: søker.error,
                 deltakelsePerioder: deltakelsePerioder.error,
+                oppgaver: oppgaver.error,
             }),
         );
         return <FlereDeltakelserPage />;
@@ -89,13 +94,10 @@ const DeltakerInfoLoader = () => {
 
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
-    const sendSøknadOppgave = deltakelsePeriode.oppgaver.find(
-        (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.SØK_YTELSE,
-    );
+    const sendSøknadOppgave = oppgaver.data.find((oppgave) => oppgave.oppgavetype === ParsedOppgavetype.SØK_YTELSE);
 
     const deltakerHarSøkt =
-        deltakelsePeriode.søktTidspunkt !== undefined ||
-        (deltakelsePeriode.oppgaver.length > 0 && sendSøknadOppgave === undefined);
+        deltakelsePeriode.søktTidspunkt !== undefined || (oppgaver.data.length > 0 && sendSøknadOppgave === undefined);
 
     const aktivPathBasertPåDeltaker = deltakerHarSøkt ? AppRoutes.innsyn : AppRoutes.soknad;
 
@@ -103,7 +105,10 @@ const DeltakerInfoLoader = () => {
         <DeltakerContextProvider
             søker={søker.data}
             deltakelsePeriode={deltakelsePeriode}
-            refetchDeltakelser={deltakelsePerioder.refetch}>
+            oppgaver={oppgaver.data}
+            refetchDeltakelser={async () => {
+                await Promise.all([deltakelsePerioder.refetch(), oppgaver.refetch()]);
+            }}>
             <AppRouter>
                 <Routes>
                     <Route path={`${AppRoutes.soknad}/*`} element={<SøknadApp />} />

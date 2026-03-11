@@ -21,10 +21,10 @@ type OppgavePageParams = {
 const OppgavePage = () => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
     const {
-        deltakelsePeriode,
+        oppgaver,
         søker: { fornavn: deltakerNavn },
     } = useDeltakerContext();
-    const oppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
+    const oppgave = oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
 
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
 
