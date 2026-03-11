@@ -1,179 +1,253 @@
 # sif-demo-app
 
-Demo-app og referanseimplementasjon for søknadsrammeverket.
+Demo-app for en stegvis søknadsflyt.
+
+Appen består av:
+
+- et **generisk rammeverk** i `src/rammeverk`
+- en **konkret søknadsimplementasjon** i `src/app`
+
+Rammeverket håndterer navigasjon, state, guards og mellomlagring. Appen
+definerer steg, data og API-integrasjoner.
 
 ---
 
-## Overordnet dataflyt
+# Oversikt
 
-```
-AppInfoLoader
-  └── henter søker, barn, mellomlagring (via react-query)
-      └── Søknad (props: søker, barn, mellomlagring?)
-            ├── init() → useSøknadStore
-            ├── StepFormValuesProvider  (skjemadata mellom navigeringer)
-            └── Routes
-                  ├── /            → VelkommenPage | redirect til /soknad
-                  ├── /soknad      → SøknadIndexRedirect → riktig steg
-                  ├── /soknad/:steg → StepRouteGuard → steg-komponenter
-                  └── /kvittering  → KvitteringPage
-```
+Tenk på appen slik:
+
+- **rammeverk** = motoren som styrer søknadsflyten
+- **app** = den konkrete søknaden (steg, UI og API)
+
+Motoren vet **hvordan en søknadsprosess fungerer**, mens appen bestemmer
+**hva søknaden inneholder**.
 
 ---
 
-## Rammeverket (`src/rammeverk`)
+# Kjøring lokalt
 
-Rammeverket eier all generisk søknadslogikk. Søknaden konfigurerer og bruker den.
+Kjør i `apps/sif-demo-app`:
 
-### State – `createSøknadStore`
+- `npm run dev`
+- `npm run build`
+- `npm run check:types`
+- `npm run lint:eslint`
+- `npm run test`
 
-```typescript
-const useSøknadStore = createSøknadStore<SøknadState, Søknadsdata>({
-    stepOrder: søknadStepOrder,
-    stepConfig: søknadStepConfig,
-});
-```
-
-Gir følgende state og actions:
-
-| Felt / action                                                  | Beskrivelse                                              |
-| -------------------------------------------------------------- | -------------------------------------------------------- |
-| `søknadState`                                                  | All søknadsdata inkl. søker, barn og `søknadsdata`       |
-| `currentStepId`                                                | Aktivt steg. `undefined` betyr at søknad ikke er startet |
-| `includedSteps`                                                | Beregnede steg basert på `isIncluded` i stepConfig       |
-| `init(initialState, mellomlagretSøknadsdata?, currentStepId?)` | Kalles én gang ved oppstart                              |
-| `startSøknad(firstStepId)`                                     | Setter currentStepId, nullstiller søknadsdata            |
-| `setSøknadsdata(partial)`                                      | Oppdaterer søknadsdata for ett steg                      |
-| `setCurrentStep(stepId)`                                       | Oppdaterer aktivt steg                                   |
-| `resetSøknad()`                                                | Nullstiller currentStepId og søknadsdata                 |
-
-### Routing
-
-**`SøknadIndexRedirect`** – Redirecter fra `/soknad` til mellomlagret steg, eller til startsiden.
-
-```tsx
-<SøknadIndexRedirect stepConfig={søknadStepConfig} mellomlagretStepId={currentStepId} />
-```
-
-**`StepRouteGuard`** – Venter på initialisering, redirecter hvis `currentStepId` mangler eller URL-steget ikke er inkludert.
-
-```tsx
-<StepRouteGuard steps={includedSteps} currentStepId={currentStepId} isInitialized={!!søknadState} />
-```
-
-### State – `StepFormValuesContext`
-
-Beholder skjemaverdier som ikke er submittet, slik at browser back/forward fungerer og reload gjenoppretter verdier fra mellomlagring.
-
-```tsx
-<StepFormValuesProvider initialValues={mellomlagring?.skjemadata}>
-```
-
-Brukes i steg via `useStepFormValues()`:
-
-- `getStepFormValues(stepId)` – henter lagrede skjemaverdier
-- `setStepFormValues(stepId, values)` – lagrer underveis
-- `clearAllStepFormValues()` – nullstilles ved submit
-
-### Hooks
-
-**`useStepNavigation`** – Håndterer navigering mellom steg basert på `includedSteps`.
-
-```typescript
-const { navigateToNextStep, navigateToPreviousStep, canGoPrevious } = useStepNavigation({
-    stepConfig,
-    getIncludedSteps: () => useSøknadStore.getState().includedSteps,
-    setCurrentStep,
-});
-```
-
-### Komponenter
-
-- **`SøknadFooter`** – Rendrer "Avbryt"-knapp. Tar `onAvbryt` som prop.
-- **`StepFormValuesGuard`** – Lagrer skjemaverdier ved navigering bort (blur).
-- **`InvalidStepInfo`** – Vises hvis et steg er ugyldig.
+Appen kjører med `basename=/sif-demo`.
 
 ---
 
-## Søknaden (`src/app`)
+# Arkitektur
 
-### Steg-konfigurasjon
+    rammeverk
+     ├─ state og navigasjon
+     ├─ guards
+     ├─ consistency-check
+     └─ steglogikk
 
-```typescript
-export const søknadStepConfig: StepConfig<Søknadsdata> = {
-    [SøknadStepId.HOBBY]: {
-        id: SøknadStepId.HOBBY,
-        route: 'hobby',
-        isIncluded: (s) => s.personalia?.harHobby === 'ja', // dynamisk steg
-        isCompleted: (s) => s.hobby !== undefined,
-    },
-    // ...
-};
+    app
+     ├─ steg og sider
+     ├─ API-kall
+     ├─ mapping
+     └─ konfigurasjon
 
-export const søknadStepOrder: SøknadStepId[] = [
-    SøknadStepId.PERSONALIA,
-    SøknadStepId.HOBBY,
-    SøknadStepId.KONTAKT,
-    SøknadStepId.OPPSUMMERING,
-];
-```
-
-### Mellomlagring – `useSøknadMellomlagring`
-
-Wrapper rundt `useYtelseMellomlagring` fra `@navikt/sif-common-query`. Leser state direkte fra store for å unngå stale closures.
-
-| Eksport                               | Beskrivelse                                            |
-| ------------------------------------- | ------------------------------------------------------ |
-| `lagreSøknad()`                       | Lagrer søknadsdata etter steg-submit (uten skjemadata) |
-| `lagreSøknadOgSkjemadata(skjemadata)` | Lagrer med skjemadata (for autosave midt i steg)       |
-| `slettMellomlagring()`                | Sletter og fjerner fra react-query cache               |
-| `isPending`                           | `true` mens lagring/sletting pågår                     |
-
-### Avbryt – `useAvbrytSøknad`
-
-```typescript
-const avbrytSøknad = useAvbrytSøknad();
-// → resetSøknad() + clearAllStepFormValues() + slettMellomlagring() + navigate('/')
-```
-
-`resetSøknad()` nullstiller `currentStepId` synkront i store. Routing i `Søknad.tsx` leser fra store, så brukeren lander på `VelkommenPage` uten hvit side.
-
-### Steg-implementasjon med `AppSøknadStep`
-
-```tsx
-<AppSøknadStep<TSkjemadata, TSøknadsdata>
-    stepId={SøknadStepId.PERSONALIA}
-    toSøknadsdata={(data) => mapToSøknadsdata(data)}
-    toFormValues={(søknadsdata) => mapToFormValues(søknadsdata)}>
-    {({ defaultValues, onSubmit, isPending, onPrevious }) => (
-        <PersonaliaForm
-            defaultValues={defaultValues}
-            onSubmit={onSubmit}
-            isPending={isPending}
-            onPrevious={onPrevious}
-        />
-    )}
-</AppSøknadStep>
-```
-
-`AppSøknadStep` håndterer:
-
-- Henting av defaultValues (fra skjemadata eller søknadsdata)
-- Submit → `setSøknadsdata` → `lagreSøknad` → `navigateToNextStep`
-- Forrige-knapp via `onPrevious`
-- `ValidSøknadStepGuard` som redirecter ut av steget hvis det ikke er gyldig å vise
+Stegene i appen kobles til motoren via en stegkonfigurasjon.
 
 ---
 
-## Checklist for ny søknad
+# Stegmodell
 
-- [ ] Definer `SøknadStepId` enum og `Søknadsdata`-type
-- [ ] Lag `søknadStepConfig` og `søknadStepOrder`
-- [ ] Lag `SøknadState` interface (extends med søker/barn/etc.)
-- [ ] Opprett `useSøknadStore` via `createSøknadStore`
-- [ ] Implementer `useSøknadMellomlagring` med app-spesifikk `APP_YTELSE`
-- [ ] Implementer `useAvbrytSøknad`
-- [ ] Sett opp `AppInfoLoader` som henter søker, barn og mellomlagring
-- [ ] Sett opp `Søknad`-komponent med routes og `StepFormValuesProvider`
-- [ ] Implementer hvert steg med `AppSøknadStep`
-- [ ] Implementer oppsummeringsside og kvitteringsside
+Stegene defineres i:
+
+    src/app/config/søknadStepConfig.ts
+
+Der beskrives:
+
+- hvilke steg som finnes
+- rekkefølgen (`søknadStepOrder`)
+- om et steg er inkludert (`isIncluded`)
+- om et steg er fullført (`isCompleted`)
+
+Eksempel fra demo-appen:
+
+    bosted
+    barn
+    oppsummering
+
+---
+
+# State og kontekst
+
+Søknadsprosessen styres av en sentral store.
+
+`createSøknadStore` holder blant annet:
+
+- `søknadState`
+- `currentStepId`
+- `includedSteps`
+- `søknadSendt`
+
+og actions som:
+
+- `init`
+- `startSøknad`
+- `setSøknadsdata`
+- `setCurrentStep`
+- `resetSøknad`
+
+Store eksponeres til stegene via `createSøknadContext` og hooken
+`useSøknadContext`.
+
+Contexten samler:
+
+- store-actions
+- steg-navigasjon
+- midlertidige skjemaverdier
+- consistency-check
+
+---
+
+# Navigasjon og guards
+
+Routing defineres i `src/app/Søknad.tsx`.
+
+Viktige routes:
+
+- `/` → `VelkommenPage`
+- `/soknad/...` → steg
+- `/kvittering` → `KvitteringPage`
+
+`StepRouteGuard` sørger for at brukeren:
+
+- ikke hopper til steg som ikke er inkludert
+- ikke hopper forbi steg som ikke er fullført
+
+---
+
+# Mellomlagring
+
+Appen mellomlagrer både:
+
+- **submittet søknadsdata**
+- **usubmittede skjemaverdier**
+
+Dette gjør at brukeren kan:
+
+- laste siden på nytt
+- forlate og komme tilbake
+- navigere frem og tilbake uten å miste data
+
+Implementert via:
+
+    src/app/hooks/useSøknadMellomlagring.ts
+
+Denne wrapper `useYtelseMellomlagring`.
+
+---
+
+# Typisk steg-flyt
+
+Et steg følger normalt denne flyten:
+
+1.  Bruker fyller ut skjema
+2.  Skjemadata mappes til søknadsdata
+3.  `setSøknadsdata` oppdaterer store
+4.  Data mellomlagres
+5.  Navigasjon til neste steg
+
+Denne flyten håndteres vanligvis via `useStepSubmit`.
+
+---
+
+# Stegimplementasjon
+
+Hvert steg er en tynn komponent som fokuserer på UI og form.
+
+Eksempler:
+
+    src/app/steps/bosted/BostedSteg.tsx
+    src/app/steps/barn/BarnSteg.tsx
+    src/app/steps/oppsummering/OppsummeringSteg.tsx
+
+Prosesslogikken (state, navigasjon, guards) ligger i rammeverket.
+
+---
+
+# Oppstart og dataflyt
+
+Oppstart skjer i følgende rekkefølge:
+
+1.  `src/main.tsx`
+    - starter app
+    - aktiverer mock
+2.  `src/App.tsx`
+    - setter opp providers og routing
+3.  `AppInitialDataLoader`
+    - henter søker
+    - henter barn
+    - laster mellomlagring
+4.  `src/app/Søknad.tsx`
+    - initialiserer store og context
+    - registrerer steg-routes
+
+---
+
+# Innsending
+
+API-klienter initialiseres i:
+
+    src/app/setup/api/initApiClients.ts
+
+Selve innsendingen:
+
+    src/app/setup/api/sendSøknad.ts
+
+Hook:
+
+    src/app/hooks/useSendSøknad.ts
+
+Dette pakker innsendingen i en `react-query` mutation.
+
+Endelig innsending gjøres i `OppsummeringSteg`.
+
+---
+
+# Mock og scenarier
+
+Mock brukes for lokal utvikling.
+
+Oppstart:
+
+    mock/enableMocking.ts
+
+Scenarier:
+
+    mock/scenarios/scenarioer.ts
+
+MSW handlers:
+
+    mock/msw/handlers.ts
+
+---
+
+# Viktige mapper
+
+    src/app/config      stegdefinisjoner og konstanter
+    src/app/context     appens context
+    src/app/hooks       app-spesifikke hooks
+    src/app/setup       init-data og API-oppsett
+    src/app/steps       stegkomponenter
+
+    src/rammeverk       generisk søknadsmotor
+
+---
+
+## Endre eller legge til steg
+
+1. Oppdater `SøknadStepId`, `søknadStepConfig` og `søknadStepOrder`.
+2. Oppdater `Søknadsdata` i `src/app/types/Søknadsdata.ts`.
+3. Implementer stegkomponent under `src/app/steps/...`.
+4. Legg til route i `src/app/Søknad.tsx`.
+5. Oppdater API-mapping i `src/app/utils/søknadsdataToSøknadApiData.ts`.
+6. Verifiser mellomlagring og navigering frem/tilbake.
