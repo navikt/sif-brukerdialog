@@ -42,9 +42,16 @@ const PATTERNS = {
     },
 };
 
-export function fixGeneratedCode(globPath) {
+const getPatterns = (options = {}) => {
+    return {
+        ...PATTERNS,
+        ...(options.patterns ?? {}),
+    };
+};
+
+export function fixGeneratedCode(globPath, options = {}) {
     const cwd = process.cwd();
-    const patterns = PATTERNS;
+    const patterns = getPatterns(options);
 
     const globPattern = `${globPath}/**/*.gen.ts`;
     const allFiles = glob.sync(globPattern, { cwd });
@@ -117,8 +124,8 @@ export function formatGeneratedFiles(globPath) {
     });
 }
 
-export function fixAndFormatGeneratedCode(globPath) {
-    const summary = fixGeneratedCode(globPath);
+export function fixAndFormatGeneratedCode(globPath, options = {}) {
+    const summary = fixGeneratedCode(globPath, options);
     formatGeneratedFiles(globPath);
     return summary;
 }

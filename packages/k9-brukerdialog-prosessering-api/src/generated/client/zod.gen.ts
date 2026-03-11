@@ -741,6 +741,16 @@ export const zEttersendelse = z.object({
     harForståttRettigheterOgPlikter: z.boolean(),
 });
 
+export const zAktivitetspengersøknad = z.object({
+    språk: z.string(),
+    startdato: z.iso.date(),
+    søkerNorskIdent: z.string(),
+    barnErRiktig: z.boolean(),
+    kontonummerInfo: zKontonummerInfo,
+    harBekreftetOpplysninger: z.boolean(),
+    harForståttRettigheterOgPlikter: z.boolean(),
+});
+
 export const zSøker = z.object({
     aktørId: z.string(),
     fødselsdato: z.iso.date(),
@@ -1129,6 +1139,15 @@ export const zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadData = z.object({
 
 export const zInnsendingEttersendelseData = z.object({
     body: zEttersendelse,
+    path: z.never().optional(),
+    query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
+});
+
+export const zInnsendingAktivitetspengersøknadData = z.object({
+    body: zAktivitetspengersøknad,
     path: z.never().optional(),
     query: z.never().optional(),
     headers: z.object({
