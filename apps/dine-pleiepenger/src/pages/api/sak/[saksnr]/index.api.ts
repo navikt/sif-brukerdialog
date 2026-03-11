@@ -50,7 +50,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         }
 
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-            logger.debug('Returnerer unparsed data');
+            logger.info('Returnerer unparsed data');
             return res.json({ sak, inntektsmeldinger });
         }
 
@@ -63,7 +63,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     } catch (err) {
         const errorDetails = prepApiError(err);
         logger.error('Henting av saksdetaljer feilet', {
-            errorDetails,
+            errorDetails: JSON.stringify(errorDetails),
             errorType: err instanceof Error ? err.constructor.name : typeof err,
         });
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
