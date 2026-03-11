@@ -20,7 +20,7 @@ const getDatoer = () => {
 const getSøkYtelseOppgaveDto = (): BrukerdialogOppgaveDto => {
     const søkYtelseDay = dayjs(getMockToday()).subtract(2, 'months');
     return {
-        oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
+        oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e92',
         oppgavetype: OppgaveType.SØK_YTELSE,
         status: OppgaveStatus.ULØST,
         frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
@@ -166,11 +166,12 @@ const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         gjelderDelerAvMåned: false,
     },
     bekreftelse: {
+        harUttalelse: false, // TODO - skal ikke være med i schema her
         type: 'RAPPORTERT_INNTEKT',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
         arbeidstakerOgFrilansInntekt: 23000,
-    },
+    } as any,
 });
 
 const getRapporterInntektDelerAvMånedOppgaveDto = (): BrukerdialogOppgaveDto => ({

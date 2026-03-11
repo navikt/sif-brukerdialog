@@ -216,9 +216,9 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Opphørt deltakelse',
         data: createOpphørtDeltakelse([
             getMockOppgaver().fjernetPeriodeLøst,
-            getMockOppgaver().søkYtelseOppgaveLøst,
-            getMockOppgaver().rapporterInntektOppgaveLøst,
-            getMockOppgaver().bekreftAvvikOppgaveLøst,
+            // getMockOppgaver().søkYtelseOppgaveLøst,
+            // getMockOppgaver().rapporterInntektOppgaveLøst,
+            // getMockOppgaver().bekreftAvvikOppgaveLøst,
         ]),
     },
     [ScenarioType.ikkeStartet]: {

@@ -9,6 +9,7 @@ import { parseOppgaverElement } from '../api/parse-utils/parseOppgaverElement';
 export const deltakelsePeriodeSchema = zDeltakelseKomposittDto
     .extend({
         id: z.string(),
+        oppgaver: z.array(z.custom<BrukerdialogOppgaveDto>()),
     })
     .transform((data) => {
         const { fraOgMed, tilOgMed, ...rest } = data;
@@ -19,7 +20,7 @@ export const deltakelsePeriodeSchema = zDeltakelseKomposittDto
         return {
             ...rest,
             programPeriode,
-            oppgaver: parseOppgaverElement(data.oppgaver as BrukerdialogOppgaveDto[]), // Bruker as pga generert type ikke godtas
+            oppgaver: parseOppgaverElement(data.oppgaver),
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
             erSlettet: data.erSlettet,
             harOpphørsvedtak: data.harOpphørsvedtak,
