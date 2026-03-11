@@ -14,6 +14,7 @@ export const useMarkerDeltakelseSomSøkt = ({ deltakelseId }: { deltakelseId: st
         mutationFn: () => markerDeltakelseSomSøkt(deltakelseId),
         onSuccess: () => {
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
+            queryClient.invalidateQueries(commonQueries.deltakerOppgaver);
         },
     });
 };

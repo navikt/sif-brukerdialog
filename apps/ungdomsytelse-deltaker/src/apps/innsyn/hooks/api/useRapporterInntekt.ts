@@ -12,6 +12,7 @@ export const useRapporterInntekt = () => {
         mutationFn: (data) => rapporterInntekt(data),
         onSuccess: () => {
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
+            queryClient.invalidateQueries(commonQueries.deltakerOppgaver);
             /** Backend oppdateres ikke med en gang, så vi henter deltakelsesperiodene på nytt etter noen sekunder */
             setTimeout(() => {
                 queryClient.refetchQueries(commonQueries.deltakelseperioder);

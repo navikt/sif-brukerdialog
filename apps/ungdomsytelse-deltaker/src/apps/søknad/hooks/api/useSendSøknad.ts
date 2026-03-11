@@ -10,6 +10,7 @@ export const useSendSøknad = () => {
         mutationFn: (data) => sendSøknad(data),
         onSuccess: () => {
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
+            queryClient.invalidateQueries(commonQueries.deltakerOppgaver);
         },
     });
 };
