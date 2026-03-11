@@ -4,26 +4,61 @@ export type ClientOptions = {
     baseURL: `${string}://${string}/ung/brukerdialog` | (string & {});
 };
 
-export type BekreftelseDto = (
-    | ({
-          type: 'VARSEL_SVAR';
-      } & SvarPåVarselDto)
-    | ({
-          type: 'RAPPORTERT_INNTEKT';
-      } & InntektsrapporteringRapportertInntektDto)
-) & {
-    type: string;
+export type ArbeidOgFrilansRegisterInntektDto = {
+    arbeidsgiverIdentifikator: string;
+    arbeidsgiverNavn?: string;
+    inntekt: number;
 };
 
 export type BrukerdialogOppgaveDto = {
-    bekreftelse?: BekreftelseDto;
     frist?: string;
     løstDato?: string;
     oppgaveReferanse: string;
     oppgavetype: OppgaveType;
     oppgavetypeData: OppgavetypeDataDto;
     opprettetDato: string;
+    respons?: OppgaveResponsDto;
     status: OppgaveStatus;
+};
+
+export type EndretPeriodeDataDto = {
+    endringer: PeriodeEndringType[];
+    forrigePeriode?: PeriodeDto;
+    nyPeriode?: PeriodeDto;
+};
+
+export type EndretSluttdatoDataDto = {
+    forrigeSluttdato?: string;
+    nySluttdato: string;
+};
+
+export type EndretStartdatoDataDto = {
+    forrigeStartdato: string;
+    nyStartdato: string;
+};
+
+export type InntektsrapporteringOppgavetypeDataDto = {
+    fraOgMed: string;
+    gjelderDelerAvMåned: boolean;
+    tilOgMed: string;
+};
+
+export type KontrollerRegisterinntektOppgavetypeDataDto = {
+    fraOgMed: string;
+    gjelderDelerAvMåned: boolean;
+    registerinntekt: RegisterinntektDto;
+    tilOgMed: string;
+};
+
+export type OppgaveResponsDto = (
+    | ({
+          type: 'VARSEL_SVAR';
+      } & SvarPåVarselDto)
+    | ({
+          type: 'RAPPORTERT_INNTEKT';
+      } & RapportertInntektDto)
+) & {
+    type: string;
 };
 
 export enum OppgaveStatus {
@@ -59,10 +94,6 @@ export enum OppgaveType {
      */
     BEKREFT_ENDRET_PERIODE = 'BEKREFT_ENDRET_PERIODE',
     /**
-     * BEKREFT_FJERNET_PERIODE
-     */
-    BEKREFT_FJERNET_PERIODE = 'BEKREFT_FJERNET_PERIODE',
-    /**
      * BEKREFT_AVVIK_REGISTERINNTEKT
      */
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
@@ -79,46 +110,32 @@ export enum OppgaveType {
 export type OppgavetypeDataDto = (
     | ({
           type: 'ENDRET_PERIODE';
-      } & EndretperiodeEndretPeriodeDataDto)
+      } & EndretPeriodeDataDto)
     | ({
           type: 'ENDRET_SLUTTDATO';
-      } & EndretsluttdatoEndretSluttdatoDataDto)
+      } & EndretSluttdatoDataDto)
     | ({
           type: 'ENDRET_STARTDATO';
-      } & EndretstartdatoEndretStartdatoDataDto)
-    | ({
-          type: 'FJERNET_PERIODE';
-      } & FjernperiodeFjernetPeriodeDataDto)
+      } & EndretStartdatoDataDto)
     | ({
           type: 'INNTEKTSRAPPORTERING';
-      } & InntektsrapporteringInntektsrapporteringOppgavetypeDataDto)
+      } & InntektsrapporteringOppgavetypeDataDto)
     | ({
           type: 'KONTROLLER_REGISTERINNTEKT';
-      } & KontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto)
+      } & KontrollerRegisterinntektOppgavetypeDataDto)
     | ({
           type: 'SØK_YTELSE';
-      } & SøkytelseSøkYtelseOppgavetypeDataDto)
+      } & SøkYtelseOppgavetypeDataDto)
 ) & {
     type: string;
 };
 
-export type SvarPåVarselDto = {
-    harUttalelse: boolean;
-    uttalelseFraBruker?: string;
-};
-
-export type EndretperiodeEndretPeriodeDataDto = {
-    endringer: EndretperiodePeriodeEndringType[];
-    forrigePeriode?: EndretperiodePeriodeDto;
-    nyPeriode?: EndretperiodePeriodeDto;
-};
-
-export type EndretperiodePeriodeDto = {
+export type PeriodeDto = {
     fomDato?: string;
     tomDato?: string;
 };
 
-export enum EndretperiodePeriodeEndringType {
+export enum PeriodeEndringType {
     /**
      * ENDRET_STARTDATO
      */
@@ -137,61 +154,35 @@ export enum EndretperiodePeriodeEndringType {
     ANDRE_ENDRINGER = 'ANDRE_ENDRINGER',
 }
 
-export type EndretsluttdatoEndretSluttdatoDataDto = {
-    forrigeSluttdato?: string;
-    nySluttdato: string;
-};
-
-export type EndretstartdatoEndretStartdatoDataDto = {
-    forrigeStartdato: string;
-    nyStartdato: string;
-};
-
-export type FjernperiodeFjernetPeriodeDataDto = {
-    forrigeSluttdato?: string;
-    forrigeStartdato: string;
-};
-
-export type InntektsrapporteringInntektsrapporteringOppgavetypeDataDto = {
-    fraOgMed: string;
-    gjelderDelerAvMåned: boolean;
-    tilOgMed: string;
-};
-
-export type InntektsrapporteringRapportertInntektDto = {
+export type RapportertInntektDto = {
     arbeidstakerOgFrilansInntekt: number;
     fraOgMed: string;
     tilOgMed: string;
 };
 
-export type KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto = {
-    arbeidsgiver?: string;
-    arbeidsgiverIdentifikator: string;
-    arbeidsgiverNavn?: string;
-    inntekt: number;
-};
-
-export type KontrollerregisterinntektKontrollerRegisterinntektOppgavetypeDataDto = {
-    fraOgMed: string;
-    gjelderDelerAvMåned: boolean;
-    registerinntekt: KontrollerregisterinntektRegisterinntektDto;
-    tilOgMed: string;
-};
-
-export type KontrollerregisterinntektRegisterinntektDto = {
-    arbeidOgFrilansInntekter?: KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto[];
+export type RegisterinntektDto = {
+    arbeidOgFrilansInntekter?: ArbeidOgFrilansRegisterInntektDto[];
     totalInntekt: number;
     totalInntektArbeidOgFrilans: number;
     totalInntektYtelse: number;
-    ytelseInntekter?: KontrollerregisterinntektYtelseRegisterInntektDto[];
+    ytelseInntekter?: YtelseRegisterInntektDto[];
 };
 
-export type KontrollerregisterinntektYtelseRegisterInntektDto = {
+export type SvarPåVarselDto = {
+    harUttalelse: boolean;
+    uttalelseFraBruker?: string;
+};
+
+export type SøkYtelseOppgavetypeDataDto = {
+    fomDato: string;
+};
+
+export type YtelseRegisterInntektDto = {
     inntekt: number;
-    ytelsetype: KontrollerregisterinntektYtelseType;
+    ytelsetype: YtelseType;
 };
 
-export enum KontrollerregisterinntektYtelseType {
+export enum YtelseType {
     /**
      * DAGPENGER
      */
@@ -225,10 +216,6 @@ export enum KontrollerregisterinntektYtelseType {
      */
     ANNET = 'ANNET',
 }
-
-export type SøkytelseSøkYtelseOppgavetypeDataDto = {
-    fomDato: string;
-};
 
 export type HentAlleOppgaverData = {
     body?: never;
