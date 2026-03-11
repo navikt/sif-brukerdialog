@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/nextjs';
 
-const SENTRY_DSN = 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30';
+const SENTRY_DSN = 'https://037e190b6b4e6e9703cc67ee6d49d565@sentry.gc.nav.no/187';
 
 const getEnvironment = (): string => {
     const env = process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT;

@@ -4220,7 +4220,6 @@ __metadata:
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-analytics": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
-    "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": "npm:1.58.2"
     "@sentry/nextjs": "npm:10.42.0"

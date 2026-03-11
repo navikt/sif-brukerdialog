@@ -28,7 +28,6 @@
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@sentry/nextjs": "10.42.0",
         "@types/lodash.sortby": "4.7.9",

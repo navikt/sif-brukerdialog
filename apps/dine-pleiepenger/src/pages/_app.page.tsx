@@ -25,7 +25,7 @@ import { SøkerDto } from '../server/dto-schemas/søkerDtoSchema';
 import { Innsynsdata } from '../types';
 import { innsynsdataClientSchema } from '../types/client-schemas/innsynsdataClientSchema';
 import { søkerClientSchema } from '../types/client-schemas/søkerClientSchema';
-import appSentryLogger from '../utils/appSentryLogger';
+import * as Sentry from '@sentry/nextjs';
 import { browserEnv } from '../utils/env';
 import { Feature } from '../utils/features';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
@@ -73,7 +73,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     }
 
     if (error || !data) {
-        appSentryLogger.logError('fetchInnsynsdata-failed', JSON.stringify({ error }));
+        Sentry.captureMessage('fetchInnsynsdata-failed', { level: 'error', extra: { error } });
         return (
             <EmptyPage>
                 <HentInnsynsdataFeilet error={error} />

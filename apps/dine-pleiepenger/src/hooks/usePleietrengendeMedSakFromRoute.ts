@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 import { PleietrengendeMedSak, SakMedInntektsmeldinger } from '../types';
 import { sakMedInntektsmeldingerClientSchema } from '../types/client-schemas/sakMedInntektsmeldingerClientSchema';
-import appSentryLogger from '../utils/appSentryLogger';
+import * as Sentry from '@sentry/nextjs';
 import { browserEnv } from '../utils/env';
 import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
@@ -79,9 +79,11 @@ export const usePleietrengendeMedSakFromRoute = (): {
     // Logg feil til Sentry
     useEffect(() => {
         if (error) {
-            appSentryLogger.captureException(error, {
-                context: 'usePleietrengendeMedSakFromRoute',
-                extra: { errorMessage: error.message },
+            Sentry.captureException(error, {
+                extra: {
+                    context: 'usePleietrengendeMedSakFromRoute',
+                    errorMessage: error.message,
+                },
             });
         }
     }, [error]);
