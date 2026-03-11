@@ -1,11 +1,6 @@
 import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
 import * as z from 'zod';
 
-/**
- * For at disse skal bli tilgjengelige i appen, må denne filen oppdateres:
- * - appEnv.ts - på server
- * */
-
 export enum AppEnvKey {
     'VELG_SCENARIO' = 'VELG_SCENARIO',
     'SIF_PUBLIC_URL_RETT_OG_PLIKT' = 'SIF_PUBLIC_URL_RETT_OG_PLIKT',
