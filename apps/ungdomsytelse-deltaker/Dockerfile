@@ -43,6 +43,7 @@ RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
 COPY --from=prune /app/out/full/ ./
 
 # Overskriv env.schema.ts i server med den fra app
+# Denne valideres slik at en ikke kan starte serveren uten å ha satt opp nødvendige miljøvariabler for appen
 COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 
 #########################################
