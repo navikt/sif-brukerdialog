@@ -34,7 +34,7 @@ const oppgave: SøkYtelseOppgave = {
 
 const besvartOppgave: SøkYtelseOppgave = {
     ...oppgave,
-    bekreftelse: {
+    respons: {
         type: 'VARSEL_SVAR',
         harUttalelse: false,
     },

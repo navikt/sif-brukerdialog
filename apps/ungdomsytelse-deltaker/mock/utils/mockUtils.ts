@@ -25,7 +25,7 @@ export const mockUtils = {
 
     setOppgavebekreftelse: (ref: string, data: any) => {
         const oppdatertData: Partial<BrukerdialogOppgaveDto> = {
-            bekreftelse: {
+            respons: {
                 type: 'VARSEL_SVAR',
                 harUttalelse: data.oppgave.uttalelse.harUttalelse,
                 uttalelseFraBruker: data.oppgave.uttalelse.uttalelseFraDeltaker,

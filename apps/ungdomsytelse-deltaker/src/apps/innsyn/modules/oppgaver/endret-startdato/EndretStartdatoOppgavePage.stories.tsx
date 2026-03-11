@@ -34,7 +34,7 @@ const oppgave: EndretStartdatoOppgave = {
 
 const besvartOppgave: EndretStartdatoOppgave = {
     ...oppgave,
-    bekreftelse: {
+    respons: {
         type: 'VARSEL_SVAR',
         harUttalelse: false,
     },
@@ -92,7 +92,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
         <EndretStartdatoOppgavePage
             oppgave={{
                 ...besvartOppgave,
-                bekreftelse: {
+                respons: {
                     type: 'VARSEL_SVAR',
                     harUttalelse: true,
                     uttalelseFraBruker:
@@ -108,7 +108,7 @@ export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
         <EndretStartdatoOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),
@@ -118,7 +118,7 @@ export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
         <EndretStartdatoOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),

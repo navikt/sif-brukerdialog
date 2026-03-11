@@ -30,7 +30,7 @@ const oppgave: FjernetPeriodeOppgave = {
 
 const besvartOppgave: FjernetPeriodeOppgave = {
     ...oppgave,
-    bekreftelse: {
+    respons: {
         type: 'VARSEL_SVAR',
         harUttalelse: false,
     },
@@ -89,7 +89,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
         <FjernetPeriodeOppgavePage
             oppgave={{
                 ...besvartOppgave,
-                bekreftelse: {
+                respons: {
                     type: 'VARSEL_SVAR',
                     harUttalelse: true,
                     uttalelseFraBruker:
@@ -105,7 +105,7 @@ export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
         <FjernetPeriodeOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),
@@ -115,7 +115,7 @@ export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
         <FjernetPeriodeOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),

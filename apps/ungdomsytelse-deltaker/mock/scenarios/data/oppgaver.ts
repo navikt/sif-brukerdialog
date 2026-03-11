@@ -1,9 +1,5 @@
-import {
-    BrukerdialogOppgaveDto,
-    EndretperiodePeriodeEndringType,
-    OppgaveStatus,
-    OppgaveType,
-} from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogOppgaveDto, OppgaveStatus, OppgaveType } from '@navikt/ung-brukerdialog-api';
+import { PeriodeEndringType } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../../utils/dateUtils';
@@ -49,7 +45,7 @@ const getEndretStartdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
         nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
         forrigeStartdato: dateToISODate(getDatoer().deltakelseFraOgMed.toDate()),
     },
-    bekreftelse: {
+    respons: {
         type: 'VARSEL_SVAR',
         harUttalelse: false,
     },
@@ -66,7 +62,7 @@ const getEndretStartdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
         forrigeStartdato: dateToISODate(getDatoer().deltakelseFraOgMed.toDate()),
     },
-    bekreftelse: {
+    respons: {
         type: 'VARSEL_SVAR',
         harUttalelse: false,
     },
@@ -96,7 +92,7 @@ const getMeldtUtOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         nySluttdato: '2026-01-29',
         forrigeSluttdato: '2026-01-30',
     },
-    bekreftelse: {
+    respons: {
         type: 'VARSEL_SVAR',
         harUttalelse: false,
     },
@@ -127,7 +123,7 @@ const getEndretSluttdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         nySluttdato: '2026-01-29',
         forrigeSluttdato: '2026-01-30',
     },
-    bekreftelse: {
+    respons: {
         type: 'VARSEL_SVAR',
         harUttalelse: true,
         uttalelseFraBruker: 'teste',
@@ -165,7 +161,7 @@ const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
         gjelderDelerAvMåned: false,
     },
-    bekreftelse: {
+    respons: {
         harUttalelse: false, // TODO - skal ikke være med i schema her
         type: 'RAPPORTERT_INNTEKT',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
@@ -201,7 +197,7 @@ const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): BrukerdialogOppgaveD
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').subtract(4, 'days').toDate()),
         gjelderDelerAvMåned: true,
     },
-    bekreftelse: {
+    respons: {
         type: 'RAPPORTERT_INNTEKT',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
@@ -286,7 +282,7 @@ const getBekreftAvvikOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         },
         gjelderDelerAvMåned: false,
     },
-    bekreftelse: {
+    respons: {
         type: 'VARSEL_SVAR',
         harUttalelse: false,
     },
@@ -299,7 +295,7 @@ const getFjernetPeriodeOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_ENDRET_PERIODE,
     oppgavetypeData: {
         type: 'ENDRET_PERIODE',
-        endringer: [EndretperiodePeriodeEndringType.FJERNET_PERIODE],
+        endringer: [PeriodeEndringType.FJERNET_PERIODE],
         forrigePeriode: {
             fomDato: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
             tomDato: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
@@ -315,7 +311,7 @@ const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_ENDRET_PERIODE,
     oppgavetypeData: {
         type: 'ENDRET_PERIODE',
-        endringer: [EndretperiodePeriodeEndringType.FJERNET_PERIODE],
+        endringer: [PeriodeEndringType.FJERNET_PERIODE],
         forrigePeriode: {
             fomDato: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
             tomDato: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
@@ -332,7 +328,7 @@ const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_ENDRET_PERIODE,
     oppgavetypeData: {
         type: 'ENDRET_PERIODE',
-        endringer: [EndretperiodePeriodeEndringType.ENDRET_SLUTTDATO, EndretperiodePeriodeEndringType.ENDRET_STARTDATO],
+        endringer: [PeriodeEndringType.ENDRET_SLUTTDATO, PeriodeEndringType.ENDRET_STARTDATO],
         forrigePeriode: {
             fomDato: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
         },

@@ -1,13 +1,10 @@
 import { InntektTableRow } from '@innsyn/components/inntekt-table/InntektTabell';
-import {
-    KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto,
-    KontrollerregisterinntektYtelseRegisterInntektDto,
-} from '@navikt/ung-brukerdialog-api';
+import { ArbeidOgFrilansRegisterInntektDto, YtelseRegisterInntektDto } from '@navikt/ung-brukerdialog-api';
 import { AppIntlShape } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 
 const mapArbeidOgFrilansInntektToInntektTabellRad = (
-    inntekt: KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto[],
+    inntekt: ArbeidOgFrilansRegisterInntektDto[],
 ): InntektTableRow[] => {
     if (inntekt.length === 0) {
         return [];
@@ -20,7 +17,7 @@ const mapArbeidOgFrilansInntektToInntektTabellRad = (
 };
 
 const mapYtelseInntektToInntektTabellRad = (
-    inntekt: KontrollerregisterinntektYtelseRegisterInntektDto[],
+    inntekt: YtelseRegisterInntektDto[],
     intl: AppIntlShape,
 ): InntektTableRow[] => {
     if (inntekt.length === 0) {

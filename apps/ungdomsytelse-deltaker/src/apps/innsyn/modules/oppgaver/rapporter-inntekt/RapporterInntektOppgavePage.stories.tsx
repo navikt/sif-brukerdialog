@@ -56,7 +56,7 @@ const utløptUbesvartOppgave: RapporterInntektOppgave = {
         rapportertInntekt: undefined,
         gjelderDelerAvMåned: false,
     },
-    bekreftelse: undefined,
+    respons: undefined,
     status: OppgaveStatus.UTLØPT,
     opprettetDato: dayjs('2025-10-01T05:00:29.527840Z').toDate(),
     løstDato: dayjs('2025-10-08T05:00:54.739162Z').toDate(),

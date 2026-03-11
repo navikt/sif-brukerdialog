@@ -1,11 +1,11 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
 import {
-    KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto,
-    KontrollerregisterinntektRegisterinntektDto,
-    KontrollerregisterinntektYtelseRegisterInntektDto,
-    KontrollerregisterinntektYtelseType,
+    ArbeidOgFrilansRegisterInntektDto,
     OppgaveStatus,
+    RegisterinntektDto,
+    YtelseRegisterInntektDto,
+    YtelseType,
 } from '@navikt/ung-brukerdialog-api';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
@@ -26,24 +26,24 @@ export default meta;
 
 type Story = StoryObj;
 
-const inntektArbeidsgiver1: KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto = {
+const inntektArbeidsgiver1: ArbeidOgFrilansRegisterInntektDto = {
     inntekt: 1500,
     arbeidsgiverIdentifikator: '947064649',
     arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
 };
 
-const inntektArbeidsgiver2: KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto = {
+const inntektArbeidsgiver2: ArbeidOgFrilansRegisterInntektDto = {
     inntekt: 500,
     arbeidsgiverIdentifikator: '247064649',
     arbeidsgiverNavn: 'SMIDIG MALER',
 };
 
-const inntektYtelse1: KontrollerregisterinntektYtelseRegisterInntektDto = {
+const inntektYtelse1: YtelseRegisterInntektDto = {
     inntekt: 3400,
-    ytelsetype: KontrollerregisterinntektYtelseType.SYKEPENGER,
+    ytelsetype: YtelseType.SYKEPENGER,
 };
 
-const registerInntektEnArbeidsgiver: KontrollerregisterinntektRegisterinntektDto = {
+const registerInntektEnArbeidsgiver: RegisterinntektDto = {
     arbeidOgFrilansInntekter: [inntektArbeidsgiver1],
     ytelseInntekter: [],
     totalInntektArbeidOgFrilans: inntektArbeidsgiver1.inntekt,
@@ -66,8 +66,8 @@ const oppgave: AvvikRegisterinntektOppgave = {
 };
 
 const getOppgaveMedInntekt = (
-    arbeidOgFrilansInntekter: KontrollerregisterinntektArbeidOgFrilansRegisterInntektDto[] = [],
-    ytelseInntekter: KontrollerregisterinntektYtelseRegisterInntektDto[] = [],
+    arbeidOgFrilansInntekter: ArbeidOgFrilansRegisterInntektDto[] = [],
+    ytelseInntekter: YtelseRegisterInntektDto[] = [],
 ): AvvikRegisterinntektOppgave => {
     const totalInntektArbeidOgFrilans = arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
     const totalInntektYtelse = ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
@@ -89,7 +89,7 @@ const getOppgaveMedInntekt = (
 };
 const besvartOppgave: AvvikRegisterinntektOppgave = {
     ...oppgave,
-    bekreftelse: {
+    respons: {
         type: 'VARSEL_SVAR',
         harUttalelse: false,
     },
@@ -187,7 +187,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
         <AvvikRegisterinntektOppgavePage
             oppgave={{
                 ...besvartOppgave,
-                bekreftelse: {
+                respons: {
                     type: 'VARSEL_SVAR',
                     harUttalelse: true,
                     uttalelseFraBruker:
@@ -203,7 +203,7 @@ export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
         <AvvikRegisterinntektOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),
@@ -213,7 +213,7 @@ export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
         <AvvikRegisterinntektOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),
