@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/nextjs';
 
-const SENTRY_DSN = 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30';
+const SENTRY_DSN = 'https://037e190b6b4e6e9703cc67ee6d49d565@sentry.gc.nav.no/187';
 
 const errorsToIgnore = [
     'TypeError: Failed to fetch',
@@ -51,12 +51,13 @@ Sentry.init({
     dsn: SENTRY_DSN,
     environment: getEnvironment(),
 
-    tracesSampleRate: 0.1, // 100% for testing, reduser til 0.1 i prod
+    tracesSampleRate: 1, // 100% for testing, reduser til 0.1 i prod
     replaysSessionSampleRate: 0,
     replaysOnErrorSampleRate: 0.1,
 
     ignoreErrors: errorsToIgnore,
     allowUrls: [/https?:\/\/.*\.?nav\.no/],
+    sendDefaultPii: false,
 
     beforeSend(event: any) {
         if (isErrorFromDekoratøren(event)) {
