@@ -38,7 +38,7 @@ export class BrukerdialogOppgave {
             requestValidator: async (data) => await zHentAlleOppgaverData.parseAsync(data),
             responseValidator: async (data) => await zHentAlleOppgaverResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/ekstern/api/oppgave/hent/alle',
+            url: '/ung/brukerdialog/ekstern/api/oppgave/hent/alle',
             ...options,
         });
     }
@@ -51,7 +51,7 @@ export class BrukerdialogOppgave {
             requestValidator: async (data) => await zHentOppgaveData.parseAsync(data),
             responseValidator: async (data) => await zHentOppgaveResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/ekstern/api/oppgave/{oppgavereferanse}',
+            url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}',
             ...options,
         });
     }
