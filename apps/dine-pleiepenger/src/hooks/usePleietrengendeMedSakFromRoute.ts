@@ -81,11 +81,10 @@ export const usePleietrengendeMedSakFromRoute = (): {
         if (error) {
             appSentryLogger.captureException(error, {
                 context: 'usePleietrengendeMedSakFromRoute',
-                tags: { saksnummer: saksnr || 'unknown' },
                 extra: { errorMessage: error.message },
             });
         }
-    }, [error, saksnr]);
+    }, [error]);
 
     return {
         pleietrengendeMedSak,

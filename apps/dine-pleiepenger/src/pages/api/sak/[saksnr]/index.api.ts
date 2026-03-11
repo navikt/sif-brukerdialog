@@ -10,7 +10,6 @@ import { isValidSaksnummer } from '../../../../server/utils/validatePathSegment'
 import { prepApiError } from '../../../../utils/apiUtils';
 import { Feature } from '../../../../utils/features';
 import { getLogger } from '../../../../utils/getLogCorrelationID';
-import { addBreadcrumb, withApiBreadcrumb } from '../../../../utils/sentryBreadcrumbs';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const baseLogger = getLogger(req);
@@ -32,14 +31,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     try {
         logger.info('Starter henting av saksdetaljer');
-        addBreadcrumb({ category: 'api', message: 'Henter saksdetaljer', data: { saksnummer: saksnr } });
 
         const sakTimer = logger.startTimer('fetch-sak');
         let sak;
         try {
-            sak = await withApiBreadcrumb('k9-sak-innsyn', 'fetchSak', () => fetchSak(req, saksnr, unparsed), {
-                saksnummer: saksnr,
-            });
+            sak = await fetchSak(req, saksnr, unparsed);
         } finally {
             sakTimer();
         }
@@ -48,12 +44,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         if (Feature.INNTEKTSMELDING_ENABLED) {
             const imTimer = logger.startTimer('fetch-inntektsmeldinger');
             try {
-                inntektsmeldinger = await withApiBreadcrumb(
-                    'k9-sak-innsyn',
-                    'fetchInntektsmeldinger',
-                    () => fetchInntektsmeldinger(req, saksnr, unparsed),
-                    { saksnummer: saksnr },
-                );
+                inntektsmeldinger = await fetchInntektsmeldinger(req, saksnr, unparsed);
             } finally {
                 imTimer();
             }
@@ -81,7 +72,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         Sentry.setTag('sak.status', 'error');
         Sentry.captureException(err, {
-            tags: { endpoint: 'hent-sak', saksnummer: saksnr },
+            tags: { endpoint: 'hent-sak' },
             extra: { errorDetails },
         });
 
