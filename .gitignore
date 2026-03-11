@@ -32,6 +32,9 @@ dist-playwright
 # vercel
 .vercel
 
+# sentry
+.env.sentry*
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
