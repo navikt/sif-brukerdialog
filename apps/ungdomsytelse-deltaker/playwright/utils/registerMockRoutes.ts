@@ -62,6 +62,14 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         });
     });
 
+    await page.route('**/oppgave/hent/alle', async (route) => {
+        await route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            body: JSON.stringify(memoryStore.get().oppgaver),
+        });
+    });
+
     await page.route('**/ung-deltakelse-opplyser/deltakelse/register/:id/marker-har-sokt', async (route) => {
         await route.fulfill({ status: 500 });
     });

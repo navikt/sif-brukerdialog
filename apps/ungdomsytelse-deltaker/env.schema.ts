@@ -1,4 +1,4 @@
-import { commonEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
 import * as z from 'zod';
 
 /**
@@ -40,7 +40,8 @@ export const appEnvSchema = z
         [AppEnvKey.SIF_PUBLIC_USE_FARO]: z.string().optional(),
         [AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: z.string().optional(),
     })
-    .merge(commonEnvSchema)
-    .merge(ungDeltakelseOpplyserEnvSchema);
+    .extend(commonEnvSchema.shape)
+    .extend(ungDeltakelseOpplyserEnvSchema.shape)
+    .extend(ungBrukerdialogApiEnvSchema.shape);
 
 export type AppEnv = z.infer<typeof appEnvSchema>;

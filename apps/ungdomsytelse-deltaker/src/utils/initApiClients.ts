@@ -1,3 +1,4 @@
+import { initUngBrukerdialogApiClient } from '@navikt/ung-brukerdialog-api';
 import {
     initK9BrukerdialogProsesseringApiClient,
     initK9BrukerdialogProsesseringUngdomsytelseApiClient,
@@ -6,6 +7,11 @@ import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakel
 
 export const initApiClients = () => {
     initUngDeltakelseOpplyserApiDeltakerClient({
+        onUnAuthorized: () => {
+            globalThis.location.reload();
+        },
+    });
+    initUngBrukerdialogApiClient({
         onUnAuthorized: () => {
             globalThis.location.reload();
         },

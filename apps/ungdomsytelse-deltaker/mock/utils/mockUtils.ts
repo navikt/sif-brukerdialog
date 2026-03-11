@@ -7,17 +7,11 @@ import { getMockToday } from './mockDate';
 
 function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
     const state = store.get();
-    const deltakelser = state.deltakelser.map((deltakelse, idx) => {
-        if (idx !== 0) return deltakelse;
-        return {
-            ...deltakelse,
-            oppgaver: deltakelse.oppgaver.map((oppgave: any) =>
-                oppgave.oppgaveReferanse === ref ? oppgaveUpdaterFunc(oppgave) : oppgave,
-            ),
-        };
-    });
-    store.set({ ...state, deltakelser });
-    return deltakelser[0].oppgaver.find((o: any) => o.oppgaveReferanse === ref);
+    const oppgaver = state.oppgaver.map((oppgave: any) =>
+        oppgave.oppgaveReferanse === ref ? oppgaveUpdaterFunc(oppgave) : oppgave,
+    );
+    store.set({ ...state, oppgaver });
+    return oppgaver.find((o: any) => o.oppgaveReferanse === ref);
 }
 
 export const mockUtils = {
