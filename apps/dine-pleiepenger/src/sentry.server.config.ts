@@ -15,7 +15,7 @@ Sentry.init({
     dsn: SENTRY_DSN,
     environment: getEnvironment(),
 
-    tracesSampleRate: 0.1, // 100% for testing, reduser til 0.1 i prod
+    tracesSampleRate: 0.1,
 
     enabled: isEnabled,
 });

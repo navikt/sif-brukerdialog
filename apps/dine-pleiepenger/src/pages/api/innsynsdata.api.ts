@@ -31,10 +31,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         logger.info(`Hentet innsynsdata. Antall saker: ${sakerMetadata.length}`);
 
-        // Logg til Sentry
-        Sentry.setTag('innsynsdata.status', 'success');
-        Sentry.setContext('innsynsdata', { antallSaker: sakerMetadata.length });
-
         const innsynsdata: InnsynsdataDto = {
             appStatus,
             søker,

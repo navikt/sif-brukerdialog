@@ -15,7 +15,7 @@ const errorsToIgnore = [
     'Request failed with status code 401',
     /\[401\]/,
     /\[0\]/,
-    '*Non-Error promise rejection captured with value: Request timeout*',
+    /Non-Error promise rejection captured with value: Request timeout/,
 ];
 
 const dekoratorenTimeoutPatterns = ['Request timeout', 'dekoratoren'];
@@ -51,7 +51,7 @@ Sentry.init({
     dsn: SENTRY_DSN,
     environment: getEnvironment(),
 
-    tracesSampleRate: 1, // 100% for testing, reduser til 0.1 i prod
+    tracesSampleRate: 0.1,
     replaysSessionSampleRate: 0,
     replaysOnErrorSampleRate: 0.1,
 
