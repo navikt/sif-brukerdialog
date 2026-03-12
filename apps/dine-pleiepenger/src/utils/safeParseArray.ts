@@ -5,7 +5,11 @@ interface SafeParseArrayResult<T> {
     errors: Array<{ index: number; error: ZodError }>;
 }
 
-export const safeParseArray = <T>(schema: ZodType<T>, data: unknown[]): SafeParseArrayResult<T> => {
+export const safeParseArray = <T>(schema: ZodType<T>, data: unknown): SafeParseArrayResult<T> => {
+    if (!Array.isArray(data)) {
+        return { success: [], errors: [] };
+    }
+
     const success: T[] = [];
     const errors: SafeParseArrayResult<T>['errors'] = [];
 

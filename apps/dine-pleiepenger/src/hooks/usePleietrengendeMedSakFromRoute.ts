@@ -18,19 +18,18 @@ const sakFetcher = async (url: string): Promise<SakMedInntektsmeldinger> => {
     const sak = sakClientSchema.parse(response.data.sak);
     sak.behandlinger = sortBehandlingerNyesteFørst(sak.behandlinger);
 
-    const rawInntektsmeldinger: unknown[] = response.data.inntektsmeldinger ?? [];
+    const rawInntektsmeldinger: unknown = response.data.inntektsmeldinger;
     const { success: inntektsmeldinger, errors } = safeParseArray(inntektsmeldingClientSchema, rawInntektsmeldinger);
 
     if (errors.length > 0) {
-        Sentry.captureMessage(
-            `Feil ved parsing av inntektsmeldinger: ${errors.length} av ${rawInntektsmeldinger.length} feilet`,
-            {
-                level: 'warning',
-                extra: {
-                    errors: errors.map(({ index, error }) => ({ index, issues: error.issues })),
-                },
+        const totalItems = Array.isArray(rawInntektsmeldinger) ? rawInntektsmeldinger.length : 0;
+        Sentry.captureMessage(`Feil ved parsing av inntektsmeldinger: ${errors.length} av ${totalItems} feilet`, {
+            level: 'warning',
+            extra: {
+                totalErrors: errors.length,
+                errors: errors.slice(-2).map(({ index, error }) => ({ index, issues: error.issues })),
             },
-        );
+        });
     }
 
     return { sak, inntektsmeldinger };
