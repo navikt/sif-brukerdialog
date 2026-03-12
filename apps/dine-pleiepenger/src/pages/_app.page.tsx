@@ -83,7 +83,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     }
 
     if (error || !data) {
-        Sentry.captureMessage('fetchInnsynsdata-failed', { level: 'error', extra: { error } });
+        if (error?.status !== 401) {
+            Sentry.captureMessage('fetchInnsynsdata-failed', { level: 'error', extra: { error } });
+        }
         return (
             <EmptyPage>
                 <HentInnsynsdataFeilet error={error} />
