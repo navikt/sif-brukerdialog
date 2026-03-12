@@ -101,7 +101,6 @@ const OppsummeringStep = () => {
                     }
                 }}
                 renderForm={() => {
-                    const valgteDatoer = søknadsdata.kurs?.søknadsdatoer || [];
                     return (
                         <VStack gap="space-32" data-testid="oppsummering">
                             <Form
@@ -141,7 +140,6 @@ const OppsummeringStep = () => {
 
                                     <FraværIPeriodenSummary
                                         apiValues={apiData}
-                                        valgteDatoer={valgteDatoer}
                                         søknadsperiode={{
                                             from: ISODateToDate(apiData.fraOgMed),
                                             to: ISODateToDate(apiData.tilOgMed),

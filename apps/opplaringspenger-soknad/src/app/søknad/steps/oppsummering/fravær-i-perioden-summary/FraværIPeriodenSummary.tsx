@@ -4,6 +4,7 @@ import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
+import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
 import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import {
@@ -11,11 +12,10 @@ import {
     ArbeidsgiverApiData,
     SøknadApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
-import FraværIPeriodenSummaryItem from './FraværIPeriodenSummaryItem';
+import { JobberIPeriodeSvar } from '../../arbeidstid/ArbeidstidTypes';
 
 interface Props {
     apiValues: SøknadApiData;
-    valgteDatoer: Date[];
     søknadsperiode: DateRange;
     onEdit?: () => void;
 }
@@ -23,6 +23,7 @@ interface Props {
 export interface FraværIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
     erAktivIPeriode: boolean;
+    hvor: string;
 }
 
 const getArbeidsgiverTittel = ({ text }: AppIntlShape, arbeidsgiver: ArbeidsgiverApiData, periode: DateRange) => {
@@ -64,7 +65,6 @@ const getArbeidsgiverTittel = ({ text }: AppIntlShape, arbeidsgiver: Arbeidsgive
 
 const FraværIPeriodenSummary = ({
     apiValues: { arbeidsgivere, frilans, selvstendigNæringsdrivende },
-    valgteDatoer,
     søknadsperiode,
     onEdit,
 }: Props) => {
@@ -79,6 +79,9 @@ const FraværIPeriodenSummary = ({
                     ...arbeidsgiverApiData.arbeidsforhold,
                     tittel: getArbeidsgiverTittel(appIntl, arbeidsgiverApiData, søknadsperiode),
                     erAktivIPeriode: arbeidsgiverApiData.arbeidsforhold.arbeidIPeriode !== undefined,
+                    hvor: appIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somAnsatt', {
+                        arbeidsstedNavn: arbeidsgiverApiData.navn,
+                    }),
                 });
             }
         });
@@ -89,6 +92,7 @@ const FraværIPeriodenSummary = ({
             ...frilans.arbeidsforhold,
             tittel: 'Frilanser',
             erAktivIPeriode: frilans.arbeidsforhold.arbeidIPeriode !== undefined,
+            hvor: appIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN'),
         });
     }
 
@@ -97,6 +101,7 @@ const FraværIPeriodenSummary = ({
             ...selvstendigNæringsdrivende.arbeidsforhold,
             tittel: text('selvstendigNæringsdrivende.tittel'),
             erAktivIPeriode: true,
+            hvor: appIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser'),
         });
     }
 
@@ -110,26 +115,68 @@ const FraværIPeriodenSummary = ({
                         </FormSummary.Heading>
                     </FormSummary.Header>
                     <FormSummary.Answers>
-                        {alleArbeidsforhold.map((forhold, index) => (
+                        {alleArbeidsforhold.map((forhold) => (
                             <FormSummary.Answer key={forhold.tittel}>
                                 {forhold.arbeidIPeriode ? (
                                     <>
                                         <FormSummary.Label>
-                                            <Box marginBlock={index > 0 ? 'space-48 space-0' : 'space-0'}>
+                                            <Box paddingBlock="space-12">
                                                 <Heading level="3" size="small">
                                                     {forhold.tittel}
                                                 </Heading>
                                             </Box>
                                         </FormSummary.Label>
                                         <FormSummary.Value>
-                                            <Box marginBlock="space-0 space-24">
-                                                <FraværIPeriodenSummaryItem
-                                                    periode={søknadsperiode}
-                                                    valgteDatoer={valgteDatoer}
-                                                    arbeidIPeriode={forhold.arbeidIPeriode}
-                                                    normaltimerUke={forhold.jobberNormaltTimer}
-                                                />
-                                            </Box>
+                                            <FormSummary.Answers>
+                                                <FormSummary.Answer>
+                                                    <FormSummary.Label>
+                                                        <AppText
+                                                            id="fraværIPeriode.jobberIPerioden.spm"
+                                                            values={{ hvor: forhold.hvor }}
+                                                        />
+                                                    </FormSummary.Label>
+                                                    <FormSummary.Value>
+                                                        <Box marginBlock="space-8 space-0">
+                                                            {(forhold.arbeidIPeriode.jobberIPerioden ===
+                                                                JobberIPeriodeSvar.heltFravær ||
+                                                                forhold.arbeidIPeriode.jobberIPerioden ===
+                                                                    JobberIPeriodeSvar.somVanlig) && (
+                                                                <AppText
+                                                                    id={`oppsummering.fraværIPeriode.jobberIPerioden.${forhold.arbeidIPeriode.jobberIPerioden}`}
+                                                                />
+                                                            )}
+                                                            {forhold.arbeidIPeriode.jobberIPerioden ===
+                                                                JobberIPeriodeSvar.redusert && (
+                                                                <AppText
+                                                                    id={`oppsummering.fraværIPeriode.jobberIPerioden.${forhold.arbeidIPeriode.jobberIPerioden}`}
+                                                                />
+                                                            )}
+                                                        </Box>
+                                                    </FormSummary.Value>
+                                                    {forhold.arbeidIPeriode.jobberIPerioden ===
+                                                        JobberIPeriodeSvar.redusert &&
+                                                        forhold.arbeidIPeriode.enkeltdagerFravær && (
+                                                            <FormSummary.Answer>
+                                                                <FormSummary.Label>
+                                                                    <Box marginBlock="space-24 space-0">
+                                                                        <AppText id="oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
+                                                                    </Box>
+                                                                </FormSummary.Label>
+                                                                <FormSummary.Value>
+                                                                    <Box marginBlock="space-24 space-0">
+                                                                        <TidEnkeltdager
+                                                                            dager={
+                                                                                forhold.arbeidIPeriode.enkeltdagerFravær
+                                                                            }
+                                                                            renderAsAccordion={false}
+                                                                            headingLevel="4"
+                                                                        />
+                                                                    </Box>
+                                                                </FormSummary.Value>
+                                                            </FormSummary.Answer>
+                                                        )}
+                                                </FormSummary.Answer>
+                                            </FormSummary.Answers>
                                         </FormSummary.Value>
                                     </>
                                 ) : (
