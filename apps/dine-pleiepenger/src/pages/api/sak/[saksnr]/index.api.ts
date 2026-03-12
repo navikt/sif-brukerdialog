@@ -1,4 +1,5 @@
 import { innsyn } from '@navikt/k9-sak-innsyn-api';
+import * as Sentry from '@sentry/nextjs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
@@ -56,9 +57,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         if (!sak) {
             logger.warn('Sak ikke funnet');
+            Sentry.setTag('sak.status', 'not_found');
             return res.status(404).json({ error: 'Sak ikke funnet' });
         }
 
+        Sentry.setTag('sak.status', 'success');
         return res.json({ sak, inntektsmeldinger });
     } catch (err) {
         const errorDetails = prepApiError(err);
@@ -66,6 +69,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             errorDetails: JSON.stringify(errorDetails),
             errorType: err instanceof Error ? err.constructor.name : typeof err,
         });
+
+        Sentry.setTag('sak.status', 'error');
+        Sentry.captureException(err, {
+            tags: { endpoint: 'hent-sak' },
+            extra: { errorDetails },
+        });
+
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     } finally {
         totalTimer();

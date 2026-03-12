@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
@@ -11,6 +12,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.send(await fetchSøker(req, unparsed));
     } catch (err) {
         getLogger(req).error(`Hent søker feilet`, prepApiError(err));
+
+        Sentry.captureException(err, {
+            tags: { endpoint: 'soker' },
+            extra: { errorDetails: prepApiError(err) },
+        });
+
         return res.status(500).json({ error: 'Kunne ikke hente søker' });
     }
 }
