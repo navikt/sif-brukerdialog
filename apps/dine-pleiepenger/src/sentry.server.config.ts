@@ -11,6 +11,11 @@ const getEnvironment = (): string => {
 
 const isEnabled = getEnvironment() !== 'localhost';
 
+const scrubUrl = (url: string): string =>
+    url
+        .replace(/\/sak\/[^/]+/g, '/sak/[saksnr]')
+        .replace(/\/inntektsmelding\/[^/]+/g, '/inntektsmelding/[journalpostId]');
+
 Sentry.init({
     dsn: SENTRY_DSN,
     environment: getEnvironment(),
@@ -18,4 +23,24 @@ Sentry.init({
     tracesSampleRate: 0.1,
 
     enabled: isEnabled,
+
+    beforeSend(event) {
+        if (event.request?.url) {
+            event.request.url = scrubUrl(event.request.url);
+        }
+        if (event.transaction) {
+            event.transaction = scrubUrl(event.transaction);
+        }
+        return event;
+    },
+
+    beforeSendTransaction(event) {
+        if (event.transaction) {
+            event.transaction = scrubUrl(event.transaction);
+        }
+        if (event.request?.url) {
+            event.request.url = scrubUrl(event.request.url);
+        }
+        return event;
+    },
 });
