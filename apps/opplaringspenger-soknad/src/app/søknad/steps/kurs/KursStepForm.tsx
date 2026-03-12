@@ -1,4 +1,4 @@
-import { BodyLong, Box, ReadMore, VStack } from '@navikt/ds-react';
+import { Box, ReadMore, VStack } from '@navikt/ds-react';
 import {
     FormikInputGroup,
     getIntlFormErrorHandler,
@@ -73,7 +73,7 @@ interface Props {
 }
 
 const KursStepForm = ({ values, institusjoner, gyldigSøknadsperiode, isSubmitting, goBack }: Props) => {
-    const { intl } = useAppIntl();
+    const { text, intl } = useAppIntl();
 
     const søknadsperiode = useMemo(
         () => getSøknadsperiodeFromKursperioderFormValues(values.kursperioder),
@@ -125,12 +125,8 @@ const KursStepForm = ({ values, institusjoner, gyldigSøknadsperiode, isSubmitti
                                 legend={<AppText id="steg.kurs.kursperioder.tittel" />}
                                 description={
                                     <VStack gap="space-2" marginBlock="space-4 space-24">
-                                        <BodyLong as="div">
-                                            <AppText id="steg.kurs.kursperioder.tekst" />
-                                        </BodyLong>
-                                        <ReadMore header="Om opplæring eller reise på helgedager">
-                                            Du kan ikke søke om opplæringspenger for lørdag og søndag, og da trenger du
-                                            heller ikke å oppgi reisedager som faller på lørdag og søndag.
+                                        <ReadMore header={text('steg.kurs.kursperioder.tekst.tittel')}>
+                                            <AppText id="steg.kurs.kursperioder.tekst.2" />
                                         </ReadMore>
                                     </VStack>
                                 }
@@ -173,7 +169,9 @@ const KursStepForm = ({ values, institusjoner, gyldigSøknadsperiode, isSubmitti
                             legend={<AppText id="steg.kurs.enkeltdager.tittel" />}
                             description={
                                 <Box marginBlock="space-4 space-24">
-                                    <AppText id="steg.kurs.enkeltdager.tekst" />
+                                    <ReadMore header={text('steg.kurs.kursperioder.tekst.tittel')}>
+                                        <AppText id="steg.kurs.kursperioder.tekst.2" />
+                                    </ReadMore>
                                 </Box>
                             }
                             name={KursFormFields.kursdager}

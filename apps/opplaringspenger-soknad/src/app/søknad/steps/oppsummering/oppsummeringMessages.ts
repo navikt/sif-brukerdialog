@@ -20,8 +20,9 @@ const nb = {
     'oppsummering.kurs.institusjon': 'Hvor foregår opplæringen?',
     'oppsummering.kurs.perioder': 'Hvilke perioder søker du opplæringspenger for?',
     'oppsummering.kurs.enkeltdager': 'Hvilke dager søker du opplæringspenger for?',
-    'oppsummering.kurs.reisedager':
-        'Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.?',
+    'oppsummering.kurs.reisedager': 'Er noen av dagene i perioden som du søker for, kun reisedager?',
+    'oppsummering.kurs.reisedager.utenforKurs': 'Reisedager uten kurs eller opplæring',
+    'oppsummering.kurs.reisedager.utenforKurs.arsak': 'Årsak til reisetid',
 
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
     'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
@@ -78,12 +79,10 @@ const nb = {
 
     'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fravær i søknadsperioden',
     'oppsummering.fraværIPeriode.jobberIPerioden.ja': 'jobber',
-    'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR':
-        'Jeg er helt borte fra jobb fordi jeg er på opplæring (fullt fravær)',
-    'oppsummering.fraværIPeriode.jobberIPerioden.REDUSERT':
-        'Jeg er delvis borte fra jobb fordi jeg er på opplæring (noe fravær)',
+    'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg er helt borte fra jobb fordi jeg er på opplæring',
+    'oppsummering.fraværIPeriode.jobberIPerioden.REDUSERT': 'Jeg er delvis borte fra jobb fordi jeg er på opplæring',
     'oppsummering.fraværIPeriode.jobberIPerioden.SOM_VANLIG':
-        'Jeg jobber som normalt og er ikke borte fra jobb på grunn av opplæring (ikke fravær)',
+        'Jeg jobber som normalt og er ikke borte fra jobb på grunn av opplæring',
     'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Jeg har likt fravær hver uke',
     'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
         'Jeg har {prosent} prosent fravær, i snitt {timer} hver ukedag',
@@ -147,6 +146,7 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
+    ...nb,
     'steg.oppsummering.info':
         'Les gjennom oppsummeringa og sjekk at alt er riktig før du sender inn søknaden. Dersom du vil gjere endringar, kan du gå tilbake.',
 

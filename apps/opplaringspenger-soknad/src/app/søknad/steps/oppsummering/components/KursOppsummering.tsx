@@ -86,8 +86,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                     {kurs.reise ? (
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er
-                                opplæring.?
+                                <AppText id="oppsummering.kurs.reisedager" />
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 <JaNeiSvar harSvartJa={kurs.reise.reiserUtenforKursdager} />
@@ -98,7 +97,9 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                     {kurs.reise?.reiserUtenforKursdager ? (
                         <>
                             <FormSummary.Answer>
-                                <FormSummary.Label>Reisedager uten kurs eller opplæring</FormSummary.Label>
+                                <FormSummary.Label>
+                                    <AppText id="oppsummering.kurs.reisedager.utenforKurs" />
+                                </FormSummary.Label>
                                 <FormSummary.Value>
                                     <VStack>
                                         <List>
@@ -116,7 +117,9 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                             <FormSummary.Answer>
-                                <FormSummary.Label>Årsak til reisetid</FormSummary.Label>
+                                <FormSummary.Label>
+                                    <AppText id="oppsummering.kurs.reisedager.utenforKurs.arsak" />
+                                </FormSummary.Label>
                                 <FormSummary.Value>
                                     <Sitat>
                                         <TextareaSvar text={kurs.reise.reisedagerBeskrivelse} />
