@@ -116,7 +116,6 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
     'steg.kurs.counsellorPanel.avsnitt.1':
         'Her treng me informasjon om kvar og når du har vore, eller skal, på opplæring. Du kan få opplæringspengar for periodar du er på kurs eller opplæring, og for eventuell reisetid til og frå opplæringsstaden.',
     'steg.kurs.counsellorPanel.avsnitt.2':
@@ -141,10 +140,13 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
 
     'steg.kurs.kursperioder.tittel': 'Kva for dagar søkjer du opplæringspengar?',
-    // 'steg.kurs.kursperioder.tekst':
-    // 'Du kan få opplæringspengar for periodar du er på opplæring, og eventuell reisetid til og frå opplæringa.',
+    'steg.kurs.kursperioder.tekst.tittel': 'Om opplæring eller reise på helgedager',
+    'steg.kurs.kursperioder.tekst.1':
+        'Legg til perioder du er på opplæring. Hvis du har reisedager i tillegg, legger du inn disse også.',
+    'steg.kurs.kursperioder.tekst.2':
+        'Du kan kun få opplæringspenger for ukedager (mandag til fredag). Derfor kan du ikke velge lørdager og søndager.',
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
-    'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
+    'steg.kurs.reiserUtenforKursdager.label': 'Er nokon av dagane i perioden du søkjer for, berre reisedagar?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva tyder dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
         'Dersom du må vere borte frå jobb fleire dagar enn du har opplæring, kan du ha rett til opplæringspengar også dei dagane du er på reise.',

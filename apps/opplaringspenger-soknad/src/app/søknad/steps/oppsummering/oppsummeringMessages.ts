@@ -20,7 +20,6 @@ const nb = {
     'oppsummering.kurs.institusjon': 'Hvor foregår opplæringen?',
     'oppsummering.kurs.perioder': 'Hvilke perioder søker du opplæringspenger for?',
     'oppsummering.kurs.enkeltdager': 'Hvilke dager søker du opplæringspenger for?',
-    'oppsummering.kurs.reisedager': 'Er noen av dagene i perioden som du søker for, kun reisedager?',
     'oppsummering.kurs.reisedager.utenforKurs': 'Reisedager uten kurs eller opplæring',
     'oppsummering.kurs.reisedager.utenforKurs.arsak': 'Årsak til reisetid',
 
@@ -146,7 +145,6 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
     'steg.oppsummering.info':
         'Les gjennom oppsummeringa og sjekk at alt er riktig før du sender inn søknaden. Dersom du vil gjere endringar, kan du gå tilbake.',
 
@@ -168,8 +166,8 @@ const nn: Record<keyof typeof nb, string> = {
     'oppsummering.kurs.institusjon': 'Kor føregår opplæringa?',
     'oppsummering.kurs.perioder': 'Kva periodar søkjer du opplæringspengar?',
     'oppsummering.kurs.enkeltdager': 'Kva dagar søkjer du opplæringspengar?',
-
-    'oppsummering.kurs.reisedager': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
+    'oppsummering.kurs.reisedager.utenforKurs': 'Reisedagar utan kurs eller opplæring',
+    'oppsummering.kurs.reisedager.utenforKurs.arsak': 'Årsak til reisetid',
 
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
     'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',

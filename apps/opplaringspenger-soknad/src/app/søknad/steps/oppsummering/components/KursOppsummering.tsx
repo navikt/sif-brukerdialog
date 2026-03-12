@@ -86,7 +86,10 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                     {kurs.reise ? (
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                <AppText id="oppsummering.kurs.reisedager" />
+                                <AppText
+                                    id="steg.kurs.reiserUtenforKursdager.label"
+                                    values={{ antallPerioder: kursperioder.length }}
+                                />
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 <JaNeiSvar harSvartJa={kurs.reise.reiserUtenforKursdager} />
