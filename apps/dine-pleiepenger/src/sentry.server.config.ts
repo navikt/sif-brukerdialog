@@ -25,6 +25,9 @@ Sentry.init({
     enabled: isEnabled,
 
     beforeSend(event) {
+        if (process.env.NEXT_PUBLIC_SCRUB_SENTRY === 'off') {
+            return event;
+        }
         if (event.request?.url) {
             event.request.url = scrubUrl(event.request.url);
         }
@@ -35,6 +38,9 @@ Sentry.init({
     },
 
     beforeSendTransaction(event) {
+        if (process.env.NEXT_PUBLIC_SCRUB_SENTRY === 'off') {
+            return event;
+        }
         if (event.transaction) {
             event.transaction = scrubUrl(event.transaction);
         }

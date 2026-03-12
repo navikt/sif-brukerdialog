@@ -90,10 +90,16 @@ Sentry.init({
         if (isErrorFromDekoratøren(event)) {
             return null;
         }
+        if (process.env.NEXT_PUBLIC_SCRUB_SENTRY === 'off') {
+            return event;
+        }
         return scrubEvent(event);
     },
 
     beforeSendTransaction(event) {
+        if (process.env.NEXT_PUBLIC_SCRUB_SENTRY === 'off') {
+            return event;
+        }
         if (event.transaction) {
             event.transaction = scrubUrl(event.transaction);
         }
