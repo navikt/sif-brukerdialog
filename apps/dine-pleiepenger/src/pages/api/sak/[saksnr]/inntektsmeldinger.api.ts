@@ -22,11 +22,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.send(data);
     } catch (err) {
         const logger = getLogger(req);
-        const { saksnr } = req.query;
         logger.error(`Hent inntektsmeldinger feilet`, prepApiError(err));
 
         Sentry.captureException(err, {
-            tags: { endpoint: 'inntektsmeldinger', saksnummer: String(saksnr) },
+            tags: { endpoint: 'inntektsmeldinger.api' },
             extra: { errorDetails: prepApiError(err) },
         });
 
