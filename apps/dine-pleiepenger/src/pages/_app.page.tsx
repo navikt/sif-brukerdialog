@@ -83,7 +83,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     }
 
     if (error || !data) {
-        if (error?.status !== 401) {
+        if (!(axios.isAxiosError(error) && error.response?.status === 401)) {
             Sentry.captureMessage('fetchInnsynsdata-failed', { level: 'error', extra: { error } });
         }
         return (
