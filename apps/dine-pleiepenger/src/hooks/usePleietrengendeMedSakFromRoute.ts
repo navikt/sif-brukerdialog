@@ -27,7 +27,7 @@ const sakFetcher = async (url: string): Promise<SakMedInntektsmeldinger> => {
             level: 'warning',
             extra: {
                 totalErrors: errors.length,
-                errors: errors.slice(-2).map(({ index, error }) => ({ index, issues: error.issues })),
+                errors: errors.slice(-2).map(({ index, error }) => ({ index, issues: JSON.stringify(error.issues) })),
             },
         });
     }
