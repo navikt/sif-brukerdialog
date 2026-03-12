@@ -101,7 +101,6 @@ export const usePleietrengendeMedSakFromRoute = (): {
                             context: 'usePleietrengendeMedSakFromRoute - AxiosError',
                             errorMessage: error.message,
                             status: error.response?.status,
-                            responseData: error.response?.data,
                         },
                     });
                 }
