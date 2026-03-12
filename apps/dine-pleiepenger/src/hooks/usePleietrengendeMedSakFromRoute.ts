@@ -91,9 +91,14 @@ export const usePleietrengendeMedSakFromRoute = (): {
     useEffect(() => {
         if (error) {
             if (axios.isAxiosError(error)) {
-                if (error.message === 'Network Error') {
+                if (error.code === 'ERR_NETWORK') {
                     Sentry.captureMessage('Network Error i usePleietrengendeMedSakFromRoute', {
                         level: 'warning',
+                        extra: {
+                            code: error.code,
+                            status: error.response?.status,
+                            message: error.message,
+                        },
                     });
                 } else {
                     Sentry.captureException(error, {
