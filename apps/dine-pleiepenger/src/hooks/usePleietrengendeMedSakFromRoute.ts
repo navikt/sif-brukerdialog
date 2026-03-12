@@ -90,10 +90,38 @@ export const usePleietrengendeMedSakFromRoute = (): {
     // Logg feil til Sentry
     useEffect(() => {
         if (error) {
+            if (axios.isAxiosError(error)) {
+                if (error.message === 'Network Error') {
+                    Sentry.captureMessage('Network Error i usePleietrengendeMedSakFromRoute', {
+                        level: 'warning',
+                    });
+                } else {
+                    Sentry.captureException(error, {
+                        extra: {
+                            context: 'usePleietrengendeMedSakFromRoute - AxiosError',
+                            errorMessage: error.message,
+                            status: error.response?.status,
+                            responseData: error.response?.data,
+                        },
+                    });
+                }
+                return;
+            }
+
+            if (error && error instanceof Error) {
+                Sentry.captureException(error, {
+                    extra: {
+                        context: 'usePleietrengendeMedSakFromRoute - Error Not Axios',
+                        errorMessage: error.message,
+                    },
+                });
+                return;
+            }
+
             Sentry.captureException(error, {
                 extra: {
-                    context: 'usePleietrengendeMedSakFromRoute',
-                    errorMessage: error.message,
+                    context: 'usePleietrengendeMedSakFromRoute - Not Error object',
+                    errorMessage: error,
                 },
             });
         }
