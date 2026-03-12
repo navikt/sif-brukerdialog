@@ -34,7 +34,17 @@ import UnavailablePage from './unavailable.page';
 export const ANALYTICS_APPLICATION_KEY = 'sif-innsyn';
 
 const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
-    axios.get(url).then((res) => innsynsdataClientSchema.parse(res.data));
+    axios.get(url).then((res) => {
+        const result = innsynsdataClientSchema.safeParse(res.data);
+        if (!result.success) {
+            Sentry.captureMessage('innsynsdataClientSchema parsing feilet', {
+                level: 'error',
+                extra: { issues: result.error.issues },
+            });
+            throw result.error;
+        }
+        return result.data;
+    });
 
 const søkerIdFetcher = async (): Promise<string> => {
     const url = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soker`;
