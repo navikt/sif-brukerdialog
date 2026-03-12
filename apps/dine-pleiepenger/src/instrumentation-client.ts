@@ -39,6 +39,33 @@ const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
     return false;
 };
 
+const scrubUrl = (url: string): string =>
+    url
+        .replace(/\/sak\/[^/]+/g, '/sak/[saksnr]')
+        .replace(/\/inntektsmelding\/[^/]+/g, '/inntektsmelding/[journalpostId]');
+
+const scrubEvent = (event: Sentry.ErrorEvent): Sentry.ErrorEvent => {
+    if (event.request?.url) {
+        event.request.url = scrubUrl(event.request.url);
+    }
+    if (event.request?.headers?.Referer) {
+        event.request.headers.Referer = scrubUrl(event.request.headers.Referer);
+    }
+    if (event.transaction) {
+        event.transaction = scrubUrl(event.transaction);
+    }
+    if (event.tags?.transaction) {
+        event.tags.transaction = scrubUrl(String(event.tags.transaction));
+    }
+    const breadcrumbs = event.breadcrumbs ?? [];
+    for (const bc of breadcrumbs) {
+        if (bc.data?.url) bc.data.url = scrubUrl(bc.data.url);
+        if (bc.data?.from) bc.data.from = scrubUrl(bc.data.from);
+        if (bc.data?.to) bc.data.to = scrubUrl(bc.data.to);
+    }
+    return event;
+};
+
 const getEnvironment = (): string => {
     const host = typeof window !== 'undefined' ? window.location.host : '';
     if (host.includes('localhost')) return 'localhost';
@@ -59,9 +86,25 @@ Sentry.init({
     allowUrls: [/https?:\/\/.*\.?nav\.no/],
     sendDefaultPii: false,
 
-    beforeSend(event: any) {
+    beforeSend(event: Sentry.ErrorEvent) {
         if (isErrorFromDekoratøren(event)) {
             return null;
+        }
+        if (process.env.NEXT_PUBLIC_SCRUB_SENTRY === 'off') {
+            return event;
+        }
+        return scrubEvent(event);
+    },
+
+    beforeSendTransaction(event) {
+        if (process.env.NEXT_PUBLIC_SCRUB_SENTRY === 'off') {
+            return event;
+        }
+        if (event.transaction) {
+            event.transaction = scrubUrl(event.transaction);
+        }
+        if (event.request?.url) {
+            event.request.url = scrubUrl(event.request.url);
         }
         return event;
     },
