@@ -1,4 +1,4 @@
-import { FormSummary, HStack, List, VStack } from '@navikt/ds-react';
+import { FormSummary, HStack, List } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import {
@@ -104,19 +104,15 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                     <AppText id="oppsummering.kurs.reisedager.utenforKurs" />
                                 </FormSummary.Label>
                                 <FormSummary.Value>
-                                    <VStack>
-                                        <List>
-                                            {kurs.reise.reisedager.map((reisedag) => {
-                                                return (
-                                                    <List.Item key={reisedag}>
-                                                        {capsFirstCharacter(
-                                                            dateFormatter.full(ISODateToDate(reisedag)),
-                                                        )}
-                                                    </List.Item>
-                                                );
-                                            })}
-                                        </List>
-                                    </VStack>
+                                    <List>
+                                        {kurs.reise.reisedager.map((reisedag) => {
+                                            return (
+                                                <List.Item key={reisedag}>
+                                                    {capsFirstCharacter(dateFormatter.full(ISODateToDate(reisedag)))}
+                                                </List.Item>
+                                            );
+                                        })}
+                                    </List>
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                             <FormSummary.Answer>

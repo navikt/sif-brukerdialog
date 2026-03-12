@@ -167,9 +167,7 @@ export const kontrollerOpplæringFlereEnkeltdagerOppsummering = async (page: Pag
 export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
     await expect(page.locator('li').filter({ hasText: '2. desember 2024 - 6. desember 2024' })).toBeVisible();
-    await expect(
-        page.getByText('Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.?Ja'),
-    ).toBeVisible();
+    await expect(page.getByText('Er noen av dagene i perioden som du søker for, kun reisedager?Ja')).toBeVisible();
     await expect(page.getByText('Reisedager uten kurs eller opplæring3. des')).toBeVisible();
     await expect(page.getByText('Årsak til reisetidkombinerer')).toBeVisible();
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
@@ -185,9 +183,7 @@ export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) 
             'Hvilke perioder søker du opplæringspenger for?2. desember 2024 - 6. desember 202416. desember 2024 -',
         ),
     ).toBeVisible();
-    await expect(
-        page.getByText('Er noen av dagene som du søker for kun reisedager? Dvs. dager hvor det ikke er opplæring.?Ja'),
-    ).toBeVisible();
+    await expect(page.getByText('Er noen av dagene i periodene som du søker for, kun reisedager?Ja')).toBeVisible();
     await expect(page.getByText('Reisedager uten kurs eller opplæring3. des')).toBeVisible();
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
     await expect(page.getByText('Ferie i perioden4. desember 2024 - 5. desember 2024')).toBeVisible();

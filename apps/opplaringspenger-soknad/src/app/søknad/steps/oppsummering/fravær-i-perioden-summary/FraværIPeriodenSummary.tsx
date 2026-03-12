@@ -1,4 +1,4 @@
-import { FormSummary, Heading, VStack } from '@navikt/ds-react';
+import { Box, FormSummary, Heading } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
@@ -110,33 +110,35 @@ const FraværIPeriodenSummary = ({
                         </FormSummary.Heading>
                     </FormSummary.Header>
                     <FormSummary.Answers>
-                        <VStack gap="space-48">
-                            {alleArbeidsforhold.map((forhold) => (
-                                <FormSummary.Answer key={forhold.tittel}>
-                                    {forhold.arbeidIPeriode ? (
-                                        <>
-                                            <FormSummary.Label>
+                        {alleArbeidsforhold.map((forhold, index) => (
+                            <FormSummary.Answer key={forhold.tittel}>
+                                {forhold.arbeidIPeriode ? (
+                                    <>
+                                        <FormSummary.Label>
+                                            <Box marginBlock={index > 0 ? 'space-48 space-0' : 'space-0'}>
                                                 <Heading level="3" size="small">
                                                     {forhold.tittel}
                                                 </Heading>
-                                            </FormSummary.Label>
-                                            <FormSummary.Value>
+                                            </Box>
+                                        </FormSummary.Label>
+                                        <FormSummary.Value>
+                                            <Box marginBlock="space-0 space-24">
                                                 <FraværIPeriodenSummaryItem
                                                     periode={søknadsperiode}
                                                     valgteDatoer={valgteDatoer}
                                                     arbeidIPeriode={forhold.arbeidIPeriode}
                                                     normaltimerUke={forhold.jobberNormaltTimer}
                                                 />
-                                            </FormSummary.Value>
-                                        </>
-                                    ) : (
-                                        <FormSummary.Value>
-                                            <AppText id="oppsummering.fraværIPeriode.jobberIPerioden.informasjonMangler" />
+                                            </Box>
                                         </FormSummary.Value>
-                                    )}
-                                </FormSummary.Answer>
-                            ))}
-                        </VStack>
+                                    </>
+                                ) : (
+                                    <FormSummary.Value>
+                                        <AppText id="oppsummering.fraværIPeriode.jobberIPerioden.informasjonMangler" />
+                                    </FormSummary.Value>
+                                )}
+                            </FormSummary.Answer>
+                        ))}
                     </FormSummary.Answers>
                     {onEdit && (
                         <FormSummary.Footer>
