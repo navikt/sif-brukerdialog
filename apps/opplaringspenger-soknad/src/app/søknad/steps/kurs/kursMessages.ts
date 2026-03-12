@@ -139,12 +139,12 @@ const nn: Record<keyof typeof nb, string> = {
 
     'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
 
-    'steg.kurs.kursperioder.tittel': 'Kva for dagar søkjer du opplæringspengar?',
-    'steg.kurs.kursperioder.tekst.tittel': 'Om opplæring eller reise på helgedager',
+    'steg.kurs.kursperioder.tittel': 'Kva periodar søkjer du opplæringspengar for?',
+    'steg.kurs.kursperioder.tekst.tittel': 'Om opplæringa eller reise på heilagdagar',
     'steg.kurs.kursperioder.tekst.1':
-        'Legg til perioder du er på opplæring. Hvis du har reisedager i tillegg, legger du inn disse også.',
+        'Legg til periodar kor du er på opplæring. Viss du har reisedagar i tillegg, legg du inn desse også.',
     'steg.kurs.kursperioder.tekst.2':
-        'Du kan kun få opplæringspenger for ukedager (mandag til fredag). Derfor kan du ikke velge lørdager og søndager.',
+        'Du kan berre få opplæringspengar for vekedagar (måndag til fredag). Difor kan du ikkje velje laurdagar og søndagar.',
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
     'steg.kurs.reiserUtenforKursdager.label': 'Er nokon av dagane i perioden du søkjer for, berre reisedagar?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva tyder dette?',
