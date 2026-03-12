@@ -3,11 +3,6 @@ import { BrowserContext, Page } from '@playwright/test';
 import { memoryStore } from '../../mock/state/memoryStore';
 import { mockUtils } from '../../mock/utils/mockUtils';
 
-function extractOppgaveReferanse(url: string) {
-    const parts = url.split('/');
-    return parts[parts.length - 2];
-}
-
 const setupNavnoConsentCookieForPlaywrightTests = async (context: BrowserContext) => {
     return await context.addCookies([
         {
@@ -69,29 +64,6 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
 
     await page.route('**/ung-deltakelse-opplyser/deltakelse/register/:id/marker-har-sokt', async (route) => {
         await route.fulfill({ status: 500 });
-    });
-
-    await page.route(
-        '**/ung-deltakelse-opplyser/deltakelse/register/oppgave/:oppgaveReferanse/åpnet',
-        async (route) => {
-            const ref = extractOppgaveReferanse(route.request().url());
-            if (!ref) return route.fulfill({ status: 400 });
-            mockUtils.setOppgaveSomÅpnet(ref);
-            await route.fulfill({
-                status: 200,
-            });
-        },
-    );
-
-    await page.route('**/*lukk', async (route) => {
-        const ref = extractOppgaveReferanse(route.request().url());
-        if (!ref) return route.fulfill({ status: 400 });
-        const oppgave = mockUtils.setOppgaveSomLukket(ref);
-        await route.fulfill({
-            status: 200,
-            contentType: 'application/json',
-            body: JSON.stringify(oppgave),
-        });
     });
 
     await page.route('**/ungdomsytelse/soknad/innsending', async (route) => {

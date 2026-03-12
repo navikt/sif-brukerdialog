@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import { HttpStatusCode, isAxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -12,6 +13,7 @@ import { fetchAppStatus } from './appStatus.api';
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const logger = getLogger(req);
     logger.info(`Henter innsynsdata`);
+
     try {
         const unparsed = req.query.unparsed === 'true';
 
@@ -38,6 +40,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.json(innsynsdata);
     } catch (err) {
         logger.error(`Hent innsynsdata feilet`, prepApiError(err));
+
+        Sentry.setTag('innsynsdata.status', 'error');
+        Sentry.captureException(err, {
+            tags: { endpoint: 'innsynsdata' },
+            extra: { errorDetails: prepApiError(err) },
+        });
+
         if (
             isAxiosError(err) &&
             (err.response?.status === HttpStatusCode.Forbidden ||

@@ -19,6 +19,8 @@ index-decorated.html
 *.code-workspace
 *.zip
 
+.env.sentry-build-plugin
+
 server/dist
 public/dist
 out
@@ -31,6 +33,9 @@ dist-playwright
 
 # vercel
 .vercel
+
+# sentry
+.env.sentry*
 
 # typescript
 *.tsbuildinfo
