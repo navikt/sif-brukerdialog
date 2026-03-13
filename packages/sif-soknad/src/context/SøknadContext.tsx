@@ -89,17 +89,17 @@ const getPreviousNextStep = (includedSteps: IncludedStep[], currentStepId: strin
     };
 };
 
+interface ProviderProps {
+    children: ReactNode;
+    initialFormValues?: SøknadFormValues;
+}
+
 /**
  * Oppretter SøknadContext med Provider og hooks.
  * Samler navigasjon, skjemaverdier og consistency-sjekk i én kontekst.
  */
 export function createSøknadContext<TSøknadsdata extends object>(config: SøknadContextConfig<TSøknadsdata>) {
     const SøknadContext = createContext<SøknadContextValue<TSøknadsdata> | null>(null);
-
-    interface ProviderProps {
-        children: ReactNode;
-        initialFormValues?: SøknadFormValues;
-    }
 
     const SøknadContextProvider = ({ children, initialFormValues }: ProviderProps) => {
         const navigate = useNavigate();

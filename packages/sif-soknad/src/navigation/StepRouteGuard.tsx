@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { matchPath, Navigate, Outlet, useLocation } from 'react-router-dom';
 
 import { IncludedStep } from '../types';
 
@@ -32,7 +32,9 @@ export const StepRouteGuard = ({
         return <Navigate to={initialPath} replace />;
     }
 
-    const stepAtPath = steps.find((s) => location.pathname.includes(s.stepRoute));
+    const stepAtPath = steps.find((s) =>
+        matchPath({ path: `${basePath}/${s.stepRoute}`, end: false }, location.pathname),
+    );
     if (!stepAtPath) {
         const currentRoute = steps.find((s) => s.stepId === currentStepId)?.stepRoute;
         if (currentRoute) {

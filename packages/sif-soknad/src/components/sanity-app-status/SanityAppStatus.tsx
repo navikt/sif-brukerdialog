@@ -23,7 +23,7 @@ export const SanityAppStatus = ({
     const { status, message, isLoading } = useAppStatus(applicationKey, sanityConfig);
 
     const renderContent = () => {
-        if (status === Status.unavailable && unavailableContentRenderer !== undefined) {
+        if (status === Status.unavailable) {
             return unavailableContentRenderer();
         }
         return contentRenderer();

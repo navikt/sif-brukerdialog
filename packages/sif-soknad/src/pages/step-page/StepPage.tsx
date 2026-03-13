@@ -1,5 +1,5 @@
 import { VStack } from '@navikt/ds-react';
-import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui/';
+import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui';
 
 import { ApplicationPage } from '../application-page/ApplicationPage';
 import { StepFooter } from './StepFooter';
@@ -25,16 +25,19 @@ export function StepPage({
     onResumeLater,
     children,
 }: Props) {
+    const currentStepIndex = steps.findIndex((s) => s.id === stepId);
     return (
         <ApplicationPage documentTitle={documentTitle} applicationTitle={applicationTitle}>
             <VStack gap="space-40">
                 <section aria-label="Skjema">
                     <VStack gap="space-40">
-                        <ProgressStepper
-                            steps={steps}
-                            currentStepIndex={steps.findIndex((s) => s.id === stepId)}
-                            onStepSelect={(step) => onStepSelect(step.id)}
-                        />
+                        {steps.length > 0 && currentStepIndex !== -1 && (
+                            <ProgressStepper
+                                steps={steps}
+                                currentStepIndex={currentStepIndex}
+                                onStepSelect={(step) => onStepSelect(step.id)}
+                            />
+                        )}
                         <div>{children}</div>
                     </VStack>
                 </section>

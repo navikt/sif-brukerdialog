@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import { StepFormValues } from '../types';
-import { useSøknadFormValues } from './';
+import { useSøknadFormValues } from '.';
 
 /**
  * Hook som lagrer skjemaverdier til SøknadFormValuesContext ved unmount.

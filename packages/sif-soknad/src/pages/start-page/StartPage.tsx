@@ -27,10 +27,9 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
         if (!bekrefter) {
             setError(true);
             return false;
-        } else {
-            setBekrefter(true);
-            return true;
         }
+        setError(false);
+        return true;
     };
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
