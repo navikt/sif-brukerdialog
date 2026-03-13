@@ -1,4 +1,3 @@
-export * from './api/initApiClients';
 export * from './context/søknadContext';
 export * from './env/appEnv';
 export * from './hooks';
