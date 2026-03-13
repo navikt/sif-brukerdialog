@@ -1,7 +1,6 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { v4 } from 'uuid';
 
 import { SøknadSvar, Spørsmål } from '../../types';
 import { SøknadApiData } from '../../types/SøknadApiData';
@@ -66,7 +65,6 @@ export const buildSøknadFromSvar = ({
 
     return {
         språk: 'nb',
-        søknadId: v4(),
         startdato: dateToISODate(new Date()),
         harForståttRettigheterOgPlikter,
         barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
