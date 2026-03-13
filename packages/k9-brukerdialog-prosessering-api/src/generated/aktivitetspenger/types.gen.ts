@@ -16,7 +16,6 @@ export type ProblemDetail = {
 };
 
 export type Aktivitetspengersøknad = {
-    søknadId: string;
     språk: string;
     startdato: string;
     søkerNorskIdent: string;

@@ -22,7 +22,6 @@ export const zKontonummerInfo = z.object({
 });
 
 export const zAktivitetspengersøknad = z.object({
-    søknadId: z.string(),
     språk: z.string(),
     startdato: z.iso.date(),
     søkerNorskIdent: z.string(),
@@ -142,7 +141,7 @@ export const zInnsendingAktivitetspengersøknadData = z.object({
 export const zSlettVedleggData = z.object({
     body: z.never().optional(),
     path: z.object({
-        vedleggId: z.string(),
+        vedleggId: z.string().min(1),
     }),
     query: z.never().optional(),
 });
@@ -155,7 +154,7 @@ export const zSlettVedleggResponse = z.void();
 export const zHentVedleggData = z.object({
     body: z.never().optional(),
     path: z.object({
-        vedleggId: z.string(),
+        vedleggId: z.string().min(1),
     }),
     query: z.never().optional(),
 });
