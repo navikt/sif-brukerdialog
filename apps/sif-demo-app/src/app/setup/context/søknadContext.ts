@@ -1,5 +1,4 @@
-import { useSøknadStore } from '@app/hooks/useSøknadStore';
-import { søknadStepConfig, søknadStepOrder, stepTitles } from '@app/setup';
+import { søknadStepConfig, søknadStepOrder, stepTitles, useSøknadStore } from '@app/setup';
 import { Søknadsdata } from '@app/types/Søknadsdata';
 import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
 import { createSøknadContext } from '@sif/soknad/context';

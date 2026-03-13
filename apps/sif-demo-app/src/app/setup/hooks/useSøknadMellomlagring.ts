@@ -3,7 +3,7 @@ import { useYtelseMellomlagring } from '@navikt/sif-common-query';
 import { SøknadFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
 
-import { MellomlagringMetaData, SøknadMellomlagring } from '../types/Mellomlagring';
+import { MellomlagringMetaData, SøknadMellomlagring } from '../../types/Mellomlagring';
 import { useSøknadStore } from './useSøknadStore';
 
 /**

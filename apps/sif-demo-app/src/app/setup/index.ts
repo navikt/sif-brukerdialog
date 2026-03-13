@@ -1,6 +1,7 @@
 export * from './api/initApiClients';
 export * from './context/søknadContext';
 export * from './env/appEnv';
+export * from './hooks';
 export * from './søknad/SøknadFormButtons';
 export * from './søknad/SøknadStep';
 export * from './søknad/søknadStepConfig';

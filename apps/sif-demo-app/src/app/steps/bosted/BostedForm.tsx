@@ -1,11 +1,8 @@
-import { SøknadFormButtons, SøknadStepId } from '@app/setup';
+import { SøknadFormButtons, SøknadStepId, useSøknadForm, useStepDefaultValues, useStepSubmit } from '@app/setup';
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { StepFormValues } from '@sif/soknad/types';
 
-import { useSøknadForm } from '../../hooks/useSøknadForm';
-import { useStepDefaultValues } from '../../hooks/useStepDefaultValues';
-import { useStepSubmit } from '../../hooks/useStepSubmit';
 import { BostedSøknadsdata } from '../../types/Søknadsdata';
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 

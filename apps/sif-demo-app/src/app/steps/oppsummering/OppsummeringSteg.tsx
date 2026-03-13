@@ -1,11 +1,15 @@
-import { SøknadFormButtons, SøknadStep, SøknadStepId } from '@app/setup';
-import { useSøknadContext } from '@app/setup/context/søknadContext';
+import {
+    SøknadFormButtons,
+    SøknadStep,
+    SøknadStepId,
+    useSøknadContext,
+    useSøknadMellomlagring,
+    useSøknadStore,
+} from '@app/setup';
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 
-import { useSøknadMellomlagring } from '../../hooks';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
-import { useSøknadStore } from '../../hooks/useSøknadStore';
 import { getSøknadApiDataFromSøknad } from '../../utils/søknadsdataToSøknadApiData';
 
 export const OppsummeringSteg = () => {
