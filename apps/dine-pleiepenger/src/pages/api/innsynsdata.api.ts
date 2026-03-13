@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/nextjs';
 import { HttpStatusCode, isAxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -6,8 +5,8 @@ import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { InnsynsdataDto } from '../../server/dto-schemas/innsynsdataDtoSchema';
 import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
 import { fetchSøker } from '../../server/fetchers/fetchSøker';
-import { prepApiError } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogger';
+import { logApiErrorToSentry } from '../../utils/sentryApiErrorLogger';
 import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -30,11 +29,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         };
         return res.json(innsynsdata);
     } catch (err) {
-        Sentry.setTag('innsynsdata.status', 'error');
-        Sentry.captureException(err, {
-            tags: { endpoint: 'innsynsdata' },
-            extra: { errorDetails: prepApiError(err) },
-        });
+        // Feillogging til nav-logs skjer i fetcherne
+        logApiErrorToSentry(err, 'innsynsdata');
 
         if (
             isAxiosError(err) &&

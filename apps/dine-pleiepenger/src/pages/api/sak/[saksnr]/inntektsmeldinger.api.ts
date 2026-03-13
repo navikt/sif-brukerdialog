@@ -1,11 +1,10 @@
-import * as Sentry from '@sentry/nextjs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchInntektsmeldinger } from '../../../../server/fetchers/fetchInntektsmeldinger';
 import { isValidSaksnummer } from '../../../../server/utils/validatePathSegment';
-import { prepApiError } from '../../../../utils/apiUtils';
 import { getLogger } from '../../../../utils/getLogger';
+import { logApiErrorToSentry } from '../../../../utils/sentryApiErrorLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -21,11 +20,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const data = await fetchInntektsmeldinger(req, saksnr, unparsed);
         return res.send(data);
     } catch (err) {
-        Sentry.captureException(err, {
-            tags: { endpoint: 'inntektsmeldinger.api' },
-            extra: { errorDetails: prepApiError(err) },
-        });
-
+        // Feillogging til nav-logs skjer i fetcherne
+        logApiErrorToSentry(err, 'inntektsmeldinger');
         return res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
     }
 }

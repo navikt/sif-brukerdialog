@@ -5,7 +5,7 @@ export const logApiErrorToSentry = (error: unknown, context: string, options?: {
     if (axios.isAxiosError(error)) {
         const extra = { code: error.code, status: error.response?.status, message: error.message };
         if (error.code === 'ERR_NETWORK') {
-            Sentry.captureMessage(`${context}-network`, { level: 'warning', extra });
+            Sentry.captureMessage(`${context}-network`, { level: 'info', extra });
         } else if (options?.ignore401 && error.response?.status === 401) {
             return;
         } else {
