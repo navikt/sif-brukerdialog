@@ -153,29 +153,29 @@ const FraværIPeriodenSummary = ({
                                                             )}
                                                         </Box>
                                                     </FormSummary.Value>
-                                                    {forhold.arbeidIPeriode.jobberIPerioden ===
-                                                        JobberIPeriodeSvar.redusert &&
-                                                        forhold.arbeidIPeriode.enkeltdagerFravær && (
-                                                            <FormSummary.Answer>
-                                                                <FormSummary.Label>
-                                                                    <Box marginBlock="space-24 space-0">
-                                                                        <AppText id="oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
-                                                                    </Box>
-                                                                </FormSummary.Label>
-                                                                <FormSummary.Value>
-                                                                    <Box marginBlock="space-24 space-0">
-                                                                        <TidEnkeltdager
-                                                                            dager={
-                                                                                forhold.arbeidIPeriode.enkeltdagerFravær
-                                                                            }
-                                                                            renderAsAccordion={false}
-                                                                            headingLevel="4"
-                                                                        />
-                                                                    </Box>
-                                                                </FormSummary.Value>
-                                                            </FormSummary.Answer>
-                                                        )}
                                                 </FormSummary.Answer>
+                                                {forhold.arbeidIPeriode.jobberIPerioden ===
+                                                    JobberIPeriodeSvar.redusert &&
+                                                    forhold.arbeidIPeriode.enkeltdagerFravær && (
+                                                        <FormSummary.Answer>
+                                                            <FormSummary.Label>
+                                                                <Box marginBlock="space-24 space-0">
+                                                                    <Heading level="4" size="xsmall">
+                                                                        <AppText id="oppsummering.fraværIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
+                                                                    </Heading>
+                                                                </Box>
+                                                            </FormSummary.Label>
+                                                            <FormSummary.Value>
+                                                                <Box marginBlock="space-16 space-0">
+                                                                    <TidEnkeltdager
+                                                                        dager={forhold.arbeidIPeriode.enkeltdagerFravær}
+                                                                        renderAsAccordion={false}
+                                                                        headingLevel="5"
+                                                                    />
+                                                                </Box>
+                                                            </FormSummary.Value>
+                                                        </FormSummary.Answer>
+                                                    )}
                                             </FormSummary.Answers>
                                         </FormSummary.Value>
                                     </>
