@@ -2,7 +2,9 @@ import { createContext, ReactNode, useCallback, useContext, useMemo, useState } 
 import { useNavigate } from 'react-router-dom';
 import { StoreApi, UseBoundStore } from 'zustand';
 
+import { checkConsistencyForSteps } from '../consistency/checkConsistencyForSteps';
 import { IncludedStep, SøknadFormValues, StepConfig, StepFormValues, StepSøknadsdata } from '../types';
+import { getPreviousNextStep } from '../utils';
 
 /**
  * Konverter-funksjon fra skjemadata til søknadsdata for et steg.
@@ -79,15 +81,6 @@ interface SøknadContextValue<TSøknadsdata> {
     checkConsistency: (currentStepId: string) => string | undefined;
     formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
 }
-
-const getPreviousNextStep = (includedSteps: IncludedStep[], currentStepId: string | null) => {
-    const includedStepIds = includedSteps.map((s) => s.stepId);
-    const currentIndex = currentStepId ? includedStepIds.indexOf(currentStepId) : -1;
-    return {
-        previousStepId: currentIndex > 0 ? includedStepIds[currentIndex - 1] : null,
-        nextStepId: currentIndex < includedStepIds.length - 1 ? includedStepIds[currentIndex + 1] : null,
-    };
-};
 
 interface ProviderProps {
     children: ReactNode;
@@ -192,23 +185,14 @@ export function createSøknadContext<TSøknadsdata extends object>(config: Søkn
         // Consistency-sjekk
         const checkConsistency = useCallback(
             (cStepId: string): string | undefined => {
-                const currentIndex = stepOrder.indexOf(cStepId);
-                if (currentIndex <= 0) return undefined;
-
-                const precedingSteps = stepOrder.slice(0, currentIndex);
-
-                for (const stepId of precedingSteps) {
-                    const stepFormValues = formValues[stepId];
-                    if (!stepFormValues) continue;
-
-                    const stepSøknadsdata = søknadState?.søknadsdata[stepId as keyof TSøknadsdata];
-                    const converted = formValuesToSøknadsdata(stepId, stepFormValues);
-
-                    if (!stepSøknadsdata || JSON.stringify(converted) !== JSON.stringify(stepSøknadsdata)) {
-                        return stepId;
-                    }
-                }
-                return undefined;
+                return checkConsistencyForSteps({
+                    currentStepId: cStepId,
+                    stepOrder,
+                    formValues,
+                    getSøknadsdataForStep: (stepId) =>
+                        søknadState?.søknadsdata[stepId as keyof TSøknadsdata] as StepSøknadsdata | undefined,
+                    formValuesToSøknadsdata,
+                });
             },
             [stepOrder, formValues, søknadState?.søknadsdata, formValuesToSøknadsdata],
         );

@@ -1,6 +1,7 @@
 import { create, StateCreator, StoreApi, UseBoundStore } from 'zustand';
 
 import { BaseSøknadsdata, IncludedStep, StepConfig } from '../types';
+import { getIncludedSteps } from '../utils';
 
 /**
  * Base type for søknad state.
@@ -9,24 +10,6 @@ import { BaseSøknadsdata, IncludedStep, StepConfig } from '../types';
 interface BaseState<TSøknadsdata extends BaseSøknadsdata> {
     søknadsdata: TSøknadsdata;
 }
-
-/**
- * Returnerer liste over inkluderte steg med tilgjengelighet og fullført-status.
- * Lineær flyt: et steg er tilgjengelig hvis alle foregående er fullført.
- */
-const getIncludedSteps = <TSøknadsdata>(
-    stepOrder: string[],
-    stepConfig: StepConfig<TSøknadsdata>,
-    søknadsdata: TSøknadsdata,
-): IncludedStep[] => {
-    const includedIds = stepOrder.filter((id) => stepConfig[id]?.isIncluded?.(søknadsdata) ?? true);
-
-    return includedIds.map((stepId) => {
-        const step = stepConfig[stepId];
-        const completed = step?.isCompleted?.(søknadsdata) ?? false;
-        return { stepId, stepRoute: step.route, completed };
-    });
-};
 
 interface SøknadStoreActions<TState, TSøknadsdata extends object> {
     søknadState: TState | undefined;

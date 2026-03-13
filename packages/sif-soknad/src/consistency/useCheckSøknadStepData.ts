@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import { StepFormValues, StepSøknadsdata } from '../types';
+import { checkConsistencyForSteps } from './checkConsistencyForSteps';
 import { useSøknadFormValues } from '.';
 
 type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => StepSøknadsdata | undefined;
@@ -28,22 +29,12 @@ export const useCheckSøknadStepData = <StepId>({
     const { søknadFormValues: stepsFormValues } = useSøknadFormValues();
 
     return useMemo(() => {
-        const currentIndex = stepOrder.indexOf(currentStepId);
-        if (currentIndex <= 0) return undefined;
-
-        const precedingSteps = stepOrder.slice(0, currentIndex);
-
-        for (const stepId of precedingSteps) {
-            const formValues = stepsFormValues[stepId];
-            if (!formValues) continue;
-
-            const søknadsdata = getSøknadsdataForStep(stepId);
-            const converted = formValuesToSøknadsdata(stepId, formValues);
-
-            if (!søknadsdata || JSON.stringify(converted) !== JSON.stringify(søknadsdata)) {
-                return stepId as StepId;
-            }
-        }
-        return undefined;
+        return checkConsistencyForSteps({
+            currentStepId,
+            stepOrder,
+            formValues: stepsFormValues,
+            getSøknadsdataForStep,
+            formValuesToSøknadsdata,
+        }) as StepId | undefined;
     }, [currentStepId, stepOrder, stepsFormValues, getSøknadsdataForStep, formValuesToSøknadsdata]);
 };
