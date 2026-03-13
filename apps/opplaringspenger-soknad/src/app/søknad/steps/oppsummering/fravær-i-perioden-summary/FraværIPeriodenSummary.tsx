@@ -92,7 +92,7 @@ const FraværIPeriodenSummary = ({
             ...frilans.arbeidsforhold,
             tittel: 'Frilanser',
             erAktivIPeriode: frilans.arbeidsforhold.arbeidIPeriode !== undefined,
-            hvor: appIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN'),
+            hvor: appIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser'),
         });
     }
 
@@ -101,7 +101,7 @@ const FraværIPeriodenSummary = ({
             ...selvstendigNæringsdrivende.arbeidsforhold,
             tittel: text('selvstendigNæringsdrivende.tittel'),
             erAktivIPeriode: true,
-            hvor: appIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser'),
+            hvor: appIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN'),
         });
     }
 

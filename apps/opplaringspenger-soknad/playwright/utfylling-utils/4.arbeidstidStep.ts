@@ -29,5 +29,7 @@ export const kontrollerArbeidstidOppsummering = async (page: Page) => {
     await expect(page.getByText('mandag 02.12.2024:5 timer 0')).toBeVisible();
     await expect(page.getByText('fredag 06.12.2024:0 timer 30')).toBeVisible();
     await expect(page.getByText('fredag 06.12.2024:0 timer 30')).toBeVisible();
-    await expect(page.getByText('FrilanserJeg jobber som normalt')).toBeVisible();
+    await expect(
+        page.getByText('Hvor mye fravær har du som frilanser på grunn av opplæring og reisetid?Jeg jobber som normalt'),
+    ).toBeVisible();
 };
