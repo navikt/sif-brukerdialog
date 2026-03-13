@@ -4,10 +4,10 @@ import { StepRouteGuard } from '@sif/soknad/navigation';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
-import { søknadStepConfig, SøknadStepId } from './config/søknadStepConfig';
 import { SøknadContextProvider } from './context/søknadContext';
 import { useSøknadStore } from './hooks';
 import { KvitteringPage, VelkommenPage } from './pages';
+import { søknadStepConfig, SøknadStepId } from './setup/søknadStepConfig';
 import { BarnSteg, BostedSteg, OppsummeringSteg } from './steps';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 

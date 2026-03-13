@@ -1,10 +1,10 @@
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup';
 import { useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@navikt/sif-common-query';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { useMemo } from 'react';
 
-import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './app/config';
-import { søknadStepConfig } from './app/config/søknadStepConfig';
 import { ErrorPage } from './app/pages';
+import { søknadStepConfig } from './app/setup/søknadStepConfig';
 import { Søknad } from './app/Søknad';
 import { MellomlagringMetaData, SøknadMellomlagring } from './app/types/Mellomlagring';
 

@@ -1,6 +1,6 @@
+import { søknadStepConfig, søknadStepOrder, stepTitles } from '@app/setup';
 import { createSøknadContext } from '@sif/soknad/context';
 
-import { søknadStepConfig, søknadStepOrder, stepTitles } from '../config/søknadStepConfig';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 import { Søknadsdata } from '../types/Søknadsdata';
 import { formValuesToSøknadsdata } from '../utils/formValuesToSøknadsdata';
@@ -13,7 +13,7 @@ export const { SøknadContextProvider, useSøknadContext } = createSøknadContex
     useStore: useSøknadStore as any, // Type assertion nødvendig pga generics
     stepConfig: søknadStepConfig,
     stepOrder: søknadStepOrder,
-    stepTitles,
+    stepTitles: stepTitles,
     formValuesToSøknadsdata,
     basePath: '/soknad',
 });

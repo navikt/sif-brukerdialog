@@ -2,7 +2,7 @@ import { SøknadFormButtons, SøknadStep } from '@app/setup';
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 
-import { SøknadStepId } from '../../config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup';
 import { useSøknadContext } from '../../context/søknadContext';
 import { useSøknadMellomlagring } from '../../hooks';
 import { useSendSøknad } from '../../hooks/useSendSøknad';

@@ -2,7 +2,7 @@ import { StepPage } from '@sif/soknad/pages';
 import { getProgressSteps } from '@sif/soknad/utils';
 
 import { InconsistencyAlert } from '../components/inconsistency-alert/InconsistencyAlert';
-import { SøknadStepId, stepTitles } from '../config/søknadStepConfig';
+import { SøknadStepId, stepTitles } from './søknadStepConfig';
 import { useSøknadContext } from '../context/søknadContext';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';

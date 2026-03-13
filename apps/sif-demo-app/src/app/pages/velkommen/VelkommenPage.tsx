@@ -2,7 +2,7 @@ import { BodyLong, Link, VStack } from '@navikt/ds-react';
 import { StartPage } from '@sif/soknad/pages';
 import { useNavigate } from 'react-router-dom';
 
-import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
+import { søknadStepConfig, søknadStepOrder } from '@app/setup';
 import { useSøknadContext } from '../../context/søknadContext';
 import { useSøknadMellomlagring } from '../../hooks';
 import { useSøknadStore } from '../../hooks/useSøknadStore';
