@@ -34,7 +34,7 @@ export function StepPage({
                         {steps.length > 0 && currentStepIndex !== -1 && (
                             <ProgressStepper
                                 steps={steps}
-                                currentStepIndex={steps.findIndex((s) => s.id === stepId)}
+                                currentStepIndex={currentStepIndex}
                                 onStepSelect={(step) => onStepSelect(step.id)}
                             />
                         )}

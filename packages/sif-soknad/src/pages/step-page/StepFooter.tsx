@@ -60,7 +60,7 @@ const ResumeLagerDialogAndTrigger = ({ onResumeLater }: Pick<StepFooterProps, 'o
                 </Dialog.Footer>
             </Dialog.Popup>
         </Dialog>
-    ) : undefined;
+    ) : null;
 
 const DeleteDialogAndTrigger = ({ onDelete }: Pick<StepFooterProps, 'onDelete'>) =>
     onDelete ? (
@@ -96,4 +96,4 @@ const DeleteDialogAndTrigger = ({ onDelete }: Pick<StepFooterProps, 'onDelete'>)
                 </Dialog.Footer>
             </Dialog.Popup>
         </Dialog>
-    ) : undefined;
+    ) : null;
