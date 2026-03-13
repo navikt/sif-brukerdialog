@@ -1,12 +1,12 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { SøknadFormButtons } from '@søknad-setup';
 import { StepFormValues } from '@sif/soknad/types';
 
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { useSøknadForm } from '../../hooks/useSøknadForm';
 import { useStepDefaultValues } from '../../hooks/useStepDefaultValues';
 import { useStepSubmit } from '../../hooks/useStepSubmit';
-import { SøknadFormButtons } from '../../setup/søknad-form-buttons/SøknadFormButtons';
 import { BostedSøknadsdata } from '../../types/Søknadsdata';
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 

@@ -1,14 +1,13 @@
 import '@navikt/ds-css';
 
-import { AppInitialDataLoader } from '@app/setup/app-initial-data-loader/AppInitialDataLoader';
 import { FaroProvider } from '@navikt/sif-common-faro';
+import { initApiClients } from '@søknad-setup';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
 import { applicationIntlMessages } from './app/i18n';
-// import { AppStatusChecker } from './app/setup/app-status-checker/AppStatusChecker';
-import { initApiClients } from './app/setup/api/initApiClients';
+import { AppInitialDataLoader } from './AppInitialDataLoader';
 
 initApiClients();
 

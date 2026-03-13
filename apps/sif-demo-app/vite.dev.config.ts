@@ -30,6 +30,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@app': resolve(__dirname, './src/app'),
+            '@søknad-setup': resolve(__dirname, './src/app/søknad-setup'),
         },
     },
     base: '/sif-demo/',

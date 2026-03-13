@@ -3,7 +3,7 @@ import { BodyShort, GuidePanel } from '@navikt/ds-react';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { SanityAppStatus, SanityAppStatusProps } from '@sif/soknad/components';
 
-import { getAppEnv } from '../../env/appEnv';
+import { getAppEnv } from '../env/appEnv';
 
 type Props = Pick<SanityAppStatusProps, 'contentRenderer'> & { active: boolean };
 

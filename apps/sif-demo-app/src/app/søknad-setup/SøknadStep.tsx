@@ -1,13 +1,13 @@
 import { StepPage } from '@sif/soknad/pages';
 import { getProgressSteps } from '@sif/soknad/utils';
 
-import { SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
-import { useSøknadContext } from '../../context/søknadContext';
-import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
-import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
-import { useAppIntl } from '../../i18n';
-import { getLenker } from '../../lenker';
-import { InconsistencyAlert } from '../app-consistency-checker/InconsistencyAlert';
+import { InconsistencyAlert } from '../components/inconsistency-alert/InconsistencyAlert';
+import { SøknadStepId, stepTitles } from '../config/søknadStepConfig';
+import { useSøknadContext } from '../context/søknadContext';
+import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
+import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
+import { useAppIntl } from '../i18n';
+import { getLenker } from '../lenker';
 
 interface Props {
     stepId: SøknadStepId;
@@ -20,7 +20,7 @@ interface Props {
  *
  * Stegene selv håndterer sin submit-logikk via useStepSubmit hook.
  */
-export function SøknadStep({ stepId, children }: Props) {
+export const SøknadStep = ({ stepId, children }: Props) => {
     const { text } = useAppIntl();
     const ctx = useSøknadContext();
     const avbrytSøknad = useAvbrytSøknad();
@@ -47,4 +47,4 @@ export function SøknadStep({ stepId, children }: Props) {
             {children}
         </StepPage>
     );
-}
+};

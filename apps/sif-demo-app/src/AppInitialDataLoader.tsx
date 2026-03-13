@@ -1,11 +1,12 @@
 import { useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@navikt/sif-common-query';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { useMemo } from 'react';
 
-import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../../config';
-import { søknadStepConfig } from '../../config/søknadStepConfig';
-import { ErrorPage, LoadingPage } from '../../pages';
-import { Søknad } from '../../Søknad';
-import { MellomlagringMetaData, SøknadMellomlagring } from '../../types/Mellomlagring';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './app/config';
+import { søknadStepConfig } from './app/config/søknadStepConfig';
+import { ErrorPage } from './app/pages';
+import { Søknad } from './app/Søknad';
+import { MellomlagringMetaData, SøknadMellomlagring } from './app/types/Mellomlagring';
 
 const getValidertMellomlagring = (data: SøknadMellomlagring | null | undefined): SøknadMellomlagring | undefined => {
     if (!data) return undefined;
