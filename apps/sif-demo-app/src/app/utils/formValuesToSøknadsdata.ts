@@ -1,6 +1,6 @@
+import { SøknadStepId } from '@app/setup';
 import { StepFormValues, StepSøknadsdata } from '@sif/soknad/types';
 
-import { SøknadStepId } from '@app/setup';
 import { BarnFormValues } from '../steps/barn/BarnForm';
 import { toBarnSøknadsdata } from '../steps/barn/barnStegUtils';
 import { BostedFormValues } from '../steps/bosted/BostedForm';

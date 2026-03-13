@@ -1,6 +1,6 @@
+import { SøknadStepId } from '@app/setup';
 import { SøknadStep } from '@app/setup/SøknadStep';
 
-import { SøknadStepId } from '@app/setup';
 import { BarnForm } from './BarnForm';
 
 export const BarnSteg = () => (

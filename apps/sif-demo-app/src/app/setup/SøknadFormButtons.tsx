@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 
-import { SøknadStepId } from './søknadStepConfig';
 import { useSøknadContext } from '../context/søknadContext';
+import { SøknadStepId } from './søknadStepConfig';
 
 interface Props {
     stepId: SøknadStepId;

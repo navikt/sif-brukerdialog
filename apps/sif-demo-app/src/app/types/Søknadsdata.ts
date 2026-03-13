@@ -1,6 +1,5 @@
-import { BaseSøknadsdata } from '@sif/soknad/types';
-
 import { SøknadStepId } from '@app/setup';
+import { BaseSøknadsdata } from '@sif/soknad/types';
 
 export type BarnSøknadsdata = {
     stemmerInfoOmBarn: boolean;
