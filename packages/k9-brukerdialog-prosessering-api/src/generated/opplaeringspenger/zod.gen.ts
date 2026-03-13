@@ -401,7 +401,7 @@ export const zInnsendingOpplæringspengerSøknadData = z.object({
 export const zSlettVedleggData = z.object({
     body: z.never().optional(),
     path: z.object({
-        vedleggId: z.string(),
+        vedleggId: z.string().min(1),
     }),
     query: z.never().optional(),
 });
@@ -414,7 +414,7 @@ export const zSlettVedleggResponse = z.void();
 export const zHentVedleggData = z.object({
     body: z.never().optional(),
     path: z.object({
-        vedleggId: z.string(),
+        vedleggId: z.string().min(1),
     }),
     query: z.never().optional(),
 });
