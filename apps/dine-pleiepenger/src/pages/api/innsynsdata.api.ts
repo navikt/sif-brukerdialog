@@ -5,29 +5,21 @@ import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { InnsynsdataDto } from '../../server/dto-schemas/innsynsdataDtoSchema';
 import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
 import { fetchSøker } from '../../server/fetchers/fetchSøker';
-import { prepApiError } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
+import { logApiErrorToSentry } from '../../utils/sentryApiErrorLogger';
 import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const logger = getLogger(req);
-    logger.info(`Henter innsynsdata`);
+    const logger = getLogger(req).withContext({ operation: 'innsynsdata' });
+
     try {
         const unparsed = req.query.unparsed === 'true';
 
-        // Hent søkerinformasjon
         const søker = await fetchSøker(req, unparsed);
-        logger.info(`Hentet søkerinformasjon`);
-
-        // Hent oversikt over saker
         const sakerMetadata = await fetchSakerMetadata(req, unparsed);
-        logger.info(`Hentet metadata`);
-
-        // Hent appstatus som sier om appen er tilgjengelig eller ikke
         const appStatus = await fetchAppStatus();
-        logger.info(`Hentet appstatus`);
 
-        logger.info(`Hentet innsynsdata. Antall saker: ${sakerMetadata.length}`);
+        logger.info('Innsynsdata hentet', { antallSaker: sakerMetadata.length });
 
         const innsynsdata: InnsynsdataDto = {
             appStatus,
@@ -37,14 +29,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         };
         return res.json(innsynsdata);
     } catch (err) {
-        logger.error(`Hent innsynsdata feilet`, prepApiError(err));
+        logApiErrorToSentry(err, 'innsynsdata');
         if (
             isAxiosError(err) &&
             (err.response?.status === HttpStatusCode.Forbidden ||
                 err.response?.status === HttpStatusCode.UnavailableForLegalReasons)
         ) {
+            logger.warn('403 ikke tilgang');
             return res.status(403).json({ error: 'Ikke tilgang' });
         } else {
+            logger.error('Hent innsynsdata feilet');
             return res.status(500).json({ error: 'Kunne ikke hente innsynsdata' });
         }
     }

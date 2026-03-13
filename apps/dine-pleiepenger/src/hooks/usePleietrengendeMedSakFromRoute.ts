@@ -1,27 +1,39 @@
+import * as Sentry from '@sentry/nextjs';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
 import useSWR from 'swr';
 
 import { PleietrengendeMedSak, SakMedInntektsmeldinger } from '../types';
-import { sakMedInntektsmeldingerClientSchema } from '../types/client-schemas/sakMedInntektsmeldingerClientSchema';
-import appSentryLogger from '../utils/appSentryLogger';
+import { inntektsmeldingClientSchema } from '../types/client-schemas/inntektsmeldingClientSchema';
+import { sakClientSchema } from '../types/client-schemas/sakClientSchema';
 import { browserEnv } from '../utils/env';
+import { safeParseArray } from '../utils/safeParseArray';
 import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
+import { logApiErrorToSentry } from '../utils/sentryApiErrorLogger';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import { useInnsynsdataContext } from './useInnsynsdataContext';
 
 const sakFetcher = async (url: string): Promise<SakMedInntektsmeldinger> => {
     const response = await axios.get(url);
-    try {
-        const parsedData = sakMedInntektsmeldingerClientSchema.parse(response.data);
-        parsedData.sak.behandlinger = sortBehandlingerNyesteFørst(parsedData.sak.behandlinger);
-        return parsedData;
-    } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('Feil ved parsing av SakMedInntektsmeldinger:', error);
-        throw error;
+    const sak = sakClientSchema.parse(response.data.sak);
+    sak.behandlinger = sortBehandlingerNyesteFørst(sak.behandlinger);
+
+    const rawInntektsmeldinger: unknown = response.data.inntektsmeldinger;
+    const { success: inntektsmeldinger, errors } = safeParseArray(inntektsmeldingClientSchema, rawInntektsmeldinger);
+
+    if (errors.length > 0) {
+        const totalItems = Array.isArray(rawInntektsmeldinger) ? rawInntektsmeldinger.length : 0;
+        Sentry.captureMessage(`Feil ved parsing av inntektsmeldinger: ${errors.length} av ${totalItems} feilet`, {
+            level: 'warning',
+            extra: {
+                totalErrors: errors.length,
+                errors: errors.slice(-2).map(({ index, error }) => ({ index, issues: JSON.stringify(error.issues) })),
+            },
+        });
     }
+
+    return { sak, inntektsmeldinger };
 };
 
 /** Henter sak fra route med lazy loading */
@@ -79,10 +91,7 @@ export const usePleietrengendeMedSakFromRoute = (): {
     // Logg feil til Sentry
     useEffect(() => {
         if (error) {
-            appSentryLogger.logError(
-                'usePleietrengendeMedSakFromRoute-failed',
-                JSON.stringify({ error: error.message }),
-            );
+            logApiErrorToSentry(error, 'usePleietrengendeMedSakFromRoute');
         }
     }, [error]);
 

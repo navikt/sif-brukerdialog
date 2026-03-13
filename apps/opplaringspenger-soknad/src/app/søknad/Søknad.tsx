@@ -4,6 +4,7 @@ import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { AppText, useAppIntl } from '../i18n';
+import SkyraTestPage from '../skyra/SkyraTestPage';
 import { RequestStatus } from '../types/RequestStatus';
 import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import { SøknadContextProvider } from './context/SøknadContext';
@@ -14,6 +15,10 @@ const Søknad = () => {
     const initialData = useSøknadInitialData();
     const { text } = useAppIntl();
     const { status } = initialData;
+
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage />;
+    }
 
     /** Loading */
     if (

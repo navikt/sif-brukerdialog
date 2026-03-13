@@ -5,7 +5,7 @@ import { NextApiRequest } from 'next';
 import { z } from 'zod';
 
 import { getContextForApiHandler, prepApiError, serverResponseTransform } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
@@ -87,11 +87,7 @@ export const fetchSak = async (
 
         logger.info('Henter sak fra upstream');
         const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
-        logger.info('Respons mottatt', {
-            status: response.status,
-            contentType: response.headers?.['content-type'],
-            dataType: typeof response.data,
-        });
+        logger.info('Respons mottatt', { status: response.status });
 
         if (typeof response.data !== 'object' || response.data === null) {
             const dataStr = typeof response.data === 'string' ? response.data : String(response.data);

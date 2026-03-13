@@ -1,12 +1,13 @@
 import { fetchStatus, SanityConfig } from '@navikt/appstatus-react-ds';
 import { ApplicationState } from '@navikt/appstatus-react-ds/src/hooks/useGetApplicationStatus';
+import * as Sentry from '@sentry/nextjs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { prepApiError } from '../../utils/apiUtils';
 import { browserEnv } from '../../utils/env';
 import { Feature } from '../../utils/features';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 import { ANALYTICS_APPLICATION_KEY } from '../_app.page';
 
 const sanityConfig: SanityConfig = {
@@ -29,6 +30,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.send(await fetchAppStatus());
     } catch (err) {
         logger.error(`Hent appStatus feilet`, prepApiError(err));
+
+        Sentry.captureException(err, {
+            tags: { endpoint: 'appStatus' },
+            extra: { errorDetails: prepApiError(err) },
+        });
+
         return res.status(500).json({ error: 'Kunne ikke hente appStatus' });
     }
 }
