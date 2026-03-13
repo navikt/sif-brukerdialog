@@ -1,11 +1,13 @@
 import { useAvbrytSøknad, useSøknadContext, useSøknadMellomlagring } from '@app/setup';
+import { Box } from '@navikt/ds-react';
+import { InconsistentFormValuesMessage } from '@sif/soknad/consistency';
 import { StepPage } from '@sif/soknad/pages';
 import { getProgressSteps } from '@sif/soknad/utils';
+import { useNavigate } from 'react-router-dom';
 
-import { InconsistencyAlert } from '../../components/inconsistency-alert/InconsistencyAlert';
 import { useAppIntl } from '../../i18n';
 import { getLenker } from '../../lenker';
-import { SøknadStepId, stepTitles } from './søknadStepConfig';
+import { søknadStepConfig, SøknadStepId, stepTitles } from './søknadStepConfig';
 
 interface Props {
     stepId: SøknadStepId;
@@ -20,6 +22,7 @@ interface Props {
  */
 export const SøknadStep = ({ stepId, children }: Props) => {
     const { text } = useAppIntl();
+    const navigate = useNavigate();
     const ctx = useSøknadContext();
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad } = useSøknadMellomlagring();
@@ -41,7 +44,15 @@ export const SøknadStep = ({ stepId, children }: Props) => {
             onStepSelect={ctx.navigateToStep}
             onAbort={avbrytSøknad}
             onResumeLater={fortsettSenere}>
-            {inconsistentStepId ? <InconsistencyAlert stepId={inconsistentStepId} /> : null}
+            {inconsistentStepId ? (
+                <Box marginBlock="space-0 space-32">
+                    <InconsistentFormValuesMessage
+                        stepId={stepId}
+                        stepTitle={stepTitles[stepId]}
+                        onNavigateToStep={() => navigate(`/soknad/${søknadStepConfig[stepId].route}`)}
+                    />
+                </Box>
+            ) : null}
             {children}
         </StepPage>
     );
