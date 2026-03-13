@@ -39,6 +39,7 @@
         "zustand": "5.0.11"
     },
     "devDependencies": {
+        "@sentry/vite-plugin": "5.1.1",
         "@sif/eslint-config": "workspace:*",
         "@tailwindcss/vite": "4.2.1",
         "@types/node": "25.3.3",

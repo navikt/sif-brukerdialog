@@ -5794,7 +5794,8 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-query": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
-    "@sentry/react": "npm:10.42.0"
+    "@sentry/react": "npm:^10.42.0"
+    "@sentry/vite-plugin": "npm:^5.1.1"
     "@sif/eslint-config": "workspace:*"
     "@sif/soknad": "workspace:*"
     "@tailwindcss/vite": "npm:4.2.1"
@@ -9005,7 +9006,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:10.42.0":
+"@sentry/react@npm:10.42.0, @sentry/react@npm:^10.42.0":
   version: 10.42.0
   resolution: "@sentry/react@npm:10.42.0"
   dependencies:
@@ -9062,7 +9063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/vite-plugin@npm:5.1.1":
+"@sentry/vite-plugin@npm:5.1.1, @sentry/vite-plugin@npm:^5.1.1":
   version: 5.1.1
   resolution: "@sentry/vite-plugin@npm:5.1.1"
   dependencies:

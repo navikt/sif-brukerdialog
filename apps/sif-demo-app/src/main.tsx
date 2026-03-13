@@ -1,3 +1,6 @@
+import './sentry/instrument'; // Must be first import
+
+import { reactErrorHandler } from '@sentry/react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -17,7 +20,11 @@ if (1 + 1 === 3) {
 }
 
 enableMocking().then(() => {
-    createRoot(document.getElementById('root')!).render(
+    createRoot(document.getElementById('root')!, {
+        onUncaughtError: reactErrorHandler(),
+        onCaughtError: reactErrorHandler(),
+        onRecoverableError: reactErrorHandler(),
+    }).render(
         <StrictMode>
             <AppErrorBoundary>
                 <App />
