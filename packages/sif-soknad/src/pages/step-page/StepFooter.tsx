@@ -3,12 +3,12 @@ import { BodyLong, Box, Button, Dialog, HStack } from '@navikt/ds-react';
 
 import { RammeverkText } from '../../i18n';
 
-interface StepfooterProps {
+interface StepFooterProps {
     onDelete?: () => void;
     onResumeLater?: () => void;
 }
 
-export const StepFooter = ({ onDelete, onResumeLater }: StepfooterProps) => {
+export const StepFooter = ({ onDelete, onResumeLater }: StepFooterProps) => {
     if (!onDelete && !onResumeLater) {
         return null;
     }
@@ -26,7 +26,7 @@ export const StepFooter = ({ onDelete, onResumeLater }: StepfooterProps) => {
     );
 };
 
-const ResumeLagerDialogAndTrigger = ({ onResumeLater }: Pick<StepfooterProps, 'onResumeLater'>) =>
+const ResumeLagerDialogAndTrigger = ({ onResumeLater }: Pick<StepFooterProps, 'onResumeLater'>) =>
     onResumeLater ? (
         <Dialog>
             <Dialog.Trigger>
@@ -62,7 +62,7 @@ const ResumeLagerDialogAndTrigger = ({ onResumeLater }: Pick<StepfooterProps, 'o
         </Dialog>
     ) : undefined;
 
-const DeleteDialogAndTrigger = ({ onDelete }: Pick<StepfooterProps, 'onDelete'>) =>
+const DeleteDialogAndTrigger = ({ onDelete }: Pick<StepFooterProps, 'onDelete'>) =>
     onDelete ? (
         <Dialog>
             <Dialog.Trigger>

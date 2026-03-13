@@ -42,7 +42,7 @@ export const InconsistentFormValuesMessage = ({
                 <Heading level="2" size="small" spacing>
                     {heading}
                 </Heading>
-                {description ?? defaultDescription.replace('${stepTitle}', stepTitle)}{' '}
+                {description ?? defaultDescription}{' '}
                 <Link href="#" onClick={handleClick}>
                     Gå til {stepTitle}
                 </Link>
