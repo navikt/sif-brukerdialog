@@ -1,7 +1,8 @@
+import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { useMemo } from 'react';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
-import { useSøknadContext } from '../context/søknadContext';
+import { useSøknadFlow } from '../context/søknadContext';
 
 interface UseStepDefaultValuesOptions<TFormValues, TStepSøknadsdata> {
     stepId: string;
@@ -16,19 +17,20 @@ export function useStepDefaultValues<TFormValues, TStepSøknadsdata>({
     stepId,
     toFormValues,
 }: UseStepDefaultValuesOptions<TFormValues, TStepSøknadsdata>): Partial<TFormValues> {
-    const ctx = useSøknadContext();
+    const { søknadsdata } = useSøknadFlow();
+    const { getFormValuesForStep } = useSøknadFormValues();
 
     return useMemo(() => {
-        const stepFormValues = ctx.getFormValuesForStep<TFormValues>(stepId);
+        const stepFormValues = getFormValuesForStep<TFormValues>(stepId);
         if (stepFormValues) {
             return stepFormValues;
         }
 
         if (toFormValues) {
-            const søknadsdata = ctx.søknadsdata?.[stepId as keyof Søknadsdata] as TStepSøknadsdata | undefined;
-            return toFormValues(søknadsdata);
+            const stepSøknadsdata = søknadsdata?.[stepId as keyof Søknadsdata] as TStepSøknadsdata | undefined;
+            return toFormValues(stepSøknadsdata);
         }
 
         return {};
-    }, [ctx, stepId, toFormValues]);
+    }, [søknadsdata, getFormValuesForStep, stepId, toFormValues]);
 }

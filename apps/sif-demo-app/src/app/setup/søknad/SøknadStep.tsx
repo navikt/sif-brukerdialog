@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppIntl } from '../../i18n';
 import { getLenker } from '../../lenker';
-import { useSøknadContext } from '../context/søknadContext';
+import { useSøknadFlow } from '../context/søknadContext';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { søknadStepConfig, SøknadStepId, stepTitles } from './søknadStepConfig';
@@ -25,7 +25,7 @@ interface Props {
 export const SøknadStep = ({ stepId, children }: Props) => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
-    const ctx = useSøknadContext();
+    const ctx = useSøknadFlow();
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad } = useSøknadMellomlagring();
 

@@ -9,7 +9,7 @@ import { søknadStepConfig, søknadStepOrder, stepTitles } from '../søknad/søk
  * App-spesifikk SøknadContext.
  * Kobler sammen rammeverk med app-konfigurasjon.
  */
-export const { SøknadContextProvider, useSøknadContext } = createSøknadContext<Søknadsdata>({
+export const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknadsdata>({
     useStore: useSøknadStore as any, // Type assertion nødvendig pga generics
     stepConfig: søknadStepConfig,
     stepOrder: søknadStepOrder,

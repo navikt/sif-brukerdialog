@@ -1,29 +1,22 @@
 import { useEffect, useRef } from 'react';
 import { DefaultValues, useForm, UseFormReturn } from 'react-hook-form';
 
+import { useSøknadFormValues } from '../consistency/SøknadFormValuesContext';
 import { StepFormValues } from '../types';
 
-interface SøknadContextForForm {
-    setFormValuesForStep: (stepId: string, values: StepFormValues) => void;
-}
-
-/**
- * Factory for å lage useSøknadForm-hook.
- * Wrapper react-hook-form med auto-lagring ved unmount.
- */
-export const createSøknadForm = <TStepId extends string>(useSøknadContext: () => SøknadContextForForm) => {
+export const createSøknadForm = <TStepId extends string>() => {
     return function useSøknadForm<T extends StepFormValues>(
         stepId: TStepId,
         defaultValues: DefaultValues<T>,
     ): UseFormReturn<T> {
-        const ctx = useSøknadContext();
+        const { setFormValuesForStep } = useSøknadFormValues();
         const form = useForm<T>({ defaultValues });
-        const ctxRef = useRef(ctx);
-        ctxRef.current = ctx;
+        const setFormRef = useRef(setFormValuesForStep);
+        setFormRef.current = setFormValuesForStep;
 
         useEffect(() => {
             return () => {
-                ctxRef.current.setFormValuesForStep(stepId, form.getValues());
+                setFormRef.current(stepId, form.getValues());
             };
         }, [stepId, form]);
 

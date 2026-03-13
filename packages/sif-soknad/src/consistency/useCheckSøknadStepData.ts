@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
 import { StepFormValues, StepSøknadsdata } from '../types';
-import { checkConsistencyForSteps } from './checkConsistencyForSteps';
 import { useSøknadFormValues } from '.';
+import { checkConsistencyForSteps } from './checkConsistencyForSteps';
 
 type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => StepSøknadsdata | undefined;
 

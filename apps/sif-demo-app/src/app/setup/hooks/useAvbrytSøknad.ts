@@ -1,18 +1,20 @@
+import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useSøknadContext } from '../context/søknadContext';
+import { useSøknadFlow } from '../context/søknadContext';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
 export const useAvbrytSøknad = () => {
     const navigate = useNavigate();
-    const { resetSøknad, clearAllFormValues } = useSøknadContext();
+    const { resetSøknad } = useSøknadFlow();
+    const { clearSøknadFormValues } = useSøknadFormValues();
     const { slettMellomlagring } = useSøknadMellomlagring();
 
     return useCallback(() => {
         resetSøknad();
-        clearAllFormValues();
+        clearSøknadFormValues();
         slettMellomlagring().catch(() => {});
         navigate('/');
-    }, [resetSøknad, clearAllFormValues, slettMellomlagring, navigate]);
+    }, [resetSøknad, clearSøknadFormValues, slettMellomlagring, navigate]);
 };

@@ -73,3 +73,5 @@ export const useSøknadFormValues = (): SøknadFormValuesContextValue => {
     }
     return context;
 };
+
+export const useSøknadFormDraft = useSøknadFormValues;

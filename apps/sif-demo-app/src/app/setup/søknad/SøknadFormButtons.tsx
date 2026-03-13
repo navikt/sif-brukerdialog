@@ -1,6 +1,6 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 
-import { useSøknadContext } from '../context/søknadContext';
+import { useSøknadFlow } from '../context/søknadContext';
 import { SøknadStepId } from './søknadStepConfig';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
  * Henter navigasjon og consistency-sjekk fra context.
  */
 export const SøknadFormButtons = ({ stepId, isPending, isFinalSubmit, submitLabel }: Props) => {
-    const ctx = useSøknadContext();
+    const ctx = useSøknadFlow();
 
     const canGoPrevious = ctx.canGoPrevious(stepId);
     const onPrevious = canGoPrevious ? () => ctx.navigateToPreviousStep(stepId) : undefined;

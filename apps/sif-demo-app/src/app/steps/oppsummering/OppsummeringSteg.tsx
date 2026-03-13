@@ -1,15 +1,17 @@
-import { useSøknadContext, useSøknadMellomlagring, useSøknadStore } from '@app/setup/hooks';
+import { useSøknadFlow, useSøknadMellomlagring, useSøknadStore } from '@app/setup/hooks';
 import { SøknadFormButtons } from '@app/setup/søknad/SøknadFormButtons';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { useSøknadFormValues } from '@sif/soknad/consistency';
 
 import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { getSøknadApiDataFromSøknad } from '../../utils/søknadsdataToSøknadApiData';
 
 export const OppsummeringSteg = () => {
-    const { søknadsdata, clearAllFormValues, setSøknadSendt } = useSøknadContext();
+    const { søknadsdata, setSøknadSendt } = useSøknadFlow();
+    const { clearSøknadFormValues } = useSøknadFormValues();
     const søker = useSøknadStore((s) => s.søknadState?.søker);
     const { slettMellomlagring } = useSøknadMellomlagring();
     const { isPending, mutateAsync } = useSendSøknad();
@@ -26,7 +28,7 @@ export const OppsummeringSteg = () => {
         try {
             await mutateAsync({} as any);
             await slettMellomlagring();
-            clearAllFormValues();
+            clearSøknadFormValues();
             setSøknadSendt();
         } catch (e) {
             alert(JSON.stringify(e));
