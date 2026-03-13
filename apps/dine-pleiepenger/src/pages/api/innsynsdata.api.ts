@@ -7,7 +7,7 @@ import { InnsynsdataDto } from '../../server/dto-schemas/innsynsdataDtoSchema';
 import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
 import { fetchSøker } from '../../server/fetchers/fetchSøker';
 import { prepApiError } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {

@@ -9,7 +9,7 @@ import { serverApiUtils } from '../../../../server/utils/serverApiUtils';
 import { isValidSaksnummer } from '../../../../server/utils/validatePathSegment';
 import { prepApiError } from '../../../../utils/apiUtils';
 import { Feature } from '../../../../utils/features';
-import { getLogger } from '../../../../utils/getLogCorrelationID';
+import { getLogger } from '../../../../utils/getLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const baseLogger = getLogger(req);

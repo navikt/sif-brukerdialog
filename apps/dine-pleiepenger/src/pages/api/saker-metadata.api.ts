@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {

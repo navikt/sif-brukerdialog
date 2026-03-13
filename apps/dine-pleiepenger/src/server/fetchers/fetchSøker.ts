@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextApiRequest } from 'next';
 
 import { getContextForApiHandler, serverResponseTransform } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 import { SøkerDto, søkerDtoSchema } from '../dto-schemas/søkerDtoSchema';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';

@@ -3,7 +3,7 @@ import { NextApiRequest } from 'next';
 
 import { innsendteSøknaderSchema, InnsendtSøknad } from '../../types';
 import { getContextForApiHandler, serverResponseTransform } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';

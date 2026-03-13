@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSøknader } from '../../server/fetchers/fetchSøknader';
 import { InnsendtSøknad } from '../../types';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 
 const opprettetSisteTreDager = (søknad: InnsendtSøknad): boolean => {
     return dayjs(søknad.opprettet).isAfter(dayjs().subtract(3, 'days'));

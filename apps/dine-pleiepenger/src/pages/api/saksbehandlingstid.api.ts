@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSaksbehandlingstid } from '../../server/fetchers/fetchSaksbehandlingstid';
 import { prepApiError } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {

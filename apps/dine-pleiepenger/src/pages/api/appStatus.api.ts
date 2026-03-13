@@ -7,7 +7,7 @@ import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { prepApiError } from '../../utils/apiUtils';
 import { browserEnv } from '../../utils/env';
 import { Feature } from '../../utils/features';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 import { ANALYTICS_APPLICATION_KEY } from '../_app.page';
 
 const sanityConfig: SanityConfig = {
