@@ -7,7 +7,7 @@ Rammeverket eier flytlogikk (state, steg, navigasjon, guards, consistency), mens
 ## Hva rammeverket løser
 
 - sentral søknadsstate
-- stegmodell med rekkefølge, inklusjon og fullfort-status
+- stegmodell med rekkefølge, inklusjon og fullført-status
 - navigasjon mellom steg
 - route-guard for gyldig steg
 - bevaring av usubmittede skjemaverdier
@@ -17,7 +17,7 @@ Rammeverket eier flytlogikk (state, steg, navigasjon, guards, consistency), mens
 ## Kjernekonsepter
 
 1. `StepConfig` og `stepOrder`
-   Definerer hvilke steg som finnes, hvilken route de har, om de er inkludert (`isIncluded`) og om de er fullfort (`isCompleted`).
+   Definerer hvilke steg som finnes, hvilken route de har, om de er inkludert (`isIncluded`) og om de er fullført (`isCompleted`).
 
 2. Store (`createSøknadStore`)
    Kilden til sannhet for flyten.
@@ -108,7 +108,7 @@ Vertsapplikasjon:
 
 ## Designvalg
 
-- Rammeverket er vendor-noytralt mot API/telemetri.
-- Rammeverket antar lineaer stegflyt basert pa `includedSteps`.
+- Rammeverket er vendor-nøytralt mot API/telemetri.
+- Rammeverket antar lineær stegflyt basert på `includedSteps`.
 - Usynlige steg fjernes fra flyten via `isIncluded`.
 - Progresjon beregnes fra `isCompleted`.

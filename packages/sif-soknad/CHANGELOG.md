@@ -1,4 +1,4 @@
-# @navikt/sif-soknad
+# @sif/soknad
 
 ## 0.0.1
 
