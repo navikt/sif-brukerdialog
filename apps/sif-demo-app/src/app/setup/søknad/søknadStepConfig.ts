@@ -1,7 +1,7 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { StepConfig } from '@sif/soknad/types';
 
-import { Søknadsdata } from '../types/Søknadsdata';
+import { Søknadsdata } from '../../types/Søknadsdata';
 
 export enum SøknadStepId {
     BOSTED = 'bosted',

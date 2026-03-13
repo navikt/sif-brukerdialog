@@ -1,9 +1,8 @@
+import { getAppEnv } from '@app/setup';
 import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { BodyShort, GuidePanel } from '@navikt/ds-react';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { SanityAppStatus, SanityAppStatusProps } from '@sif/soknad/components';
-
-import { getAppEnv } from './appEnv';
 
 type Props = Pick<SanityAppStatusProps, 'contentRenderer'> & { active: boolean };
 

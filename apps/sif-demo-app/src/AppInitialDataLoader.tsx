@@ -4,7 +4,7 @@ import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { useMemo } from 'react';
 
 import { ErrorPage } from './app/pages';
-import { søknadStepConfig } from './app/setup/søknadStepConfig';
+import { søknadStepConfig } from './app/setup/søknad/søknadStepConfig';
 import { Søknad } from './app/Søknad';
 import { MellomlagringMetaData, SøknadMellomlagring } from './app/types/Mellomlagring';
 

@@ -1,12 +1,12 @@
+import { useSøknadContext } from '@app/setup';
 import { StepPage } from '@sif/soknad/pages';
 import { getProgressSteps } from '@sif/soknad/utils';
 
-import { InconsistencyAlert } from '../components/inconsistency-alert/InconsistencyAlert';
-import { useSøknadContext } from '../context/søknadContext';
-import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
-import { useAppIntl } from '../i18n';
-import { getLenker } from '../lenker';
+import { InconsistencyAlert } from '../../components/inconsistency-alert/InconsistencyAlert';
+import { useAvbrytSøknad } from '../../hooks/useAvbrytSøknad';
+import { useSøknadMellomlagring } from '../../hooks/useSøknadMellomlagring';
+import { useAppIntl } from '../../i18n';
+import { getLenker } from '../../lenker';
 import { SøknadStepId, stepTitles } from './søknadStepConfig';
 
 interface Props {

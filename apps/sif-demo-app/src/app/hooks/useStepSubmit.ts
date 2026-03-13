@@ -1,6 +1,6 @@
+import { useSøknadContext } from '@app/setup';
 import { useCallback } from 'react';
 
-import { useSøknadContext } from '../context/søknadContext';
 import { Søknadsdata } from '../types/Søknadsdata';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
