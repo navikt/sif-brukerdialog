@@ -1,4 +1,3 @@
-export * from '../api/sendSøknad';
 export * from './AppErrorBoundary';
 export * from './AppSanityStatusChecker';
 export * from './initApiClients';

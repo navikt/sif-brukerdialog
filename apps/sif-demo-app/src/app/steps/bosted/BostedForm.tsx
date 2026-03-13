@@ -1,6 +1,6 @@
+import { SøknadFormButtons } from '@app/setup';
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { SøknadFormButtons } from '@søknad-setup';
 import { StepFormValues } from '@sif/soknad/types';
 
 import { SøknadStepId } from '../../config/søknadStepConfig';

@@ -1,6 +1,6 @@
+import { SøknadFormButtons, SøknadStep } from '@app/setup';
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { SøknadFormButtons, SøknadStep } from '@søknad-setup';
 
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/søknadContext';
@@ -19,8 +19,8 @@ export const OppsummeringSteg = () => {
         throw new Error('Søknadsdata mangler i oppsummering');
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const apiData = getSøknadApiDataFromSøknad({ søker, søknadsdata });
-    console.log(apiData);
 
     const onSubmit = async () => {
         try {

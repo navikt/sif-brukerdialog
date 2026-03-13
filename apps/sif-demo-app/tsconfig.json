@@ -5,9 +5,7 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
         "baseUrl": "./",
         "paths": {
-            "@app/*": ["src/app/*"],
-            "@søknad-setup": ["src/app/søknad-setup"],
-            "@søknad-setup/*": ["src/app/søknad-setup/*"]
+            "@app/*": ["src/app/*"]
         }
     },
     "exclude": ["node_modules", "dist", "**.js"],
