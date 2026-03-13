@@ -1,0 +1,1 @@
+export { createSøknadForm } from './createSøknadForm';
