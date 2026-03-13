@@ -28,6 +28,7 @@ import { innsynsdataClientSchema } from '../types/client-schemas/innsynsdataClie
 import { søkerClientSchema } from '../types/client-schemas/søkerClientSchema';
 import { browserEnv } from '../utils/env';
 import { Feature } from '../utils/features';
+import { logApiErrorToSentry } from '../utils/sentryApiErrorLogger';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import UnavailablePage from './unavailable.page';
 
@@ -37,6 +38,7 @@ const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url).then((res) => {
         const result = innsynsdataClientSchema.safeParse(res.data);
         if (!result.success) {
+            /** Logg til sentry zod parse feilen */
             Sentry.captureMessage('innsynsdataClientSchema parsing feilet', {
                 level: 'error',
                 extra: { issues: result.error.issues },
@@ -83,9 +85,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     }
 
     if (error || !data) {
-        if (!(axios.isAxiosError(error) && error.response?.status === 401)) {
-            Sentry.captureMessage('fetchInnsynsdata-failed', { level: 'error', extra: { error } });
-        }
+        logApiErrorToSentry(error, 'fetchInnsynsdata-failed', { ignore401: true });
         return (
             <EmptyPage>
                 <HentInnsynsdataFeilet error={error} />
