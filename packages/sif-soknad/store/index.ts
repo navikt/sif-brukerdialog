@@ -1,0 +1,1 @@
+export { createSøknadStore } from './createSøknadStore';

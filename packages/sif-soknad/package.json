@@ -1,0 +1,18 @@
+{
+    "name": "@sif/soknad",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest run"
+    }
+}
