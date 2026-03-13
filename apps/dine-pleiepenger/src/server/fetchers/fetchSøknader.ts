@@ -2,8 +2,8 @@ import axios from 'axios';
 import { NextApiRequest } from 'next';
 
 import { innsendteSøknaderSchema, InnsendtSøknad } from '../../types';
-import { getContextForApiHandler, serverResponseTransform } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getContextForApiHandler, prepApiError, serverResponseTransform } from '../../utils/apiUtils';
+import { getLogger } from '../../utils/getLogger';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
@@ -16,20 +16,22 @@ export const fetchSøknader = async (req: NextApiRequest, unparsed?: boolean): P
         'soknad',
         'application/json',
     );
-    const logger = getLogger(req);
+    const logger = getLogger(req).withContext({ operation: 'fetchSøknader' });
 
-    if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-        logger.info(`Unparsed, fetching raw data from ${url}`);
-        const response = await axios.get(url, { headers });
-        return response.data;
+    try {
+        if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
+            logger.info('Henter uparsed søknadsdata');
+            const response = await axios.get(url, { headers });
+            return response.data;
+        }
+
+        logger.info('Henter søknader fra upstream');
+        const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
+        const parsedData = innsendteSøknaderSchema.parse(response.data);
+        logger.info('Søknader hentet og validert', { antall: parsedData.length });
+        return parsedData;
+    } catch (error) {
+        logger.error('Feil ved henting av søknader', prepApiError(error));
+        throw error;
     }
-
-    logger.info(`Fetching søknader from url: ${url}`);
-    const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
-    logger.info(`Response-status from request: ${response.status}`);
-
-    logger.info(`Parser response data`);
-    const parsedData = innsendteSøknaderSchema.parse(response.data);
-    logger.info(`Søknader parsed`);
-    return parsedData;
 };

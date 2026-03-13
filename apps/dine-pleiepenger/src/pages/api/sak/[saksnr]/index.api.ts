@@ -1,5 +1,4 @@
 import { innsyn } from '@navikt/k9-sak-innsyn-api';
-import * as Sentry from '@sentry/nextjs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
@@ -7,9 +6,9 @@ import { fetchInntektsmeldinger } from '../../../../server/fetchers/fetchInntekt
 import { fetchSak } from '../../../../server/fetchers/fetchSak';
 import { serverApiUtils } from '../../../../server/utils/serverApiUtils';
 import { isValidSaksnummer } from '../../../../server/utils/validatePathSegment';
-import { prepApiError } from '../../../../utils/apiUtils';
 import { Feature } from '../../../../utils/features';
-import { getLogger } from '../../../../utils/getLogCorrelationID';
+import { getLogger } from '../../../../utils/getLogger';
+import { logApiErrorToSentry } from '../../../../utils/sentryApiErrorLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const baseLogger = getLogger(req);
@@ -17,7 +16,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const unparsed = req.query.unparsed === 'true';
 
     if (!isValidSaksnummer(saksnr)) {
-        baseLogger.error('Saksnummer mangler eller er ugyldig', { saksnr });
+        baseLogger.warn('Saksnummer mangler eller er ugyldig', { saksnr });
         return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
     }
 
@@ -57,25 +56,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         if (!sak) {
             logger.warn('Sak ikke funnet');
-            Sentry.setTag('sak.status', 'not_found');
             return res.status(404).json({ error: 'Sak ikke funnet' });
         }
 
-        Sentry.setTag('sak.status', 'success');
         return res.json({ sak, inntektsmeldinger });
     } catch (err) {
-        const errorDetails = prepApiError(err);
-        logger.error('Henting av saksdetaljer feilet', {
-            errorDetails: JSON.stringify(errorDetails),
-            errorType: err instanceof Error ? err.constructor.name : typeof err,
-        });
-
-        Sentry.setTag('sak.status', 'error');
-        Sentry.captureException(err, {
-            tags: { endpoint: 'hent-sak' },
-            extra: { errorDetails },
-        });
-
+        logger.error('Hent saksdetaljer feilet');
+        logApiErrorToSentry(err, 'hent-sak');
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     } finally {
         totalTimer();

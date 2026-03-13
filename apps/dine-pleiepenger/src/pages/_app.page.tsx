@@ -6,7 +6,6 @@ import { Box, Theme } from '@navikt/ds-react';
 import { configureLogger } from '@navikt/next-logger';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { AnalyticsProvider } from '@navikt/sif-common-analytics';
-import * as Sentry from '@sentry/nextjs';
 import axios, { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
 import { ReactElement } from 'react';
@@ -28,6 +27,8 @@ import { innsynsdataClientSchema } from '../types/client-schemas/innsynsdataClie
 import { søkerClientSchema } from '../types/client-schemas/søkerClientSchema';
 import { browserEnv } from '../utils/env';
 import { Feature } from '../utils/features';
+import { reportClientParseError } from '../utils/reportClientParseError';
+import { logApiErrorToSentry } from '../utils/sentryApiErrorLogger';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import UnavailablePage from './unavailable.page';
 
@@ -37,10 +38,7 @@ const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url).then((res) => {
         const result = innsynsdataClientSchema.safeParse(res.data);
         if (!result.success) {
-            Sentry.captureMessage('innsynsdataClientSchema parsing feilet', {
-                level: 'error',
-                extra: { issues: result.error.issues },
-            });
+            reportClientParseError(result.error, 'innsynsdataClientSchema');
             throw result.error;
         }
         return result.data;
@@ -48,7 +46,14 @@ const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
 
 const søkerIdFetcher = async (): Promise<string> => {
     const url = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soker`;
-    return axios.get<SøkerDto>(url).then((res) => søkerClientSchema.parse(res.data).fødselsnummer);
+    return axios.get<SøkerDto>(url).then((res) => {
+        const result = søkerClientSchema.safeParse(res.data);
+        if (!result.success) {
+            reportClientParseError(result.error, 'søkerClientSchema');
+            throw result.error;
+        }
+        return result.data.fødselsnummer;
+    });
 };
 
 if (Feature.FARO) {
@@ -83,9 +88,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     }
 
     if (error || !data) {
-        if (!(axios.isAxiosError(error) && error.response?.status === 401)) {
-            Sentry.captureMessage('fetchInnsynsdata-failed', { level: 'error', extra: { error } });
-        }
+        logApiErrorToSentry(error, 'fetchInnsynsdata-failed', { ignore401: true });
         return (
             <EmptyPage>
                 <HentInnsynsdataFeilet error={error} />
