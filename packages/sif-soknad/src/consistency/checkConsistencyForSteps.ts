@@ -11,6 +11,35 @@ interface CheckConsistencyForStepsParams {
     formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
 }
 
+const normalizeForComparison = (value: unknown): unknown => {
+    if (value === null || value === undefined) {
+        return undefined;
+    }
+
+    if (value instanceof Date) {
+        return value.toISOString();
+    }
+
+    if (Array.isArray(value)) {
+        return value.map((item) => normalizeForComparison(item));
+    }
+
+    if (typeof value === 'object') {
+        const entries = Object.entries(value as Record<string, unknown>)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([key, val]) => [key, normalizeForComparison(val)] as const)
+            .filter(([, val]) => val !== undefined);
+
+        return Object.fromEntries(entries);
+    }
+
+    return value;
+};
+
+const isEqualNormalized = (a: unknown, b: unknown): boolean => {
+    return JSON.stringify(normalizeForComparison(a)) === JSON.stringify(normalizeForComparison(b));
+};
+
 export const checkConsistencyForSteps = ({
     currentStepId,
     stepOrder,
@@ -30,7 +59,7 @@ export const checkConsistencyForSteps = ({
         const søknadsdata = getSøknadsdataForStep(stepId);
         const converted = formValuesToSøknadsdata(stepId, stepFormValues);
 
-        if (!søknadsdata || JSON.stringify(converted) !== JSON.stringify(søknadsdata)) {
+        if (!søknadsdata || !isEqualNormalized(converted, søknadsdata)) {
             return stepId;
         }
     }
