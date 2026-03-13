@@ -19,8 +19,9 @@ export const OppsummeringSteg = () => {
         throw new Error('Søknadsdata mangler i oppsummering');
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const apiData = getSøknadApiDataFromSøknad({ søker, søknadsdata });
+    // eslint-disable-next-line no-console
+    console.log(apiData);
 
     const onSubmit = async () => {
         try {
