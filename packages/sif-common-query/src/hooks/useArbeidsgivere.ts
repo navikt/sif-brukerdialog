@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { hentArbeidsgivere } from '../api/arbeidsgivereApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { Arbeidsgivere } from '../types/Arbeidsgivere';
+import { ApiError } from '../utils/errorHandlers';
 
 /**
  * Hook for å hente informasjon om arbeidsgivere fra k9-brukerdialog-prosessering-api
@@ -24,7 +25,7 @@ export const useArbeidsgivere = (
 ) => {
     const { enabled = true, ...queryOptions } = options || {};
 
-    return useQuery<Arbeidsgivere, Error>({
+    return useQuery<Arbeidsgivere, ApiError>({
         queryKey: [...sifCommonQueryKeys.arbeidsgivere, fraOgMed, tilOgMed, queryOptions],
         queryFn: () => hentArbeidsgivere(fraOgMed, tilOgMed, queryOptions),
         enabled,
