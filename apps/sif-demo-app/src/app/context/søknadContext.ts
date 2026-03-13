@@ -1,4 +1,5 @@
-import { createSøknadContext } from '../../rammeverk/context';
+import { createSøknadContext } from '@sif/soknad/context';
+
 import { søknadStepConfig, søknadStepOrder, stepTitles } from '../config/søknadStepConfig';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 import { Søknadsdata } from '../types/Søknadsdata';

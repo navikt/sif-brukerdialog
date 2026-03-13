@@ -1,4 +1,4 @@
-import { StepFormValues, StepSøknadsdata } from '@rammeverk/types';
+import { StepFormValues, StepSøknadsdata } from '@sif/soknad/types';
 
 import { SøknadStepId } from '../config/søknadStepConfig';
 import { BarnFormValues } from '../steps/barn/BarnForm';

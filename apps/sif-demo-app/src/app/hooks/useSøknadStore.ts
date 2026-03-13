@@ -1,4 +1,4 @@
-import { createSøknadStore } from '@rammeverk/store';
+import { createSøknadStore } from '@sif/soknad/store';
 
 import { SøknadState, søknadStepConfig, søknadStepOrder } from '../config/søknadStepConfig';
 import { Søknadsdata } from '../types/Søknadsdata';

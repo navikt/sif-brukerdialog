@@ -1,4 +1,4 @@
-import { BaseSøknadsdata } from '@rammeverk/types';
+import { BaseSøknadsdata } from '@sif/soknad/types';
 
 import { SøknadStepId } from '../config/søknadStepConfig';
 

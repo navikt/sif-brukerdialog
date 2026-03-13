@@ -27,6 +27,7 @@
         "@navikt/sif-common-query": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@sentry/react": "10.42.0",
+        "@sif/soknad": "workspace:*",
         "@tanstack/react-query": "5.90.21",
         "dayjs": "1.11.19",
         "react": "19.2.4",

@@ -5796,6 +5796,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@sentry/react": "npm:10.42.0"
     "@sif/eslint-config": "workspace:*"
+    "@sif/soknad": "workspace:*"
     "@tailwindcss/vite": "npm:4.2.1"
     "@tanstack/react-query": "npm:5.90.21"
     "@types/node": "npm:25.3.3"
@@ -9127,6 +9128,12 @@ __metadata:
     storybook: "npm:10.2.16"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.56.1"
+  languageName: unknown
+  linkType: soft
+
+"@sif/soknad@workspace:*, @sif/soknad@workspace:packages/sif-soknad":
+  version: 0.0.0-use.local
+  resolution: "@sif/soknad@workspace:packages/sif-soknad"
   languageName: unknown
   linkType: soft
 

@@ -1,5 +1,5 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
-import { StepConfig } from '@rammeverk/types';
+import { StepConfig } from '@sif/soknad/types';
 
 import { Søknadsdata } from '../types/Søknadsdata';
 

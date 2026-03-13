@@ -1,5 +1,5 @@
-import { StepPage } from '@rammeverk/pages';
-import { getProgressSteps } from '@rammeverk/utils';
+import { StepPage } from '@sif/soknad/pages';
+import { getProgressSteps } from '@sif/soknad/utils';
 
 import { SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/søknadContext';

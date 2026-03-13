@@ -1,5 +1,5 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
-import { Mellomlagring, SøknadFormValues } from '@rammeverk/types';
+import { Mellomlagring, SøknadFormValues } from '@sif/soknad/types';
 
 import { Søknadsdata } from './Søknadsdata';
 

@@ -1,7 +1,7 @@
 import { Box } from '@navikt/ds-react';
+import { InconsistentFormValuesMessage } from '@sif/soknad/consistency';
 import { useNavigate } from 'react-router-dom';
 
-import { InconsistentFormValuesMessage } from '../../../rammeverk/consistency';
 import { søknadStepConfig, SøknadStepId, stepTitles } from '../../config/søknadStepConfig';
 
 interface Props {

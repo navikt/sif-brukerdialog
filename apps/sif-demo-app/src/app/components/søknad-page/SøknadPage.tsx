@@ -1,4 +1,4 @@
-import { ApplicationPage } from '@rammeverk/pages';
+import { ApplicationPage } from '@sif/soknad/pages';
 
 interface Props {
     documentTitle?: string;

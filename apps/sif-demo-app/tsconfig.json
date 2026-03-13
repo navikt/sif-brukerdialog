@@ -5,10 +5,7 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
         "baseUrl": "./",
         "paths": {
-            "@rammeverk": ["src/rammeverk/index.ts"],
-            "@rammeverk/*": ["src/rammeverk/*"],
-            "@app/*": ["src/app/*"],
-            "@common/*": ["src/common/*"]
+            "@app/*": ["src/app/*"]
         }
     },
     "exclude": ["node_modules", "dist", "**.js"],

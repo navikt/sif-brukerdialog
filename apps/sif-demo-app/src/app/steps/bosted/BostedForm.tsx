@@ -1,6 +1,6 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { StepFormValues } from '@rammeverk/types';
+import { StepFormValues } from '@sif/soknad/types';
 
 import { SøknadStepId } from '../../config/søknadStepConfig';
 import { useSøknadForm } from '../../hooks/useSøknadForm';

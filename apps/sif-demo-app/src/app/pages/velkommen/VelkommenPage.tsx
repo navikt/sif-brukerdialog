@@ -1,5 +1,5 @@
 import { BodyLong, Link, VStack } from '@navikt/ds-react';
-import { StartPage } from '@rammeverk/pages';
+import { StartPage } from '@sif/soknad/pages';
 import { useNavigate } from 'react-router-dom';
 
 import { søknadStepConfig, søknadStepOrder } from '../../config/søknadStepConfig';
