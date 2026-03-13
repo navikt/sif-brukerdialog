@@ -1,4 +1,4 @@
-import { SøknadStepId } from '@app/setup';
+import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
 import { BaseSøknadsdata } from '@sif/soknad/types';
 
 export type BarnSøknadsdata = {

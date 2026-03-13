@@ -1,5 +1,6 @@
-import { SøknadState, søknadStepConfig, søknadStepOrder } from '@app/setup';
 import { createSøknadStore } from '@sif/soknad/store';
+
+import { SøknadState, søknadStepConfig, søknadStepOrder } from '../søknad/søknadStepConfig';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
 

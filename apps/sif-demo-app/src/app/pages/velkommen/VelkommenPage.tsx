@@ -1,10 +1,5 @@
-import {
-    søknadStepConfig,
-    søknadStepOrder,
-    useSøknadContext,
-    useSøknadMellomlagring,
-    useSøknadStore,
-} from '@app/setup';
+import { useSøknadContext, useSøknadMellomlagring, useSøknadStore } from '@app/setup/hooks';
+import { søknadStepConfig, søknadStepOrder } from '@app/setup/søknad/søknadStepConfig';
 import { BodyLong, Link, VStack } from '@navikt/ds-react';
 import { StartPage } from '@sif/soknad/pages';
 import { useNavigate } from 'react-router-dom';

@@ -1,6 +1,6 @@
 import './sentry/instrument'; // Must be first import
 
-import { AppErrorBoundary } from '@app/setup';
+import { AppErrorBoundary } from '@app/setup/wrappers/AppErrorBoundary';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { reactErrorHandler } from '@sentry/react';
 import { StrictMode } from 'react';

@@ -1,5 +1,8 @@
-import { useAvbrytSøknad, useSøknadContext, useSøknadMellomlagring } from '@app/setup';
 import { Box } from '@navikt/ds-react';
+
+import { useSøknadContext } from '../context/søknadContext';
+import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
+import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { InconsistentFormValuesMessage } from '@sif/soknad/consistency';
 import { StepPage } from '@sif/soknad/pages';
 import { getProgressSteps } from '@sif/soknad/utils';

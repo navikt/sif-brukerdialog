@@ -1,3 +1,4 @@
+export * from '../context/søknadContext';
 export * from './useAvbrytSøknad';
 export * from './useSøknadForm';
 export * from './useSøknadMellomlagring';

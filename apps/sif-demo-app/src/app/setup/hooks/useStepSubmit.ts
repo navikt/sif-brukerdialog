@@ -1,7 +1,7 @@
-import { useSøknadContext } from '@app/setup';
 import { useCallback } from 'react';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
+import { useSøknadContext } from '../context/søknadContext';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
 interface UseStepSubmitOptions<TFormValues, TStepSøknadsdata> {

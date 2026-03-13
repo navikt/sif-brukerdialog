@@ -1,5 +1,6 @@
-import { useSøknadContext } from '@app/setup';
 import { useMemo } from 'react';
+
+import { useSøknadContext } from '../context/søknadContext';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
 

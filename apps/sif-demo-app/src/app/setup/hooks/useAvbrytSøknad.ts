@@ -1,5 +1,6 @@
-import { useSøknadContext } from '@app/setup';
 import { useCallback } from 'react';
+
+import { useSøknadContext } from '../context/søknadContext';
 import { useNavigate } from 'react-router-dom';
 
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
