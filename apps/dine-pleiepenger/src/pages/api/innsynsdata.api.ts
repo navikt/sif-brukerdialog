@@ -11,25 +11,16 @@ import { getLogger } from '../../utils/getLogger';
 import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const logger = getLogger(req);
-    logger.info(`Henter innsynsdata`);
+    const logger = getLogger(req).withContext({ operation: 'innsynsdata' });
 
     try {
         const unparsed = req.query.unparsed === 'true';
 
-        // Hent søkerinformasjon
         const søker = await fetchSøker(req, unparsed);
-        logger.info(`Hentet søkerinformasjon`);
-
-        // Hent oversikt over saker
         const sakerMetadata = await fetchSakerMetadata(req, unparsed);
-        logger.info(`Hentet metadata`);
-
-        // Hent appstatus som sier om appen er tilgjengelig eller ikke
         const appStatus = await fetchAppStatus();
-        logger.info(`Hentet appstatus`);
 
-        logger.info(`Hentet innsynsdata. Antall saker: ${sakerMetadata.length}`);
+        logger.info('Innsynsdata hentet', { antallSaker: sakerMetadata.length });
 
         const innsynsdata: InnsynsdataDto = {
             appStatus,
@@ -39,8 +30,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         };
         return res.json(innsynsdata);
     } catch (err) {
-        logger.error(`Hent innsynsdata feilet`, prepApiError(err));
-
         Sentry.setTag('innsynsdata.status', 'error');
         Sentry.captureException(err, {
             tags: { endpoint: 'innsynsdata' },

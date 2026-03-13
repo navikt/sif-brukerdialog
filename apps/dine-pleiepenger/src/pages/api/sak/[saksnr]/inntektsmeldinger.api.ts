@@ -13,7 +13,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         if (!isValidSaksnummer(saksnr)) {
             const logger = getLogger(req);
-            logger.error(`Kunne ikke hente inntektsmelding for sak`);
+            logger.warn('Ugyldig saksnummer i forespørsel', { saksnr });
             return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
         }
 
@@ -21,9 +21,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const data = await fetchInntektsmeldinger(req, saksnr, unparsed);
         return res.send(data);
     } catch (err) {
-        const logger = getLogger(req);
-        logger.error(`Hent inntektsmeldinger feilet`, prepApiError(err));
-
         Sentry.captureException(err, {
             tags: { endpoint: 'inntektsmeldinger.api' },
             extra: { errorDetails: prepApiError(err) },
