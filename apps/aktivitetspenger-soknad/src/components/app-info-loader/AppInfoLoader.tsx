@@ -10,7 +10,7 @@ import { logFaroError } from '../../utils/faroUtils';
 
 const AppInfoLoader = () => {
     const søker = useSøker();
-    const { logApiErrorToAnalytics } = useAnalyticsInstance();
+    const { logApiError } = useAnalyticsInstance();
 
     const isLoading = søker.isLoading;
     const isError = søker.isError;
@@ -21,7 +21,7 @@ const AppInfoLoader = () => {
 
     if (isError) {
         const { error } = søker;
-        logApiErrorToAnalytics(ApiErrorKey.oppstartsinfo, { error });
+        logApiError(ApiErrorKey.oppstartsinfo, { error });
 
         if (isAxiosError(error) && error.response?.status === 403) {
             return <NoAccessPage tittelIntlKey="application.title" />;
@@ -30,7 +30,7 @@ const AppInfoLoader = () => {
     }
 
     if (!søker.data) {
-        logApiErrorToAnalytics(ApiErrorKey.oppstartsinfo, { info: 'Ingen data lastet' });
+        logApiError(ApiErrorKey.oppstartsinfo, { info: 'Ingen data lastet' });
         logFaroError(
             'AppInfoLoader.ManglendeData',
             JSON.stringify({

@@ -1,5 +1,6 @@
-import { faro, LogLevel } from '@grafana/faro-web-sdk';
+/* eslint-disable no-console */
+const ERROR_PREFIX = 'AKTIVITETSPENGER_ERROR';
 
 export const logFaroError = (title: string, error?: string) => {
-    faro.api?.pushLog([title, error ?? ''], { level: LogLevel.ERROR });
+    console.error(`${ERROR_PREFIX} ${title}`, error);
 };

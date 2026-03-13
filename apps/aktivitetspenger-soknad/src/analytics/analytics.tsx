@@ -79,7 +79,7 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
         });
     }
 
-    async function logApiErrorToAnalytics(error: ApiErrorKey, details?: EventProperties) {
+    async function logApiError(error: ApiErrorKey, details?: EventProperties) {
         return logEvent(AnalyticsEvents.apiError, {
             error,
             details,
@@ -96,6 +96,6 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
         logSkjemaFeilet,
         logHendelse,
         logInfo,
-        logApiErrorToAnalytics,
+        logApiError,
     };
 });

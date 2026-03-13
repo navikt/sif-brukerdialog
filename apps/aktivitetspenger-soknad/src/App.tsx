@@ -21,7 +21,6 @@ import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import { getAppEnv } from './utils/appEnv';
-import { logErrorToFaro } from './utils/errorLogger';
 import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
 
@@ -58,7 +57,7 @@ function App() {
     };
 
     return (
-        <ErrorBoundary fallback={<AppErrorFallback />} onError={logErrorToFaro}>
+        <ErrorBoundary fallback={<AppErrorFallback />}>
             <AppIntlMessageProvider>
                 <UxSignalsLoaderProvider>
                     <AppStatusWrapper

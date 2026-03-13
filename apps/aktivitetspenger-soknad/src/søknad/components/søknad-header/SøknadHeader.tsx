@@ -14,7 +14,7 @@ const SøknadHeader = () => {
                 <Show above="sm">
                     <ApplicationPictogram />
                 </Show>
-                <VStack gap="space-16">
+                <VStack gap="space-4">
                     <Heading level="1" size="xlarge">
                         <AppText id="søknad.tittel.shy" />
                     </Heading>
