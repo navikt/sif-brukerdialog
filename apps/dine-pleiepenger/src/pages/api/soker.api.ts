@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSøker } from '../../server/fetchers/fetchSøker';
+import { getLogger } from '../../utils/getLogger';
 import { logApiErrorToSentry } from '../../utils/sentryApiErrorLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -9,7 +10,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const unparsed = req.query.unparsed === 'true';
         return res.send(await fetchSøker(req, unparsed));
     } catch (err) {
-        // Feillogging til nav-logs skjer i fetcherne
+        getLogger(req).error('Hent søker feilet');
         logApiErrorToSentry(err, 'soker');
         return res.status(500).json({ error: 'Kunne ikke hente søker' });
     }

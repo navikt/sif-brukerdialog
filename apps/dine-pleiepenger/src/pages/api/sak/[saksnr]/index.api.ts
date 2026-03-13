@@ -61,7 +61,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         return res.json({ sak, inntektsmeldinger });
     } catch (err) {
-        // Feillogging til nav-logs skjer i fetcherne
+        logger.error('Hent saksdetaljer feilet');
         logApiErrorToSentry(err, 'hent-sak');
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     } finally {

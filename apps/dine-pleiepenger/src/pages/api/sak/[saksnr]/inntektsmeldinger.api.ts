@@ -20,7 +20,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const data = await fetchInntektsmeldinger(req, saksnr, unparsed);
         return res.send(data);
     } catch (err) {
-        // Feillogging til nav-logs skjer i fetcherne
+        getLogger(req).error('Hent inntektsmeldinger feilet');
         logApiErrorToSentry(err, 'inntektsmeldinger');
         return res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
     }

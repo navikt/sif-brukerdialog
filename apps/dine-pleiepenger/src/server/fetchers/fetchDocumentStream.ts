@@ -21,7 +21,9 @@ export async function fetchDocumentStream(
         const response = await fetch(url, { headers });
 
         if (!response.ok) {
-            throw new Error(`Unexpected response fetching PDF: ${response.statusText}`);
+            throw new Error(
+                `Unexpected response fetching PDF (status ${response.status} ${response.statusText}) for path ${safePath}`,
+            );
         }
 
         if (!response.body) {

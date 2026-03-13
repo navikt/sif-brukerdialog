@@ -29,16 +29,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         };
         return res.json(innsynsdata);
     } catch (err) {
-        // Feillogging til nav-logs skjer i fetcherne
         logApiErrorToSentry(err, 'innsynsdata');
-
         if (
             isAxiosError(err) &&
             (err.response?.status === HttpStatusCode.Forbidden ||
                 err.response?.status === HttpStatusCode.UnavailableForLegalReasons)
         ) {
+            logger.warn('403 ikke tilgang');
             return res.status(403).json({ error: 'Ikke tilgang' });
         } else {
+            logger.error('Hent innsynsdata feilet');
             return res.status(500).json({ error: 'Kunne ikke hente innsynsdata' });
         }
     }
