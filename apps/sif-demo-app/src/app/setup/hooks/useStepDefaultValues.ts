@@ -1,8 +1,7 @@
 import { useMemo } from 'react';
 
-import { useSøknadContext } from '../context/søknadContext';
-
 import { Søknadsdata } from '../../types/Søknadsdata';
+import { useSøknadContext } from '../context/søknadContext';
 
 interface UseStepDefaultValuesOptions<TFormValues, TStepSøknadsdata> {
     stepId: string;

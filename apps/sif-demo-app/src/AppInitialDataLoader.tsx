@@ -1,11 +1,10 @@
 import { useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@navikt/sif-common-query';
-
-import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './app/setup/constants';
-import { søknadStepConfig } from './app/setup/søknad/søknadStepConfig';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { useMemo } from 'react';
 
 import { ErrorPage } from './app/pages';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './app/setup/constants';
+import { søknadStepConfig } from './app/setup/søknad/søknadStepConfig';
 import { Søknad } from './app/Søknad';
 import { MellomlagringMetaData, SøknadMellomlagring } from './app/types/Mellomlagring';
 

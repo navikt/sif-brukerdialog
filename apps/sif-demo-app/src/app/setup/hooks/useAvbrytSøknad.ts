@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
-
-import { useSøknadContext } from '../context/søknadContext';
 import { useNavigate } from 'react-router-dom';
 
+import { useSøknadContext } from '../context/søknadContext';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
 export const useAvbrytSøknad = () => {
