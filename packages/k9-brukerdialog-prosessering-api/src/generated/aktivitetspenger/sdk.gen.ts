@@ -2,10 +2,65 @@
 
 import { type Client, formDataBodySerializer, type Options as Options2, type TDataShape } from './client';
 import { client } from './client.gen';
-import type { CreateMellomlagringData, CreateMellomlagringErrors, CreateMellomlagringResponses, DeleteMellomlagringData, DeleteMellomlagringErrors, DeleteMellomlagringResponses, GetMellomlagringData, GetMellomlagringErrors, GetMellomlagringResponses, HentArbeidsgivereData, HentArbeidsgivereErrors, HentArbeidsgivereResponses, HentBarnData, HentBarnErrors, HentBarnResponses, HentSøkerData, HentSøkerErrors, HentSøkerResponses, HentVedleggData, HentVedleggErrors, HentVedleggResponses, InnsendingAktivitetspengersøknadData, InnsendingAktivitetspengersøknadErrors, InnsendingAktivitetspengersøknadResponses, LagreVedleggData, LagreVedleggErrors, LagreVedleggResponses, SlettVedleggData, SlettVedleggErrors, SlettVedleggResponses, UpdateMellomlagringData, UpdateMellomlagringErrors, UpdateMellomlagringResponses } from './types.gen';
-import { zCreateMellomlagringData, zDeleteMellomlagringData, zGetMellomlagringData, zGetMellomlagringResponse, zHentArbeidsgivereData, zHentArbeidsgivereResponse, zHentBarnData, zHentBarnResponse, zHentSøkerData, zHentSøkerResponse, zHentVedleggData, zHentVedleggResponse, zInnsendingAktivitetspengersøknadData, zLagreVedleggData, zSlettVedleggData, zSlettVedleggResponse, zUpdateMellomlagringData } from './zod.gen';
+import type {
+    CreateMellomlagringData,
+    CreateMellomlagringErrors,
+    CreateMellomlagringResponses,
+    DeleteMellomlagringData,
+    DeleteMellomlagringErrors,
+    DeleteMellomlagringResponses,
+    GetMellomlagringData,
+    GetMellomlagringErrors,
+    GetMellomlagringResponses,
+    HentArbeidsgivereData,
+    HentArbeidsgivereErrors,
+    HentArbeidsgivereResponses,
+    HentBarnData,
+    HentBarnErrors,
+    HentBarnResponses,
+    HentSøkerData,
+    HentSøkerErrors,
+    HentSøkerResponses,
+    HentVedleggData,
+    HentVedleggErrors,
+    HentVedleggResponses,
+    InnsendingAktivitetspengersøknadData,
+    InnsendingAktivitetspengersøknadErrors,
+    InnsendingAktivitetspengersøknadResponses,
+    LagreVedleggData,
+    LagreVedleggErrors,
+    LagreVedleggResponses,
+    SlettVedleggData,
+    SlettVedleggErrors,
+    SlettVedleggResponses,
+    UpdateMellomlagringData,
+    UpdateMellomlagringErrors,
+    UpdateMellomlagringResponses,
+} from './types.gen';
+import {
+    zCreateMellomlagringData,
+    zDeleteMellomlagringData,
+    zGetMellomlagringData,
+    zGetMellomlagringResponse,
+    zHentArbeidsgivereData,
+    zHentArbeidsgivereResponse,
+    zHentBarnData,
+    zHentBarnResponse,
+    zHentSøkerData,
+    zHentSøkerResponse,
+    zHentVedleggData,
+    zHentVedleggResponse,
+    zInnsendingAktivitetspengersøknadData,
+    zLagreVedleggData,
+    zSlettVedleggData,
+    zSlettVedleggResponse,
+    zUpdateMellomlagringData,
+} from './zod.gen';
 
-export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
+export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<
+    TData,
+    ThrowOnError
+> & {
     /**
      * You can provide a client instance returned by `createClient()` instead of
      * individual options. This might be also useful if you want to implement a
@@ -20,27 +75,35 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 };
 
 export class MellomlagringController {
-    public static deleteMellomlagring<ThrowOnError extends boolean = true>(options: Options<DeleteMellomlagringData, ThrowOnError>) {
-        return (options.client ?? client).delete<DeleteMellomlagringResponses, DeleteMellomlagringErrors, ThrowOnError>({
-            requestValidator: async (data) => await zDeleteMellomlagringData.parseAsync(data),
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/mellomlagring/{ytelse}',
-            ...options
-        });
+    public static deleteMellomlagring<ThrowOnError extends boolean = true>(
+        options: Options<DeleteMellomlagringData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).delete<DeleteMellomlagringResponses, DeleteMellomlagringErrors, ThrowOnError>(
+            {
+                requestValidator: async (data) => await zDeleteMellomlagringData.parseAsync(data),
+                security: [{ scheme: 'bearer', type: 'http' }],
+                url: '/mellomlagring/{ytelse}',
+                ...options,
+            },
+        );
     }
-    
-    public static getMellomlagring<ThrowOnError extends boolean = true>(options: Options<GetMellomlagringData, ThrowOnError>) {
+
+    public static getMellomlagring<ThrowOnError extends boolean = true>(
+        options: Options<GetMellomlagringData, ThrowOnError>,
+    ) {
         return (options.client ?? client).get<GetMellomlagringResponses, GetMellomlagringErrors, ThrowOnError>({
             requestValidator: async (data) => await zGetMellomlagringData.parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zGetMellomlagringResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/mellomlagring/{ytelse}',
-            ...options
+            ...options,
         });
     }
-    
-    public static createMellomlagring<ThrowOnError extends boolean = true>(options: Options<CreateMellomlagringData, ThrowOnError>) {
+
+    public static createMellomlagring<ThrowOnError extends boolean = true>(
+        options: Options<CreateMellomlagringData, ThrowOnError>,
+    ) {
         return (options.client ?? client).post<CreateMellomlagringResponses, CreateMellomlagringErrors, ThrowOnError>({
             requestValidator: async (data) => await zCreateMellomlagringData.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
@@ -48,12 +111,14 @@ export class MellomlagringController {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers
-            }
+                ...options.headers,
+            },
         });
     }
-    
-    public static updateMellomlagring<ThrowOnError extends boolean = true>(options: Options<UpdateMellomlagringData, ThrowOnError>) {
+
+    public static updateMellomlagring<ThrowOnError extends boolean = true>(
+        options: Options<UpdateMellomlagringData, ThrowOnError>,
+    ) {
         return (options.client ?? client).put<UpdateMellomlagringResponses, UpdateMellomlagringErrors, ThrowOnError>({
             requestValidator: async (data) => await zUpdateMellomlagringData.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
@@ -61,8 +126,8 @@ export class MellomlagringController {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers
-            }
+                ...options.headers,
+            },
         });
     }
 }
@@ -77,43 +142,49 @@ export class VedleggController {
             ...options,
             headers: {
                 'Content-Type': null,
-                ...options?.headers
-            }
+                ...options?.headers,
+            },
         });
     }
-    
+
     public static slettVedlegg<ThrowOnError extends boolean = true>(options: Options<SlettVedleggData, ThrowOnError>) {
         return (options.client ?? client).delete<SlettVedleggResponses, SlettVedleggErrors, ThrowOnError>({
             requestValidator: async (data) => await zSlettVedleggData.parseAsync(data),
             responseValidator: async (data) => await zSlettVedleggResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/vedlegg/{vedleggId}',
-            ...options
+            ...options,
         });
     }
-    
+
     public static hentVedlegg<ThrowOnError extends boolean = true>(options: Options<HentVedleggData, ThrowOnError>) {
         return (options.client ?? client).get<HentVedleggResponses, HentVedleggErrors, ThrowOnError>({
             requestValidator: async (data) => await zHentVedleggData.parseAsync(data),
             responseValidator: async (data) => await zHentVedleggResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/vedlegg/{vedleggId}',
-            ...options
+            ...options,
         });
     }
 }
 
 export class AktivitetspengerController {
-    public static innsendingAktivitetspengersøknad<ThrowOnError extends boolean = true>(options: Options<InnsendingAktivitetspengersøknadData, ThrowOnError>) {
-        return (options.client ?? client).post<InnsendingAktivitetspengersøknadResponses, InnsendingAktivitetspengersøknadErrors, ThrowOnError>({
+    public static innsendingAktivitetspengersøknad<ThrowOnError extends boolean = true>(
+        options: Options<InnsendingAktivitetspengersøknadData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).post<
+            InnsendingAktivitetspengersøknadResponses,
+            InnsendingAktivitetspengersøknadErrors,
+            ThrowOnError
+        >({
             requestValidator: async (data) => await zInnsendingAktivitetspengersøknadData.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/aktivitetspenger/soknad/innsending',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers
-            }
+                ...options.headers,
+            },
         });
     }
 }
@@ -125,7 +196,7 @@ export class SØkerController {
             responseValidator: async (data) => await zHentSøkerResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/oppslag/soker',
-            ...options
+            ...options,
         });
     }
 }
@@ -137,19 +208,21 @@ export class BarnController {
             responseValidator: async (data) => await zHentBarnResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/oppslag/barn',
-            ...options
+            ...options,
         });
     }
 }
 
 export class ArbeidsgivereController {
-    public static hentArbeidsgivere<ThrowOnError extends boolean = true>(options: Options<HentArbeidsgivereData, ThrowOnError>) {
+    public static hentArbeidsgivere<ThrowOnError extends boolean = true>(
+        options: Options<HentArbeidsgivereData, ThrowOnError>,
+    ) {
         return (options.client ?? client).get<HentArbeidsgivereResponses, HentArbeidsgivereErrors, ThrowOnError>({
             requestValidator: async (data) => await zHentArbeidsgivereData.parseAsync(data),
             responseValidator: async (data) => await zHentArbeidsgivereResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/oppslag/arbeidsgiver',
-            ...options
+            ...options,
         });
     }
 }
