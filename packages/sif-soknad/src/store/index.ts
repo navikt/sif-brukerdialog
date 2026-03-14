@@ -1,1 +1,1 @@
-export { createSøknadStore as store } from './createSøknadStore';
+export { createSøknadStore } from './createSøknadStore';
