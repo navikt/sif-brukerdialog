@@ -1,186 +1,402 @@
-# sif-soknad
+# @sif/soknad
 
-Et lite rammeverk for å bygge stegbaserte søknader i React.\
-Pakken håndterer flyt, navigasjon, state og konsistens mellom steg --
-mens selve søknadsdomenet ligger i applikasjonen.
+Et internt React-rammeverk for stegbaserte søknader.
 
-## Hva rammeverket gjør
+Rammeverket tar ansvar for flyt, navigasjon, state, route-guarding og konsistens mellom draft-skjemadata og lagrede søknadsdata. Applikasjonen eier domenemodell, validering, mellomlagring/API og stegspesifikk mapping.
 
-Rammeverket tar ansvar for:
+## Pakke og imports
 
-- navigasjon mellom steg
-- hvilke steg som er inkludert i søknaden
-- routing guards
-- lagring av søknadsdata
-- konsistens mellom skjema og lagrede data
-- grunnleggende sider og komponenter
-
-Applikasjonen tar ansvar for:
-
-- domenemodeller
-- validering
-- API‑kall
-- definisjon av steg
-
----
-
-# Installasjon
-
-Pakke brukes vanligvis i et monorepo.
+Pakken brukes vanligvis i monorepo via subpath-imports:
 
 ```ts
-import { createSøknadStore } from 'sif-soknad/store';
+import { createSøknadStore } from '@sif/soknad/store';
+import { createSøknadContext } from '@sif/soknad/context';
+import { createSøknadForm } from '@sif/soknad/hooks';
+import { StepRouteGuard } from '@sif/soknad/navigation';
 ```
 
----
-
-# Hovedkonsepter
-
-## StepConfig
-
-Søknaden defineres gjennom en stegkonfigurasjon.
+Root-exporten finnes også:
 
 ```ts
-const stepConfig = {
-    aboutYou: {
-        route: 'about-you',
-        isCompleted: (data) => Boolean(data.aboutYou),
+import { store, context, hooks, navigation } from '@sif/soknad';
+```
+
+Anbefalt praksis er å bruke subpath-imports når du vet hvilken del av rammeverket du trenger.
+
+## Ansvarsdeling
+
+### Rammeverket eier
+
+- beregning av inkluderte steg
+- neste/forrige steg
+- Zustand-store for flytstate
+- current step
+- route guard for steg-ruter
+- draft-skjemadata mellom steg
+- consistency-sjekk mellom draft og lagrede data
+
+### Applikasjonen eier
+
+- domenetyper for søknaden
+- steg-ID-er og stegtekster
+- validering
+- mapping fra form values til søknadsdata
+- uthenting av stegspesifikke søknadsdata
+- mellomlagring / lagring / innsending
+- sider og ruter i appen
+
+## Kjernebegreper
+
+### `StepId`
+
+Union-type for steg i søknaden.
+
+```ts
+type StepId = 'velkommen' | 'barn' | 'oppsummering';
+```
+
+### `StepConfig`
+
+Definerer alle steg i flyten.
+
+```ts
+import type { StepConfig } from '@sif/soknad/types';
+
+type Søknadsdata = {
+    harBarn?: boolean;
+};
+
+const stepConfig: StepConfig<StepId, Søknadsdata> = {
+    velkommen: {
+        id: 'velkommen',
+        route: 'velkommen',
+    },
+    barn: {
+        id: 'barn',
+        route: 'barn',
+        isIncluded: (data) => data.harBarn === true,
+    },
+    oppsummering: {
+        id: 'oppsummering',
+        route: 'oppsummering',
+        isCompleted: (data) => data.harBarn !== undefined,
     },
 };
 ```
 
-Hvert steg kan definere:
+Felter per steg:
 
-felt beskrivelse
+- `id`: intern identifikator
+- `route`: URL-segment. Anbefalt format er uten ledende eller trailing slash, for eksempel `barn`
+- `isIncluded`: om steget er med i flyten
+- `isCompleted`: om steget er ferdig
 
----
+`route` normaliseres internt, så både `barn` og `/barn` fungerer, men bruk segment uten slash som standard.
 
-route URL-segment uten ledende slash (f.eks. start)
-isCompleted bestemmer om steget er ferdig
-isIncluded bestemmer om steget skal vises
-nextStep valgfri dynamisk navigasjon
+### `stepOrder`
 
----
+Den lineære rekkefølgen i søknaden.
+
+```ts
+const stepOrder: StepId[] = ['velkommen', 'barn', 'oppsummering'];
+```
 
 ## Store
 
-State for søknaden ligger i en Zustand‑store.
+`createSøknadStore` oppretter en Zustand-store for flytstate.
 
 ```ts
-createSøknadStore({
-    initialData,
-    stepConfig,
+import { createSøknadStore } from '@sif/soknad/store';
+
+type Søknadsdata = {
+    harForståttRettigheterOgPlikter?: boolean;
+    harBarn?: boolean;
+};
+
+type AppState = {
+    søknadsdata: Søknadsdata;
+    locale: 'nb';
+};
+
+export const useSøknadStore = createSøknadStore<AppState, Søknadsdata, StepId>({
     stepOrder,
+    stepConfig,
 });
 ```
 
-Store inneholder blant annet:
+Store håndterer blant annet:
 
-- søknadsdata
-- status for steg
-- navigasjonsinfo
+- `søknadState`
+- `currentStepId`
+- `includedSteps`
+- `init(...)`
+- `setSøknadsdata(...)`
+- `setCurrentStep(...)`
+- `resetSøknad()`
+- `startSøknad(...)`
+- `setSøknadSendt()`
 
----
+## Context
 
-# Context
-
-`SøknadContext` kobler sammen:
-
-- store
-- navigasjon
-- stegkonfigurasjon
-
-```tsx
-<SøknadContext.Provider value={context}>{children}</SøknadContext.Provider>
-```
-
-Hooks kan deretter bruke denne contexten.
-
----
-
-# Navigasjon
-
-Navigasjon håndteres via `useStepNavigation`.
+`createSøknadContext` binder sammen store, navigasjon, consistency og draft-skjemadata.
 
 ```ts
-const { goToNextStep, goToPreviousStep } = useStepNavigation();
+import { createSøknadContext } from '@sif/soknad/context';
+
+const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknadsdata, StepId>({
+    useStore: useSøknadStore,
+    stepConfig,
+    stepOrder,
+    stepTitles: {
+        velkommen: 'Velkommen',
+        barn: 'Barn',
+        oppsummering: 'Oppsummering',
+    },
+    basePath: '/soknad',
+    formValuesToSøknadsdata: (stepId, formValues) => {
+        switch (stepId) {
+            case 'barn':
+                return { harBarn: Boolean(formValues.harBarn) };
+            default:
+                return undefined;
+        }
+    },
+    getSøknadsdataForStep: (stepId, søknadsdata) => {
+        switch (stepId) {
+            case 'barn':
+                return { harBarn: søknadsdata?.harBarn };
+            default:
+                return undefined;
+        }
+    },
+});
 ```
 
-Routing beskyttes med:
+### Hva `useSøknadFlow()` gir deg
 
-    StepRouteGuard
+- config: `stepConfig`, `stepOrder`, `stepTitles`, `basePath`
+- state: `søknadsdata`, `currentStepId`, `includedSteps`
+- actions: `setSøknadsdata`, `resetSøknad`, `startSøknad`, `setSøknadSendt`
+- navigasjon: `navigateToStep`, `navigateToNextStep`, `navigateToPreviousStep`, `canGoNext`, `canGoPrevious`
+- consistency: `checkConsistency`
+- submit-helper: `commitStep`
 
-Dette sikrer at brukeren ikke hopper over steg.
+## Skjema per steg
 
----
+`createSøknadForm` lager en hook rundt `react-hook-form` og lagrer draft-formvalues ved unmount.
 
-# Konsistens mellom skjema og data
+```ts
+import { createSøknadForm } from '@sif/soknad/hooks';
 
-Rammeverket kan sjekke at skjemaet og lagrede data fortsatt stemmer.
+const useSøknadForm = createSøknadForm<StepId>();
 
-Dette brukes til å oppdage når:
+type BarnFormValues = {
+    harBarn: boolean;
+};
 
-- brukeren går tilbake og endrer data
-- senere steg blir ugyldige
+export const BarnStep = () => {
+    const form = useSøknadForm<BarnFormValues>('barn', { harBarn: false });
+    return null;
+};
+```
 
-Relevant kode ligger i:
+## Draft-formvalues og livssyklus
 
-    src/consistency
+Rammeverket holder på usubmitttede skjemadata i `SøknadFormValuesContext`.
 
-Hovedfunksjon:
+Typisk livssyklus:
 
-    checkConsistencyForSteps
+1. bruker fyller ut et steg
+2. komponenten unmountes uten submit
+3. draft-formvalues lagres
+4. ved submit committes data til søknadsdata
+5. draft for steget ryddes
 
----
+`commitStep(stepId, data)` i `useSøknadFlow()` gjør dette:
 
-# Viktige mapper
+- lagrer data i store
+- rydder draft-formvalues for steget
 
-    src/
-      components/    UI‑komponenter
-      consistency/   konsistens‑sjekker
-      context/       SøknadContext
-      hooks/         hooks for forms og navigasjon
-      navigation/    routing og step guards
-      pages/         grunnsider
-      store/         Zustand store
-      types/         typer
-      utils/         hjelpefunksjoner
+Applikasjonen er fortsatt ansvarlig for lagring/mellomlagring og navigasjon rundt submit.
 
----
+Eksempel:
 
-# Typisk flyt
+```ts
+const flow = useSøknadFlow();
 
-1.  Definer `StepConfig`
-2.  Opprett `SøknadStore`
-3.  Sett opp `SøknadContext`
-4.  Lag sider for hvert steg
-5.  Bruk `useStepNavigation` for å navigere
+const onSubmit = async (data: BarnFormValues) => {
+    flow.commitStep('barn', { harBarn: data.harBarn });
+    await lagreSøknad();
+    flow.navigateToNextStep('barn');
+};
+```
 
----
+Ved avbryt/reset bør appen også rydde draft-formvalues:
 
-# Designprinsipper
+```ts
+const { resetSøknad } = useSøknadFlow();
+const { clearSøknadFormValues } = useSøknadFormValues();
 
-Rammeverket forsøker å:
+const avbryt = () => {
+    resetSøknad();
+    clearSøknadFormValues();
+};
+```
 
-- holde domenelogikk i appen
-- holde flytlogikk i rammeverket
-- gjøre steg deklarative
-- unngå skjult state
+## Navigasjon
 
----
+`useStepNavigation` brukes internt av contexten, men kan også brukes direkte ved behov.
 
-# Testing
+Route-guarding gjøres med `StepRouteGuard`.
 
-Ren flytlogikk ligger i utils og kan testes isolert.
+```tsx
+import { Outlet } from 'react-router-dom';
+import { StepRouteGuard } from '@sif/soknad/navigation';
 
-Eksempler:
+<StepRouteGuard
+    steps={flow.includedSteps}
+    currentStepId={flow.currentStepId}
+    basePath={flow.basePath}
+    initialPath="/"
+/>;
+```
+
+`StepRouteGuard`:
+
+- venter på init hvis `isInitialized` er `false`
+- sender bruker til `initialPath` hvis det ikke finnes current step
+- sender bruker til gyldig steg hvis URL peker på et steg som ikke er inkludert
+
+## Consistency
+
+Consistency-sjekken brukes for å oppdage at tidligere steg er endret i draft, uten at endringen er commitet til store.
+
+Det er nyttig når:
+
+- bruker går tilbake og endrer et tidligere steg
+- senere steg dermed kan være ugyldige
+
+Rammeverket sammenligner:
+
+- draft-formvalues per steg
+- stegspesifikke søknadsdata via `getSøknadsdataForStep`
+- mapping via `formValuesToSøknadsdata`
+
+Kjernen ligger i:
+
+- `checkConsistencyForSteps`
+- `useCheckSøknadStepData`
+- `useSøknadFlow().checkConsistency(...)`
+
+## Viktige eksporter
+
+### `@sif/soknad/types`
+
+Sentrale typer som:
+
+- `StepConfig`
+- `StepDefinition`
+- `IncludedStep`
+- `SøknadFormValues`
+- `StepFormValues`
+- `StepSøknadsdata`
+- `Mellomlagring`
+
+### `@sif/soknad/store`
+
+- `createSøknadStore`
+
+### `@sif/soknad/context`
+
+- `createSøknadContext`
+- `SøknadContextConfig`
+- `SøknadFlowContextValue`
+
+### `@sif/soknad/hooks`
+
+- `createSøknadForm`
+
+### `@sif/soknad/navigation`
+
+- `StepRouteGuard`
+- `useStepNavigation`
+
+### `@sif/soknad/consistency`
+
+- `checkConsistencyForSteps`
+- `useCheckSøknadStepData`
+- `SøknadFormValuesProvider`
+- `useSøknadFormValues`
+- `useSøknadFormDraft`
+- `InconsistentFormValuesMessage`
+
+### `@sif/soknad/pages`
+
+- `ApplicationPage`
+- `StartPage`
+- `StepPage`
+- `StepFooter`
+
+### `@sif/soknad/components`
+
+- `AppHeader`
+- `ApplicationPictogram`
+- `ErrorBoundary`
+- `AppErrorFallback`
+- `SanityAppStatus`
+
+### `@sif/soknad/i18n`
+
+- `useRammeverkIntl`
+- `RammeverkText`
+- `rammeverkMessages`
+
+## Anbefalt app-flyt
+
+1. definer `StepId`, `stepOrder`, `stepConfig`
+2. opprett store med `createSøknadStore`
+3. opprett context med `createSøknadContext`
+4. wrap søknadsflyten i `SøknadContextProvider`
+5. bruk `createSøknadForm` i hvert steg
+6. bruk `commitStep(...)` ved submit
+7. naviger med `useSøknadFlow()`
+8. bruk `StepRouteGuard` rundt steg-rutene
+
+## Testing
+
+Følgende deler er gode kandidater for enhetstester:
 
 - `getIncludedSteps`
 - `getPreviousNextStep`
 - `checkConsistencyForSteps`
+- `routeUtils`
+- `createSøknadStore`
+- `StepRouteGuard`
 
----
+## Begrensninger / kontrakter det er viktig å kjenne til
 
-# Status
+- `stepOrder` og `stepConfig` må beskrive samme stegsett
+- `stepTitles` må dekke alle steg i `stepOrder`
+- `formValuesToSøknadsdata` og `getSøknadsdataForStep` må være konsistente med hverandre
+- appen må selv håndtere mellomlagring og innsending
+- appen bør rydde hele draft-state ved avbryt og tilsvarende reset-scenarier
 
-Dette er et internt rammeverk og utvikles løpende.
+## Mappestruktur
+
+```text
+src/
+  components/
+  consistency/
+  context/
+  hooks/
+  i18n/
+  navigation/
+  pages/
+  store/
+  types/
+  utils/
+```
+
+## Status
+
+Pakken er laget for intern bruk og videreutvikles løpende.
