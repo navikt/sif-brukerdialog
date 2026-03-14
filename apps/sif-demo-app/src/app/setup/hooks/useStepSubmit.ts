@@ -3,10 +3,11 @@ import { useCallback } from 'react';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
 import { useSøknadFlow } from '../context/søknadContext';
+import { SøknadStepId } from '../søknad/søknadStepConfig';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
 interface UseStepSubmitOptions<TFormValues, TStepSøknadsdata> {
-    stepId: string;
+    stepId: SøknadStepId;
     toSøknadsdata: (data: TFormValues) => TStepSøknadsdata;
 }
 

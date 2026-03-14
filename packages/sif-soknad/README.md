@@ -1,114 +1,186 @@
-# Sif-søknad - Søknadsrammeverk
+# sif-soknad
 
-Generisk rammeverk for stegvis søknadsflyt.
+Et lite rammeverk for å bygge stegbaserte søknader i React.\
+Pakken håndterer flyt, navigasjon, state og konsistens mellom steg --
+mens selve søknadsdomenet ligger i applikasjonen.
 
-Rammeverket eier flytlogikk (state, steg, navigasjon, guards, consistency), mens vertsapplikasjonen eier domene, UI, API og mellomlagring.
+## Hva rammeverket gjør
 
-## Hva rammeverket løser
+Rammeverket tar ansvar for:
 
-- sentral søknadsstate
-- stegmodell med rekkefølge, inklusjon og fullført-status
 - navigasjon mellom steg
-- route-guard for gyldig steg
-- bevaring av usubmittede skjemaverdier
-- consistency-sjekk mellom form state og lagret søknadsdata
-- generiske sidekomponenter for start/step/application
+- hvilke steg som er inkludert i søknaden
+- routing guards
+- lagring av søknadsdata
+- konsistens mellom skjema og lagrede data
+- grunnleggende sider og komponenter
 
-## Kjernekonsepter
+Applikasjonen tar ansvar for:
 
-1. `StepConfig` og `stepOrder`
-   Definerer hvilke steg som finnes, hvilken route de har, om de er inkludert (`isIncluded`) og om de er fullført (`isCompleted`).
+- domenemodeller
+- validering
+- API‑kall
+- definisjon av steg
 
-2. Store (`createSøknadStore`)
-   Kilden til sannhet for flyten.
-   Inneholder blant annet `søknadState`, `currentStepId`, `includedSteps` og actions som `init`, `startSøknad`, `setSøknadsdata`, `setCurrentStep`, `resetSøknad`, `setSøknadSendt`.
+---
 
-3. Context (`createSøknadContext`)
-   Binder store, navigasjon og usubmittede form values i ett API for stegene.
+# Installasjon
 
-4. Navigasjon og guard
-   `useStepNavigation` og `StepRouteGuard` styrer gyldig flyt gjennom inkluderte steg.
+Pakke brukes vanligvis i et monorepo.
 
-5. Form values og consistency
-   `SøknadFormValuesContext` holder usubmittede skjemadata.
-   `useCheckSøknadStepData` avdekker avvik mellom form values og lagret søknadsdata.
+```ts
+import { createSøknadStore } from 'sif-soknad/store';
+```
 
-## Moduloversikt
+---
 
-- `store`
-- `context`
-- `navigation`
-- `consistency`
-- `hooks`
-- `types`
-- `pages`
-- `components`
-- `utils`
+# Hovedkonsepter
 
-## Public API (dagens)
+## StepConfig
 
-Fra `src/rammeverk/index.ts`:
+Søknaden defineres gjennom en stegkonfigurasjon.
 
-- `consistency`
-- `context`
-- `hooks`
-- `navigation`
-- `foundation` (store)
+```ts
+const stepConfig = {
+    aboutYou: {
+        route: '/about-you',
+        isCompleted: (data) => Boolean(data.aboutYou),
+    },
+};
+```
 
-Undermoduler eksporterer blant annet:
+Hvert steg kan definere:
 
-- `createSøknadStore` (`store`)
-- `createSøknadContext` (`context`)
-- `StepRouteGuard`, `useStepNavigation` (`navigation`)
-- `createSøknadForm` (`hooks`)
-- `SøknadFormValuesProvider`, `useCheckSøknadStepData` (`consistency`)
-- `ApplicationPage`, `StartPage`, `StepPage` (`pages`)
-- `ErrorBoundary`, `AppHeader`, `SanityAppStatus` (`components`)
+felt beskrivelse
 
-## Integrasjon i en app
+---
 
-1. Definer steg og søknadsdata
-   Lag appens `Søknadsdata`, `SøknadStepId`, `stepConfig` og `stepOrder`.
+route URL for steget
+isCompleted bestemmer om steget er ferdig
+isIncluded bestemmer om steget skal vises
+nextStep valgfri dynamisk navigasjon
 
-2. Opprett store
-   Bruk `createSøknadStore` med appens stegkonfigurasjon.
+---
 
-3. Opprett app-context
-   Bruk `createSøknadContext` med:
+## Store
 
-- appens store-hook
-- `stepConfig`
-- `stepOrder`
-- `stepTitles`
-- `formValuesToSøknadsdata`
+State for søknaden ligger i en Zustand‑store.
 
-4. Sett opp routes
-   Bruk `StepRouteGuard` rundt steg-rutene.
+```ts
+createSøknadStore({
+    initialData,
+    stepConfig,
+    stepOrder,
+});
+```
 
-5. Koble steg
-   Bruk context i stegene for submit/navigasjon, og eventuelt `createSøknadForm` for form-hook med auto-lagring av usubmittede verdier.
+Store inneholder blant annet:
 
-6. Koble mellomlagring og innsending i app-laget
-   Rammeverket er bevisst uten domene-API og uten observability-vendor-kobling.
+- søknadsdata
+- status for steg
+- navigasjonsinfo
 
-## Ansvarsdeling
+---
 
-Rammeverk:
+# Context
 
-- flyt og mekanikk
-- generiske typer og hjelpefunksjoner
-- UI-byggeklosser for søknadslayout
+`SøknadContext` kobler sammen:
 
-Vertsapplikasjon:
+- store
+- navigasjon
+- stegkonfigurasjon
 
-- domene og datamodell
-- tekster og steginnhold
-- API-klienter, mellomlagring og submit
-- logging/observability (for eksempel Faro/Sentry)
+```tsx
+<SøknadContext.Provider value={context}>{children}</SøknadContext.Provider>
+```
 
-## Designvalg
+Hooks kan deretter bruke denne contexten.
 
-- Rammeverket er vendor-nøytralt mot API/telemetri.
-- Rammeverket antar lineær stegflyt basert på `includedSteps`.
-- Usynlige steg fjernes fra flyten via `isIncluded`.
-- Progresjon beregnes fra `isCompleted`.
+---
+
+# Navigasjon
+
+Navigasjon håndteres via `useStepNavigation`.
+
+```ts
+const { goToNextStep, goToPreviousStep } = useStepNavigation();
+```
+
+Routing beskyttes med:
+
+    StepRouteGuard
+
+Dette sikrer at brukeren ikke hopper over steg.
+
+---
+
+# Konsistens mellom skjema og data
+
+Rammeverket kan sjekke at skjemaet og lagrede data fortsatt stemmer.
+
+Dette brukes til å oppdage når:
+
+- brukeren går tilbake og endrer data
+- senere steg blir ugyldige
+
+Relevant kode ligger i:
+
+    src/consistency
+
+Hovedfunksjon:
+
+    checkConsistencyForSteps
+
+---
+
+# Viktige mapper
+
+    src/
+      components/    UI‑komponenter
+      consistency/   konsistens‑sjekker
+      context/       SøknadContext
+      hooks/         hooks for forms og navigasjon
+      navigation/    routing og step guards
+      pages/         grunnsider
+      store/         Zustand store
+      types/         typer
+      utils/         hjelpefunksjoner
+
+---
+
+# Typisk flyt
+
+1.  Definer `StepConfig`
+2.  Opprett `SøknadStore`
+3.  Sett opp `SøknadContext`
+4.  Lag sider for hvert steg
+5.  Bruk `useStepNavigation` for å navigere
+
+---
+
+# Designprinsipper
+
+Rammeverket forsøker å:
+
+- holde domenelogikk i appen
+- holde flytlogikk i rammeverket
+- gjøre steg deklarative
+- unngå skjult state
+
+---
+
+# Testing
+
+Ren flytlogikk ligger i utils og kan testes isolert.
+
+Eksempler:
+
+- `getIncludedSteps`
+- `getPreviousNextStep`
+- `checkConsistencyForSteps`
+
+---
+
+# Status
+
+Dette er et internt rammeverk og utvikles løpende.

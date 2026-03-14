@@ -4,15 +4,18 @@ import { StepFormValues, StepSøknadsdata } from '../types';
 import { useSøknadFormValues } from '.';
 import { checkConsistencyForSteps } from './checkConsistencyForSteps';
 
-type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => StepSøknadsdata | undefined;
+type FormValuesToSøknadsdataFn<TStepId extends string> = (
+    stepId: TStepId,
+    formValues: StepFormValues,
+) => StepSøknadsdata | undefined;
 
-type GetSøknadsdataForStepFn = (stepId: string) => StepSøknadsdata | undefined;
+type GetSøknadsdataForStepFn<TStepId extends string> = (stepId: TStepId) => StepSøknadsdata | undefined;
 
-interface Props {
-    currentStepId: string;
-    stepOrder: string[];
-    getSøknadsdataForStep: GetSøknadsdataForStepFn;
-    formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
+interface Props<TStepId extends string> {
+    currentStepId: TStepId;
+    stepOrder: TStepId[];
+    getSøknadsdataForStep: GetSøknadsdataForStepFn<TStepId>;
+    formValuesToSøknadsdata: FormValuesToSøknadsdataFn<TStepId>;
 }
 
 /**
@@ -20,12 +23,12 @@ interface Props {
  * opp om skjemadata har endret seg uten at dette er commitet til store. F.eks. hvis
  * bruker går frem og tilbake uten å bruke submit.
  */
-export const useCheckSøknadStepData = <StepId>({
+export const useCheckSøknadStepData = <StepId extends string>({
     currentStepId,
     stepOrder,
     getSøknadsdataForStep,
     formValuesToSøknadsdata,
-}: Props): StepId | undefined => {
+}: Props<StepId>): StepId | undefined => {
     const { søknadFormValues: stepsFormValues } = useSøknadFormValues();
 
     return useMemo(() => {
@@ -35,6 +38,6 @@ export const useCheckSøknadStepData = <StepId>({
             formValues: stepsFormValues,
             getSøknadsdataForStep,
             formValuesToSøknadsdata,
-        }) as StepId | undefined;
+        });
     }, [currentStepId, stepOrder, stepsFormValues, getSøknadsdataForStep, formValuesToSøknadsdata]);
 };

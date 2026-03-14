@@ -16,7 +16,7 @@ import { useSøknadFormValues } from '.';
  * useSaveFormValuesForSøknadStep(stepId, getValues);
  * ```
  */
-export const useSaveSøknadFormValues = (stepId: string, getValues: () => StepFormValues) => {
+export const useSaveSøknadFormValues = <TStepId extends string>(stepId: TStepId, getValues: () => StepFormValues) => {
     const { setFormValuesForStep } = useSøknadFormValues();
     const getValuesRef = useRef(getValues);
 

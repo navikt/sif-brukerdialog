@@ -4,22 +4,22 @@ import { useNavigate } from 'react-router-dom';
 import { IncludedStep, StepConfig } from '../types';
 import { getPreviousNextStep } from '../utils';
 
-interface UseStepNavigationOptions {
-    stepConfig: StepConfig;
-    getSøknadSteps: () => IncludedStep[];
-    setCurrentStep: (stepId: string) => void;
+interface UseStepNavigationOptions<TStepId extends string, TSøknadsdata> {
+    stepConfig: StepConfig<TStepId, TSøknadsdata>;
+    getSøknadSteps: () => Array<IncludedStep<TStepId>>;
+    setCurrentStep: (stepId: TStepId) => void;
     basePath?: string;
 }
 
 /**
  * Hook for å håndtere navigasjon mellom steg i en søknadsprosess. Beregner neste og forrige steg basert på inkluderte steg og oppdatert state.
  */
-export const useStepNavigation = ({
+export const useStepNavigation = <TStepId extends string, TSøknadsdata>({
     stepConfig,
     getSøknadSteps,
     setCurrentStep,
     basePath = '/soknad',
-}: UseStepNavigationOptions) => {
+}: UseStepNavigationOptions<TStepId, TSøknadsdata>) => {
     const navigate = useNavigate();
 
     const navigateToStart = useCallback(() => {
@@ -27,7 +27,7 @@ export const useStepNavigation = ({
     }, [navigate, basePath]);
 
     const navigateToStep = useCallback(
-        (stepId: string) => {
+        (stepId: TStepId) => {
             setCurrentStep(stepId);
             const route = stepConfig[stepId].route;
             navigate(`${basePath}/${route}`);
@@ -36,7 +36,7 @@ export const useStepNavigation = ({
     );
 
     const navigateToNextStep = useCallback(
-        (fromStepId: string) => {
+        (fromStepId: TStepId) => {
             const { nextStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             if (nextStepId) {
                 navigateToStep(nextStepId);
@@ -46,7 +46,7 @@ export const useStepNavigation = ({
     );
 
     const navigateToPreviousStep = useCallback(
-        (fromStepId: string) => {
+        (fromStepId: TStepId) => {
             const { previousStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             if (previousStepId) {
                 navigateToStep(previousStepId);
@@ -56,7 +56,7 @@ export const useStepNavigation = ({
     );
 
     const canGoNext = useCallback(
-        (fromStepId: string) => {
+        (fromStepId: TStepId) => {
             const { nextStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             return nextStepId !== null;
         },
@@ -64,7 +64,7 @@ export const useStepNavigation = ({
     );
 
     const canGoPrevious = useCallback(
-        (fromStepId: string) => {
+        (fromStepId: TStepId) => {
             const { previousStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             return previousStepId !== null;
         },

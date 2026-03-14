@@ -2,9 +2,9 @@ import { matchPath, Navigate, Outlet, useLocation } from 'react-router-dom';
 
 import { IncludedStep } from '../types';
 
-interface Props {
-    steps: IncludedStep[];
-    currentStepId?: string;
+interface Props<TStepId extends string> {
+    steps: Array<IncludedStep<TStepId>>;
+    currentStepId?: TStepId;
     isInitialized?: boolean;
     basePath?: string;
     initialPath?: string;
@@ -15,13 +15,13 @@ interface Props {
  * Redirecter til initialPath hvis currentStepId ikke er definert.
  * Hvis steget i URL-en ikke er inkludert, redirectes til currentStepId.
  */
-export const StepRouteGuard = ({
+export const StepRouteGuard = <TStepId extends string>({
     steps,
     currentStepId,
     isInitialized = true,
     basePath = '/soknad',
     initialPath = '/',
-}: Props) => {
+}: Props<TStepId>) => {
     const location = useLocation();
 
     if (!isInitialized) {

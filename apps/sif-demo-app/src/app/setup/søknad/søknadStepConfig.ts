@@ -15,7 +15,7 @@ export interface SøknadState {
     søknadsdata: Søknadsdata;
 }
 
-export const søknadStepConfig: StepConfig<Søknadsdata> = {
+export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
     [SøknadStepId.BARN]: {
         id: SøknadStepId.BARN,
         route: 'barn',

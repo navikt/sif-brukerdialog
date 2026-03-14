@@ -11,26 +11,26 @@ interface BaseState<TSøknadsdata extends BaseSøknadsdata> {
     søknadsdata: TSøknadsdata;
 }
 
-interface SøknadStoreActions<TState, TSøknadsdata extends object> {
+interface SøknadStoreActions<TState, TSøknadsdata extends object, TStepId extends string> {
     søknadState: TState | undefined;
-    currentStepId?: string;
-    includedSteps: IncludedStep[];
+    currentStepId?: TStepId;
+    includedSteps: Array<IncludedStep<TStepId>>;
     søknadSendt?: boolean;
     init: (
         initialState: Omit<TState, 'søknadsdata'>,
         mellomlagretSøknadsdata?: TSøknadsdata,
-        currentStepId?: string,
+        currentStepId?: TStepId,
     ) => void;
     setSøknadsdata: (data: Partial<TSøknadsdata>) => void;
     resetSøknad: () => void;
-    startSøknad: (firstStepId: string, harForståttRettigheterOgPlikter: true) => void;
+    startSøknad: (firstStepId: TStepId, harForståttRettigheterOgPlikter: true) => void;
     setSøknadSendt: () => void;
-    setCurrentStep: (stepId: string) => void;
+    setCurrentStep: (stepId: TStepId) => void;
 }
 
-interface StoreOptions<TSøknadsdata> {
-    stepOrder: string[];
-    stepConfig: StepConfig<TSøknadsdata>;
+interface StoreOptions<TSøknadsdata, TStepId extends string> {
+    stepOrder: TStepId[];
+    stepConfig: StepConfig<TStepId, TSøknadsdata>;
 }
 
 /**
@@ -39,14 +39,15 @@ interface StoreOptions<TSøknadsdata> {
 export const createSøknadStore = <
     TState extends BaseState<TSøknadsdata>,
     TSøknadsdata extends object = Record<string, never>,
+    TStepId extends string = string,
 >(
-    options: StoreOptions<TSøknadsdata>,
-): UseBoundStore<StoreApi<SøknadStoreActions<TState, TSøknadsdata>>> => {
+    options: StoreOptions<TSøknadsdata, TStepId>,
+): UseBoundStore<StoreApi<SøknadStoreActions<TState, TSøknadsdata, TStepId>>> => {
     const { stepOrder, stepConfig } = options;
 
     const computeSteps = (søknadsdata: TSøknadsdata) => getIncludedSteps(stepOrder, stepConfig, søknadsdata);
 
-    const storeCreator: StateCreator<SøknadStoreActions<TState, TSøknadsdata>> = (set) => ({
+    const storeCreator: StateCreator<SøknadStoreActions<TState, TSøknadsdata, TStepId>> = (set) => ({
         søknadState: undefined,
         currentStepId: undefined,
         includedSteps: [],
@@ -64,7 +65,7 @@ export const createSøknadStore = <
             });
         },
 
-        startSøknad: (firstStepId: string, harForståttRettigheterOgPlikter: true) =>
+        startSøknad: (firstStepId: TStepId, harForståttRettigheterOgPlikter: true) =>
             set((state) => {
                 if (!state.søknadState) return state;
                 const søknadsdata: BaseSøknadsdata = {

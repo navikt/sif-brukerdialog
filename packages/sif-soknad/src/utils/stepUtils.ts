@@ -2,7 +2,10 @@ import { ProgressStep } from '@navikt/sif-common-ui';
 
 import { IncludedStep, StepConfig } from '../types';
 
-export const getPreviousNextStep = (includedSteps: IncludedStep[], currentStepId: string | null) => {
+export const getPreviousNextStep = <TStepId extends string>(
+    includedSteps: Array<IncludedStep<TStepId>>,
+    currentStepId: TStepId | null,
+) => {
     const includedStepIds = includedSteps.map((s) => s.stepId);
     const currentIndex = currentStepId ? includedStepIds.indexOf(currentStepId) : -1;
 
@@ -12,11 +15,11 @@ export const getPreviousNextStep = (includedSteps: IncludedStep[], currentStepId
     };
 };
 
-export const getIncludedSteps = <TSøknadsdata>(
-    stepOrder: string[],
-    stepConfig: StepConfig<TSøknadsdata>,
+export const getIncludedSteps = <TStepId extends string, TSøknadsdata>(
+    stepOrder: TStepId[],
+    stepConfig: StepConfig<TStepId, TSøknadsdata>,
     søknadsdata: TSøknadsdata,
-): IncludedStep[] => {
+): Array<IncludedStep<TStepId>> => {
     const includedIds = stepOrder.filter((id) => stepConfig[id]?.isIncluded?.(søknadsdata) ?? true);
 
     return includedIds.map((stepId) => {
@@ -29,7 +32,10 @@ export const getIncludedSteps = <TSøknadsdata>(
 /**
  * Mapper inkluderte steg til ProgressStep-formatet for bruk i ProgressStepper-komponenten.
  */
-export const getProgressSteps = (includedSteps: IncludedStep[], stepTitles: Record<string, string>): ProgressStep[] => {
+export const getProgressSteps = <TStepId extends string>(
+    includedSteps: Array<IncludedStep<TStepId>>,
+    stepTitles: Record<TStepId, string>,
+): ProgressStep[] => {
     return includedSteps.map((s, index) => ({
         id: s.stepId,
         index,

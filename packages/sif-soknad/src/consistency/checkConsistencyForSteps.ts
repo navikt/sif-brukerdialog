@@ -1,14 +1,17 @@
 import { SøknadFormValues, StepFormValues, StepSøknadsdata } from '../types';
 
-type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => StepSøknadsdata | undefined;
-type GetSøknadsdataForStepFn = (stepId: string) => StepSøknadsdata | undefined;
+type FormValuesToSøknadsdataFn<TStepId extends string> = (
+    stepId: TStepId,
+    formValues: StepFormValues,
+) => StepSøknadsdata | undefined;
+type GetSøknadsdataForStepFn<TStepId extends string> = (stepId: TStepId) => StepSøknadsdata | undefined;
 
-interface CheckConsistencyForStepsParams {
-    currentStepId: string;
-    stepOrder: string[];
+interface CheckConsistencyForStepsParams<TStepId extends string> {
+    currentStepId: TStepId;
+    stepOrder: TStepId[];
     formValues: SøknadFormValues;
-    getSøknadsdataForStep: GetSøknadsdataForStepFn;
-    formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
+    getSøknadsdataForStep: GetSøknadsdataForStepFn<TStepId>;
+    formValuesToSøknadsdata: FormValuesToSøknadsdataFn<TStepId>;
 }
 
 const normalizeForComparison = (value: unknown): unknown => {
@@ -40,13 +43,13 @@ const isEqualNormalized = (a: unknown, b: unknown): boolean => {
     return JSON.stringify(normalizeForComparison(a)) === JSON.stringify(normalizeForComparison(b));
 };
 
-export const checkConsistencyForSteps = ({
+export const checkConsistencyForSteps = <TStepId extends string>({
     currentStepId,
     stepOrder,
     formValues,
     getSøknadsdataForStep,
     formValuesToSøknadsdata,
-}: CheckConsistencyForStepsParams): string | undefined => {
+}: CheckConsistencyForStepsParams<TStepId>): TStepId | undefined => {
     const currentIndex = stepOrder.indexOf(currentStepId);
     if (currentIndex <= 0) return undefined;
 
