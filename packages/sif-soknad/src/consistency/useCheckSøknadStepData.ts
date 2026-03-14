@@ -2,16 +2,20 @@ import { useMemo } from 'react';
 
 import { StepFormValues, StepSøknadsdata } from '../types';
 import { useSøknadFormValues } from '.';
+import { checkConsistencyForSteps } from './checkConsistencyForSteps';
 
-type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => StepSøknadsdata | undefined;
+type FormValuesToSøknadsdataFn<TStepId extends string> = (
+    stepId: TStepId,
+    formValues: StepFormValues,
+) => StepSøknadsdata | undefined;
 
-type GetSøknadsdataForStepFn = (stepId: string) => StepSøknadsdata | undefined;
+type GetSøknadsdataForStepFn<TStepId extends string> = (stepId: TStepId) => StepSøknadsdata | undefined;
 
-interface Props {
-    currentStepId: string;
-    stepOrder: string[];
-    getSøknadsdataForStep: GetSøknadsdataForStepFn;
-    formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
+interface Props<TStepId extends string> {
+    currentStepId: TStepId;
+    stepOrder: TStepId[];
+    getSøknadsdataForStep: GetSøknadsdataForStepFn<TStepId>;
+    formValuesToSøknadsdata: FormValuesToSøknadsdataFn<TStepId>;
 }
 
 /**
@@ -19,31 +23,21 @@ interface Props {
  * opp om skjemadata har endret seg uten at dette er commitet til store. F.eks. hvis
  * bruker går frem og tilbake uten å bruke submit.
  */
-export const useCheckSøknadStepData = <StepId>({
+export const useCheckSøknadStepData = <StepId extends string>({
     currentStepId,
     stepOrder,
     getSøknadsdataForStep,
     formValuesToSøknadsdata,
-}: Props): StepId | undefined => {
+}: Props<StepId>): StepId | undefined => {
     const { søknadFormValues: stepsFormValues } = useSøknadFormValues();
 
     return useMemo(() => {
-        const currentIndex = stepOrder.indexOf(currentStepId);
-        if (currentIndex <= 0) return undefined;
-
-        const precedingSteps = stepOrder.slice(0, currentIndex);
-
-        for (const stepId of precedingSteps) {
-            const formValues = stepsFormValues[stepId];
-            if (!formValues) continue;
-
-            const søknadsdata = getSøknadsdataForStep(stepId);
-            const converted = formValuesToSøknadsdata(stepId, formValues);
-
-            if (!søknadsdata || JSON.stringify(converted) !== JSON.stringify(søknadsdata)) {
-                return stepId as StepId;
-            }
-        }
-        return undefined;
+        return checkConsistencyForSteps({
+            currentStepId,
+            stepOrder,
+            formValues: stepsFormValues,
+            getSøknadsdataForStep,
+            formValuesToSøknadsdata,
+        });
     }, [currentStepId, stepOrder, stepsFormValues, getSøknadsdataForStep, formValuesToSøknadsdata]);
 };

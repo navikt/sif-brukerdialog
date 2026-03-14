@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useRef, useState } from 'react';
 
 import { SøknadFormValues, StepFormValues } from '../types';
 
@@ -15,6 +15,8 @@ interface SøknadFormValuesContextValue {
     clearSøknadFormValues: () => void;
     setFormValuesForStep: (stepId: string, formValues: StepFormValues) => void;
     clearFormValuesForStep: (stepId: string) => void;
+    markSkipNextUnmountSaveForStep: (stepId: string) => void;
+    shouldSaveOnUnmountForStep: (stepId: string) => boolean;
     getFormValuesForStep: <T = StepFormValues>(stepId: string) => Partial<T> | undefined;
 }
 
@@ -32,9 +34,11 @@ interface Props {
  */
 export const SøknadFormValuesProvider = ({ children, initialValues }: Props) => {
     const [values, setValues] = useState<SøknadFormValues>((initialValues as SøknadFormValues) ?? {});
+    const skipNextUnmountSaveRef = useRef<Set<string>>(new Set());
 
     const clearSøknadFormValues = useCallback(() => {
         setValues({});
+        skipNextUnmountSaveRef.current.clear();
     }, []);
 
     const setFormValuesForStep = useCallback((stepId: string, formValues: StepFormValues) => {
@@ -42,7 +46,20 @@ export const SøknadFormValuesProvider = ({ children, initialValues }: Props) =>
     }, []);
 
     const clearFormValuesForStep = useCallback((stepId: string) => {
-        setValues((prev) => ({ ...prev, [stepId]: undefined }));
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        setValues(({ [stepId]: _, ...rest }) => rest);
+    }, []);
+
+    const markSkipNextUnmountSaveForStep = useCallback((stepId: string) => {
+        skipNextUnmountSaveRef.current.add(stepId);
+    }, []);
+
+    const shouldSaveOnUnmountForStep = useCallback((stepId: string): boolean => {
+        if (!skipNextUnmountSaveRef.current.has(stepId)) {
+            return true;
+        }
+        skipNextUnmountSaveRef.current.delete(stepId);
+        return false;
     }, []);
 
     const getFormValuesForStep = useCallback(
@@ -59,6 +76,8 @@ export const SøknadFormValuesProvider = ({ children, initialValues }: Props) =>
                 clearSøknadFormValues,
                 setFormValuesForStep,
                 clearFormValuesForStep,
+                markSkipNextUnmountSaveForStep,
+                shouldSaveOnUnmountForStep,
                 getFormValuesForStep,
             }}>
             {children}
@@ -73,3 +92,5 @@ export const useSøknadFormValues = (): SøknadFormValuesContextValue => {
     }
     return context;
 };
+
+export const useSøknadFormDraft = useSøknadFormValues;

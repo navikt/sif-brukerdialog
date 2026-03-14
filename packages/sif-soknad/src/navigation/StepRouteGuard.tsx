@@ -1,10 +1,11 @@
 import { matchPath, Navigate, Outlet, useLocation } from 'react-router-dom';
 
 import { IncludedStep } from '../types';
+import { buildStepPath } from './routeUtils';
 
-interface Props {
-    steps: IncludedStep[];
-    currentStepId?: string;
+interface Props<TStepId extends string> {
+    steps: Array<IncludedStep<TStepId>>;
+    currentStepId?: TStepId;
     isInitialized?: boolean;
     basePath?: string;
     initialPath?: string;
@@ -15,13 +16,13 @@ interface Props {
  * Redirecter til initialPath hvis currentStepId ikke er definert.
  * Hvis steget i URL-en ikke er inkludert, redirectes til currentStepId.
  */
-export const StepRouteGuard = ({
+export const StepRouteGuard = <TStepId extends string>({
     steps,
     currentStepId,
     isInitialized = true,
     basePath = '/soknad',
     initialPath = '/',
-}: Props) => {
+}: Props<TStepId>) => {
     const location = useLocation();
 
     if (!isInitialized) {
@@ -33,13 +34,15 @@ export const StepRouteGuard = ({
     }
 
     const stepAtPath = steps.find((s) =>
-        matchPath({ path: `${basePath}/${s.stepRoute}`, end: false }, location.pathname),
+        matchPath({ path: buildStepPath(basePath, s.stepRoute), end: false }, location.pathname),
     );
     if (!stepAtPath) {
         const currentRoute = steps.find((s) => s.stepId === currentStepId)?.stepRoute;
-        if (currentRoute) {
-            return <Navigate to={`${basePath}/${currentRoute}`} replace />;
+        const fallbackRoute = currentRoute ?? steps[0]?.stepRoute;
+        if (fallbackRoute) {
+            return <Navigate to={buildStepPath(basePath, fallbackRoute)} replace />;
         }
+        return <Navigate to={initialPath} replace />;
     }
 
     return <Outlet />;

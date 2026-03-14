@@ -2,37 +2,25 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { IncludedStep, StepConfig } from '../types';
+import { getPreviousNextStep } from '../utils';
+import { buildStepPath } from './routeUtils';
 
-interface UseStepNavigationOptions {
-    stepConfig: StepConfig;
-    getSøknadSteps: () => IncludedStep[];
-    setCurrentStep: (stepId: string) => void;
+interface UseStepNavigationOptions<TStepId extends string, TSøknadsdata> {
+    stepConfig: StepConfig<TStepId, TSøknadsdata>;
+    getSøknadSteps: () => Array<IncludedStep<TStepId>>;
+    setCurrentStep: (stepId: TStepId) => void;
     basePath?: string;
 }
 
 /**
- * Beregner neste/forrige steg basert på fresh state.
- * Viktig for navigasjon etter state-oppdatering i samme event handler.
- */
-const getPreviousNextStep = (includedSteps: IncludedStep[], currentStepId: string | null) => {
-    const includedStepIds = includedSteps.map((s) => s.stepId);
-    const currentIndex = currentStepId ? includedStepIds.indexOf(currentStepId) : -1;
-
-    return {
-        previousStepId: currentIndex > 0 ? includedStepIds[currentIndex - 1] : null,
-        nextStepId: currentIndex < includedStepIds.length - 1 ? includedStepIds[currentIndex + 1] : null,
-    };
-};
-
-/**
  * Hook for å håndtere navigasjon mellom steg i en søknadsprosess. Beregner neste og forrige steg basert på inkluderte steg og oppdatert state.
  */
-export const useStepNavigation = ({
+export const useStepNavigation = <TStepId extends string, TSøknadsdata>({
     stepConfig,
     getSøknadSteps,
     setCurrentStep,
     basePath = '/soknad',
-}: UseStepNavigationOptions) => {
+}: UseStepNavigationOptions<TStepId, TSøknadsdata>) => {
     const navigate = useNavigate();
 
     const navigateToStart = useCallback(() => {
@@ -40,16 +28,16 @@ export const useStepNavigation = ({
     }, [navigate, basePath]);
 
     const navigateToStep = useCallback(
-        (stepId: string) => {
+        (stepId: TStepId) => {
             setCurrentStep(stepId);
             const route = stepConfig[stepId].route;
-            navigate(`${basePath}/${route}`);
+            navigate(buildStepPath(basePath, route));
         },
         [setCurrentStep, navigate, basePath, stepConfig],
     );
 
     const navigateToNextStep = useCallback(
-        (fromStepId: string) => {
+        (fromStepId: TStepId) => {
             const { nextStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             if (nextStepId) {
                 navigateToStep(nextStepId);
@@ -59,7 +47,7 @@ export const useStepNavigation = ({
     );
 
     const navigateToPreviousStep = useCallback(
-        (fromStepId: string) => {
+        (fromStepId: TStepId) => {
             const { previousStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             if (previousStepId) {
                 navigateToStep(previousStepId);
@@ -69,7 +57,7 @@ export const useStepNavigation = ({
     );
 
     const canGoNext = useCallback(
-        (fromStepId: string) => {
+        (fromStepId: TStepId) => {
             const { nextStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             return nextStepId !== null;
         },
@@ -77,7 +65,7 @@ export const useStepNavigation = ({
     );
 
     const canGoPrevious = useCallback(
-        (fromStepId: string) => {
+        (fromStepId: TStepId) => {
             const { previousStepId } = getPreviousNextStep(getSøknadSteps(), fromStepId);
             return previousStepId !== null;
         },

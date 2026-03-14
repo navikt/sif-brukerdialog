@@ -25,19 +25,17 @@ export type BaseSøknadsdata = {
  * Generisk mellomlagring-type.
  * Appen bruker denne med sin egen Søknadsdata-type.
  */
-export interface Mellomlagring<Søknadsdata, Skjemadata> {
+export interface Mellomlagring<Søknadsdata, Skjemadata, TStepId extends string = string> {
     søknadsdata: Søknadsdata;
     skjemadata?: Skjemadata;
-    currentStepId?: string;
+    currentStepId?: TStepId;
 }
 
 /**
  * Definisjon av et steg i søknadsflyten
  */
 export interface StepDefinition<TSøknadsdata = StepSøknadsdata> {
-    /** Intern identifikator */
-    id: string;
-    /** URL-segment */
+    /** URL-segment uten ledende/trailende slash, f.eks. 'start' */
     route: string;
     /** Returnerer true hvis steget er ferdig utfylt */
     isCompleted?: (søknadsdata: TSøknadsdata) => boolean;
@@ -48,13 +46,13 @@ export interface StepDefinition<TSøknadsdata = StepSøknadsdata> {
 /**
  * Konfigurasjon for alle steg
  */
-export type StepConfig<TSøknadsdata = unknown> = Record<string, StepDefinition<TSøknadsdata>>;
+export type StepConfig<TStepId extends string, TSøknadsdata = unknown> = Record<TStepId, StepDefinition<TSøknadsdata>>;
 
 /**
  * Info om et inkludert steg - dette vil si et steg som er med i søknadsflyten
  */
-export interface IncludedStep {
-    stepId: string;
+export interface IncludedStep<TStepId extends string> {
+    stepId: TStepId;
     stepRoute: string;
     completed: boolean;
 }

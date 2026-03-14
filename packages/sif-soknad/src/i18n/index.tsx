@@ -1,7 +1,7 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { typedIntlHelper } from 'utils';
 
 import { stepPageMessages_nb } from '../pages/step-page/i18n/nb';
+import { typedIntlHelper } from '../utils';
 
 const nb = {
     ...stepPageMessages_nb,
