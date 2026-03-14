@@ -83,7 +83,6 @@ const stepConfig: StepConfig<StepId, Søknadsdata> = {
 
 Felter per steg:
 
-- `id`: intern identifikator
 - `route`: URL-segment. Anbefalt format er uten ledende eller trailing slash, for eksempel `barn`
 - `isIncluded`: om steget er med i flyten
 - `isCompleted`: om steget er ferdig
@@ -212,7 +211,7 @@ Typisk livssyklus:
 2. komponenten unmountes uten submit
 3. draft-formvalues lagres
 4. ved submit committes data til søknadsdata
-5. draft for steget ryddes
+5. draft for steget ryddes, og unmount-save for samme steg hoppes over én gang
 
 `commitStep(stepId, data)` i `useSøknadFlow()` gjør dette:
 
@@ -267,7 +266,9 @@ import { StepRouteGuard } from '@sif/soknad/navigation';
 
 - venter på init hvis `isInitialized` er `false`
 - sender bruker til `initialPath` hvis det ikke finnes current step
-- sender bruker til gyldig steg hvis URL peker på et steg som ikke er inkludert
+- sender bruker til route for `currentStepId` hvis URL peker på et steg som ikke er inkludert
+- hvis `currentStepId` ikke er gyldig blant inkluderte steg, brukes første gyldige steg
+- hvis ingen steg er tilgjengelige, brukes `initialPath`
 
 ## Consistency
 
