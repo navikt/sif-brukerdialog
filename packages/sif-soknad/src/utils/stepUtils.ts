@@ -27,11 +27,18 @@ export const getIncludedSteps = <TStepId extends string, TSøknadsdata>(
     stepConfig: StepConfig<TStepId, TSøknadsdata>,
     søknadsdata: TSøknadsdata,
 ): Array<IncludedStep<TStepId>> => {
-    const includedIds = stepOrder.filter((id) => stepConfig[id]?.isIncluded?.(søknadsdata) ?? true);
-
-    return includedIds.map((stepId) => {
+    return stepOrder.flatMap((stepId) => {
         const step = stepConfig[stepId];
-        const completed = step?.isCompleted?.(søknadsdata) ?? false;
+        if (!step) {
+            throw new Error(`getIncludedSteps: stepOrder inneholder ukjent stepId '${stepId}'`);
+        }
+
+        const isIncluded = step.isIncluded?.(søknadsdata) ?? true;
+        if (!isIncluded) {
+            return [];
+        }
+
+        const completed = step.isCompleted?.(søknadsdata) ?? false;
         return { stepId, stepRoute: step.route, completed };
     });
 };
