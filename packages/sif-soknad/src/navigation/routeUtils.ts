@@ -31,5 +31,9 @@ export const buildStepPath = (basePath: string, route: string): string => {
         return normalizedBasePath;
     }
 
+    if (normalizedBasePath === '/') {
+        return `/${normalizedRoute}`;
+    }
+
     return `${normalizedBasePath}/${normalizedRoute}`;
 };

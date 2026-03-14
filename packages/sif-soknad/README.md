@@ -11,7 +11,7 @@ Pakken brukes vanligvis i monorepo via subpath-imports:
 ```ts
 import { createSøknadStore } from '@sif/soknad/store';
 import { createSøknadContext } from '@sif/soknad/context';
-import { createSøknadForm } from '@sif/soknad/hooks';
+import { createSøknadReactHookForm } from '@sif/soknad/hooks';
 import { StepRouteGuard } from '@sif/soknad/navigation';
 ```
 
@@ -68,16 +68,13 @@ type Søknadsdata = {
 
 const stepConfig: StepConfig<StepId, Søknadsdata> = {
     barn: {
-        id: 'barn',
         route: 'barn',
         isIncluded: (data) => data.harBarn === true,
     },
     arbeid: {
-        id: 'arbeid',
         route: 'arbeid',
     },
     oppsummering: {
-        id: 'oppsummering',
         route: 'oppsummering',
         isCompleted: (data) => data.harBarn !== undefined,
     },
@@ -188,12 +185,12 @@ const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknads
 
 ## Skjema per steg
 
-`createSøknadForm` lager en hook rundt `react-hook-form` og lagrer draft-formvalues ved unmount.
+`createSøknadReactHookForm` lager en hook rundt `react-hook-form` og lagrer draft-formvalues ved unmount.
 
 ```ts
-import { createSøknadForm } from '@sif/soknad/hooks';
+import { createSøknadReactHookForm } from '@sif/soknad/hooks';
 
-const useSøknadForm = createSøknadForm<StepId>();
+const useSøknadForm = createSøknadReactHookForm<StepId>();
 
 type BarnFormValues = {
     harBarn: boolean;
@@ -319,7 +316,7 @@ Sentrale typer som:
 
 ### `@sif/soknad/hooks`
 
-- `createSøknadForm`
+- `createSøknadReactHookForm`
 
 ### `@sif/soknad/navigation`
 
@@ -362,7 +359,7 @@ Sentrale typer som:
 2. opprett store med `createSøknadStore`
 3. opprett context med `createSøknadContext`
 4. wrap søknadsflyten i `SøknadContextProvider`
-5. bruk `createSøknadForm` i hvert steg
+5. bruk `createSøknadReactHookForm` i hvert steg
 6. bruk `commitStep(...)` ved submit
 7. naviger med `useSøknadFlow()`
 8. bruk `StepRouteGuard` rundt steg-rutene

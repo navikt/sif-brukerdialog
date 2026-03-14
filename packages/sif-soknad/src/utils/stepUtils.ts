@@ -9,6 +9,13 @@ export const getPreviousNextStep = <TStepId extends string>(
     const includedStepIds = includedSteps.map((s) => s.stepId);
     const currentIndex = currentStepId ? includedStepIds.indexOf(currentStepId) : -1;
 
+    if (currentIndex === -1) {
+        return {
+            previousStepId: null,
+            nextStepId: null,
+        };
+    }
+
     return {
         previousStepId: currentIndex > 0 ? includedStepIds[currentIndex - 1] : null,
         nextStepId: currentIndex < includedStepIds.length - 1 ? includedStepIds[currentIndex + 1] : null,
