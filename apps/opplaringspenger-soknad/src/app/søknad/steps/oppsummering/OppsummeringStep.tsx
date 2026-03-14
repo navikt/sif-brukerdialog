@@ -13,6 +13,7 @@ import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
+import { useSkyraReloader } from '../../../skyra/useSkyraReloader';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
@@ -45,6 +46,8 @@ const OppsummeringStep = () => {
     const {
         state: { søknadsdata, søker, frilansoppdrag, registrerteBarn, institusjoner },
     } = useSøknadContext();
+
+    useSkyraReloader();
 
     const stepId = StepId.OPPSUMMERING;
     const stepConfig = getSøknadStepConfig(søknadsdata);
