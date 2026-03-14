@@ -23,10 +23,10 @@ const Page2 = () => {
                 <VStack gap="space-40">
                     <div>
                         <Heading size="medium" level="2">
-                            Prod
+                            Test
                         </Heading>
-                        <BodyShort>Slug: {Slug.soknad_om_opplaringspenger}</BodyShort>
-                        <Skyra slug={Slug.soknad_om_opplaringspenger} />
+                        <BodyShort>Slug: {Slug.soknad_om_opplaringspenger_test}</BodyShort>
+                        <Skyra slug={Slug.soknad_om_opplaringspenger_test} />
                     </div>
                 </VStack>
             </VStack>
