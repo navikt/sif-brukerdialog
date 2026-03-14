@@ -52,7 +52,7 @@ Anbefalt praksis er å bruke subpath-imports når du vet hvilken del av rammever
 Union-type for steg i søknaden.
 
 ```ts
-type StepId = 'velkommen' | 'barn' | 'oppsummering';
+type StepId = 'barn' | 'arbeid' | 'oppsummering';
 ```
 
 ### `StepConfig`
@@ -67,14 +67,14 @@ type Søknadsdata = {
 };
 
 const stepConfig: StepConfig<StepId, Søknadsdata> = {
-    velkommen: {
-        id: 'velkommen',
-        route: 'velkommen',
-    },
     barn: {
         id: 'barn',
         route: 'barn',
         isIncluded: (data) => data.harBarn === true,
+    },
+    arbeid: {
+        id: 'arbeid',
+        route: 'arbeid',
     },
     oppsummering: {
         id: 'oppsummering',
@@ -98,7 +98,7 @@ Felter per steg:
 Den lineære rekkefølgen i søknaden.
 
 ```ts
-const stepOrder: StepId[] = ['velkommen', 'barn', 'oppsummering'];
+const stepOrder: StepId[] = ['barn', 'arbeid', 'oppsummering'];
 ```
 
 ## Store
@@ -110,7 +110,12 @@ import { createSøknadStore } from '@sif/soknad/store';
 
 type Søknadsdata = {
     harForståttRettigheterOgPlikter?: boolean;
-    harBarn?: boolean;
+    barn: {
+        harBarn?: boolean;
+    };
+    arbeid: {
+        harArbeid?: boolean;
+    };
 };
 
 type AppState = {
@@ -148,8 +153,8 @@ const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknads
     stepConfig,
     stepOrder,
     stepTitles: {
-        velkommen: 'Velkommen',
         barn: 'Barn',
+        arbeid: 'Arbeid',
         oppsummering: 'Oppsummering',
     },
     basePath: '/soknad',
@@ -164,7 +169,7 @@ const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknads
     getSøknadsdataForStep: (stepId, søknadsdata) => {
         switch (stepId) {
             case 'barn':
-                return { harBarn: søknadsdata?.harBarn };
+                return { harBarn: søknadsdata?.barn?.harBarn };
             default:
                 return undefined;
         }
