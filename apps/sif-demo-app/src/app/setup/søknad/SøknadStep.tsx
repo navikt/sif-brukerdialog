@@ -35,7 +35,7 @@ export const SøknadStep = ({ stepId, children }: Props) => {
     };
 
     // Consistency-sjekk
-    const inconsistentStepId = ctx.checkConsistency(stepId) as SøknadStepId | undefined;
+    const inconsistentStepId = ctx.checkConsistency(stepId);
 
     return (
         <StepPage

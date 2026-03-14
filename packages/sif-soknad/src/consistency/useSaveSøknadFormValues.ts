@@ -30,7 +30,7 @@ export const useSaveSøknadFormValues = <TStepId extends string>(stepId: TStepId
                 return;
             }
             const values = getValuesRef.current();
-            setFormValuesForStep(stepId, values as StepFormValues);
+            setFormValuesForStep(stepId, values);
         };
     }, [stepId, setFormValuesForStep, shouldSaveOnUnmountForStep]);
 };

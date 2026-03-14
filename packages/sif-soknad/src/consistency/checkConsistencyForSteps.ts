@@ -51,6 +51,7 @@ export const checkConsistencyForSteps = <TStepId extends string>({
     formValuesToSøknadsdata,
 }: CheckConsistencyForStepsParams<TStepId>): TStepId | undefined => {
     const currentIndex = stepOrder.indexOf(currentStepId);
+    /** Returner undefined for første steg eller hvis steget ikke finnes i stepOrder */
     if (currentIndex <= 0) return undefined;
 
     const precedingSteps = stepOrder.slice(0, currentIndex);
