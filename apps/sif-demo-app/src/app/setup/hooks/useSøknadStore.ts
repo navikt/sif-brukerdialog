@@ -1,4 +1,4 @@
-import { store } from '@sif/soknad/store';
+import { createSøknadStore as store } from '@sif/soknad/store';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
 import { SøknadState, søknadStepConfig, søknadStepOrder } from '../søknad/søknadStepConfig';
