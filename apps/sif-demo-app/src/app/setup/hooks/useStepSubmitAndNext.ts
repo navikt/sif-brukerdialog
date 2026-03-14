@@ -1,4 +1,3 @@
-import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { useCallback } from 'react';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
@@ -20,18 +19,16 @@ export function useStepSubmit<TFormValues, TStepSøknadsdata>({
     toSøknadsdata,
 }: UseStepSubmitOptions<TFormValues, TStepSøknadsdata>) {
     const flow = useSøknadFlow();
-    const { clearFormValuesForStep } = useSøknadFormValues();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
     const onSubmit = useCallback(
         async (data: TFormValues) => {
             const mapped = toSøknadsdata(data);
-            flow.setSøknadsdata({ [stepId]: mapped } as Partial<Søknadsdata>);
+            flow.commitStep(stepId, { [stepId]: mapped } as Partial<Søknadsdata>);
             await lagreSøknad();
-            clearFormValuesForStep(stepId);
             flow.navigateToNextStep(stepId);
         },
-        [flow, clearFormValuesForStep, stepId, toSøknadsdata, lagreSøknad],
+        [flow, stepId, toSøknadsdata, lagreSøknad],
     );
 
     return { onSubmit, isPending };

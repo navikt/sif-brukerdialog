@@ -63,6 +63,9 @@ export interface SøknadFlowContextValue<TSøknadsdata, TStepId extends string> 
     // Consistency
     checkConsistency: (currentStepId: TStepId) => TStepId | undefined;
     formValuesToSøknadsdata: FormValuesToSøknadsdataFn<TStepId>;
+
+    // Submit
+    commitStep: (stepId: TStepId, data: Partial<TSøknadsdata>) => void;
 }
 
 interface ProviderProps {
@@ -97,7 +100,7 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
         const setSøknadSendt = useStore((s) => s.setSøknadSendt);
 
         // Draft form values for consistency check (owned by SøknadFormValuesContext)
-        const { søknadFormValues } = useSøknadFormValues();
+        const { søknadFormValues, clearFormValuesForStep } = useSøknadFormValues();
 
         const getSøknadSteps = useCallback(() => useStore.getState().includedSteps, [useStore]);
 
@@ -108,6 +111,14 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
                 setCurrentStep,
                 basePath,
             });
+
+        const commitStep = useCallback(
+            (stepId: TStepId, data: Partial<TSøknadsdata>) => {
+                setSøknadsdata(data);
+                clearFormValuesForStep(stepId);
+            },
+            [setSøknadsdata, clearFormValuesForStep],
+        );
 
         const checkConsistency = useCallback(
             (cStepId: TStepId): TStepId | undefined =>
@@ -141,6 +152,7 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
                 canGoPrevious,
                 checkConsistency,
                 formValuesToSøknadsdata,
+                commitStep,
             }),
             [
                 stepConfig,
@@ -161,6 +173,7 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
                 canGoPrevious,
                 checkConsistency,
                 formValuesToSøknadsdata,
+                commitStep,
             ],
         );
 
