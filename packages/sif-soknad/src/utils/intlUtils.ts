@@ -1,4 +1,4 @@
-import { IntlDateFormat, intlDateFormats } from '@navikt/sif-common-utils/src/intlDateFormats';
+import { IntlDateFormat, intlDateFormats } from '@navikt/sif-common-utils';
 import { FormatNumberOptions, IntlShape } from 'react-intl';
 
 export type Locale = 'nb' | 'nn';

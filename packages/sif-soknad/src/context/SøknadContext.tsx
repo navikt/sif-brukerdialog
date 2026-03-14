@@ -1,109 +1,93 @@
-import { createContext, ReactNode, useCallback, useContext, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createContext, ReactNode, useCallback, useContext, useMemo } from 'react';
 import { StoreApi, UseBoundStore } from 'zustand';
 
+import { checkConsistencyForSteps } from '../consistency/checkConsistencyForSteps';
+import { SøknadFormValuesProvider, useSøknadFormValues } from '../consistency/SøknadFormValuesContext';
+import { useStepNavigation } from '../navigation/useStepNavigation';
 import { IncludedStep, SøknadFormValues, StepConfig, StepFormValues, StepSøknadsdata } from '../types';
 
-/**
- * Konverter-funksjon fra skjemadata til søknadsdata for et steg.
- * Brukes av consistency-sjekk.
- */
-type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => StepSøknadsdata | undefined;
+type FormValuesToSøknadsdataFn<TStepId extends string> = (
+    stepId: TStepId,
+    formValues: StepFormValues,
+) => StepSøknadsdata | undefined;
 
-/**
- * Store-interface som SøknadContext forventer.
- */
-interface SøknadStoreState<TSøknadsdata> {
+type GetSøknadsdataForStepFn<TSøknadsdata, TStepId extends string> = (
+    stepId: TStepId,
+    søknadsdata: TSøknadsdata | undefined,
+) => StepSøknadsdata | undefined;
+
+interface SøknadStoreState<TSøknadsdata, TStepId extends string> {
     søknadState: { søknadsdata: TSøknadsdata } | undefined;
-    currentStepId?: string;
-    includedSteps: IncludedStep[];
+    currentStepId?: TStepId;
+    includedSteps: Array<IncludedStep<TStepId>>;
     setSøknadsdata: (data: Partial<TSøknadsdata>) => void;
-    setCurrentStep: (stepId: string) => void;
+    setCurrentStep: (stepId: TStepId) => void;
     resetSøknad: () => void;
-    startSøknad: (firstStepId: string, harForståttRettigheterOgPlikter: true) => void;
+    startSøknad: (firstStepId: TStepId, harForståttRettigheterOgPlikter: true) => void;
     setSøknadSendt: () => void;
 }
 
-/**
- * Konfigurasjon for å opprette SøknadContext.
- */
-export interface SøknadContextConfig<TSøknadsdata> {
-    /** Zustand store hook */
-    useStore: UseBoundStore<StoreApi<SøknadStoreState<TSøknadsdata>>>;
-    /** Steg-konfigurasjon med routes, isCompleted, isIncluded */
-    stepConfig: StepConfig<TSøknadsdata>;
-    /** Rekkefølge på steg */
-    stepOrder: string[];
-    /** Titler for steg (brukes i progress-indikator) */
-    stepTitles: Record<string, string>;
-    /** Konverter skjemadata til søknadsdata per steg (for consistency-sjekk) */
-    formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
-    /** Base path for søknad-routes */
+export interface SøknadContextConfig<TSøknadsdata, TStepId extends string> {
+    useStore: UseBoundStore<StoreApi<SøknadStoreState<TSøknadsdata, TStepId>>>;
+    stepConfig: StepConfig<TStepId, TSøknadsdata>;
+    stepOrder: TStepId[];
+    stepTitles: Record<TStepId, string>;
+    formValuesToSøknadsdata: FormValuesToSøknadsdataFn<TStepId>;
+    getSøknadsdataForStep: GetSøknadsdataForStepFn<TSøknadsdata, TStepId>;
     basePath?: string;
 }
 
-/**
- * Verdier som er tilgjengelige via useSøknadContext.
- */
-interface SøknadContextValue<TSøknadsdata> {
+export interface SøknadFlowContextValue<TSøknadsdata, TStepId extends string> {
     // Config
-    stepConfig: StepConfig<TSøknadsdata>;
-    stepOrder: string[];
-    stepTitles: Record<string, string>;
+    stepConfig: StepConfig<TStepId, TSøknadsdata>;
+    stepOrder: TStepId[];
+    stepTitles: Record<TStepId, string>;
     basePath: string;
 
-    // Store-verdier
+    // Store
     søknadsdata: TSøknadsdata | undefined;
-    currentStepId: string | undefined;
-    includedSteps: IncludedStep[];
+    currentStepId: TStepId | undefined;
+    includedSteps: Array<IncludedStep<TStepId>>;
     setSøknadsdata: (data: Partial<TSøknadsdata>) => void;
     resetSøknad: () => void;
-    startSøknad: (firstStepId: string, harForståttRettigheterOgPlikter: true) => void;
+    startSøknad: (firstStepId: TStepId, harForståttRettigheterOgPlikter: true) => void;
     setSøknadSendt: () => void;
 
     // Navigasjon
-    navigateToStep: (stepId: string) => void;
-    navigateToNextStep: (fromStepId: string) => void;
-    navigateToPreviousStep: (fromStepId: string) => void;
-    canGoNext: (fromStepId: string) => boolean;
-    canGoPrevious: (fromStepId: string) => boolean;
-
-    // Skjemaverdier (usubmittede)
-    formValues: SøknadFormValues;
-    getFormValuesForStep: <T = StepFormValues>(stepId: string) => Partial<T> | undefined;
-    setFormValuesForStep: (stepId: string, values: StepFormValues) => void;
-    clearFormValuesForStep: (stepId: string) => void;
-    clearAllFormValues: () => void;
+    navigateToStep: (stepId: TStepId) => void;
+    navigateToNextStep: (fromStepId: TStepId) => void;
+    navigateToPreviousStep: (fromStepId: TStepId) => void;
+    canGoNext: (fromStepId: TStepId) => boolean;
+    canGoPrevious: (fromStepId: TStepId) => boolean;
 
     // Consistency
-    checkConsistency: (currentStepId: string) => string | undefined;
-    formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
-}
+    checkConsistency: (currentStepId: TStepId) => TStepId | undefined;
+    formValuesToSøknadsdata: FormValuesToSøknadsdataFn<TStepId>;
 
-const getPreviousNextStep = (includedSteps: IncludedStep[], currentStepId: string | null) => {
-    const includedStepIds = includedSteps.map((s) => s.stepId);
-    const currentIndex = currentStepId ? includedStepIds.indexOf(currentStepId) : -1;
-    return {
-        previousStepId: currentIndex > 0 ? includedStepIds[currentIndex - 1] : null,
-        nextStepId: currentIndex < includedStepIds.length - 1 ? includedStepIds[currentIndex + 1] : null,
-    };
-};
+    // Submit
+    commitStep: (stepId: TStepId, data: Partial<TSøknadsdata>) => void;
+}
 
 interface ProviderProps {
     children: ReactNode;
     initialFormValues?: SøknadFormValues;
 }
 
-/**
- * Oppretter SøknadContext med Provider og hooks.
- * Samler navigasjon, skjemaverdier og consistency-sjekk i én kontekst.
- */
-export function createSøknadContext<TSøknadsdata extends object>(config: SøknadContextConfig<TSøknadsdata>) {
-    const SøknadContext = createContext<SøknadContextValue<TSøknadsdata> | null>(null);
+export function createSøknadContext<TSøknadsdata extends object, TStepId extends string>(
+    config: SøknadContextConfig<TSøknadsdata, TStepId>,
+) {
+    const SøknadFlowContext = createContext<SøknadFlowContextValue<TSøknadsdata, TStepId> | null>(null);
 
-    const SøknadContextProvider = ({ children, initialFormValues }: ProviderProps) => {
-        const navigate = useNavigate();
-        const { useStore, stepConfig, stepOrder, stepTitles, formValuesToSøknadsdata, basePath = '/soknad' } = config;
+    const SøknadFlowContextInner = ({ children }: { children: ReactNode }) => {
+        const {
+            useStore,
+            stepConfig,
+            stepOrder,
+            stepTitles,
+            formValuesToSøknadsdata,
+            getSøknadsdataForStep,
+            basePath = '/soknad',
+        } = config;
 
         // Store
         const søknadState = useStore((s) => s.søknadState);
@@ -115,113 +99,46 @@ export function createSøknadContext<TSøknadsdata extends object>(config: Søkn
         const startSøknad = useStore((s) => s.startSøknad);
         const setSøknadSendt = useStore((s) => s.setSøknadSendt);
 
-        // Skjemaverdier (usubmittede)
-        const [formValues, setFormValues] = useState<SøknadFormValues>(initialFormValues ?? {});
+        // Draft form values for consistency check (owned by SøknadFormValuesContext)
+        const { søknadFormValues, clearFormValuesForStep, markSkipNextUnmountSaveForStep } = useSøknadFormValues();
 
-        const getFormValuesForStep = useCallback(
-            <T = StepFormValues,>(stepId: string): Partial<T> | undefined => {
-                return formValues[stepId] as Partial<T> | undefined;
+        const getSøknadSteps = useCallback(() => useStore.getState().includedSteps, [useStore]);
+
+        const { navigateToStep, navigateToNextStep, navigateToPreviousStep, canGoNext, canGoPrevious } =
+            useStepNavigation<TStepId, TSøknadsdata>({
+                stepConfig,
+                getSøknadSteps,
+                setCurrentStep,
+                basePath,
+            });
+
+        const commitStep = useCallback(
+            (stepId: TStepId, data: Partial<TSøknadsdata>) => {
+                markSkipNextUnmountSaveForStep(stepId);
+                setSøknadsdata(data);
+                clearFormValuesForStep(stepId);
             },
-            [formValues],
+            [markSkipNextUnmountSaveForStep, setSøknadsdata, clearFormValuesForStep],
         );
 
-        const setFormValuesForStep = useCallback((stepId: string, values: StepFormValues) => {
-            setFormValues((prev) => ({ ...prev, [stepId]: values }));
-        }, []);
-
-        const clearFormValuesForStep = useCallback((stepId: string) => {
-            setFormValues((prev) => ({ ...prev, [stepId]: undefined }));
-        }, []);
-
-        const clearAllFormValues = useCallback(() => {
-            setFormValues({});
-        }, []);
-
-        // Navigasjon
-        const navigateToStep = useCallback(
-            (stepId: string) => {
-                setCurrentStep(stepId);
-                const route = stepConfig[stepId]?.route;
-                if (route) {
-                    navigate(`${basePath}/${route}`);
-                }
-            },
-            [setCurrentStep, navigate, basePath, stepConfig],
-        );
-
-        const getIncludedStepsFresh = useCallback(() => {
-            return useStore.getState().includedSteps;
-        }, [useStore]);
-
-        const navigateToNextStep = useCallback(
-            (fromStepId: string) => {
-                const { nextStepId } = getPreviousNextStep(getIncludedStepsFresh(), fromStepId);
-                if (nextStepId) {
-                    navigateToStep(nextStepId);
-                }
-            },
-            [getIncludedStepsFresh, navigateToStep],
-        );
-
-        const navigateToPreviousStep = useCallback(
-            (fromStepId: string) => {
-                const { previousStepId } = getPreviousNextStep(getIncludedStepsFresh(), fromStepId);
-                if (previousStepId) {
-                    navigateToStep(previousStepId);
-                }
-            },
-            [getIncludedStepsFresh, navigateToStep],
-        );
-
-        const canGoNext = useCallback(
-            (fromStepId: string) => {
-                const { nextStepId } = getPreviousNextStep(getIncludedStepsFresh(), fromStepId);
-                return nextStepId !== null;
-            },
-            [getIncludedStepsFresh],
-        );
-
-        const canGoPrevious = useCallback(
-            (fromStepId: string) => {
-                const { previousStepId } = getPreviousNextStep(getIncludedStepsFresh(), fromStepId);
-                return previousStepId !== null;
-            },
-            [getIncludedStepsFresh],
-        );
-
-        // Consistency-sjekk
         const checkConsistency = useCallback(
-            (cStepId: string): string | undefined => {
-                const currentIndex = stepOrder.indexOf(cStepId);
-                if (currentIndex <= 0) return undefined;
-
-                const precedingSteps = stepOrder.slice(0, currentIndex);
-
-                for (const stepId of precedingSteps) {
-                    const stepFormValues = formValues[stepId];
-                    if (!stepFormValues) continue;
-
-                    const stepSøknadsdata = søknadState?.søknadsdata[stepId as keyof TSøknadsdata];
-                    const converted = formValuesToSøknadsdata(stepId, stepFormValues);
-
-                    if (!stepSøknadsdata || JSON.stringify(converted) !== JSON.stringify(stepSøknadsdata)) {
-                        return stepId;
-                    }
-                }
-                return undefined;
-            },
-            [stepOrder, formValues, søknadState?.søknadsdata, formValuesToSøknadsdata],
+            (cStepId: TStepId): TStepId | undefined =>
+                checkConsistencyForSteps({
+                    currentStepId: cStepId,
+                    stepOrder,
+                    formValues: søknadFormValues,
+                    getSøknadsdataForStep: (stepId: TStepId) => getSøknadsdataForStep(stepId, søknadState?.søknadsdata),
+                    formValuesToSøknadsdata,
+                }),
+            [stepOrder, søknadFormValues, søknadState?.søknadsdata, getSøknadsdataForStep, formValuesToSøknadsdata],
         );
 
-        const value = useMemo<SøknadContextValue<TSøknadsdata>>(
+        const value = useMemo<SøknadFlowContextValue<TSøknadsdata, TStepId>>(
             () => ({
-                // Config
                 stepConfig,
                 stepOrder,
                 stepTitles,
                 basePath,
-
-                // Store
                 søknadsdata: søknadState?.søknadsdata,
                 currentStepId,
                 includedSteps,
@@ -229,24 +146,14 @@ export function createSøknadContext<TSøknadsdata extends object>(config: Søkn
                 resetSøknad,
                 startSøknad,
                 setSøknadSendt,
-
-                // Navigasjon
                 navigateToStep,
                 navigateToNextStep,
                 navigateToPreviousStep,
                 canGoNext,
                 canGoPrevious,
-
-                // Skjemaverdier
-                formValues,
-                getFormValuesForStep,
-                setFormValuesForStep,
-                clearFormValuesForStep,
-                clearAllFormValues,
-
-                // Consistency
                 checkConsistency,
                 formValuesToSøknadsdata,
+                commitStep,
             }),
             [
                 stepConfig,
@@ -265,32 +172,31 @@ export function createSøknadContext<TSøknadsdata extends object>(config: Søkn
                 navigateToPreviousStep,
                 canGoNext,
                 canGoPrevious,
-                formValues,
-                getFormValuesForStep,
-                setFormValuesForStep,
-                clearFormValuesForStep,
-                clearAllFormValues,
                 checkConsistency,
                 formValuesToSøknadsdata,
+                commitStep,
             ],
         );
 
-        return <SøknadContext.Provider value={value}>{children}</SøknadContext.Provider>;
+        return <SøknadFlowContext.Provider value={value}>{children}</SøknadFlowContext.Provider>;
     };
 
-    /**
-     * Hook for å hente hele søknadskonteksten.
-     */
-    const useSøknadContext = (): SøknadContextValue<TSøknadsdata> => {
-        const context = useContext(SøknadContext);
+    const SøknadContextProvider = ({ children, initialFormValues }: ProviderProps) => (
+        <SøknadFormValuesProvider initialValues={initialFormValues}>
+            <SøknadFlowContextInner>{children}</SøknadFlowContextInner>
+        </SøknadFormValuesProvider>
+    );
+
+    const useSøknadFlow = (): SøknadFlowContextValue<TSøknadsdata, TStepId> => {
+        const context = useContext(SøknadFlowContext);
         if (!context) {
-            throw new Error('useSøknadContext må brukes innenfor SøknadContextProvider');
+            throw new Error('useSøknadFlow må brukes innenfor SøknadContextProvider');
         }
         return context;
     };
 
     return {
         SøknadContextProvider,
-        useSøknadContext,
+        useSøknadFlow,
     };
 }
