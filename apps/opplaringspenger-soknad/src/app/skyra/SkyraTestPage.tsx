@@ -54,6 +54,7 @@ const Page1 = () => {
 };
 
 const SkyraTestPage = () => {
+    useSkyraReloader();
     return (
         <Routes>
             <Route path="/skyra/test" element={<Page1 />} />
