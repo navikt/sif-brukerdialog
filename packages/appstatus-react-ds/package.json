@@ -10,14 +10,14 @@
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "6.0.3",
-        "@sanity/client": "7.16.0"
+        "@sanity/client": "7.17.0"
     },
     "devDependencies": {
         "@navikt/aksel-icons": "8.7.0",
         "@navikt/ds-css": "8.7.0",
         "@navikt/ds-react": "8.7.0",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.3.5",
+        "@types/node": "25.4.0",
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
