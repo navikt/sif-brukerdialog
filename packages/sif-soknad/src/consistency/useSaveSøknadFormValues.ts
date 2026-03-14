@@ -17,7 +17,7 @@ import { useSøknadFormValues } from '.';
  * ```
  */
 export const useSaveSøknadFormValues = <TStepId extends string>(stepId: TStepId, getValues: () => StepFormValues) => {
-    const { setFormValuesForStep } = useSøknadFormValues();
+    const { setFormValuesForStep, shouldSaveOnUnmountForStep } = useSøknadFormValues();
     const getValuesRef = useRef(getValues);
 
     useEffect(() => {
@@ -26,8 +26,11 @@ export const useSaveSøknadFormValues = <TStepId extends string>(stepId: TStepId
 
     useEffect(() => {
         return () => {
+            if (!shouldSaveOnUnmountForStep(stepId)) {
+                return;
+            }
             const values = getValuesRef.current();
             setFormValuesForStep(stepId, values as StepFormValues);
         };
-    }, [stepId, setFormValuesForStep]);
+    }, [stepId, setFormValuesForStep, shouldSaveOnUnmountForStep]);
 };

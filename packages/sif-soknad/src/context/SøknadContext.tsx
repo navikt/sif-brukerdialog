@@ -100,7 +100,7 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
         const setSøknadSendt = useStore((s) => s.setSøknadSendt);
 
         // Draft form values for consistency check (owned by SøknadFormValuesContext)
-        const { søknadFormValues, clearFormValuesForStep } = useSøknadFormValues();
+        const { søknadFormValues, clearFormValuesForStep, markSkipNextUnmountSaveForStep } = useSøknadFormValues();
 
         const getSøknadSteps = useCallback(() => useStore.getState().includedSteps, [useStore]);
 
@@ -114,10 +114,11 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
 
         const commitStep = useCallback(
             (stepId: TStepId, data: Partial<TSøknadsdata>) => {
+                markSkipNextUnmountSaveForStep(stepId);
                 setSøknadsdata(data);
                 clearFormValuesForStep(stepId);
             },
-            [setSøknadsdata, clearFormValuesForStep],
+            [markSkipNextUnmountSaveForStep, setSøknadsdata, clearFormValuesForStep],
         );
 
         const checkConsistency = useCallback(
