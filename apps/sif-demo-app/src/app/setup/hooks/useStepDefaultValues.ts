@@ -6,7 +6,7 @@ import { useSøknadFlow } from '../context/søknadContext';
 
 interface UseStepDefaultValuesOptions<TFormValues, TStepSøknadsdata> {
     stepId: string;
-    toFormValues?: (søknadsdata: TStepSøknadsdata | undefined) => Partial<TFormValues>;
+    toFormValues: (søknadsdata: TStepSøknadsdata | undefined) => Partial<TFormValues>;
 }
 
 /**
@@ -25,12 +25,7 @@ export function useStepDefaultValues<TFormValues, TStepSøknadsdata>({
         if (stepFormValues) {
             return stepFormValues;
         }
-
-        if (toFormValues) {
-            const stepSøknadsdata = søknadsdata?.[stepId as keyof Søknadsdata] as TStepSøknadsdata | undefined;
-            return toFormValues(stepSøknadsdata);
-        }
-
-        return {};
+        const stepSøknadsdata = søknadsdata?.[stepId as keyof Søknadsdata] as TStepSøknadsdata | undefined;
+        return toFormValues(stepSøknadsdata);
     }, [søknadsdata, getFormValuesForStep, stepId, toFormValues]);
 }

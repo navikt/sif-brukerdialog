@@ -12,7 +12,7 @@ interface UseStepSubmitOptions<TFormValues, TStepSøknadsdata> {
 
 /**
  * Hook for å håndtere submit i et søknadssteg.
- * Lagrer data til store, mellomlagrer, og navigerer til neste steg.
+ * Mapper formverdier til søknadsdata, oppdaterer søknadsdata i konteksten, mellomlagrer og navigerer til neste steg.
  */
 export function useStepSubmit<TFormValues, TStepSøknadsdata>({
     stepId,
@@ -23,8 +23,8 @@ export function useStepSubmit<TFormValues, TStepSøknadsdata>({
 
     const onSubmit = useCallback(
         async (data: TFormValues) => {
-            const mapped = toSøknadsdata(data);
-            flow.commitStep(stepId, { [stepId]: mapped } as Partial<Søknadsdata>);
+            const stepData = toSøknadsdata(data);
+            flow.commitStep(stepId, { [stepId]: stepData } as Partial<Søknadsdata>);
             await lagreSøknad();
             flow.navigateToNextStep(stepId);
         },

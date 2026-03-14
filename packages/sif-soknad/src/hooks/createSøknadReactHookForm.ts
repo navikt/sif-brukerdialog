@@ -3,7 +3,10 @@ import { DefaultValues, useForm, UseFormReturn } from 'react-hook-form';
 import { useSaveSøknadFormValues } from '../consistency/useSaveSøknadFormValues';
 import { StepFormValues } from '../types';
 
-export const createSøknadForm = <TStepId extends string>() => {
+/**
+ * Adapter for react-hook-form som integrerer med SøknadFormValuesContext for å lagre skjemaverdier ved unmount.
+ */
+export const createSøknadReactHookForm = <TStepId extends string>() => {
     return function useSøknadForm<T extends StepFormValues>(
         stepId: TStepId,
         defaultValues: DefaultValues<T>,
