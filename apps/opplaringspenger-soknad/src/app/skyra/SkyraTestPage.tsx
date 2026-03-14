@@ -3,11 +3,10 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import Skyra, { Slug } from './Skyra';
-import { useSkyraReloader } from './useSkyraReloader';
+import { SkyraHandler } from './SkyraHandler';
 
 const Page2 = () => {
     const navigate = useNavigate();
-    useSkyraReloader();
     return (
         <Page title="Skyra testside">
             <VStack gap="space-40">
@@ -54,13 +53,15 @@ const Page1 = () => {
 };
 
 const SkyraTestPage = () => {
-    useSkyraReloader();
     return (
-        <Routes>
-            <Route path="/skyra/test" element={<Page1 />} />
-            <Route path="/skyra/test/page1" element={<Page1 />} />
-            <Route path="/skyra/test/page2" element={<Page2 />} />
-        </Routes>
+        <>
+            <SkyraHandler />
+            <Routes>
+                <Route path="/skyra/test" element={<Page1 />} />
+                <Route path="/skyra/test/page1" element={<Page1 />} />
+                <Route path="/skyra/test/page2" element={<Page2 />} />
+            </Routes>
+        </>
     );
 };
 
