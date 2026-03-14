@@ -1,6 +1,7 @@
 import { matchPath, Navigate, Outlet, useLocation } from 'react-router-dom';
 
 import { IncludedStep } from '../types';
+import { buildStepPath } from './routeUtils';
 
 interface Props<TStepId extends string> {
     steps: Array<IncludedStep<TStepId>>;
@@ -33,12 +34,12 @@ export const StepRouteGuard = <TStepId extends string>({
     }
 
     const stepAtPath = steps.find((s) =>
-        matchPath({ path: `${basePath}/${s.stepRoute}`, end: false }, location.pathname),
+        matchPath({ path: buildStepPath(basePath, s.stepRoute), end: false }, location.pathname),
     );
     if (!stepAtPath) {
         const currentRoute = steps.find((s) => s.stepId === currentStepId)?.stepRoute;
         if (currentRoute) {
-            return <Navigate to={`${basePath}/${currentRoute}`} replace />;
+            return <Navigate to={buildStepPath(basePath, currentRoute)} replace />;
         }
     }
 

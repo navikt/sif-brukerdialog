@@ -37,7 +37,7 @@ export interface Mellomlagring<Søknadsdata, Skjemadata, TStepId extends string 
 export interface StepDefinition<TStepId extends string, TSøknadsdata = StepSøknadsdata> {
     /** Intern identifikator */
     id: TStepId;
-    /** URL-segment */
+    /** URL-segment uten ledende/trailende slash, f.eks. 'start' */
     route: string;
     /** Returnerer true hvis steget er ferdig utfylt */
     isCompleted?: (søknadsdata: TSøknadsdata) => boolean;

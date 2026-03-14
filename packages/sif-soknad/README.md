@@ -43,7 +43,7 @@ Søknaden defineres gjennom en stegkonfigurasjon.
 ```ts
 const stepConfig = {
     aboutYou: {
-        route: '/about-you',
+        route: 'about-you',
         isCompleted: (data) => Boolean(data.aboutYou),
     },
 };
@@ -55,7 +55,7 @@ felt beskrivelse
 
 ---
 
-route URL for steget
+route URL-segment uten ledende slash (f.eks. start)
 isCompleted bestemmer om steget er ferdig
 isIncluded bestemmer om steget skal vises
 nextStep valgfri dynamisk navigasjon

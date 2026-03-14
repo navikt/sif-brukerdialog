@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { IncludedStep, StepConfig } from '../types';
 import { getPreviousNextStep } from '../utils';
+import { buildStepPath } from './routeUtils';
 
 interface UseStepNavigationOptions<TStepId extends string, TSøknadsdata> {
     stepConfig: StepConfig<TStepId, TSøknadsdata>;
@@ -30,7 +31,7 @@ export const useStepNavigation = <TStepId extends string, TSøknadsdata>({
         (stepId: TStepId) => {
             setCurrentStep(stepId);
             const route = stepConfig[stepId].route;
-            navigate(`${basePath}/${route}`);
+            navigate(buildStepPath(basePath, route));
         },
         [setCurrentStep, navigate, basePath, stepConfig],
     );
