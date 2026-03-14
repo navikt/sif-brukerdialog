@@ -13,11 +13,11 @@ type Søknadsdata = {
 const stepOrder: StepId[] = ['start', 'barn', 'arbeid', 'oppsummering', 'send'];
 
 const baseConfig: StepConfig<StepId, Søknadsdata> = {
-    start: { id: 'start', route: '/start' },
-    barn: { id: 'barn', route: '/barn', isIncluded: (d) => d.harBarn === true },
-    arbeid: { id: 'arbeid', route: '/arbeid', isIncluded: (d) => d.jobber === true },
-    oppsummering: { id: 'oppsummering', route: '/oppsummering' },
-    send: { id: 'send', route: '/send' },
+    start: { route: '/start' },
+    barn: { route: '/barn', isIncluded: (d) => d.harBarn === true },
+    arbeid: { route: '/arbeid', isIncluded: (d) => d.jobber === true },
+    oppsummering: { route: '/oppsummering' },
+    send: { route: '/send' },
 };
 
 describe('getIncludedSteps', () => {

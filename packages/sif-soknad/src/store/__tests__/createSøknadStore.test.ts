@@ -19,10 +19,10 @@ type TestState = {
 const stepOrder: StepId[] = ['start', 'barn', 'arbeid', 'oppsummering'];
 
 const stepConfig: StepConfig<StepId, Søknadsdata> = {
-    start: { id: 'start', route: '/start' },
-    barn: { id: 'barn', route: '/barn', isIncluded: (d) => d.harBarn === true },
-    arbeid: { id: 'arbeid', route: '/arbeid', isIncluded: (d) => d.jobber === true },
-    oppsummering: { id: 'oppsummering', route: '/oppsummering' },
+    start: { route: '/start' },
+    barn: { route: '/barn', isIncluded: (d) => d.harBarn === true },
+    arbeid: { route: '/arbeid', isIncluded: (d) => d.jobber === true },
+    oppsummering: { route: '/oppsummering' },
 };
 
 const createStore = () =>

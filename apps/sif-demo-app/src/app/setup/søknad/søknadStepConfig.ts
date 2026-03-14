@@ -17,17 +17,14 @@ export interface SøknadState {
 
 export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
     [SøknadStepId.BARN]: {
-        id: SøknadStepId.BARN,
         route: 'barn',
         isCompleted: (s) => s.barn !== undefined,
     },
     [SøknadStepId.BOSTED]: {
-        id: SøknadStepId.BOSTED,
         route: 'bosted',
         isCompleted: (s) => s.bosted !== undefined,
     },
     [SøknadStepId.OPPSUMMERING]: {
-        id: SøknadStepId.OPPSUMMERING,
         route: 'oppsummering',
     },
 };

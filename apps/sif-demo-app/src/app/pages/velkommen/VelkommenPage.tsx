@@ -17,9 +17,10 @@ export const VelkommenPage = () => {
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {
-        const førsteSteg = søknadStepConfig[søknadStepOrder[0]];
+        const førsteStegId = søknadStepOrder[0];
+        const førsteSteg = søknadStepConfig[førsteStegId];
         clearSøknadFormValues();
-        startSøknad(førsteSteg.id, harForståttRettigheterOgPlikter);
+        startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
         await lagreSøknad();
         navigate(`/soknad/${førsteSteg.route}`);
     };

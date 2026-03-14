@@ -34,9 +34,7 @@ export interface Mellomlagring<Søknadsdata, Skjemadata, TStepId extends string 
 /**
  * Definisjon av et steg i søknadsflyten
  */
-export interface StepDefinition<TStepId extends string, TSøknadsdata = StepSøknadsdata> {
-    /** Intern identifikator */
-    id: TStepId;
+export interface StepDefinition<TSøknadsdata = StepSøknadsdata> {
     /** URL-segment uten ledende/trailende slash, f.eks. 'start' */
     route: string;
     /** Returnerer true hvis steget er ferdig utfylt */
@@ -48,10 +46,7 @@ export interface StepDefinition<TStepId extends string, TSøknadsdata = StepSøk
 /**
  * Konfigurasjon for alle steg
  */
-export type StepConfig<TStepId extends string, TSøknadsdata = unknown> = Record<
-    TStepId,
-    StepDefinition<TStepId, TSøknadsdata>
->;
+export type StepConfig<TStepId extends string, TSøknadsdata = unknown> = Record<TStepId, StepDefinition<TSøknadsdata>>;
 
 /**
  * Info om et inkludert steg - dette vil si et steg som er med i søknadsflyten
