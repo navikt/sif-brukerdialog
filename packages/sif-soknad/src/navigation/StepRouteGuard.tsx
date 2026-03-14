@@ -38,9 +38,11 @@ export const StepRouteGuard = <TStepId extends string>({
     );
     if (!stepAtPath) {
         const currentRoute = steps.find((s) => s.stepId === currentStepId)?.stepRoute;
-        if (currentRoute) {
-            return <Navigate to={buildStepPath(basePath, currentRoute)} replace />;
+        const fallbackRoute = currentRoute ?? steps[0]?.stepRoute;
+        if (fallbackRoute) {
+            return <Navigate to={buildStepPath(basePath, fallbackRoute)} replace />;
         }
+        return <Navigate to={initialPath} replace />;
     }
 
     return <Outlet />;
