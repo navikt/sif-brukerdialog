@@ -58,6 +58,14 @@ describe('getIncludedSteps', () => {
 
         expect(result.map((s) => s.stepId)).toEqual(['start', 'oppsummering', 'send']);
     });
+
+    it('kaster tydelig feil når stepOrder inneholder stepId som mangler i config', () => {
+        const invalidStepOrder: StepId[] = [...stepOrder, 'mangler' as StepId];
+
+        expect(() => getIncludedSteps(invalidStepOrder, baseConfig, {})).toThrow(
+            "getIncludedSteps: stepOrder inneholder ukjent stepId 'mangler'",
+        );
+    });
 });
 
 describe('getPreviousNextStep', () => {

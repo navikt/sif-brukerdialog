@@ -1,1 +1,1 @@
-export { createSøknadReactHookForm as createSøknadReactHookForm } from './createSøknadReactHookForm';
+export { createSøknadReactHookForm } from './createSøknadReactHookForm';

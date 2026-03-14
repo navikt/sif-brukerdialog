@@ -11,7 +11,7 @@ Pakken brukes vanligvis i monorepo via subpath-imports:
 ```ts
 import { createSøknadStore } from '@sif/soknad/store';
 import { createSøknadContext } from '@sif/soknad/context';
-import { createSøknadForm } from '@sif/soknad/hooks';
+import { createSøknadReactHookForm } from '@sif/soknad/hooks';
 import { StepRouteGuard } from '@sif/soknad/navigation';
 ```
 
@@ -68,16 +68,13 @@ type Søknadsdata = {
 
 const stepConfig: StepConfig<StepId, Søknadsdata> = {
     barn: {
-        id: 'barn',
         route: 'barn',
         isIncluded: (data) => data.harBarn === true,
     },
     arbeid: {
-        id: 'arbeid',
         route: 'arbeid',
     },
     oppsummering: {
-        id: 'oppsummering',
         route: 'oppsummering',
         isCompleted: (data) => data.harBarn !== undefined,
     },
@@ -86,7 +83,6 @@ const stepConfig: StepConfig<StepId, Søknadsdata> = {
 
 Felter per steg:
 
-- `id`: intern identifikator
 - `route`: URL-segment. Anbefalt format er uten ledende eller trailing slash, for eksempel `barn`
 - `isIncluded`: om steget er med i flyten
 - `isCompleted`: om steget er ferdig
@@ -188,12 +184,12 @@ const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknads
 
 ## Skjema per steg
 
-`createSøknadForm` lager en hook rundt `react-hook-form` og lagrer draft-formvalues ved unmount.
+`createSøknadReactHookForm` lager en hook rundt `react-hook-form` og lagrer draft-formvalues ved unmount.
 
 ```ts
-import { createSøknadForm } from '@sif/soknad/hooks';
+import { createSøknadReactHookForm } from '@sif/soknad/hooks';
 
-const useSøknadForm = createSøknadForm<StepId>();
+const useSøknadForm = createSøknadReactHookForm<StepId>();
 
 type BarnFormValues = {
     harBarn: boolean;
@@ -215,7 +211,7 @@ Typisk livssyklus:
 2. komponenten unmountes uten submit
 3. draft-formvalues lagres
 4. ved submit committes data til søknadsdata
-5. draft for steget ryddes
+5. draft for steget ryddes, og unmount-save for samme steg hoppes over én gang
 
 `commitStep(stepId, data)` i `useSøknadFlow()` gjør dette:
 
@@ -270,7 +266,9 @@ import { StepRouteGuard } from '@sif/soknad/navigation';
 
 - venter på init hvis `isInitialized` er `false`
 - sender bruker til `initialPath` hvis det ikke finnes current step
-- sender bruker til gyldig steg hvis URL peker på et steg som ikke er inkludert
+- sender bruker til route for `currentStepId` hvis URL peker på et steg som ikke er inkludert
+- hvis `currentStepId` ikke er gyldig blant inkluderte steg, brukes første gyldige steg
+- hvis ingen steg er tilgjengelige, brukes `initialPath`
 
 ## Consistency
 
@@ -319,7 +317,7 @@ Sentrale typer som:
 
 ### `@sif/soknad/hooks`
 
-- `createSøknadForm`
+- `createSøknadReactHookForm`
 
 ### `@sif/soknad/navigation`
 
@@ -362,7 +360,7 @@ Sentrale typer som:
 2. opprett store med `createSøknadStore`
 3. opprett context med `createSøknadContext`
 4. wrap søknadsflyten i `SøknadContextProvider`
-5. bruk `createSøknadForm` i hvert steg
+5. bruk `createSøknadReactHookForm` i hvert steg
 6. bruk `commitStep(...)` ved submit
 7. naviger med `useSøknadFlow()`
 8. bruk `StepRouteGuard` rundt steg-rutene
