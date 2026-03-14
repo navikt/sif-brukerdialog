@@ -42,7 +42,8 @@ export const SøknadFormValuesProvider = ({ children, initialValues }: Props) =>
     }, []);
 
     const clearFormValuesForStep = useCallback((stepId: string) => {
-        setValues((prev) => ({ ...prev, [stepId]: undefined }));
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        setValues(({ [stepId]: _, ...rest }) => rest);
     }, []);
 
     const getFormValuesForStep = useCallback(
