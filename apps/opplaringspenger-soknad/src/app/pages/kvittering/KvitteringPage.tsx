@@ -6,7 +6,6 @@ import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import Skyra, { Slug } from '../../skyra/Skyra';
-import { useSkyraReloader } from '../../skyra/useSkyraReloader';
 import { KvitteringInfo } from '../../types/KvitteringInfo';
 import UXArbeidstidTilFravær from '../../uxsignals/UXArbeidstidTilFravær';
 
@@ -16,7 +15,6 @@ interface Props {
 
 const KvitteringPage = ({ kvitteringInfo }: Props) => {
     const { text, intl } = useAppIntl();
-    useSkyraReloader();
 
     return (
         <Page title={text('page.kvittering.sidetittel')}>
