@@ -15,5 +15,6 @@ export const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<S
     stepOrder: søknadStepOrder,
     stepTitles: stepTitles,
     formValuesToSøknadsdata,
+    getSøknadsdataForStep: (stepId, søknadsdata) => søknadsdata?.[stepId],
     basePath: '/soknad',
 });

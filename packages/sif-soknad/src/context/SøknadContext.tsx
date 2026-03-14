@@ -11,6 +11,11 @@ type FormValuesToSøknadsdataFn<TStepId extends string> = (
     formValues: StepFormValues,
 ) => StepSøknadsdata | undefined;
 
+type GetSøknadsdataForStepFn<TSøknadsdata, TStepId extends string> = (
+    stepId: TStepId,
+    søknadsdata: TSøknadsdata | undefined,
+) => StepSøknadsdata | undefined;
+
 interface SøknadStoreState<TSøknadsdata, TStepId extends string> {
     søknadState: { søknadsdata: TSøknadsdata } | undefined;
     currentStepId?: TStepId;
@@ -28,6 +33,7 @@ export interface SøknadContextConfig<TSøknadsdata, TStepId extends string> {
     stepOrder: TStepId[];
     stepTitles: Record<TStepId, string>;
     formValuesToSøknadsdata: FormValuesToSøknadsdataFn<TStepId>;
+    getSøknadsdataForStep: GetSøknadsdataForStepFn<TSøknadsdata, TStepId>;
     basePath?: string;
 }
 
@@ -70,7 +76,15 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
     const SøknadFlowContext = createContext<SøknadFlowContextValue<TSøknadsdata, TStepId> | null>(null);
 
     const SøknadFlowContextInner = ({ children }: { children: ReactNode }) => {
-        const { useStore, stepConfig, stepOrder, stepTitles, formValuesToSøknadsdata, basePath = '/soknad' } = config;
+        const {
+            useStore,
+            stepConfig,
+            stepOrder,
+            stepTitles,
+            formValuesToSøknadsdata,
+            getSøknadsdataForStep,
+            basePath = '/soknad',
+        } = config;
 
         // Store
         const søknadState = useStore((s) => s.søknadState);
@@ -101,15 +115,10 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
                     currentStepId: cStepId,
                     stepOrder,
                     formValues: søknadFormValues,
-                    getSøknadsdataForStep: (stepId: TStepId) => {
-                        const søknadsdataByStep = søknadState?.søknadsdata as
-                            | Partial<Record<TStepId, StepSøknadsdata>>
-                            | undefined;
-                        return søknadsdataByStep?.[stepId];
-                    },
+                    getSøknadsdataForStep: (stepId: TStepId) => getSøknadsdataForStep(stepId, søknadState?.søknadsdata),
                     formValuesToSøknadsdata,
                 }),
-            [stepOrder, søknadFormValues, søknadState?.søknadsdata, formValuesToSøknadsdata],
+            [stepOrder, søknadFormValues, søknadState?.søknadsdata, getSøknadsdataForStep, formValuesToSøknadsdata],
         );
 
         const value = useMemo<SøknadFlowContextValue<TSøknadsdata, TStepId>>(

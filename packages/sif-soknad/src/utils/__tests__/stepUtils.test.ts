@@ -39,13 +39,13 @@ describe('getIncludedSteps', () => {
         expect(result.map((s) => s.stepId)).toEqual(['start', 'oppsummering', 'send']);
     });
 
-    it('beholder rekkefolgen fra stepOrder', () => {
+    it('beholder rekkefølgen fra stepOrder', () => {
         const result = getIncludedSteps(stepOrder, baseConfig, { harBarn: true, jobber: true });
 
         expect(result.map((s) => s.stepId)).toEqual(['start', 'barn', 'arbeid', 'oppsummering', 'send']);
     });
 
-    it('oppdateres nar soknadsdata endres (steg kan forsvinne)', () => {
+    it('oppdateres når søknadsdata endres (steg kan forsvinne)', () => {
         const before = getIncludedSteps(stepOrder, baseConfig, { harBarn: true, jobber: true });
         const after = getIncludedSteps(stepOrder, baseConfig, { harBarn: false, jobber: true });
 
@@ -53,7 +53,7 @@ describe('getIncludedSteps', () => {
         expect(after.map((s) => s.stepId)).toEqual(['start', 'arbeid', 'oppsummering', 'send']);
     });
 
-    it('handterer flere ekskluderte steg pa rad', () => {
+    it('håndterer flere ekskluderte steg på rad', () => {
         const result = getIncludedSteps(stepOrder, baseConfig, { harBarn: false, jobber: false });
 
         expect(result.map((s) => s.stepId)).toEqual(['start', 'oppsummering', 'send']);
@@ -88,7 +88,7 @@ describe('getPreviousNextStep', () => {
         });
     });
 
-    it('forste steg har ikke previous', () => {
+    it('første steg har ikke previous', () => {
         const includedSteps = getIncludedSteps(stepOrder, baseConfig, { harBarn: true, jobber: true });
 
         expect(getPreviousNextStep(includedSteps, 'start').previousStepId).toBeNull();

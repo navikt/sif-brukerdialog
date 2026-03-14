@@ -64,7 +64,7 @@ describe('checkConsistencyForSteps', () => {
         expect(result).toBe('steg2');
     });
 
-    it('kun relevante steg pavirker resultatet (endring etter current ignoreres)', () => {
+    it('kun relevante steg påvirker resultatet (endring etter current ignoreres)', () => {
         const result = runCheck({
             currentStepId: 'steg3',
             formValues: {
@@ -90,7 +90,7 @@ describe('checkConsistencyForSteps', () => {
                     barn: {
                         navn: 'Kari',
                         info: {
-                            fodselsar: 2019,
+                            fødselsår: 2019,
                             aktiv: true,
                         },
                     },
@@ -101,7 +101,7 @@ describe('checkConsistencyForSteps', () => {
                     barn: {
                         info: {
                             aktiv: true,
-                            fodselsar: 2019,
+                            fødselsår: 2019,
                         },
                         navn: 'Kari',
                     },
@@ -146,5 +146,34 @@ describe('checkConsistencyForSteps', () => {
         });
 
         expect(result).toBeUndefined();
+    });
+
+    it('støtter extractor mot domenemodell som ikke er strukturert per steg', () => {
+        const domainData = {
+            person: { navn: 'Ola' },
+            arbeid: { yrke: 'Utvikler' },
+        };
+
+        const result = checkConsistencyForSteps<StepId>({
+            currentStepId: 'steg3',
+            stepOrder,
+            formValues: {
+                steg1: { navn: 'Ola' },
+                steg2: { yrke: 'Designer' },
+            },
+            getSøknadsdataForStep: (stepId) => {
+                switch (stepId) {
+                    case 'steg1':
+                        return domainData.person;
+                    case 'steg2':
+                        return domainData.arbeid;
+                    default:
+                        return undefined;
+                }
+            },
+            formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
+        });
+
+        expect(result).toBe('steg2');
     });
 });

@@ -16,7 +16,7 @@ describe('routeUtils', () => {
         expect(buildStepPath('/soknad', '/start')).toBe('/soknad/start');
     });
 
-    it('handterer basePath med trailing slash uten double slash', () => {
+    it('håndterer basePath med trailing slash uten double slash', () => {
         expect(buildStepPath('/soknad/', '/start')).toBe('/soknad/start');
     });
 });

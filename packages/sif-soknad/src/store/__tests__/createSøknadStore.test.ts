@@ -5,20 +5,20 @@ import { createSøknadStore } from '../createSøknadStore';
 
 type StepId = 'start' | 'barn' | 'arbeid' | 'oppsummering';
 
-type Soknadsdata = {
+type Søknadsdata = {
     harForståttRettigheterOgPlikter?: boolean;
     harBarn?: boolean;
     jobber?: boolean;
 };
 
 type TestState = {
-    søknadsdata: Soknadsdata;
+    søknadsdata: Søknadsdata;
     locale: 'nb';
 };
 
 const stepOrder: StepId[] = ['start', 'barn', 'arbeid', 'oppsummering'];
 
-const stepConfig: StepConfig<StepId, Soknadsdata> = {
+const stepConfig: StepConfig<StepId, Søknadsdata> = {
     start: { id: 'start', route: '/start' },
     barn: { id: 'barn', route: '/barn', isIncluded: (d) => d.harBarn === true },
     arbeid: { id: 'arbeid', route: '/arbeid', isIncluded: (d) => d.jobber === true },
@@ -26,7 +26,7 @@ const stepConfig: StepConfig<StepId, Soknadsdata> = {
 };
 
 const createStore = () =>
-    createSøknadStore<TestState, Soknadsdata, StepId>({
+    createSøknadStore<TestState, Søknadsdata, StepId>({
         stepOrder,
         stepConfig,
     });
@@ -45,7 +45,7 @@ describe('createSøknadStore', () => {
         expect(state.includedSteps.map((s) => s.stepId)).toEqual(['start', 'barn', 'oppsummering']);
     });
 
-    it('setSøknadsdata merger data og rekalkulerer dynamiske steg', () => {
+    it('setSøknadsdata slår sammen data og rekalkulerer dynamiske steg', () => {
         const store = createStore();
         store.getState().init({ locale: 'nb' }, { harBarn: false, jobber: false }, 'start');
 
@@ -56,7 +56,7 @@ describe('createSøknadStore', () => {
         expect(state.includedSteps.map((s) => s.stepId)).toEqual(['start', 'barn', 'arbeid', 'oppsummering']);
     });
 
-    it('startSøknad setter forste steg og harForståttRettigheterOgPlikter', () => {
+    it('startSøknad setter første steg og harForståttRettigheterOgPlikter', () => {
         const store = createStore();
         store.getState().init({ locale: 'nb' }, { harBarn: true, jobber: true }, 'start');
 
@@ -69,7 +69,7 @@ describe('createSøknadStore', () => {
         expect(state.includedSteps.map((s) => s.stepId)).toEqual(['start', 'oppsummering']);
     });
 
-    it('resetSøknad nullstiller søknadsdata og beholder ovrig state', () => {
+    it('resetSøknad nullstiller søknadsdata og beholder øvrig state', () => {
         const store = createStore();
         store.getState().init({ locale: 'nb' }, { harBarn: true, jobber: true }, 'arbeid');
 
