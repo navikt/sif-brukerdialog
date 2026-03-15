@@ -4,6 +4,11 @@
 
 Monorepo for selvbetjeningsdialoger og fellespakker i Sykdom i familien.
 
+## Repository Structure
+
+- Frontend code is in `apps/**`, `apps-intern/**`, and shared packages in `packages/**`.
+- Backend services are in `server/**` and `server-ungdomsytelse-veileder/**`.
+
 ## Tech Stack
 
 - TypeScript and JavaScript
