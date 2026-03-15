@@ -4,6 +4,7 @@ import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { AppText, useAppIntl } from '../i18n';
+import { SkyraHandler } from '../skyra/SkyraHandler';
 import SkyraTestPage from '../skyra/SkyraTestPage';
 import { RequestStatus } from '../types/RequestStatus';
 import { relocateToNoAccessPage } from '../utils/navigationUtils';
@@ -57,6 +58,7 @@ const Søknad = () => {
     return (
         <SøknadContextProvider initialData={data}>
             <StepFormValuesContextProvider>
+                <SkyraHandler />
                 <SøknadRouter />
             </StepFormValuesContextProvider>
         </SøknadContextProvider>
