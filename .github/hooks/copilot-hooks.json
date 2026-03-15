@@ -1,0 +1,12 @@
+{
+    "version": 1,
+    "hooks": {
+        "preToolUse": [
+            {
+                "type": "command",
+                "bash": "INPUT=$(cat); TOOL=$(printf '%s' \"$INPUT\" | python3 -c 'import sys, json; print(json.load(sys.stdin).get(\"toolName\", \"\"))'); ARGS=$(printf '%s' \"$INPUT\" | python3 -c 'import sys, json; print(json.load(sys.stdin).get(\"toolArgs\", \"\"))'); if [ \"$TOOL\" = \"bash\" ] && printf '%s' \"$ARGS\" | grep -E -q 'git reset --hard|git checkout --|rm -rf /'; then echo '{\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Blocked destructive command by repository policy\"}'; fi",
+                "timeoutSec": 10
+            }
+        ]
+    }
+}
