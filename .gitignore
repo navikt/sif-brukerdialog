@@ -26,6 +26,7 @@ public/dist
 out
 dist-e2e
 dist-playwright
+.copilot-workspace
 
 # next.js
 /.next/

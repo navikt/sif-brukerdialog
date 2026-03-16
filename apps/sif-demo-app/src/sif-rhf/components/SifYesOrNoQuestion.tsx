@@ -1,0 +1,44 @@
+import { FieldValues, Path } from 'react-hook-form';
+
+import { SifRadioGroup, SifRadioProp } from './SifRadioGroup';
+
+export enum YesOrNo {
+    YES = 'yes',
+    NO = 'no',
+    UNANSWERED = 'unanswered',
+}
+
+type Props<T extends FieldValues> = {
+    name: Path<T>;
+    legend: string;
+    description?: string;
+    validate?: (value: string) => string | undefined;
+    afterOnChange?: (newValue: string) => void;
+    renderHorizontal?: boolean;
+    labels?: {
+        yes?: string;
+        no?: string;
+    };
+    reverse?: boolean;
+};
+
+export function SifYesOrNoQuestion<T extends FieldValues>({
+    labels,
+    reverse,
+    renderHorizontal = false,
+    ...rest
+}: Props<T>) {
+    const yesLabel = labels?.yes || 'Ja';
+    const noLabel = labels?.no || 'Nei';
+
+    const yesRadio: SifRadioProp = { label: yesLabel, value: YesOrNo.YES };
+    const noRadio: SifRadioProp = { label: noLabel, value: YesOrNo.NO };
+
+    return (
+        <SifRadioGroup<T>
+            {...rest}
+            renderHorizontal={renderHorizontal}
+            radios={reverse ? [noRadio, yesRadio] : [yesRadio, noRadio]}
+        />
+    );
+}

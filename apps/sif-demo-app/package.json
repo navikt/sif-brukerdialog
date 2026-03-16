@@ -26,6 +26,7 @@
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-query": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
+        "@navikt/sif-validation": "workspace:*",
         "@sentry/react": "10.42.0",
         "@sif/soknad": "workspace:*",
         "@tanstack/react-query": "5.90.21",

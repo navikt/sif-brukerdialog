@@ -5845,6 +5845,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-query": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
+    "@navikt/sif-validation": "workspace:*"
     "@sentry/react": "npm:10.42.0"
     "@sentry/vite-plugin": "npm:5.1.1"
     "@sif/eslint-config": "workspace:*"

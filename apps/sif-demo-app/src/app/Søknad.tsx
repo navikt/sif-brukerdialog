@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { KvitteringPage, VelkommenPage } from './pages';
+import { RhfEksempelForm } from './pages/rhf-eksempel/RhfEksempelForm';
 import { BarnSteg, BostedSteg, OppsummeringSteg } from './steps';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 
@@ -59,6 +60,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
             <Routes>
                 <Route path="/" element={<VelkommenPage />} />
                 <Route path="/kvittering" element={<KvitteringPage />} />
+                <Route path="/rhf-eksempel" element={<RhfEksempelForm />} />
                 <Route
                     path="/soknad"
                     element={
