@@ -1,4 +1,4 @@
-FROM node:25-alpine as base
+FROM node:25-alpine AS base
 
 ENV APP="sif-ettersending"
 ENV SERVER="server"
