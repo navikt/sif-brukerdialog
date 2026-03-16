@@ -13,13 +13,7 @@ type Props<T extends FieldValues> = Omit<TextFieldProps, 'name'> & {
     formatter?: TextFieldFormatter;
 };
 
-export function SifTextField<T extends FieldValues>({
-    name,
-    validate,
-    formatter,
-    autoComplete = 'off',
-    ...rest
-}: Props<T>) {
+export function SifTextField<T extends FieldValues>({ name, validate, formatter, ...rest }: Props<T>) {
     const { control } = useFormContext<T>();
     const [hasFocus, setHasFocus] = useState(false);
 
@@ -33,7 +27,6 @@ export function SifTextField<T extends FieldValues>({
                     {...rest}
                     {...field}
                     id={name}
-                    autoComplete={autoComplete}
                     value={formatter && !hasFocus ? formatter.applyFormatting(field.value || '') : (field.value ?? '')}
                     error={fieldState.error?.message}
                     onBlur={(e) => {

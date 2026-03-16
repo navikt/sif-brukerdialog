@@ -9,3 +9,4 @@ export { SifCheckboxGroup } from './components/SifCheckboxGroup';
 export type { SifCheckboxProp } from './components/SifCheckboxGroup';
 export { SifYesOrNoQuestion, YesOrNo } from './components/SifYesOrNoQuestion';
 export { sifValidate } from './validation/sifValidate';
+export { createSifFormComponents } from './components/createSifFormComponents';

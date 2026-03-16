@@ -9,7 +9,6 @@ type Props<T extends FieldValues> = Omit<CheckboxGroupProps, 'name' | 'onChange'
     name: Path<T>;
     checkboxes: SifCheckboxProp[];
     validate?: (value: string[]) => string | undefined;
-    afterOnChange?: (value: string[]) => void;
 };
 
 const toArray = (value: unknown): string[] => {
@@ -19,13 +18,7 @@ const toArray = (value: unknown): string[] => {
     return [];
 };
 
-export function SifCheckboxGroup<T extends FieldValues>({
-    name,
-    checkboxes,
-    validate,
-    afterOnChange,
-    ...rest
-}: Props<T>) {
+export function SifCheckboxGroup<T extends FieldValues>({ name, checkboxes, validate, ...rest }: Props<T>) {
     const { control } = useFormContext<T>();
 
     return (
@@ -39,10 +32,7 @@ export function SifCheckboxGroup<T extends FieldValues>({
                     id={name}
                     value={toArray(field.value)}
                     error={fieldState.error?.message}
-                    onChange={(value) => {
-                        field.onChange(value);
-                        afterOnChange?.(value);
-                    }}>
+                    onChange={(value) => field.onChange(value)}>
                     {checkboxes.map(({ value, label, ...cbRest }, index) => (
                         <Checkbox key={`${name}_${value || index}`} {...cbRest} name={name} value={value}>
                             {label}

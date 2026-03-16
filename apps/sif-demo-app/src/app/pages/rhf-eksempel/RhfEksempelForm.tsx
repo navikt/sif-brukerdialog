@@ -7,7 +7,7 @@ import {
 } from '@navikt/sif-validation';
 import { useIntl } from 'react-intl';
 
-import { SifCheckboxGroup, SifForm, SifRadioGroup, SifTextField, sifValidate } from '../../../sif-rhf';
+import { createSifFormComponents, sifValidate } from '../../../sif-rhf';
 
 enum Field {
     navn = 'navn',
@@ -24,6 +24,8 @@ interface FormValues {
     [Field.interesser]: string[];
     [Field.samtykke]: string[];
 }
+
+const { Form, TextField, RadioGroup, CheckboxGroup } = createSifFormComponents<FormValues>();
 
 const defaultValues: FormValues = {
     navn: '',
@@ -46,26 +48,26 @@ export const RhfEksempelForm = () => {
     return (
         <VStack gap="space-8" maxWidth="40rem" style={{ margin: '2rem auto' }}>
             <Heading size="large">RHF Eksempel</Heading>
-            <SifForm<FormValues>
+            <Form
                 formProps={{ defaultValues }}
                 onSubmit={handleSubmit}
                 onBack={() => history.back()}
                 submitButtonLabel="Send inn"
                 isFinalSubmit={true}>
                 <VStack gap="space-6">
-                    <SifTextField<FormValues>
+                    <TextField
                         name={Field.navn}
                         label="Navn"
                         validate={v(Field.navn, getStringValidator({ required: true }))}
                     />
 
-                    <SifTextField<FormValues>
+                    <TextField
                         name={Field.epost}
                         label="E-post"
                         validate={v(Field.epost, getStringValidator({ required: true, formatRegExp: /@/ }))}
                     />
 
-                    <SifRadioGroup<FormValues>
+                    <RadioGroup
                         name={Field.rolle}
                         legend="Hvilken rolle har du?"
                         validate={v(Field.rolle, getRequiredFieldValidator())}
@@ -76,7 +78,7 @@ export const RhfEksempelForm = () => {
                         ]}
                     />
 
-                    <SifCheckboxGroup<FormValues>
+                    <CheckboxGroup
                         name={Field.interesser}
                         legend="Hva gjelder søknaden?"
                         validate={v(Field.interesser, getListValidator({ required: true }))}
@@ -87,7 +89,7 @@ export const RhfEksempelForm = () => {
                         ]}
                     />
 
-                    <SifCheckboxGroup<FormValues>
+                    <CheckboxGroup
                         name={Field.samtykke}
                         legend="Samtykke"
                         hideLegend
@@ -100,7 +102,7 @@ export const RhfEksempelForm = () => {
                         ]}
                     />
                 </VStack>
-            </SifForm>
+            </Form>
         </VStack>
     );
 };
