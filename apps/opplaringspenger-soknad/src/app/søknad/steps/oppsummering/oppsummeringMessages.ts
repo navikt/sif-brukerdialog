@@ -81,7 +81,7 @@ const nb = {
     'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg er helt borte fra jobb fordi jeg er på opplæring',
     'oppsummering.fraværIPeriode.jobberIPerioden.REDUSERT': 'Jeg er delvis borte fra jobb fordi jeg er på opplæring',
     'oppsummering.fraværIPeriode.jobberIPerioden.SOM_VANLIG':
-        'Jeg jobber som normalt og er ikke borte fra jobb på grunn av opplæring',
+        'Jeg er ikke borte fra jobb på grunn av opplæring',
     'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Jeg har likt fravær hver uke',
     'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
         'Jeg har {prosent} prosent fravær, i snitt {timer} hver ukedag',
