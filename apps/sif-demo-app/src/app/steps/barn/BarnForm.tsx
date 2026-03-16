@@ -1,12 +1,11 @@
 import { useSøknadForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { SøknadFormButtons } from '@app/setup/søknad/SøknadFormButtons';
+import { AppForm } from '@app/setup/søknad/AppForm';
 import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
 import { Alert } from '@navikt/ds-react';
-import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { StepFormValues } from '@sif/soknad/types';
 
-import { createSifFormComponents, SifForm, useSifValidate } from '../../../sif-rhf';
+import { createSifFormComponents, useSifValidate } from '../../../sif-rhf';
 import { BarnSøknadsdata } from '../../types/Søknadsdata';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 
@@ -37,24 +36,17 @@ export const BarnForm = () => {
     const methods = useSøknadForm(stepId, defaultValues);
 
     return (
-        <SifForm
-            methods={methods}
-            onSubmit={onSubmit}
-            buttons={<SøknadFormButtons stepId={stepId} isPending={isPending} />}>
-            <FormLayout.Content>
-                <FormLayout.Questions>
-                    <Alert variant="info">TODO</Alert>
-                    <RadioGroup
-                        name={BarnFormFields.stemmerInfoOmBarn}
-                        legend="Stemmer informasjonen om barn?"
-                        radios={[
-                            { label: 'Ja', value: 'ja' },
-                            { label: 'Nei', value: 'nei' },
-                        ]}
-                        validate={validateField(BarnFormFields.stemmerInfoOmBarn, getRequiredFieldValidator())}
-                    />
-                </FormLayout.Questions>
-            </FormLayout.Content>
-        </SifForm>
+        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
+            <Alert variant="info">TODO</Alert>
+            <RadioGroup
+                name={BarnFormFields.stemmerInfoOmBarn}
+                legend="Stemmer informasjonen om barn?"
+                radios={[
+                    { label: 'Ja', value: 'ja' },
+                    { label: 'Nei', value: 'nei' },
+                ]}
+                validate={validateField(BarnFormFields.stemmerInfoOmBarn, getRequiredFieldValidator())}
+            />
+        </AppForm>
     );
 };

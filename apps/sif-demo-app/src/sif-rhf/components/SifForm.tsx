@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import { ReactNode, useRef } from 'react';
 import { FieldValues, FormProvider, SubmitHandler, UseFormReturn } from 'react-hook-form';
 
@@ -9,8 +10,6 @@ interface Props<T extends FieldValues> {
     methods: UseFormReturn<T>;
     onSubmit: SubmitHandler<T>;
     buttons?: ReactNode;
-    noValidate?: boolean;
-    autoComplete?: string;
     validationSummaryHeading?: string;
     className?: string;
     id?: string;
@@ -21,8 +20,6 @@ export function SifForm<T extends FieldValues>({
     methods,
     onSubmit,
     buttons,
-    noValidate = true,
-    autoComplete = 'off',
     validationSummaryHeading,
     className,
     id,
@@ -32,15 +29,12 @@ export function SifForm<T extends FieldValues>({
 
     return (
         <FormProvider {...methods}>
-            <form
-                onSubmit={methods.handleSubmit(onSubmit)}
-                noValidate={noValidate}
-                autoComplete={autoComplete}
-                className={className}
-                id={id}>
-                {children}
-                <SifValidationSummary ref={summaryRef} heading={validationSummaryHeading} />
-                {buttons}
+            <form onSubmit={methods.handleSubmit(onSubmit)} noValidate className={className} id={id}>
+                <VStack gap="space-32">
+                    {children}
+                    <SifValidationSummary ref={summaryRef} heading={validationSummaryHeading} />
+                    {buttons}
+                </VStack>
             </form>
         </FormProvider>
     );
