@@ -1,8 +1,9 @@
 import { Checkbox, CheckboxGroup, CheckboxGroupProps, CheckboxProps } from '@navikt/ds-react';
+import { ReactNode } from 'react';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 
 export type SifCheckboxProp = Omit<CheckboxProps, 'children' | 'name' | 'checked'> & {
-    label: React.ReactNode;
+    label: ReactNode;
 };
 
 type Props<T extends FieldValues> = Omit<CheckboxGroupProps, 'name' | 'onChange' | 'value' | 'children'> & {

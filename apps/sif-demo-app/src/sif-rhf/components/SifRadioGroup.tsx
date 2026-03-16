@@ -1,8 +1,9 @@
-import { BodyShort, Radio, RadioGroup, RadioGroupProps, RadioProps } from '@navikt/ds-react';
+import { Radio, RadioGroup, RadioGroupProps, RadioProps } from '@navikt/ds-react';
+import { ReactNode } from 'react';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 
 export type SifRadioProp = Omit<RadioProps, 'children' | 'name'> & {
-    label: React.ReactNode;
+    label: ReactNode;
 };
 
 type Props<T extends FieldValues> = Omit<RadioGroupProps, 'name' | 'onChange' | 'children'> & {
@@ -11,7 +12,7 @@ type Props<T extends FieldValues> = Omit<RadioGroupProps, 'name' | 'onChange' | 
     validate?: (value: string) => string | undefined;
 };
 
-export function SifRadioGroup<T extends FieldValues>({ name, radios, validate, description, ...rest }: Props<T>) {
+export function SifRadioGroup<T extends FieldValues>({ name, radios, validate, ...rest }: Props<T>) {
     const { control } = useFormContext<T>();
 
     return (
@@ -25,20 +26,17 @@ export function SifRadioGroup<T extends FieldValues>({ name, radios, validate, d
                     name={field.name}
                     id={name}
                     value={field.value || ''}
-                    error={fieldState.error?.message}
-                    description={description ? <BodyShort as="div">{description}</BodyShort> : undefined}>
-                    {radios.map((rb, idx) => {
-                        const { label, ...radioRest } = rb;
-                        return (
-                            <Radio
-                                key={idx}
-                                {...radioRest}
-                                name={field.name}
-                                onChange={(evt) => field.onChange(evt.target.value)}>
-                                {label}
-                            </Radio>
-                        );
-                    })}
+                    error={fieldState.error?.message}>
+                    {radios.map(({ label, value, ...radioRest }) => (
+                        <Radio
+                            key={value as string}
+                            {...radioRest}
+                            value={value}
+                            name={field.name}
+                            onChange={(evt) => field.onChange(evt.target.value)}>
+                            {label}
+                        </Radio>
+                    ))}
                 </RadioGroup>
             )}
         />

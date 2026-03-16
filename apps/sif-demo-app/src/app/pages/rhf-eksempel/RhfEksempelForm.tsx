@@ -1,6 +1,7 @@
 import { Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import {
     getCheckedValidator,
+    getDateValidator,
     getListValidator,
     getRequiredFieldValidator,
     getStringValidator,
@@ -12,6 +13,7 @@ import { createSifFormComponents, SifForm, useSifValidate } from '../../../sif-r
 enum Field {
     navn = 'navn',
     epost = 'epost',
+    fødselsdato = 'fødselsdato',
     rolle = 'rolle',
     interesser = 'interesser',
     samtykke = 'samtykke',
@@ -20,16 +22,18 @@ enum Field {
 interface FormValues {
     [Field.navn]: string;
     [Field.epost]: string;
+    [Field.fødselsdato]: string;
     [Field.rolle]: string;
     [Field.interesser]: string[];
     [Field.samtykke]: string[];
 }
 
-const { TextField, RadioGroup, CheckboxGroup } = createSifFormComponents<FormValues>();
+const { TextField, RadioGroup, CheckboxGroup, Datepicker } = createSifFormComponents<FormValues>();
 
 const defaultValues: FormValues = {
     navn: '',
     epost: '',
+    fødselsdato: '',
     rolle: '',
     interesser: [],
     samtykke: [],
@@ -63,6 +67,16 @@ export const RhfEksempelForm = () => {
                         name={Field.epost}
                         label="E-post"
                         validate={validateField(Field.epost, getStringValidator({ required: true, formatRegExp: /@/ }))}
+                    />
+
+                    <Datepicker
+                        name={Field.fødselsdato}
+                        label="Fødselsdato"
+                        maxDate={new Date()}
+                        validate={validateField(
+                            Field.fødselsdato,
+                            getDateValidator({ required: true, max: new Date() }),
+                        )}
                     />
 
                     <RadioGroup

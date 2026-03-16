@@ -2,6 +2,8 @@ import { FieldValues } from 'react-hook-form';
 
 import { SifCheckbox } from './SifCheckbox';
 import { SifCheckboxGroup } from './SifCheckboxGroup';
+import { SifDatepicker } from './SifDatepicker';
+import { SifInputGroup } from './SifInputGroup';
 import { SifRadioGroup } from './SifRadioGroup';
 import { SifTextField } from './SifTextField';
 import { SifYesOrNoQuestion } from './SifYesOrNoQuestion';
@@ -13,5 +15,7 @@ export function createSifFormComponents<T extends FieldValues>() {
         Checkbox: SifCheckbox<T>,
         CheckboxGroup: SifCheckboxGroup<T>,
         YesOrNoQuestion: SifYesOrNoQuestion<T>,
+        InputGroup: SifInputGroup<T>,
+        Datepicker: SifDatepicker<T>,
     };
 }
