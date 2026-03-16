@@ -33,7 +33,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@testing-library/react": "16.3.2",
         "axios": "1.13.6",
-        "csp-header": "6.3.0",
+        "csp-header": "6.3.1",
         "dayjs": "1.11.19",
         "formik": "2.4.9",
         "html-react-parser": "5.2.17",
