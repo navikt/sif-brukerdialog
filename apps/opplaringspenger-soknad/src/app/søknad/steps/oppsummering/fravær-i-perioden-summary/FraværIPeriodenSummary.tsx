@@ -137,19 +137,17 @@ const FraværIPeriodenSummary = ({
                                                     </FormSummary.Label>
                                                     <FormSummary.Value>
                                                         <Box marginBlock="space-8 space-0">
-                                                            {(forhold.arbeidIPeriode.jobberIPerioden ===
-                                                                JobberIPeriodeSvar.heltFravær ||
-                                                                forhold.arbeidIPeriode.jobberIPerioden ===
-                                                                    JobberIPeriodeSvar.somVanlig) && (
-                                                                <AppText
-                                                                    id={`oppsummering.fraværIPeriode.jobberIPerioden.${forhold.arbeidIPeriode.jobberIPerioden}`}
-                                                                />
+                                                            {forhold.arbeidIPeriode.jobberIPerioden ===
+                                                                JobberIPeriodeSvar.heltFravær && (
+                                                                <AppText id="fraværIPeriode.jobberIPerioden.jobberIkke" />
                                                             )}
                                                             {forhold.arbeidIPeriode.jobberIPerioden ===
                                                                 JobberIPeriodeSvar.redusert && (
-                                                                <AppText
-                                                                    id={`oppsummering.fraværIPeriode.jobberIPerioden.${forhold.arbeidIPeriode.jobberIPerioden}`}
-                                                                />
+                                                                <AppText id="fraværIPeriode.jobberIPerioden.jobberRedusert" />
+                                                            )}
+                                                            {forhold.arbeidIPeriode.jobberIPerioden ===
+                                                                JobberIPeriodeSvar.somVanlig && (
+                                                                <AppText id="fraværIPeriode.jobberIPerioden.jobberVanlig" />
                                                             )}
                                                         </Box>
                                                     </FormSummary.Value>

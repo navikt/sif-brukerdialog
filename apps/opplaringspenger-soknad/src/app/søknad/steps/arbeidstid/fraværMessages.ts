@@ -66,10 +66,8 @@ const nn: Record<keyof typeof nb, string> = {
     'fraværIPeriode.enkeltdager_gruppe.legend':
         'Fyll inn talet på timar du er borte frå jobb på grunn av opplæring og reisetid',
     'fraværIPeriode.jobberIPerioden.jobberIkke': 'Eg er heilt borte frå jobb fordi eg er på opplæring',
-    'fraværIPeriode.jobberIPerioden.jobberVanlig':
-        'Eg er ikkje borte frå jobb på grunn av opplæring',
-    'fraværIPeriode.jobberIPerioden.jobberRedusert':
-        'Eg er delvis borte frå jobb fordi eg er på opplæring',
+    'fraværIPeriode.jobberIPerioden.jobberVanlig': 'Eg er ikkje borte frå jobb på grunn av opplæring',
+    'fraværIPeriode.jobberIPerioden.jobberRedusert': 'Eg er delvis borte frå jobb fordi eg er på opplæring',
     'fraværIPeriode.iDag.utledet': 'timar i veka',
     'fraværIPeriode.prosent.utledet.medTimer': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
     'fraværIPeriode.arbeidstidSted.frilansoppdrag': 'Frilansoppdrag',

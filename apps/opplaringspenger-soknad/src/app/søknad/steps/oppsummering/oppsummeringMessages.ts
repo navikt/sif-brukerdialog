@@ -78,10 +78,6 @@ const nb = {
 
     'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fravær i søknadsperioden',
     'oppsummering.fraværIPeriode.jobberIPerioden.ja': 'jobber',
-    'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg er helt borte fra jobb fordi jeg er på opplæring',
-    'oppsummering.fraværIPeriode.jobberIPerioden.REDUSERT': 'Jeg er delvis borte fra jobb fordi jeg er på opplæring',
-    'oppsummering.fraværIPeriode.jobberIPerioden.SOM_VANLIG':
-        'Jeg er ikke borte fra jobb på grunn av opplæring',
     'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Jeg har likt fravær hver uke',
     'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
         'Jeg har {prosent} prosent fravær, i snitt {timer} hver ukedag',
@@ -224,12 +220,6 @@ const nn: Record<keyof typeof nb, string> = {
 
     'oppsummering.fraværIPeriode.jobbIPerioden.header': 'Fråvær frå jobb i søknadsperioden',
     'oppsummering.fraværIPeriode.jobberIPerioden.ja': 'jobbar',
-    'oppsummering.fraværIPeriode.jobberIPerioden.HELT_FRAVÆR':
-        'Eg har fullt fråvær frå jobb på grunn av kurs og reise dei dagane eg søkjer for',
-    'oppsummering.fraværIPeriode.jobberIPerioden.REDUSERT':
-        'Eg har noko fråvær frå jobb på grunn av kurs og reise dei dagane eg søkjer for',
-    'oppsummering.fraværIPeriode.jobberIPerioden.SOM_VANLIG':
-        'Eg har ikkje fråvær frå jobb på grunn av kurs og reise dei dagane eg søkjer for',
     'oppsummering.fraværIPeriode.jobberIPerioden.liktHverUke': 'Eg har likt fråvær kvar veke',
     'oppsummering.fraværIPeriode.jobberIPerioden.prosent':
         'Eg har {prosent} prosent fråvær frå jobb, i snitt {timer} kvar vekedag',
