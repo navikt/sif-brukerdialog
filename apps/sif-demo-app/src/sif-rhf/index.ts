@@ -2,6 +2,8 @@ export { SifForm } from './components/SifForm';
 export { SifValidationSummary } from './components/SifValidationSummary';
 export { SifTextField } from './components/SifTextField';
 export type { TextFieldFormatter } from './components/SifTextField';
+export { SifNumberInput } from './components/SifNumberInput';
+export { SifSelect } from './components/SifSelect';
 export { SifRadioGroup } from './components/SifRadioGroup';
 export type { SifRadioProp } from './components/SifRadioGroup';
 export { SifCheckbox } from './components/SifCheckbox';

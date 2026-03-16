@@ -3,6 +3,7 @@ import {
     getCheckedValidator,
     getDateValidator,
     getListValidator,
+    getNumberValidator,
     getRequiredFieldValidator,
     getStringValidator,
 } from '@navikt/sif-validation';
@@ -14,6 +15,8 @@ enum Field {
     navn = 'navn',
     epost = 'epost',
     fødselsdato = 'fødselsdato',
+    antallBarn = 'antallBarn',
+    tidspunkt = 'tidspunkt',
     rolle = 'rolle',
     interesser = 'interesser',
     samtykke = 'samtykke',
@@ -23,17 +26,21 @@ interface FormValues {
     [Field.navn]: string;
     [Field.epost]: string;
     [Field.fødselsdato]: string;
+    [Field.antallBarn]: string;
+    [Field.tidspunkt]: string;
     [Field.rolle]: string;
     [Field.interesser]: string[];
     [Field.samtykke]: string[];
 }
 
-const { TextField, RadioGroup, CheckboxGroup, Datepicker } = createSifFormComponents<FormValues>();
+const { TextField, NumberInput, Select, RadioGroup, CheckboxGroup, Datepicker } = createSifFormComponents<FormValues>();
 
 const defaultValues: FormValues = {
     navn: '',
     epost: '',
     fødselsdato: '',
+    antallBarn: '',
+    tidspunkt: '',
     rolle: '',
     interesser: [],
     samtykke: [],
@@ -78,6 +85,26 @@ export const RhfEksempelForm = () => {
                             getDateValidator({ required: true, max: new Date() }),
                         )}
                     />
+
+                    <NumberInput
+                        name={Field.antallBarn}
+                        label="Antall barn"
+                        integerValue
+                        validate={validateField(
+                            Field.antallBarn,
+                            getNumberValidator({ required: true, min: 1, max: 20 }),
+                        )}
+                    />
+
+                    <Select
+                        name={Field.tidspunkt}
+                        label="Tidspunkt"
+                        validate={validateField(Field.tidspunkt, getRequiredFieldValidator())}>
+                        <option value="">Velg tidspunkt</option>
+                        <option value="morgen">Morgen</option>
+                        <option value="middag">Middag</option>
+                        <option value="kveld">Kveld</option>
+                    </Select>
 
                     <RadioGroup
                         name={Field.rolle}
