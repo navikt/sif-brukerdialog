@@ -33,7 +33,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "axios": "1.13.6",
-        "csp-header": "6.3.0",
+        "csp-header": "6.3.1",
         "dayjs": "1.11.19",
         "html-react-parser": "5.2.17",
         "jsdom": "28.1.0",
