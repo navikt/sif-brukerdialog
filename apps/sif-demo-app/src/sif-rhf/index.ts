@@ -1,4 +1,3 @@
-export { SifForm } from './components/SifForm';
 export { SifValidationSummary } from './components/SifValidationSummary';
 export { SifTextField } from './components/SifTextField';
 export type { TextFieldFormatter } from './components/SifTextField';
@@ -10,3 +9,4 @@ export type { SifCheckboxProp } from './components/SifCheckboxGroup';
 export { SifYesOrNoQuestion, YesOrNo } from './components/SifYesOrNoQuestion';
 export { sifValidate } from './validation/sifValidate';
 export { createSifFormComponents } from './components/createSifFormComponents';
+export { useFocusOnValidationError } from './hooks/useFocusOnValidationError';

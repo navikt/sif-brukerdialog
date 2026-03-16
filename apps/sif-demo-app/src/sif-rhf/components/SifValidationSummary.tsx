@@ -1,10 +1,9 @@
 import { ErrorSummary } from '@navikt/ds-react';
-import { RefObject } from 'react';
-import { FieldErrors, FieldValues, useFormContext } from 'react-hook-form';
+import { forwardRef } from 'react';
+import { FieldErrors, useFormContext } from 'react-hook-form';
 
 interface Props {
     heading?: string;
-    summaryRef?: RefObject<HTMLDivElement | null>;
 }
 
 interface FlatError {
@@ -40,10 +39,10 @@ const focusField = (fieldName: string) => {
     }
 };
 
-export const SifValidationSummary = <T extends FieldValues>({ heading, summaryRef }: Props) => {
+export const SifValidationSummary = forwardRef<HTMLDivElement, Props>(({ heading }, ref) => {
     const {
         formState: { errors, isSubmitted },
-    } = useFormContext<T>();
+    } = useFormContext();
 
     if (!isSubmitted) return null;
 
@@ -51,7 +50,7 @@ export const SifValidationSummary = <T extends FieldValues>({ heading, summaryRe
     if (flatErrors.length === 0) return null;
 
     return (
-        <ErrorSummary ref={summaryRef} heading={heading || 'Feil i skjema'}>
+        <ErrorSummary ref={ref} heading={heading || 'Feil i skjema'}>
             {flatErrors.map((error, idx) => (
                 <ErrorSummary.Item
                     key={`validation_error_${idx}`}
@@ -65,4 +64,6 @@ export const SifValidationSummary = <T extends FieldValues>({ heading, summaryRe
             ))}
         </ErrorSummary>
     );
-};
+});
+
+SifValidationSummary.displayName = 'SifValidationSummary';
