@@ -1,4 +1,4 @@
-import { IntlShape } from 'react-intl';
+import { IntlShape, useIntl } from 'react-intl';
 
 type SifValidator = (value: any) => string | undefined;
 
@@ -14,5 +14,13 @@ export const sifValidate = (
             return intl.formatMessage({ id: `${errorPrefix}.${fieldName}.${errorCode}` });
         }
         return undefined;
+    };
+};
+
+export const useSifValidate = (errorPrefix = 'validation') => {
+    const intl = useIntl();
+    return {
+        validateField: (fieldName: string, validator: SifValidator) =>
+            sifValidate(validator, fieldName, intl, errorPrefix),
     };
 };

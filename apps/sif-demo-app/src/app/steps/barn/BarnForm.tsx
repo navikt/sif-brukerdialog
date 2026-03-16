@@ -1,10 +1,12 @@
 import { useSøknadForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { SøknadFormButtons } from '@app/setup/søknad/SøknadFormButtons';
 import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
-import { Alert, Radio, RadioGroup } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { StepFormValues } from '@sif/soknad/types';
 
+import { createSifFormComponents, SifForm, useSifValidate } from '../../../sif-rhf';
 import { BarnSøknadsdata } from '../../types/Søknadsdata';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 
@@ -16,9 +18,12 @@ export interface BarnFormValues extends StepFormValues {
     [BarnFormFields.stemmerInfoOmBarn]: 'ja' | 'nei';
 }
 
+const { RadioGroup } = createSifFormComponents<BarnFormValues>();
+
 const stepId = SøknadStepId.BARN;
 
 export const BarnForm = () => {
+    const { validateField } = useSifValidate();
     const defaultValues = useStepDefaultValues<BarnFormValues, BarnSøknadsdata>({
         stepId,
         toFormValues: toBarnFormValues,
@@ -29,25 +34,27 @@ export const BarnForm = () => {
         toSøknadsdata: toBarnSøknadsdata,
     });
 
-    const { setValue, handleSubmit, watch } = useSøknadForm(stepId, defaultValues);
-
-    const stemmerInfoOmBarn = watch(BarnFormFields.stemmerInfoOmBarn);
+    const methods = useSøknadForm(stepId, defaultValues);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <SifForm
+            methods={methods}
+            onSubmit={onSubmit}
+            buttons={<SøknadFormButtons stepId={stepId} isPending={isPending} />}>
             <FormLayout.Content>
                 <FormLayout.Questions>
                     <Alert variant="info">TODO</Alert>
                     <RadioGroup
+                        name={BarnFormFields.stemmerInfoOmBarn}
                         legend="Stemmer informasjonen om barn?"
-                        onChange={(value) => setValue(BarnFormFields.stemmerInfoOmBarn, value)}
-                        value={stemmerInfoOmBarn}>
-                        <Radio value="ja">Ja</Radio>
-                        <Radio value="nei">Nei</Radio>
-                    </RadioGroup>
+                        radios={[
+                            { label: 'Ja', value: 'ja' },
+                            { label: 'Nei', value: 'nei' },
+                        ]}
+                        validate={validateField(BarnFormFields.stemmerInfoOmBarn, getRequiredFieldValidator())}
+                    />
                 </FormLayout.Questions>
-                <SøknadFormButtons stepId={stepId} isPending={isPending} />
             </FormLayout.Content>
-        </form>
+        </SifForm>
     );
 };

@@ -5,16 +5,9 @@ import {
     getRequiredFieldValidator,
     getStringValidator,
 } from '@navikt/sif-validation';
-import { useRef } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { useIntl } from 'react-intl';
+import { useForm } from 'react-hook-form';
 
-import {
-    createSifFormComponents,
-    sifValidate,
-    SifValidationSummary,
-    useFocusOnValidationError,
-} from '../../../sif-rhf';
+import { createSifFormComponents, SifForm, useSifValidate } from '../../../sif-rhf';
 
 enum Field {
     navn = 'navn',
@@ -43,8 +36,7 @@ const defaultValues: FormValues = {
 };
 
 export const RhfEksempelForm = () => {
-    const intl = useIntl();
-    const summaryRef = useRef<HTMLDivElement>(null);
+    const { validateField } = useSifValidate();
 
     const methods = useForm<FormValues>({
         defaultValues,
@@ -52,81 +44,72 @@ export const RhfEksempelForm = () => {
         reValidateMode: 'onChange',
     });
 
-    useFocusOnValidationError(summaryRef, methods.formState);
-
-    const v = (fieldName: string, validator: (value: any) => string | undefined) =>
-        sifValidate(validator, fieldName, intl);
-
     const handleSubmit = (values: FormValues) => {
         alert(JSON.stringify(values, null, 2));
     };
 
     return (
-        <FormProvider {...methods}>
-            <VStack gap="space-8" maxWidth="40rem" style={{ margin: '2rem auto' }}>
-                <Heading size="large">RHF Eksempel</Heading>
-                <form onSubmit={methods.handleSubmit(handleSubmit)} noValidate autoComplete="off">
-                    <VStack gap="space-6">
-                        <TextField
-                            name={Field.navn}
-                            label="Navn"
-                            validate={v(Field.navn, getStringValidator({ required: true }))}
-                        />
+        <VStack gap="space-8" maxWidth="40rem" style={{ margin: '2rem auto' }}>
+            <Heading size="large">RHF Eksempel</Heading>
+            <SifForm methods={methods} onSubmit={handleSubmit}>
+                <VStack gap="space-6">
+                    <TextField
+                        name={Field.navn}
+                        label="Navn"
+                        validate={validateField(Field.navn, getStringValidator({ required: true }))}
+                    />
 
-                        <TextField
-                            name={Field.epost}
-                            label="E-post"
-                            validate={v(Field.epost, getStringValidator({ required: true, formatRegExp: /@/ }))}
-                        />
+                    <TextField
+                        name={Field.epost}
+                        label="E-post"
+                        validate={validateField(Field.epost, getStringValidator({ required: true, formatRegExp: /@/ }))}
+                    />
 
-                        <RadioGroup
-                            name={Field.rolle}
-                            legend="Hvilken rolle har du?"
-                            validate={v(Field.rolle, getRequiredFieldValidator())}
-                            radios={[
-                                { label: 'Forelder', value: 'forelder' },
-                                { label: 'Fosterforelder', value: 'fosterforelder' },
-                                { label: 'Annet', value: 'annet' },
-                            ]}
-                        />
+                    <RadioGroup
+                        name={Field.rolle}
+                        legend="Hvilken rolle har du?"
+                        validate={validateField(Field.rolle, getRequiredFieldValidator())}
+                        radios={[
+                            { label: 'Forelder', value: 'forelder' },
+                            { label: 'Fosterforelder', value: 'fosterforelder' },
+                            { label: 'Annet', value: 'annet' },
+                        ]}
+                    />
 
-                        <CheckboxGroup
-                            name={Field.interesser}
-                            legend="Hva gjelder søknaden?"
-                            validate={v(Field.interesser, getListValidator({ required: true }))}
-                            checkboxes={[
-                                { label: 'Omsorgspenger', value: 'omsorgspenger' },
-                                { label: 'Pleiepenger', value: 'pleiepenger' },
-                                { label: 'Opplæringspenger', value: 'opplaeringspenger' },
-                            ]}
-                        />
+                    <CheckboxGroup
+                        name={Field.interesser}
+                        legend="Hva gjelder søknaden?"
+                        validate={validateField(Field.interesser, getListValidator({ required: true }))}
+                        checkboxes={[
+                            { label: 'Omsorgspenger', value: 'omsorgspenger' },
+                            { label: 'Pleiepenger', value: 'pleiepenger' },
+                            { label: 'Opplæringspenger', value: 'opplaeringspenger' },
+                        ]}
+                    />
 
-                        <CheckboxGroup
-                            name={Field.samtykke}
-                            legend="Samtykke"
-                            hideLegend
-                            validate={v(Field.samtykke, getCheckedValidator())}
-                            checkboxes={[
-                                {
-                                    label: 'Samtykker du til at vi behandler opplysningene dine?',
-                                    value: 'samtykke',
-                                },
-                            ]}
-                        />
+                    <CheckboxGroup
+                        name={Field.samtykke}
+                        legend="Samtykke"
+                        hideLegend
+                        validate={validateField(Field.samtykke, getCheckedValidator())}
+                        checkboxes={[
+                            {
+                                label: 'Samtykker du til at vi behandler opplysningene dine?',
+                                value: 'samtykke',
+                            },
+                        ]}
+                    />
 
-                        <SifValidationSummary ref={summaryRef} />
-
-                        <HStack gap="space-4">
-                            <Button variant="secondary" type="button" onClick={() => history.back()}>
-                                Forrige steg
-                            </Button>
-                            <Button variant="primary" type="submit">
-                                Send inn
-                            </Button>
-                        </HStack>
-                    </VStack>
-                </form>
-            </VStack>
-        </FormProvider>
+                    <HStack gap="space-4">
+                        <Button variant="secondary" type="button" onClick={() => history.back()}>
+                            Forrige steg
+                        </Button>
+                        <Button variant="primary" type="submit">
+                            Send inn
+                        </Button>
+                    </HStack>
+                </VStack>
+            </SifForm>
+        </VStack>
     );
 };
