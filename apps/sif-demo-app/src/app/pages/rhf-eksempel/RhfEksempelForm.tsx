@@ -6,6 +6,7 @@ import {
     getNumberValidator,
     getRequiredFieldValidator,
     getStringValidator,
+    getTimeValidator,
 } from '@navikt/sif-validation';
 import { useForm } from 'react-hook-form';
 
@@ -14,8 +15,14 @@ import { createSifFormComponents, SifForm, useSifValidate } from '../../../sif-r
 enum Field {
     navn = 'navn',
     epost = 'epost',
+    omDeg = 'omDeg',
+    bostedsland = 'bostedsland',
     fødselsdato = 'fødselsdato',
     antallBarn = 'antallBarn',
+    periodeFra = 'periodeFra',
+    periodeTil = 'periodeTil',
+    favorittsport = 'favorittsport',
+    varighet = 'varighet',
     tidspunkt = 'tidspunkt',
     rolle = 'rolle',
     interesser = 'interesser',
@@ -25,21 +32,51 @@ enum Field {
 interface FormValues {
     [Field.navn]: string;
     [Field.epost]: string;
+    [Field.omDeg]: string;
+    [Field.bostedsland]: string;
     [Field.fødselsdato]: string;
     [Field.antallBarn]: string;
+    [Field.periodeFra]: string;
+    [Field.periodeTil]: string;
+    [Field.favorittsport]: string;
+    [Field.varighet]: {
+        hours: string;
+        minutes: string;
+    };
     [Field.tidspunkt]: string;
     [Field.rolle]: string;
     [Field.interesser]: string[];
     [Field.samtykke]: string[];
 }
 
-const { TextField, NumberInput, Select, RadioGroup, CheckboxGroup, Datepicker } = createSifFormComponents<FormValues>();
+const {
+    TextField,
+    Textarea,
+    NumberInput,
+    Select,
+    CountrySelect,
+    TimeInput,
+    RadioGroup,
+    CheckboxGroup,
+    Datepicker,
+    DateRangePicker,
+    Combobox,
+} = createSifFormComponents<FormValues>();
 
 const defaultValues: FormValues = {
     navn: '',
     epost: '',
+    omDeg: '',
+    bostedsland: '',
     fødselsdato: '',
     antallBarn: '',
+    periodeFra: '',
+    periodeTil: '',
+    favorittsport: '',
+    varighet: {
+        hours: '',
+        minutes: '',
+    },
     tidspunkt: '',
     rolle: '',
     interesser: [],
@@ -76,6 +113,20 @@ export const RhfEksempelForm = () => {
                         validate={validateField(Field.epost, getStringValidator({ required: true, formatRegExp: /@/ }))}
                     />
 
+                    <Textarea
+                        name={Field.omDeg}
+                        label="Om deg"
+                        minRows={3}
+                        maxLength={500}
+                        validate={validateField(Field.omDeg, getStringValidator({ required: true }))}
+                    />
+
+                    <CountrySelect
+                        name={Field.bostedsland}
+                        label="Bostedsland"
+                        validate={validateField(Field.bostedsland, getRequiredFieldValidator())}
+                    />
+
                     <Datepicker
                         name={Field.fødselsdato}
                         label="Fødselsdato"
@@ -94,6 +145,37 @@ export const RhfEksempelForm = () => {
                             Field.antallBarn,
                             getNumberValidator({ required: true, min: 1, max: 20 }),
                         )}
+                    />
+
+                    <TimeInput
+                        name={Field.varighet}
+                        label="Varighet"
+                        description="Oppgi antall timer og minutter"
+                        validate={validateField(
+                            Field.varighet,
+                            getTimeValidator({ required: true, min: { hours: 0, minutes: 15 } }),
+                        )}
+                    />
+
+                    <DateRangePicker
+                        legend="Periode"
+                        fromInputProps={{
+                            name: Field.periodeFra,
+                            label: 'Fra dato',
+                            validate: validateField(Field.periodeFra, getDateValidator({ required: true })),
+                        }}
+                        toInputProps={{
+                            name: Field.periodeTil,
+                            label: 'Til dato',
+                            validate: validateField(Field.periodeTil, getDateValidator({ required: true })),
+                        }}
+                    />
+
+                    <Combobox
+                        name={Field.favorittsport}
+                        label="Favorittsport"
+                        options={['Fotball', 'Håndball', 'Ski', 'Svømming', 'Friidrett', 'Ishockey']}
+                        validate={validateField(Field.favorittsport, getRequiredFieldValidator())}
                     />
 
                     <Select
