@@ -73,7 +73,7 @@ export function SifTimeInput<T extends FieldValues>({
             render={({ field, fieldState }) => {
                 const value = (field.value || {}) as Partial<InputTime>;
 
-                const rootClassName = `sif-time-input sif-time-input--${direction}${compact ? ' sif-time-input--compact' : ''}${wide ? ' sif-time-input--wide' : ''}${justifyContent !== 'center' ? ` sif-time-input--content-${justifyContent}` : ''}`;
+                const rootClassName = `sif-time-input sif-time-input--${direction}${compact ? ' sif-time-input--compact' : ''}${wide ? ' sif-time-input--wide' : ''} sif-time-input--content-${justifyContent}`;
 
                 return (
                     <Fieldset legend={label} id={name} error={fieldState.error?.message} className={rootClassName}>

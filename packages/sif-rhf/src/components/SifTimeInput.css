@@ -7,7 +7,6 @@
 .sif-time-input .sif-time-input__input-wrapper {
     display: flex;
     align-items: baseline;
-    /* margin-right: 0.5rem; */
     padding: 0;
     position: relative;
     max-width: 3.5rem;
