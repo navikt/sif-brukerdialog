@@ -10,7 +10,9 @@
         "clean": "rm -rf node_modules dist",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
-        "test": "vitest run"
+        "test": "vitest run",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
     },
     "dependencies": {
         "@navikt/aksel-icons": "8.6.0",
@@ -41,14 +43,25 @@
         "zustand": "5.0.11"
     },
     "devDependencies": {
+        "@chromatic-com/storybook": "^5.0.1",
         "@sentry/vite-plugin": "5.1.1",
         "@sif/eslint-config": "workspace:*",
+        "@storybook/addon-a11y": "10.2.17",
+        "@storybook/addon-docs": "10.2.17",
+        "@storybook/addon-onboarding": "10.2.17",
+        "@storybook/addon-vitest": "10.2.17",
+        "@storybook/react-vite": "10.2.17",
         "@tailwindcss/vite": "4.2.1",
         "@types/node": "25.3.3",
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
         "@vitejs/plugin-react": "5.1.4",
+        "@vitest/browser-playwright": "4.0.18",
+        "@vitest/coverage-v8": "4.0.18",
+        "eslint-plugin-storybook": "10.2.17",
         "msw": "2.12.10",
+        "playwright": "^1.58.2",
+        "storybook": "10.2.17",
         "tailwindcss": "4.2.1",
         "typescript": "5.9.3",
         "vite": "7.3.1",

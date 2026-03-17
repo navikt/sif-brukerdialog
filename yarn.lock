@@ -1940,6 +1940,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chromatic-com/storybook@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@chromatic-com/storybook@npm:5.0.1"
+  dependencies:
+    "@neoconfetti/react": "npm:^1.0.0"
+    chromatic: "npm:^13.3.4"
+    filesize: "npm:^10.0.12"
+    jsonfile: "npm:^6.1.0"
+    strip-ansi: "npm:^7.1.0"
+  peerDependencies:
+    storybook: ^0.0.0-0 || ^10.1.0 || ^10.1.0-0 || ^10.2.0-0 || ^10.3.0-0
+  checksum: 10/10a3dc8dbd1f7d9d523f71bf739a61488415e30c51a9a45effc422e246c95758ce9784a5c1206acb71fdfccebea987e5a91810396a079e01ed2bdb65ac8ec394
+  languageName: node
+  linkType: hard
+
 "@codemirror/autocomplete@npm:^6.0.0, @codemirror/autocomplete@npm:^6.20.0":
   version: 6.20.1
   resolution: "@codemirror/autocomplete@npm:6.20.1"
@@ -5833,6 +5848,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
   dependencies:
+    "@chromatic-com/storybook": "npm:^5.0.1"
     "@navikt/aksel-icons": "npm:8.6.0"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:8.6.0"
@@ -5852,19 +5868,29 @@ __metadata:
     "@sif/eslint-config": "workspace:*"
     "@sif/rhf": "workspace:*"
     "@sif/soknad": "workspace:*"
+    "@storybook/addon-a11y": "npm:10.2.17"
+    "@storybook/addon-docs": "npm:10.2.17"
+    "@storybook/addon-onboarding": "npm:10.2.17"
+    "@storybook/addon-vitest": "npm:10.2.17"
+    "@storybook/react-vite": "npm:10.2.17"
     "@tailwindcss/vite": "npm:4.2.1"
     "@tanstack/react-query": "npm:5.90.21"
     "@types/node": "npm:25.3.3"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@vitejs/plugin-react": "npm:5.1.4"
+    "@vitest/browser-playwright": "npm:4.0.18"
+    "@vitest/coverage-v8": "npm:4.0.18"
     dayjs: "npm:1.11.19"
+    eslint-plugin-storybook: "npm:10.2.17"
     msw: "npm:2.12.10"
+    playwright: "npm:^1.58.2"
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-hook-form: "npm:7.71.2"
     react-intl: "npm:8.1.3"
     react-router-dom: "npm:7.13.1"
+    storybook: "npm:10.2.17"
     tailwindcss: "npm:4.2.1"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -6288,6 +6314,13 @@ __metadata:
     zod: "npm:4.3.6"
   languageName: unknown
   linkType: soft
+
+"@neoconfetti/react@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@neoconfetti/react@npm:1.0.0"
+  checksum: 10/71a623f2df79c773b6693fab3a252ee2d7bb1da4a8986c2d15b5ef25493835c1de64f2e44637faf823970d43d63f32227b09a6605ad23f39bc82c14d810e45cd
+  languageName: node
+  linkType: hard
 
 "@next/env@npm:16.1.6":
   version: 16.1.6
@@ -9545,6 +9578,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addon-onboarding@npm:10.2.17":
+  version: 10.2.17
+  resolution: "@storybook/addon-onboarding@npm:10.2.17"
+  peerDependencies:
+    storybook: ^10.2.17
+  checksum: 10/100ce959c84ffeb474ec2e0a7b6accaa7e888d255e925e88f2519d828d27d75e7c14c09a9f073b9e6bcaaf36756e1d719040015370cfcabde9de9d3eea06439f
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-vitest@npm:10.2.17":
+  version: 10.2.17
+  resolution: "@storybook/addon-vitest@npm:10.2.17"
+  dependencies:
+    "@storybook/global": "npm:^5.0.0"
+    "@storybook/icons": "npm:^2.0.1"
+  peerDependencies:
+    "@vitest/browser": ^3.0.0 || ^4.0.0
+    "@vitest/browser-playwright": ^4.0.0
+    "@vitest/runner": ^3.0.0 || ^4.0.0
+    storybook: ^10.2.17
+    vitest: ^3.0.0 || ^4.0.0
+  peerDependenciesMeta:
+    "@vitest/browser":
+      optional: true
+    "@vitest/browser-playwright":
+      optional: true
+    "@vitest/runner":
+      optional: true
+    vitest:
+      optional: true
+  checksum: 10/21f3034c530d8c12adc5658b2a8a08fb766bc5b3109ce604a0711ee8f32fd4e40772541093955f8a2d8dcf046db0df81c90a5992f47b915b2aa8f78038d8ca78
+  languageName: node
+  linkType: hard
+
 "@storybook/builder-vite@npm:10.2.10":
   version: 10.2.10
   resolution: "@storybook/builder-vite@npm:10.2.10"
@@ -11907,6 +11974,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vitest/browser-playwright@npm:4.0.18":
+  version: 4.0.18
+  resolution: "@vitest/browser-playwright@npm:4.0.18"
+  dependencies:
+    "@vitest/browser": "npm:4.0.18"
+    "@vitest/mocker": "npm:4.0.18"
+    tinyrainbow: "npm:^3.0.3"
+  peerDependencies:
+    playwright: "*"
+    vitest: 4.0.18
+  peerDependenciesMeta:
+    playwright:
+      optional: false
+  checksum: 10/ce6dc911e841abcb447bb68a363cc564cab1cf45978748e11d20ca560c0df2bd88fa70a4ae706f11f4191b948bc22adb93ffd375e61e7b4a94d4a2648421cbb0
+  languageName: node
+  linkType: hard
+
 "@vitest/browser@npm:4.0.18":
   version: 4.0.18
   resolution: "@vitest/browser@npm:4.0.18"
@@ -13933,6 +14017,25 @@ __metadata:
   version: 3.0.0
   resolution: "chownr@npm:3.0.0"
   checksum: 10/b63cb1f73d171d140a2ed8154ee6566c8ab775d3196b0e03a2a94b5f6a0ce7777ee5685ca56849403c8d17bd457a6540672f9a60696a6137c7a409097495b82c
+  languageName: node
+  linkType: hard
+
+"chromatic@npm:^13.3.4":
+  version: 13.3.5
+  resolution: "chromatic@npm:13.3.5"
+  peerDependencies:
+    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
+    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
+  peerDependenciesMeta:
+    "@chromatic-com/cypress":
+      optional: true
+    "@chromatic-com/playwright":
+      optional: true
+  bin:
+    chroma: dist/bin.js
+    chromatic: dist/bin.js
+    chromatic-cli: dist/bin.js
+  checksum: 10/d660e926e2763158eb216c12fd443ac909235b62e0855d6485c5ec270cbde8ce6d5467fc9792a988f2cd4c32722efb9899982b26d4bd8265381846c7d7006c21
   languageName: node
   linkType: hard
 
@@ -17170,6 +17273,13 @@ __metadata:
     strip-outer: "npm:^1.0.1"
     trim-repeated: "npm:^1.0.0"
   checksum: 10/5b71a7ff8e958c8621957e6fbf7872024126d3b5da50f59b1634af3343ba1a69d4cc15cfe4ca4bbfa7c959ad4d98614ee51e6f1d9fa7326eef8ceda2da8cd74e
+  languageName: node
+  linkType: hard
+
+"filesize@npm:^10.0.12":
+  version: 10.1.6
+  resolution: "filesize@npm:10.1.6"
+  checksum: 10/e800837c4fc02303f1944d5a4c7b706df1c5cd95d745181852604fb00a1c2d55d2d3921252722bd2f0c86b59c94edaba23fa224776bbf977455d4034e7be1f45
   languageName: node
   linkType: hard
 
@@ -20583,7 +20693,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonfile@npm:^6.0.1":
+"jsonfile@npm:^6.0.1, jsonfile@npm:^6.1.0":
   version: 6.2.0
   resolution: "jsonfile@npm:6.2.0"
   dependencies:
@@ -23967,7 +24077,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright@npm:1.58.2, playwright@npm:^1.14.0":
+"playwright@npm:1.58.2, playwright@npm:^1.14.0, playwright@npm:^1.58.2":
   version: 1.58.2
   resolution: "playwright@npm:1.58.2"
   dependencies:
