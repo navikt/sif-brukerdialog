@@ -139,12 +139,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadSendt: true,
                 };
 
-            case SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO:
-                return {
-                    ...state,
-                    kvitteringInfo: action.payload,
-                };
-
             case SøknadContextActionKeys.RESET_SØKNAD:
                 return {
                     ...state,

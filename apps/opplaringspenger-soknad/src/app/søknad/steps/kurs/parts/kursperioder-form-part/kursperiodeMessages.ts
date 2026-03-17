@@ -43,7 +43,7 @@ const nb = {
     'kursperiode.form.validation.startOgSluttErSammeHelg.enPeriode': 'Kursperioden er bare helgedager.',
     'kursperiode.form.validation.startOgSluttErSammeHelg.flerePerioder': 'Kursperiode {periodeNr} er bare helgedager.',
     'kursperiode.form.validation.startOgSluttErSammeHelg.info':
-        'Du kan kun få utbetalt opplæringspenger for hverdager. Det utbetales ikke opplæringspenger for lørdag eller søndag selv om du har hatt fravær fra jobb. Du kan derfor ikke søke opplæringspenger kun for lørdag og/eller søndag.',
+        'Du kan kun få utbetalt opplæringspenger for hverdager. Det utbetales ikke opplæringspenger for lørdag eller søndag selv om du har er borte fra jobb. Du kan derfor ikke søke opplæringspenger kun for lørdag og/eller søndag.',
 
     'kursperiode.form.avreise.validation.dateHasNoValue':
         'Du må oppgi når avreise til kurset er. Skriv inn eller velg dato fra datovelgeren{harFlerePerioder, select, true { (periode {periodeNr})} other{}}.',

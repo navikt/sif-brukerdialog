@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import { copyFileSync } from 'fs';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
@@ -26,22 +27,40 @@ export default defineConfig({
                 return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getDevAppSettings()));
             },
         },
+        {
+            name: 'copy-msw',
+            writeBundle() {
+                copyFileSync('./mockServiceWorker.js', './dist-demo/mockServiceWorker.js');
+            },
+        },
     ],
     define: {
-        __IS_GITHUB_PAGES__: false,
-        'import.meta.env.INJECT_DECORATOR': true,
+        __IS_GITHUB_PAGES__: true,
+        'import.meta.env.INJECT_DECORATOR': false,
     },
     server: {
         port: 8080,
+        proxy: {
+            '/mockServiceWorker.js': {
+                target: 'http://localhost:8080',
+                rewrite: () => '/sif-brukerdialog/opplaringspenger-soknad/mockServiceWorker.js',
+            },
+        },
     },
     preview: {
         port: 8080,
+        proxy: {
+            '/mockServiceWorker.js': {
+                target: 'http://localhost:8080',
+                rewrite: () => '/sif-brukerdialog/opplaringspenger-soknad/mockServiceWorker.js',
+            },
+        },
     },
-    base: '/',
+    base: '/sif-brukerdialog/opplaringspenger-soknad/',
     build: {
         sourcemap: true,
         rollupOptions: {
-            input: './index.html',
+            input: './demo/index.html',
         },
         outDir: './dist-demo',
         emptyOutDir: true,

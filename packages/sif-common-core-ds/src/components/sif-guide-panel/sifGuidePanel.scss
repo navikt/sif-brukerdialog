@@ -1,18 +1,18 @@
 .sif-guidePanel {
     &--compact {
-        &:not(.navds-guide-panel--poster) {
+        &:not(.aksel-guide-panel--poster) {
             padding-left: 0;
-            .navds-guide {
+            .aksel-guide {
                 transform: translateX(1rem);
             }
-            .navds-guide-panel__content {
+            .aksel-guide-panel__content {
                 padding-left: 7rem;
             }
         }
     }
-    .navds-guide-panel__content > p,
-    .navds-guide-panel__content > .navds-body-long > p,
-    .navds-guide-panel__content > .navds-body-short > p {
+    .aksel-guide-panel__content-inner > p,
+    .aksel-guide-panel__content-inner > .aksel-body-long > p,
+    .aksel-guide-panel__content-inner > .aksel-body-short > p {
         &:first-child {
             margin-top: 0;
         }

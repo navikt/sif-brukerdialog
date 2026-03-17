@@ -24,7 +24,7 @@ const ReiseQuestions = ({ values, søknadsperiode, disabledDateRanges, kursperio
         <>
             <KursFormComponents.YesOrNoQuestion
                 name={KursFormFields.reiserUtenforKursdager}
-                legend={text('steg.kurs.reiserUtenforKursdager.label')}
+                legend={text('steg.kurs.reiserUtenforKursdager.label', { antallPerioder: kursperioder.length })}
                 validate={getYesOrNoValidator()}
                 description={<ReiseInfo />}
             />

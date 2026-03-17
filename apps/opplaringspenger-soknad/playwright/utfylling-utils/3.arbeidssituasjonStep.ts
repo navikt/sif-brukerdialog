@@ -6,15 +6,15 @@ export const fyllUtArbeidssituasjonStep = async (page: Page, harFrilansoppdrag: 
     await expect(page.getByRole('heading', { level: 1, name: 'Din arbeidssituasjon' })).toBeVisible();
     await page
         .getByRole('group', {
-            name: 'Stemmer det at du er ansatt hos Arbeids- og velferdsetaten i perioden du søker for?',
+            name: 'Stemmer det at du er ansatt hos SNODIG FISKER i perioden du søker for?',
         })
         .getByLabel('Ja')
         .check();
     await page
-        .getByLabel('Hvor mange timer jobber du normalt per uke hos Arbeids- og velferdsetaten når du ikke har fravær?')
+        .getByLabel('Hvor mange timer jobber du normalt per uke hos SNODIG FISKER når du ikke har fravær?')
         .click();
     await page
-        .getByLabel('Hvor mange timer jobber du normalt per uke hos Arbeids- og velferdsetaten når du ikke har fravær?')
+        .getByLabel('Hvor mange timer jobber du normalt per uke hos SNODIG FISKER når du ikke har fravær?')
         .fill('37,5');
 
     if (harFrilansoppdrag === false) {
@@ -78,7 +78,7 @@ export const fyllUtArbeidssituasjonStepIngenArbeid = async (page: Page) => {
 };
 
 export const kontrollerArbeidssituasjonOppsummering = async (page: Page) => {
-    await expect(page.getByText('Arbeids- og velferdsetaten (organisasjonsnummer 123451234)Er ansatt i')).toBeVisible();
+    await expect(page.getByText('SNODIG FISKER (organisasjonsnummer 123451234)Er ansatt i')).toBeVisible();
     await expect(page.getByText('Jobber normalt 20 timer per')).toBeVisible();
     await expect(page.getByText('FrilanserStartet som frilanser 06.12.2021')).toBeVisible();
     await expect(page.getByText('Er ikke selvstendig næ')).toBeVisible();

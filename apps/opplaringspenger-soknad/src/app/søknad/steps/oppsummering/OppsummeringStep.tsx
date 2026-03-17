@@ -19,12 +19,12 @@ import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
-import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import KursOppsummering from './components/KursOppsummering';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
+import FraværIPeriodenSummary from './fravær-i-perioden-summary/FraværIPeriodenSummary';
 import OmBarnetSummary from './om-barnet-summary/OmBarnetSummary';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
@@ -97,18 +97,13 @@ const OppsummeringStep = () => {
                 initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                 onSubmit={(values) => {
                     if (apiData) {
-                        sendSøknad(
-                            {
-                                ...apiData,
-                                harBekreftetOpplysninger:
-                                    values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                            },
-                            søker,
-                        );
+                        sendSøknad({
+                            ...apiData,
+                            harBekreftetOpplysninger: values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                        });
                     }
                 }}
                 renderForm={() => {
-                    const valgteDatoer = søknadsdata.kurs?.søknadsdatoer || [];
                     return (
                         <VStack gap="space-32" data-testid="oppsummering">
                             <Form
@@ -146,9 +141,8 @@ const OppsummeringStep = () => {
                                         onEdit={() => navigate(stepConfig[StepId.ARBEIDSSITUASJON].route)}
                                     />
 
-                                    <ArbeidIPeriodenSummary
+                                    <FraværIPeriodenSummary
                                         apiValues={apiData}
-                                        valgteDatoer={valgteDatoer}
                                         søknadsperiode={{
                                             from: ISODateToDate(apiData.fraOgMed),
                                             to: ISODateToDate(apiData.tilOgMed),
