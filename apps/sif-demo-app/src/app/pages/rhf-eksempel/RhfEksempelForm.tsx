@@ -150,6 +150,10 @@ export const RhfEksempelForm = () => {
                         name={Field.varighet}
                         label="Varighet"
                         description="Oppgi antall timer og minutter"
+                        timeInputLayout={{
+                            compact: true,
+                            direction: 'vertical',
+                        }}
                         validate={validateField(
                             Field.varighet,
                             getTimeValidator({ required: true, min: { hours: 0, minutes: 15 } }),

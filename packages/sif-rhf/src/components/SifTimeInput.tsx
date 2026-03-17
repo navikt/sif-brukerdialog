@@ -1,3 +1,5 @@
+import './SifTimeInput.css';
+
 import { BodyShort, Fieldset, HStack, TextField } from '@navikt/ds-react';
 import { ReactNode } from 'react';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
@@ -17,6 +19,10 @@ type TimeInputPlaceholders = {
     minutes: string;
 };
 
+type TimeInputLayoutProps = {
+    compact?: boolean;
+};
+
 type Props<T extends FieldValues> = {
     name: Path<T>;
     label: ReactNode;
@@ -27,6 +33,7 @@ type Props<T extends FieldValues> = {
     maxMinutes?: number;
     timeInputLabels?: TimeInputLabels;
     placeholders?: TimeInputPlaceholders;
+    timeInputLayout?: TimeInputLayoutProps;
 };
 
 const defaultLabels: Required<TimeInputLabels> = {
@@ -40,13 +47,15 @@ export function SifTimeInput<T extends FieldValues>({
     description,
     disabled,
     validate,
-    maxHours = 24,
+    maxHours = 23,
     maxMinutes = 59,
     timeInputLabels,
     placeholders,
+    timeInputLayout,
 }: Props<T>) {
     const { control } = useFormContext<T>();
     const labels = { ...defaultLabels, ...timeInputLabels };
+    const compact = timeInputLayout?.compact === true;
 
     return (
         <Controller
@@ -56,43 +65,58 @@ export function SifTimeInput<T extends FieldValues>({
             render={({ field, fieldState }) => {
                 const value = (field.value || {}) as Partial<InputTime>;
 
+                const rootClassName = `sif-time-input ${compact ? ' sif-time-input--compact' : ''}`;
+
                 return (
-                    <Fieldset legend={label} id={name} error={fieldState.error?.message}>
-                        <HStack gap="space-4" align="start">
-                            <TextField
-                                id={`${name}-hours`}
-                                label={labels.hours}
-                                size="small"
-                                type="text"
-                                autoComplete="off"
-                                inputMode="numeric"
-                                pattern="[0-9]*"
-                                min={0}
-                                max={maxHours}
-                                maxLength={2}
-                                value={value.hours || ''}
-                                disabled={disabled}
-                                placeholder={placeholders?.hours}
-                                onBlur={field.onBlur}
-                                onChange={(evt) => field.onChange({ ...value, hours: evt.target.value })}
-                            />
-                            <TextField
-                                id={`${name}-minutes`}
-                                label={labels.minutes}
-                                size="small"
-                                type="text"
-                                autoComplete="off"
-                                inputMode="numeric"
-                                pattern="[0-9]*"
-                                min={0}
-                                max={maxMinutes}
-                                maxLength={2}
-                                value={value.minutes || ''}
-                                disabled={disabled}
-                                placeholder={placeholders?.minutes}
-                                onBlur={field.onBlur}
-                                onChange={(evt) => field.onChange({ ...value, minutes: evt.target.value })}
-                            />
+                    <Fieldset legend={label} id={name} error={fieldState.error?.message} className={rootClassName}>
+                        <HStack
+                            gap={compact ? 'space-0' : 'space-4'}
+                            align="start"
+                            className="sif-time-input__content-wrapper">
+                            <div className="sif-time-input__input-wrapper">
+                                <TextField
+                                    id={`${name}-hours`}
+                                    label={labels.hours}
+                                    hideLabel
+                                    type="text"
+                                    autoComplete="off"
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
+                                    min={0}
+                                    max={maxHours}
+                                    maxLength={2}
+                                    value={value.hours || ''}
+                                    disabled={disabled}
+                                    placeholder={placeholders?.hours}
+                                    onBlur={field.onBlur}
+                                    onChange={(evt) => field.onChange({ ...value, hours: evt.target.value })}
+                                />
+                                <span className="sif-time-input__label" aria-hidden="true">
+                                    {labels.hours}
+                                </span>
+                            </div>
+                            <div className="sif-time-input__input-wrapper">
+                                <TextField
+                                    id={`${name}-minutes`}
+                                    label={labels.minutes}
+                                    hideLabel
+                                    type="text"
+                                    autoComplete="off"
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
+                                    min={0}
+                                    max={maxMinutes}
+                                    maxLength={2}
+                                    value={value.minutes || ''}
+                                    disabled={disabled}
+                                    placeholder={placeholders?.minutes}
+                                    onBlur={field.onBlur}
+                                    onChange={(evt) => field.onChange({ ...value, minutes: evt.target.value })}
+                                />
+                                <span className="sif-time-input__label" aria-hidden="true">
+                                    {labels.minutes}
+                                </span>
+                            </div>
                         </HStack>
                         {description ? <BodyShort spacing>{description}</BodyShort> : null}
                     </Fieldset>
