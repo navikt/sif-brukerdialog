@@ -18,4 +18,7 @@ export default defineWorkspace([
     './packages/sif-common-forms-ds/vitest.config.ts',
     './packages/sif-common-formik-ds/vitest.config.ts',
     './packages/sif-common-utils/vitest.config.ts',
+    './packages/sif-rhf/vitest.config.ts',
+    './packages/sif-soknad/vitest.config.ts',
+    './packages/sif-validation/vitest.config.ts',
 ]);

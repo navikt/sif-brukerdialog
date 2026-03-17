@@ -11,7 +11,7 @@ interface FlatError {
     message: string;
 }
 
-const flattenErrors = (errors: FieldErrors, parentKey?: string): FlatError[] => {
+export const flattenErrors = (errors: FieldErrors, parentKey?: string): FlatError[] => {
     const result: FlatError[] = [];
     for (const key in errors) {
         const fieldKey = parentKey ? `${parentKey}.${key}` : key;

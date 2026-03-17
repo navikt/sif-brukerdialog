@@ -8432,7 +8432,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/mutator@npm:5.14.1, @sanity/mutator@npm:^5.8.1":
+"@sanity/mutator@npm:5.14.1":
   version: 5.14.1
   resolution: "@sanity/mutator@npm:5.14.1"
   dependencies:
@@ -8442,6 +8442,19 @@ __metadata:
     debug: "npm:^4.4.3"
     lodash-es: "npm:^4.17.22"
   checksum: 10/4c3dc4652c294a1f39d4f09131d7e1ecf51374ee596931a39c671199390501bfdd7cac4fb66fdf05728e43ab4667231f1d10897a8354e580541eee25341888d1
+  languageName: node
+  linkType: hard
+
+"@sanity/mutator@npm:^5.8.1":
+  version: 5.13.0
+  resolution: "@sanity/mutator@npm:5.13.0"
+  dependencies:
+    "@sanity/diff-match-patch": "npm:^3.2.0"
+    "@sanity/types": "npm:5.13.0"
+    "@sanity/uuid": "npm:^3.0.2"
+    debug: "npm:^4.4.3"
+    lodash-es: "npm:^4.17.22"
+  checksum: 10/2bf729fb568ad8b4315b1cf3a1da74e5dfc603b4db2470d5e2ec9856e3742479c2106d8985cbed9bad35c86e72079ed70d85bd1c1901354c950d2cebef904bc9
   languageName: node
   linkType: hard
 
@@ -8498,7 +8511,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/schema@npm:5.14.1, @sanity/schema@npm:^5.9.0":
+"@sanity/schema@npm:5.14.1":
   version: 5.14.1
   resolution: "@sanity/schema@npm:5.14.1"
   dependencies:
@@ -8512,6 +8525,23 @@ __metadata:
     lodash-es: "npm:^4.17.22"
     object-inspect: "npm:^1.13.4"
   checksum: 10/c2893e3afd4a0772ba6ed027500ec6956c3718db256aa7e68fdad764e5125cf4e5cda49a61145205c55d71f15dac3bf47e681aee697daf89706ea898fa2d5053
+  languageName: node
+  linkType: hard
+
+"@sanity/schema@npm:^5.9.0":
+  version: 5.13.0
+  resolution: "@sanity/schema@npm:5.13.0"
+  dependencies:
+    "@sanity/descriptors": "npm:^1.3.0"
+    "@sanity/generate-help-url": "npm:^4.0.0"
+    "@sanity/types": "npm:5.13.0"
+    arrify: "npm:^2.0.1"
+    groq-js: "npm:^1.27.1"
+    humanize-list: "npm:^1.0.1"
+    leven: "npm:^3.1.0"
+    lodash-es: "npm:^4.17.22"
+    object-inspect: "npm:^1.13.4"
+  checksum: 10/11e3491a8856a8e3182bf656ab6db7082f563c635353ee1c8d8a616c99c07b0be5067d109f86842e92ec3cf8e81380f56aa85777eaacc51d63711920931e17a4
   languageName: node
   linkType: hard
 
@@ -8574,6 +8604,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sanity/types@npm:5.13.0":
+  version: 5.13.0
+  resolution: "@sanity/types@npm:5.13.0"
+  dependencies:
+    "@sanity/client": "npm:^7.15.0"
+    "@sanity/media-library-types": "npm:^1.2.0"
+  peerDependencies:
+    "@types/react": ^19.2
+  checksum: 10/d6bf36515270f1ec4b8a2a0f30d178002c8a0661c414da936c30777d993b2e2435fbd2273787685fa504df2f2f7b2307528e999358a927a02e5c77768e6106e4
+  languageName: node
+  linkType: hard
+
 "@sanity/types@npm:5.14.1, @sanity/types@npm:^5.10.0, @sanity/types@npm:^5.13.0, @sanity/types@npm:^5.9.0":
   version: 5.14.1
   resolution: "@sanity/types@npm:5.14.1"
@@ -8620,7 +8662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/util@npm:5.14.1, @sanity/util@npm:^5.10.0":
+"@sanity/util@npm:5.14.1":
   version: 5.14.1
   resolution: "@sanity/util@npm:5.14.1"
   dependencies:
@@ -8631,6 +8673,20 @@ __metadata:
     date-fns: "npm:^4.1.0"
     rxjs: "npm:^7.8.2"
   checksum: 10/6819b21ff63595ab4dc03dfdc057989a47b1ccbd5e023ce960101ced87fd782bc02ddcaa895b027d4ccdec23c3723d69ae4986d0f5274d7db5534fb89a5e0c48
+  languageName: node
+  linkType: hard
+
+"@sanity/util@npm:^5.10.0":
+  version: 5.13.0
+  resolution: "@sanity/util@npm:5.13.0"
+  dependencies:
+    "@date-fns/tz": "npm:^1.4.1"
+    "@date-fns/utc": "npm:^2.1.1"
+    "@sanity/client": "npm:^7.15.0"
+    "@sanity/types": "npm:5.13.0"
+    date-fns: "npm:^4.1.0"
+    rxjs: "npm:^7.8.2"
+  checksum: 10/7f38eabb9f729a4b80a2c67778a2f5f81add9a0f6d72a675996109389bfcb4a3a73828afff0e009c0bfb8ed8517c126c3981aab49d12bf97cff5fdb7d373bd6e
   languageName: node
   linkType: hard
 
@@ -9329,8 +9385,9 @@ __metadata:
     typescript: "npm:5.9.3"
     vitest: "npm:4.0.18"
   peerDependencies:
-    dayjs: 1.11.20
+    dayjs: ">=1.11.19"
     react: ">=19"
+    react-day-picker: ">=9.14.0"
     react-dom: ">=19"
   languageName: unknown
   linkType: soft
@@ -15477,7 +15534,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:3.3.3, dompurify@npm:^3.2.6":
+"dompurify@npm:3.3.3":
   version: 3.3.3
   resolution: "dompurify@npm:3.3.3"
   dependencies:
@@ -15486,6 +15543,18 @@ __metadata:
     "@types/trusted-types":
       optional: true
   checksum: 10/4cc9c539ed7136d46c6577613b8e20871c2b6165db01dfbd2a3c11c75f9e339c496ac6519a1c3190115def8cadae3720bef0417fc43fa28802c7407bab174da9
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:^3.2.6":
+  version: 3.3.2
+  resolution: "dompurify@npm:3.3.2"
+  dependencies:
+    "@types/trusted-types": "npm:^2.0.7"
+  dependenciesMeta:
+    "@types/trusted-types":
+      optional: true
+  checksum: 10/3ca02559677ce6d9583a500f21ffbb6b9e88f1af99f69fa0d0d9442cddbac98810588c869f8b435addb5115492d6e49870024bca322169b941bafedb99c7f281
   languageName: node
   linkType: hard
 

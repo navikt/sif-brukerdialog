@@ -11,6 +11,12 @@ type Props<T extends FieldValues> = Omit<SelectProps, 'name' | 'children'> & {
     showOnlyEuAndEftaCountries?: boolean;
 };
 
+const getLangToUse = (locale: string) => {
+    if (locale === 'en') return 'nb';
+    if (locale === 'nn') return 'nn';
+    return 'nb';
+};
+
 export function SifCountrySelect<T extends FieldValues>({
     name,
     validate,
@@ -21,8 +27,7 @@ export function SifCountrySelect<T extends FieldValues>({
     const intl = useIntl();
 
     const options = useMemo(() => {
-        const lang = intl.locale === 'en' ? 'nn' : 'nb';
-        return getCountries(showOnlyEuAndEftaCountries, lang);
+        return getCountries(showOnlyEuAndEftaCountries, getLangToUse(intl.locale));
     }, [intl.locale, showOnlyEuAndEftaCountries]);
 
     return (

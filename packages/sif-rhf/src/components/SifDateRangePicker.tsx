@@ -5,13 +5,13 @@ import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { DatepickerLimitations, ISODateStringToUTCDate } from '../utils/dateUtils';
 import { SifDatepicker } from './SifDatepicker';
 
-const minDate = (a?: Date, b?: Date): Date | undefined => {
+export const minDate = (a?: Date, b?: Date): Date | undefined => {
     if (!a) return b;
     if (!b) return a;
     return a < b ? a : b;
 };
 
-const maxDate = (a?: Date, b?: Date): Date | undefined => {
+export const maxDate = (a?: Date, b?: Date): Date | undefined => {
     if (!a) return b;
     if (!b) return a;
     return a > b ? a : b;
