@@ -1,7 +1,5 @@
 import './page.css';
 
-import React from 'react';
-
 import { Header } from './Header';
 
 type User = {
