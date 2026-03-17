@@ -13,10 +13,12 @@ import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 
 export enum BostedFormFields {
     borITrondheim = 'borITrondheim',
+    borUtenforTrondheim = 'borUtenforTrondheim',
 }
 
 export interface BostedFormValues extends StepFormValues {
     [BostedFormFields.borITrondheim]?: YesOrNo;
+    [BostedFormFields.borUtenforTrondheim]?: YesOrNo;
 }
 const { YesOrNoQuestion } = createSifFormComponents<BostedFormValues>();
 
@@ -37,7 +39,7 @@ export const BostedForm = () => {
 
     const methods = useSøknadRhfForm(stepId, defaultValues);
 
-    // const borITrondheim = methods.watch(BostedFormFields.borITrondheim);
+    const borITrondheim = methods.watch(BostedFormFields.borITrondheim);
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
@@ -47,6 +49,13 @@ export const BostedForm = () => {
                     legend="Bor du i Trondheim"
                     validate={validateField(BostedFormFields.borITrondheim, getYesOrNoValidator())}
                 />
+                {borITrondheim === YesOrNo.YES && (
+                    <YesOrNoQuestion
+                        name={BostedFormFields.borUtenforTrondheim}
+                        legend="Bor du utenfor Trondheim"
+                        validate={validateField(BostedFormFields.borUtenforTrondheim, getYesOrNoValidator())}
+                    />
+                )}
             </FormLayout.Content>
         </AppForm>
     );
