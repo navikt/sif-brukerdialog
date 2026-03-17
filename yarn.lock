@@ -8972,6 +8972,29 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@sif/rhf@workspace:packages/sif-rhf":
+  version: 0.0.0-use.local
+  resolution: "@sif/rhf@workspace:packages/sif-rhf"
+  dependencies:
+    "@navikt/ds-react": "npm:8.7.0"
+    "@sif/eslint-config": "workspace:*"
+    "@types/react": "npm:19.2.14"
+    "@types/react-dom": "npm:19.2.3"
+    i18n-iso-countries: "npm:7.14.0"
+    react: "npm:19.2.4"
+    react-dom: "npm:19.2.4"
+    react-hook-form: "npm:7.71.2"
+    react-intl: "npm:8.1.3"
+    typescript: "npm:5.9.3"
+    vitest: "npm:4.0.18"
+  peerDependencies:
+    dayjs: ">=1.11.19"
+    react: ">=19"
+    react-day-picker: ">=9.14.0"
+    react-dom: ">=19"
+  languageName: unknown
+  linkType: soft
+
 "@sif/soknad@workspace:packages/sif-soknad":
   version: 0.0.0-use.local
   resolution: "@sif/soknad@workspace:packages/sif-soknad"
