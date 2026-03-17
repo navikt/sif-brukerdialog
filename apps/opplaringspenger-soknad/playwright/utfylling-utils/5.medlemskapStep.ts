@@ -29,7 +29,7 @@ export const fyllUtMedlemskap = async (page: Page) => {
 };
 
 export const kontrollerMedlemskap = async (page: Page) => {
-    await expect(page.getByRole('heading', { name: 'Arbeids- og velferdsetaten (' }).nth(1)).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'SNODIG FISKER (' }).nth(1)).toBeVisible();
     await expect(page.getByText('Har du bodd i utlandet i de siste 12 månedene?Ja')).toBeVisible();
     await expect(
         page.getByText('Utenlandsopphold siste 12 måneder1. oktober 2024 - 1. november 2024Bahamas'),

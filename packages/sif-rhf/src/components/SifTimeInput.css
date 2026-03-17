@@ -7,7 +7,6 @@
 .sif-time-input .sif-time-input__input-wrapper {
     display: flex;
     align-items: baseline;
-    /* margin-right: 0.5rem; */
     padding: 0;
     position: relative;
     max-width: 3.5rem;
@@ -16,10 +15,6 @@
 
 .sif-time-input.sif-time-input--wide .sif-time-input__input-wrapper {
     max-width: 5rem;
-}
-
-.sif-time-input .sif-time-input__input-wrapper:last-child {
-    margin-right: 0;
 }
 
 .sif-time-input .sif-time-input__input-wrapper input {
