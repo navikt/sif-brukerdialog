@@ -8988,7 +8988,6 @@ __metadata:
     typescript: "npm:5.9.3"
     vitest: "npm:4.0.18"
   peerDependencies:
-    "@navikt/sif-common-utils": "workspace:*"
     dayjs: ">=1.11.19"
     react: ">=19"
     react-day-picker: ">=9.14.0"
