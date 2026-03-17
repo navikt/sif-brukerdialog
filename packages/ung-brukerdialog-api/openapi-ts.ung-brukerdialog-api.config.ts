@@ -1,0 +1,37 @@
+import { defaultPlugins, defineConfig, type UserConfig } from '@hey-api/openapi-ts';
+
+type Env = 'dev' | 'prod';
+
+const getInputUrl = (env: Env): string => {
+    const baseUrl = env === 'dev' ? 'intern.dev.nav.no' : 'intern.nav.no';
+    return `https://ung-brukerdialog-api.${baseUrl}/ung/brukerdialog/ekstern/api/openapi.json`;
+};
+
+export const createConfig = (env: Env): UserConfig => ({
+    input: getInputUrl(env),
+    output: {
+        format: 'prettier',
+        lint: 'eslint',
+        path: './src/ung-brukerdialog-api/client',
+    },
+    plugins: [
+        ...defaultPlugins,
+        'zod',
+        { asClass: true, name: '@hey-api/sdk', validator: true },
+        { name: '@hey-api/client-axios', throwOnError: true },
+        {
+            enums: 'typescript', // default
+            name: '@hey-api/typescript',
+        },
+    ],
+});
+
+const parseEnv = (value: string | undefined): Env => {
+    if (value === 'prod') return 'prod';
+    if (value === 'dev' || value === undefined) return 'dev';
+    throw new Error(`Invalid CODEGEN_ENV: '${value}'. Must be 'dev' or 'prod'.`);
+};
+
+const env = parseEnv(process.env.CODEGEN_ENV);
+
+export default defineConfig(createConfig(env));

@@ -26,6 +26,9 @@ export enum EnvKey {
     'UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH' = 'UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH',
     'UNG_DELTAKELSE_OPPLYSER_API_SCOPE' = 'UNG_DELTAKELSE_OPPLYSER_API_SCOPE',
     'UNG_DELTAKELSE_OPPLYSER_API_URL' = 'UNG_DELTAKELSE_OPPLYSER_API_URL',
+    'UNG_BRUKERDIALOG_API_FRONTEND_PATH' = 'UNG_BRUKERDIALOG_API_FRONTEND_PATH',
+    'UNG_BRUKERDIALOG_API_API_SCOPE' = 'UNG_BRUKERDIALOG_API_API_SCOPE',
+    'UNG_BRUKERDIALOG_API_API_URL' = 'UNG_BRUKERDIALOG_API_API_URL',
 }
 /**
  * ZOD schemas
@@ -84,3 +87,13 @@ export const ungDeltakelseOpplyserEnvSchema = z.object({
     [EnvKey.UNG_DELTAKELSE_OPPLYSER_API_URL]: z.string().min(1),
 });
 export type UngDeltakelseOpplyserBrowserEnv = z.infer<typeof ungDeltakelseOpplyserEnvSchema>;
+
+/**
+ * UngBrukerdialogApi
+ */
+export const ungBrukerdialogApiEnvSchema = z.object({
+    [EnvKey.UNG_BRUKERDIALOG_API_FRONTEND_PATH]: z.string().min(1),
+    [EnvKey.UNG_BRUKERDIALOG_API_API_SCOPE]: z.string().min(1),
+    [EnvKey.UNG_BRUKERDIALOG_API_API_URL]: z.string().min(1),
+});
+export type UngBrukerdialogApiBrowserEnv = z.infer<typeof ungBrukerdialogApiEnvSchema>;

@@ -32,9 +32,9 @@ export const [FaroProvider, useFaroInstance] = constate((props: Props) => {
         }
     }, [isActive]);
 
-    const logError = (error: Error) => {
+    const logError = (error: Error, componentStack?: string) => {
         if (faro) {
-            faro.api.pushError(error);
+            faro.api.pushError(error, componentStack ? { context: { componentStack } } : undefined);
         }
     };
 

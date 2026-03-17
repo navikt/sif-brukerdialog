@@ -1,4 +1,5 @@
-import { Bleed, Box, BoxNewProps, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
+import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
+import { Bleed, Box, BoxNewProps, Button, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
 import SifGuidePanel, {
     SifGuidePanelProps,
 } from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -124,6 +125,58 @@ const Guide = (props: SifGuidePanelProps) => {
     );
 };
 
+interface FormButtonProps {
+    onPrevious?: () => void;
+    previousLabel?: string;
+    previousDisabled?: boolean;
+    submitPending?: boolean;
+    submitLabel?: string;
+    submitDisabled?: boolean;
+    isFinalSubmit?: boolean;
+}
+
+const FormButtons = ({
+    onPrevious,
+    previousLabel,
+    previousDisabled,
+    submitPending,
+    submitLabel,
+    submitDisabled,
+    isFinalSubmit,
+}: FormButtonProps) => {
+    return (
+        <HStack gap="space-16" justify="start">
+            {onPrevious && (
+                <Button
+                    variant="secondary"
+                    type="button"
+                    onClick={onPrevious}
+                    disabled={previousDisabled}
+                    icon={<ArrowLeftIcon aria-hidden />}>
+                    {previousLabel || 'Forrige steg'}
+                </Button>
+            )}
+            <Button
+                variant="primary"
+                type="submit"
+                loading={submitPending}
+                disabled={submitPending || submitDisabled}
+                iconPosition="right"
+                icon={isFinalSubmit ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}>
+                {submitLabel || isFinalSubmit ? 'Send inn' : 'Neste steg'}
+            </Button>
+        </HStack>
+    );
+};
+
+const Content = ({ children }: { children: React.ReactNode }) => {
+    return <VStack gap="space-48">{children}</VStack>;
+};
+
+const Summary = ({ children }: { children: React.ReactNode }) => {
+    return <VStack gap="space-24">{children}</VStack>;
+};
+
 export const FormLayout = {
     Guide,
     Panel,
@@ -135,4 +188,7 @@ export const FormLayout = {
     SectionHeading,
     Sections,
     StepGuideWrapper,
+    FormButtons,
+    Content,
+    Summary,
 };

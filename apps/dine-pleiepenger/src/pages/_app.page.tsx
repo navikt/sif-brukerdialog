@@ -25,20 +25,35 @@ import { SøkerDto } from '../server/dto-schemas/søkerDtoSchema';
 import { Innsynsdata } from '../types';
 import { innsynsdataClientSchema } from '../types/client-schemas/innsynsdataClientSchema';
 import { søkerClientSchema } from '../types/client-schemas/søkerClientSchema';
-import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
 import { Feature } from '../utils/features';
+import { reportClientParseError } from '../utils/reportClientParseError';
+import { logApiErrorToSentry } from '../utils/sentryApiErrorLogger';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import UnavailablePage from './unavailable.page';
 
 export const ANALYTICS_APPLICATION_KEY = 'sif-innsyn';
 
 const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
-    axios.get(url).then((res) => innsynsdataClientSchema.parse(res.data));
+    axios.get(url).then((res) => {
+        const result = innsynsdataClientSchema.safeParse(res.data);
+        if (!result.success) {
+            reportClientParseError(result.error, 'innsynsdataClientSchema');
+            throw result.error;
+        }
+        return result.data;
+    });
 
 const søkerIdFetcher = async (): Promise<string> => {
     const url = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soker`;
-    return axios.get<SøkerDto>(url).then((res) => søkerClientSchema.parse(res.data).fødselsnummer);
+    return axios.get<SøkerDto>(url).then((res) => {
+        const result = søkerClientSchema.safeParse(res.data);
+        if (!result.success) {
+            reportClientParseError(result.error, 'søkerClientSchema');
+            throw result.error;
+        }
+        return result.data.fødselsnummer;
+    });
 };
 
 if (Feature.FARO) {
@@ -73,7 +88,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     }
 
     if (error || !data) {
-        appSentryLogger.logError('fetchInnsynsdata-failed', JSON.stringify({ error }));
+        logApiErrorToSentry(error, 'fetchInnsynsdata-failed', { ignore401: true });
         return (
             <EmptyPage>
                 <HentInnsynsdataFeilet error={error} />

@@ -3,7 +3,7 @@ import { DateRange } from '@navikt/sif-common-formik-ds';
 import { FrilansApiData } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
-import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
+import { getFraværIPeriodeApiDataFromSøknadsdata } from './getFraværIPeriodeApiDataFromSøknadsdata';
 
 export const getFrilansApiDataFromSøknadsdata = (props: {
     søknadsperiode: DateRange;
@@ -28,12 +28,12 @@ export const getFrilansApiDataFromSøknadsdata = (props: {
                     sluttdato: frilans.sluttdato,
                     arbeidsforhold: {
                         jobberNormaltTimer: frilans.jobberNormaltTimer,
-                        arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                            arbeidIPeriode,
-                            søknadsperiode,
-                            frilans.jobberNormaltTimer,
-                            dagerMedOpplæring,
-                        ),
+                        arbeidIPeriode: getFraværIPeriodeApiDataFromSøknadsdata({
+                            arbeidIPeriodeSøknadsdata: arbeidIPeriode,
+                            periode: søknadsperiode,
+                            jobberNormaltTimer: frilans.jobberNormaltTimer,
+                            valgteDatoer: dagerMedOpplæring,
+                        }),
                     },
                 };
             } else return undefined;
@@ -45,12 +45,12 @@ export const getFrilansApiDataFromSøknadsdata = (props: {
                 jobberFortsattSomFrilans: true,
                 arbeidsforhold: {
                     jobberNormaltTimer: frilans.jobberNormaltTimer,
-                    arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                        arbeidIPeriode,
-                        søknadsperiode,
-                        frilans.jobberNormaltTimer,
-                        dagerMedOpplæring,
-                    ),
+                    arbeidIPeriode: getFraværIPeriodeApiDataFromSøknadsdata({
+                        arbeidIPeriodeSøknadsdata: arbeidIPeriode,
+                        periode: søknadsperiode,
+                        jobberNormaltTimer: frilans.jobberNormaltTimer,
+                        valgteDatoer: dagerMedOpplæring,
+                    }),
                 },
             };
     }

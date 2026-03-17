@@ -20,7 +20,7 @@ import { FaroProvider } from '@navikt/sif-common-faro';
 import dayjs from 'dayjs';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 import DevBranchInfo from '../components/dev-branch-info/DevBranchInfo';
 import ErrorBoundary from '../components/errorBoundary/ErrorBoundary';
@@ -57,6 +57,8 @@ interface Props {
     children: React.ReactNode;
     /** Extra content in ErrorBoundary */
     onResetSoknad?: () => void;
+    /** Use HashRouter instead of BrowserRouter - useful for GitHub Pages */
+    useHashRouter?: boolean;
 }
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
@@ -76,7 +78,9 @@ const SoknadApplication = ({
     naisFrontendTelemetryCollectorUrl,
     useFaro,
     onResetSoknad,
+    useHashRouter,
 }: Props) => {
+    const Router = useHashRouter ? HashRouter : BrowserRouter;
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const localeMessages = intlMessages[locale] || intlMessages['nb'];
     const locales = useLanguageSelector ? (Object.keys(intlMessages) as any) : [];
@@ -98,7 +102,7 @@ const SoknadApplication = ({
                         <IntlProvider
                             locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
                             messages={localeMessages}>
-                            <BrowserRouter basename={publicPath}>
+                            <Router basename={useHashRouter ? undefined : publicPath}>
                                 {/* Staging-datasettet er slettet på grunn av økonomi */}
                                 {appStatus.sanityConfig.dataset === 'staging' ? (
                                     children
@@ -115,7 +119,7 @@ const SoknadApplication = ({
                                     />
                                 )}
                                 <DevBranchInfo />
-                            </BrowserRouter>
+                            </Router>
                         </IntlProvider>
                     </AnalyticsProvider>
                 </ErrorBoundary>

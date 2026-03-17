@@ -34,6 +34,7 @@ const config = {
         NEXT_PUBLIC_API_URL_BRUKERDIALOG: 'http://localhost:1234',
         NEXT_PUBLIC_TELEMETRY_URL: '#',
         NEXT_PUBLIC_ANALYTICS_KEY: 'default',
+        NEXT_PUBLIC_SCRUB_SENTRY: 'on',
         NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
         NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
         NEXT_PUBLIC_DINE_UTBETALINGER_URL: '#',

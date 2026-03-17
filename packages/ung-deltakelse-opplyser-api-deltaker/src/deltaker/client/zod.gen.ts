@@ -3,17 +3,16 @@
 import * as z from 'zod';
 
 export const zProblemDetail = z.object({
-    type: z.optional(z.url()),
-    title: z.optional(z.string()),
-    status: z.optional(
-        z
-            .int()
-            .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-            .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    ),
-    detail: z.optional(z.string()),
-    instance: z.optional(z.url()),
-    properties: z.optional(z.record(z.string(), z.unknown())),
+    type: z.url().optional(),
+    title: z.string().optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    detail: z.string().optional(),
+    instance: z.url().optional(),
+    properties: z.record(z.string(), z.unknown()).optional(),
 });
 
 export const zArbeidOgFrilansRegisterInntektDto = z.object({
@@ -22,16 +21,16 @@ export const zArbeidOgFrilansRegisterInntektDto = z.object({
         .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
         .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
     arbeidsgiver: z.string(),
-    arbeidsgiverNavn: z.optional(z.string()),
+    arbeidsgiverNavn: z.string().optional(),
 });
 
 export const zBekreftelseDto = z.object({
     harUttalelse: z.boolean(),
-    uttalelseFraBruker: z.optional(z.string()),
+    uttalelseFraBruker: z.string().optional(),
 });
 
 export const zDeltakerDto = z.object({
-    id: z.optional(z.uuid()),
+    id: z.uuid().optional(),
     deltakerIdent: z.string(),
 });
 
@@ -52,7 +51,7 @@ export const zOppgavetypeDataDto = z.unknown();
 export const zEndretSluttdatoDataDto = zOppgavetypeDataDto.and(
     z.object({
         nySluttdato: z.iso.date(),
-        forrigeSluttdato: z.optional(z.iso.date()),
+        forrigeSluttdato: z.iso.date().optional(),
     }),
 );
 
@@ -66,13 +65,13 @@ export const zEndretStartdatoDataDto = zOppgavetypeDataDto.and(
 export const zFjernetPeriodeDataDto = zOppgavetypeDataDto.and(
     z.object({
         forrigeStartdato: z.iso.date(),
-        forrigeSluttdato: z.optional(z.iso.date()),
+        forrigeSluttdato: z.iso.date().optional(),
     }),
 );
 
 export const zPeriodeDto = z.object({
     fom: z.iso.date(),
-    tom: z.optional(z.iso.date()),
+    tom: z.iso.date().optional(),
 });
 
 export const zPeriodeEndringType = z.enum([
@@ -84,8 +83,8 @@ export const zPeriodeEndringType = z.enum([
 
 export const zEndretPeriodeDataDto = zOppgavetypeDataDto.and(
     z.object({
-        nyPeriode: z.optional(zPeriodeDto),
-        forrigePeriode: z.optional(zPeriodeDto),
+        nyPeriode: zPeriodeDto.optional(),
+        forrigePeriode: zPeriodeDto.optional(),
         endringer: z.array(zPeriodeEndringType),
     }),
 );
@@ -93,14 +92,14 @@ export const zEndretPeriodeDataDto = zOppgavetypeDataDto.and(
 export const zRapportertInntektPeriodeinfoDto = z.object({
     fraOgMed: z.iso.date(),
     tilOgMed: z.iso.date(),
-    arbeidstakerOgFrilansInntekt: z.optional(z.number()),
+    arbeidstakerOgFrilansInntekt: z.number().optional(),
 });
 
 export const zInntektsrapporteringOppgavetypeDataDto = zOppgavetypeDataDto.and(
     z.object({
         fraOgMed: z.iso.date(),
         tilOgMed: z.iso.date(),
-        rapportertInntekt: z.optional(zRapportertInntektPeriodeinfoDto),
+        rapportertInntekt: zRapportertInntektPeriodeinfoDto.optional(),
         gjelderDelerAvMåned: z.boolean(),
     }),
 );
@@ -166,37 +165,37 @@ export const zOppgaveDto = z.object({
         zKontrollerRegisterinntektOppgavetypeDataDto,
         zSøkYtelseOppgavetypeDataDto,
     ]),
-    bekreftelse: z.optional(zBekreftelseDto),
+    bekreftelse: zBekreftelseDto.optional(),
     status: zOppgaveStatus,
     opprettetDato: z.iso.datetime({ local: true }),
-    løstDato: z.optional(z.iso.datetime({ local: true })),
-    åpnetDato: z.optional(z.iso.datetime({ local: true })),
-    lukketDato: z.optional(z.iso.datetime({ local: true })),
-    frist: z.optional(z.iso.datetime({ local: true })),
+    løstDato: z.iso.datetime({ local: true }).optional(),
+    åpnetDato: z.iso.datetime({ local: true }).optional(),
+    lukketDato: z.iso.datetime({ local: true }).optional(),
+    frist: z.iso.datetime({ local: true }).optional(),
 });
 
 export const zDeltakelseKomposittDto = z.object({
-    id: z.optional(z.uuid()),
+    id: z.uuid().optional(),
     deltaker: zDeltakerDto,
     fraOgMed: z.iso.date(),
-    tilOgMed: z.optional(z.iso.date()),
+    tilOgMed: z.iso.date().optional(),
     erSlettet: z.boolean(),
     harOpphørsvedtak: z.boolean(),
-    søktTidspunkt: z.optional(z.iso.datetime({ local: true })),
+    søktTidspunkt: z.iso.datetime({ local: true }).optional(),
     oppgaver: z.array(zOppgaveDto),
 });
 
 export const zKontonummerDto = z.object({
     harKontonummer: z.boolean(),
-    kontonummer: z.optional(z.string()),
+    kontonummer: z.string().optional(),
 });
 
 export const zMarkerDeltakelseSomSøktData = z.object({
-    body: z.optional(z.never()),
+    body: z.never().optional(),
     path: z.object({
         id: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -205,9 +204,9 @@ export const zMarkerDeltakelseSomSøktData = z.object({
 export const zMarkerDeltakelseSomSøktResponse = zDeltakelseKomposittDto;
 
 export const zHentKontonummerData = z.object({
-    body: z.optional(z.never()),
-    path: z.optional(z.never()),
-    query: z.optional(z.never()),
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
 });
 
 /**
@@ -216,11 +215,11 @@ export const zHentKontonummerData = z.object({
 export const zHentKontonummerResponse = zKontonummerDto;
 
 export const zHentDeltakersOppgaveData = z.object({
-    body: z.optional(z.never()),
+    body: z.never().optional(),
     path: z.object({
         oppgaveReferanse: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -229,11 +228,11 @@ export const zHentDeltakersOppgaveData = z.object({
 export const zHentDeltakersOppgaveResponse = zOppgaveDto;
 
 export const zMarkerOppgaveSomLøstData = z.object({
-    body: z.optional(z.never()),
+    body: z.never().optional(),
     path: z.object({
         oppgaveReferanse: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -242,11 +241,11 @@ export const zMarkerOppgaveSomLøstData = z.object({
 export const zMarkerOppgaveSomLøstResponse = zOppgaveDto;
 
 export const zMarkerOppgaveSomLukketData = z.object({
-    body: z.optional(z.never()),
+    body: z.never().optional(),
     path: z.object({
         oppgaveReferanse: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -255,11 +254,11 @@ export const zMarkerOppgaveSomLukketData = z.object({
 export const zMarkerOppgaveSomLukketResponse = zOppgaveDto;
 
 export const zMarkerOppgaveSomÅpnetData = z.object({
-    body: z.optional(z.never()),
+    body: z.never().optional(),
     path: z.object({
         oppgaveReferanse: z.uuid(),
     }),
-    query: z.optional(z.never()),
+    query: z.never().optional(),
 });
 
 /**
@@ -268,9 +267,9 @@ export const zMarkerOppgaveSomÅpnetData = z.object({
 export const zMarkerOppgaveSomÅpnetResponse = zOppgaveDto;
 
 export const zHentAlleMineDeltakelserData = z.object({
-    body: z.optional(z.never()),
-    path: z.optional(z.never()),
-    query: z.optional(z.never()),
+    body: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
 });
 
 /**

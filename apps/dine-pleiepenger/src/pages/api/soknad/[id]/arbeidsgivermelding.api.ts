@@ -5,7 +5,6 @@ import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchDocumentStream } from '../../../../server/fetchers/fetchDocumentStream';
 import { ApiServices } from '../../../../server/types/ApiServices';
 import { validateOrganisasjonsnummer, validatePathSegment } from '../../../../server/utils/validatePathSegment';
-import { getContextForApiHandler } from '../../../../utils/apiUtils';
 
 export const config = {
     api: {
@@ -30,7 +29,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
 
     try {
         const path = `soknad/${søknadId}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
-        const stream = await fetchDocumentStream(path, getContextForApiHandler(req), ApiServices.sifInnsyn);
+        const stream = await fetchDocumentStream(path, req, ApiServices.sifInnsyn);
 
         res.setHeader('Content-Type', 'application/pdf');
 

@@ -5,14 +5,10 @@ import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
-import { KvitteringInfo } from '../../types/KvitteringInfo';
+import Skyra, { Slug } from '../../skyra/Skyra';
 import UXArbeidstidTilFravær from '../../uxsignals/UXArbeidstidTilFravær';
 
-interface Props {
-    kvitteringInfo?: KvitteringInfo;
-}
-
-const KvitteringPage = ({ kvitteringInfo }: Props) => {
+const KvitteringPage = () => {
     const { text, intl } = useAppIntl();
 
     return (
@@ -20,20 +16,12 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
             <VStack gap="space-24">
                 <Kvittering tittel={text('page.kvittering.tittel')}>
                     <Infolist heading={text('page.kvittering.info.tittel')}>
-                        {kvitteringInfo?.arbeidsgivere && (
-                            <li>
-                                <AppText
-                                    id="page.kvittering.list.item.1"
-                                    values={{ antall: kvitteringInfo.arbeidsgivere.length }}
-                                />
-                            </li>
-                        )}
                         <li>
-                            <AppText id="page.kvittering.list.item.2" />
+                            <AppText id="page.kvittering.list.item.1" />
                         </li>
                         <li>
                             <AppText
-                                id="page.kvittering.list.item.3"
+                                id="page.kvittering.list.item.2"
                                 values={{
                                     MinSideLenke: (children) => (
                                         <Link
@@ -56,6 +44,7 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
                         </li>
                     </Infolist>
                 </Kvittering>
+                <Skyra slug={Slug.soknad_om_opplaringspenger} />
                 <UXArbeidstidTilFravær />
             </VStack>
         </Page>

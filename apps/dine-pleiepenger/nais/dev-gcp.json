@@ -4,7 +4,7 @@
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "ingresses": ["https://dine-pleiepenger.intern.dev.nav.no"],
-    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "ryujtq87.api.sanity.io"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "ryujtq87.api.sanity.io", "sentry.gc.nav.no"],
     "accessPolicyOutApps": [
         { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
         { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" },
@@ -29,6 +29,7 @@
         "NEXT_PUBLIC_LOGIN_URL": "https://dine-pleiepenger.intern.dev.nav.no/oauth2/login?redirect=https://dine-pleiepenger.intern.dev.nav.no/innsyn",
         "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "dev",
         "NEXT_PUBLIC_ANALYTICS_KEY": "default",
+        "NEXT_PUBLIC_SCRUB_SENTRY": "off",
         "NEXT_PUBLIC_API_URL_K9_SAK_INNSYN": "http://k9-sak-innsyn-api",
         "NEXT_PUBLIC_API_URL_INNSYN": "http://sif-innsyn-api",
         "NEXT_PUBLIC_API_URL_BRUKERDIALOG": "http://k9-brukerdialog-prosessering",
