@@ -23,6 +23,43 @@ Provide a lightweight runbook for migrating a dialog app to the new setup using 
 3. Promote confirmed patterns to `docs/migration`.
 4. Update this skill only with stable, reusable guidance.
 
+## Bootstrap for new app
+
+Use this as the default start for a new migration app before feature work.
+
+1. Copy baseline setup from `apps/sif-demo-app` into the target app.
+2. Stop the first phase at `src/main.tsx` rendering `<App />`.
+3. Do not pull code from the legacy app in this phase unless explicitly requested.
+
+### Baseline files to include
+
+- Tooling/config: `package.json`, `vite.config.ts`, `vite.dev.config.ts`, `tsconfig.json`, `eslint.config.js`, `tailwind.config.ts`, `env.schema.ts`, `vite-env.d.ts`, `vitest.shims.d.ts`, `index.html`.
+- Storybook: `.storybook/main.ts`, `.storybook/preview.ts`, `.storybook/vitest.setup.ts`.
+- Bootstrap source: `src/main.tsx`, minimal `src/App.tsx`, `src/sentry/instrument.ts`, and required setup wrappers/env helpers.
+- Mocking baseline: `mock/enableMocking.ts`, `mock/devAppSettings.ts`, `mock/msw/**`, and `public/mockServiceWorker.js`.
+
+### Minimal target-app edits after copy
+
+- Update app name and scripts in `package.json`.
+- Update base path in `vite.config.ts` and `vite.dev.config.ts`.
+- Update `<title>` in `index.html`.
+- Keep all other changes minimal until App phase starts.
+
+### Bootstrap validation checklist
+
+Run in target app workspace:
+
+1. `yarn check:types`
+2. `yarn lint:eslint`
+3. `yarn build`
+4. `yarn dev`
+5. `yarn storybook`
+
+Expected early-phase behavior:
+
+- `yarn test` may fail with `No test files found` before tests are added.
+- Sentry build warnings about missing auth token are expected locally unless configured.
+
 ## Dependency strategy
 
 - Prefer using existing shared packages as-is in early steps.

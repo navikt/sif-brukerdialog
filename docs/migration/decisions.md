@@ -37,3 +37,17 @@ Korte beslutninger som skal hjelpe neste migrering.
 - Beslutning: Vi migrerer i etapper (`sif-soknad`, `stegskjema`, `datahenting`), men velger rekkefolge per app.
 - Hvorfor: Apper har ulik kompleksitet, ulik avhengighetsflate og ulike risikoer.
 - Gjenbruk i neste app: Velg start-etappe basert pa lavest risiko og hoyest laeringsverdi i den aktuelle appen.
+
+### D-005 Standard oppstart for ny app (demo-baseline)
+
+- Beslutning: Ny app starter med demo-baseline fra `apps/sif-demo-app` frem til og med `src/main.tsx` som renderer `<App />`, inkludert grunnoppsett for Sentry, Storybook, Vitest/Playwright-relatert setup og MSW.
+- Hvorfor: Gir rask, forutsigbar bootstrap med kjent tooling og mindre beslutningskostnad tidlig i migreringen.
+- Gjenbruk i neste app: Copy-first av baselinefiler, og kun minimale app-spesifikke justeringer i `package.json`, `vite.config.ts`, `vite.dev.config.ts` og `index.html`.
+- Etappe: sif-soknad
+
+### D-006 Verifisering etter bootstrap
+
+- Beslutning: Etter bootstrap kjores fast valideringsrekkefolge i app-workspace: `yarn check:types`, `yarn lint:eslint`, `yarn build`, `yarn dev`, `yarn storybook`.
+- Hvorfor: Fanger tidlig feil i config og runtime-forutsetninger for den nye appen, for man begynner feature-migrering.
+- Gjenbruk i neste app: Forvent at `yarn test` kan feile med "No test files found" i bootstrapfasen; legg til tester senere i appfasen.
+- Etappe: sif-soknad
