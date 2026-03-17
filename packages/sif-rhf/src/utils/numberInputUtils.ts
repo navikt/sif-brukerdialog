@@ -47,7 +47,7 @@ export const getNumberInputFormatter = (isIntegerValue: boolean, intl?: IntlShap
     applyFormatting: (value: string): string => {
         const numValue = getNumberFromNumberInputValue(value, isIntegerValue);
         if (intl) {
-            return numValue !== undefined ? intl.formatNumber(numValue).replace(' ', '') : value;
+            return numValue !== undefined ? intl.formatNumber(numValue).replace(/\s/g, '') : value;
         }
         return numValue !== undefined ? `${numValue}`.replace(/\./g, ',') : value;
     },
