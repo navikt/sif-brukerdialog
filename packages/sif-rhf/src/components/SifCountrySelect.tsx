@@ -21,8 +21,7 @@ export function SifCountrySelect<T extends FieldValues>({
     const intl = useIntl();
 
     const options = useMemo(() => {
-        const lang = intl.locale === 'en' ? 'nn' : 'nb';
-        return getCountries(showOnlyEuAndEftaCountries, lang);
+        return getCountries(showOnlyEuAndEftaCountries, 'nb');
     }, [intl.locale, showOnlyEuAndEftaCountries]);
 
     return (
