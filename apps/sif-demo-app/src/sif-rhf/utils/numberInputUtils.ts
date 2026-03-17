@@ -6,20 +6,14 @@ export const getNumberFromNumberInputValue = (
     inputValue: string | undefined,
     integerValue?: boolean,
 ): number | undefined => {
-    if (inputValue === undefined || inputValue === '' || Array.isArray(inputValue)) {
+    if (inputValue === undefined || inputValue === '') {
         return undefined;
     }
-    if (typeof inputValue === 'number' && isNaN(inputValue as number)) {
-        return undefined;
-    }
-    if (typeof inputValue === 'number') {
-        return inputValue as number;
-    }
-    if ((inputValue || '').includes('e')) {
+    if (inputValue.includes('e')) {
         return undefined;
     }
 
-    const cleanedValue = (inputValue || '').trim();
+    const cleanedValue = inputValue.trim();
     const containsCommas = cleanedValue.includes(',');
     const containsDots = cleanedValue.includes('.');
 

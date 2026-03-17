@@ -29,8 +29,8 @@ const ensureValid3AlphaCodeForNav = (alphaCode: string): string => {
     return alpha3Code;
 };
 
-const countryIsMemberOfEosOrEfta = (alphaCode: string): boolean => {
-    return eosCountries.some((country) => (alphaCode.length === 2 ? country.alpha2 : country.alpha3) === alphaCode);
+const countryIsMemberOfEosOrEfta = (alpha2: string): boolean => {
+    return eosCountries.includes(alpha2);
 };
 
 export const getCountries = (onlyEuAndEftaCountries: boolean, lang: string): Country[] => {

@@ -5,6 +5,18 @@ import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { DatepickerLimitations, ISODateStringToUTCDate } from '../utils/dateUtils';
 import { SifDatepicker } from './SifDatepicker';
 
+const minDate = (a?: Date, b?: Date): Date | undefined => {
+    if (!a) return b;
+    if (!b) return a;
+    return a < b ? a : b;
+};
+
+const maxDate = (a?: Date, b?: Date): Date | undefined => {
+    if (!a) return b;
+    if (!b) return a;
+    return a > b ? a : b;
+};
+
 type DatepickerFieldProps<T extends FieldValues> = DatepickerLimitations & {
     name: Path<T>;
     label: string;
@@ -19,7 +31,6 @@ type Props<T extends FieldValues> = {
     description?: ReactNode;
     fromInputProps: DatepickerFieldProps<T>;
     toInputProps: DatepickerFieldProps<T>;
-    allowRangesToStartAndStopOnSameDate?: boolean;
 };
 
 export function SifDateRangePicker<T extends FieldValues>({
@@ -28,7 +39,6 @@ export function SifDateRangePicker<T extends FieldValues>({
     description,
     fromInputProps,
     toInputProps,
-    allowRangesToStartAndStopOnSameDate,
 }: Props<T>) {
     const { watch } = useFormContext<T>();
 
@@ -38,17 +48,15 @@ export function SifDateRangePicker<T extends FieldValues>({
     const fromDate = fromValue ? ISODateStringToUTCDate(fromValue as string) : undefined;
     const toDate = toValue ? ISODateStringToUTCDate(toValue as string) : undefined;
 
-    const toMinDate =
-        fromDate && !allowRangesToStartAndStopOnSameDate ? fromDate : fromInputProps.minDate || toInputProps.minDate;
-    const fromMaxDate =
-        toDate && !allowRangesToStartAndStopOnSameDate ? toDate : fromInputProps.maxDate || toInputProps.maxDate;
+    const resolvedFromMaxDate = minDate(toDate, fromInputProps.maxDate);
+    const resolvedToMinDate = maxDate(fromDate, toInputProps.minDate);
 
     return (
         <Fieldset legend={legend} hideLegend={hideLegend}>
             {description}
             <HStack gap="space-4" wrap>
-                <SifDatepicker<T> {...fromInputProps} maxDate={fromMaxDate || fromInputProps.maxDate} />
-                <SifDatepicker<T> {...toInputProps} minDate={toMinDate || toInputProps.minDate} />
+                <SifDatepicker<T> {...fromInputProps} maxDate={resolvedFromMaxDate} />
+                <SifDatepicker<T> {...toInputProps} minDate={resolvedToMinDate} />
             </HStack>
         </Fieldset>
     );

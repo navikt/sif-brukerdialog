@@ -3,13 +3,13 @@ import { useMemo } from 'react';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 
+import { getCountries } from '../utils/countryUtils';
+
 type Props<T extends FieldValues> = Omit<SelectProps, 'name' | 'children'> & {
     name: Path<T>;
     validate?: (value: string) => string | undefined;
     showOnlyEuAndEftaCountries?: boolean;
 };
-
-import { getCountries } from '../utils/countryUtils';
 
 export function SifCountrySelect<T extends FieldValues>({
     name,

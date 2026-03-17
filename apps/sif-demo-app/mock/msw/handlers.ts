@@ -38,4 +38,5 @@ export const handlers = [
     }),
 
     http.get(`*`, () => HttpResponse.json({}, { status: 200 })),
+    http.post(`*`, () => HttpResponse.json({}, { status: 200 })),
 ];
