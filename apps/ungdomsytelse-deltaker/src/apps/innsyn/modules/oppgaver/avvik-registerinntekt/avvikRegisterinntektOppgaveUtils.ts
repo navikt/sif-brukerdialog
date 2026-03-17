@@ -12,7 +12,7 @@ const mapArbeidOgFrilansInntektToInntektTabellRad = (
 
     return inntekt.map((i) => ({
         beløp: i.inntekt,
-        navn: 'TODO', // i.arbeidsgiverNavn || i.arbeidsgiver,
+        navn: i.arbeidsgiverNavn || i.arbeidsgiverIdentifikator,
     }));
 };
 

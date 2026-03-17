@@ -1,9 +1,3 @@
-/*
-TODO: Aksel Box migration:
-Could not migrate the following:
-  - shadow=medium
-*/
-
 import { Box, VStack } from '@navikt/ds-react';
 
 interface Props {
