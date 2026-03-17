@@ -19,8 +19,13 @@ type TimeInputPlaceholders = {
     minutes: string;
 };
 
+export type TimeInputLayout = 'vertical' | 'horizontal';
+
 type TimeInputLayoutProps = {
+    direction?: TimeInputLayout;
     compact?: boolean;
+    wide?: boolean;
+    justifyContent?: 'left' | 'center' | 'right';
 };
 
 type Props<T extends FieldValues> = {
@@ -55,7 +60,10 @@ export function SifTimeInput<T extends FieldValues>({
 }: Props<T>) {
     const { control } = useFormContext<T>();
     const labels = { ...defaultLabels, ...timeInputLabels };
+    const direction = timeInputLayout?.direction ?? 'vertical';
     const compact = timeInputLayout?.compact === true;
+    const wide = timeInputLayout?.wide === true;
+    const justifyContent = timeInputLayout?.justifyContent ?? 'center';
 
     return (
         <Controller
@@ -65,7 +73,7 @@ export function SifTimeInput<T extends FieldValues>({
             render={({ field, fieldState }) => {
                 const value = (field.value || {}) as Partial<InputTime>;
 
-                const rootClassName = `sif-time-input ${compact ? ' sif-time-input--compact' : ''}`;
+                const rootClassName = `sif-time-input sif-time-input--${direction}${compact ? ' sif-time-input--compact' : ''}${wide ? ' sif-time-input--wide' : ''}${justifyContent !== 'center' ? ` sif-time-input--content-${justifyContent}` : ''}`;
 
                 return (
                     <Fieldset legend={label} id={name} error={fieldState.error?.message} className={rootClassName}>

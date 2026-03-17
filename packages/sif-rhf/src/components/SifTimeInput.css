@@ -14,6 +14,10 @@
     flex: 1;
 }
 
+.sif-time-input.sif-time-input--wide .sif-time-input__input-wrapper {
+    max-width: 5rem;
+}
+
 .sif-time-input .sif-time-input__input-wrapper:last-child {
     margin-right: 0;
 }
@@ -69,4 +73,16 @@
 
 .sif-time-input.sif-time-input--horizontal .sif-time-input__content-wrapper {
     flex: 2 1 10rem;
+}
+
+.sif-time-input.sif-time-input--content-left .sif-time-input__content-wrapper {
+    justify-content: flex-start;
+}
+
+.sif-time-input.sif-time-input--content-center .sif-time-input__content-wrapper {
+    justify-content: center;
+}
+
+.sif-time-input.sif-time-input--content-right .sif-time-input__content-wrapper {
+    justify-content: flex-end;
 }
