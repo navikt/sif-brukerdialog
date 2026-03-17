@@ -17,10 +17,6 @@
     max-width: 5rem;
 }
 
-.sif-time-input .sif-time-input__input-wrapper:last-child {
-    margin-right: 0;
-}
-
 .sif-time-input .sif-time-input__input-wrapper input {
     text-align: center;
     width: 100%;
