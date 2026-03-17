@@ -1,10 +1,7 @@
-import tseslint from 'typescript-eslint';
-import { createSifConfig } from '@sif/eslint-config/eslint.config.factory.mjs';
+import commonConfig from '@sif/eslint-config';
 
 export default [
-    ...(await createSifConfig({
-        tseslint,
-    })),
+    ...commonConfig,
     {
         languageOptions: {
             parserOptions: {
