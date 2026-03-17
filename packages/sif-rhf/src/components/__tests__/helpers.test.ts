@@ -2,7 +2,7 @@ import { FieldErrors } from 'react-hook-form';
 import { describe, expect, it } from 'vitest';
 
 import { toArray } from '../SifCheckboxGroup';
-import { minDate, maxDate } from '../SifDateRangePicker';
+import { maxDate,minDate } from '../SifDateRangePicker';
 import { flattenErrors } from '../SifValidationSummary';
 
 describe('toArray', () => {
