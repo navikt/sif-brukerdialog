@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
-import { Matcher } from 'react-day-picker';
+import type { Matcher } from 'react-day-picker';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(utc);

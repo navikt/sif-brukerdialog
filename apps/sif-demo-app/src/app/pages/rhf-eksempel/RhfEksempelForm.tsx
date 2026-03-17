@@ -8,9 +8,8 @@ import {
     getStringValidator,
     getTimeValidator,
 } from '@navikt/sif-validation';
+import { createSifFormComponents, SifForm, useSifValidate } from '@sif/rhf';
 import { useForm } from 'react-hook-form';
-
-import { createSifFormComponents, SifForm, useSifValidate } from '../../../sif-rhf';
 
 enum Field {
     navn = 'navn',

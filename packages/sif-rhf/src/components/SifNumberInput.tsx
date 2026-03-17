@@ -2,8 +2,8 @@ import { TextFieldProps } from '@navikt/ds-react';
 import { FieldValues, Path } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 
-import { SifTextField } from './SifTextField';
 import { getNumberInputFormatter } from '../utils/numberInputUtils';
+import { SifTextField } from './SifTextField';
 
 type Props<T extends FieldValues> = Omit<TextFieldProps, 'name'> & {
     name: Path<T>;

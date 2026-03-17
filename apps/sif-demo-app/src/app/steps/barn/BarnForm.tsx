@@ -3,9 +3,9 @@ import { AppForm } from '@app/setup/søknad/AppForm';
 import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
 import { Alert } from '@navikt/ds-react';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 
-import { createSifFormComponents, useSifValidate } from '../../../sif-rhf';
 import { BarnSøknadsdata } from '../../types/Søknadsdata';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 

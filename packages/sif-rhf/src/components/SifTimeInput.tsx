@@ -2,7 +2,10 @@ import { BodyShort, Fieldset, HStack, TextField } from '@navikt/ds-react';
 import { ReactNode } from 'react';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 
-import { InputTime } from '../types';
+export interface InputTime {
+    hours: string;
+    minutes: string;
+}
 
 type TimeInputLabels = {
     hours?: string;

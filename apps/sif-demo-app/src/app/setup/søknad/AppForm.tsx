@@ -1,9 +1,9 @@
 import { FormLayout } from '@navikt/sif-common-ui';
+import { SifForm } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 import type { ReactNode } from 'react';
 import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
-import { SifForm } from '../../../sif-rhf';
 import { useSøknadFlow } from '../context/søknadContext';
 import { SøknadStepId } from './søknadStepConfig';
 
