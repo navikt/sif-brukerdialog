@@ -49,9 +49,9 @@ export const SøknadStep = ({ stepId, children }: Props) => {
             {inconsistentStepId ? (
                 <Box marginBlock="space-0 space-32">
                     <InconsistentFormValuesMessage
-                        stepId={stepId}
-                        stepTitle={stepTitles[stepId]}
-                        onNavigateToStep={() => navigate(`/soknad/${søknadStepConfig[stepId].route}`)}
+                        stepId={inconsistentStepId}
+                        stepTitle={stepTitles[inconsistentStepId]}
+                        onNavigateToStep={() => navigate(`/soknad/${søknadStepConfig[inconsistentStepId].route}`)}
                     />
                 </Box>
             ) : null}
