@@ -1,3 +1,5 @@
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+
 import { BostedSøknadsdata } from '../../types/Søknadsdata';
 import { BostedFormValues } from './BostedForm';
 
@@ -6,10 +8,10 @@ export const toBostedFormValues = (søknadsdata: BostedSøknadsdata): BostedForm
         return {};
     }
     return {
-        borITrondheim: søknadsdata.borITrondheim ? 'ja' : 'nei',
+        borITrondheim: søknadsdata.borITrondheim ? YesOrNo.YES : YesOrNo.NO,
     };
 };
 
 export const toBostedSøknadsdata = (data: BostedFormValues): BostedSøknadsdata => ({
-    borITrondheim: data.borITrondheim === 'ja',
+    borITrondheim: data.borITrondheim === YesOrNo.YES,
 });

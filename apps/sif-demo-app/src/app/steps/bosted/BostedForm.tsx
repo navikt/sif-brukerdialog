@@ -1,10 +1,13 @@
-import { useSøknadForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { SøknadFormButtons } from '@app/setup/søknad/SøknadFormButtons';
+import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
-import { Radio, RadioGroup } from '@navikt/ds-react';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { useSifValidate } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 
+import { createSifFormComponents } from '../../../../../../packages/sif-rhf/src/components/createSifFormComponents';
+import { AppForm } from '../../setup/søknad/AppForm';
 import { BostedSøknadsdata } from '../../types/Søknadsdata';
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 
@@ -13,12 +16,15 @@ export enum BostedFormFields {
 }
 
 export interface BostedFormValues extends StepFormValues {
-    [BostedFormFields.borITrondheim]?: 'ja' | 'nei';
+    [BostedFormFields.borITrondheim]?: YesOrNo;
 }
+const { YesOrNoQuestion } = createSifFormComponents<BostedFormValues>();
 
 const stepId = SøknadStepId.BOSTED;
 
 export const BostedForm = () => {
+    const { validateField } = useSifValidate();
+
     const defaultValues = useStepDefaultValues<BostedFormValues, BostedSøknadsdata>({
         stepId,
         toFormValues: toBostedFormValues,
@@ -29,22 +35,19 @@ export const BostedForm = () => {
         toSøknadsdata: toBostedSøknadsdata,
     });
 
-    const { handleSubmit, setValue, watch } = useSøknadForm(stepId, defaultValues);
+    const methods = useSøknadRhfForm(stepId, defaultValues);
 
-    const borITrondheim = watch(BostedFormFields.borITrondheim);
+    // const borITrondheim = methods.watch(BostedFormFields.borITrondheim);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
             <FormLayout.Content>
-                <RadioGroup
+                <YesOrNoQuestion
+                    name={BostedFormFields.borITrondheim}
                     legend="Bor du i Trondheim"
-                    onChange={(value) => setValue(BostedFormFields.borITrondheim, value)}
-                    value={borITrondheim}>
-                    <Radio value="ja">Ja</Radio>
-                    <Radio value="nei">Nei</Radio>
-                </RadioGroup>
-                <SøknadFormButtons stepId={stepId} isPending={isPending} />
+                    validate={validateField(BostedFormFields.borITrondheim, getYesOrNoValidator())}
+                />
             </FormLayout.Content>
-        </form>
+        </AppForm>
     );
 };

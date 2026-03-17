@@ -1,4 +1,4 @@
-import { useSøknadForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
+import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
 import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
 import { Alert } from '@navikt/ds-react';
@@ -33,7 +33,7 @@ export const BarnForm = () => {
         toSøknadsdata: toBarnSøknadsdata,
     });
 
-    const methods = useSøknadForm(stepId, defaultValues);
+    const methods = useSøknadRhfForm(stepId, defaultValues);
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
