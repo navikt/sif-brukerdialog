@@ -2,6 +2,12 @@
 
 Et internt React-rammeverk for stegbaserte søknader.
 
+## Scope
+
+- Dette rammeverket er laget for React-baserte søknadsdialoger i monorepoet.
+- Det er ikke ment brukt i Next.js-appene.
+- Mål: redusere oppstartskostnad for nye søknader og sikre konsistent oppbygging av felles flyt.
+
 Rammeverket tar ansvar for flyt, navigasjon, state, route-guarding og konsistens mellom draft-skjemadata og lagrede søknadsdata. Applikasjonen eier domenemodell, validering, mellomlagring/API og stegspesifikk mapping.
 
 ## Pakke og imports
