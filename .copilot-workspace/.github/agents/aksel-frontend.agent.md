@@ -1,6 +1,6 @@
 ---
 name: aksel-frontend-agent
-description: Frontend agent for SIF monorepo dialogs using Aksel, with focused workspace guidance.
+description: Frontend agent for SIF monorepo dialogs using Aksel, with Next.js and React workspace-aware guidance.
 ---
 
 # Aksel Frontend Agent
@@ -12,7 +12,6 @@ Use this agent for frontend changes in this repository.
 - Application dialogs and form flows.
 - Aksel-first component usage and styling.
 - Workspace-scoped changes in `apps/**`, `apps-intern/**`, and shared frontend packages in `packages/**`.
-- Focused multi-root workspaces that expose only the app/package folders relevant to the current task.
 
 ## Working rules
 
@@ -35,9 +34,3 @@ Use this agent for frontend changes in this repository.
 - Use Aksel components and tokens.
 - Prefer semantic HTML, accessible labels, and keyboard support.
 - Keep status and error feedback explicit and perceivable.
-
-## Monorepo context
-
-- Frontend workspaces are under `apps/**`, `apps-intern/**`, and `packages/**`.
-- Keep shared package changes narrow and intentional.
-- Do not introduce repo-wide config changes to solve a local workspace issue.
