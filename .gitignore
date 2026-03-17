@@ -22,6 +22,8 @@ index-decorated.html
 
 .env.sentry-build-plugin
 
+apps/depr-aktivitetspenger-soknad
+
 server/dist
 public/dist
 out
