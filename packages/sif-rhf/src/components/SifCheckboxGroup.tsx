@@ -12,7 +12,7 @@ type Props<T extends FieldValues> = Omit<CheckboxGroupProps, 'name' | 'onChange'
     validate?: (value: string[]) => string | undefined;
 };
 
-const toArray = (value: unknown): string[] => {
+export const toArray = (value: unknown): string[] => {
     if (value === undefined || value === null) return [];
     if (typeof value === 'string') return [value];
     if (Array.isArray(value)) return value;
