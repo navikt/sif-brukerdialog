@@ -44,6 +44,17 @@ Use this as the default start for a new migration app before feature work.
 - Update base path in `vite.config.ts` and `vite.dev.config.ts`.
 - Update `<title>` in `index.html`.
 - Keep all other changes minimal until App phase starts.
+- Ensure base path is identical across all three places: `package.json` (`dev`/`build`), `vite.config.ts` (`base` and mock service worker rewrite), and `vite.dev.config.ts` (`base` and rewrite).
+
+### Bootstrap pitfalls and guardrails
+
+- Check for duplicate workspace package names before setting `package.json#name` (for example older `depr-*` apps can already use the same `@navikt/...` name).
+- If duplicate package names exist, use a temporary unique package name during bootstrap and decide final naming as a separate cleanup step.
+- After adding a new app workspace, run `yarn install` from monorepo root before running workspace scripts, so Yarn registers the new workspace in project metadata/lockfile.
+- Do not run dependency install inside a single app workspace. Use root install only, to avoid local `node_modules` drift and duplicated tool types.
+- Keep the placeholder `App` minimal. If using Aksel layout props, use valid spacing tokens (for example `gap="space-4"`, not `gap="4"`).
+- If Vite plugin type errors appear with two different `vite` paths, verify root install is used and `tsconfig.json` keeps the `"vite": ["../../node_modules/vite"]` path mapping.
+- For bootstrap validation, do not run `yarn build` at monorepo root. Run build/check scripts only in the target app workspace.
 
 ### Bootstrap validation checklist
 
@@ -70,7 +81,8 @@ Expected early-phase behavior:
 ## Validation
 
 - Run workspace-local scripts first (for example `lint:eslint`, `lint:tsc`, `test`).
-- Run broader root checks only when needed (`yarn lint`, `yarn test`).
+- During bootstrap phase, keep validation app-local and skip root-level build/lint/test commands.
+- Run broader root checks only when needed outside bootstrap scope (`yarn lint`, `yarn test`).
 
 ## Done criteria
 
