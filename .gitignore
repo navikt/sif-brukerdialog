@@ -21,8 +21,7 @@ index-decorated.html
 .copilot-workspace
 
 .env.sentry-build-plugin
-
-apps/depr-aktivitetspenger-soknad
+apps-depr
 
 server/dist
 public/dist
