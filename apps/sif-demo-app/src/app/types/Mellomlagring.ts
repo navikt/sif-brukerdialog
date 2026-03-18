@@ -1,0 +1,14 @@
+import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
+import { Mellomlagring, SøknadFormValues } from '@sif/soknad/types';
+
+import { Søknadsdata } from './Søknadsdata';
+
+/** Søknad-specific mellomlagring med Søknadsdata og StepsFormValues */
+export type SøknadMellomlagring = Mellomlagring<Søknadsdata, SøknadFormValues>;
+
+/** Søknad-specific metadata for hash validation */
+export interface MellomlagringMetaData {
+    MELLOMLAGRING_VERSJON: string;
+    søker: Søker;
+    barn: RegistrertBarn[];
+}

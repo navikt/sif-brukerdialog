@@ -49,11 +49,13 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak, sakErLastet }: Props) => 
                     background="info-moderateA">
                     <HGrid gap="space-16" columns={{ sm: 'auto 96px' }} align="center">
                         <VStack gap="space-16">
-                            <SaksbehandlingstidMelding
-                                frist={frist}
-                                venteårsak={venteårsak}
-                                saksbehandlingstidUker={saksbehandlingstidUker}
-                            />
+                            <div>
+                                <SaksbehandlingstidMelding
+                                    frist={frist}
+                                    venteårsak={venteårsak}
+                                    saksbehandlingstidUker={saksbehandlingstidUker}
+                                />
+                            </div>
                             <div>
                                 <LinkButton
                                     as={Link}
