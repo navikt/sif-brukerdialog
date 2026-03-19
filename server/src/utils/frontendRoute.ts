@@ -3,6 +3,7 @@ import { Express } from 'express';
 import path from 'node:path';
 import { appEnvSchema } from '../env.schema.js';
 import config from './serverConfig.js';
+import z from 'zod';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
@@ -20,7 +21,7 @@ export const setupAndServeHtml = async (app: Express) => {
     });
 
     if (!envs.success) {
-        console.error('Invalid environment variables:', envs.error.format());
+        console.error('Invalid environment variables:', z.treeifyError(envs.error));
         process.exit(1); // Exit the server if validation fails
     }
 

@@ -6,7 +6,7 @@ import {
     RegisterinntektDto,
     YtelseRegisterInntektDto,
     YtelseType,
-} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+} from '@navikt/ung-brukerdialog-api';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
@@ -28,13 +28,13 @@ type Story = StoryObj;
 
 const inntektArbeidsgiver1: ArbeidOgFrilansRegisterInntektDto = {
     inntekt: 1500,
-    arbeidsgiver: '947064649',
+    arbeidsgiverIdentifikator: '947064649',
     arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
 };
 
 const inntektArbeidsgiver2: ArbeidOgFrilansRegisterInntektDto = {
     inntekt: 500,
-    arbeidsgiver: '247064649',
+    arbeidsgiverIdentifikator: '247064649',
     arbeidsgiverNavn: 'SMIDIG MALER',
 };
 
@@ -89,7 +89,8 @@ const getOppgaveMedInntekt = (
 };
 const besvartOppgave: AvvikRegisterinntektOppgave = {
     ...oppgave,
-    bekreftelse: {
+    respons: {
+        type: 'VARSEL_SVAR',
         harUttalelse: false,
     },
     status: OppgaveStatus.LØST,
@@ -186,7 +187,8 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
         <AvvikRegisterinntektOppgavePage
             oppgave={{
                 ...besvartOppgave,
-                bekreftelse: {
+                respons: {
+                    type: 'VARSEL_SVAR',
                     harUttalelse: true,
                     uttalelseFraBruker:
                         'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -201,7 +203,7 @@ export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
         <AvvikRegisterinntektOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),
@@ -211,7 +213,7 @@ export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
         <AvvikRegisterinntektOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),

@@ -1,4 +1,4 @@
-import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../utils/dateUtils';
@@ -35,14 +35,14 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
             },
-            oppgaver: [getMockOppgaver().søkYtelseOppgave],
             erSlettet: false,
             harOpphørsvedtak: false,
         },
     ],
+    oppgaver: [getMockOppgaver().søkYtelseOppgave],
 });
 
-const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
@@ -54,13 +54,13 @@ const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
             },
-            oppgaver,
             erSlettet: false,
             harOpphørsvedtak: false,
         },
     ],
+    oppgaver,
 });
-const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
@@ -72,13 +72,13 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
             },
-            oppgaver,
             erSlettet: false,
             harOpphørsvedtak: false,
         },
     ],
+    oppgaver,
 });
-const createOpphørtDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
@@ -90,14 +90,14 @@ const createOpphørtDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
             },
-            oppgaver,
             erSlettet: true,
             harOpphørsvedtak: true,
         },
     ],
+    oppgaver,
 });
 
-const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => {
+const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => {
     const fraOgMed = dateToISODate(dayjs().add(1, 'month').startOf('week').toDate());
     const søktTidspunkt = dayjs(fraOgMed).add(1, 'days').toDate().toISOString();
     return {
@@ -111,11 +111,11 @@ const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => {
                     id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                     deltakerIdent: '234',
                 },
-                oppgaver,
                 erSlettet: false,
                 harOpphørsvedtak: false,
             },
         ],
+        oppgaver,
     };
 };
 
@@ -216,9 +216,9 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Opphørt deltakelse',
         data: createOpphørtDeltakelse([
             getMockOppgaver().fjernetPeriodeLøst,
-            getMockOppgaver().søkYtelseOppgaveLøst,
-            getMockOppgaver().rapporterInntektOppgaveLøst,
-            getMockOppgaver().bekreftAvvikOppgaveLøst,
+            // getMockOppgaver().søkYtelseOppgaveLøst,
+            // getMockOppgaver().rapporterInntektOppgaveLøst,
+            // getMockOppgaver().bekreftAvvikOppgaveLøst,
         ]),
     },
     [ScenarioType.ikkeStartet]: {

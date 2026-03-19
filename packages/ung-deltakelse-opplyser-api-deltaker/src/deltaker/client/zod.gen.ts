@@ -182,7 +182,7 @@ export const zDeltakelseKomposittDto = z.object({
     erSlettet: z.boolean(),
     harOpphørsvedtak: z.boolean(),
     søktTidspunkt: z.iso.datetime({ local: true }).optional(),
-    oppgaver: z.array(zOppgaveDto),
+    // oppgaver: z.array(zOppgaveDto),
 });
 
 export const zKontonummerDto = z.object({

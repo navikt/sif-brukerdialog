@@ -13,6 +13,7 @@ const data = getScenarioMockData(ScenarioType.søknad);
 
 export const withSøknadContext = (Story: any, context?: Partial<SøknadContextType>) => {
     const deltakelse = deltakelsePeriodeSchema.parse(data.deltakelser[0]);
+    const oppgave = {} as SøkYtelseOppgave;
     const { barn } = barnResponseSchema.parse(data.barn);
 
     return (
@@ -23,7 +24,7 @@ export const withSøknadContext = (Story: any, context?: Partial<SøknadContextT
                 deltakelsePeriode={deltakelse as DeltakelsePeriode}
                 søker={data.søker}
                 initialSvar={context?.svar}
-                søknadOppgave={deltakelse.oppgaver[0] as SøkYtelseOppgave}>
+                søknadOppgave={oppgave}>
                 <Story />
             </SøknadProvider>
         </Theme>

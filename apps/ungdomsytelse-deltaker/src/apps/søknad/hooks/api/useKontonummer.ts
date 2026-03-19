@@ -6,7 +6,7 @@ import { getKontonummer } from '../../api/kontonummer/getKontonummer';
 import { søknadQueryKeys } from '../../queries/søknadQueries';
 
 /**
- * Henter alle deltakelser for innlogget deltaker
+ * Henter kontonummer for innlogget deltaker
  */
 export const useKontonummer = (enabled = true) => {
     return useQuery<KontonummerDto | null, ApiError>({

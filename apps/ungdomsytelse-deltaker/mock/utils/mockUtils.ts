@@ -1,5 +1,5 @@
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
-import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
 import { RapporterInntektOppgave } from '../../src/types/Oppgave';
 import { store } from '../state/store';
@@ -7,17 +7,11 @@ import { getMockToday } from './mockDate';
 
 function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
     const state = store.get();
-    const deltakelser = state.deltakelser.map((deltakelse, idx) => {
-        if (idx !== 0) return deltakelse;
-        return {
-            ...deltakelse,
-            oppgaver: deltakelse.oppgaver.map((oppgave: any) =>
-                oppgave.oppgaveReferanse === ref ? oppgaveUpdaterFunc(oppgave) : oppgave,
-            ),
-        };
-    });
-    store.set({ ...state, deltakelser });
-    return deltakelser[0].oppgaver.find((o: any) => o.oppgaveReferanse === ref);
+    const oppgaver = state.oppgaver.map((oppgave: any) =>
+        oppgave.oppgaveReferanse === ref ? oppgaveUpdaterFunc(oppgave) : oppgave,
+    );
+    store.set({ ...state, oppgaver });
+    return oppgaver.find((o: any) => o.oppgaveReferanse === ref);
 }
 
 export const mockUtils = {
@@ -30,22 +24,25 @@ export const mockUtils = {
     },
 
     setOppgavebekreftelse: (ref: string, data: any) => {
-        const oppdatertData: Partial<any> = {
-            bekreftelse: {
+        const oppdatertData: Partial<BrukerdialogOppgaveDto> = {
+            respons: {
+                type: 'VARSEL_SVAR',
                 harUttalelse: data.oppgave.uttalelse.harUttalelse,
                 uttalelseFraBruker: data.oppgave.uttalelse.uttalelseFraDeltaker,
             },
             løstDato: getMockToday().toISOString(),
-            status: 'LØST',
+            status: OppgaveStatus.LØST,
         };
-        return updateOppgave(ref, (oppgave) => ({
-            ...oppgave,
-            ...oppdatertData,
-        }));
+        return updateOppgave(ref, (oppgave) => {
+            return {
+                ...oppgave,
+                ...oppdatertData,
+            };
+        });
     },
 
     setRapportertInntekt: (ref: string, data: UngdomsytelseInntektsrapportering) => {
-        const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<OppgaveDto> =>
+        const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<BrukerdialogOppgaveDto> =>
             ({
                 oppgavetypeData: {
                     ...oppgave.oppgavetypeData,
@@ -69,7 +66,7 @@ export const mockUtils = {
             }));
         }, 2500);
 
-        return updateOppgave(ref, (oppgave): OppgaveDto => {
+        return updateOppgave(ref, (oppgave): BrukerdialogOppgaveDto => {
             return {
                 ...oppgave,
                 løstDato: getMockToday().toISOString(),

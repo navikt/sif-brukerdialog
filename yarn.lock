@@ -6032,7 +6032,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api":
+"@navikt/ung-brukerdialog-api@workspace:*, @navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api":
   version: 0.0.0-use.local
   resolution: "@navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api"
   dependencies:
@@ -6140,6 +6140,7 @@ __metadata:
     "@navikt/sif-common-forms-ds": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
+    "@navikt/ung-brukerdialog-api": "workspace:*"
     "@navikt/ung-common": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@playwright/test": "npm:1.58.2"

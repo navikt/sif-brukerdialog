@@ -1,12 +1,12 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { OpenDateRange } from '@navikt/sif-common-utils';
 import {
-    BekreftelseDto,
-    OppgaveDto,
+    BrukerdialogOppgaveDto,
+    OppgaveResponsDto,
     OppgaveStatus,
-    RapportertInntektPeriodeinfoDto,
+    RapportertInntektDto,
     RegisterinntektDto,
-} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+} from '@navikt/ung-brukerdialog-api';
 
 export enum ParsedOppgavetype {
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
@@ -19,7 +19,7 @@ export enum ParsedOppgavetype {
     SØK_YTELSE = 'SØK_YTELSE',
 }
 export interface ParsedOppgaveBase extends Omit<
-    OppgaveDto,
+    BrukerdialogOppgaveDto,
     'oppgavetype' | 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist'
 > {
     oppgaveReferanse: string;
@@ -83,7 +83,7 @@ export type BekreftelseOppgave =
     | FjernetPeriodeOppgave
     | MeldtUtOppgave
     | (AvvikRegisterinntektOppgave & {
-          bekreftelse?: BekreftelseDto;
+          bekreftelse?: OppgaveResponsDto;
       });
 
 export interface RapporterInntektOppgave extends ParsedOppgaveBase {
@@ -91,7 +91,7 @@ export interface RapporterInntektOppgave extends ParsedOppgaveBase {
     oppgavetypeData: {
         fraOgMed: Date;
         tilOgMed: Date;
-        rapportertInntekt?: Pick<RapportertInntektPeriodeinfoDto, 'arbeidstakerOgFrilansInntekt'>;
+        rapportertInntekt?: Pick<RapportertInntektDto, 'arbeidstakerOgFrilansInntekt'>;
         gjelderDelerAvMåned: boolean;
     };
 }

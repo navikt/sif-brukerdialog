@@ -1,5 +1,5 @@
 import { logUtils } from '@innsyn/utils/logUtils';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
@@ -14,7 +14,6 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
             to: dayjs().add(30, 'days').toDate(),
         },
         søktTidspunkt: dayjs().toDate(),
-        oppgaver: [],
         deltaker: {
             deltakerIdent: 'test-ident',
             id: 'deltaker-id',

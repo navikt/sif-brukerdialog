@@ -45,6 +45,7 @@
         "@navikt/sif-common-forms-ds": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
+        "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/ung-common": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sentry/react": "10.43.0",
