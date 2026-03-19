@@ -14,7 +14,7 @@ const getValidertMellomlagring = (data: SøknadMellomlagring | null | undefined)
     return { ...data, currentStepId };
 };
 
-export const AppInitialDataLoader = () => {
+export const InitialDataLoader = () => {
     const søker = useSøker();
     const registrerteBarn = useRegistrerteBarn();
     const kontonummer = useKontonummer();
@@ -27,13 +27,22 @@ export const AppInitialDataLoader = () => {
             MELLOMLAGRING_VERSJON,
             søker: søker.data,
             barn: registrerteBarn.data,
+            kontonummer: kontonummer.data,
         };
-    }, [søker.isFetched, registrerteBarn.isFetched, søker.data, registrerteBarn.data]);
+    }, [
+        søker.isFetched,
+        registrerteBarn.isFetched,
+        kontonummer.isFetched,
+        søker.data,
+        registrerteBarn.data,
+        kontonummer.data,
+    ]);
 
     const mellomlagring = useYtelseMellomlagring<SøknadMellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
     const isLoading =
         søker.isLoading || registrerteBarn.isLoading || kontonummer.isLoading || (metadata && mellomlagring.isLoading);
+
     const isError = søker.isError || registrerteBarn.isError || kontonummer.isError || mellomlagring.isError;
 
     if (isLoading) {
@@ -61,7 +70,7 @@ export const AppInitialDataLoader = () => {
         <Søknad
             søker={søker.data}
             barn={registrerteBarn.data}
-            kontonummer={kontonummer.data ?? null}
+            kontonummer={kontonummer.data}
             mellomlagring={getValidertMellomlagring(mellomlagring.data)}
         />
     );

@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { initApiClients } from './app/api/initApiClients';
 import { applicationIntlMessages } from './app/i18n';
 import { getAppEnv } from './app/setup/env/appEnv';
-import { AppInitialDataLoader } from './AppInitialDataLoader';
+import { InitialDataLoader } from './InitialDataLoader';
 
 initApiClients();
 
@@ -24,7 +24,7 @@ export const App = () => {
             <QueryClientProvider client={queryClient}>
                 <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
                     <BrowserRouter basename="/aktivitetspenger-soknad">
-                        <AppInitialDataLoader />
+                        <InitialDataLoader />
                     </BrowserRouter>
                 </IntlProvider>
             </QueryClientProvider>
