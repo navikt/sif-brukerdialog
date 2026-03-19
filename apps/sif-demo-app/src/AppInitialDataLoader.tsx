@@ -2,8 +2,8 @@ import { useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@navikt/s
 import { useMemo } from 'react';
 
 import { ErrorPage, LoadingPage } from './app/pages';
+import { søknadStepConfig } from './app/setup/config/søknadStepConfig';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './app/setup/constants';
-import { søknadStepConfig } from './app/setup/søknad/søknadStepConfig';
 import { Søknad } from './app/Søknad';
 import { MellomlagringMetaData, SøknadMellomlagring } from './app/types/Mellomlagring';
 
