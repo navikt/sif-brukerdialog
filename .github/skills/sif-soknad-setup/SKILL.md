@@ -110,6 +110,12 @@ Deretter gjør du målrettede endringer på de tilpasningspunktene som er listet
 - **`Søknadsdata.ts`** — juster per-steg typene til domenefeltene for appen.
 - **`formValuesToSøknadsdata.ts`** — oppdater `switch`-casene til å matche de nye `SøknadStepId`-verdiene (start med `return undefined` og fyll ut steg for steg).
 - **`appMessages.ts`** — sett `application.title` til riktig ytelsesnavn.
+- **Metadata-typing i `InitialDataLoader`** — `useMemo` som lager metadata-objektet for mellomlagring **må** ha eksplisitt type `MellomlagringMetaData | undefined` både som generic-parameter og returtype. Uten dette kan objektet få feil shape (ekstra/manglende felt), og `objectHash` i `useYtelseMellomlagring` vil produsere en annen hash enn den som ble lagret — noe som fører til at mellomlagringen slettes stille ved hver innlasting. Riktig mønster:
+  ```ts
+  const metadata = useMemo<MellomlagringMetaData | undefined>((): MellomlagringMetaData | undefined => {
+      // ... bygg metadata
+  }, [deps]);
+  ```
 
 ---
 
@@ -202,6 +208,8 @@ export interface MellomlagringMetaData {
     barn: RegistrertBarn[]; // fjern om appen ikke har barn
 }
 ```
+
+> **VIKTIG:** Når du oppretter metadata-objektet i `InitialDataLoader`, må `useMemo` ha eksplisitt type `MellomlagringMetaData | undefined`. Mellomlagring-hooken bruker `objectHash(metadata)` for å verifisere at lagret data tilhører gjeldende brukerdata. Hvis metadata-objektet har feil shape (f.eks. mangler `barn` eller har ekstra felt), vil hashen ikke matche og mellomlagringen slettes stille. Typingen fanger dette ved kompilering.
 
 ### 4. Opprett constants.ts
 

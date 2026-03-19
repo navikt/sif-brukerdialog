@@ -7,6 +7,8 @@ import { HarKontonummerEnum, UtvidetKontonummerInfo } from '../types/UtvidetKont
 /**
  * Henter alle deltakelser for innlogget deltaker
  */
+export const kontonummerFallback: UtvidetKontonummerInfo = { harKontonummer: HarKontonummerEnum.UVISST };
+
 export const useKontonummer = (enabled = true) => {
     return useQuery<UtvidetKontonummerInfo, ApiError>({
         queryKey: sifCommonQueryKeys.kontonummer,
@@ -15,6 +17,5 @@ export const useKontonummer = (enabled = true) => {
         staleTime: 1000 * 60 * 20, // 20 minutter
         retry: 1,
         refetchOnWindowFocus: false,
-        initialData: { harKontonummer: HarKontonummerEnum.UVISST },
     });
 };

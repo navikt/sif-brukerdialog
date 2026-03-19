@@ -56,6 +56,8 @@ export const useYtelseMellomlagring = <State, MetaData>(
                 }
 
                 if (!isValidPayload<State>(payload)) {
+                    // eslint-disable-next-line no-console
+                    console.log('Ugyldig mellomlagring payload, sletter mellomlagring');
                     await slettYtelseMellomlagring(ytelse);
                     return null;
                 }

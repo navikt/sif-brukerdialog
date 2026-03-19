@@ -1,26 +1,35 @@
 import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { UtvidetKontonummerInfo } from '@navikt/sif-common-query/src/types/UtvidetKontonummerInfo';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 
+import AriaLiveRegion from '../../components/aria-live-region/AriaLiveRegion';
+import { HarKontonummerEnum } from '../../types/KontoInfo';
 import { KontonummerSøknadsdata } from '../../types/Søknadsdata';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
 
 export enum KontonummerFormFields {
-    harKontonummer = 'harKontonummer',
+    kontonummerErRiktig = 'kontonummerErRiktig',
 }
 
 export interface KontonummerFormValues extends StepFormValues {
-    [KontonummerFormFields.harKontonummer]?: YesOrNo;
+    [KontonummerFormFields.kontonummerErRiktig]?: YesOrNo;
 }
 
 const { YesOrNoQuestion } = createSifFormComponents<KontonummerFormValues>();
 
 const stepId = SøknadStepId.KONTONUMMER;
 
-export const KontonummerForm = () => {
+interface Props {
+    kontonummerInfo: UtvidetKontonummerInfo;
+}
+
+export const KontonummerForm = ({ kontonummerInfo }: Props) => {
     const { validateField } = useSifValidate();
 
     const defaultValues = useStepDefaultValues<KontonummerFormValues, KontonummerSøknadsdata>({
@@ -34,14 +43,42 @@ export const KontonummerForm = () => {
     });
 
     const methods = useSøknadRhfForm(stepId, defaultValues);
+    const kontonummerErRiktig = methods.watch(KontonummerFormFields.kontonummerErRiktig);
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
-            <YesOrNoQuestion
-                name={KontonummerFormFields.harKontonummer}
-                legend="Har du et kontonummer?"
-                validate={validateField(KontonummerFormFields.harKontonummer, getYesOrNoValidator())}
-            />
+            <FormLayout.Questions>
+                {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
+                    <>
+                        <YesOrNoQuestion
+                            name={KontonummerFormFields.kontonummerErRiktig}
+                            legend={`Stemmer det at ditt kontonummer er ${kontonummerInfo.formatertKontonummer}?`}
+                            validate={validateField(KontonummerFormFields.kontonummerErRiktig, getYesOrNoValidator())}
+                        />
+                        <AriaLiveRegion visible={kontonummerErRiktig === YesOrNo.NO}>
+                            <FormLayout.QuestionRelatedMessage>
+                                <Alert variant="info">Info når kontonummer ikke stemmer</Alert>
+                            </FormLayout.QuestionRelatedMessage>
+                        </AriaLiveRegion>
+                    </>
+                )}
+                {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
+                    <Alert variant="warning">
+                        <Heading level="3" size="small" spacing>
+                            Har ikke kontonummer melding
+                        </Heading>
+                        <BodyLong spacing>info</BodyLong>
+                    </Alert>
+                )}
+                {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
+                    <Alert variant="warning">
+                        <Heading level="3" size="small" spacing>
+                            Uvisst om en har kontonummer
+                        </Heading>
+                        <BodyLong spacing>info</BodyLong>
+                    </Alert>
+                )}
+            </FormLayout.Questions>
         </AppForm>
     );
 };
