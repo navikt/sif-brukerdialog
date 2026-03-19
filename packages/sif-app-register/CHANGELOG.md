@@ -1,5 +1,11 @@
 # @navikt/sif-app-register
 
+## 0.1.13
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 0.1.12
 
 ### Patch Changes

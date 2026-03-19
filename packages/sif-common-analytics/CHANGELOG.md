@@ -1,5 +1,11 @@
 # @navikt/sif-common-analytics
 
+## 0.0.7
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 0.0.6
 
 ### Patch Changes
