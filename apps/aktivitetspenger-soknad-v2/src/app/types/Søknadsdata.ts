@@ -2,11 +2,11 @@ import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { BaseSøknadsdata } from '@sif/soknad/types';
 
 export type KontonummerSøknadsdata = {
-    harKontonummer: boolean;
+    kontonummerStemmer: boolean;
 };
 
 export type BostedSøknadsdata = {
-    borINorge: boolean;
+    borITrondheim: boolean;
 };
 
 export type MedlemskapSøknadsdata = {

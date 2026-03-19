@@ -9,11 +9,11 @@ import { BostedSøknadsdata } from '../../types/Søknadsdata';
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 
 export enum BostedFormFields {
-    borINorge = 'borINorge',
+    borITrondheim = 'borITrondheim',
 }
 
 export interface BostedFormValues extends StepFormValues {
-    [BostedFormFields.borINorge]?: YesOrNo;
+    [BostedFormFields.borITrondheim]?: YesOrNo;
 }
 
 const { YesOrNoQuestion } = createSifFormComponents<BostedFormValues>();
@@ -38,9 +38,9 @@ export const BostedForm = () => {
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
             <YesOrNoQuestion
-                name={BostedFormFields.borINorge}
-                legend="Bor du i Norge?"
-                validate={validateField(BostedFormFields.borINorge, getYesOrNoValidator())}
+                name={BostedFormFields.borITrondheim}
+                legend="Bor du i Trondheim?"
+                validate={validateField(BostedFormFields.borITrondheim, getYesOrNoValidator())}
             />
         </AppForm>
     );

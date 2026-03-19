@@ -8,7 +8,7 @@ export const toMedlemskapFormValues = (
 ): Partial<MedlemskapFormValues> => {
     if (søknadsdata?.harBoddIUtlandetSiste5år === undefined) return {};
     return {
-        erMedlemIFolketrygden: søknadsdata.harBoddIUtlandetSiste5år ? YesOrNo.YES : YesOrNo.NO,
+        harBoddIUtlandetSiste5år: søknadsdata.harBoddIUtlandetSiste5år ? YesOrNo.YES : YesOrNo.NO,
     };
 };
 

@@ -6,12 +6,12 @@ import { KontonummerFormValues } from './KontonummerForm';
 export const toKontonummerFormValues = (
     søknadsdata: KontonummerSøknadsdata | undefined,
 ): Partial<KontonummerFormValues> => {
-    if (søknadsdata?.harKontonummer === undefined) return {};
+    if (søknadsdata?.kontonummerStemmer === undefined) return {};
     return {
-        harKontonummer: søknadsdata.harKontonummer ? YesOrNo.YES : YesOrNo.NO,
+        kontonummerErRiktig: søknadsdata.kontonummerStemmer ? YesOrNo.YES : YesOrNo.NO,
     };
 };
 
 export const toKontonummerSøknadsdata = (data: KontonummerFormValues): KontonummerSøknadsdata => ({
-    harKontonummer: data.harKontonummer === YesOrNo.YES,
+    kontonummerStemmer: data.kontonummerErRiktig === YesOrNo.YES,
 });
