@@ -1,12 +1,19 @@
 import '@navikt/ds-css';
 
-import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { FaroProvider } from '@navikt/sif-common-faro';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
+import { initApiClients } from './app/api/initApiClients';
+import { applicationIntlMessages } from './app/i18n';
 import { getAppEnv } from './app/setup/env/appEnv';
+import { AppInitialDataLoader } from './AppInitialDataLoader';
+
+initApiClients();
 
 const appEnv = getAppEnv();
+const queryClient = new QueryClient();
 
 export const App = () => {
     return (
@@ -14,16 +21,13 @@ export const App = () => {
             applicationKey="aktivitetspenger-soknad"
             appVersion={appEnv.APP_VERSION}
             isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
-            <BrowserRouter basename="/aktivitetspenger-soknad">
-                <main className="p-6 md:p-10">
-                    <VStack gap="space-4">
-                        <Heading size="large" level="1">
-                            Aktivitetspenger soknad
-                        </Heading>
-                        <BodyLong>Bootstrap er klar. Neste steg er implementasjon av soknadsflyt.</BodyLong>
-                    </VStack>
-                </main>
-            </BrowserRouter>
+            <QueryClientProvider client={queryClient}>
+                <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
+                    <BrowserRouter basename="/aktivitetspenger-soknad">
+                        <AppInitialDataLoader />
+                    </BrowserRouter>
+                </IntlProvider>
+            </QueryClientProvider>
         </FaroProvider>
     );
 };

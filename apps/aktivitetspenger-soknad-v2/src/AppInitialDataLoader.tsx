@@ -1,7 +1,8 @@
 import { useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@navikt/sif-common-query';
 import { useMemo } from 'react';
 
-import { ErrorPage, LoadingPage } from './app/pages';
+import { ErrorPage } from './app/pages/error/ErrorPage';
+import { LoadingPage } from './app/pages/loading/LoadingPage';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './app/setup/constants';
 import { søknadStepConfig } from './app/setup/søknad/søknadStepConfig';
 import { Søknad } from './app/Søknad';
@@ -13,12 +14,6 @@ const getValidertMellomlagring = (data: SøknadMellomlagring | null | undefined)
     return { ...data, currentStepId };
 };
 
-/**
- * DataLoader for hele søknaden
- * - Gjør alle initielle data-kall for søknaden, og håndterer loading og error states.
- * - Validerer mellomlagring mot gjeldende steg-konfigurasjon
- * - Sender inn data og mellomlagring til Søknad-komponenten når alt er klart
- */
 export const AppInitialDataLoader = () => {
     const søker = useSøker();
     const registrerteBarn = useRegistrerteBarn();

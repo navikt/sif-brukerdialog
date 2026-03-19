@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { YesOrNo } from '@sif/rhf';
 
 import { BostedSøknadsdata } from '../../types/Søknadsdata';
 import { BostedFormValues } from './BostedForm';

@@ -1,0 +1,25 @@
+import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
+import { BaseSøknadsdata } from '@sif/soknad/types';
+
+export type KontonummerSøknadsdata = {
+    harKontonummer: boolean;
+};
+
+export type BostedSøknadsdata = {
+    borINorge: boolean;
+};
+
+export type MedlemskapSøknadsdata = {
+    erMedlemIFolketrygden: boolean;
+};
+
+export type BarnSøknadsdata = {
+    harBarn: boolean;
+};
+
+export interface Søknadsdata extends BaseSøknadsdata {
+    [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
+    [SøknadStepId.BOSTED]?: BostedSøknadsdata;
+    [SøknadStepId.MEDLEMSKAP]?: MedlemskapSøknadsdata;
+    [SøknadStepId.BARN]?: BarnSøknadsdata;
+}

@@ -15,12 +15,6 @@ interface Props {
     children: React.ReactNode;
 }
 
-/**
- * Container for søknadssteg.
- * Setter opp page-layout, navigasjon og consistency-sjekk.
- *
- * Stegene selv håndterer sin submit-logikk via useStepSubmit hook.
- */
 export const SøknadStep = ({ stepId, children }: Props) => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
@@ -33,7 +27,6 @@ export const SøknadStep = ({ stepId, children }: Props) => {
         window.location.href = 'https://www.nav.no/minside';
     };
 
-    // Consistency-sjekk
     const inconsistentStepId = ctx.checkConsistency(stepId);
 
     return (

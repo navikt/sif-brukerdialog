@@ -9,11 +9,11 @@ import { BarnSøknadsdata } from '../../types/Søknadsdata';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 
 export enum BarnFormFields {
-    stemmerInfoOmBarn = 'stemmerInfoOmBarn',
+    harBarn = 'harBarn',
 }
 
 export interface BarnFormValues extends StepFormValues {
-    [BarnFormFields.stemmerInfoOmBarn]?: YesOrNo;
+    [BarnFormFields.harBarn]?: YesOrNo;
 }
 
 const { YesOrNoQuestion } = createSifFormComponents<BarnFormValues>();
@@ -22,6 +22,7 @@ const stepId = SøknadStepId.BARN;
 
 export const BarnForm = () => {
     const { validateField } = useSifValidate();
+
     const defaultValues = useStepDefaultValues<BarnFormValues, BarnSøknadsdata>({
         stepId,
         toFormValues: toBarnFormValues,
@@ -37,9 +38,9 @@ export const BarnForm = () => {
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
             <YesOrNoQuestion
-                name={BarnFormFields.stemmerInfoOmBarn}
-                legend="Stemmer informasjonen om barn?"
-                validate={validateField(BarnFormFields.stemmerInfoOmBarn, getYesOrNoValidator())}
+                name={BarnFormFields.harBarn}
+                legend="Har du barn?"
+                validate={validateField(BarnFormFields.harBarn, getYesOrNoValidator())}
             />
         </AppForm>
     );
