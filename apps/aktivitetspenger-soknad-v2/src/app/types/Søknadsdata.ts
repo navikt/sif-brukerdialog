@@ -10,7 +10,7 @@ export type BostedSøknadsdata = {
 };
 
 export type MedlemskapSøknadsdata = {
-    erMedlemIFolketrygden: boolean;
+    harBoddIUtlandetSiste5år: boolean;
 };
 
 export type BarnSøknadsdata = {

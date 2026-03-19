@@ -1,6 +1,7 @@
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
 import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
@@ -9,11 +10,11 @@ import { MedlemskapSøknadsdata } from '../../types/Søknadsdata';
 import { toMedlemskapFormValues, toMedlemskapSøknadsdata } from './medlemskapStegUtils';
 
 export enum MedlemskapFormFields {
-    erMedlemIFolketrygden = 'erMedlemIFolketrygden',
+    harBoddIUtlandetSiste5år = 'harBoddIUtlandetSiste5år',
 }
 
 export interface MedlemskapFormValues extends StepFormValues {
-    [MedlemskapFormFields.erMedlemIFolketrygden]?: YesOrNo;
+    [MedlemskapFormFields.harBoddIUtlandetSiste5år]?: YesOrNo;
 }
 
 const { YesOrNoQuestion } = createSifFormComponents<MedlemskapFormValues>();
@@ -37,11 +38,13 @@ export const MedlemskapForm = () => {
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
-            <YesOrNoQuestion
-                name={MedlemskapFormFields.erMedlemIFolketrygden}
-                legend="Er du medlem i folketrygden?"
-                validate={validateField(MedlemskapFormFields.erMedlemIFolketrygden, getYesOrNoValidator())}
-            />
+            <FormLayout.Questions>
+                <YesOrNoQuestion
+                    name={MedlemskapFormFields.harBoddIUtlandetSiste5år}
+                    legend="Har du bodd i utlandet de siste 5 årene?"
+                    validate={validateField(MedlemskapFormFields.harBoddIUtlandetSiste5år, getYesOrNoValidator())}
+                />
+            </FormLayout.Questions>
         </AppForm>
     );
 };

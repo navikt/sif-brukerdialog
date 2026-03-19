@@ -6,12 +6,12 @@ import { MedlemskapFormValues } from './MedlemskapForm';
 export const toMedlemskapFormValues = (
     søknadsdata: MedlemskapSøknadsdata | undefined,
 ): Partial<MedlemskapFormValues> => {
-    if (søknadsdata?.erMedlemIFolketrygden === undefined) return {};
+    if (søknadsdata?.harBoddIUtlandetSiste5år === undefined) return {};
     return {
-        erMedlemIFolketrygden: søknadsdata.erMedlemIFolketrygden ? YesOrNo.YES : YesOrNo.NO,
+        erMedlemIFolketrygden: søknadsdata.harBoddIUtlandetSiste5år ? YesOrNo.YES : YesOrNo.NO,
     };
 };
 
 export const toMedlemskapSøknadsdata = (data: MedlemskapFormValues): MedlemskapSøknadsdata => ({
-    erMedlemIFolketrygden: data.erMedlemIFolketrygden === YesOrNo.YES,
+    harBoddIUtlandetSiste5år: data.harBoddIUtlandetSiste5år === YesOrNo.YES,
 });
