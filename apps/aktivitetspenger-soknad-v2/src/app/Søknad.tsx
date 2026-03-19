@@ -1,6 +1,6 @@
+import { søknadStepConfig, SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { SøknadContextProvider } from '@app/setup/context/søknadContext';
 import { useSøknadStore } from '@app/setup/hooks';
-import { søknadStepConfig, SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { KontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';

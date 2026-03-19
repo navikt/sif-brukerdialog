@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 
 import { ErrorPage } from './app/pages/error/ErrorPage';
 import { LoadingPage } from './app/pages/loading/LoadingPage';
+import { søknadStepConfig } from './app/setup/config/søknadStepConfig';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './app/setup/constants';
-import { søknadStepConfig } from './app/setup/søknad/søknadStepConfig';
 import { Søknad } from './app/Søknad';
 import { MellomlagringMetaData, SøknadMellomlagring } from './app/types/Mellomlagring';
 
