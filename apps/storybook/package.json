@@ -2,7 +2,7 @@
     "name": "sif-storybook",
     "description": "Storybook som viser noen av komponentene som brukes på tvers av sif universet",
     "main": "src/index.ts",
-    "version": "0.0.98",
+    "version": "0.0.99",
     "private": true,
     "type": "module",
     "dependencies": {

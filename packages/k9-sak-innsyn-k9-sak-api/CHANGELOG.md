@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.2.11
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 0.2.10
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # config
 
+## 0.11.55
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 0.11.54
 
 ### Patch Changes
