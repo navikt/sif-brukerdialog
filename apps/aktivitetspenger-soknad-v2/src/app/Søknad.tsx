@@ -3,6 +3,7 @@ import { useSøknadStore } from '@app/setup/hooks';
 import { søknadStepConfig, SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
+import { KontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { StepRouteGuard } from '@sif/soknad/navigation';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
@@ -14,10 +15,11 @@ import { SøknadMellomlagring } from './types/Mellomlagring';
 interface Props {
     søker: Søker;
     barn: RegistrertBarn[];
+    kontonummer: KontonummerDto | null;
     mellomlagring?: SøknadMellomlagring;
 }
 
-export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
+export const Søknad = ({ søker, barn, kontonummer, mellomlagring }: Props) => {
     const init = useSøknadStore((s) => s.init);
     const søknadSendt = useSøknadStore((s) => s.søknadSendt);
     const søknadState = useSøknadStore((s) => s.søknadState);
@@ -28,7 +30,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     const navigate = useNavigate();
 
     useEffectOnce(() => {
-        init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
+        init({ søker, barn, kontonummer }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
     });
 
     useEffect(() => {

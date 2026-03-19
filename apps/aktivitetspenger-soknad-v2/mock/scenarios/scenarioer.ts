@@ -21,6 +21,11 @@ const defaultScenarioData: ScenarioData = {
         ],
     },
 
+    kontonummer: {
+        harKontonummer: true,
+        kontonummer: '12345678901',
+    },
+
     mellomlagring: undefined,
 };
 

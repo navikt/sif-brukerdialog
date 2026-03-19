@@ -64,6 +64,12 @@ Aktiveres kun når brukeren eksplisitt ber om det (f.eks. «sjekk appen», «ver
 
 I denne fasen verifiserer agenten standardfilene dersom de finnes — typisk `env.schema.ts` og `initApiClients.ts` — og rapporterer hva som er på plass og hva som mangler. I denne fasen skal skillen kun rapportere status, ikke gjøre kodeendringer.
 
+Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
+
+- Endepunkt skal ikke gjettes.
+- Agenten skal følge kjeden `hook -> api-funksjon -> SDK-klient -> url` for å finne faktisk path.
+- Før ny MSW-handler foreslås eller legges til, skal faktisk request-path verifiseres i generert klientkode (for eksempel `sdk.gen.ts`).
+
 ---
 
 ## Tilgjengelige hooks
@@ -116,6 +122,8 @@ Denne sjekklisten brukes kun i fase 2, når brukeren eksplisitt ber om verifiser
 ### 1. Finn hooken
 
 Se tabellen over. Identifiser hvilken API-klient hooken avhenger av.
+
+For endpoint-verifisering: følg alltid `hook -> api-funksjon -> SDK-klient -> url`.
 
 ### 2. Sjekk env-oppsett
 

@@ -12,6 +12,10 @@ export const handlers = [
         return HttpResponse.json(store.get().barn || { barn: [] });
     }),
 
+    http.get(`**/deltaker/hent-kontonummer`, () => {
+        return HttpResponse.json(store.get().kontonummer);
+    }),
+
     http.post(`**/api/send`, () => {
         return HttpResponse.json({}, { status: 200 });
     }),
