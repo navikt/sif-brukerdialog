@@ -3,7 +3,7 @@ import { useSøknadContext } from '@app/hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '@app/hooks/utils/useSøknadNavigation';
 import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadSkjemaId } from '@app/types/SøknadSkjemaId';
-import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-react';
+import { Alert, Checkbox, CheckboxGroup, FormSummary, List, VStack } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { ApiErrorAlert } from '@navikt/sif-common-query';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
@@ -56,6 +56,9 @@ const OppsummeringSteg = () => {
             }
         }
     };
+
+    const { harBoddIUtlandetSiste5År } = søknad?.medlemskap || {};
+    const bosteder = harBoddIUtlandetSiste5År ? søknad?.medlemskap?.bostedUtlandSiste5År : [];
 
     return (
         <SøknadSteg tittel={text('oppsummeringSteg.tittel')} steg={Steg.OPPSUMMERING}>
@@ -167,6 +170,32 @@ const OppsummeringSteg = () => {
                                 }}
                             />
                         </FormSummary.Footer>
+                    </FormSummary>
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="2">Medlemskap</FormSummary.Heading>
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>Har bodd i utlandet siste 5 år?</FormSummary.Label>
+                                <FormSummary.Value>{harBoddIUtlandetSiste5År ? 'Ja' : 'Nei'}</FormSummary.Value>
+                            </FormSummary.Answer>
+                            {harBoddIUtlandetSiste5År && bosteder && (
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>Bosteder i utlandet</FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <List>
+                                            {bosteder.map((bosted, index) => (
+                                                <List.Item key={index}>
+                                                    {bosted.fraOgMed} - {bosted.tilOgMed},{bosted.landnavn} (
+                                                    {bosted.landkode})
+                                                </List.Item>
+                                            ))}
+                                        </List>
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            )}
+                        </FormSummary.Answers>
                     </FormSummary>
                 </VStack>
 

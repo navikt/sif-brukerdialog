@@ -18,6 +18,20 @@ interface SøknadProviderProps {
 }
 
 const initialData: SøknadSvar = {};
+// const initialData: SøknadSvar = {
+//     harForståttRettigheterOgPlikter: true,
+//     barn: YesOrNo.YES,
+//     kontonummer: YesOrNo.YES,
+//     bosted: YesOrNo.YES,
+//     medlemskap: YesOrNo.YES,
+//     medlemskapPerioder: [
+//         {
+//             fom: ISODateToDate('2020-01-01'),
+//             tom: ISODateToDate('2020-12-31'),
+//             landkode: 'SWE',
+//         },
+//     ],
+// };
 
 export const SøknadProvider = ({
     children,

@@ -1,9 +1,9 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getCountryName, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 
 import { SøknadSvar, Spørsmål } from '../../types';
-import { SøknadApiData } from '../../types/SøknadApiData';
+import { BostedUtlandApiData, SøknadApiData } from '../../types/SøknadApiData';
 
 const isYesOrNoAnswered = (answer?: YesOrNo) => {
     return answer === YesOrNo.YES || answer === YesOrNo.NO;
@@ -63,12 +63,26 @@ export const buildSøknadFromSvar = ({
         return undefined;
     }
 
+    const harBoddIUtlandetSiste5År = svar[Spørsmål.MEDLEMSKAP] === YesOrNo.YES;
+    const bosted: BostedUtlandApiData = {
+        harBoddIUtlandetSiste5År,
+        bostedUtlandSiste5År: harBoddIUtlandetSiste5År
+            ? svar[Spørsmål.MEDLEMSKAP_PERIODER]?.map((b) => ({
+                  fraOgMed: dateToISODate(b.fom),
+                  tilOgMed: dateToISODate(b.tom),
+                  landkode: b.landkode,
+                  landnavn: getCountryName(b.landkode, 'nb'),
+              }))
+            : undefined,
+    };
+
     return {
         språk: 'nb',
         startdato: dateToISODate(new Date()),
         harForståttRettigheterOgPlikter,
         barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
         kontonummerInfo: kontonummerApiInfo,
+        medlemskap: bosted,
         søkerNorskIdent,
     };
 };
