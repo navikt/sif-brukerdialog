@@ -82,7 +82,7 @@ export const buildSøknadFromSvar = ({
         harForståttRettigheterOgPlikter,
         barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
         kontonummerInfo: kontonummerApiInfo,
-        medlemskap: bosted,
+        forutgåendeMedlemskap: bosted,
         søkerNorskIdent,
     };
 };

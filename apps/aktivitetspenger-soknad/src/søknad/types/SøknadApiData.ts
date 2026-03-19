@@ -14,5 +14,5 @@ export type BostedUtlandApiData = {
 };
 
 export type SøknadApiData = aktivitetspenger.Aktivitetspengersøknad & {
-    medlemskap: BostedUtlandApiData;
+    forutgåendeMedlemskap: BostedUtlandApiData;
 };

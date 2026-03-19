@@ -57,8 +57,8 @@ const OppsummeringSteg = () => {
         }
     };
 
-    const { harBoddIUtlandetSiste5År } = søknad?.medlemskap || {};
-    const bosteder = harBoddIUtlandetSiste5År ? søknad?.medlemskap?.bostedUtlandSiste5År : [];
+    const { harBoddIUtlandetSiste5År } = søknad?.forutgåendeMedlemskap || {};
+    const bosteder = harBoddIUtlandetSiste5År ? søknad?.forutgåendeMedlemskap?.bostedUtlandSiste5År : [];
 
     return (
         <SøknadSteg tittel={text('oppsummeringSteg.tittel')} steg={Steg.OPPSUMMERING}>
