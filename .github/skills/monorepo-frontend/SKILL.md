@@ -1,3 +1,8 @@
+---
+name: monorepo-frontend
+description: Repository-spesifikk frontend-veiledning for apps og packages i Yarn 4 + Turborepo monorepoet.
+---
+
 # Monorepo Frontend Skill
 
 ## Purpose

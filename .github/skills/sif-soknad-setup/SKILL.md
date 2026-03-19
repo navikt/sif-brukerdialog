@@ -1,3 +1,8 @@
+---
+name: sif-soknad-setup
+description: Veiledning for oppsett av src/app/setup i nye apper som bruker @sif/soknad og @sif/rhf.
+---
+
 # sif-soknad-setup Skill
 
 ## Purpose
