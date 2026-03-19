@@ -17,6 +17,5 @@ export { getVedleggIdFromResponseHeaderLocation, hentVedlegg, lagreVedlegg, slet
 export {
     hentYtelseMellomlagring,
     oppdaterYtelseMellomlagring,
-    opprettYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from './ytelseMellomlagringApi';

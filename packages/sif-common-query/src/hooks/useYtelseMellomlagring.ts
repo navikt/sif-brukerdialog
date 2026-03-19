@@ -5,12 +5,14 @@ import objectHash from 'object-hash';
 import {
     hentYtelseMellomlagring,
     oppdaterYtelseMellomlagring,
+    opprettYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from '../api/ytelseMellomlagringApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
+import { isApiAxiosError } from '../utils/errorHandlers';
 
-interface MellomlagringPayload<State> {
+interface MellomlagringPayload<State> extends Record<string, unknown> {
     søknadsdata: State;
     søknadHashString: string;
 }
@@ -29,31 +31,7 @@ const isValidPayload = <State>(payload: unknown): payload is MellomlagringPayloa
 
 /**
  * Hook for mellomlagring med metadata-validering.
- *
- * Henter mellomlagret data og validerer at metadata-hash matcher.
- * Hvis metadata har endret seg siden lagring, returneres null og mellomlagring slettes automatisk.
- *
- * @param ytelse - Hvilken ytelse mellomlagringen gjelder
- * @param metadata - App-spesifikk metadata for hash-validering (søker, barn, versjon, etc.)
- * @param options - Query options
- *
- * @example
- * ```tsx
- * const metadata = { MELLOMLAGRING_VERSJON, søker, barn };
- * const mellomlagring = useYtelseMellomlagring<Mellomlagring, typeof metadata>(
- *     MellomlagringYtelse.AKTIVITETSPENGER,
- *     metadata,
- * );
- *
- * // Hent data
- * const data = mellomlagring.data;
- *
- * // Lagre data
- * mellomlagring.lagre({ søknadsdata: {...}, currentStegId: 'steg1' });
- *
- * // Slett
- * mellomlagring.slett();
- * ```
+ * Returnerer `null` ved manglende/ugyldig payload eller når metadata-hash ikke matcher.
  */
 export const useYtelseMellomlagring = <State, MetaData>(
     ytelse: MellomlagringYtelse,
@@ -73,7 +51,12 @@ export const useYtelseMellomlagring = <State, MetaData>(
             try {
                 const payload = await hentYtelseMellomlagring(ytelse);
 
+                if (!payload) {
+                    return null;
+                }
+
                 if (!isValidPayload<State>(payload)) {
+                    await slettYtelseMellomlagring(ytelse);
                     return null;
                 }
 
@@ -86,7 +69,6 @@ export const useYtelseMellomlagring = <State, MetaData>(
 
                 return payload.søknadsdata;
             } catch {
-                await slettYtelseMellomlagring(ytelse).catch(() => {});
                 return null;
             }
         },
@@ -104,7 +86,15 @@ export const useYtelseMellomlagring = <State, MetaData>(
                 søknadsdata: data,
                 søknadHashString: createHash(metadata),
             };
-            return oppdaterYtelseMellomlagring(ytelse, payload as unknown as Record<string, unknown>);
+
+            try {
+                return await oppdaterYtelseMellomlagring(ytelse, payload);
+            } catch (error) {
+                if (isApiAxiosError(error) && error.originalError.response?.status === 404) {
+                    return opprettYtelseMellomlagring(ytelse, payload);
+                }
+                throw error;
+            }
         },
     });
 
@@ -122,13 +112,8 @@ export const useYtelseMellomlagring = <State, MetaData>(
         isError: query.isError,
         error: query.error,
 
-        lagre: async (data: State): Promise<void> => {
-            await lagreMutation.mutateAsync(data);
-        },
-
-        slett: async (): Promise<void> => {
-            await slettMutation.mutateAsync();
-        },
+        lagre: lagreMutation.mutateAsync,
+        slett: slettMutation.mutateAsync,
 
         isPending: lagreMutation.isPending || slettMutation.isPending,
 
