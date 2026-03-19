@@ -2,7 +2,7 @@ import { ApiError } from '@navikt/ung-common';
 import { useQuery } from '@tanstack/react-query';
 
 import { Oppgave } from '../../types/Oppgave';
-import { getDeltakerOppgaver } from '../deltakelse-perioder/getDeltakerOppgaver';
+import { getDeltakerOppgaver } from '../deltaker-oppgaver/getDeltakerOppgaver';
 import { commonQueryKeys } from '../queries/commonQueries';
 
 /**

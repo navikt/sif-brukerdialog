@@ -50,6 +50,10 @@ export type KontrollerRegisterinntektOppgavetypeDataDto = {
     tilOgMed: string;
 };
 
+export type LøsOppgaveRequest = {
+    oppgaveRespons?: OppgaveResponsDto;
+};
+
 export type OppgaveResponsDto = (
     | ({
           type: 'VARSEL_SVAR';
@@ -253,3 +257,27 @@ export type HentOppgaveResponses = {
 };
 
 export type HentOppgaveResponse = HentOppgaveResponses[keyof HentOppgaveResponses];
+
+export type LøsOppgaveData = {
+    /**
+     * Løsningsdata for oppgaven
+     */
+    body: LøsOppgaveRequest;
+    path: {
+        /**
+         * Unik referanse til oppgaven
+         */
+        oppgavereferanse: string;
+    };
+    query?: never;
+    url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}/løs';
+};
+
+export type LøsOppgaveResponses = {
+    /**
+     * default response
+     */
+    default: BrukerdialogOppgaveDto;
+};
+
+export type LøsOppgaveResponse = LøsOppgaveResponses[keyof LøsOppgaveResponses];

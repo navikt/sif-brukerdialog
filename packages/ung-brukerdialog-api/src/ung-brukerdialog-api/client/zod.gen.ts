@@ -90,6 +90,10 @@ export const zOppgaveResponsDto = z.intersection(
     }),
 );
 
+export const zLøsOppgaveRequest = z.object({
+    oppgaveRespons: zOppgaveResponsDto.optional(),
+});
+
 export const zSøkYtelseOppgavetypeDataDto = z.object({
     fomDato: z.iso.date(),
 });
@@ -209,3 +213,16 @@ export const zHentOppgaveData = z.object({
  * default response
  */
 export const zHentOppgaveResponse = zBrukerdialogOppgaveDto;
+
+export const zLøsOppgaveData = z.object({
+    body: zLøsOppgaveRequest,
+    path: z.object({
+        oppgavereferanse: z.uuid(),
+    }),
+    query: z.never().optional(),
+});
+
+/**
+ * default response
+ */
+export const zLøsOppgaveResponse = zBrukerdialogOppgaveDto;

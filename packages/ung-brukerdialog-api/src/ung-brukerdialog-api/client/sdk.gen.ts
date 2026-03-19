@@ -7,8 +7,17 @@ import type {
     HentAlleOppgaverResponses,
     HentOppgaveData,
     HentOppgaveResponses,
+    LøsOppgaveData,
+    LøsOppgaveResponses,
 } from './types.gen';
-import { zHentAlleOppgaverData, zHentAlleOppgaverResponse, zHentOppgaveData, zHentOppgaveResponse } from './zod.gen';
+import {
+    zHentAlleOppgaverData,
+    zHentAlleOppgaverResponse,
+    zHentOppgaveData,
+    zHentOppgaveResponse,
+    zLøsOppgaveData,
+    zLøsOppgaveResponse,
+} from './zod.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<
     TData,
@@ -53,6 +62,23 @@ export class BrukerdialogOppgave {
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}',
             ...options,
+        });
+    }
+
+    /**
+     * Løser en spesifikk oppgave basert på oppgaveReferanse
+     */
+    public static løsOppgave<ThrowOnError extends boolean = true>(options: Options<LøsOppgaveData, ThrowOnError>) {
+        return (options.client ?? client).post<LøsOppgaveResponses, unknown, ThrowOnError>({
+            requestValidator: async (data) => await zLøsOppgaveData.parseAsync(data),
+            responseValidator: async (data) => await zLøsOppgaveResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}/løs',
+            ...options,
+            headers: {
+                'Content-Type': '*/*',
+                ...options.headers,
+            },
         });
     }
 }
