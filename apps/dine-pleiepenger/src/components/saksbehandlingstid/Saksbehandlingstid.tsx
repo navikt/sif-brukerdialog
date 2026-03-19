@@ -8,6 +8,7 @@ import SaksbehandlingstidPictogram from '../../svg/SaksbehandlingstidPictogram';
 import { Saksbehandlingstid, Venteårsak } from '../../types';
 import { saksbehandlingstidClientSchema } from '../../types/client-schemas/saksbehandlingstidClientSchema';
 import { browserEnv } from '../../utils/env';
+import { reportClientParseError } from '../../utils/reportClientParseError';
 import { swrBaseConfig } from '../../utils/swrBaseConfig';
 import LinkButton from '../link-button/LinkButton';
 import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
@@ -21,7 +22,15 @@ interface Props {
 const SaksbehandlingstidPanel = ({ frist, venteårsak, sakErLastet }: Props) => {
     const { data, isLoading } = useSWR<Saksbehandlingstid>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/saksbehandlingstid`,
-        (url) => axios.get(url).then((res) => saksbehandlingstidClientSchema.parse(res.data)),
+        (url) =>
+            axios.get(url).then((res) => {
+                const result = saksbehandlingstidClientSchema.safeParse(res.data);
+                if (!result.success) {
+                    reportClientParseError(result.error, 'saksbehandlingstidClientSchema');
+                    throw result.error;
+                }
+                return result.data;
+            }),
         swrBaseConfig,
     );
     const saksbehandlingstidUker = data?.saksbehandlingstidUker ?? 7;
@@ -40,11 +49,13 @@ const SaksbehandlingstidPanel = ({ frist, venteårsak, sakErLastet }: Props) => 
                     background="info-moderateA">
                     <HGrid gap="space-16" columns={{ sm: 'auto 96px' }} align="center">
                         <VStack gap="space-16">
-                            <SaksbehandlingstidMelding
-                                frist={frist}
-                                venteårsak={venteårsak}
-                                saksbehandlingstidUker={saksbehandlingstidUker}
-                            />
+                            <div>
+                                <SaksbehandlingstidMelding
+                                    frist={frist}
+                                    venteårsak={venteårsak}
+                                    saksbehandlingstidUker={saksbehandlingstidUker}
+                                />
+                            </div>
                             <div>
                                 <LinkButton
                                     as={Link}

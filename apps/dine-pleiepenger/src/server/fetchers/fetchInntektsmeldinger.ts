@@ -4,7 +4,7 @@ import { NextApiRequest } from 'next';
 import { z } from 'zod';
 
 import { getContextForApiHandler, prepApiError, serverResponseTransform } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';

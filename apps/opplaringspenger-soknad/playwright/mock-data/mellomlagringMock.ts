@@ -19,7 +19,7 @@ const søknadsdata: Søknadsdata = {
     kurs: {
         søknadsperiode: {
             from: new Date('2024-12-02T00:00:00.000Z'),
-            to: new Date('2024-12-09T00:00:00.000Z'),
+            to: new Date('2024-12-06T00:00:00.000Z'),
         },
         søknadsdatoer: [
             new Date('2024-12-02T00:00:00.000Z'),
@@ -27,9 +27,6 @@ const søknadsdata: Søknadsdata = {
             new Date('2024-12-04T00:00:00.000Z'),
             new Date('2024-12-05T00:00:00.000Z'),
             new Date('2024-12-06T00:00:00.000Z'),
-            new Date('2024-12-07T00:00:00.000Z'),
-            new Date('2024-12-08T00:00:00.000Z'),
-            new Date('2024-12-09T00:00:00.000Z'),
         ],
         reisedager: {
             reiserUtenforKursdager: true,
@@ -48,7 +45,7 @@ const søknadsdata: Søknadsdata = {
                 id: '0',
                 periode: {
                     from: new Date('2024-12-02T00:00:00.000Z'),
-                    to: new Date('2024-12-08T00:00:00.000Z'),
+                    to: new Date('2024-12-06T00:00:00.000Z'),
                 },
             },
         ],
@@ -72,7 +69,7 @@ const søknadsdata: Søknadsdata = {
                     type: 'enkel',
                     landkode: 'ABW',
                     fom: new Date('2024-12-06T00:00:00.000Z'),
-                    tom: new Date('2024-12-07T00:00:00.000Z'),
+                    tom: new Date('2024-12-06T00:00:00.000Z'),
                 },
             ],
         },
@@ -85,7 +82,7 @@ const søknadsdata: Søknadsdata = {
                     type: ArbeidsgiverType.ORGANISASJON,
                     id: '123451234',
                     organisasjonsnummer: '123451234',
-                    navn: 'Arbeids- og velferdsetaten',
+                    navn: 'SNODIG FISKER',
                 },
                 erAnsattISøknadsperiode: true,
                 jobberNormaltTimer: 20,
@@ -112,7 +109,7 @@ const søknadsdata: Søknadsdata = {
     arbeidstid: {
         arbeidsgivere: {
             '123451234': {
-                navn: 'Arbeids- og velferdsetaten',
+                navn: 'SNODIG FISKER',
                 arbeidIPeriode: {
                     type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
                     arbeiderIPerioden: true,
@@ -122,12 +119,40 @@ const søknadsdata: Søknadsdata = {
                             hours: '5',
                             minutes: '0',
                         },
-                        '2024-12-09': {
+                        '2024-12-03': {
+                            hours: '5',
+                            minutes: '0',
+                        },
+                        '2024-12-04': {
+                            hours: '5',
+                            minutes: '0',
+                        },
+                        '2024-12-05': {
                             hours: '5',
                             minutes: '0',
                         },
                         '2024-12-06': {
                             minutes: '30',
+                            hours: '0',
+                        },
+                        '2024-12-09': {
+                            minutes: '0',
+                            hours: '0',
+                        },
+                        '2024-12-10': {
+                            minutes: '0',
+                            hours: '0',
+                        },
+                        '2024-12-11': {
+                            minutes: '0',
+                            hours: '0',
+                        },
+                        '2024-12-16': {
+                            minutes: '0',
+                            hours: '0',
+                        },
+                        '2024-12-17': {
+                            minutes: '0',
                             hours: '0',
                         },
                     },
@@ -165,5 +190,5 @@ export const mellomlagringMock = {
     søknadsdata,
     søknadRoute: '/soknad/arbeidssituasjon',
     registrerteBarn: [],
-    versjon: '0.4.0',
+    versjon: '1.0.0',
 };

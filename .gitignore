@@ -18,6 +18,10 @@ index-decorated.html
 .scannerwork
 *.code-workspace
 *.zip
+.copilot-workspace
+
+.env.sentry-build-plugin
+apps-depr
 
 server/dist
 public/dist

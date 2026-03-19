@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
+
 import { calendarGridMessages } from '../components/calendar-grid/calendarGridMessages';
 import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedTidMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
-import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
+import { fraværMessages } from '../søknad/steps/arbeidstid/fraværMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
 import { kursdagMessages } from '../søknad/steps/kurs/parts/kursdager-form-part/kursdagMessages';
 import { kursperiodeMessages } from '../søknad/steps/kurs/parts/kursperioder-form-part/kursperiodeMessages';
@@ -26,9 +27,9 @@ const nb = {
     ...calendarGridMessages.nb,
     ...dagerMedTidMessages.nb,
     ...kursperiodeMessages.nb,
-    ...arbeidstidMessages.nb,
     ...omBarnetFormIntlMessages.nb,
     ...kursdagMessages.nb,
+    ...fraværMessages.nb,
 
     'application.title': 'Søknad om opplæringspenger',
 
@@ -92,9 +93,9 @@ const nb = {
     'step.arbeidssituasjon.pageTitle': 'Din arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Din arbeidssituasjon',
 
-    'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
-    'step.arbeidstid.pageTitle': 'Jobb i søknadsperioden',
-    'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
+    'step.arbeidstid.stepTitle': 'Fravær i søknadsperioden',
+    'step.arbeidstid.pageTitle': 'Fravær i søknadsperioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Fravær i søknadsperioden',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
@@ -163,7 +164,7 @@ const nb = {
         'Du må svare på på om du utøvde verneplikt på tidspunktet du søker opplæringspenger fra.',
     'virksomhetForm.næringstype.noValue': 'Du må velge hvilken type virksomhet du har.',
 
-    'validation.arbeidIPeriode.jobber': 'Du må svare på om du jobber noe {hvor} i søknadsperioden.',
+    'validation.arbeidIPeriode.jobber': 'Du må svare på om du har fravær {hvor} i søknadsperioden.',
 
     'validation.opptjeningUtland.listIsEmpty': 'Du må legge til jobb i et annet EØS-land.',
     'validation.harOpptjeningUtland.yesOrNoIsUnanswered':
@@ -212,15 +213,14 @@ const nb = {
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikke',
     'ingenFraværConfirmation.content':
-        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring, eller er borte fra jobb på grunn av reise til opplæringsstedet. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
+        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du vært borte fra jobb fordi du skal delta på opplæring, eller er borte fra jobb på grunn av reise til opplæringsstedet. Stemmer det at du ikke har fravær i dagene du søker for?',
     'ingenFraværConfirmation.enkeltdag.content':
-        'Du har oppgitt at du jobber 7,5 timer eller mer på {antallDager, plural, one {dagen} other {dager}} du har opplæring. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring. Stemmer det at du ikke har fravær fra jobb {antallDager, plural, one {dagen} other {noen av dagene}} du søker for?',
-    'ingenFraværConfirmation.heading': 'Fravær fra jobb',
+        'Du har oppgitt at du jobber 7,5 timer eller mer på {antallDager, plural, one {dagen} other {dager}} du har opplæring. For å ha rett til opplæringspenger må du være borte fra jobb fordi du skal delta på opplæring. Stemmer det at du ikke har fravær {antallDager, plural, one {dagen} other {noen av dagene}} du søker for?',
+    'ingenFraværConfirmation.heading': 'Fravær',
 };
 
 const nn: Record<keyof typeof nb, string> = {
     ...arbeidssituasjonMessages.nn,
-    ...arbeidstidMessages.nn,
     ...arbeidstidPeriodeMessages.nn,
     ...calendarGridMessages.nn,
     ...dagerMedTidMessages.nn,
@@ -233,6 +233,7 @@ const nn: Record<keyof typeof nb, string> = {
     ...validateApiDataMessages.nn,
     ...velkommenPageMessages.nn,
     ...kursdagMessages.nn,
+    ...fraværMessages.nn,
 
     'application.title': 'Søknad om opplæringspengar',
 
@@ -296,9 +297,9 @@ const nn: Record<keyof typeof nb, string> = {
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjonen din',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjonen din',
 
-    'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
-    'step.arbeidstid.pageTitle': 'Jobb i søknadsperioden',
-    'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
+    'step.arbeidstid.stepTitle': 'Fråvær i søknadsperioden',
+    'step.arbeidstid.pageTitle': 'Fråvær i søknadsperioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Fråvær i søknadsperioden',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygda',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygda',
@@ -368,7 +369,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Du må svare på om du utførte verneplikt på tidspunktet du søkjer opplæringspengar frå.',
     'virksomhetForm.næringstype.noValue': 'Du må velje kva type verksemd du har.',
 
-    'validation.arbeidIPeriode.jobber': 'Du må svare på om du jobbar noko {hvor} i søknadsperioden.',
+    'validation.arbeidIPeriode.jobber': 'Du må svare på om du har fråvær {hvor} i søknadsperioden.',
 
     'validation.opptjeningUtland.listIsEmpty': 'Du må leggje til jobb i eit anna EØS-land.',
     'validation.harOpptjeningUtland.yesOrNoIsUnanswered':

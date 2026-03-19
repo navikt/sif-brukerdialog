@@ -19,7 +19,7 @@ const meta: Meta<typeof ArbeidssituasjonStep> = {
                 response: {
                     organisasjoner: [
                         {
-                            navn: 'Arbeids- og velferdsetaten',
+                            navn: 'SNODIG FISKER',
                             organisasjonsnummer: '123451234',
                             ansattFom: '2019-09-25',
                             ansattTom: null,

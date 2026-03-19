@@ -5,7 +5,6 @@ import { withAuthenticatedApi } from '../../../auth/withAuthentication';
 import { fetchDocumentStream } from '../../../server/fetchers/fetchDocumentStream';
 import { ApiServices } from '../../../server/types/ApiServices';
 import { validateDokumentTittel, validatePathSegment } from '../../../server/utils/validatePathSegment';
-import { getContextForApiHandler } from '../../../utils/apiUtils';
 
 export const config = {
     api: {
@@ -48,7 +47,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const safeDokumentTittel = encodeURIComponent(dokumentTittel);
 
         const path = `dokument/${sanitizedSegments.join('/')}?dokumentTittel=${safeDokumentTittel}`;
-        const stream = await fetchDocumentStream(path, getContextForApiHandler(req), ApiServices.sifInnsyn);
+        const stream = await fetchDocumentStream(path, req, ApiServices.sifInnsyn);
 
         res.setHeader('Content-Type', 'application/pdf; charset=utf-8');
         res.setHeader('Content-Disposition', `attachment; filename="${encodeURI(dokumentTittel)}"`);

@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.3.3",
+        "@types/node": "25.5.0",
         "@types/react": "19.2.14",
         "config": "workspace:*",
         "constate": "3.3.3",

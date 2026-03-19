@@ -5,14 +5,19 @@ import { ArbeidsgiverApiData } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 import { ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidsgivereSøknadsdata';
 import { ArbeidstidArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidstidArbeidsgivereSøknadsdata';
-import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
+import { getFraværIPeriodeApiDataFromSøknadsdata } from './getFraværIPeriodeApiDataFromSøknadsdata';
 
-export const getArbeidsgivereApiDataFromSøknadsdata = (
-    søknadsperiode: DateRange,
-    valgteDatoer: Date[],
-    arbeidsgivere?: ArbeidsgivereSøknadsdata,
-    arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata,
-): ArbeidsgiverApiData[] | undefined => {
+export const getArbeidsgivereApiDataFromSøknadsdata = ({
+    søknadsperiode,
+    valgteDatoer,
+    arbeidsgivere,
+    arbeidstidArbeidsgivere,
+}: {
+    søknadsperiode: DateRange;
+    valgteDatoer: Date[];
+    arbeidsgivere?: ArbeidsgivereSøknadsdata;
+    arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata;
+}): ArbeidsgiverApiData[] | undefined => {
     if (!arbeidsgivere) {
         // Api sjekker at feltet kan ikke være null
         return [];
@@ -33,12 +38,13 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
                 ? arbeidstidArbeidsgivere[key].arbeidIPeriode
                 : undefined;
 
-        const arbeidIPeriode = getArbeidIPeriodeApiDataFromSøknadsdata(
+        const arbeidIPeriode = getFraværIPeriodeApiDataFromSøknadsdata({
             arbeidIPeriodeSøknadsdata,
-            søknadsperiode,
-            value.jobberNormaltTimer,
+            periode: søknadsperiode,
+            jobberNormaltTimer: value.jobberNormaltTimer,
             valgteDatoer,
-        );
+        });
+
         arbeidsgiverApiData.push({
             ...arbeidsgiverInfo,
             erAnsatt: value.type === 'pågående',

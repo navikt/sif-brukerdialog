@@ -3,8 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchInntektsmeldinger } from '../../../../server/fetchers/fetchInntektsmeldinger';
 import { isValidSaksnummer } from '../../../../server/utils/validatePathSegment';
-import { prepApiError } from '../../../../utils/apiUtils';
-import { getLogger } from '../../../../utils/getLogCorrelationID';
+import { getLogger } from '../../../../utils/getLogger';
+import { logApiErrorToSentry } from '../../../../utils/sentryApiErrorLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -12,7 +12,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         if (!isValidSaksnummer(saksnr)) {
             const logger = getLogger(req);
-            logger.error(`Kunne ikke hente inntektsmelding for sak`);
+            logger.warn('Ugyldig saksnummer i forespørsel', { saksnr });
             return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
         }
 
@@ -20,8 +20,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const data = await fetchInntektsmeldinger(req, saksnr, unparsed);
         return res.send(data);
     } catch (err) {
-        const logger = getLogger(req);
-        logger.error(`Hent inntektsmeldinger feilet`, prepApiError(err));
+        getLogger(req).error('Hent inntektsmeldinger feilet');
+        logApiErrorToSentry(err, 'inntektsmeldinger');
         return res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
     }
 }

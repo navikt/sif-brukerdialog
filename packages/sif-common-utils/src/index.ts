@@ -6,6 +6,7 @@ export * from './dateUtils';
 export * from './durationUtils';
 export * from './durationWeekdaysUtils';
 export * from './guid';
+export * from './intlDateFormats';
 export * from './jsonSort';
 export * from './localeUtils';
 export * from './stringUtils';

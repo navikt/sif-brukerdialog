@@ -15,11 +15,11 @@
         "@sif/eslint-config": "workspace:*",
         "axios": "1.13.6",
         "config": "workspace:*",
-        "dayjs": "1.11.19",
+        "dayjs": "1.11.20",
         "postcss": "8.5.8",
         "typescript": "5.9.3",
         "uuid": "13.0.0",
-        "vitest": "4.0.18",
+        "vitest": "4.1.0",
         "zod": "4.3.6"
     },
     "peerDependencies": {
