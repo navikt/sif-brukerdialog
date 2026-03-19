@@ -14,7 +14,10 @@ export const getHandlers = () => [
 
     http.get('**/oppslag/soker', () => HttpResponse.json(store.get().søker)),
 
-    http.get('**/oppslag/barn', () => HttpResponse.json(store.get().barn)),
+    http.get('**/oppslag/barn', () => {
+        const data = store.get();
+        return HttpResponse.json(data.registrerteBarn);
+    }),
 
     http.get('**/oppslag/arbeidsgiver', () => HttpResponse.json(store.get().arbeidsgiver)),
 
