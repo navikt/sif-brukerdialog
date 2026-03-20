@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => {
             },
         },
         build: {
-            sourcemap: 'hidden',
+            sourcemap: true,
         },
     };
 });
