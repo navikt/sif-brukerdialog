@@ -1,9 +1,10 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ForutgåendeBosteder } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/aktivitetspenger';
 import { getCountryName, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 
 import { SøknadSvar, Spørsmål } from '../../types';
-import { BostedUtlandApiData, SøknadApiData } from '../../types/SøknadApiData';
+import { SøknadApiData } from '../../types/SøknadApiData';
 
 const isYesOrNoAnswered = (answer?: YesOrNo) => {
     return answer === YesOrNo.YES || answer === YesOrNo.NO;
@@ -64,16 +65,17 @@ export const buildSøknadFromSvar = ({
     }
 
     const harBoddIUtlandetSiste5År = svar[Spørsmål.MEDLEMSKAP] === YesOrNo.YES;
-    const bosted: BostedUtlandApiData = {
+    const bosteder = svar[Spørsmål.MEDLEMSKAP_PERIODER] || [];
+    const bosted: ForutgåendeBosteder = {
         harBoddIUtlandetSiste5År,
-        bostedUtlandSiste5År: harBoddIUtlandetSiste5År
-            ? svar[Spørsmål.MEDLEMSKAP_PERIODER]?.map((b) => ({
+        utenlandsoppholdSiste5År: harBoddIUtlandetSiste5År
+            ? bosteder.map((b) => ({
                   fraOgMed: dateToISODate(b.fom),
                   tilOgMed: dateToISODate(b.tom),
                   landkode: b.landkode,
                   landnavn: getCountryName(b.landkode, 'nb'),
               }))
-            : undefined,
+            : [],
     };
 
     return {
@@ -82,7 +84,7 @@ export const buildSøknadFromSvar = ({
         harForståttRettigheterOgPlikter,
         barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
         kontonummerInfo: kontonummerApiInfo,
-        forutgåendeMedlemskap: bosted,
+        forutgåendeBosteder: bosted,
         søkerNorskIdent,
     };
 };

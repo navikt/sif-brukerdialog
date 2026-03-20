@@ -57,8 +57,8 @@ const OppsummeringSteg = () => {
         }
     };
 
-    const { harBoddIUtlandetSiste5År } = søknad?.forutgåendeMedlemskap || {};
-    const bosteder = harBoddIUtlandetSiste5År ? søknad?.forutgåendeMedlemskap?.bostedUtlandSiste5År : [];
+    const { harBoddIUtlandetSiste5År } = søknad?.forutgåendeBosteder || {};
+    const bosteder = harBoddIUtlandetSiste5År ? søknad?.forutgåendeBosteder?.utenlandsoppholdSiste5År : [];
 
     return (
         <SøknadSteg tittel={text('oppsummeringSteg.tittel')} steg={Steg.OPPSUMMERING}>
@@ -187,7 +187,7 @@ const OppsummeringSteg = () => {
                                         <List>
                                             {bosteder.map((bosted, index) => (
                                                 <List.Item key={index}>
-                                                    {bosted.fraOgMed} - {bosted.tilOgMed},{bosted.landnavn} (
+                                                    {bosted.fraOgMed} - {bosted.tilOgMed},{bosted.landnavn} (
                                                     {bosted.landkode})
                                                 </List.Item>
                                             ))}
