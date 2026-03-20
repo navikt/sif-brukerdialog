@@ -31,11 +31,15 @@ export const useSøknadMellomlagring = () => {
         const currentStepId = state.currentStepId;
 
         if (søknadsdata && currentStepId) {
-            await mellomlagring.lagre({
-                søknadsdata,
-                currentStepId,
-                skjemadata: undefined,
-            });
+            try {
+                await mellomlagring.lagre({
+                    søknadsdata,
+                    currentStepId,
+                    skjemadata: undefined,
+                });
+            } catch (error) {
+                console.error('Mellomlagring feilet', error);
+            }
         }
     };
 
@@ -52,14 +56,18 @@ export const useSøknadMellomlagring = () => {
         const currentStepId = state.currentStepId;
 
         if (søknadsdata && currentStepId) {
-            await mellomlagring.lagre({
-                søknadsdata,
-                currentStepId,
-                skjemadata: {
-                    ...søknadFormValues,
-                    ...skjemadata,
-                },
-            });
+            try {
+                await mellomlagring.lagre({
+                    søknadsdata,
+                    currentStepId,
+                    skjemadata: {
+                        ...søknadFormValues,
+                        ...skjemadata,
+                    },
+                });
+            } catch (error) {
+                console.error('Mellomlagring feilet', error);
+            }
         }
     };
 
