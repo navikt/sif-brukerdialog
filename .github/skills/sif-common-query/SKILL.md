@@ -33,6 +33,8 @@ Merk: Rene domeneord alene (f.eks. `barn`, `søker`) er ikke nok trigger uten ty
 - Ikke inkludert: Server-side reverse proxy-konfigurasjon, UI-komponenter utover `ApiErrorAlert`.
 - Query-adferd som direkte påvirker bruk av hookene (f.eks. caching, retry) er innenfor scope. Generell TanStack Query-bruk utover dette er det ikke.
 
+> **Relatert skill:** Hvis API-kall returnerer HTML eller ikke treffer backend, er problemet sannsynligvis i proxy/path-konfigurasjon. Bruk [sif-server-proxy-api-config](../sif-server-proxy-api-config/SKILL.md) for å verifisere at `initApiClients`, nais-env og serverens reverse proxy matcher.
+
 ## Arbeidsmodus for agent
 
 Denne skillen eier kun pipelinen: hook, API-klient og env-oppsett. Hva appen gjør med dataene (preutfylling, visning, validering) er app-spesifikt og utenfor scope.
@@ -74,15 +76,15 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 
 ## Tilgjengelige hooks
 
-| Hook                                                                   | Returnerer                        | Typisk caching (per dagens impl.)  |
-| ---------------------------------------------------------------------- | --------------------------------- | ---------------------------------- |
-| `useSøker(enabled?)`                                                   | `Søker`                           | staleTime: Infinity                |
-| `useRegistrerteBarn(enabled?)`                                         | `RegistrertBarn[]`                | staleTime: Infinity                |
-| `useArbeidsgivere(enabled?)`                                           | Arbeidsgivere                     | —                                  |
-| `useKontonummer(enabled?)`                                             | `KontonummerDto \| null`          | staleTime: 20 min                  |
-| `useValiderFritekst(enabled?)`                                         | Valideringsresultat               | —                                  |
-| `useLagreVedlegg()`                                                    | Mutation for opplasting           | Invaliderer vedlegg-cache          |
-| `useSlettVedlegg()`                                                    | Mutation for sletting             | Fjerner fra cache                  |
+| Hook                                                                   | Returnerer                                  | Typisk caching (per dagens impl.)  |
+| ---------------------------------------------------------------------- | ------------------------------------------- | ---------------------------------- |
+| `useSøker(enabled?)`                                                   | `Søker`                                     | staleTime: Infinity                |
+| `useRegistrerteBarn(enabled?)`                                         | `RegistrertBarn[]`                          | staleTime: Infinity                |
+| `useArbeidsgivere(enabled?)`                                           | Arbeidsgivere                               | —                                  |
+| `useKontonummer(enabled?)`                                             | `KontonummerDto \| null`                    | staleTime: 20 min                  |
+| `useValiderFritekst(enabled?)`                                         | Valideringsresultat                         | —                                  |
+| `useLagreVedlegg()`                                                    | Mutation for opplasting                     | Invaliderer vedlegg-cache          |
+| `useSlettVedlegg()`                                                    | Mutation for sletting                       | Fjerner fra cache                  |
 | `useYtelseMellomlagring<State, MetaData>(ytelse, metadata?, options?)` | `State \| null` + `opprett`/`lagre`/`slett` | staleTime: Infinity, gcTime: 5 min |
 
 ---
@@ -150,11 +152,12 @@ Verifiser at appens `src/app/api/initApiClients.ts` (eller tilsvarende) kaller r
 ```typescript
 // initApiClients.ts
 import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
+import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 export const initApiClients = () => {
     initK9BrukerdialogProsesseringApiClients({
-        frontendPath: '/aktivitetspenger-soknad/api',
+        frontendPath: getRequiredEnv(EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH),
         loginURL: '#',
     });
     // Kun hvis useKontonummer trengs:

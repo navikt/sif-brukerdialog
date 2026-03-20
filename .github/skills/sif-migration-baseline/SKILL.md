@@ -38,9 +38,9 @@ Use this as the default start for a new migration app before feature work.
 
 ### Baseline files to include
 
-- Tooling/config: `package.json`, `vite.config.ts`, `vite.dev.config.ts`, `tsconfig.json`, `eslint.config.js`, `tailwind.config.ts`, `env.schema.ts`, `vite-env.d.ts`, `vitest.shims.d.ts`, `index.html`.
+- Tooling/config: `package.json`, `vite.config.ts`, `vite.dev.config.ts`, `tsconfig.json`, `eslint.config.js`, `tailwind.config.ts`, `env.schema.ts`, `vite-env.d.ts`, `vitest.shims.d.ts`, `index.html`, `Dockerfile`.
 - Storybook: `.storybook/main.ts`, `.storybook/preview.ts`, `.storybook/vitest.setup.ts`.
-- Bootstrap source: `src/main.tsx`, minimal `src/App.tsx`, `src/sentry/instrument.ts`, and required setup wrappers/env helpers.
+- Bootstrap source: `src/main.tsx`, `src/App.tsx`, `src/InitialDataLoader.tsx`, `src/useInitialData.ts`, `src/app.css`, `src/sentry/instrument.ts`, and required setup wrappers/env helpers.
 - Mocking baseline: `mock/enableMocking.ts`, `mock/devAppSettings.ts`, `mock/msw/**`, and `public/mockServiceWorker.js`.
 
 ### Minimal target-app edits after copy
@@ -48,6 +48,8 @@ Use this as the default start for a new migration app before feature work.
 - Update app name and scripts in `package.json`.
 - Update base path in `vite.config.ts` and `vite.dev.config.ts`.
 - Update `<title>` in `index.html`.
+- Update `APP` and `SCOPE` in `Dockerfile`.
+- Update `BrowserRouter basename` in `App.tsx`.
 - Keep all other changes minimal until App phase starts.
 - Ensure base path is identical across all three places: `package.json` (`dev`/`build`), `vite.config.ts` (`base` and mock service worker rewrite), and `vite.dev.config.ts` (`base` and rewrite).
 
@@ -58,6 +60,10 @@ Use this as the default start for a new migration app before feature work.
 - Keep the placeholder `App` minimal. For UI/layout details, delegate to the dedicated Aksel references below.
 - If Vite plugin type errors appear with two different `vite` paths, verify root install is used and `tsconfig.json` keeps the `"vite": ["../../node_modules/vite"]` path mapping.
 - For bootstrap validation, do not run `yarn build` at monorepo root. Run build/check scripts only in the target app workspace.
+- `AppErrorBoundary` must be inside `FaroProvider` in `App.tsx`, not wrapping `<App />` in `main.tsx`. Otherwise `useFaroInstance()` has no context and error logging to Faro will not work.
+- `enableMocking.ts` includes ENV checks — MSW only starts when `ENV === 'development'` and `import.meta.env.MODE === 'msw'`. Do not remove these guards.
+- `vite.config.ts` uses a conditional Sentry plugin that only activates when `SENTRY_AUTH_TOKEN` is present. Sentry build warnings are expected locally without the token.
+- Data loading is split into `useInitialData.ts` (hook with data logic) and `InitialDataLoader.tsx` (thin component). Keep this separation when adapting.
 
 ### UI and spacing references
 

@@ -40,6 +40,8 @@ Bruk skillen umiddelbart ved ord/fraser som:
 - Ikke fokus: UI, formvalidering, domene-/forretningslogikk
 - Endringer skal være små og målrettede; unngå refaktorering
 
+> **Relatert skill:** Denne skillen verifiserer at ruter og proxy er riktig konfigurert. For å forstå hvilke hooks som finnes, hvilke API-klienter de krever og hvordan env-variabler kobles til hookene, se [sif-common-query](../sif-common-query/SKILL.md).
+
 ## Arbeidsmodus
 
 ### Fase 1 - Diagnose (lese/verifisere)

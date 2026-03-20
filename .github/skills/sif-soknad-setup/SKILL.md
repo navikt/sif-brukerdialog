@@ -19,7 +19,7 @@ Guide for å sette opp `src/app/setup/`-mappen i en ny app som bruker `@sif/sokn
 
 - Fokus: `src/app/setup/` og tilhørende typer og utils i appen.
 - Ikke inkludert: selve steginnhold, API-kall, velkomst- og kvitteringssider.
-- Kildereferanse: `apps/sif-demo-app/src/app/setup/` og `apps/aktivitetspenger-soknad-v2/src/app/setup/`.
+- Kildereferanse: `apps/sif-demo-app/src/app/setup/` og `apps/aktivitetspenger-soknad/src/app/setup/`.
 
 ---
 
@@ -54,14 +54,16 @@ src/app/
       useAvbrytSøknad.ts
       useSøknadMellomlagring.ts
       useSøknadRhfForm.ts
+      useSøknadState.ts
       useSøknadStore.ts
       useStepDefaultValues.ts
       useStepSubmit.ts
+    config/
+      søknadStepConfig.ts              # SøknadStepId, stepConfig, stepOrder, stepTitles
     søknad/
       AppForm.tsx                      # SifForm + FormLayout wrapper
       SøknadFormButtons.tsx            # Navigasjonsknapper koblet til context
       SøknadStep.tsx                   # Side-container med progress, avbryt, consistency
-      søknadStepConfig.ts              # SøknadStepId, stepConfig, stepOrder, stepTitles
     wrappers/
       AppErrorBoundary.tsx
   i18n/
@@ -110,12 +112,12 @@ Deretter gjør du målrettede endringer på de tilpasningspunktene som er listet
 - **`Søknadsdata.ts`** — juster per-steg typene til domenefeltene for appen.
 - **`formValuesToSøknadsdata.ts`** — oppdater `switch`-casene til å matche de nye `SøknadStepId`-verdiene (start med `return undefined` og fyll ut steg for steg).
 - **`appMessages.ts`** — sett `application.title` til riktig ytelsesnavn.
-- **Metadata-typing i `InitialDataLoader`** — `useMemo` som lager metadata-objektet for mellomlagring **må** ha eksplisitt type `MellomlagringMetaData | undefined` både som generic-parameter og returtype. Uten dette kan objektet få feil shape (ekstra/manglende felt), og `objectHash` i `useYtelseMellomlagring` vil produsere en annen hash enn den som ble lagret — noe som fører til at mellomlagringen slettes stille ved hver innlasting. Riktig mønster:
-  ```ts
-  const metadata = useMemo<MellomlagringMetaData | undefined>((): MellomlagringMetaData | undefined => {
-      // ... bygg metadata
-  }, [deps]);
-  ```
+- **Metadata-typing i `useInitialData`** — `useMemo` som lager metadata-objektet for mellomlagring **må** ha eksplisitt type `MellomlagringMetaData | undefined` både som generic-parameter og returtype. Uten dette kan objektet få feil shape (ekstra/manglende felt), og `objectHash` i `useYtelseMellomlagring` vil produsere en annen hash enn den som ble lagret — noe som fører til at mellomlagringen slettes stille ved hver innlasting. Riktig mønster:
+    ```ts
+    const metadata = useMemo<MellomlagringMetaData | undefined>((): MellomlagringMetaData | undefined => {
+        // ... bygg metadata
+    }, [deps]);
+    ```
 
 ---
 
@@ -125,7 +127,7 @@ Bruk denne delen som referanse når du skal forstå mønsteret eller skrive fra 
 
 ### 1. Definer steg-konfigurasjon
 
-Opprett `src/app/setup/søknad/søknadStepConfig.ts`.
+Opprett `src/app/setup/config/søknadStepConfig.ts`.
 
 Tilpass per app:
 
@@ -136,7 +138,7 @@ Tilpass per app:
 - `stepTitles` — visningstittel for hvert steg
 
 ```ts
-// Eksempel: søknadStepConfig.ts
+// Eksempel: config/søknadStepConfig.ts
 import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { StepConfig } from '@sif/soknad/types';
 import { Søknadsdata } from '../../types/Søknadsdata';
@@ -179,7 +181,7 @@ Opprett `src/app/types/Søknadsdata.ts`.
 - Start med tomme typer (TODO) og fyll ut når steg implementeres
 
 ```ts
-import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { BaseSøknadsdata } from '@sif/soknad/types';
 
 export type MittStegSøknadsdata = {
@@ -231,6 +233,7 @@ Disse filene er like på tvers av apper og trenger minimal eller ingen tilpasnin
 | `hooks/useSøknadStore.ts`         | Ingenting — generisk via TypeScript        |
 | `hooks/useSøknadRhfForm.ts`       | Ingenting                                  |
 | `hooks/useSøknadMellomlagring.ts` | Ingenting                                  |
+| `hooks/useSøknadState.ts`         | Ingenting                                  |
 | `hooks/useStepDefaultValues.ts`   | Ingenting                                  |
 | `hooks/useStepSubmit.ts`          | Ingenting                                  |
 | `hooks/useAvbrytSøknad.ts`        | `navigate('/')` — destinasjon etter avbryt |
@@ -264,7 +267,7 @@ export const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<S
 Placeholder-implementasjon med `// TODO`-kommentarer. Fyll ut hvert steg etter hvert som de implementeres.
 
 ```ts
-import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { StepFormValues, StepSøknadsdata } from '@sif/soknad/types';
 
 export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormValues): StepSøknadsdata | undefined => {
@@ -327,11 +330,14 @@ templates/
   constants.ts
   context/
     søknadContext.ts
+  config/
+    søknadStepConfig.ts
   hooks/
     index.ts
     useAvbrytSøknad.ts
     useSøknadMellomlagring.ts
     useSøknadRhfForm.ts
+    useSøknadState.ts
     useSøknadStore.ts
     useStepDefaultValues.ts
     useStepSubmit.ts
@@ -339,7 +345,6 @@ templates/
     AppForm.tsx
     SøknadFormButtons.tsx
     SøknadStep.tsx
-    søknadStepConfig.ts
   types/
     Mellomlagring.ts
     Søknadsdata.ts
