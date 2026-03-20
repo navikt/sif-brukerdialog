@@ -5,7 +5,7 @@ import { Søknadsdata } from '../../types/Søknadsdata';
 export enum SøknadStepId {
     KONTONUMMER = 'kontonummer',
     BOSTED = 'bosted',
-    BOSTED_UTLAND = 'BOSTED_UTLAND',
+    BOSTED_UTLAND = 'bostedUtland',
     BARN = 'barn',
     OPPSUMMERING = 'oppsummering',
 }
@@ -21,7 +21,7 @@ export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
     },
     [SøknadStepId.BOSTED_UTLAND]: {
         route: 'bosted-utland',
-        isCompleted: (s) => s.BOSTED_UTLAND !== undefined,
+        isCompleted: (s) => s.bostedUtland !== undefined,
     },
     [SøknadStepId.BARN]: {
         route: 'barn',

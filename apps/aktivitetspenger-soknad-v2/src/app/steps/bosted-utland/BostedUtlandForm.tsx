@@ -3,7 +3,7 @@ import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useSt
 import { AppForm } from '@app/setup/søknad/AppForm';
 import { Button, Heading, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 import { useState } from 'react';
@@ -58,7 +58,7 @@ export const BostedUtlandForm = () => {
     methods.register(BostedUtlandFormFields.bosteder, {
         validate: (value) => {
             if (harBoddIUtlandetSiste5år === YesOrNo.YES && (!value || value.length === 0)) {
-                return 'Du må legge til minst ett bosted';
+                return validateField(BostedUtlandFormFields.bosteder, getListValidator({ minItems: 1 }))(value);
             }
         },
     });

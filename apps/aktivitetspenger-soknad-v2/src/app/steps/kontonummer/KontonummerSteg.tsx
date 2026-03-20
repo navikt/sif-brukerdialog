@@ -5,7 +5,7 @@ import { useSøknadState } from '../../setup/hooks';
 import { KontonummerForm } from './KontonummerForm';
 
 export const KontonummerSteg = () => {
-    const kontonummer = useSøknadState().kontonummer;
+    const kontonummer = useSøknadState().kontoInfo;
 
     return (
         <SøknadStep stepId={SøknadStepId.KONTONUMMER}>

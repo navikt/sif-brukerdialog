@@ -30,7 +30,7 @@ export const Søknad = ({ søker, barn, kontonummer, mellomlagring }: Props) => 
     const navigate = useNavigate();
 
     useEffectOnce(() => {
-        init({ søker, barn, kontonummer }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
+        init({ søker, barn, kontoInfo: kontonummer }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
     });
 
     useEffect(() => {
@@ -52,7 +52,11 @@ export const Søknad = ({ søker, barn, kontonummer, mellomlagring }: Props) => 
         return <KvitteringPage />;
     }
     if (!søknadSendt && location.pathname === '/kvittering') {
-        return <VelkommenPage />;
+        return (
+            <SøknadContextProvider>
+                <VelkommenPage />
+            </SøknadContextProvider>
+        );
     }
 
     return (

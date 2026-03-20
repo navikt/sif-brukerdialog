@@ -6,6 +6,6 @@ import { Søknadsdata } from './Søknadsdata';
 export interface SøknadState {
     søker: Søker;
     barn: RegistrertBarn[];
-    kontonummer: KontoInfo;
+    kontoInfo: KontoInfo;
     søknadsdata: Søknadsdata;
 }
