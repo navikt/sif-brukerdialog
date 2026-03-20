@@ -9,7 +9,7 @@ export const initApiClients = () => {
     });
 
     initK9BrukerdialogProsesseringApiClients({
-        frontendPath: '/aktivitetspenger/soknad/api',
+        frontendPath: '/aktivitetspenger/soknad/api/brukerdialog',
         loginURL: '#',
     });
 };
