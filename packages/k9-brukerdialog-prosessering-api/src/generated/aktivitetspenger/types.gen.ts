@@ -16,6 +16,7 @@ export type ProblemDetail = {
 };
 
 export type Aktivitetspengersøknad = {
+    forutgåendeBosteder: ForutgåendeBosteder;
     språk: string;
     startdato: string;
     søkerNorskIdent: string;
@@ -23,6 +24,18 @@ export type Aktivitetspengersøknad = {
     kontonummerInfo: KontonummerInfo;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
+};
+
+export type Bosted = {
+    fraOgMed: string;
+    tilOgMed: string;
+    landkode: string;
+    landnavn: string;
+};
+
+export type ForutgåendeBosteder = {
+    harBoddIUtlandetSiste5År: boolean;
+    utenlandsoppholdSiste5År: Bosted[];
 };
 
 export type KontonummerInfo = {
