@@ -3,11 +3,5 @@ export async function enableMocking() {
 
     return worker.start({
         onUnhandledRequest: 'warn',
-        // serviceWorker: {
-        //     url: '/aktivitetspenger-soknad/mockServiceWorker.js',
-        //     options: {
-        //         scope: '/aktivitetspenger-soknad/',
-        //     },
-        // },
     });
 }

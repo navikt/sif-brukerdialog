@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
                 '@app': resolve(__dirname, './src/app'),
             },
         },
-        base: '/aktivitetspenger-soknad/',
+        base: '/aktivitetspenger/soknad/',
         preview: {
             port: 8080,
         },
@@ -35,7 +35,7 @@ export default defineConfig(({ mode }) => {
             proxy: {
                 '/mockServiceWorker.js': {
                     target: 'http://localhost:8080',
-                    rewrite: () => '/aktivitetspenger-soknad/mockServiceWorker.js',
+                    rewrite: () => '/aktivitetspenger/soknad/mockServiceWorker.js',
                 },
             },
         },

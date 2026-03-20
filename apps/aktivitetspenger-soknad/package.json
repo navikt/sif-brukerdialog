@@ -4,8 +4,8 @@
     "private": true,
     "version": "0.0.1",
     "scripts": {
-        "dev": "vite --base=/aktivitetspenger-soknad --config vite.dev.config.ts",
-        "build": "vite build --base=/aktivitetspenger-soknad",
+        "dev": "vite --base=/aktivitetspenger/soknad --config vite.dev.config.ts",
+        "build": "vite build --base=/aktivitetspenger/soknad",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
         "lint:eslint": "eslint src",

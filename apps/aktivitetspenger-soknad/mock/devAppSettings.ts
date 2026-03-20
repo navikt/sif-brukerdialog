@@ -4,8 +4,7 @@ export const getDevAppSettings = (): AppEnv => ({
     ENV: 'development',
     APP_VERSION: 'dev',
     GITHUB_REF_NAME: 'dev',
-    PUBLIC_PATH: '/aktivitetspenger-soknad',
-
+    PUBLIC_PATH: '/aktivitetspenger/soknad',
     VELG_SCENARIO: 'on',
 
     SIF_PUBLIC_ANALYTICS_API_KEY: 'default',

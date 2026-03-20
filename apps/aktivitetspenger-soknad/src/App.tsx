@@ -27,7 +27,7 @@ export const App = () => {
             <AppErrorBoundary>
                 <QueryClientProvider client={queryClient}>
                     <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                        <BrowserRouter basename="/aktivitetspenger-soknad">
+                        <BrowserRouter basename="/aktivitetspenger/soknad">
                             <InitialDataLoader />
                         </BrowserRouter>
                     </IntlProvider>
