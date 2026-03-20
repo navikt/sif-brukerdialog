@@ -79,7 +79,7 @@ export const BostedUtlandForm = () => {
                 {harBoddIUtlandetSiste5år === YesOrNo.YES && (
                     <VStack gap="space-16">
                         <Heading size="xsmall" level="3">
-                            Bosteder
+                            Bosteder i utlandet siste 5 år
                         </Heading>
                         {bosteder && bosteder.length > 0 && (
                             <BostedUtlandList
