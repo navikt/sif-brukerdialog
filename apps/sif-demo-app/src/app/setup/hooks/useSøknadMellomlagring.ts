@@ -1,18 +1,17 @@
 import { useYtelseMellomlagring } from '@navikt/sif-common-query';
-import { SøknadFormValues } from '@sif/soknad/types';
+import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
 
 import { MellomlagringMetaData, SøknadMellomlagring } from '../../types/Mellomlagring';
+import { SøknadStepId } from '../config/søknadStepConfig';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../constants';
 import { useSøknadStore } from './useSøknadStore';
 
-/**
- * Bruker useYtelseMellomlagring fra sif-common-query til å håndtere
- * mellomlagring av søknadsdata og skjemadata.
- * Skjemadata er data som ikke er submittet enda.
- */
 export const useSøknadMellomlagring = () => {
     const søknadState = useSøknadStore((s) => s.søknadState);
+
+    const { søknadFormValues } = useSøknadFormValues();
 
     const metadata = useMemo<MellomlagringMetaData | undefined>(() => {
         if (!søknadState) return undefined;
@@ -25,43 +24,73 @@ export const useSøknadMellomlagring = () => {
 
     const mellomlagring = useYtelseMellomlagring<SøknadMellomlagring, MellomlagringMetaData>(APP_YTELSE, metadata);
 
-    /**
-     * Lagre ved submit av steg. Clearer skjemadata siden søknadsdata nå er master.
-     */
     const lagreSøknad = async () => {
         const state = useSøknadStore.getState();
         const søknadsdata = state.søknadState?.søknadsdata;
         const currentStepId = state.currentStepId;
 
         if (søknadsdata && currentStepId) {
-            await mellomlagring.lagre({
-                søknadsdata,
-                currentStepId,
-                skjemadata: undefined,
-            });
+            try {
+                await mellomlagring.lagre({
+                    søknadsdata,
+                    currentStepId,
+                    skjemadata: undefined,
+                });
+            } catch (error) {
+                console.error('Mellomlagring feilet', error);
+            }
         }
     };
 
-    /**
-     * Lagre midt i et steg. Bevarer skjemadata for usubmittede verdier.
-     */
+    const opprettMellomlagring = async () => {
+        const state = useSøknadStore.getState();
+        const søknadsdata = state.søknadState?.søknadsdata;
+        const currentStepId = state.currentStepId;
+
+        if (søknadsdata && currentStepId) {
+            try {
+                await mellomlagring.opprett({
+                    søknadsdata,
+                    currentStepId,
+                    skjemadata: undefined,
+                });
+            } catch (error) {
+                console.error('Opprett mellomlagring feilet', error);
+            }
+        }
+    };
+
+    const lagreSøknadSteg = async (stegId: SøknadStepId, values: StepFormValues) => {
+        const skjemadata = { [stegId]: values };
+        await lagreSøknadOgSkjemadata(skjemadata);
+    };
+
     const lagreSøknadOgSkjemadata = async (skjemadata: SøknadFormValues) => {
         const state = useSøknadStore.getState();
         const søknadsdata = state.søknadState?.søknadsdata;
         const currentStepId = state.currentStepId;
 
         if (søknadsdata && currentStepId) {
-            await mellomlagring.lagre({
-                søknadsdata,
-                currentStepId,
-                skjemadata,
-            });
+            try {
+                await mellomlagring.lagre({
+                    søknadsdata,
+                    currentStepId,
+                    skjemadata: {
+                        ...søknadFormValues,
+                        ...skjemadata,
+                    },
+                });
+            } catch (error) {
+                console.error('Mellomlagring feilet', error);
+            }
         }
     };
 
     return {
         lagreSøknad,
+        opprettMellomlagring,
         lagreSøknadOgSkjemadata,
+        lagreSøknadSteg,
         slettMellomlagring: mellomlagring.slett,
         isPending: mellomlagring.isPending,
     };

@@ -1,7 +1,10 @@
 /**
- * Skjemadata for ett steg
+ * Skjemadata for ett steg.
+ * Bruker {} i stedet for Record<string, unknown> for å unngå index signature,
+ * slik at TypeScript fanger opp feilaktige property-navn i extends-typer.
  */
-export type StepFormValues = Record<string, unknown>;
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export type StepFormValues = {};
 
 /**
  * Skjemadata for alle steg
@@ -9,9 +12,11 @@ export type StepFormValues = Record<string, unknown>;
 export type SøknadFormValues = Record<string, StepFormValues | undefined>;
 
 /**
- * Søknadsdata for alle steg
+ * Søknadsdata for alle steg.
+ * Bruker {} av samme grunn som StepFormValues.
  */
-export type StepSøknadsdata = Record<string, unknown>;
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export type StepSøknadsdata = {};
 
 /**
  * Base type for søknadsdata - noe alle søknader har.

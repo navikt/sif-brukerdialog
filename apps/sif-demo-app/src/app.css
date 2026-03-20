@@ -1,0 +1,7 @@
+/** Overstyrer bottom-placement på smale skjermer */
+.aksel-dialog__popup {
+    top: 0;
+    bottom: unset !important;
+    margin-block: max(var(--__axc-dialog-center-margin), 10dvh) auto;
+    border-radius: var(--ax-radius-12);
+}

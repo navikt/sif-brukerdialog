@@ -1,13 +1,11 @@
+import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { AppForm } from '@app/setup/søknad/AppForm';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { useSifValidate } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 
-import { createSifFormComponents } from '../../../../../../packages/sif-rhf/src/components/createSifFormComponents';
-import { AppForm } from '../../setup/søknad/AppForm';
 import { BostedSøknadsdata } from '../../types/Søknadsdata';
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 

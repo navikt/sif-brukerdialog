@@ -1,14 +1,16 @@
 import { ApiError, sifCommonQueryKeys } from '@navikt/sif-common-query';
-import { KontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useQuery } from '@tanstack/react-query';
 
 import { hentKontonummer } from '../api/kontonummerApi';
+import { HarKontonummerEnum, UtvidetKontonummerInfo } from '../types/UtvidetKontonummerInfo';
 
 /**
  * Henter alle deltakelser for innlogget deltaker
  */
+export const kontonummerFallback: UtvidetKontonummerInfo = { harKontonummer: HarKontonummerEnum.UVISST };
+
 export const useKontonummer = (enabled = true) => {
-    return useQuery<KontonummerDto | null, ApiError>({
+    return useQuery<UtvidetKontonummerInfo, ApiError>({
         queryKey: sifCommonQueryKeys.kontonummer,
         queryFn: hentKontonummer,
         enabled,

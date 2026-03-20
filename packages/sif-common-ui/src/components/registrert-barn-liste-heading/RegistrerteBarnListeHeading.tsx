@@ -6,11 +6,11 @@ export interface RegistrerteBarnListeHeadingProps extends HeadingProps {
     children: string;
 }
 
-const RegistrerteBarnListeHeading = ({ children: tittel, ...rest }: RegistrerteBarnListeHeadingProps) => {
+const RegistrerteBarnListeHeading = ({ children, ...rest }: RegistrerteBarnListeHeadingProps) => {
     return (
         <HStack gap="space-8">
-            <Heading {...rest} aria-label={tittel}>
-                {tittel}
+            <Heading {...rest} aria-label={children}>
+                {children}
             </Heading>
             <RegistrerteBarnKildeInfo />
         </HStack>

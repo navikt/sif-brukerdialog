@@ -1,4 +1,3 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { StepConfig } from '@sif/soknad/types';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
@@ -7,12 +6,6 @@ export enum SøknadStepId {
     BOSTED = 'bosted',
     BARN = 'barn',
     OPPSUMMERING = 'oppsummering',
-}
-
-export interface SøknadState {
-    søker: Søker;
-    barn: RegistrertBarn[];
-    søknadsdata: Søknadsdata;
 }
 
 export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
