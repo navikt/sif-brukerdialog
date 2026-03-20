@@ -4400,9 +4400,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aktivitetspenger-soknad@workspace:apps/aktivitetspenger-soknad-v2":
+"@navikt/aktivitetspenger-soknad@workspace:apps/aktivitetspenger-soknad":
   version: 0.0.0-use.local
-  resolution: "@navikt/aktivitetspenger-soknad@workspace:apps/aktivitetspenger-soknad-v2"
+  resolution: "@navikt/aktivitetspenger-soknad@workspace:apps/aktivitetspenger-soknad"
   dependencies:
     "@chromatic-com/storybook": "npm:^5.0.1"
     "@navikt/aksel-icons": "npm:8.7.0"
