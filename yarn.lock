@@ -2686,12 +2686,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/ecma402-abstract@npm:3.1.2":
+  version: 3.1.2
+  resolution: "@formatjs/ecma402-abstract@npm:3.1.2"
+  dependencies:
+    "@formatjs/fast-memoize": "npm:3.1.1"
+    "@formatjs/intl-localematcher": "npm:0.8.2"
+    decimal.js: "npm:^10.6.0"
+  checksum: 10/0005707da31ac43dfd394659489055bf98a1a5719e838e2812b7efaeb2aebefd9e108e7e9f42c4dfc3a2912af61851f271d3eacfbfd56ee89214bc7bf1988e75
+  languageName: node
+  linkType: hard
+
 "@formatjs/fast-memoize@npm:3.1.0":
   version: 3.1.0
   resolution: "@formatjs/fast-memoize@npm:3.1.0"
   dependencies:
     tslib: "npm:^2.8.1"
   checksum: 10/700dfd0a10d20d8cb7427406127f78612a696e4942d38a8f153d82ca213f26bd0616d01a29957f194688887551595455eb0f629c2ce36d964a66ba15815afde9
+  languageName: node
+  linkType: hard
+
+"@formatjs/fast-memoize@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@formatjs/fast-memoize@npm:3.1.1"
+  checksum: 10/8eb728653517785f644099539461c9dbfae86e2cc55b36cc361b625e93718c91f77eda84a6a14567d862f8f5781e7b8d5a498118579aaff6829e1ed7b673408b
   languageName: node
   linkType: hard
 
@@ -2726,15 +2744,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-pluralrules@npm:6.2.3":
-  version: 6.2.3
-  resolution: "@formatjs/intl-pluralrules@npm:6.2.3"
+"@formatjs/intl-localematcher@npm:0.8.2":
+  version: 0.8.2
+  resolution: "@formatjs/intl-localematcher@npm:0.8.2"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:3.1.1"
-    "@formatjs/intl-localematcher": "npm:0.8.1"
+    "@formatjs/fast-memoize": "npm:3.1.1"
+  checksum: 10/fbc06526b7ffbac52ee5006aeed66451675ab7bac75ea89c2179312eba114843cd40274d975ad8d08970212c1e0e72a2021abc169b3cb0495982892f0e37f937
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-pluralrules@npm:6.2.4":
+  version: 6.2.4
+  resolution: "@formatjs/intl-pluralrules@npm:6.2.4"
+  dependencies:
+    "@formatjs/ecma402-abstract": "npm:3.1.2"
+    "@formatjs/intl-localematcher": "npm:0.8.2"
     decimal.js: "npm:^10.6.0"
-    tslib: "npm:^2.8.1"
-  checksum: 10/24156fe73068a649a40f722a4f7f968856f203dade617908a89c29904c97ed3533c0129643935b9f335a496b60db8af14f55ffeeae7f6fb33c6bd65498cbec03
+  checksum: 10/4af89c8846280eab313ada52d1a3c4a707b0fa1bca29311a80686cf315233d19a4a141b79ddc815620eb5a123e3991f2fd9f92299c468d084b1444b445747dbe
   languageName: node
   linkType: hard
 
@@ -2863,17 +2889,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/codegen-core@npm:0.7.2":
-  version: 0.7.2
-  resolution: "@hey-api/codegen-core@npm:0.7.2"
+"@hey-api/codegen-core@npm:0.7.3":
+  version: 0.7.3
+  resolution: "@hey-api/codegen-core@npm:0.7.3"
   dependencies:
-    "@hey-api/types": "npm:0.1.3"
+    "@hey-api/types": "npm:0.1.4"
     ansi-colors: "npm:4.1.3"
     c12: "npm:3.3.3"
     color-support: "npm:1.1.3"
-  peerDependencies:
-    typescript: ">=5.5.3"
-  checksum: 10/771dcccd36cabfa0b78f93a11e437b44259a12c227af55ff2fd0244a75a395fbf4e13ec4a2638b7f0a8849b5be1b34c95b05b127df925407c613b554e106a94c
+  checksum: 10/bcf1a7bb22eb7bcd136911d317fe447e6e12cc24e538461efbcdf2e4c476b4e4f593f761c37ffb2e3b3bc6c24a73d62aff0761cf51d893c6b5ae7fef961f0bac
   languageName: node
   linkType: hard
 
@@ -2888,48 +2912,45 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/openapi-ts@npm:0.94.1":
-  version: 0.94.1
-  resolution: "@hey-api/openapi-ts@npm:0.94.1"
+"@hey-api/openapi-ts@npm:0.94.2":
+  version: 0.94.2
+  resolution: "@hey-api/openapi-ts@npm:0.94.2"
   dependencies:
-    "@hey-api/codegen-core": "npm:0.7.2"
+    "@hey-api/codegen-core": "npm:0.7.3"
     "@hey-api/json-schema-ref-parser": "npm:1.3.1"
-    "@hey-api/shared": "npm:0.2.3"
-    "@hey-api/types": "npm:0.1.3"
+    "@hey-api/shared": "npm:0.2.4"
+    "@hey-api/types": "npm:0.1.4"
     ansi-colors: "npm:4.1.3"
     color-support: "npm:1.1.3"
     commander: "npm:14.0.3"
+    get-tsconfig: "npm:4.13.6"
   peerDependencies:
-    typescript: ">=5.5.3"
+    typescript: ">=5.5.3 || 6.0.1-rc"
   bin:
     openapi-ts: bin/run.js
-  checksum: 10/f788712a1425d65072e696c037e11a606337182c2ef221bfa5523ccf72803578ef12a974bd950f32e7c23114dd9aba38616a5747623b1ce4443404fbba06ed9c
+  checksum: 10/13a4c603d1503d395ab640df5a1e7d6a699965984e059e93f1e3db8523f8b300fc6cc0884858dfdb78d8c32d1fe31afa1da930bf0019d29ffd2e2137f5e1a5b8
   languageName: node
   linkType: hard
 
-"@hey-api/shared@npm:0.2.3":
-  version: 0.2.3
-  resolution: "@hey-api/shared@npm:0.2.3"
+"@hey-api/shared@npm:0.2.4":
+  version: 0.2.4
+  resolution: "@hey-api/shared@npm:0.2.4"
   dependencies:
-    "@hey-api/codegen-core": "npm:0.7.2"
+    "@hey-api/codegen-core": "npm:0.7.3"
     "@hey-api/json-schema-ref-parser": "npm:1.3.1"
-    "@hey-api/types": "npm:0.1.3"
+    "@hey-api/types": "npm:0.1.4"
     ansi-colors: "npm:4.1.3"
     cross-spawn: "npm:7.0.6"
     open: "npm:11.0.0"
     semver: "npm:7.7.3"
-  peerDependencies:
-    typescript: ">=5.5.3"
-  checksum: 10/5e4283630461d4f1f28af9353807fa43b08394e2e7a705d44b19a7e433ea26b762e5616ff06541740e99757911acc01327beecc9d56b2675bc5d35e2bfad6bdf
+  checksum: 10/d2ed5193a4a6bec6e86ef113fc0a3af468ead5550b1e36f4c72260f9d8ec670a750ba56b2bfe27c9143369a142d8a581ea89231eb6f53c049d72422b000c6c31
   languageName: node
   linkType: hard
 
-"@hey-api/types@npm:0.1.3":
-  version: 0.1.3
-  resolution: "@hey-api/types@npm:0.1.3"
-  peerDependencies:
-    typescript: ">=5.5.3"
-  checksum: 10/33576efb252636abcd0becfb862fe186b58e0bfea23867e68224557a78386a10d6e2f95386b29aa18d7dad08c1c0a28624ce5bcaff77e7702b1d786aee92bdfa
+"@hey-api/types@npm:0.1.4":
+  version: 0.1.4
+  resolution: "@hey-api/types@npm:0.1.4"
+  checksum: 10/badbceaec41c9cf95040021eddffa48aee1c97f0636b19a42538980cfc9ef07411f0620f17f6663fc5ae8cca16d819204a569352cdf78a5089cbb0abe9001d56
   languageName: node
   linkType: hard
 
@@ -4418,12 +4439,12 @@ __metadata:
     "@vitest/coverage-v8": "npm:4.1.0"
     dayjs: "npm:1.11.20"
     eslint-plugin-storybook: "npm:10.2.19"
-    msw: "npm:2.12.10"
-    playwright: "npm:^1.58.2"
+    msw: "npm:2.12.11"
+    playwright: "npm:1.58.2"
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-hook-form: "npm:7.71.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     tailwindcss: "npm:4.2.1"
@@ -4433,7 +4454,7 @@ __metadata:
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.0"
     zod: "npm:4.3.6"
-    zustand: "npm:5.0.11"
+    zustand: "npm:5.0.12"
   languageName: unknown
   linkType: soft
 
@@ -4500,7 +4521,7 @@ __metadata:
     jsdom: "npm:28.1.0"
     lodash.sortby: "npm:4.7.0"
     lodash.uniq: "npm:4.5.0"
-    msw: "npm:^2.12.10"
+    msw: "npm:2.12.11"
     next: "npm:16.1.6"
     next-logger: "npm:5.0.2"
     pino: "npm:10.3.1"
@@ -4510,7 +4531,7 @@ __metadata:
     postcss-import: "npm:16.1.1"
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-loading-skeleton: "npm:3.5.0"
     storybook: "npm:10.2.19"
     swr: "npm:2.4.1"
@@ -4617,7 +4638,7 @@ __metadata:
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     rimraf: "npm:6.1.3"
     storybook: "npm:10.2.19"
@@ -4688,7 +4709,7 @@ __metadata:
     jsdom: "npm:28.1.0"
     lodash: "npm:4.17.23"
     mockdate: "npm:3.0.5"
-    msw: "npm:2.12.10"
+    msw: "npm:2.12.11"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.58.2"
@@ -4697,7 +4718,7 @@ __metadata:
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-responsive: "npm:10.0.1"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
@@ -4722,7 +4743,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.94.1"
+    "@hey-api/openapi-ts": "npm:0.94.2"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.6"
     config: "workspace:*"
@@ -4742,7 +4763,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.94.1"
+    "@hey-api/openapi-ts": "npm:0.94.2"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.6"
     config: "workspace:*"
@@ -4762,7 +4783,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.94.1"
+    "@hey-api/openapi-ts": "npm:0.94.2"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.6"
     config: "workspace:*"
@@ -4873,7 +4894,7 @@ __metadata:
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     tailwindcss: "npm:4.2.1"
@@ -4920,7 +4941,7 @@ __metadata:
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     tailwindcss: "npm:4.2.1"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -4988,7 +5009,7 @@ __metadata:
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     tailwindcss: "npm:4.2.1"
@@ -5060,7 +5081,7 @@ __metadata:
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     tailwindcss: "npm:4.2.1"
@@ -5111,12 +5132,12 @@ __metadata:
     "@vitest/coverage-v8": "npm:4.1.0"
     dayjs: "npm:1.11.20"
     eslint-plugin-storybook: "npm:10.2.19"
-    msw: "npm:2.12.10"
+    msw: "npm:2.12.11"
     playwright: "npm:^1.58.2"
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-hook-form: "npm:7.71.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     tailwindcss: "npm:4.2.1"
@@ -5125,7 +5146,7 @@ __metadata:
     vite: "npm:7.3.1"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.0"
-    zustand: "npm:5.0.11"
+    zustand: "npm:5.0.12"
   languageName: unknown
   linkType: soft
 
@@ -5194,7 +5215,7 @@ __metadata:
     react-dom: "npm:19.2.4"
     react-fast-compare: "npm:3.2.2"
     react-hook-form: "npm:7.71.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     tailwindcss: "npm:4.2.1"
@@ -5262,7 +5283,7 @@ __metadata:
     jsdom: "npm:28.1.0"
     lodash: "npm:4.17.23"
     lodash.debounce: "npm:4.0.8"
-    msw: "npm:2.12.10"
+    msw: "npm:2.12.11"
     mustache-express: "npm:1.3.2"
     npm-run-all: "npm:4.1.5"
     object-hash: "npm:3.0.0"
@@ -5273,7 +5294,7 @@ __metadata:
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     tailwindcss: "npm:4.2.1"
@@ -5360,7 +5381,7 @@ __metadata:
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     tailwindcss: "npm:4.2.1"
@@ -5439,7 +5460,7 @@ __metadata:
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     typescript: "npm:5.9.3"
@@ -5496,7 +5517,7 @@ __metadata:
     gh-pages: "npm:6.3.0"
     glob: "npm:13.0.6"
     husky: "npm:9.1.7"
-    lint-staged: "npm:16.3.3"
+    lint-staged: "npm:16.4.0"
     prettier: "npm:3.8.1"
     tailwindcss: "npm:4.2.1"
     turbo: "npm:2.8.17"
@@ -5548,7 +5569,7 @@ __metadata:
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     storybook: "npm:10.2.19"
     typescript: "npm:5.9.3"
     webpack: "npm:5.105.4"
@@ -5593,14 +5614,14 @@ __metadata:
     formik: "npm:2.4.9"
     http-status-codes: "npm:2.3.0"
     i18n-iso-countries: "npm:7.14.0"
-    msw: "npm:2.12.10"
+    msw: "npm:2.12.11"
     msw-storybook-addon: "npm:2.0.6"
     postcss: "npm:8.5.8"
     prop-types: "npm:15.8.1"
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-responsive: "npm:10.0.1"
     rimraf: "npm:6.1.3"
     storybook: "npm:10.2.19"
@@ -5672,7 +5693,7 @@ __metadata:
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-syntax-highlighter: "npm:16.1.1"
     rimraf: "npm:6.1.3"
     sass-loader: "npm:16.0.7"
@@ -5691,7 +5712,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-forms-ds@workspace:packages/sif-common-forms-ds"
   dependencies:
-    "@formatjs/intl-pluralrules": "npm:6.2.3"
+    "@formatjs/intl-pluralrules": "npm:6.2.4"
     "@navikt/aksel-icons": "npm:8.7.0"
     "@navikt/ds-css": "npm:8.7.0"
     "@navikt/ds-react": "npm:8.7.0"
@@ -5728,7 +5749,7 @@ __metadata:
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     rimraf: "npm:6.1.3"
     storybook: "npm:10.2.19"
@@ -5806,7 +5827,7 @@ __metadata:
   resolution: "@navikt/sif-common-soknad-ds@workspace:packages/sif-common-soknad-ds"
   dependencies:
     "@devexperts/remote-data-ts": "npm:2.1.1"
-    "@formatjs/intl-pluralrules": "npm:6.2.3"
+    "@formatjs/intl-pluralrules": "npm:6.2.4"
     "@navikt/aksel-icons": "npm:8.7.0"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:8.7.0"
@@ -5856,7 +5877,7 @@ __metadata:
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     rimraf: "npm:6.1.3"
     sass-loader: "npm:16.0.7"
@@ -5913,7 +5934,7 @@ __metadata:
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     storybook: "npm:10.2.19"
     typescript: "npm:5.9.3"
     webpack: "npm:5.105.4"
@@ -5937,7 +5958,7 @@ __metadata:
     postcss: "npm:8.5.8"
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
     vitest: "npm:4.1.0"
@@ -5983,12 +6004,12 @@ __metadata:
     "@vitest/coverage-v8": "npm:4.1.0"
     dayjs: "npm:1.11.20"
     eslint-plugin-storybook: "npm:10.2.19"
-    msw: "npm:2.12.10"
+    msw: "npm:2.12.11"
     playwright: "npm:^1.58.2"
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-hook-form: "npm:7.71.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
     tailwindcss: "npm:4.2.1"
@@ -5997,7 +6018,7 @@ __metadata:
     vite: "npm:7.3.1"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.0"
-    zustand: "npm:5.0.11"
+    zustand: "npm:5.0.12"
   languageName: unknown
   linkType: soft
 
@@ -6059,7 +6080,7 @@ __metadata:
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     tailwindcss: "npm:4.2.1"
     typescript: "npm:5.9.3"
@@ -6098,7 +6119,7 @@ __metadata:
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-hook-form: "npm:7.71.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     storybook: "npm:10.2.19"
     storybook-react-intl: "npm:10.1.1"
     typescript: "npm:5.9.3"
@@ -6165,7 +6186,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.94.1"
+    "@hey-api/openapi-ts": "npm:0.94.2"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.6"
     config: "workspace:*"
@@ -6209,7 +6230,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.94.1"
+    "@hey-api/openapi-ts": "npm:0.94.2"
     "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.6"
@@ -6230,7 +6251,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.94.1"
+    "@hey-api/openapi-ts": "npm:0.94.2"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.13.6"
     config: "workspace:*"
@@ -6297,7 +6318,7 @@ __metadata:
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:28.1.0"
     mockdate: "npm:3.0.5"
-    msw: "npm:2.12.10"
+    msw: "npm:2.12.11"
     mustache-express: "npm:1.3.2"
     npm-run-all: "npm:4.1.5"
     object-hash: "npm:3.0.0"
@@ -6310,7 +6331,7 @@ __metadata:
     react-dom: "npm:19.2.4"
     react-error-boundary: "npm:6.1.1"
     react-helmet: "npm:6.1.0"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-loading-skeleton: "npm:3.5.0"
     react-router-dom: "npm:7.13.1"
     storybook: "npm:10.2.19"
@@ -6323,7 +6344,7 @@ __metadata:
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.0"
     zod: "npm:4.3.6"
-    zustand: "npm:5.0.11"
+    zustand: "npm:5.0.12"
   languageName: unknown
   linkType: soft
 
@@ -6384,7 +6405,7 @@ __metadata:
     html-react-parser: "npm:5.2.17"
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:28.1.0"
-    msw: "npm:2.12.10"
+    msw: "npm:2.12.11"
     msw-storybook-addon: "npm:2.0.6"
     mustache-express: "npm:1.3.2"
     npm-run-all: "npm:4.1.5"
@@ -6396,7 +6417,7 @@ __metadata:
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-helmet: "npm:6.1.0"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-loading-skeleton: "npm:3.5.0"
     react-markdown: "npm:10.1.0"
     react-router-dom: "npm:7.13.1"
@@ -9514,7 +9535,7 @@ __metadata:
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-hook-form: "npm:7.71.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     typescript: "npm:5.9.3"
     vitest: "npm:4.1.0"
   peerDependencies:
@@ -9542,11 +9563,11 @@ __metadata:
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-hook-form: "npm:7.71.2"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     react-router-dom: "npm:7.13.1"
     typescript: "npm:5.9.3"
     vitest: "npm:4.1.0"
-    zustand: "npm:5.0.11"
+    zustand: "npm:5.0.12"
   peerDependencies:
     react: ">=19"
     react-dom: ">=19"
@@ -17328,7 +17349,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-tsconfig@npm:^4.10.0, get-tsconfig@npm:^4.13.6, get-tsconfig@npm:^4.7.5":
+"get-tsconfig@npm:4.13.6, get-tsconfig@npm:^4.10.0, get-tsconfig@npm:^4.13.6, get-tsconfig@npm:^4.7.5":
   version: 4.13.6
   resolution: "get-tsconfig@npm:4.13.6"
   dependencies:
@@ -20513,19 +20534,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:16.3.3":
-  version: 16.3.3
-  resolution: "lint-staged@npm:16.3.3"
+"lint-staged@npm:16.4.0":
+  version: 16.4.0
+  resolution: "lint-staged@npm:16.4.0"
   dependencies:
     commander: "npm:^14.0.3"
     listr2: "npm:^9.0.5"
-    micromatch: "npm:^4.0.8"
+    picomatch: "npm:^4.0.3"
     string-argv: "npm:^0.3.2"
-    tinyexec: "npm:^1.0.2"
+    tinyexec: "npm:^1.0.4"
     yaml: "npm:^2.8.2"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10/64b20a0aa8710a89db49b4d4384f44e471de8544133cd9f80b1ebeac148144e43b1553aea2b34bf530fd32b554374ee8128c9332033ba138f1a9685964de1cd3
+  checksum: 10/eb7aa0d43e321bbf282ce0c693a3db762aa9b8e5bf29419a49c8877a247cd3a14cf8d519f914f8c8dcd2aea73ac83c0bb44fadb97a30004219e060a780dda74e
   languageName: node
   linkType: hard
 
@@ -21955,7 +21976,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.12.10, msw@npm:^2.0.8, msw@npm:^2.12.10":
+"msw@npm:2.12.11":
+  version: 2.12.11
+  resolution: "msw@npm:2.12.11"
+  dependencies:
+    "@inquirer/confirm": "npm:^5.0.0"
+    "@mswjs/interceptors": "npm:^0.41.2"
+    "@open-draft/deferred-promise": "npm:^2.2.0"
+    "@types/statuses": "npm:^2.0.6"
+    cookie: "npm:^1.0.2"
+    graphql: "npm:^16.12.0"
+    headers-polyfill: "npm:^4.0.2"
+    is-node-process: "npm:^1.2.0"
+    outvariant: "npm:^1.4.3"
+    path-to-regexp: "npm:^6.3.0"
+    picocolors: "npm:^1.1.1"
+    rettime: "npm:^0.10.1"
+    statuses: "npm:^2.0.2"
+    strict-event-emitter: "npm:^0.5.1"
+    tough-cookie: "npm:^6.0.0"
+    type-fest: "npm:^5.2.0"
+    until-async: "npm:^3.0.2"
+    yargs: "npm:^17.7.2"
+  peerDependencies:
+    typescript: ">= 4.8.x"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  bin:
+    msw: cli/index.js
+  checksum: 10/309766f3134891294843600ba60c0cdf859c13b075a14904061e4e27ad619c953974220474f1ee1b464dcd5b877a5f74111dd3de8349a34870c2259bcb0be8f9
+  languageName: node
+  linkType: hard
+
+"msw@npm:^2.0.8":
   version: 2.12.10
   resolution: "msw@npm:2.12.10"
   dependencies:
@@ -24420,9 +24474,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:8.1.3":
-  version: 8.1.3
-  resolution: "react-intl@npm:8.1.3"
+"react-intl@npm:8.1.4":
+  version: 8.1.4
+  resolution: "react-intl@npm:8.1.4"
   dependencies:
     "@formatjs/ecma402-abstract": "npm:3.1.1"
     "@formatjs/icu-messageformat-parser": "npm:3.5.1"
@@ -24438,7 +24492,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/d2f6dce6df8d73f00ebdd37071eb418d0324056af4e44dd0b61160011aa9c9bf5524f9dac39e034dbbafd5fe6bf3d29838fe09c7d6dc944b97ed743e5af2177f
+  checksum: 10/22f16ea88d09104663053d25fe57b4f1764e4aa7b8537857d6bd5e5bfd4147c26f506b4503eb8dbc9090d80434ea1c94142a64535a369704934a5646d6847679
   languageName: node
   linkType: hard
 
@@ -26295,7 +26349,7 @@ __metadata:
     react: "npm:19.2.4"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.4"
-    react-intl: "npm:8.1.3"
+    react-intl: "npm:8.1.4"
     storybook: "npm:10.2.19"
     typescript: "npm:5.9.3"
     webpack: "npm:5.105.4"
@@ -27549,6 +27603,13 @@ __metadata:
   version: 1.0.2
   resolution: "tinyexec@npm:1.0.2"
   checksum: 10/cb709ed4240e873d3816e67f851d445f5676e0ae3a52931a60ff571d93d388da09108c8057b62351766133ee05ff3159dd56c3a0fbd39a5933c6639ce8771405
+  languageName: node
+  linkType: hard
+
+"tinyexec@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "tinyexec@npm:1.0.4"
+  checksum: 10/ccebe4044eef6fa5050929df7862fda70b4fb700f15d94aef8ae6109b9d194dbc3a990125d99944fd25b90fe2115e1927f055b909a604c571a81b647ede5757a
   languageName: node
   linkType: hard
 
@@ -29651,7 +29712,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:5.0.11, zustand@npm:^5.0.4":
+"zustand@npm:5.0.12":
+  version: 5.0.12
+  resolution: "zustand@npm:5.0.12"
+  peerDependencies:
+    "@types/react": ">=18.0.0"
+    immer: ">=9.0.6"
+    react: ">=18.0.0"
+    use-sync-external-store: ">=1.2.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    immer:
+      optional: true
+    react:
+      optional: true
+    use-sync-external-store:
+      optional: true
+  checksum: 10/b84c85fc4133ec5ee05c11d0f2f3dff0f7537d9d0f1d3475a8e5a92f42ee1ba6d38039e09baf510075eb738e3d55018a635b3fa7db07c94e8d5717104abab9e5
+  languageName: node
+  linkType: hard
+
+"zustand@npm:^5.0.4":
   version: 5.0.11
   resolution: "zustand@npm:5.0.11"
   peerDependencies:
