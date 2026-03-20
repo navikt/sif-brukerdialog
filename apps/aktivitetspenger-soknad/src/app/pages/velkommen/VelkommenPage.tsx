@@ -14,14 +14,14 @@ export const VelkommenPage = () => {
     const søknadState = useSøknadStore((s) => s.søknadState);
     const { startSøknad } = useSøknadFlow();
     const { clearSøknadFormValues } = useSøknadFormValues();
-    const { lagreSøknad, isPending } = useSøknadMellomlagring();
+    const { opprettMellomlagring, isPending } = useSøknadMellomlagring();
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {
         const førsteStegId = søknadStepOrder[0];
         const førsteSteg = søknadStepConfig[førsteStegId];
         clearSøknadFormValues();
         startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
-        await lagreSøknad();
+        await opprettMellomlagring();
         navigate(`/soknad/${førsteSteg.route}`);
     };
 

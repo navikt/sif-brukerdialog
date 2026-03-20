@@ -83,7 +83,7 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 | `useValiderFritekst(enabled?)`                                         | Valideringsresultat               | —                                  |
 | `useLagreVedlegg()`                                                    | Mutation for opplasting           | Invaliderer vedlegg-cache          |
 | `useSlettVedlegg()`                                                    | Mutation for sletting             | Fjerner fra cache                  |
-| `useYtelseMellomlagring<State, MetaData>(ytelse, metadata?, options?)` | `State \| null` + `lagre`/`slett` | staleTime: Infinity, gcTime: 5 min |
+| `useYtelseMellomlagring<State, MetaData>(ytelse, metadata?, options?)` | `State \| null` + `opprett`/`lagre`/`slett` | staleTime: Infinity, gcTime: 5 min |
 
 ---
 
@@ -197,7 +197,7 @@ Denne seksjonen er kun relevant når oppgaven faktisk gjelder mellomlagring. `us
 
 - Lagrer søknadsdata midlertidig i backend med metadata-hash-validering.
 - Hvis metadata (søker, barn, versjon) endres, slettes gammel mellomlagring automatisk.
-- Lagre-operasjonen prøver oppdatering først, faller tilbake til opprettelse ved 404.
+- Hooken eksponerer to separate lagre-operasjoner: `opprett` (POST, brukes første gang søknaden startes) og `lagre` (PUT, brukes ved alle påfølgende lagringer).
 
 ### Bruksmønster
 
@@ -219,7 +219,8 @@ const mellomlagring = useYtelseMellomlagring<SøknadState, MellomlagringMetaData
 );
 
 // Lese: mellomlagring.data
-// Lagre: await mellomlagring.lagre(state)
+// Opprette (POST, ved søknadsstart): await mellomlagring.opprett(state)
+// Lagre (PUT, ved navigering): await mellomlagring.lagre(state)
 // Slette: await mellomlagring.slett()
 ```
 

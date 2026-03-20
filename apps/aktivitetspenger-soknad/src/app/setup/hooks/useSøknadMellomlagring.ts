@@ -43,6 +43,24 @@ export const useSøknadMellomlagring = () => {
         }
     };
 
+    const opprettMellomlagring = async () => {
+        const state = useSøknadStore.getState();
+        const søknadsdata = state.søknadState?.søknadsdata;
+        const currentStepId = state.currentStepId;
+
+        if (søknadsdata && currentStepId) {
+            try {
+                await mellomlagring.opprett({
+                    søknadsdata,
+                    currentStepId,
+                    skjemadata: undefined,
+                });
+            } catch (error) {
+                console.error('Opprett mellomlagring feilet', error);
+            }
+        }
+    };
+
     /** Lagre søknad og skjemadata for ett steg */
     const lagreSøknadSteg = async (stegId: SøknadStepId, values: StepFormValues) => {
         const skjemadata = { [stegId]: values };
@@ -73,6 +91,7 @@ export const useSøknadMellomlagring = () => {
 
     return {
         lagreSøknad,
+        opprettMellomlagring,
         lagreSøknadOgSkjemadata,
         lagreSøknadSteg,
         slettMellomlagring: mellomlagring.slett,

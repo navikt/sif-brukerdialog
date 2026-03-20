@@ -10,7 +10,6 @@ import {
 } from '../api/ytelseMellomlagringApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
-import { isApiAxiosError } from '../utils/errorHandlers';
 
 interface MellomlagringPayload<State> extends Record<string, unknown> {
     søknadsdata: State;
@@ -79,25 +78,22 @@ export const useYtelseMellomlagring = <State, MetaData>(
         gcTime: 5 * 60 * 1000,
     });
 
-    const lagreMutation = useMutation({
-        mutationFn: async (data: State) => {
-            if (!metadata) {
-                throw new Error('Metadata mangler');
-            }
-            const payload: MellomlagringPayload<State> = {
-                søknadsdata: data,
-                søknadHashString: createHash(metadata),
-            };
+    const createPayload = (data: State): MellomlagringPayload<State> => {
+        if (!metadata) {
+            throw new Error('Metadata mangler');
+        }
+        return {
+            søknadsdata: data,
+            søknadHashString: createHash(metadata),
+        };
+    };
 
-            try {
-                return await oppdaterYtelseMellomlagring(ytelse, payload);
-            } catch (error) {
-                if (isApiAxiosError(error) && error.originalError.response?.status === 404) {
-                    return opprettYtelseMellomlagring(ytelse, payload);
-                }
-                throw error;
-            }
-        },
+    const opprettMutation = useMutation({
+        mutationFn: (data: State) => opprettYtelseMellomlagring(ytelse, createPayload(data)),
+    });
+
+    const lagreMutation = useMutation({
+        mutationFn: (data: State) => oppdaterYtelseMellomlagring(ytelse, createPayload(data)),
     });
 
     const slettMutation = useMutation({
@@ -115,9 +111,10 @@ export const useYtelseMellomlagring = <State, MetaData>(
         error: query.error,
 
         lagre: lagreMutation.mutateAsync,
+        opprett: opprettMutation.mutateAsync,
         slett: slettMutation.mutateAsync,
 
-        isPending: lagreMutation.isPending || slettMutation.isPending,
+        isPending: opprettMutation.isPending || lagreMutation.isPending || slettMutation.isPending,
 
         refetch: () => query.refetch(),
     };
