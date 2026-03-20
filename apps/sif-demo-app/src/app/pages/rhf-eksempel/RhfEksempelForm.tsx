@@ -161,6 +161,7 @@ export const RhfEksempelForm = () => {
                     />
 
                     <DateRangePicker
+                        name="abc"
                         legend="Periode"
                         fromInputProps={{
                             name: Field.periodeFra,
