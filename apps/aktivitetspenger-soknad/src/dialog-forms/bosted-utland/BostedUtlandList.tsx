@@ -1,7 +1,7 @@
 import { HGrid } from '@navikt/ds-react';
-import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
 import { dateRangeFormatter } from '@navikt/sif-common-utils';
+import { getCountryName } from '@sif/rhf/utils';
 import { Locale } from '@sif/soknad/utils';
 import { ReactNode } from 'react';
 

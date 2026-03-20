@@ -1,8 +1,8 @@
-import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateUtils } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, getRequiredFieldValidator, validationUtils } from '@navikt/sif-validation';
 import { createSifFormComponents } from '@sif/rhf';
+import { getCountryName } from '@sif/rhf/utils';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { BostedUtland } from '.';
