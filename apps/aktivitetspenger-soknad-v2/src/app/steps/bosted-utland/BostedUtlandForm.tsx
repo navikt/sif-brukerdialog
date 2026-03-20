@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 import { BostedUtland } from '../../../dialog-forms/bosted-utland';
 import { BostedUtlandFormDialog } from '../../../dialog-forms/bosted-utland/BostedUtlandDialog';
+import { BostedUtlandList } from '../../../dialog-forms/bosted-utland/BostedUtlandList';
 import { BostedUtlandSøknadsdata } from '../../types/Søknadsdata';
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
 
@@ -29,7 +30,7 @@ const stepId = SøknadStepId.BOSTED_UTLAND;
 
 export const BostedUtlandForm = () => {
     const { validateField } = useSifValidate();
-    const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogBosted, setDialogBosted] = useState<{ bosted: BostedUtland | undefined } | undefined>(undefined);
 
     const defaultValues = useStepDefaultValues<BostedUtlandFormValues, BostedUtlandSøknadsdata>({
         stepId,
@@ -43,6 +44,11 @@ export const BostedUtlandForm = () => {
 
     const methods = useSøknadRhfForm(stepId, defaultValues);
     const harBoddIUtlandetSiste5år = methods.watch(BostedUtlandFormFields.harBoddIUtlandetSiste5år);
+    const bosteder = methods.watch(BostedUtlandFormFields.bosteder);
+
+    const oppdaterBosted = (bosted: BostedUtland) => {
+        methods.setValue(BostedUtlandFormFields.bosteder, [bosted]);
+    };
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
@@ -55,20 +61,24 @@ export const BostedUtlandForm = () => {
                 {harBoddIUtlandetSiste5år === YesOrNo.YES && (
                     <VStack>
                         <div>
-                            <Button type="button" variant="secondary" size="small" onClick={() => setDialogOpen(true)}>
+                            <Button
+                                type="button"
+                                variant="secondary"
+                                size="small"
+                                onClick={() => setDialogBosted({ bosted: undefined })}>
                                 Vis dialog
                             </Button>
                         </div>
                         <BostedUtlandFormDialog
-                            bosted={undefined}
-                            isOpen={dialogOpen}
-                            onValidSubmit={(values) => {
-                                // eslint-disable-next-line no-console
-                                console.log(values);
-                                setDialogOpen(false);
+                            bosted={dialogBosted?.bosted}
+                            isOpen={dialogBosted !== undefined}
+                            onValidSubmit={(bosted) => {
+                                oppdaterBosted(bosted);
+                                setDialogBosted(undefined);
                             }}
-                            onCancel={() => setDialogOpen(false)}
+                            onCancel={() => setDialogBosted(undefined)}
                         />
+                        <BostedUtlandList bosteder={bosteder || []} onEdit={(bosted) => setDialogBosted({ bosted })} />
                     </VStack>
                 )}
             </FormLayout.Questions>

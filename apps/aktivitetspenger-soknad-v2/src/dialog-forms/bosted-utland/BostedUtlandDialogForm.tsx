@@ -1,4 +1,6 @@
+import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { dateUtils } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, getRequiredFieldValidator, validationUtils } from '@navikt/sif-validation';
 import { createSifFormComponents } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -8,7 +10,7 @@ import { BostedUtland } from '.';
 interface BostedUtlandFormProps {
     formId: string;
     bosted?: BostedUtland;
-    onValidSubmit: (values: any) => void;
+    onValidSubmit: (values: BostedUtland) => void;
 }
 
 enum BostedUtlandFormFields {
@@ -16,6 +18,7 @@ enum BostedUtlandFormFields {
     tom = 'tom',
     landkode = 'landkode',
 }
+
 type BostedUtlandFormValues = {
     [BostedUtlandFormFields.fom]: string;
     [BostedUtlandFormFields.tom]: string;
@@ -24,19 +27,52 @@ type BostedUtlandFormValues = {
 
 const { DateRangePicker, CountrySelect } = createSifFormComponents<BostedUtlandFormValues>();
 
-export const BostedUtlandForm = ({ formId, bosted, onValidSubmit }: BostedUtlandFormProps) => {
-    const methods = useForm<BostedUtlandFormValues>({ defaultValues: bosted });
+const formValuesToBostedUtland = (values: BostedUtlandFormValues): BostedUtland => {
+    const from = validationUtils.getDateFromDateString(values.fom);
+    const to = validationUtils.getDateFromDateString(values.tom);
+    if (!from || !to) {
+        throw new Error('Invalid date values');
+    }
+    return {
+        id: crypto.randomUUID(),
+        periode: { from, to },
+        landkode: values.landkode,
+        landnavn: getCountryName(values.landkode, 'nb'),
+    };
+};
+
+const bostedUtlandToFormValues = (bosted: BostedUtland): BostedUtlandFormValues => {
+    return {
+        fom: dateUtils.dateToISODate(bosted.periode.from),
+        tom: dateUtils.dateToISODate(bosted.periode.to),
+        landkode: bosted.landkode,
+    };
+};
+
+export const BostedUtlandDialogForm = ({ formId, bosted, onValidSubmit }: BostedUtlandFormProps) => {
+    const methods = useForm<BostedUtlandFormValues>({
+        defaultValues: bosted ? bostedUtlandToFormValues(bosted) : undefined,
+    });
+
+    const handleValidSubmit = (values: BostedUtlandFormValues): void => {
+        const from = validationUtils.getDateFromDateString(values.fom);
+        const to = validationUtils.getDateFromDateString(values.tom);
+        if (!from || !to) {
+            throw new Error('Invalid date values');
+        }
+        onValidSubmit(formValuesToBostedUtland(values));
+    };
 
     return (
         <FormProvider {...methods}>
             <form
+                id={formId}
                 onSubmit={(event) => {
                     event.preventDefault();
                     event.stopPropagation();
-                    methods.handleSubmit(onValidSubmit)();
+                    methods.handleSubmit(handleValidSubmit)();
                 }}
-                noValidate
-                id={formId}>
+                noValidate>
                 <FormLayout.Content>
                     <FormLayout.Questions>
                         <FormLayout.Questions>

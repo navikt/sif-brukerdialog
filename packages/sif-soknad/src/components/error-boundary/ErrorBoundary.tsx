@@ -12,6 +12,8 @@ export const ErrorBoundary = ({ fallback, onError, children }: ErrorBoundaryProp
         <Sentry.ErrorBoundary
             fallback={fallback}
             onError={(error, componentStack) => {
+                // eslint-disable-next-line no-console
+                console.error('ErrorBoundary caught an error:', error, componentStack);
                 if (error instanceof Error) {
                     onError?.(error, componentStack);
                 }

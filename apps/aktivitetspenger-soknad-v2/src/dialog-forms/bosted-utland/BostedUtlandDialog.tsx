@@ -1,7 +1,7 @@
 import { Button, Dialog } from '@navikt/ds-react';
 
 import { BostedUtland } from '.';
-import { BostedUtlandForm } from './BostedUtlandForm';
+import { BostedUtlandDialogForm } from './BostedUtlandDialogForm';
 
 interface Props {
     bosted?: BostedUtland;
@@ -20,7 +20,7 @@ export const BostedUtlandFormDialog = ({ isOpen, bosted, onValidSubmit, onCancel
                     <Dialog.Title>Bosted i utlandet</Dialog.Title>
                 </Dialog.Header>
                 <Dialog.Body>
-                    <BostedUtlandForm formId={formId} bosted={bosted} onValidSubmit={onValidSubmit} />
+                    <BostedUtlandDialogForm formId={formId} bosted={bosted} onValidSubmit={onValidSubmit} />
                 </Dialog.Body>
                 <Dialog.Footer>
                     <Dialog.CloseTrigger>

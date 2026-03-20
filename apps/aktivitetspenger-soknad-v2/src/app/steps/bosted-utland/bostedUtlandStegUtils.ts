@@ -9,6 +9,7 @@ export const toBostedUtlandStegFormValues = (
     if (søknadsdata?.harBoddIUtlandetSiste5år === undefined) return {};
     return {
         harBoddIUtlandetSiste5år: søknadsdata.harBoddIUtlandetSiste5år ? YesOrNo.YES : YesOrNo.NO,
+        bosteder: søknadsdata.bosteder || [],
     };
 };
 

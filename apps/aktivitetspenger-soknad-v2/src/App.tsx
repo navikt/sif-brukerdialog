@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { initApiClients } from './app/api/initApiClients';
 import { applicationIntlMessages } from './app/i18n';
 import { getAppEnv } from './app/setup/env/appEnv';
+import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { InitialDataLoader } from './InitialDataLoader';
 
 initApiClients();
@@ -21,13 +22,15 @@ export const App = () => {
             applicationKey="aktivitetspenger-soknad"
             appVersion={appEnv.APP_VERSION}
             isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
-            <QueryClientProvider client={queryClient}>
-                <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                    <BrowserRouter basename="/aktivitetspenger-soknad">
-                        <InitialDataLoader />
-                    </BrowserRouter>
-                </IntlProvider>
-            </QueryClientProvider>
+            <AppErrorBoundary>
+                <QueryClientProvider client={queryClient}>
+                    <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
+                        <BrowserRouter basename="/aktivitetspenger-soknad">
+                            <InitialDataLoader />
+                        </BrowserRouter>
+                    </IntlProvider>
+                </QueryClientProvider>
+            </AppErrorBoundary>
         </FaroProvider>
     );
 };

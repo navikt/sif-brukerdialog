@@ -1,6 +1,5 @@
 import './sentry/instrument';
 
-import { AppErrorBoundary } from '@app/setup/wrappers/AppErrorBoundary';
 import { reactErrorHandler } from '@sentry/react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -15,9 +14,7 @@ enableMocking().then(() => {
         onRecoverableError: reactErrorHandler(),
     }).render(
         <StrictMode>
-            <AppErrorBoundary>
-                <App />
-            </AppErrorBoundary>
+            <App />
         </StrictMode>,
     );
 });
