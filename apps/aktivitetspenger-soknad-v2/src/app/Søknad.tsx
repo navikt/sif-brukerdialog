@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { KvitteringPage, VelkommenPage } from './pages';
-import { BarnSteg, BostedSteg, KontonummerSteg, MedlemskapSteg, OppsummeringSteg } from './steps';
+import { BarnSteg, BostedSteg, BostedUtlandSteg, KontonummerSteg, OppsummeringSteg } from './steps';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 
 interface Props {
@@ -71,7 +71,7 @@ export const Søknad = ({ søker, barn, kontonummer, mellomlagring }: Props) => 
                     }>
                     <Route path={søknadStepConfig[SøknadStepId.KONTONUMMER].route} element={<KontonummerSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedSteg />} />
-                    <Route path={søknadStepConfig[SøknadStepId.MEDLEMSKAP].route} element={<MedlemskapSteg />} />
+                    <Route path={søknadStepConfig[SøknadStepId.BOSTED_UTLAND].route} element={<BostedUtlandSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.BARN].route} element={<BarnSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<OppsummeringSteg />} />
                     <Route path="*" element={<Navigate to="/" replace />} />

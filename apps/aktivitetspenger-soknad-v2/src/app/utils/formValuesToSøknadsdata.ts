@@ -7,8 +7,8 @@ import { BostedFormValues } from '../steps/bosted/BostedForm';
 import { toBostedSøknadsdata } from '../steps/bosted/bostedStegUtils';
 import { KontonummerFormValues } from '../steps/kontonummer/KontonummerForm';
 import { toKontonummerSøknadsdata } from '../steps/kontonummer/kontonummerStegUtils';
-import { MedlemskapFormValues } from '../steps/medlemskap/MedlemskapForm';
-import { toMedlemskapSøknadsdata } from '../steps/medlemskap/medlemskapStegUtils';
+import { BostedUtlandFormValues } from '../steps/bosted-utland/BostedUtlandForm';
+import { toBostedUtlandStegSøknadsdata } from '../steps/bosted-utland/bostedUtlandStegUtils';
 
 export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormValues): StepSøknadsdata | undefined => {
     switch (stepId) {
@@ -16,8 +16,8 @@ export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormVal
             return toKontonummerSøknadsdata(formValues as KontonummerFormValues);
         case SøknadStepId.BOSTED:
             return toBostedSøknadsdata(formValues as BostedFormValues);
-        case SøknadStepId.MEDLEMSKAP:
-            return toMedlemskapSøknadsdata(formValues as MedlemskapFormValues);
+        case SøknadStepId.BOSTED_UTLAND:
+            return toBostedUtlandStegSøknadsdata(formValues as BostedUtlandFormValues);
         case SøknadStepId.BARN:
             return toBarnSøknadsdata(formValues as BarnFormValues);
         default:

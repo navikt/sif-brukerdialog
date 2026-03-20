@@ -5,6 +5,7 @@ Could not migrate the following:
 */
 
 import { Box, VStack } from '@navikt/ds-react';
+
 import SubmitPreview from '../submit-preview/SubmitPreview';
 
 interface Props {

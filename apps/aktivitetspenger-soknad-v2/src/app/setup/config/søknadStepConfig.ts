@@ -5,7 +5,7 @@ import { Søknadsdata } from '../../types/Søknadsdata';
 export enum SøknadStepId {
     KONTONUMMER = 'kontonummer',
     BOSTED = 'bosted',
-    MEDLEMSKAP = 'medlemskap',
+    BOSTED_UTLAND = 'BOSTED_UTLAND',
     BARN = 'barn',
     OPPSUMMERING = 'oppsummering',
 }
@@ -19,9 +19,9 @@ export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
         route: 'bosted',
         isCompleted: (s) => s.bosted !== undefined,
     },
-    [SøknadStepId.MEDLEMSKAP]: {
-        route: 'medlemskap',
-        isCompleted: (s) => s.medlemskap !== undefined,
+    [SøknadStepId.BOSTED_UTLAND]: {
+        route: 'bosted-utland',
+        isCompleted: (s) => s.BOSTED_UTLAND !== undefined,
     },
     [SøknadStepId.BARN]: {
         route: 'barn',
@@ -35,7 +35,7 @@ export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
 export const søknadStepOrder: SøknadStepId[] = [
     SøknadStepId.KONTONUMMER,
     SøknadStepId.BOSTED,
-    SøknadStepId.MEDLEMSKAP,
+    SøknadStepId.BOSTED_UTLAND,
     SøknadStepId.BARN,
     SøknadStepId.OPPSUMMERING,
 ];
@@ -43,7 +43,7 @@ export const søknadStepOrder: SøknadStepId[] = [
 export const stepTitles: Record<SøknadStepId, string> = {
     [SøknadStepId.KONTONUMMER]: 'Kontonummer',
     [SøknadStepId.BOSTED]: 'Bosted',
-    [SøknadStepId.MEDLEMSKAP]: 'Medlemskap i folketrygden',
+    [SøknadStepId.BOSTED_UTLAND]: 'Bosted i utlandet',
     [SøknadStepId.BARN]: 'Barn',
     [SøknadStepId.OPPSUMMERING]: 'Oppsummering',
 };
