@@ -13,7 +13,10 @@ export const toBostedUtlandStegFormValues = (
     };
 };
 
-export const toBostedUtlandStegSøknadsdata = (data: BostedUtlandFormValues): BostedUtlandSøknadsdata => ({
-    harBoddIUtlandetSiste5år: data.harBoddIUtlandetSiste5år === YesOrNo.YES,
-    bosteder: data.bosteder || [],
-});
+export const toBostedUtlandStegSøknadsdata = (data: BostedUtlandFormValues): BostedUtlandSøknadsdata => {
+    const harBoddIUtlandetSiste5år = data.harBoddIUtlandetSiste5år === YesOrNo.YES;
+    return {
+        harBoddIUtlandetSiste5år,
+        bosteder: harBoddIUtlandetSiste5år ? data.bosteder : undefined,
+    };
+};

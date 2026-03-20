@@ -99,6 +99,7 @@ export const BostedUtlandForm = () => {
                         </div>
                         <BostedUtlandFormDialog
                             bosted={dialogBosted?.bosted}
+                            alleBosteder={bosteder}
                             isOpen={dialogBosted !== undefined}
                             onValidSubmit={(bosted) => {
                                 oppdaterBosted(bosted);

@@ -5,12 +5,13 @@ import { BostedUtlandDialogForm } from './BostedUtlandDialogForm';
 
 interface Props {
     bosted?: BostedUtland;
+    alleBosteder?: BostedUtland[];
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (bosted: BostedUtland) => void;
 }
 
-export const BostedUtlandFormDialog = ({ isOpen, bosted, onValidSubmit, onCancel }: Props) => {
+export const BostedUtlandFormDialog = ({ isOpen, bosted, alleBosteder, onValidSubmit, onCancel }: Props) => {
     const formId = 'bostedUtlandForm';
 
     return (
@@ -20,7 +21,12 @@ export const BostedUtlandFormDialog = ({ isOpen, bosted, onValidSubmit, onCancel
                     <Dialog.Title>Bosted i utlandet</Dialog.Title>
                 </Dialog.Header>
                 <Dialog.Body>
-                    <BostedUtlandDialogForm formId={formId} bosted={bosted} onValidSubmit={onValidSubmit} />
+                    <BostedUtlandDialogForm
+                        alleBosteder={alleBosteder}
+                        formId={formId}
+                        bosted={bosted}
+                        onValidSubmit={onValidSubmit}
+                    />
                 </Dialog.Body>
                 <Dialog.Footer>
                     <Dialog.CloseTrigger>

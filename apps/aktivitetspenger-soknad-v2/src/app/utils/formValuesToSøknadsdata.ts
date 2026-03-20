@@ -5,10 +5,10 @@ import { BarnFormValues } from '../steps/barn/BarnForm';
 import { toBarnSøknadsdata } from '../steps/barn/barnStegUtils';
 import { BostedFormValues } from '../steps/bosted/BostedForm';
 import { toBostedSøknadsdata } from '../steps/bosted/bostedStegUtils';
-import { KontonummerFormValues } from '../steps/kontonummer/KontonummerForm';
-import { toKontonummerSøknadsdata } from '../steps/kontonummer/kontonummerStegUtils';
 import { BostedUtlandFormValues } from '../steps/bosted-utland/BostedUtlandForm';
 import { toBostedUtlandStegSøknadsdata } from '../steps/bosted-utland/bostedUtlandStegUtils';
+import { KontonummerFormValues } from '../steps/kontonummer/KontonummerForm';
+import { toKontonummerSøknadsdata } from '../steps/kontonummer/kontonummerStegUtils';
 
 export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormValues): StepSøknadsdata | undefined => {
     switch (stepId) {

@@ -10,7 +10,7 @@ import { BostedUtland } from '.';
 interface BostedUtlandFormProps {
     formId: string;
     bosted?: BostedUtland;
-    andreBosteder?: BostedUtland[];
+    alleBosteder?: BostedUtland[];
     onValidSubmit: (values: BostedUtland) => void;
 }
 
@@ -50,12 +50,12 @@ const bostedUtlandToFormValues = (bosted: BostedUtland): BostedUtlandFormValues 
     };
 };
 
-export const BostedUtlandDialogForm = ({ formId, bosted, andreBosteder, onValidSubmit }: BostedUtlandFormProps) => {
+export const BostedUtlandDialogForm = ({ formId, bosted, alleBosteder, onValidSubmit }: BostedUtlandFormProps) => {
     const methods = useForm<BostedUtlandFormValues>({
         defaultValues: bosted ? bostedUtlandToFormValues(bosted) : undefined,
     });
 
-    const utilgjenhgeligePerioder = (andreBosteder || []).map((b) => b.periode);
+    const utilgjengeligePerioder = (alleBosteder?.filter((b) => b.id !== bosted?.id) || []).map((b) => b.periode);
 
     const handleValidSubmit = (values: BostedUtlandFormValues): void => {
         const from = validationUtils.getDateFromDateString(values.fom);
@@ -85,7 +85,7 @@ export const BostedUtlandDialogForm = ({ formId, bosted, andreBosteder, onValidS
                                 fromInputProps={{
                                     name: BostedUtlandFormFields.fom,
                                     label: 'Fra dato',
-                                    disabledDateRanges: utilgjenhgeligePerioder,
+                                    disabledDateRanges: utilgjengeligePerioder,
                                     validate: (value) =>
                                         getDateRangeValidator({
                                             required: true,
@@ -97,7 +97,7 @@ export const BostedUtlandDialogForm = ({ formId, bosted, andreBosteder, onValidS
                                 toInputProps={{
                                     name: BostedUtlandFormFields.tom,
                                     label: 'Til dato',
-                                    disabledDateRanges: utilgjenhgeligePerioder,
+                                    disabledDateRanges: utilgjengeligePerioder,
                                     validate: (value) =>
                                         getDateRangeValidator({
                                             required: true,
