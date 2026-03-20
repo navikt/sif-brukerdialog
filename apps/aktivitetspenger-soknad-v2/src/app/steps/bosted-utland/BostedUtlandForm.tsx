@@ -1,5 +1,5 @@
 import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
-import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
+import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
 import { Button, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -31,6 +31,7 @@ const stepId = SøknadStepId.BOSTED_UTLAND;
 export const BostedUtlandForm = () => {
     const { validateField } = useSifValidate();
     const [dialogBosted, setDialogBosted] = useState<{ bosted: BostedUtland | undefined } | undefined>(undefined);
+    const { lagreSøknadSteg } = useSøknadMellomlagring();
 
     const defaultValues = useStepDefaultValues<BostedUtlandFormValues, BostedUtlandSøknadsdata>({
         stepId,
@@ -48,6 +49,7 @@ export const BostedUtlandForm = () => {
 
     const oppdaterBosted = (bosted: BostedUtland) => {
         methods.setValue(BostedUtlandFormFields.bosteder, [bosted]);
+        lagreSøknadSteg(stepId, methods.getValues());
     };
 
     return (

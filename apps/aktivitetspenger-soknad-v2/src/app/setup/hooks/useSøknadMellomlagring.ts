@@ -1,8 +1,9 @@
 import { useYtelseMellomlagring } from '@navikt/sif-common-query';
-import { SøknadFormValues } from '@sif/soknad/types';
+import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
 
 import { MellomlagringMetaData, SøknadMellomlagring } from '../../types/Mellomlagring';
+import { SøknadStepId } from '../config/søknadStepConfig';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../constants';
 import { useSøknadStore } from './useSøknadStore';
 
@@ -34,6 +35,17 @@ export const useSøknadMellomlagring = () => {
         }
     };
 
+    /** Lagre søknad og skjemadata for ett steg */
+    const lagreSøknadSteg = async (stegId: SøknadStepId, values: StepFormValues) => {
+        const state = useSøknadStore.getState();
+        const søknadsdata = state.søknadState?.søknadsdata;
+        const currentStepId = state.currentStepId;
+
+        if (søknadsdata && currentStepId) {
+            const skjemadata = { [stegId]: values };
+            lagreSøknadOgSkjemadata(skjemadata);
+        }
+    };
     const lagreSøknadOgSkjemadata = async (skjemadata: SøknadFormValues) => {
         const state = useSøknadStore.getState();
         const søknadsdata = state.søknadState?.søknadsdata;
@@ -51,6 +63,7 @@ export const useSøknadMellomlagring = () => {
     return {
         lagreSøknad,
         lagreSøknadOgSkjemadata,
+        lagreSøknadSteg,
         slettMellomlagring: mellomlagring.slett,
         isPending: mellomlagring.isPending,
     };
