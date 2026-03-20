@@ -5,12 +5,13 @@ import objectHash from 'object-hash';
 import {
     hentYtelseMellomlagring,
     oppdaterYtelseMellomlagring,
+    opprettYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from '../api/ytelseMellomlagringApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
 
-interface MellomlagringPayload<State> {
+interface MellomlagringPayload<State> extends Record<string, unknown> {
     søknadsdata: State;
     søknadHashString: string;
 }
@@ -29,31 +30,7 @@ const isValidPayload = <State>(payload: unknown): payload is MellomlagringPayloa
 
 /**
  * Hook for mellomlagring med metadata-validering.
- *
- * Henter mellomlagret data og validerer at metadata-hash matcher.
- * Hvis metadata har endret seg siden lagring, returneres null og mellomlagring slettes automatisk.
- *
- * @param ytelse - Hvilken ytelse mellomlagringen gjelder
- * @param metadata - App-spesifikk metadata for hash-validering (søker, barn, versjon, etc.)
- * @param options - Query options
- *
- * @example
- * ```tsx
- * const metadata = { MELLOMLAGRING_VERSJON, søker, barn };
- * const mellomlagring = useYtelseMellomlagring<Mellomlagring, typeof metadata>(
- *     MellomlagringYtelse.AKTIVITETSPENGER,
- *     metadata,
- * );
- *
- * // Hent data
- * const data = mellomlagring.data;
- *
- * // Lagre data
- * mellomlagring.lagre({ søknadsdata: {...}, currentStegId: 'steg1' });
- *
- * // Slett
- * mellomlagring.slett();
- * ```
+ * Returnerer `null` ved manglende/ugyldig payload eller når metadata-hash ikke matcher.
  */
 export const useYtelseMellomlagring = <State, MetaData>(
     ytelse: MellomlagringYtelse,
@@ -73,7 +50,14 @@ export const useYtelseMellomlagring = <State, MetaData>(
             try {
                 const payload = await hentYtelseMellomlagring(ytelse);
 
+                if (!payload) {
+                    return null;
+                }
+
                 if (!isValidPayload<State>(payload)) {
+                    // eslint-disable-next-line no-console
+                    console.log('Ugyldig mellomlagring payload, sletter mellomlagring');
+                    await slettYtelseMellomlagring(ytelse);
                     return null;
                 }
 
@@ -86,7 +70,6 @@ export const useYtelseMellomlagring = <State, MetaData>(
 
                 return payload.søknadsdata;
             } catch {
-                await slettYtelseMellomlagring(ytelse).catch(() => {});
                 return null;
             }
         },
@@ -95,17 +78,22 @@ export const useYtelseMellomlagring = <State, MetaData>(
         gcTime: 5 * 60 * 1000,
     });
 
+    const createPayload = (data: State): MellomlagringPayload<State> => {
+        if (!metadata) {
+            throw new Error('Metadata mangler');
+        }
+        return {
+            søknadsdata: data,
+            søknadHashString: createHash(metadata),
+        };
+    };
+
+    const opprettMutation = useMutation({
+        mutationFn: (data: State) => opprettYtelseMellomlagring(ytelse, createPayload(data)),
+    });
+
     const lagreMutation = useMutation({
-        mutationFn: async (data: State) => {
-            if (!metadata) {
-                throw new Error('Metadata mangler');
-            }
-            const payload: MellomlagringPayload<State> = {
-                søknadsdata: data,
-                søknadHashString: createHash(metadata),
-            };
-            return oppdaterYtelseMellomlagring(ytelse, payload as unknown as Record<string, unknown>);
-        },
+        mutationFn: (data: State) => oppdaterYtelseMellomlagring(ytelse, createPayload(data)),
     });
 
     const slettMutation = useMutation({
@@ -122,15 +110,11 @@ export const useYtelseMellomlagring = <State, MetaData>(
         isError: query.isError,
         error: query.error,
 
-        lagre: async (data: State): Promise<void> => {
-            await lagreMutation.mutateAsync(data);
-        },
+        lagre: lagreMutation.mutateAsync,
+        opprett: opprettMutation.mutateAsync,
+        slett: slettMutation.mutateAsync,
 
-        slett: async (): Promise<void> => {
-            await slettMutation.mutateAsync();
-        },
-
-        isPending: lagreMutation.isPending || slettMutation.isPending,
+        isPending: opprettMutation.isPending || lagreMutation.isPending || slettMutation.isPending,
 
         refetch: () => query.refetch(),
     };

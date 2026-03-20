@@ -1,9 +1,8 @@
+import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
-import { SøknadStepId } from '@app/setup/søknad/søknadStepConfig';
-import { Alert } from '@navikt/ds-react';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 
 import { BarnSøknadsdata } from '../../types/Søknadsdata';
@@ -14,10 +13,10 @@ export enum BarnFormFields {
 }
 
 export interface BarnFormValues extends StepFormValues {
-    [BarnFormFields.stemmerInfoOmBarn]: 'ja' | 'nei';
+    [BarnFormFields.stemmerInfoOmBarn]?: YesOrNo;
 }
 
-const { RadioGroup } = createSifFormComponents<BarnFormValues>();
+const { YesOrNoQuestion } = createSifFormComponents<BarnFormValues>();
 
 const stepId = SøknadStepId.BARN;
 
@@ -37,15 +36,10 @@ export const BarnForm = () => {
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
-            <Alert variant="info">TODO</Alert>
-            <RadioGroup
+            <YesOrNoQuestion
                 name={BarnFormFields.stemmerInfoOmBarn}
                 legend="Stemmer informasjonen om barn?"
-                radios={[
-                    { label: 'Ja', value: 'ja' },
-                    { label: 'Nei', value: 'nei' },
-                ]}
-                validate={validateField(BarnFormFields.stemmerInfoOmBarn, getRequiredFieldValidator())}
+                validate={validateField(BarnFormFields.stemmerInfoOmBarn, getYesOrNoValidator())}
             />
         </AppForm>
     );

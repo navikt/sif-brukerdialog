@@ -1,9 +1,10 @@
-import { Fieldset, HStack } from '@navikt/ds-react';
-import { ReactNode } from 'react';
+import { HStack } from '@navikt/ds-react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 
 import { DatepickerLimitations, ISODateStringToUTCDate } from '../utils/dateUtils';
 import { SifDatepicker } from './SifDatepicker';
+import { SifInputGroup } from './SifInputGroup';
 
 export const minDate = (a?: Date, b?: Date): Date | undefined => {
     if (!a) return b;
@@ -26,21 +27,27 @@ type DatepickerFieldProps<T extends FieldValues> = DatepickerLimitations & {
 };
 
 type Props<T extends FieldValues> = {
+    name: string;
     legend: string;
     hideLegend?: boolean;
     description?: ReactNode;
     fromInputProps: DatepickerFieldProps<T>;
     toInputProps: DatepickerFieldProps<T>;
+    validate?: ({ fromDate, toDate }: { fromDate: Date | undefined; toDate: Date | undefined }) => string | undefined;
 };
 
 export function SifDateRangePicker<T extends FieldValues>({
+    name,
     legend,
     hideLegend,
     description,
     fromInputProps,
     toInputProps,
+    validate,
 }: Props<T>) {
-    const { watch } = useFormContext<T>();
+    const { watch, setError, clearErrors } = useFormContext<T>();
+    const validateRef = useRef(validate);
+    validateRef.current = validate;
 
     const fromValue = watch(fromInputProps.name);
     const toValue = watch(toInputProps.name);
@@ -51,13 +58,23 @@ export function SifDateRangePicker<T extends FieldValues>({
     const resolvedFromMaxDate = minDate(toDate, fromInputProps.maxDate);
     const resolvedToMinDate = maxDate(fromDate, toInputProps.minDate);
 
+    useEffect(() => {
+        if (!validateRef.current) return;
+        const message = validateRef.current({ fromDate, toDate });
+        if (message) {
+            setError(name as any, { type: 'manual', message });
+        } else {
+            clearErrors(name as any);
+        }
+    }, [fromDate, toDate, name, setError, clearErrors]);
+
     return (
-        <Fieldset legend={legend} hideLegend={hideLegend}>
+        <SifInputGroup name={name} legend={legend} hideLegend={hideLegend}>
             {description}
-            <HStack gap="space-4" wrap>
+            <HStack gap="space-16" wrap>
                 <SifDatepicker<T> {...fromInputProps} maxDate={resolvedFromMaxDate} />
                 <SifDatepicker<T> {...toInputProps} minDate={resolvedToMinDate} />
             </HStack>
-        </Fieldset>
+        </SifInputGroup>
     );
 }
