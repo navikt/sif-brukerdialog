@@ -30,6 +30,7 @@
         "@navikt/sif-common-query": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
+        "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sentry/react": "10.43.0",
         "@sif/rhf": "workspace:*",
         "@sif/soknad": "workspace:*",

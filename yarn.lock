@@ -4420,6 +4420,7 @@ __metadata:
     "@navikt/sif-common-query": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
+    "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@sentry/react": "npm:10.43.0"
     "@sentry/vite-plugin": "npm:5.1.1"
     "@sif/eslint-config": "workspace:*"
