@@ -15,11 +15,12 @@ export const getSøknadApiDataFromSøknad = ({
     søker: Søker;
     språk?: 'nb' | 'nn';
     kontoInfo: KontoInfo;
-}): Omit<SøknadApiData, 'harBekreftetOpplysninger'> => {
+}): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
     const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted } = søknadsdata;
 
     if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !bostedUtland) {
-        throw new Error('Manglende data i søknadsdata');
+        console.error('Manglende data i søknadsdata');
+        return undefined;
     }
 
     return {
