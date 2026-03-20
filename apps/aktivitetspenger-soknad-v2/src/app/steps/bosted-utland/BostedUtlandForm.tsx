@@ -55,8 +55,17 @@ export const BostedUtlandForm = () => {
     const harBoddIUtlandetSiste5år = methods.watch(BostedUtlandFormFields.harBoddIUtlandetSiste5år);
     const bosteder = methods.watch(BostedUtlandFormFields.bosteder);
 
+    methods.register(BostedUtlandFormFields.bosteder, {
+        validate: (value) => {
+            if (harBoddIUtlandetSiste5år === YesOrNo.YES && (!value || value.length === 0)) {
+                return 'Du må legge til minst ett bosted';
+            }
+        },
+    });
+
     const oppdaterBosted = (bosted: BostedUtland) => {
         methods.setValue(BostedUtlandFormFields.bosteder, oppdaterBosteder(bosteder, bosted));
+        methods.trigger(BostedUtlandFormFields.bosteder);
         lagreSøknadSteg(stepId, methods.getValues());
     };
 
@@ -90,6 +99,7 @@ export const BostedUtlandForm = () => {
                         )}
                         <div>
                             <Button
+                                id={BostedUtlandFormFields.bosteder}
                                 type="button"
                                 variant="secondary"
                                 size="small"
