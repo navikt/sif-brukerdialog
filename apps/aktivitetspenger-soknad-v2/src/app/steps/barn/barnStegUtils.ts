@@ -4,12 +4,12 @@ import { BarnSøknadsdata } from '../../types/Søknadsdata';
 import { BarnFormValues } from './BarnForm';
 
 export const toBarnFormValues = (søknadsdata: BarnSøknadsdata | undefined): Partial<BarnFormValues> => {
-    if (søknadsdata?.harBarn === undefined) return {};
+    if (søknadsdata?.informasjonStemmer === undefined) return {};
     return {
-        harBarn: søknadsdata.harBarn ? YesOrNo.YES : YesOrNo.NO,
+        informasjonStemmer: søknadsdata.informasjonStemmer ? YesOrNo.YES : YesOrNo.NO,
     };
 };
 
 export const toBarnSøknadsdata = (data: BarnFormValues): BarnSøknadsdata => ({
-    harBarn: data.harBarn === YesOrNo.YES,
+    informasjonStemmer: data.informasjonStemmer === YesOrNo.YES,
 });

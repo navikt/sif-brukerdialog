@@ -17,7 +17,7 @@ export type BostedUtlandSøknadsdata = {
 };
 
 export type BarnSøknadsdata = {
-    harBarn: boolean;
+    informasjonStemmer: boolean;
 };
 
 export interface Søknadsdata extends BaseSøknadsdata {
