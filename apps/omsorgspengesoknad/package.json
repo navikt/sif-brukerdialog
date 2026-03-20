@@ -59,7 +59,7 @@
         "@types/object-hash": "3.0.6",
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
-        "@vitejs/plugin-react": "5.2.0",
+        "@vitejs/plugin-react": "6.0.0",
         "axe-core": "4.11.1",
         "busboy": "1.6.0",
         "compression": "1.8.1",
