@@ -10,7 +10,8 @@
         },
         "build": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
-            "dependsOn": ["^build"]
+            "dependsOn": ["^build"],
+            "passThroughEnv": ["SENTRY_AUTH_TOKEN"]
         },
         "build-storybook": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**", "storybook-static/**"],
