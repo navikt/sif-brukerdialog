@@ -10,6 +10,7 @@ import { BostedUtland } from '.';
 interface BostedUtlandFormProps {
     formId: string;
     bosted?: BostedUtland;
+    andreBosteder?: BostedUtland[];
     onValidSubmit: (values: BostedUtland) => void;
 }
 
@@ -27,14 +28,14 @@ type BostedUtlandFormValues = {
 
 const { DateRangePicker, CountrySelect } = createSifFormComponents<BostedUtlandFormValues>();
 
-const formValuesToBostedUtland = (values: BostedUtlandFormValues): BostedUtland => {
+const formValuesToBostedUtland = (values: BostedUtlandFormValues, bostedId?: string): BostedUtland => {
     const from = validationUtils.getDateFromDateString(values.fom);
     const to = validationUtils.getDateFromDateString(values.tom);
     if (!from || !to) {
         throw new Error('Invalid date values');
     }
     return {
-        id: crypto.randomUUID(),
+        id: bostedId || crypto.randomUUID(),
         periode: { from, to },
         landkode: values.landkode,
         landnavn: getCountryName(values.landkode, 'nb'),
@@ -49,10 +50,12 @@ const bostedUtlandToFormValues = (bosted: BostedUtland): BostedUtlandFormValues 
     };
 };
 
-export const BostedUtlandDialogForm = ({ formId, bosted, onValidSubmit }: BostedUtlandFormProps) => {
+export const BostedUtlandDialogForm = ({ formId, bosted, andreBosteder, onValidSubmit }: BostedUtlandFormProps) => {
     const methods = useForm<BostedUtlandFormValues>({
         defaultValues: bosted ? bostedUtlandToFormValues(bosted) : undefined,
     });
+
+    const utilgjenhgeligePerioder = (andreBosteder || []).map((b) => b.periode);
 
     const handleValidSubmit = (values: BostedUtlandFormValues): void => {
         const from = validationUtils.getDateFromDateString(values.fom);
@@ -60,7 +63,7 @@ export const BostedUtlandDialogForm = ({ formId, bosted, onValidSubmit }: Bosted
         if (!from || !to) {
             throw new Error('Invalid date values');
         }
-        onValidSubmit(formValuesToBostedUtland(values));
+        onValidSubmit(formValuesToBostedUtland(values, bosted?.id));
     };
 
     return (
@@ -82,6 +85,7 @@ export const BostedUtlandDialogForm = ({ formId, bosted, onValidSubmit }: Bosted
                                 fromInputProps={{
                                     name: BostedUtlandFormFields.fom,
                                     label: 'Fra dato',
+                                    disabledDateRanges: utilgjenhgeligePerioder,
                                     validate: (value) =>
                                         getDateRangeValidator({
                                             required: true,
@@ -93,6 +97,7 @@ export const BostedUtlandDialogForm = ({ formId, bosted, onValidSubmit }: Bosted
                                 toInputProps={{
                                     name: BostedUtlandFormFields.tom,
                                     label: 'Til dato',
+                                    disabledDateRanges: utilgjenhgeligePerioder,
                                     validate: (value) =>
                                         getDateRangeValidator({
                                             required: true,
@@ -101,9 +106,6 @@ export const BostedUtlandDialogForm = ({ formId, bosted, onValidSubmit }: Bosted
                                             ),
                                         }).validateToDate(value),
                                 }}
-                                // validate={(values) => {
-                                //     return `${values.from}-${values.to}`;
-                                // }}
                             />
                             <CountrySelect
                                 name={BostedUtlandFormFields.landkode}

@@ -14,8 +14,8 @@ export const BostedUtlandFormDialog = ({ isOpen, bosted, onValidSubmit, onCancel
     const formId = 'bostedUtlandForm';
 
     return (
-        <Dialog open={isOpen} onOpenChange={onCancel}>
-            <Dialog.Popup>
+        <Dialog open={isOpen} onOpenChange={onCancel} size="small">
+            <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>Bosted i utlandet</Dialog.Title>
                 </Dialog.Header>

@@ -1,4 +1,5 @@
 import { useYtelseMellomlagring } from '@navikt/sif-common-query';
+import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
 
@@ -9,6 +10,9 @@ import { useSøknadStore } from './useSøknadStore';
 
 export const useSøknadMellomlagring = () => {
     const søknadState = useSøknadStore((s) => s.søknadState);
+
+    // Skjemadata på tvers av steg
+    const { søknadFormValues } = useSøknadFormValues();
 
     const metadata = useMemo<MellomlagringMetaData | undefined>(() => {
         if (!søknadState) return undefined;
@@ -37,15 +41,11 @@ export const useSøknadMellomlagring = () => {
 
     /** Lagre søknad og skjemadata for ett steg */
     const lagreSøknadSteg = async (stegId: SøknadStepId, values: StepFormValues) => {
-        const state = useSøknadStore.getState();
-        const søknadsdata = state.søknadState?.søknadsdata;
-        const currentStepId = state.currentStepId;
-
-        if (søknadsdata && currentStepId) {
-            const skjemadata = { [stegId]: values };
-            lagreSøknadOgSkjemadata(skjemadata);
-        }
+        const skjemadata = { [stegId]: values };
+        await lagreSøknadOgSkjemadata(skjemadata);
     };
+
+    /** Lagre søknad og skjemadata for alle steg som har verdier */
     const lagreSøknadOgSkjemadata = async (skjemadata: SøknadFormValues) => {
         const state = useSøknadStore.getState();
         const søknadsdata = state.søknadState?.søknadsdata;
@@ -55,7 +55,10 @@ export const useSøknadMellomlagring = () => {
             await mellomlagring.lagre({
                 søknadsdata,
                 currentStepId,
-                skjemadata,
+                skjemadata: {
+                    ...søknadFormValues,
+                    ...skjemadata,
+                },
             });
         }
     };

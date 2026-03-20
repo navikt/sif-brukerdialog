@@ -1,4 +1,5 @@
 import '@navikt/ds-css';
+import './app.css';
 
 import { FaroProvider } from '@navikt/sif-common-faro';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

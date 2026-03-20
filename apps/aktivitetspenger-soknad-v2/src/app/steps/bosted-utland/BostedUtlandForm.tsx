@@ -1,7 +1,7 @@
 import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
-import { Button, VStack } from '@navikt/ds-react';
+import { Button, Heading, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
@@ -28,6 +28,14 @@ const { YesOrNoQuestion } = createSifFormComponents<BostedUtlandFormValues>();
 
 const stepId = SøknadStepId.BOSTED_UTLAND;
 
+const oppdaterBosteder = (bosteder: BostedUtland[] | undefined, bosted: BostedUtland) => {
+    if (!bosteder) return [bosted];
+    if (bosteder.map((b) => b.id).includes(bosted.id)) {
+        return bosteder.map((b) => (b.id === bosted.id ? bosted : b));
+    }
+    return [...bosteder, bosted];
+};
+
 export const BostedUtlandForm = () => {
     const { validateField } = useSifValidate();
     const [dialogBosted, setDialogBosted] = useState<{ bosted: BostedUtland | undefined } | undefined>(undefined);
@@ -48,7 +56,15 @@ export const BostedUtlandForm = () => {
     const bosteder = methods.watch(BostedUtlandFormFields.bosteder);
 
     const oppdaterBosted = (bosted: BostedUtland) => {
-        methods.setValue(BostedUtlandFormFields.bosteder, [bosted]);
+        methods.setValue(BostedUtlandFormFields.bosteder, oppdaterBosteder(bosteder, bosted));
+        lagreSøknadSteg(stepId, methods.getValues());
+    };
+
+    const slettBosted = (bosted: BostedUtland) => {
+        methods.setValue(
+            BostedUtlandFormFields.bosteder,
+            bosteder?.filter((b) => b.id !== bosted.id),
+        );
         lagreSøknadSteg(stepId, methods.getValues());
     };
 
@@ -61,14 +77,24 @@ export const BostedUtlandForm = () => {
                     validate={validateField(BostedUtlandFormFields.harBoddIUtlandetSiste5år, getYesOrNoValidator())}
                 />
                 {harBoddIUtlandetSiste5år === YesOrNo.YES && (
-                    <VStack>
+                    <VStack gap="space-16">
+                        <Heading size="xsmall" level="3">
+                            Bosteder
+                        </Heading>
+                        {bosteder && bosteder.length > 0 && (
+                            <BostedUtlandList
+                                bosteder={bosteder}
+                                onEdit={(bosted) => setDialogBosted({ bosted })}
+                                onDelete={slettBosted}
+                            />
+                        )}
                         <div>
                             <Button
                                 type="button"
                                 variant="secondary"
                                 size="small"
                                 onClick={() => setDialogBosted({ bosted: undefined })}>
-                                Vis dialog
+                                Legg til bosted
                             </Button>
                         </div>
                         <BostedUtlandFormDialog
@@ -80,7 +106,6 @@ export const BostedUtlandForm = () => {
                             }}
                             onCancel={() => setDialogBosted(undefined)}
                         />
-                        <BostedUtlandList bosteder={bosteder || []} onEdit={(bosted) => setDialogBosted({ bosted })} />
                     </VStack>
                 )}
             </FormLayout.Questions>
