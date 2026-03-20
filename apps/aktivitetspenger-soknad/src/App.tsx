@@ -2,6 +2,7 @@ import '@navikt/ds-css';
 import './app.css';
 
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
+import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
@@ -17,6 +18,11 @@ initApiClients();
 
 const appEnv = getAppEnv();
 const queryClient = new QueryClient();
+const basePath = appEnv[EnvKey.PUBLIC_PATH];
+
+if (globalThis.location.pathname === '/') {
+    globalThis.location.pathname = basePath;
+}
 
 export const App = () => {
     return (
@@ -27,7 +33,7 @@ export const App = () => {
             <AppErrorBoundary>
                 <QueryClientProvider client={queryClient}>
                     <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                        <BrowserRouter basename="/aktivitetspenger/soknad">
+                        <BrowserRouter basename={basePath}>
                             <InitialDataLoader />
                         </BrowserRouter>
                     </IntlProvider>
