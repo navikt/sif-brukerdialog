@@ -57,7 +57,7 @@ export const BostedUtlandForm = () => {
 
     methods.register(BostedUtlandFormFields.bosteder, {
         validate: (value) => {
-            if (harBoddIUtlandetSiste5år === YesOrNo.YES && (!value || value.length === 0)) {
+            if (harBoddIUtlandetSiste5år === YesOrNo.YES) {
                 return validateField(BostedUtlandFormFields.bosteder, getListValidator({ minItems: 1 }))(value);
             }
         },

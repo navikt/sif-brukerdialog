@@ -317,39 +317,3 @@ export const appMessages_nb = {
 | `utils/formValuesToSøknadsdata.ts` | Case per steg — fyll ut etter hvert                                         |
 | `søknad/SøknadStep.tsx`            | `text('application.title')`, `getLenker().minSide`                          |
 | `i18n/nb/appMessages.ts`           | `application.title` og app-spesifikke tekster                               |
-
----
-
-## Template-filer
-
-Ferdigskrevne template-filer ligger i `templates/` under denne skill-mappen.
-Kopier ønsket fil og tilpass markerte `// TODO`-punkter.
-
-```
-templates/
-  constants.ts
-  context/
-    søknadContext.ts
-  config/
-    søknadStepConfig.ts
-  hooks/
-    index.ts
-    useAvbrytSøknad.ts
-    useSøknadMellomlagring.ts
-    useSøknadRhfForm.ts
-    useSøknadState.ts
-    useSøknadStore.ts
-    useStepDefaultValues.ts
-    useStepSubmit.ts
-  søknad/
-    AppForm.tsx
-    SøknadFormButtons.tsx
-    SøknadStep.tsx
-  types/
-    Mellomlagring.ts
-    Søknadsdata.ts
-  utils/
-    formValuesToSøknadsdata.ts
-
-Merk: `lenker.ts` er ikke med her — bruk inline URL-er i `SøknadStep.tsx` direkte.
-```
