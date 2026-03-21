@@ -45,5 +45,11 @@ export const StepRouteGuard = <TStepId extends string>({
         return <Navigate to={initialPath} replace />;
     }
 
+    const stepIndex = steps.indexOf(stepAtPath);
+    const firstIncompleteStep = steps.slice(0, stepIndex).find((s) => !s.completed);
+    if (firstIncompleteStep) {
+        return <Navigate to={buildStepPath(basePath, firstIncompleteStep.stepRoute)} replace />;
+    }
+
     return <Outlet />;
 };
