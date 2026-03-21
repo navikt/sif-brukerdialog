@@ -13,9 +13,9 @@
         "@sanity/client": "7.17.0"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "8.7.0",
-        "@navikt/ds-css": "8.7.0",
-        "@navikt/ds-react": "8.7.0",
+        "@navikt/aksel-icons": "8.8.0",
+        "@navikt/ds-css": "8.8.0",
+        "@navikt/ds-react": "8.8.0",
         "@sif/eslint-config": "workspace:*",
         "@types/node": "25.5.0",
         "@types/react": "19.2.14",

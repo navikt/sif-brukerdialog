@@ -23,7 +23,7 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.7.0",
+        "@navikt/ds-react": "8.8.0",
         "i18n-iso-countries": "7.14.0",
         "react-hook-form": "7.71.2",
         "react-intl": "8.1.4"
