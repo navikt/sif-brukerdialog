@@ -1,14 +1,25 @@
-import { Alert, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { ApplicationPage } from '@sif/soknad/pages';
 
+import { useAppIntl } from '../../i18n';
 interface Props {
     error?: string;
 }
 
-export const ErrorPage = ({ error }: Props) => (
-    <VStack gap="space-4" className="p-6 md:p-10">
-        <Heading size="large" level="1">
-            Noe gikk galt
-        </Heading>
-        {error ? <Alert variant="error">{error}</Alert> : null}
-    </VStack>
-);
+export const ErrorPage = ({ error }: Props) => {
+    const { text } = useAppIntl();
+
+    return (
+        <ApplicationPage documentTitle="Noe gikk galt" applicationTitle={text('application.title')}>
+            <VStack gap="space-24">
+                <Heading size="xlarge" level="1">
+                    Oops, noe gikk galt
+                </Heading>
+                <Alert variant="error">
+                    <BodyLong>Det oppstod en feil. Vennligst prøv igjen senere.</BodyLong>
+                    {error ? <pre>{error}</pre> : null}
+                </Alert>
+            </VStack>
+        </ApplicationPage>
+    );
+};
