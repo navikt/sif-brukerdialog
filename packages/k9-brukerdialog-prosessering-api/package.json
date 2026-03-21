@@ -4,15 +4,15 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.3.12",
+    "version": "0.3.13",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.94.0",
+        "@hey-api/openapi-ts": "0.94.2",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.13.6",
         "config": "workspace:*",
         "postcss": "8.5.8",
         "typescript": "5.9.3",
-        "vitest": "4.0.18",
+        "vitest": "4.1.0",
         "zod": "4.3.6"
     },
     "peerDependencies": {
@@ -26,7 +26,8 @@
     "scripts": {
         "fix-regex": "node scripts/fix-generated-regex.mjs",
         "gen-types:all:fixed": "yarn gen-types:all && yarn fix-regex",
-        "gen-types:all": "yarn gen-types:omsorgspenger && yarn gen-types:ungdomsytelse && yarn gen-types:ettersendelse && yarn gen-types:omsorgspenger-aleneomsorg && yarn gen-types:omsorgspenger-midlertidig-alene && yarn gen-types:omsorgspengerutbetaling-arbeidstaker && yarn gen-types:omsorgspengerutbetaling-snf && yarn gen-types:opplaeringspenger && yarn gen-types:pleiepenger-livets-sluttfase && yarn gen-types:pleiepenger-sykt-barn-endringsmelding && yarn gen-types:pleiepenger-sykt-barn-soknad && yarn gen-types:legacy",
+        "gen-types:all": "yarn gen-types:aktivitetspenger && yarn gen-types:omsorgspenger && yarn gen-types:ungdomsytelse && yarn gen-types:ettersendelse && yarn gen-types:omsorgspenger-aleneomsorg && yarn gen-types:omsorgspenger-midlertidig-alene && yarn gen-types:omsorgspengerutbetaling-arbeidstaker && yarn gen-types:omsorgspengerutbetaling-snf && yarn gen-types:opplaeringspenger && yarn gen-types:pleiepenger-livets-sluttfase && yarn gen-types:pleiepenger-sykt-barn-endringsmelding && yarn gen-types:pleiepenger-sykt-barn-soknad && yarn gen-types:legacy",
+        "gen-types:aktivitetspenger": "openapi-ts --file configs/openapi-ts.config-aktivitetspenger.ts",
         "gen-types:omsorgspenger": "openapi-ts --file configs/openapi-ts.config-omsorgspenger.ts",
         "gen-types:ungdomsytelse": "openapi-ts --file configs/openapi-ts.config-ungdomsytelse.ts",
         "gen-types:ettersendelse": "openapi-ts --file configs/openapi-ts.config-ettersendelse.ts",

@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { hentRegistrerteBarn } from '../api/registrerteBarnApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { RegistrertBarn } from '../types/Barn';
+import { ApiError } from '../utils/errorHandlers';
 
 /**
  * Hook for å hente informasjon om registrerte barn fra k9-brukerdialog-prosessering-api
@@ -13,7 +14,7 @@ import { RegistrertBarn } from '../types/Barn';
  * - Ingen refetch på focus/mount/reconnect
  */
 export const useRegistrerteBarn = (enabled = true) => {
-    return useQuery<RegistrertBarn[], Error>({
+    return useQuery<RegistrertBarn[], ApiError>({
         queryKey: sifCommonQueryKeys.barn,
         queryFn: hentRegistrerteBarn,
         enabled,

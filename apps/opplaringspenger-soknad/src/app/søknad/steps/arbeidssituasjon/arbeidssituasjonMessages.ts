@@ -62,7 +62,7 @@ const nb = {
     'arbeidsforhold.utledet': 'timer i uka',
     'arbeidsforhold.timer.suffix': 'timer per uke',
 
-    'arbeidsforhold.normalTimer.info.tittel': 'Hva betyr dette?',
+    'arbeidsforhold.normalTimer.info.tittel': 'Jobber du turnus, varierende eller mottar ytelse?',
     'arbeidsforhold.ansatt.normalTimer.info':
         'Hvis du er usikker på hvor mange timer du jobber per uke, finner du som regel svaret i arbeidskontrakten din. Du kan også høre med arbeidsgiveren din.',
     'arbeidsforhold.frilanser.normalTimer.info':
@@ -180,7 +180,7 @@ const nn: Record<keyof typeof nb, string> = {
     'arbeidsforhold.utledet': 'timar i veka',
     'arbeidsforhold.timer.suffix': 'timar per veke',
 
-    'arbeidsforhold.normalTimer.info.tittel': 'Kva tyder dette?',
+    'arbeidsforhold.normalTimer.info.tittel': 'Jobbar du turnus, varierande eller mottar ytelse?',
     'arbeidsforhold.ansatt.normalTimer.info':
         'Om du er usikker på kor mange timar du jobbar per veke, finn du som regel svaret i arbeidskontrakten din. Du kan også høyre med arbeidsgivaren din.',
     'arbeidsforhold.frilanser.normalTimer.info':

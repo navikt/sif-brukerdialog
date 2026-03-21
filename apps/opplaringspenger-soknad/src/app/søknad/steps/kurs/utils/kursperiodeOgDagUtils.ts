@@ -1,5 +1,5 @@
 import { DateRange, dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import { dateToISODate, durationAsNumberDuration, guid, numberDurationAsDuration } from '@navikt/sif-common-utils';
+import { dateToISODate, guid } from '@navikt/sif-common-utils';
 
 import { Kursdag } from '../../../../types/Kursdag';
 import { Kursperiode } from '../../../../types/Kursperiode';
@@ -46,8 +46,6 @@ const mapKursPeriodeFormValuesToKursperiode = (
 
 const mapKursdagFormValuesToKursdag = (formValues: KursdagFormValues, id: string | undefined): Kursdag => {
     const dato = getDatoFromKursdagFormDato(formValues.dato);
-    const tidKurs = durationAsNumberDuration(formValues.tidKurs);
-    const tidReise = formValues.tidReise ? durationAsNumberDuration(formValues.tidReise) : undefined;
 
     if (!dato) {
         throw new Error('Kan ikke mappe form values til kursdag');
@@ -55,15 +53,11 @@ const mapKursdagFormValuesToKursdag = (formValues: KursdagFormValues, id: string
     return {
         id: id || guid(),
         dato,
-        tidKurs,
-        tidReise,
     };
 };
 
 const mapKursdagToKursdagFormValues = (kurs: Kursdag): Partial<KursdagFormValues> => ({
     dato: dateToISODate(kurs.dato),
-    tidKurs: numberDurationAsDuration(kurs.tidKurs),
-    tidReise: kurs.tidReise ? numberDurationAsDuration(kurs.tidReise) : undefined,
 });
 
 const mapKursperiodeToFormValues = ({ periode }: Partial<Kursperiode>): KursperiodeFormValues => {

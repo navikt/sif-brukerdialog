@@ -79,20 +79,6 @@ export const getHandlers = () => [
 
     http.put('**/deltakelse/register/:id/marker-har-sokt', () => new HttpResponse(null, { status: 500 })),
 
-    http.get('**/deltakelse/register/oppgave/:oppgaveReferanse/apnet', ({ params }) => {
-        const ref = params.oppgaveReferanse;
-        if (!ref || typeof ref !== 'string') return new HttpResponse(null, { status: 400 });
-        const oppgave = mockUtils.setOppgaveSomÅpnet(ref as string);
-        return HttpResponse.json(oppgave);
-    }),
-
-    http.get('**/deltakelse/register/oppgave/:oppgaveReferanse/lukk', ({ params }) => {
-        const ref = params.oppgaveReferanse;
-        if (!ref || typeof ref !== 'string') return new HttpResponse(null, { status: 400 });
-        const oppgave = mockUtils.setOppgaveSomLukket(ref);
-        return HttpResponse.json(oppgave);
-    }),
-
     http.post('**/ungdomsytelse/soknad/innsending', () => {
         store.setScenario(ScenarioType.søknadSendt);
         return HttpResponse.json({});

@@ -1,5 +1,4 @@
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
-import { useRegistrerOppgaveSomÅpnet } from '@innsyn/hooks/useRegistrerOppgaveSomÅpnet';
 import EndretSluttdatoOppgavePage from '@innsyn/modules/oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
 import EndretStartdatoOppgavePage from '@innsyn/modules/oppgaver/endret-startdato/EndretStartdatoOppgavePage';
 import RapporterInntektOppgavePage from '@innsyn/modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
@@ -28,7 +27,6 @@ const OppgavePage = () => {
     const oppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
 
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
-    useRegistrerOppgaveSomÅpnet(oppgave);
 
     if (!oppgave) {
         return <OppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} />;

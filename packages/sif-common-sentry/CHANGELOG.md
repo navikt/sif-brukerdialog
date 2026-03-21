@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.64
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 0.28.63
 
 ### Patch Changes

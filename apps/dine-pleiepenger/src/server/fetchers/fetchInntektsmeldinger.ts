@@ -4,7 +4,7 @@ import { NextApiRequest } from 'next';
 import { z } from 'zod';
 
 import { getContextForApiHandler, prepApiError, serverResponseTransform } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
@@ -37,19 +37,19 @@ export const fetchInntektsmeldinger = async (
 
     try {
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-            logger.debug('Returnerer uparsed data');
+            logger.info('Returnerer uparsed data');
             const response = await axios.get(url, { headers });
             return response.data;
         }
 
-        logger.debug('Henter inntektsmeldinger fra upstream');
+        logger.info('Henter inntektsmeldinger fra upstream');
         const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
-        logger.debug('Respons mottatt', { status: response.status });
+        logger.info('Respons mottatt', { status: response.status });
 
         const parsedData = z
             .array(inntektsmeldingSchemaModified)
             .parse(response.data) as innsyn.SakInntektsmeldingDto[];
-        logger.debug('Inntektsmeldinger parset', { antall: parsedData.length });
+        logger.info('Inntektsmeldinger parset', { antall: parsedData.length });
 
         return parsedData;
     } catch (error) {

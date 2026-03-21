@@ -1,5 +1,13 @@
 # @navikt/sif-server
 
+## 0.4.58
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.10
+
 ## 0.4.57
 
 ### Patch Changes

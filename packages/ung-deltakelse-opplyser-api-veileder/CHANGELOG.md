@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.8
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 0.3.7
 
 ### Patch Changes

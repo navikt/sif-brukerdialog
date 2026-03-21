@@ -16,8 +16,6 @@ interface KursholderApiData {
 
 export interface KursdagApiData {
     dato: ISODate;
-    tidKurs: ISODuration;
-    tidReise?: ISODuration;
 }
 
 export interface KursApiData {
@@ -41,7 +39,7 @@ export interface TidEnkeltdagApiData {
 }
 export interface ArbeidIPeriodeApiData {
     jobberIPerioden: JobberIPeriodeSvar;
-    enkeltdager: TidEnkeltdagApiData[];
+    enkeltdagerFravær: TidEnkeltdagApiData[];
 }
 
 export interface TidFasteDagerApiData {

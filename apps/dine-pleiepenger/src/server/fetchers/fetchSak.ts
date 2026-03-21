@@ -5,7 +5,7 @@ import { NextApiRequest } from 'next';
 import { z } from 'zod';
 
 import { getContextForApiHandler, prepApiError, serverResponseTransform } from '../../utils/apiUtils';
-import { getLogger } from '../../utils/getLogCorrelationID';
+import { getLogger } from '../../utils/getLogger';
 import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
@@ -80,21 +80,29 @@ export const fetchSak = async (
 
     try {
         if (serverApiUtils.shouldAndCanReturnUnparsedData(unparsed)) {
-            logger.debug('Returnerer uparsed data');
+            logger.info('Returnerer uparsed data');
             const response = await axios.get(url, { headers });
             return response.data;
         }
 
-        logger.debug('Henter sak fra upstream');
+        logger.info('Henter sak fra upstream');
         const response = await axios.get(url, { headers, transformResponse: serverResponseTransform });
-        logger.debug('Respons mottatt', { status: response.status });
+        logger.info('Respons mottatt', { status: response.status });
 
         if (typeof response.data !== 'object' || response.data === null) {
+            const dataStr = typeof response.data === 'string' ? response.data : String(response.data);
+            logger.warn('Innsyn - hent sak response.data er ikke objekt', {
+                dataType: typeof response.data,
+                length: dataStr.length,
+                preview: dataStr.slice(0, 10),
+                contentType: response.headers?.['content-type'],
+                status: response.status,
+            });
             throw new Error(`Sak response data er ikke et objekt [typeof=${typeof response.data}]`);
         }
 
         const parsedData = zSakDtoExtended.parse(response.data) as innsyn.SakDto;
-        logger.debug('Sak parset og validert');
+        logger.info('Sak parset og validert');
 
         return fjernUkjenteInnsendelserISak(parsedData);
     } catch (error) {

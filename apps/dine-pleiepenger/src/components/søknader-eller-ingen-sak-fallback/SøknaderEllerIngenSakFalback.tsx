@@ -6,6 +6,7 @@ import { useInnsynsdataContext } from '../../hooks/useInnsynsdataContext';
 import { useAppIntl } from '../../i18n';
 import { innsendteSøknaderSchema, InnsendtSøknad } from '../../types/client-schemas/innsendtSøknadClientSchema';
 import { browserEnv } from '../../utils/env';
+import { reportClientParseError } from '../../utils/reportClientParseError';
 import { swrBaseConfig } from '../../utils/swrBaseConfig';
 import DineInnsendteSøknader from '../dine-innsendte-søknader/DineInnsendteSøknader';
 import IngenSakEllerSøknadPage from '../ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
@@ -29,7 +30,15 @@ const SøknaderEllerIngenSakFalback = () => {
         error,
     } = useSWR<InnsendtSøknad[]>(
         [`${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknader`, søker.fødselsnummer],
-        ([url]) => axios.get(url).then((res) => innsendteSøknaderSchema.parse(res.data)),
+        ([url]) =>
+            axios.get(url).then((res) => {
+                const result = innsendteSøknaderSchema.safeParse(res.data);
+                if (!result.success) {
+                    reportClientParseError(result.error, 'innsendteSøknaderSchema');
+                    throw result.error;
+                }
+                return result.data;
+            }),
         swrBaseConfig,
     );
 

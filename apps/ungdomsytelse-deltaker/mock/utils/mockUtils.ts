@@ -21,19 +21,6 @@ function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
 }
 
 export const mockUtils = {
-    setOppgaveSomÅpnet: (ref: string) =>
-        updateOppgave(ref, (oppgave) => ({
-            ...oppgave,
-            åpnetDato: getMockToday().toISOString(),
-        })),
-
-    setOppgaveSomLukket: (ref: string) =>
-        updateOppgave(ref, (oppgave) => ({
-            ...oppgave,
-            status: 'LUKKET',
-            lukketDato: getMockToday().toISOString(),
-        })),
-
     setDeltakelseSøktFor: () => {
         const state = store.get();
         const deltakelser = state.deltakelser.map((deltakelse, idx) =>
@@ -59,7 +46,7 @@ export const mockUtils = {
 
     setRapportertInntekt: (ref: string, data: UngdomsytelseInntektsrapportering) => {
         const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<OppgaveDto> =>
-            (({
+            ({
                 oppgavetypeData: {
                     ...oppgave.oppgavetypeData,
                     fraOgMed: oppgave.oppgavetypeData.fraOgMed,
@@ -72,8 +59,8 @@ export const mockUtils = {
                 },
 
                 løstDato: getMockToday().toISOString(),
-                status: 'LØST'
-            }) as any);
+                status: 'LØST',
+            }) as any;
 
         setTimeout(() => {
             updateOppgave(ref, (oppgave) => ({

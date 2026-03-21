@@ -1,7 +1,7 @@
 {
     "name": "@navikt/sif-common-faro",
     "main": "src/index.ts",
-    "version": "0.2.12",
+    "version": "0.2.13",
     "private": true,
     "type": "module",
     "devDependencies": {
@@ -9,7 +9,7 @@
         "typescript": "5.9.3"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "2.2.4",
+        "@grafana/faro-web-sdk": "2.3.0",
         "constate": "3.3.3",
         "react": "19.2.4"
     },

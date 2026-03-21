@@ -80,6 +80,7 @@ const KursperiodeQuestions = ({
                 fieldFromDate={startdato}
                 fieldToDate={sluttdato}
                 disabledDateRanges={disabledDateRanges}
+                disableWeekends={true}
                 fromInputProps={{
                     label: text('kursperiode.form.fom.label'),
                     name: getFieldName(KursperiodeFormFields.fom),

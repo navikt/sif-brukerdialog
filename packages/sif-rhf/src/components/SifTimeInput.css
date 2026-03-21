@@ -1,0 +1,83 @@
+.sif-time-input .sif-time-input__content-wrapper {
+    white-space: nowrap;
+    padding-bottom: 1.25rem;
+    display: flex;
+}
+
+.sif-time-input .sif-time-input__input-wrapper {
+    display: flex;
+    align-items: baseline;
+    padding: 0;
+    position: relative;
+    max-width: 3.5rem;
+    flex: 1;
+}
+
+.sif-time-input.sif-time-input--wide .sif-time-input__input-wrapper {
+    max-width: 5rem;
+}
+
+.sif-time-input .sif-time-input__input-wrapper input {
+    text-align: center;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.sif-time-input .sif-time-input__label {
+    display: block;
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    font-size: 0.9rem;
+    padding: 0;
+    text-align: left;
+    line-height: 1rem;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
+.sif-time-input.sif-time-input--compact .sif-time-input__input-wrapper:first-child input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.sif-time-input.sif-time-input--compact .sif-time-input__input-wrapper:last-child input {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.sif-time-input.sif-time-input--compact .sif-time-input__input-wrapper input:focus {
+    z-index: 2;
+    position: relative;
+}
+
+.sif-time-input.sif-time-input--horizontal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.sif-time-input.sif-time-input--horizontal .navds-fieldset__legend {
+    padding-right: 1rem;
+    align-items: flex-start;
+    padding-top: 0.5rem;
+    white-space: nowrap;
+    flex: 1 1 12rem;
+}
+
+.sif-time-input.sif-time-input--horizontal .sif-time-input__content-wrapper {
+    flex: 2 1 10rem;
+}
+
+.sif-time-input.sif-time-input--content-left .sif-time-input__content-wrapper {
+    justify-content: flex-start;
+}
+
+.sif-time-input.sif-time-input--content-center .sif-time-input__content-wrapper {
+    justify-content: center;
+}
+
+.sif-time-input.sif-time-input--content-right .sif-time-input__content-wrapper {
+    justify-content: flex-end;
+}

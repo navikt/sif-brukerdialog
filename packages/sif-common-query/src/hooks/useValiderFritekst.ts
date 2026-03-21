@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 
 import { validerFritekst } from '../api';
 import { sifCommonQueryKeys } from '../queryKeys';
-import { handleApiError, isApiAxiosError } from '../api-clients';
 import { invalidParameterProblemDetailSchema, InvalidParameterViolation } from '../types/invalidParameterProblemDetail';
 import { AxiosError } from 'axios';
+import { isApiAxiosError } from '../utils/errorHandlers';
 
 const getInvalidParameterViolations = (error: AxiosError<any>): InvalidParameterViolation[] => {
     const result = invalidParameterProblemDetailSchema.safeParse(error.response?.data);
@@ -33,9 +33,8 @@ export const useValiderFritekst = (fritekst?: string) => {
         }
         if (isError) {
             try {
-                const handledError = handleApiError(error);
-                if (isApiAxiosError(handledError)) {
-                    const parameters = getInvalidParameterViolations(handledError.originalError);
+                if (isApiAxiosError(error)) {
+                    const parameters = getInvalidParameterViolations(error.originalError);
                     setInvalidParameters(parameters && parameters.length > 0 ? parameters : undefined);
                 } else {
                     setInvalidParameters(undefined);

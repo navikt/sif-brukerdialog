@@ -1,13 +1,12 @@
-import { FormSummary, HStack, List, VStack } from '@navikt/ds-react';
+import { FormSummary, HStack, List } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
-import { DurationText, JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import {
     capsFirstCharacter,
     dateFormatter,
     dateRangeFormatter,
     ISODateRangeToDateRange,
     ISODateToDate,
-    ISODurationToDuration,
 } from '@navikt/sif-common-utils';
 
 import { AppText, useAppIntl } from '../../../../i18n';
@@ -76,22 +75,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                             <List.Item key={kursdag.dato}>
                                                 <div>
                                                     <span>{dateFormatter.full(ISODateToDate(kursdag.dato))}</span>
-                                                </div>{' '}
-                                                Kurs:{' '}
-                                                <DurationText
-                                                    fullText={false}
-                                                    duration={ISODurationToDuration(kursdag.tidKurs)}
-                                                />
-                                                {kursdag.tidReise ? (
-                                                    <>
-                                                        {' '}
-                                                        Reise:{' '}
-                                                        <DurationText
-                                                            fullText={false}
-                                                            duration={ISODurationToDuration(kursdag.tidReise)}
-                                                        />
-                                                    </>
-                                                ) : null}
+                                                </div>
                                             </List.Item>
                                         );
                                     })}
@@ -101,7 +85,12 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                     )}
                     {kurs.reise ? (
                         <FormSummary.Answer>
-                            <FormSummary.Label>Reiser du på dager du ikke har kurs eller opplæring?</FormSummary.Label>
+                            <FormSummary.Label>
+                                <AppText
+                                    id="steg.kurs.reiserUtenforKursdager.label"
+                                    values={{ antallPerioder: kursperioder.length }}
+                                />
+                            </FormSummary.Label>
                             <FormSummary.Value>
                                 <JaNeiSvar harSvartJa={kurs.reise.reiserUtenforKursdager} />
                             </FormSummary.Value>
@@ -111,25 +100,25 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                     {kurs.reise?.reiserUtenforKursdager ? (
                         <>
                             <FormSummary.Answer>
-                                <FormSummary.Label>Reisedager uten kurs eller opplæring</FormSummary.Label>
+                                <FormSummary.Label>
+                                    <AppText id="oppsummering.kurs.reisedager.utenforKurs" />
+                                </FormSummary.Label>
                                 <FormSummary.Value>
-                                    <VStack>
-                                        <List>
-                                            {kurs.reise.reisedager.map((reisedag) => {
-                                                return (
-                                                    <List.Item key={reisedag}>
-                                                        {capsFirstCharacter(
-                                                            dateFormatter.full(ISODateToDate(reisedag)),
-                                                        )}
-                                                    </List.Item>
-                                                );
-                                            })}
-                                        </List>
-                                    </VStack>
+                                    <List>
+                                        {kurs.reise.reisedager.map((reisedag) => {
+                                            return (
+                                                <List.Item key={reisedag}>
+                                                    {capsFirstCharacter(dateFormatter.full(ISODateToDate(reisedag)))}
+                                                </List.Item>
+                                            );
+                                        })}
+                                    </List>
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                             <FormSummary.Answer>
-                                <FormSummary.Label>Årsak til reisetid</FormSummary.Label>
+                                <FormSummary.Label>
+                                    <AppText id="oppsummering.kurs.reisedager.utenforKurs.arsak" />
+                                </FormSummary.Label>
                                 <FormSummary.Value>
                                     <Sitat>
                                         <TextareaSvar text={kurs.reise.reisedagerBeskrivelse} />
