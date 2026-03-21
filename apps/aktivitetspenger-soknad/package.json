@@ -15,10 +15,10 @@
         "build-storybook": "storybook build"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.7.0",
-        "@navikt/ds-css": "8.7.0",
-        "@navikt/ds-react": "8.7.0",
-        "@navikt/ds-tailwind": "8.7.0",
+        "@navikt/aksel-icons": "8.8.0",
+        "@navikt/ds-css": "8.8.0",
+        "@navikt/ds-react": "8.8.0",
+        "@navikt/ds-tailwind": "8.8.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/sif-app-register": "workspace:*",
@@ -58,7 +58,7 @@
         "@vitest/browser-playwright": "4.1.0",
         "eslint": "9.39.4",
         "eslint-plugin-storybook": "10.2.19",
-        "msw": "2.12.11",
+        "msw": "2.12.12",
         "storybook": "10.2.19",
         "tailwindcss": "4.2.1",
         "typescript": "5.9.3",
