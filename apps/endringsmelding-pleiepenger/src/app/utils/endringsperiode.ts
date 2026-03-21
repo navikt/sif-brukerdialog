@@ -7,7 +7,6 @@ dayjs.extend(minMax);
 export const ANTALL_MÅNEDER_TILLATT_FOR_ENDRING = 3;
 
 export const getEndringsdato = (): Date => {
-    console.log(new Date());
     return new Date();
 };
 

@@ -88,22 +88,6 @@ const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues
 
 const bem = bemUtils('tidEnkeltdagForm');
 
-/** Lytter på endringer i erIkkeIOmsorgstilbud og oppdaterer tid til 0 når den krysses av */
-// const OmsorgstilbudWatcher = () => {
-//     const { values, setFieldValue } = useFormikContext<TidEnkeltdagFormValues>();
-//     const prevValue = useRef(values.erIkkeIOmsorgstilbud);
-
-//     useEffect(() => {
-//         // Kun oppdater hvis verdien endres til true (fra false eller undefined)
-//         if (values.erIkkeIOmsorgstilbud === true && prevValue.current !== true) {
-//             setFieldValue(FormFields.tid, { hours: '0', minutes: '0' });
-//         }
-//         prevValue.current = values.erIkkeIOmsorgstilbud;
-//     }, [values.erIkkeIOmsorgstilbud, setFieldValue]);
-
-//     return null;
-// };
-
 const getInitialValues = ({
     tid,
     tidOpprinnelig,
