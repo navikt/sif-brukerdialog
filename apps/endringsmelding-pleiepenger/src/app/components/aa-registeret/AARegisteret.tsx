@@ -1,4 +1,4 @@
-import { useAppIntl } from '../../i18n';
+import { useAppIntl } from '@app/i18n';
 
 const AAregisteret = () => {
     const { text } = useAppIntl();

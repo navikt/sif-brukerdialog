@@ -1,10 +1,11 @@
+import { Arbeidsgiver, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@app/types';
 import { Locale } from '@navikt/sif-common-core-ds/src/types';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { Arbeidsgiver, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@types';
 
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
+import { getTilsynsordningApiDataFraSøknadsdata } from './getTilsynsordningApiDataFraSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -14,7 +15,7 @@ export const getApiDataFromSøknadsdata = (
     arbeidsgivere: Arbeidsgiver[],
     locale: Locale,
 ): SøknadApiData | undefined => {
-    const { id, arbeidstid, lovbestemtFerie, ukjentArbeidsforhold } = søknadsdata;
+    const { id, arbeidstid, lovbestemtFerie, tilsynsordning, ukjentArbeidsforhold } = søknadsdata;
 
     if (!arbeidstid && !lovbestemtFerie) {
         return undefined;
@@ -32,6 +33,7 @@ export const getApiDataFromSøknadsdata = (
                 norskIdentitetsnummer: sak.barn.identitetsnummer,
             },
             lovbestemtFerie: lovbestemtFerie ? getLovbestemtFerieApiDataFromSøknadsdata(lovbestemtFerie) : undefined,
+            tilsynsordning: tilsynsordning ? getTilsynsordningApiDataFraSøknadsdata(tilsynsordning) : undefined,
             arbeidstid: arbeidstid
                 ? getArbeidstidApiDataFromSøknadsdata(
                       sak.søknadsperioder,

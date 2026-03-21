@@ -3,7 +3,7 @@ import './timeInput.scss';
 import { TextField } from '@navikt/ds-react';
 import { hasValue } from '@navikt/sif-validation';
 import classNames from 'classnames';
-import React, { RefObject, useState } from 'react';
+import React, { RefObject, useEffect, useState } from 'react';
 
 import { InputTime, TestProps } from '../../types';
 import bemUtils from '../../utils/bemUtils';
@@ -82,6 +82,10 @@ const TimeInput = ({
 }: TimeInputProps) => {
     const [stateTime, setStateTime] = useState<Partial<InputTime> | undefined>(time);
     const testKey = restProps['data-testid'];
+
+    useEffect(() => {
+        setStateTime(time);
+    }, [time?.hours, time?.minutes]);
 
     return (
         <div

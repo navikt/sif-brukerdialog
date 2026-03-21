@@ -1,5 +1,3 @@
-import { IntlErrorObject } from '@navikt/sif-common-formik-ds';
-import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
 import {
     ArbeiderIPeriodenSvar,
     Arbeidsaktivitet,
@@ -11,8 +9,10 @@ import {
     ArbeidstidSøknadsdata,
     ArbeidsukeMap,
     Søknadsdata,
-} from '@types';
-import { beregnEndretArbeidstidForUke } from '@utils';
+} from '@app/types';
+import { beregnEndretArbeidstidForUke } from '@app/utils';
+import { IntlErrorObject } from '@navikt/sif-common-formik-ds';
+import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
 
 import { ArbeidstidFormValues } from './ArbeidstidForm';
 

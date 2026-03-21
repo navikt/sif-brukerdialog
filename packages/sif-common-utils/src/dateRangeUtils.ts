@@ -770,7 +770,13 @@ export const getDateRangesBetweenDateRangesWithinDateRange = (
     return getDateRangesBetweenDateRanges([preDateRange, ...dateRanges, postDateRange]);
 };
 
+export const dateRangeIncludesWeekdays = (dateRange: DateRange): boolean => {
+    const dates = getDatesInDateRange(dateRange);
+    return dates.some((date) => isDateWeekDay(date));
+};
+
 export const dateRangeUtils = {
+    dateRangeIncludesWeekdays,
     dateRangeIsAdjacentToDateRange,
     dateRangesCollide,
     dateRangeToISODateRange,

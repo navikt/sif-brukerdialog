@@ -1,9 +1,9 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import { BodyShort, Link } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
 import { useEffect } from 'react';
 
-import { AppText, useAppIntl } from '../../i18n';
 import { appEnv } from '../../utils/appEnv';
 
 interface Props {
