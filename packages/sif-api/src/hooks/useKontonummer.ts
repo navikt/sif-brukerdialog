@@ -1,4 +1,4 @@
-import { ApiError, sifCommonQueryKeys } from '@navikt/sif-common-query';
+import { ApiError, sifCommonQueryKeys } from '@sif/api';
 import { useQuery } from '@tanstack/react-query';
 
 import { hentKontonummer } from '../api/kontonummerApi';

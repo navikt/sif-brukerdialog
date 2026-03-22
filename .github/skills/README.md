@@ -2,10 +2,10 @@
 
 Bruk denne indeksen for rask routing til riktig skill.
 
-- `sif-common-query`
-    - Når: datahenting via `@navikt/sif-common-query`.
-    - Triggerord: `hente fra api`, `api-kall`, `fetch/query`, `@navikt/sif-common-query`, `useQuery`, `queryKey`, `useKontonummer`, `env.schema.ts`, `initApiClients`, `*_API_URL`.
-    - Fil: `.github/skills/sif-common-query/SKILL.md`
+- `sif-api`
+    - Når: datahenting via `@sif/api`.
+    - Triggerord: `hente fra api`, `api-kall`, `fetch/query`, `@sif/api`, `useQuery`, `queryKey`, `useKontonummer`, `env.schema.ts`, `initApiClients`, `*_API_URL`.
+    - Fil: `.github/skills/sif-api/SKILL.md`
 
 - `sif-soknad-setup`
     - Når: oppsett av `src/app/setup` i app med `@sif/soknad` og `@sif/rhf`.

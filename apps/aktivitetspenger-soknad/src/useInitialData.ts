@@ -6,8 +6,8 @@ import {
     useRegistrerteBarn,
     useSøker,
     useYtelseMellomlagring,
-} from '@navikt/sif-common-query';
-import { UtvidetKontonummerInfo } from '@navikt/sif-common-query/src/types/UtvidetKontonummerInfo';
+} from '@sif/api';
+import { UtvidetKontonummerInfo } from '@sif/api/src/types/UtvidetKontonummerInfo';
 import { useMemo } from 'react';
 
 import { søknadStepConfig } from './app/setup/config/søknadStepConfig';

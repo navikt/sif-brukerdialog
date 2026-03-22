@@ -1,11 +1,11 @@
-# @navikt/sif-common-query
+# @sif/api
 
 TanStack Query hooks for SIF applications.
 
 ## Usage
 
 ```typescript
-import { useSøker } from '@navikt/sif-common-query';
+import { useSøker } from '@sif/api';
 
 function MyComponent() {
     const { data: søker, isLoading, error } = useSøker();

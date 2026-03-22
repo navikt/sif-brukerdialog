@@ -1,5 +1,5 @@
-import { handleApiError } from '@navikt/sif-common-query';
 import { Deltaker, KontonummerDto, zKontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { handleApiError } from '@sif/api';
 
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '../types/UtvidetKontonummerInfo';
 

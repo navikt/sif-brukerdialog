@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
+import { RegistrertBarn, Søker } from '@sif/api';
 
 import { Søknadsdata } from './Søknadsdata';
 

@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@navikt/sif-common-query';
+import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@sif/api';
 import { useMemo } from 'react';
 
 import { søknadStepConfig } from './app/setup/config/søknadStepConfig';

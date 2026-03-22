@@ -1,15 +1,15 @@
 ---
-name: sif-common-query
-description: Bruk denne skillen når en utvikler trenger å hente informasjon fra ett av API-ene i appen via @navikt/sif-common-query (f.eks. kontonummer, søker, barn, arbeidsgivere, mellomlagring).
+name: sif-api
+description: Bruk denne skillen når en utvikler trenger å hente informasjon fra ett av API-ene i appen via @sif/api (f.eks. kontonummer, søker, barn, arbeidsgivere, mellomlagring).
 ---
 
-# sif-common-query Skill
+# sif-api Skill
 
-Denne skillen dekker kun valg av hook, nødvendig API-klient og påkrevd env-oppsett for `@navikt/sif-common-query`. I første respons skal agenten kun gi generell veiledning og et minimalt brukseksempel. Verifisering mot repo eller appfiler skjer bare når brukeren eksplisitt ber om det.
+Denne skillen dekker kun valg av hook, nødvendig API-klient og påkrevd env-oppsett for `@sif/api`. I første respons skal agenten kun gi generell veiledning og et minimalt brukseksempel. Verifisering mot repo eller appfiler skjer bare når brukeren eksplisitt ber om det.
 
 ## Formål
 
-Veiledning for å hente data i sif-brukerdialog-apper via `@navikt/sif-common-query`. Dekker hele kjeden: velge riktig hook, sette opp env-variabler og initialisere API-klienter.
+Veiledning for å hente data i sif-brukerdialog-apper via `@sif/api`. Dekker hele kjeden: velge riktig hook, sette opp env-variabler og initialisere API-klienter.
 
 ## Når skal skillen brukes
 
@@ -22,14 +22,14 @@ Veiledning for å hente data i sif-brukerdialog-apper via `@navikt/sif-common-qu
 Bruk denne skillen umiddelbart hvis oppgaven nevner ett eller flere av disse signalene:
 
 - API-henting i frontend: `trenger data`, `hente informasjon om`, `hente fra api`, `api-kall`, `fetch`, `query`, `preutfyll fra api`, `last inn data`.
-- Query/hook-integrasjon: `@navikt/sif-common-query`, `useQuery`, `queryKey`, `queryFn`, `useSøker`, `useRegistrerteBarn`, `useKontonummer`, `useYtelseMellomlagring`.
+- Query/hook-integrasjon: `@sif/api`, `useQuery`, `queryKey`, `queryFn`, `useSøker`, `useRegistrerteBarn`, `useKontonummer`, `useYtelseMellomlagring`.
 - API-klient/oppsett: `env.schema.ts`, `initApiClients`, `*_API_URL`, `*_API_SCOPE`, `*_FRONTEND_PATH`, API-klient-init.
 
 Merk: Rene domeneord alene (f.eks. `barn`, `søker`) er ikke nok trigger uten tydelig API-hentekontekst.
 
 ## Avgrensning
 
-- Fokus: `@navikt/sif-common-query` hooks, API-klient-initialisering, env-oppsett.
+- Fokus: `@sif/api` hooks, API-klient-initialisering, env-oppsett.
 - Ikke inkludert: Server-side reverse proxy-konfigurasjon, UI-komponenter utover `ApiErrorAlert`.
 - Query-adferd som direkte påvirker bruk av hookene (f.eks. caching, retry) er innenfor scope. Generell TanStack Query-bruk utover dette er det ikke.
 
@@ -170,7 +170,7 @@ export const initApiClients = () => {
 ### 4. Bruk hooken
 
 ```typescript
-import { useSøker, useRegistrerteBarn } from '@navikt/sif-common-query';
+import { useSøker, useRegistrerteBarn } from '@sif/api';
 
 const søker = useSøker();
 const barn = useRegistrerteBarn();
@@ -205,7 +205,7 @@ Denne seksjonen er kun relevant når oppgaven faktisk gjelder mellomlagring. `us
 ### Bruksmønster
 
 ```typescript
-import { useYtelseMellomlagring, MellomlagringYtelse } from '@navikt/sif-common-query';
+import { useYtelseMellomlagring, MellomlagringYtelse } from '@sif/api';
 
 const metadata = useMemo(
     () => ({
@@ -232,7 +232,7 @@ const mellomlagring = useYtelseMellomlagring<SøknadState, MellomlagringMetaData
 Enum med alle støttede ytelser. Appen definerer sin ytelse som konstant:
 
 ```typescript
-import { MellomlagringYtelse } from '@navikt/sif-common-query';
+import { MellomlagringYtelse } from '@sif/api';
 export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER;
 ```
 
@@ -240,5 +240,5 @@ export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER;
 
 ## Referansefiler
 
-- `packages/sif-common-query/src/` — pakkens kildekode
+- `packages/sif-api/src/` — pakkens kildekode
 - `packages/sif-common-env/src/schemas.ts` — tilgjengelige env-schemas og EnvKey enum

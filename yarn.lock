@@ -4414,13 +4414,13 @@ __metadata:
     "@navikt/sif-common-env": "workspace:*"
     "@navikt/sif-common-faro": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
-    "@navikt/sif-common-query": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@navikt/ung-common": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@sentry/react": "npm:10.43.0"
     "@sentry/vite-plugin": "npm:5.1.1"
+    "@sif/api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@sif/rhf": "workspace:*"
     "@sif/soknad": "workspace:*"
@@ -5718,26 +5718,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-query@workspace:*, @navikt/sif-common-query@workspace:packages/sif-common-query":
-  version: 0.0.0-use.local
-  resolution: "@navikt/sif-common-query@workspace:packages/sif-common-query"
-  dependencies:
-    "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
-    "@navikt/k9-sak-innsyn-api": "workspace:*"
-    "@navikt/sif-common-utils": "workspace:*"
-    "@sif/eslint-config": "workspace:*"
-    "@tanstack/react-query": "npm:5.90.21"
-    "@types/react": "npm:19.2.14"
-    axios: "npm:1.13.6"
-    dayjs: "npm:1.11.20"
-    object-hash: "npm:3.0.0"
-    react: "npm:19.2.4"
-    typescript: "npm:5.9.3"
-    uuid: "npm:13.0.0"
-    zod: "npm:4.3.6"
-  languageName: unknown
-  linkType: soft
-
 "@navikt/sif-common-sentry@workspace:*, @navikt/sif-common-sentry@workspace:packages/sif-common-sentry":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
@@ -5921,11 +5901,11 @@ __metadata:
     "@navikt/sif-common-env": "workspace:*"
     "@navikt/sif-common-faro": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
-    "@navikt/sif-common-query": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@sentry/react": "npm:10.43.0"
     "@sentry/vite-plugin": "npm:5.1.1"
+    "@sif/api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@sif/rhf": "workspace:*"
     "@sif/soknad": "workspace:*"
@@ -9435,6 +9415,26 @@ __metadata:
   checksum: 10/1ed21800128b2b23280ba4c9db26c8ff6142b97a8683f17639fd7f2128aa09046461574800b30fb407afc5b663c2331795ccf3b654d4b38fa096e41a5c786bf8
   languageName: node
   linkType: hard
+
+"@sif/api@workspace:*, @sif/api@workspace:packages/sif-api":
+  version: 0.0.0-use.local
+  resolution: "@sif/api@workspace:packages/sif-api"
+  dependencies:
+    "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
+    "@navikt/k9-sak-innsyn-api": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
+    "@sif/eslint-config": "workspace:*"
+    "@tanstack/react-query": "npm:5.90.21"
+    "@types/react": "npm:19.2.14"
+    axios: "npm:1.13.6"
+    dayjs: "npm:1.11.20"
+    object-hash: "npm:3.0.0"
+    react: "npm:19.2.4"
+    typescript: "npm:5.9.3"
+    uuid: "npm:13.0.0"
+    zod: "npm:4.3.6"
+  languageName: unknown
+  linkType: soft
 
 "@sif/eslint-config@workspace:*, @sif/eslint-config@workspace:packages/eslint-config-sif":
   version: 0.0.0-use.local

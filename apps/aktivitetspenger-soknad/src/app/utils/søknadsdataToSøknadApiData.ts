@@ -1,5 +1,5 @@
-import { Søker } from '@navikt/sif-common-query';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { Søker } from '@sif/api';
 
 import { KontoInfo } from '../types/KontoInfo';
 import { SøknadApiData } from '../types/SøknadApiData';

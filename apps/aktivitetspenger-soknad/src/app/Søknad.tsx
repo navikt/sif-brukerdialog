@@ -2,8 +2,8 @@ import { søknadStepConfig, SøknadStepId } from '@app/setup/config/søknadStepC
 import { SøknadContextProvider } from '@app/setup/context/søknadContext';
 import { useSøknadStore } from '@app/setup/hooks';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
-import { UtvidetKontonummerInfo } from '@navikt/sif-common-query/src/types/UtvidetKontonummerInfo';
+import { RegistrertBarn, Søker } from '@sif/api';
+import { UtvidetKontonummerInfo } from '@sif/api/src/types/UtvidetKontonummerInfo';
 import { StepRouteGuard } from '@sif/soknad/navigation';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
