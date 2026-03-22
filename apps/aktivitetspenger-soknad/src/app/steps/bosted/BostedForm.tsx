@@ -2,19 +2,11 @@ import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 
 import { BostedSøknadsdata } from '../../types/Søknadsdata';
+import { BostedFormFields, BostedFormValues } from './types';
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
-
-export enum BostedFormFields {
-    borITrondheim = 'borITrondheim',
-}
-
-export interface BostedFormValues extends StepFormValues {
-    [BostedFormFields.borITrondheim]?: YesOrNo;
-}
 
 const { YesOrNoQuestion } = createSifFormComponents<BostedFormValues>();
 

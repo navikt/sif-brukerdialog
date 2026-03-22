@@ -6,21 +6,13 @@ import { FormLayout, RegistrerteBarnListe, RegistrerteBarnListeHeading } from '@
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { RegistrertBarn } from '@sif/api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
 import { AriaLiveRegion, ExternalLink } from '@sif/soknad-ui/components';
 
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import { BarnSøknadsdata } from '../../types/Søknadsdata';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
-
-export enum BarnFormFields {
-    informasjonStemmer = 'informasjonStemmer',
-}
-
-export interface BarnFormValues extends StepFormValues {
-    [BarnFormFields.informasjonStemmer]?: YesOrNo;
-}
+import { BarnFormFields, BarnFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<BarnFormValues>();
 

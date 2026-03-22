@@ -1,7 +1,7 @@
 import { YesOrNo } from '@sif/rhf';
 
 import { BarnSøknadsdata } from '../../types/Søknadsdata';
-import { BarnFormValues } from './BarnForm';
+import { BarnFormValues } from './types';
 
 export const toBarnFormValues = (søknadsdata: BarnSøknadsdata | undefined): Partial<BarnFormValues> => {
     if (søknadsdata?.informasjonStemmer === undefined) return {};

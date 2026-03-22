@@ -5,21 +5,13 @@ import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { UtvidetKontonummerInfo } from '@sif/api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
 import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion } from '@sif/soknad-ui/components';
 
 import { HarKontonummerEnum } from '../../types/KontoInfo';
 import { KontonummerSøknadsdata } from '../../types/Søknadsdata';
+import { KontonummerFormFields, KontonummerFormValues } from './types';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
-
-export enum KontonummerFormFields {
-    kontonummerErRiktig = 'kontonummerErRiktig',
-}
-
-export interface KontonummerFormValues extends StepFormValues {
-    [KontonummerFormFields.kontonummerErRiktig]?: YesOrNo;
-}
 
 const { YesOrNoQuestion } = createSifFormComponents<KontonummerFormValues>();
 

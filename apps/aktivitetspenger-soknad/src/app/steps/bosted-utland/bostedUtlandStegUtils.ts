@@ -1,7 +1,7 @@
 import { YesOrNo } from '@sif/rhf';
 
 import { BostedUtlandSøknadsdata } from '../../types/Søknadsdata';
-import { BostedUtlandFormValues } from './BostedUtlandForm';
+import { BostedUtlandFormValues } from './types';
 
 export const toBostedUtlandStegFormValues = (
     søknadsdata: BostedUtlandSøknadsdata | undefined,

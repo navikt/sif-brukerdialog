@@ -281,6 +281,26 @@ export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormVal
 };
 ```
 
+#### VIKTIG: Unngå sirkulær avhengighet via FormValues-typer
+
+`formValuesToSøknadsdata` importerer `*FormValues`-typer og `*Søknadsdata`-konvertere fra hvert steg. Hvis disse typene er definert direkte i `*Form.tsx`-komponentfilene oppstår en sirkulær avhengighet:
+
+```
+søknadContext → formValuesToSøknadsdata → BarnForm.tsx → AppForm → søknadContext
+```
+
+**Løsning:** Definer alltid `*FormFields` (enum) og `*FormValues` (interface) i en egen `types.ts` per steg-mappe — ikke i selve komponentfilen.
+
+```
+steps/
+  barn/
+    types.ts          ← FormFields + FormValues her
+    BarnForm.tsx      ← importerer fra ./types
+    barnStegUtils.ts  ← importerer fra ./types
+```
+
+`formValuesToSøknadsdata` importerer da fra `steps/barn/types` (ren TS-fil uten React), og syklusen oppstår ikke. Det samme gjelder `*StegUtils.ts`-filene.
+
 ### 8. Tilpass SøknadStep.tsx
 
 To punkter å tilpasse:

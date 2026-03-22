@@ -4,23 +4,13 @@ import { AppForm } from '@app/setup/søknad/AppForm';
 import { Button, Heading, VStack } from '@navikt/ds-react';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
 import { BostedUtland, BostedUtlandFormDialog, BostedUtlandList } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
 import { useState } from 'react';
 
 import { BostedUtlandSøknadsdata } from '../../types/Søknadsdata';
+import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
-
-export enum BostedUtlandFormFields {
-    harBoddIUtlandetSiste5år = 'harBoddIUtlandetSiste5år',
-    bosteder = 'bosteder',
-}
-
-export interface BostedUtlandFormValues extends StepFormValues {
-    [BostedUtlandFormFields.harBoddIUtlandetSiste5år]?: YesOrNo;
-    [BostedUtlandFormFields.bosteder]?: BostedUtland[];
-}
 
 const { YesOrNoQuestion } = createSifFormComponents<BostedUtlandFormValues>();
 
