@@ -4414,7 +4414,6 @@ __metadata:
     "@navikt/sif-common-env": "workspace:*"
     "@navikt/sif-common-faro": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
-    "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@navikt/ung-common": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
@@ -4424,6 +4423,8 @@ __metadata:
     "@sif/eslint-config": "workspace:*"
     "@sif/rhf": "workspace:*"
     "@sif/soknad": "workspace:*"
+    "@sif/soknad-forms": "workspace:*"
+    "@sif/soknad-ui": "workspace:*"
     "@storybook/addon-a11y": "npm:10.2.19"
     "@storybook/react-vite": "npm:10.2.19"
     "@tailwindcss/vite": "npm:4.2.1"
@@ -9483,7 +9484,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sif/soknad-forms@workspace:packages/sif-soknad-forms":
+"@sif/soknad-forms@workspace:*, @sif/soknad-forms@workspace:packages/sif-soknad-forms":
   version: 0.0.0-use.local
   resolution: "@sif/soknad-forms@workspace:packages/sif-soknad-forms"
   dependencies:
@@ -9504,7 +9505,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sif/soknad-ui@workspace:packages/sif-soknad-ui":
+"@sif/soknad-ui@workspace:*, @sif/soknad-ui@workspace:packages/sif-soknad-ui":
   version: 0.0.0-use.local
   resolution: "@sif/soknad-ui@workspace:packages/sif-soknad-ui"
   dependencies:
