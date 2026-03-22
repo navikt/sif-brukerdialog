@@ -2,8 +2,8 @@ import { HStack } from '@navikt/ds-react';
 import { ReactNode, useEffect, useRef } from 'react';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 
-import { DatepickerLimitations, ISODateStringToUTCDate } from '../utils/dateUtils';
-import { SifDatepicker } from './SifDatepicker';
+import { datePickerUtils } from '../utils';
+import { DatepickerLimitations, SifDatepicker } from './SifDatepicker';
 import { SifInputGroup } from './SifInputGroup';
 
 export const minDate = (a?: Date, b?: Date): Date | undefined => {
@@ -52,8 +52,8 @@ export function SifDateRangePicker<T extends FieldValues>({
     const fromValue = watch(fromInputProps.name);
     const toValue = watch(toInputProps.name);
 
-    const fromDate = fromValue ? ISODateStringToUTCDate(fromValue as string) : undefined;
-    const toDate = toValue ? ISODateStringToUTCDate(toValue as string) : undefined;
+    const fromDate = fromValue ? datePickerUtils.ISODateStringToUTCDate(fromValue as string) : undefined;
+    const toDate = toValue ? datePickerUtils.ISODateStringToUTCDate(toValue as string) : undefined;
 
     const resolvedFromMaxDate = minDate(toDate, fromInputProps.maxDate);
     const resolvedToMinDate = maxDate(fromDate, toInputProps.minDate);

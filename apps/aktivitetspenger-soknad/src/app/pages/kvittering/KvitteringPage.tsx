@@ -1,6 +1,6 @@
 import { Alert, Button, Heading, VStack } from '@navikt/ds-react';
 import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
-import { ApplicationPage } from '@sif/soknad/pages';
+import { ApplicationPage } from '@sif/soknad-ui/pages';
 
 import { useAppIntl } from '../../i18n';
 
