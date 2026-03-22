@@ -284,7 +284,8 @@ Når du skal trekke ut tekster som er inline i en komponent, gjør følgende:
 1. Se om dette er en gruppe av komponenter som deler en naturlig felles kontekst (f.eks. et steg eller en side). Hvis ja, opprett `i18n/nb.ts` og `i18n/nn.ts` i den relevante folderen (f.eks. `steps/barn/i18n/nb.ts`).
 2. Trekk ut alle tekstene fra komponentene og plasser dem i `nb.ts` med passende nøkler (f.eks. `barnSteg.tittel`, `barnSteg.spørsmål.harBarn`). Navnet på variabelen er komponentnavnet + "Messages" (f.eks. `barnStegMessages_nb`).
 3. Opprett `nn.ts` med `Record<keyof typeof nb, string>` og spread `...nb` — **ikke oversett tekstene til nynorsk**. Nynorsk-oversettelse gjøres manuelt av utvikler i etterkant.
-4. **For pakker:** importer og spread de nye `_nb`- og `_nn`-variablene i pakkens `i18n/index.tsx`, slik at de eksporteres via `sifSoknadUiMessages` / `applicationIntlMessages`. Uten dette steget er meldingene ikke tilgjengelige i konsumerende apper.
+4. **For pakker:** importer og spread `_nb`-variabelen i pakkens `i18n/index.tsx` (i `nb`-objektet), slik at meldingene eksporteres via `sifSoknadUiMessages` / `applicationIntlMessages`. Uten dette steget er meldingene ikke tilgjengelige i konsumerende apper.
+    - Importer og spread også `_nn`-variabelen i `nn`-objektet **bare hvis den inneholder faktiske nynorsk-oversettelser** (dvs. ikke er kun `{ ...nb }`). Hvis `nn.ts` bare er et spread av `nb`, er `...nb` i `nn` allerede tilstrekkelig — ikke legg til redundant import.
 5. Tekstene eksporteres i `appMessages.ts` ved å spre `...barnStegMessages_nb` og `...barnStegMessages_nn`.
 
 ### Komponent vs. hook i komponenten som oppdateres
