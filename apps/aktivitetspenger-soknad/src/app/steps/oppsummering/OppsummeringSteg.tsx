@@ -2,10 +2,10 @@ import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { useSøknadFlow, useSøknadMellomlagring, useSøknadRhfForm, useSøknadState } from '@app/setup/hooks';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 import { FormSummary, InfoCard } from '@navikt/ds-react';
-import { FormLayout } from '@sif/soknad-ui';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { FormLayout } from '@sif/soknad-ui';
 
 import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { AppForm } from '../../setup/søknad/AppForm';

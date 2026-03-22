@@ -19,6 +19,7 @@ export const getSøknadApiDataFromSøknad = ({
     const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted } = søknadsdata;
 
     if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !bostedUtland) {
+        // eslint-disable-next-line no-console
         console.error('Manglende data i søknadsdata');
         return undefined;
     }
