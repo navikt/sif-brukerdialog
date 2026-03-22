@@ -263,7 +263,7 @@ Når du skal trekke ut tekster som er inline i en komponent, gjør følgende:
 
 1. Se om dette er en gruppe av komponenter som deler en naturlig felles kontekst (f.eks. et steg eller en side). Hvis ja, opprett `i18n/nb.ts` og `i18n/nn.ts` i den relevante folderen (f.eks. `steps/barn/i18n/nb.ts`).
 2. Trekk ut alle tekstene fra komponentene og plasser dem i `nb.ts` med passende nøkler (f.eks. `barnSteg.tittel`, `barnSteg.spørsmål.harBarn`). Navnet på variabelen er komponentnavnet + "Messages" (f.eks. `barnStegMessages_nb`).
-3. Opprett `nn.ts` med `Record<keyof typeof nb, string>` og spread `...nb` for å få en start på nn-tekster.
+3. Opprett `nn.ts` med `Record<keyof typeof nb, string>` og spread `...nb` — **ikke oversett tekstene til nynorsk**. Nynorsk-oversettelse gjøres manuelt av utvikler i etterkant.
 4. Tekstene eksporteres i `appMessages.ts` ved å spre `...barnStegMessages_nb` og `...barnStegMessages_nn`.
 
 ## Fase 2 — Parametersjekk

@@ -4,6 +4,8 @@ import { getDateRangeValidator, getRequiredFieldValidator, validationUtils } fro
 import { createSifFormComponents } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { useSifSoknadFormsIntl } from '../../i18n';
+
 import { BostedUtland } from '.';
 
 interface BostedUtlandFormProps {
@@ -50,6 +52,7 @@ const bostedUtlandToFormValues = (bosted: BostedUtland): BostedUtlandFormValues 
 };
 
 export const BostedUtlandForm = ({ formId, bosted, alleBosteder, onValidSubmit }: BostedUtlandFormProps) => {
+    const intl = useSifSoknadFormsIntl();
     const methods = useForm<BostedUtlandFormValues>({
         defaultValues: bosted ? bostedUtlandToFormValues(bosted) : undefined,
     });
@@ -80,10 +83,10 @@ export const BostedUtlandForm = ({ formId, bosted, alleBosteder, onValidSubmit }
                         <FormLayout.Questions>
                             <DateRangePicker
                                 name="bosted"
-                                legend="Oppgi tidsperiode"
+                                legend={intl.text('@sifSoknadForms.bostedUtland.form.tidsperiode.legend')}
                                 fromInputProps={{
                                     name: BostedUtlandFormFields.fom,
-                                    label: 'Fra dato',
+                                    label: intl.text('@sifSoknadForms.bostedUtland.form.fom.label'),
                                     disabledDateRanges: utilgjengeligePerioder,
                                     validate: (value) =>
                                         getDateRangeValidator({
@@ -95,7 +98,7 @@ export const BostedUtlandForm = ({ formId, bosted, alleBosteder, onValidSubmit }
                                 }}
                                 toInputProps={{
                                     name: BostedUtlandFormFields.tom,
-                                    label: 'Til dato',
+                                    label: intl.text('@sifSoknadForms.bostedUtland.form.tom.label'),
                                     disabledDateRanges: utilgjengeligePerioder,
                                     validate: (value) =>
                                         getDateRangeValidator({
@@ -108,7 +111,7 @@ export const BostedUtlandForm = ({ formId, bosted, alleBosteder, onValidSubmit }
                             />
                             <CountrySelect
                                 name={BostedUtlandFormFields.landkode}
-                                label="Velg land"
+                                label={intl.text('@sifSoknadForms.bostedUtland.form.land.label')}
                                 validate={(value) => getRequiredFieldValidator()(value)}
                             />
                         </FormLayout.Questions>
