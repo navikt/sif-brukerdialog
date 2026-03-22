@@ -23,7 +23,9 @@
     },
     "dependencies": {
         "@navikt/aksel-icons": "8.8.0",
-        "@navikt/ds-react": "8.8.0"
+        "@navikt/ds-react": "8.8.0",
+        "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-common-hooks": "workspace:*"
     },
     "peerDependencies": {
         "react": ">=19",
