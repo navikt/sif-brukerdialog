@@ -297,7 +297,6 @@ Minimum i `appMessages.ts`:
 ```ts
 export const appMessages_nb = {
     'application.title': 'Søknad om [ytelse]',
-    '@soknad.loadingPage.henterInformasjon': 'Henter informasjon ...',
 };
 ```
 
