@@ -1,7 +1,7 @@
 import { FloppydiskIcon, TrashIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Button, Dialog, HStack } from '@navikt/ds-react';
 
-import { RammeverkText } from '../../i18n';
+import { SifSoknadUiText } from '../../i18n';
 
 interface StepFooterProps {
     onDelete?: () => void;
@@ -31,31 +31,31 @@ const ResumeLagerDialogAndTrigger = ({ onResumeLater }: Pick<StepFooterProps, 'o
         <Dialog>
             <Dialog.Trigger>
                 <Button type="button" variant="tertiary" icon={<FloppydiskIcon aria-hidden={true} />}>
-                    <RammeverkText id="stepFooter.fortsettSenere.trigger.label" />
+                    <SifSoknadUiText id="@sifSoknadUi.stepFooter.fortsettSenere.trigger.label" />
                 </Button>
             </Dialog.Trigger>
             <Dialog.Popup width="small">
                 <Dialog.Header>
                     <Dialog.Title>
-                        <RammeverkText id="stepFooter.fortsettSenere.dialog.title" />
+                        <SifSoknadUiText id="@sifSoknadUi.stepFooter.fortsettSenere.dialog.title" />
                     </Dialog.Title>
                 </Dialog.Header>
                 <Dialog.Body>
                     <BodyLong spacing>
-                        <RammeverkText id="stepFooter.fortsettSenere.dialog.text.1" />
+                        <SifSoknadUiText id="@sifSoknadUi.stepFooter.fortsettSenere.dialog.text.1" />
                     </BodyLong>
                     <BodyLong>
-                        <RammeverkText id="stepFooter.fortsettSenere.dialog.text.2" />
+                        <SifSoknadUiText id="@sifSoknadUi.stepFooter.fortsettSenere.dialog.text.2" />
                     </BodyLong>
                 </Dialog.Body>
                 <Dialog.Footer>
                     <Dialog.CloseTrigger>
                         <Button variant="secondary">
-                            <RammeverkText id="stepFooter.fortsettSenere.dialog.avbryt.label" />
+                            <SifSoknadUiText id="@sifSoknadUi.stepFooter.fortsettSenere.dialog.avbryt.label" />
                         </Button>
                     </Dialog.CloseTrigger>
                     <Button onClick={onResumeLater}>
-                        <RammeverkText id="stepFooter.fortsettSenere.dialog.confirm.label" />
+                        <SifSoknadUiText id="@sifSoknadUi.stepFooter.fortsettSenere.dialog.confirm.label" />
                     </Button>
                 </Dialog.Footer>
             </Dialog.Popup>
@@ -67,31 +67,31 @@ const DeleteDialogAndTrigger = ({ onDelete }: Pick<StepFooterProps, 'onDelete'>)
         <Dialog>
             <Dialog.Trigger>
                 <Button type="button" variant="tertiary" icon={<TrashIcon aria-hidden={true} />}>
-                    <RammeverkText id="stepFooter.slettSøknad.trigger.label" />
+                    <SifSoknadUiText id="@sifSoknadUi.stepFooter.slettSøknad.trigger.label" />
                 </Button>
             </Dialog.Trigger>
             <Dialog.Popup width="small">
                 <Dialog.Header>
                     <Dialog.Title>
-                        <RammeverkText id="stepFooter.slettSøknad.dialog.title" />
+                        <SifSoknadUiText id="@sifSoknadUi.stepFooter.slettSøknad.dialog.title" />
                     </Dialog.Title>
                 </Dialog.Header>
                 <Dialog.Body>
                     <BodyLong spacing>
-                        <RammeverkText id="stepFooter.slettSøknad.dialog.text.1" />
+                        <SifSoknadUiText id="@sifSoknadUi.stepFooter.slettSøknad.dialog.text.1" />
                     </BodyLong>
                     <BodyLong>
-                        <RammeverkText id="stepFooter.slettSøknad.dialog.text.2" />
+                        <SifSoknadUiText id="@sifSoknadUi.stepFooter.slettSøknad.dialog.text.2" />
                     </BodyLong>
                 </Dialog.Body>
                 <Dialog.Footer>
                     <Dialog.CloseTrigger>
                         <Button variant="secondary">
-                            <RammeverkText id="stepFooter.slettSøknad.dialog.avbryt.label" />
+                            <SifSoknadUiText id="@sifSoknadUi.stepFooter.slettSøknad.dialog.avbryt.label" />
                         </Button>
                     </Dialog.CloseTrigger>
                     <Button onClick={onDelete}>
-                        <RammeverkText id="stepFooter.slettSøknad.dialog.confirm.label" />
+                        <SifSoknadUiText id="@sifSoknadUi.stepFooter.slettSøknad.dialog.confirm.label" />
                     </Button>
                 </Dialog.Footer>
             </Dialog.Popup>

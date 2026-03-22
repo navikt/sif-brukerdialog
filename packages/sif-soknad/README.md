@@ -275,6 +275,7 @@ import { StepRouteGuard } from '@sif/soknad/navigation';
 - sender bruker til route for `currentStepId` hvis URL peker på et steg som ikke er inkludert
 - hvis `currentStepId` ikke er gyldig blant inkluderte steg, brukes første gyldige steg
 - hvis ingen steg er tilgjengelige, brukes `initialPath`
+- sender bruker til første forutgående steg med `completed: false` hvis URL peker direkte på et steg der et tidligere steg ikke er fullført
 
 ## Consistency
 

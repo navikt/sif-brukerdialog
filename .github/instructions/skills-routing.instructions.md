@@ -17,6 +17,10 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 
 ## Signalord til skill
 
+- `sif-intl`:
+    - Implementering: `i18n`, `intl`, `nb.ts`, `nn.ts`, `oversettelse`, `tekster`, `nynorsk`, `bokmål`, `legg til tekst`, `ny tekst`.
+    - Hooks og komponenter: `AppText`, `useAppIntl`, `AppIntlShape`, `useSifSoknadUiIntl`, `SifSoknadUiText`, `typedIntlHelper`, `applicationIntlMessages`.
+    - Sjekk: `parametersjekk`, `meningssjekk`, `{param}`, `plural`, `ICU`.
 - `sif-common-query`:
     - API-henting i app: `hente fra api`, `api-kall`, `fetch`, `query`, `preutfyll fra api`, `last inn data`.
     - Hooks og query: `@navikt/sif-common-query`, `useQuery`, `queryKey`, `queryFn`, `useKontonummer`, `useSøker`, `useRegistrerteBarn`, `useYtelseMellomlagring`, `ApiErrorAlert`.
@@ -36,6 +40,7 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 
 ## Prioritering ved overlapp
 
+- Hvis oppgaven handler om i18n, tekster, nb/nn eller oversettelse, prioriter `sif-intl`.
 - Hvis oppgaven handler om datahenting + env/API-klient-oppsett, prioriter `sif-common-query`.
 - Rene domeneord alene (f.eks. `barn`, `søker`) skal ikke trigge `sif-common-query` uten tydelig API-hentekontekst.
 - Hvis oppgaven handler om setup-arkitektur i app, prioriter `sif-soknad-setup`.

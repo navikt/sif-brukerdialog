@@ -1,13 +1,15 @@
 import { describe, expect, it } from 'vitest';
 
-import {
+import { datePickerUtils } from '../datePickerUtils';
+
+const {
+    ISODateStringToUTCDate,
+    InputDateStringToISODateString,
     dateToISODateString,
     getDisabledDates,
-    InputDateStringToISODateString,
-    INVALID_DATE,
     isISODateString,
-    ISODateStringToUTCDate,
-} from '../dateUtils';
+    INVALID_DATE,
+} = datePickerUtils;
 
 describe('isISODateString', () => {
     it('accepts valid ISO date', () => {

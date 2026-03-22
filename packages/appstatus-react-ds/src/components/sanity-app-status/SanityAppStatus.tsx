@@ -1,6 +1,6 @@
-import { SanityConfig, sanityConfigIsValid, Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds';
 import React from 'react';
 
+import { SanityConfig, sanityConfigIsValid, Status, StatusMessage, useAppStatus } from '../../index';
 import { LoadingSpinner } from './LoadingSpinner';
 
 export interface SanityAppStatusProps {

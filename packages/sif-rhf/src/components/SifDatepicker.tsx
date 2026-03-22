@@ -2,15 +2,23 @@ import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
 import { FocusEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 
-import {
-    DatepickerLimitations,
-    dateToISODateString,
-    getDisabledDates,
-    InputDateStringToISODateString,
-    INVALID_DATE,
-    isISODateString,
+export interface DatepickerLimitations {
+    minDate?: Date;
+    maxDate?: Date;
+    disabledDateRanges?: Array<{ from: Date; to: Date }>;
+    disableWeekends?: boolean;
+}
+
+import { datePickerUtils } from '../utils/datePickerUtils';
+
+const {
     ISODateStringToUTCDate,
-} from '../utils/dateUtils';
+    getDisabledDates,
+    INVALID_DATE,
+    InputDateStringToISODateString,
+    dateToISODateString,
+    isISODateString,
+} = datePickerUtils;
 
 type Props<T extends FieldValues> = Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate' | 'children'> &
     DatepickerLimitations & {

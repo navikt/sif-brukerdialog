@@ -2,7 +2,7 @@ import { alpha2ToAlpha3, getName, getNames, registerLocale } from 'i18n-iso-coun
 import * as langNB from 'i18n-iso-countries/langs/nb.json';
 import * as langNN from 'i18n-iso-countries/langs/nn.json';
 
-import { eøsCountries } from './eøsCountries';
+import { eøsCountries } from './resources/eøsCountries';
 
 registerLocale(langNB);
 registerLocale(langNN);
@@ -16,12 +16,12 @@ interface Country {
  * Nav sin landkode for Kosovo er ikke lik koden som brukes i i18n-iso-countries.
  * Nedenfor er et par utils for å håndtere disse ulikhetene
  */
-export const NAV_KOSOVO_ALPHA3_CODE = 'XXK';
-export const ISO_COUNTRIES_KOSOVO_ALPHA3_CODE = alpha2ToAlpha3('XK') || 'XKX';
-export const INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE = 'XKK'; // Ugyldig kode i i18n-iso-countries
+const NAV_KOSOVO_ALPHA3_CODE = 'XXK';
+const ISO_COUNTRIES_KOSOVO_ALPHA3_CODE = alpha2ToAlpha3('XK') || 'XKX';
+const INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE = 'XKK'; // Ugyldig kode i i18n-iso-countries
 
 /** Finner riktig kode for innsending til Nav systemer */
-export const ensureValid3AlphaCodeForNAV = (alphaCode: string): string => {
+const ensureValid3AlphaCodeForNAV = (alphaCode: string): string => {
     const alpha3Code = alphaCode.length === 2 ? alpha2ToAlpha3(alphaCode) : alphaCode;
     if (!alpha3Code) {
         throw `countryUtils: ensureValidCodeForNAV:  ${alphaCode}`;
@@ -36,7 +36,7 @@ export const ensureValid3AlphaCodeForNAV = (alphaCode: string): string => {
 };
 
 /** Finner riktig kode for bruk mot i18n-iso-countries */
-export const ensureValidAlpha3CodeForIsoCountries = (alphaCode: string): string => {
+const ensureValidAlpha3CodeForIsoCountries = (alphaCode: string): string => {
     const alpha3Code = alphaCode.length === 2 ? alpha2ToAlpha3(alphaCode) : alphaCode;
     if (!alpha3Code) {
         throw `countryUtils: ensureValidCodeForIsoCountries:  ${alphaCode}`;
