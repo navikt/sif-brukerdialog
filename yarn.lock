@@ -9512,6 +9512,8 @@ __metadata:
   dependencies:
     "@navikt/aksel-icons": "npm:8.8.0"
     "@navikt/ds-react": "npm:8.8.0"
+    "@navikt/sif-common-hooks": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
