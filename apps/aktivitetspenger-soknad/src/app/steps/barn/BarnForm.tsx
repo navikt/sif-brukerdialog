@@ -1,10 +1,11 @@
 import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
-import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { RegistrertBarn } from '@sif/api';
+import { Alert, BodyLong, Button, Heading, VStack } from '@navikt/ds-react';
 import { FormLayout, RegistrerteBarnListe, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+import * as Sentry from '@sentry/react';
+import { RegistrertBarn } from '@sif/api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 import { AriaLiveRegion, ExternalLink } from '@sif/soknad-ui/components';
@@ -50,6 +51,13 @@ export const BarnForm = ({ registrerteBarn }: Props) => {
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
             <FormLayout.Content>
+                <Button
+                    type="button"
+                    variant="tertiary"
+                    size="small"
+                    onClick={() => Sentry.captureException(new Error('Test Sentry error fra BarnForm'))}>
+                    Test Sentry-feil
+                </Button>
                 <FormLayout.Questions>
                     {registrerteBarn.length > 0 && (
                         <VStack gap="space-8">

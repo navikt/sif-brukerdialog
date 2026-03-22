@@ -316,3 +316,100 @@ export const appMessages_nb = {
 | `utils/formValuesToSøknadsdata.ts` | Case per steg — fyll ut etter hvert                                         |
 | `søknad/SøknadStep.tsx`            | `text('application.title')`, `getLenker().minSide`                          |
 | `i18n/nb/appMessages.ts`           | `application.title` og app-spesifikke tekster                               |
+
+---
+
+## Sentry-oppsett
+
+Nye apper skal ha Sentry-logging for API-feil. Følg dette mønsteret (referanse: `apps/aktivitetspenger-soknad`).
+
+### 1. Initialiser Sentry i `src/sentry/instrument.ts`
+
+Filen importeres som første linje i `main.tsx` for å sikre at Sentry er klar før alt annet.
+
+```ts
+import * as Sentry from '@sentry/react';
+import React from 'react';
+import { createRoutesFromChildren, matchRoutes, useLocation, useNavigationType } from 'react-router-dom';
+
+Sentry.init({
+    dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
+    environment: import.meta.env.MODE,
+    initialScope: {
+        tags: { application: '<app-navn>' }, // ← tilpass, f.eks. 'aktivitetspenger-soknad'
+    },
+    integrations: [
+        Sentry.reactRouterV7BrowserTracingIntegration({
+            useEffect: React.useEffect,
+            useLocation,
+            useNavigationType,
+            matchRoutes,
+            createRoutesFromChildren,
+        }),
+        Sentry.replayIntegration({
+            maskAllText: true,
+            blockAllMedia: true,
+        }),
+    ],
+    tracesSampleRate: 0.2,
+    tracePropagationTargets: ['localhost', /^https:\/\/.*\.nav\.no/],
+    replaysSessionSampleRate: 0.1,
+    replaysOnErrorSampleRate: 1.0,
+});
+```
+
+Importer i `main.tsx` som første linje:
+```ts
+import './sentry/instrument';
+```
+
+**Viktig:**
+- DSN hardkodes — det er ikke en hemmelighet og er likt for alle SIF-apper.
+- `sendDefaultPii` skal **ikke** settes til `true` — NAV behandler sensitiv personinformasjon.
+- `tracesSampleRate` settes til `0.2` (ikke `1.0`) for å unngå støy og kostnader i prod.
+
+### 2. Legg til `SifQueryClientProvider` i `wrappers/`
+
+Opprett `src/app/setup/wrappers/SifQueryClientProvider.tsx`. Denne wrapperen setter opp `QueryClient` med automatisk Sentry-logging for alle API-feil.
+
+```tsx
+import * as Sentry from '@sentry/react';
+import { isApiAxiosError, isApiError } from '@sif/api';
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { PropsWithChildren } from 'react';
+
+const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+        onError: (error, query) => {
+            if (isApiAxiosError(error) && error.originalError.response?.status === 401) {
+                return;
+            }
+            const extras = isApiError(error)
+                ? { type: error.type, context: error.context, message: error.message, queryKey: query.queryKey }
+                : { message: error.message, queryKey: query.queryKey };
+
+            Sentry.withScope((scope) => {
+                scope.setExtras(extras);
+                Sentry.captureException(isApiError(error) ? error.originalError : error);
+            });
+        },
+    }),
+});
+
+export const SifQueryClientProvider = ({ children }: PropsWithChildren) => {
+    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+};
+```
+
+Bruk den i stedet for `QueryClientProvider` i `App.tsx`:
+```tsx
+<SifQueryClientProvider>
+    {/* ... */}
+</SifQueryClientProvider>
+```
+
+**Hva dette gir:**
+- Alle `useQuery`-feil logges automatisk til Sentry med `type`, `context`, `message` og `queryKey` som extras.
+- 401-feil skippes (forventet ved utløpt sesjon).
+- `isApiError` og `isApiAxiosError` er type guards eksportert fra `@sif/api`.
+- Logger `originalError` (den faktiske `AxiosError`/`ZodError`) for korrekt stack trace i Sentry.
