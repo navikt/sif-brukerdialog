@@ -1,6 +1,7 @@
 import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
 import { Bleed, Box, BoxNewProps, Button, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
 
+import { SifSoknadUiText } from '../../i18n';
 import { SifGuidePanel, SifGuidePanelProps } from '../sif-guide-panel/SifGuidePanel';
 
 /**
@@ -152,7 +153,7 @@ const FormButtons = ({
                     onClick={onPrevious}
                     disabled={previousDisabled}
                     icon={<ArrowLeftIcon aria-hidden />}>
-                    {previousLabel || 'Forrige steg'}
+                    {previousLabel || <SifSoknadUiText id="@ui.formLayout.formButtons.previousLabel" />}
                 </Button>
             )}
             <Button
@@ -162,7 +163,12 @@ const FormButtons = ({
                 disabled={submitPending || submitDisabled}
                 iconPosition="right"
                 icon={isFinalSubmit ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}>
-                {submitLabel || (isFinalSubmit ? 'Send inn' : 'Neste steg')}
+                {submitLabel ||
+                    (isFinalSubmit ? (
+                        <SifSoknadUiText id="@ui.formLayout.formButtons.finalSubmitLabel" />
+                    ) : (
+                        <SifSoknadUiText id="@ui.formLayout.formButtons.submitLabel" />
+                    ))}
             </Button>
         </HStack>
     );

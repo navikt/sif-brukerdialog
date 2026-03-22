@@ -237,6 +237,26 @@ export const applicationIntlMessages = {
 - TS-feil ved nøkler i nn som ikke finnes i nb
 - Full dekning garantert av typesystemet
 
+### Bruk av komponent vs. hook
+
+Velg basert på om teksten er en **JSX-node (children)** eller en **string-prop**:
+
+| Kontekst                                                 | Bruk                              | Eksempel                                     |
+| -------------------------------------------------------- | --------------------------------- | -------------------------------------------- |
+| JSX text node (children)                                 | `<AppText>` / `<SifSoknadUiText>` | `<Heading><AppText id="tittel" /></Heading>` |
+| String-prop (aria-label, title, label, placeholder o.l.) | `text()` fra hook                 | `aria-label={text('lukk.label')}`            |
+
+```tsx
+export const MyComponent = () => {
+    const { text } = useAppIntl();
+    return (
+        <Button aria-label={text('myBtn.ariaLabel')}>
+            <AppText id="myBtn.label" />
+        </Button>
+    );
+};
+```
+
 ### Aggregering
 
 - Bruk spread (`...`) for å samle meldinger fra steg/sider inn i `appMessages.ts`.
@@ -264,7 +284,26 @@ Når du skal trekke ut tekster som er inline i en komponent, gjør følgende:
 1. Se om dette er en gruppe av komponenter som deler en naturlig felles kontekst (f.eks. et steg eller en side). Hvis ja, opprett `i18n/nb.ts` og `i18n/nn.ts` i den relevante folderen (f.eks. `steps/barn/i18n/nb.ts`).
 2. Trekk ut alle tekstene fra komponentene og plasser dem i `nb.ts` med passende nøkler (f.eks. `barnSteg.tittel`, `barnSteg.spørsmål.harBarn`). Navnet på variabelen er komponentnavnet + "Messages" (f.eks. `barnStegMessages_nb`).
 3. Opprett `nn.ts` med `Record<keyof typeof nb, string>` og spread `...nb` — **ikke oversett tekstene til nynorsk**. Nynorsk-oversettelse gjøres manuelt av utvikler i etterkant.
-4. Tekstene eksporteres i `appMessages.ts` ved å spre `...barnStegMessages_nb` og `...barnStegMessages_nn`.
+4. **For pakker:** importer og spread de nye `_nb`- og `_nn`-variablene i pakkens `i18n/index.tsx`, slik at de eksporteres via `sifSoknadUiMessages` / `applicationIntlMessages`. Uten dette steget er meldingene ikke tilgjengelige i konsumerende apper.
+5. Tekstene eksporteres i `appMessages.ts` ved å spre `...barnStegMessages_nb` og `...barnStegMessages_nn`.
+
+### Komponent vs. hook i komponenten som oppdateres
+
+Erstatt hardkodede tekster etter regelen:
+
+- JSX children → `<AppText id="...">` / `<SifSoknadUiText id="..." />`
+- String-props (aria-label, label, title, placeholder, fallback i logikk) → `text('...')` fra hook
+
+```tsx
+// JSX node → komponent
+<Heading><SifSoknadUiText id="@ui.myComponent.heading" /></Heading>
+
+// String-prop → hook
+<Input aria-label={text('@ui.myComponent.inputLabel')} />
+
+// Fallback i children → komponent (siden children er en node)
+{propLabel || <SifSoknadUiText id="@ui.myComponent.defaultLabel" />}
+```
 
 ## Fase 2 — Parametersjekk
 
