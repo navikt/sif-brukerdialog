@@ -51,6 +51,7 @@ export const Søknad = ({ søker, barn, kontonummer, mellomlagring }: Props) => 
     if (søknadSendt && location.pathname !== '/kvittering') {
         return <KvitteringPage />;
     }
+
     if (!søknadSendt && location.pathname === '/kvittering') {
         return (
             <SøknadContextProvider>

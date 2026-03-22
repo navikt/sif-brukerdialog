@@ -1,6 +1,6 @@
-import { FormLayout } from '@navikt/sif-common-ui';
 import { SifForm } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
+import { FormLayout } from '@sif/soknad-ui/components';
 import type { ReactNode } from 'react';
 import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
@@ -14,6 +14,7 @@ interface Props<T extends StepFormValues> {
     isPending: boolean;
     isFinalSubmit?: boolean;
     submitLabel?: string;
+    submitDisabled?: boolean;
     children: ReactNode;
 }
 
@@ -23,6 +24,7 @@ export function AppForm<T extends StepFormValues>({
     onSubmit,
     isPending,
     isFinalSubmit,
+    submitDisabled,
     submitLabel,
     children,
 }: Props<T>) {
@@ -30,7 +32,7 @@ export function AppForm<T extends StepFormValues>({
 
     const canGoPrevious = ctx.canGoPrevious(stepId);
     const onPrevious = canGoPrevious ? () => ctx.navigateToPreviousStep(stepId) : undefined;
-    const submitDisabled = ctx.checkConsistency(stepId) !== undefined;
+    const submitIsDisabled = submitDisabled ?? ctx.checkConsistency(stepId) !== undefined;
 
     return (
         <SifForm
@@ -39,7 +41,7 @@ export function AppForm<T extends StepFormValues>({
             buttons={
                 <FormLayout.FormButtons
                     submitPending={isPending}
-                    submitDisabled={submitDisabled}
+                    submitDisabled={submitIsDisabled}
                     onPrevious={onPrevious}
                     isFinalSubmit={isFinalSubmit}
                     submitLabel={submitLabel}

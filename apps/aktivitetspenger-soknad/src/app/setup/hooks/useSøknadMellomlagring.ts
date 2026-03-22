@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useYtelseMellomlagring } from '@navikt/sif-common-query';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';

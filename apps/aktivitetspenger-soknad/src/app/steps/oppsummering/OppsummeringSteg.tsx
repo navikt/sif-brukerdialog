@@ -1,11 +1,11 @@
 import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { useSøknadFlow, useSøknadMellomlagring, useSøknadRhfForm, useSøknadState } from '@app/setup/hooks';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
-import { FormSummary } from '@navikt/ds-react';
-import { FormLayout } from '@navikt/sif-common-ui';
+import { FormSummary, InfoCard } from '@navikt/ds-react';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { FormLayout } from '@sif/soknad-ui';
 
 import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { AppForm } from '../../setup/søknad/AppForm';
@@ -50,6 +50,9 @@ export const OppsummeringSteg = () => {
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
 
     const onSubmit = async () => {
+        if (apiData === undefined) {
+            return;
+        }
         await mutateAsync({ ...apiData, harBekreftetOpplysninger });
         await slettMellomlagring();
         clearSøknadFormValues();
@@ -58,7 +61,23 @@ export const OppsummeringSteg = () => {
 
     return (
         <SøknadStep stepId={SøknadStepId.OPPSUMMERING}>
-            <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending} isFinalSubmit={true}>
+            <AppForm
+                stepId={stepId}
+                methods={methods}
+                onSubmit={onSubmit}
+                isPending={isPending}
+                isFinalSubmit={true}
+                submitDisabled={!apiData}>
+                {!apiData && (
+                    <InfoCard data-color="warning">
+                        <InfoCard.Header>
+                            <InfoCard.Title>Det skjedde en feil</InfoCard.Title>
+                        </InfoCard.Header>
+                        <InfoCard.Content>
+                            Det mangler nødvendig informasjon for å kunne sende inn søknaden. Prøv igjen senere.
+                        </InfoCard.Content>
+                    </InfoCard>
+                )}
                 <FormLayout.Summary>
                     <FormSummary>
                         <FormSummary.Header>
