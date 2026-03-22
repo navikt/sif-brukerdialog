@@ -6,8 +6,8 @@ import {
     useRegistrerteBarn,
     useSøker,
     useYtelseMellomlagring,
+    UtvidetKontonummerInfo,
 } from '@sif/api';
-import { UtvidetKontonummerInfo } from '@sif/api/src/types/UtvidetKontonummerInfo';
 import { useMemo } from 'react';
 
 import { søknadStepConfig } from './app/setup/config/søknadStepConfig';

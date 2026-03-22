@@ -6,6 +6,14 @@
     "private": true,
     "type": "module",
     "description": "Api, types and TanStack Query hooks for SIF applications",
+    "exports": {
+        ".": "./src/index.ts",
+        "./api": "./src/api/index.ts",
+        "./components": "./src/components/index.ts",
+        "./hooks": "./src/hooks/index.ts",
+        "./schemas": "./src/schemas/index.ts",
+        "./types": "./src/types/index.ts"
+    },
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/k9-sak-innsyn-api": "workspace:*",

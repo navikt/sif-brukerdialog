@@ -20,6 +20,9 @@ export * from './hooks/useYtelseMellomlagring';
 // Alle API kall (for non-React usage)
 export * from './api';
 
+// Alle API kall (for non-React usage)
+export * from './types';
+
 // Alle utils
 export * from './utils/errorHandlers';
 export * from './utils/initApiClient';
