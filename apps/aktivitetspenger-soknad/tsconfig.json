@@ -17,6 +17,8 @@
         "./tailwind.config.ts",
         "./vite.config.ts",
         "./vite.dev.config.ts",
-        "env.schema.ts"
+        "env.schema.ts",
+        "../../packages/sif-soknad-ui/src/components/aria-live-region",
+        "../../packages/sif-soknad-ui/src/components/external-link"
     ]
 }

@@ -1,6 +1,6 @@
-import { FormLayout } from '@navikt/sif-common-ui';
 import { SifForm } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
+import { FormLayout } from '@sif/soknad-ui/components';
 import type { ReactNode } from 'react';
 import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
 

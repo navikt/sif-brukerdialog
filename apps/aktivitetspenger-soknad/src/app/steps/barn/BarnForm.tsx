@@ -7,9 +7,8 @@ import { FormLayout, RegistrerteBarnListe, RegistrerteBarnListeHeading } from '@
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
+import { AriaLiveRegion, ExternalLink } from '@sif/soknad-ui/components';
 
-import AriaLiveRegion from '../../components/aria-live-region/AriaLiveRegion';
-import ExternalLink from '../../components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import { BarnSøknadsdata } from '../../types/Søknadsdata';

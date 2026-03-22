@@ -3,12 +3,12 @@ import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/set
 import { AppForm } from '@app/setup/søknad/AppForm';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { UtvidetKontonummerInfo } from '@navikt/sif-common-query/src/types/UtvidetKontonummerInfo';
-import { FormLayout } from '@navikt/sif-common-ui';
+import { FormLayout } from '@sif/soknad-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
+import { AriaLiveRegion } from '@sif/soknad-ui/components';
 
-import AriaLiveRegion from '../../components/aria-live-region/AriaLiveRegion';
 import { HarKontonummerEnum } from '../../types/KontoInfo';
 import { KontonummerSøknadsdata } from '../../types/Søknadsdata';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
