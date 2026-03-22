@@ -17,11 +17,11 @@ const nb = {
     ...velkommenPageMessages_nb,
 };
 
-const nn: Record<keyof typeof nb, string> = {
+export type AppMessageKeys = keyof typeof nb;
+
+const nn: Record<AppMessageKeys, string> = {
     ...nb,
 };
-
-export type AppMessageKeys = keyof typeof nb;
 
 export const useAppIntl = () => {
     const intl = useIntl();
