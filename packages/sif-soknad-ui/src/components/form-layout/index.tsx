@@ -1,7 +1,7 @@
 import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
 import { Bleed, Box, BoxNewProps, Button, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
 
-import { SifGuidePanel, SifGuidePanelProps } from '../../../depr/sif-guide-panel/SifGuidePanel';
+import { SifGuidePanel, SifGuidePanelProps } from '../sif-guide-panel/SifGuidePanel';
 
 /**
  * Setter opp default spacing mellom sections
