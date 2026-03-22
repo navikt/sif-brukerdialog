@@ -340,7 +340,7 @@ Sentrale typer som:
 - `useSøknadFormDraft`
 - `InconsistentFormValuesMessage`
 
-### `@sif/soknad/pages`
+### `@sif/soknad-ui/pages`
 
 - `ApplicationPage`
 - `StartPage`

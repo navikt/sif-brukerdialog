@@ -5910,6 +5910,7 @@ __metadata:
     "@sif/eslint-config": "workspace:*"
     "@sif/rhf": "workspace:*"
     "@sif/soknad": "workspace:*"
+    "@sif/soknad-ui": "workspace:*"
     "@storybook/addon-a11y": "npm:10.2.19"
     "@storybook/addon-docs": "npm:10.2.19"
     "@storybook/addon-onboarding": "npm:10.2.19"
