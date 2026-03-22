@@ -1,4 +1,4 @@
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';

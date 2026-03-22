@@ -50,6 +50,7 @@
     "devDependencies": {
         "@sentry/vite-plugin": "5.1.1",
         "@sif/eslint-config": "workspace:*",
+        "@sonar/scan": "^4.3.5",
         "@storybook/addon-a11y": "10.2.19",
         "@storybook/react-vite": "10.2.19",
         "@tailwindcss/vite": "4.2.1",

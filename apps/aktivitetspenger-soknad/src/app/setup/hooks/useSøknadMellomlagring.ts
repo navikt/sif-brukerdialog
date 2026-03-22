@@ -5,7 +5,7 @@ import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
 
 import { MellomlagringMetaData, SøknadMellomlagring } from '../../types/Mellomlagring';
-import { SøknadStepId } from '../config/søknadStepConfig';
+import { SøknadStepId } from '../config/SøknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../constants';
 import { useSøknadStore } from './useSøknadStore';
 

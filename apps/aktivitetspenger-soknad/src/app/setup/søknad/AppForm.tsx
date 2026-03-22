@@ -4,7 +4,7 @@ import { FormLayout } from '@sif/soknad-ui/components';
 import type { ReactNode } from 'react';
 import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
-import { SøknadStepId } from '../config/søknadStepConfig';
+import { SøknadStepId } from '../config/SøknadStepId';
 import { useSøknadFlow } from '../context/søknadContext';
 
 interface Props<T extends StepFormValues> {
@@ -27,7 +27,7 @@ export function AppForm<T extends StepFormValues>({
     submitDisabled,
     submitLabel,
     children,
-}: Props<T>) {
+}: Readonly<Props<T>>) {
     const ctx = useSøknadFlow();
 
     const canGoPrevious = ctx.canGoPrevious(stepId);

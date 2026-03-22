@@ -1,4 +1,5 @@
-import { søknadStepConfig, SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { søknadStepConfig } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { SøknadContextProvider } from '@app/setup/context/søknadContext';
 import { useSøknadStore } from '@app/setup/hooks';
 import { useEffectOnce } from '@navikt/sif-common-hooks';

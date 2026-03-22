@@ -1,4 +1,4 @@
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 
 import { useSøknadState } from '../../setup/hooks';

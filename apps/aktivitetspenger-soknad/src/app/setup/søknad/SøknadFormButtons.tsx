@@ -1,6 +1,6 @@
 import { FormLayout } from '@sif/soknad-ui';
 
-import { SøknadStepId } from '../config/søknadStepConfig';
+import { SøknadStepId } from '../config/SøknadStepId';
 import { useSøknadFlow } from '../context/søknadContext';
 
 interface Props {

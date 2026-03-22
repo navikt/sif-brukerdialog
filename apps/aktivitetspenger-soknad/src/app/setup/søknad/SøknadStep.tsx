@@ -5,7 +5,8 @@ import { StepPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppIntl } from '../../i18n';
-import { søknadStepConfig, SøknadStepId, stepTitles } from '../config/søknadStepConfig';
+import { søknadStepConfig, stepTitles } from '../config/søknadStepConfig';
+import { SøknadStepId } from '../config/SøknadStepId';
 import { useSøknadFlow } from '../context/søknadContext';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';

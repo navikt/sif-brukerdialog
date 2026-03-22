@@ -1,14 +1,7 @@
 import { StepConfig } from '@sif/soknad/types';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
-
-export enum SøknadStepId {
-    KONTONUMMER = 'kontonummer',
-    BOSTED = 'bosted',
-    BOSTED_UTLAND = 'bostedUtland',
-    BARN = 'barn',
-    OPPSUMMERING = 'oppsummering',
-}
+import { SøknadStepId } from './SøknadStepId';
 
 export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
     [SøknadStepId.KONTONUMMER]: {

@@ -1,4 +1,4 @@
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadFlow, useSøknadMellomlagring, useSøknadRhfForm, useSøknadState } from '@app/setup/hooks';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 import { FormSummary, InfoCard } from '@navikt/ds-react';

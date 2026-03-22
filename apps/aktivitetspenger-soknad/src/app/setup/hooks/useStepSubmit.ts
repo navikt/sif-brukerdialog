@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { Søknadsdata } from '../../types/Søknadsdata';
-import { SøknadStepId } from '../config/søknadStepConfig';
+import { SøknadStepId } from '../config/SøknadStepId';
 import { useSøknadFlow } from '../context/søknadContext';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 

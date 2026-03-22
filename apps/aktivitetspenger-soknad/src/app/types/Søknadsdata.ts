@@ -1,7 +1,8 @@
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { BaseSøknadsdata } from '@sif/soknad/types';
 import { BostedUtland } from '@sif/soknad-forms';
+
+import { SøknadStepId } from '../setup/config/SøknadStepId';
 
 export type KontonummerSøknadsdata = Pick<KontonummerInfo, 'kontonummerErRiktig'>;
 
