@@ -572,10 +572,10 @@ export enum Innsendelsestype {
 }
 
 export type Innsending = {
-    søknadId?: string;
     versjon?: string;
     mottattDato?: string;
     søker?: Søker;
+    søknadId?: string;
 };
 
 export type Organisasjon = {
