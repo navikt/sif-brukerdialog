@@ -1,0 +1,4 @@
+.progressStepper__heading__title:focus {
+    border: none;
+    outline: none;
+}

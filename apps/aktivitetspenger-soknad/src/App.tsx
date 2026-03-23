@@ -4,7 +4,6 @@ import './app.css';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -12,12 +11,12 @@ import { initApiClients } from './app/api/initApiClients';
 import { applicationIntlMessages } from './app/i18n';
 import { getAppEnv } from './app/setup/env/appEnv';
 import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
+import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
 import { InitialDataLoader } from './InitialDataLoader';
 
 initApiClients();
 
 const appEnv = getAppEnv();
-const queryClient = new QueryClient();
 const basePath = appEnv[EnvKey.PUBLIC_PATH];
 
 if (globalThis.location.pathname === '/') {
@@ -31,13 +30,13 @@ export const App = () => {
             appVersion={appEnv.APP_VERSION}
             isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
             <AppErrorBoundary>
-                <QueryClientProvider client={queryClient}>
+                <SifQueryClientProvider>
                     <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
                         <BrowserRouter basename={basePath}>
                             <InitialDataLoader />
                         </BrowserRouter>
                     </IntlProvider>
-                </QueryClientProvider>
+                </SifQueryClientProvider>
             </AppErrorBoundary>
         </FaroProvider>
     );

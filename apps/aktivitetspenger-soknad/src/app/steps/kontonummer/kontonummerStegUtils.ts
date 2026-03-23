@@ -1,7 +1,7 @@
+import { KontonummerSøknadsdata } from '@app/types/Søknadsdata';
 import { YesOrNo } from '@sif/rhf';
 
-import { KontonummerSøknadsdata } from '../../types/Søknadsdata';
-import { KontonummerFormValues } from './KontonummerForm';
+import { KontonummerFormValues } from './types';
 
 export const toKontonummerFormValues = (
     søknadsdata: KontonummerSøknadsdata | undefined,

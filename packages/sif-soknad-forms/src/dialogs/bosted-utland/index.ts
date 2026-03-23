@@ -8,5 +8,5 @@ export type BostedUtland = {
 };
 
 export * from './BostedUtlandDialog';
-export * from './BostedUtlandForm';
+export * from './BostedUtlandDialogForm';
 export * from './BostedUtlandList';

@@ -1,14 +1,16 @@
+import { useAppIntl } from '@app/i18n';
 import { Box } from '@navikt/ds-react';
 import { InconsistentFormValuesMessage } from '@sif/soknad/consistency';
 import { getProgressSteps } from '@sif/soknad/utils';
 import { StepPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppIntl } from '../../i18n';
-import { søknadStepConfig, SøknadStepId, stepTitles } from '../config/søknadStepConfig';
-import { useSøknadFlow } from '../context/søknadContext';
+import { søknadStepConfig } from '../config/søknadStepConfig';
+import { SøknadStepId } from '../config/SøknadStepId';
+import { useSøknadsflyt } from '../context/søknadContext';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
+import { useStepTitles } from '../hooks/useStepTitles';
 
 interface Props {
     stepId: SøknadStepId;
@@ -18,7 +20,9 @@ interface Props {
 export const SøknadStep = ({ stepId, children }: Props) => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
-    const ctx = useSøknadFlow();
+    const søknadsflyt = useSøknadsflyt();
+
+    const stepTitles = useStepTitles();
 
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad } = useSøknadMellomlagring();
@@ -28,15 +32,15 @@ export const SøknadStep = ({ stepId, children }: Props) => {
         window.location.href = 'https://www.nav.no/minside';
     };
 
-    const inconsistentStepId = ctx.checkConsistency(stepId);
+    const inconsistentStepId = søknadsflyt.checkConsistency(stepId);
 
     return (
         <StepPage
             documentTitle={stepTitles[stepId]}
             applicationTitle={text('application.title')}
             stepId={stepId}
-            steps={getProgressSteps(ctx.includedSteps, stepTitles)}
-            onStepSelect={ctx.navigateToStep}
+            steps={getProgressSteps(søknadsflyt.includedSteps, stepTitles)}
+            onStepSelect={søknadsflyt.navigateToStep}
             onAbort={avbrytSøknad}
             onResumeLater={fortsettSenere}>
             {inconsistentStepId ? (

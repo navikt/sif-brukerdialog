@@ -34,12 +34,19 @@ jobs:
         uses: actions/checkout@v6
         with:
           persist-credentials: false
+          fetch-depth: 2
 
       - name: Check changed apps
         uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
+            aktivitetspenger-soknad:
+              - 'apps/aktivitetspenger-soknad/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
             dine-pleiepenger:
               - 'apps/dine-pleiepenger/**'
               - 'packages/**'

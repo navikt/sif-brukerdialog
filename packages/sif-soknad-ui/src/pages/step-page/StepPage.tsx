@@ -1,6 +1,6 @@
 import { VStack } from '@navikt/ds-react';
-import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui';
 
+import { ProgressStep, ProgressStepper } from '../../components';
 import { ApplicationPage } from '../application-page/ApplicationPage';
 import { StepFooter } from './StepFooter';
 

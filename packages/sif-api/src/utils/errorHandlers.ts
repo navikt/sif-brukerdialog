@@ -40,6 +40,12 @@ export const createApiError = (
     };
 };
 
+export const isApiError = (error: unknown): error is ApiError => {
+    return (
+        typeof error === 'object' && error !== null && 'type' in error && 'context' in error && 'originalError' in error
+    );
+};
+
 export const isApiAxiosError = (error: unknown): error is ApiAxiosError => {
     if (!error) {
         return false;
