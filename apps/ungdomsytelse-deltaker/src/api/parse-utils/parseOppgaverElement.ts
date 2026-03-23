@@ -8,10 +8,13 @@ import {
     EndretStartdatoDataDto,
     InntektsrapporteringOppgavetypeDataDto,
     KontrollerRegisterinntektOppgavetypeDataDto,
+    OppgaveResponsDto,
     OppgaveStatus,
     OppgaveType,
     PeriodeEndringType,
+    RapportertInntektDto,
     SøkYtelseOppgavetypeDataDto,
+    SvarPåVarselDto,
 } from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
 
@@ -46,31 +49,41 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     }
 };
 
-const parseSvarPåVarselRespons = (respons: any): SvarPåVarselRespons | undefined => {
-    if (!respons) {
+const isSvarOnVarselRespons = (respons: any): respons is SvarPåVarselDto & OppgaveResponsDto => {
+    return respons.type === 'VARSEL_SVAR';
+};
+
+const parseSvarPåVarselRespons = (respons?: any): SvarPåVarselRespons | undefined => {
+    if (!respons || !isSvarOnVarselRespons(respons)) {
         return undefined;
     }
     if (respons.type === 'VARSEL_SVAR') {
-        return {
+        const parsedRespons: SvarPåVarselRespons = {
             type: 'VARSEL_SVAR',
             harUttalelse: respons.harUttalelse,
             uttalelseFraBruker: respons.uttalelseFraBruker,
         };
+        return parsedRespons;
     }
     return undefined;
 };
 
-const parseRapportertInntektRespons = (respons: any): RapportertInntektRespons | undefined => {
-    if (!respons) {
+const isRapportertInntektRespons = (respons: any): respons is RapportertInntektDto & OppgaveResponsDto => {
+    return respons.type === 'RAPPORTERT_INNTEKT';
+};
+
+const parseRapportertInntektRespons = (respons?: any): RapportertInntektRespons | undefined => {
+    if (!respons || !isRapportertInntektRespons(respons)) {
         return undefined;
     }
     if (respons.type === 'RAPPORTERT_INNTEKT') {
-        return {
+        const parsedRespons: RapportertInntektRespons = {
             type: 'RAPPORTERT_INNTEKT',
             arbeidstakerOgFrilansInntekt: respons.arbeidstakerOgFrilansInntekt,
-            fraOgMed: respons.fraOgMed,
-            tilOgMed: respons.tilOgMed,
+            fraOgMed: ISODateToDate(respons.fraOgMed),
+            tilOgMed: ISODateToDate(respons.tilOgMed),
         };
+        return parsedRespons;
     }
     return undefined;
 };
@@ -271,13 +284,13 @@ const mapPeriodeDtoToOpenDateRange = (periode: { fomDato: string; tomDato?: stri
 };
 
 const mapPeriodeDtoToDateRange = (periode: { fomDato: string; tomDato?: string }): DateRange => {
-    if (periode.fomDato && !isISODate(periode.fomDato)) {
+    if (!isISODate(periode.fomDato)) {
         throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fomDato}`);
     }
-    if (!periode.fomDato) {
-        throw new Error(`Tom-dato er undefined for perioden`);
+    if (!periode.tomDato) {
+        throw new Error(`Udefinert tom i periode: ${periode.tomDato}`);
     }
-    if (!periode.tomDato && !isISODate(periode.tomDato)) {
+    if (!isISODate(periode.tomDato)) {
         throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tomDato}`);
     }
     return {

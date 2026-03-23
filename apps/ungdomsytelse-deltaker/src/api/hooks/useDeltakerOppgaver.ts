@@ -6,7 +6,7 @@ import { getDeltakerOppgaver } from '../deltaker-oppgaver/getDeltakerOppgaver';
 import { commonQueryKeys } from '../queries/commonQueries';
 
 /**
- * Henter alle deltakelser for innlogget deltaker
+ * Henter alle oppgaver for innlogget deltaker
  */
 export const useDeltakerOppgaver = (enabled = true) => {
     return useQuery<Oppgave[], ApiError>({

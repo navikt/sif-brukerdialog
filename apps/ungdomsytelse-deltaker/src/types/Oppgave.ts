@@ -19,17 +19,6 @@ export enum ParsedOppgavetype {
     SØK_YTELSE = 'SØK_YTELSE',
 }
 
-// export type OppgaveResponsDto = (
-//     | ({
-//           type: 'VARSEL_SVAR';
-//       } & SvarPåVarselDto)
-//     | ({
-//           type: 'RAPPORTERT_INNTEKT';
-//       } & RapportertInntektDto)
-// ) & {
-//     type: string;
-// };
-
 export type RapportertInntektRespons = Omit<RapportertInntektDto, 'fraOgMed' | 'tilOgMed'> & {
     type: 'RAPPORTERT_INNTEKT';
     fraOgMed: Date;
