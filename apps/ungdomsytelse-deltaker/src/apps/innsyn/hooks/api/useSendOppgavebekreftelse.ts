@@ -14,6 +14,7 @@ export const useSendOppgavebekreftelse = () => {
         onSuccess: () => {
             // Umiddelbar invalidering for UI responsivitet
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
+            queryClient.invalidateQueries(commonQueries.deltakerOppgaver);
 
             // Backup refetch etter delay for å sikre oppdaterte data fra backend
             setTimeout(() => {

@@ -1,7 +1,7 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
@@ -34,9 +34,6 @@ const oppgave: SøkYtelseOppgave = {
 
 const besvartOppgave: SøkYtelseOppgave = {
     ...oppgave,
-    bekreftelse: {
-        harUttalelse: false,
-    },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
 };

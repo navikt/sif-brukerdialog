@@ -42,6 +42,10 @@
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "prod-gcp:k9saksbehandling:ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
 
+        "UNG_BRUKERDIALOG_API_FRONTEND_PATH": "/ungdomsprogrammet/ytelsen/api/ung-brukerdialog",
+        "UNG_BRUKERDIALOG_API_API_SCOPE": "prod-gcp:k9saksbehandling:ung-brukerdialog-api",
+        "UNG_BRUKERDIALOG_API_API_URL": "http://ung-brukerdialog-api.k9saksbehandling",
+
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/ungdomsprogrammet/ytelsen/oauth2/login?redirect=/ungdomsprogrammet/ytelsen",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
         "SIF_PUBLIC_URL_DOKUMENTARKIV": "https://www.nav.no/dokumentarkiv/tema/UNG",

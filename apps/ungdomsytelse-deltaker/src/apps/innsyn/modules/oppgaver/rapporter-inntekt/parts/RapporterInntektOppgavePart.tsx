@@ -6,7 +6,7 @@ import { Alert, Heading, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { AppText } from '@shared/i18n';
 import { useEffect, useRef, useState } from 'react';
 
@@ -44,10 +44,6 @@ const RapporterInntektOppgavePart = ({
             case OppgaveStatus.AVBRUTT:
             case OppgaveStatus.UTLØPT:
                 return <OppgaveStatusInfo oppgaveStatus={oppgave.status} />;
-            case OppgaveStatus.LUKKET: {
-                /** Ikke i bruk nå, var tidligere det samme som å si at en ikke hadde inntekt */
-                return <RapportertInntektOppsummering måned={måned} inntekt={0} />;
-            }
             case OppgaveStatus.ULØST:
                 return (
                     <RapporterInntektUbesvart
@@ -60,15 +56,14 @@ const RapporterInntektOppgavePart = ({
                     />
                 );
             case OppgaveStatus.LØST: {
-                const arbeidstakerOgFrilansInntekt =
-                    oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
+                const arbeidstakerOgFrilansInntekt = oppgave.respons?.arbeidstakerOgFrilansInntekt;
                 return (
                     <VStack gap="space-24">
                         {arbeidstakerOgFrilansInntekt === undefined ? (
                             /** Oppgaven er akkurat besvart og informasjonen er ikke kommet på oppgaven som er lastet inn */
-                            (<Alert variant="info">
+                            <Alert variant="info">
                                 <AppText id="rapporterInntektOppgavePart.løst.utenInfo" />
-                            </Alert>)
+                            </Alert>
                         ) : (
                             <RapportertInntektOppsummering måned={måned} inntekt={arbeidstakerOgFrilansInntekt} />
                         )}

@@ -29,4 +29,5 @@ export const deltakerBaseScenarioData: ScenarioData = {
         },
     ],
     deltakelser: [],
+    oppgaver: [],
 };

@@ -1,6 +1,6 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
@@ -34,7 +34,8 @@ const oppgave: EndretSluttdatoOppgave = {
 
 const besvartOppgave: EndretSluttdatoOppgave = {
     ...oppgave,
-    bekreftelse: {
+    respons: {
+        type: 'VARSEL_SVAR',
         harUttalelse: false,
     },
     status: OppgaveStatus.LØST,
@@ -92,7 +93,8 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
         <EndretSluttdatoOppgavePage
             oppgave={{
                 ...besvartOppgave,
-                bekreftelse: {
+                respons: {
+                    type: 'VARSEL_SVAR',
                     harUttalelse: true,
                     uttalelseFraBruker:
                         'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -107,7 +109,7 @@ export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
         <EndretSluttdatoOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),
@@ -117,7 +119,7 @@ export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
         <EndretSluttdatoOppgavePage
-            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
+            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),

@@ -19,7 +19,7 @@ import { KontonummerOppslagInfo } from './types';
 import { formaterKontonummer } from './utils/formaterKontonummer';
 
 const SøknadApp = () => {
-    const { søker, deltakelsePeriode } = useDeltakerContext();
+    const { søker, deltakelsePeriode, oppgaver } = useDeltakerContext();
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const kontonummer = useKontonummer();
@@ -62,7 +62,7 @@ const SøknadApp = () => {
               };
     };
 
-    const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === ParsedOppgavetype.SØK_YTELSE);
+    const søknadOppgave = oppgaver.find((o) => o.oppgavetype === ParsedOppgavetype.SØK_YTELSE);
 
     if (!søknadOppgave) {
         return <IngenSendSøknadOppgave />;
