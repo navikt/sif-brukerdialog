@@ -24,7 +24,7 @@ type DeltakelsePeriodeMeta = {
     antallDagerMellomInnmeldtOgSøknad?: number;
 };
 
-const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode, oppgaver: Oppgave[] = []): DeltakelsePeriodeMeta => {
+const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode, oppgaver: Oppgave[]): DeltakelsePeriodeMeta => {
     const harSøkt = deltakelse.søktTidspunkt !== undefined;
     const harStartet = dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
     const erAvsluttet = dayjs(deltakelse.programPeriode.to).isBefore(dayjs());
