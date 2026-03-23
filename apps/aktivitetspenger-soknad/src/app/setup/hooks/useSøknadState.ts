@@ -1,4 +1,5 @@
-import { SøknadState } from '../../types/SøknadState';
+import { SøknadState } from '@app/types/SøknadState';
+
 import { useSøknadStore } from './useSøknadStore';
 
 export const useSøknadState = (): SøknadState => {

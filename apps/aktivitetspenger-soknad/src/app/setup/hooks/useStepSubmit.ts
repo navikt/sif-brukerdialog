@@ -1,8 +1,8 @@
+import { Søknadsdata } from '@app/types/Søknadsdata';
 import { useCallback } from 'react';
 
-import { Søknadsdata } from '../../types/Søknadsdata';
-import { SøknadStepId } from '../config/søknadStepConfig';
-import { useSøknadFlow } from '../context/søknadContext';
+import { SøknadStepId } from '../config/SøknadStepId';
+import { useSøknadsflyt } from '../context/søknadContext';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
 interface UseStepSubmitOptions<TFormValues, TStepSøknadsdata> {
@@ -14,7 +14,7 @@ export function useStepSubmit<TFormValues, TStepSøknadsdata>({
     stepId,
     toSøknadsdata,
 }: UseStepSubmitOptions<TFormValues, TStepSøknadsdata>) {
-    const flow = useSøknadFlow();
+    const flow = useSøknadsflyt();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
 
     const onSubmit = useCallback(

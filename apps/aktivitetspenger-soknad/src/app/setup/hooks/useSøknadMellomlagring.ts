@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
+import { MellomlagringMetaData, SøknadMellomlagring } from '@app/types/Mellomlagring';
 import { useYtelseMellomlagring } from '@sif/api';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
 
-import { MellomlagringMetaData, SøknadMellomlagring } from '../../types/Mellomlagring';
-import { SøknadStepId } from '../config/søknadStepConfig';
+import { SøknadStepId } from '../config/SøknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../constants';
 import { useSøknadStore } from './useSøknadStore';
 

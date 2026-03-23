@@ -4,5 +4,8 @@ export { ApplicationPictogram } from './app-header/ApplicationPictogram';
 export { AriaLiveRegion } from './aria-live-region/AriaLiveRegion';
 export { ExternalLink } from './external-link/ExternalLink';
 export { FormLayout } from './form-layout';
+export { Kvittering } from './kvittering/Kvittering';
+export { ProgressStepper } from './progress-stepper/ProgressStepper';
+export { type ProgressStep } from './progress-stepper/ProgressStepper';
 export { SifGuidePanel } from './sif-guide-panel/SifGuidePanel';
 export { type SifGuidePanelProps } from './sif-guide-panel/SifGuidePanel';

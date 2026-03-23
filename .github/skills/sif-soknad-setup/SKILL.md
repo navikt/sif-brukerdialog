@@ -46,7 +46,7 @@ src/app/
   setup/
     constants.ts                       # APP_YTELSE og MELLOMLAGRING_VERSJON
     context/
-      søknadContext.ts                 # createSøknadContext — SøknadContextProvider + useSøknadFlow
+      søknadContext.ts                 # createSøknadContext — SøknadContextProvider + useSøknadsflyt
     env/
       appEnv.ts                        # getAppEnv() — leser browser-env
     hooks/
@@ -59,7 +59,7 @@ src/app/
       useStepDefaultValues.ts
       useStepSubmit.ts
     config/
-      søknadStepConfig.ts              # SøknadStepId, stepConfig, stepOrder, stepTitles
+      søknadStepConfig.ts              # SøknadStepId, stepConfig, stepOrder
     søknad/
       AppForm.tsx                      # SifForm + FormLayout wrapper
       SøknadFormButtons.tsx            # Navigasjonsknapper koblet til context
@@ -165,12 +165,9 @@ export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
 };
 
 export const søknadStepOrder: SøknadStepId[] = [SøknadStepId.MITT_STEG, SøknadStepId.OPPSUMMERING];
-
-export const stepTitles: Record<SøknadStepId, string> = {
-    [SøknadStepId.MITT_STEG]: 'Mitt steg',
-    [SøknadStepId.OPPSUMMERING]: 'Oppsummering',
-};
 ```
+
+`stepTitles` hardkodes ikke lenger her — stegtitler hentes fra i18n og sendes som prop til `<SøknadContextProvider>` (se trinn 6 og 9).
 
 ### 2. Definer Søknadsdata-typen
 
@@ -251,16 +248,17 @@ Tre punkter å tilpasse:
 - `getSøknadsdataForStep` — standard oppslag: `(stepId, søknadsdata) => søknadsdata?.[stepId]`
 
 ```ts
-export const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknadsdata, SøknadStepId>({
+export const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<Søknadsdata, SøknadStepId>({
     useStore: useSøknadStore as any,
     stepConfig: søknadStepConfig,
     stepOrder: søknadStepOrder,
-    stepTitles: stepTitles,
     formValuesToSøknadsdata,
     getSøknadsdataForStep: (stepId, søknadsdata) => søknadsdata?.[stepId],
     basePath: '/soknad', // ← tilpass
 });
 ```
+
+`stepTitles` er **ikke** lenger del av config. Det sendes i stedet som et påkrevd prop direkte på `<SøknadContextProvider>` — se trinn 9.
 
 ### 7. Opprett formValuesToSøknadsdata.ts
 
@@ -281,6 +279,26 @@ export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormVal
 };
 ```
 
+#### VIKTIG: Unngå sirkulær avhengighet via FormValues-typer
+
+`formValuesToSøknadsdata` importerer `*FormValues`-typer og `*Søknadsdata`-konvertere fra hvert steg. Hvis disse typene er definert direkte i `*Form.tsx`-komponentfilene oppstår en sirkulær avhengighet:
+
+```
+søknadContext → formValuesToSøknadsdata → BarnForm.tsx → AppForm → søknadContext
+```
+
+**Løsning:** Definer alltid `*FormFields` (enum) og `*FormValues` (interface) i en egen `types.ts` per steg-mappe — ikke i selve komponentfilen.
+
+```
+steps/
+  barn/
+    types.ts          ← FormFields + FormValues her
+    BarnForm.tsx      ← importerer fra ./types
+    barnStegUtils.ts  ← importerer fra ./types
+```
+
+`formValuesToSøknadsdata` importerer da fra `steps/barn/types` (ren TS-fil uten React), og syklusen oppstår ikke. Det samme gjelder `*StegUtils.ts`-filene.
+
 ### 8. Tilpass SøknadStep.tsx
 
 To punkter å tilpasse:
@@ -288,20 +306,48 @@ To punkter å tilpasse:
 - `text('application.title')` — krever at i18n er satt opp med denne nøkkelen
 - `window.location.href` i `fortsettSenere` — bruk inline URL (`https://www.nav.no/minside`). Ikke lag en `lenker.ts`-abstraksjon.
 
-### 9. Sett opp i18n
+### 9. Sett opp i18n og stegtitler
 
 Opprett `src/app/i18n/nb/appMessages.ts` og `src/app/i18n/index.tsx`.
 
-Minimum i `appMessages.ts`:
+Minimum i `appMessages.ts` (inkluder én nøkkel per steg):
 
 ```ts
 export const appMessages_nb = {
     'application.title': 'Søknad om [ytelse]',
-    '@soknad.loadingPage.henterInformasjon': 'Henter informasjon ...',
+    'step.mittSteg.title': 'Mitt steg',
+    'step.oppsummering.title': 'Oppsummering',
 };
 ```
 
 `index.tsx` kombinerer `uiMessages.nb`, `rammeverkMessages.nb` og app-spesifikke meldinger og eksporterer `useAppIntl`, `AppText` og `applicationIntlMessages`.
+
+#### Stegtitler via hook
+
+Opprett `src/app/setup/hooks/useStepTitles.ts` og legg til i `hooks/index.ts`:
+
+```ts
+import { useAppIntl } from '../../i18n';
+import { SøknadStepId } from '../config/SøknadStepId';
+
+export const useStepTitles = (): Record<SøknadStepId, string> => {
+    const { text } = useAppIntl();
+    return {
+        [SøknadStepId.MITT_STEG]: text('step.mittSteg.title'),
+        [SøknadStepId.OPPSUMMERING]: text('step.oppsummering.title'),
+    };
+};
+```
+
+Bruk hooken der `<SøknadContextProvider>` brukes (typisk i `Søknad.tsx`):
+
+```tsx
+const stepTitles = useStepTitles();
+
+<SøknadContextProvider stepTitles={stepTitles}>
+    ...
+</SøknadContextProvider>
+```
 
 ---
 
@@ -310,10 +356,108 @@ export const appMessages_nb = {
 | Fil                                | Hva som tilpasses                                                           |
 | ---------------------------------- | --------------------------------------------------------------------------- |
 | `constants.ts`                     | `APP_YTELSE` (riktig `MellomlagringYtelse`), `MELLOMLAGRING_VERSJON`        |
-| `søknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder, stepTitles |
+| `søknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder             |
 | `context/søknadContext.ts`         | `basePath`, referanse til `formValuesToSøknadsdata`                         |
 | `types/Søknadsdata.ts`             | Per-steg søknadsdata-typer                                                  |
 | `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)                     |
 | `utils/formValuesToSøknadsdata.ts` | Case per steg — fyll ut etter hvert                                         |
 | `søknad/SøknadStep.tsx`            | `text('application.title')`, `getLenker().minSide`                          |
-| `i18n/nb/appMessages.ts`           | `application.title` og app-spesifikke tekster                               |
+| `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg, og app-spesifikke tekster  |
+| `hooks/useStepTitles.ts`           | Ny hook — bygg `Record<SøknadStepId, string>` via `useAppIntl()`            |
+
+---
+
+## Sentry-oppsett
+
+Nye apper skal ha Sentry-logging for API-feil. Følg dette mønsteret (referanse: `apps/aktivitetspenger-soknad`).
+
+### 1. Initialiser Sentry i `src/sentry/instrument.ts`
+
+Filen importeres som første linje i `main.tsx` for å sikre at Sentry er klar før alt annet.
+
+```ts
+import * as Sentry from '@sentry/react';
+import React from 'react';
+import { createRoutesFromChildren, matchRoutes, useLocation, useNavigationType } from 'react-router-dom';
+
+Sentry.init({
+    dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
+    environment: import.meta.env.MODE,
+    initialScope: {
+        tags: { application: '<app-navn>' }, // ← tilpass, f.eks. 'aktivitetspenger-soknad'
+    },
+    integrations: [
+        Sentry.reactRouterV7BrowserTracingIntegration({
+            useEffect: React.useEffect,
+            useLocation,
+            useNavigationType,
+            matchRoutes,
+            createRoutesFromChildren,
+        }),
+        Sentry.replayIntegration({
+            maskAllText: true,
+            blockAllMedia: true,
+        }),
+    ],
+    tracesSampleRate: 0.2,
+    tracePropagationTargets: ['localhost', /^https:\/\/.*\.nav\.no/],
+    replaysSessionSampleRate: 0.1,
+    replaysOnErrorSampleRate: 1.0,
+});
+```
+
+Importer i `main.tsx` som første linje:
+```ts
+import './sentry/instrument';
+```
+
+**Viktig:**
+- DSN hardkodes — det er ikke en hemmelighet og er likt for alle SIF-apper.
+- `sendDefaultPii` skal **ikke** settes til `true` — NAV behandler sensitiv personinformasjon.
+- `tracesSampleRate` settes til `0.2` (ikke `1.0`) for å unngå støy og kostnader i prod.
+
+### 2. Legg til `SifQueryClientProvider` i `wrappers/`
+
+Opprett `src/app/setup/wrappers/SifQueryClientProvider.tsx`. Denne wrapperen setter opp `QueryClient` med automatisk Sentry-logging for alle API-feil.
+
+```tsx
+import * as Sentry from '@sentry/react';
+import { isApiAxiosError, isApiError } from '@sif/api';
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { PropsWithChildren } from 'react';
+
+const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+        onError: (error, query) => {
+            if (isApiAxiosError(error) && error.originalError.response?.status === 401) {
+                return;
+            }
+            const extras = isApiError(error)
+                ? { type: error.type, context: error.context, message: error.message, queryKey: query.queryKey }
+                : { message: error.message, queryKey: query.queryKey };
+
+            Sentry.withScope((scope) => {
+                scope.setExtras(extras);
+                Sentry.captureException(isApiError(error) ? error.originalError : error);
+            });
+        },
+    }),
+});
+
+export const SifQueryClientProvider = ({ children }: PropsWithChildren) => {
+    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+};
+```
+
+Bruk den i stedet for `QueryClientProvider` i `App.tsx`:
+```tsx
+<SifQueryClientProvider>
+    {/* ... */}
+</SifQueryClientProvider>
+```
+
+**Hva dette gir:**
+- Alle `useQuery`-feil logges automatisk til Sentry med `type`, `context`, `message` og `queryKey` som extras.
+- 401-feil skippes (forventet ved utløpt sesjon).
+- `isApiError` og `isApiAxiosError` er type guards eksportert fra `@sif/api`.
+- Logger `originalError` (den faktiske `AxiosError`/`ZodError`) for korrekt stack trace i Sentry.

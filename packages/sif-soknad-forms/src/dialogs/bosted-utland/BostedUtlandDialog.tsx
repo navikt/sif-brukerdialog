@@ -2,7 +2,7 @@ import { Button, Dialog } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { BostedUtland } from '.';
-import { BostedUtlandForm } from './BostedUtlandForm';
+import { BostedUtlandDialogForm } from './BostedUtlandDialogForm';
 
 interface Props {
     bosted?: BostedUtland;
@@ -24,7 +24,7 @@ export const BostedUtlandFormDialog = ({ isOpen, bosted, alleBosteder, onValidSu
                     </Dialog.Title>
                 </Dialog.Header>
                 <Dialog.Body>
-                    <BostedUtlandForm
+                    <BostedUtlandDialogForm
                         alleBosteder={alleBosteder}
                         formId={formId}
                         bosted={bosted}

@@ -1,20 +1,24 @@
-import { ErrorPage } from './app/pages/error/ErrorPage';
-import { LoadingPage } from './app/pages/loading/LoadingPage';
+import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
+
+import { useAppIntl } from './app/i18n';
 import { Søknad } from './app/Søknad';
 import { useInitialData } from './useInitialData';
 
 export const InitialDataLoader = () => {
     const result = useInitialData();
+    const { text } = useAppIntl();
 
     switch (result.status) {
         case 'loading':
-            return <LoadingPage />;
+            return <LoadingPage applicationTitle={text('application.title')} />;
         case 'error':
-            return (
-                <ErrorPage
-                    error={result.errors.map((e) => (e as Error).message).join(', ') || 'Ukjent feil ved innlasting'}
-                />
-            );
+            if (import.meta.env.MODE === 'development') {
+                // eslint-disable-next-line no-console
+                console.error(
+                    result.errors.map((e) => (e as Error).message).join(', ') || 'Ukjent feil ved innlasting',
+                );
+            }
+            return <ErrorPage applicationTitle={text('application.title')} />;
         case 'success':
             return <Søknad {...result.data} />;
     }
