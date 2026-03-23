@@ -52,7 +52,12 @@ describe('StepRouteGuard', () => {
     });
 
     it('redirecter til currentStepId når URL-steg ikke er inkludert', () => {
-        renderGuard('/soknad/ukjent-steg', { currentStepId: 'barn' });
+        const stepsWithStart: Array<IncludedStep<StepId>> = [
+            { stepId: 'start', stepRoute: 'start', completed: true },
+            { stepId: 'barn', stepRoute: 'barn', completed: false },
+            { stepId: 'oppsummering', stepRoute: 'oppsummering', completed: false },
+        ];
+        renderGuard('/soknad/ukjent-steg', { steps: stepsWithStart, currentStepId: 'barn' });
         expect(screen.getByTestId('location').textContent).toBe('/soknad/barn');
     });
 
@@ -70,5 +75,35 @@ describe('StepRouteGuard', () => {
     it('redirecter til initialPath når steps er tom', () => {
         renderGuard('/soknad/ukjent-steg', { steps: [], currentStepId: 'barn' });
         expect(screen.getByTestId('location').textContent).toBe('/');
+    });
+
+    it('redirecter til første ufullstendige steg når et forutgående steg ikke er completed', () => {
+        const stepsWithIncomplete: Array<IncludedStep<StepId>> = [
+            { stepId: 'start', stepRoute: 'start', completed: false },
+            { stepId: 'barn', stepRoute: 'barn', completed: false },
+            { stepId: 'oppsummering', stepRoute: 'oppsummering', completed: false },
+        ];
+        renderGuard('/soknad/oppsummering', { steps: stepsWithIncomplete, currentStepId: 'oppsummering' });
+        expect(screen.getByTestId('location').textContent).toBe('/soknad/start');
+    });
+
+    it('redirecter til første ufullstendige blant forutgående steg', () => {
+        const stepsWithPartial: Array<IncludedStep<StepId>> = [
+            { stepId: 'start', stepRoute: 'start', completed: true },
+            { stepId: 'barn', stepRoute: 'barn', completed: false },
+            { stepId: 'oppsummering', stepRoute: 'oppsummering', completed: false },
+        ];
+        renderGuard('/soknad/oppsummering', { steps: stepsWithPartial, currentStepId: 'oppsummering' });
+        expect(screen.getByTestId('location').textContent).toBe('/soknad/barn');
+    });
+
+    it('rendrer outlet når alle forutgående steg er completed', () => {
+        const stepsAllComplete: Array<IncludedStep<StepId>> = [
+            { stepId: 'start', stepRoute: 'start', completed: true },
+            { stepId: 'barn', stepRoute: 'barn', completed: true },
+            { stepId: 'oppsummering', stepRoute: 'oppsummering', completed: false },
+        ];
+        renderGuard('/soknad/oppsummering', { steps: stepsAllComplete, currentStepId: 'oppsummering' });
+        expect(screen.getByTestId('location').textContent).toBe('/soknad/oppsummering');
     });
 });

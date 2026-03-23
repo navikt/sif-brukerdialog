@@ -7,6 +7,7 @@ import checker from 'vite-plugin-checker';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
+    const hasSentryAuthToken = Boolean(env.SENTRY_AUTH_TOKEN);
 
     return {
         plugins: [
@@ -15,11 +16,15 @@ export default defineConfig(({ mode }) => {
                 include: '**/*.{tsx}',
             }),
             checker({ typescript: true }),
-            sentryVitePlugin({
-                org: 'nav',
-                project: 'aktivitetspenger',
-                authToken: env.SENTRY_AUTH_TOKEN,
-            }),
+            ...(hasSentryAuthToken
+                ? [
+                      sentryVitePlugin({
+                          org: 'nav',
+                          project: 'sif-demo-app',
+                          authToken: env.SENTRY_AUTH_TOKEN,
+                      }),
+                  ]
+                : []),
         ],
         resolve: {
             alias: {
@@ -40,7 +45,7 @@ export default defineConfig(({ mode }) => {
             },
         },
         build: {
-            sourcemap: 'hidden',
+            sourcemap: 'inline',
         },
     };
 });

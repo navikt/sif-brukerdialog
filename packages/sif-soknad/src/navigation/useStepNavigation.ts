@@ -73,11 +73,11 @@ export const useStepNavigation = <TStepId extends string, TSøknadsdata>({
     );
 
     return {
+        canGoNext,
+        canGoPrevious,
         navigateToStep,
         navigateToNextStep,
         navigateToPreviousStep,
-        canGoNext,
         navigateToStart,
-        canGoPrevious,
     };
 };

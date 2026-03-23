@@ -1,5 +1,11 @@
 # @navikt/sif-validation
 
+## 1.0.20
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 1.0.19
 
 ### Patch Changes

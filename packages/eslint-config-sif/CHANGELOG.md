@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.84
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 1.1.83
 
 ### Patch Changes

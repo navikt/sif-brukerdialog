@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.61
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 3.49.60
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 import { uiMessages } from '@navikt/sif-common-ui';
-import { rammeverkMessages } from '@sif/soknad/i18n';
 import { typedIntlHelper } from '@sif/soknad/utils';
+import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
@@ -10,7 +10,7 @@ import { stepMessages_nb } from './nb/stepMessages';
 const libMessages = {
     nb: {
         ...uiMessages.nb,
-        ...rammeverkMessages.nb,
+        ...sifSoknadUiMessages.nb,
     },
 };
 

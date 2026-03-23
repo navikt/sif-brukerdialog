@@ -1,4 +1,4 @@
-import { Søker } from '@navikt/sif-common-query';
+import { Søker } from '@sif/api';
 
 import { SøknadApiData } from '../types/SøknadApiData';
 import { Søknadsdata } from '../types/Søknadsdata';

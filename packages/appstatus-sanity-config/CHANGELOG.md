@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.61
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 1.2.60
 
 ### Patch Changes

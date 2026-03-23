@@ -1,5 +1,17 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.7
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.15
+    - @navikt/sif-app-register@0.1.13
+    - @navikt/sif-common-analytics@0.0.7
+    - @navikt/sif-common-core-ds@10.3.54
+    - @navikt/sif-common-utils@3.49.61
+
 ## 2.2.6
 
 ### Patch Changes

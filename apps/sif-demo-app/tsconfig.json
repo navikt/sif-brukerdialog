@@ -5,9 +5,18 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
         "baseUrl": "./",
         "paths": {
-            "@app/*": ["src/app/*"]
+            "@app/*": ["src/app/*"],
+            "vite": ["../../node_modules/vite"]
         }
     },
     "exclude": ["node_modules", "dist", "**.js"],
-    "include": ["./src/**/*", "./mock/**/*", "./vite-env.d.ts", "./tailwind.config.ts", "env.schema.ts"]
+    "include": [
+        "./src/**/*",
+        "./mock/**/*",
+        "./vite-env.d.ts",
+        "./tailwind.config.ts",
+        "./vite.config.ts",
+        "./vite.dev.config.ts",
+        "env.schema.ts"
+    ]
 }

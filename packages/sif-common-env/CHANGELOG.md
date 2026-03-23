@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.1.10
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
 ## 0.1.9
 
 ### Patch Changes
