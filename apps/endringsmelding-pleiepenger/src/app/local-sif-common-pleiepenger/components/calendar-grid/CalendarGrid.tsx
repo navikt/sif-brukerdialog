@@ -9,7 +9,7 @@ import {
     getDatesInDateRange,
     getDatesInMonth,
     isDateInDates,
-} from '@navikt/sif-common-utils/';
+} from '@navikt/sif-common-utils';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';

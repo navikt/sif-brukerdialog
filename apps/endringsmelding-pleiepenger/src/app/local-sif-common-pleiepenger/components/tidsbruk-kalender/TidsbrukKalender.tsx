@@ -66,7 +66,7 @@ const TidsbrukKalender = ({
         kalenderdager[key] = {
             ...kalenderdager[key],
             tidOpprinnelig: dagerMedTidOpprinnelig[key],
-            prosent: (dagerMedTidOpprinnelig as any)[key].prosent,
+            prosent: dagerMedTidOpprinnelig[key].percentage,
         };
     });
 

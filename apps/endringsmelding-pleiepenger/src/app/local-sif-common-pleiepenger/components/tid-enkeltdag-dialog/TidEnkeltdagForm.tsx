@@ -21,7 +21,7 @@ import {
     getWeekDateRange,
     NumberDuration,
 } from '@navikt/sif-common-utils';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { ReactElement } from 'react';
@@ -110,11 +110,8 @@ const getInitialValues = ({
     }
     if (values.tid) {
         if (values.tid.hours === '0' && values.tid.minutes === '0') {
-            // values.erIkkeIOmsorgstilbud = true;
             values.erBarnetIOmsorgstilbud = YesOrNo.NO;
-        }
-        if (values.tid.hours !== '' || values.tid.minutes !== '') {
-            // values.erIkkeIOmsorgstilbud = true;
+        } else if (values.tid.hours !== '' || values.tid.minutes !== '') {
             values.erBarnetIOmsorgstilbud = YesOrNo.YES;
         }
     }
@@ -224,6 +221,7 @@ const TidEnkeltdagForm = ({
                                             name={FormFields.erBarnetIOmsorgstilbud}
                                             legend={`Er barnet i omsorgstilbud ${dateFormatter.dayCompactDate(dato)}?`}
                                             renderHorizontal={true}
+                                            validate={getYesOrNoValidator()}
                                         />
 
                                         {erBarnetIOmsorgstilbud === YesOrNo.YES && (
