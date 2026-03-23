@@ -1,4 +1,5 @@
-import { useAppIntl } from '../../i18n';
+import { useAppIntl } from '@app/i18n';
+
 import { SøknadStepId } from '../config/SøknadStepId';
 
 export const useStepTitles = (): Record<SøknadStepId, string> => {

@@ -1,6 +1,8 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
+import { BarnSøknadsdata } from '@app/types/Søknadsdata';
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { FormLayout, RegistrerteBarnListe, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -8,9 +10,7 @@ import { RegistrertBarn } from '@sif/api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { AriaLiveRegion, ExternalLink } from '@sif/soknad-ui/components';
 
-import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
-import { BarnSøknadsdata } from '../../types/Søknadsdata';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 import { BarnFormFields, BarnFormValues } from './types';
 

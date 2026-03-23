@@ -1,10 +1,10 @@
+import { useAppIntl } from '@app/i18n';
 import { Box } from '@navikt/ds-react';
 import { InconsistentFormValuesMessage } from '@sif/soknad/consistency';
 import { getProgressSteps } from '@sif/soknad/utils';
 import { StepPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppIntl } from '../../i18n';
 import { søknadStepConfig } from '../config/søknadStepConfig';
 import { SøknadStepId } from '../config/SøknadStepId';
 import { useSøknadsflyt } from '../context/søknadContext';

@@ -1,3 +1,4 @@
+import { useAppIntl } from '@app/i18n';
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/config/søknadStepConfig';
 import { useSøknadMellomlagring, useSøknadsflyt, useSøknadStore } from '@app/setup/hooks';
 import { BodyLong, Link, VStack } from '@navikt/ds-react';
@@ -5,7 +6,6 @@ import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { StartPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppIntl } from '../../i18n';
 import OmSøknaden from './OmSøknaden';
 
 export const VelkommenPage = () => {

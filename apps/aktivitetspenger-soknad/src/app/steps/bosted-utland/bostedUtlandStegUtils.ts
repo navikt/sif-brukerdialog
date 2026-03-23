@@ -1,6 +1,6 @@
+import { BostedUtlandSøknadsdata } from '@app/types/Søknadsdata';
 import { YesOrNo } from '@sif/rhf';
 
-import { BostedUtlandSøknadsdata } from '../../types/Søknadsdata';
 import { BostedUtlandFormValues } from './types';
 
 export const toBostedUtlandStegFormValues = (

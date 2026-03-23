@@ -1,5 +1,6 @@
 import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
+import { AppForm } from '@app/setup/søknad/AppForm';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 import { FormSummary, InfoCard } from '@navikt/ds-react';
 import { getCheckedValidator } from '@navikt/sif-validation';
@@ -8,7 +9,6 @@ import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { FormLayout } from '@sif/soknad-ui';
 
 import { useSendSøknad } from '../../hooks/useSendSøknad';
-import { AppForm } from '../../setup/søknad/AppForm';
 import { søknadsdataToSøknadDTO } from '../../utils/søknadsdataToSøknadDTO';
 
 enum FormFields {

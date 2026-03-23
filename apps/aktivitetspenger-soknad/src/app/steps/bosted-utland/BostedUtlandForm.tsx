@@ -1,6 +1,7 @@
 import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
+import { BostedUtlandSøknadsdata } from '@app/types/Søknadsdata';
 import { Button, Heading, VStack } from '@navikt/ds-react';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
@@ -8,7 +9,6 @@ import { BostedUtland, BostedUtlandFormDialog, BostedUtlandList } from '@sif/sok
 import { FormLayout } from '@sif/soknad-ui';
 import { useState } from 'react';
 
-import { BostedUtlandSøknadsdata } from '../../types/Søknadsdata';
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
 import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
 

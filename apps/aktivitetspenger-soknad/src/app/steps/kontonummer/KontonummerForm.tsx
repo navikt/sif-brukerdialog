@@ -1,6 +1,7 @@
 import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
+import { KontonummerSøknadsdata } from '@app/types/Søknadsdata';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api';
@@ -8,7 +9,6 @@ import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion } from '@sif/soknad-ui/components';
 
-import { KontonummerSøknadsdata } from '../../types/Søknadsdata';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
 import { KontonummerFormFields, KontonummerFormValues } from './types';
 

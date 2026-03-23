@@ -1,7 +1,7 @@
 import { SøknadStepId } from '@app/setup/config/SøknadStepId';
+import { useSøknadState } from '@app/setup/hooks';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 
-import { useSøknadState } from '../../setup/hooks';
 import { BarnForm } from './BarnForm';
 
 export const BarnSteg = () => {

@@ -4,7 +4,6 @@ import { sifSoknadFormsMessages } from '@sif/soknad-forms';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
 import { appMessages_nb } from './nb/appMessages';
 
 const libMessages = {
@@ -18,7 +17,6 @@ const libMessages = {
 const nb = {
     ...libMessages.nb,
     ...appMessages_nb,
-    ...velkommenPageMessages_nb,
 };
 
 export type AppMessageKeys = keyof typeof nb;
