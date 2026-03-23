@@ -49,7 +49,6 @@ export const DeltakelseIkkeStartet: Story = {
             programPeriode: {
                 from: dayjs().add(2, 'days').toDate(),
             },
-            // oppgaver: deltakelsePeriode.oppgaver.filter((o) => o.oppgavetype === ParsedOppgavetype.SØK_YTELSE),
         },
     },
 };
@@ -63,7 +62,6 @@ export const DeltakelseAvsluttet: Story = {
                 from: dayjs().subtract(1, 'year').toDate(),
                 to: dayjs().subtract(1, 'day').toDate(),
             },
-            // oppgaver: deltakelsePeriode.oppgaver.filter((o) => o.status !== OppgaveStatus.ULØST),
         },
     },
 };

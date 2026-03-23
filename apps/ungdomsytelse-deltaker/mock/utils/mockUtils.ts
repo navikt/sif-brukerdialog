@@ -1,10 +1,14 @@
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
-import { dateToISODate } from '@navikt/sif-common-utils';
 import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import dayjs from 'dayjs';
 
 import { RapporterInntektOppgave } from '../../src/types/Oppgave';
 import { store } from '../state/store';
 import { getMockToday } from './mockDate';
+
+const ISODateFormat = 'YYYY-MM-DD';
+
+const dateToISODate = (date: Date): string => dayjs(date).format(ISODateFormat);
 
 function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
     const state = store.get();

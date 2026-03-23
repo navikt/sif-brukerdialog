@@ -20,7 +20,6 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         },
         erSlettet: false,
         harOpphørsvedtak: false,
-        oppgaver: [],
     };
 
     const mockOppgave: SøkYtelseOppgave = {

@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import { z } from 'zod';
 
 export const deltakelsePeriodeSchema = zDeltakelseKomposittDto
+    .omit({ oppgaver: true })
     .extend({
         id: z.string(),
     })
