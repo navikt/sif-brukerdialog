@@ -19,6 +19,10 @@ export type BarnSøknadsdata = {
     informasjonStemmer: boolean;
 };
 
+/**
+ * Strukturert data for hvert steg som settes når bruker
+ * fyller ut og submitter et gyldig steg i søknaden.
+ */
 export interface Søknadsdata extends BaseSøknadsdata {
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;
