@@ -40,6 +40,12 @@ jobs:
         id: filter
         with:
           filters: |
+            aktivitetspenger-soknad:
+              - 'apps/aktivitetspenger-soknad/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'yarn.lock'
             dine-pleiepenger:
               - 'apps/dine-pleiepenger/**'
               - 'packages/**'
