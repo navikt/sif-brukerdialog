@@ -74,8 +74,9 @@ const getSøknadInnsendingMeta = (
         kontonummerStemmer?: boolean;
         kontonummerOppslagInfo: KontonummerOppslagInfo;
     },
+    oppgaver: Oppgave[],
 ) => {
-    const meta = getDeltakelsePeriodeMeta(deltakelse);
+    const meta = getDeltakelsePeriodeMeta(deltakelse, oppgaver);
     const { harKontonummer } = kontonummerOppslagInfo;
     return {
         harBarn: antallBarn > 0,

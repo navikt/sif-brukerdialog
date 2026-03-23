@@ -74,6 +74,7 @@ const SøknadApp = () => {
                 søknadOppgave={søknadOppgave}
                 søker={søker}
                 deltakelsePeriode={deltakelsePeriode}
+                oppgaver={oppgaver}
                 kontonummerInfo={getKontonummerInfo()}
                 barn={barn.data || []}>
                 <SøknadRouter />

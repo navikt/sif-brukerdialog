@@ -4,7 +4,7 @@ import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { DeltakerSkjemaId } from '@shared/types/DeltakerSkjemaId';
-import { SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { Oppgave, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import React, { createContext, useMemo, useState } from 'react';
 
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../analytics/analytics';
@@ -21,6 +21,7 @@ interface SøknadProviderProps {
     initialSvar?: SøknadSvar;
     søknadOppgave: SøkYtelseOppgave;
     deltakelsePeriode: DeltakelsePeriode;
+    oppgaver: Oppgave[];
 }
 
 const initialData: SøknadSvar = {};
@@ -31,6 +32,7 @@ export const SøknadProvider = ({
     barn,
     søknadOppgave,
     deltakelsePeriode,
+    oppgaver,
     initialSvar,
     søker,
 }: SøknadProviderProps) => {
@@ -65,12 +67,17 @@ export const SøknadProvider = ({
         setSøknadSendt(true);
         logSkjemaFullført(
             DeltakerSkjemaId.SØKNAD,
-            logUtils.getSøknadInnsendingMeta(deltakelsePeriode, søknadOppgave, {
-                antallBarn: barn.length,
-                barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
-                kontonummerStemmer: svar[Spørsmål.KONTONUMMER] === YesOrNo.YES,
-                kontonummerOppslagInfo: kontonummerInfo,
-            }),
+            logUtils.getSøknadInnsendingMeta(
+                deltakelsePeriode,
+                søknadOppgave,
+                {
+                    antallBarn: barn.length,
+                    barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
+                    kontonummerStemmer: svar[Spørsmål.KONTONUMMER] === YesOrNo.YES,
+                    kontonummerOppslagInfo: kontonummerInfo,
+                },
+                oppgaver,
+            ),
         );
     };
 

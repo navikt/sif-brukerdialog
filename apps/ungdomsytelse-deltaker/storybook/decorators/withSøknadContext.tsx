@@ -24,6 +24,7 @@ export const withSøknadContext = (Story: any, context?: Partial<SøknadContextT
                 deltakelsePeriode={deltakelse as DeltakelsePeriode}
                 søker={data.søker}
                 initialSvar={context?.svar}
+                oppgaver={[]}
                 søknadOppgave={oppgave}>
                 <Story />
             </SøknadProvider>
