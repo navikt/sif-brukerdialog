@@ -1,5 +1,4 @@
-import { BrukerdialogOppgaveDto, OppgaveStatus, OppgaveType } from '@navikt/ung-brukerdialog-api';
-import { PeriodeEndringType } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { BrukerdialogOppgaveDto, OppgaveStatus, OppgaveType, PeriodeEndringType } from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../../utils/dateUtils';
@@ -162,7 +161,6 @@ const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         gjelderDelerAvMåned: false,
     },
     respons: {
-        harUttalelse: false, // TODO - skal ikke være med i schema her
         type: 'RAPPORTERT_INNTEKT',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),

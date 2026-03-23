@@ -49,12 +49,12 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     }
 };
 
-const isSvarOnVarselRespons = (respons: any): respons is SvarPåVarselDto & OppgaveResponsDto => {
+const isSvarPåVarselRespons = (respons: any): respons is SvarPåVarselDto & OppgaveResponsDto => {
     return respons.type === 'VARSEL_SVAR';
 };
 
 const parseSvarPåVarselRespons = (respons?: any): SvarPåVarselRespons | undefined => {
-    if (!respons || !isSvarOnVarselRespons(respons)) {
+    if (!respons || !isSvarPåVarselRespons(respons)) {
         return undefined;
     }
     if (respons.type === 'VARSEL_SVAR') {

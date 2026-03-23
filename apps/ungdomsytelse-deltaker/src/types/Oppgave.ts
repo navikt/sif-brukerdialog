@@ -42,7 +42,7 @@ export interface ParsedOppgaveBase extends Omit<
     lukketDato?: Date;
 }
 
-export interface ParsedRapportertInntektOppgave extends Omit<ParsedOppgaveBase, 'respons'> {
+export interface ParsedRapportertInntektOppgave extends ParsedOppgaveBase {
     respons?: RapportertInntektRespons;
 }
 
