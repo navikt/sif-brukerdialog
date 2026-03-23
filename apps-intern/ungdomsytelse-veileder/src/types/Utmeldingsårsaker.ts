@@ -3,6 +3,7 @@ export enum Utmeldingsårsak {
     'utdanning' = 'utdanning',
     'manglende-deltakelse' = 'manglende-deltakelse',
     'deltaker-ønsker-ikke-delta' = 'deltaker-ønsker-ikke-delta',
+    'flyttet' = 'flyttet',
     'annet' = 'annet',
 }
 
@@ -11,5 +12,6 @@ export const UtmeldingsårsakerList = [
     Utmeldingsårsak['utdanning'],
     Utmeldingsårsak['manglende-deltakelse'],
     Utmeldingsårsak['deltaker-ønsker-ikke-delta'],
+    Utmeldingsårsak['flyttet'],
     Utmeldingsårsak['annet'],
 ];

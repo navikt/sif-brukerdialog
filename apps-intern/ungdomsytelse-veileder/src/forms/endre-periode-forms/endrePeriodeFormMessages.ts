@@ -20,6 +20,7 @@ const nb = {
     'utmeldingsårsak.utdanning': 'Utdanning',
     'utmeldingsårsak.manglende-deltakelse': 'Manglende deltakelse',
     'utmeldingsårsak.deltaker-ønsker-ikke-delta': 'Deltakeren ønsker ikke å delta',
+    'utmeldingsårsak.flyttet': 'Flyttet',
     'utmeldingsårsak.annet': 'Annet',
 
     'slettDeltakerÅrsak.deltakerStartetIkke': 'Deltaker startet ikke i programmet likevel',
