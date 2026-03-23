@@ -74,7 +74,7 @@
         "newtype-ts": "0.3.5",
         "react": "19.2.4",
         "react-dom": "19.2.4",
-        "react-intl": "8.1.4",
+        "react-intl": "10.1.0",
         "react-router-dom": "7.13.1",
         "rimraf": "6.1.3",
         "sass-loader": "16.0.7",

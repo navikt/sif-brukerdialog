@@ -70,7 +70,7 @@
         "playwright-core": "1.58.2",
         "postcss": "8.5.8",
         "postcss-import": "16.1.1",
-        "react-intl": "8.1.4",
+        "react-intl": "10.1.0",
         "storybook": "10.3.0",
         "tailwindcss": "4.2.2",
         "typescript": "5.9.3",

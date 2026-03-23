@@ -24,7 +24,7 @@
         "react": "19.2.4",
         "react-dom": "19.2.4",
         "react-hook-form": "7.71.2",
-        "react-intl": "8.1.4"
+        "react-intl": "10.1.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
