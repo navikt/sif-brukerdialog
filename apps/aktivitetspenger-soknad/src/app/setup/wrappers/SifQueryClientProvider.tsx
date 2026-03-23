@@ -3,6 +3,7 @@ import { isApiAxiosError, isApiError } from '@sif/api';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PropsWithChildren } from 'react';
 
+/** Setter opp QueryClient med custom error handling for logging til Sentry */
 const queryClient = new QueryClient({
     queryCache: new QueryCache({
         onError: (error, query) => {

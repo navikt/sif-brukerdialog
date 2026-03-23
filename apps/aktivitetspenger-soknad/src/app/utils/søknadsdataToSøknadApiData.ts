@@ -1,7 +1,6 @@
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { Søker } from '@sif/api';
+import { Søker, UtvidetKontonummerInfo } from '@sif/api';
 
-import { KontoInfo } from '../types/KontoInfo';
 import { SøknadApiData } from '../types/SøknadApiData';
 import { Søknadsdata } from '../types/Søknadsdata';
 
@@ -14,7 +13,7 @@ export const getSøknadApiDataFromSøknad = ({
     søknadsdata: Søknadsdata;
     søker: Søker;
     språk?: 'nb' | 'nn';
-    kontoInfo: KontoInfo;
+    kontoInfo: UtvidetKontonummerInfo;
 }): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
     const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted } = søknadsdata;
 

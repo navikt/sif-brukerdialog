@@ -1,11 +1,10 @@
-import { RegistrertBarn, Søker } from '@sif/api';
+import { RegistrertBarn, Søker, UtvidetKontonummerInfo } from '@sif/api';
 
-import { KontoInfo } from './KontoInfo';
 import { Søknadsdata } from './Søknadsdata';
 
 export interface SøknadState {
     søker: Søker;
     barn: RegistrertBarn[];
-    kontoInfo: KontoInfo;
+    kontoInfo: UtvidetKontonummerInfo;
     søknadsdata: Søknadsdata;
 }
