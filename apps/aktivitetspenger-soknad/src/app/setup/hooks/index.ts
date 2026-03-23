@@ -1,4 +1,4 @@
-export { SøknadContextProvider, useSøknadFlow } from '../context/søknadContext';
+export { SøknadContextProvider, useSøknadsflyt } from '../context/søknadContext';
 export * from './useAvbrytSøknad';
 export * from './useSøknadMellomlagring';
 export * from './useSøknadRhfForm';

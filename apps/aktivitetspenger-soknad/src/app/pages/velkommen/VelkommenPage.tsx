@@ -1,5 +1,5 @@
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/config/søknadStepConfig';
-import { useSøknadFlow, useSøknadMellomlagring, useSøknadStore } from '@app/setup/hooks';
+import { useSøknadsflyt, useSøknadMellomlagring, useSøknadStore } from '@app/setup/hooks';
 import { BodyLong, Link, VStack } from '@navikt/ds-react';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { StartPage } from '@sif/soknad-ui/pages';
@@ -12,7 +12,7 @@ export const VelkommenPage = () => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
     const søknadState = useSøknadStore((s) => s.søknadState);
-    const { startSøknad } = useSøknadFlow();
+    const { startSøknad } = useSøknadsflyt();
     const { clearSøknadFormValues } = useSøknadFormValues();
     const { opprettMellomlagring, isPending } = useSøknadMellomlagring();
 

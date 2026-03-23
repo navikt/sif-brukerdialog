@@ -6,7 +6,7 @@ import { søknadStepConfig, søknadStepOrder, stepTitles } from '../config/søkn
 import { SøknadStepId } from '../config/SøknadStepId';
 import { useSøknadStore } from '../hooks/useSøknadStore';
 
-export const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknadsdata, SøknadStepId>({
+export const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<Søknadsdata, SøknadStepId>({
     useStore: useSøknadStore as any,
     stepConfig: søknadStepConfig,
     stepOrder: søknadStepOrder,

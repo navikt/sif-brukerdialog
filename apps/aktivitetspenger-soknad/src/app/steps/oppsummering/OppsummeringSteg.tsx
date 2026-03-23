@@ -1,5 +1,5 @@
 import { SøknadStepId } from '@app/setup/config/SøknadStepId';
-import { useSøknadFlow, useSøknadMellomlagring, useSøknadRhfForm, useSøknadState } from '@app/setup/hooks';
+import { useSøknadsflyt, useSøknadMellomlagring, useSøknadRhfForm, useSøknadState } from '@app/setup/hooks';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 import { FormSummary, InfoCard } from '@navikt/ds-react';
 import { getCheckedValidator } from '@navikt/sif-validation';
@@ -28,7 +28,7 @@ export const OppsummeringSteg = () => {
 
     const methods = useSøknadRhfForm<FormValues>(stepId, {});
 
-    const { setSøknadSendt } = useSøknadFlow();
+    const { setSøknadSendt } = useSøknadsflyt();
     const { clearSøknadFormValues } = useSøknadFormValues();
     const { slettMellomlagring } = useSøknadMellomlagring();
     const state = useSøknadState();

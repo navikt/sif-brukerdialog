@@ -150,7 +150,7 @@ Store håndterer blant annet:
 ```ts
 import { createSøknadContext } from '@sif/soknad/context';
 
-const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknadsdata, StepId>({
+const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<Søknadsdata, StepId>({
     useStore: useSøknadStore,
     stepConfig,
     stepOrder,
@@ -179,7 +179,7 @@ const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknads
 });
 ```
 
-### Hva `useSøknadFlow()` gir deg
+### Hva `useSøknadsflyt()` gir deg
 
 - config: `stepConfig`, `stepOrder`, `stepTitles`, `basePath`
 - state: `søknadsdata`, `currentStepId`, `includedSteps`
@@ -219,7 +219,7 @@ Typisk livssyklus:
 4. ved submit committes data til søknadsdata
 5. draft for steget ryddes, og unmount-save for samme steg hoppes over én gang
 
-`commitStep(stepId, data)` i `useSøknadFlow()` gjør dette:
+`commitStep(stepId, data)` i `useSøknadsflyt()` gjør dette:
 
 - lagrer data i store
 - rydder draft-formvalues for steget
@@ -229,7 +229,7 @@ Applikasjonen er fortsatt ansvarlig for lagring/mellomlagring og navigasjon rund
 Eksempel:
 
 ```ts
-const flow = useSøknadFlow();
+const flow = useSøknadsflyt();
 
 const onSubmit = async (data: BarnFormValues) => {
     flow.commitStep('barn', { harBarn: data.harBarn });
@@ -241,7 +241,7 @@ const onSubmit = async (data: BarnFormValues) => {
 Ved avbryt/reset bør appen også rydde draft-formvalues:
 
 ```ts
-const { resetSøknad } = useSøknadFlow();
+const { resetSøknad } = useSøknadsflyt();
 const { clearSøknadFormValues } = useSøknadFormValues();
 
 const avbryt = () => {
@@ -296,7 +296,7 @@ Kjernen ligger i:
 
 - `checkConsistencyForSteps`
 - `useCheckSøknadStepData`
-- `useSøknadFlow().checkConsistency(...)`
+- `useSøknadsflyt().checkConsistency(...)`
 
 ## Viktige eksporter
 
@@ -369,7 +369,7 @@ Sentrale typer som:
 4. wrap søknadsflyten i `SøknadContextProvider`
 5. bruk `createSøknadReactHookForm` i hvert steg
 6. bruk `commitStep(...)` ved submit
-7. naviger med `useSøknadFlow()`
+7. naviger med `useSøknadsflyt()`
 8. bruk `StepRouteGuard` rundt steg-rutene
 
 ## Testing

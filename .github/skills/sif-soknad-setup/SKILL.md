@@ -46,7 +46,7 @@ src/app/
   setup/
     constants.ts                       # APP_YTELSE og MELLOMLAGRING_VERSJON
     context/
-      søknadContext.ts                 # createSøknadContext — SøknadContextProvider + useSøknadFlow
+      søknadContext.ts                 # createSøknadContext — SøknadContextProvider + useSøknadsflyt
     env/
       appEnv.ts                        # getAppEnv() — leser browser-env
     hooks/
@@ -251,7 +251,7 @@ Tre punkter å tilpasse:
 - `getSøknadsdataForStep` — standard oppslag: `(stepId, søknadsdata) => søknadsdata?.[stepId]`
 
 ```ts
-export const { SøknadContextProvider, useSøknadFlow } = createSøknadContext<Søknadsdata, SøknadStepId>({
+export const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<Søknadsdata, SøknadStepId>({
     useStore: useSøknadStore as any,
     stepConfig: søknadStepConfig,
     stepOrder: søknadStepOrder,

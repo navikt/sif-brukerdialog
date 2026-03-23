@@ -187,16 +187,16 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
         </SøknadFormValuesProvider>
     );
 
-    const useSøknadFlow = (): SøknadFlowContextValue<TSøknadsdata, TStepId> => {
+    const useSøknadsflyt = (): SøknadFlowContextValue<TSøknadsdata, TStepId> => {
         const context = useContext(SøknadFlowContext);
         if (!context) {
-            throw new Error('useSøknadFlow må brukes innenfor SøknadContextProvider');
+            throw new Error('useSøknadsflyt må brukes innenfor SøknadContextProvider');
         }
         return context;
     };
 
     return {
         SøknadContextProvider,
-        useSøknadFlow,
+        useSøknadsflyt,
     };
 }

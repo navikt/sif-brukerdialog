@@ -2,12 +2,12 @@ import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useSøknadFlow } from '../context/søknadContext';
+import { useSøknadsflyt } from '../context/søknadContext';
 import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
 export const useAvbrytSøknad = () => {
     const navigate = useNavigate();
-    const { resetSøknad } = useSøknadFlow();
+    const { resetSøknad } = useSøknadsflyt();
     const { clearSøknadFormValues } = useSøknadFormValues();
     const { slettMellomlagring } = useSøknadMellomlagring();
 

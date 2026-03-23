@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '../../i18n';
 import { søknadStepConfig, stepTitles } from '../config/søknadStepConfig';
 import { SøknadStepId } from '../config/SøknadStepId';
-import { useSøknadFlow } from '../context/søknadContext';
+import { useSøknadsflyt } from '../context/søknadContext';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 
@@ -19,7 +19,7 @@ interface Props {
 export const SøknadStep = ({ stepId, children }: Props) => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
-    const ctx = useSøknadFlow();
+    const søknadsflyt = useSøknadsflyt();
 
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad } = useSøknadMellomlagring();
@@ -29,15 +29,15 @@ export const SøknadStep = ({ stepId, children }: Props) => {
         window.location.href = 'https://www.nav.no/minside';
     };
 
-    const inconsistentStepId = ctx.checkConsistency(stepId);
+    const inconsistentStepId = søknadsflyt.checkConsistency(stepId);
 
     return (
         <StepPage
             documentTitle={stepTitles[stepId]}
             applicationTitle={text('application.title')}
             stepId={stepId}
-            steps={getProgressSteps(ctx.includedSteps, stepTitles)}
-            onStepSelect={ctx.navigateToStep}
+            steps={getProgressSteps(søknadsflyt.includedSteps, stepTitles)}
+            onStepSelect={søknadsflyt.navigateToStep}
             onAbort={avbrytSøknad}
             onResumeLater={fortsettSenere}>
             {inconsistentStepId ? (
