@@ -5,7 +5,6 @@ import { createSifFormComponents } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
-
 import { BostedUtland } from '.';
 
 interface BostedUtlandFormProps {
@@ -51,7 +50,7 @@ const bostedUtlandToFormValues = (bosted: BostedUtland): BostedUtlandFormValues 
     };
 };
 
-export const BostedUtlandForm = ({ formId, bosted, alleBosteder, onValidSubmit }: BostedUtlandFormProps) => {
+export const BostedUtlandDialogForm = ({ formId, bosted, alleBosteder, onValidSubmit }: BostedUtlandFormProps) => {
     const intl = useSifSoknadFormsIntl();
     const methods = useForm<BostedUtlandFormValues>({
         defaultValues: bosted ? bostedUtlandToFormValues(bosted) : undefined,

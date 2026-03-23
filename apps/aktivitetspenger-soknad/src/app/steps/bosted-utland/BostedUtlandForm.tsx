@@ -9,8 +9,8 @@ import { FormLayout } from '@sif/soknad-ui';
 import { useState } from 'react';
 
 import { BostedUtlandSøknadsdata } from '../../types/Søknadsdata';
-import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
+import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<BostedUtlandFormValues>();
 
@@ -46,7 +46,10 @@ export const BostedUtlandForm = () => {
     methods.register(BostedUtlandFormFields.bosteder, {
         validate: (value) => {
             if (harBoddIUtlandetSiste5år === YesOrNo.YES) {
-                return validateField(BostedUtlandFormFields.bosteder, getListValidator({ minItems: 1 }))(value);
+                return validateField(
+                    BostedUtlandFormFields.bosteder,
+                    getListValidator({ minItems: 1, required: true }),
+                )(value);
             }
         },
     });
