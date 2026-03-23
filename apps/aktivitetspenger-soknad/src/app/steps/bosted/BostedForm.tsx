@@ -5,8 +5,8 @@ import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 
 import { BostedSøknadsdata } from '../../types/Søknadsdata';
-import { BostedFormFields, BostedFormValues } from './types';
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
+import { BostedFormFields, BostedFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<BostedFormValues>();
 

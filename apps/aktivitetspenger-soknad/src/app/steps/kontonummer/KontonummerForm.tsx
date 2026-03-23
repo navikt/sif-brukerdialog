@@ -10,8 +10,8 @@ import { AriaLiveRegion } from '@sif/soknad-ui/components';
 
 import { HarKontonummerEnum } from '../../types/KontoInfo';
 import { KontonummerSøknadsdata } from '../../types/Søknadsdata';
-import { KontonummerFormFields, KontonummerFormValues } from './types';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
+import { KontonummerFormFields, KontonummerFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<KontonummerFormValues>();
 
