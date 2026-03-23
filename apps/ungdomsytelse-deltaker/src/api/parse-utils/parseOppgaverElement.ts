@@ -270,7 +270,7 @@ export const parseOppgaverElement = (oppgaver: BrukerdialogOppgaveDto[]): Oppgav
     return parsedOppgaver;
 };
 
-const mapPeriodeDtoToOpenDateRange = (periode: { fomDato: string; tomDato?: string }): OpenDateRange => {
+export const mapPeriodeDtoToOpenDateRange = (periode: { fomDato: string; tomDato?: string }): OpenDateRange => {
     if (periode.fomDato && !isISODate(periode.fomDato)) {
         throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fomDato}`);
     }
@@ -283,7 +283,7 @@ const mapPeriodeDtoToOpenDateRange = (periode: { fomDato: string; tomDato?: stri
     };
 };
 
-const mapPeriodeDtoToDateRange = (periode: { fomDato: string; tomDato?: string }): DateRange => {
+export const mapPeriodeDtoToDateRange = (periode: { fomDato: string; tomDato?: string }): DateRange => {
     if (!isISODate(periode.fomDato)) {
         throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fomDato}`);
     }
