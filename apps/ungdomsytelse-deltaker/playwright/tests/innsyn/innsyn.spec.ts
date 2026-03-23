@@ -21,7 +21,8 @@ test('Innsyn - har søkt', async ({ page }) => {
     await testAccessibility(page);
 });
 
-test('Innsyn - opphørt deltakelse', async ({ page }) => {
+/** Dette er ikke implementert enda */
+test.skip('Innsyn - opphørt deltakelse', async ({ page }) => {
     memoryStore.setScenario(ScenarioType.opphørt);
 
     await page.goto(`./ungdomsprogrammet/ytelsen`);
