@@ -1,9 +1,9 @@
 import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { Express } from 'express';
 import path from 'node:path';
+import { z } from 'zod';
 import { appEnvSchema } from '../env.schema.js';
 import config from './serverConfig.js';
-import z from 'zod';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
