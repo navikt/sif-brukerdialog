@@ -154,11 +154,6 @@ const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<Søknad
     useStore: useSøknadStore,
     stepConfig,
     stepOrder,
-    stepTitles: {
-        barn: 'Barn',
-        arbeid: 'Arbeid',
-        oppsummering: 'Oppsummering',
-    },
     basePath: '/soknad',
     formValuesToSøknadsdata: (stepId, formValues) => {
         switch (stepId) {
@@ -177,6 +172,12 @@ const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<Søknad
         }
     },
 });
+```
+
+`stepTitles` er et påkrevd prop på `<SøknadContextProvider>` og tar inn oversatte stegtitler fra appen (nb/nn).
+
+```tsx
+<SøknadContextProvider stepTitles={stepTitles}>{children}</SøknadContextProvider>
 ```
 
 ### Hva `useSøknadsflyt()` gir deg

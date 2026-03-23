@@ -59,7 +59,7 @@ src/app/
       useStepDefaultValues.ts
       useStepSubmit.ts
     config/
-      søknadStepConfig.ts              # SøknadStepId, stepConfig, stepOrder, stepTitles
+      søknadStepConfig.ts              # SøknadStepId, stepConfig, stepOrder
     søknad/
       AppForm.tsx                      # SifForm + FormLayout wrapper
       SøknadFormButtons.tsx            # Navigasjonsknapper koblet til context
@@ -165,12 +165,9 @@ export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
 };
 
 export const søknadStepOrder: SøknadStepId[] = [SøknadStepId.MITT_STEG, SøknadStepId.OPPSUMMERING];
-
-export const stepTitles: Record<SøknadStepId, string> = {
-    [SøknadStepId.MITT_STEG]: 'Mitt steg',
-    [SøknadStepId.OPPSUMMERING]: 'Oppsummering',
-};
 ```
+
+`stepTitles` hardkodes ikke lenger her — stegtitler hentes fra i18n og sendes som prop til `<SøknadContextProvider>` (se trinn 6 og 9).
 
 ### 2. Definer Søknadsdata-typen
 
@@ -255,12 +252,13 @@ export const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<
     useStore: useSøknadStore as any,
     stepConfig: søknadStepConfig,
     stepOrder: søknadStepOrder,
-    stepTitles: stepTitles,
     formValuesToSøknadsdata,
     getSøknadsdataForStep: (stepId, søknadsdata) => søknadsdata?.[stepId],
     basePath: '/soknad', // ← tilpass
 });
 ```
+
+`stepTitles` er **ikke** lenger del av config. Det sendes i stedet som et påkrevd prop direkte på `<SøknadContextProvider>` — se trinn 9.
 
 ### 7. Opprett formValuesToSøknadsdata.ts
 
@@ -308,19 +306,48 @@ To punkter å tilpasse:
 - `text('application.title')` — krever at i18n er satt opp med denne nøkkelen
 - `window.location.href` i `fortsettSenere` — bruk inline URL (`https://www.nav.no/minside`). Ikke lag en `lenker.ts`-abstraksjon.
 
-### 9. Sett opp i18n
+### 9. Sett opp i18n og stegtitler
 
 Opprett `src/app/i18n/nb/appMessages.ts` og `src/app/i18n/index.tsx`.
 
-Minimum i `appMessages.ts`:
+Minimum i `appMessages.ts` (inkluder én nøkkel per steg):
 
 ```ts
 export const appMessages_nb = {
     'application.title': 'Søknad om [ytelse]',
+    'step.mittSteg.title': 'Mitt steg',
+    'step.oppsummering.title': 'Oppsummering',
 };
 ```
 
 `index.tsx` kombinerer `uiMessages.nb`, `rammeverkMessages.nb` og app-spesifikke meldinger og eksporterer `useAppIntl`, `AppText` og `applicationIntlMessages`.
+
+#### Stegtitler via hook
+
+Opprett `src/app/setup/hooks/useStepTitles.ts` og legg til i `hooks/index.ts`:
+
+```ts
+import { useAppIntl } from '../../i18n';
+import { SøknadStepId } from '../config/SøknadStepId';
+
+export const useStepTitles = (): Record<SøknadStepId, string> => {
+    const { text } = useAppIntl();
+    return {
+        [SøknadStepId.MITT_STEG]: text('step.mittSteg.title'),
+        [SøknadStepId.OPPSUMMERING]: text('step.oppsummering.title'),
+    };
+};
+```
+
+Bruk hooken der `<SøknadContextProvider>` brukes (typisk i `Søknad.tsx`):
+
+```tsx
+const stepTitles = useStepTitles();
+
+<SøknadContextProvider stepTitles={stepTitles}>
+    ...
+</SøknadContextProvider>
+```
 
 ---
 
@@ -329,13 +356,14 @@ export const appMessages_nb = {
 | Fil                                | Hva som tilpasses                                                           |
 | ---------------------------------- | --------------------------------------------------------------------------- |
 | `constants.ts`                     | `APP_YTELSE` (riktig `MellomlagringYtelse`), `MELLOMLAGRING_VERSJON`        |
-| `søknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder, stepTitles |
+| `søknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder             |
 | `context/søknadContext.ts`         | `basePath`, referanse til `formValuesToSøknadsdata`                         |
 | `types/Søknadsdata.ts`             | Per-steg søknadsdata-typer                                                  |
 | `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)                     |
 | `utils/formValuesToSøknadsdata.ts` | Case per steg — fyll ut etter hvert                                         |
 | `søknad/SøknadStep.tsx`            | `text('application.title')`, `getLenker().minSide`                          |
-| `i18n/nb/appMessages.ts`           | `application.title` og app-spesifikke tekster                               |
+| `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg, og app-spesifikke tekster  |
+| `hooks/useStepTitles.ts`           | Ny hook — bygg `Record<SøknadStepId, string>` via `useAppIntl()`            |
 
 ---
 
