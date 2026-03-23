@@ -126,8 +126,10 @@ export const createClient = (config: Config = {}): Client => {
         });
     };
 
+    const _buildUrl: Client['buildUrl'] = (options) => buildUrl({ axios: instance, ..._config, ...options });
+
     return {
-        buildUrl,
+        buildUrl: _buildUrl,
         connect: makeMethodFn('CONNECT'),
         delete: makeMethodFn('DELETE'),
         get: makeMethodFn('GET'),

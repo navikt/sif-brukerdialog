@@ -1,25 +1,16 @@
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
+import { KontonummerSøknadsdata } from '@app/types/Søknadsdata';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { UtvidetKontonummerInfo } from '@sif/api';
+import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
 import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion } from '@sif/soknad-ui/components';
 
-import { HarKontonummerEnum } from '../../types/KontoInfo';
-import { KontonummerSøknadsdata } from '../../types/Søknadsdata';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
-
-export enum KontonummerFormFields {
-    kontonummerErRiktig = 'kontonummerErRiktig',
-}
-
-export interface KontonummerFormValues extends StepFormValues {
-    [KontonummerFormFields.kontonummerErRiktig]?: YesOrNo;
-}
+import { KontonummerFormFields, KontonummerFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<KontonummerFormValues>();
 

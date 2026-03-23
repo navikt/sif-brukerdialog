@@ -1,14 +1,14 @@
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { StepFormValues, StepSøknadsdata } from '@sif/soknad/types';
 
-import { BarnFormValues } from '../steps/barn/BarnForm';
 import { toBarnSøknadsdata } from '../steps/barn/barnStegUtils';
-import { BostedFormValues } from '../steps/bosted/BostedForm';
+import { BarnFormValues } from '../steps/barn/types';
 import { toBostedSøknadsdata } from '../steps/bosted/bostedStegUtils';
-import { BostedUtlandFormValues } from '../steps/bosted-utland/BostedUtlandForm';
+import { BostedFormValues } from '../steps/bosted/types';
 import { toBostedUtlandStegSøknadsdata } from '../steps/bosted-utland/bostedUtlandStegUtils';
-import { KontonummerFormValues } from '../steps/kontonummer/KontonummerForm';
+import { BostedUtlandFormValues } from '../steps/bosted-utland/types';
 import { toKontonummerSøknadsdata } from '../steps/kontonummer/kontonummerStegUtils';
+import { KontonummerFormValues } from '../steps/kontonummer/types';
 
 export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormValues): StepSøknadsdata | undefined => {
     switch (stepId) {

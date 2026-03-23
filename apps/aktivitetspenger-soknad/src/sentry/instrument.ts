@@ -1,31 +1,51 @@
 import * as Sentry from '@sentry/react';
-import React from 'react';
-import { createRoutesFromChildren, matchRoutes, useLocation, useNavigationType } from 'react-router-dom';
+
+const errorsToIgnore = [
+    'TypeError: Failed to fetch',
+    'TypeError: Load failed',
+    'TypeError: NetworkError when attempting to fetch resource.',
+    'TypeError: cancelled',
+    'TypeError: avbrutt',
+    'TypeError: cancelado',
+    'TypeError: anulowane',
+    'TypeError: avbruten',
+    'TypeError: anulat',
+    'Request failed with status code 401',
+    /\[401\]/,
+    /\[0\]/,
+    /Non-Error promise rejection captured with value: Request timeout/,
+];
+
+const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
+    const values = event.exception?.values ?? [];
+    const frames = values.flatMap((v) => v.stacktrace?.frames ?? []);
+    if (frames.some((f) => (f.filename ?? '').includes('/dekoratoren/'))) {
+        return true;
+    }
+    const firstValue = values[0];
+    if (firstValue?.type === 'UnhandledRejection') {
+        const message = firstValue.value ?? '';
+        if (['Request timeout', 'dekoratoren'].some((pattern) => message.includes(pattern))) {
+            return true;
+        }
+    }
+    return false;
+};
 
 Sentry.init({
-    dsn: import.meta.env.VITE_SENTRY_DSN,
-    environment: import.meta.env.MODE,
-    release: import.meta.env.VITE_APP_VERSION,
-
-    sendDefaultPii: true,
-
-    integrations: [
-        Sentry.reactRouterV7BrowserTracingIntegration({
-            useEffect: React.useEffect,
-            useLocation,
-            useNavigationType,
-            matchRoutes,
-            createRoutesFromChildren,
-        }),
-        Sentry.replayIntegration({
-            maskAllText: true,
-            blockAllMedia: true,
-        }),
-    ],
-
-    tracesSampleRate: 1.0, // lower to 0.1–0.2 in production
-    tracePropagationTargets: ['localhost', /^https:\/\/.*\.nav\.no/],
-
-    replaysSessionSampleRate: 0.1,
-    replaysOnErrorSampleRate: 1.0,
+    dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
+    environment: window.location.hostname.includes('localhost') ? 'localhost' : import.meta.env.MODE,
+    enabled: !window.location.hostname.includes('localhost'),
+    initialScope: {
+        tags: { application: 'aktivitetspenger-soknad' },
+    },
+    ignoreErrors: errorsToIgnore,
+    allowUrls: [/https?:\/\/.*\.?nav\.no/],
+    sendDefaultPii: false,
+    beforeSend(event) {
+        if (isErrorFromDekoratøren(event)) {
+            return null;
+        }
+        return event;
+    },
 });

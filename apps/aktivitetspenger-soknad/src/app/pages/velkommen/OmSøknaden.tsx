@@ -1,6 +1,6 @@
+import { AppText } from '@app/i18n';
 import { Accordion, Box, Heading, List, VStack } from '@navikt/ds-react';
 
-import { AppText } from '../../i18n';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 
 const OmSøknaden = () => {

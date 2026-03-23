@@ -1,26 +1,16 @@
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/søknad/AppForm';
+import { BostedUtlandSøknadsdata } from '@app/types/Søknadsdata';
 import { Button, Heading, VStack } from '@navikt/ds-react';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
 import { BostedUtland, BostedUtlandFormDialog, BostedUtlandList } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
 import { useState } from 'react';
 
-import { BostedUtlandSøknadsdata } from '../../types/Søknadsdata';
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
-
-export enum BostedUtlandFormFields {
-    harBoddIUtlandetSiste5år = 'harBoddIUtlandetSiste5år',
-    bosteder = 'bosteder',
-}
-
-export interface BostedUtlandFormValues extends StepFormValues {
-    [BostedUtlandFormFields.harBoddIUtlandetSiste5år]?: YesOrNo;
-    [BostedUtlandFormFields.bosteder]?: BostedUtland[];
-}
+import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<BostedUtlandFormValues>();
 
@@ -56,7 +46,10 @@ export const BostedUtlandForm = () => {
     methods.register(BostedUtlandFormFields.bosteder, {
         validate: (value) => {
             if (harBoddIUtlandetSiste5år === YesOrNo.YES) {
-                return validateField(BostedUtlandFormFields.bosteder, getListValidator({ minItems: 1 }))(value);
+                return validateField(
+                    BostedUtlandFormFields.bosteder,
+                    getListValidator({ minItems: 1, required: true }),
+                )(value);
             }
         },
     });

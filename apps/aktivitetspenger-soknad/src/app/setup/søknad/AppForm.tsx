@@ -4,8 +4,8 @@ import { FormLayout } from '@sif/soknad-ui/components';
 import type { ReactNode } from 'react';
 import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
-import { SøknadStepId } from '../config/søknadStepConfig';
-import { useSøknadFlow } from '../context/søknadContext';
+import { SøknadStepId } from '../config/SøknadStepId';
+import { useSøknadsflyt } from '../context/søknadContext';
 
 interface Props<T extends StepFormValues> {
     stepId: SøknadStepId;
@@ -27,12 +27,12 @@ export function AppForm<T extends StepFormValues>({
     submitDisabled,
     submitLabel,
     children,
-}: Props<T>) {
-    const ctx = useSøknadFlow();
+}: Readonly<Props<T>>) {
+    const søknadsflyt = useSøknadsflyt();
 
-    const canGoPrevious = ctx.canGoPrevious(stepId);
-    const onPrevious = canGoPrevious ? () => ctx.navigateToPreviousStep(stepId) : undefined;
-    const submitIsDisabled = submitDisabled ?? ctx.checkConsistency(stepId) !== undefined;
+    const canGoPrevious = søknadsflyt.canGoPrevious(stepId);
+    const onPrevious = canGoPrevious ? () => søknadsflyt.navigateToPreviousStep(stepId) : undefined;
+    const submitIsDisabled = submitDisabled ?? søknadsflyt.checkConsistency(stepId) !== undefined;
 
     return (
         <SifForm
