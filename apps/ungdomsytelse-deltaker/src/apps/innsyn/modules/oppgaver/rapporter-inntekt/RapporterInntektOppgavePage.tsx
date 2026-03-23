@@ -27,7 +27,7 @@ const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
 
     // Sjekk om oppgaven er løst men mangler rapportertInntekt-data
     const oppgaveErLøstMenManglerData =
-        oppgave.status === OppgaveStatus.LØST && !oppgave.oppgavetypeData.rapportertInntekt;
+        oppgave.status === OppgaveStatus.LØST && !oppgave.respons?.arbeidstakerOgFrilansInntekt;
 
     useEffect(() => {
         if (oppgaveErLøstMenManglerData) {

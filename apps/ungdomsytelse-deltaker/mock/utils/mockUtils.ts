@@ -1,4 +1,5 @@
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
 import { RapporterInntektOppgave } from '../../src/types/Oppgave';
@@ -42,22 +43,25 @@ export const mockUtils = {
     },
 
     setRapportertInntekt: (ref: string, data: UngdomsytelseInntektsrapportering) => {
-        const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<BrukerdialogOppgaveDto> =>
-            ({
+        const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<BrukerdialogOppgaveDto> => {
+            const oppdatertOppgave: Partial<BrukerdialogOppgaveDto> = {
                 oppgavetypeData: {
                     ...oppgave.oppgavetypeData,
-                    fraOgMed: oppgave.oppgavetypeData.fraOgMed,
-                    tilOgMed: oppgave.oppgavetypeData.fraOgMed,
-                    rapportertInntekt: {
-                        fraOgMed: oppgave.oppgavetypeData.fraOgMed,
-                        tilOgMed: oppgave.oppgavetypeData.fraOgMed,
-                        arbeidstakerOgFrilansInntekt: data.oppgittInntekt.arbeidstakerOgFrilansInntekt || 0,
-                    },
+                    type: 'INNTEKTSRAPPORTERING',
+                    fraOgMed: dateToISODate(oppgave.oppgavetypeData.fraOgMed),
+                    tilOgMed: dateToISODate(oppgave.oppgavetypeData.fraOgMed),
                 },
-
+                respons: {
+                    type: 'RAPPORTERT_INNTEKT',
+                    fraOgMed: dateToISODate(oppgave.oppgavetypeData.fraOgMed),
+                    tilOgMed: dateToISODate(oppgave.oppgavetypeData.fraOgMed),
+                    arbeidstakerOgFrilansInntekt: data.oppgittInntekt.arbeidstakerOgFrilansInntekt || 0,
+                },
                 løstDato: getMockToday().toISOString(),
-                status: 'LØST',
-            }) as any;
+                status: OppgaveStatus.LØST,
+            };
+            return oppdatertOppgave;
+        };
 
         setTimeout(() => {
             updateOppgave(ref, (oppgave) => ({

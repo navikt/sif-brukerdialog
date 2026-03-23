@@ -56,8 +56,7 @@ const RapporterInntektOppgavePart = ({
                     />
                 );
             case OppgaveStatus.LØST: {
-                const arbeidstakerOgFrilansInntekt =
-                    oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
+                const arbeidstakerOgFrilansInntekt = oppgave.respons?.arbeidstakerOgFrilansInntekt;
                 return (
                     <VStack gap="space-24">
                         {arbeidstakerOgFrilansInntekt === undefined ? (

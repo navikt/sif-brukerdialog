@@ -26,6 +26,8 @@ import {
     ParsedOppgaveBase,
     ParsedOppgavetype,
     RapporterInntektOppgave,
+    RapportertInntektRespons,
+    SvarPåVarselRespons,
 } from '../../types/Oppgave';
 import { getSisteDatoEnKanSvare } from '../../utils/svarfristUtils';
 
@@ -42,6 +44,35 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
         default:
             throw new Error(`Ukjent oppgavestatus: ${status}`);
     }
+};
+
+const parseSvarPåVarselRespons = (respons: any): SvarPåVarselRespons | undefined => {
+    if (!respons) {
+        return undefined;
+    }
+    if (respons.type === 'VARSEL_SVAR') {
+        return {
+            type: 'VARSEL_SVAR',
+            harUttalelse: respons.harUttalelse,
+            uttalelseFraBruker: respons.uttalelseFraDeltaker,
+        };
+    }
+    return undefined;
+};
+
+const parseRapportertInntektRespons = (respons: any): RapportertInntektRespons | undefined => {
+    if (!respons) {
+        return undefined;
+    }
+    if (respons.type === 'RAPPORTERT_INNTEKT') {
+        return {
+            type: 'RAPPORTERT_INNTEKT',
+            arbeidstakerOgFrilansInntekt: respons.arbeidstakerOgFrilansInntekt,
+            fraOgMed: respons.fraOgMed,
+            tilOgMed: respons.tilOgMed,
+        };
+    }
+    return undefined;
 };
 
 const getOppgaveBaseProps = (oppgave: BrukerdialogOppgaveDto): Omit<ParsedOppgaveBase, 'oppgavetype'> => {
@@ -70,7 +101,7 @@ const getEndretSluttdatoOppgave = (
                 forrigeSluttdato: ISODateToDate(forrigeSluttdato),
                 nySluttdato: ISODateToDate(nySluttdato),
             },
-            respons: oppgave.respons,
+            respons: parseSvarPåVarselRespons(oppgave.respons),
         };
     }
     return {
@@ -79,7 +110,7 @@ const getEndretSluttdatoOppgave = (
         oppgavetypeData: {
             sluttdato: ISODateToDate(nySluttdato),
         },
-        respons: oppgave.respons,
+        respons: parseSvarPåVarselRespons(oppgave.respons),
     };
 };
 
@@ -94,7 +125,7 @@ const getEndretStartdatoOppgave = (
         forrigeStartdato: ISODateToDate(forrigeStartdato),
         nyStartdato: ISODateToDate(nyStartdato),
     },
-    respons: oppgave.respons,
+    respons: parseSvarPåVarselRespons(oppgave.respons),
 });
 
 const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Oppgave => {
@@ -124,7 +155,7 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
         const fjernetPeriodeOppgave: FjernetPeriodeOppgave = {
             ...getOppgaveBaseProps(oppgave),
             oppgavetype: ParsedOppgavetype.BEKREFT_FJERNET_PERIODE,
-            respons: oppgave.respons,
+            respons: parseSvarPåVarselRespons(oppgave.respons),
         };
         return fjernetPeriodeOppgave;
     }
@@ -152,7 +183,7 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
                     tomDato: nyPeriode.tomDato,
                 }),
             },
-            respons: oppgave.respons,
+            respons: parseSvarPåVarselRespons(oppgave.respons),
         };
         return endretStartOgSluttdatoOppgave;
     }
@@ -187,7 +218,7 @@ export const parseOppgaverElement = (oppgaver: BrukerdialogOppgaveDto[]): Oppgav
                         tilOgMed: ISODateToDate(avvikRegisterinntektData.tilOgMed),
                         gjelderDelerAvMåned: avvikRegisterinntektData.gjelderDelerAvMåned,
                     },
-                    respons: oppgave.respons,
+                    respons: parseSvarPåVarselRespons(oppgave.respons),
                 };
                 parsedOppgaver.push(avvikRegisterinntektOppgave);
                 return;
@@ -209,7 +240,7 @@ export const parseOppgaverElement = (oppgaver: BrukerdialogOppgaveDto[]): Oppgav
                         //     : undefined,
                         gjelderDelerAvMåned: rapporterInntektData.gjelderDelerAvMåned,
                     },
-                    respons: oppgave.respons,
+                    respons: parseRapportertInntektRespons(oppgave.respons),
                 };
                 parsedOppgaver.push(rapporterInntektOppgave);
                 return;

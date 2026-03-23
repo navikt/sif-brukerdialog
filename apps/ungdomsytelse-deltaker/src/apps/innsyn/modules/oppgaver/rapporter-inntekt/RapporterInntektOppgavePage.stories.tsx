@@ -38,10 +38,13 @@ const besvartOppgave: RapporterInntektOppgave = {
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-31').toDate(),
-        rapportertInntekt: {
-            arbeidstakerOgFrilansInntekt: 10000,
-        },
         gjelderDelerAvMåned: false,
+    },
+    respons: {
+        type: 'RAPPORTERT_INNTEKT',
+        fraOgMed: dayjs('2025-05-01').toDate(),
+        tilOgMed: dayjs('2025-05-31').toDate(),
+        arbeidstakerOgFrilansInntekt: 10000,
     },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().subtract(1, 'days').toDate(),
@@ -53,7 +56,6 @@ const utløptUbesvartOppgave: RapporterInntektOppgave = {
     oppgavetypeData: {
         fraOgMed: dayjs('2025-09-01').toDate(),
         tilOgMed: dayjs('2025-09-30').toDate(),
-        rapportertInntekt: undefined,
         gjelderDelerAvMåned: false,
     },
     respons: undefined,

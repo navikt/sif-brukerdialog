@@ -35,6 +35,6 @@ export const harRapportertInntekt = (oppgaver: Oppgave[]): boolean => {
         (o) =>
             o.oppgavetype === ParsedOppgavetype.RAPPORTER_INNTEKT &&
             o.status !== OppgaveStatus.ULØST &&
-            o.oppgavetypeData?.rapportertInntekt !== undefined,
+            o.respons?.arbeidstakerOgFrilansInntekt !== undefined,
     );
 };

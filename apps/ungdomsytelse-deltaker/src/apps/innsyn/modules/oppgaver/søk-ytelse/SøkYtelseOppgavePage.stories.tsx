@@ -34,10 +34,6 @@ const oppgave: SøkYtelseOppgave = {
 
 const besvartOppgave: SøkYtelseOppgave = {
     ...oppgave,
-    respons: {
-        type: 'VARSEL_SVAR',
-        harUttalelse: false,
-    },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
 };

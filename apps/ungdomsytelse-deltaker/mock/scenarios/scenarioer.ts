@@ -37,12 +37,13 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
             },
             erSlettet: false,
             harOpphørsvedtak: false,
+            oppgaver: [],
         },
     ],
     oppgaver: [getMockOppgaver().søkYtelseOppgave],
 });
 
-const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
+const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[] = []): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
@@ -56,6 +57,7 @@ const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData
             },
             erSlettet: false,
             harOpphørsvedtak: false,
+            oppgaver,
         },
     ],
     oppgaver,
@@ -74,6 +76,7 @@ const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenario
             },
             erSlettet: false,
             harOpphørsvedtak: false,
+            oppgaver,
         },
     ],
     oppgaver,
@@ -92,6 +95,7 @@ const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioD
             },
             erSlettet: true,
             harOpphørsvedtak: true,
+            oppgaver,
         },
     ],
     oppgaver,
@@ -113,6 +117,7 @@ const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenar
                 },
                 erSlettet: false,
                 harOpphørsvedtak: false,
+                oppgaver,
             },
         ],
         oppgaver,
