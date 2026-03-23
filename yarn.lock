@@ -4432,7 +4432,7 @@ __metadata:
     "@types/node": "npm:25.5.0"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     "@vitest/browser-playwright": "npm:4.1.0"
     dayjs: "npm:1.11.20"
     eslint: "npm:9.39.4"
@@ -4616,7 +4616,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-router-dom": "npm:5.3.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.13.6"
     compression: "npm:1.8.1"
     csp-header: "npm:6.3.1"
@@ -4689,7 +4689,7 @@ __metadata:
     "@types/react-document-title": "npm:2.0.10"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-router-dom": "npm:5.3.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axe-core: "npm:4.11.1"
     axios: "npm:1.13.6"
     compression: "npm:1.8.1"
@@ -4868,7 +4868,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-router-dom": "npm:5.3.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.13.6"
     compression: "npm:1.8.1"
     cors: "npm:2.8.6"
@@ -4985,7 +4985,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-router-dom": "npm:5.3.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.13.6"
     busboy: "npm:1.6.0"
     compression: "npm:1.8.1"
@@ -5056,7 +5056,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-router-dom": "npm:5.3.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.13.6"
     busboy: "npm:1.6.0"
     compression: "npm:1.8.1"
@@ -5128,7 +5128,7 @@ __metadata:
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axe-core: "npm:4.11.1"
     axios: "npm:1.13.6"
     busboy: "npm:1.6.0"
@@ -5205,7 +5205,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-router-dom": "npm:5.3.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.13.6"
     busboy: "npm:1.6.0"
     compression: "npm:1.8.1"
@@ -5372,7 +5372,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-router-dom": "npm:5.3.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axe-core: "npm:4.11.1"
     axios: "npm:1.13.6"
     busboy: "npm:1.6.0"
@@ -5542,7 +5542,7 @@ __metadata:
     "@types/node": "npm:25.5.0"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.13.6"
     browser-image-compression: "npm:2.0.2"
     classnames: "npm:2.5.1"
@@ -5618,7 +5618,7 @@ __metadata:
     "@types/node": "npm:25.5.0"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     classnames: "npm:2.5.1"
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
@@ -5673,7 +5673,7 @@ __metadata:
     "@types/node": "npm:25.5.0"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.13.6"
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
@@ -5775,7 +5775,7 @@ __metadata:
     "@types/node": "npm:25.5.0"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.13.6"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
@@ -5921,7 +5921,7 @@ __metadata:
     "@types/node": "npm:25.5.0"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     "@vitest/browser-playwright": "npm:4.1.0"
     dayjs: "npm:1.11.20"
     eslint-plugin-storybook: "npm:10.2.19"
@@ -5975,7 +5975,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-router-dom": "npm:5.3.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axe-core: "npm:4.11.1"
     axios: "npm:1.13.6"
     busboy: "npm:1.6.0"
@@ -6030,7 +6030,7 @@ __metadata:
     "@testing-library/user-event": "npm:14.6.1"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     dayjs: "npm:1.11.20"
     eslint: "npm:9.39.4"
     eslint-plugin-storybook: "npm:10.2.19"
@@ -6221,7 +6221,7 @@ __metadata:
     "@types/react-dom": "npm:19.2.3"
     "@types/react-helmet": "npm:6.1.11"
     "@typescript-eslint/parser": "npm:8.57.1"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.13.6"
     clsx: "npm:2.1.1"
     compression: "npm:1.8.1"
@@ -6302,7 +6302,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@typescript-eslint/parser": "npm:8.57.1"
-    "@vitejs/plugin-react": "npm:5.2.0"
+    "@vitejs/plugin-react": "npm:6.0.1"
     "@vitest/browser": "npm:4.1.0"
     "@vitest/coverage-v8": "npm:4.1.0"
     axios: "npm:1.13.6"
@@ -7943,6 +7943,13 @@ __metadata:
   version: 1.0.0-rc.3
   resolution: "@rolldown/pluginutils@npm:1.0.0-rc.3"
   checksum: 10/b181a693b70e0e5de736458d46b31f72862cd7f36f955656f61ccbf4de11d9206bc3b55404317a65e5714559490444e9fdd83b4097706496e96b082fb584d049
+  languageName: node
+  linkType: hard
+
+"@rolldown/pluginutils@npm:1.0.0-rc.7":
+  version: 1.0.0-rc.7
+  resolution: "@rolldown/pluginutils@npm:1.0.0-rc.7"
+  checksum: 10/92853a53b75d665da0b4cc3f855c87e606dda6b8d55e929fd08b4428b68ea833afbb140ba25c6c1f9856a739e419fd2929ef15ac0fd05b44e904705be34efe1f
   languageName: node
   linkType: hard
 
@@ -11737,7 +11744,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:5.2.0, @vitejs/plugin-react@npm:^5.1.4":
+"@vitejs/plugin-react@npm:6.0.1":
+  version: 6.0.1
+  resolution: "@vitejs/plugin-react@npm:6.0.1"
+  dependencies:
+    "@rolldown/pluginutils": "npm:1.0.0-rc.7"
+  peerDependencies:
+    "@rolldown/plugin-babel": ^0.1.7 || ^0.2.0
+    babel-plugin-react-compiler: ^1.0.0
+    vite: ^8.0.0
+  peerDependenciesMeta:
+    "@rolldown/plugin-babel":
+      optional: true
+    babel-plugin-react-compiler:
+      optional: true
+  checksum: 10/a525799252fa6c12bf9a0a367b17dfc3d5e8e02ec0b5b81554db9d97b764c554be6b0686e3dd385b0ac0350f0c023120ce712d79feedd99fa2cb854b7cd1e960
+  languageName: node
+  linkType: hard
+
+"@vitejs/plugin-react@npm:^5.1.4":
   version: 5.2.0
   resolution: "@vitejs/plugin-react@npm:5.2.0"
   dependencies:
