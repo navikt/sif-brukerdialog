@@ -1,10 +1,10 @@
+import { Aktivitetspengersøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { Søker, UtvidetKontonummerInfo } from '@sif/api';
 
-import { SøknadApiData } from '../types/SøknadApiData';
 import { Søknadsdata } from '../types/Søknadsdata';
 
-export const getSøknadApiDataFromSøknad = ({
+export const søknadsdataToSøknadDTO = ({
     søker,
     søknadsdata,
     språk = 'nb',
@@ -14,7 +14,7 @@ export const getSøknadApiDataFromSøknad = ({
     søker: Søker;
     språk?: 'nb' | 'nn';
     kontoInfo: UtvidetKontonummerInfo;
-}): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
+}): Omit<Aktivitetspengersøknad, 'harBekreftetOpplysninger'> | undefined => {
     const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted } = søknadsdata;
 
     if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !bostedUtland) {

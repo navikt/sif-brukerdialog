@@ -9,7 +9,7 @@ import { FormLayout } from '@sif/soknad-ui';
 
 import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { AppForm } from '../../setup/søknad/AppForm';
-import { getSøknadApiDataFromSøknad } from '../../utils/søknadsdataToSøknadApiData';
+import { søknadsdataToSøknadDTO } from '../../utils/søknadsdataToSøknadDTO';
 
 enum FormFields {
     bekrefterOpplysninger = 'bekrefterOpplysninger',
@@ -26,11 +26,6 @@ export const OppsummeringSteg = () => {
 
     const { validateField } = useSifValidate();
 
-    // const { onSubmit, isPending } = useStepSubmit<BostedFormValues, BostedSøknadsdata>({
-    //     stepId,
-    //     toSøknadsdata: toBostedSøknadsdata,
-    // });
-
     const methods = useSøknadRhfForm<FormValues>(stepId, {});
 
     const { setSøknadSendt } = useSøknadFlow();
@@ -40,7 +35,7 @@ export const OppsummeringSteg = () => {
 
     const { isPending, mutateAsync } = useSendSøknad();
 
-    const apiData = getSøknadApiDataFromSøknad({
+    const dto = søknadsdataToSøknadDTO({
         søker: state.søker,
         kontoInfo: state.kontoInfo,
         søknadsdata: state.søknadsdata,
@@ -50,10 +45,10 @@ export const OppsummeringSteg = () => {
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
 
     const onSubmit = async () => {
-        if (apiData === undefined) {
+        if (dto === undefined) {
             return;
         }
-        await mutateAsync({ ...apiData, harBekreftetOpplysninger });
+        await mutateAsync({ ...dto, harBekreftetOpplysninger });
         await slettMellomlagring();
         clearSøknadFormValues();
         setSøknadSendt();
@@ -67,8 +62,8 @@ export const OppsummeringSteg = () => {
                 onSubmit={onSubmit}
                 isPending={isPending}
                 isFinalSubmit={true}
-                submitDisabled={!apiData}>
-                {!apiData && (
+                submitDisabled={!dto}>
+                {!dto && (
                     <InfoCard data-color="warning">
                         <InfoCard.Header>
                             <InfoCard.Title>Det skjedde en feil</InfoCard.Title>
