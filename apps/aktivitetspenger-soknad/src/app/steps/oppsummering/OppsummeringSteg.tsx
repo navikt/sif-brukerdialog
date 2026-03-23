@@ -1,5 +1,5 @@
 import { SøknadStepId } from '@app/setup/config/SøknadStepId';
-import { useSøknadsflyt, useSøknadMellomlagring, useSøknadRhfForm, useSøknadState } from '@app/setup/hooks';
+import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 import { FormSummary, InfoCard } from '@navikt/ds-react';
 import { getCheckedValidator } from '@navikt/sif-validation';
