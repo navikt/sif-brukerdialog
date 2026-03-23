@@ -1,4 +1,6 @@
-import { IngenTilgangMeta } from '@hooks';
+import { IngenTilgangMeta } from '@app/hooks';
+import { AppText, useAppIntl } from '@app/i18n';
+import { IngenTilgangÅrsak } from '@app/types';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { Søker } from '@navikt/sif-common-api';
@@ -6,10 +8,8 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { IngenTilgangÅrsak } from '@types';
 
 import DevFooter from '../../dev/DevFooter';
-import { AppText, useAppIntl } from '../../i18n';
 import { SendBeskjedLink, SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';

@@ -1,6 +1,6 @@
+import { Arbeidsforhold, Søknadsdata, ValgteEndringer } from '@app/types';
+import { harEndretArbeidstid, harFjernetLovbestemtFerie } from '@app/utils';
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
-import { Arbeidsforhold, Søknadsdata, ValgteEndringer } from '@types';
-import { harEndretArbeidstid, harFjernetLovbestemtFerie } from '@utils';
 
 import { getSøknadStepRoute } from './SøknadRoutes';
 import { StepId } from './StepId';
@@ -34,6 +34,11 @@ export const getSøknadSteps = (
     ) {
         steps.push(StepId.ARBEIDSTID);
     }
+
+    if (valgteEndringer.tilsynsordning) {
+        steps.push(StepId.TILSYNSORDNING);
+    }
+
     steps.push(StepId.OPPSUMMERING);
     return steps;
 };

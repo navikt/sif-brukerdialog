@@ -3,7 +3,7 @@ import 'dayjs/locale/nn';
 
 import dayjs from 'dayjs';
 
-import { capsFirstCharacter, getValidLocale, ISODate, ISODateToDate } from './';
+import { capsFirstCharacter, getValidLocale, ISODate, ISODateToDate } from '.';
 
 dayjs.locale('nb');
 

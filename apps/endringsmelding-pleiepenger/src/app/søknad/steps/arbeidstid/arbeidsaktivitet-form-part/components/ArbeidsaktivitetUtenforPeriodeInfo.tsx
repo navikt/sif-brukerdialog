@@ -1,8 +1,8 @@
+import { AppText } from '@app/i18n';
+import { Arbeidsaktivitet } from '@app/types';
 import { BodyShort } from '@navikt/ds-react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
-import { Arbeidsaktivitet } from '@types';
 
-import { AppText } from '../../../../../i18n';
 import { SkrivTilOssLink } from '../../../../../lenker';
 
 interface Props {

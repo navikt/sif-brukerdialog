@@ -1,8 +1,8 @@
-import { useSøknadContext } from '@hooks';
+import AAregisteret from '@app/components/aa-registeret/AARegisteret';
+import { useSøknadContext } from '@app/hooks';
 import { Heading } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 
-import AAregisteret from '../../../components/aa-registeret/AARegisteret';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';

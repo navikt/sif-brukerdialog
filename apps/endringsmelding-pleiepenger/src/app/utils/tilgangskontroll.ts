@@ -1,4 +1,3 @@
-import { DateRange, durationToDecimalDuration } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,
     IngenTilgangÅrsak,
@@ -6,7 +5,8 @@ import {
     K9SakArbeidstaker,
     K9SakArbeidstid,
     K9SakArbeidstidInfo,
-} from '@types';
+} from '@app/types';
+import { DateRange, durationToDecimalDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 

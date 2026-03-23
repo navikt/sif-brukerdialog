@@ -16,7 +16,7 @@ import {
     isDateInDates,
     isDateWeekDay,
     ISODateToDate,
-} from '../';
+} from '..';
 import { sortDateArray } from '../dateUtils';
 
 describe('dateUtils', () => {

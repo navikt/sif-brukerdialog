@@ -11,7 +11,7 @@ import {
     ISODateToDate,
     ISODuration,
     NumberDuration,
-} from './';
+} from '.';
 import { isDateInDates, sortDateArray } from './dateUtils';
 
 export const getPositiveNumberValue = (value: any): number | 'invalidNumberValue' | undefined => {

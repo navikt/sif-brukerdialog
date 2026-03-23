@@ -65,6 +65,10 @@ export type DateDurationMap = {
     [isoDate: ISODate]: Duration;
 };
 
+export type DateDurationOrUndefinedMap = {
+    [isoDate: ISODate]: Duration | undefined;
+};
+
 export interface Time {
     hours: string;
     minutes: string;

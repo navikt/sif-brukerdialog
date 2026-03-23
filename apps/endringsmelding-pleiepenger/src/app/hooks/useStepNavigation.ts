@@ -1,4 +1,4 @@
-import { useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@app/hooks';
 import { StepConfig } from '@navikt/sif-common-soknad-ds';
 import { useNavigate } from 'react-router-dom';
 
