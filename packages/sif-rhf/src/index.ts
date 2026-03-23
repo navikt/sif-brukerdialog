@@ -20,6 +20,6 @@ export {
     SifYesOrNoQuestion,
     YesOrNo,
 } from './components';
+export type { DatepickerLimitations } from './components/SifDatepicker';
 export { useFocusOnValidationError } from './hooks';
-export type { DatepickerLimitations, ISODateString } from './utils';
 export { sifValidate, useSifValidate } from './validation';

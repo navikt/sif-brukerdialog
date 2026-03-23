@@ -1,5 +1,5 @@
 import { Loader, VStack } from '@navikt/ds-react';
-import { ApplicationPage } from '@sif/soknad/pages';
+import { ApplicationPage } from '@sif/soknad-ui/pages';
 
 import { useAppIntl } from '../../i18n';
 

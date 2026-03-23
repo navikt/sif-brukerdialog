@@ -139,7 +139,7 @@ Tilpass per app:
 
 ```ts
 // Eksempel: config/søknadStepConfig.ts
-import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
+import { RegistrertBarn, Søker } from '@sif/api';
 import { StepConfig } from '@sif/soknad/types';
 import { Søknadsdata } from '../../types/Søknadsdata';
 
@@ -198,7 +198,7 @@ export interface Søknadsdata extends BaseSøknadsdata {
 Opprett `src/app/types/Mellomlagring.ts` — nær identisk mellom apper, tilpass `MellomlagringMetaData` om appen ikke har barn.
 
 ```ts
-import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
+import { RegistrertBarn, Søker } from '@sif/api';
 import { Mellomlagring, SøknadFormValues } from '@sif/soknad/types';
 import { Søknadsdata } from './Søknadsdata';
 
@@ -215,10 +215,10 @@ export interface MellomlagringMetaData {
 
 ### 4. Opprett constants.ts
 
-Tilpass `APP_YTELSE` til riktig `MellomlagringYtelse`-verdi fra `@navikt/sif-common-query`.
+Tilpass `APP_YTELSE` til riktig `MellomlagringYtelse`-verdi fra `@sif/api`.
 
 ```ts
-import { MellomlagringYtelse } from '@navikt/sif-common-query';
+import { MellomlagringYtelse } from '@sif/api';
 
 export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER; // ← tilpass
 export const MELLOMLAGRING_VERSJON = '0.0.1';

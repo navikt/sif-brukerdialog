@@ -1,4 +1,4 @@
-import { MellomlagringYtelse } from '@navikt/sif-common-query';
+import { MellomlagringYtelse } from '@sif/api';
 
 export const APP_YTELSE = MellomlagringYtelse.UNGDOMSYTELSE;
 

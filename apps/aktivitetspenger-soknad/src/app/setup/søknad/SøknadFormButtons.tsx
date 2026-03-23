@@ -1,4 +1,4 @@
-import { FormLayout } from '@navikt/sif-common-ui';
+import { FormLayout } from '@sif/soknad-ui';
 
 import { SøknadStepId } from '../config/søknadStepConfig';
 import { useSøknadFlow } from '../context/søknadContext';

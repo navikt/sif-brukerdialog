@@ -1,4 +1,5 @@
-import { useYtelseMellomlagring } from '@navikt/sif-common-query';
+/* eslint-disable no-console */
+import { useYtelseMellomlagring } from '@sif/api';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
