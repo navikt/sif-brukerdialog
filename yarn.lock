@@ -2303,29 +2303,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/is-prop-valid@npm:1.4.0":
-  version: 1.4.0
-  resolution: "@emotion/is-prop-valid@npm:1.4.0"
-  dependencies:
-    "@emotion/memoize": "npm:^0.9.0"
-  checksum: 10/6fbec4d5cd90b5b68c85047ec1425bccb1fd332df08fa2aea0c15e430c467f01547363ad9108e452ef0494d805074419a7a45c6c866667c39b797f9223e6311d
-  languageName: node
-  linkType: hard
-
-"@emotion/memoize@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "@emotion/memoize@npm:0.9.0"
-  checksum: 10/038132359397348e378c593a773b1148cd0cf0a2285ffd067a0f63447b945f5278860d9de718f906a74c7c940ba1783ac2ca18f1c06a307b01cc0e3944e783b1
-  languageName: node
-  linkType: hard
-
-"@emotion/unitless@npm:0.10.0":
-  version: 0.10.0
-  resolution: "@emotion/unitless@npm:0.10.0"
-  checksum: 10/6851c16edce01c494305f43b2cad7a26b939a821131b7c354e49b8e3b012c8810024755b0f4a03ef51117750309e55339825a97bd10411fb3687e68904769106
-  languageName: node
-  linkType: hard
-
 "@esbuild/aix-ppc64@npm:0.27.3":
   version: 0.27.3
   resolution: "@esbuild/aix-ppc64@npm:0.27.3"
@@ -11274,13 +11251,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/stylis@npm:4.2.7":
-  version: 4.2.7
-  resolution: "@types/stylis@npm:4.2.7"
-  checksum: 10/068c7fd64ee2e1649b06615da57c76dd9f5be1836e310ebf94aa08193c3544d48944079ce6e94ba89b72b716944f217234a86fecc28185246c1787f02ad0eae1
-  languageName: node
-  linkType: hard
-
 "@types/tedious@npm:^4.0.14":
   version: 4.0.14
   resolution: "@types/tedious@npm:4.0.14"
@@ -12649,7 +12619,6 @@ __metadata:
     react-dom: "npm:19.2.4"
     react-is: "npm:19.2.4"
     sanity: "npm:5.17.1"
-    styled-components: "npm:6.3.11"
     typescript: "npm:5.9.3"
   languageName: unknown
   linkType: soft
@@ -13719,13 +13688,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"camelize@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "camelize@npm:1.0.1"
-  checksum: 10/0e147b4299ac6363c50050716aadfae42831257ec56ce54773ffd2a94a88abb2e2540c5ccc38345e8a39963105b76d86cb24477165a36b78c9958fb304513db3
-  languageName: node
-  linkType: hard
-
 "caniuse-lite@npm:^1.0.30001579, caniuse-lite@npm:^1.0.30001759":
   version: 1.0.30001777
   resolution: "caniuse-lite@npm:1.0.30001777"
@@ -14722,13 +14684,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-color-keywords@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "css-color-keywords@npm:1.0.0"
-  checksum: 10/8f125e3ad477bd03c77b533044bd9e8a6f7c0da52d49bbc0bbe38327b3829d6ba04d368ca49dd9ff3b667d2fc8f1698d891c198bbf8feade1a5501bf5a296408
-  languageName: node
-  linkType: hard
-
 "css-functions-list@npm:^3.3.3":
   version: 3.3.3
   resolution: "css-functions-list@npm:3.3.3"
@@ -14817,17 +14772,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-to-react-native@npm:3.2.0":
-  version: 3.2.0
-  resolution: "css-to-react-native@npm:3.2.0"
-  dependencies:
-    camelize: "npm:^1.0.0"
-    css-color-keywords: "npm:^1.0.0"
-    postcss-value-parser: "npm:^4.0.2"
-  checksum: 10/62ef744254e333abc696efdc945ecf13ad6ba7b726d0a39c0405b2fcb86542aa2f3fe7b7b6770f67ae9679d98b159b4d66353107bf7d6144a445eafcf5fa250a
-  languageName: node
-  linkType: hard
-
 "css-tree@npm:^3.1.0":
   version: 3.2.1
   resolution: "css-tree@npm:3.2.1"
@@ -14873,7 +14817,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:3.2.3, csstype@npm:^3.1.3, csstype@npm:^3.2.2":
+"csstype@npm:^3.1.3, csstype@npm:^3.2.2":
   version: 3.2.3
   resolution: "csstype@npm:3.2.3"
   checksum: 10/ad41baf7e2ffac65ab544d79107bf7cd1a4bb9bab9ac3302f59ab4ba655d5e30942a8ae46e10ba160c6f4ecea464cc95b975ca2fefbdeeacd6ac63f12f99fe1f
@@ -22299,7 +22243,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.1.12, nanoid@npm:^3.3.11, nanoid@npm:^3.3.6, nanoid@npm:^3.3.7":
+"nanoid@npm:^3.1.12, nanoid@npm:^3.3.11, nanoid@npm:^3.3.6":
   version: 3.3.11
   resolution: "nanoid@npm:3.3.11"
   bin:
@@ -23972,7 +23916,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-value-parser@npm:^4.0.0, postcss-value-parser@npm:^4.0.2, postcss-value-parser@npm:^4.1.0, postcss-value-parser@npm:^4.2.0":
+"postcss-value-parser@npm:^4.0.0, postcss-value-parser@npm:^4.1.0, postcss-value-parser@npm:^4.2.0":
   version: 4.2.0
   resolution: "postcss-value-parser@npm:4.2.0"
   checksum: 10/e4e4486f33b3163a606a6ed94f9c196ab49a37a7a7163abfcd469e5f113210120d70b8dd5e33d64636f41ad52316a3725655421eb9a1094f1bcab1db2f555c62
@@ -23987,17 +23931,6 @@ __metadata:
     picocolors: "npm:^1.0.0"
     source-map-js: "npm:^1.0.2"
   checksum: 10/1a6653e72105907377f9d4f2cd341d8d90e3fde823a5ddea1e2237aaa56933ea07853f0f2758c28892a1d70c53bbaca200eb8b80f8ed55f13093003dbec5afa0
-  languageName: node
-  linkType: hard
-
-"postcss@npm:8.4.49":
-  version: 8.4.49
-  resolution: "postcss@npm:8.4.49"
-  dependencies:
-    nanoid: "npm:^3.3.7"
-    picocolors: "npm:^1.1.1"
-    source-map-js: "npm:^1.2.1"
-  checksum: 10/28fe1005b1339870e0a5006375ba5ac1213fd69800f79e7db09c398e074421ba6e162898e94f64942fed554037fd292db3811d87835d25ab5ef7f3c9daacb6ca
   languageName: node
   linkType: hard
 
@@ -26409,13 +26342,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shallowequal@npm:1.1.0":
-  version: 1.1.0
-  resolution: "shallowequal@npm:1.1.0"
-  checksum: 10/f4c1de0837f106d2dbbfd5d0720a5d059d1c66b42b580965c8f06bb1db684be8783538b684092648c981294bf817869f743a066538771dbecb293df78f765e00
-  languageName: node
-  linkType: hard
-
 "sharp@npm:^0.34.5":
   version: 0.34.5
   resolution: "sharp@npm:0.34.5"
@@ -27425,29 +27351,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"styled-components@npm:6.3.11":
-  version: 6.3.11
-  resolution: "styled-components@npm:6.3.11"
-  dependencies:
-    "@emotion/is-prop-valid": "npm:1.4.0"
-    "@emotion/unitless": "npm:0.10.0"
-    "@types/stylis": "npm:4.2.7"
-    css-to-react-native: "npm:3.2.0"
-    csstype: "npm:3.2.3"
-    postcss: "npm:8.4.49"
-    shallowequal: "npm:1.1.0"
-    stylis: "npm:4.3.6"
-    tslib: "npm:2.8.1"
-  peerDependencies:
-    react: ">= 16.8.0"
-    react-dom: ">= 16.8.0"
-  peerDependenciesMeta:
-    react-dom:
-      optional: true
-  checksum: 10/24c33eabee38240e8c2511983c4d8a373487e8132dc8b4b00b7e043280362924aa66240662002f9ba8e8f6e7b1de0ae0b024a07d3a7687f733f782011637f4c0
-  languageName: node
-  linkType: hard
-
 "styled-jsx@npm:5.1.6":
   version: 5.1.6
   resolution: "styled-jsx@npm:5.1.6"
@@ -27524,13 +27427,6 @@ __metadata:
   bin:
     stylelint: bin/stylelint.mjs
   checksum: 10/27c95604df4659f660fd94a7f1bec43f8ec1a8904ac3da1b6a1124ecda52c4e1fd7cf95c5f9a57bb768f3f12f41351fed66c5f0dee79900229cb8942f6b59825
-  languageName: node
-  linkType: hard
-
-"stylis@npm:4.3.6":
-  version: 4.3.6
-  resolution: "stylis@npm:4.3.6"
-  checksum: 10/6ebe8a37827124e0caf0704c13d39c121f6e6a8433eb8c67cfce508477b24a4434d1731198ba0b6e453655022bbf5beda93585f38ff420545e5356f925f83761
   languageName: node
   linkType: hard
 
@@ -28113,7 +28009,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:2.8.1, tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.4.0, tslib@npm:^2.8.0, tslib@npm:^2.8.1":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.4.0, tslib@npm:^2.8.0, tslib@npm:^2.8.1":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 10/3e2e043d5c2316461cb54e5c7fe02c30ef6dccb3384717ca22ae5c6b5bc95232a6241df19c622d9c73b809bea33b187f6dbc73030963e29950c2141bc32a79f7
