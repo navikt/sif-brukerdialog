@@ -5,11 +5,12 @@ import { StepPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppIntl } from '../../i18n';
-import { søknadStepConfig, stepTitles } from '../config/søknadStepConfig';
+import { søknadStepConfig } from '../config/søknadStepConfig';
 import { SøknadStepId } from '../config/SøknadStepId';
 import { useSøknadsflyt } from '../context/søknadContext';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
+import { useStepTitles } from '../hooks/useStepTitles';
 
 interface Props {
     stepId: SøknadStepId;
@@ -20,6 +21,8 @@ export const SøknadStep = ({ stepId, children }: Props) => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
     const søknadsflyt = useSøknadsflyt();
+
+    const stepTitles = useStepTitles();
 
     const avbrytSøknad = useAvbrytSøknad();
     const { lagreSøknad } = useSøknadMellomlagring();

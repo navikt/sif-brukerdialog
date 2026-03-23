@@ -1,7 +1,7 @@
 import { søknadStepConfig } from '@app/setup/config/søknadStepConfig';
 import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { SøknadContextProvider } from '@app/setup/context/søknadContext';
-import { useSøknadStore } from '@app/setup/hooks';
+import { useSøknadStore, useStepTitles } from '@app/setup/hooks';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker, UtvidetKontonummerInfo } from '@sif/api';
 import { StepRouteGuard } from '@sif/soknad/navigation';
@@ -20,6 +20,7 @@ interface Props {
 }
 
 export const Søknad = ({ søker, barn, kontonummer, mellomlagring }: Props) => {
+    const stepTitles = useStepTitles();
     const init = useSøknadStore((s) => s.init);
     const søknadSendt = useSøknadStore((s) => s.søknadSendt);
     const søknadState = useSøknadStore((s) => s.søknadState);
@@ -54,14 +55,14 @@ export const Søknad = ({ søker, barn, kontonummer, mellomlagring }: Props) => 
 
     if (!søknadSendt && location.pathname === '/kvittering') {
         return (
-            <SøknadContextProvider>
+            <SøknadContextProvider stepTitles={stepTitles}>
                 <VelkommenPage />
             </SøknadContextProvider>
         );
     }
 
     return (
-        <SøknadContextProvider initialFormValues={mellomlagring?.skjemadata}>
+        <SøknadContextProvider initialFormValues={mellomlagring?.skjemadata} stepTitles={stepTitles}>
             <Routes>
                 <Route path="/" element={<VelkommenPage />} />
                 <Route path="/kvittering" element={<KvitteringPage />} />

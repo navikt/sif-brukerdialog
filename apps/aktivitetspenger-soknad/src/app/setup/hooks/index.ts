@@ -6,3 +6,4 @@ export * from './useSøknadState';
 export * from './useSøknadStore';
 export * from './useStepDefaultValues';
 export * from './useStepSubmit';
+export * from './useStepTitles';

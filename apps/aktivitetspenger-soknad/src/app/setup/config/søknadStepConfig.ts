@@ -32,11 +32,3 @@ export const søknadStepOrder: SøknadStepId[] = [
     SøknadStepId.BARN,
     SøknadStepId.OPPSUMMERING,
 ];
-
-export const stepTitles: Record<SøknadStepId, string> = {
-    [SøknadStepId.KONTONUMMER]: 'Kontonummer',
-    [SøknadStepId.BOSTED]: 'Bosted',
-    [SøknadStepId.BOSTED_UTLAND]: 'Bosted i utlandet',
-    [SøknadStepId.BARN]: 'Barn',
-    [SøknadStepId.OPPSUMMERING]: 'Oppsummering',
-};

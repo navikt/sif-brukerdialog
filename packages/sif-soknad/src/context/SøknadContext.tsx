@@ -31,7 +31,6 @@ export interface SøknadContextConfig<TSøknadsdata, TStepId extends string> {
     useStore: UseBoundStore<StoreApi<SøknadStoreState<TSøknadsdata, TStepId>>>;
     stepConfig: StepConfig<TStepId, TSøknadsdata>;
     stepOrder: TStepId[];
-    stepTitles: Record<TStepId, string>;
     formValuesToSøknadsdata: FormValuesToSøknadsdataFn<TStepId>;
     getSøknadsdataForStep: GetSøknadsdataForStepFn<TSøknadsdata, TStepId>;
     basePath?: string;
@@ -68,9 +67,10 @@ export interface SøknadFlowContextValue<TSøknadsdata, TStepId extends string> 
     commitStep: (stepId: TStepId, data: Partial<TSøknadsdata>) => void;
 }
 
-interface ProviderProps {
+interface ProviderProps<TStepId extends string> {
     children: ReactNode;
     initialFormValues?: SøknadFormValues;
+    stepTitles: Record<TStepId, string>;
 }
 
 export function createSøknadContext<TSøknadsdata extends object, TStepId extends string>(
@@ -78,12 +78,17 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
 ) {
     const SøknadFlowContext = createContext<SøknadFlowContextValue<TSøknadsdata, TStepId> | null>(null);
 
-    const SøknadFlowContextInner = ({ children }: { children: ReactNode }) => {
+    const SøknadFlowContextInner = ({
+        children,
+        stepTitles,
+    }: {
+        children: ReactNode;
+        stepTitles: Record<TStepId, string>;
+    }) => {
         const {
             useStore,
             stepConfig,
             stepOrder,
-            stepTitles,
             formValuesToSøknadsdata,
             getSøknadsdataForStep,
             basePath = '/soknad',
@@ -181,9 +186,9 @@ export function createSøknadContext<TSøknadsdata extends object, TStepId exten
         return <SøknadFlowContext.Provider value={value}>{children}</SøknadFlowContext.Provider>;
     };
 
-    const SøknadContextProvider = ({ children, initialFormValues }: ProviderProps) => (
+    const SøknadContextProvider = ({ children, initialFormValues, stepTitles }: ProviderProps<TStepId>) => (
         <SøknadFormValuesProvider initialValues={initialFormValues}>
-            <SøknadFlowContextInner>{children}</SøknadFlowContextInner>
+            <SøknadFlowContextInner stepTitles={stepTitles}>{children}</SøknadFlowContextInner>
         </SøknadFormValuesProvider>
     );
 

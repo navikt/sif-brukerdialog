@@ -1,0 +1,15 @@
+import { useAppIntl } from '../../i18n';
+import { SøknadStepId } from '../config/SøknadStepId';
+
+export const useStepTitles = (): Record<SøknadStepId, string> => {
+    const { text } = useAppIntl();
+
+    const stepTitles: Record<SøknadStepId, string> = {
+        [SøknadStepId.KONTONUMMER]: text('step.kontonummer.title'),
+        [SøknadStepId.BOSTED]: text('step.bosted.title'),
+        [SøknadStepId.BOSTED_UTLAND]: text('step.bostedUtland.title'),
+        [SøknadStepId.BARN]: text('step.barn.title'),
+        [SøknadStepId.OPPSUMMERING]: text('step.oppsummering.title'),
+    };
+    return stepTitles;
+};
