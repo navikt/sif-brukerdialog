@@ -231,13 +231,6 @@ export const parseOppgaverElement = (oppgaver: BrukerdialogOppgaveDto[]): Oppgav
                     oppgavetypeData: {
                         fraOgMed: ISODateToDate(rapporterInntektData.fraOgMed),
                         tilOgMed: ISODateToDate(rapporterInntektData.tilOgMed),
-
-                        // rapportertInntekt: rapporterInntektData.rapportertInntekt
-                        //     ? {
-                        //           arbeidstakerOgFrilansInntekt:
-                        //               rapporterInntektData.rapportertInntekt.arbeidstakerOgFrilansInntekt,
-                        //       }
-                        //     : undefined,
                         gjelderDelerAvMåned: rapporterInntektData.gjelderDelerAvMåned,
                     },
                     respons: parseRapportertInntektRespons(oppgave.respons),
@@ -268,12 +261,12 @@ const mapPeriodeDtoToOpenDateRange = (periode: { fomDato: string; tomDato?: stri
     if (periode.fomDato && !isISODate(periode.fomDato)) {
         throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fomDato}`);
     }
-    if (periode.fomDato && !isISODate(periode.fomDato)) {
-        throw new Error(`Ugyldig datoformat for tom i periode: ${periode.fomDato}`);
+    if (periode.tomDato && !isISODate(periode.tomDato)) {
+        throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tomDato}`);
     }
     return {
         from: ISODateToDate(periode.fomDato),
-        to: periode.fomDato ? ISODateToDate(periode.fomDato) : undefined,
+        to: periode.tomDato ? ISODateToDate(periode.tomDato) : undefined,
     };
 };
 
@@ -284,11 +277,11 @@ const mapPeriodeDtoToDateRange = (periode: { fomDato: string; tomDato?: string }
     if (!periode.fomDato) {
         throw new Error(`Tom-dato er undefined for perioden`);
     }
-    if (periode.fomDato && !isISODate(periode.fomDato)) {
-        throw new Error(`Ugyldig datoformat for tom i periode: ${periode.fomDato}`);
+    if (!periode.tomDato && !isISODate(periode.tomDato)) {
+        throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tomDato}`);
     }
     return {
         from: ISODateToDate(periode.fomDato),
-        to: ISODateToDate(periode.fomDato),
+        to: ISODateToDate(periode.tomDato),
     };
 };

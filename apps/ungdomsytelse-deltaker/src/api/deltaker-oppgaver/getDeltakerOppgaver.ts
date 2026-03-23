@@ -10,8 +10,8 @@ export const getDeltakerOppgaver = async (): Promise<Oppgave[]> => {
         const { data } = await BrukerdialogOppgave.hentAlleOppgaver();
         return parseOppgaverElement(data);
     } catch (e) {
-        const parsedApiError = handleApiError(e, 'getDeltakelsePerioder');
-        logApiErrorFaro('getDeltakelsePerioder', parsedApiError);
+        const parsedApiError = handleApiError(e, 'getDeltakerOppgaver');
+        logApiErrorFaro('getDeltakerOppgaver', parsedApiError);
         throw parsedApiError;
     }
 };
