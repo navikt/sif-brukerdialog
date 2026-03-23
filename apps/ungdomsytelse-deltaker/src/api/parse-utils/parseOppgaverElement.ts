@@ -54,7 +54,7 @@ const parseSvarPåVarselRespons = (respons: any): SvarPåVarselRespons | undefin
         return {
             type: 'VARSEL_SVAR',
             harUttalelse: respons.harUttalelse,
-            uttalelseFraBruker: respons.uttalelseFraDeltaker,
+            uttalelseFraBruker: respons.uttalelseFraBruker,
         };
     }
     return undefined;

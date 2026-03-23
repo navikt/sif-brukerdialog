@@ -33,7 +33,7 @@ export const mockUtils = {
             respons: {
                 type: 'VARSEL_SVAR',
                 harUttalelse: data.oppgave.uttalelse.harUttalelse,
-                uttalelseFraBruker: data.oppgave.uttalelse.uttalelseFraDeltaker,
+                uttalelseFraBruker: data.oppgave.uttalelse.uttalelseFraDeltaker, // brukerdialog prosessering kaller det uttalelseFraDeltaker, ikke uttalelseFraBruker
             },
             løstDato: getMockToday().toISOString(),
             status: OppgaveStatus.LØST,
@@ -67,19 +67,9 @@ export const mockUtils = {
             return oppdatertOppgave;
         };
 
-        setTimeout(() => {
-            updateOppgave(ref, (oppgave) => ({
-                ...oppgave,
-                ...getOppdatertData(oppgave),
-            }));
-        }, 2500);
-
-        return updateOppgave(ref, (oppgave): BrukerdialogOppgaveDto => {
-            return {
-                ...oppgave,
-                løstDato: getMockToday().toISOString(),
-                status: 'LØST',
-            };
-        });
+        return updateOppgave(ref, (oppgave) => ({
+            ...oppgave,
+            ...getOppdatertData(oppgave),
+        }));
     },
 };
