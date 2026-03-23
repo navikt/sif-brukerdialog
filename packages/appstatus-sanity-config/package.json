@@ -19,8 +19,7 @@
         "@sanity/vision": "5.17.1",
         "react": "19.2.4",
         "react-dom": "19.2.4",
-        "sanity": "5.17.1",
-        "styled-components": "6.3.11"
+        "sanity": "5.17.1"
     },
     "devDependencies": {
         "@sanity/eslint-config-studio": "6.0.0",
