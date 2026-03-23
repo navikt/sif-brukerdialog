@@ -5406,6 +5406,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     turbo: "npm:2.8.19"
     typescript: "npm:5.9.3"
+    vitest: "npm:4.1.0"
   languageName: unknown
   linkType: soft
 
