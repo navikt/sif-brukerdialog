@@ -111,6 +111,17 @@ export enum OppgaveType {
     SØK_YTELSE = 'SØK_YTELSE',
 }
 
+export enum OppgaveYtelsetype {
+    /**
+     * UNGDOMSYTELSE
+     */
+    UNGDOMSYTELSE = 'UNGDOMSYTELSE',
+    /**
+     * AKTIVITETSPENGER
+     */
+    AKTIVITETSPENGER = 'AKTIVITETSPENGER',
+}
+
 export type OppgavetypeDataDto = (
     | ({
           type: 'ENDRET_PERIODE';
@@ -224,8 +235,13 @@ export enum YtelseType {
 export type HentAlleOppgaverData = {
     body?: never;
     path?: never;
-    query?: never;
-    url: '/ung/brukerdialog/ekstern/api/oppgave/hent/alle';
+    query?: {
+        /**
+         * Filtrer oppgaver på ytelsetype
+         */
+        ytelsetype?: OppgaveYtelsetype;
+    };
+    url: '/ekstern/api/oppgave/hent/alle';
 };
 
 export type HentAlleOppgaverResponses = {
@@ -246,7 +262,7 @@ export type HentOppgaveData = {
         oppgavereferanse: string;
     };
     query?: never;
-    url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}';
+    url: '/ekstern/api/oppgave/{oppgavereferanse}';
 };
 
 export type HentOppgaveResponses = {
@@ -270,7 +286,7 @@ export type LøsOppgaveData = {
         oppgavereferanse: string;
     };
     query?: never;
-    url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}/løs';
+    url: '/ekstern/api/oppgave/{oppgavereferanse}/løs';
 };
 
 export type LøsOppgaveResponses = {

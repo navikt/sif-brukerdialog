@@ -38,6 +38,8 @@ export const zOppgaveType = z.enum([
     'SØK_YTELSE',
 ]);
 
+export const zOppgaveYtelsetype = z.enum(['UNGDOMSYTELSE', 'AKTIVITETSPENGER']);
+
 export const zPeriodeDto = z.object({
     fomDato: z.iso.date().optional(),
     tomDato: z.iso.date().optional(),
@@ -64,12 +66,7 @@ export const zRapportertInntektDto = z.object({
 
 export const zSvarPåVarselDto = z.object({
     harUttalelse: z.boolean(),
-    uttalelseFraBruker: z
-        .string()
-        .min(0)
-        .max(4000)
-
-        .optional(),
+    uttalelseFraBruker: z.string().min(0).max(4000).optional(),
 });
 
 export const zOppgaveResponsDto = z.intersection(
@@ -193,7 +190,11 @@ export const zBrukerdialogOppgaveDto = z.object({
 export const zHentAlleOppgaverData = z.object({
     body: z.never().optional(),
     path: z.never().optional(),
-    query: z.never().optional(),
+    query: z
+        .object({
+            ytelsetype: zOppgaveYtelsetype.optional(),
+        })
+        .optional(),
 });
 
 /**

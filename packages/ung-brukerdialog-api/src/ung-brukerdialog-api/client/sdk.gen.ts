@@ -47,7 +47,7 @@ export class BrukerdialogOppgave {
             requestValidator: async (data) => await zHentAlleOppgaverData.parseAsync(data),
             responseValidator: async (data) => await zHentAlleOppgaverResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/ung/brukerdialog/ekstern/api/oppgave/hent/alle',
+            url: '/ekstern/api/oppgave/hent/alle',
             ...options,
         });
     }
@@ -60,7 +60,7 @@ export class BrukerdialogOppgave {
             requestValidator: async (data) => await zHentOppgaveData.parseAsync(data),
             responseValidator: async (data) => await zHentOppgaveResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}',
+            url: '/ekstern/api/oppgave/{oppgavereferanse}',
             ...options,
         });
     }
@@ -73,7 +73,7 @@ export class BrukerdialogOppgave {
             requestValidator: async (data) => await zLøsOppgaveData.parseAsync(data),
             responseValidator: async (data) => await zLøsOppgaveResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}/løs',
+            url: '/ekstern/api/oppgave/{oppgavereferanse}/løs',
             ...options,
             headers: {
                 'Content-Type': '*/*',
