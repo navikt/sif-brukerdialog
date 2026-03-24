@@ -1,3 +1,4 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
@@ -25,6 +26,7 @@ const oppdaterBosteder = (bosteder: BostedUtland[] | undefined, bosted: BostedUt
 };
 
 export const BostedUtlandForm = () => {
+    const { text } = useAppIntl();
     const { validateField } = useSifValidate('bostedUtlandForm');
     const [dialogBosted, setDialogBosted] = useState<{ bosted: BostedUtland | undefined } | undefined>(undefined);
     const { lagreSøknadSteg } = useSøknadMellomlagring();
@@ -73,13 +75,13 @@ export const BostedUtlandForm = () => {
             <FormLayout.Questions>
                 <YesOrNoQuestion
                     name={BostedUtlandFormFields.harBoddIUtlandetSiste5år}
-                    legend="Har du bodd i utlandet de siste 5 årene?"
+                    legend={text('bostedUtlandSteg.spørsmål.harBoddIUtlandetSiste5år')}
                     validate={validateField(BostedUtlandFormFields.harBoddIUtlandetSiste5år, getYesOrNoValidator())}
                 />
                 {harBoddIUtlandetSiste5år === YesOrNo.YES && (
                     <VStack gap="space-16">
                         <Heading size="xsmall" level="3">
-                            Bosteder i utlandet siste 5 år
+                            <AppText id="bostedUtlandSteg.bosteder.tittel" />
                         </Heading>
                         {bosteder && bosteder.length > 0 && (
                             <BostedUtlandList
@@ -95,7 +97,7 @@ export const BostedUtlandForm = () => {
                                 variant="secondary"
                                 size="small"
                                 onClick={() => setDialogBosted({ bosted: undefined })}>
-                                Legg til bosted
+                                <AppText id="bostedUtlandSteg.bosteder.leggTil" />
                             </Button>
                         </div>
                         <BostedUtlandFormDialog

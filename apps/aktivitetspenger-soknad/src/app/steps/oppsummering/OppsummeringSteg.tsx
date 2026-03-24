@@ -1,3 +1,4 @@
+import { AppText } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
@@ -66,17 +67,21 @@ export const OppsummeringSteg = () => {
                 {!dto && (
                     <InfoCard data-color="warning">
                         <InfoCard.Header>
-                            <InfoCard.Title>Det skjedde en feil</InfoCard.Title>
+                            <InfoCard.Title>
+                                <AppText id="oppsummeringSteg.feil.tittel" />
+                            </InfoCard.Title>
                         </InfoCard.Header>
                         <InfoCard.Content>
-                            Det mangler nødvendig informasjon for å kunne sende inn søknaden. Prøv igjen senere.
+                            <AppText id="oppsummeringSteg.feil.innhold" />
                         </InfoCard.Content>
                     </InfoCard>
                 )}
                 <FormLayout.Summary>
                     <FormSummary>
                         <FormSummary.Header>
-                            <FormSummary.Heading level="2">Informasjon du har oppgitt</FormSummary.Heading>
+                            <FormSummary.Heading level="2">
+                                <AppText id="oppsummeringSteg.oppsummering.tittel" />
+                            </FormSummary.Heading>
                         </FormSummary.Header>
                         {/* TODO: legg til oppsummeringsinnhold basert på søknadsdata */}
                     </FormSummary>
@@ -85,7 +90,7 @@ export const OppsummeringSteg = () => {
                     <Checkbox
                         name={FormFields.bekrefterOpplysninger}
                         validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
-                        Jeg bekrefter at opplysningene jeg har gitt er riktige
+                        <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
                     </Checkbox>
                 </FormLayout.Questions>
             </AppForm>
