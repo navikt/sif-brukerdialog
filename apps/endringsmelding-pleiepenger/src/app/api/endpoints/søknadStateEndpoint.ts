@@ -1,4 +1,3 @@
-import { getSøknadStepRoute, SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { StepId } from '@app/søknad/config/StepId';
 import { K9Sak, Søknadsdata, ValgteEndringer } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
@@ -8,6 +7,7 @@ import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
+import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
 export type SøknadStatePersistence = {

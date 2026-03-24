@@ -1,4 +1,3 @@
-import { getArbeidsukerIArbeidsaktivitet } from '@app/søknad/steps/arbeidstid/arbeidstidStepUtils';
 import {
     ArbeiderIPeriodenSvar,
     Arbeidsaktivitet,
@@ -27,6 +26,7 @@ import {
     sortDateRange,
 } from '@navikt/sif-common-utils';
 
+import { getArbeidsukerIArbeidsaktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 import { getArbeidsaktivitetForUkjentArbeidsforhold } from '../ukjentArbeidsforholdUtils';
