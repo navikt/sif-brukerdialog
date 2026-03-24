@@ -9,6 +9,7 @@ const defaultScenarioData: ScenarioData = {
         mellomnavn: undefined,
         etternavn: 'Testesen',
     },
+    oppgaver: [],
 };
 
 const scenarioData: Record<ScenarioType, ScenarioData> = {

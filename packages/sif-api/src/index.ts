@@ -11,6 +11,7 @@ export * from './types/Soker';
 // Alle hooks
 export * from './hooks/useArbeidsgivere';
 export * from './hooks/useKontonummer';
+export * from './hooks/useOppgaver';
 export * from './hooks/useRegistrerteBarn';
 export * from './hooks/useSoker';
 export * from './hooks/useValiderFritekst';

@@ -1,7 +1,8 @@
-import { Søker, useSøker } from '@sif/api';
+import { Oppgave, Søker, useOppgaver, useSøker } from '@sif/api';
 
 interface InitialData {
     søker: Søker;
+    oppgaver: Oppgave[];
 }
 
 type InitialDataResult =
@@ -11,8 +12,9 @@ type InitialDataResult =
 
 export const useInitialData = (): InitialDataResult => {
     const søker = useSøker();
+    const oppgaver = useOppgaver();
 
-    const requiredQueries = [søker];
+    const requiredQueries = [søker, oppgaver];
 
     if (requiredQueries.some((q) => q.isLoading)) {
         return { status: 'loading' };
@@ -23,14 +25,17 @@ export const useInitialData = (): InitialDataResult => {
         return { status: 'error', errors };
     }
 
-    if (!søker.data) {
-        return { status: 'error', errors: [new Error('Hent søker feilet')] };
+    if (!søker.data || !oppgaver.data) {
+        return { status: 'error', errors: [new Error('Hent initial data feilet')] };
     }
+
+    console.log(oppgaver.data);
 
     return {
         status: 'success',
         data: {
             søker: søker.data,
+            oppgaver: oppgaver.data,
         },
     };
 };
