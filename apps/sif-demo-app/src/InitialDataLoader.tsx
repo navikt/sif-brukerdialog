@@ -1,5 +1,5 @@
 import { ErrorPage, LoadingPage } from './app/pages';
-import { Søknad } from './app/Soknad';
+import { Søknad } from './app/Søknad';
 import { useInitialData } from './useInitialData';
 
 export const InitialDataLoader = () => {
