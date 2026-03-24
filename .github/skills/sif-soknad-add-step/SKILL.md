@@ -49,6 +49,8 @@ Utled navnene fra brukerens beskrivelse. Alle navn er konsekvente:
 | i18n-prefix             | `'periodeSteg'`          |
 | i18n steg-tittel nøkkel | `'step.periode.title'`   |
 
+I malene under brukes `<felt>` som plassholder for det **konkrete feltnavnet** du velger (f.eks. `harPeriode`, `harArbeid`). Det er lowerCamelCase og velges basert på hva spørsmålet handler om. Erstatt alle forekomster av `<felt>` med dette navnet, akkurat som `<Prefix>`/`<prefix>` erstattes med stegnavnet.
+
 **Posisjon i stepOrder:** Plasser steget der brukeren ber om det. Hvis brukeren sier «førstesteg», legg det først. Hvis ingen posisjon er angitt, legg det sist før `OPPSUMMERING`.
 
 ### Steg 2 — Opprett nye filer
