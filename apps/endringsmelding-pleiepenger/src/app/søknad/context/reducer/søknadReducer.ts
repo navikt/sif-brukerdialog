@@ -1,9 +1,9 @@
+import { getSøknadStepRoute, SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
+import { getSøknadSteps } from '@app/søknad/config/søknadStepConfig';
 import { EndringType, SøknadContextState, Søknadsdata, ValgteEndringer } from '@app/types';
 import { getFeriedagerMeta } from '@app/utils';
 import { guid } from '@navikt/sif-common-utils';
 
-import { getSøknadStepRoute, SøknadRoutes } from '../../config/SøknadRoutes';
-import { getSøknadSteps } from '../../config/søknadStepConfig';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 const initialSøknadsdata: Søknadsdata = {

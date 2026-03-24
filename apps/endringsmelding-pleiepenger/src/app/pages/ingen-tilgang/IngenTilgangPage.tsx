@@ -1,5 +1,6 @@
 import { IngenTilgangMeta } from '@app/hooks';
 import { AppText, useAppIntl } from '@app/i18n';
+import { SøknadContextProvider } from '@app/søknad/context/SøknadContext';
 import { IngenTilgangÅrsak } from '@app/types';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
@@ -11,7 +12,6 @@ import { FormLayout } from '@navikt/sif-common-ui';
 
 import DevFooter from '../../dev/DevFooter';
 import { SendBeskjedLink, SkrivTilOssLink } from '../../lenker';
-import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';
 
 export interface IngenTilgangPageProps {

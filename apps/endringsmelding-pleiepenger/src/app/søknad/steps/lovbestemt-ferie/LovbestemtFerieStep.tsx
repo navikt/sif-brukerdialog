@@ -1,22 +1,22 @@
 import DateRangeExpansionCards from '@app/components/date-range-expansion-cards/DateRangeExpansionCards';
 import EndretTag from '@app/components/tags/EndretTag';
 import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
+import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText } from '@app/i18n';
 import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
+import { StepId } from '@app/søknad/config/StepId';
+import actionsCreator from '@app/søknad/context/action/actionCreator';
+import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
+import SøknadStep from '@app/søknad/SøknadStep';
 import { SøknadContextState } from '@app/types';
 import { erFeriedagerEndretIPeriode } from '@app/utils';
+import { lagreSøknadState } from '@app/utils/lagreSøknadState';
 import { Alert, Box, Heading, List, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
 import { useIntl } from 'react-intl';
 
-import { useStepConfig } from '../../../hooks/useStepConfig';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { StepId } from '../../config/StepId';
-import actionsCreator from '../../context/action/actionCreator';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import SøknadStep from '../../SøknadStep';
 import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
 import {
     getLovbestemtFerieSøknadsdataFromFormValues,

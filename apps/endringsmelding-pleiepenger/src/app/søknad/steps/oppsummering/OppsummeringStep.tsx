@@ -1,5 +1,8 @@
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@app/hooks';
+import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText, useAppIntl } from '@app/i18n';
+import { StepId } from '@app/søknad/config/StepId';
+import SøknadStep from '@app/søknad/SøknadStep';
 import { getApiDataFromSøknadsdata } from '@app/utils';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
@@ -10,9 +13,6 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffect, useRef } from 'react';
 
-import { useStepConfig } from '../../../hooks/useStepConfig';
-import { StepId } from '../../config/StepId';
-import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
 import NyttArbeidsforholdSummary from './nytt-arbeidsforhold/NyttArbeidsforholdSummary';

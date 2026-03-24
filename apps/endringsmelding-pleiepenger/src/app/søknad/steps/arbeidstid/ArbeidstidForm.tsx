@@ -1,8 +1,12 @@
 import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
 import { AppText } from '@app/i18n';
 import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
+import { StepId } from '@app/søknad/config/StepId';
+import actionsCreator from '@app/søknad/context/action/actionCreator';
+import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
 import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@app/types';
 import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@app/utils';
+import { lagreSøknadState } from '@app/utils/lagreSøknadState';
 import { Alert, Link, VStack } from '@navikt/ds-react';
 import {
     getIntlFormErrorHandler,
@@ -13,10 +17,6 @@ import {
 import { useIntl } from 'react-intl';
 
 import { getLenker } from '../../../lenker';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { StepId } from '../../config/StepId';
-import actionsCreator from '../../context/action/actionCreator';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import ArbeidsaktivitetFormPart from './arbeidsaktivitet-form-part/ArbeidsaktivitetFormPart';
 import {
     getAktiviteterSomSkalEndres,

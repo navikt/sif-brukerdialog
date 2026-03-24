@@ -1,17 +1,17 @@
+import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
+import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText } from '@app/i18n';
 import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
+import { StepId } from '@app/søknad/config/StepId';
+import actionsCreator from '@app/søknad/context/action/actionCreator';
+import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
+import SøknadStep from '@app/søknad/SøknadStep';
+import { SøknadContextState } from '@app/types';
+import { lagreSøknadState } from '@app/utils';
 import { Heading, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 
-import { useOnValidSubmit, useSøknadContext } from '../../../hooks';
-import { useStepConfig } from '../../../hooks/useStepConfig';
-import { SøknadContextState } from '../../../types';
-import { lagreSøknadState } from '../../../utils';
-import { StepId } from '../../config/StepId';
-import actionsCreator from '../../context/action/actionCreator';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import SøknadStep from '../../SøknadStep';
 import TilsynsordningForm, { tilsynsordningFormComponents, TilsynsordningFormValues } from './TilsynsordningForm';
 import {
     getTilsynsordningSøknadsdataFromFormValues,

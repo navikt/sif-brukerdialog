@@ -1,3 +1,5 @@
+import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
+import { StepId } from '@app/søknad/config/StepId';
 import {
     ArbeidstidSøknadsdata,
     EndringType,
@@ -8,8 +10,6 @@ import {
 } from '@app/types';
 
 import { TilsynsordningSøknadsdata } from '../../../types/TilsynsordningSøknadsdata';
-import { SøknadRoutes } from '../../config/SøknadRoutes';
-import { StepId } from '../../config/StepId';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
 export enum SøknadContextActionKeys {

@@ -2,6 +2,7 @@ import './endreArbeidstidForm.scss';
 
 import { useSøknadContext } from '@app/hooks';
 import { AppIntlShape, AppText, useAppIntl } from '@app/i18n';
+import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@app/types';
 import {
     arbeidsukerHarLikNormaltidPerDag,
@@ -24,7 +25,6 @@ import { DateRange } from '@navikt/sif-common-utils';
 import { getNumberValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 
-import actionsCreator from '../../søknad/context/action/actionCreator';
 import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';

@@ -1,4 +1,7 @@
 import { useSøknadContext } from '@app/hooks';
+import { getSøknadStepRoute, SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
+import { StepId } from '@app/søknad/config/StepId';
+import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { getSakFromK9Sak, getSisteSøknadsperiodeIK9Sak } from '@app/utils';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
@@ -9,10 +12,6 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
-
-import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
-import { StepId } from '../../søknad/config/StepId';
-import actionsCreator from '../../søknad/context/action/actionCreator';
 
 enum FormFields {
     barnAktørId = 'barnAktørId',
