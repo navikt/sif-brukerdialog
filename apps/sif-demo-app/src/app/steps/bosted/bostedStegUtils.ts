@@ -1,6 +1,6 @@
 import { YesOrNo } from '@sif/rhf';
 
-import { BostedSøknadsdata } from '../../types/Søknadsdata';
+import { BostedSøknadsdata } from '../../types/Soknadsdata';
 import { BostedFormValues } from './BostedForm';
 
 export const toBostedFormValues = (søknadsdata: BostedSøknadsdata): BostedFormValues => {

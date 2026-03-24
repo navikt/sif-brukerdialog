@@ -1,11 +1,11 @@
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/soknadStepConfig';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/søknad/AppForm';
+import { AppForm } from '@app/setup/soknad/AppForm';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 
-import { BarnSøknadsdata } from '../../types/Søknadsdata';
+import { BarnSøknadsdata } from '../../types/Soknadsdata';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 
 export enum BarnFormFields {
