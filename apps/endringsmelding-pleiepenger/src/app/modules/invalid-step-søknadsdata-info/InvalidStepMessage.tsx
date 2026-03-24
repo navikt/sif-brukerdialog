@@ -1,7 +1,6 @@
+import { AppText } from '@app/i18n';
 import { Alert, Heading, Link } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
-
-import { AppText } from '../../i18n';
 
 interface Props {
     stepTitle: string;

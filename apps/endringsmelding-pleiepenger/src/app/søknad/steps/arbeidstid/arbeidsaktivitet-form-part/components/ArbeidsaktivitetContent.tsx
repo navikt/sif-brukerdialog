@@ -1,5 +1,24 @@
 import './arbeidsaktivitetContent.scss';
 
+import DateRangeExpansionCards from '@app/components/date-range-expansion-cards/DateRangeExpansionCards';
+import EndretTag from '@app/components/tags/EndretTag';
+import FerieTag from '@app/components/tags/FerieTag';
+import TagsContainer from '@app/components/tags/tags-container/TagsContainer';
+import { AppText } from '@app/i18n';
+import ArbeidstidUker from '@app/modules/arbeidstid-uker/ArbeidstidUker';
+import { ArbeidstidUkerItem } from '@app/modules/arbeidstid-uker/types/ArbeidstidUkerItem';
+import EndreArbeidstidForm from '@app/modules/endre-arbeidstid-form/EndreArbeidstidForm';
+import EndreArbeidstidModal from '@app/modules/endre-arbeidstid-modal/EndreArbeidstidModal';
+import {
+    ArbeiderIPeriodenSvar,
+    Arbeidsaktivitet,
+    ArbeidsaktivitetType,
+    ArbeidstidEndringMap,
+    Arbeidsuke,
+    LovbestemtFerieSøknadsdata,
+    PeriodeMedArbeidstid,
+} from '@app/types';
+import { getEndringsdato, getTillattEndringsperiode, harFjernetFerieIPeriode } from '@app/utils';
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
 import { FormikInputGroup, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
@@ -9,27 +28,8 @@ import {
     isDateInDateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils';
-import {
-    ArbeiderIPeriodenSvar,
-    Arbeidsaktivitet,
-    ArbeidsaktivitetType,
-    ArbeidstidEndringMap,
-    Arbeidsuke,
-    LovbestemtFerieSøknadsdata,
-    PeriodeMedArbeidstid,
-} from '@types';
-import { getEndringsdato, getTillattEndringsperiode, harFjernetFerieIPeriode } from '@utils';
 import { useState } from 'react';
 
-import DateRangeExpansionCards from '../../../../../components/date-range-expansion-cards/DateRangeExpansionCards';
-import EndretTag from '../../../../../components/tags/EndretTag';
-import FerieTag from '../../../../../components/tags/FerieTag';
-import TagsContainer from '../../../../../components/tags/tags-container/TagsContainer';
-import { AppText } from '../../../../../i18n';
-import ArbeidstidUker from '../../../../../modules/arbeidstid-uker/ArbeidstidUker';
-import { ArbeidstidUkerItem } from '../../../../../modules/arbeidstid-uker/types/ArbeidstidUkerItem';
-import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
-import EndreArbeidstidModal from '../../../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
 import { ArbeidsaktivitetFormValues } from '../../ArbeidstidForm';
 import {
     cleanupArbeidsaktivitetEndringer,

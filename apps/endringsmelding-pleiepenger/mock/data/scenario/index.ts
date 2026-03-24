@@ -1,4 +1,5 @@
-import { ScenarioType } from '../../../src/app/dev/scenarioer';
+import { ScenarioType } from '@app/dev/scenarioer';
+
 import { ArbeidsaktivitetUtenArbeidsgiver } from './arbeidsaktivitet-uten-arbeidsgiver/ArbeidsaktivitetUtenArbeidsgiver';
 import { ArbeidsgiverIkkeISak } from './arbeidsgiver-ikke-i-sak/ArbeidsgiverIkkeISak';
 import { ArbeidsgiverOgFrilanser } from './arbeidsgiver-og-frilanser/ArbeidsgiverOgFrilanser';
@@ -33,6 +34,7 @@ export interface ScenarioData {
     søker: any;
     sak: any;
     arbeidsgiver: any;
+    mellomlagring?: any;
 }
 
 export const getScenarioMockData = (scenario: ScenarioType) => {

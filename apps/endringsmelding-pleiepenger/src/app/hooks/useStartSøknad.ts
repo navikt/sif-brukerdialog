@@ -1,7 +1,7 @@
-import { useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@app/hooks';
+import { EndringType } from '@app/types';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
-import { EndringType } from '@types';
 
 import actionsCreator from '../søknad/context/action/actionCreator';
 

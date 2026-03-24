@@ -1,7 +1,7 @@
+import { Arbeidsforhold, Arbeidsgiver, UkjentArbeidsforholdSøknadsdata } from '@app/types';
 import { getNumberFromNumberInputValue, IntlErrorObject, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { Arbeidsforhold, Arbeidsgiver, UkjentArbeidsforholdSøknadsdata } from '@types';
 
 import {
     UkjentArbeidsforholdArbeidsgiverFormValues,
