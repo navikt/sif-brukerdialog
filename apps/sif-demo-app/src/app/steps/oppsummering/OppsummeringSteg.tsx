@@ -1,5 +1,5 @@
 import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
-import { useSøknadFlow, useSøknadMellomlagring, useSøknadStore } from '@app/setup/hooks';
+import { useSøknadsflyt, useSøknadMellomlagring, useSøknadStore } from '@app/setup/hooks';
 import { SøknadFormButtons } from '@app/setup/søknad/SøknadFormButtons';
 import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 import { FormSummary } from '@navikt/ds-react';
@@ -10,7 +10,7 @@ import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { getSøknadApiDataFromSøknad } from '../../utils/søknadsdataToSøknadApiData';
 
 export const OppsummeringSteg = () => {
-    const { søknadsdata, setSøknadSendt } = useSøknadFlow();
+    const { søknadsdata, setSøknadSendt } = useSøknadsflyt();
     const { clearSøknadFormValues } = useSøknadFormValues();
     const søker = useSøknadStore((s) => s.søknadState?.søker);
     const { slettMellomlagring } = useSøknadMellomlagring();
