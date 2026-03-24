@@ -1,9 +1,9 @@
-import { Søknadsdata } from '@app/types/Soknadsdata';
+import { Søknadsdata } from '@app/types/Søknadsdata';
 import { useCallback } from 'react';
 
-import { SøknadStepId } from '../config/SoknadStepId';
-import { useSøknadsflyt } from '../context/soknadContext';
-import { useSøknadMellomlagring } from './useSoknadMellomlagring';
+import { SøknadStepId } from '../config/SøknadStepId';
+import { useSøknadsflyt } from '../context/søknadContext';
+import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
 interface UseStepSubmitOptions<TFormValues, TStepSøknadsdata> {
     stepId: SøknadStepId;

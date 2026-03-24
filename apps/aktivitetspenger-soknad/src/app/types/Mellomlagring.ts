@@ -1,7 +1,7 @@
 import { RegistrertBarn, Søker } from '@sif/api';
 import { Mellomlagring, SøknadFormValues } from '@sif/soknad/types';
 
-import { Søknadsdata } from './Soknadsdata';
+import { Søknadsdata } from './Søknadsdata';
 
 export type SøknadMellomlagring = Mellomlagring<Søknadsdata, SøknadFormValues>;
 

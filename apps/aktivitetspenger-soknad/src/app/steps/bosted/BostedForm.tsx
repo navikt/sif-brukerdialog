@@ -1,7 +1,7 @@
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/soknad/AppForm';
-import { BostedSøknadsdata } from '@app/types/Soknadsdata';
+import { AppForm } from '@app/setup/søknad/AppForm';
+import { BostedSøknadsdata } from '@app/types/Søknadsdata';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 

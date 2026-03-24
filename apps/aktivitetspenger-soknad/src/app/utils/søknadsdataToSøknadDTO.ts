@@ -2,7 +2,7 @@ import { Aktivitetspengersøknad } from '@navikt/k9-brukerdialog-prosessering-ap
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { Søker, UtvidetKontonummerInfo } from '@sif/api';
 
-import { Søknadsdata } from '../types/Soknadsdata';
+import { Søknadsdata } from '../types/Søknadsdata';
 
 export const søknadsdataToSøknadDTO = ({
     søker,

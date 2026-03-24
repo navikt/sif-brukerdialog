@@ -2,8 +2,8 @@ import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useSøknadsflyt } from '../context/soknadContext';
-import { useSøknadMellomlagring } from './useSoknadMellomlagring';
+import { useSøknadsflyt } from '../context/søknadContext';
+import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 
 export const useAvbrytSøknad = () => {
     const navigate = useNavigate();

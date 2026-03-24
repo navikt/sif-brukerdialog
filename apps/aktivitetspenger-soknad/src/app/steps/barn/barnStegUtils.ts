@@ -1,4 +1,4 @@
-import { BarnSøknadsdata } from '@app/types/Soknadsdata';
+import { BarnSøknadsdata } from '@app/types/Søknadsdata';
 import { YesOrNo } from '@sif/rhf';
 
 import { BarnFormValues } from './types';

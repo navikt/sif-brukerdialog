@@ -1,6 +1,6 @@
-import { SøknadState } from '@app/types/SoknadState';
+import { SøknadState } from '@app/types/SøknadState';
 
-import { useSøknadStore } from './useSoknadStore';
+import { useSøknadStore } from './useSøknadStore';
 
 export const useSøknadState = (): SøknadState => {
     const søknadState = useSøknadStore((s) => s.søknadState);

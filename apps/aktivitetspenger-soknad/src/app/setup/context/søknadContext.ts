@@ -1,10 +1,10 @@
-import { Søknadsdata } from '@app/types/Soknadsdata';
-import { formValuesToSøknadsdata } from '@app/utils/formValuesToSoknadsdata';
+import { Søknadsdata } from '@app/types/Søknadsdata';
+import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
 import { createSøknadContext } from '@sif/soknad/context';
 
-import { søknadStepConfig, søknadStepOrder } from '../config/soknadStepConfig';
-import { SøknadStepId } from '../config/SoknadStepId';
-import { useSøknadStore } from '../hooks/useSoknadStore';
+import { søknadStepConfig, søknadStepOrder } from '../config/søknadStepConfig';
+import { SøknadStepId } from '../config/SøknadStepId';
+import { useSøknadStore } from '../hooks/useSøknadStore';
 
 export const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<Søknadsdata, SøknadStepId>({
     useStore: useSøknadStore as any,

@@ -1,8 +1,8 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/soknad/AppForm';
-import { BarnSøknadsdata } from '@app/types/Soknadsdata';
+import { AppForm } from '@app/setup/søknad/AppForm';
+import { BarnSøknadsdata } from '@app/types/Søknadsdata';
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { FormLayout, RegistrerteBarnListe, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';

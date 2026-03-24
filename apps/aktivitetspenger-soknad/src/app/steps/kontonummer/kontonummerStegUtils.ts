@@ -1,4 +1,4 @@
-import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
+import { KontonummerSøknadsdata } from '@app/types/Søknadsdata';
 import { YesOrNo } from '@sif/rhf';
 
 import { KontonummerFormValues } from './types';

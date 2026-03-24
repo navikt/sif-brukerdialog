@@ -5,11 +5,11 @@ import { getProgressSteps } from '@sif/soknad/utils';
 import { StepPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
 
-import { søknadStepConfig } from '../config/soknadStepConfig';
-import { SøknadStepId } from '../config/SoknadStepId';
-import { useSøknadsflyt } from '../context/soknadContext';
-import { useAvbrytSøknad } from '../hooks/useAvbrytSoknad';
-import { useSøknadMellomlagring } from '../hooks/useSoknadMellomlagring';
+import { søknadStepConfig } from '../config/søknadStepConfig';
+import { SøknadStepId } from '../config/SøknadStepId';
+import { useSøknadsflyt } from '../context/søknadContext';
+import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
+import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { useStepTitles } from '../hooks/useStepTitles';
 
 interface Props {

@@ -1,7 +1,7 @@
-import { Søknadsdata } from '@app/types/Soknadsdata';
+import { Søknadsdata } from '@app/types/Søknadsdata';
 import { StepConfig } from '@sif/soknad/types';
 
-import { SøknadStepId } from './SoknadStepId';
+import { SøknadStepId } from './SøknadStepId';
 
 export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
     [SøknadStepId.KONTONUMMER]: {

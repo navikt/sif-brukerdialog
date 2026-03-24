@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { StepConfig } from '../../types';
-import { createSøknadStore } from '../createSoknadStore';
+import { createSøknadStore } from '../createSøknadStore';
 
 type StepId = 'start' | 'barn' | 'arbeid' | 'oppsummering';
 

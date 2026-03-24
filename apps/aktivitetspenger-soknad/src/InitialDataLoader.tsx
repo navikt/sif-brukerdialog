@@ -1,7 +1,7 @@
 import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
 
 import { useAppIntl } from './app/i18n';
-import { Søknad } from './app/Soknad';
+import { Søknad } from './app/Søknad';
 import { useInitialData } from './useInitialData';
 
 export const InitialDataLoader = () => {

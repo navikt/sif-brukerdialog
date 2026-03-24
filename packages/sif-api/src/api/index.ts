@@ -2,7 +2,7 @@
 export { hentRegistrerteBarn } from './registrerteBarnApi';
 
 // Søker API
-export { hentSøker, hentSøkerId } from './sokerApi';
+export { hentSøker, hentSøkerId } from './søkerApi';
 
 // Arbeidsgivere API
 export { hentArbeidsgivere } from './arbeidsgivereApi';

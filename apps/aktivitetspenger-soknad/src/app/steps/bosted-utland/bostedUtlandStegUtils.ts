@@ -1,4 +1,4 @@
-import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
+import { BostedUtlandSøknadsdata } from '@app/types/Søknadsdata';
 import { YesOrNo } from '@sif/rhf';
 
 import { BostedUtlandFormValues } from './types';

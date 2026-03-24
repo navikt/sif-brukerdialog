@@ -6,13 +6,13 @@ export * from './types/Arbeidsgivere';
 export * from './types/Barn';
 export * from './types/invalidParameterProblemDetail';
 export * from './types/MellomlagringYtelse';
-export * from './types/Soker';
+export * from './types/Søker';
 
 // Alle hooks
 export * from './hooks/useArbeidsgivere';
 export * from './hooks/useKontonummer';
 export * from './hooks/useRegistrerteBarn';
-export * from './hooks/useSoker';
+export * from './hooks/useSøker';
 export * from './hooks/useValiderFritekst';
 export * from './hooks/useVedlegg';
 export * from './hooks/useYtelseMellomlagring';

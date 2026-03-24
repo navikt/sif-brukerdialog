@@ -5,9 +5,9 @@ import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
 
-import { SøknadStepId } from '../config/SoknadStepId';
+import { SøknadStepId } from '../config/SøknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../constants';
-import { useSøknadStore } from './useSoknadStore';
+import { useSøknadStore } from './useSøknadStore';
 
 export const useSøknadMellomlagring = () => {
     const søknadState = useSøknadStore((s) => s.søknadState);

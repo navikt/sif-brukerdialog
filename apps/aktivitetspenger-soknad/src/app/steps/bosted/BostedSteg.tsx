@@ -1,5 +1,5 @@
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { SøknadStep } from '@app/setup/soknad/SoknadStep';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
+import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 
 import { BostedForm } from './BostedForm';
 

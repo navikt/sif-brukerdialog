@@ -10,7 +10,7 @@ import {
 } from '@sif/api';
 import { useMemo } from 'react';
 
-import { søknadStepConfig } from './app/setup/config/soknadStepConfig';
+import { søknadStepConfig } from './app/setup/config/søknadStepConfig';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './app/setup/constants';
 import { MellomlagringMetaData, SøknadMellomlagring } from './app/types/Mellomlagring';
 

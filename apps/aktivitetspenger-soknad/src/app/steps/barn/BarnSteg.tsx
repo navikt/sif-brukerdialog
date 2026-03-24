@@ -1,6 +1,6 @@
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadState } from '@app/setup/hooks';
-import { SøknadStep } from '@app/setup/soknad/SoknadStep';
+import { SøknadStep } from '@app/setup/søknad/SøknadStep';
 
 import { BarnForm } from './BarnForm';
 

@@ -1,7 +1,7 @@
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { SøknadStepId } from '@app/setup/config/SøknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/soknad/AppForm';
-import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
+import { AppForm } from '@app/setup/søknad/AppForm';
+import { KontonummerSøknadsdata } from '@app/types/Søknadsdata';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api';
