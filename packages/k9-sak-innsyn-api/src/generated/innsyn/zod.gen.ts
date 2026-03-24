@@ -93,7 +93,6 @@ export const zBostedPeriodeInfo = z.object({
 
 export const zBosteder = z.object({
     perioder: z.record(z.string(), zBostedPeriodeInfo).optional(),
-    perioderSomSkalSlettes: z.record(z.string(), zBostedPeriodeInfo).optional(),
 });
 
 export const zDataBruktTilUtledning = z.object({
@@ -316,6 +315,7 @@ export const zYtelse = z.object({
 export const zAktivitetspenger = zYtelse.and(
     z.object({
         søknadsperiode: z.string(),
+        forutgåendeBosteder: zBosteder,
         type: z.literal('Aktivitetspenger'),
     }),
 );
@@ -497,10 +497,10 @@ export const zFagsakYtelseType = z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_
 export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSMELDING', 'UKJENT']);
 
 export const zInnsending = z.object({
-    versjon: z.string().optional(),
-    mottattDato: z.iso.datetime({ local: true }).optional(),
-    søker: zSøker.optional(),
     søknadId: z.string().optional(),
+    mottattDato: z.iso.datetime({ local: true }).optional(),
+    versjon: z.string().optional(),
+    søker: zSøker.optional(),
 });
 
 export const zOrganisasjon = z.object({

@@ -34,6 +34,7 @@ export enum AktivitetFravær {
 
 export type Aktivitetspenger = Omit<Ytelse, 'type'> & {
     søknadsperiode: string;
+    forutgåendeBosteder: Bosteder;
     type: 'Aktivitetspenger';
 };
 
@@ -124,9 +125,6 @@ export type BostedPeriodeInfo = {
 
 export type Bosteder = {
     perioder?: {
-        [key: string]: BostedPeriodeInfo;
-    };
-    perioderSomSkalSlettes?: {
         [key: string]: BostedPeriodeInfo;
     };
 };
@@ -572,10 +570,10 @@ export enum Innsendelsestype {
 }
 
 export type Innsending = {
-    versjon?: string;
-    mottattDato?: string;
-    søker?: Søker;
     søknadId?: string;
+    mottattDato?: string;
+    versjon?: string;
+    søker?: Søker;
 };
 
 export type Organisasjon = {
