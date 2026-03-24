@@ -22,6 +22,11 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `Box`, `VStack`, `HStack`, `HGrid`, `space-*`.
     - Fil: `.github/skills/aksel-spacing/SKILL.md`
 
+- `sif-soknad-add-step`
+    - Når: legge til et nytt steg i en søknadsapp.
+    - Triggerord: `nytt steg`, `legg til steg`, `ny side i søknaden`, `opprett steg`, `FormFields`, `StegUtils`.
+    - Fil: `.github/skills/sif-soknad-add-step/SKILL.md`
+
 - `sif-migration-baseline`
     - Når: migrering av app til ny v2 setup.
     - Triggerord: `migrering`, `baseline`, `bootstrap`, `sif-demo-app`.

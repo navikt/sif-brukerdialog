@@ -27,6 +27,9 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
     - Oppsett: `env.schema.ts`, `initApiClients`, API-klient-init, `*_API_URL`, `*_API_SCOPE`, `*_FRONTEND_PATH`.
 - `sif-soknad-setup`:
     - Oppsett av `src/app/setup`, `soknadContext`, `soknadStepConfig`, `useStepSubmit`, `useStepDefaultValues`.
+- `sif-soknad-add-step`:
+    - Legge til steg: `nytt steg`, `legg til steg`, `ny side i søknaden`, `nytt spørsmål`, `opprett steg`, `førstesteg`, `neste steg`.
+    - Steg-filer: `StegUtils`, `FormFields`, `FormValues`, `SøknadStep`, `stepOrder`, `stepConfig`.
 - `monorepo-frontend`:
     - Generell frontend-arbeid i `apps/**` eller `packages/**`, workspace-scoping, lint/test-kjoring.
 - `aksel-spacing`:
