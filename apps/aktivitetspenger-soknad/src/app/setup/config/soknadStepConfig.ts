@@ -4,9 +4,9 @@ import { StepConfig } from '@sif/soknad/types';
 import { SøknadStepId } from './SoknadStepId';
 
 export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
-    [SøknadStepId.STARTDATO_OG_ANDRE_YTELSER]: {
-        route: 'startdato-og-andre-ytelser',
-        isCompleted: (s) => s.startdatoOgAndreYtelser !== undefined,
+    [SøknadStepId.ANDRE_YTELSER]: {
+        route: 'andre-ytelser',
+        isCompleted: (s) => s.andreYtelser !== undefined,
     },
     [SøknadStepId.KONTONUMMER]: {
         route: 'kontonummer',
@@ -30,7 +30,7 @@ export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
 };
 
 export const søknadStepOrder: SøknadStepId[] = [
-    SøknadStepId.STARTDATO_OG_ANDRE_YTELSER,
+    SøknadStepId.ANDRE_YTELSER,
     SøknadStepId.KONTONUMMER,
     SøknadStepId.BOSTED,
     SøknadStepId.BOSTED_UTLAND,

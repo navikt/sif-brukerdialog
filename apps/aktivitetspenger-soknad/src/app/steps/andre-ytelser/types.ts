@@ -11,12 +11,12 @@ export enum AndreYtelse {
     ANNET = 'ANNET',
 }
 
-export enum StartdatoOgAndreYtelserFormFields {
+export enum AndreYtelserFormFields {
     harAndreYtelser = 'harAndreYtelser',
     andreYtelser = 'andreYtelser',
 }
 
-export interface StartdatoOgAndreYtelserFormValues extends StepFormValues {
-    [StartdatoOgAndreYtelserFormFields.harAndreYtelser]?: YesOrNo;
-    [StartdatoOgAndreYtelserFormFields.andreYtelser]?: AndreYtelse[];
+export interface AndreYtelserFormValues extends StepFormValues {
+    [AndreYtelserFormFields.harAndreYtelser]?: YesOrNo;
+    [AndreYtelserFormFields.andreYtelser]?: AndreYtelse[];
 }

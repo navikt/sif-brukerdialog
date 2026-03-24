@@ -61,7 +61,7 @@ Alle validatorer importeres fra `@navikt/sif-validation`.
 <scope>.validation.<fieldName>.<errorCode>
 ```
 
-**Scope-konvensjon:** Bruk `<prefix>Form` der `<prefix>` er lowerCamelCase av stegets domenenavn (f.eks. `barnForm`, `bostedForm`, `startdatoOgAndreYtelserForm`).
+**Scope-konvensjon:** Bruk `<prefix>Form` der `<prefix>` er lowerCamelCase av stegets domenenavn (f.eks. `barnForm`, `bostedForm`, `andreYtelserForm`).
 
 Eksempler på error-koder fra `@navikt/sif-validation`:
 
@@ -76,8 +76,8 @@ Eksempler på error-koder fra `@navikt/sif-validation`:
 Valideringsnøklene i `i18n/nb.ts` **må** matche dette mønsteret:
 
 ```ts
-// scope = 'startdatoOgAndreYtelserForm', felt = 'andreYtelser', feilkode = 'listIsEmpty':
-'startdatoOgAndreYtelserForm.validation.andreYtelser.listIsEmpty': 'Du må velge minst én ytelse',
+// scope = 'andreYtelserForm', felt = 'andreYtelser', feilkode = 'listIsEmpty':
+'andreYtelserForm.validation.andreYtelser.listIsEmpty': 'Du må velge minst én ytelse',
 ```
 
 ---

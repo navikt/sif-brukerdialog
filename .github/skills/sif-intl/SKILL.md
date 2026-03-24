@@ -280,10 +280,10 @@ Gitt en komponent i `steps/<steg-mappenavn>/`, les følgende fire filer i parall
 | `steps/<steg-mappenavn>/i18n/nn.ts` | Eksisterende nn-nøkler for steget |
 | `i18n/nb/appMessages.ts` | Bekrefter steg-modulen er registrert |
 
-Eksempel: For `StartdatoOgAndreYtelserSteg.tsx` i `steps/startdato-og-andre-ytelser/`, les:
-- `steps/startdato-og-andre-ytelser/StartdatoOgAndreYtelserSteg.tsx`
-- `steps/startdato-og-andre-ytelser/i18n/nb.ts`
-- `steps/startdato-og-andre-ytelser/i18n/nn.ts`
+Eksempel: For `AndreYtelserSteg.tsx` i `steps/andre-ytelser/`, les:
+- `steps/andre-ytelser/AndreYtelserSteg.tsx`
+- `steps/andre-ytelser/i18n/nb.ts`
+- `steps/andre-ytelser/i18n/nn.ts`
 - `i18n/nb/appMessages.ts`
 
 ### Side-komponent i en app

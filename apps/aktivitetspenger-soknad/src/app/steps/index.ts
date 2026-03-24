@@ -3,4 +3,4 @@ export { BostedSteg } from './bosted/BostedSteg';
 export { BostedUtlandSteg } from './bosted-utland/BostedUtlandSteg';
 export { KontonummerSteg } from './kontonummer/KontonummerSteg';
 export { OppsummeringSteg } from './oppsummering/OppsummeringSteg';
-export { StartdatoOgAndreYtelserSteg } from './startdato-og-andre-ytelser/StartdatoOgAndreYtelserSteg';
+export { AndreYtelserSteg } from './andre-ytelser/AndreYtelserSteg';
