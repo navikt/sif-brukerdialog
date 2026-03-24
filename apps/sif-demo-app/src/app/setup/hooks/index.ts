@@ -1,8 +1,8 @@
-export { SøknadContextProvider, useSøknadFlow } from '../context/søknadContext';
-export * from './useAvbrytSøknad';
-export * from './useSøknadMellomlagring';
-export * from './useSøknadRhfForm';
-export * from './useSøknadState';
-export * from './useSøknadStore';
+export { SøknadContextProvider, useSøknadsflyt } from '../context/soknadContext';
+export * from './useAvbrytSoknad';
+export * from './useSoknadMellomlagring';
+export * from './useSoknadRhfForm';
+export * from './useSoknadState';
+export * from './useSoknadStore';
 export * from './useStepDefaultValues';
 export * from './useStepSubmit';

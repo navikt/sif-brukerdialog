@@ -1,11 +1,11 @@
+import IconText from '@app/components/icon-text/IconText';
+import { erTimerGyldigInnenforAntallDager } from '@app/utils';
 import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import { BodyShort } from '@navikt/ds-react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
-import { erTimerGyldigInnenforAntallDager } from '@utils';
 import { useIntl } from 'react-intl';
 
-import IconText from '../../../components/icon-text/IconText';
 import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 

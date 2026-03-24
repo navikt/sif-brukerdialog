@@ -41,7 +41,7 @@ import {
     setMaxToDateForDateRange,
     sortDateRange,
     sortDateRangeByToDate,
-} from '../';
+} from '..';
 
 describe('dateRangeUtils', () => {
     const from: Date = ISODateToDate('2020-01-01');

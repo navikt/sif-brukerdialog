@@ -28,7 +28,7 @@ export default [
                 nattevåk: { perioder: {}, perioderSomSkalSlettes: {} },
                 tilsynsordning: {
                     perioder: {
-                        '2022-12-01/2023-01-31': { etablertTilsynTimerPerDag: 'PT8H' },
+                        '2022-12-01/2023-01-31': { etablertTilsynTimerPerDag: 'PT4H30M' },
                         '2023-02-14/2023-05-16': { etablertTilsynTimerPerDag: 'PT8H' },
                     },
                 },

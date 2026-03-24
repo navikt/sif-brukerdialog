@@ -1,16 +1,16 @@
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
-import { useSøknadFlow, useSøknadMellomlagring, useSøknadStore } from '@app/setup/hooks';
-import { SøknadFormButtons } from '@app/setup/søknad/SøknadFormButtons';
-import { SøknadStep } from '@app/setup/søknad/SøknadStep';
+import { SøknadStepId } from '@app/setup/config/soknadStepConfig';
+import { useSøknadMellomlagring, useSøknadsflyt, useSøknadStore } from '@app/setup/hooks';
+import { SøknadFormButtons } from '@app/setup/soknad/SoknadFormButtons';
+import { SøknadStep } from '@app/setup/soknad/SoknadStep';
 import { FormSummary } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 
-import { useSendSøknad } from '../../hooks/useSendSøknad';
-import { getSøknadApiDataFromSøknad } from '../../utils/søknadsdataToSøknadApiData';
+import { useSendSøknad } from '../../hooks/useSendSoknad';
+import { getSøknadApiDataFromSøknad } from '../../utils/soknadsdataToSoknadApiData';
 
 export const OppsummeringSteg = () => {
-    const { søknadsdata, setSøknadSendt } = useSøknadFlow();
+    const { søknadsdata, setSøknadSendt } = useSøknadsflyt();
     const { clearSøknadFormValues } = useSøknadFormValues();
     const søker = useSøknadStore((s) => s.søknadState?.søker);
     const { slettMellomlagring } = useSøknadMellomlagring();

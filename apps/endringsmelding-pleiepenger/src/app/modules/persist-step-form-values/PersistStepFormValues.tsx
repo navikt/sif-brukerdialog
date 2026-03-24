@@ -1,7 +1,6 @@
+import { StepId } from '@app/søknad/config/StepId';
+import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
 import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
-
-import { StepId } from '../../søknad/config/StepId';
-import { useStepFormValuesContext } from '../../søknad/context/StepFormValuesContext';
 
 interface Props {
     stepId: StepId;

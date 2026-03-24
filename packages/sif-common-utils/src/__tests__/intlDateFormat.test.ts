@@ -1,4 +1,4 @@
-import { ISODateToDate } from '../';
+import { ISODateToDate } from '..';
 import { intlDateFormats } from '../intlDateFormats';
 
 describe('intlDateFormat', () => {

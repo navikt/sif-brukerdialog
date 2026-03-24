@@ -6,7 +6,9 @@ dayjs.extend(minMax);
 
 export const ANTALL_MÅNEDER_TILLATT_FOR_ENDRING = 3;
 
-export const getEndringsdato = (): Date => new Date();
+export const getEndringsdato = (): Date => {
+    return new Date();
+};
 
 /**
  * Denne skal følge  søknadsfristvilkåret der hovedregelen er: En ytelse som gis pr. dag eller pr. måned,

@@ -1,10 +1,10 @@
+import { LovbestemtFerieApiData, LovbestemtFerieSøknadsdata, LovbestemtFerieType } from '@app/types';
 import {
     dateRangeToISODateRange,
     ISODateRangeMap,
     joinAdjacentDateRanges,
     sortDateRange,
 } from '@navikt/sif-common-utils';
-import { LovbestemtFerieApiData, LovbestemtFerieSøknadsdata, LovbestemtFerieType } from '@types';
 
 export const getLovbestemtFerieApiDataFromSøknadsdata = ({
     feriedagerMeta: { perioderFjernet, perioderLagtTil },

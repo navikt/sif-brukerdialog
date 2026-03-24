@@ -1,7 +1,3 @@
-import { fetchSøker, Søker } from '@navikt/sif-common-api';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getMaybeEnv } from '@navikt/sif-common-env';
-import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,
     IngenTilgangÅrsak,
@@ -11,8 +7,12 @@ import {
     RequestStatus,
     SøknadInitialIkkeTilgang,
     UgyldigK9SakFormat,
-} from '@types';
-import { appSentryLogger } from '@utils';
+} from '@app/types';
+import { appSentryLogger } from '@app/utils';
+import { fetchSøker, Søker } from '@navikt/sif-common-api';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 
 import { IngenTilgangMeta, isSøknadInitialDataErrorState } from '../hooks/useSøknadInitialData';
 import { maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';

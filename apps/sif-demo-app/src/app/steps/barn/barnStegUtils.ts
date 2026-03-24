@@ -1,6 +1,6 @@
 import { YesOrNo } from '@sif/rhf';
 
-import { BarnSøknadsdata } from '../../types/Søknadsdata';
+import { BarnSøknadsdata } from '../../types/Soknadsdata';
 import { BarnFormValues } from './BarnForm';
 
 export const toBarnFormValues = (søknadsdata: BarnSøknadsdata | undefined): Partial<BarnFormValues> => {
