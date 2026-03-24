@@ -4342,6 +4342,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
+    "@navikt/ung-brukerdialog-api": "workspace:*"
     "@navikt/ung-common": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@sentry/react": "npm:10.44.0"
@@ -6084,7 +6085,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api":
+"@navikt/ung-brukerdialog-api@workspace:*, @navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api":
   version: 0.0.0-use.local
   resolution: "@navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api"
   dependencies:
