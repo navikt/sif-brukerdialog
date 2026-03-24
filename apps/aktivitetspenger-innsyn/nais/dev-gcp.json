@@ -1,0 +1,56 @@
+{
+    "app": "aktivitetspenger-innsyn",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "ingresses": ["https://aktivitetspenger-innsyn.intern.dev.nav.no"],
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" },
+        { "application": "ung-brukerdialog-api", "namespace": "k9saksbehandling" }
+    ],
+    "minReplicas": 1,
+    "maxReplicas": 1,
+    "resources": {
+        "requests": {
+            "memory": "64Mi",
+            "cpu": "20m"
+        },
+        "limits": {
+            "memory": "256Mi"
+        }
+    },
+    "cluster": "dev-gcp",
+    "observabilityEnabled": "true",
+    "faro": true,
+    "env": {
+        "ENV": "dev",
+        "APP_VERSION": "dev",
+        "NODE_ENV": "development",
+        "PUBLIC_PATH": "/aktivitetspenger/innsyn",
+        "NPM_CONFIG_CACHE": "/tmp",
+
+        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+        "SIF_PUBLIC_USE_ANALYTICS": "true",
+        "SIF_PUBLIC_APPSTATUS_DATASET": "production",
+        "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
+
+        "SIF_PUBLIC_USE_FARO": "true",
+        "SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL": "https://telemetry.ekstern.dev.nav.no/collect",
+
+        "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
+        "SIF_PUBLIC_FULL_DEKORATOR": "on",
+        "SIF_PUBLIC_LOGIN_URL": "https://aktivitetspenger-innsyn.intern.dev.nav.no/oauth2/login?redirect=/aktivitetspenger/innsyn",
+        "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
+
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+
+        "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "dev-gcp:k9saksbehandling:ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling"
+    }
+}
