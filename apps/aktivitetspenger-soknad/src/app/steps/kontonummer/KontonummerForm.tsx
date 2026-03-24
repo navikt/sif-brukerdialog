@@ -21,7 +21,7 @@ interface Props {
 }
 
 export const KontonummerForm = ({ kontonummerInfo }: Props) => {
-    const { validateField } = useSifValidate();
+    const { validateField } = useSifValidate('kontonummerForm');
 
     const defaultValues = useStepDefaultValues<KontonummerFormValues, KontonummerSøknadsdata>({
         stepId,

@@ -3,6 +3,7 @@ import { BaseSøknadsdata } from '@sif/soknad/types';
 import { BostedUtland } from '@sif/soknad-forms';
 
 import { SøknadStepId } from '../setup/config/SoknadStepId';
+import { AndreYtelse } from '../steps/startdato-og-andre-ytelser/types';
 
 export type KontonummerSøknadsdata = Pick<KontonummerInfo, 'kontonummerErRiktig'>;
 
@@ -21,6 +22,7 @@ export type BarnSøknadsdata = {
 
 export type StartdatoOgAndreYtelserSøknadsdata = {
     harAndreYtelser: boolean;
+    andreYtelser?: AndreYtelse[];
 };
 
 /**

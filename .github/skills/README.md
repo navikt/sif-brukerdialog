@@ -27,6 +27,11 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `nytt steg`, `legg til steg`, `ny side i søknaden`, `opprett steg`, `FormFields`, `StegUtils`.
     - Fil: `.github/skills/sif-soknad-add-step/SKILL.md`
 
+- `sif-soknad-modify-step`
+    - Når: legge til nye felter/spørsmål i et eksisterende steg.
+    - Triggerord: `legg til spørsmål`, `nytt felt`, `ny checkbox`, `ny radiogruppe`, `utvid steg`, `følgespørsmål`, `betinget visning`.
+    - Fil: `.github/skills/sif-soknad-modify-step/SKILL.md`
+
 - `sif-migration-baseline`
     - Når: migrering av app til ny v2 setup.
     - Triggerord: `migrering`, `baseline`, `bootstrap`, `sif-demo-app`.

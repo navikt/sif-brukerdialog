@@ -25,7 +25,7 @@ const oppdaterBosteder = (bosteder: BostedUtland[] | undefined, bosted: BostedUt
 };
 
 export const BostedUtlandForm = () => {
-    const { validateField } = useSifValidate();
+    const { validateField } = useSifValidate('bostedUtlandForm');
     const [dialogBosted, setDialogBosted] = useState<{ bosted: BostedUtland | undefined } | undefined>(undefined);
     const { lagreSøknadSteg } = useSøknadMellomlagring();
 

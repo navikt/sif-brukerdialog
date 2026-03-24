@@ -101,9 +101,23 @@ export const to<Prefix>Søknadsdata = (data: <Prefix>FormValues): <Prefix>Søkna
 ```ts
 export const <prefix>StegMessages_nb = {
     '<prefix>Steg.spørsmål.<felt>': '<spørsmålstekst>',
-    '<prefix>Steg.validering.<felt>.ikkeSvart': '<valideringstekst>',
+    '<prefix>Form.validation.<felt>.yesOrNoIsUnanswered': '<valideringstekst>',
 };
 ```
+
+#### `i18n/nn.ts`
+
+Start med å spre `nb`. Nynorsk-oversettelse gjøres manuelt av utvikler i etterkant:
+
+```ts
+import { <prefix>StegMessages_nb } from './nb';
+
+export const <prefix>StegMessages_nn: Record<keyof typeof <prefix>StegMessages_nb, string> = {
+    ...<prefix>StegMessages_nb,
+};
+```
+
+> For nøkkelstruktur-konvensjoner, ICU-parametre og `<AppText>` vs. `text()`-hook → se `sif-intl`.
 
 #### `<Prefix>Form.tsx`
 
@@ -125,7 +139,7 @@ const { YesOrNoQuestion } = createSifFormComponents<<Prefix>FormValues>();
 const stepId = SøknadStepId.<STEP_ID>;
 
 export const <Prefix>Form = () => {
-    const { validateField } = useSifValidate();
+    const { validateField } = useSifValidate('<prefix>Form');
     const { text } = useAppIntl();
 
     const defaultValues = useStepDefaultValues<<Prefix>FormValues, <Prefix>Søknadsdata>({

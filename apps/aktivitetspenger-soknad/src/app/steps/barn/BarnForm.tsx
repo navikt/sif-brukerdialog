@@ -23,7 +23,7 @@ interface Props {
 }
 
 export const BarnForm = ({ registrerteBarn }: Props) => {
-    const { validateField } = useSifValidate();
+    const { validateField } = useSifValidate('barnForm');
     const { text } = useAppIntl();
 
     const defaultValues = useStepDefaultValues<BarnFormValues, BarnSøknadsdata>({

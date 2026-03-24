@@ -6,21 +6,20 @@ export const sifValidate = (
     validator: SifValidator,
     fieldName: string,
     intl: IntlShape,
-    errorPrefix = 'validation',
+    scope: string,
 ): ((value: any) => string | undefined) => {
     return (value) => {
         const errorCode = validator(value);
         if (errorCode) {
-            return intl.formatMessage({ id: `${errorPrefix}.${fieldName}.${errorCode}` });
+            return intl.formatMessage({ id: `${scope}.validation.${fieldName}.${errorCode}` });
         }
         return undefined;
     };
 };
 
-export const useSifValidate = (errorPrefix = 'validation') => {
+export const useSifValidate = (scope: string) => {
     const intl = useIntl();
     return {
-        validateField: (fieldName: string, validator: SifValidator) =>
-            sifValidate(validator, fieldName, intl, errorPrefix),
+        validateField: (fieldName: string, validator: SifValidator) => sifValidate(validator, fieldName, intl, scope),
     };
 };

@@ -13,7 +13,7 @@ const { YesOrNoQuestion } = createSifFormComponents<BostedFormValues>();
 const stepId = SøknadStepId.BOSTED;
 
 export const BostedForm = () => {
-    const { validateField } = useSifValidate();
+    const { validateField } = useSifValidate('bostedForm');
 
     const defaultValues = useStepDefaultValues<BostedFormValues, BostedSøknadsdata>({
         stepId,

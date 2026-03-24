@@ -30,6 +30,9 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 - `sif-soknad-add-step`:
     - Legge til steg: `nytt steg`, `legg til steg`, `ny side i søknaden`, `nytt spørsmål`, `opprett steg`, `førstesteg`, `neste steg`.
     - Steg-filer: `StegUtils`, `FormFields`, `FormValues`, `SøknadStep`, `stepOrder`, `stepConfig`.
+- `sif-soknad-modify-step`:
+    - Endre eksisterende steg: `legg til spørsmål`, `nytt felt`, `ny checkbox`, `ny radiogruppe`, `utvid steg`, `følgespørsmål`, `betinget visning`, `vis bare hvis`.
+    - Komponenter: `CheckboxGroup`, `RadioGroup`, `TextField`, `Datepicker`, `Select`, `createSifFormComponents`, `getListValidator`.
 - `monorepo-frontend`:
     - Generell frontend-arbeid i `apps/**` eller `packages/**`, workspace-scoping, lint/test-kjoring.
 - `aksel-spacing`:
@@ -48,3 +51,4 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 - Rene domeneord alene (f.eks. `barn`, `søker`) skal ikke trigge `@sif/api` uten tydelig API-hentekontekst.
 - Hvis oppgaven handler om setup-arkitektur i app, prioriter `sif-soknad-setup`.
 - Bruk flere skills ved behov, men hold endringer scoped til aktuell workspace.
+- Hvis oppgaven handler om å legge til nye felter/spørsmål i et eksisterende steg, prioriter `sif-soknad-modify-step`. Hvis det er et helt nytt steg, prioriter `sif-soknad-add-step`.

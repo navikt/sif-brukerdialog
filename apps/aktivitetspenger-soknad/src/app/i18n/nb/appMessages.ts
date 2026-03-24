@@ -13,4 +13,11 @@ export const appMessages_nb = {
     'step.bostedUtland.title': 'Bosted i utlandet',
     'step.barn.title': 'Barn',
     'step.oppsummering.title': 'Oppsummering',
+    'bostedForm.validation.borITrondheim.yesOrNoIsUnanswered': 'Du må svare på om du bor i Trondheim',
+    'bostedUtlandForm.validation.harBoddIUtlandetSiste5år.yesOrNoIsUnanswered':
+        'Du må svare på om du har bodd i utlandet de siste 5 årene',
+    'bostedUtlandForm.validation.bosteder.listIsEmpty': 'Du må legge til minst ett bosted i utlandet',
+    'bostedUtlandForm.validation.bosteder.listHasTooFewItems': 'Du må legge til minst ett bosted i utlandet',
+    'kontonummerForm.validation.kontonummerErRiktig.yesOrNoIsUnanswered': 'Du må svare på om kontonummeret stemmer',
+    'oppsummeringForm.validation.bekrefterOpplysninger.notChecked': 'Du må bekrefte at opplysningene er riktige',
 };
