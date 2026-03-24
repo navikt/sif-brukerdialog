@@ -265,6 +265,53 @@ export const MyComponent = () => {
 
 ---
 
+## Fase 0 — Pre-flight (utled filstier uten søk)
+
+Filstiene er **deterministiske** og avledes direkte fra komponent- eller stegnavnet. Ikke søk bredt i kodebasen — les de kjente filene direkte i parallell.
+
+### Steg-komponent i en app
+
+Gitt en komponent i `steps/<steg-mappenavn>/`, les følgende fire filer i parallell:
+
+| Fil | Formål |
+| --- | --- |
+| `steps/<steg-mappenavn>/<StegComponent>.tsx` | Komponentfilen med hardkodede tekster |
+| `steps/<steg-mappenavn>/i18n/nb.ts` | Eksisterende nb-nøkler for steget |
+| `steps/<steg-mappenavn>/i18n/nn.ts` | Eksisterende nn-nøkler for steget |
+| `i18n/nb/appMessages.ts` | Bekrefter steg-modulen er registrert |
+
+Eksempel: For `StartdatoOgAndreYtelserSteg.tsx` i `steps/startdato-og-andre-ytelser/`, les:
+- `steps/startdato-og-andre-ytelser/StartdatoOgAndreYtelserSteg.tsx`
+- `steps/startdato-og-andre-ytelser/i18n/nb.ts`
+- `steps/startdato-og-andre-ytelser/i18n/nn.ts`
+- `i18n/nb/appMessages.ts`
+
+### Side-komponent i en app
+
+Gitt en komponent i `pages/<side-mappenavn>/`, les:
+
+| Fil | Formål |
+| --- | --- |
+| `pages/<side-mappenavn>/<PageComponent>.tsx` | Komponentfilen med hardkodede tekster |
+| `pages/<side-mappenavn>/i18n/nb.ts` | Eksisterende nb-nøkler for siden |
+| `pages/<side-mappenavn>/i18n/nn.ts` | Eksisterende nn-nøkler for siden |
+| `i18n/index.tsx` | Bekrefter siden er inkludert i app-meldingene |
+
+### Pakke-komponent
+
+Gitt en komponent i `src/<type>/<komponent>/`, les:
+
+| Fil | Formål |
+| --- | --- |
+| `src/<type>/<komponent>/<Component>.tsx` | Komponentfilen med hardkodede tekster |
+| `src/<type>/<komponent>/i18n/nb.ts` | Eksisterende nb-nøkler |
+| `src/<type>/<komponent>/i18n/nn.ts` | Eksisterende nn-nøkler |
+| `src/i18n/index.tsx` | Bekrefter komponenten er registrert i pakke-messages |
+
+> **Regel:** Hvis alle fire filene leses i parallell i én batch, har du all nødvendig kontekst. Ikke gjør ytterligere søk.
+
+---
+
 ## Fase 1a — Implementering
 
 Når du skal opprette eller oppdatere i18n-filer:

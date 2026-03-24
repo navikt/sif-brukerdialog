@@ -4,6 +4,10 @@ export const startdatoOgAndreYtelserStegMessages_nn: Record<
     keyof typeof startdatoOgAndreYtelserStegMessages_nb,
     string
 > = {
+    'startdatoOgAndreYtelserSteg.guidePanel.text.1':
+        'Hovudregelen er at du tidlegast kan få aktivitetspengar frå den dagen du sender inn søknaden.',
+    'startdatoOgAndreYtelserSteg.guidePanel.text.2':
+        'Har du andre ytingar frå Nav kan det påverke frå kva dato du kan få, og om du har rett på aktivitetspengar.',
     'startdatoOgAndreYtelserSteg.spørsmål.harAndreYtelser': 'Får du andre ytingar frå Nav i dag?',
     'startdatoOgAndreYtelserForm.validation.harAndreYtelser.yesOrNoIsUnanswered':
         'Du må svare på om du får andre ytingar frå Nav',
