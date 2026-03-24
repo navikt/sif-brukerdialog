@@ -1,7 +1,7 @@
 import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@sif/api';
 import { useMemo } from 'react';
 
-import { søknadStepConfig } from './app/setup/config/søknadStepConfig';
+import { søknadStepConfig } from './app/setup/config/soknadStepConfig';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './app/setup/constants';
 import { MellomlagringMetaData, SøknadMellomlagring } from './app/types/Mellomlagring';
 

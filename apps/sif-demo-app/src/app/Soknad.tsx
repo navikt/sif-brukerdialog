@@ -1,5 +1,5 @@
-import { søknadStepConfig, SøknadStepId, stepTitles } from '@app/setup/config/søknadStepConfig';
-import { SøknadContextProvider } from '@app/setup/context/søknadContext';
+import { søknadStepConfig, SøknadStepId, stepTitles } from '@app/setup/config/soknadStepConfig';
+import { SøknadContextProvider } from '@app/setup/context/soknadContext';
 import { useSøknadStore } from '@app/setup/hooks';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker } from '@sif/api';
