@@ -1,5 +1,4 @@
-import { zBarnOppslag, zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
-import { KontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
 export enum ScenarioType {
@@ -8,7 +7,4 @@ export enum ScenarioType {
 
 export interface ScenarioData {
     søker: z.infer<typeof zSøker>;
-    barn: { barn: Array<z.infer<typeof zBarnOppslag>> };
-    kontonummer?: KontonummerDto;
-    mellomlagring?: Record<string, unknown>;
 }
