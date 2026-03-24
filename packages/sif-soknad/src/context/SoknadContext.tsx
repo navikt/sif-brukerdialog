@@ -2,7 +2,7 @@ import { createContext, ReactNode, useCallback, useContext, useMemo } from 'reac
 import { StoreApi, UseBoundStore } from 'zustand';
 
 import { checkConsistencyForSteps } from '../consistency/checkConsistencyForSteps';
-import { SøknadFormValuesProvider, useSøknadFormValues } from '../consistency/SøknadFormValuesContext';
+import { SøknadFormValuesProvider, useSøknadFormValues } from '../consistency/SoknadFormValuesContext';
 import { useStepNavigation } from '../navigation/useStepNavigation';
 import { IncludedStep, SøknadFormValues, StepConfig, StepFormValues, StepSøknadsdata } from '../types';
 

@@ -1,2 +1,2 @@
-export type { SøknadContextConfig, SøknadFlowContextValue } from './SøknadContext';
-export { createSøknadContext } from './SøknadContext';
+export type { SøknadContextConfig, SøknadFlowContextValue } from './SoknadContext';
+export { createSøknadContext } from './SoknadContext';

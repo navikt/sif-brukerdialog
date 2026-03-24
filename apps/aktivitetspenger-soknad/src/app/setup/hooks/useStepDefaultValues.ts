@@ -1,8 +1,8 @@
-import { Søknadsdata } from '@app/types/Søknadsdata';
+import { Søknadsdata } from '@app/types/Soknadsdata';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { useMemo } from 'react';
 
-import { useSøknadsflyt } from '../context/søknadContext';
+import { useSøknadsflyt } from '../context/soknadContext';
 
 interface UseStepDefaultValuesOptions<TFormValues, TStepSøknadsdata> {
     stepId: string;

@@ -4,8 +4,8 @@ import { FormLayout } from '@sif/soknad-ui/components';
 import type { ReactNode } from 'react';
 import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
-import { SøknadStepId } from '../config/SøknadStepId';
-import { useSøknadsflyt } from '../context/søknadContext';
+import { SøknadStepId } from '../config/SoknadStepId';
+import { useSøknadsflyt } from '../context/soknadContext';
 
 interface Props<T extends StepFormValues> {
     stepId: SøknadStepId;

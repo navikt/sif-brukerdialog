@@ -1,6 +1,6 @@
 import { RegistrertBarn, Søker, UtvidetKontonummerInfo } from '@sif/api';
 
-import { Søknadsdata } from './Søknadsdata';
+import { Søknadsdata } from './Soknadsdata';
 
 /**
  * SøknadState inneholder all data som trengs for å fylle ut søknaden. Dvs. data

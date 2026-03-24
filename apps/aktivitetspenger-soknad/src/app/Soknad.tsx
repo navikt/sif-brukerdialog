@@ -1,6 +1,6 @@
-import { søknadStepConfig } from '@app/setup/config/søknadStepConfig';
-import { SøknadStepId } from '@app/setup/config/SøknadStepId';
-import { SøknadContextProvider } from '@app/setup/context/søknadContext';
+import { søknadStepConfig } from '@app/setup/config/soknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { SøknadContextProvider } from '@app/setup/context/soknadContext';
 import { useSøknadStore, useStepTitles } from '@app/setup/hooks';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { RegistrertBarn, Søker, UtvidetKontonummerInfo } from '@sif/api';

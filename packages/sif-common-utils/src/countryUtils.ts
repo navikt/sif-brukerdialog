@@ -2,7 +2,7 @@ import { alpha2ToAlpha3, getName, getNames, registerLocale } from 'i18n-iso-coun
 import * as langNB from 'i18n-iso-countries/langs/nb.json';
 import * as langNN from 'i18n-iso-countries/langs/nn.json';
 
-import { eøsCountries } from './resources/eøsCountries';
+import { eøsCountries } from './resources/eosCountries';
 
 registerLocale(langNB);
 registerLocale(langNN);

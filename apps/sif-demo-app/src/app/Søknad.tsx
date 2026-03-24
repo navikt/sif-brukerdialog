@@ -1,4 +1,4 @@
-import { søknadStepConfig, SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { søknadStepConfig, SøknadStepId, stepTitles } from '@app/setup/config/søknadStepConfig';
 import { SøknadContextProvider } from '@app/setup/context/søknadContext';
 import { useSøknadStore } from '@app/setup/hooks';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -56,7 +56,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
     }
 
     return (
-        <SøknadContextProvider initialFormValues={mellomlagring?.skjemadata}>
+        <SøknadContextProvider initialFormValues={mellomlagring?.skjemadata} stepTitles={stepTitles}>
             <Routes>
                 <Route path="/" element={<VelkommenPage />} />
                 <Route path="/kvittering" element={<KvitteringPage />} />

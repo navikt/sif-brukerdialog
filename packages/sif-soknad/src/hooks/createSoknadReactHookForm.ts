@@ -1,6 +1,6 @@
 import { DefaultValues, useForm, UseFormReturn } from 'react-hook-form';
 
-import { useSaveSøknadFormValues } from '../consistency/useSaveSøknadFormValues';
+import { useSaveSøknadFormValues } from '../consistency/useSaveSoknadFormValues';
 import { StepFormValues } from '../types';
 
 /**

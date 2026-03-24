@@ -1,6 +1,6 @@
 import { SØkerController } from '@navikt/k9-brukerdialog-prosessering-api';
 
-import { Søker, søkerSchema } from '../types/Søker';
+import { Søker, søkerSchema } from '../types/Soker';
 import { handleApiError } from '../utils/errorHandlers';
 
 /**
