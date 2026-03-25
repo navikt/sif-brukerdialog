@@ -9,6 +9,6 @@ export const hentOppgaver = async (ytelsetype: OppgaveYtelsetype): Promise<Oppga
         const { data } = await BrukerdialogOppgave.hentAlleOppgaver({ query: { ytelsetype } });
         return parseOppgaverElement(data);
     } catch (e) {
-        throw handleApiError(e, 'getDeltakerOppgaver');
+        throw handleApiError(e, `hentOppgaver-${ytelsetype}`);
     }
 };

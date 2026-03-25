@@ -20,8 +20,8 @@ export const useInnsynBreadcrumbs = (crumbs: DecoratorBreadcrumb[] = []) => {
             { title: text('breadcrumbs.innsyn'), url: '/', handleInApp: true },
             ...crumbs,
         ]);
-    });
-    onBreadcrumbClick((breadcrumb) => {
-        navigate(breadcrumb.url);
+        onBreadcrumbClick((breadcrumb) => {
+            navigate(breadcrumb.url);
+        });
     });
 };
