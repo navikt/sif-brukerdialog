@@ -8,6 +8,8 @@ const nb = {
     'velkommenPage.guide.tittel': 'Hei {navn}',
     'velkommenPage.guide.tekst':
         'Du kan melde fra om endringer i pleiepenger for {barnetsNavn} i tidsrommet {samletSøknadsperiodeTekst}.',
+    'velkommenPage.guide.tekst.anonymisertBarn':
+        'Du kan melde fra om endringer i pleiepenger i tidsrommet {samletSøknadsperiodeTekst}.',
 
     'velkommenPage.endre.spm': 'Hva ønsker du å endre?',
     'velkommenPage.endre.ferie': 'Ferie',
