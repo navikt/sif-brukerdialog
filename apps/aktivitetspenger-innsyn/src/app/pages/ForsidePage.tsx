@@ -4,7 +4,7 @@ import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
 import { AppText } from '../i18n';
 import ForsideHeader from '../ung-ui/components/forside-header/ForsideHeader';
-import InnsynForsideLayout from '../ung-ui/components/innsyn-forside/InnsynForsideLayout';
+import InnsynForsidePage from '../ung-ui/components/innsyn-forside/InnsynForsideLayout';
 import OppgaverList from '../ung-ui/components/oppgaver-list/OppgaverList';
 
 interface Props {
@@ -21,7 +21,7 @@ export const ForsidePage = ({ oppgaver }: Props) => {
         .sort((o1, o2) => sortDates(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
     return (
-        <InnsynForsideLayout documentTitle="Dine aktivitetspenger">
+        <InnsynForsidePage documentTitle="Dine aktivitetspenger">
             <ForsideHeader title="Dine aktivitetspenger" />
             <VStack gap="space-40">
                 <VStack gap="space-16">
@@ -54,6 +54,6 @@ export const ForsidePage = ({ oppgaver }: Props) => {
                     )}
                 </VStack>
             </VStack>
-        </InnsynForsideLayout>
+        </InnsynForsidePage>
     );
 };

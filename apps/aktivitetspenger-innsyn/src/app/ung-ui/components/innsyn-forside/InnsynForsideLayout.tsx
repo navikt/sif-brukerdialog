@@ -11,7 +11,7 @@ interface Props {
     footer?: React.ReactNode;
 }
 
-const InnsynForsideLayout = ({ children, documentTitle, footer }: Props) => {
+const InnsynForsidePage = ({ children, documentTitle, footer }: Props) => {
     const { text } = useAppIntl();
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -34,4 +34,4 @@ const InnsynForsideLayout = ({ children, documentTitle, footer }: Props) => {
     );
 };
 
-export default InnsynForsideLayout;
+export default InnsynForsidePage;
