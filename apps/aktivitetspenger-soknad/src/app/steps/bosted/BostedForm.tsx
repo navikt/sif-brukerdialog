@@ -1,3 +1,4 @@
+import { useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
@@ -13,6 +14,7 @@ const { YesOrNoQuestion } = createSifFormComponents<BostedFormValues>();
 const stepId = SøknadStepId.BOSTED;
 
 export const BostedForm = () => {
+    const { text } = useAppIntl();
     const { validateField } = useSifValidate('bostedForm');
 
     const defaultValues = useStepDefaultValues<BostedFormValues, BostedSøknadsdata>({
@@ -31,7 +33,7 @@ export const BostedForm = () => {
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
             <YesOrNoQuestion
                 name={BostedFormFields.borITrondheim}
-                legend="Bor du i Trondheim?"
+                legend={text('bostedSteg.spørsmål.borITrondheim')}
                 validate={validateField(BostedFormFields.borITrondheim, getYesOrNoValidator())}
             />
         </AppForm>

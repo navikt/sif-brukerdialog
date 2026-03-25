@@ -1,4 +1,4 @@
-import { MellomlagringYtelse } from '@sif/api';
+import { MellomlagringYtelse } from '@sif/api/k9-prosessering';
 
 export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER;
 
