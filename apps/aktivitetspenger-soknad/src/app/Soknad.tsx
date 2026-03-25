@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { KvitteringPage, VelkommenPage } from './pages';
-import { BarnSteg, BostedSteg, BostedUtlandSteg, KontonummerSteg, OppsummeringSteg } from './steps';
+import { AndreYtelserSteg, BarnSteg, BostedSteg, BostedUtlandSteg, KontonummerSteg, OppsummeringSteg } from './steps';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 
 interface Props {
@@ -75,6 +75,7 @@ export const Søknad = ({ søker, barn, kontonummer, mellomlagring }: Props) => 
                             isInitialized={!!søknadState}
                         />
                     }>
+                    <Route path={søknadStepConfig[SøknadStepId.ANDRE_YTELSER].route} element={<AndreYtelserSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.KONTONUMMER].route} element={<KontonummerSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED_UTLAND].route} element={<BostedUtlandSteg />} />

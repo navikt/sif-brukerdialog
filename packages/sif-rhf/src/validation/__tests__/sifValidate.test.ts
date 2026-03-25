@@ -9,17 +9,17 @@ const mockIntl = {
 
 describe('sifValidate', () => {
     it('returns undefined when validator passes', () => {
-        const validate = sifValidate(() => undefined, 'name', mockIntl);
+        const validate = sifValidate(() => undefined, 'name', mockIntl, 'myForm');
         expect(validate('any')).toBeUndefined();
     });
 
     it('returns translated message when validator returns error code', () => {
-        const validate = sifValidate(() => 'required', 'name', mockIntl);
-        expect(validate('')).toBe('translated:validation.name.required');
+        const validate = sifValidate(() => 'required', 'name', mockIntl, 'myForm');
+        expect(validate('')).toBe('translated:myForm.validation.name.required');
     });
 
-    it('uses custom error prefix', () => {
-        const validate = sifValidate(() => 'tooShort', 'email', mockIntl, 'errors');
-        expect(validate('')).toBe('translated:errors.email.tooShort');
+    it('uses provided scope in message key', () => {
+        const validate = sifValidate(() => 'tooShort', 'email', mockIntl, 'registrationForm');
+        expect(validate('')).toBe('translated:registrationForm.validation.email.tooShort');
     });
 });
