@@ -49,7 +49,7 @@ export const App = () => {
         return () => {
             document.body.classList.remove('innsynAppBody');
         };
-    }, [location.pathname]);
+    }, []);
 
     return (
         <Theme hasBackground={false}>

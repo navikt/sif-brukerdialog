@@ -6,7 +6,7 @@ import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import OppgaveStatusIkon from '../oppgave-status-ikon/OppgaveStatusIkon';
 import OppgaveStatusTag, { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
 
-export interface oppgaveLinkCardProps {
+export interface OppgaveLinkCardProps {
     tittel: React.ReactNode;
     beskrivelse?: React.ReactNode;
     oppgaveStatus: OppgaveStatus;
@@ -23,7 +23,7 @@ const OppgaveLinkCard = ({
     oppgaveStatusTekst,
     oppgaveStatusTagVariant = 'tag-uten-ikon',
     onClick,
-}: oppgaveLinkCardProps) => {
+}: OppgaveLinkCardProps) => {
     const erAvbruttEllerUtløpt = oppgaveStatus === OppgaveStatus.AVBRUTT || oppgaveStatus === OppgaveStatus.UTLØPT;
     return (
         <LinkCard
