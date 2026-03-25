@@ -24,7 +24,7 @@ const { Checkbox } = createSifFormComponents<FormValues>();
 export const OppsummeringSteg = () => {
     const stepId = SøknadStepId.OPPSUMMERING;
 
-    const { validateField } = useSifValidate();
+    const { validateField } = useSifValidate('oppsummering');
 
     const methods = useSøknadRhfForm<FormValues>(stepId, {});
 

@@ -1,10 +1,10 @@
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
-import { ApiError } from '@navikt/ung-common';
 import { useQuery } from '@tanstack/react-query';
 
 import { hentOppgaver } from '../api/oppgaverApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { Oppgave } from '../types/Oppgave';
+import { ApiError } from '../utils/errorHandlers';
 
 /**
  * Henter alle oppgaver for innlogget deltaker
