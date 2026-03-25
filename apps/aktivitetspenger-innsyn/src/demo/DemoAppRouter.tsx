@@ -1,7 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import { HashRouter } from 'react-router-dom';
 
-import DemoInformasjon from './DemoInformasjon';
 import ScenarioHeader from './ScenarioHeader';
 
 const DemoAppRouter = ({ children }: { children: React.ReactNode }) => {
@@ -10,11 +9,8 @@ const DemoAppRouter = ({ children }: { children: React.ReactNode }) => {
             <div className="demoMode">
                 <VStack gap="space-40">
                     <ScenarioHeader />
-                    <aside>
-                        <DemoInformasjon />
-                    </aside>
                 </VStack>
-                {children}
+                <VStack marginBlock="space-0 space-128">{children}</VStack>
             </div>
         </HashRouter>
     );
