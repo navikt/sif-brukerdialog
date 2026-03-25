@@ -265,6 +265,53 @@ export const MyComponent = () => {
 
 ---
 
+## Fase 0 — Pre-flight (utled filstier uten søk)
+
+Filstiene er **deterministiske** og avledes direkte fra komponent- eller stegnavnet. Ikke søk bredt i kodebasen — les de kjente filene direkte i parallell.
+
+### Steg-komponent i en app
+
+Gitt en komponent i `steps/<steg-mappenavn>/`, les følgende fire filer i parallell:
+
+| Fil | Formål |
+| --- | --- |
+| `steps/<steg-mappenavn>/<StegComponent>.tsx` | Komponentfilen med hardkodede tekster |
+| `steps/<steg-mappenavn>/i18n/nb.ts` | Eksisterende nb-nøkler for steget |
+| `steps/<steg-mappenavn>/i18n/nn.ts` | Eksisterende nn-nøkler for steget |
+| `i18n/nb/appMessages.ts` | Bekrefter steg-modulen er registrert |
+
+Eksempel: For `AndreYtelserSteg.tsx` i `steps/andre-ytelser/`, les:
+- `steps/andre-ytelser/AndreYtelserSteg.tsx`
+- `steps/andre-ytelser/i18n/nb.ts`
+- `steps/andre-ytelser/i18n/nn.ts`
+- `i18n/nb/appMessages.ts`
+
+### Side-komponent i en app
+
+Gitt en komponent i `pages/<side-mappenavn>/`, les:
+
+| Fil | Formål |
+| --- | --- |
+| `pages/<side-mappenavn>/<PageComponent>.tsx` | Komponentfilen med hardkodede tekster |
+| `pages/<side-mappenavn>/i18n/nb.ts` | Eksisterende nb-nøkler for siden |
+| `pages/<side-mappenavn>/i18n/nn.ts` | Eksisterende nn-nøkler for siden |
+| `i18n/index.tsx` | Bekrefter siden er inkludert i app-meldingene |
+
+### Pakke-komponent
+
+Gitt en komponent i `src/<type>/<komponent>/`, les:
+
+| Fil | Formål |
+| --- | --- |
+| `src/<type>/<komponent>/<Component>.tsx` | Komponentfilen med hardkodede tekster |
+| `src/<type>/<komponent>/i18n/nb.ts` | Eksisterende nb-nøkler |
+| `src/<type>/<komponent>/i18n/nn.ts` | Eksisterende nn-nøkler |
+| `src/i18n/index.tsx` | Bekrefter komponenten er registrert i pakke-messages |
+
+> **Regel:** Hvis alle fire filene leses i parallell i én batch, har du all nødvendig kontekst. Ikke gjør ytterligere søk.
+
+---
+
 ## Fase 1a — Implementering
 
 Når du skal opprette eller oppdatere i18n-filer:
@@ -279,14 +326,67 @@ Når du skal opprette eller oppdatere i18n-filer:
 
 ## Fase 1b uttrekk av tekster fra en eller flere komponenter
 
-Når du skal trekke ut tekster som er inline i en komponent, gjør følgende:
+### Steg 1 — Inventar alle komponenter parallelt
 
-1. Se om dette er en gruppe av komponenter som deler en naturlig felles kontekst (f.eks. et steg eller en side). Hvis ja, opprett `i18n/nb.ts` og `i18n/nn.ts` i den relevante folderen (f.eks. `steps/barn/i18n/nb.ts`).
+Les alle aktuelle komponentfiler i én parallell `read_file`-batch. Formålet er å lage en komplett liste over inline tekster FØR du oppretter noen filer.
+
+For hvert steg som skal ekstraheres, les hovedkomponenten (f.eks. `BostedForm.tsx`, `OppsummeringSteg.tsx`).
+
+Fra hver fil, noter alle hardkodede tekster:
+- **String-props:** `legend="..."`, `aria-label="..."`, `title="..."`, `placeholder="..."`
+- **Template literals i props:** `` legend={`Tekst ${x}?`} `` → i18n-nøkkel med `{param}`
+- **Same-line JSX children:** `<Heading>Tekst</Heading>`, `<Alert variant="info">Tekst</Alert>`
+- **Multi-line JSX children:** tekst som står på egen linje mellom åpnings- og lukketag
+
+**Hva som IKKE skal ekstraheres:**
+- Komponent-props som er enums/konstanter (f.eks. `variant="warning"`, `size="small"`)
+- Tekst som allerede er i18n (f.eks. `text('nøkkel')` eller `<AppText id="..." />`)
+- TODO-kommentarer i JSX
+
+**Effektivisering:** Bruk én parallell `read_file`-batch for alle steg. Samle alle funn i en mental tabell (`steg → nøkkel → tekst`) før du går videre til steg 2.
+
+### Steg 2 — Opprett alle i18n-filer
+
+For hvert steg med inline tekster:
+
+1. Opprett `i18n/nb.ts` og `i18n/nn.ts` i stegets folder (f.eks. `steps/bosted/i18n/nb.ts`).
 2. Trekk ut alle tekstene fra komponentene og plasser dem i `nb.ts` med passende nøkler (f.eks. `barnSteg.tittel`, `barnSteg.spørsmål.harBarn`). Navnet på variabelen er komponentnavnet + "Messages" (f.eks. `barnStegMessages_nb`).
 3. Opprett `nn.ts` med `Record<keyof typeof nb, string>` og spread `...nb` — **ikke oversett tekstene til nynorsk**. Nynorsk-oversettelse gjøres manuelt av utvikler i etterkant.
 4. **For pakker:** importer og spread `_nb`-variabelen i pakkens `i18n/index.tsx` (i `nb`-objektet), slik at meldingene eksporteres via `sifSoknadUiMessages` / `applicationIntlMessages`. Uten dette steget er meldingene ikke tilgjengelige i konsumerende apper.
     - Importer og spread også `_nn`-variabelen i `nn`-objektet **bare hvis den inneholder faktiske nynorsk-oversettelser** (dvs. ikke er kun `{ ...nb }`). Hvis `nn.ts` bare er et spread av `nb`, er `...nb` i `nn` allerede tilstrekkelig — ikke legg til redundant import.
 5. Tekstene eksporteres i `appMessages.ts` ved å spre `...barnStegMessages_nb` og `...barnStegMessages_nn`.
+
+### Steg 3 — Oppdater alle komponenter (batch)
+
+Bruk `multi_replace_string_in_file` for å oppdatere ALLE komponenter i én operasjon.
+
+Regelen for **hook vs. komponent**:
+- **String-props** (legend, aria-label, title, placeholder) → `text('nøkkel')` fra hook
+- **JSX children** → `<AppText id="nøkkel" />` komponent
+
+For **hver** komponent som oppdateres:
+- Legg til `import { AppText, useAppIntl } from '@app/i18n';` — utelat `useAppIntl` om kun children brukes, utelat `AppText` om kun string-props brukes
+- Legg til `const { text } = useAppIntl();` kun hvis `text()` brukes
+
+```tsx
+// String-prop → hook
+<YesOrNoQuestion
+    name={Field.borITrondheim}
+    legend={text('bostedSteg.spørsmål.borITrondheim')}
+/>
+
+// Template literal med param → hook
+<YesOrNoQuestion
+    legend={text('kontonummerSteg.spørsmål.kontonummerErRiktig', { kontonummer: info.kontonummer })}
+/>
+
+// JSX children → komponent
+<Heading><AppText id="bostedUtlandSteg.bosteder.tittel" /></Heading>
+<Button><AppText id="bostedUtlandSteg.bosteder.leggTil" /></Button>
+<Checkbox validate={...}>
+    <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
+</Checkbox>
+```
 
 ### Komponent vs. hook i komponenten som oppdateres
 

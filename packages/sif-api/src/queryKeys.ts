@@ -6,4 +6,5 @@ export const sifCommonQueryKeys = {
     validerFritekst: ['validerFritekst'] as const,
     vedlegg: ['vedlegg'] as const,
     mellomlagring: ['mellomlagring'] as const,
+    oppgaver: ['oppgaver'] as const,
 } as const;
