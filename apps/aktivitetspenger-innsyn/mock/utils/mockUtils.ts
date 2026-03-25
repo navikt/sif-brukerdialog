@@ -1,6 +1,6 @@
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { RapporterInntektOppgave } from '@sif/api';
+import { RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
 import dayjs from 'dayjs';
 
 import { store } from '../state/store';

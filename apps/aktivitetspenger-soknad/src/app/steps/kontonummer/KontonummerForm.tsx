@@ -5,7 +5,7 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api';
+import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion } from '@sif/soknad-ui/components';

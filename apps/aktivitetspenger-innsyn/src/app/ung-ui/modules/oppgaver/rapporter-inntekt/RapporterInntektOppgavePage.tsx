@@ -1,6 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { RapporterInntektOppgave } from '@sif/api';
+import { RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 

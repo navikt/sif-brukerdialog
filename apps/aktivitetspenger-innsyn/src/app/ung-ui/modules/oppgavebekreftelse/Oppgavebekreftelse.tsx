@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { BekreftelseOppgave } from '@sif/api';
+import { BekreftelseOppgave } from '@sif/api/ung-brukerdialog';
 import { useMemo, useState } from 'react';
 
 import { useAppIntl } from '../../../i18n';

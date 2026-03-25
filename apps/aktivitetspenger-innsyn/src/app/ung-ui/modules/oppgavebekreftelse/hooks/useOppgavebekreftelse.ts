@@ -1,4 +1,4 @@
-import { BekreftelseOppgave } from '@sif/api';
+import { BekreftelseOppgave } from '@sif/api/ung-brukerdialog';
 import { createContext, useContext } from 'react';
 
 interface OppgavebekreftelseContextType {

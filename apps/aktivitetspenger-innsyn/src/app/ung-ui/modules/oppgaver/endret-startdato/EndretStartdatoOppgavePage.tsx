@@ -1,5 +1,5 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { EndretStartdatoOppgave } from '@sif/api';
+import { EndretStartdatoOppgave } from '@sif/api/ung-brukerdialog';
 import { ReactNode } from 'react';
 
 import { AppText, useAppIntl } from '../../../../i18n';

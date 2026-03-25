@@ -1,4 +1,5 @@
-import { RegistrertBarn, Søker, UtvidetKontonummerInfo } from '@sif/api';
+import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 
 import { Søknadsdata } from './Soknadsdata';
 

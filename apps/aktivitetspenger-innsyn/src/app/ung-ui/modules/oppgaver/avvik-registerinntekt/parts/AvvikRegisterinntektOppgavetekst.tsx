@@ -1,6 +1,6 @@
 import { BodyLong, Box, List, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { AvvikRegisterinntektOppgave } from '@sif/api';
+import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 import dayjs from 'dayjs';
 import { ReactNode } from 'react';
 

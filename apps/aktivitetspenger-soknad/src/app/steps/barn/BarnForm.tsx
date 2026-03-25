@@ -6,7 +6,7 @@ import { BarnSøknadsdata } from '@app/types/Soknadsdata';
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { FormLayout, RegistrerteBarnListe, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { RegistrertBarn } from '@sif/api';
+import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { AriaLiveRegion, ExternalLink } from '@sif/soknad-ui/components';
 

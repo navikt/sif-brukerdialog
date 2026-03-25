@@ -1,6 +1,6 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { BekreftelseOppgave, Oppgave, ParsedOppgaveBase, ParsedOppgavetype } from '@sif/api';
+import { BekreftelseOppgave, Oppgave, ParsedOppgaveBase, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
 import { AppIntlShape } from '../../i18n';
 import { UttalelseSvaralternativer } from '../types';

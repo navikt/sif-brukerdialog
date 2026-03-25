@@ -1,4 +1,4 @@
-import { ParsedOppgavetype } from '@sif/api';
+import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { useParams } from 'react-router-dom';
 
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';

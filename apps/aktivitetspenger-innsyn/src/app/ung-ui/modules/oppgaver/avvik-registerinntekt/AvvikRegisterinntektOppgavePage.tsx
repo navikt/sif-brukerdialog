@@ -1,5 +1,5 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { AvvikRegisterinntektOppgave } from '@sif/api';
+import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { AppText, useAppIntl } from '../../../../i18n';
 import DefaultPageLayout from '../../../components/layout/DefaultPageLayout';

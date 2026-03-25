@@ -1,5 +1,5 @@
 import { ArbeidOgFrilansRegisterInntektDto, YtelseRegisterInntektDto } from '@navikt/ung-brukerdialog-api';
-import { AvvikRegisterinntektOppgave } from '@sif/api';
+import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { AppIntlShape } from '../../../../i18n';
 import { InntektTableRow } from '../../../components/inntekt-table/InntektTabell';

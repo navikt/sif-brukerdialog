@@ -1,5 +1,5 @@
 import { VStack } from '@navikt/ds-react';
-import { Oppgave } from '@sif/api';
+import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppIntl } from '../../../i18n';

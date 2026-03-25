@@ -1,4 +1,5 @@
-import { Oppgave, Søker } from '@sif/api';
+import { Søker } from '@sif/api/k9-prosessering';
+import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { InnsynContextProvider } from './context/InnsynContext';

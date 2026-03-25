@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@sif/api';
+import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
 import { Mellomlagring, SøknadFormValues } from '@sif/soknad/types';
 
 import { Søknadsdata } from './Soknadsdata';

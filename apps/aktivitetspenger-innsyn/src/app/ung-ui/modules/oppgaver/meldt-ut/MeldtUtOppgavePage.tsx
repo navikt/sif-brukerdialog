@@ -1,4 +1,4 @@
-import { MeldtUtOppgave } from '@sif/api';
+import { MeldtUtOppgave } from '@sif/api/ung-brukerdialog';
 
 import { AppText, useAppIntl } from '../../../../i18n';
 import DefaultPageLayout from '../../../components/layout/DefaultPageLayout';

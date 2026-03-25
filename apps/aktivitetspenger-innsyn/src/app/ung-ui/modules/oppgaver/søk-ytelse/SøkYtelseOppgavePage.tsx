@@ -1,4 +1,4 @@
-import { SøkYtelseOppgave } from '@sif/api';
+import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 
 import DefaultPageLayout from '../../../components/layout/DefaultPageLayout';
 import SøkYtelseOppgavetekst from './part/SøkYtelseOppgavetekst';

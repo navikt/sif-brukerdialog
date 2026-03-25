@@ -1,5 +1,6 @@
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
-import { Oppgave, Søker, useOppgaver, useSøker } from '@sif/api';
+import { Søker, useSøker } from '@sif/api/k9-prosessering';
+import { Oppgave, useOppgaver } from '@sif/api/ung-brukerdialog';
 
 interface InitialData {
     søker: Søker;

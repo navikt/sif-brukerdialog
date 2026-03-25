@@ -10,7 +10,7 @@ import {
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
-import { useRapporterInntekt } from '@sif/api';
+import { useRapporterInntekt } from '@sif/api/k9-prosessering';
 import { useState } from 'react';
 
 import { AppText, useAppIntl } from '../../../../i18n';

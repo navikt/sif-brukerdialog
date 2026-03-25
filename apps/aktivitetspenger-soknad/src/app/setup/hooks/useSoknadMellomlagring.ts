@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { MellomlagringMetaData, SøknadMellomlagring } from '@app/types/Mellomlagring';
-import { useYtelseMellomlagring } from '@sif/api';
+import { useYtelseMellomlagring } from '@sif/api/k9-prosessering';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
