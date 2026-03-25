@@ -15,11 +15,7 @@ import RapporterInntektKvittering from './RapporterInntektKvittering';
 import RapporterInntektUbesvart from './RapporterInntektUbesvart';
 import RapportertInntektOppsummering from './RapportertInntektOppsummering';
 
-const RapporterInntektOppgavePart = ({
-    deltakerNavn,
-    oppgave,
-    initialKvitteringData,
-}: RapporterInntektOppgaveProps) => {
+const RapporterInntektOppgavePart = ({ navn, oppgave, initialKvitteringData }: RapporterInntektOppgaveProps) => {
     const periode: DateRange = { from: oppgave.oppgavetypeData.fraOgMed, to: oppgave.oppgavetypeData.tilOgMed };
     const månedOgÅr = dateFormatter.monthFullYear(periode.from);
     const måned = dateFormatter.month(periode.from);
@@ -47,7 +43,7 @@ const RapporterInntektOppgavePart = ({
             case OppgaveStatus.ULØST:
                 return (
                     <RapporterInntektUbesvart
-                        deltakerNavn={deltakerNavn}
+                        navn={navn}
                         oppgave={oppgave}
                         initialKvitteringData={initialKvitteringData}
                         periode={periode}

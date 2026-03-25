@@ -7,13 +7,13 @@ import { ReactNode } from 'react';
 import { AppText, useAppIntl } from '../../../../../i18n';
 
 interface Props {
-    deltakerNavn: string;
+    navn: string;
     periode: DateRange;
     svarfrist: Date;
     gjelderDelerAvMåned?: boolean;
 }
 
-const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelderDelerAvMåned }: Props) => {
+const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelderDelerAvMåned }: Props) => {
     const frist = dateFormatter.full(svarfrist);
     const måned = dateFormatter.month(periode.from);
 
@@ -21,7 +21,7 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode, gjelde
     return (
         <VStack gap="space-16">
             <Heading level="2" size="medium">
-                <AppText id="rapporterInntektOppgavetekst.tittel" values={{ deltakerNavn }} />
+                <AppText id="rapporterInntektOppgavetekst.tittel" values={{ navn }} />
             </Heading>
             <Box maxWidth="90%">
                 <VStack gap="space-24">

@@ -1,7 +1,7 @@
 import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
 
-import { scenarioBaseData } from '../data/deltakerBaseScenarioData';
 import { getMockOppgaver } from '../data/oppgaver';
+import { scenarioBaseData } from '../data/scenarioBaseData';
 import { ScenarioData, ScenarioType } from './types';
 
 export interface Scenario {

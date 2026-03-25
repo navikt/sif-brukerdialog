@@ -14,14 +14,14 @@ interface Props extends RapporterInntektOppgaveProps {
     setKvitteringData: (data: RapporterInntektKvitteringData) => void;
 }
 
-const RapporterInntektUbesvart = ({ oppgave, deltakerNavn, periode, måned, setKvitteringData }: Props) => {
+const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKvitteringData }: Props) => {
     const navigate = useNavigate();
 
     return (
         <VStack gap="space-40">
             <GuidePanel>
                 <RapporterInntektOppgavetekst
-                    deltakerNavn={deltakerNavn}
+                    navn={navn}
                     periode={periode}
                     svarfrist={oppgave.sisteDatoEnKanSvare}
                     gjelderDelerAvMåned={oppgave.oppgavetypeData.gjelderDelerAvMåned}

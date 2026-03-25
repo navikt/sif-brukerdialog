@@ -46,7 +46,7 @@ const OppgavePage = () => {
             return <MeldtUtOppgavePage navn={fornavn} oppgave={oppgave} />;
 
         case ParsedOppgavetype.RAPPORTER_INNTEKT:
-            return <RapporterInntektOppgavePage oppgave={oppgave} deltakerNavn={fornavn} />;
+            return <RapporterInntektOppgavePage oppgave={oppgave} navn={fornavn} />;
 
         case ParsedOppgavetype.SØK_YTELSE:
             return <SøkYtelseOppgavePage oppgave={oppgave} />;
@@ -55,7 +55,7 @@ const OppgavePage = () => {
             return <FjernetPeriodeOppgavePage oppgave={oppgave} navn={fornavn} />;
 
         case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
-            return <EndretStartOgSluttdatoOppgavePage deltakerNavn={fornavn} oppgave={oppgave} />;
+            return <EndretStartOgSluttdatoOppgavePage navn={fornavn} oppgave={oppgave} />;
     }
 };
 

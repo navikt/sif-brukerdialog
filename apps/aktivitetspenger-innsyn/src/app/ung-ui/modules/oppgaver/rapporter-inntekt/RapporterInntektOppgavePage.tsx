@@ -10,7 +10,7 @@ import { getOppgaveDokumentTittel } from '../../../utils/textUtils';
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
 export interface RapporterInntektOppgaveProps {
-    deltakerNavn: string;
+    navn: string;
     oppgave: RapporterInntektOppgave;
     initialKvitteringData?: RapporterInntektKvitteringData;
 }

@@ -1,5 +1,5 @@
 export const rapporterInntektMessages_nb = {
-    'rapporterInntektOppgavetekst.tittel': 'Hei {deltakerNavn}',
+    'rapporterInntektOppgavetekst.tittel': 'Hei {navn}',
     'rapporterInntektOppgavetekst.intro.1': 'Gi oss beskjed hvis du hadde inntekt i {måned}.',
     'rapporterInntektOppgavetekst.intro.2':
         'Inntekt er lønn, men det kan også være for eksempel etterbetaling, feriepenger, overtid og tillegg for ubekevem arbeidstid.',

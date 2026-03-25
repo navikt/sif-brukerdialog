@@ -80,7 +80,7 @@ interface UbesvartProps {
 
 const Ubesvart = ({ children }: UbesvartProps) => {
     const appIntl = useAppIntl();
-    const { oppgave, visKvittering, setVisKvittering, navn: deltakerNavn } = useOppgavebekreftelse();
+    const { oppgave, visKvittering, setVisKvittering, navn } = useOppgavebekreftelse();
     const navigate = useNavigate();
 
     if (oppgave.status !== OppgaveStatus.ULØST || visKvittering) return null;
@@ -91,7 +91,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                 <GuidePanel>
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
-                            <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ deltakerNavn }} />
+                            <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ navn }} />
                         </Heading>
                         <Box maxWidth="90%">{children}</Box>
                         <Box marginBlock="space-0 space-16">

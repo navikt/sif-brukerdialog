@@ -49,7 +49,7 @@ export const ungUi_messages_nb = {
     'oppgaveOgTilbakemelding.beskjedFraNav': 'Beskjed fra Nav',
     'oppgaveOgTilbakemelding.tilbakemeldingLabel': 'Tilbakemelding',
 
-    'oppgavebekreftelse.ubesvart.tittel': 'Hei {deltakerNavn}',
+    'oppgavebekreftelse.ubesvart.tittel': 'Hei {navn}',
     'oppgavebekreftelse.kvittering.tittel': 'Svaret ditt er sendt inn',
     'oppgavebekreftelse.besvart.svarMangler': 'Informasjon om hva du svarte er ikke tilgjengelig enda.',
 

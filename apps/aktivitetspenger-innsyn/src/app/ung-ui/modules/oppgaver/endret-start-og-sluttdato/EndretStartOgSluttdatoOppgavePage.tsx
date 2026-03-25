@@ -9,12 +9,12 @@ import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import EndretStartOgSluttdatoOppgavetekst from './parts/EndretStartOgSluttdatoOppgavetekst';
 
 interface Props {
-    deltakerNavn: string;
+    navn: string;
     oppgave: EndretStartOgSluttdatoOppgave;
     initialVisKvittering?: boolean;
 }
 
-const EndretStartOgSluttdatoOppgavePage = ({ deltakerNavn: navn, oppgave, initialVisKvittering }: Props) => {
+const EndretStartOgSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
 
     return (
