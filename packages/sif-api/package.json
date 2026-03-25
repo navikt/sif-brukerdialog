@@ -16,8 +16,8 @@
     },
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
-        "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/ung-brukerdialog-api": "workspace:*",
         "@tanstack/react-query": "5.91.0",
         "axios": "1.13.6",
         "dayjs": "1.11.20",
