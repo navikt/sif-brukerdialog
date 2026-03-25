@@ -92,14 +92,14 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 
 ### `@sif/api/ung-brukerdialog` (ung-brukerdialog-api)
 
-| Hook                    | Returnerer  | Typisk caching |
-| ----------------------- | ----------- | -------------- |
+| Hook                  | Returnerer  | Typisk caching |
+| --------------------- | ----------- | -------------- |
 | `useOppgaver(ytelse)` | `Oppgave[]` | —              |
 
 ### `@sif/api/ung-deltaker` (ung-deltakelse-opplyser-api-deltaker)
 
-| Hook                      | Returnerer               | Typisk caching |
-| ------------------------- | ------------------------ | -------------- |
+| Hook                       | Returnerer               | Typisk caching    |
+| -------------------------- | ------------------------ | ----------------- |
 | `useKontonummer(enabled?)` | `KontonummerDto \| null` | staleTime: 20 min |
 
 ---
@@ -123,11 +123,11 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 
 **Hooks:** `useOppgaver`
 
-| Element       | Verdi                                                                                         |
-| ------------- | --------------------------------------------------------------------------------------------- |
-| Pakke         | `@navikt/ung-brukerdialog-api`                                                                |
-| Init-funksjon | Konfigureres via server-side proxy; ingen eksplisitt klient-init i frontend                   |
-| Env-variabler | Konfigurert av server; ingen direkte env-skjema-utvidelse nødvendig i `env.schema.ts`         |
+| Element       | Verdi                                                                                          |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| Pakke         | `@navikt/ung-brukerdialog-api`                                                                 |
+| Init-funksjon | `initUngBrukerdialogApiClient({ onUnAuthorized })`                                             |
+| Env-variabler | `UNG_BRUKERDIALOG_API_FRONTEND_PATH`, `UNG_BRUKERDIALOG_API_SCOPE`, `UNG_BRUKERDIALOG_API_URL` |
 
 ### `@sif/api/ung-deltaker` — ung-deltakelse-opplyser-api-deltaker
 
@@ -158,13 +158,14 @@ Verifiser at appens `env.schema.ts` (typisk på app-root) har riktig env-schema 
 
 ```typescript
 // env.schema.ts
-import { commonEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
 
 export const appEnvSchema = z
     .object({
         /* app-spesifikke env-keys */
     })
     .extend(commonEnvSchema.shape) // k9-brukerdialog-prosessering
+    .extend(ungBrukerdialogApiEnvSchema.shape) // kun hvis useOppgaver trengs
     .extend(ungDeltakelseOpplyserEnvSchema.shape); // kun hvis useKontonummer trengs
 ```
 
@@ -177,13 +178,18 @@ Verifiser at appens `src/app/api/initApiClients.ts` (eller tilsvarende) kaller r
 ```typescript
 // initApiClients.ts
 import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
-import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
+import { initUngBrukerdialogApiClient } from '@navikt/ung-brukerdialog-api';
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
 
 export const initApiClients = () => {
     initK9BrukerdialogProsesseringApiClients({
         frontendPath: getRequiredEnv(EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH),
         loginURL: '#',
+    });
+    // Kun hvis useOppgaver trengs:
+    initUngBrukerdialogApiClient({
+        onUnAuthorized: () => globalThis.location.reload(),
     });
     // Kun hvis useKontonummer trengs:
     initUngDeltakelseOpplyserApiDeltakerClient({
