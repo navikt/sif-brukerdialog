@@ -241,7 +241,7 @@ export type HentAlleOppgaverData = {
          */
         ytelsetype?: OppgaveYtelsetype;
     };
-    url: '/ekstern/api/oppgave/hent/alle';
+    url: '/ung/brukerdialog/ekstern/api/oppgave/hent/alle';
 };
 
 export type HentAlleOppgaverResponses = {
@@ -262,7 +262,7 @@ export type HentOppgaveData = {
         oppgavereferanse: string;
     };
     query?: never;
-    url: '/ekstern/api/oppgave/{oppgavereferanse}';
+    url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}';
 };
 
 export type HentOppgaveResponses = {
@@ -286,7 +286,7 @@ export type LøsOppgaveData = {
         oppgavereferanse: string;
     };
     query?: never;
-    url: '/ekstern/api/oppgave/{oppgavereferanse}/løs';
+    url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}/løs';
 };
 
 export type LøsOppgaveResponses = {

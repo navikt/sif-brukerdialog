@@ -1,7 +1,9 @@
-import { AktivitetspengerController, Aktivitetspengersøknad } from '@navikt/k9-brukerdialog-prosessering-api';
-import { commonRequestHeader, handleApiError } from '@navikt/ung-common';
+import { AktivitetspengerController } from '@navikt/k9-brukerdialog-prosessering-api';
+import { commonRequestHeader, handleApiError } from '@sif/api';
 
-export const sendSøknad = async (data: Aktivitetspengersøknad): Promise<any> => {
+import { SøknadApiData } from '../types/SøknadApiData';
+
+export const sendSøknad = async (data: SøknadApiData): Promise<any> => {
     try {
         await AktivitetspengerController.innsendingAktivitetspengersøknad({
             body: data,
