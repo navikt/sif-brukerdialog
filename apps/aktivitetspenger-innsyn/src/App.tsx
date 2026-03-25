@@ -9,11 +9,11 @@ import { FaroProvider } from '@navikt/sif-common-faro';
 import MockDate from 'mockdate';
 import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
-import { BrowserRouter } from 'react-router-dom';
 
 import { getMockToday } from '../mock/utils/mockDate';
 import { initApiClients } from './app/api/initApiClients';
 import { getAppEnv } from './app/appEnv';
+import AppRouter from './app/AppRouter';
 import { applicationIntlMessages } from './app/i18n';
 import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
@@ -60,9 +60,9 @@ export const App = () => {
                 <AppErrorBoundary>
                     <SifQueryClientProvider>
                         <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                            <BrowserRouter basename={basePath}>
+                            <AppRouter>
                                 <InitialDataLoader />
-                            </BrowserRouter>
+                            </AppRouter>
                         </IntlProvider>
                     </SifQueryClientProvider>
                 </AppErrorBoundary>

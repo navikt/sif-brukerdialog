@@ -37,8 +37,10 @@ export default defineConfig({
         port: 8080,
     },
     define: {
+        __IS_DEMO__: true,
         __INJECT_DECORATOR_CLIENT_SIDE__: true,
         __USE_FIXED_MOCKED_DATE__: false,
+        __IS_GITHUB_PAGES__: false,
     },
 
     server: {
