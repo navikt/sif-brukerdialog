@@ -11,7 +11,7 @@ import { ApiError } from '../utils/errorHandlers';
  */
 export const useOppgaver = (ytelsetype: OppgaveYtelsetype, enabled = true) => {
     return useQuery<Oppgave[], ApiError>({
-        queryKey: sifCommonQueryKeys.oppgaver,
+        queryKey: [...sifCommonQueryKeys.oppgaver, ytelsetype],
         queryFn: () => hentOppgaver(ytelsetype),
         staleTime: 1000 * 60 * 20, // 20 minutter
         enabled,
