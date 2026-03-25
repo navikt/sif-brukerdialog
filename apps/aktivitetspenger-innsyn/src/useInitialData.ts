@@ -1,3 +1,4 @@
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { Oppgave, Søker, useOppgaver, useSøker } from '@sif/api';
 
 interface InitialData {
@@ -12,7 +13,7 @@ type InitialDataResult =
 
 export const useInitialData = (): InitialDataResult => {
     const søker = useSøker();
-    const oppgaver = useOppgaver();
+    const oppgaver = useOppgaver(OppgaveYtelsetype.AKTIVITETSPENGER);
 
     const requiredQueries = [søker, oppgaver];
 
@@ -28,8 +29,6 @@ export const useInitialData = (): InitialDataResult => {
     if (!søker.data || !oppgaver.data) {
         return { status: 'error', errors: [new Error('Hent initial data feilet')] };
     }
-
-    console.log(oppgaver.data);
 
     return {
         status: 'success',
