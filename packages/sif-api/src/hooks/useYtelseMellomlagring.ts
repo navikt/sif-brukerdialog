@@ -8,7 +8,7 @@ import {
     opprettYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from '../api/ytelseMellomlagringApi';
-import { sifCommonQueryKeys } from '../queryKeys';
+import { sifApiQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
 
 interface MellomlagringPayload<State> extends Record<string, unknown> {
@@ -40,7 +40,7 @@ export const useYtelseMellomlagring = <State, MetaData>(
     },
 ) => {
     const queryClient = useQueryClient();
-    const queryKey = [...sifCommonQueryKeys.mellomlagring, ytelse, 'validated'];
+    const queryKey = [...sifApiQueryKeys.mellomlagring, ytelse, 'validated'];
 
     const query = useQuery<State | null>({
         queryKey,

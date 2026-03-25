@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 
 import { validerFritekst } from '../api';
-import { sifCommonQueryKeys } from '../queryKeys';
+import { sifApiQueryKeys } from '../queryKeys';
 import { invalidParameterProblemDetailSchema, InvalidParameterViolation } from '../types/invalidParameterProblemDetail';
 import { isApiAxiosError } from '../utils/errorHandlers';
 
@@ -18,7 +18,7 @@ export const useValiderFritekst = (fritekst?: string) => {
     const enabled = !!fritekst && fritekst.trim().length > 0;
 
     const { isPending, isError, error } = useQuery({
-        queryKey: [...sifCommonQueryKeys.validerFritekst, fritekst],
+        queryKey: [...sifApiQueryKeys.validerFritekst, fritekst],
         queryFn: () => validerFritekst({ verdi: fritekst! }),
         enabled,
         retry: 0,

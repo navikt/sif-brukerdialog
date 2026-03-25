@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { hentSøker } from '../api/sokerApi';
-import { sifCommonQueryKeys } from '../queryKeys';
+import { sifApiQueryKeys } from '../queryKeys';
 import { Søker } from '../types/Soker';
 import { ApiError } from '../utils/errorHandlers';
 
@@ -15,7 +15,7 @@ import { ApiError } from '../utils/errorHandlers';
  */
 export const useSøker = (enabled = true) => {
     return useQuery<Søker, ApiError>({
-        queryKey: sifCommonQueryKeys.søker,
+        queryKey: sifApiQueryKeys.søker,
         queryFn: hentSøker,
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg aldri

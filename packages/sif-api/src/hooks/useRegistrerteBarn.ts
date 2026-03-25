@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { hentRegistrerteBarn } from '../api/registrerteBarnApi';
-import { sifCommonQueryKeys } from '../queryKeys';
+import { sifApiQueryKeys } from '../queryKeys';
 import { RegistrertBarn } from '../types/Barn';
 import { ApiError } from '../utils/errorHandlers';
 
@@ -15,7 +15,7 @@ import { ApiError } from '../utils/errorHandlers';
  */
 export const useRegistrerteBarn = (enabled = true) => {
     return useQuery<RegistrertBarn[], ApiError>({
-        queryKey: sifCommonQueryKeys.barn,
+        queryKey: sifApiQueryKeys.barn,
         queryFn: hentRegistrerteBarn,
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg sjelden

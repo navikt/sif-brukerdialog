@@ -1,4 +1,4 @@
-export const sifCommonQueryKeys = {
+export const sifApiQueryKeys = {
     kontonummer: ['kontonummer'] as const,
     søker: ['søker'] as const,
     barn: ['barn'] as const,

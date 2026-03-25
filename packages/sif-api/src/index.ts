@@ -1,5 +1,5 @@
 // Query keys
-export { sifCommonQueryKeys } from './queryKeys';
+export { sifApiQueryKeys } from './queryKeys';
 
 // Utils (kryssdomene)
 export * from './utils/errorHandlers';
