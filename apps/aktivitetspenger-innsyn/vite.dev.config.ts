@@ -36,6 +36,11 @@ export default defineConfig({
     preview: {
         port: 8080,
     },
+    define: {
+        __INJECT_DECORATOR_CLIENT_SIDE__: true,
+        __USE_FIXED_MOCKED_DATE__: false,
+    },
+
     server: {
         port: 8080,
         proxy: {

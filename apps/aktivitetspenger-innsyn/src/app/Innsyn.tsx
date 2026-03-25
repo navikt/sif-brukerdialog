@@ -8,10 +8,10 @@ interface Props {
     oppgaver: Oppgave[];
 }
 
-export const Innsyn = ({ søker, oppgaver }: Props) => {
+export const Innsyn = ({ oppgaver }: Props) => {
     return (
         <Routes>
-            <Route path="/" element={<InnsynForside søker={søker} oppgaver={oppgaver} />} />
+            <Route path="/" element={<InnsynForside oppgaver={oppgaver} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
