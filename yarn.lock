@@ -6027,7 +6027,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api":
+"@navikt/ung-brukerdialog-api@workspace:*, @navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api":
   version: 0.0.0-use.local
   resolution: "@navikt/ung-brukerdialog-api@workspace:packages/ung-brukerdialog-api"
   dependencies:
@@ -9263,8 +9263,8 @@ __metadata:
   resolution: "@sif/api@workspace:packages/sif-api"
   dependencies:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
-    "@navikt/k9-sak-innsyn-api": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
+    "@navikt/ung-brukerdialog-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@tanstack/react-query": "npm:5.91.0"
     "@types/react": "npm:19.2.14"
