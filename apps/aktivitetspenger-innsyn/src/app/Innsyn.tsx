@@ -1,18 +1,24 @@
 import { Oppgave, Søker } from '@sif/api';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { InnsynForside } from './pages/forside/Forside';
+import { InnsynContextProvider } from './context/InnsynContext';
+import { ForsidePage } from './pages/ForsidePage';
+import OppgavePage from './pages/OppgavePage';
 
 interface Props {
     søker: Søker;
     oppgaver: Oppgave[];
 }
 
-export const Innsyn = ({ oppgaver }: Props) => {
+export const Innsyn = ({ søker, oppgaver }: Props) => {
     return (
-        <Routes>
-            <Route path="/" element={<InnsynForside oppgaver={oppgaver} />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <InnsynContextProvider søker={søker} oppgaver={oppgaver} refetchOppgaver={() => Promise.resolve()}>
+            <Routes>
+                <Route path="/" element={<ForsidePage oppgaver={oppgaver} />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+                <Route path="oppgave" element={<Navigate to="/" replace={true} />} />
+                <Route path="oppgave/:oppgaveReferanse/:kvittering?" element={<OppgavePage />} />
+            </Routes>
+        </InnsynContextProvider>
     );
 };

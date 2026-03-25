@@ -1,11 +1,49 @@
+import { avvikRegisterinntektMessages_nb } from '../modules/oppgaver/avvik-registerinntekt/i18n/nb';
+import { endretSluttdatoMessages_nb } from '../modules/oppgaver/endret-sluttdato/i18n/nb';
+import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgaver/endret-start-og-sluttdato/i18n/nb';
+import { endretStartdatoMessages_nb } from '../modules/oppgaver/endret-startdato/i18n/nb';
+import { fjernetPeriodeMessages_nb } from '../modules/oppgaver/fjernet-periode/i18n/nb';
+import { meldtUtMessages_nb } from '../modules/oppgaver/meldt-ut/i18n/nb';
+import { rapporterInntektMessages_nb } from '../modules/oppgaver/rapporter-inntekt/i18n/nb';
+import { søkYtelseOppgaveMessages_nb } from '../modules/oppgaver/søk-ytelse/i18n/nb';
+
 export const ungUi_messages_nb = {
+    ...avvikRegisterinntektMessages_nb,
+    ...endretStartOgSluttdatoMessages_nb,
+    ...endretSluttdatoMessages_nb,
+    ...endretSluttdatoMessages_nb,
+    ...endretStartdatoMessages_nb,
+    ...fjernetPeriodeMessages_nb,
+    ...meldtUtMessages_nb,
+    ...rapporterInntektMessages_nb,
+    ...søkYtelseOppgaveMessages_nb,
+
+    Ja: 'Ja',
+    Nei: 'Nei',
+
     'oppgaveStatusInfo.utløptEllerAvbrutt': 'Denne oppgaven gjelder ikke lenger, du trenger ikke gjør noe.',
+
+    'forsideLenkeButton.tekst': 'Tilbake til oversikten',
+
+    'ytelse.DAGPENGER': 'Dagpenger',
+    'ytelse.SYKEPENGER': 'Sykepenger',
+    'ytelse.FORELDREPENGER': 'Foreldrepenger',
+    'ytelse.OMSORGSPENGER': 'Omsorgspenger',
+    'ytelse.PLEIEPENGER': 'Pleiepenger',
+    'ytelse.OPPLÆRINGSPENGER': 'Opplæringspenger',
+    'ytelse.AAP': 'Arbeidsavklaringspenger',
+    'ytelse.ANNET': 'Annet',
 
     '@ung-ui.pageLayout.main.ariaLabel': 'Hovedinnhold',
     '@ung-ui.dineOppgaver': 'Dine oppgaver',
     '@ung-ui.ingenUløsteOppgaver': 'Du har ingen uløste oppgaver',
     '@ung-ui.tidligereOppgaver': 'Tidligere oppgaver',
     '@ung-ui.ingenTidligereOppgaver': 'Du har ingen tidligere oppgaver',
+
+    'oppgaveIkkeFunnetPage.dokumentTittel': 'Oppgave ikke funnet',
+    'oppgaveIkkeFunnetPage.tittel': 'Oppgave ikke funnet',
+    'oppgaveIkkeFunnetPage.utenId': 'Vi kunne ikke finne oppgaven - referansen mangler.',
+    'oppgaveIkkeFunnetPage.medId': 'Vi kunne ikke finne oppgaven med referanse {oppgaveReferanse}.',
 
     'oppgaveOgTilbakemelding.header': 'Beskjed og ditt svar',
     'oppgaveOgTilbakemelding.beskjedFraNav': 'Beskjed fra Nav',

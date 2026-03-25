@@ -2,16 +2,16 @@ import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
-import { AppText } from '../../i18n';
-import ForsideHeader from '../../ung-ui/components/forside-header/ForsideHeader';
-import InnsynForsideLayout from '../../ung-ui/components/innsyn-forside/InnsynForsideLayout';
-import OppgaverList from '../../ung-ui/components/oppgaver-list/OppgaverList';
+import { AppText } from '../i18n';
+import ForsideHeader from '../ung-ui/components/forside-header/ForsideHeader';
+import InnsynForsideLayout from '../ung-ui/components/innsyn-forside/InnsynForsideLayout';
+import OppgaverList from '../ung-ui/components/oppgaver-list/OppgaverList';
 
 interface Props {
     oppgaver: any[];
 }
 
-export const InnsynForside = ({ oppgaver }: Props) => {
+export const ForsidePage = ({ oppgaver }: Props) => {
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
