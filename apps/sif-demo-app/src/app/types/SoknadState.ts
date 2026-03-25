@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@sif/api';
+import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
 
 import { Søknadsdata } from './Soknadsdata';
 

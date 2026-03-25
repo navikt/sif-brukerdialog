@@ -17,7 +17,7 @@ export const sifValidate = (
     };
 };
 
-export const useSifValidate = (scope?: string) => {
+export const useSifValidate = (scope: string) => {
     const intl = useIntl();
     return {
         validateField: (fieldName: string, validator: SifValidator) => sifValidate(validator, fieldName, intl, scope),
