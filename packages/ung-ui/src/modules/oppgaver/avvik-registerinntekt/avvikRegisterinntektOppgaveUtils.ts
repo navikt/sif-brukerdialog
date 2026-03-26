@@ -26,7 +26,7 @@ const mapYtelseInntektToInntektTabellRad = (
     }
     return inntekt.map((i) => ({
         beløp: i.inntekt,
-        navn: intl.text(`ytelse.${i.ytelsetype}`),
+        navn: intl.text(`@ungUi.ytelse.${i.ytelsetype}`),
     }));
 };
 
@@ -35,11 +35,11 @@ const getInntektskildeHeader = (oppgave: AvvikRegisterinntektOppgave, intl: UngU
     const harArbeidgiverInntekt = (oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter || []).length > 0;
 
     if (harYtelser && harArbeidgiverInntekt) {
-        return intl.text('avvikRegisterinntekt.inntekskilde.arbeidsgiverYtelse');
+        return intl.text('@ungUi.avvikRegisterinntekt.inntekskilde.arbeidsgiverYtelse');
     } else if (harYtelser && !harArbeidgiverInntekt) {
-        return intl.text('avvikRegisterinntekt.inntekskilde.navytelse');
+        return intl.text('@ungUi.avvikRegisterinntekt.inntekskilde.navytelse');
     }
-    return intl.text('avvikRegisterinntekt.inntekskilde.arbeidsgiver');
+    return intl.text('@ungUi.avvikRegisterinntekt.inntekskilde.arbeidsgiver');
 };
 
 export const avvikRegisterinntektOppgaveUtils = {

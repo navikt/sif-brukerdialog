@@ -25,20 +25,20 @@ export const ForsidePage = ({ oppgaver }: Props) => {
                 <VStack gap="space-40">
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
-                            <AppText id="@ung-ui.dineOppgaver" />
+                            <AppText id="dineOppgaver" />
                         </Heading>
 
                         {uløsteOppgaver.length > 0 ? (
                             <OppgaverList oppgaver={uløsteOppgaver} />
                         ) : (
                             <BodyLong>
-                                <AppText id="@ung-ui.ingenUløsteOppgaver" />
+                                <AppText id="ingenUløsteOppgaver" />
                             </BodyLong>
                         )}
                     </VStack>
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
-                            <AppText id="@ung-ui.tidligereOppgaver" />
+                            <AppText id="tidligereOppgaver" />
                         </Heading>
                         {tidligereOppgaver.length > 0 ? (
                             <OppgaverList
@@ -48,7 +48,7 @@ export const ForsidePage = ({ oppgaver }: Props) => {
                             />
                         ) : (
                             <BodyLong>
-                                <AppText id="@ung-ui.ingenTidligereOppgaver" />
+                                <AppText id="ingenTidligereOppgaver" />
                             </BodyLong>
                         )}
                     </VStack>

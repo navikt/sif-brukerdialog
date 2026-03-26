@@ -15,7 +15,7 @@ export const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
                 <Alert variant="info">
                     <Box>
                         <BodyLong>
-                            <UngUiText id="oppgaveStatusInfo.utløptEllerAvbrutt" />
+                            <UngUiText id="@ungUi.oppgaveStatusInfo.utløptEllerAvbrutt" />
                         </BodyLong>
                     </Box>
                 </Alert>

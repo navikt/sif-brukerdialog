@@ -24,12 +24,12 @@ export const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinnte
 
     return (
         <>
-            <UngUiText id="avvikRegisterinntektOppsummering.intro" values={{ rapporteringsmåned }} />
+            <UngUiText id="@ungUi.avvikRegisterinntektOppsummering.intro" values={{ rapporteringsmåned }} />
             <InntektTable
                 inntekt={inntekt}
                 navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
-                totalColHeader={intl.text('inntektTabell.totalt')}
-                beløpRowHeader={intl.text('inntektTabell.inntekt')}
+                totalColHeader={intl.text('@ungUi.inntektTabell.totalt')}
+                beløpRowHeader={intl.text('@ungUi.inntektTabell.inntekt')}
                 total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
             />
         </>

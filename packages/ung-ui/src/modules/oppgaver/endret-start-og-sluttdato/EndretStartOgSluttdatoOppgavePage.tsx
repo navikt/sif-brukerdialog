@@ -24,7 +24,7 @@ export const EndretStartOgSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvi
 
             <Oppgavebekreftelse.Besvart>
                 <UngUiText
-                    id="endretStartOgSluttdato.oppsummering"
+                    id="@ungUi.endretStartOgSluttdato.oppsummering"
                     values={{
                         fom: dateFormatter.full(oppgave.oppgavetypeData.nyPeriode.from),
                         tom: dateFormatter.full(oppgave.oppgavetypeData.nyPeriode.to),
@@ -34,7 +34,7 @@ export const EndretStartOgSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvi
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.kvitteringTekst" />
+                <UngUiText id="@ungUi.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

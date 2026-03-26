@@ -28,13 +28,13 @@ export const EndretStartdatoOppgavePage = ({ navn, oppgave, initialVisKvittering
 
             <Oppgavebekreftelse.Besvart>
                 <UngUiText
-                    id="endretStartdato.oppsummering"
+                    id="@ungUi.endretStartdato.oppsummering"
                     values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst" />
+                <UngUiText id="@ungUi.oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

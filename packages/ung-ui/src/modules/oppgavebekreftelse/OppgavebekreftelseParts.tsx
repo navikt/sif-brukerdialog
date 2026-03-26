@@ -31,13 +31,13 @@ const OppgaveOgTilbakemelding = ({
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2" id="summaryHeading">
-                        <UngUiText id="oppgaveOgTilbakemelding.header" />
+                        <UngUiText id="@ungUi.oppgaveOgTilbakemelding.header" />
                     </FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
                         <FormSummary.Label>
-                            <UngUiText id="oppgaveOgTilbakemelding.beskjedFraNav" />
+                            <UngUiText id="@ungUi.oppgaveOgTilbakemelding.beskjedFraNav" />
                         </FormSummary.Label>
                         <FormSummary.Value>
                             <Box marginBlock="space-8 space-0">
@@ -60,7 +60,7 @@ const OppgaveOgTilbakemelding = ({
                     <FormSummary.Answers>
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                <UngUiText id="oppgaveOgTilbakemelding.tilbakemeldingLabel" />
+                                <UngUiText id="@ungUi.oppgaveOgTilbakemelding.tilbakemeldingLabel" />
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 <TextareaSvar text={bekreftelse.uttalelseFraBruker} />
@@ -86,11 +86,11 @@ const Ubesvart = ({ children }: UbesvartProps) => {
 
     return (
         <VStack gap="space-32">
-            <section aria-label={UngUiIntl.text('oppgavebekreftelse.oppgavetekst.ariaLabel')}>
+            <section aria-label={UngUiIntl.text('@ungUi.oppgavebekreftelse.oppgavetekst.ariaLabel')}>
                 <GuidePanel>
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
-                            <UngUiText id="oppgavebekreftelse.ubesvart.tittel" values={{ navn }} />
+                            <UngUiText id="@ungUi.oppgavebekreftelse.ubesvart.tittel" values={{ navn }} />
                         </Heading>
                         <Box maxWidth="90%">{children}</Box>
                         <Box marginBlock="space-0 space-16">
@@ -99,7 +99,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                     </VStack>
                 </GuidePanel>
             </section>
-            <section aria-label={UngUiIntl.text('oppgavebekreftelse.uttalelseform.ariaLabel')}>
+            <section aria-label={UngUiIntl.text('@ungUi.oppgavebekreftelse.uttalelseform.ariaLabel')}>
                 <UtalelseForm
                     svaralternativer={getSvaralternativer(oppgave, UngUiIntl)}
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, UngUiIntl)}
@@ -135,7 +135,7 @@ const Kvittering = ({ children }: KvitteringProps) => {
         <>
             <Alert variant="success" tabIndex={-1} ref={alertRef}>
                 <Heading level="2" size="small" spacing>
-                    <UngUiText id="oppgavebekreftelse.kvittering.tittel" />
+                    <UngUiText id="@ungUi.oppgavebekreftelse.kvittering.tittel" />
                 </Heading>
                 {children}
             </Alert>
@@ -171,7 +171,7 @@ const Besvart = ({ children }: BesvartProps) => {
         if (oppgave.status === OppgaveStatus.LØST && !oppgave.respons) {
             return (
                 <Alert variant="info">
-                    <UngUiText id="oppgavebekreftelse.besvart.svarMangler" />
+                    <UngUiText id="@ungUi.oppgavebekreftelse.besvart.svarMangler" />
                 </Alert>
             );
         }

@@ -30,7 +30,7 @@ export const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvitt
 
             <Oppgavebekreftelse.Kvittering>
                 <UngUiText
-                    id="oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst"
+                    id="@ungUi.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst"
                     values={{
                         utbetalingsmåned: dateFormatter.monthFullYear(utbetalingsmåned),
                     }}

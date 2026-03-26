@@ -9,16 +9,16 @@ interface Props {
 const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
     const { text } = useAppIntl();
     return (
-        <InnsynPage documentTitle={text('oppgaveIkkeFunnetPage.dokumentTittel')}>
+        <InnsynPage documentTitle={text('@ungUi.oppgaveIkkeFunnetPage.dokumentTittel')}>
             <VStack gap="space-16">
                 <Heading size="large" level="1">
-                    {text('oppgaveIkkeFunnetPage.tittel')}
+                    {text('@ungUi.oppgaveIkkeFunnetPage.tittel')}
                 </Heading>
                 <Alert variant="error">
                     {oppgaveReferanse ? (
-                        <BodyShort>{text('oppgaveIkkeFunnetPage.medId', { oppgaveReferanse })}</BodyShort>
+                        <BodyShort>{text('@ungUi.oppgaveIkkeFunnetPage.medId', { oppgaveReferanse })}</BodyShort>
                     ) : (
-                        <BodyShort>{text('oppgaveIkkeFunnetPage.utenId')}</BodyShort>
+                        <BodyShort>{text('@ungUi.oppgaveIkkeFunnetPage.utenId')}</BodyShort>
                     )}
                 </Alert>
             </VStack>

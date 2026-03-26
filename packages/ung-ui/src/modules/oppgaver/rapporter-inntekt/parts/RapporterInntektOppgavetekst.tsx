@@ -21,23 +21,23 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
     return (
         <VStack gap="space-16">
             <Heading level="2" size="medium">
-                <UngUiText id="rapporterInntektOppgavetekst.tittel" values={{ navn }} />
+                <UngUiText id="@ungUi.rapporterInntektOppgavetekst.tittel" values={{ navn }} />
             </Heading>
             <Box maxWidth="90%">
                 <VStack gap="space-24">
                     <BodyLong>
                         <UngUiText
-                            id="rapporterInntektOppgavetekst.intro.1"
+                            id="@ungUi.rapporterInntektOppgavetekst.intro.1"
                             values={{
                                 måned,
                             }}
                         />{' '}
-                        <UngUiText id="rapporterInntektOppgavetekst.intro.2" />
+                        <UngUiText id="@ungUi.rapporterInntektOppgavetekst.intro.2" />
                     </BodyLong>
                     {gjelderDelerAvMåned && (
                         <BodyLong>
                             <UngUiText
-                                id="rapporterInntektOppgavetekst.intro.delerAvMåned"
+                                id="@ungUi.rapporterInntektOppgavetekst.intro.delerAvMåned"
                                 values={{
                                     måned,
                                 }}
@@ -45,38 +45,38 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
                         </BodyLong>
                     )}
                     <Bleed marginBlock="space-8 space-0">
-                        <ReadMore header={text('rapporterInntektOppgave.readMore.tittel')}>
+                        <ReadMore header={text('@ungUi.rapporterInntektOppgave.readMore.tittel')}>
                             <BodyLong>
-                                <UngUiText id="rapporterInntektOppgave.readMore.tekst.1" />
+                                <UngUiText id="@ungUi.rapporterInntektOppgave.readMore.tekst.1" />
                             </BodyLong>
                             <Box marginBlock="space-8 space-24">
                                 <List>
                                     <List.Item>
-                                        <UngUiText id="rapporterInntektOppgave.readMore.liste.1" />
+                                        <UngUiText id="@ungUi.rapporterInntektOppgave.readMore.liste.1" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="rapporterInntektOppgave.readMore.liste.2" />
+                                        <UngUiText id="@ungUi.rapporterInntektOppgave.readMore.liste.2" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="rapporterInntektOppgave.readMore.liste.3" />
+                                        <UngUiText id="@ungUi.rapporterInntektOppgave.readMore.liste.3" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="rapporterInntektOppgave.readMore.liste.4" />
+                                        <UngUiText id="@ungUi.rapporterInntektOppgave.readMore.liste.4" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="rapporterInntektOppgave.readMore.liste.5" />
+                                        <UngUiText id="@ungUi.rapporterInntektOppgave.readMore.liste.5" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="rapporterInntektOppgave.readMore.liste.6" />
+                                        <UngUiText id="@ungUi.rapporterInntektOppgave.readMore.liste.6" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="rapporterInntektOppgave.readMore.liste.7" />
+                                        <UngUiText id="@ungUi.rapporterInntektOppgave.readMore.liste.7" />
                                     </List.Item>
                                 </List>
                             </Box>
                             <BodyLong spacing>
                                 <UngUiText
-                                    id="rapporterInntektOppgave.readMore.tekst.3"
+                                    id="@ungUi.rapporterInntektOppgave.readMore.tekst.3"
                                     values={{
                                         link: (value) => (
                                             <ExternalLink href="todo" target="_blank" rel="noopener noreferrer">
@@ -90,13 +90,13 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
                     </Bleed>
                     <BodyLong>
                         <UngUiText
-                            id="rapporterInntektOppgave.intro.3"
+                            id="@ungUi.rapporterInntektOppgave.intro.3"
                             values={{ frist, strong: (content: ReactNode) => <strong>{content}</strong> }}
                         />
                     </BodyLong>
                     <BodyLong>
                         <UngUiText
-                            id="rapporterInntektOppgave.intro.4"
+                            id="@ungUi.rapporterInntektOppgave.intro.4"
                             values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
                         />
                     </BodyLong>

@@ -32,7 +32,7 @@ export const EndretSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst" />
+                <UngUiText id="@ungUi.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

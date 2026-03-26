@@ -26,7 +26,7 @@ export const MeldtUtOppgavePage = ({ navn, oppgave, initialVisKvittering }: Prop
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst" />
+                <UngUiText id="@ungUi.oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

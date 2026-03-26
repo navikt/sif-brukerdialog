@@ -11,7 +11,7 @@ interface EndretSluttdatoOppsummeringProps {
 export const EndretSluttdatoOppsummering = ({ forrigeSluttdato, nySluttdato }: EndretSluttdatoOppsummeringProps) => {
     return (
         <UngUiText
-            id="endretSluttdato.oppsummering.endret"
+            id="@ungUi.endretSluttdato.oppsummering.endret"
             values={{
                 forrige: dateFormatter.full(forrigeSluttdato),
                 ny: dateFormatter.full(nySluttdato),

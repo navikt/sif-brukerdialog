@@ -84,8 +84,8 @@ export const UtalelseForm = ({
             renderForm={({ values }) => {
                 return (
                     <Form
-                        submitButtonLabel={text('uttalelseForm.submitButtonLabel')}
-                        cancelButtonLabel={text('uttalelseForm.cancelButtonLabel')}
+                        submitButtonLabel={text('@ungUi.uttalelseForm.submitButtonLabel')}
+                        cancelButtonLabel={text('@ungUi.uttalelseForm.cancelButtonLabel')}
                         onCancel={onCancel}
                         isFinalSubmit={true}
                         submitPending={isPending}
@@ -109,7 +109,7 @@ export const UtalelseForm = ({
                                     description={
                                         uttalelseDescription || (
                                             <BodyLong>
-                                                <UngUiText id="uttalelseForm.defaultDescription" />
+                                                <UngUiText id="@ungUi.uttalelseForm.defaultDescription" />
                                             </BodyLong>
                                         )
                                     }

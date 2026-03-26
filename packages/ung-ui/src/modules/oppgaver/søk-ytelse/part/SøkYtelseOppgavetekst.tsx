@@ -16,10 +16,10 @@ export const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
         return (
             <VStack gap="space-24">
                 <Heading level="1" size="large">
-                    <UngUiText id="oppgavetype.SØK_YTELSE.oppgavetittel" />
+                    <UngUiText id="@ungUi.oppgavetype.SØK_YTELSE.oppgavetittel" />
                 </Heading>
                 <Alert variant="info">
-                    <UngUiText id="søkYtelseOppgave.uløst.info" />
+                    <UngUiText id="@ungUi.søkYtelseOppgave.uløst.info" />
                 </Alert>
                 <div>
                     <ForsideLenkeButton />
@@ -33,29 +33,29 @@ export const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
-                <UngUiText id="oppgavetype.SØK_YTELSE.oppgavetittel" />
+                <UngUiText id="@ungUi.oppgavetype.SØK_YTELSE.oppgavetittel" />
             </Heading>
             <section aria-labelledby="summaryHeading">
                 <FormSummary>
                     <FormSummary.Header>
                         <FormSummary.Heading level="2" id="summaryHeading">
-                            <UngUiText id="søkYtelseOppgave.oppsummering.tittel" />
+                            <UngUiText id="@ungUi.søkYtelseOppgave.oppsummering.tittel" />
                         </FormSummary.Heading>
                     </FormSummary.Header>
                     <FormSummary.Answers>
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                <UngUiText id="søkYtelseOppgave.oppsummering.startdato" />
+                                <UngUiText id="@ungUi.søkYtelseOppgave.oppsummering.startdato" />
                             </FormSummary.Label>
                             <FormSummary.Value>{dateFormatter.full(oppgave.oppgavetypeData.fomDato)}</FormSummary.Value>
                         </FormSummary.Answer>
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                <UngUiText id="søkYtelseOppgave.oppsummering.dineSvar" />
+                                <UngUiText id="@ungUi.søkYtelseOppgave.oppsummering.dineSvar" />
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 <UngUiText
-                                    id="søkYtelseOppgave.oppsummering.dineSvar.tekst"
+                                    id="@ungUi.søkYtelseOppgave.oppsummering.dineSvar.tekst"
                                     values={{
                                         link: (chunks: React.ReactNode) => (
                                             <Link href="#" target="_blank" rel="noreferrer">

@@ -42,12 +42,12 @@ export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                     <BodyLong>
                         {harKunYtelseInntekt ? (
                             <UngUiText
-                                id="avvikRegisterinntektOppgavetekst.navYtelse"
+                                id="@ungUi.avvikRegisterinntektOppgavetekst.navYtelse"
                                 values={{ rapporteringsmåned: rapporteringsmånedOgÅr }}
                             />
                         ) : (
                             <UngUiText
-                                id="avvikRegisterinntektOppgavetekst.generell"
+                                id="@ungUi.avvikRegisterinntektOppgavetekst.generell"
                                 values={{ rapporteringsmåned: rapporteringsmånedOgÅr }}
                             />
                         )}
@@ -57,22 +57,22 @@ export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                         <InntektTable
                             inntekt={inntekt}
                             navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
-                            beløpRowHeader={intl.text('inntektTabell.inntekt')}
-                            totalColHeader={intl.text('inntektTabell.totalt')}
+                            beløpRowHeader={intl.text('@ungUi.inntektTabell.inntekt')}
+                            totalColHeader={intl.text('@ungUi.inntektTabell.totalt')}
                             total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
                         />
                     </Box>
                     {oppgave.oppgavetypeData.gjelderDelerAvMåned ? (
                         // Når perioden oppgaven ikke gjelder alle virkedager i måneden
                         <BodyLong>
-                            <UngUiText id="avvikRegisterinntektOppgavetekst.1.harInntekt.delerAvMåned" />
+                            <UngUiText id="@ungUi.avvikRegisterinntektOppgavetekst.1.harInntekt.delerAvMåned" />
                         </BodyLong>
                     ) : (
                         <BodyLong>
                             {harKunYtelseInntekt ? (
-                                <UngUiText id="avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse" />
+                                <UngUiText id="@ungUi.avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse" />
                             ) : (
-                                <UngUiText id="avvikRegisterinntektOppgavetekst.1.harInntekt" />
+                                <UngUiText id="@ungUi.avvikRegisterinntektOppgavetekst.1.harInntekt" />
                             )}
                         </BodyLong>
                     )}
@@ -81,12 +81,15 @@ export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                 <>
                     <BodyLong>
                         <UngUiText
-                            id="avvikRegisterinntektOppgavetekst.ingenOpplysninger"
+                            id="@ungUi.avvikRegisterinntektOppgavetekst.ingenOpplysninger"
                             values={{ rapporteringsmåned }}
                         />
                     </BodyLong>
                     <BodyLong>
-                        <UngUiText id="avvikRegisterinntektOppgavetekst.ingenInntekt" values={{ rapporteringsmåned }} />
+                        <UngUiText
+                            id="@ungUi.avvikRegisterinntektOppgavetekst.ingenInntekt"
+                            values={{ rapporteringsmåned }}
+                        />
                     </BodyLong>
                 </>
             )}
@@ -95,29 +98,29 @@ export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                     <List>
                         <List.Item>
                             <UngUiText
-                                id="avvikRegisterinntektOppgavetekst.3"
+                                id="@ungUi.avvikRegisterinntektOppgavetekst.3"
                                 values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
                             />
                         </List.Item>
                         <List.Item>
                             <UngUiText
-                                id="avvikRegisterinntektOppgavetekst.4"
+                                id="@ungUi.avvikRegisterinntektOppgavetekst.4"
                                 values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
                             />
                         </List.Item>
                     </List>
                 </Box>
                 <BodyLong weight="semibold">
-                    <UngUiText id="avvikRegisterinntektOppgavetekst.5" />
+                    <UngUiText id="@ungUi.avvikRegisterinntektOppgavetekst.5" />
                 </BodyLong>
                 <BodyLong spacing>
-                    <UngUiText id="avvikRegisterinntektOppgavetekst.6" values={{ formatertFrist }} />
+                    <UngUiText id="@ungUi.avvikRegisterinntektOppgavetekst.6" values={{ formatertFrist }} />
                 </BodyLong>
                 <BodyLong>
                     {harKunYtelseInntekt ? (
-                        <UngUiText id="avvikRegisterinntektOppgavetekst.7.kunYtelse" />
+                        <UngUiText id="@ungUi.avvikRegisterinntektOppgavetekst.7.kunYtelse" />
                     ) : (
-                        <UngUiText id="avvikRegisterinntektOppgavetekst.7" />
+                        <UngUiText id="@ungUi.avvikRegisterinntektOppgavetekst.7" />
                     )}
                 </BodyLong>
             </Box>

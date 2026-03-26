@@ -17,24 +17,24 @@ export const MeldUtOppgavetekst = ({ sluttdato, svarfrist }: Props) => {
         <>
             <BodyLong spacing>
                 <UngUiText
-                    id="meldtUt.oppgavetekst.1"
+                    id="@ungUi.meldtUt.oppgavetekst.1"
                     values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="meldtUt.oppgavetekst.2" />
+                <UngUiText id="@ungUi.meldtUt.oppgavetekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="meldtUt.oppgavetekst.3" />
+                <UngUiText id="@ungUi.meldtUt.oppgavetekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="meldtUt.oppgavetekst.4" />
+                <UngUiText id="@ungUi.meldtUt.oppgavetekst.4" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <UngUiText id="meldtUt.oppgavetekst.svarfrist" values={{ formatertFrist }} />
+                <UngUiText id="@ungUi.meldtUt.oppgavetekst.svarfrist" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong>
-                <UngUiText id="meldtUt.oppgavetekst.5" values={{ formatertDato }} />
+                <UngUiText id="@ungUi.meldtUt.oppgavetekst.5" values={{ formatertDato }} />
             </BodyLong>
         </>
     );

@@ -62,7 +62,7 @@ export const RapporterInntektOppgavePart = ({
                         {arbeidstakerOgFrilansInntekt === undefined ? (
                             /** Oppgaven er akkurat besvart og informasjonen er ikke kommet på oppgaven som er lastet inn */
                             <Alert variant="info">
-                                <UngUiText id="rapporterInntektOppgavePart.løst.utenInfo" />
+                                <UngUiText id="@ungUi.rapporterInntektOppgavePart.løst.utenInfo" />
                             </Alert>
                         ) : (
                             <RapportertInntektOppsummering måned={måned} inntekt={arbeidstakerOgFrilansInntekt} />
@@ -79,7 +79,7 @@ export const RapporterInntektOppgavePart = ({
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
-                <UngUiText id="rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
+                <UngUiText id="@ungUi.rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
             </Heading>
             {kvitteringData ? (
                 <RapporterInntektKvittering ref={kvitteringAlertRef} kvitteringData={kvitteringData} />
