@@ -2,17 +2,20 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { isISODate, ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import {
+    BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
     EndretSluttdatoDataDto,
     EndretStartdatoDataDto,
     InntektsrapporteringOppgavetypeDataDto,
     KontrollerRegisterinntektOppgavetypeDataDto,
-    OppgaveDto,
+    OppgaveResponsDto,
     OppgaveStatus,
-    Oppgavetype,
+    OppgaveType,
     PeriodeEndringType,
+    RapportertInntektDto,
     SøkYtelseOppgavetypeDataDto,
-} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+    SvarPåVarselDto,
+} from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
 
 import {
@@ -26,6 +29,8 @@ import {
     ParsedOppgaveBase,
     ParsedOppgavetype,
     RapporterInntektOppgave,
+    RapportertInntektRespons,
+    SvarPåVarselRespons,
 } from '../../types/Oppgave';
 import { getSisteDatoEnKanSvare } from '../../utils/svarfristUtils';
 
@@ -39,16 +44,52 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
             return OppgaveStatus.AVBRUTT;
         case 'UTLØPT':
             return OppgaveStatus.UTLØPT;
-        case 'LUKKET':
-            return OppgaveStatus.LUKKET;
         default:
             throw new Error(`Ukjent oppgavestatus: ${status}`);
     }
 };
 
-const getOppgaveBaseProps = (oppgave: OppgaveDto): Omit<ParsedOppgaveBase, 'oppgavetype'> => {
+const isSvarPåVarselRespons = (respons: any): respons is SvarPåVarselDto & OppgaveResponsDto => {
+    return respons.type === 'VARSEL_SVAR';
+};
+
+const parseSvarPåVarselRespons = (respons?: any): SvarPåVarselRespons | undefined => {
+    if (!respons || !isSvarPåVarselRespons(respons)) {
+        return undefined;
+    }
+    if (respons.type === 'VARSEL_SVAR') {
+        const parsedRespons: SvarPåVarselRespons = {
+            type: 'VARSEL_SVAR',
+            harUttalelse: respons.harUttalelse,
+            uttalelseFraBruker: respons.uttalelseFraBruker,
+        };
+        return parsedRespons;
+    }
+    return undefined;
+};
+
+const isRapportertInntektRespons = (respons: any): respons is RapportertInntektDto & OppgaveResponsDto => {
+    return respons.type === 'RAPPORTERT_INNTEKT';
+};
+
+const parseRapportertInntektRespons = (respons?: any): RapportertInntektRespons | undefined => {
+    if (!respons || !isRapportertInntektRespons(respons)) {
+        return undefined;
+    }
+    if (respons.type === 'RAPPORTERT_INNTEKT') {
+        const parsedRespons: RapportertInntektRespons = {
+            type: 'RAPPORTERT_INNTEKT',
+            arbeidstakerOgFrilansInntekt: respons.arbeidstakerOgFrilansInntekt,
+            fraOgMed: ISODateToDate(respons.fraOgMed),
+            tilOgMed: ISODateToDate(respons.tilOgMed),
+        };
+        return parsedRespons;
+    }
+    return undefined;
+};
+
+const getOppgaveBaseProps = (oppgave: BrukerdialogOppgaveDto): Omit<ParsedOppgaveBase, 'oppgavetype'> => {
     const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
-    const åpnetDato = oppgave.åpnetDato ? dayjs.utc(oppgave.åpnetDato).toDate() : undefined;
     const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
     const svarfrist = oppgave.frist ? dayjs.utc(oppgave.frist).toDate() : ISODateToDate('2099-01-01');
     return {
@@ -57,12 +98,11 @@ const getOppgaveBaseProps = (oppgave: OppgaveDto): Omit<ParsedOppgaveBase, 'oppg
         opprettetDato,
         sisteDatoEnKanSvare: getSisteDatoEnKanSvare(svarfrist),
         løstDato,
-        åpnetDato,
     };
 };
 
 const getEndretSluttdatoOppgave = (
-    oppgave: OppgaveDto,
+    oppgave: BrukerdialogOppgaveDto,
     nySluttdato: string,
     forrigeSluttdato: string | undefined,
 ): EndretSluttdatoOppgave | MeldtUtOppgave => {
@@ -74,7 +114,7 @@ const getEndretSluttdatoOppgave = (
                 forrigeSluttdato: ISODateToDate(forrigeSluttdato),
                 nySluttdato: ISODateToDate(nySluttdato),
             },
-            bekreftelse: oppgave.bekreftelse,
+            respons: parseSvarPåVarselRespons(oppgave.respons),
         };
     }
     return {
@@ -83,12 +123,12 @@ const getEndretSluttdatoOppgave = (
         oppgavetypeData: {
             sluttdato: ISODateToDate(nySluttdato),
         },
-        bekreftelse: oppgave.bekreftelse,
+        respons: parseSvarPåVarselRespons(oppgave.respons),
     };
 };
 
 const getEndretStartdatoOppgave = (
-    oppgave: OppgaveDto,
+    oppgave: BrukerdialogOppgaveDto,
     nyStartdato: string,
     forrigeStartdato: string,
 ): EndretStartdatoOppgave => ({
@@ -98,10 +138,10 @@ const getEndretStartdatoOppgave = (
         forrigeStartdato: ISODateToDate(forrigeStartdato),
         nyStartdato: ISODateToDate(nyStartdato),
     },
-    bekreftelse: oppgave.bekreftelse,
+    respons: parseSvarPåVarselRespons(oppgave.respons),
 });
 
-const getOppgaveFraEndretPeriodeOppgave = (oppgave: OppgaveDto): Oppgave => {
+const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Oppgave => {
     const { endringer, forrigePeriode, nyPeriode } = oppgave.oppgavetypeData as EndretPeriodeDataDto;
 
     /** Endret startdato */
@@ -109,24 +149,26 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: OppgaveDto): Oppgave => {
         endringer.length === 1 &&
         endringer.includes(PeriodeEndringType.ENDRET_STARTDATO) &&
         nyPeriode &&
-        forrigePeriode
+        nyPeriode.fomDato !== undefined &&
+        forrigePeriode &&
+        forrigePeriode.fomDato !== undefined
     ) {
-        return getEndretStartdatoOppgave(oppgave, nyPeriode.fom, forrigePeriode.fom);
+        return getEndretStartdatoOppgave(oppgave, nyPeriode.fomDato, forrigePeriode.fomDato);
     }
     /** Endret sluttdato */
     if (
         endringer.length === 1 &&
         endringer.includes(PeriodeEndringType.ENDRET_SLUTTDATO) &&
-        nyPeriode?.tom !== undefined
+        nyPeriode?.tomDato !== undefined
     ) {
-        return getEndretSluttdatoOppgave(oppgave, nyPeriode.tom, forrigePeriode?.tom);
+        return getEndretSluttdatoOppgave(oppgave, nyPeriode.tomDato, forrigePeriode?.tomDato);
     }
     /** Fjernet periode */
     if (endringer.length === 1 && endringer.includes(PeriodeEndringType.FJERNET_PERIODE)) {
         const fjernetPeriodeOppgave: FjernetPeriodeOppgave = {
             ...getOppgaveBaseProps(oppgave),
             oppgavetype: ParsedOppgavetype.BEKREFT_FJERNET_PERIODE,
-            bekreftelse: oppgave.bekreftelse,
+            respons: parseSvarPåVarselRespons(oppgave.respons),
         };
         return fjernetPeriodeOppgave;
     }
@@ -136,16 +178,25 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: OppgaveDto): Oppgave => {
         endringer.includes(PeriodeEndringType.ENDRET_STARTDATO) &&
         endringer.includes(PeriodeEndringType.ENDRET_SLUTTDATO) &&
         forrigePeriode &&
-        nyPeriode
+        forrigePeriode.fomDato !== undefined &&
+        nyPeriode &&
+        nyPeriode.fomDato !== undefined &&
+        nyPeriode.tomDato !== undefined
     ) {
         const endretStartOgSluttdatoOppgave: EndretStartOgSluttdatoOppgave = {
             ...getOppgaveBaseProps(oppgave),
             oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
             oppgavetypeData: {
-                forrigePeriode: mapPeriodeDtoToOpenDateRange(forrigePeriode),
-                nyPeriode: mapPeriodeDtoToDateRange(nyPeriode),
+                forrigePeriode: mapPeriodeDtoToOpenDateRange({
+                    fomDato: forrigePeriode.fomDato,
+                    tomDato: forrigePeriode.tomDato,
+                }),
+                nyPeriode: mapPeriodeDtoToDateRange({
+                    fomDato: nyPeriode.fomDato,
+                    tomDato: nyPeriode.tomDato,
+                }),
             },
-            bekreftelse: oppgave.bekreftelse,
+            respons: parseSvarPåVarselRespons(oppgave.respons),
         };
         return endretStartOgSluttdatoOppgave;
     }
@@ -153,23 +204,23 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: OppgaveDto): Oppgave => {
     throw new Error(`Kan ikke lage oppgave fra endret periode oppgave med endringer: ${endringer.join(', ')}`);
 };
 
-export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
+export const parseOppgaverElement = (oppgaver: BrukerdialogOppgaveDto[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
-            case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+            case OppgaveType.BEKREFT_ENDRET_STARTDATO:
                 const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;
                 parsedOppgaver.push(getEndretStartdatoOppgave(oppgave, nyStartdato, forrigeStartdato));
                 return;
-            case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+            case OppgaveType.BEKREFT_ENDRET_SLUTTDATO:
                 const { nySluttdato, forrigeSluttdato } = oppgave.oppgavetypeData as EndretSluttdatoDataDto;
                 parsedOppgaver.push(getEndretSluttdatoOppgave(oppgave, nySluttdato, forrigeSluttdato));
                 return;
-            case Oppgavetype.BEKREFT_ENDRET_PERIODE:
+            case OppgaveType.BEKREFT_ENDRET_PERIODE:
                 parsedOppgaver.push(getOppgaveFraEndretPeriodeOppgave(oppgave));
                 return;
 
-            case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
+            case OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT:
                 const avvikRegisterinntektData = oppgave.oppgavetypeData as KontrollerRegisterinntektOppgavetypeDataDto;
                 const avvikRegisterinntektOppgave: AvvikRegisterinntektOppgave = {
                     ...getOppgaveBaseProps(oppgave),
@@ -180,12 +231,12 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                         tilOgMed: ISODateToDate(avvikRegisterinntektData.tilOgMed),
                         gjelderDelerAvMåned: avvikRegisterinntektData.gjelderDelerAvMåned,
                     },
-                    bekreftelse: oppgave.bekreftelse,
+                    respons: parseSvarPåVarselRespons(oppgave.respons),
                 };
                 parsedOppgaver.push(avvikRegisterinntektOppgave);
                 return;
 
-            case Oppgavetype.RAPPORTER_INNTEKT:
+            case OppgaveType.RAPPORTER_INNTEKT:
                 const rapporterInntektData = oppgave.oppgavetypeData as InntektsrapporteringOppgavetypeDataDto;
                 const rapporterInntektOppgave: RapporterInntektOppgave = {
                     ...getOppgaveBaseProps(oppgave),
@@ -193,19 +244,14 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                     oppgavetypeData: {
                         fraOgMed: ISODateToDate(rapporterInntektData.fraOgMed),
                         tilOgMed: ISODateToDate(rapporterInntektData.tilOgMed),
-                        rapportertInntekt: rapporterInntektData.rapportertInntekt
-                            ? {
-                                  arbeidstakerOgFrilansInntekt:
-                                      rapporterInntektData.rapportertInntekt.arbeidstakerOgFrilansInntekt,
-                              }
-                            : undefined,
                         gjelderDelerAvMåned: rapporterInntektData.gjelderDelerAvMåned,
                     },
+                    respons: parseRapportertInntektRespons(oppgave.respons),
                 };
                 parsedOppgaver.push(rapporterInntektOppgave);
                 return;
 
-            case Oppgavetype.SØK_YTELSE:
+            case OppgaveType.SØK_YTELSE:
                 const { fomDato } = oppgave.oppgavetypeData as SøkYtelseOppgavetypeDataDto;
                 const sendSøknadOppgave: Oppgave = {
                     ...getOppgaveBaseProps(oppgave),
@@ -224,31 +270,31 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
     return parsedOppgaver;
 };
 
-const mapPeriodeDtoToOpenDateRange = (periode: { fom: string; tom?: string }): OpenDateRange => {
-    if (periode.fom && !isISODate(periode.fom)) {
-        throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fom}`);
+export const mapPeriodeDtoToOpenDateRange = (periode: { fomDato: string; tomDato?: string }): OpenDateRange => {
+    if (periode.fomDato && !isISODate(periode.fomDato)) {
+        throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fomDato}`);
     }
-    if (periode.tom && !isISODate(periode.tom)) {
-        throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tom}`);
+    if (periode.tomDato && !isISODate(periode.tomDato)) {
+        throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tomDato}`);
     }
     return {
-        from: ISODateToDate(periode.fom),
-        to: periode.tom ? ISODateToDate(periode.tom) : undefined,
+        from: ISODateToDate(periode.fomDato),
+        to: periode.tomDato ? ISODateToDate(periode.tomDato) : undefined,
     };
 };
 
-const mapPeriodeDtoToDateRange = (periode: { fom: string; tom?: string }): DateRange => {
-    if (periode.fom && !isISODate(periode.fom)) {
-        throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fom}`);
+export const mapPeriodeDtoToDateRange = (periode: { fomDato: string; tomDato?: string }): DateRange => {
+    if (!isISODate(periode.fomDato)) {
+        throw new Error(`Ugyldig datoformat for fom i periode: ${periode.fomDato}`);
     }
-    if (!periode.tom) {
-        throw new Error(`Tom-dato er undefined for perioden`);
+    if (!periode.tomDato) {
+        throw new Error(`Udefinert tom i periode: ${periode.tomDato}`);
     }
-    if (periode.tom && !isISODate(periode.tom)) {
-        throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tom}`);
+    if (!isISODate(periode.tomDato)) {
+        throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tomDato}`);
     }
     return {
-        from: ISODateToDate(periode.fom),
-        to: ISODateToDate(periode.tom),
+        from: ISODateToDate(periode.fomDato),
+        to: ISODateToDate(periode.tomDato),
     };
 };

@@ -1,12 +1,12 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { OpenDateRange } from '@navikt/sif-common-utils';
 import {
-    BekreftelseDto,
-    OppgaveDto,
+    BrukerdialogOppgaveDto,
     OppgaveStatus,
-    RapportertInntektPeriodeinfoDto,
+    RapportertInntektDto,
     RegisterinntektDto,
-} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+    SvarPåVarselDto,
+} from '@navikt/ung-brukerdialog-api';
 
 export enum ParsedOppgavetype {
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
@@ -18,9 +18,19 @@ export enum ParsedOppgavetype {
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
     SØK_YTELSE = 'SØK_YTELSE',
 }
+
+export type RapportertInntektRespons = Omit<RapportertInntektDto, 'fraOgMed' | 'tilOgMed'> & {
+    type: 'RAPPORTERT_INNTEKT';
+    fraOgMed: Date;
+    tilOgMed: Date;
+};
+
+export type SvarPåVarselRespons = SvarPåVarselDto & {
+    type: 'VARSEL_SVAR';
+};
 export interface ParsedOppgaveBase extends Omit<
-    OppgaveDto,
-    'oppgavetype' | 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist'
+    BrukerdialogOppgaveDto,
+    'oppgavetype' | 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist' | 'respons'
 > {
     oppgaveReferanse: string;
     oppgavetype: ParsedOppgavetype;
@@ -32,6 +42,10 @@ export interface ParsedOppgaveBase extends Omit<
     lukketDato?: Date;
 }
 
+export interface ParsedRapportertInntektOppgave extends ParsedOppgaveBase {
+    respons?: RapportertInntektRespons;
+}
+
 export interface AvvikRegisterinntektOppgave extends ParsedOppgaveBase {
     oppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
     oppgavetypeData: {
@@ -40,6 +54,7 @@ export interface AvvikRegisterinntektOppgave extends ParsedOppgaveBase {
         registerinntekt: RegisterinntektDto;
         gjelderDelerAvMåned: boolean;
     };
+    respons?: SvarPåVarselRespons;
 }
 
 export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
@@ -48,6 +63,7 @@ export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
         forrigeStartdato: Date;
         nyStartdato: Date;
     };
+    respons?: SvarPåVarselRespons;
 }
 export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
     oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO;
@@ -55,6 +71,7 @@ export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
         forrigeSluttdato: Date;
         nySluttdato: Date;
     };
+    respons?: SvarPåVarselRespons;
 }
 
 export interface MeldtUtOppgave extends ParsedOppgaveBase {
@@ -62,6 +79,7 @@ export interface MeldtUtOppgave extends ParsedOppgaveBase {
     oppgavetypeData: {
         sluttdato: Date;
     };
+    respons?: SvarPåVarselRespons;
 }
 
 export interface EndretStartOgSluttdatoOppgave extends ParsedOppgaveBase {
@@ -70,10 +88,12 @@ export interface EndretStartOgSluttdatoOppgave extends ParsedOppgaveBase {
         forrigePeriode: OpenDateRange;
         nyPeriode: DateRange;
     };
+    respons?: SvarPåVarselRespons;
 }
 
 export interface FjernetPeriodeOppgave extends ParsedOppgaveBase {
     oppgavetype: ParsedOppgavetype.BEKREFT_FJERNET_PERIODE;
+    respons?: SvarPåVarselRespons;
 }
 
 export type BekreftelseOppgave =
@@ -83,15 +103,14 @@ export type BekreftelseOppgave =
     | FjernetPeriodeOppgave
     | MeldtUtOppgave
     | (AvvikRegisterinntektOppgave & {
-          bekreftelse?: BekreftelseDto;
+          respons?: SvarPåVarselRespons;
       });
 
-export interface RapporterInntektOppgave extends ParsedOppgaveBase {
+export interface RapporterInntektOppgave extends ParsedRapportertInntektOppgave {
     oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
         tilOgMed: Date;
-        rapportertInntekt?: Pick<RapportertInntektPeriodeinfoDto, 'arbeidstakerOgFrilansInntekt'>;
         gjelderDelerAvMåned: boolean;
     };
 }

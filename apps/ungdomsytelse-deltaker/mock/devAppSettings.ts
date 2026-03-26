@@ -35,4 +35,8 @@ export const getDevAppSettings = (): AppEnv => ({
     UNG_DELTAKELSE_OPPLYSER_API_URL: '#',
     UNG_DELTAKELSE_OPPLYSER_API_SCOPE: 'dev-gcp:k9saksbehandling:ung-deltakelse-opplyser',
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: '/api/ung-deltakelse-opplyser',
+
+    UNG_BRUKERDIALOG_API_FRONTEND_PATH: '/api/ung-brukerdialog-api',
+    UNG_BRUKERDIALOG_API_API_URL: '#',
+    UNG_BRUKERDIALOG_API_API_SCOPE: 'dev-gcp:k9saksbehandling:ung-brukerdialog-api',
 });

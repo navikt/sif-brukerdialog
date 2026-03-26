@@ -1,5 +1,5 @@
 import { getDateToday } from '@navikt/sif-common-utils';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { Oppgave, ParsedOppgavetype } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
@@ -35,6 +35,6 @@ export const harRapportertInntekt = (oppgaver: Oppgave[]): boolean => {
         (o) =>
             o.oppgavetype === ParsedOppgavetype.RAPPORTER_INNTEKT &&
             o.status !== OppgaveStatus.ULØST &&
-            o.oppgavetypeData?.rapportertInntekt !== undefined,
+            o.respons?.arbeidstakerOgFrilansInntekt !== undefined,
     );
 };

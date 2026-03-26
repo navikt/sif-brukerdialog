@@ -1,6 +1,6 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
@@ -38,10 +38,13 @@ const besvartOppgave: RapporterInntektOppgave = {
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-31').toDate(),
-        rapportertInntekt: {
-            arbeidstakerOgFrilansInntekt: 10000,
-        },
         gjelderDelerAvMåned: false,
+    },
+    respons: {
+        type: 'RAPPORTERT_INNTEKT',
+        fraOgMed: dayjs('2025-05-01').toDate(),
+        tilOgMed: dayjs('2025-05-31').toDate(),
+        arbeidstakerOgFrilansInntekt: 10000,
     },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().subtract(1, 'days').toDate(),
@@ -53,10 +56,9 @@ const utløptUbesvartOppgave: RapporterInntektOppgave = {
     oppgavetypeData: {
         fraOgMed: dayjs('2025-09-01').toDate(),
         tilOgMed: dayjs('2025-09-30').toDate(),
-        rapportertInntekt: undefined,
         gjelderDelerAvMåned: false,
     },
-    bekreftelse: undefined,
+    respons: undefined,
     status: OppgaveStatus.UTLØPT,
     opprettetDato: dayjs('2025-10-01T05:00:29.527840Z').toDate(),
     løstDato: dayjs('2025-10-08T05:00:54.739162Z').toDate(),
@@ -122,16 +124,6 @@ export const KvitteringUtenInntekt: Story = {
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
     render: () => <RapporterInntektOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
-};
-
-export const LukketOppgave: Story = {
-    name: 'Lukket oppgave',
-    render: () => (
-        <RapporterInntektOppgavePage
-            oppgave={{ ...oppgave, lukketDato: oppgave.opprettetDato, status: OppgaveStatus.LUKKET }}
-            deltakerNavn="SNODIG VAFFEL"
-        />
-    ),
 };
 
 export const UtløptOppgave: Story = {

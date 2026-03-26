@@ -3,7 +3,7 @@ import './oppgaveLinkCard.css';
 import OppgaveStatusIkon from '@innsyn/atoms/oppgave-status-ikon/OppgaveStatusIkon';
 import OppgaveStatusTag, { OppgaveStatusTagVariant } from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag';
 import { Box, LinkCard, Show, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
 export interface oppgaveLinkCardProps {
     tittel: React.ReactNode;
