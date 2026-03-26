@@ -1,17 +1,13 @@
-import { BodyLong, VStack } from '@navikt/ds-react';
+import { BodyLong, Button, HStack, VStack } from '@navikt/ds-react';
 import {
     UngdomsytelseOppgavebekreftelse,
     UngdomsytelseOppgaveUttalelseDto,
 } from '@navikt/k9-brukerdialog-prosessering-api';
-import {
-    getIntlFormErrorHandler,
-    getTypedFormComponents,
-    ValidationError,
-    YesOrNo,
-} from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { ApiErrorAlert } from '@sif/api';
 import { useSendOppgavebekreftelse } from '@sif/api/k9-prosessering';
+import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
+import { useForm } from 'react-hook-form';
 
 import { UngUiText, useUngUiIntl } from '../../../i18n';
 
@@ -19,6 +15,7 @@ export type UttalelseSvaralternativer = {
     harUttalelseLabel: string;
     harIkkeUttalelseLabel: string;
 };
+
 interface Props {
     spørsmål: string;
     svaralternativer: UttalelseSvaralternativer;
@@ -39,11 +36,7 @@ type FormValues = Partial<{
     [FormFields.uttalelse]: string;
 }>;
 
-const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponents<
-    FormFields,
-    FormValues,
-    ValidationError
->();
+const { YesOrNoQuestion, Textarea } = createSifFormComponents<FormValues>();
 
 const MAX_LENGTH = 2000;
 const MIN_LENGTH = 5;
@@ -58,12 +51,19 @@ export const UtalelseForm = ({
     onCancel,
 }: Props) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
-
     const { intl, text } = useUngUiIntl();
+    const { validateField } = useSifValidate('@ungUi.uttalelseForm');
+
+    const methods = useForm<FormValues>({
+        defaultValues: {},
+        mode: 'onSubmit',
+        reValidateMode: 'onChange',
+    });
+
+    const harUttalelseValue = methods.watch(FormFields.harUttalelse);
 
     const handleSubmit = async (values: FormValues) => {
         const harUttalelse = values[FormFields.harUttalelse] === YesOrNo.YES;
-
         const dto: UngdomsytelseOppgavebekreftelse = {
             oppgave: {
                 oppgaveReferanse: oppgaveReferanse,
@@ -73,71 +73,71 @@ export const UtalelseForm = ({
                 },
             },
         };
-        await mutateAsync(dto);
-        onSuccess(dto.oppgave.uttalelse);
+        try {
+            await mutateAsync(dto);
+            onSuccess(dto.oppgave.uttalelse);
+        } catch {
+            // error is tracked by mutation hook
+        }
     };
 
     return (
-        <FormikWrapper
-            initialValues={{}}
+        <SifForm
+            methods={methods}
             onSubmit={handleSubmit}
-            renderForm={({ values }) => {
-                return (
-                    <Form
-                        submitButtonLabel={text('@ungUi.uttalelseForm.submitButtonLabel')}
-                        cancelButtonLabel={text('@ungUi.uttalelseForm.cancelButtonLabel')}
-                        onCancel={onCancel}
-                        isFinalSubmit={true}
-                        submitPending={isPending}
-                        includeValidationSummary={true}
-                        formErrorHandler={getIntlFormErrorHandler(intl, 'uttalelseForm.validation')}>
-                        <VStack gap="space-24" marginBlock="space-8 space-0">
-                            <YesOrNoQuestion
-                                reverse={true}
-                                name={FormFields.harUttalelse}
-                                legend={spørsmål}
-                                labels={{
-                                    no: svaralternativer.harIkkeUttalelseLabel,
-                                    yes: svaralternativer.harUttalelseLabel,
-                                }}
-                                validate={getYesOrNoValidator()}
-                            />
-                            {values[FormFields.harUttalelse] === YesOrNo.YES ? (
-                                <Textarea
-                                    name={FormFields.uttalelse}
-                                    label={uttalelseLabel}
-                                    description={
-                                        uttalelseDescription || (
-                                            <BodyLong>
-                                                <UngUiText id="@ungUi.uttalelseForm.defaultDescription" />
-                                            </BodyLong>
-                                        )
-                                    }
-                                    maxLength={MAX_LENGTH}
-                                    validate={(value) => {
-                                        const errorKey = getStringValidator({
-                                            required: true,
-                                            minLength: MIN_LENGTH,
-                                            maxLength: MAX_LENGTH,
-                                            disallowInvalidBackendCharacters: true,
-                                        })(value);
-                                        return errorKey
-                                            ? {
-                                                  key: errorKey,
-                                                  values: {
-                                                      min: MIN_LENGTH,
-                                                      maks: MAX_LENGTH,
-                                                  },
-                                              }
-                                            : undefined;
-                                    }}
-                                />
-                            ) : null}
-                            {error ? <ApiErrorAlert error={error} /> : null}
-                        </VStack>
-                    </Form>
-                );
-            }}
-        />
+            buttons={
+                <HStack gap="space-4">
+                    <Button type="submit" loading={isPending}>
+                        {text('@ungUi.uttalelseForm.submitButtonLabel')}
+                    </Button>
+                    {onCancel ? (
+                        <Button variant="secondary" type="button" onClick={onCancel}>
+                            {text('@ungUi.uttalelseForm.cancelButtonLabel')}
+                        </Button>
+                    ) : null}
+                </HStack>
+            }>
+            <VStack gap="space-24" marginBlock="space-8 space-0">
+                <YesOrNoQuestion
+                    reverse={true}
+                    name={FormFields.harUttalelse}
+                    legend={spørsmål}
+                    labels={{
+                        no: svaralternativer.harIkkeUttalelseLabel,
+                        yes: svaralternativer.harUttalelseLabel,
+                    }}
+                    validate={validateField(FormFields.harUttalelse, getYesOrNoValidator())}
+                />
+                {harUttalelseValue === YesOrNo.YES ? (
+                    <Textarea
+                        name={FormFields.uttalelse}
+                        label={uttalelseLabel}
+                        description={
+                            uttalelseDescription || (
+                                <BodyLong>
+                                    <UngUiText id="@ungUi.uttalelseForm.defaultDescription" />
+                                </BodyLong>
+                            )
+                        }
+                        maxLength={MAX_LENGTH}
+                        validate={(value) => {
+                            const errorCode = getStringValidator({
+                                required: true,
+                                minLength: MIN_LENGTH,
+                                maxLength: MAX_LENGTH,
+                                disallowInvalidBackendCharacters: true,
+                            })(value);
+                            return errorCode
+                                ? intl.formatMessage(
+                                      { id: `@ungUi.uttalelseForm.validation.uttalelse.${errorCode}` },
+                                      { min: MIN_LENGTH, maks: MAX_LENGTH },
+                                  )
+                                : undefined;
+                        }}
+                    />
+                ) : null}
+                {error ? <ApiErrorAlert error={error} /> : null}
+            </VStack>
+        </SifForm>
     );
 };

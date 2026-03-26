@@ -173,8 +173,7 @@ export const ungUi_messages_nb = {
     '@ungUi.uttalelseForm.defaultDescription':
         'Du må ikke oppgi sensitive informasjon (personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
 
-    '@ungUi.uttalelseForm.validation.harTilbakemelding.yesOrNoIsUnanswered':
-        'Du må svare på om du har en tilbakemelding.',
+    '@ungUi.uttalelseForm.validation.harUttalelse.yesOrNoIsUnanswered': 'Du må svare på om du har en tilbakemelding.',
     '@ungUi.uttalelseForm.validation.uttalelse.stringHasNoValue': 'Du må fylle ut tilbakemeldingsfeltet.',
     '@ungUi.uttalelseForm.validation.uttalelse.stringIsTooShort':
         'Du har brukt for få tegn i tilbakemeldingen din. Teksten må minst inneholde {min} tegn.',
