@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { getVedleggIdFromResponseHeaderLocation, lagreVedlegg, slettVedlegg } from '../api/vedleggApi';
-import { sifCommonQueryKeys } from '../queryKeys';
+import { sifApiQueryKeys } from '../queryKeys';
 
 // Re-export utility function
 export { getVedleggIdFromResponseHeaderLocation };
@@ -15,7 +15,7 @@ export const useLagreVedlegg = () => {
         onSuccess: () => {
             // Invalidate any vedlegg-related queries when upload succeeds
             queryClient.invalidateQueries({
-                queryKey: sifCommonQueryKeys.vedlegg,
+                queryKey: sifApiQueryKeys.vedlegg,
             });
         },
     });
@@ -30,11 +30,11 @@ export const useSlettVedlegg = () => {
         onSuccess: (_data, vedleggId) => {
             // Remove the specific vedlegg from cache
             queryClient.removeQueries({
-                queryKey: [...sifCommonQueryKeys.vedlegg, vedleggId],
+                queryKey: [...sifApiQueryKeys.vedlegg, vedleggId],
             });
             // Invalidate any other vedlegg-related queries
             queryClient.invalidateQueries({
-                queryKey: sifCommonQueryKeys.vedlegg,
+                queryKey: sifApiQueryKeys.vedlegg,
             });
         },
     });

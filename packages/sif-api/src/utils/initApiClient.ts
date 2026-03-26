@@ -4,7 +4,11 @@ import { v4 } from 'uuid';
 const isUnauthorized = (error: AxiosError): boolean =>
     error !== undefined && error.response !== undefined && error.response.status === HttpStatusCode.Unauthorized;
 
-const commonRequestHeader: Record<string, string> = {
+export type CommonRequestHeader = Record<string, string> & {
+    'X-Brukerdialog-Git-Sha': string;
+};
+
+export const commonRequestHeader: CommonRequestHeader = {
     'Content-type': 'application/json; charset=utf-8',
     'X-Brukerdialog-Git-Sha': 'overskrives-av-server',
 };

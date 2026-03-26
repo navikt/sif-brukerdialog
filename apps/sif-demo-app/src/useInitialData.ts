@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@sif/api';
+import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@sif/api/k9-prosessering';
 import { useMemo } from 'react';
 
 import { søknadStepConfig } from './app/setup/config/soknadStepConfig';

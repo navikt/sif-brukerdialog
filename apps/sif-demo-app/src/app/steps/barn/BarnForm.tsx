@@ -21,7 +21,7 @@ const { YesOrNoQuestion } = createSifFormComponents<BarnFormValues>();
 const stepId = SøknadStepId.BARN;
 
 export const BarnForm = () => {
-    const { validateField } = useSifValidate();
+    const { validateField } = useSifValidate('barnForm');
     const defaultValues = useStepDefaultValues<BarnFormValues, BarnSøknadsdata>({
         stepId,
         toFormValues: toBarnFormValues,

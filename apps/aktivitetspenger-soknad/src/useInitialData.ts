@@ -1,13 +1,5 @@
-import {
-    kontonummerFallback,
-    RegistrertBarn,
-    Søker,
-    useKontonummer,
-    useRegistrerteBarn,
-    useSøker,
-    useYtelseMellomlagring,
-    UtvidetKontonummerInfo,
-} from '@sif/api';
+import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@sif/api/k9-prosessering';
+import { kontonummerFallback, UtvidetKontonummerInfo, useKontonummer } from '@sif/api/ung-deltaker';
 import { useMemo } from 'react';
 
 import { søknadStepConfig } from './app/setup/config/soknadStepConfig';
