@@ -1,5 +1,5 @@
 {
-    "name": "@ung/ui",
+    "name": "@sif/ung-ui",
     "main": "src/index.ts",
     "types": "src/index.ts",
     "type": "module",
