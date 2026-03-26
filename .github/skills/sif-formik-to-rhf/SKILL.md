@@ -95,6 +95,8 @@ RHF: `useSifValidate('myForm')` — scope **ekskluderer** `.validation` (legges 
 
 Begge produserer `myForm.validation.fieldName.errorCode`. **Drop `.validation`-suffikset** når du setter scope.
 
+**OBS — namespace-prefiks:** Bruk **full i18n-nøkkelprefiks** inkludert eventuelt namespace. Hvis i18n-nøklene har prefiks `@ungUi.inntektForm.validation.*`, må scope være `'@ungUi.inntektForm'` — ikke `'inntektForm'`. Se i `nb.ts` hva den faktiske prefiksen er.
+
 ### 2. async handleSubmit + avviste promises
 
 Formik svelger rejected promises i `onSubmit`. RHF gjør det ikke — ubehandlede rejections kaster.
@@ -118,6 +120,14 @@ validate={(value) => {
         : undefined;
 }}
 ```
+
+### 4. `showButtonArrows` og andre Form-props som forsvinner
+
+Formik `<Form>` har props som `showButtonArrows`, `includeValidationSummary` og `formErrorHandler` som ikke har direkte ekvivalenter i `<SifForm>`. Disse droppes uten erstatning:
+
+- `showButtonArrows` — finnes ikke i RHF, drop.
+- `includeValidationSummary` — `SifForm` inkluderer `SifValidationSummary` automatisk.
+- `formErrorHandler` — erstattes av `useSifValidate` (se fallgruve 1).
 
 ## Betinget visning
 
