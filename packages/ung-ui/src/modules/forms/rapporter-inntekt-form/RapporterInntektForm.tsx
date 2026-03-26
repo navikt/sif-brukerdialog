@@ -25,14 +25,14 @@ export interface InntektFormValues {
 
 const { YesOrNoQuestion, NumberInput } = createSifFormComponents<InntektFormValues>();
 
-interface Props {
+export interface RapporterInntektFormProps {
     oppgaveReferanse: string;
     måned: string;
     onSuccess: (harRapportertInntekt: boolean) => void;
     onCancel?: () => void;
 }
 
-export const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) => {
+export const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: RapporterInntektFormProps) => {
     const { text } = useUngUiIntl();
     const { error, isPending, mutateAsync } = useRapporterInntekt();
     const { validateField } = useSifValidate('@ungUi.inntektForm');
@@ -77,7 +77,7 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuc
             methods={methods}
             onSubmit={handleSubmit}
             buttons={
-                <HStack gap="space-4">
+                <HStack gap="space-16">
                     <Button type="submit" loading={isPending}>
                         {text('@ungUi.inntektForm.submitLabel')}
                     </Button>

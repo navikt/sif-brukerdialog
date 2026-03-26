@@ -167,7 +167,18 @@ validate={(value) => {
 }}
 ```
 
-### 4. `showButtonArrows` og andre Form-props som forsvinner
+### 4. Spacing i knapperaden
+
+Bruk alltid `gap="space-16"` på `<HStack>` rundt submit/cancel-knapper — ikke `space-4`:
+
+```tsx
+<HStack gap="space-16">
+    <Button type="submit" loading={isPending}>…</Button>
+    <Button variant="secondary" type="button" onClick={onCancel}>…</Button>
+</HStack>
+```
+
+### 5. `showButtonArrows` og andre Form-props som forsvinner
 
 Formik `<Form>` har props som `showButtonArrows`, `includeValidationSummary` og `formErrorHandler` som ikke har direkte ekvivalenter i `<SifForm>`. Disse droppes uten erstatning:
 

@@ -16,7 +16,7 @@ export type UttalelseSvaralternativer = {
     harIkkeUttalelseLabel: string;
 };
 
-interface Props {
+export interface UtalelseFormProps {
     spørsmål: string;
     svaralternativer: UttalelseSvaralternativer;
     uttalelseLabel: string;
@@ -49,7 +49,7 @@ export const UtalelseForm = ({
     svaralternativer,
     onSuccess,
     onCancel,
-}: Props) => {
+}: UtalelseFormProps) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
     const { intl, text } = useUngUiIntl();
     const { validateField } = useSifValidate('@ungUi.uttalelseForm');
@@ -86,7 +86,7 @@ export const UtalelseForm = ({
             methods={methods}
             onSubmit={handleSubmit}
             buttons={
-                <HStack gap="space-4">
+                <HStack gap="space-16">
                     <Button type="submit" loading={isPending}>
                         {text('@ungUi.uttalelseForm.submitButtonLabel')}
                     </Button>
