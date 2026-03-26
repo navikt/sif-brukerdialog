@@ -10,7 +10,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
+import { ApiErrorAlert } from '@sif/api';
 import { useSendOppgavebekreftelse } from '@sif/api/k9-prosessering';
 
 import { AppText, useAppIntl } from '../../../../i18n';

@@ -29,7 +29,6 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
-        "@navikt/ung-common": "workspace:*",
         "@sentry/react": "10.44.0",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",

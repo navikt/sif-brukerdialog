@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
+import { ApiErrorAlert } from '@sif/api';
 import { useRapporterInntekt } from '@sif/api/k9-prosessering';
 import { useState } from 'react';
 

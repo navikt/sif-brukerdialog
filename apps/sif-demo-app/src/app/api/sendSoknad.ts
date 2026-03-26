@@ -1,5 +1,5 @@
 import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
-import { commonRequestHeader, handleApiError } from '@navikt/ung-common';
+import { commonRequestHeader, handleApiError } from '@sif/api';
 
 export const sendSøknad = async (data: aktivitetspenger.Aktivitetspengersøknad): Promise<any> => {
     try {
