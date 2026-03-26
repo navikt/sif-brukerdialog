@@ -11,7 +11,6 @@ export const ungUi_messages_nb = {
     ...avvikRegisterinntektMessages_nb,
     ...endretStartOgSluttdatoMessages_nb,
     ...endretSluttdatoMessages_nb,
-    ...endretSluttdatoMessages_nb,
     ...endretStartdatoMessages_nb,
     ...fjernetPeriodeMessages_nb,
     ...meldtUtMessages_nb,
@@ -35,10 +34,6 @@ export const ungUi_messages_nb = {
     '@ungUi.ytelse.ANNET': 'Annet',
 
     '@ungUi.pageLayout.main.ariaLabel': 'Hovedinnhold',
-    dineOppgaver: 'Dine oppgaver',
-    ingenUløsteOppgaver: 'Du har ingen uløste oppgaver',
-    tidligereOppgaver: 'Tidligere oppgaver',
-    ingenTidligereOppgaver: 'Du har ingen tidligere oppgaver',
 
     '@ungUi.oppgaveIkkeFunnetPage.dokumentTittel': 'Oppgave ikke funnet',
     '@ungUi.oppgaveIkkeFunnetPage.tittel': 'Oppgave ikke funnet',

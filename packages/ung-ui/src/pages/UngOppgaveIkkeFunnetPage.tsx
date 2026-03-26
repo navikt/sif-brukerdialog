@@ -1,6 +1,6 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
-import { InnsynPage } from '@sif/ung-ui/components';
 
+import { InnsynPage } from '../components';
 import { useUngUiIntl } from '../i18n';
 
 interface Props {
