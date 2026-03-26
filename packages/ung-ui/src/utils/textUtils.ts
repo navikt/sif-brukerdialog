@@ -86,11 +86,3 @@ export const getSvaralternativer = (
 export const getTilbakemeldingFritekstLabel = (oppgave: BekreftelseOppgave, { text }: UngUiIntlShape) => {
     return text(`oppgavetype.${oppgave.oppgavetype}.tilbakemeldingFritekstLabel`);
 };
-
-export const getOppgaveDokumentTittel = (oppgave: Oppgave, intl: UngUiIntlShape) => {
-    return getDokumentTittel(getOppgaveTittel(oppgave, intl));
-};
-
-export const getDokumentTittel = (sidetittel: string) => {
-    return `${sidetittel} - Din ungdomsprogramytelse`;
-};

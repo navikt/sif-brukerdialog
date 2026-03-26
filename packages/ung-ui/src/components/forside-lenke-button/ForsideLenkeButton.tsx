@@ -1,9 +1,10 @@
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
-import { UngUiText } from '@ui/i18n';
 import { useNavigate } from 'react-router-dom';
 
-const ForsideLenkeButton = () => {
+import { UngUiText } from '../../i18n';
+
+export const ForsideLenkeButton = () => {
     const navigate = useNavigate();
     return (
         <Button
@@ -21,5 +22,3 @@ const ForsideLenkeButton = () => {
         </Button>
     );
 };
-
-export default ForsideLenkeButton;

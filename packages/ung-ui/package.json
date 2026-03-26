@@ -26,7 +26,8 @@
         "@navikt/ds-react": "8.8.0",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@navikt/ung-brukerdialog-api": "workspace:*"
+        "@navikt/ung-brukerdialog-api": "workspace:*",
+        "@sif/api": "workspace:*"
     },
     "peerDependencies": {
         "react": ">=19",

@@ -4,20 +4,20 @@ import { RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
-import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
+import { RapporterInntektOppgavePart } from './parts/RapporterInntektOppgavePart';
 
 export interface RapporterInntektOppgaveProps {
     navn: string;
     oppgave: RapporterInntektOppgave;
     initialKvitteringData?: RapporterInntektKvitteringData;
-    onCancel: () => void;
+    onCancel?: () => void;
 }
 
 export interface RapporterInntektKvitteringData {
     harHattInntektOver0: boolean;
 }
 
-const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
+export const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
     const queryClient = useQueryClient();
     const { oppgave } = props;
 
@@ -38,5 +38,3 @@ const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
         </VStack>
     );
 };
-
-export default RapporterInntektOppgavePage;

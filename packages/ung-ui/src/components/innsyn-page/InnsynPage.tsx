@@ -3,7 +3,7 @@ import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundar
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import React, { useEffect } from 'react';
 
-import { useUngUiIntl } from '@ui/i18n';
+import { useUngUiIntl } from '../../i18n';
 
 interface Props {
     documentTitle: string;
@@ -19,7 +19,7 @@ const PageContentWrapper = ({ children }: { children: React.ReactNode }) => (
     </PageBoundary>
 );
 
-const InnsynPage = ({ documentTitle, children, footer }: Props) => {
+export const InnsynPage = ({ documentTitle, children, footer }: Props) => {
     const { text } = useUngUiIntl();
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -39,5 +39,3 @@ const InnsynPage = ({ documentTitle, children, footer }: Props) => {
         </main>
     );
 };
-
-export default InnsynPage;

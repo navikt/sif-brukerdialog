@@ -1,7 +1,7 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { InnsynPage } from '@sif/ung-ui/components';
 
 import { useAppIntl } from '../i18n';
-import InnsynPage from '../ung-ui/components/innsyn-page/InnsynPage';
 
 interface Props {
     oppgaveReferanse?: string;

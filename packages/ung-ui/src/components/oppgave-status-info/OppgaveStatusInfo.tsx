@@ -1,13 +1,13 @@
 import { Alert, BodyLong, Box } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
-import { UngUiText } from '@ui/i18n';
+import { UngUiText } from '../../i18n';
 
 interface Props {
     oppgaveStatus: OppgaveStatus;
 }
 
-const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
+export const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
     switch (oppgaveStatus) {
         case OppgaveStatus.UTLØPT:
         case OppgaveStatus.AVBRUTT:
@@ -24,5 +24,3 @@ const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
             return null;
     }
 };
-
-export default OppgaveStatusInfo;

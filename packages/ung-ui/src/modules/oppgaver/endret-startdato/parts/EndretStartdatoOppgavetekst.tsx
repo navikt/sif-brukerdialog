@@ -2,13 +2,13 @@ import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '@ui/i18n';
+import { UngUiText } from '../../../../i18n';
 
 interface Props {
     frist: Date;
     startdato: Date;
 }
-const EndretStartdatoOppgavetekst = ({ frist, startdato }: Props) => {
+export const EndretStartdatoOppgavetekst = ({ frist, startdato }: Props) => {
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(frist)}</span>;
     const formatertDato = <span className="text-nowrap">{dateFormatter.full(startdato)}</span>;
     return (
@@ -37,5 +37,3 @@ const EndretStartdatoOppgavetekst = ({ frist, startdato }: Props) => {
         </>
     );
 };
-
-export default EndretStartdatoOppgavetekst;

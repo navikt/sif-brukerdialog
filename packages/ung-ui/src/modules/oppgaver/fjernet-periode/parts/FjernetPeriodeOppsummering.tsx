@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
-import { UngUiText } from '@ui/i18n';
+import { UngUiText } from '../../../../i18n';
 
-const FjernetPeriodeOppsummering = () => {
+export const FjernetPeriodeOppsummering = () => {
     return (
         <UngUiText
             id="fjernetPeriode.oppsummering"
@@ -12,5 +12,3 @@ const FjernetPeriodeOppsummering = () => {
         />
     );
 };
-
-export default FjernetPeriodeOppsummering;

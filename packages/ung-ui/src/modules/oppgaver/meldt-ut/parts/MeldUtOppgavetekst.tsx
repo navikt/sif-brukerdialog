@@ -2,14 +2,14 @@ import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '@ui/i18n';
+import { UngUiText } from '../../../../i18n';
 
 interface Props {
     sluttdato: Date;
     svarfrist: Date;
 }
 
-const MeldUtOppgavetekst = ({ sluttdato, svarfrist }: Props) => {
+export const MeldUtOppgavetekst = ({ sluttdato, svarfrist }: Props) => {
     const formatertDato = <span className="text-nowrap">{dateFormatter.full(sluttdato)}</span>;
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(svarfrist)}</span>;
 
@@ -39,5 +39,3 @@ const MeldUtOppgavetekst = ({ sluttdato, svarfrist }: Props) => {
         </>
     );
 };
-
-export default MeldUtOppgavetekst;

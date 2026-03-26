@@ -14,7 +14,7 @@ interface Props {
     total: number;
 }
 
-const InntektTable = ({ navnRowHeader, inntekt, total, beløpRowHeader, totalColHeader }: Props) => {
+export const InntektTable = ({ navnRowHeader, inntekt, total, beløpRowHeader, totalColHeader }: Props) => {
     return (
         <Table>
             <Table.Header>
@@ -54,5 +54,3 @@ const InntektTable = ({ navnRowHeader, inntekt, total, beløpRowHeader, totalCol
         </Table>
     );
 };
-
-export default InntektTable;

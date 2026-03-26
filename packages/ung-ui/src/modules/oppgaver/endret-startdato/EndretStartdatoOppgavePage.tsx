@@ -2,9 +2,9 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { EndretStartdatoOppgave } from '@sif/api/ung-brukerdialog';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '@ui/i18n';
-import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import EndretStartdatoOppgavetekst from './parts/EndretStartdatoOppgavetekst';
+import { UngUiText } from '../../../i18n';
+import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
+import { EndretStartdatoOppgavetekst } from './parts/EndretStartdatoOppgavetekst';
 
 interface Props {
     navn: string;
@@ -12,7 +12,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-const EndretStartdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const EndretStartdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
     const formatertDato = (
         <span className="text-nowrap">{dateFormatter.full(oppgave.oppgavetypeData.nyStartdato)}</span>
     );
@@ -39,5 +39,3 @@ const EndretStartdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Pro
         </Oppgavebekreftelse>
     );
 };
-
-export default EndretStartdatoOppgavePage;

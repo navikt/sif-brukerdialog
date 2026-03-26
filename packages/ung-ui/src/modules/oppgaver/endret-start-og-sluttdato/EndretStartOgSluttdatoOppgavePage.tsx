@@ -2,9 +2,9 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { EndretStartOgSluttdatoOppgave } from '@sif/api/ung-brukerdialog';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '@ui/i18n';
-import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import EndretStartOgSluttdatoOppgavetekst from './parts/EndretStartOgSluttdatoOppgavetekst';
+import { UngUiText } from '../../../i18n';
+import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
+import { EndretStartOgSluttdatoOppgavetekst } from './parts/EndretStartOgSluttdatoOppgavetekst';
 
 interface Props {
     navn: string;
@@ -12,7 +12,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-const EndretStartOgSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const EndretStartOgSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
@@ -39,5 +39,3 @@ const EndretStartOgSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering
         </Oppgavebekreftelse>
     );
 };
-
-export default EndretStartOgSluttdatoOppgavePage;

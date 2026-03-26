@@ -3,19 +3,17 @@ import { DateRange } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import ForsideLenkeButton from '@ui/components/forside-lenke-button/ForsideLenkeButton';
-import OppgaveStatusInfo from '@ui/components/oppgave-status-info/OppgaveStatusInfo';
-import OppgaveStatusTag from '@ui/components/oppgave-status-tag/OppgaveStatusTag';
-import { UngUiText } from '@ui/i18n';
-import { getOppgaveStatusText } from '@ui/utils/textUtils';
 import { useEffect, useRef, useState } from 'react';
 
+import { ForsideLenkeButton, OppgaveStatusInfo, OppgaveStatusTag } from '../../../../components';
+import { UngUiText } from '../../../../i18n';
+import { getOppgaveStatusText } from '../../../../utils/textUtils';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
-import RapporterInntektKvittering from './RapporterInntektKvittering';
-import RapporterInntektUbesvart from './RapporterInntektUbesvart';
-import RapportertInntektOppsummering from './RapportertInntektOppsummering';
+import { RapporterInntektKvittering } from './RapporterInntektKvittering';
+import { RapporterInntektUbesvart } from './RapporterInntektUbesvart';
+import { RapportertInntektOppsummering } from './RapportertInntektOppsummering';
 
-const RapporterInntektOppgavePart = ({
+export const RapporterInntektOppgavePart = ({
     navn,
     oppgave,
     initialKvitteringData,
@@ -98,5 +96,3 @@ const RapporterInntektOppgavePart = ({
         </VStack>
     );
 };
-
-export default RapporterInntektOppgavePart;

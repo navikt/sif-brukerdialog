@@ -1,11 +1,9 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { InnsynForsideHeader, InnsynPage, OppgaverList } from '@sif/ung-ui/components';
 
 import { AppText } from '../i18n';
-import InnsynForsideHeader from '../ung-ui/components/innsyn-forside-header/ForsideHeader';
-import InnsynPage from '../ung-ui/components/innsyn-page/InnsynPage';
-import OppgaverList from '../ung-ui/components/oppgaver-list/OppgaverList';
 
 interface Props {
     oppgaver: any[];

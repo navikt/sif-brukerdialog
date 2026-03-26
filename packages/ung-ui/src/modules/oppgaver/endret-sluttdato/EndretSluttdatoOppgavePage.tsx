@@ -1,9 +1,9 @@
 import { EndretSluttdatoOppgave } from '@sif/api/ung-brukerdialog';
 
-import { UngUiText } from '@ui/i18n';
-import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import EndretSluttdatoOppgavetekst from './parts/EndretSluttdatoOppgavetekst';
-import EndretSluttdatoOppsummering from './parts/EndretSluttdatoOppsummering';
+import { UngUiText } from '../../../i18n';
+import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
+import { EndretSluttdatoOppgavetekst } from './parts/EndretSluttdatoOppgavetekst';
+import { EndretSluttdatoOppsummering } from './parts/EndretSluttdatoOppsummering';
 
 interface Props {
     navn: string;
@@ -11,7 +11,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-const EndretSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const EndretSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
     if (!oppgave.oppgavetypeData.forrigeSluttdato) {
         throw new Error('Forrige sluttdato mangler for oppgave av typen EndretSluttdatoOppgave');
     }
@@ -37,5 +37,3 @@ const EndretSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Pro
         </Oppgavebekreftelse>
     );
 };
-
-export default EndretSluttdatoOppgavePage;

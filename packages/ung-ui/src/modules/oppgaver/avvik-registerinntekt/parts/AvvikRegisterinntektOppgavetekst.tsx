@@ -1,11 +1,11 @@
 import { BodyLong, Box, List, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
-import InntektTable from '@ui/components/inntekt-tabell/InntektTabell';
-import { UngUiText, useUngUiIntl } from '@ui/i18n';
 import dayjs from 'dayjs';
 import { ReactNode } from 'react';
 
+import { InntektTable } from '../../../../components';
+import { UngUiText, useUngUiIntl } from '../../../../i18n';
 import { avvikRegisterinntektOppgaveUtils } from '../avvikRegisterinntektOppgaveUtils';
 
 interface Props {
@@ -16,7 +16,7 @@ export const getUtbetalingsmånedForAvvikRegisterinntektOppgave = (oppgaveFraOgM
     return dayjs(oppgaveFraOgMed).add(1, 'month').toDate();
 };
 
-const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
+export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
     const intl = useUngUiIntl();
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.sisteDatoEnKanSvare)}</span>;
 
@@ -124,5 +124,3 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
         </VStack>
     );
 };
-
-export default AvvikRegisterinntektOppgavetekst;

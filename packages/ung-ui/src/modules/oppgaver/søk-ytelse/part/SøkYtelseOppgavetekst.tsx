@@ -2,16 +2,16 @@ import { Alert, FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
-import ForsideLenkeButton from '@ui/components/forside-lenke-button/ForsideLenkeButton';
-import OppgaveStatusTag from '@ui/components/oppgave-status-tag/OppgaveStatusTag';
-import { UngUiText } from '@ui/i18n';
-import { getOppgaveStatusText } from '@ui/utils/textUtils';
+
+import { ForsideLenkeButton, OppgaveStatusTag } from '../../../../components';
+import { UngUiText } from '../../../../i18n';
+import { getOppgaveStatusText } from '../../../../utils/textUtils';
 
 interface Props {
     oppgave: SøkYtelseOppgave;
 }
 
-const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
+export const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
     if (oppgave.status !== OppgaveStatus.LØST) {
         return (
             <VStack gap="space-24">
@@ -75,5 +75,3 @@ const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
         </VStack>
     );
 };
-
-export default SøkYtelseOppgavetekst;

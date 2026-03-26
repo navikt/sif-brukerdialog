@@ -1,9 +1,9 @@
 import { FjernetPeriodeOppgave } from '@sif/api/ung-brukerdialog';
 
-import { UngUiText } from '@ui/i18n';
-import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import FjernetPeriodeOppgavetekst from './parts/FjernetPeriodeOppgavetekst';
-import FjernetPeriodeOppsummering from './parts/FjernetPeriodeOppsummering';
+import { UngUiText } from '../../../i18n';
+import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
+import { FjernetPeriodeOppgavetekst } from './parts/FjernetPeriodeOppgavetekst';
+import { FjernetPeriodeOppsummering } from './parts/FjernetPeriodeOppsummering';
 
 interface Props {
     navn: string;
@@ -11,7 +11,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-const FjernetPeriodeOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const FjernetPeriodeOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
@@ -28,5 +28,3 @@ const FjernetPeriodeOppgavePage = ({ navn, oppgave, initialVisKvittering }: Prop
         </Oppgavebekreftelse>
     );
 };
-
-export default FjernetPeriodeOppgavePage;

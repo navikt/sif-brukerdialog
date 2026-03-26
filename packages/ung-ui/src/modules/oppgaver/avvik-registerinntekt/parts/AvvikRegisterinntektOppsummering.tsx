@@ -1,15 +1,15 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
-import { UngUiText, useUngUiIntl } from '@ui/i18n';
-import InntektTable from '@ui/components/inntekt-tabell/InntektTabell';
+import { InntektTable } from '../../../../components';
+import { UngUiText, useUngUiIntl } from '../../../../i18n';
 import { avvikRegisterinntektOppgaveUtils } from '../avvikRegisterinntektOppgaveUtils';
 
 interface AvvikRegisterinntektOppsummeringProps {
     oppgave: AvvikRegisterinntektOppgave;
 }
 
-const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsummeringProps) => {
+export const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsummeringProps) => {
     const intl = useUngUiIntl();
     const {
         registerinntekt: { arbeidOgFrilansInntekter = [], ytelseInntekter = [] },
@@ -35,5 +35,3 @@ const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsu
         </>
     );
 };
-
-export default AvvikRegisterinntektOppsummering;

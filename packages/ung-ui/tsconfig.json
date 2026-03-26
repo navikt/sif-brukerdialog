@@ -2,14 +2,7 @@
     "extends": "../config/tsconfig-packages.json",
     "compilerOptions": {
         "rootDir": "./src",
-        "baseUrl": "./src",
-        "paths": {
-            "@ui/components/*": ["components/*"],
-            "@ui/i18n": ["i18n/index.tsx"],
-            "@ui/i18n/*": ["i18n/*"],
-            "@ui/modules/*": ["modules/*"],
-            "@ui/utils/*": ["utils/*"]
-        }
+        "baseUrl": "./src"
     },
 
     "include": ["src/**/*", "depr"],

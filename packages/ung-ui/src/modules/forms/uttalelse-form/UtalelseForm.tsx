@@ -13,7 +13,7 @@ import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation'
 import { ApiErrorAlert } from '@sif/api';
 import { useSendOppgavebekreftelse } from '@sif/api/k9-prosessering';
 
-import { UngUiText, useUngUiIntl } from '@ui/i18n';
+import { UngUiText, useUngUiIntl } from '../../../i18n';
 
 export type UttalelseSvaralternativer = {
     harUttalelseLabel: string;
@@ -48,7 +48,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
 const MAX_LENGTH = 2000;
 const MIN_LENGTH = 5;
 
-const UtalelseForm = ({
+export const UtalelseForm = ({
     spørsmål,
     uttalelseLabel,
     uttalelseDescription,
@@ -141,5 +141,3 @@ const UtalelseForm = ({
         />
     );
 };
-
-export default UtalelseForm;

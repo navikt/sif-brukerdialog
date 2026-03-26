@@ -1,13 +1,13 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '@ui/i18n';
+import { UngUiText } from '../../../../i18n';
 
 interface EndretSluttdatoOppsummeringProps {
     sluttdato: Date;
 }
 
-const MeldtUtOppsummering = ({ sluttdato }: EndretSluttdatoOppsummeringProps) => {
+export const MeldtUtOppsummering = ({ sluttdato }: EndretSluttdatoOppsummeringProps) => {
     return (
         <UngUiText
             id="meldtUt.oppsummering"
@@ -18,5 +18,3 @@ const MeldtUtOppsummering = ({ sluttdato }: EndretSluttdatoOppsummeringProps) =>
         />
     );
 };
-
-export default MeldtUtOppsummering;

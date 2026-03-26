@@ -2,9 +2,9 @@ import { VStack } from '@navikt/ds-react';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { useNavigate } from 'react-router-dom';
 
-import { useUngUiIntl } from '@ui/i18n';
-import { getOppgaveInfo, getOppgavePanelTittel, getOppgaveStatusText } from '@ui/utils/textUtils';
-import OppgaveLinkCard from '../oppgave-link-card/OppgaveLinkCard';
+import { useUngUiIntl } from '../../i18n';
+import { getOppgaveInfo, getOppgavePanelTittel, getOppgaveStatusText } from '../../utils/textUtils';
+import { OppgaveLinkCard } from '../oppgave-link-card/OppgaveLinkCard';
 import { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
     oppgaveStatusTagVariant?: OppgaveStatusTagVariant;
 }
 
-const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true }: Props) => {
+export const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true }: Props) => {
     const navigate = useNavigate();
     const intl = useUngUiIntl();
 
@@ -35,5 +35,3 @@ const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true
         </VStack>
     );
 };
-
-export default OppgaverList;

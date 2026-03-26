@@ -7,7 +7,7 @@ interface Props {
     subtitle?: string;
 }
 
-const InnsynForsideHeader = ({ title, subtitle }: Props) => {
+export const InnsynForsideHeader = ({ title, subtitle }: Props) => {
     return (
         <Stack
             gap="space-24"
@@ -27,5 +27,3 @@ const InnsynForsideHeader = ({ title, subtitle }: Props) => {
         </Stack>
     );
 };
-
-export default InnsynForsideHeader;

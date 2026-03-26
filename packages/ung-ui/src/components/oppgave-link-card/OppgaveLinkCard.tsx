@@ -3,8 +3,8 @@ import './oppgaveLinkCard.css';
 import { Box, LinkCard, Show, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
-import OppgaveStatusIkon from '../oppgave-status-ikon/OppgaveStatusIkon';
-import OppgaveStatusTag, { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
+import { OppgaveStatusIkon } from '../oppgave-status-ikon/OppgaveStatusIkon';
+import { OppgaveStatusTag, OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
 
 export interface OppgaveLinkCardProps {
     tittel: React.ReactNode;
@@ -16,7 +16,7 @@ export interface OppgaveLinkCardProps {
     onClick: () => void;
 }
 
-const OppgaveLinkCard = ({
+export const OppgaveLinkCard = ({
     tittel,
     beskrivelse,
     oppgaveStatus,
@@ -57,5 +57,3 @@ const OppgaveLinkCard = ({
         </LinkCard>
     );
 };
-
-export default OppgaveLinkCard;

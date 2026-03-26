@@ -1,12 +1,13 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
-import { UngUiText } from '@ui/i18n';
-import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import AvvikRegisterinntektOppgavetekst, {
+import { UngUiText } from '../../../i18n';
+import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
+import {
+    AvvikRegisterinntektOppgavetekst,
     getUtbetalingsmånedForAvvikRegisterinntektOppgave,
 } from './parts/AvvikRegisterinntektOppgavetekst';
-import AvvikRegisterinntektOppsummering from './parts/AvvikRegisterinntektOppsummering';
+import { AvvikRegisterinntektOppsummering } from './parts/AvvikRegisterinntektOppsummering';
 
 interface Props {
     navn: string;
@@ -14,7 +15,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
     const utbetalingsmåned = getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed);
 
     return (
@@ -38,5 +39,3 @@ const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering }
         </Oppgavebekreftelse>
     );
 };
-
-export default AvvikRegisterinntektOppgavePage;

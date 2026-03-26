@@ -1,9 +1,9 @@
 import { MeldtUtOppgave } from '@sif/api/ung-brukerdialog';
 
-import { UngUiText } from '@ui/i18n';
-import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import MeldtUtOppsummering from './parts/MeldtUtOppsummering';
-import MeldUtOppgavetekst from './parts/MeldUtOppgavetekst';
+import { UngUiText } from '../../../i18n';
+import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
+import { MeldtUtOppsummering } from './parts/MeldtUtOppsummering';
+import { MeldUtOppgavetekst } from './parts/MeldUtOppgavetekst';
 
 interface Props {
     navn: string;
@@ -11,7 +11,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-const MeldtUtOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const MeldtUtOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
@@ -31,5 +31,3 @@ const MeldtUtOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
         </Oppgavebekreftelse>
     );
 };
-
-export default MeldtUtOppgavePage;

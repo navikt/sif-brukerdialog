@@ -1,7 +1,8 @@
 import { ArbeidOgFrilansRegisterInntektDto, YtelseRegisterInntektDto } from '@navikt/ung-brukerdialog-api';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
-import { InntektTableRow } from '@ui/components/inntekt-tabell/InntektTabell';
-import { UngUiIntlShape } from '@ui/i18n';
+
+import { InntektTableRow } from '../../../components/inntekt-table/InntektTable';
+import { UngUiIntlShape } from '../../../i18n';
 
 const mapArbeidOgFrilansInntektToInntektTabellRad = (
     inntekt: ArbeidOgFrilansRegisterInntektDto[],

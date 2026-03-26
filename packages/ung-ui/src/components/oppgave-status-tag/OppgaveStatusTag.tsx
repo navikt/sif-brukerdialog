@@ -1,7 +1,7 @@
 import { BodyShort, Box, Tag } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
-import OppgaveStatusIkon from '../oppgave-status-ikon/OppgaveStatusIkon';
+import { OppgaveStatusIkon } from '../oppgave-status-ikon/OppgaveStatusIkon';
 
 interface Props {
     oppgaveStatus: OppgaveStatus;
@@ -13,7 +13,7 @@ interface Props {
 
 export type OppgaveStatusTagVariant = 'tag' | 'text' | 'tag-uten-ikon';
 
-const OppgaveStatusTag = ({
+export const OppgaveStatusTag = ({
     oppgaveStatus,
     oppgaveStatusTekst,
     variant,
@@ -60,5 +60,3 @@ const OppgaveStatusTag = ({
             );
     }
 };
-
-export default OppgaveStatusTag;

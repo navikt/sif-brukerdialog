@@ -2,16 +2,15 @@ import { Alert, Box, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import ForsideLenkeButton from '@ui/components/forside-lenke-button/ForsideLenkeButton';
-import OppgaveStatusInfo from '@ui/components/oppgave-status-info/OppgaveStatusInfo';
-import { UngUiText, useUngUiIntl } from '@ui/i18n';
-import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '@ui/utils/textUtils';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
+import { UngUiText, useUngUiIntl } from '../../i18n';
 import { UttalelseSvaralternativer } from '../../types';
-import UtalelseForm from '../forms/uttalelse-form/UtalelseForm';
-import RegelverkOgInnsynReadMore from '../oppgaver/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
+import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
+import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
+import { RegelverkOgInnsynReadMore } from '../oppgaver/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {

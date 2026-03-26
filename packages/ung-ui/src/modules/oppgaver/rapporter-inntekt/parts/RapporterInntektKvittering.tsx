@@ -1,15 +1,15 @@
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { forwardRef } from 'react';
 
-import { UngUiText } from '@ui/i18n';
-import ForsideLenkeButton from '@ui/components/forside-lenke-button/ForsideLenkeButton';
+import { ForsideLenkeButton } from '../../../../components';
+import { UngUiText } from '../../../../i18n';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
 
 interface Props {
     kvitteringData: RapporterInntektKvitteringData;
 }
 
-const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteringData }, ref) => {
+export const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteringData }, ref) => {
     return (
         <VStack gap="space-32">
             <Alert variant="success" ref={ref} tabIndex={-1}>
@@ -32,5 +32,3 @@ const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteri
         </VStack>
     );
 });
-
-export default RapporterInntektKvittering;

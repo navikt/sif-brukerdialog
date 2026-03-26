@@ -4,7 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { ExternalLink } from '@sif/soknad-ui';
 import { ReactNode } from 'react';
 
-import { UngUiText, useUngUiIntl } from '@ui/i18n';
+import { UngUiText, useUngUiIntl } from '../../../../i18n';
 
 interface Props {
     navn: string;
@@ -13,7 +13,7 @@ interface Props {
     gjelderDelerAvMåned?: boolean;
 }
 
-const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelderDelerAvMåned }: Props) => {
+export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelderDelerAvMåned }: Props) => {
     const frist = dateFormatter.full(svarfrist);
     const måned = dateFormatter.month(periode.from);
 
@@ -105,5 +105,3 @@ const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelderDelerAv
         </VStack>
     );
 };
-
-export default RapporterInntektOppgavetekst;

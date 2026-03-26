@@ -13,7 +13,7 @@ import { ApiErrorAlert } from '@sif/api';
 import { useRapporterInntekt } from '@sif/api/k9-prosessering';
 import { useState } from 'react';
 
-import { UngUiText, useUngUiIntl } from '@ui/i18n';
+import { UngUiText, useUngUiIntl } from '../../../i18n';
 
 export enum InntektFormFields {
     harInntekt = 'harInntekt',
@@ -33,10 +33,10 @@ interface Props {
     oppgaveReferanse: string;
     måned: string;
     onSuccess: (harRapportertInntekt: boolean) => void;
-    onCancel: () => void;
+    onCancel?: () => void;
 }
 
-const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) => {
+export const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) => {
     const { intl, text } = useUngUiIntl();
     const { error, isPending, mutateAsync } = useRapporterInntekt();
     const { FormikWrapper, Form, YesOrNoQuestion, NumberInput } = inntektFormComponents;
@@ -135,5 +135,3 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
         />
     );
 };
-
-export default RapporterInntektForm;

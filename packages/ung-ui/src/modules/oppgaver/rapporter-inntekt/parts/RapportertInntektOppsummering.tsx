@@ -1,14 +1,14 @@
 import { FormSummary } from '@navikt/ds-react';
 import { TallSvar } from '@navikt/sif-common-ui';
 
-import { UngUiText } from '@ui/i18n';
+import { UngUiText } from '../../../../i18n';
 
 interface Props {
     måned: string;
     inntekt: number;
 }
 
-const RapportertInntektOppsummering = ({ måned, inntekt }: Props) => {
+export const RapportertInntektOppsummering = ({ måned, inntekt }: Props) => {
     return (
         <section aria-labelledby="summaryHeading">
             <FormSummary>
@@ -41,5 +41,3 @@ const RapportertInntektOppsummering = ({ måned, inntekt }: Props) => {
         </section>
     );
 };
-
-export default RapportertInntektOppsummering;

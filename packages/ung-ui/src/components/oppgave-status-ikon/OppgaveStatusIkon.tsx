@@ -13,7 +13,7 @@ interface Props {
     fill?: boolean;
 }
 
-const OppgaveStatusIkon = ({ oppgavestatus, size = 'medium', fill = true }: Props) => {
+export const OppgaveStatusIkon = ({ oppgavestatus, size = 'medium', fill = true }: Props) => {
     const widthHeight = size === 'medium' ? '1.8rem' : '1.4rem';
 
     switch (oppgavestatus) {
@@ -40,4 +40,3 @@ const OppgaveStatusIkon = ({ oppgavestatus, size = 'medium', fill = true }: Prop
             );
     }
 };
-export default OppgaveStatusIkon;

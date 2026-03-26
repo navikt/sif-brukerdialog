@@ -1,13 +1,13 @@
 import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
-import { UngUiText } from '@ui/i18n';
+import { UngUiText } from '../../../../i18n';
 
 interface Props {
     svarfrist: Date;
 }
 
-const FjernetPeriodeOppgavetekst = ({ svarfrist }: Props) => {
+export const FjernetPeriodeOppgavetekst = ({ svarfrist }: Props) => {
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(svarfrist)}</span>;
 
     return (
@@ -30,5 +30,3 @@ const FjernetPeriodeOppgavetekst = ({ svarfrist }: Props) => {
         </>
     );
 };
-
-export default FjernetPeriodeOppgavetekst;

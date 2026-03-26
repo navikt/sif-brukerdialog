@@ -1,8 +1,8 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
-import { UngUiText, useUngUiIntl } from '@ui/i18n';
+import { UngUiText, useUngUiIntl } from '../../../../i18n';
 
-const RegelverkOgInnsynReadMore = () => {
+export const RegelverkOgInnsynReadMore = () => {
     const { text } = useUngUiIntl();
     return (
         <ReadMore header={text('regelverkOgInnsyn.readMore.tittel')}>
@@ -32,5 +32,3 @@ const RegelverkOgInnsynReadMore = () => {
         </ReadMore>
     );
 };
-
-export default RegelverkOgInnsynReadMore;
