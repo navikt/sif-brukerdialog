@@ -1,0 +1,194 @@
+import { Alert, Box, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { usePrevious } from '@navikt/sif-common-hooks';
+import { TextareaSvar } from '@navikt/sif-common-ui';
+import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import ForsideLenkeButton from '@ui/components/forside-lenke-button/ForsideLenkeButton';
+import OppgaveStatusInfo from '@ui/components/oppgave-status-info/OppgaveStatusInfo';
+import { UngUiText, useUngUiIntl } from '@ui/i18n';
+import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '@ui/utils/textUtils';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { UttalelseSvaralternativer } from '../../types';
+import UtalelseForm from '../forms/uttalelse-form/UtalelseForm';
+import RegelverkOgInnsynReadMore from '../oppgaver/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
+import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
+
+interface OppgaveOgTilbakemeldingProps {
+    beskjedFraNav: React.ReactNode;
+    spørsmål: string;
+    svaralternativer: UttalelseSvaralternativer;
+    respons: OppgaveResponsDto;
+}
+
+const OppgaveOgTilbakemelding = ({
+    beskjedFraNav,
+    spørsmål,
+    svaralternativer,
+    respons: bekreftelse,
+}: OppgaveOgTilbakemeldingProps) => {
+    return (
+        <section aria-labelledby="summaryHeading">
+            <FormSummary>
+                <FormSummary.Header>
+                    <FormSummary.Heading level="2" id="summaryHeading">
+                        <UngUiText id="oppgaveOgTilbakemelding.header" />
+                    </FormSummary.Heading>
+                </FormSummary.Header>
+                <FormSummary.Answers>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <UngUiText id="oppgaveOgTilbakemelding.beskjedFraNav" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <Box marginBlock="space-8 space-0">
+                                <Box background="accent-moderate" borderRadius="12" padding="space-16">
+                                    {beskjedFraNav}
+                                </Box>
+                            </Box>
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>{spørsmål}</FormSummary.Label>
+                        <FormSummary.Value>
+                            {bekreftelse.type === 'VARSEL_SVAR' && bekreftelse.harUttalelse
+                                ? svaralternativer.harUttalelseLabel
+                                : svaralternativer.harIkkeUttalelseLabel}
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                </FormSummary.Answers>
+                {bekreftelse.type === 'VARSEL_SVAR' && bekreftelse.harUttalelse && bekreftelse.uttalelseFraBruker && (
+                    <FormSummary.Answers>
+                        <FormSummary.Answer>
+                            <FormSummary.Label>
+                                <UngUiText id="oppgaveOgTilbakemelding.tilbakemeldingLabel" />
+                            </FormSummary.Label>
+                            <FormSummary.Value>
+                                <TextareaSvar text={bekreftelse.uttalelseFraBruker} />
+                            </FormSummary.Value>
+                        </FormSummary.Answer>
+                    </FormSummary.Answers>
+                )}
+            </FormSummary>
+        </section>
+    );
+};
+
+export interface UbesvartProps {
+    children: React.ReactNode;
+}
+
+const Ubesvart = ({ children }: UbesvartProps) => {
+    const UngUiIntl = useUngUiIntl();
+    const { oppgave, visKvittering, setVisKvittering, navn } = useOppgavebekreftelse();
+    const navigate = useNavigate();
+
+    if (oppgave.status !== OppgaveStatus.ULØST || visKvittering) return null;
+
+    return (
+        <VStack gap="space-32">
+            <section aria-label={UngUiIntl.text('oppgavebekreftelse.oppgavetekst.ariaLabel')}>
+                <GuidePanel>
+                    <VStack gap="space-16">
+                        <Heading level="2" size="medium">
+                            <UngUiText id="oppgavebekreftelse.ubesvart.tittel" values={{ navn }} />
+                        </Heading>
+                        <Box maxWidth="90%">{children}</Box>
+                        <Box marginBlock="space-0 space-16">
+                            <RegelverkOgInnsynReadMore />
+                        </Box>
+                    </VStack>
+                </GuidePanel>
+            </section>
+            <section aria-label={UngUiIntl.text('oppgavebekreftelse.uttalelseform.ariaLabel')}>
+                <UtalelseForm
+                    svaralternativer={getSvaralternativer(oppgave, UngUiIntl)}
+                    spørsmål={getTilbakemeldingSpørsmål(oppgave, UngUiIntl)}
+                    uttalelseLabel={getTilbakemeldingFritekstLabel(oppgave, UngUiIntl)}
+                    oppgaveReferanse={oppgave.oppgaveReferanse}
+                    onSuccess={() => setVisKvittering(true)}
+                    onCancel={() => navigate('/')}
+                />
+            </section>
+        </VStack>
+    );
+};
+
+export interface KvitteringProps {
+    children: React.ReactNode;
+}
+
+const Kvittering = ({ children }: KvitteringProps) => {
+    const { visKvittering } = useOppgavebekreftelse();
+    const alertRef = useRef<HTMLDivElement>(null);
+    const prevVisKvittering = usePrevious(visKvittering);
+
+    useEffect(() => {
+        if (visKvittering && !prevVisKvittering && alertRef.current) {
+            window.scrollTo(0, 0);
+            alertRef.current.focus();
+        }
+    }, [visKvittering, prevVisKvittering]);
+
+    if (!visKvittering) return null;
+
+    return (
+        <>
+            <Alert variant="success" tabIndex={-1} ref={alertRef}>
+                <Heading level="2" size="small" spacing>
+                    <UngUiText id="oppgavebekreftelse.kvittering.tittel" />
+                </Heading>
+                {children}
+            </Alert>
+            <div>
+                <ForsideLenkeButton />
+            </div>
+        </>
+    );
+};
+
+export interface BesvartProps {
+    children: React.ReactNode;
+}
+
+const Besvart = ({ children }: BesvartProps) => {
+    const UngUiIntl = useUngUiIntl();
+    const { oppgave, visKvittering } = useOppgavebekreftelse();
+    if (oppgave.status === OppgaveStatus.ULØST || visKvittering) return null;
+
+    const oppgaveInnhold = (() => {
+        if (oppgave.respons) {
+            return (
+                <OppgaveOgTilbakemelding
+                    beskjedFraNav={children}
+                    svaralternativer={getSvaralternativer(oppgave, UngUiIntl)}
+                    spørsmål={getTilbakemeldingSpørsmål(oppgave, UngUiIntl)}
+                    respons={oppgave.respons}
+                />
+            );
+        }
+
+        // Hvis ingen bekreftelse er tilgjengelig
+        if (oppgave.status === OppgaveStatus.LØST && !oppgave.respons) {
+            return (
+                <Alert variant="info">
+                    <UngUiText id="oppgavebekreftelse.besvart.svarMangler" />
+                </Alert>
+            );
+        }
+
+        return null;
+    })();
+
+    return (
+        <VStack gap="space-16">
+            {oppgaveInnhold}
+            <OppgaveStatusInfo oppgaveStatus={oppgave.status} />
+            <div>
+                <ForsideLenkeButton />
+            </div>
+        </VStack>
+    );
+};
+
+export { Besvart, Kvittering, Ubesvart };

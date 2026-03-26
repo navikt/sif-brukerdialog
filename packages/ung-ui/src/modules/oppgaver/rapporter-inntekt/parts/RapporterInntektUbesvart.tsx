@@ -1,0 +1,36 @@
+import { GuidePanel, VStack } from '@navikt/ds-react';
+import { DateRange } from '@navikt/sif-common-utils';
+import RapporterInntektForm from '@ui/modules/forms/rapporter-inntekt-form/RapporterInntektForm';
+
+import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
+import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
+
+interface Props extends RapporterInntektOppgaveProps {
+    periode: DateRange;
+    måned: string;
+    onCancel: () => void;
+    setKvitteringData: (data: RapporterInntektKvitteringData) => void;
+}
+
+const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKvitteringData, onCancel }: Props) => {
+    return (
+        <VStack gap="space-40">
+            <GuidePanel>
+                <RapporterInntektOppgavetekst
+                    navn={navn}
+                    periode={periode}
+                    svarfrist={oppgave.sisteDatoEnKanSvare}
+                    gjelderDelerAvMåned={oppgave.oppgavetypeData.gjelderDelerAvMåned}
+                />
+            </GuidePanel>
+            <RapporterInntektForm
+                måned={måned}
+                oppgaveReferanse={oppgave.oppgaveReferanse}
+                onSuccess={(harRapportertInntekt) => setKvitteringData({ harHattInntektOver0: harRapportertInntekt })}
+                onCancel={onCancel}
+            />
+        </VStack>
+    );
+};
+
+export default RapporterInntektUbesvart;

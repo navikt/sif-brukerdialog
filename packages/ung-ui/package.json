@@ -1,0 +1,44 @@
+{
+    "name": "@ung/ui",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "exports": {
+        ".": "./src/index.ts",
+        "./components": "./src/components/index.ts",
+        "./i18n": "./src/i18n/index.tsx",
+        "./modules": "./src/modules/index.ts",
+        "./types": "./src/types/index.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@navikt/ds-react": "8.8.0",
+        "@navikt/sif-common-hooks": "workspace:*",
+        "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/ung-brukerdialog-api": "workspace:*"
+    },
+    "peerDependencies": {
+        "react": ">=19",
+        "react-dom": ">=19"
+    },
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "@types/react": "19.2.14",
+        "@types/react-dom": "19.2.3",
+        "react": "19.2.4",
+        "react-dom": "19.2.4",
+        "typescript": "5.9.3",
+        "vitest": "4.1.0"
+    }
+}
