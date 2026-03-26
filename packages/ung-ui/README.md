@@ -1,3 +1,3 @@
 # @sif/ung-ui
 
-Visuelle komponenter brukt av @sif/soknad.
+Felleskomponenter for innsynsløsning og ung-oppgaver
