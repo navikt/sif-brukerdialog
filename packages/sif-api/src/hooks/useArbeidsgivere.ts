@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { hentArbeidsgivere } from '../api/arbeidsgivereApi';
-import { sifCommonQueryKeys } from '../queryKeys';
+import { sifApiQueryKeys } from '../queryKeys';
 import { Arbeidsgivere } from '../types/Arbeidsgivere';
 import { ApiError } from '../utils/errorHandlers';
 
@@ -26,7 +26,7 @@ export const useArbeidsgivere = (
     const { enabled = true, ...queryOptions } = options || {};
 
     return useQuery<Arbeidsgivere, ApiError>({
-        queryKey: [...sifCommonQueryKeys.arbeidsgivere, fraOgMed, tilOgMed, queryOptions],
+        queryKey: [...sifApiQueryKeys.arbeidsgivere, fraOgMed, tilOgMed, queryOptions],
         queryFn: () => hentArbeidsgivere(fraOgMed, tilOgMed, queryOptions),
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg sjelden

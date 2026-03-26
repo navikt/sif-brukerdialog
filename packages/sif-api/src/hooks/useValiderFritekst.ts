@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 
 import { validerFritekst } from '../api';
-import { sifCommonQueryKeys } from '../queryKeys';
+import { sifApiQueryKeys } from '../queryKeys';
 import { invalidParameterProblemDetailSchema, InvalidParameterViolation } from '../types/invalidParameterProblemDetail';
-import { AxiosError } from 'axios';
 import { isApiAxiosError } from '../utils/errorHandlers';
 
 const getInvalidParameterViolations = (error: AxiosError<any>): InvalidParameterViolation[] => {
@@ -18,7 +18,7 @@ export const useValiderFritekst = (fritekst?: string) => {
     const enabled = !!fritekst && fritekst.trim().length > 0;
 
     const { isPending, isError, error } = useQuery({
-        queryKey: [...sifCommonQueryKeys.validerFritekst, fritekst],
+        queryKey: [...sifApiQueryKeys.validerFritekst, fritekst],
         queryFn: () => validerFritekst({ verdi: fritekst! }),
         enabled,
         retry: 0,

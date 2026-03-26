@@ -1,4 +1,5 @@
 import { FeltValideringController, Friteksfelt } from '@navikt/k9-brukerdialog-prosessering-api';
+
 import { handleApiError } from '../utils/errorHandlers';
 
 /**

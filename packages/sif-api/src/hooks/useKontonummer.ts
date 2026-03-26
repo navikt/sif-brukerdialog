@@ -1,4 +1,4 @@
-import { ApiError, sifCommonQueryKeys } from '@sif/api';
+import { ApiError, sifApiQueryKeys } from '@sif/api';
 import { useQuery } from '@tanstack/react-query';
 
 import { hentKontonummer } from '../api/kontonummerApi';
@@ -11,7 +11,7 @@ export const kontonummerFallback: UtvidetKontonummerInfo = { harKontonummer: Har
 
 export const useKontonummer = (enabled = true) => {
     return useQuery<UtvidetKontonummerInfo, ApiError>({
-        queryKey: sifCommonQueryKeys.kontonummer,
+        queryKey: sifApiQueryKeys.kontonummer,
         queryFn: hentKontonummer,
         enabled,
         staleTime: 1000 * 60 * 20, // 20 minutter

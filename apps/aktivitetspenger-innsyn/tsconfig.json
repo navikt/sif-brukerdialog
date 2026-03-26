@@ -1,0 +1,23 @@
+{
+    "extends": "../../packages/config/tsconfig-apps.json",
+    "compilerOptions": {
+        "outDir": "build/dist",
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
+        "baseUrl": "./",
+        "paths": {
+            "@app/*": ["src/app/*"],
+            "vite": ["../../node_modules/vite"]
+        }
+    },
+    "exclude": ["node_modules", "dist", "**.js"],
+    "include": [
+        "./src/**/*",
+        "./mock/**/*",
+        "./vite-env.d.ts",
+        "./tailwind.config.ts",
+        "./vite.config.ts",
+        "./vite.dev.config.ts",
+        "env.schema.ts",
+        "appEnv.ts"
+    ]
+}

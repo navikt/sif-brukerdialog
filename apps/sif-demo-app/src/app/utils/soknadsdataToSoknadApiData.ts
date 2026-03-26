@@ -1,4 +1,4 @@
-import { Søker } from '@sif/api';
+import { Søker } from '@sif/api/k9-prosessering';
 
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';

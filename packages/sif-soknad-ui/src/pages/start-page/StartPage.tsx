@@ -51,31 +51,33 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                 </GuidePanel>
 
                 <div>{children}</div>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <Box paddingBlock="space-0 space-32">
-                            <CheckboxGroup
-                                legend="Jeg bekrefter at jeg vil svare så riktig som jeg kan"
-                                hideLegend={true}
-                                error={error ? 'Du må bekrefte at du vil svare så riktig som du kan' : undefined}>
-                                <Checkbox
-                                    name="bekrefter"
-                                    value="bekrefter"
-                                    onChange={(evt) => {
-                                        setBekrefter(evt.target.checked);
-                                        if (evt.target.checked) {
-                                            setError(false);
-                                        }
-                                    }}>
-                                    Jeg bekrefter at jeg vil svare så riktig som jeg kan.
-                                </Checkbox>
-                            </CheckboxGroup>
-                        </Box>
-                        <Button type="submit" loading={isPending} disabled={isPending}>
-                            Start søknad
-                        </Button>
-                    </div>
-                </form>
+                <section aria-label="Skjema">
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <Box paddingBlock="space-0 space-32">
+                                <CheckboxGroup
+                                    legend="Jeg bekrefter at jeg vil svare så riktig som jeg kan"
+                                    hideLegend={true}
+                                    error={error ? 'Du må bekrefte at du vil svare så riktig som du kan' : undefined}>
+                                    <Checkbox
+                                        name="bekrefter"
+                                        value="bekrefter"
+                                        onChange={(evt) => {
+                                            setBekrefter(evt.target.checked);
+                                            if (evt.target.checked) {
+                                                setError(false);
+                                            }
+                                        }}>
+                                        Jeg bekrefter at jeg vil svare så riktig som jeg kan.
+                                    </Checkbox>
+                                </CheckboxGroup>
+                            </Box>
+                            <Button type="submit" loading={isPending} disabled={isPending}>
+                                Start søknad
+                            </Button>
+                        </div>
+                    </form>
+                </section>
             </VStack>
         </ApplicationPage>
     );

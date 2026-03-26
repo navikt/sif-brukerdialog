@@ -38,6 +38,8 @@ export const zOppgaveType = z.enum([
     'SØK_YTELSE',
 ]);
 
+export const zOppgaveYtelsetype = z.enum(['UNGDOMSYTELSE', 'AKTIVITETSPENGER']);
+
 export const zPeriodeDto = z.object({
     fomDato: z.iso.date().optional(),
     tomDato: z.iso.date().optional(),
@@ -193,7 +195,11 @@ export const zBrukerdialogOppgaveDto = z.object({
 export const zHentAlleOppgaverData = z.object({
     body: z.never().optional(),
     path: z.never().optional(),
-    query: z.never().optional(),
+    query: z
+        .object({
+            ytelsetype: zOppgaveYtelsetype.optional(),
+        })
+        .optional(),
 });
 
 /**

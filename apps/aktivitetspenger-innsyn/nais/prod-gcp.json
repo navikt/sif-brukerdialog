@@ -1,0 +1,46 @@
+{
+    "app": "aktivitetspenger-innsyn",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "ingresses": ["https://www.nav.no/aktivitetspenger/innsyn"],
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
+    "externalHosts": ["www.nav.no", "telemetry.nav.no"],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" }
+    ],
+    "minReplicas": 2,
+    "maxReplicas": 2,
+    "cluster": "prod-gcp",
+    "observabilityEnabled": "true",
+    "faro": true,
+    "env": {
+        "ENV": "prod",
+        "APP_VERSION": "prod",
+        "NODE_ENV": "production",
+        "PUBLIC_PATH": "/aktivitetspenger/innsyn",
+        "NPM_CONFIG_CACHE": "/tmp",
+
+        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+        "SIF_PUBLIC_USE_ANALYTICS": "true",
+        "SIF_PUBLIC_APPSTATUS_DATASET": "production",
+        "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
+
+        "SIF_PUBLIC_USE_FARO": "true",
+        "SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL": "https://telemetry.nav.no/collect",
+
+        "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=false&chatbot=false&logoutUrl=https://www.nav.no/aktivitetspenger/innsyn/oauth2/logout",
+        "SIF_PUBLIC_FULL_DEKORATOR": "on",
+        "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/aktivitetspenger/innsyn/oauth2/login?redirect=/aktivitetspenger/innsyn",
+        "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
+
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/aktivitetspenger/innsyn/api/brukerdialog",
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+
+        "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/aktivitetspenger/innsyn/api/ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "prod-gcp:k9saksbehandling:ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling"
+    }
+}

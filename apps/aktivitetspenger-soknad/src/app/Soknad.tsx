@@ -3,13 +3,14 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { SøknadContextProvider } from '@app/setup/context/soknadContext';
 import { useSøknadStore, useStepTitles } from '@app/setup/hooks';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { RegistrertBarn, Søker, UtvidetKontonummerInfo } from '@sif/api';
+import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { StepRouteGuard } from '@sif/soknad/navigation';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { KvitteringPage, VelkommenPage } from './pages';
-import { BarnSteg, BostedSteg, BostedUtlandSteg, KontonummerSteg, OppsummeringSteg } from './steps';
+import { AndreYtelserSteg, BarnSteg, BostedSteg, BostedUtlandSteg, KontonummerSteg, OppsummeringSteg } from './steps';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 
 interface Props {
@@ -75,6 +76,7 @@ export const Søknad = ({ søker, barn, kontonummer, mellomlagring }: Props) => 
                             isInitialized={!!søknadState}
                         />
                     }>
+                    <Route path={søknadStepConfig[SøknadStepId.ANDRE_YTELSER].route} element={<AndreYtelserSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.KONTONUMMER].route} element={<KontonummerSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED_UTLAND].route} element={<BostedUtlandSteg />} />

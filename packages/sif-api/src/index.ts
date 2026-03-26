@@ -1,31 +1,9 @@
 // Query keys
-export { sifCommonQueryKeys } from './queryKeys';
+export { sifApiQueryKeys } from './queryKeys';
 
-// Alle typer som er hensiktsmessig å eksponere
-export * from './types/Arbeidsgivere';
-export * from './types/Barn';
-export * from './types/invalidParameterProblemDetail';
-export * from './types/MellomlagringYtelse';
-export * from './types/Soker';
-
-// Alle hooks
-export * from './hooks/useArbeidsgivere';
-export * from './hooks/useKontonummer';
-export * from './hooks/useRegistrerteBarn';
-export * from './hooks/useSoker';
-export * from './hooks/useValiderFritekst';
-export * from './hooks/useVedlegg';
-export * from './hooks/useYtelseMellomlagring';
-
-// Alle API kall (for non-React usage)
-export * from './api';
-
-// Alle API kall (for non-React usage)
-export * from './types';
-
-// Alle utils
+// Utils (kryssdomene)
 export * from './utils/errorHandlers';
 export * from './utils/initApiClient';
 
-// Komponenter
+// Komponenter (kryssdomene)
 export { ApiErrorAlert } from './components/ApiErrorAlert';

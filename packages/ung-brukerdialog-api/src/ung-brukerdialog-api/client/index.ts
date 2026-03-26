@@ -24,6 +24,7 @@ export {
     OppgaveStatus,
     OppgaveType,
     type OppgavetypeDataDto,
+    OppgaveYtelsetype,
     type PeriodeDto,
     PeriodeEndringType,
     type RapportertInntektDto,

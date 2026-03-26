@@ -83,7 +83,7 @@ const defaultValues: FormValues = {
 };
 
 export const RhfEksempelForm = () => {
-    const { validateField } = useSifValidate();
+    const { validateField } = useSifValidate('example');
 
     const methods = useForm<FormValues>({
         defaultValues,

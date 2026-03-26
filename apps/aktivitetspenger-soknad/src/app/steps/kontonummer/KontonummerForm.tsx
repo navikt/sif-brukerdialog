@@ -1,10 +1,11 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api';
+import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion } from '@sif/soknad-ui/components';
@@ -21,7 +22,8 @@ interface Props {
 }
 
 export const KontonummerForm = ({ kontonummerInfo }: Props) => {
-    const { validateField } = useSifValidate();
+    const { text } = useAppIntl();
+    const { validateField } = useSifValidate('kontonummerForm');
 
     const defaultValues = useStepDefaultValues<KontonummerFormValues, KontonummerSøknadsdata>({
         stepId,
@@ -43,12 +45,16 @@ export const KontonummerForm = ({ kontonummerInfo }: Props) => {
                     <>
                         <YesOrNoQuestion
                             name={KontonummerFormFields.kontonummerErRiktig}
-                            legend={`Stemmer det at ditt kontonummer er ${kontonummerInfo.formatertKontonummer}?`}
+                            legend={text('kontonummerSteg.spørsmål.kontonummerErRiktig', {
+                                kontonummer: kontonummerInfo.formatertKontonummer,
+                            })}
                             validate={validateField(KontonummerFormFields.kontonummerErRiktig, getYesOrNoValidator())}
                         />
                         <AriaLiveRegion visible={kontonummerErRiktig === YesOrNo.NO}>
                             <FormLayout.QuestionRelatedMessage>
-                                <Alert variant="info">Info når kontonummer ikke stemmer</Alert>
+                                <Alert variant="info">
+                                    <AppText id="kontonummerSteg.kontonummerStemmerIkke.info" />
+                                </Alert>
                             </FormLayout.QuestionRelatedMessage>
                         </AriaLiveRegion>
                     </>
@@ -56,17 +62,21 @@ export const KontonummerForm = ({ kontonummerInfo }: Props) => {
                 {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
                     <Alert variant="warning">
                         <Heading level="3" size="small" spacing>
-                            Har ikke kontonummer melding
+                            <AppText id="kontonummerSteg.harIkkeKontonummer.tittel" />
                         </Heading>
-                        <BodyLong spacing>info</BodyLong>
+                        <BodyLong spacing>
+                            <AppText id="kontonummerSteg.harIkkeKontonummer.info" />
+                        </BodyLong>
                     </Alert>
                 )}
                 {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
                     <Alert variant="warning">
                         <Heading level="3" size="small" spacing>
-                            Uvisst om en har kontonummer
+                            <AppText id="kontonummerSteg.uvissOmKontonummer.tittel" />
                         </Heading>
-                        <BodyLong spacing>info</BodyLong>
+                        <BodyLong spacing>
+                            <AppText id="kontonummerSteg.uvissOmKontonummer.info" />
+                        </BodyLong>
                     </Alert>
                 )}
             </FormLayout.Questions>
