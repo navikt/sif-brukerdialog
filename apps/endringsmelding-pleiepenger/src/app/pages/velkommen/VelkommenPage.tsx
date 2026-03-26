@@ -49,13 +49,22 @@ const VelkommenPage = () => {
                             </Heading>
                             <VStack gap="space-24">
                                 <BodyLong size="large">
-                                    <AppText
-                                        id="velkommenPage.guide.tekst"
-                                        values={{
-                                            barnetsNavn: <strong>{barnetsNavn}</strong>,
-                                            samletSøknadsperiodeTekst,
-                                        }}
-                                    />
+                                    {barnetsNavn === '' ? (
+                                        <AppText
+                                            id="velkommenPage.guide.tekst.anonymisertBarn"
+                                            values={{
+                                                samletSøknadsperiodeTekst,
+                                            }}
+                                        />
+                                    ) : (
+                                        <AppText
+                                            id="velkommenPage.guide.tekst"
+                                            values={{
+                                                barnetsNavn: <strong>{barnetsNavn}</strong>,
+                                                samletSøknadsperiodeTekst,
+                                            }}
+                                        />
+                                    )}
                                 </BodyLong>
                                 <CheckboxGroup
                                     data-color="accent"
