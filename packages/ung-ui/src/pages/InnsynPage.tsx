@@ -3,7 +3,7 @@ import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundar
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import React, { useEffect } from 'react';
 
-import { useUngUiIntl } from '../../i18n';
+import { useUngUiIntl } from '../i18n';
 
 interface Props {
     documentTitle: string;

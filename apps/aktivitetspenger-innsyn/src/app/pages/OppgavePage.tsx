@@ -2,9 +2,9 @@ import { InnsynPage } from '@sif/ung-ui/components';
 import { OppgaveRenderer } from '@sif/ung-ui/modules';
 import { useParams } from 'react-router-dom';
 
+import OppgaveIkkeFunnetPage from '../../../../../packages/ung-ui/src/pages/OppgaveIkkeFunnetPage';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useInnsynContext } from '../hooks/useInnsynContext';
-import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnetPage';
 
 /** Url params */
 type OppgavePageParams = {

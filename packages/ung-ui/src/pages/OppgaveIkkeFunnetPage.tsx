@@ -1,13 +1,13 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { InnsynPage } from '@sif/ung-ui/components';
 
-import { useAppIntl } from '../i18n';
+import { useUngUiIntl } from '../i18n';
 
 interface Props {
     oppgaveReferanse?: string;
 }
 const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
-    const { text } = useAppIntl();
+    const { text } = useUngUiIntl();
     return (
         <InnsynPage documentTitle={text('@ungUi.oppgaveIkkeFunnetPage.dokumentTittel')}>
             <VStack gap="space-16">
