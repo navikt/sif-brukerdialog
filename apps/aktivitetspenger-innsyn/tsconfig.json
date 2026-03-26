@@ -18,7 +18,6 @@
         "./vite.config.ts",
         "./vite.dev.config.ts",
         "env.schema.ts",
-        "appEnv.ts",
-        "../../packages/ung-ui/src/pages/UngOppgaveIkkeFunnetPage.tsx"
+        "appEnv.ts"
     ]
 }

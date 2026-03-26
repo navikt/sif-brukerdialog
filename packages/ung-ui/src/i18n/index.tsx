@@ -29,7 +29,7 @@ export const UngUiText = (props: UngUiTextProps) => {
     return <FormattedMessage {...props} />;
 };
 
-export const ungUiIntlMessages = {
+export const ungUiMessages = {
     nb,
     nn,
 };
