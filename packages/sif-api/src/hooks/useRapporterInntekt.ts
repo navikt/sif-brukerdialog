@@ -5,7 +5,7 @@ import { rapporterInntekt } from '../api/rapporterInntekt';
 import { sifApiQueryKeys } from '../queryKeys';
 import { ApiError } from '../utils/errorHandlers';
 
-export const useRapporterInntekt = () => {
+export const useRapporterInntekt = (options?: { onSuccess?: () => void; onError?: (error: ApiError) => void }) => {
     const queryClient = useQueryClient();
     return useMutation<void, ApiError, ungdomsytelse.UngdomsytelseInntektsrapportering>({
         mutationFn: (data) => rapporterInntekt(data),
@@ -15,6 +15,8 @@ export const useRapporterInntekt = () => {
             setTimeout(() => {
                 queryClient.refetchQueries({ queryKey: sifApiQueryKeys.oppgaver });
             }, 3000);
+            options?.onSuccess?.();
         },
+        onError: options?.onError,
     });
 };

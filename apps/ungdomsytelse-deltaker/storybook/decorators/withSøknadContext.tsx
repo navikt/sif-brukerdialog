@@ -1,5 +1,4 @@
 import { Theme } from '@navikt/ds-react';
-import { barnResponseSchema } from '@navikt/sif-common-api';
 
 import { getScenarioMockData } from '../../mock/scenarios/scenarioer';
 import { ScenarioType } from '../../mock/scenarios/types';
@@ -14,7 +13,7 @@ const data = getScenarioMockData(ScenarioType.søknad);
 export const withSøknadContext = (Story: any, context?: Partial<SøknadContextType>) => {
     const deltakelse = deltakelsePeriodeSchema.parse(data.deltakelser[0]);
     const oppgave = {} as SøkYtelseOppgave;
-    const { barn } = barnResponseSchema.parse(data.barn);
+    const { barn } = { barn: [] }; //barnResponseSchema.parse(data.barn);
 
     return (
         <Theme>

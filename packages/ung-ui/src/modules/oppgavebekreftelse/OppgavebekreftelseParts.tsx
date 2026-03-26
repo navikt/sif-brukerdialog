@@ -11,6 +11,7 @@ import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingS
 import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
 import { RegelverkOgInnsynReadMore } from '../oppgaver/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
+import { useOppgavePage } from '../../pages/hooks/useOppgavePage';
 
 interface OppgaveOgTilbakemeldingProps {
     beskjedFraNav: React.ReactNode;
@@ -78,7 +79,8 @@ export interface UbesvartProps {
 
 const Ubesvart = ({ children }: UbesvartProps) => {
     const intl = useUngUiIntl();
-    const { oppgave, visKvittering, setVisKvittering, navn, onCancel } = useOppgavebekreftelse();
+    const { oppgave, visKvittering, setVisKvittering, navn } = useOppgavebekreftelse();
+    const { onSuccess } = useOppgavePage();
 
     if (oppgave.status !== OppgaveStatus.ULØST || visKvittering) return null;
 
@@ -103,8 +105,10 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, intl)}
                     uttalelseLabel={getTilbakemeldingFritekstLabel(oppgave, intl)}
                     oppgaveReferanse={oppgave.oppgaveReferanse}
-                    onSuccess={() => setVisKvittering(true)}
-                    onCancel={onCancel}
+                    onSuccess={() => {
+                        onSuccess?.();
+                        setVisKvittering(true);
+                    }}
                 />
             </section>
         </VStack>

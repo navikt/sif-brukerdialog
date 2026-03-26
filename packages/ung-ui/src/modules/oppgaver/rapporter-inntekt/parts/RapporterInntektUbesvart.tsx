@@ -11,7 +11,7 @@ interface Props extends RapporterInntektOppgaveProps {
     setKvitteringData: (data: RapporterInntektKvitteringData) => void;
 }
 
-export const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKvitteringData, onCancel }: Props) => {
+export const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKvitteringData }: Props) => {
     return (
         <VStack gap="space-40">
             <GuidePanel>
@@ -26,7 +26,6 @@ export const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKv
                 måned={måned}
                 oppgaveReferanse={oppgave.oppgaveReferanse}
                 onSuccess={(harRapportertInntekt) => setKvitteringData({ harHattInntektOver0: harRapportertInntekt })}
-                onCancel={onCancel}
             />
         </VStack>
     );

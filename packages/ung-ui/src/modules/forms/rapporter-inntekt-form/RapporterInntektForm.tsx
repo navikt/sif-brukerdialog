@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { UngUiText, useUngUiIntl } from '../../../i18n';
+import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
 
 export enum InntektFormFields {
     harInntekt = 'harInntekt',
@@ -29,13 +30,13 @@ export interface RapporterInntektFormProps {
     oppgaveReferanse: string;
     måned: string;
     onSuccess: (harRapportertInntekt: boolean) => void;
-    onCancel?: () => void;
 }
 
-export const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: RapporterInntektFormProps) => {
+export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: RapporterInntektFormProps) => {
     const { text } = useUngUiIntl();
     const { error, isPending, mutateAsync } = useRapporterInntekt();
     const { validateField } = useSifValidate('@ungUi.inntektForm');
+    const { onCancel, onSuccess: onPageSuccess } = useOppgavePage();
     const [dtoError, setDtoError] = useState<string | undefined>(undefined);
 
     const methods = useForm<InntektFormValues>({
@@ -66,6 +67,7 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuc
         };
         try {
             await mutateAsync(data);
+            onPageSuccess?.();
             onSuccess(harInntekt);
         } catch {
             // error is tracked by mutation hook

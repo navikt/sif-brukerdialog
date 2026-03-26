@@ -1,4 +1,4 @@
-import { Søker } from '@navikt/sif-common-api';
+import { Søker } from '@sif/api/k9-prosessering';
 import { createContext, useMemo } from 'react';
 
 import { DeltakelsePeriode } from '../types/DeltakelsePeriode';

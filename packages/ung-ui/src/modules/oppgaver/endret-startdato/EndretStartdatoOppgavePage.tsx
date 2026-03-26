@@ -10,20 +10,15 @@ interface Props {
     navn: string;
     oppgave: EndretStartdatoOppgave;
     initialVisKvittering?: boolean;
-    onCancel: () => void;
 }
 
-export const EndretStartdatoOppgavePage = ({ navn, oppgave, initialVisKvittering, onCancel }: Props) => {
+export const EndretStartdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
     const formatertDato = (
         <span className="text-nowrap">{dateFormatter.full(oppgave.oppgavetypeData.nyStartdato)}</span>
     );
 
     return (
-        <Oppgavebekreftelse
-            oppgave={oppgave}
-            navn={navn}
-            initialVisKvittering={initialVisKvittering}
-            onCancel={onCancel}>
+        <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
                 <EndretStartdatoOppgavetekst
                     frist={oppgave.sisteDatoEnKanSvare}

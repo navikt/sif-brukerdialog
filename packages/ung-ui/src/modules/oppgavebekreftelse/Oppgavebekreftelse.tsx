@@ -13,10 +13,9 @@ interface Props {
     navn: string;
     children: React.ReactNode;
     initialVisKvittering?: boolean;
-    onCancel: () => void;
 }
 
-export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvittering = false, onCancel }: Props) => {
+export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvittering = false }: Props) => {
     const intl = useUngUiIntl();
     const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
 
@@ -25,10 +24,9 @@ export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvitteri
             oppgave,
             navn,
             visKvittering,
-            onCancel,
             setVisKvittering,
         }),
-        [oppgave, navn, visKvittering, setVisKvittering, onCancel],
+        [oppgave, navn, visKvittering, setVisKvittering],
     );
 
     return (

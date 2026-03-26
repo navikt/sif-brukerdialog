@@ -10,6 +10,7 @@ import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/
 import { useForm } from 'react-hook-form';
 
 import { UngUiText, useUngUiIntl } from '../../../i18n';
+import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
 
 export type UttalelseSvaralternativer = {
     harUttalelseLabel: string;
@@ -23,7 +24,6 @@ export interface UtalelseFormProps {
     uttalelseDescription?: React.ReactNode;
     oppgaveReferanse: string;
     onSuccess: (utalelse: UngdomsytelseOppgaveUttalelseDto) => void;
-    onCancel?: () => void;
 }
 
 enum FormFields {
@@ -48,11 +48,11 @@ export const UtalelseForm = ({
     oppgaveReferanse,
     svaralternativer,
     onSuccess,
-    onCancel,
 }: UtalelseFormProps) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
     const { intl, text } = useUngUiIntl();
     const { validateField } = useSifValidate('@ungUi.uttalelseForm');
+    const { onCancel } = useOppgavePage();
 
     const methods = useForm<FormValues>({
         defaultValues: {},

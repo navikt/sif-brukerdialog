@@ -1,18 +1,11 @@
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
-import EndretSluttdatoOppgavePage from '@innsyn/modules/oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
-import EndretStartdatoOppgavePage from '@innsyn/modules/oppgaver/endret-startdato/EndretStartdatoOppgavePage';
-import RapporterInntektOppgavePage from '@innsyn/modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
-import SøkYtelseOppgavePage from '@innsyn/modules/oppgaver/søk-ytelse/SøkYtelseOppgavePage';
+import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
-import { ParsedOppgavetype } from '@shared/types/Oppgave';
-import { useParams } from 'react-router-dom';
+import { UngOppgaveIkkeFunnetPage, UngOppgavePage } from '@sif/ung-ui/pages';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import AvvikRegisterinntektOppgavePage from '../modules/oppgaver/avvik-registerinntekt/AvvikRegisterinntektOppgavePage';
-import EndretStartOgSluttdatoOppgavePage from '../modules/oppgaver/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePage';
-import FjernetPeriodeOppgavePage from '../modules/oppgaver/fjernet-periode/FjernetPeriodeOppgavePage';
-import MeldtUtOppgavePage from '../modules/oppgaver/meldt-ut/MeldtUtOppgavePage';
-import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnetPage';
-
+import { useAppIntl } from '../../../i18n';
 /** Url params */
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -20,43 +13,28 @@ type OppgavePageParams = {
 
 const OppgavePage = () => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
+    const { text } = useAppIntl();
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const {
         oppgaver,
-        søker: { fornavn: deltakerNavn },
+        søker: { fornavn },
     } = useDeltakerContext();
     const oppgave = oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
 
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
 
-    if (!oppgave) {
-        return <OppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} />;
-    }
-
-    switch (oppgave.oppgavetype) {
-        case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return <AvvikRegisterinntektOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;
-
-        case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <EndretStartdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
-
-        case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
-
-        case ParsedOppgavetype.BEKREFT_MELDT_UT:
-            return <MeldtUtOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
-
-        case ParsedOppgavetype.RAPPORTER_INNTEKT:
-            return <RapporterInntektOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;
-
-        case ParsedOppgavetype.SØK_YTELSE:
-            return <SøkYtelseOppgavePage oppgave={oppgave} />;
-
-        case ParsedOppgavetype.BEKREFT_FJERNET_PERIODE:
-            return <FjernetPeriodeOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;
-
-        case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
-            return <EndretStartOgSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
-    }
+    return oppgave ? (
+        <UngOppgavePage
+            navn={fornavn}
+            oppgave={oppgave}
+            applikasjonTittel={text('innsyn.sidetittel')}
+            onCancel={() => navigate('/')}
+            onSuccess={() => queryClient.invalidateQueries(commonQueries.deltakelseperioder)}
+        />
+    ) : (
+        <UngOppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} applikasjonTittel={text('innsyn.sidetittel')} />
+    );
 };
 
 export default OppgavePage;

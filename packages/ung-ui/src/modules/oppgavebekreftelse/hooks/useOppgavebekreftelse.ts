@@ -6,7 +6,6 @@ interface OppgavebekreftelseContextType {
     navn: string;
     visKvittering: boolean;
     setVisKvittering: (vis: boolean) => void;
-    onCancel: () => void;
 }
 
 export const OppgavebekreftelseContext = createContext<OppgavebekreftelseContextType | null>(null);

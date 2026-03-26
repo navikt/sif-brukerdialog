@@ -10,26 +10,27 @@ import { MeldtUtOppgavePage } from '../modules/oppgaver/meldt-ut/MeldtUtOppgaveP
 import { RapporterInntektOppgavePage } from '../modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
 import { SøkYtelseOppgavePage } from '../modules/oppgaver/sok-ytelse/SokYtelseOppgavePage';
 import { getOppgaveDokumentTittel } from '../utils/textUtils';
+import { OppgavePageContext } from './hooks/useOppgavePage';
 import { UngInnsynPage } from './UngInnsynPage';
 
-const getOppgavePageComponent = (navn: string, oppgave: Oppgave, onCancel: () => void) => {
+const getOppgavePageComponent = (navn: string, oppgave: Oppgave) => {
     switch (oppgave.oppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return <AvvikRegisterinntektOppgavePage oppgave={oppgave} navn={navn} onCancel={onCancel} />;
+            return <AvvikRegisterinntektOppgavePage oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <EndretStartdatoOppgavePage navn={navn} oppgave={oppgave} onCancel={onCancel} />;
+            return <EndretStartdatoOppgavePage navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgavePage navn={navn} oppgave={oppgave} onCancel={onCancel} />;
+            return <EndretSluttdatoOppgavePage navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_MELDT_UT:
-            return <MeldtUtOppgavePage navn={navn} oppgave={oppgave} onCancel={onCancel} />;
+            return <MeldtUtOppgavePage navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.RAPPORTER_INNTEKT:
-            return <RapporterInntektOppgavePage oppgave={oppgave} navn={navn} onCancel={onCancel} />;
+            return <RapporterInntektOppgavePage oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.SØK_YTELSE:
             return <SøkYtelseOppgavePage oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_FJERNET_PERIODE:
-            return <FjernetPeriodeOppgavePage oppgave={oppgave} navn={navn} onCancel={onCancel} />;
+            return <FjernetPeriodeOppgavePage oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
-            return <EndretStartOgSluttdatoOppgavePage navn={navn} oppgave={oppgave} onCancel={onCancel} />;
+            return <EndretStartOgSluttdatoOppgavePage navn={navn} oppgave={oppgave} />;
     }
 };
 
@@ -38,14 +39,17 @@ interface Props {
     oppgave: Oppgave;
     applikasjonTittel: string;
     onCancel: () => void;
+    onSuccess?: () => void;
 }
 
 export const UngOppgavePage = (props: Props) => {
-    const { navn, oppgave, applikasjonTittel, onCancel } = props;
+    const { navn, oppgave, applikasjonTittel, onCancel, onSuccess } = props;
     const intl = useUngUiIntl();
     return (
-        <UngInnsynPage documentTitle={getOppgaveDokumentTittel(applikasjonTittel, oppgave, intl)}>
-            {getOppgavePageComponent(navn, oppgave, onCancel)}
-        </UngInnsynPage>
+        <OppgavePageContext.Provider value={{ onCancel, onSuccess }}>
+            <UngInnsynPage documentTitle={getOppgaveDokumentTittel(applikasjonTittel, oppgave, intl)}>
+                {getOppgavePageComponent(navn, oppgave)}
+            </UngInnsynPage>
+        </OppgavePageContext.Provider>
     );
 };
