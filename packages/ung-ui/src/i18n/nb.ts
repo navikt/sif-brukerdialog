@@ -20,7 +20,7 @@ export const ungUi_messages_nb = {
     '@ungUi.Ja': 'Ja',
     '@ungUi.Nei': 'Nei',
 
-    '@ungUi.oppgaveStatusInfo.utløptEllerAvbrutt': 'Denne oppgaven gjelder ikke lenger, du trenger ikke gjør noe.',
+    '@ungUi.oppgaveStatusInfo.utløptEllerAvbrutt': 'Denne oppgaven gjelder ikke lenger, du trenger ikke gjøre noe.',
 
     '@ungUi.forsideLenkeButton.tekst': 'Tilbake til oversikten',
 
