@@ -4355,7 +4355,6 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@navikt/ung-brukerdialog-api": "workspace:*"
-    "@navikt/ung-common": "workspace:*"
     "@sentry/react": "npm:10.44.0"
     "@sentry/vite-plugin": "npm:5.1.1"
     "@sif/api": "workspace:*"
@@ -4363,6 +4362,7 @@ __metadata:
     "@sif/rhf": "workspace:*"
     "@sif/soknad": "workspace:*"
     "@sif/soknad-ui": "workspace:*"
+    "@sif/ung-ui": "workspace:*"
     "@sonar/scan": "npm:4.3.5"
     "@storybook/addon-a11y": "npm:10.3.0"
     "@storybook/react-vite": "npm:10.3.0"
@@ -4412,7 +4412,6 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
-    "@navikt/ung-common": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@sentry/react": "npm:10.44.0"
     "@sentry/vite-plugin": "npm:5.1.1"
@@ -9471,6 +9470,37 @@ __metadata:
     typescript: "npm:5.9.3"
     vitest: "npm:4.1.0"
     zustand: "npm:5.0.12"
+  peerDependencies:
+    react: ">=19"
+    react-dom: ">=19"
+  languageName: unknown
+  linkType: soft
+
+"@sif/ung-ui@workspace:*, @sif/ung-ui@workspace:packages/ung-ui":
+  version: 0.0.0-use.local
+  resolution: "@sif/ung-ui@workspace:packages/ung-ui"
+  dependencies:
+    "@navikt/ds-react": "npm:8.8.0"
+    "@navikt/sif-common-hooks": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
+    "@navikt/ung-brukerdialog-api": "workspace:*"
+    "@sif/api": "workspace:*"
+    "@sif/eslint-config": "workspace:*"
+    "@sif/rhf": "workspace:*"
+    "@storybook/addon-a11y": "npm:10.3.0"
+    "@storybook/addon-docs": "npm:10.3.0"
+    "@storybook/addon-onboarding": "npm:10.3.0"
+    "@storybook/addon-vitest": "npm:10.3.0"
+    "@storybook/react-vite": "npm:10.3.0"
+    "@types/react": "npm:19.2.14"
+    "@types/react-dom": "npm:19.2.3"
+    eslint-plugin-storybook: "npm:10.3.0"
+    react: "npm:19.2.4"
+    react-dom: "npm:19.2.4"
+    storybook: "npm:10.3.0"
+    typescript: "npm:5.9.3"
+    vite: "npm:8.0.1"
+    vitest: "npm:4.1.0"
   peerDependencies:
     react: ">=19"
     react-dom: ">=19"

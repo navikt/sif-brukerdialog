@@ -263,6 +263,22 @@ export const MyComponent = () => {
 - `nn/appMessages.ts` sprer `...stegMessages_nn` og typecheckes mot `keyof typeof appMessages_nb`.
 - `index.tsx` i appen sprer lib-meldinger først, så app-meldinger, så side-meldinger (senere spread vinner ved nøkkelkonflikt).
 
+### Eksport fra pakker
+
+**En pakke eksporterer kun det aggregerte meldings-objektet** — aldri de individuelle underfilene.
+
+- `i18n/index.tsx` eksporterer `xyzMessages` (aggregert `{ nb, nn }`). Dette er det eneste konsumenter trenger.
+- Sub-modul-filer som `modules/oppgaver/avvik-registerinntekt/i18n/nb.ts` skal **ikke** eksporteres fra pakkens `index.ts` — de er implementasjonsdetaljer.
+- Årsak: Konsumenter importerer én samlet meldings-blob og registrerer den i sin `IntlProvider`. De trenger ikke vite hvilke underfiler meldingene kom fra.
+
+```ts
+// ✅ Riktig — pakken eksporterer kun aggregert
+export { xyzMessages } from './i18n'; // { nb, nn }
+
+// ❌ Feil — eksponerer intern struktur
+export { avvikRegisterinntektMessages_nb } from './modules/oppgaver/avvik-registerinntekt/i18n/nb';
+```
+
 ---
 
 ## Fase 0 — Pre-flight (utled filstier uten søk)

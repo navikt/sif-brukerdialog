@@ -1,0 +1,45 @@
+export const avvikRegisterinntektMessages_nb = {
+    '@ungUi.avvikRegisterinntekt.inntekskilde.arbeidsgiverYtelse': 'Arbeidsgiver/Nav-ytelse',
+    '@ungUi.avvikRegisterinntekt.inntekskilde.arbeidsgiver': 'Arbeidsgiver',
+    '@ungUi.avvikRegisterinntekt.inntekskilde.navytelse': 'Nav-ytelse',
+    '@ungUi.avvikRegisterinntektOppsummering.intro':
+        'Vi har fått disse opplysningene fra arbeidsgiver om inntekten din i {rapporteringsmåned}:',
+
+    '@ungUi.inntektTabell.totalt': 'Totalt',
+    '@ungUi.inntektTabell.inntekt': 'Inntekt før skatt',
+
+    '@ungUi.avvikRegisterinntektOppgavetekst.navYtelse':
+        'Vi har fått disse opplysningene om ytelse fra Nav for {rapporteringsmåned}:',
+    '@ungUi.avvikRegisterinntektOppgavetekst.generell':
+        'Vi har fått disse opplysningene fra arbeidsgiver om inntekten din for {rapporteringsmåned}:',
+    '@ungUi.avvikRegisterinntektOppgavetekst.ingenOpplysninger':
+        'Du har gitt oss beskjed om at du hadde inntekt i {rapporteringsmåned}, men vi har ikke fått inn opplysninger fra arbeidsgiver om at du hadde inntekt i {rapporteringsmåned}.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.ingenInntekt':
+        'Vi bruker opplysningene fra arbeidsgiver når vi vurderer hvor mye du får utbetalt. Når vi ikke har mottatt noe fra arbeidsgiver, vil vi basere oss på at du ikke hadde inntekt i {rapporteringsmåned}.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.1.harInntekt':
+        'Vi bruker denne inntekten fra arbeidsgiver til å vurdere hvor mye du får utbetalt.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.1.harInntekt.delerAvMåned':
+        'Vi bruker ikke hele inntekten din, bare deler av den, når vi regner ut hvor mye penger du får. Det er fordi du ikke hadde ungdomsprogramytelsen hele måneden.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse':
+        'Vi bruker denne inntekten til å vurdere hvor mye du får utbetalt.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.2': 'Vi trenger et svar fra deg på om inntekten stemmer eller ikke.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.3':
+        'Hvis inntekten stemmer, krysser du av for <strong>Ja, inntekten stemmer</strong>.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.4':
+        'Hvis du mener at inntekten er feil, krysser du av på <strong>Nei, inntekten stemmer ikke</strong> og sender en tilbakemelding til oss om det.',
+
+    '@ungUi.avvikRegisterinntektOppgavetekst.5': 'Jo fortere du svarer, jo fortere får du pengene utbetalt.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.6': 'Fristen for å svare er senest {formatertFrist}.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.7':
+        'Hvis vi ikke hører fra deg innen svarfristen, bruker vi inntekten som arbeidsgiver har oppgitt.',
+    '@ungUi.avvikRegisterinntektOppgavetekst.7.kunYtelse':
+        'Hvis vi ikke hører fra deg innen svarfristen, bruker vi inntekten vi har fått oppgitt.',
+
+    '@ungUi.regelverkOgInnsyn.readMore.tittel': 'Regelverk og innsyn',
+    '@ungUi.regelverkOgInnsyn.readMore.tekst.1': 'Se regelverket for ungdomsprogramytelsen:',
+    '@ungUi.regelverkOgInnsyn.readMore.paragraf': '§ 13 fjerde ledd i Arbeidsmarkedsloven (lovdata.no)',
+    '@ungUi.regelverkOgInnsyn.readMore.forskrift':
+        '§ 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1. august 2025) (lovdata.no)',
+    '@ungUi.regelverkOgInnsyn.readMore.dokumenter':
+        'Du har rett til å se dokumentene i saken sin. <link>Les mer om innsyn på nav.no</link>.',
+};

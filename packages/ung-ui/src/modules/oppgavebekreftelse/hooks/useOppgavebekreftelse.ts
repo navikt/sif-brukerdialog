@@ -1,0 +1,20 @@
+import { BekreftelseOppgave } from '@sif/api/ung-brukerdialog';
+import { createContext, useContext } from 'react';
+
+interface OppgavebekreftelseContextType {
+    oppgave: BekreftelseOppgave;
+    navn: string;
+    visKvittering: boolean;
+    setVisKvittering: (vis: boolean) => void;
+    onCancel: () => void;
+}
+
+export const OppgavebekreftelseContext = createContext<OppgavebekreftelseContextType | null>(null);
+
+export const useOppgavebekreftelse = () => {
+    const context = useContext(OppgavebekreftelseContext);
+    if (!context) {
+        throw new Error('useOppgavebekreftelse must be used within Oppgavebekreftelse');
+    }
+    return context;
+};

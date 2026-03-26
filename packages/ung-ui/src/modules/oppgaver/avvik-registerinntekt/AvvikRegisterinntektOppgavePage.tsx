@@ -1,0 +1,46 @@
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
+
+import { UngUiText } from '../../../i18n';
+import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
+import {
+    AvvikRegisterinntektOppgavetekst,
+    getUtbetalingsmånedForAvvikRegisterinntektOppgave,
+} from './parts/AvvikRegisterinntektOppgavetekst';
+import { AvvikRegisterinntektOppsummering } from './parts/AvvikRegisterinntektOppsummering';
+
+interface Props {
+    navn: string;
+    oppgave: AvvikRegisterinntektOppgave;
+    initialVisKvittering?: boolean;
+    onCancel: () => void;
+}
+
+export const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering, onCancel }: Props) => {
+    const utbetalingsmåned = getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed);
+
+    return (
+        <Oppgavebekreftelse
+            oppgave={oppgave}
+            navn={navn}
+            initialVisKvittering={initialVisKvittering}
+            onCancel={onCancel}>
+            <Oppgavebekreftelse.Ubesvart>
+                <AvvikRegisterinntektOppgavetekst oppgave={oppgave} />
+            </Oppgavebekreftelse.Ubesvart>
+
+            <Oppgavebekreftelse.Besvart>
+                <AvvikRegisterinntektOppsummering oppgave={oppgave} />
+            </Oppgavebekreftelse.Besvart>
+
+            <Oppgavebekreftelse.Kvittering>
+                <UngUiText
+                    id="@ungUi.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst"
+                    values={{
+                        utbetalingsmåned: dateFormatter.monthFullYear(utbetalingsmåned),
+                    }}
+                />
+            </Oppgavebekreftelse.Kvittering>
+        </Oppgavebekreftelse>
+    );
+};

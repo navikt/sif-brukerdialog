@@ -1,17 +1,9 @@
-import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
-import { useParams } from 'react-router-dom';
+import { UngOppgaveIkkeFunnetPage, UngOppgavePage as UngOppgavePage } from '@sif/ung-ui/pages';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useInnsynContext } from '../hooks/useInnsynContext';
-import AvvikRegisterinntektOppgavePage from '../ung-ui/modules/oppgaver/avvik-registerinntekt/AvvikRegisterinntektOppgavePage';
-import EndretSluttdatoOppgavePage from '../ung-ui/modules/oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
-import EndretStartOgSluttdatoOppgavePage from '../ung-ui/modules/oppgaver/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePage';
-import EndretStartdatoOppgavePage from '../ung-ui/modules/oppgaver/endret-startdato/EndretStartdatoOppgavePage';
-import FjernetPeriodeOppgavePage from '../ung-ui/modules/oppgaver/fjernet-periode/FjernetPeriodeOppgavePage';
-import MeldtUtOppgavePage from '../ung-ui/modules/oppgaver/meldt-ut/MeldtUtOppgavePage';
-import RapporterInntektOppgavePage from '../ung-ui/modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
-import SøkYtelseOppgavePage from '../ung-ui/modules/oppgaver/søk-ytelse/SøkYtelseOppgavePage';
-import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnetPage';
+import { useAppIntl } from '../i18n';
 
 /** Url params */
 type OppgavePageParams = {
@@ -19,6 +11,8 @@ type OppgavePageParams = {
 };
 
 const OppgavePage = () => {
+    const { text } = useAppIntl();
+    const navigate = useNavigate();
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
     const {
         oppgaver,
@@ -28,35 +22,16 @@ const OppgavePage = () => {
 
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
 
-    if (!oppgave) {
-        return <OppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} />;
-    }
-
-    switch (oppgave.oppgavetype) {
-        case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return <AvvikRegisterinntektOppgavePage oppgave={oppgave} navn={fornavn} />;
-
-        case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <EndretStartdatoOppgavePage navn={fornavn} oppgave={oppgave} />;
-
-        case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgavePage navn={fornavn} oppgave={oppgave} />;
-
-        case ParsedOppgavetype.BEKREFT_MELDT_UT:
-            return <MeldtUtOppgavePage navn={fornavn} oppgave={oppgave} />;
-
-        case ParsedOppgavetype.RAPPORTER_INNTEKT:
-            return <RapporterInntektOppgavePage oppgave={oppgave} navn={fornavn} />;
-
-        case ParsedOppgavetype.SØK_YTELSE:
-            return <SøkYtelseOppgavePage oppgave={oppgave} />;
-
-        case ParsedOppgavetype.BEKREFT_FJERNET_PERIODE:
-            return <FjernetPeriodeOppgavePage oppgave={oppgave} navn={fornavn} />;
-
-        case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
-            return <EndretStartOgSluttdatoOppgavePage navn={fornavn} oppgave={oppgave} />;
-    }
+    return oppgave ? (
+        <UngOppgavePage
+            navn={fornavn}
+            oppgave={oppgave}
+            applikasjonTittel={text('application.title')}
+            onCancel={() => navigate('/')}
+        />
+    ) : (
+        <UngOppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} applikasjonTittel={text('application.title')} />
+    );
 };
 
 export default OppgavePage;

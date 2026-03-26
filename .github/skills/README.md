@@ -32,6 +32,11 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `legg til spørsmål`, `nytt felt`, `ny checkbox`, `ny radiogruppe`, `utvid steg`, `følgespørsmål`, `betinget visning`.
     - Fil: `.github/skills/sif-soknad-modify-step/SKILL.md`
 
+- `sif-formik-to-rhf`
+    - Når: migrering av ett skjema fra Formik (`@navikt/sif-common-formik-ds`) til RHF (`@sif/rhf`).
+    - Triggerord: `formik til rhf`, `konverter skjema`, `bytt ut formik`, `migrer form`, `sif-common-formik-ds`, `FormikWrapper`, `getTypedFormComponents`.
+    - Fil: `.github/skills/sif-formik-to-rhf/SKILL.md`
+
 - `sif-migration-baseline`
     - Når: migrering av app til ny v2 setup.
     - Triggerord: `migrering`, `baseline`, `bootstrap`, `sif-demo-app`.

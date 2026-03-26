@@ -1,8 +1,8 @@
 import { getScenarioMockData } from '../scenarios/scenarioer';
 import { ScenarioData, ScenarioType } from '../scenarios/types';
 
-const STORAGE_KEY = 'MOCK_DATA';
-const SCENARIO_KEY = 'MOCK_SCENARIO';
+const STORAGE_KEY = 'AKT_INNSYN_MOCK_DATA';
+const SCENARIO_KEY = 'AKT_INNSYN_MOCK_SCENARIO';
 
 export const localStorageStore = {
     init: (scenario: ScenarioType) => {

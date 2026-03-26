@@ -37,6 +37,9 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
     - Generell frontend-arbeid i `apps/**` eller `packages/**`, workspace-scoping, lint/test-kjoring.
 - `aksel-spacing`:
     - Layout/spacing med Aksel-komponenter (`Box`, `VStack`, `HStack`, `HGrid`) og spacing-tokens.
+- `sif-formik-to-rhf`:
+    - Migrer skjema: `formik til rhf`, `konverter skjema`, `bytt ut formik`, `migrer form`, `erstatt formik`, `sif-common-formik-ds`.
+    - Formik-konsepter: `FormikWrapper`, `getTypedFormComponents`, `getIntlFormErrorHandler`, `renderForm`.
 - `sif-migration-baseline`:
     - Migrering/bootstrapping av app til v2-oppsett.
 - `sif-server-proxy-api-config`:
@@ -52,3 +55,4 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 - Hvis oppgaven handler om setup-arkitektur i app, prioriter `sif-soknad-setup`.
 - Bruk flere skills ved behov, men hold endringer scoped til aktuell workspace.
 - Hvis oppgaven handler om å legge til nye felter/spørsmål i et eksisterende steg, prioriter `sif-soknad-modify-step`. Hvis det er et helt nytt steg, prioriter `sif-soknad-add-step`.
+- Hvis oppgaven handler om å bytte formik med rhf i et eksisterende skjema (uten nye felter), prioriter `sif-formik-to-rhf`.
