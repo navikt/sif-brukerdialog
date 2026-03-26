@@ -172,7 +172,7 @@ test.describe('Innsyn - oppgaver', () => {
                 await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
                 await expect(page.getByText('28. august 2025', { exact: true })).toBeVisible();
                 await page.getByRole('radio', { name: 'Ja, inntekten stemmer' }).check();
-                await page.getByTestId('typedFormikForm-submitButton').click();
+                await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
                 // Kvittering
                 await expect(page.getByText('Svaret ditt er sendt innVi')).toBeVisible();
                 await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
