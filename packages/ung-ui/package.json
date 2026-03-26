@@ -10,6 +10,7 @@
         "./components": "./src/components/index.ts",
         "./i18n": "./src/i18n/index.tsx",
         "./modules": "./src/modules/index.ts",
+        "./pages": "./src/pages/index.ts",
         "./types": "./src/types/index.ts"
     },
     "repository": {

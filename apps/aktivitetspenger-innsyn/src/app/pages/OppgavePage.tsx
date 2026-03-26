@@ -1,10 +1,9 @@
-import { InnsynPage } from '@sif/ung-ui/components';
-import { OppgaveRenderer } from '@sif/ung-ui/modules';
+import { UngOppgaveIkkeFunnetPage, UngOppgavePage as UngOppgavePage } from '@sif/ung-ui/pages';
 import { useParams } from 'react-router-dom';
 
-import OppgaveIkkeFunnetPage from '../../../../../packages/ung-ui/src/pages/OppgaveIkkeFunnetPage';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useInnsynContext } from '../hooks/useInnsynContext';
+import { useAppIntl } from '../i18n';
 
 /** Url params */
 type OppgavePageParams = {
@@ -12,6 +11,7 @@ type OppgavePageParams = {
 };
 
 const OppgavePage = () => {
+    const { text } = useAppIntl();
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
     const {
         oppgaver,
@@ -22,11 +22,9 @@ const OppgavePage = () => {
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
 
     return oppgave ? (
-        <InnsynPage documentTitle="Oppgaveside">
-            <OppgaveRenderer navn={fornavn} oppgave={oppgave} />
-        </InnsynPage>
+        <UngOppgavePage navn={fornavn} oppgave={oppgave} applikasjonTittel={text('application.title')} />
     ) : (
-        <OppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} />
+        <UngOppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} applikasjonTittel={text('application.title')} />
     );
 };
 

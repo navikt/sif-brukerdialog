@@ -4,12 +4,14 @@ import { InnsynPage } from '@sif/ung-ui/components';
 import { useUngUiIntl } from '../i18n';
 
 interface Props {
+    applikasjonTittel: string;
     oppgaveReferanse?: string;
 }
-const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
+
+export const UngOppgaveIkkeFunnetPage = ({ applikasjonTittel, oppgaveReferanse }: Props) => {
     const { text } = useUngUiIntl();
     return (
-        <InnsynPage documentTitle={text('@ungUi.oppgaveIkkeFunnetPage.dokumentTittel')}>
+        <InnsynPage documentTitle={`${text('@ungUi.oppgaveIkkeFunnetPage.dokumentTittel')} - ${applikasjonTittel}`}>
             <VStack gap="space-16">
                 <Heading size="large" level="1">
                     {text('@ungUi.oppgaveIkkeFunnetPage.tittel')}
@@ -25,5 +27,3 @@ const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
         </InnsynPage>
     );
 };
-
-export default OppgaveIkkeFunnetPage;

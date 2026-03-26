@@ -86,3 +86,11 @@ export const getSvaralternativer = (
 export const getTilbakemeldingFritekstLabel = (oppgave: BekreftelseOppgave, { text }: UngUiIntlShape) => {
     return text(`@ungUi.oppgavetype.${oppgave.oppgavetype}.tilbakemeldingFritekstLabel`);
 };
+
+export const getOppgaveDokumentTittel = (applikasjonTittel: string, oppgave: Oppgave, intl: UngUiIntlShape) => {
+    return getDokumentTittel(getOppgaveTittel(oppgave, intl), applikasjonTittel);
+};
+
+export const getDokumentTittel = (sidetittel: string, applikasjonTittel: string) => {
+    return `${sidetittel} - ${applikasjonTittel}`;
+};

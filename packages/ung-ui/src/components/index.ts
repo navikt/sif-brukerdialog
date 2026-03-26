@@ -1,6 +1,6 @@
 export { ForsideLenkeButton } from './forside-lenke-button/ForsideLenkeButton';
 export { InnsynForsideHeader } from './innsyn-forside-header/InnsynForsideHeader';
-export { InnsynPage } from '../pages/InnsynPage';
+export { UngInnsynPage as InnsynPage } from '../pages/UngInnsynPage';
 export { InntektTable } from './inntekt-table/InntektTable';
 export { OppgaveLinkCard } from './oppgave-link-card/OppgaveLinkCard';
 export { OppgaveStatusIkon } from './oppgave-status-ikon/OppgaveStatusIkon';

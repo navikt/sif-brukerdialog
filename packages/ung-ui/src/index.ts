@@ -4,8 +4,10 @@ export * from './components';
 // Modules: forms, oppgavebekreftelse og søk-ytelse
 export * from './modules';
 
-// Modules: oppgave pages
-export { OppgaveRenderer } from './modules/oppgaver/OppgaveRenderer';
+// Pages
+export * from './pages';
+
+// Modules: rapporter inntekt
 export {
     type RapporterInntektKvitteringData,
     RapporterInntektOppgavePage,

@@ -19,7 +19,7 @@ const PageContentWrapper = ({ children }: { children: React.ReactNode }) => (
     </PageBoundary>
 );
 
-export const InnsynPage = ({ documentTitle, children, footer }: Props) => {
+export const UngInnsynPage = ({ documentTitle, children, footer }: Props) => {
     const { text } = useUngUiIntl();
     useEffect(() => {
         window.scrollTo(0, 0);
