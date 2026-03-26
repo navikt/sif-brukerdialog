@@ -4,9 +4,6 @@ import { RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
-import { useAppIntl } from '../../../../i18n';
-import InnsynPage from '../../../components/innsyn-page/InnsynPage';
-import { getOppgaveDokumentTittel } from '../../../utils/textUtils';
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
 export interface RapporterInntektOppgaveProps {
@@ -20,7 +17,6 @@ export interface RapporterInntektKvitteringData {
 }
 
 const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
-    const appIntl = useAppIntl();
     const queryClient = useQueryClient();
     const { oppgave } = props;
 
@@ -36,11 +32,9 @@ const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
     }, [oppgaveErLøstMenManglerData, queryClient]);
 
     return (
-        <InnsynPage documentTitle={getOppgaveDokumentTittel(props.oppgave, appIntl)}>
-            <VStack gap="space-24">
-                <RapporterInntektOppgavePart {...props} />
-            </VStack>
-        </InnsynPage>
+        <VStack gap="space-24">
+            <RapporterInntektOppgavePart {...props} />
+        </VStack>
     );
 };
 

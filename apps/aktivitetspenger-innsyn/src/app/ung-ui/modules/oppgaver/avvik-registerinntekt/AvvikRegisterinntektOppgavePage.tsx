@@ -1,9 +1,7 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
-import { AppText, useAppIntl } from '../../../../i18n';
-import InnsynPage from '../../../components/innsyn-page/InnsynPage';
-import { getOppgaveDokumentTittel } from '../../../utils/textUtils';
+import { AppText } from '../../../../i18n';
 import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import AvvikRegisterinntektOppgavetekst, {
     getUtbetalingsmånedForAvvikRegisterinntektOppgave,
@@ -17,31 +15,27 @@ interface Props {
 }
 
 const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
-    const intl = useAppIntl();
-
     const utbetalingsmåned = getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed);
 
     return (
-        <InnsynPage documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
-            <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
-                <Oppgavebekreftelse.Ubesvart>
-                    <AvvikRegisterinntektOppgavetekst oppgave={oppgave} />
-                </Oppgavebekreftelse.Ubesvart>
+        <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
+            <Oppgavebekreftelse.Ubesvart>
+                <AvvikRegisterinntektOppgavetekst oppgave={oppgave} />
+            </Oppgavebekreftelse.Ubesvart>
 
-                <Oppgavebekreftelse.Besvart>
-                    <AvvikRegisterinntektOppsummering oppgave={oppgave} />
-                </Oppgavebekreftelse.Besvart>
+            <Oppgavebekreftelse.Besvart>
+                <AvvikRegisterinntektOppsummering oppgave={oppgave} />
+            </Oppgavebekreftelse.Besvart>
 
-                <Oppgavebekreftelse.Kvittering>
-                    <AppText
-                        id="oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst"
-                        values={{
-                            utbetalingsmåned: dateFormatter.monthFullYear(utbetalingsmåned),
-                        }}
-                    />
-                </Oppgavebekreftelse.Kvittering>
-            </Oppgavebekreftelse>
-        </InnsynPage>
+            <Oppgavebekreftelse.Kvittering>
+                <AppText
+                    id="oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst"
+                    values={{
+                        utbetalingsmåned: dateFormatter.monthFullYear(utbetalingsmåned),
+                    }}
+                />
+            </Oppgavebekreftelse.Kvittering>
+        </Oppgavebekreftelse>
     );
 };
 
