@@ -8,7 +8,7 @@ import { EndretStartdatoOppgavePage } from '../modules/oppgaver/endret-startdato
 import { FjernetPeriodeOppgavePage } from '../modules/oppgaver/fjernet-periode/FjernetPeriodeOppgavePage';
 import { MeldtUtOppgavePage } from '../modules/oppgaver/meldt-ut/MeldtUtOppgavePage';
 import { RapporterInntektOppgavePage } from '../modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
-import { SøkYtelseOppgavePage } from '../modules/oppgaver/søk-ytelse/SøkYtelseOppgavePage';
+import { SøkYtelseOppgavePage } from '../modules/oppgaver/sok-ytelse/SokYtelseOppgavePage';
 import { getOppgaveDokumentTittel } from '../utils/textUtils';
 import { UngInnsynPage } from './UngInnsynPage';
 

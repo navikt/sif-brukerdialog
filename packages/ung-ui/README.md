@@ -1,3 +1,3 @@
-# @sif/soknad-ui
+# @sif/ung-ui
 
 Visuelle komponenter brukt av @sif/soknad.

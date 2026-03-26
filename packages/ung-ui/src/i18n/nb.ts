@@ -5,7 +5,7 @@ import { endretStartdatoMessages_nb } from '../modules/oppgaver/endret-startdato
 import { fjernetPeriodeMessages_nb } from '../modules/oppgaver/fjernet-periode/i18n/nb';
 import { meldtUtMessages_nb } from '../modules/oppgaver/meldt-ut/i18n/nb';
 import { rapporterInntektMessages_nb } from '../modules/oppgaver/rapporter-inntekt/i18n/nb';
-import { søkYtelseOppgaveMessages_nb } from '../modules/oppgaver/søk-ytelse/i18n/nb';
+import { søkYtelseOppgaveMessages_nb } from '../modules/oppgaver/sok-ytelse/i18n/nb';
 
 export const ungUi_messages_nb = {
     ...avvikRegisterinntektMessages_nb,

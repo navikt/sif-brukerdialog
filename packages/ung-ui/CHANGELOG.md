@@ -1,4 +1,4 @@
-# @ung/ui
+# @sif/ung-ui
 
 ## 0.0.1
 

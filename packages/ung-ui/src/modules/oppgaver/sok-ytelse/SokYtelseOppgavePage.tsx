@@ -1,6 +1,6 @@
 import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 
-import { SøkYtelseOppgavetekst } from './part/SøkYtelseOppgavetekst';
+import { SøkYtelseOppgavetekst } from './part/SokYtelseOppgavetekst';
 
 interface Props {
     oppgave: SøkYtelseOppgave;
