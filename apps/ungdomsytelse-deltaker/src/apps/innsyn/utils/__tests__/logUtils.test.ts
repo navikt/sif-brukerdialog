@@ -1,5 +1,5 @@
 import { logUtils } from '@innsyn/utils/logUtils';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
@@ -14,7 +14,6 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
             to: dayjs().add(30, 'days').toDate(),
         },
         søktTidspunkt: dayjs().toDate(),
-        oppgaver: [],
         deltaker: {
             deltakerIdent: 'test-ident',
             id: 'deltaker-id',
@@ -41,12 +40,17 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
                 kontonummerFraRegister: '12345678901',
             };
 
-            const result = logUtils.getSøknadInnsendingMeta(mockDeltakelse, mockOppgave, {
-                antallBarn: 0,
-                barnStemmer: false,
-                kontonummerStemmer: true,
-                kontonummerOppslagInfo: kontonummerInfo,
-            });
+            const result = logUtils.getSøknadInnsendingMeta(
+                mockDeltakelse,
+                mockOppgave,
+                {
+                    antallBarn: 0,
+                    barnStemmer: false,
+                    kontonummerStemmer: true,
+                    kontonummerOppslagInfo: kontonummerInfo,
+                },
+                [],
+            );
 
             expect(result.harKontonummer).toBe(HarKontonummerEnum.JA);
             expect(result.kontonummerStemmer).toBe(true);
@@ -58,12 +62,17 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
                 kontonummerFraRegister: '12345678901',
             };
 
-            const result = logUtils.getSøknadInnsendingMeta(mockDeltakelse, mockOppgave, {
-                antallBarn: 0,
-                barnStemmer: false,
-                kontonummerStemmer: false,
-                kontonummerOppslagInfo: kontonummerInfo,
-            });
+            const result = logUtils.getSøknadInnsendingMeta(
+                mockDeltakelse,
+                mockOppgave,
+                {
+                    antallBarn: 0,
+                    barnStemmer: false,
+                    kontonummerStemmer: false,
+                    kontonummerOppslagInfo: kontonummerInfo,
+                },
+                [],
+            );
 
             expect(result.harKontonummer).toBe(HarKontonummerEnum.JA);
             expect(result.kontonummerStemmer).toBe(false);
@@ -74,11 +83,16 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
                 harKontonummer: HarKontonummerEnum.NEI,
             };
 
-            const result = logUtils.getSøknadInnsendingMeta(mockDeltakelse, mockOppgave, {
-                antallBarn: 0,
-                barnStemmer: false,
-                kontonummerOppslagInfo: kontonummerInfo,
-            });
+            const result = logUtils.getSøknadInnsendingMeta(
+                mockDeltakelse,
+                mockOppgave,
+                {
+                    antallBarn: 0,
+                    barnStemmer: false,
+                    kontonummerOppslagInfo: kontonummerInfo,
+                },
+                [],
+            );
 
             expect(result.harKontonummer).toBe(HarKontonummerEnum.NEI);
             expect(result.kontonummerStemmer).toBeUndefined();
@@ -89,11 +103,16 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
                 harKontonummer: HarKontonummerEnum.UVISST,
             };
 
-            const result = logUtils.getSøknadInnsendingMeta(mockDeltakelse, mockOppgave, {
-                antallBarn: 0,
-                barnStemmer: false,
-                kontonummerOppslagInfo: kontonummerInfo,
-            });
+            const result = logUtils.getSøknadInnsendingMeta(
+                mockDeltakelse,
+                mockOppgave,
+                {
+                    antallBarn: 0,
+                    barnStemmer: false,
+                    kontonummerOppslagInfo: kontonummerInfo,
+                },
+                [],
+            );
 
             expect(result.harKontonummer).toBe(HarKontonummerEnum.UVISST);
             expect(result.kontonummerStemmer).toBeUndefined();
@@ -105,11 +124,16 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
                 kontonummerFraRegister: '12345678901',
             };
 
-            const result = logUtils.getSøknadInnsendingMeta(mockDeltakelse, mockOppgave, {
-                antallBarn: 0,
-                barnStemmer: false,
-                kontonummerOppslagInfo: kontonummerInfo,
-            });
+            const result = logUtils.getSøknadInnsendingMeta(
+                mockDeltakelse,
+                mockOppgave,
+                {
+                    antallBarn: 0,
+                    barnStemmer: false,
+                    kontonummerOppslagInfo: kontonummerInfo,
+                },
+                [],
+            );
 
             expect(result.harKontonummer).toBe(HarKontonummerEnum.JA);
             expect(result.kontonummerStemmer).toBeUndefined();
@@ -122,11 +146,16 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
                 harKontonummer: HarKontonummerEnum.NEI,
             };
 
-            const result = logUtils.getSøknadInnsendingMeta(mockDeltakelse, mockOppgave, {
-                antallBarn: 2,
-                barnStemmer: true,
-                kontonummerOppslagInfo: kontonummerInfo,
-            });
+            const result = logUtils.getSøknadInnsendingMeta(
+                mockDeltakelse,
+                mockOppgave,
+                {
+                    antallBarn: 2,
+                    barnStemmer: true,
+                    kontonummerOppslagInfo: kontonummerInfo,
+                },
+                [],
+            );
 
             expect(result.harBarn).toBe(true);
             expect(result.barnStemmer).toBe(true);
@@ -137,11 +166,16 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
                 harKontonummer: HarKontonummerEnum.NEI,
             };
 
-            const result = logUtils.getSøknadInnsendingMeta(mockDeltakelse, mockOppgave, {
-                antallBarn: 0,
-                barnStemmer: false,
-                kontonummerOppslagInfo: kontonummerInfo,
-            });
+            const result = logUtils.getSøknadInnsendingMeta(
+                mockDeltakelse,
+                mockOppgave,
+                {
+                    antallBarn: 0,
+                    barnStemmer: false,
+                    kontonummerOppslagInfo: kontonummerInfo,
+                },
+                [],
+            );
 
             expect(result.harBarn).toBe(false);
             expect(result.barnStemmer).toBe(false);
@@ -160,11 +194,16 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
                 harKontonummer: HarKontonummerEnum.NEI,
             };
 
-            const result = logUtils.getSøknadInnsendingMeta(mockDeltakelse, oppgave, {
-                antallBarn: 0,
-                barnStemmer: false,
-                kontonummerOppslagInfo: kontonummerInfo,
-            });
+            const result = logUtils.getSøknadInnsendingMeta(
+                mockDeltakelse,
+                oppgave,
+                {
+                    antallBarn: 0,
+                    barnStemmer: false,
+                    kontonummerOppslagInfo: kontonummerInfo,
+                },
+                [],
+            );
 
             expect(result.antallDagerMellomOpprettetOgBesvart).toBe(5);
         });

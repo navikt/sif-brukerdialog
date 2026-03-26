@@ -1,5 +1,5 @@
 import { BodyShort, Box, Tag } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
 import OppgaveStatusIkon from '../oppgave-status-ikon/OppgaveStatusIkon';
 
@@ -37,7 +37,6 @@ const OppgaveStatusTag = ({
     const text = <Box paddingInline="space-4">{oppgaveStatusTekst}</Box>;
     switch (oppgaveStatus) {
         case OppgaveStatus.LØST:
-        case OppgaveStatus.LUKKET:
             return (
                 <Tag variant="success" size={size}>
                     {ikon}

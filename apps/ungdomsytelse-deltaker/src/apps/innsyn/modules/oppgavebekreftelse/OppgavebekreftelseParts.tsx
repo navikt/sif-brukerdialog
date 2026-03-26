@@ -4,7 +4,7 @@ import UtalelseForm, { UttalelseSvaralternativer } from '@innsyn/modules/forms/u
 import { Alert, Box, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
-import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useEffect, useRef } from 'react';
@@ -18,14 +18,14 @@ interface OppgaveOgTilbakemeldingProps {
     beskjedFraNav: React.ReactNode;
     spørsmål: string;
     svaralternativer: UttalelseSvaralternativer;
-    bekreftelse: BekreftelseDto;
+    respons: OppgaveResponsDto;
 }
 
 const OppgaveOgTilbakemelding = ({
     beskjedFraNav,
     spørsmål,
     svaralternativer,
-    bekreftelse,
+    respons: bekreftelse,
 }: OppgaveOgTilbakemeldingProps) => {
     return (
         <section aria-labelledby="summaryHeading">
@@ -51,13 +51,13 @@ const OppgaveOgTilbakemelding = ({
                     <FormSummary.Answer>
                         <FormSummary.Label>{spørsmål}</FormSummary.Label>
                         <FormSummary.Value>
-                            {bekreftelse.harUttalelse
+                            {bekreftelse.type === 'VARSEL_SVAR' && bekreftelse.harUttalelse
                                 ? svaralternativer.harUttalelseLabel
                                 : svaralternativer.harIkkeUttalelseLabel}
                         </FormSummary.Value>
                     </FormSummary.Answer>
                 </FormSummary.Answers>
-                {bekreftelse.harUttalelse && bekreftelse.uttalelseFraBruker && (
+                {bekreftelse.type === 'VARSEL_SVAR' && bekreftelse.harUttalelse && bekreftelse.uttalelseFraBruker && (
                     <FormSummary.Answers>
                         <FormSummary.Answer>
                             <FormSummary.Label>
@@ -157,19 +157,19 @@ const Besvart = ({ children }: BesvartProps) => {
     if (oppgave.status === OppgaveStatus.ULØST || visKvittering) return null;
 
     const oppgaveInnhold = (() => {
-        if (oppgave.bekreftelse) {
+        if (oppgave.respons) {
             return (
                 <OppgaveOgTilbakemelding
                     beskjedFraNav={children}
                     svaralternativer={getSvaralternativer(oppgave, appIntl)}
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
-                    bekreftelse={oppgave.bekreftelse}
+                    respons={oppgave.respons}
                 />
             );
         }
 
         // Hvis ingen bekreftelse er tilgjengelig
-        if (oppgave.status === OppgaveStatus.LØST && !oppgave.bekreftelse) {
+        if (oppgave.status === OppgaveStatus.LØST && !oppgave.respons) {
             return (
                 <Alert variant="info">
                     <AppText id="oppgavebekreftelse.besvart.svarMangler" />

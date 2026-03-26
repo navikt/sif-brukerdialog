@@ -8,7 +8,8 @@
     "externalHosts": ["www.nav.no", "telemetry.nav.no"],
     "accessPolicyOutApps": [
         { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
-        { "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" }
+        { "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" },
+        { "application": "ung-brukerdialog-api", "namespace": "k9saksbehandling" }
     ],
     "minReplicas": 2,
     "maxReplicas": 2,
@@ -41,6 +42,10 @@
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/ungdomsprogrammet/ytelsen/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "prod-gcp:k9saksbehandling:ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
+
+        "UNG_BRUKERDIALOG_API_FRONTEND_PATH": "/ungdomsprogrammet/ytelsen/api/ung-brukerdialog-api",
+        "UNG_BRUKERDIALOG_API_API_SCOPE": "prod-gcp:k9saksbehandling:ung-brukerdialog-api",
+        "UNG_BRUKERDIALOG_API_API_URL": "http://ung-brukerdialog-api.k9saksbehandling",
 
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/ungdomsprogrammet/ytelsen/oauth2/login?redirect=/ungdomsprogrammet/ytelsen",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
