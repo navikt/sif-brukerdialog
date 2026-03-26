@@ -34,7 +34,15 @@ Konverter ett Formik-skjema til React Hook Form via `@sif/rhf`. Etter migrering 
 
 ## Arbeidsmodus
 
-### Fase 1 — Les (før kode)
+Det finnes to strategier. Brukeren kan be om en spesifikk strategi. Hvis ikke spesifisert, velg **Strategi B** som standard — den gir færre mellomfeil og renere resultat.
+
+---
+
+### Strategi A — Mekanisk erstatning
+
+Bytt Formik-kode med RHF-ekvivalenter linje for linje ved hjelp av erstatningstabellen.
+
+**Fase 1 — Les (før kode)**
 
 Les disse filene for skjemaet som skal migreres:
 
@@ -42,15 +50,53 @@ Les disse filene for skjemaet som skal migreres:
 2. **i18n-filer** brukt av skjemaet (sjekk `validation.*`-nøkler)
 3. **package.json** for workspace som eier skjemaet
 
-### Fase 2 — Migrer
+**Fase 2 — Migrer**
 
 Utfør alle endringer. Bruk erstatningstabellen under.
 
-### Fase 3 — Verifiser
+**Fase 3 — Verifiser**
 
 - Sjekk at filen er feilfri (`get_errors`).
 - Sjekk at `@sif/rhf` finnes i `package.json` → `dependencies`.
 - Sjekk at i18n-nøkler matcher nye scope-mønster.
+
+---
+
+### Strategi B — Analyser → reimplementer (anbefalt)
+
+Forstå hva skjemaet gjør først, skriv deretter ren RHF-kode fra scratch. Unngår å arve Formik-idiomer og gir færre mellomfeil.
+
+**Fase 1 — Analyser (les, ikke skriv)**
+
+Les skjema-filen, i18n-filer og package.json. Dokumenter følgende internt (ikke i koden):
+
+1. **Props** — hva mottar komponenten (oppgaveReferanse, callbacks, etc.)
+2. **Felter** — enum-verdier, typer, defaultValues
+3. **Valideringsregler** — per felt: hvilken validator, evt. parametere
+4. **i18n-scope** — full prefiks fra `nb.ts` (f.eks. `@ungUi.inntektForm`), inkl. alle valideringsnøkler
+5. **Betinget visning** — hvilke felter vises/skjules basert på andre felter
+6. **Submit-logikk** — hva skjer ved submit (DTO-bygging, mutateAsync, onSuccess)
+7. **Knapper** — submit-label, cancel-label, loading-state
+
+**Fase 2 — Reimplementer**
+
+Skriv hele komponenten på nytt basert på analysen, **ikke** basert på Formik-koden. Bruk RHF-mønsteret direkte:
+
+- `useForm<FormValues>` med `defaultValues`, `mode: 'onSubmit'`, `reValidateMode: 'onChange'`
+- `createSifFormComponents<FormValues>()` for feltkomponenter
+- `useSifValidate(scope)` med korrekt i18n-scope (inkl. namespace-prefiks)
+- `<SifForm>` med `buttons`-prop
+- `methods.watch()` for betinget visning
+- `try/catch` rundt async submit
+
+Behold: `FormFields`-enum, filnavn, mappestruktur, layout/JSX inni felter.
+
+**Fase 3 — Verifiser**
+
+- Sjekk at filen er feilfri (`get_errors`).
+- Sjekk at `@sif/rhf` finnes i `package.json` → `dependencies`.
+- Sjekk at i18n-nøkler matcher nye scope-mønster.
+- Sjekk at alle Formik-importer er fjernet.
 
 ---
 
