@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
 import { useAppIntl } from '../../../../i18n';
-import DefaultPageLayout from '../../../components/layout/DefaultPageLayout';
+import InnsynPage from '../../../components/innsyn-page/InnsynPage';
 import { getOppgaveDokumentTittel } from '../../../utils/textUtils';
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
@@ -36,11 +36,11 @@ const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
     }, [oppgaveErLøstMenManglerData, queryClient]);
 
     return (
-        <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(props.oppgave, appIntl)}>
+        <InnsynPage documentTitle={getOppgaveDokumentTittel(props.oppgave, appIntl)}>
             <VStack gap="space-24">
                 <RapporterInntektOppgavePart {...props} />
             </VStack>
-        </DefaultPageLayout>
+        </InnsynPage>
     );
 };
 

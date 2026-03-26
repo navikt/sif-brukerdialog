@@ -7,7 +7,7 @@ interface Props {
     subtitle?: string;
 }
 
-const ForsideHeader = ({ title, subtitle }: Props) => {
+const InnsynForsideHeader = ({ title, subtitle }: Props) => {
     return (
         <Stack
             gap="space-24"
@@ -28,4 +28,4 @@ const ForsideHeader = ({ title, subtitle }: Props) => {
     );
 };
 
-export default ForsideHeader;
+export default InnsynForsideHeader;

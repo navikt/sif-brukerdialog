@@ -2,7 +2,7 @@ import { ArbeidOgFrilansRegisterInntektDto, YtelseRegisterInntektDto } from '@na
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { AppIntlShape } from '../../../../i18n';
-import { InntektTableRow } from '../../../components/inntekt-table/InntektTabell';
+import { InntektTableRow } from '../../../components/inntekt-tabell/InntektTabell';
 
 const mapArbeidOgFrilansInntektToInntektTabellRad = (
     inntekt: ArbeidOgFrilansRegisterInntektDto[],

@@ -2,7 +2,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { AppText, useAppIntl } from '../../../../../i18n';
-import InntektTable from '../../../../components/inntekt-table/InntektTabell';
+import InntektTable from '../../../../components/inntekt-tabell/InntektTabell';
 import { avvikRegisterinntektOppgaveUtils } from '../avvikRegisterinntektOppgaveUtils';
 
 interface AvvikRegisterinntektOppsummeringProps {

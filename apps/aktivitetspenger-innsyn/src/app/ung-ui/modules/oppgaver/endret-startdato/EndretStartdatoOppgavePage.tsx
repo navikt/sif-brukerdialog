@@ -3,7 +3,7 @@ import { EndretStartdatoOppgave } from '@sif/api/ung-brukerdialog';
 import { ReactNode } from 'react';
 
 import { AppText, useAppIntl } from '../../../../i18n';
-import DefaultPageLayout from '../../../components/layout/DefaultPageLayout';
+import InnsynPage from '../../../components/innsyn-page/InnsynPage';
 import { getOppgaveDokumentTittel } from '../../../utils/textUtils';
 import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import EndretStartdatoOppgavetekst from './parts/EndretStartdatoOppgavetekst';
@@ -21,7 +21,7 @@ const EndretStartdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Pro
     );
 
     return (
-        <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
+        <InnsynPage documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
             <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
                 <Oppgavebekreftelse.Ubesvart>
                     <EndretStartdatoOppgavetekst
@@ -41,7 +41,7 @@ const EndretStartdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Pro
                     <AppText id="oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst" />
                 </Oppgavebekreftelse.Kvittering>
             </Oppgavebekreftelse>
-        </DefaultPageLayout>
+        </InnsynPage>
     );
 };
 

@@ -1,17 +1,25 @@
-import { Box, VStack } from '@navikt/ds-react';
+import { Box } from '@navikt/ds-react';
+import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import React, { useEffect } from 'react';
 
 import { useAppIntl } from '../../../i18n';
-import PageContentWrapper from '../layout/PageContentWrapper';
 
 interface Props {
-    children: React.ReactNode;
     documentTitle: string;
+    children: React.ReactNode;
     footer?: React.ReactNode;
 }
 
-const InnsynForsidePage = ({ children, documentTitle, footer }: Props) => {
+const PageContentWrapper = ({ children }: { children: React.ReactNode }) => (
+    <PageBoundary>
+        <Box paddingBlock="space-40" className="mx-auto">
+            {children}
+        </Box>
+    </PageBoundary>
+);
+
+const InnsynPage = ({ documentTitle, children, footer }: Props) => {
     const { text } = useAppIntl();
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -19,9 +27,7 @@ const InnsynForsidePage = ({ children, documentTitle, footer }: Props) => {
     useDocumentTitle(documentTitle);
     return (
         <main aria-label={text('@ung-ui.pageLayout.main.ariaLabel')}>
-            <PageContentWrapper>
-                <VStack gap="space-40">{children}</VStack>
-            </PageContentWrapper>
+            <PageContentWrapper>{children}</PageContentWrapper>
             {footer && (
                 <Box
                     className="bg-[#FFEBC7]"
@@ -34,4 +40,4 @@ const InnsynForsidePage = ({ children, documentTitle, footer }: Props) => {
     );
 };
 
-export default InnsynForsidePage;
+export default InnsynPage;

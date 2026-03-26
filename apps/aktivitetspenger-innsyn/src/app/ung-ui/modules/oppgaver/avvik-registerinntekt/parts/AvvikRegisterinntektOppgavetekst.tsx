@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { ReactNode } from 'react';
 
 import { AppText, useAppIntl } from '../../../../../i18n';
-import InntektTable from '../../../../components/inntekt-table/InntektTabell';
+import InntektTable from '../../../../components/inntekt-tabell/InntektTabell';
 import { avvikRegisterinntektOppgaveUtils } from '../avvikRegisterinntektOppgaveUtils';
 
 interface Props {

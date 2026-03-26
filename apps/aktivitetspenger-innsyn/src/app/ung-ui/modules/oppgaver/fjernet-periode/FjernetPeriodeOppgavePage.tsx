@@ -1,7 +1,7 @@
 import { FjernetPeriodeOppgave } from '@sif/api/ung-brukerdialog';
 
 import { AppText, useAppIntl } from '../../../../i18n';
-import DefaultPageLayout from '../../../components/layout/DefaultPageLayout';
+import InnsynPage from '../../../components/innsyn-page/InnsynPage';
 import { getOppgaveDokumentTittel } from '../../../utils/textUtils';
 import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import FjernetPeriodeOppgavetekst from './parts/FjernetPeriodeOppgavetekst';
@@ -17,7 +17,7 @@ const FjernetPeriodeOppgavePage = ({ navn, oppgave, initialVisKvittering }: Prop
     const intl = useAppIntl();
 
     return (
-        <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
+        <InnsynPage documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
             <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
                 <Oppgavebekreftelse.Ubesvart>
                     <FjernetPeriodeOppgavetekst svarfrist={oppgave.sisteDatoEnKanSvare} />
@@ -31,7 +31,7 @@ const FjernetPeriodeOppgavePage = ({ navn, oppgave, initialVisKvittering }: Prop
                     <AppText id="oppgavetype.BEKREFT_FJERNET_PERIODE.kvitteringTekst" />
                 </Oppgavebekreftelse.Kvittering>
             </Oppgavebekreftelse>
-        </DefaultPageLayout>
+        </InnsynPage>
     );
 };
 

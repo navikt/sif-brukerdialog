@@ -2,7 +2,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { AppText, useAppIntl } from '../../../../i18n';
-import DefaultPageLayout from '../../../components/layout/DefaultPageLayout';
+import InnsynPage from '../../../components/innsyn-page/InnsynPage';
 import { getOppgaveDokumentTittel } from '../../../utils/textUtils';
 import Oppgavebekreftelse from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import AvvikRegisterinntektOppgavetekst, {
@@ -22,7 +22,7 @@ const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering }
     const utbetalingsmåned = getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed);
 
     return (
-        <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
+        <InnsynPage documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
             <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
                 <Oppgavebekreftelse.Ubesvart>
                     <AvvikRegisterinntektOppgavetekst oppgave={oppgave} />
@@ -41,7 +41,7 @@ const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering }
                     />
                 </Oppgavebekreftelse.Kvittering>
             </Oppgavebekreftelse>
-        </DefaultPageLayout>
+        </InnsynPage>
     );
 };
 

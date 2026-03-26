@@ -1,7 +1,7 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 
 import { useAppIntl } from '../i18n';
-import DefaultPageLayout from '../ung-ui/components/layout/DefaultPageLayout';
+import InnsynPage from '../ung-ui/components/innsyn-page/InnsynPage';
 
 interface Props {
     oppgaveReferanse?: string;
@@ -9,7 +9,7 @@ interface Props {
 const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
     const { text } = useAppIntl();
     return (
-        <DefaultPageLayout documentTitle={text('oppgaveIkkeFunnetPage.dokumentTittel')}>
+        <InnsynPage documentTitle={text('oppgaveIkkeFunnetPage.dokumentTittel')}>
             <VStack gap="space-16">
                 <Heading size="large" level="1">
                     {text('oppgaveIkkeFunnetPage.tittel')}
@@ -22,7 +22,7 @@ const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
                     )}
                 </Alert>
             </VStack>
-        </DefaultPageLayout>
+        </InnsynPage>
     );
 };
 
