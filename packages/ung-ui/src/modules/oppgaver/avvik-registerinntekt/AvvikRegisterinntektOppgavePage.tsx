@@ -13,13 +13,18 @@ interface Props {
     navn: string;
     oppgave: AvvikRegisterinntektOppgave;
     initialVisKvittering?: boolean;
+    onCancel: () => void;
 }
 
-export const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering, onCancel }: Props) => {
     const utbetalingsmåned = getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed);
 
     return (
-        <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
+        <Oppgavebekreftelse
+            oppgave={oppgave}
+            navn={navn}
+            initialVisKvittering={initialVisKvittering}
+            onCancel={onCancel}>
             <Oppgavebekreftelse.Ubesvart>
                 <AvvikRegisterinntektOppgavetekst oppgave={oppgave} />
             </Oppgavebekreftelse.Ubesvart>

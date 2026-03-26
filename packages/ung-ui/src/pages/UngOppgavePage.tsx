@@ -12,24 +12,24 @@ import { SøkYtelseOppgavePage } from '../modules/oppgaver/sok-ytelse/SokYtelseO
 import { getOppgaveDokumentTittel } from '../utils/textUtils';
 import { UngInnsynPage } from './UngInnsynPage';
 
-const getOppgavePageComponent = (navn: string, oppgave: Oppgave) => {
+const getOppgavePageComponent = (navn: string, oppgave: Oppgave, onCancel: () => void) => {
     switch (oppgave.oppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return <AvvikRegisterinntektOppgavePage oppgave={oppgave} navn={navn} />;
+            return <AvvikRegisterinntektOppgavePage oppgave={oppgave} navn={navn} onCancel={onCancel} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <EndretStartdatoOppgavePage navn={navn} oppgave={oppgave} />;
+            return <EndretStartdatoOppgavePage navn={navn} oppgave={oppgave} onCancel={onCancel} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgavePage navn={navn} oppgave={oppgave} />;
+            return <EndretSluttdatoOppgavePage navn={navn} oppgave={oppgave} onCancel={onCancel} />;
         case ParsedOppgavetype.BEKREFT_MELDT_UT:
-            return <MeldtUtOppgavePage navn={navn} oppgave={oppgave} />;
+            return <MeldtUtOppgavePage navn={navn} oppgave={oppgave} onCancel={onCancel} />;
         case ParsedOppgavetype.RAPPORTER_INNTEKT:
-            return <RapporterInntektOppgavePage oppgave={oppgave} navn={navn} />;
+            return <RapporterInntektOppgavePage oppgave={oppgave} navn={navn} onCancel={onCancel} />;
         case ParsedOppgavetype.SØK_YTELSE:
             return <SøkYtelseOppgavePage oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_FJERNET_PERIODE:
-            return <FjernetPeriodeOppgavePage oppgave={oppgave} navn={navn} />;
+            return <FjernetPeriodeOppgavePage oppgave={oppgave} navn={navn} onCancel={onCancel} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
-            return <EndretStartOgSluttdatoOppgavePage navn={navn} oppgave={oppgave} />;
+            return <EndretStartOgSluttdatoOppgavePage navn={navn} oppgave={oppgave} onCancel={onCancel} />;
     }
 };
 
@@ -37,14 +37,15 @@ interface Props {
     navn: string;
     oppgave: Oppgave;
     applikasjonTittel: string;
+    onCancel: () => void;
 }
 
 export const UngOppgavePage = (props: Props) => {
-    const { navn, oppgave, applikasjonTittel } = props;
+    const { navn, oppgave, applikasjonTittel, onCancel } = props;
     const intl = useUngUiIntl();
     return (
         <UngInnsynPage documentTitle={getOppgaveDokumentTittel(applikasjonTittel, oppgave, intl)}>
-            {getOppgavePageComponent(navn, oppgave)}
+            {getOppgavePageComponent(navn, oppgave, onCancel)}
         </UngInnsynPage>
     );
 };

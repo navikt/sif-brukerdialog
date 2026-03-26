@@ -10,7 +10,7 @@ export interface RapporterInntektOppgaveProps {
     navn: string;
     oppgave: RapporterInntektOppgave;
     initialKvitteringData?: RapporterInntektKvitteringData;
-    onCancel?: () => void;
+    onCancel: () => void;
 }
 
 export interface RapporterInntektKvitteringData {

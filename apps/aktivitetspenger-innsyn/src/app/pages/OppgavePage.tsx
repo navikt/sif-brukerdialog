@@ -1,5 +1,5 @@
 import { UngOppgaveIkkeFunnetPage, UngOppgavePage as UngOppgavePage } from '@sif/ung-ui/pages';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useInnsynContext } from '../hooks/useInnsynContext';
@@ -12,6 +12,7 @@ type OppgavePageParams = {
 
 const OppgavePage = () => {
     const { text } = useAppIntl();
+    const navigate = useNavigate();
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
     const {
         oppgaver,
@@ -22,7 +23,12 @@ const OppgavePage = () => {
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
 
     return oppgave ? (
-        <UngOppgavePage navn={fornavn} oppgave={oppgave} applikasjonTittel={text('application.title')} />
+        <UngOppgavePage
+            navn={fornavn}
+            oppgave={oppgave}
+            applikasjonTittel={text('application.title')}
+            onCancel={() => navigate('/')}
+        />
     ) : (
         <UngOppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} applikasjonTittel={text('application.title')} />
     );

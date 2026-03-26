@@ -8,7 +8,6 @@ import { RapporterInntektOppgavetekst } from './RapporterInntektOppgavetekst';
 interface Props extends RapporterInntektOppgaveProps {
     periode: DateRange;
     måned: string;
-    onCancel?: () => void;
     setKvitteringData: (data: RapporterInntektKvitteringData) => void;
 }
 

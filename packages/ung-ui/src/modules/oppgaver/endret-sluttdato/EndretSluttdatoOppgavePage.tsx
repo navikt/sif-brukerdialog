@@ -9,15 +9,20 @@ interface Props {
     navn: string;
     oppgave: EndretSluttdatoOppgave;
     initialVisKvittering?: boolean;
+    onCancel: () => void;
 }
 
-export const EndretSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const EndretSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering, onCancel }: Props) => {
     if (!oppgave.oppgavetypeData.forrigeSluttdato) {
         throw new Error('Forrige sluttdato mangler for oppgave av typen EndretSluttdatoOppgave');
     }
 
     return (
-        <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
+        <Oppgavebekreftelse
+            oppgave={oppgave}
+            navn={navn}
+            initialVisKvittering={initialVisKvittering}
+            onCancel={onCancel}>
             <Oppgavebekreftelse.Ubesvart>
                 <EndretSluttdatoOppgavetekst
                     endretDato={oppgave.oppgavetypeData.nySluttdato}

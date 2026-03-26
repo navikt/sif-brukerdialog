@@ -9,11 +9,16 @@ interface Props {
     navn: string;
     oppgave: FjernetPeriodeOppgave;
     initialVisKvittering?: boolean;
+    onCancel: () => void;
 }
 
-export const FjernetPeriodeOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const FjernetPeriodeOppgavePage = ({ navn, oppgave, initialVisKvittering, onCancel }: Props) => {
     return (
-        <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
+        <Oppgavebekreftelse
+            oppgave={oppgave}
+            navn={navn}
+            initialVisKvittering={initialVisKvittering}
+            onCancel={onCancel}>
             <Oppgavebekreftelse.Ubesvart>
                 <FjernetPeriodeOppgavetekst svarfrist={oppgave.sisteDatoEnKanSvare} />
             </Oppgavebekreftelse.Ubesvart>

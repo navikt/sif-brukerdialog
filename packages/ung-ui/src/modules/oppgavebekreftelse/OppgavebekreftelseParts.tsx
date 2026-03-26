@@ -3,7 +3,6 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
 import { UngUiText, useUngUiIntl } from '../../i18n';
@@ -78,15 +77,14 @@ export interface UbesvartProps {
 }
 
 const Ubesvart = ({ children }: UbesvartProps) => {
-    const UngUiIntl = useUngUiIntl();
-    const { oppgave, visKvittering, setVisKvittering, navn } = useOppgavebekreftelse();
-    const navigate = useNavigate();
+    const intl = useUngUiIntl();
+    const { oppgave, visKvittering, setVisKvittering, navn, onCancel } = useOppgavebekreftelse();
 
     if (oppgave.status !== OppgaveStatus.ULØST || visKvittering) return null;
 
     return (
         <VStack gap="space-32">
-            <section aria-label={UngUiIntl.text('@ungUi.oppgavebekreftelse.oppgavetekst.ariaLabel')}>
+            <section aria-label={intl.text('@ungUi.oppgavebekreftelse.oppgavetekst.ariaLabel')}>
                 <GuidePanel>
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
@@ -99,14 +97,14 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                     </VStack>
                 </GuidePanel>
             </section>
-            <section aria-label={UngUiIntl.text('@ungUi.oppgavebekreftelse.uttalelseform.ariaLabel')}>
+            <section aria-label={intl.text('@ungUi.oppgavebekreftelse.uttalelseform.ariaLabel')}>
                 <UtalelseForm
-                    svaralternativer={getSvaralternativer(oppgave, UngUiIntl)}
-                    spørsmål={getTilbakemeldingSpørsmål(oppgave, UngUiIntl)}
-                    uttalelseLabel={getTilbakemeldingFritekstLabel(oppgave, UngUiIntl)}
+                    svaralternativer={getSvaralternativer(oppgave, intl)}
+                    spørsmål={getTilbakemeldingSpørsmål(oppgave, intl)}
+                    uttalelseLabel={getTilbakemeldingFritekstLabel(oppgave, intl)}
                     oppgaveReferanse={oppgave.oppgaveReferanse}
                     onSuccess={() => setVisKvittering(true)}
-                    onCancel={() => navigate('/')}
+                    onCancel={onCancel}
                 />
             </section>
         </VStack>
@@ -151,7 +149,7 @@ export interface BesvartProps {
 }
 
 const Besvart = ({ children }: BesvartProps) => {
-    const UngUiIntl = useUngUiIntl();
+    const intl = useUngUiIntl();
     const { oppgave, visKvittering } = useOppgavebekreftelse();
     if (oppgave.status === OppgaveStatus.ULØST || visKvittering) return null;
 
@@ -160,8 +158,8 @@ const Besvart = ({ children }: BesvartProps) => {
             return (
                 <OppgaveOgTilbakemelding
                     beskjedFraNav={children}
-                    svaralternativer={getSvaralternativer(oppgave, UngUiIntl)}
-                    spørsmål={getTilbakemeldingSpørsmål(oppgave, UngUiIntl)}
+                    svaralternativer={getSvaralternativer(oppgave, intl)}
+                    spørsmål={getTilbakemeldingSpørsmål(oppgave, intl)}
                     respons={oppgave.respons}
                 />
             );

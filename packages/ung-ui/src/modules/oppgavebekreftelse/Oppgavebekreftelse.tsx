@@ -13,10 +13,11 @@ interface Props {
     navn: string;
     children: React.ReactNode;
     initialVisKvittering?: boolean;
+    onCancel: () => void;
 }
 
-export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvittering = false }: Props) => {
-    const UngUiIntl = useUngUiIntl();
+export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvittering = false, onCancel }: Props) => {
+    const intl = useUngUiIntl();
     const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
 
     const contextValue = useMemo(
@@ -24,9 +25,10 @@ export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvitteri
             oppgave,
             navn,
             visKvittering,
+            onCancel,
             setVisKvittering,
         }),
-        [oppgave, navn, visKvittering, setVisKvittering],
+        [oppgave, navn, visKvittering, setVisKvittering, onCancel],
     );
 
     return (
@@ -39,7 +41,7 @@ export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvitteri
                     />
                 </div>
                 <Heading level="1" size="large">
-                    {getOppgaveTittel(oppgave, UngUiIntl)}
+                    {getOppgaveTittel(oppgave, intl)}
                 </Heading>
                 {children}
             </VStack>
