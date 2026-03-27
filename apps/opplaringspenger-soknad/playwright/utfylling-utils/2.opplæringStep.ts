@@ -60,7 +60,7 @@ export const fyllUtOpplæringToPerioder = async (page: Page) => {
     await leggTilPeriode1(page);
     await leggTilPeriode2(page);
     await leggTilReisedag(page);
-    await leggTilFerie(page);
+    await leggTilFerie(page, 2);
     await svarIngenUtenlandsopphold(page);
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
@@ -88,12 +88,7 @@ const leggTilReisedag = async (page: Page) => {
         .getByLabel('Ja')
         .check();
     await page.getByRole('button', { name: 'Legg til reisedag' }).click();
-    await page
-        .getByLabel('Reisedager')
-        .locator('div')
-        .filter({ hasText: /^Velg datoÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
+    await page.getByLabel('Reisedager', { exact: true }).getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByRole('button', { name: 'tirsdag 3', exact: true }).click();
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByLabel('Årsak for reisetid').fill('kombinerer med ferie');
@@ -101,22 +96,18 @@ const leggTilReisedag = async (page: Page) => {
     await testAccessibility(page);
 };
 
-const leggTilFerie = async (page: Page) => {
+const leggTilFerie = async (page: Page, perioder: number = 0) => {
     await page.getByRole('group', { name: 'Skal du ha ferie i løpet av søknadsperioden' }).getByLabel('Ja').check();
     await page.getByRole('group', { name: 'Ferie i perioden' }).click();
     await page.getByRole('button', { name: 'Legg til ferie' }).click();
     await page
-        .getByLabel('Legg til ferie')
-        .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
+        .getByRole('button', { name: 'Åpne datovelger' })
+        .nth(perioder + 2)
         .click();
     await page.getByRole('button', { name: 'onsdag 4' }).click();
     await page
-        .getByLabel('Legg til ferie')
-        .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
+        .getByRole('button', { name: 'Åpne datovelger' })
+        .nth(perioder + 3)
         .click();
 
     await page.getByRole('button', { name: 'torsdag 5' }).click();
@@ -134,19 +125,9 @@ const svarIngenUtenlandsopphold = async (page: Page) => {
 export const leggTilUtenlandsopphold = async (page: Page) => {
     await page.getByRole('group', { name: 'Oppholder du deg i utlandet i' }).getByLabel('Ja').check();
     await page.getByRole('button', { name: 'Legg til utenlandsopphold' }).click();
-    await page
-        .getByLabel('Utenlandsopphold')
-        .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).nth(2).click();
     await page.getByRole('button', { name: 'fredag 6' }).click();
-    await page
-        .getByLabel('Utenlandsopphold')
-        .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).nth(3).click();
     await page.getByRole('button', { name: 'fredag 6' }).click();
     await page.getByLabel('Velg land').selectOption('ABW');
     await testAccessibility(page);

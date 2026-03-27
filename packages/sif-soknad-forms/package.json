@@ -21,8 +21,8 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.8.0",
-        "@navikt/ds-react": "8.8.0",
+        "@navikt/aksel-icons": "8.9.0",
+        "@navikt/ds-react": "8.9.0",
         "@navikt/sif-common-utils": "workspace:*"
     },
     "peerDependencies": {
@@ -37,6 +37,6 @@
         "react": "19.2.4",
         "react-dom": "19.2.4",
         "typescript": "5.9.3",
-        "vitest": "4.1.0"
+        "vitest": "4.1.1"
     }
 }

@@ -32,16 +32,16 @@ test.describe('Medlemskap', () => {
         await page.getByRole('button', { name: 'Legg til nytt utenlandsopphold' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Fra og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('fredag 7').click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('mandag 14').click();
@@ -50,15 +50,15 @@ test.describe('Medlemskap', () => {
         await page.getByRole('button', { name: 'Legg til nytt utenlandsopphold' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Fra og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('tirsdag 15').click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'fredag 18' }).click();
@@ -72,14 +72,14 @@ test.describe('Medlemskap', () => {
             .click();
         await page
             .locator('div')
-            .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Fra og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'mandag 9' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'søndag 15' }).click();
         await page.getByLabel('Velg land').selectOption('AUS');
@@ -87,8 +87,8 @@ test.describe('Medlemskap', () => {
         await page.getByRole('link', { name: 'Australia' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'søndag 22' }).click();
         await page.getByRole('button', { name: 'Ok' }).click();

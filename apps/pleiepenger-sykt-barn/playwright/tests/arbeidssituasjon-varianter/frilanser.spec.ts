@@ -45,8 +45,10 @@ test.describe('Fosterhjemsgodtgjørelse ', () => {
         await page.getByRole('group', { name: 'Stopper godtgjørelsen' }).getByLabel('Ja').check();
         await page
             .locator('div')
-            .filter({ hasText: /^Sluttdato:Åpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Sluttdato:$/ })
+            .nth(1)
+            .getByRole('button', { name: 'Åpne datovelger' })
+            .first()
             .click();
         await page.getByTestId('fosterhjemsgodtgjørelse-sluttdato').getByLabel('tirsdag 3', { exact: true }).click();
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
