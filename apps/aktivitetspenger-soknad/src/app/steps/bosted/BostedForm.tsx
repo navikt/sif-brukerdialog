@@ -3,8 +3,9 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { BostedSøknadsdata } from '@app/types/Soknadsdata';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 import { BostedFormFields, BostedFormValues } from './types';
@@ -28,6 +29,7 @@ export const BostedForm = () => {
     });
 
     const methods = useSøknadRhfForm(stepId, defaultValues);
+    const borITrondheim = methods.watch(BostedFormFields.borITrondheim);
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
@@ -36,6 +38,14 @@ export const BostedForm = () => {
                 legend={text('bostedSteg.spørsmål.borITrondheim')}
                 validate={validateField(BostedFormFields.borITrondheim, getYesOrNoValidator())}
             />
+            {borITrondheim === YesOrNo.NO && (
+                <Alert variant="warning">
+                    <Heading level="3" size="small" spacing>
+                        Når du ikke bor i Tronheim
+                    </Heading>
+                    <BodyLong spacing>Info</BodyLong>
+                </Alert>
+            )}
         </AppForm>
     );
 };
