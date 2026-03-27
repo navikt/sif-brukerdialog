@@ -31,7 +31,7 @@ export const RapporterInntektOppgavePart = ({ navn, oppgave, initialKvitteringDa
             window.scrollTo(0, 0);
             kvitteringAlertRef.current.focus();
         }
-    });
+    }, [kvitteringData, prevKvitteringData]);
 
     const renderContent = () => {
         switch (oppgave.status) {

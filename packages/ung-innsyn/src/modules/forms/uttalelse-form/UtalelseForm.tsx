@@ -11,11 +11,7 @@ import { useForm } from 'react-hook-form';
 
 import { UngUiText, useUngUiIntl } from '../../../i18n';
 import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
-
-export type UttalelseSvaralternativer = {
-    harUttalelseLabel: string;
-    harIkkeUttalelseLabel: string;
-};
+import { UttalelseSvaralternativer } from '../../../types';
 
 export interface UtalelseFormProps {
     spørsmål: string;
