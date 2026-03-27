@@ -71,8 +71,7 @@ export const arbeidssituasjonMessages_nb = {
 
     'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er ansatt hos {navn} i perioden du søker for?',
     'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Sluttet du hos {navn} før {fraDato}?',
-    'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm':
-        'Hvor mange timer {jobber} du vanligvis {hvor}? Oppgi tiden i et snitt per uke:',
+    'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm': 'Hvor mange timer {jobber} du normalt per uke {hvor}?',
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoOmsorgsstønad':
         'Du skal ikke inkludere timer for omsorgsstønad/fosterhjemsgodtgjørelse.',
 

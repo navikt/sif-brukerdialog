@@ -73,8 +73,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
 
     'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er tilsett hos {navn} i perioden du søkjer for?',
     'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Slutta du hos {navn} før {fraDato}?',
-    'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm':
-        'Kor mange timar {jobber} du vanlegvis {hvor}? Oppgje tida i snitt per veke:',
+    'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm': 'Kor mange timar {jobber} du normalt per veke {hvor}?',
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoOmsorgsstønad':
         'Du skal ikkje inkludere timar for omsorgsstønad/fosterheimgodtgjersle.',
 
