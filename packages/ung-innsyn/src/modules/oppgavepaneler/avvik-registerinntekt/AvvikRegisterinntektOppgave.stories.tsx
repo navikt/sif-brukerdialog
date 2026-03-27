@@ -13,7 +13,7 @@ import dayjs from 'dayjs';
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { AvvikRegisterinntektOppgavePage } from './AvvikRegisterinntektOppgavePage';
+import { AvvikRegisterinntektOppgavePanel } from './AvvikRegisterinntektOppgavePanel';
 
 const meta: Meta = {
     title: 'Oppgaver/7. Avvik registerinntekt inntekt',
@@ -126,13 +126,13 @@ export const OppgavePanel: Story = {
 export const UbesvartOppgaveEnArbeidsgiver: Story = {
     name: 'Èn arbeidsgiver',
     render: () => (
-        <AvvikRegisterinntektOppgavePage oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1])} navn="SNODIG VAFFEL" />
+        <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1])} navn="SNODIG VAFFEL" />
     ),
 };
 export const UbesvartOppgaveToArbeidsgivere: Story = {
     name: 'To arbeidsgivere',
     render: () => (
-        <AvvikRegisterinntektOppgavePage
+        <AvvikRegisterinntektOppgavePanel
             oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1, inntektArbeidsgiver2])}
             navn="SNODIG VAFFEL"
         />
@@ -142,7 +142,7 @@ export const UbesvartOppgaveToArbeidsgivere: Story = {
 export const UbesvartOppgaveNavYtelse: Story = {
     name: 'Kun Nav-ytelse',
     render: () => (
-        <AvvikRegisterinntektOppgavePage
+        <AvvikRegisterinntektOppgavePanel
             oppgave={getOppgaveMedInntekt(undefined, [inntektYtelse1])}
             navn="SNODIG VAFFEL"
         />
@@ -151,7 +151,7 @@ export const UbesvartOppgaveNavYtelse: Story = {
 export const UbesvartOppgaveKombinasjon: Story = {
     name: 'Arbeidsgiver og Nav ytelse',
     render: () => (
-        <AvvikRegisterinntektOppgavePage
+        <AvvikRegisterinntektOppgavePanel
             oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1], [inntektYtelse1])}
             navn="SNODIG VAFFEL"
         />
@@ -159,25 +159,25 @@ export const UbesvartOppgaveKombinasjon: Story = {
 };
 export const IngenInntekt: Story = {
     name: 'Ingen inntekt',
-    render: () => <AvvikRegisterinntektOppgavePage oppgave={getOppgaveMedInntekt([], [])} navn="SNODIG VAFFEL" />,
+    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([], [])} navn="SNODIG VAFFEL" />,
 };
 
 export const OppgaveKvittering: Story = {
     name: 'Kvittering',
     render: () => (
-        <AvvikRegisterinntektOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />
+        <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />
     ),
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <AvvikRegisterinntektOppgavePage oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
+    render: () => <AvvikRegisterinntektOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <AvvikRegisterinntektOppgavePage
+        <AvvikRegisterinntektOppgavePanel
             oppgave={{
                 ...besvartOppgave,
                 respons: {
@@ -195,7 +195,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <AvvikRegisterinntektOppgavePage
+        <AvvikRegisterinntektOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             navn="SNODIG VAFFEL"
         />
@@ -205,7 +205,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <AvvikRegisterinntektOppgavePage
+        <AvvikRegisterinntektOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             navn="SNODIG VAFFEL"
         />

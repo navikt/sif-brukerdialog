@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { SøkYtelseOppgavePage } from './SokYtelseOppgavePage';
+import { SøkYtelseOppgavePanel } from './SokYtelseOppgavePanel';
 const meta: Meta = {
     title: 'Oppgaver/1. Søk ytelsen',
     parameters: {},
@@ -53,10 +53,10 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <SøkYtelseOppgavePage oppgave={oppgave} />,
+    render: () => <SøkYtelseOppgavePanel oppgave={oppgave} />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <SøkYtelseOppgavePage oppgave={besvartOppgave} />,
+    render: () => <SøkYtelseOppgavePanel oppgave={besvartOppgave} />,
 };

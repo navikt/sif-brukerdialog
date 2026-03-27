@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 
 import { ForsideLenkeButton } from '../../../../components';
 import { UngUiText } from '../../../../i18n';
-import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
+import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePanel';
 
 interface Props {
     kvitteringData: RapporterInntektKvitteringData;

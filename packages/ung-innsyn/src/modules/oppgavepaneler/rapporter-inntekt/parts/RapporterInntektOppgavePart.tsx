@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ForsideLenkeButton, OppgaveStatusInfo, OppgaveStatusTag } from '../../../../components';
 import { UngUiText } from '../../../../i18n';
 import { getOppgaveStatusText } from '../../../../utils/textUtils';
-import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
+import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePanel';
 import { RapporterInntektKvittering } from './RapporterInntektKvittering';
 import { RapporterInntektUbesvart } from './RapporterInntektUbesvart';
 import { RapportertInntektOppsummering } from './RapportertInntektOppsummering';

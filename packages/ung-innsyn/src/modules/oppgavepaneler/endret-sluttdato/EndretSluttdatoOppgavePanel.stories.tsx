@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
+import { EndretSluttdatoOppgavePanel } from './EndretSluttdatoOppgavePanel';
 
 const meta: Meta = {
     title: 'Oppgaver/3. Endret sluttdato',
@@ -70,23 +70,23 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretSluttdatoOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" />,
+    render: () => <EndretSluttdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const OppgaveKvittering: Story = {
     name: 'Kvittering',
-    render: () => <EndretSluttdatoOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
+    render: () => <EndretSluttdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretSluttdatoOppgavePage oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
+    render: () => <EndretSluttdatoOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <EndretSluttdatoOppgavePage
+        <EndretSluttdatoOppgavePanel
             oppgave={{
                 ...besvartOppgave,
                 respons: {
@@ -104,7 +104,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <EndretSluttdatoOppgavePage
+        <EndretSluttdatoOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             navn="SNODIG VAFFEL"
         />
@@ -114,7 +114,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <EndretSluttdatoOppgavePage
+        <EndretSluttdatoOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             navn="SNODIG VAFFEL"
         />

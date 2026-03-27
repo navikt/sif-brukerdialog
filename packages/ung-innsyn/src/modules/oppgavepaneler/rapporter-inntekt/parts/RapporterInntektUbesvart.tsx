@@ -2,7 +2,7 @@ import { GuidePanel, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-utils';
 
 import { RapporterInntektForm } from '../../../forms/rapporter-inntekt-form/RapporterInntektForm';
-import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
+import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePanel';
 import { RapporterInntektOppgavetekst } from './RapporterInntektOppgavetekst';
 
 interface Props extends RapporterInntektOppgaveProps {

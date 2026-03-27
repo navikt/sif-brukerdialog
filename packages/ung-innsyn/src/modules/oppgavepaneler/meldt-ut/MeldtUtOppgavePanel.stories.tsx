@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { MeldtUtOppgavePage } from './MeldtUtOppgavePage';
+import { MeldtUtOppgavePanel } from './MeldtUtOppgavePanel';
 const meta: Meta = {
     title: 'Oppgaver/4. Meldt ut',
     parameters: {},
@@ -68,23 +68,23 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <MeldtUtOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" />,
+    render: () => <MeldtUtOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const OppgaveKvittering: Story = {
     name: 'Kvittering',
-    render: () => <MeldtUtOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
+    render: () => <MeldtUtOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <MeldtUtOppgavePage oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
+    render: () => <MeldtUtOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <MeldtUtOppgavePage
+        <MeldtUtOppgavePanel
             oppgave={{
                 ...besvartOppgave,
                 respons: {
@@ -102,7 +102,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <MeldtUtOppgavePage
+        <MeldtUtOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             navn="SNODIG VAFFEL"
         />
@@ -112,7 +112,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <MeldtUtOppgavePage
+        <MeldtUtOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             navn="SNODIG VAFFEL"
         />

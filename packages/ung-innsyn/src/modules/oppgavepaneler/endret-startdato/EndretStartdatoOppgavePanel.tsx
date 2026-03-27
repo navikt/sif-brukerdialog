@@ -12,7 +12,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const EndretStartdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const EndretStartdatoOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
     const formatertDato = (
         <span className="text-nowrap">{dateFormatter.full(oppgave.oppgavetypeData.nyStartdato)}</span>
     );

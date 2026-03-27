@@ -1,16 +1,16 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { FjernetPeriodeOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { EndretStartOgSluttdatoOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { FjernetPeriodeOppgavePage } from './FjernetPeriodeOppgavePage';
+import { EndretStartOgSluttdatoOppgavePanel } from './EndretStartOgSluttdatoOppgavePanel';
 
 const meta: Meta = {
-    title: 'Oppgaver/6. Fjernet periode',
+    title: 'Oppgaver/5. Endret startdato og sluttdato',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
@@ -18,15 +18,22 @@ export default meta;
 
 type Story = StoryObj;
 
-const oppgave: FjernetPeriodeOppgave = {
+const oppgave: EndretStartOgSluttdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_FJERNET_PERIODE,
+    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
+    oppgavetypeData: {
+        forrigePeriode: { from: dayjs('2025-05-04').toDate() },
+        nyPeriode: {
+            from: dayjs('2025-05-01').toDate(),
+            to: dayjs('2025-08-01').toDate(),
+        },
+    },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
 };
 
-const besvartOppgave: FjernetPeriodeOppgave = {
+const besvartOppgave: EndretStartOgSluttdatoOppgave = {
     ...oppgave,
     respons: {
         type: 'VARSEL_SVAR',
@@ -66,23 +73,25 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <FjernetPeriodeOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" />,
+    render: () => <EndretStartOgSluttdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
 };
 
-export const OppgaveKvittering: Story = {
+export const Kvittering: Story = {
     name: 'Kvittering',
-    render: () => <FjernetPeriodeOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
+    render: () => (
+        <EndretStartOgSluttdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />
+    ),
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <FjernetPeriodeOppgavePage oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
+    render: () => <EndretStartOgSluttdatoOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <FjernetPeriodeOppgavePage
+        <EndretStartOgSluttdatoOppgavePanel
             oppgave={{
                 ...besvartOppgave,
                 respons: {
@@ -100,7 +109,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <FjernetPeriodeOppgavePage
+        <EndretStartOgSluttdatoOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             navn="SNODIG VAFFEL"
         />
@@ -110,7 +119,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <FjernetPeriodeOppgavePage
+        <EndretStartOgSluttdatoOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             navn="SNODIG VAFFEL"
         />

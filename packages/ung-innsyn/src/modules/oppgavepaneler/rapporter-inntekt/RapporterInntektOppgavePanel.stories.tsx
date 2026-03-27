@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { RapporterInntektOppgavePage } from './RapporterInntektOppgavePage';
+import { RapporterInntektOppgavePanel } from './RapporterInntektOppgavePanel';
 const meta: Meta = {
     title: 'Oppgaver/8. Rapporter inntekt',
     parameters: {},
@@ -93,13 +93,13 @@ export const OppgavePanel: Story = {
 };
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <RapporterInntektOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" />,
+    render: () => <RapporterInntektOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const KvitteringHarInntekt: Story = {
     name: 'Kvittering - med inntekt',
     render: () => (
-        <RapporterInntektOppgavePage
+        <RapporterInntektOppgavePanel
             oppgave={oppgave}
             navn="SNODIG VAFFEL"
             initialKvitteringData={{ harHattInntektOver0: true }}
@@ -110,7 +110,7 @@ export const KvitteringHarInntekt: Story = {
 export const KvitteringUtenInntekt: Story = {
     name: 'Kvittering - uten inntekt',
     render: () => (
-        <RapporterInntektOppgavePage
+        <RapporterInntektOppgavePanel
             oppgave={oppgave}
             navn="SNODIG VAFFEL"
             initialKvitteringData={{ harHattInntektOver0: false }}
@@ -120,10 +120,10 @@ export const KvitteringUtenInntekt: Story = {
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <RapporterInntektOppgavePage oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
+    render: () => <RapporterInntektOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
-    render: () => <RapporterInntektOppgavePage oppgave={utløptUbesvartOppgave} navn="SNODIG VAFFEL" />,
+    render: () => <RapporterInntektOppgavePanel oppgave={utløptUbesvartOppgave} navn="SNODIG VAFFEL" />,
 };

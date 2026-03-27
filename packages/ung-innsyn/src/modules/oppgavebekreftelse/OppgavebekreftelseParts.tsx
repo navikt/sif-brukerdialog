@@ -10,7 +10,7 @@ import { useOppgavePage } from '../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../types';
 import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
-import { RegelverkOgInnsynReadMore } from '../oppgaver/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
+import { RegelverkOgInnsynReadMore } from '../oppgavepaneler/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {

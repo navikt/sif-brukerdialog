@@ -1,16 +1,16 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { EndretStartOgSluttdatoOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { EndretStartdatoOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { EndretStartOgSluttdatoOppgavePage } from './EndretStartOgSluttdatoOppgavePage';
+import { EndretStartdatoOppgavePanel } from './EndretStartdatoOppgavePanel';
 
 const meta: Meta = {
-    title: 'Oppgaver/5. Endret startdato og sluttdato',
+    title: 'Oppgaver/2. Endret startdato',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
@@ -18,22 +18,19 @@ export default meta;
 
 type Story = StoryObj;
 
-const oppgave: EndretStartOgSluttdatoOppgave = {
+const oppgave: EndretStartdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
+    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
-        forrigePeriode: { from: dayjs('2025-05-04').toDate() },
-        nyPeriode: {
-            from: dayjs('2025-05-01').toDate(),
-            to: dayjs('2025-08-01').toDate(),
-        },
+        nyStartdato: dayjs('2025-05-01').toDate(),
+        forrigeStartdato: dayjs('2025-05-05').toDate(),
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
 };
 
-const besvartOppgave: EndretStartOgSluttdatoOppgave = {
+const besvartOppgave: EndretStartdatoOppgave = {
     ...oppgave,
     respons: {
         type: 'VARSEL_SVAR',
@@ -42,7 +39,6 @@ const besvartOppgave: EndretStartOgSluttdatoOppgave = {
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
 };
-
 export const OppgavePanel: Story = {
     name: 'Oppgavevisning på forside',
     render: () => (
@@ -73,25 +69,23 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretStartOgSluttdatoOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" />,
+    render: () => <EndretStartdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const Kvittering: Story = {
     name: 'Kvittering',
-    render: () => (
-        <EndretStartOgSluttdatoOppgavePage oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />
-    ),
+    render: () => <EndretStartdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretStartOgSluttdatoOppgavePage oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
+    render: () => <EndretStartdatoOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <EndretStartOgSluttdatoOppgavePage
+        <EndretStartdatoOppgavePanel
             oppgave={{
                 ...besvartOppgave,
                 respons: {
@@ -109,7 +103,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <EndretStartOgSluttdatoOppgavePage
+        <EndretStartdatoOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             navn="SNODIG VAFFEL"
         />
@@ -119,7 +113,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <EndretStartOgSluttdatoOppgavePage
+        <EndretStartdatoOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             navn="SNODIG VAFFEL"
         />

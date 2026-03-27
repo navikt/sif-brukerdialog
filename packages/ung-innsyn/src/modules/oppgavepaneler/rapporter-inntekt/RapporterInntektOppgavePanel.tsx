@@ -16,7 +16,7 @@ export interface RapporterInntektKvitteringData {
     harHattInntektOver0: boolean;
 }
 
-export const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
+export const RapporterInntektOppgavePanel = (props: RapporterInntektOppgaveProps) => {
     const queryClient = useQueryClient();
     const { oppgave } = props;
 

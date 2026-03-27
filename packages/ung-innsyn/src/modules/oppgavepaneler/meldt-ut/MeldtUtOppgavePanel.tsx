@@ -11,7 +11,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const MeldtUtOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const MeldtUtOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
