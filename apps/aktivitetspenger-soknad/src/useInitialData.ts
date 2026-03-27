@@ -1,5 +1,5 @@
 import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@sif/api/k9-prosessering';
-import { kontonummerFallback, UtvidetKontonummerInfo, useKontonummer } from '@sif/api/ung-deltaker';
+import { kontonummerFallback, useKontonummer, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { useMemo } from 'react';
 
 import { søknadStepConfig } from './app/setup/config/soknadStepConfig';
