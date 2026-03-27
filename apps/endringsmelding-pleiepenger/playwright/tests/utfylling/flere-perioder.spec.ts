@@ -1,6 +1,6 @@
+import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { expect, test } from '@playwright/test';
 
-import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 
@@ -21,17 +21,9 @@ test('test', async ({ page }) => {
     /** Ferie */
     await page.getByTestId('dateRangeAccordion_1_header').click();
     await page.getByTestId('dateRangeAccordion_1').getByTestId('leggTilFerieKnapp').click();
-    await page
-        .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
     await page.getByRole('button', { name: 'mandag 7' }).click();
-    await page
-        .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
     await page.getByRole('button', { name: 'søndag 13' }).click();
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('dateRangeAccordion_0_header').click();
@@ -40,11 +32,6 @@ test('test', async ({ page }) => {
     await page.getByLabel('Til og med').click();
     await page.getByLabel('Til og med').fill('30.01.2023');
     await page.getByLabel('Til og med').press('Tab');
-    await page
-        .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
-        .press('Tab');
     await page.getByRole('button', { name: 'Ok' }).click();
     await page
         .locator('li')
