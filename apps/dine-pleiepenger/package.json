@@ -29,7 +29,7 @@
         "@navikt/sif-common-analytics": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@sentry/nextjs": "10.44.0",
+        "@sentry/nextjs": "10.45.0",
         "@types/lodash.sortby": "4.7.9",
         "axios": "1.13.6",
         "csp-header": "6.3.1",
