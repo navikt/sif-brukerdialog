@@ -1,4 +1,4 @@
-import { UngOppgaveIkkeFunnetPage, UngOppgavePage as UngOppgavePage } from '@sif/ung-ui/pages';
+import { UngOppgaveIkkeFunnetPage, UngOppgavePage as UngOppgavePage } from '@sif/ung-innsyn/pages';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
