@@ -1,14 +1,14 @@
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
 import { useUngUiIntl } from '../i18n';
-import { AvvikRegisterinntektOppgavePage } from '../modules/oppgaver/avvik-registerinntekt/AvvikRegisterinntektOppgavePage';
-import { EndretSluttdatoOppgavePage } from '../modules/oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
-import { EndretStartOgSluttdatoOppgavePage } from '../modules/oppgaver/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePage';
-import { EndretStartdatoOppgavePage } from '../modules/oppgaver/endret-startdato/EndretStartdatoOppgavePage';
-import { FjernetPeriodeOppgavePage } from '../modules/oppgaver/fjernet-periode/FjernetPeriodeOppgavePage';
-import { MeldtUtOppgavePage } from '../modules/oppgaver/meldt-ut/MeldtUtOppgavePage';
-import { RapporterInntektOppgavePage } from '../modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
-import { SøkYtelseOppgavePage } from '../modules/oppgaver/sok-ytelse/SokYtelseOppgavePage';
+import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
+import { EndretSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-sluttdato/EndretSluttdatoOppgavePanel';
+import { EndretStartOgSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel';
+import { EndretStartdatoOppgavePanel } from '../modules/oppgavepaneler/endret-startdato/EndretStartdatoOppgavePanel';
+import { FjernetPeriodeOppgavePanel } from '../modules/oppgavepaneler/fjernet-periode/FjernetPeriodeOppgavePanel';
+import { MeldtUtOppgavePanel } from '../modules/oppgavepaneler/meldt-ut/MeldtUtOppgavePanel';
+import { RapporterInntektOppgavePanel } from '../modules/oppgavepaneler/rapporter-inntekt/RapporterInntektOppgavePanel';
+import { SøkYtelseOppgavePanel } from '../modules/oppgavepaneler/sok-ytelse/SokYtelseOppgavePanel';
 import { getOppgaveDokumentTittel } from '../utils/textUtils';
 import { OppgavePageContext } from './hooks/useOppgavePage';
 import { UngInnsynPage } from './UngInnsynPage';
@@ -16,21 +16,21 @@ import { UngInnsynPage } from './UngInnsynPage';
 const getOppgavePageComponent = (navn: string, oppgave: Oppgave) => {
     switch (oppgave.oppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return <AvvikRegisterinntektOppgavePage oppgave={oppgave} navn={navn} />;
+            return <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <EndretStartdatoOppgavePage navn={navn} oppgave={oppgave} />;
+            return <EndretStartdatoOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgavePage navn={navn} oppgave={oppgave} />;
+            return <EndretSluttdatoOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_MELDT_UT:
-            return <MeldtUtOppgavePage navn={navn} oppgave={oppgave} />;
+            return <MeldtUtOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.RAPPORTER_INNTEKT:
-            return <RapporterInntektOppgavePage oppgave={oppgave} navn={navn} />;
+            return <RapporterInntektOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.SØK_YTELSE:
-            return <SøkYtelseOppgavePage oppgave={oppgave} />;
+            return <SøkYtelseOppgavePanel oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_FJERNET_PERIODE:
-            return <FjernetPeriodeOppgavePage oppgave={oppgave} navn={navn} />;
+            return <FjernetPeriodeOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
-            return <EndretStartOgSluttdatoOppgavePage navn={navn} oppgave={oppgave} />;
+            return <EndretStartOgSluttdatoOppgavePanel navn={navn} oppgave={oppgave} />;
     }
 };
 

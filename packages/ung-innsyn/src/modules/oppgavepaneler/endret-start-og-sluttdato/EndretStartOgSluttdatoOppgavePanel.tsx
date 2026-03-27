@@ -12,7 +12,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const EndretStartOgSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const EndretStartOgSluttdatoOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>

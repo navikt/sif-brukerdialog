@@ -1,11 +1,11 @@
-import { avvikRegisterinntektMessages_nb } from '../modules/oppgaver/avvik-registerinntekt/i18n/nb';
-import { endretSluttdatoMessages_nb } from '../modules/oppgaver/endret-sluttdato/i18n/nb';
-import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgaver/endret-start-og-sluttdato/i18n/nb';
-import { endretStartdatoMessages_nb } from '../modules/oppgaver/endret-startdato/i18n/nb';
-import { fjernetPeriodeMessages_nb } from '../modules/oppgaver/fjernet-periode/i18n/nb';
-import { meldtUtMessages_nb } from '../modules/oppgaver/meldt-ut/i18n/nb';
-import { rapporterInntektMessages_nb } from '../modules/oppgaver/rapporter-inntekt/i18n/nb';
-import { søkYtelseOppgaveMessages_nb } from '../modules/oppgaver/sok-ytelse/i18n/nb';
+import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
+import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
+import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-start-og-sluttdato/i18n/nb';
+import { endretStartdatoMessages_nb } from '../modules/oppgavepaneler/endret-startdato/i18n/nb';
+import { fjernetPeriodeMessages_nb } from '../modules/oppgavepaneler/fjernet-periode/i18n/nb';
+import { meldtUtMessages_nb } from '../modules/oppgavepaneler/meldt-ut/i18n/nb';
+import { rapporterInntektMessages_nb } from '../modules/oppgavepaneler/rapporter-inntekt/i18n/nb';
+import { søkYtelseOppgaveMessages_nb } from '../modules/oppgavepaneler/sok-ytelse/i18n/nb';
 
 export const ungUi_messages_nb = {
     ...avvikRegisterinntektMessages_nb,

@@ -15,7 +15,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const AvvikRegisterinntektOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const AvvikRegisterinntektOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
     const utbetalingsmåned = getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed);
 
     return (

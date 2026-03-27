@@ -6,6 +6,6 @@ interface Props {
     oppgave: SøkYtelseOppgave;
 }
 
-export const SøkYtelseOppgavePage = ({ oppgave }: Props) => {
+export const SøkYtelseOppgavePanel = ({ oppgave }: Props) => {
     return <SøkYtelseOppgavetekst oppgave={oppgave} />;
 };

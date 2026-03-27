@@ -10,9 +10,9 @@ export * from './pages';
 // Modules: rapporter inntekt
 export {
     type RapporterInntektKvitteringData,
-    RapporterInntektOppgavePage,
+    RapporterInntektOppgavePanel as RapporterInntektOppgavePage,
     type RapporterInntektOppgaveProps,
-} from './modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
+} from './modules/oppgavepaneler/rapporter-inntekt/RapporterInntektOppgavePanel';
 
 // Modules: oppgavebekreftelse parts
 export {

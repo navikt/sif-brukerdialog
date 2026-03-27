@@ -5,12 +5,12 @@ import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useEffect, useRef } from 'react';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
+import { RegelverkOgInnsynReadMore } from '../../components/readmore/RegelverkOgInnsynReadMore';
 import { UngUiText, useUngUiIntl } from '../../i18n';
 import { useOppgavePage } from '../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../types';
 import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
-import { RegelverkOgInnsynReadMore } from '../oppgaver/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {

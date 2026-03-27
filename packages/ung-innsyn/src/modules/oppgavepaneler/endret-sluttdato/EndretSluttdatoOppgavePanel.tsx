@@ -11,7 +11,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const EndretSluttdatoOppgavePage = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const EndretSluttdatoOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
     if (!oppgave.oppgavetypeData.forrigeSluttdato) {
         throw new Error('Forrige sluttdato mangler for oppgave av typen EndretSluttdatoOppgave');
     }

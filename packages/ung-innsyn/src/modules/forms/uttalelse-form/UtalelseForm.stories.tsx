@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import { InnsynAppDecorator } from '../../../stories/InnsynAppDecorator';
-import { StorybookDecorator } from '../../../stories/StorybookDecorator';
+import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
+import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { UtalelseForm } from './UtalelseForm';
 
 const meta = {
     title: 'Forms/UtalelseForm',
     component: UtalelseForm,
-    decorators: [InnsynAppDecorator, StorybookDecorator],
+    decorators: [StorybookDecorator, OppgavePageDecorator],
     parameters: {
         layout: 'padded',
     },
