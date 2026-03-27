@@ -41,5 +41,5 @@ export const avvikRegisterinntektMessages_nb = {
     '@ungUi.regelverkOgInnsyn.readMore.forskrift':
         '§ 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1. august 2025) (lovdata.no)',
     '@ungUi.regelverkOgInnsyn.readMore.dokumenter':
-        'Du har rett til å se dokumentene i saken sin. <link>Les mer om innsyn på nav.no</link>.',
+        'Du har rett til å se dokumentene i saken din. <link>Les mer om innsyn på nav.no</link>.',
 };

@@ -2,7 +2,7 @@ export const rapporterInntektMessages_nb = {
     '@ungUi.rapporterInntektOppgavetekst.tittel': 'Hei {navn}',
     '@ungUi.rapporterInntektOppgavetekst.intro.1': 'Gi oss beskjed hvis du hadde inntekt i {måned}.',
     '@ungUi.rapporterInntektOppgavetekst.intro.2':
-        'Inntekt er lønn, men det kan også være for eksempel etterbetaling, feriepenger, overtid og tillegg for ubekevem arbeidstid.',
+        'Inntekt er lønn, men det kan også være for eksempel etterbetaling, feriepenger, overtid og tillegg for ubekvem arbeidstid.',
     '@ungUi.rapporterInntektOppgavetekst.intro.delerAvMåned':
         'Du skal gi beskjed om hele inntekten du hadde i {måned}, selv om du ikke hadde ungdomsprogramytelsen hele måneden.',
     '@ungUi.rapporterInntektOppgave.readMore.tittel': 'Les mer om inntekt',
@@ -12,7 +12,7 @@ export const rapporterInntektMessages_nb = {
     '@ungUi.rapporterInntektOppgave.readMore.liste.2': 'feriepenger',
     '@ungUi.rapporterInntektOppgave.readMore.liste.3': 'overtid',
     '@ungUi.rapporterInntektOppgave.readMore.liste.4':
-        'tillegg for kveld, natt, helg og helligdag (ubekevem arbeidstid)',
+        'tillegg for kveld, natt, helg og helligdag (ubekvem arbeidstid)',
     '@ungUi.rapporterInntektOppgave.readMore.liste.5': 'tips',
     '@ungUi.rapporterInntektOppgave.readMore.liste.6': 'frilansinntekt',
     '@ungUi.rapporterInntektOppgave.readMore.liste.7': 'inntekt fra aksjeselskap (AS)',
