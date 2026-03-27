@@ -6,12 +6,12 @@ import { useEffect, useRef } from 'react';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
 import { UngUiText, useUngUiIntl } from '../../i18n';
+import { useOppgavePage } from '../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../types';
 import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
 import { RegelverkOgInnsynReadMore } from '../oppgaver/avvik-registerinntekt/parts/RegelverkOgInnsynReadMore';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
-import { useOppgavePage } from '../../pages/hooks/useOppgavePage';
 
 interface OppgaveOgTilbakemeldingProps {
     beskjedFraNav: React.ReactNode;

@@ -1,6 +1,7 @@
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
 import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
+import { sifApiQueryKeys } from '@sif/api';
 import { UngOppgaveIkkeFunnetPage, UngOppgavePage } from '@sif/ung-ui/pages';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -30,7 +31,13 @@ const OppgavePage = () => {
             oppgave={oppgave}
             applikasjonTittel={text('innsyn.sidetittel')}
             onCancel={() => navigate('/')}
-            onSuccess={() => queryClient.invalidateQueries(commonQueries.deltakelseperioder)}
+            onSuccess={() => {
+                queryClient.invalidateQueries({ queryKey: sifApiQueryKeys.oppgaver });
+                queryClient.invalidateQueries(commonQueries.deltakelseperioder);
+                setTimeout(() => {
+                    queryClient.refetchQueries({ queryKey: sifApiQueryKeys.oppgaver });
+                }, 3000);
+            }}
         />
     ) : (
         <UngOppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} applikasjonTittel={text('innsyn.sidetittel')} />

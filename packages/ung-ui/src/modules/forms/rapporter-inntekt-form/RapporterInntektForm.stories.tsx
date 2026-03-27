@@ -17,7 +17,6 @@ const meta = {
         oppgaveReferanse: 'test-ref-123',
         måned: 'januar 2026',
         onSuccess: fn(),
-        onCancel: fn(),
     },
 } satisfies Meta<typeof RapporterInntektForm>;
 
@@ -25,9 +24,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-
-export const UtenAvbrytKnapp: Story = {
-    args: {
-        onCancel: undefined,
-    },
-};

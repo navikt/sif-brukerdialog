@@ -22,7 +22,6 @@ const meta = {
             harIkkeUttalelseLabel: 'Nei',
         },
         onSuccess: fn(),
-        onCancel: fn(),
     },
 } satisfies Meta<typeof UtalelseForm>;
 
@@ -34,11 +33,5 @@ export const Default: Story = {};
 export const MedBeskrivelse: Story = {
     args: {
         uttalelseDescription: 'Beskriv hva du mener er feil med startdatoen.',
-    },
-};
-
-export const UtenAvbrytKnapp: Story = {
-    args: {
-        onCancel: undefined,
     },
 };
