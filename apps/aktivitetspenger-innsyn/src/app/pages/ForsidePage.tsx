@@ -3,6 +3,7 @@ import { sortDates } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { InnsynForsideHeader, InnsynPage, OppgaverList } from '@sif/ung-innsyn/components';
 
+import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { AppText } from '../i18n';
 
 interface Props {
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export const ForsidePage = ({ oppgaver }: Props) => {
+    useInnsynBreadcrumbs();
+
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
