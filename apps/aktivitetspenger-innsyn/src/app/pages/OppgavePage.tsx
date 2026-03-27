@@ -1,4 +1,6 @@
+import { sifApiQueryKeys } from '@sif/api';
 import { UngOppgaveIkkeFunnetPage, UngOppgavePage as UngOppgavePage } from '@sif/ung-innsyn/pages';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
@@ -19,6 +21,7 @@ const OppgavePage = () => {
         søker: { fornavn: fornavn },
     } = useInnsynContext();
     const oppgave = oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
+    const queryClient = useQueryClient();
 
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
 
@@ -28,6 +31,12 @@ const OppgavePage = () => {
             oppgave={oppgave}
             applikasjonTittel={text('application.title')}
             onCancel={() => navigate('/')}
+            onSuccess={() => {
+                queryClient.invalidateQueries({ queryKey: sifApiQueryKeys.oppgaver });
+                setTimeout(() => {
+                    queryClient.refetchQueries({ queryKey: sifApiQueryKeys.oppgaver });
+                }, 3000);
+            }}
         />
     ) : (
         <UngOppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} applikasjonTittel={text('application.title')} />
