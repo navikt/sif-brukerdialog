@@ -1,5 +1,4 @@
-import { ungUiMessages } from '@sif/ung-ui/i18n';
-
+import { ungUiMessages } from '../../../../../../packages/ung-innsyn/src/i18n';
 import { innsynMessages_nb } from './messages/nb';
 import { innsynMessages_nn } from './messages/nn';
 

@@ -1,4 +1,4 @@
-# @sif/ung-ui
+# @sif/ung-innsyn
 
 ## 0.0.1
 

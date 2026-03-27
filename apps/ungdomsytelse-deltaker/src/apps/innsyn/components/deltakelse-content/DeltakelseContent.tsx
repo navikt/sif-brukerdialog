@@ -4,8 +4,8 @@ import { sortDates } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { AppText } from '@shared/i18n';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
-import { OppgaverList } from '@sif/ung-ui/components';
 
+import { OppgaverList } from '../../../../../../../packages/ung-innsyn/src/components';
 import { Oppgave } from '../../../../types/Oppgave';
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
 import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';

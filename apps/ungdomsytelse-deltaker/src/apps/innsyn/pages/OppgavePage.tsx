@@ -2,10 +2,10 @@ import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
 import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { sifApiQueryKeys } from '@sif/api';
-import { UngOppgaveIkkeFunnetPage, UngOppgavePage } from '@sif/ung-ui/pages';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { UngOppgaveIkkeFunnetPage, UngOppgavePage } from '../../../../../../packages/ung-innsyn/src/pages';
 import { useAppIntl } from '../../../i18n';
 /** Url params */
 type OppgavePageParams = {

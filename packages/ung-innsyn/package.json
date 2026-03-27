@@ -1,5 +1,5 @@
 {
-    "name": "@sif/ung-ui",
+    "name": "@sif/ung-innsyn",
     "main": "src/index.ts",
     "types": "src/index.ts",
     "type": "module",

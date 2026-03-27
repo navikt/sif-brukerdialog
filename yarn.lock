@@ -4362,7 +4362,7 @@ __metadata:
     "@sif/rhf": "workspace:*"
     "@sif/soknad": "workspace:*"
     "@sif/soknad-ui": "workspace:*"
-    "@sif/ung-ui": "workspace:*"
+    "@sif/ung-innsyn": "workspace:*"
     "@sonar/scan": "npm:4.3.5"
     "@storybook/addon-a11y": "npm:10.3.0"
     "@storybook/react-vite": "npm:10.3.0"
@@ -6208,7 +6208,7 @@ __metadata:
     "@playwright/test": "npm:1.58.2"
     "@sentry/react": "npm:10.44.0"
     "@sif/api": "workspace:*"
-    "@sif/ung-ui": "workspace:*"
+    "@sif/ung-innsyn": "workspace:*"
     "@storybook/addon-docs": "npm:10.3.0"
     "@storybook/react-vite": "npm:10.3.0"
     "@tailwindcss/postcss": "npm:4.2.2"
@@ -9476,9 +9476,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sif/ung-ui@workspace:*, @sif/ung-ui@workspace:packages/ung-ui":
+"@sif/ung-innsyn@workspace:*, @sif/ung-innsyn@workspace:packages/ung-innsyn":
   version: 0.0.0-use.local
-  resolution: "@sif/ung-ui@workspace:packages/ung-ui"
+  resolution: "@sif/ung-innsyn@workspace:packages/ung-innsyn"
   dependencies:
     "@navikt/ds-react": "npm:8.8.0"
     "@navikt/sif-common-hooks": "workspace:*"

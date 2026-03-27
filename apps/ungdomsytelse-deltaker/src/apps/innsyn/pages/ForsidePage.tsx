@@ -4,8 +4,8 @@ import { VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { useAppIntl } from '@shared/i18n';
-import { InnsynForsideHeader } from '@sif/ung-ui/components';
 
+import { InnsynForsideHeader } from '../../../../../../packages/ung-innsyn/src/components';
 import UXRapportertInntekt from '../ux-signals/UXRapportertInntekt';
 import ForsidePageLayout from './layout/ForsidePageLayout';
 import ForsidePageFooter from './parts/ForsidePageFooter';

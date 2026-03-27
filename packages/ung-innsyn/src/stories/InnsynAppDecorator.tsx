@@ -1,4 +1,4 @@
-import '../ung-ui.css';
+import '../ung-innsyn.css';
 
 import { Theme } from '@navikt/ds-react';
 import { useEffect } from 'react';
