@@ -1,6 +1,6 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
-import { UngUiText, useUngUiIntl } from '../../../../i18n';
+import { UngUiText, useUngUiIntl } from '../../i18n';
 
 export const RegelverkOgInnsynReadMore = () => {
     const { text } = useUngUiIntl();
