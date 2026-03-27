@@ -2,7 +2,7 @@ import '../../src/app.css';
 
 import { Theme, VStack } from '@navikt/ds-react';
 import { UxSignalsLoaderProvider } from '@navikt/sif-common-core-ds';
-import { InnsynForsideHeader } from '../../../../packages/ung-innsyn/src/components';
+import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 import { useEffect } from 'react';
 
 import ForsidePageLayout from '../../src/apps/innsyn/pages/layout/ForsidePageLayout';
