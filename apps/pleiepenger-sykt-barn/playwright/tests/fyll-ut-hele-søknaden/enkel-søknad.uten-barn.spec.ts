@@ -25,14 +25,14 @@ test('Fyll ut enkel søknad ved ingen registrerte barn', async ({ page }) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page
         .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Fra og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();
     await page
         .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Til og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'søndag 15' }).click();
     await page.getByRole('group', { name: 'Skal du reise til utlandet i' }).getByLabel('Nei').check();

@@ -27,17 +27,13 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').click();
         await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('erFortsattFrilanser').getByText('Nei').click();
-        await page
-            .locator('div')
-            .filter({ hasText: /^Når sluttet du å jobbe som frilanser\?Åpne datovelger$/ })
-            .getByRole('button')
-            .click();
+        await page.getByRole('button', { name: 'Åpne datovelger' }).click();
         await page.getByTestId('er-frilanser-sluttdato').getByLabel('søndag 1', { exact: true }).click();
         await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Nei').click();
         await page
             .locator('div')
-            .filter({ hasText: /^Når startet du å jobbe som frilanser\?Åpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Når sluttet du å jobbe som frilanser\?$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
@@ -54,20 +50,12 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('Opplysninger om den eldste').getByLabel('Ja').check();
         await page.getByLabel('Hva er organisasjonsnummeret?').click();
         await page.getByLabel('Hva er organisasjonsnummeret?').fill('991012133');
-        await page
-            .locator('div')
-            .filter({ hasText: /^StartdatoÅpne datovelger$/ })
-            .getByRole('button')
-            .click();
+        await page.getByRole('button', { name: 'Åpne datovelger' }).nth(2).click();
         await page.getByRole('dialog', { name: 'Velg dato' }).getByLabel('År').selectOption('2018');
         await page.getByLabel('onsdag 17').click();
         await page.getByText('Er pågående').click();
         await page.getByRole('group', { name: 'Har du hatt en varig endring' }).getByLabel('Ja').check();
-        await page
-            .locator('div')
-            .filter({ hasText: /^Oppgi dato for endringenÅpne datovelger$/ })
-            .getByRole('button')
-            .click();
+        await page.getByRole('button', { name: 'Åpne datovelger' }).nth(4).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'tirsdag 15' }).click();
@@ -92,8 +80,8 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByRole('button', { name: 'Legg til jobb i et annet EØS-' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Fra og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til neste måned' }).click();
         await page.getByRole('button', { name: 'Gå til neste måned' }).click();
@@ -102,8 +90,8 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('mandag 22').click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'onsdag 24' }).click();
         await page.getByLabel('Velg land').selectOption('BGR');
@@ -125,16 +113,17 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('Skriv inn virksomhetens').fill('1234');
         await page
             .locator('div')
-            .filter({ hasText: /^StartdatoÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Startdato$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'mandag 7' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^SluttdatoÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Sluttdato$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
+
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'fredag 30' }).click();
