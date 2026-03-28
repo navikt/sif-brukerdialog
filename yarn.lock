@@ -6193,6 +6193,7 @@ __metadata:
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@playwright/test": "npm:1.58.2"
     "@sentry/react": "npm:10.45.0"
+    "@sif/api": "workspace:*"
     "@storybook/addon-docs": "npm:10.3.3"
     "@storybook/react-vite": "npm:10.3.3"
     "@tailwindcss/postcss": "npm:4.2.2"
