@@ -47,7 +47,7 @@ export const UtalelseForm = ({
 }: UtalelseFormProps) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
     const { intl, text } = useUngUiIntl();
-    const { validateField } = useSifValidate('@ungUi.uttalelseForm');
+    const { validateField } = useSifValidate('@ungInnsyn.uttalelseForm');
     const { onCancel } = useOppgavePage();
 
     const methods = useForm<FormValues>({
@@ -84,11 +84,11 @@ export const UtalelseForm = ({
             buttons={
                 <HStack gap="space-16">
                     <Button type="submit" loading={isPending}>
-                        {text('@ungUi.uttalelseForm.submitButtonLabel')}
+                        {text('@ungInnsyn.uttalelseForm.submitButtonLabel')}
                     </Button>
                     {onCancel ? (
                         <Button variant="secondary" type="button" onClick={onCancel}>
-                            {text('@ungUi.uttalelseForm.cancelButtonLabel')}
+                            {text('@ungInnsyn.uttalelseForm.cancelButtonLabel')}
                         </Button>
                     ) : null}
                 </HStack>
@@ -111,7 +111,7 @@ export const UtalelseForm = ({
                         description={
                             uttalelseDescription || (
                                 <BodyLong>
-                                    <UngUiText id="@ungUi.uttalelseForm.defaultDescription" />
+                                    <UngUiText id="@ungInnsyn.uttalelseForm.defaultDescription" />
                                 </BodyLong>
                             )
                         }
@@ -125,7 +125,7 @@ export const UtalelseForm = ({
                             })(value);
                             return errorCode
                                 ? intl.formatMessage(
-                                      { id: `@ungUi.uttalelseForm.validation.uttalelse.${errorCode}` },
+                                      { id: `@ungInnsyn.uttalelseForm.validation.uttalelse.${errorCode}` },
                                       { min: MIN_LENGTH, maks: MAX_LENGTH },
                                   )
                                 : undefined;

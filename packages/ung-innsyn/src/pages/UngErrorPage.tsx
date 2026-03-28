@@ -11,7 +11,7 @@ interface Props {
 export const UngErrorPage = ({ applicationTitle }: Props) => {
     const { text } = useUngUiIntl();
     return (
-        <UngInnsynPage documentTitle={`${text('@ungUi.errorPage')} - ${applicationTitle}`}>
+        <UngInnsynPage documentTitle={`${text('@ungInnsyn.errorPage')} - ${applicationTitle}`}>
             <VStack gap="space-24">
                 <InnsynDefaultErrorMessage />
             </VStack>

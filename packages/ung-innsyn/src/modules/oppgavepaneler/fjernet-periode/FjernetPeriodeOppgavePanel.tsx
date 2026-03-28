@@ -23,7 +23,7 @@ export const FjernetPeriodeOppgavePanel = ({ navn, oppgave, initialVisKvittering
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="@ungUi.oppgavetype.BEKREFT_FJERNET_PERIODE.kvitteringTekst" />
+                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

@@ -17,24 +17,24 @@ export const EndretSluttdatoOppgavetekst = ({ endretDato, svarfrist }: Props) =>
         <>
             <BodyLong spacing>
                 <UngUiText
-                    id="@ungUi.endretSluttdato.oppgavetekst.1"
+                    id="@ungInnsyn.endretSluttdato.oppgavetekst.1"
                     values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretSluttdato.oppgavetekst.2" />
+                <UngUiText id="@ungInnsyn.endretSluttdato.oppgavetekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretSluttdato.oppgavetekst.3" />
+                <UngUiText id="@ungInnsyn.endretSluttdato.oppgavetekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretSluttdato.oppgavetekst.4" />
+                <UngUiText id="@ungInnsyn.endretSluttdato.oppgavetekst.4" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <UngUiText id="@ungUi.endretSluttdato.oppgavetekst.svarfrist" values={{ formatertFrist }} />
+                <UngUiText id="@ungInnsyn.endretSluttdato.oppgavetekst.svarfrist" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong>
-                <UngUiText id="@ungUi.endretSluttdato.oppgavetekst.5" values={{ formatertDato }} />
+                <UngUiText id="@ungInnsyn.endretSluttdato.oppgavetekst.5" values={{ formatertDato }} />
             </BodyLong>
         </>
     );

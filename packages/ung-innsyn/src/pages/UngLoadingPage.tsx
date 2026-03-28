@@ -10,7 +10,7 @@ interface Props {
 export const UngLoadingPage = ({ applicationTitle: documentTitle }: Props) => {
     const { text } = useUngUiIntl();
     return (
-        <UngInnsynPage documentTitle={`${text('@ungUi.loading')} - ${documentTitle}`}>
+        <UngInnsynPage documentTitle={`${text('@ungInnsyn.loading')} - ${documentTitle}`}>
             <VStack align="center" justify="center" marginBlock="space-40">
                 <Loader size="3xlarge" />
             </VStack>

@@ -14,22 +14,22 @@ export const RapportertInntektOppsummering = ({ måned, inntekt }: Props) => {
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2" id="summaryHeading">
-                        <UngUiText id="@ungUi.rapporterInntektOppgavePart.oppsummering" />
+                        <UngUiText id="@ungInnsyn.rapporterInntektOppgavePart.oppsummering" />
                     </FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
                         <FormSummary.Label>
-                            <UngUiText id="@ungUi.rapporterInntektOppgavePart.haddeInntekt" values={{ måned }} />
+                            <UngUiText id="@ungInnsyn.rapporterInntektOppgavePart.haddeInntekt" values={{ måned }} />
                         </FormSummary.Label>
                         <FormSummary.Value>
-                            {inntekt > 0 ? <UngUiText id="@ungUi.Ja" /> : <UngUiText id="@ungUi.Nei" />}
+                            {inntekt > 0 ? <UngUiText id="@ungInnsyn.Ja" /> : <UngUiText id="@ungInnsyn.Nei" />}
                         </FormSummary.Value>
                     </FormSummary.Answer>
                     {inntekt > 0 && (
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                <UngUiText id="@ungUi.rapporterInntektOppgavePart.inntektFørSkatt" />
+                                <UngUiText id="@ungInnsyn.rapporterInntektOppgavePart.inntektFørSkatt" />
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 <TallSvar verdi={inntekt} />

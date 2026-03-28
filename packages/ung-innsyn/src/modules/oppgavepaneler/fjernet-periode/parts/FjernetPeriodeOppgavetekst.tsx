@@ -13,19 +13,19 @@ export const FjernetPeriodeOppgavetekst = ({ svarfrist }: Props) => {
     return (
         <>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.fjernetPeriode.oppgavetekst.1" />
+                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.1" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.fjernetPeriode.oppgavetekst.2" />
+                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.fjernetPeriode.oppgavetekst.3" />
+                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.fjernetPeriode.oppgavetekst.4" />
+                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.4" />
             </BodyLong>
             <BodyLong weight="semibold">
-                <UngUiText id="@ungUi.fjernetPeriode.oppgavetekst.svarfrist" values={{ formatertFrist }} />
+                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.svarfrist" values={{ formatertFrist }} />
             </BodyLong>
         </>
     );

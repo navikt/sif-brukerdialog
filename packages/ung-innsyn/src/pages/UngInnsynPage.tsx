@@ -26,7 +26,7 @@ export const UngInnsynPage = ({ documentTitle, children, footer }: Props) => {
     }, []);
     useDocumentTitle(documentTitle);
     return (
-        <main aria-label={text('@ungUi.pageLayout.main.ariaLabel')}>
+        <main aria-label={text('@ungInnsyn.pageLayout.main.ariaLabel')}>
             <PageContentWrapper>{children}</PageContentWrapper>
             {footer && (
                 <Box
