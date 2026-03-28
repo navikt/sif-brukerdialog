@@ -18,7 +18,7 @@ export const ForsideLenkeButton = () => {
             variant="primary"
             icon={<ArrowLeftIcon aria-hidden="true" />}
             iconPosition="left">
-            <UngUiText id="@ungUi.forsideLenkeButton.tekst" />
+            <UngUiText id="@ungInnsyn.forsideLenkeButton.tekst" />
         </Button>
     );
 };

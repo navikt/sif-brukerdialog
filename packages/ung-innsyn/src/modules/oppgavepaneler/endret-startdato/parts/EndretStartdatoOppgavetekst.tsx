@@ -15,24 +15,24 @@ export const EndretStartdatoOppgavetekst = ({ frist, startdato }: Props) => {
         <>
             <BodyLong spacing>
                 <UngUiText
-                    id="@ungUi.endretStartdato.tekst.1"
+                    id="@ungInnsyn.endretStartdato.tekst.1"
                     values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretStartdato.tekst.2" />
+                <UngUiText id="@ungInnsyn.endretStartdato.tekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretStartdato.tekst.3" />
+                <UngUiText id="@ungInnsyn.endretStartdato.tekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretStartdato.tekst.4" />
+                <UngUiText id="@ungInnsyn.endretStartdato.tekst.4" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <UngUiText id="@ungUi.endretStartdato.tekst.5" values={{ formatertFrist }} />
+                <UngUiText id="@ungInnsyn.endretStartdato.tekst.5" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong>
-                <UngUiText id="@ungUi.endretStartdato.tekst.6" values={{ formatertDato }} />
+                <UngUiText id="@ungInnsyn.endretStartdato.tekst.6" values={{ formatertDato }} />
             </BodyLong>
         </>
     );

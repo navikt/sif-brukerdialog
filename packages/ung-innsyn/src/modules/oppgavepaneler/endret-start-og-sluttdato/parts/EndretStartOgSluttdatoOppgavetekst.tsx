@@ -17,11 +17,11 @@ export const EndretStartOgSluttdatoOppgavetekst = ({ frist, nyPeriode }: Props) 
     return (
         <>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretStartOgSluttdato.tekst.1" />
+                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.1" />
             </BodyLong>
             <BodyLong spacing>
                 <UngUiText
-                    id="@ungUi.endretStartOgSluttdato.tekst.2"
+                    id="@ungInnsyn.endretStartOgSluttdato.tekst.2"
                     values={{
                         fom,
                         tom,
@@ -30,20 +30,20 @@ export const EndretStartOgSluttdatoOppgavetekst = ({ frist, nyPeriode }: Props) 
                 />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretStartOgSluttdato.tekst.3" />
+                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretStartOgSluttdato.tekst.4" />
+                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.4" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungUi.endretStartOgSluttdato.tekst.5" />
+                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.5" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <UngUiText id="@ungUi.endretStartOgSluttdato.tekst.6" values={{ formatertFrist }} />
+                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.6" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong>
                 <UngUiText
-                    id="@ungUi.endretStartOgSluttdato.tekst.7"
+                    id="@ungInnsyn.endretStartOgSluttdato.tekst.7"
                     values={{
                         fom,
                         tom,

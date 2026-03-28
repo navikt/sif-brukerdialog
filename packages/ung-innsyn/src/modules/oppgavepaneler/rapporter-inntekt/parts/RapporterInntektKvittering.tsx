@@ -14,15 +14,15 @@ export const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ k
         <VStack gap="space-32">
             <Alert variant="success" ref={ref} tabIndex={-1}>
                 <Heading level="2" size="small" spacing>
-                    <UngUiText id="@ungUi.rapporterInntektKvittering.tittel" />
+                    <UngUiText id="@ungInnsyn.rapporterInntektKvittering.tittel" />
                 </Heading>
                 {kvitteringData.harHattInntektOver0 ? (
                     <BodyLong>
-                        <UngUiText id="@ungUi.rapporterInntektKvittering.harHattInntekt" />
+                        <UngUiText id="@ungInnsyn.rapporterInntektKvittering.harHattInntekt" />
                     </BodyLong>
                 ) : (
                     <BodyLong>
-                        <UngUiText id="@ungUi.rapporterInntektKvittering.harIkkeHattInntekt" />
+                        <UngUiText id="@ungInnsyn.rapporterInntektKvittering.harIkkeHattInntekt" />
                     </BodyLong>
                 )}
             </Alert>

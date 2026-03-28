@@ -1,5 +1,5 @@
-export { UngInnsynPage as InnsynPage } from '../pages/UngInnsynPage';
 export { ForsideLenkeButton } from './forside-lenke-button/ForsideLenkeButton';
+export { InnsynDefaultErrorMessage } from './innsyn-default-error-message/InnsynDefaultErrorMessage';
 export { InnsynForsideHeader } from './innsyn-forside-header/InnsynForsideHeader';
 export { InntektTable } from './inntekt-table/InntektTable';
 export { OppgaveLinkCard } from './oppgave-link-card/OppgaveLinkCard';
@@ -7,3 +7,4 @@ export { OppgaveStatusIkon } from './oppgave-status-ikon/OppgaveStatusIkon';
 export { OppgaveStatusInfo } from './oppgave-status-info/OppgaveStatusInfo';
 export { OppgaveStatusTag, type OppgaveStatusTagVariant } from './oppgave-status-tag/OppgaveStatusTag';
 export { OppgaverList } from './oppgaver-list/OppgaverList';
+export { SentryErrorBoundary } from './sentry-error-boundary/SentryErrorBoundary';

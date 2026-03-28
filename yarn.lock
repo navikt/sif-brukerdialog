@@ -4349,8 +4349,6 @@ __metadata:
     "@sif/api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@sif/rhf": "workspace:*"
-    "@sif/soknad": "workspace:*"
-    "@sif/soknad-ui": "workspace:*"
     "@sif/ung-innsyn": "workspace:*"
     "@sonar/scan": "npm:4.3.5"
     "@storybook/addon-a11y": "npm:10.3.3"

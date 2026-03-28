@@ -73,7 +73,7 @@ Les skjema-filen, i18n-filer og package.json. Dokumenter følgende internt (ikke
 1. **Props** — hva mottar komponenten (oppgaveReferanse, callbacks, etc.)
 2. **Felter** — enum-verdier, typer, defaultValues
 3. **Valideringsregler** — per felt: hvilken validator, evt. parametere
-4. **i18n-scope** — full prefiks fra `nb.ts` (f.eks. `@ungUi.inntektForm`), inkl. alle valideringsnøkler
+4. **i18n-scope** — full prefiks fra `nb.ts` (f.eks. `@ungInnsyn.inntektForm`), inkl. alle valideringsnøkler
 5. **Betinget visning** — hvilke felter vises/skjules basert på andre felter
 6. **Submit-logikk** — hva skjer ved submit (DTO-bygging, mutateAsync, onSuccess)
 7. **Knapper** — submit-label, cancel-label, loading-state
@@ -141,7 +141,7 @@ RHF: `useSifValidate('myForm')` — scope **ekskluderer** `.validation` (legges 
 
 Begge produserer `myForm.validation.fieldName.errorCode`. **Drop `.validation`-suffikset** når du setter scope.
 
-**OBS — namespace-prefiks:** Bruk **full i18n-nøkkelprefiks** inkludert eventuelt namespace. Hvis i18n-nøklene har prefiks `@ungUi.inntektForm.validation.*`, må scope være `'@ungUi.inntektForm'` — ikke `'inntektForm'`. Se i `nb.ts` hva den faktiske prefiksen er.
+**OBS — namespace-prefiks:** Bruk **full i18n-nøkkelprefiks** inkludert eventuelt namespace. Hvis i18n-nøklene har prefiks `@ungInnsyn.inntektForm.validation.*`, må scope være `'@ungInnsyn.inntektForm'` — ikke `'inntektForm'`. Se i `nb.ts` hva den faktiske prefiksen er.
 
 ### 2. async handleSubmit + avviste promises
 

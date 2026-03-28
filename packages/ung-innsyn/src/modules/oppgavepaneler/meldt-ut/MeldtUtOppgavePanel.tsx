@@ -26,7 +26,7 @@ export const MeldtUtOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Pro
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="@ungUi.oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst" />
+                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

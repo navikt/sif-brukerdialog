@@ -10,7 +10,7 @@ interface EndretSluttdatoOppsummeringProps {
 export const MeldtUtOppsummering = ({ sluttdato }: EndretSluttdatoOppsummeringProps) => {
     return (
         <UngUiText
-            id="@ungUi.meldtUt.oppsummering"
+            id="@ungInnsyn.meldtUt.oppsummering"
             values={{
                 ny: dateFormatter.full(sluttdato),
                 strong: (content: ReactNode) => <strong>{content}</strong>,
