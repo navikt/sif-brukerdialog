@@ -30,6 +30,7 @@ Utvid et eksisterende steg med nye spørsmål. Etter at skillen er fulgt skal st
 3. `src/app/steps/<steg>/<prefix>StegUtils.ts` — eksisterende mapping
 4. `src/app/steps/<steg>/i18n/nb.ts` — eksisterende tekster
 5. `src/app/types/Soknadsdata.ts` — eksisterende søknadsdatatype
+6. `src/app/steps/<steg>/i18n/nn.ts` — hvis steget allerede har separat nynorsk-fil
 
 Ikke les andre steg eller utforsk mappestruktur utover dette.
 

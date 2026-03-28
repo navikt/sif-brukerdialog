@@ -4,8 +4,13 @@ Bruk denne indeksen for rask routing til riktig skill.
 
 - `sif-api`
     - Når: datahenting via `@sif/api`.
-    - Triggerord: `hente fra api`, `api-kall`, `fetch/query`, `@sif/api`, `useQuery`, `queryKey`, `useKontonummer`, `env.schema.ts`, `initApiClients`, `*_API_URL`.
+    - Triggerord: `hente fra api`, `api-kall`, `react query`, `tanstack query`, `@sif/api`, `useQuery`, `queryKey`, `useKontonummer`, `env.schema.ts`, `initApiClients`, `*_API_URL`.
     - Fil: `.github/skills/sif-api/SKILL.md`
+
+- `sif-intl`
+    - Når: opprette, endre eller verifisere i18n-tekster i app eller pakke.
+    - Triggerord: `i18n`, `intl`, `nb.ts`, `nn.ts`, `oversettelse`, `tekster`, `AppText`, `useAppIntl`, `parametersjekk`, `ICU`.
+    - Fil: `.github/skills/sif-intl/SKILL.md`
 
 - `sif-soknad-setup`
     - Når: oppsett av `src/app/setup` i app med `@sif/soknad` og `@sif/rhf`.
@@ -46,3 +51,8 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Når: sette opp eller endre initial data-henting (useInitialData + InitialDataLoader) i en søknadsapp.
     - Triggerord: `useInitialData`, `InitialDataLoader`, `InitialData`, `loading/error/success`, `required queries`, `optional queries`, `mellomlagringsvalidering`, `legg til hook`, `ny datakilde`, `blokkerer loading`, `fallback-verdi`.
     - Fil: `.github/skills/sif-initial-data-loader/SKILL.md`
+
+- `sif-server-proxy-api-config`
+    - Når: verifisere eller feilsøke proxy/path-oppsett mellom app, env og backend.
+    - Triggerord: `reverse proxy`, `proxy`, `returnerer html`, `catch-all`, `api path`, `frontendPath`, `PUBLIC_PATH`, `baseURL`.
+    - Fil: `.github/skills/sif-server-proxy-api-config/SKILL.md`

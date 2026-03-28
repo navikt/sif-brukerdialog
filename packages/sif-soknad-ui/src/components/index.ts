@@ -7,5 +7,6 @@ export { FormLayout } from './form-layout';
 export { Kvittering } from './kvittering/Kvittering';
 export { ProgressStepper } from './progress-stepper/ProgressStepper';
 export { type ProgressStep } from './progress-stepper/ProgressStepper';
+export { RegistrerteBarnListe } from './registrerte-barn-liste/RegistrerteBarnListe';
 export { SifGuidePanel } from './sif-guide-panel/SifGuidePanel';
 export { type SifGuidePanelProps } from './sif-guide-panel/SifGuidePanel';

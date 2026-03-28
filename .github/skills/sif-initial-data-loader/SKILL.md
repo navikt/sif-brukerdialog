@@ -155,7 +155,7 @@ export const InitialDataLoader = () => {
 
 ---
 
-## Del 3: Kobling til `Søknad.tsx`
+## Del 3: Kobling til `Soknad.tsx`
 
 `<Søknad />` mottar `InitialData` som props. Disse brukes til å initialisere `SøknadStore` (mellomlagring) og levere data ned til steg som trenger dem (f.eks. `barn` til barnesteg).
 

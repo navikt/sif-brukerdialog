@@ -22,13 +22,13 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
     - Hooks og komponenter: `AppText`, `useAppIntl`, `AppIntlShape`, `useSifSoknadUiIntl`, `SifSoknadUiText`, `typedIntlHelper`, `applicationIntlMessages`.
     - Sjekk: `parametersjekk`, `meningssjekk`, `{param}`, `plural`, `ICU`.
 - `sif-api`:
-    - API-henting i app: `hente fra api`, `api-kall`, `fetch`, `query`, `preutfyll fra api`, `last inn data`.
+    - API-henting i app: `hente fra api`, `api-kall`, `fetch`, `react query`, `tanstack query`, `preutfyll fra api`, `last inn data`.
     - Hooks og query: `@sif/api`, `useQuery`, `queryKey`, `queryFn`, `useKontonummer`, `useSøker`, `useRegistrerteBarn`, `useYtelseMellomlagring`, `ApiErrorAlert`.
     - Oppsett: `env.schema.ts`, `initApiClients`, API-klient-init, `*_API_URL`, `*_API_SCOPE`, `*_FRONTEND_PATH`.
 - `sif-soknad-setup`:
     - Oppsett av `src/app/setup`, `soknadContext`, `soknadStepConfig`, `useStepSubmit`, `useStepDefaultValues`.
 - `sif-soknad-add-step`:
-    - Legge til steg: `nytt steg`, `legg til steg`, `ny side i søknaden`, `nytt spørsmål`, `opprett steg`, `førstesteg`, `neste steg`.
+    - Legge til steg: `nytt steg`, `legg til steg`, `ny side i søknaden`, `opprett steg`, `førstesteg`, `neste steg`, `eget steg`, `egen side`.
     - Steg-filer: `StegUtils`, `FormFields`, `FormValues`, `SøknadStep`, `stepOrder`, `stepConfig`.
 - `sif-soknad-modify-step`:
     - Endre eksisterende steg: `legg til spørsmål`, `nytt felt`, `ny checkbox`, `ny radiogruppe`, `utvid steg`, `følgespørsmål`, `betinget visning`, `vis bare hvis`.
@@ -53,8 +53,8 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 ## Prioritering ved overlapp
 
 - Hvis oppgaven handler om i18n, tekster, nb/nn eller oversettelse, prioriter `sif-intl`.
-- Hvis oppgaven handler om datahenting + env/API-klient-oppsett, prioriter `@sif/api`.
-- Rene domeneord alene (f.eks. `barn`, `søker`) skal ikke trigge `@sif/api` uten tydelig API-hentekontekst.
+- Hvis oppgaven handler om datahenting + env/API-klient-oppsett, prioriter `sif-api`.
+- Rene domeneord alene (f.eks. `barn`, `søker`) skal ikke trigge `sif-api` uten tydelig API-hentekontekst.
 - Hvis oppgaven handler om setup-arkitektur i app, prioriter `sif-soknad-setup`.
 - Bruk flere skills ved behov, men hold endringer scoped til aktuell workspace.
 - Hvis oppgaven handler om å legge til nye felter/spørsmål i et eksisterende steg, prioriter `sif-soknad-modify-step`. Hvis det er et helt nytt steg, prioriter `sif-soknad-add-step`.
