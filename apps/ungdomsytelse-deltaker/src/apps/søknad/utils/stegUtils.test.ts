@@ -1,18 +1,18 @@
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { describe, expect, it } from 'vitest';
 
 import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
-import { KontonummerOppslagInfo, SøknadSvar, Spørsmål, Steg } from '../types';
+import { SøknadSvar, Spørsmål, Steg } from '../types';
 import { erStegTilgjengelig, getTilgjengeligeSteg } from './stegUtils';
 
 describe('stegUtils', () => {
-    const kontonummerInfoMedKontonummer: KontonummerOppslagInfo = {
+    const kontonummerInfoMedKontonummer: UtvidetKontonummerInfo = {
         harKontonummer: HarKontonummerEnum.JA,
         formatertKontonummer: '1234 56 78901',
         kontonummerFraRegister: '12345678901',
     };
-    const kontonummerInfoUtenKontonummer: KontonummerInfo = { harKontonummer: HarKontonummerEnum.NEI };
+    const kontonummerInfoUtenKontonummer: UtvidetKontonummerInfo = { harKontonummer: HarKontonummerEnum.NEI };
 
     describe('getTilgjengeligeSteg', () => {
         it('returnerer ingen steg hvis FORSTÅR_PLIKTER ikke er true', () => {

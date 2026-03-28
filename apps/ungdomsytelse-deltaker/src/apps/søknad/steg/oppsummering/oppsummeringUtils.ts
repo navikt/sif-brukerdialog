@@ -1,6 +1,8 @@
-import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/aktivitetspenger';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 
 import { SøknadSvar, Spørsmål } from '../../types';
 
@@ -8,7 +10,7 @@ const isYesOrNoAnswered = (answer?: YesOrNo) => {
     return answer === YesOrNo.YES || answer === YesOrNo.NO;
 };
 
-export type HarKontonummerValues = Pick<KontonummerInfo, 'harKontonummer'>;
+export type HarKontonummerValues = Pick<UtvidetKontonummerInfo, 'harKontonummer'>;
 
 export enum HarKontonummerEnum {
     JA = 'JA',
@@ -19,7 +21,7 @@ export enum HarKontonummerEnum {
 export type SøknadApiData = Omit<ungdomsytelse.Ungdomsytelsesøknad, 'harBekreftetOpplysninger' | 'kontonummerErRiktig'>;
 
 export const getKontonummerApiInfo = (
-    kontonummerInfo: KontonummerInfo,
+    kontonummerInfo: UtvidetKontonummerInfo,
     kontonummerErRiktigSvar?: YesOrNo,
 ): KontonummerInfo | undefined => {
     switch (kontonummerInfo.harKontonummer) {
@@ -56,7 +58,7 @@ export const buildSøknadFromSvar = ({
     svar: SøknadSvar;
     søkerNorskIdent: string;
     startdato: Date;
-    kontonummerInfo: KontonummerInfo;
+    kontonummerInfo: UtvidetKontonummerInfo;
 }): SøknadApiData | undefined => {
     if (svar[Spørsmål.FORSTÅR_PLIKTER] !== true || !isYesOrNoAnswered(svar[Spørsmål.BARN])) {
         return undefined;

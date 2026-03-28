@@ -2,8 +2,8 @@ import { logUtils } from '@innsyn/utils/logUtils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
-import { KontonummerOppslagInfo } from '@søknad/types';
 import dayjs from 'dayjs';
 
 describe('logUtils.getSøknadInnsendingMeta', () => {
@@ -35,7 +35,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
 
     describe('kontonummer-logikk', () => {
         it('skal sette riktig kontonummer-info når bruker har kontonummer og det stemmer', () => {
-            const kontonummerInfo: KontonummerOppslagInfo = {
+            const kontonummerInfo: UtvidetKontonummerInfo = {
                 harKontonummer: HarKontonummerEnum.JA,
                 kontonummerFraRegister: '12345678901',
             };
@@ -57,7 +57,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         });
 
         it('skal sette riktig kontonummer-info når bruker har kontonummer men det stemmer ikke', () => {
-            const kontonummerInfo: KontonummerOppslagInfo = {
+            const kontonummerInfo: UtvidetKontonummerInfo = {
                 harKontonummer: HarKontonummerEnum.JA,
                 kontonummerFraRegister: '12345678901',
             };
@@ -79,7 +79,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         });
 
         it('skal sette riktig kontonummer-info når bruker ikke har kontonummer', () => {
-            const kontonummerInfo: KontonummerOppslagInfo = {
+            const kontonummerInfo: UtvidetKontonummerInfo = {
                 harKontonummer: HarKontonummerEnum.NEI,
             };
 
@@ -99,7 +99,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         });
 
         it('skal sette kontonummerStemmer til undefined når harKontonummer ikke er JA', () => {
-            const kontonummerInfo: KontonummerOppslagInfo = {
+            const kontonummerInfo: UtvidetKontonummerInfo = {
                 harKontonummer: HarKontonummerEnum.UVISST,
             };
 
@@ -119,7 +119,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         });
 
         it('skal sette kontonummerStemmer til undefined når kontonummerErRiktig er undefined', () => {
-            const kontonummerInfo: KontonummerOppslagInfo = {
+            const kontonummerInfo: UtvidetKontonummerInfo = {
                 harKontonummer: HarKontonummerEnum.JA,
                 kontonummerFraRegister: '12345678901',
             };
@@ -142,7 +142,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
 
     describe('barn-logikk', () => {
         it('skal sette harBarn til true når antallBarn er større enn 0', () => {
-            const kontonummerInfo: KontonummerOppslagInfo = {
+            const kontonummerInfo: UtvidetKontonummerInfo = {
                 harKontonummer: HarKontonummerEnum.NEI,
             };
 
@@ -162,7 +162,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         });
 
         it('skal sette harBarn til false når antallBarn er 0', () => {
-            const kontonummerInfo: KontonummerOppslagInfo = {
+            const kontonummerInfo: UtvidetKontonummerInfo = {
                 harKontonummer: HarKontonummerEnum.NEI,
             };
 
@@ -190,7 +190,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
                 opprettetDato: opprettetDato.toDate(),
             };
 
-            const kontonummerInfo: KontonummerOppslagInfo = {
+            const kontonummerInfo: UtvidetKontonummerInfo = {
                 harKontonummer: HarKontonummerEnum.NEI,
             };
 

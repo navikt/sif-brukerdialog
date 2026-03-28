@@ -1,5 +1,5 @@
-import { ApiError, ApiErrorType, isApiAxiosError } from '@navikt/ung-common';
 import { logFaroError } from '@shared/utils/faroUtils';
+import { ApiError, ApiErrorType, isApiAxiosError } from '@sif/api';
 
 export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
     const logData = {

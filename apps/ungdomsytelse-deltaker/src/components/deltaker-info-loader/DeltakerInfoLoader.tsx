@@ -1,10 +1,11 @@
-import { ApiError } from '@navikt/ung-common';
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { ApiError } from '@sif/api';
+import { useSøker } from '@sif/api/k9-prosessering';
+import { useOppgaver } from '@sif/api/ung-brukerdialog';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
-import { useDeltakerOppgaver } from '../../api/hooks/useDeltakerOppgaver';
-import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
 import SkyraTestPage from '../../apps/innsyn/pages/SkyraTestPage';
@@ -34,7 +35,7 @@ const OppgaveRedirect = () => {
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
-    const oppgaver = useDeltakerOppgaver();
+    const oppgaver = useOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE);
     const { logApiError, logHendelse } = useAnalyticsInstance();
 
     // Sjekk om URL inneholder skyra/test - dette er en midlertidig testside for å teste skyra-integrasjon
