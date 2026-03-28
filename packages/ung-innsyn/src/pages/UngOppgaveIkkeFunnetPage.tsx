@@ -1,7 +1,7 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 
-import { InnsynPage } from '../components';
 import { useUngUiIntl } from '../i18n';
+import { UngInnsynPage } from '../pages';
 
 interface Props {
     applikasjonTittel: string;
@@ -11,19 +11,20 @@ interface Props {
 export const UngOppgaveIkkeFunnetPage = ({ applikasjonTittel, oppgaveReferanse }: Props) => {
     const { text } = useUngUiIntl();
     return (
-        <InnsynPage documentTitle={`${text('@ungUi.oppgaveIkkeFunnetPage.dokumentTittel')} - ${applikasjonTittel}`}>
+        <UngInnsynPage
+            documentTitle={`${text('@ungInnsyn.oppgaveIkkeFunnetPage.dokumentTittel')} - ${applikasjonTittel}`}>
             <VStack gap="space-16">
                 <Heading size="large" level="1">
-                    {text('@ungUi.oppgaveIkkeFunnetPage.tittel')}
+                    {text('@ungInnsyn.oppgaveIkkeFunnetPage.tittel')}
                 </Heading>
                 <Alert variant="error">
                     {oppgaveReferanse ? (
-                        <BodyShort>{text('@ungUi.oppgaveIkkeFunnetPage.medId', { oppgaveReferanse })}</BodyShort>
+                        <BodyShort>{text('@ungInnsyn.oppgaveIkkeFunnetPage.medId', { oppgaveReferanse })}</BodyShort>
                     ) : (
-                        <BodyShort>{text('@ungUi.oppgaveIkkeFunnetPage.utenId')}</BodyShort>
+                        <BodyShort>{text('@ungInnsyn.oppgaveIkkeFunnetPage.utenId')}</BodyShort>
                     )}
                 </Alert>
             </VStack>
-        </InnsynPage>
+        </UngInnsynPage>
     );
 };

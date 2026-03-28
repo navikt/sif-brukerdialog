@@ -1,6 +1,5 @@
 import { useFaroInstance } from '@navikt/sif-common-faro';
-import { SentryErrorBoundary } from '@sif/soknad/components';
-import { AppErrorFallback } from '@sif/soknad-ui';
+import { SentryErrorBoundary } from '@sif/ung-innsyn/components';
 import React from 'react';
 
 interface Props {
@@ -9,10 +8,5 @@ interface Props {
 
 export const AppErrorBoundary = ({ children }: Props) => {
     const { logError } = useFaroInstance();
-
-    return (
-        <SentryErrorBoundary onError={logError} fallback={<AppErrorFallback />}>
-            {children}
-        </SentryErrorBoundary>
-    );
+    return <SentryErrorBoundary onError={logError}>{children}</SentryErrorBoundary>;
 };

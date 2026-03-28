@@ -35,7 +35,7 @@ export interface RapporterInntektFormProps {
 export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: RapporterInntektFormProps) => {
     const { text } = useUngUiIntl();
     const { error, isPending, mutateAsync } = useRapporterInntekt();
-    const { validateField } = useSifValidate('@ungUi.inntektForm');
+    const { validateField } = useSifValidate('@ungInnsyn.inntektForm');
     const { onCancel, onSuccess: onPageSuccess } = useOppgavePage();
     const [dtoError, setDtoError] = useState<string | undefined>(undefined);
 
@@ -55,7 +55,7 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: Ra
             : 0;
 
         if (harInntekt && arbeidstakerOgFrilansInntekt === undefined) {
-            setDtoError(text('@ungUi.inntektForm.hentUtBeløpFeil'));
+            setDtoError(text('@ungInnsyn.inntektForm.hentUtBeløpFeil'));
             return;
         }
 
@@ -81,11 +81,11 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: Ra
             buttons={
                 <HStack gap="space-16">
                     <Button type="submit" loading={isPending}>
-                        {text('@ungUi.inntektForm.submitLabel')}
+                        {text('@ungInnsyn.inntektForm.submitLabel')}
                     </Button>
                     {onCancel ? (
                         <Button variant="secondary" type="button" onClick={onCancel}>
-                            {text('@ungUi.inntektForm.cancelLabel')}
+                            {text('@ungInnsyn.inntektForm.cancelLabel')}
                         </Button>
                     ) : null}
                 </HStack>
@@ -94,7 +94,7 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: Ra
                 <FormLayout.Questions>
                     <YesOrNoQuestion
                         name={InntektFormFields.harInntekt}
-                        legend={text('@ungUi.inntektForm.utbetaltInntektLegend', { måned })}
+                        legend={text('@ungInnsyn.inntektForm.utbetaltInntektLegend', { måned })}
                         validate={validateField(InntektFormFields.harInntekt, getYesOrNoValidator())}
                     />
 
@@ -102,9 +102,9 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: Ra
                         <VStack gap="space-16">
                             <NumberInput
                                 name={InntektFormFields.inntekt}
-                                label={text('@ungUi.inntektForm.inntektLabel')}
+                                label={text('@ungInnsyn.inntektForm.inntektLabel')}
                                 integerValue={true}
-                                description={text('@ungUi.inntektForm.inntektDescription')}
+                                description={text('@ungInnsyn.inntektForm.inntektDescription')}
                                 onFocus={dtoError ? () => setDtoError(undefined) : undefined}
                                 validate={validateField(
                                     InntektFormFields.inntekt,
@@ -117,20 +117,20 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: Ra
                                 )}
                             />
                             <VStack gap="space-8">
-                                <ReadMore header={text('@ungUi.inntektForm.hvordanFinnerDuUtInntekt.tittel')}>
+                                <ReadMore header={text('@ungInnsyn.inntektForm.hvordanFinnerDuUtInntekt.tittel')}>
                                     <BodyLong spacing>
-                                        <UngUiText id="@ungUi.inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.1" />
+                                        <UngUiText id="@ungInnsyn.inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.1" />
                                     </BodyLong>
                                     <BodyLong spacing>
-                                        <UngUiText id="@ungUi.inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.2" />
+                                        <UngUiText id="@ungInnsyn.inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.2" />
                                     </BodyLong>
                                 </ReadMore>
-                                <ReadMore header={text('@ungUi.inntektForm.feilInntekt.tittel')}>
+                                <ReadMore header={text('@ungInnsyn.inntektForm.feilInntekt.tittel')}>
                                     <BodyLong spacing>
-                                        <UngUiText id="@ungUi.inntektForm.feilInntekt.tekst.1" />
+                                        <UngUiText id="@ungInnsyn.inntektForm.feilInntekt.tekst.1" />
                                     </BodyLong>
                                     <BodyLong spacing>
-                                        <UngUiText id="@ungUi.inntektForm.feilInntekt.tekst.2" />
+                                        <UngUiText id="@ungInnsyn.inntektForm.feilInntekt.tekst.2" />
                                     </BodyLong>
                                 </ReadMore>
                             </VStack>

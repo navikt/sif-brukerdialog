@@ -17,43 +17,33 @@ test('Fyll ut periodesteget', async ({ page }) => {
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/tidsrom');
     await page
         .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Fra og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();
     await page
         .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Til og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'søndag 15' }).click();
     await page.getByLabel('Fra og med', { exact: true }).fill('03.01.2023');
     await page
         .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Fra og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .press('Tab');
     await page.getByLabel('Til og med', { exact: true }).fill('10.01.2023');
     await page
         .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Til og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .press('Tab');
     await page.getByRole('group', { name: 'Skal du reise til utlandet i' }).getByLabel('Ja').check();
     await page.getByRole('button', { name: 'Legg til utenlandsopphold' }).click();
-    await page
-        .getByLabel('Utenlandsopphold')
-        .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).nth(2).click();
     await page.getByRole('button', { name: 'tirsdag 3', exact: true }).click();
-    await page
-        .getByLabel('Utenlandsopphold')
-        .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).nth(3).click();
     await page.getByRole('button', { name: 'onsdag 4' }).click();
     await page.getByLabel('Velg land').selectOption('AFG');
     await page.getByLabel('Velg land').selectOption('AFG');
@@ -63,15 +53,15 @@ test('Fyll ut periodesteget', async ({ page }) => {
     await page
         .getByLabel('Periode barnet er innlagt')
         .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Fra og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'tirsdag 3', exact: true }).click();
     await page
         .getByLabel('Periode barnet er innlagt')
         .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Til og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'tirsdag 3', exact: true }).click();
     await page.getByLabel('Periode barnet er innlagt').getByTestId('typedFormikForm-submitButton').click();
@@ -82,15 +72,15 @@ test('Fyll ut periodesteget', async ({ page }) => {
     await page
         .getByLabel('Ferie')
         .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Fra og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'onsdag 4' }).click();
     await page
         .getByLabel('Ferie')
         .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Til og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'torsdag 5' }).click();
     await page.getByRole('button', { name: 'Ok' }).click();
@@ -98,15 +88,15 @@ test('Fyll ut periodesteget', async ({ page }) => {
     await page
         .getByLabel('Ferie')
         .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Fra og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'søndag 8' }).click();
     await page
         .getByLabel('Ferie')
         .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Til og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'mandag 9' }).click();
     await page.getByRole('button', { name: 'Ok' }).click();
@@ -114,8 +104,8 @@ test('Fyll ut periodesteget', async ({ page }) => {
     await page
         .getByLabel('Ferie')
         .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
+        .filter({ hasText: /^Til og med$/ })
+        .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'onsdag 4' }).click();
     await page.getByRole('button', { name: 'Ok' }).click();

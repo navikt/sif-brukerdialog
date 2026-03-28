@@ -1,8 +1,10 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { InnsynForsideHeader, InnsynPage, OppgaverList } from '@sif/ung-innsyn/components';
+import { InnsynForsideHeader, OppgaverList } from '@sif/ung-innsyn/components';
+import { UngInnsynPage } from '@sif/ung-innsyn/pages';
 
+import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { AppText } from '../i18n';
 
 interface Props {
@@ -10,6 +12,8 @@ interface Props {
 }
 
 export const ForsidePage = ({ oppgaver }: Props) => {
+    useInnsynBreadcrumbs();
+
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
@@ -19,7 +23,7 @@ export const ForsidePage = ({ oppgaver }: Props) => {
         .sort((o1, o2) => sortDates(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
     return (
-        <InnsynPage documentTitle="Dine aktivitetspenger">
+        <UngInnsynPage documentTitle="Dine aktivitetspenger">
             <VStack gap="space-40">
                 <InnsynForsideHeader title="Dine aktivitetspenger" />
                 <VStack gap="space-40">
@@ -54,6 +58,6 @@ export const ForsidePage = ({ oppgaver }: Props) => {
                     </VStack>
                 </VStack>
             </VStack>
-        </InnsynPage>
+        </UngInnsynPage>
     );
 };

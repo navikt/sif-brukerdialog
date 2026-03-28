@@ -1,6 +1,6 @@
+import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { expect, test } from '@playwright/test';
 
-import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow as setNow } from '../../utils/setNow';
 
@@ -19,11 +19,7 @@ test('endringsmelding om ferie og arbeid', async ({ page }) => {
     /** Ferie */
     await expect(page).toHaveTitle('Ferie i pleiepengeperioden - Endringsmelding for pleiepenger sykt barn');
     await page.getByLabel('Endre ferie søndag 01.01.2023').click();
-    await page
-        .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
     await page.getByRole('button', { name: 'tirsdag 3', exact: true }).click();
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('leggTilFerieKnapp').click();

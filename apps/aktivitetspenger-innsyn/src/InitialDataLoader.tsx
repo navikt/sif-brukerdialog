@@ -1,4 +1,4 @@
-import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { UngErrorPage, UngLoadingPage } from '@sif/ung-innsyn/pages';
 
 import { useAppIntl } from './app/i18n';
 import { Innsyn } from './app/Innsyn';
@@ -10,7 +10,7 @@ export const InitialDataLoader = () => {
 
     switch (result.status) {
         case 'loading':
-            return <LoadingPage applicationTitle={text('application.title')} />;
+            return <UngLoadingPage applicationTitle={text('application.title')} />;
         case 'error':
             if (import.meta.env.MODE === 'development') {
                 // eslint-disable-next-line no-console
@@ -18,7 +18,7 @@ export const InitialDataLoader = () => {
                     result.errors.map((e) => (e as Error).message).join(', ') || 'Ukjent feil ved innlasting',
                 );
             }
-            return <ErrorPage applicationTitle={text('application.title')} />;
+            return <UngErrorPage applicationTitle={text('application.title')} />;
         case 'success':
             return <Innsyn {...result.data} />;
     }
