@@ -15,7 +15,6 @@ export const createAliasConfig = (baseDir: string = __dirname) => ({
 
     // Innsyn-app alias
     '@innsyn': resolve(baseDir, './src/apps/innsyn'),
-    '@innsyn/atoms': resolve(baseDir, './src/apps/innsyn/atoms'),
     '@innsyn/components': resolve(baseDir, './src/apps/innsyn/components'),
     '@innsyn/modules': resolve(baseDir, './src/apps/innsyn/modules'),
     '@innsyn/pages': resolve(baseDir, './src/apps/innsyn/pages'),
