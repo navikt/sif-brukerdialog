@@ -46,3 +46,4 @@ Provide repository-specific guidance for frontend work across many dialog apps i
 - Do not centralize all lint/test config into one root config.
 - Do not create duplicate root Vitest config.
 - Do not introduce alternate UI frameworks when Aksel is already used.
+- Use ASCII-only names for files and folders. Do not create new file or directory names containing `æ`, `ø`, or `å`.

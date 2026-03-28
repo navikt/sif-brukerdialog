@@ -12,7 +12,7 @@ Scaffold et komplett nytt steg i en søknadsapp. Etter at skillen er kjørt skal
 ## Når skal skillen brukes
 
 - Bruker ber om å legge til et nytt steg/side i søknaden.
-- Bruker nevner et nytt spørsmål/skjema som skal ha eget steg.
+- Bruker ber eksplisitt om et nytt spørsmål eller skjema som skal ligge på en egen side / i et eget steg.
 
 ## Avgrensning
 
@@ -23,13 +23,17 @@ Scaffold et komplett nytt steg i en søknadsapp. Etter at skillen er kjørt skal
 
 ## Arbeidsmodus
 
-**Agenten skal IKKE søke i kodebasen for å forstå mønsteret.** Alt som trengs er i denne skillen. Agenten trenger kun å lese følgende filer i appen for å plassere det nye steget riktig:
+**Agenten skal ikke utforske kodebasen bredt.** Les kun filene som er nødvendige for å plassere steget riktig i den aktuelle appen:
 
 1. `src/app/setup/config/SoknadStepId.ts` — eksisterende steg-IDer
 2. `src/app/setup/config/soknadStepConfig.ts` — stepConfig og stepOrder
 3. `src/app/i18n/nb/appMessages.ts` — eksisterende i18n-importer og nøkler
+4. `src/app/types/Soknadsdata.ts` — eksisterende søknadsdatatype
+5. `src/app/utils/formValuesToSoknadsdata.ts` — mapping fra form values til søknadsdata
+6. `src/app/setup/hooks/useStepTitles.ts` — dersom appen bruker egen step-title mapping
+7. `src/app/steps/index.ts` og `src/app/Soknad.tsx` — dersom appen eksporterer steg samlet og ruter dem her
 
-Det er alt. Ikke les andre steg-mapper, ikke utforsk mappestruktur, ikke les SøknadStep/AppForm/hooks.
+Ikke les andre steg-mapper eller gjør generell utforsking utover dette med mindre appen faktisk avviker fra standardoppsettet.
 
 ### Steg 1 — Bestem navnekonvensjoner
 

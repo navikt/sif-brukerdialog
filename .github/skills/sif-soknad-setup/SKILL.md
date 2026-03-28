@@ -18,8 +18,9 @@ Guide for å sette opp `src/app/setup/`-mappen i en ny app som bruker `@sif/sokn
 ## Scope
 
 - Fokus: `src/app/setup/` og tilhørende typer og utils i appen.
-- Ikke inkludert: selve steginnhold, API-kall, velkomst- og kvitteringssider.
+- Ikke inkludert: selve steginnhold, initial data-flyt, API-kall, velkomst- og kvitteringssider.
 - Kildereferanse: `apps/sif-demo-app/src/app/setup/` og `apps/aktivitetspenger-soknad/src/app/setup/`.
+- For initial data-flyt (`useInitialData`, `InitialDataLoader`) → bruk `sif-initial-data-loader`.
 
 ---
 
@@ -28,11 +29,11 @@ Guide for å sette opp `src/app/setup/`-mappen i en ny app som bruker `@sif/sokn
 Setup-mappen er adapterlaget mellom appen og `@sif/soknad`. Flyten er:
 
 ```
-søknadStepConfig.ts
-  → useSøknadStore.ts        (createSøknadStore — state og steg-logikk)
-  → søknadContext.ts         (createSøknadContext — kobler store, config og formValuesToSøknadsdata)
-  → hooks/                   (app-spesifikke hjelpehooks som bruker context)
-  → søknad/                  (UI-komponenter: SøknadStep, AppForm, SøknadFormButtons)
+soknadStepConfig.ts
+    → useSoknadStore.ts        (createSøknadStore — state og steg-logikk)
+    → soknadContext.ts         (createSøknadContext — kobler store, config og formValuesToSøknadsdata)
+    → hooks/                   (app-spesifikke hjelpehooks som bruker context)
+    → soknad/                  (UI-komponenter: SoknadStep, AppForm, SoknadFormButtons)
 ```
 
 Resten av appen importerer normalt fra `@app/setup` i stedet for å kjenne rammeverket direkte.
@@ -46,43 +47,44 @@ src/app/
   setup/
     constants.ts                       # APP_YTELSE og MELLOMLAGRING_VERSJON
     context/
-      søknadContext.ts                 # createSøknadContext — SøknadContextProvider + useSøknadsflyt
+    soknadContext.ts                 # createSøknadContext — SøknadContextProvider + useSøknadsflyt
     env/
       appEnv.ts                        # getAppEnv() — leser browser-env
     hooks/
       index.ts                         # re-eksporterer alle hooks + context
-      useAvbrytSøknad.ts
-      useSøknadMellomlagring.ts
-      useSøknadRhfForm.ts
-      useSøknadState.ts
-      useSøknadStore.ts
+    useAvbrytSoknad.ts
+    useSoknadMellomlagring.ts
+    useSoknadRhfForm.ts
+    useSoknadState.ts
+    useSoknadStore.ts
       useStepDefaultValues.ts
       useStepSubmit.ts
     config/
-      søknadStepConfig.ts              # SøknadStepId, stepConfig, stepOrder
-    søknad/
+            soknadStepConfig.ts              # SøknadStepId, stepConfig, stepOrder
+        soknad/
       AppForm.tsx                      # SifForm + FormLayout wrapper
-      SøknadFormButtons.tsx            # Navigasjonsknapper koblet til context
-      SøknadStep.tsx                   # Side-container med progress, avbryt, consistency
+            SoknadFormButtons.tsx            # Navigasjonsknapper koblet til context
+            SoknadStep.tsx                   # Side-container med progress, avbryt, consistency
     wrappers/
       AppErrorBoundary.tsx
   i18n/
     index.tsx                          # useAppIntl, AppText, applicationIntlMessages
     nb/
       appMessages.ts
-  lenker.ts                            # getLenker() — interne URL-er, IKKE fra sif-common-soknad-ds
+    lenker.ts                            # valgfri lokal helper for interne URL-er, aldri fra sif-common-soknad-ds
   types/
     Mellomlagring.ts                   # SøknadMellomlagring, MellomlagringMetaData
-    Søknadsdata.ts                     # Søknadsdata + per-steg typer
+        Soknadsdata.ts                     # Søknadsdata + per-steg typer
   utils/
-    formValuesToSøknadsdata.ts         # switch(stepId) → StepSøknadsdata
+        formValuesToSoknadsdata.ts         # switch(stepId) → StepSøknadsdata
 ```
 
-### VIKTIG: sif-common-soknad-ds må IKKE brukes
+### VIKTIG: gamle lenkeabstraksjoner skal ikke brukes
 
 `sif-common-soknad-ds` er det gamle rammeverket som erstattes. Importer aldri fra det.
 
-- `getLenker()` defineres lokalt i `src/app/lenker.ts` uten avhengighet til `sif-common-soknad-ds`.
+- Hvis appen trenger en lenkehelper, definer `src/app/lenker.ts` lokalt.
+- Hvis appen ikke trenger en helper, bruk inline URL-er direkte i komponentene.
 
 ---
 
@@ -105,19 +107,14 @@ Deretter gjør du målrettede endringer på de tilpasningspunktene som er listet
 
 ### Gotchas å sjekke umiddelbart etter kopiering
 
-- **Ikke lag en `lenker.ts`-fil** — bruk inline URL-er direkte i `SøknadStep.tsx` (`window.location.href = 'https://www.nav.no/minside'`). Lenke-abstraksjoner fra `sif-common-soknad-ds` er det gamle rammeverket og må ikke brukes.
+- **Ikke importer lenkeabstraksjoner fra `sif-common-soknad-ds`** — bruk enten en lokal `lenker.ts`-helper eller inline URL-er direkte i komponentene.
 - **`APP_YTELSE`** i `constants.ts` — sett til riktig `MellomlagringYtelse`-verdi for appen.
-- **`basePath`** i `søknadContext.ts` — sett til appens URL-base (eks. `/aktivitetspenger-soknad`).
-- **`søknadStepConfig.ts`** — bytt ut alle steg-IDer, routes, titler og `isCompleted`-sjekker.
-- **`Søknadsdata.ts`** — juster per-steg typene til domenefeltene for appen.
-- **`formValuesToSøknadsdata.ts`** — oppdater `switch`-casene til å matche de nye `SøknadStepId`-verdiene (start med `return undefined` og fyll ut steg for steg).
+- **`basePath`** i `soknadContext.ts` — sett til appens URL-base (eks. `/aktivitetspenger-soknad`).
+- **`soknadStepConfig.ts`** — bytt ut alle steg-IDer, routes, titler og `isCompleted`-sjekker.
+- **`Soknadsdata.ts`** — juster per-steg typene til domenefeltene for appen.
+- **`formValuesToSoknadsdata.ts`** — oppdater `switch`-casene til å matche de nye `SøknadStepId`-verdiene (start med `return undefined` og fyll ut steg for steg).
 - **`appMessages.ts`** — sett `application.title` til riktig ytelsesnavn.
-- **Metadata-typing i `useInitialData`** — `useMemo` som lager metadata-objektet for mellomlagring **må** ha eksplisitt type `MellomlagringMetaData | undefined` både som generic-parameter og returtype. Uten dette kan objektet få feil shape (ekstra/manglende felt), og `objectHash` i `useYtelseMellomlagring` vil produsere en annen hash enn den som ble lagret — noe som fører til at mellomlagringen slettes stille ved hver innlasting. Riktig mønster:
-    ```ts
-    const metadata = useMemo<MellomlagringMetaData | undefined>((): MellomlagringMetaData | undefined => {
-        // ... bygg metadata
-    }, [deps]);
-    ```
+- **Initial data-flyt** — hold `useInitialData.ts` og `InitialDataLoader.tsx` adskilt. Detaljer for metadata-typing og mellomlagring ligger i `sif-initial-data-loader`.
 
 ---
 
@@ -127,7 +124,7 @@ Bruk denne delen som referanse når du skal forstå mønsteret eller skrive fra 
 
 ### 1. Definer steg-konfigurasjon
 
-Opprett `src/app/setup/config/søknadStepConfig.ts`.
+Opprett `src/app/setup/config/soknadStepConfig.ts`.
 
 Tilpass per app:
 
@@ -138,10 +135,10 @@ Tilpass per app:
 - `stepTitles` — visningstittel for hvert steg
 
 ```ts
-// Eksempel: config/søknadStepConfig.ts
+// Eksempel: config/soknadStepConfig.ts
 import { RegistrertBarn, Søker } from '@sif/api';
 import { StepConfig } from '@sif/soknad/types';
-import { Søknadsdata } from '../../types/Søknadsdata';
+import { Søknadsdata } from '../../types/Soknadsdata';
 
 export enum SøknadStepId {
     MITT_STEG = 'mitt-steg',
@@ -171,14 +168,14 @@ export const søknadStepOrder: SøknadStepId[] = [SøknadStepId.MITT_STEG, Søkn
 
 ### 2. Definer Søknadsdata-typen
 
-Opprett `src/app/types/Søknadsdata.ts`.
+Opprett `src/app/types/Soknadsdata.ts`.
 
 - Extend `BaseSøknadsdata` fra `@sif/soknad/types`
 - Legg til en optional type per steg, indexert med `SøknadStepId`
 - Start med tomme typer (TODO) og fyll ut når steg implementeres
 
 ```ts
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { BaseSøknadsdata } from '@sif/soknad/types';
 
 export type MittStegSøknadsdata = {
@@ -197,7 +194,7 @@ Opprett `src/app/types/Mellomlagring.ts` — nær identisk mellom apper, tilpass
 ```ts
 import { RegistrertBarn, Søker } from '@sif/api';
 import { Mellomlagring, SøknadFormValues } from '@sif/soknad/types';
-import { Søknadsdata } from './Søknadsdata';
+import { Søknadsdata } from './Soknadsdata';
 
 export type SøknadMellomlagring = Mellomlagring<Søknadsdata, SøknadFormValues>;
 
@@ -208,7 +205,7 @@ export interface MellomlagringMetaData {
 }
 ```
 
-> **VIKTIG:** Når du oppretter metadata-objektet i `InitialDataLoader`, må `useMemo` ha eksplisitt type `MellomlagringMetaData | undefined`. Mellomlagring-hooken bruker `objectHash(metadata)` for å verifisere at lagret data tilhører gjeldende brukerdata. Hvis metadata-objektet har feil shape (f.eks. mangler `barn` eller har ekstra felt), vil hashen ikke matche og mellomlagringen slettes stille. Typingen fanger dette ved kompilering.
+> Initial data og metadata-validering hører til i `sif-initial-data-loader`. Hold denne skillen fokusert på setup-laget.
 
 ### 4. Opprett constants.ts
 
@@ -227,24 +224,24 @@ Disse filene er like på tvers av apper og trenger minimal eller ingen tilpasnin
 
 | Fil                               | Hva som evt. tilpasses                     |
 | --------------------------------- | ------------------------------------------ |
-| `hooks/useSøknadStore.ts`         | Ingenting — generisk via TypeScript        |
-| `hooks/useSøknadRhfForm.ts`       | Ingenting                                  |
-| `hooks/useSøknadMellomlagring.ts` | Ingenting                                  |
-| `hooks/useSøknadState.ts`         | Ingenting                                  |
+| `hooks/useSoknadStore.ts`         | Ingenting — generisk via TypeScript        |
+| `hooks/useSoknadRhfForm.ts`       | Ingenting                                  |
+| `hooks/useSoknadMellomlagring.ts` | Ingenting                                  |
+| `hooks/useSoknadState.ts`         | Ingenting                                  |
 | `hooks/useStepDefaultValues.ts`   | Ingenting                                  |
 | `hooks/useStepSubmit.ts`          | Ingenting                                  |
-| `hooks/useAvbrytSøknad.ts`        | `navigate('/')` — destinasjon etter avbryt |
+| `hooks/useAvbrytSoknad.ts`        | `navigate('/')` — destinasjon etter avbryt |
 | `hooks/index.ts`                  | Ingenting                                  |
-| `søknad/SøknadFormButtons.tsx`    | Ingenting                                  |
-| `søknad/AppForm.tsx`              | Ingenting                                  |
+| `soknad/SoknadFormButtons.tsx`    | Ingenting                                  |
+| `soknad/AppForm.tsx`              | Ingenting                                  |
 | `wrappers/AppErrorBoundary.tsx`   | Ingenting                                  |
 
-### 6. Tilpass søknadContext.ts
+### 6. Tilpass soknadContext.ts
 
 Tre punkter å tilpasse:
 
 - `basePath` — URL-prefix for søknadsstegene (typisk `/soknad`)
-- `formValuesToSøknadsdata` — pek på appens egen funksjon (se trinn 7)
+- `formValuesToSøknadsdata` — pek på appens egen funksjon i `formValuesToSoknadsdata.ts` (se trinn 7)
 - `getSøknadsdataForStep` — standard oppslag: `(stepId, søknadsdata) => søknadsdata?.[stepId]`
 
 ```ts
@@ -260,12 +257,12 @@ export const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<
 
 `stepTitles` er **ikke** lenger del av config. Det sendes i stedet som et påkrevd prop direkte på `<SøknadContextProvider>` — se trinn 9.
 
-### 7. Opprett formValuesToSøknadsdata.ts
+### 7. Opprett formValuesToSoknadsdata.ts
 
 Placeholder-implementasjon med `// TODO`-kommentarer. Fyll ut hvert steg etter hvert som de implementeres.
 
 ```ts
-import { SøknadStepId } from '@app/setup/config/søknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { StepFormValues, StepSøknadsdata } from '@sif/soknad/types';
 
 export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormValues): StepSøknadsdata | undefined => {
@@ -284,7 +281,7 @@ export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormVal
 `formValuesToSøknadsdata` importerer `*FormValues`-typer og `*Søknadsdata`-konvertere fra hvert steg. Hvis disse typene er definert direkte i `*Form.tsx`-komponentfilene oppstår en sirkulær avhengighet:
 
 ```
-søknadContext → formValuesToSøknadsdata → BarnForm.tsx → AppForm → søknadContext
+soknadContext → formValuesToSøknadsdata → BarnForm.tsx → AppForm → soknadContext
 ```
 
 **Løsning:** Definer alltid `*FormFields` (enum) og `*FormValues` (interface) i en egen `types.ts` per steg-mappe — ikke i selve komponentfilen.
@@ -299,7 +296,7 @@ steps/
 
 `formValuesToSøknadsdata` importerer da fra `steps/barn/types` (ren TS-fil uten React), og syklusen oppstår ikke. Det samme gjelder `*StegUtils.ts`-filene.
 
-### 8. Tilpass SøknadStep.tsx
+### 8. Tilpass SoknadStep.tsx
 
 To punkter å tilpasse:
 
@@ -339,7 +336,7 @@ export const useStepTitles = (): Record<SøknadStepId, string> => {
 };
 ```
 
-Bruk hooken der `<SøknadContextProvider>` brukes (typisk i `Søknad.tsx`):
+Bruk hooken der `<SøknadContextProvider>` brukes (typisk i `Soknad.tsx`):
 
 ```tsx
 const stepTitles = useStepTitles();
@@ -356,12 +353,12 @@ const stepTitles = useStepTitles();
 | Fil                                | Hva som tilpasses                                                           |
 | ---------------------------------- | --------------------------------------------------------------------------- |
 | `constants.ts`                     | `APP_YTELSE` (riktig `MellomlagringYtelse`), `MELLOMLAGRING_VERSJON`        |
-| `søknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder             |
-| `context/søknadContext.ts`         | `basePath`, referanse til `formValuesToSøknadsdata`                         |
-| `types/Søknadsdata.ts`             | Per-steg søknadsdata-typer                                                  |
+| `soknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder             |
+| `context/soknadContext.ts`         | `basePath`, referanse til `formValuesToSøknadsdata`                         |
+| `types/Soknadsdata.ts`             | Per-steg søknadsdata-typer                                                  |
 | `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)                     |
-| `utils/formValuesToSøknadsdata.ts` | Case per steg — fyll ut etter hvert                                         |
-| `søknad/SøknadStep.tsx`            | `text('application.title')`, `getLenker().minSide`                          |
+| `utils/formValuesToSoknadsdata.ts` | Case per steg — fyll ut etter hvert                                         |
+| `soknad/SoknadStep.tsx`            | `text('application.title')`, `window.location.href`                         |
 | `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg, og app-spesifikke tekster  |
 | `hooks/useStepTitles.ts`           | Ny hook — bygg `Record<SøknadStepId, string>` via `useAppIntl()`            |
 
