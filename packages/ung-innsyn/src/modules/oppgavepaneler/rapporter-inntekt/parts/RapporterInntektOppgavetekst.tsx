@@ -1,10 +1,11 @@
 import { Bleed, BodyLong, Box, Heading, List, ReadMore, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { ExternalLink } from '@sif/soknad-ui';
 import { ReactNode } from 'react';
 
+import { ExternalLink } from '../../../../components/external-link/ExternalLink';
 import { UngUiText, useUngUiIntl } from '../../../../i18n';
+import { ungInnsynLenker } from '../../../../utils/lenker';
 
 interface Props {
     navn: string;
@@ -79,7 +80,10 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
                                     id="@ungInnsyn.rapporterInntektOppgave.readMore.tekst.3"
                                     values={{
                                         link: (value) => (
-                                            <ExternalLink href="todo" target="_blank" rel="noopener noreferrer">
+                                            <ExternalLink
+                                                href={ungInnsynLenker.lovdataInntekt}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
                                                 {value}
                                             </ExternalLink>
                                         ),
