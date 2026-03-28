@@ -30,7 +30,7 @@ export const UngInnsynPage = ({ documentTitle, children, footer }: Props) => {
             <PageContentWrapper>{children}</PageContentWrapper>
             {footer && (
                 <Box
-                    className="bg-[#FFEBC7]"
+                    style={{ backgroundColor: '#FFEBC7' }}
                     marginBlock={{ sm: 'space-32 space-0', xs: 'space-12 space-0' }}
                     paddingBlock={{ sm: 'space-32 space-0' }}>
                     <PageContentWrapper>{footer}</PageContentWrapper>
