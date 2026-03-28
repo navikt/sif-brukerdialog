@@ -42,6 +42,9 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
     - Formik-konsepter: `FormikWrapper`, `getTypedFormComponents`, `getIntlFormErrorHandler`, `renderForm`.
 - `sif-migration-baseline`:
     - Migrering/bootstrapping av app til v2-oppsett.
+- `sif-initial-data-loader`:
+    - Initial data-flyt: `useInitialData`, `InitialDataLoader`, `InitialData`, loading/error/success, required queries, optional queries, mellomlagringsvalidering.
+    - Ny datakilde i initial-data: `legg til hook`, `ny datakilde`, `blokkerer loading`, `fallback-verdi`.
 - `sif-server-proxy-api-config`:
     - Feilsøking av API-path/proxy: `reverse proxy`, `proxy`, `returnerer html`, `html tilbake`, `catch-all`, `api path`.
     - Konfigkobling: `initApiClients`, `frontendPath`, `PUBLIC_PATH`, `*_FRONTEND_PATH`, `*_API_SCOPE`, `*_API_URL`.
@@ -56,3 +59,4 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 - Bruk flere skills ved behov, men hold endringer scoped til aktuell workspace.
 - Hvis oppgaven handler om å legge til nye felter/spørsmål i et eksisterende steg, prioriter `sif-soknad-modify-step`. Hvis det er et helt nytt steg, prioriter `sif-soknad-add-step`.
 - Hvis oppgaven handler om å bytte formik med rhf i et eksisterende skjema (uten nye felter), prioriter `sif-formik-to-rhf`.
+- Hvis oppgaven handler om initial data-henting (kombinere hooks, loading/error-state før søknaden starter), prioriter `sif-initial-data-loader` over `sif-api`.
