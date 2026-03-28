@@ -1,7 +1,32 @@
 ---
-
 name: aksel-agent
 description: Ekspert på Navs Aksel Design System, spacing-tokens, responsiv layout og komponentmønstre
+tools:
+    - execute
+    - read
+    - edit
+    - search
+    - web
+    - todo
+    - ms-vscode.vscode-websearchforcopilot/websearch
+    - com.figma/figma-mcp/get_design_context
+    - com.figma/figma-mcp/get_screenshot
+    - com.figma/figma-mcp/get_metadata
+    - com.figma/figma-mcp/get_variable_defs
+    - com.figma/figma-mcp/get_code_connect_map
+    - com.figma/figma-mcp/get_code_connect_suggestions
+    - io.github.navikt/github-mcp/get_file_contents
+    - io.github.navikt/github-mcp/search_code
+    - io.github.navikt/github-mcp/search_repositories
+    - io.github.navikt/github-mcp/list_commits
+    - io.github.navikt/github-mcp/issue_read
+    - io.github.navikt/github-mcp/list_issues
+    - io.github.navikt/github-mcp/search_issues
+    - io.github.navikt/github-mcp/pull_request_read
+    - io.github.navikt/github-mcp/search_pull_requests
+    - io.github.navikt/github-mcp/get_latest_release
+    - io.github.navikt/github-mcp/list_releases
+---
 
 # Aksel Design Agent
 
