@@ -4389,6 +4389,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/aktivitetspenger-soknad@workspace:apps/aktivitetspenger-soknad"
   dependencies:
+    "@axe-core/playwright": "npm:^4.11.1"
     "@navikt/aksel-icons": "npm:8.9.0"
     "@navikt/ds-css": "npm:8.9.0"
     "@navikt/ds-react": "npm:8.9.0"
@@ -4401,6 +4402,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
+    "@playwright/test": "npm:^1.58.2"
     "@sentry/react": "npm:10.45.0"
     "@sentry/vite-plugin": "npm:5.1.1"
     "@sif/api": "workspace:*"

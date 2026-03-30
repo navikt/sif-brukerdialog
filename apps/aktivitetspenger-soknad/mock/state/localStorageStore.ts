@@ -6,9 +6,14 @@ const SCENARIO_KEY = 'AKT_SOKNAD_MOCK_SCENARIO';
 
 export const localStorageStore = {
     init: (scenario: ScenarioType) => {
-        const current = localStorage.getItem(SCENARIO_KEY);
+        const current = localStorage.getItem(SCENARIO_KEY) as ScenarioType | null;
+        const hasData = localStorage.getItem(STORAGE_KEY) !== null;
         if (!current) {
             localStorageStore.setScenario(scenario);
+            return;
+        }
+        if (!hasData && Object.values(ScenarioType).includes(current)) {
+            localStorageStore.setScenario(current);
         }
     },
     setScenario: (scenario: ScenarioType) => {

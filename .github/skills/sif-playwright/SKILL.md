@@ -27,7 +27,7 @@ Sette opp et minimalt, fungerende Playwright e2e-grunnlag i én app-workspace.
 - `playwright/playwrightAppSettings.ts`
 - `playwright/utils/scenario.ts` ved behov
 - `playwright/tests/*.spec.ts` med minst to tester
-- Scripts i `package.json`: `dev:e2e`, `test:e2e`, `test:e2e:headed`
+- Scripts i `package.json`: `pw:dev`, `pw:run`, `pw:run:headed`
 - `tsconfig.json` oppdatert med Playwright-filer i `include`
 
 ## Standardstruktur
@@ -72,9 +72,9 @@ Sjekk også at `lib` i tsconfig-kjeden inkluderer minst `ES2020`. Hvis delt conf
 
 ```json
 {
-    "dev:e2e": "vite --config vite.e2e.config.ts",
-    "test:e2e": "playwright test",
-    "test:e2e:headed": "playwright test --headed"
+    "pw:dev": "vite --config vite.e2e.config.ts",
+    "pw:run": "playwright test",
+    "pw:run:headed": "playwright test --headed"
 }
 ```
 
@@ -103,7 +103,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn dev:e2e',
+        command: 'yarn pw:dev',
         url: 'http://127.0.0.1:4173/<app-base-path>/',
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,
@@ -228,7 +228,7 @@ Viktig: `localStorageStore.init()` må håndtere tilfellet der scenario-key finn
 
 ## Standard testmønster
 
-1. Start appen via `dev:e2e` (Vite dev med MSW og BrowserRouter).
+1. Start appen via `pw:dev` (Vite dev med MSW og BrowserRouter).
 2. Bruk `setScenario()` for å velge testdata *før* `page.goto('/')`.
 3. Hold nettverksstubbing i Playwright minimal — MSW håndterer API-mocking.
 4. Verifiser minst én forsideflyt og én sentral brukerflyt.
@@ -243,23 +243,27 @@ Viktig: `localStorageStore.init()` må håndtere tilfellet der scenario-key finn
 
 For accessibility-sjekker med axe, bruk skillen `sif-playwright-a11y` i tillegg.
 
+Etter at grunnoppsettet er ferdig, skal du alltid eksplisitt vurdere om `sif-playwright-a11y` også skal brukes i samme oppgave.
+
 ## Verifisering
 
 Kjør i app-workspace:
 
 ```bash
-yarn test:e2e
+yarn pw:run
 yarn check:types
 ```
 
 ## Ferdig-kriterier
 
-- `yarn test:e2e` passerer lokalt.
+- `yarn pw:run` passerer lokalt.
 - `yarn check:types` passerer lokalt.
 - Testene bruker BrowserRouter-flyt (ikke demo/HashRouter).
+- Avklar om a11y-sjekker skal inn nå; hvis ja, bruk `sif-playwright-a11y` før oppgaven avsluttes.
 
 ## Arbeidsmodus
 
 - Fase 1: Etabler oppsett (config, scripts, dependencies, tsconfig).
 - Fase 2: Legg til første flyttester.
-- Fase 3: Verifiser `yarn test:e2e` og `yarn check:types`.
+- Fase 3: Verifiser `yarn pw:run` og `yarn check:types`.
+- Fase 4: Ta stilling til a11y-utvidelse via `sif-playwright-a11y`.

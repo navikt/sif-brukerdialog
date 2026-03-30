@@ -5,15 +5,15 @@
     "version": "0.0.1",
     "scripts": {
         "dev": "vite --base=/aktivitetspenger/innsyn --config vite.dev.config.ts",
-        "dev:e2e": "vite --config vite.e2e.config.ts",
+        "pw:dev": "vite --config vite.e2e.config.ts",
         "build": "vite build --base=/aktivitetspenger/innsyn",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
         "test": "vitest run",
-        "test:e2e": "playwright test",
-        "test:e2e:headed": "playwright test --headed",
+        "pw:run": "playwright test",
+        "pw:run:headed": "playwright test --headed",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build"
     },

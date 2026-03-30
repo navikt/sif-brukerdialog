@@ -63,16 +63,16 @@ export const testAccessibility = async (page: Page) => {
 Kjør i app-workspace:
 
 ```bash
-yarn test:e2e
+yarn pw:run
 ```
 
 ## Ferdig-kriterier
 
-- `yarn test:e2e` passerer lokalt.
+- `yarn pw:run` passerer lokalt.
 - Begge testkategorier (forside + sentral flyt) inkluderer a11y-scan.
 
 ## Arbeidsmodus
 
 - Fase 1: Legg til `@axe-core/playwright` og `testAccessibility`-helper.
 - Fase 2: Koble helper i eksisterende tester.
-- Fase 3: Verifiser `yarn test:e2e`.
+- Fase 3: Verifiser `yarn pw:run`.

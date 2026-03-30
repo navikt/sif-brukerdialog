@@ -6,7 +6,7 @@ export default defineConfig({
     retries: process.env.CI ? 2 : 0,
     reporter: process.env.CI ? 'github' : 'list',
     use: {
-        baseURL: 'http://127.0.0.1:4173/aktivitetspenger/innsyn/',
+        baseURL: 'http://127.0.0.1:4173/aktivitetspenger/soknad/',
         trace: 'on-first-retry',
     },
     projects: [
@@ -17,7 +17,7 @@ export default defineConfig({
     ],
     webServer: {
         command: 'yarn pw:dev',
-        url: 'http://127.0.0.1:4173/aktivitetspenger/innsyn/',
+        url: 'http://127.0.0.1:4173/aktivitetspenger/soknad/',
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,
     },
