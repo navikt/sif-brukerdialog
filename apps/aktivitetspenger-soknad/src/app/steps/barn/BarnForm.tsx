@@ -44,6 +44,7 @@ export const BarnForm = ({ registrerteBarn }: Props) => {
                 <FormLayout.Questions>
                     {registrerteBarn.length > 0 && (
                         <RegistrerteBarnListe
+                            headingProps={{ size: 'small' }}
                             listetittel={text('barnSteg.registrerteBarn.tittel')}
                             registrerteBarn={registrerteBarn}
                         />
