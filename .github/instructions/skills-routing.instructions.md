@@ -49,6 +49,13 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
     - Feilsøking av API-path/proxy: `reverse proxy`, `proxy`, `returnerer html`, `html tilbake`, `catch-all`, `api path`.
     - Konfigkobling: `initApiClients`, `frontendPath`, `PUBLIC_PATH`, `*_FRONTEND_PATH`, `*_API_SCOPE`, `*_API_URL`.
     - Verifisering av app mot server: `server`, `ingress`, `oppslag/soker`, `oppslag/barn`, `baseURL`.
+- `sif-playwright`:
+    - E2E-oppsett: `playwright`, `e2e`, `end-to-end`, `playwright.config`, `test:e2e`, `dev:e2e`.
+    - Struktur: `vite.e2e.config`, `playwright/tests`, `scenario i playwright`, `browserrouter i test`.
+    - Første tester: `smoke test`, `første e2e test`.
+- `sif-playwright-a11y`:
+    - Accessibility: `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`.
+    - Oppsett: `a11y i playwright`, `uu-test i e2e`.
 
 ## Prioritering ved overlapp
 
@@ -60,3 +67,5 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 - Hvis oppgaven handler om å legge til nye felter/spørsmål i et eksisterende steg, prioriter `sif-soknad-modify-step`. Hvis det er et helt nytt steg, prioriter `sif-soknad-add-step`.
 - Hvis oppgaven handler om å bytte formik med rhf i et eksisterende skjema (uten nye felter), prioriter `sif-formik-to-rhf`.
 - Hvis oppgaven handler om initial data-henting (kombinere hooks, loading/error-state før søknaden starter), prioriter `sif-initial-data-loader` over `sif-api`.
+- Hvis oppgaven handler om Playwright/e2e-oppsett i app, prioriter `sif-playwright`.
+- Hvis oppgaven handler om accessibility/axe i Playwright-tester, prioriter `sif-playwright-a11y`.
