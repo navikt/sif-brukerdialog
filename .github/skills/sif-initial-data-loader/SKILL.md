@@ -17,16 +17,29 @@ Beskriver mønsteret for å hente all nødvendig data før søknaden starter, ko
 
 ## Kildereferanse
 
-- `apps/aktivitetspenger-soknad/src/useInitialData.ts`
-- `apps/aktivitetspenger-soknad/src/InitialDataLoader.tsx`
+- `apps/aktivitetspenger-soknad/src/app/initial-data/useInitialData.ts`
+- `apps/aktivitetspenger-soknad/src/app/initial-data/InitialDataLoader.tsx`
+
+## Anbefalt plassering
+
+Legg initial-data-flyten under `src/app/initial-data/`.
+
+- `useInitialData.ts` hører hjemme der fordi den samler appens bootstrap-queries og definerer `loading`/`error`/`success`-kontrakten.
+- `InitialDataLoader.tsx` hører hjemme samme sted fordi den er render-laget for den samme flyten.
+- `src/app/setup/` brukes til providers, boundaries, query client og annen teknisk infrastruktur.
+- `src/` brukes til entrypoints og helt overordnede filer.
 
 ---
 
 ## Arkitektur
 
 ```
-App.tsx (providers + initApiClients)
-  └── InitialDataLoader           ← kaller useInitialData(), switcher på status
+src/
+    App.tsx                         ← providers + initApiClients
+    app/
+        initial-data/
+            InitialDataLoader.tsx       ← kaller useInitialData(), switcher på status
+            useInitialData.ts
         ├── <LoadingPage />       ← status === 'loading'
         ├── <ErrorPage />         ← status === 'error'
         └── <Søknad {...data} />  ← status === 'success'
@@ -168,8 +181,8 @@ Props-typen til `<Søknad />` skal matche `InitialData`-interfacet i `useInitial
 1. Finn riktig hook i `@sif/api` — se [sif-api](../sif-api/SKILL.md) for full hook-tabell og klient-init.
 2. Legg hooken til i `useInitialData`.
 3. Avgjør: er datakilden **required** (blokkerer loading) eller **optional** (har fallback)?
-   - Required: legg til i `requiredQueries`-arrayen.
-   - Optional: sjekk `isLoading` separat, bruk fallback-verdi i `data`-objektet.
+    - Required: legg til i `requiredQueries`-arrayen.
+    - Optional: sjekk `isLoading` separat, bruk fallback-verdi i `data`-objektet.
 4. Legg til feltet i `InitialData`-interfacet.
 5. Send feltet videre som prop til `<Søknad />`.
 
@@ -177,9 +190,9 @@ Props-typen til `<Søknad />` skal matche `InitialData`-interfacet i `useInitial
 
 ## Vanlige feil
 
-| Feil | Diagnose |
-|---|---|
-| Appen er stuck i loading | En hook er aldri ferdig (`isFetched` forblir false). Sjekk at API-klient er initialisert og env-variabler er satt. |
-| Mellomlagring ignoreres | `metadata` er ikke klart når `useYtelseMellomlagring` kalles. Sjekk `useMemo`-avhengighetene. |
+| Feil                              | Diagnose                                                                                                              |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Appen er stuck i loading          | En hook er aldri ferdig (`isFetched` forblir false). Sjekk at API-klient er initialisert og env-variabler er satt.    |
+| Mellomlagring ignoreres           | `metadata` er ikke klart når `useYtelseMellomlagring` kalles. Sjekk `useMemo`-avhengighetene.                         |
 | Feilside vises selv om API svarer | En query i `requiredQueries` eller `mellomlagring` har `isError: true`. Logg `errors` i dev-mode for å finne hvilken. |
-| Ugyldig steg ved retur til søknad | `getValidertMellomlagring` filtrerer ikke riktig — sjekk at `søknadStepConfig` er importert korrekt. |
+| Ugyldig steg ved retur til søknad | `getValidertMellomlagring` filtrerer ikke riktig — sjekk at `søknadStepConfig` er importert korrekt.                  |

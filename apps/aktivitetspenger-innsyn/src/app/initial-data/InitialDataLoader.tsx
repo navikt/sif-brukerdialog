@@ -1,7 +1,7 @@
 import { UngErrorPage, UngLoadingPage } from '@sif/ung-innsyn/pages';
 
-import { useAppIntl } from './app/i18n';
-import { Innsyn } from './app/Innsyn';
+import { useAppIntl } from '../i18n';
+import { Innsyn } from '../Innsyn';
 import { useInitialData } from './useInitialData';
 
 export const InitialDataLoader = () => {

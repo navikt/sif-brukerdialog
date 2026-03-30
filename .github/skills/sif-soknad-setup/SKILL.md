@@ -18,9 +18,17 @@ Guide for å sette opp `src/app/setup/`-mappen i en ny app som bruker `@sif/sokn
 ## Scope
 
 - Fokus: `src/app/setup/` og tilhørende typer og utils i appen.
-- Ikke inkludert: selve steginnhold, initial data-flyt, API-kall, velkomst- og kvitteringssider.
+- Omfatter setup-laget, ikke steginnhold, initial data-flyt, API-kall, velkomst- og kvitteringssider.
 - Kildereferanse: `apps/sif-demo-app/src/app/setup/` og `apps/aktivitetspenger-soknad/src/app/setup/`.
 - For initial data-flyt (`useInitialData`, `InitialDataLoader`) → bruk `sif-initial-data-loader`.
+
+## Avgrensning mot initial data
+
+`src/app/setup/` er kun for teknisk oppsett og rammeverksnære adaptere.
+
+- Providers, query client, error boundaries, context wiring og tilsvarende hører hjemme her.
+- Bootstrap av domenedata før appen rendres legges i `src/app/initial-data/`.
+- `useInitialData.ts` og `InitialDataLoader.tsx` samlokaliseres der.
 
 ---
 
@@ -79,9 +87,9 @@ src/app/
         formValuesToSoknadsdata.ts         # switch(stepId) → StepSøknadsdata
 ```
 
-### VIKTIG: gamle lenkeabstraksjoner skal ikke brukes
+### Lenkeabstraksjoner
 
-`sif-common-soknad-ds` er det gamle rammeverket som erstattes. Importer aldri fra det.
+Bruk en lokal `src/app/lenker.ts`-helper ved behov, eller inline URL-er direkte i komponentene.
 
 - Hvis appen trenger en lenkehelper, definer `src/app/lenker.ts` lokalt.
 - Hvis appen ikke trenger en helper, bruk inline URL-er direkte i komponentene.
@@ -90,7 +98,7 @@ src/app/
 
 ## Raskeste vei: kopier fra sif-demo-app og modifiser
 
-Dette er den anbefalte fremgangsmåten. Koden i demo-appen er referanseimplementasjonen og er battle-tested. Skriv ikke fra scratch.
+Dette er den anbefalte fremgangsmåten. Koden i demo-appen er referanseimplementasjonen og er battle-tested. Start fra denne og tilpass målrettet.
 
 ```bash
 # Kjør fra monorepo-rot
@@ -107,7 +115,7 @@ Deretter gjør du målrettede endringer på de tilpasningspunktene som er listet
 
 ### Gotchas å sjekke umiddelbart etter kopiering
 
-- **Ikke importer lenkeabstraksjoner fra `sif-common-soknad-ds`** — bruk enten en lokal `lenker.ts`-helper eller inline URL-er direkte i komponentene.
+- **Lenker** — bruk enten en lokal `lenker.ts`-helper eller inline URL-er direkte i komponentene.
 - **`APP_YTELSE`** i `constants.ts` — sett til riktig `MellomlagringYtelse`-verdi for appen.
 - **`basePath`** i `soknadContext.ts` — sett til appens URL-base (eks. `/aktivitetspenger-soknad`).
 - **`soknadStepConfig.ts`** — bytt ut alle steg-IDer, routes, titler og `isCompleted`-sjekker.
@@ -341,26 +349,24 @@ Bruk hooken der `<SøknadContextProvider>` brukes (typisk i `Soknad.tsx`):
 ```tsx
 const stepTitles = useStepTitles();
 
-<SøknadContextProvider stepTitles={stepTitles}>
-    ...
-</SøknadContextProvider>
+<SøknadContextProvider stepTitles={stepTitles}>...</SøknadContextProvider>;
 ```
 
 ---
 
 ## Tilpasningspunkter per app — oppsummering
 
-| Fil                                | Hva som tilpasses                                                           |
-| ---------------------------------- | --------------------------------------------------------------------------- |
-| `constants.ts`                     | `APP_YTELSE` (riktig `MellomlagringYtelse`), `MELLOMLAGRING_VERSJON`        |
-| `soknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder             |
-| `context/soknadContext.ts`         | `basePath`, referanse til `formValuesToSøknadsdata`                         |
-| `types/Soknadsdata.ts`             | Per-steg søknadsdata-typer                                                  |
-| `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)                     |
-| `utils/formValuesToSoknadsdata.ts` | Case per steg — fyll ut etter hvert                                         |
-| `soknad/SoknadStep.tsx`            | `text('application.title')`, `window.location.href`                         |
-| `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg, og app-spesifikke tekster  |
-| `hooks/useStepTitles.ts`           | Ny hook — bygg `Record<SøknadStepId, string>` via `useAppIntl()`            |
+| Fil                                | Hva som tilpasses                                                          |
+| ---------------------------------- | -------------------------------------------------------------------------- |
+| `constants.ts`                     | `APP_YTELSE` (riktig `MellomlagringYtelse`), `MELLOMLAGRING_VERSJON`       |
+| `soknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder            |
+| `context/soknadContext.ts`         | `basePath`, referanse til `formValuesToSøknadsdata`                        |
+| `types/Soknadsdata.ts`             | Per-steg søknadsdata-typer                                                 |
+| `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)                    |
+| `utils/formValuesToSoknadsdata.ts` | Case per steg — fyll ut etter hvert                                        |
+| `soknad/SoknadStep.tsx`            | `text('application.title')`, `window.location.href`                        |
+| `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg, og app-spesifikke tekster |
+| `hooks/useStepTitles.ts`           | Ny hook — bygg `Record<SøknadStepId, string>` via `useAppIntl()`           |
 
 ---
 
@@ -404,11 +410,13 @@ Sentry.init({
 ```
 
 Importer i `main.tsx` som første linje:
+
 ```ts
 import './sentry/instrument';
 ```
 
 **Viktig:**
+
 - DSN hardkodes — det er ikke en hemmelighet og er likt for alle SIF-apper.
 - `sendDefaultPii` skal **ikke** settes til `true` — NAV behandler sensitiv personinformasjon.
 - `tracesSampleRate` settes til `0.2` (ikke `1.0`) for å unngå støy og kostnader i prod.
@@ -447,13 +455,13 @@ export const SifQueryClientProvider = ({ children }: PropsWithChildren) => {
 ```
 
 Bruk den i stedet for `QueryClientProvider` i `App.tsx`:
+
 ```tsx
-<SifQueryClientProvider>
-    {/* ... */}
-</SifQueryClientProvider>
+<SifQueryClientProvider>{/* ... */}</SifQueryClientProvider>
 ```
 
 **Hva dette gir:**
+
 - Alle `useQuery`-feil logges automatisk til Sentry med `type`, `context`, `message` og `queryKey` som extras.
 - 401-feil skippes (forventet ved utløpt sesjon).
 - `isApiError` og `isApiAxiosError` er type guards eksportert fra `@sif/api`.
