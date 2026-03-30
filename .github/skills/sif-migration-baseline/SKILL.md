@@ -36,6 +36,12 @@ Use this as the default start for a new migration app before feature work.
 2. Stop the first phase at `src/main.tsx` rendering `<App />`.
 3. Do not pull code from the legacy app in this phase unless explicitly requested.
 
+After bootstrap:
+
+1. Use `sif-soknad-setup` for the app setup layer under `src/app/setup`.
+2. Use `sif-initial-data-loader` for `useInitialData.ts` and `InitialDataLoader.tsx`.
+3. Use `sif-soknad-add-step` and `sif-soknad-modify-step` for step work.
+
 ### Baseline files to include
 
 - Tooling/config: `package.json`, `vite.config.ts`, `vite.dev.config.ts`, `tsconfig.json`, `eslint.config.js`, `tailwind.config.ts`, `env.schema.ts`, `vite-env.d.ts`, `vitest.shims.d.ts`, `index.html`, `Dockerfile`.
@@ -63,7 +69,7 @@ Use this as the default start for a new migration app before feature work.
 - `AppErrorBoundary` must be inside `FaroProvider` in `App.tsx`, not wrapping `<App />` in `main.tsx`. Otherwise `useFaroInstance()` has no context and error logging to Faro will not work.
 - `enableMocking.ts` includes ENV checks — MSW only starts when `ENV === 'development'` and `import.meta.env.MODE === 'msw'`. Do not remove these guards.
 - `vite.config.ts` uses a conditional Sentry plugin that only activates when `SENTRY_AUTH_TOKEN` is present. Sentry build warnings are expected locally without the token.
-- Data loading is split into `useInitialData.ts` (hook with data logic) and `InitialDataLoader.tsx` (thin component). Keep this separation when adapting.
+- Data loading is split into `useInitialData.ts` (hook with data logic) and `InitialDataLoader.tsx` (thin component). Keep this separation when adapting, and delegate detailed guidance to `sif-initial-data-loader`.
 
 ### UI and spacing references
 

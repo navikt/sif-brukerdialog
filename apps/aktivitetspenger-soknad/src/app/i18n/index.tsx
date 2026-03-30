@@ -1,4 +1,3 @@
-import { uiMessages } from '@navikt/sif-common-ui';
 import { typedIntlHelper } from '@navikt/sif-common-utils';
 import { sifSoknadFormsMessages } from '@sif/soknad-forms';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
@@ -8,7 +7,6 @@ import { appMessages_nb } from './nb/appMessages';
 
 const libMessages = {
     nb: {
-        ...uiMessages.nb,
         ...sifSoknadUiMessages.nb,
         ...sifSoknadFormsMessages.nb,
     },

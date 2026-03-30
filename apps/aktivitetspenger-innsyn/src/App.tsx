@@ -17,7 +17,7 @@ import AppRouter from './app/AppRouter';
 import { applicationIntlMessages } from './app/i18n';
 import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
-import { InitialDataLoader } from './InitialDataLoader';
+import { InitialDataLoader } from './app/initial-data/InitialDataLoader';
 
 initApiClients();
 

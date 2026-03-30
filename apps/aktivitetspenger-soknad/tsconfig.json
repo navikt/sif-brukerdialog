@@ -2,6 +2,7 @@
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
         "outDir": "build/dist",
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
         "baseUrl": "./",
         "paths": {
@@ -13,12 +14,13 @@
     "include": [
         "./src/**/*",
         "./mock/**/*",
+        "./playwright/**/*",
         "./vite-env.d.ts",
         "./tailwind.config.ts",
         "./vite.config.ts",
         "./vite.dev.config.ts",
-        "env.schema.ts",
-        "../../packages/sif-soknad-ui/src/components/aria-live-region",
-        "../../packages/sif-soknad-ui/src/components/external-link"
+        "./vite.e2e.config.ts",
+        "./playwright.config.ts",
+        "env.schema.ts"
     ]
 }
