@@ -9,7 +9,7 @@ import DeleteButton from '../delete-button/DeleteButton';
 interface Props<T> {
     items: T[];
     useTrashcan?: boolean;
-    getItemId: (item: T) => string | undefined;
+    getItemId: (item: T) => string;
     getItemTitle: (item: T) => string;
     labelRenderer?: (item: T, onEdit?: (item: T) => void) => React.ReactNode;
     iconRender?: (item: T) => React.ReactNode;
@@ -42,7 +42,7 @@ function ItemListDarkside<T>({
                         )}
                         <span className="itemListDarkside__item__label">
                             {labelRenderer ? (
-                                labelRenderer(item)
+                                labelRenderer(item, onEdit)
                             ) : onEdit ? (
                                 <ActionLink onClick={() => onEdit(item)}>{itemTitle}</ActionLink>
                             ) : (

@@ -1,18 +1,24 @@
-import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, HeadingProps, HelpText, HStack, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
-import { SifSoknadUiText } from '../../i18n';
+import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
 import ItemListDarkside from '../item-list-darkside/ItemListDarkside';
 import RegistrerteBarnListeHeading, { RegistrerteBarnListeHeadingProps } from './parts/RegistrerteBarnListeHeading';
 
 interface Props {
     listetittel: string;
+    headingProps?: Pick<HeadingProps, 'size' | 'level'>;
     registrerteBarn: RegistrertBarn[];
 }
 
-export const RegistrerteBarnListe = ({ listetittel, registrerteBarn }: Props) => {
+export const RegistrerteBarnListe = ({
+    listetittel,
+    headingProps = { level: '2', size: 'medium' },
+    registrerteBarn,
+}: Props) => {
+    const { text } = useSifSoknadUiIntl();
     const renderListe = () => {
         return registrerteBarn.length === 0 ? (
             <Alert variant="info">
@@ -39,6 +45,12 @@ export const RegistrerteBarnListe = ({ listetittel, registrerteBarn }: Props) =>
     };
     return (
         <VStack gap="space-8">
+            <HStack gap="space-8">
+                <Heading {...headingProps}>{listetittel}</Heading>
+                <HelpText title={text('registrerteBarnKildeInfo.helpTextTooltip')}>
+                    <SifSoknadUiText id="registrerteBarnKildeInfo.kilde" />
+                </HelpText>
+            </HStack>
             <RegistrerteBarnListeHeading size="small" level="2">
                 {listetittel}
             </RegistrerteBarnListeHeading>
