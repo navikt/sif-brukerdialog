@@ -1,7 +1,6 @@
 import { Alert, Box, Heading, HeadingProps, HelpText, HStack, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, formatName } from '@navikt/sif-common-utils';
 
 import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
 import ItemListDarkside from '../item-list-darkside/ItemListDarkside';

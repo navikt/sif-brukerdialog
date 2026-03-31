@@ -10,6 +10,7 @@ export * from './guid';
 export * from './intlDateFormats';
 export * from './jsonSort';
 export * from './localeUtils';
+export * from './personUtils';
 export * from './stringUtils';
 export * from './timeUtils';
 export * from './typedIntlUtils';
