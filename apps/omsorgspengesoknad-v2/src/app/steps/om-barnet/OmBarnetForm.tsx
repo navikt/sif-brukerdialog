@@ -169,7 +169,7 @@ export const OmBarnetForm = () => {
                             />
                             <AriaLiveRegion visible={visIkkeSammeAdresseAlert}>
                                 <QuestionRelatedMessage>
-                                    <Alert variant="warning">
+                                    <Alert variant="info">
                                         <AppText id="omBarnetSteg.alert.ikkeSammeAdresse" />
                                     </Alert>
                                 </QuestionRelatedMessage>
@@ -185,7 +185,7 @@ export const OmBarnetForm = () => {
                             />
                             <AriaLiveRegion visible={kroniskEllerFunksjonshemming === YesOrNo.NO}>
                                 <QuestionRelatedMessage>
-                                    <Alert variant="warning">
+                                    <Alert variant="info">
                                         <AppText id="omBarnetSteg.alert.ikkeKronisk" />
                                     </Alert>
                                 </QuestionRelatedMessage>
@@ -203,7 +203,7 @@ export const OmBarnetForm = () => {
                                     />
                                     <AriaLiveRegion visible={høyereRisikoForFravær === YesOrNo.NO}>
                                         <QuestionRelatedMessage>
-                                            <Alert variant="warning">
+                                            <Alert variant="info">
                                                 <AppText id="omBarnetSteg.alert.ikkeHøyereRisiko" />
                                             </Alert>
                                         </QuestionRelatedMessage>

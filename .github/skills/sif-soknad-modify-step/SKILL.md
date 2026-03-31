@@ -317,6 +317,14 @@ import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
 
 `QuestionRelatedMessage` inne i `AriaLiveRegion` fungerer korrekt — `Bleed`'s negative top-margin trekker Alert-en opp mot spørsmålet over.
 
+**Alert-variant ved migrering:** Sjekk alltid hvilken `variant` v1 bruker på tilsvarende Alert. `info` og `warning` har ulik visuell vekt og betyr ulike ting for brukeren — ikke gjett. Finn alertkomponenten i v1 (gjerne under `alert/`-mappe i steget) og bruk samme variant.
+
+```
+# Eksempel fra v1-mappestruktur:
+steps/om-barnet/alert/IkkeKroniskEllerFuksjonshemningAlert.tsx → variant="info"
+steps/om-barnet/alert/TrengerIkkeSøkeForBarnAlert.tsx         → variant="warning"
+```
+
 ---
 
 ## Sjekkliste

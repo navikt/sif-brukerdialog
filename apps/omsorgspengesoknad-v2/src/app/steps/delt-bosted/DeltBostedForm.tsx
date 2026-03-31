@@ -4,7 +4,7 @@ import { useSøknadRhfForm, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { Alert } from '@navikt/ds-react';
 
-import { getDefaultValues, DeltBostedFormValues, toSøknadsdata } from './deltBostedStegUtils';
+import { DeltBostedFormValues, getDefaultValues, toSøknadsdata } from './deltBostedStegUtils';
 
 export const DeltBostedForm = () => {
     const stepId = SøknadStepId.DELT_BOSTED;
