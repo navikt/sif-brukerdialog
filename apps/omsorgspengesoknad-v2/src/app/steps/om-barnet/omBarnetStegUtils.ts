@@ -1,8 +1,7 @@
+import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
+import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { YesOrNo } from '@sif/rhf';
-
-import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
-import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 
 import { ANNET_BARN, OmBarnetFormFields, OmBarnetFormValues } from './types';
 
@@ -48,12 +47,8 @@ export const toOmBarnetSøknadsdata = (
 
     const erKronisk = kroniskEllerFunksjonshemming === YesOrNo.YES;
     const høyereRisikoForFravær =
-        !erKronisk && data.høyereRisikoForFravær !== undefined
-            ? data.høyereRisikoForFravær === YesOrNo.YES
-            : undefined;
-    const høyereRisikoForFraværBeskrivelse = høyereRisikoForFravær
-        ? data.høyereRisikoForFraværBeskrivelse
-        : undefined;
+        !erKronisk && data.høyereRisikoForFravær !== undefined ? data.høyereRisikoForFravær === YesOrNo.YES : undefined;
+    const høyereRisikoForFraværBeskrivelse = høyereRisikoForFravær ? data.høyereRisikoForFraværBeskrivelse : undefined;
 
     if (barnetSøknadenGjelder === ANNET_BARN) {
         const { barnetsFødselsnummer, barnetsFødselsdato, barnetsNavn, søkersRelasjonTilBarnet } = data;
@@ -84,7 +79,7 @@ export const toOmBarnetSøknadsdata = (
     };
 };
 
-export const getSammeAdresseOptions = (): { value: BarnSammeAdresse; label: string }[] => [
+export const getSammeAdresseOptions = (): Array<{ value: BarnSammeAdresse; label: string }> => [
     { value: BarnSammeAdresse.JA, label: 'Ja' },
     { value: BarnSammeAdresse.JA_DELT_BOSTED, label: 'Ja, men med delt bosted' },
     { value: BarnSammeAdresse.NEI, label: 'Nei' },

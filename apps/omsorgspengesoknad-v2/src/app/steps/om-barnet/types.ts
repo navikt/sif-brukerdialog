@@ -1,8 +1,7 @@
-import { StepFormValues } from '@sif/soknad/types';
-
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { YesOrNo } from '@sif/rhf';
+import { StepFormValues } from '@sif/soknad/types';
 
 export const ANNET_BARN = 'ANNET_BARN';
 

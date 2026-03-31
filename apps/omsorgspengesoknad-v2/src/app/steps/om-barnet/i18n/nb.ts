@@ -49,6 +49,5 @@ export const omBarnetStegMessages_nb = {
         'Du må svare på om det er høyere risiko for fravær',
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.noValue':
         'Du må beskrive kort hvorfor det er høyere risiko for fravær',
-    'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.invalidValue':
-        'Beskrivelsen kan ikke være blank',
+    'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.invalidValue': 'Beskrivelsen kan ikke være blank',
 };

@@ -1,14 +1,12 @@
-import { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-
-import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { StepRouteGuard } from '@sif/soknad/navigation';
-
 import { søknadStepConfig } from '@app/setup/config/soknadStepConfig';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { SøknadContextProvider } from '@app/setup/context/soknadContext';
 import { useSøknadStore, useStepTitles } from '@app/setup/hooks';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { StepRouteGuard } from '@sif/soknad/navigation';
+import { useEffect } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { KvitteringPage, VelkommenPage } from './pages';
 import { OmBarnetSteg } from './steps';
@@ -84,4 +82,3 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
         </SøknadContextProvider>
     );
 };
-

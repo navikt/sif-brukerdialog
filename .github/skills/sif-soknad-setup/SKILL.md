@@ -196,6 +196,53 @@ export interface Søknadsdata extends BaseSøknadsdata {
 }
 ```
 
+#### Domenetype-strategi: lokale typer vs. genererte API-typer
+
+Når en søknad trenger domenespesifikke typer (f.eks. `BarnSammeAdresse`, `SøkersRelasjonTilBarnet`), er det tre alternativer:
+
+**A) Utled fra generert API-type** — anbefalt når typen finnes som felt i en generert type:
+```ts
+import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+
+export type BarnSammeAdresse = OmsorgspengerKroniskSyktBarnSøknad['sammeAdresse'];
+// Resultat: 'JA' | 'JA_DELT_BOSTED' | 'NEI'
+
+export type SøkersRelasjonTilBarnet = NonNullable<OmsorgspengerKroniskSyktBarnSøknad['relasjonTilBarnet']>;
+// Resultat: 'MOR' | 'FAR' | 'FOSTERFORELDER' | 'ADOPTIVFORELDER'
+```
+
+Legg til et `const`-objekt for enum-lignende DX (autocomplete, refaktorering):
+```ts
+export const BarnSammeAdresse = {
+    JA: 'JA' as BarnSammeAdresse,
+    JA_DELT_BOSTED: 'JA_DELT_BOSTED' as BarnSammeAdresse,
+    NEI: 'NEI' as BarnSammeAdresse,
+} as const;
+```
+
+**B) Lokal `enum`** — akseptabelt for typer som ikke finnes i generert kode, eller når appen trenger andre verdier enn API-et.
+
+**C) Inline union type** — bruk direkte i interface/type i stedet for å lage en separat fil, om typen bare brukes ett sted.
+
+**Arkitektur — tre separate datalag:**
+
+```
+SøknadFormValues   →  toSøknadsdata()  →  Søknadsdata  →  toApiData()  →  SøknadApiData
+(fri form-struktur)    (normalisering)     (domene-      (oppsummering)   (API-kontrakt)
+                                            modell)
+```
+
+- **`SøknadFormValues`** — fullstendig fri struktur optimalisert for skjema-UI. Kan inneholde strenger der domenemodellen bruker `Date`, `YesOrNo` der domenemodellen bruker `boolean`, osv.
+- **`toSøknadsdata()`** — normaliserer form-verdier til domeneobjekter. Her konverteres f.eks. dato-strenger til `Date`-objekter og `YesOrNo` til `boolean`.
+- **`Søknadsdata`** — normalisert domenemodell. Optimalisert for appens interne logikk, ikke for API-kontrakten.
+- **`toApiData()`** — kjøres i oppsummeringssteget og konverterer `Søknadsdata` til API-formatet. Her kan f.eks. `Date` konverteres tilbake til ISO-streng og interne enum-verdier mappes til API-verdier.
+
+Det betyr at interne typer (enums, verdier, struktur) kan avvike fra API-kontrakten — det er tilsiktet og ønskelig.
+
+**Når alternativ A er nyttig:** Primært for typer som sendes *direkte* til API-et uten konvertering, eller der du ønsker at interne typer skal samsvare eksakt med API-kontrakten for å unngå mappingkode. Sjekk `types.gen.ts` i `k9-brukerdialog-prosessering-api` under `src/generated/<ytelse>/` for tilgjengelige typer.
+
+**Zod-skjemaer:** De genererte `zod.gen.ts`-filene inneholder per nå inline `z.enum()`-definisjoner uten separate eksporter. Utled typer fra TypeScript-typen (`types.gen.ts`), ikke fra Zod.
+
 ### 3. Definer Mellomlagring-typer
 
 Opprett `src/app/types/Mellomlagring.ts` — nær identisk mellom apper, tilpass `MellomlagringMetaData` om appen ikke har barn.

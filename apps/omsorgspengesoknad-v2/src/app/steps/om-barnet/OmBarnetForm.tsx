@@ -1,19 +1,24 @@
+import { AppText, useAppIntl } from '@app/i18n';
+import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { useSøknadRhfForm, useSøknadState, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
+import { AppForm } from '@app/setup/soknad/AppForm';
+import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
+import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
+import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { Alert, VStack } from '@navikt/ds-react';
-import { getDateValidator, getFødselsnummerValidator, getRequiredFieldValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import {
+    getDateValidator,
+    getFødselsnummerValidator,
+    getRequiredFieldValidator,
+    getStringValidator,
+    getYesOrNoValidator,
+} from '@navikt/sif-validation';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { AriaLiveRegion, FormLayout } from '@sif/soknad-ui/components';
 
-import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit, useSøknadState } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/soknad/AppForm';
-import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
-import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
-import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
-
-import { ANNET_BARN, OmBarnetFormFields, OmBarnetFormValues } from './types';
 import { toOmBarnetFormValues, toOmBarnetSøknadsdata } from './omBarnetStegUtils';
+import { ANNET_BARN, OmBarnetFormFields, OmBarnetFormValues } from './types';
 
 const { RadioGroup, TextField, Datepicker, Textarea, YesOrNoQuestion } = createSifFormComponents<OmBarnetFormValues>();
 
@@ -82,30 +87,54 @@ export const OmBarnetForm = () => {
                                     name={OmBarnetFormFields.barnetsFødselsdato}
                                     label={text('omBarnetSteg.spørsmål.barnetsFødselsdato')}
                                     maxDate={new Date()}
-                                    validate={validateField(OmBarnetFormFields.barnetsFødselsdato, getDateValidator({ required: true, max: new Date() }))}
+                                    validate={validateField(
+                                        OmBarnetFormFields.barnetsFødselsdato,
+                                        getDateValidator({ required: true, max: new Date() }),
+                                    )}
                                 />
                                 <TextField
                                     name={OmBarnetFormFields.barnetsFødselsnummer}
                                     label={text('omBarnetSteg.spørsmål.barnetsFødselsnummer')}
                                     inputMode="numeric"
                                     maxLength={11}
-                                    validate={validateField(OmBarnetFormFields.barnetsFødselsnummer, getFødselsnummerValidator({ required: true }))}
+                                    validate={validateField(
+                                        OmBarnetFormFields.barnetsFødselsnummer,
+                                        getFødselsnummerValidator({ required: true }),
+                                    )}
                                 />
                                 <TextField
                                     name={OmBarnetFormFields.barnetsNavn}
                                     label={text('omBarnetSteg.spørsmål.barnetsNavn')}
-                                    validate={validateField(OmBarnetFormFields.barnetsNavn, getStringValidator({ required: true }))}
+                                    validate={validateField(
+                                        OmBarnetFormFields.barnetsNavn,
+                                        getStringValidator({ required: true }),
+                                    )}
                                 />
                                 <RadioGroup
                                     name={OmBarnetFormFields.søkersRelasjonTilBarnet}
                                     legend={text('omBarnetSteg.spørsmål.søkersRelasjonTilBarnet')}
                                     radios={[
-                                        { value: SøkersRelasjonTilBarnet.MOR, label: text('omBarnetSteg.relasjon.mor') },
-                                        { value: SøkersRelasjonTilBarnet.FAR, label: text('omBarnetSteg.relasjon.far') },
-                                        { value: SøkersRelasjonTilBarnet.ADOPTIVFORELDER, label: text('omBarnetSteg.relasjon.adoptivforelder') },
-                                        { value: SøkersRelasjonTilBarnet.FOSTERFORELDER, label: text('omBarnetSteg.relasjon.fosterforelder') },
+                                        {
+                                            value: SøkersRelasjonTilBarnet.MOR,
+                                            label: text('omBarnetSteg.relasjon.mor'),
+                                        },
+                                        {
+                                            value: SøkersRelasjonTilBarnet.FAR,
+                                            label: text('omBarnetSteg.relasjon.far'),
+                                        },
+                                        {
+                                            value: SøkersRelasjonTilBarnet.ADOPTIVFORELDER,
+                                            label: text('omBarnetSteg.relasjon.adoptivforelder'),
+                                        },
+                                        {
+                                            value: SøkersRelasjonTilBarnet.FOSTERFORELDER,
+                                            label: text('omBarnetSteg.relasjon.fosterforelder'),
+                                        },
                                     ]}
-                                    validate={validateField(OmBarnetFormFields.søkersRelasjonTilBarnet, getRequiredFieldValidator())}
+                                    validate={validateField(
+                                        OmBarnetFormFields.søkersRelasjonTilBarnet,
+                                        getRequiredFieldValidator(),
+                                    )}
                                 />
                             </FormLayout.Questions>
                         </FormLayout.Section>
@@ -118,7 +147,10 @@ export const OmBarnetForm = () => {
                                 legend={text('omBarnetSteg.spørsmål.sammeAdresse')}
                                 radios={[
                                     { value: BarnSammeAdresse.JA, label: text('omBarnetSteg.sammeAdresse.JA') },
-                                    { value: BarnSammeAdresse.JA_DELT_BOSTED, label: text('omBarnetSteg.sammeAdresse.JA_DELT_BOSTED') },
+                                    {
+                                        value: BarnSammeAdresse.JA_DELT_BOSTED,
+                                        label: text('omBarnetSteg.sammeAdresse.JA_DELT_BOSTED'),
+                                    },
                                     { value: BarnSammeAdresse.NEI, label: text('omBarnetSteg.sammeAdresse.NEI') },
                                 ]}
                                 validate={validateField(OmBarnetFormFields.sammeAdresse, getRequiredFieldValidator())}
@@ -134,7 +166,10 @@ export const OmBarnetForm = () => {
                             <YesOrNoQuestion
                                 name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
                                 legend={text('omBarnetSteg.spørsmål.kroniskEllerFunksjonshemming')}
-                                validate={validateField(OmBarnetFormFields.kroniskEllerFunksjonshemming, getYesOrNoValidator())}
+                                validate={validateField(
+                                    OmBarnetFormFields.kroniskEllerFunksjonshemming,
+                                    getYesOrNoValidator(),
+                                )}
                             />
                             <AriaLiveRegion visible={!erKronisk && kroniskEllerFunksjonshemming === YesOrNo.NO}>
                                 <FormLayout.QuestionRelatedMessage>
@@ -149,7 +184,10 @@ export const OmBarnetForm = () => {
                                     <YesOrNoQuestion
                                         name={OmBarnetFormFields.høyereRisikoForFravær}
                                         legend={text('omBarnetSteg.spørsmål.høyereRisikoForFravær')}
-                                        validate={validateField(OmBarnetFormFields.høyereRisikoForFravær, getYesOrNoValidator())}
+                                        validate={validateField(
+                                            OmBarnetFormFields.høyereRisikoForFravær,
+                                            getYesOrNoValidator(),
+                                        )}
                                     />
                                     <AriaLiveRegion visible={høyereRisikoForFravær === YesOrNo.NO}>
                                         <FormLayout.QuestionRelatedMessage>
@@ -165,7 +203,10 @@ export const OmBarnetForm = () => {
                                 <Textarea
                                     name={OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}
                                     label={text('omBarnetSteg.spørsmål.høyereRisikoForFraværBeskrivelse')}
-                                    validate={validateField(OmBarnetFormFields.høyereRisikoForFraværBeskrivelse, getStringValidator({ required: true }))}
+                                    validate={validateField(
+                                        OmBarnetFormFields.høyereRisikoForFraværBeskrivelse,
+                                        getStringValidator({ required: true }),
+                                    )}
                                 />
                             </AriaLiveRegion>
                         </VStack>
