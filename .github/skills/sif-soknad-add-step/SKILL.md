@@ -153,6 +153,8 @@ export const <prefix>StegMessages_nb = {
 };
 ```
 
+> **Valideringsnøkkel-format:** `{scope}.validation.{felt}.{errorCode}` — der `scope` er strengen sendt til `useSifValidate('oppsummeringForm')` og `errorCode` er enum-verdien fra validatoren (f.eks. `notChecked`, `yesOrNoIsUnanswered`). Nøkkelen må finnes i i18n-filene, ellers vises raw key i UI.
+
 #### `i18n/nn.ts`
 
 Start med å spre `nb`. Nynorsk-oversettelse gjøres manuelt av utvikler i etterkant:
@@ -253,6 +255,18 @@ Legg til i `søknadStepConfig`:
 ```
 
 > **Route-strenger må ikke inneholde norske bokstaver (æ, ø, å).** Bruk ASCII-ekvivalenter: `legeerklaring` (ikke `legeerklæring`), `delt-bosted` osv. Norske tegn i URL-path bryter routing i nettlesere.
+
+**Betingede steg** som bare skal vises for noen brukere bruker `isIncluded`:
+
+```ts
+[SøknadStepId.DELT_BOSTED]: {
+    route: 'delt-bosted',
+    isIncluded: (s) => s[SøknadStepId.OM_BARNET]?.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED,
+    isCompleted: (s) => s[SøknadStepId.DELT_BOSTED] !== undefined,
+},
+```
+
+`søknadStepOrder` skal alltid inneholde **alle** steg inkl. betingede — `isIncluded` filtrerer dynamisk basert på søknadsdata. Ikke bruk manuell `getSøknadStepOrder`-funksjon.
 
 Legg til i `søknadStepOrder` på riktig posisjon.
 
