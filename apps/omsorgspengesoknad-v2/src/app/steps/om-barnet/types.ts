@@ -1,9 +1,10 @@
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
+import { ANNET_BARN } from '@sif/soknad-forms';
 import { YesOrNo } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 
-export const ANNET_BARN = 'ANNET_BARN';
+export { ANNET_BARN };
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',

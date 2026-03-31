@@ -58,6 +58,29 @@ I malene under brukes `<felt>` som plassholder for det **konkrete feltnavnet** d
 
 **Posisjon i stepOrder:** Plasser steget der brukeren ber om det. Hvis brukeren sier «førstesteg», legg det først. Hvis ingen posisjon er angitt, legg det sist før `OPPSUMMERING`.
 
+### Steg 1a — Sjekk om paneler fra @sif/soknad-forms kan brukes
+
+Før du bygger UI fra bunnen: sjekk om steget handler om noe `@sif/soknad-forms` allerede dekker.
+
+| Steg handler om | Bruk panel |
+| --------------- | ---------- |
+| Valg av registrert barn (radiogruppe med fødselsdato + kildeinfo) | `VelgRegistrertBarnPanel` |
+
+Hvis et panel passer: importer det og bruk `ANNET_BARN`-konstanten fra samme pakke i stedet for å definere den lokalt.
+
+```tsx
+import { ANNET_BARN, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
+```
+
+Eksporter `ANNET_BARN` fra `types.ts` via re-eksport hvis andre filer i steget trenger den:
+
+```ts
+import { ANNET_BARN } from '@sif/soknad-forms';
+export { ANNET_BARN };
+```
+
+---
+
 ### Steg 1b — Kartlegg betingelseslogikken fra v1 (ved migrering)
 
 Hvis steget porteres fra en eksisterende app: **les v1-skjemakomponenten FØR du skriver kode.** Finn filen som heter `<Prefix>Form.tsx` eller tilsvarende i kildeappen.

@@ -36,6 +36,33 @@ Ikke les andre steg eller utforsk mappestruktur utover dette.
 
 ---
 
+## Paneler fra @sif/soknad-forms
+
+Når en søknad porteres til nytt format, bruk ferdige paneler fra `@sif/soknad-forms` fremfor å implementere tilsvarende logikk manuelt. Panelene er typesikre, RHF-baserte og inneholder korrekt visning og i18n.
+
+| Panel | Beskrivelse | Viktige props |
+| ----- | ----------- | ------------- |
+| `VelgRegistrertBarnPanel<T>` | Radiogruppe for valg av registrert barn med fødselsdato og kildeinfo | `name`, `registrerteBarn`, `inkluderAnnetBarn?`, `annetBarnLabel?`, `validate?` |
+
+Eksporterte konstanter:
+- `ANNET_BARN = 'annetBarn'` — verdien som settes i skjemaet når bruker velger "annet barn"
+
+Bruksmønster:
+```tsx
+import { ANNET_BARN, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
+
+<VelgRegistrertBarnPanel<MyFormValues>
+    name={MyFormFields.barnetSøknadenGjelder}
+    registrerteBarn={registrerteBarn}
+    inkluderAnnetBarn={true}
+    validate={validateField(MyFormFields.barnetSøknadenGjelder, getRequiredFieldValidator())}
+/>
+```
+
+Ved migrering fra gammel `VelgBarnFormPart` (fra `@navikt/sif-common-forms-ds`): erstatt den alltid med `VelgRegistrertBarnPanel`. Legg til `@sif/soknad-forms` i `dependencies` hvis det mangler i app-ens `package.json`.
+
+---
+
 ## Komponentkatalog
 
 `createSifFormComponents<T>()` fra `@sif/rhf` gir disse komponentene:

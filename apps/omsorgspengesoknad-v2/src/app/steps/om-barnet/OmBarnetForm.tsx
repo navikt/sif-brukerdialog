@@ -5,7 +5,7 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
-import { Alert } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
 import {
     getDateValidator,
@@ -16,6 +16,7 @@ import {
 } from '@navikt/sif-validation';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
+import { VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 import { AriaLiveRegion, FormLayout } from '@sif/soknad-ui/components';
 import { useEffect } from 'react';
 
@@ -73,22 +74,18 @@ export const OmBarnetForm = () => {
     const visHøyereRisikoSpørsmål = harValgtBarn && kroniskEllerFunksjonshemming === YesOrNo.YES;
     const visHøyereRisikoBeskrivelseSpørsmål = visHøyereRisikoSpørsmål && høyereRisikoForFravær === YesOrNo.YES;
 
-    const barnRadioOptions = [
-        ...registrerteBarn.map((b) => ({
-            value: b.aktørId,
-            label: `${b.fornavn}${b.etternavn ? ` ${b.etternavn}` : ''}`,
-        })),
-        { value: ANNET_BARN, label: text('omBarnetSteg.valgAnnetBarn') },
-    ];
-
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
             <FormLayout.Content>
                 <FormLayout.Questions>
-                    <RadioGroup
+                    <Heading size="medium" level="2">
+                        <AppText id="omBarnetSteg.spørsmål.barnetSøknadenGjelder" />
+                    </Heading>
+                    <VelgRegistrertBarnPanel<OmBarnetFormValues>
                         name={OmBarnetFormFields.barnetSøknadenGjelder}
-                        legend={text('omBarnetSteg.spørsmål.barnetSøknadenGjelder')}
-                        radios={barnRadioOptions}
+                        registrerteBarn={registrerteBarn}
+                        inkluderAnnetBarn={true}
+                        annetBarnLabel={text('omBarnetSteg.valgAnnetBarn')}
                         validate={validateField(OmBarnetFormFields.barnetSøknadenGjelder, getRequiredFieldValidator())}
                     />
 

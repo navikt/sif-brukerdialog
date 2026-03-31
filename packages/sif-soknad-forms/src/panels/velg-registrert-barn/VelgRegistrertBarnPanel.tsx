@@ -7,7 +7,7 @@ import { FieldValues, Path } from 'react-hook-form';
 
 import { SifSoknadFormsText, useSifSoknadFormsIntl } from '../../i18n';
 
-export const ANNET_REGISTRERT_BARN_VALUE = 'annetBarn';
+export const ANNET_BARN = 'annetBarn';
 
 interface Props<T extends FieldValues> {
     name: Path<T>;
@@ -48,7 +48,7 @@ export function VelgRegistrertBarnPanel<T extends FieldValues>({
 
         if (inkluderAnnetBarn) {
             options.push({
-                value: ANNET_REGISTRERT_BARN_VALUE,
+                value: ANNET_BARN,
                 label: annetBarnLabel ?? text('@sifSoknadForms.velgRegistrertBarn.gjelderAnnetBarn'),
             });
         }
