@@ -1,5 +1,4 @@
 import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker, useYtelseMellomlagring } from '@sif/api/k9-prosessering';
-import { kontonummerFallback, useKontonummer, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { useMemo } from 'react';
 
 import { søknadStepConfig } from './app/setup/config/soknadStepConfig';
@@ -9,7 +8,6 @@ import { MellomlagringMetaData, SøknadMellomlagring } from './app/types/Melloml
 interface InitialData {
     søker: Søker;
     barn: RegistrertBarn[];
-    kontonummer: UtvidetKontonummerInfo;
     mellomlagring?: SøknadMellomlagring;
 }
 
@@ -27,7 +25,6 @@ const getValidertMellomlagring = (data: SøknadMellomlagring | null | undefined)
 export const useInitialData = (): InitialDataResult => {
     const søker = useSøker();
     const registrerteBarn = useRegistrerteBarn();
-    const kontonummer = useKontonummer();
 
     const metadata = useMemo<MellomlagringMetaData | undefined>((): MellomlagringMetaData | undefined => {
         if (!søker.isFetched || !registrerteBarn.isFetched || !søker.data || !registrerteBarn.data) {
@@ -44,7 +41,7 @@ export const useInitialData = (): InitialDataResult => {
 
     const requiredQueries = [søker, registrerteBarn];
 
-    if (requiredQueries.some((q) => q.isLoading) || kontonummer.isLoading || (metadata && mellomlagring.isLoading)) {
+    if (requiredQueries.some((q) => q.isLoading) || (metadata && mellomlagring.isLoading)) {
         return { status: 'loading' };
     }
 
@@ -62,7 +59,6 @@ export const useInitialData = (): InitialDataResult => {
         data: {
             søker: søker.data,
             barn: registrerteBarn.data,
-            kontonummer: kontonummer.data ?? kontonummerFallback,
             mellomlagring: getValidertMellomlagring(mellomlagring.data),
         },
     };

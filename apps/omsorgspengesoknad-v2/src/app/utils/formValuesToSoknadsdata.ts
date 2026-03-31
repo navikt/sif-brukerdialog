@@ -1,7 +1,7 @@
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { StepFormValues, StepSøknadsdata } from '@sif/soknad/types';
 
-export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormValues): StepSøknadsdata | undefined => {
+export const formValuesToSøknadsdata = (stepId: string, _formValues: StepFormValues): StepSøknadsdata | undefined => {
     switch (stepId) {
         case SøknadStepId.OM_BARNET:
             // TODO: implementeres i fase 5a
