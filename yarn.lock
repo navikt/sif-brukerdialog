@@ -5093,6 +5093,7 @@ __metadata:
     "@navikt/sif-common-env": "workspace:*"
     "@navikt/sif-common-faro": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:^"
     "@navikt/sif-validation": "workspace:*"
     "@playwright/test": "npm:1.58.2"
     "@sentry/react": "npm:10.45.0"
@@ -5907,7 +5908,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-utils@workspace:*, @navikt/sif-common-utils@workspace:packages/sif-common-utils":
+"@navikt/sif-common-utils@workspace:*, @navikt/sif-common-utils@workspace:^, @navikt/sif-common-utils@workspace:packages/sif-common-utils":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-utils@workspace:packages/sif-common-utils"
   dependencies:

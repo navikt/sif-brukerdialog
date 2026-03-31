@@ -1,3 +1,4 @@
+import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { StepConfig } from '@sif/soknad/types';
 
@@ -9,11 +10,12 @@ export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
         isCompleted: (s) => s[SøknadStepId.OM_BARNET] !== undefined,
     },
     [SøknadStepId.LEGEERKLÆRING]: {
-        route: 'legeerklæring',
+        route: 'legeerklaring',
         isCompleted: (s) => s[SøknadStepId.LEGEERKLÆRING] !== undefined,
     },
     [SøknadStepId.DELT_BOSTED]: {
         route: 'delt-bosted',
+        isIncluded: (s) => s[SøknadStepId.OM_BARNET]?.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED,
         isCompleted: (s) => s[SøknadStepId.DELT_BOSTED] !== undefined,
     },
     [SøknadStepId.OPPSUMMERING]: {
@@ -21,20 +23,9 @@ export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
     },
 };
 
-const baseStepOrder: SøknadStepId[] = [SøknadStepId.OM_BARNET, SøknadStepId.LEGEERKLÆRING, SøknadStepId.OPPSUMMERING];
-
-/** Dynamisk stepOrder — inkluderer DELT_BOSTED kun hvis barnet har delt bosted */
-export const getSøknadStepOrder = (inkluderDeltBosted: boolean): SøknadStepId[] => {
-    if (inkluderDeltBosted) {
-        return [
-            SøknadStepId.OM_BARNET,
-            SøknadStepId.LEGEERKLÆRING,
-            SøknadStepId.DELT_BOSTED,
-            SøknadStepId.OPPSUMMERING,
-        ];
-    }
-    return baseStepOrder;
-};
-
-/** Default stepOrder uten DELT_BOSTED — brukes ved initialisering */
-export const søknadStepOrder: SøknadStepId[] = baseStepOrder;
+export const søknadStepOrder: SøknadStepId[] = [
+    SøknadStepId.OM_BARNET,
+    SøknadStepId.LEGEERKLÆRING,
+    SøknadStepId.DELT_BOSTED,
+    SøknadStepId.OPPSUMMERING,
+];

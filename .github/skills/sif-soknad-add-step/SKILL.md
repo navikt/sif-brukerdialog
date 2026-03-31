@@ -80,6 +80,27 @@ Sjekk spesielt inversjonsfeil — det er den vanligste feilen ved portering:
 
 Skriv ned kartleggingen som kommentarer øverst i `<Prefix>Form.tsx` eller som lokale variabler med selvforklarende navn, og verifiser mot v1 før du leverer.
 
+### Steg 1c — API-typer fra k9-brukerdialog-prosessering-api
+
+Pakken `@navikt/k9-brukerdialog-prosessering-api` re-eksporterer typer fra mange ytelser. Bruk **alltid** ytelse-spesifikk subpath — ikke flat import fra rot.
+
+```ts
+// ✅ Riktig — omsorgspenger-spesifikk Barn og søknadstype
+import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+export type SøknadApiData = omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad;
+
+// ❌ Feil — henter fra legacy client/types.gen.ts som har andre (feil) typer
+import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+```
+
+Tilgjengelige subpaths: `omsorgspenger`, `aktivitetspenger`, `ungdomsytelse`, `ettersendelse`, `omsorgspenger-aleneomsorg`, o.l. — se `src/index.ts` i pakken.
+
+Samme prinsipp gjelder controllers i `sendSoknad.ts`:
+```ts
+// ✅
+await omsorgspenger.OmsorgspengerUtvidetRettController.innsendingOmsorgspengerKroniskSyktBarnSøknad(...)
+```
+
 ### Steg 2 — Opprett nye filer
 
 Opprett 5 filer under `src/app/steps/<mappename>/`:
@@ -230,6 +251,8 @@ Legg til i `søknadStepConfig`:
     isCompleted: (s) => s.<camelCase> !== undefined,
 },
 ```
+
+> **Route-strenger må ikke inneholde norske bokstaver (æ, ø, å).** Bruk ASCII-ekvivalenter: `legeerklaring` (ikke `legeerklæring`), `delt-bosted` osv. Norske tegn i URL-path bryter routing i nettlesere.
 
 Legg til i `søknadStepOrder` på riktig posisjon.
 

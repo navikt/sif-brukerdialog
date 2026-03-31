@@ -28,13 +28,9 @@ interface OmBarnetSøknadsdata_AnnetBarn {
 
 export type OmBarnetSøknadsdata = OmBarnetSøknadsdata_RegistrertBarn | OmBarnetSøknadsdata_AnnetBarn;
 
-export type LegeerklæringSøknadsdata = {
-    // TODO: implementeres i fase 5b
-};
+export type LegeerklæringSøknadsdata = Record<string, never>;
 
-export type DeltBostedSøknadsdata = {
-    // TODO: implementeres i fase 5c
-};
+export type DeltBostedSøknadsdata = Record<string, never>;
 
 export interface Søknadsdata extends BaseSøknadsdata {
     [SøknadStepId.OM_BARNET]?: OmBarnetSøknadsdata;
