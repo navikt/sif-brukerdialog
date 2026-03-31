@@ -40,7 +40,11 @@ After bootstrap:
 
 1. Use `sif-soknad-setup` for the app setup layer under `src/app/setup`.
 2. Use `sif-initial-data-loader` for `useInitialData.ts` and `InitialDataLoader.tsx`.
-3. Use `sif-soknad-add-step` and `sif-soknad-modify-step` for step work.
+3. Use `sif-soknad-pages` for `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` and `steps/index.ts`.
+4. Use `sif-soknad-add-step` and `sif-soknad-modify-step` for step work.
+5. Do i18n cleanup (nynorsk, nøkkelrydding) **after** all steps are implemented — not before. Reason: step implementation reveals the exact keys needed, avoiding placeholder churn.
+
+> Skill-rekkefølge per mottaksapp: `sif-migration-baseline` → `sif-soknad-setup` → `sif-initial-data-loader` → `sif-soknad-pages` → `sif-soknad-add-step` (x N steg) → `sif-intl`.
 
 ### Baseline files to include
 

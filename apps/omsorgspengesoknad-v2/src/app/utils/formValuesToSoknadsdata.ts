@@ -4,7 +4,7 @@ import { StepFormValues, StepSøknadsdata } from '@sif/soknad/types';
 export const formValuesToSøknadsdata = (stepId: string, _formValues: StepFormValues): StepSøknadsdata | undefined => {
     switch (stepId) {
         case SøknadStepId.OM_BARNET:
-            // TODO: implementeres i fase 5a
+            // Mapping krever registrerteBarn — gjøres i OmBarnetForm via useStepSubmit
             return undefined;
         case SøknadStepId.LEGEERKLÆRING:
             // TODO: implementeres i fase 5b

@@ -19,6 +19,7 @@ Scaffold et komplett nytt steg i en søknadsapp. Etter at skillen er kjørt skal
 - **Kun** scaffold og kobling — ikke domenelogikk, API-kall eller avansert UI.
 - Stegets innhold utvides etter at grunnstrukturen er på plass.
 - For oppsett av selve setup-laget (context, store, hooks) → bruk `sif-soknad-setup`.
+- For oppsett av `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` og `steps/index.ts` → bruk [sif-soknad-pages](../sif-soknad-pages/SKILL.md).
 - For i18n-konvensjoner utover det som dekkes her → bruk `sif-intl`.
 
 ## Arbeidsmodus

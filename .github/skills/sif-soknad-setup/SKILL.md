@@ -21,6 +21,7 @@ Guide for å sette opp `src/app/setup/`-mappen i en ny app som bruker `@sif/sokn
 - Omfatter setup-laget, ikke steginnhold, initial data-flyt, API-kall, velkomst- og kvitteringssider.
 - Kildereferanse: `apps/sif-demo-app/src/app/setup/` og `apps/aktivitetspenger-soknad/src/app/setup/`.
 - For initial data-flyt (`useInitialData`, `InitialDataLoader`) → bruk `sif-initial-data-loader`.
+- For `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` og `steps/index.ts` → bruk [sif-soknad-pages](../sif-soknad-pages/SKILL.md).
 
 ## Avgrensning mot initial data
 
