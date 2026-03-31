@@ -4480,7 +4480,7 @@ __metadata:
     "@navikt/ds-tailwind": "npm:8.9.0"
     "@navikt/k9-sak-innsyn-api": "workspace:*"
     "@navikt/nav-dekoratoren-moduler": "npm:3.7.0"
-    "@navikt/next-logger": "npm:4.5.1"
+    "@navikt/next-logger": "npm:5.0.0"
     "@navikt/oasis": "npm:4.1.4"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-analytics": "workspace:*"
@@ -4795,15 +4795,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/next-logger@npm:4.5.1":
-  version: 4.5.1
-  resolution: "@navikt/next-logger@npm:4.5.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnext-logger%2F4.5.1%2Fe8c32873a7931396b0871c77b94673cbfb12d376"
+"@navikt/next-logger@npm:5.0.0":
+  version: 5.0.0
+  resolution: "@navikt/next-logger@npm:5.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnext-logger%2F5.0.0%2F510dccac519d1227515e4c8a8268570d90305b3e"
   dependencies:
-    "@navikt/pino-logger": "npm:^4.5.1"
+    "@navikt/pino-logger": "npm:^5.0.0"
   peerDependencies:
     next: 14 || 15 || 16
     pino: 8 || 9 || 10
-  checksum: 10/5ebf09929d2b479c9624d03b5f9b218cb21dfc730f97b3342429fd6f94de680128240ea472bf36897bbe9ee43d6827bc1aa62d35fe1e9dc1ee5c6f6360129655
+  checksum: 10/693f3fa626be6083d67c3a6942523102396f8314cfd5fe2502047f3ec464b1c45819e20f93923af8a6675a68c79145d9172be85ca7fefa781168f547bb688918
   languageName: node
   linkType: hard
 
@@ -5234,9 +5234,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/pino-logger@npm:^4.5.1":
-  version: 4.5.1
-  resolution: "@navikt/pino-logger@npm:4.5.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fpino-logger%2F4.5.1%2F761f1f0fdc9c5274960c259c0a3213b3989b5927"
+"@navikt/pino-logger@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@navikt/pino-logger@npm:5.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fpino-logger%2F5.0.0%2F5f799d5d37d66c8a80f8dcf0131ddb41466dc4f3"
   dependencies:
     "@opentelemetry/api": "npm:^1.9.0"
     pino-socket: "npm:7.4.0"
@@ -5245,7 +5245,7 @@ __metadata:
   dependenciesMeta:
     pino-socket:
       optional: true
-  checksum: 10/32093fd4b7703c9deede10b9730603ad19d02643a26bc628b884d9f7594786938754b80823eca12fa50506d58fa6058962f21d352fac69f1f672442917c01c1c
+  checksum: 10/ffbd0cafaa382e49f526ed7afd99229c55c6846defaf08d32377c2845d1b0f507ff5f0226a15a3033817827d629e3e1279f9754f52bb9e2bd380a950f92714b5
   languageName: node
   linkType: hard
 
