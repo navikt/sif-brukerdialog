@@ -6,11 +6,9 @@ export const useStepTitles = (): Record<SøknadStepId, string> => {
     const { text } = useAppIntl();
 
     const stepTitles: Record<SøknadStepId, string> = {
-        [SøknadStepId.ANDRE_YTELSER]: text('step.andreYtelser.title'),
-        [SøknadStepId.KONTONUMMER]: text('step.kontonummer.title'),
-        [SøknadStepId.BOSTED]: text('step.bosted.title'),
-        [SøknadStepId.BOSTED_UTLAND]: text('step.bostedUtland.title'),
-        [SøknadStepId.BARN]: text('step.barn.title'),
+        [SøknadStepId.OM_BARNET]: text('step.omBarnet.title'),
+        [SøknadStepId.LEGEERKLÆRING]: text('step.legeerklaering.title'),
+        [SøknadStepId.DELT_BOSTED]: text('step.deltBosted.title'),
         [SøknadStepId.OPPSUMMERING]: text('step.oppsummering.title'),
     };
     return stepTitles;

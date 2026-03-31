@@ -1,11 +1,11 @@
-import { AktivitetspengerController } from '@navikt/k9-brukerdialog-prosessering-api';
+import { OmsorgspengerUtvidetRettController } from '@navikt/k9-brukerdialog-prosessering-api';
 import { commonRequestHeader, handleApiError } from '@sif/api';
 
 import { SøknadApiData } from '../types/SoknadApiData';
 
-export const sendSøknad = async (data: SøknadApiData): Promise<any> => {
+export const sendSøknad = async (data: SøknadApiData): Promise<void> => {
     try {
-        await AktivitetspengerController.innsendingAktivitetspengersøknad({
+        await OmsorgspengerUtvidetRettController.innsendingOmsorgspengerKroniskSyktBarnSøknad({
             body: data,
             headers: commonRequestHeader,
         });

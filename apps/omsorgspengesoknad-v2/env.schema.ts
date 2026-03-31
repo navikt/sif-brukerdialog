@@ -5,10 +5,8 @@ export enum AppEnvKey {
     'VELG_SCENARIO' = 'VELG_SCENARIO',
 }
 
-export const appEnvSchema = commonEnvSchema
-    .extend(k9SakInnsynEnvSchema.shape)
-    .extend({
-        [AppEnvKey.VELG_SCENARIO]: z.string().optional(),
-    });
+export const appEnvSchema = commonEnvSchema.extend(k9SakInnsynEnvSchema.shape).extend({
+    [AppEnvKey.VELG_SCENARIO]: z.string().optional(),
+});
 
 export type AppEnv = z.infer<typeof appEnvSchema>;

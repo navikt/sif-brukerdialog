@@ -4,4 +4,3 @@ export const lenker = {
 
 const getLenker = () => ({ skatteetaten: '#' });
 export default getLenker;
-

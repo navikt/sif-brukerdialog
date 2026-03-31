@@ -4,36 +4,37 @@ import { StepConfig } from '@sif/soknad/types';
 import { SøknadStepId } from './SoknadStepId';
 
 export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
-    [SøknadStepId.ANDRE_YTELSER]: {
-        route: 'andre-ytelser',
-        isCompleted: (s) => s.andreYtelser !== undefined,
+    [SøknadStepId.OM_BARNET]: {
+        route: 'om-barnet',
+        isCompleted: (s) => s[SøknadStepId.OM_BARNET] !== undefined,
     },
-    [SøknadStepId.KONTONUMMER]: {
-        route: 'kontonummer',
-        isCompleted: (s) => s.kontonummer !== undefined,
+    [SøknadStepId.LEGEERKLÆRING]: {
+        route: 'legeerklæring',
+        isCompleted: (s) => s[SøknadStepId.LEGEERKLÆRING] !== undefined,
     },
-    [SøknadStepId.BOSTED]: {
-        route: 'bosted',
-        isCompleted: (s) => s.bosted !== undefined,
-    },
-    [SøknadStepId.BOSTED_UTLAND]: {
-        route: 'bosted-utland',
-        isCompleted: (s) => s.bostedUtland !== undefined,
-    },
-    [SøknadStepId.BARN]: {
-        route: 'barn',
-        isCompleted: (s) => s.barn !== undefined,
+    [SøknadStepId.DELT_BOSTED]: {
+        route: 'delt-bosted',
+        isCompleted: (s) => s[SøknadStepId.DELT_BOSTED] !== undefined,
     },
     [SøknadStepId.OPPSUMMERING]: {
         route: 'oppsummering',
     },
 };
 
-export const søknadStepOrder: SøknadStepId[] = [
-    SøknadStepId.ANDRE_YTELSER,
-    SøknadStepId.KONTONUMMER,
-    SøknadStepId.BOSTED,
-    SøknadStepId.BOSTED_UTLAND,
-    SøknadStepId.BARN,
-    SøknadStepId.OPPSUMMERING,
-];
+const baseStepOrder: SøknadStepId[] = [SøknadStepId.OM_BARNET, SøknadStepId.LEGEERKLÆRING, SøknadStepId.OPPSUMMERING];
+
+/** Dynamisk stepOrder — inkluderer DELT_BOSTED kun hvis barnet har delt bosted */
+export const getSøknadStepOrder = (inkluderDeltBosted: boolean): SøknadStepId[] => {
+    if (inkluderDeltBosted) {
+        return [
+            SøknadStepId.OM_BARNET,
+            SøknadStepId.LEGEERKLÆRING,
+            SøknadStepId.DELT_BOSTED,
+            SøknadStepId.OPPSUMMERING,
+        ];
+    }
+    return baseStepOrder;
+};
+
+/** Default stepOrder uten DELT_BOSTED — brukes ved initialisering */
+export const søknadStepOrder: SøknadStepId[] = baseStepOrder;

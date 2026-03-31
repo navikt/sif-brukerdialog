@@ -25,10 +25,7 @@ if (globalThis.location.pathname === '/') {
 
 export const App = () => {
     return (
-        <FaroProvider
-            applicationKey={OmsorgsdagerKroniskApp.key}
-            appVersion={appEnv.APP_VERSION}
-            isActive={false}>
+        <FaroProvider applicationKey={OmsorgsdagerKroniskApp.key} appVersion={appEnv.APP_VERSION} isActive={false}>
             <AppErrorBoundary>
                 <SifQueryClientProvider>
                     <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
