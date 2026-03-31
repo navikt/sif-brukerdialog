@@ -58,6 +58,28 @@ I malene under brukes `<felt>` som plassholder for det **konkrete feltnavnet** d
 
 **Posisjon i stepOrder:** Plasser steget der brukeren ber om det. Hvis brukeren sier «førstesteg», legg det først. Hvis ingen posisjon er angitt, legg det sist før `OPPSUMMERING`.
 
+### Steg 1b — Kartlegg betingelseslogikken fra v1 (ved migrering)
+
+Hvis steget porteres fra en eksisterende app: **les v1-skjemakomponenten FØR du skriver kode.** Finn filen som heter `<Prefix>Form.tsx` eller tilsvarende i kildeappen.
+
+Kartlegg eksplisitt:
+
+```
+felt A → alltid synlig
+felt B → synlig når felt A === YES
+felt C → synlig når felt B === NO
+alert X → synlig når felt A === NO
+```
+
+Sjekk spesielt inversjonsfeil — det er den vanligste feilen ved portering:
+
+| v1-kode | Feil v2-kode | Riktig v2-kode |
+|---|---|---|
+| `kronisk === YES` | `kronisk === NO` | `kronisk === YES` |
+| `harBarn === false` | `harBarn === true` | `harBarn === false` |
+
+Skriv ned kartleggingen som kommentarer øverst i `<Prefix>Form.tsx` eller som lokale variabler med selvforklarende navn, og verifiser mot v1 før du leverer.
+
 ### Steg 2 — Opprett nye filer
 
 Opprett 5 filer under `src/app/steps/<mappename>/`:

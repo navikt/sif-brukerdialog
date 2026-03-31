@@ -47,7 +47,7 @@ export const toOmBarnetSøknadsdata = (
 
     const erKronisk = kroniskEllerFunksjonshemming === YesOrNo.YES;
     const høyereRisikoForFravær =
-        !erKronisk && data.høyereRisikoForFravær !== undefined ? data.høyereRisikoForFravær === YesOrNo.YES : undefined;
+        erKronisk && data.høyereRisikoForFravær !== undefined ? data.høyereRisikoForFravær === YesOrNo.YES : undefined;
     const høyereRisikoForFraværBeskrivelse = høyereRisikoForFravær ? data.høyereRisikoForFraværBeskrivelse : undefined;
 
     if (barnetSøknadenGjelder === ANNET_BARN) {

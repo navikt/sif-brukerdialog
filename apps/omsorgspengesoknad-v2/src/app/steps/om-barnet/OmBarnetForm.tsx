@@ -70,8 +70,7 @@ export const OmBarnetForm = () => {
     }, [søknadenGjelderAnnetBarn]);
 
     const visIkkeSammeAdresseAlert = sammeAdresse === BarnSammeAdresse.NEI;
-    const erKronisk = kroniskEllerFunksjonshemming === YesOrNo.YES;
-    const visHøyereRisikoSpørsmål = harValgtBarn && kroniskEllerFunksjonshemming === YesOrNo.NO;
+    const visHøyereRisikoSpørsmål = harValgtBarn && kroniskEllerFunksjonshemming === YesOrNo.YES;
     const visHøyereRisikoBeskrivelseSpørsmål = visHøyereRisikoSpørsmål && høyereRisikoForFravær === YesOrNo.YES;
 
     const barnRadioOptions = [
@@ -184,7 +183,7 @@ export const OmBarnetForm = () => {
                                     getYesOrNoValidator(),
                                 )}
                             />
-                            <AriaLiveRegion visible={!erKronisk && kroniskEllerFunksjonshemming === YesOrNo.NO}>
+                            <AriaLiveRegion visible={kroniskEllerFunksjonshemming === YesOrNo.NO}>
                                 <QuestionRelatedMessage>
                                     <Alert variant="warning">
                                         <AppText id="omBarnetSteg.alert.ikkeKronisk" />
