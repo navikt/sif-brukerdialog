@@ -271,6 +271,24 @@ I `toSøknadsdata`, sett avhengige felter til `undefined` når betingelsen ikke 
 nyttFelt: data.triggerFelt === YesOrNo.YES ? data.nyttFelt : undefined,
 ```
 
+### AriaLiveRegion med tilhørende melding (Alert)
+
+Bruk `AriaLiveRegion` fra `@sif/soknad-ui/components` når innhold skal annonseres til skjermlesere ved dynamisk visning. Kombinert med `QuestionRelatedMessage` (fra `@navikt/sif-common-ui`) trekkes meldingen visuelt nærmere spørsmålet den tilhører via `Bleed` med negativ top-margin:
+
+```tsx
+import { AriaLiveRegion } from '@sif/soknad-ui/components';
+import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
+
+<YesOrNoQuestion name={...} ... />
+<AriaLiveRegion visible={feltVerdi === YesOrNo.NO}>
+    <QuestionRelatedMessage>
+        <Alert variant="warning">...</Alert>
+    </QuestionRelatedMessage>
+</AriaLiveRegion>
+```
+
+Merk: `QuestionRelatedMessage` inne i `AriaLiveRegion` fungerer korrekt — `Bleed`'s negative top-margin trekker Alert-en opp mot spørsmålet over, som er tiltenkt visuell effekt.
+
 ---
 
 ## Sjekkliste

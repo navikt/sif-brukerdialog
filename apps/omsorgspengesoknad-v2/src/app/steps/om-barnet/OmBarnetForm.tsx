@@ -5,7 +5,8 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
+import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
 import {
     getDateValidator,
     getFødselsnummerValidator,
@@ -62,9 +63,9 @@ export const OmBarnetForm = () => {
     const visHøyereRisikoBeskrivelseSpørsmål = visHøyereRisikoSpørsmål && høyereRisikoForFravær === YesOrNo.YES;
 
     const barnRadioOptions = [
-        ...registrerteBarn.map((barn) => ({
-            value: barn.aktørId,
-            label: `${barn.fornavn}${barn.etternavn ? ` ${barn.etternavn}` : ''}`,
+        ...registrerteBarn.map((b) => ({
+            value: b.aktørId,
+            label: `${b.fornavn}${b.etternavn ? ` ${b.etternavn}` : ''}`,
         })),
         { value: ANNET_BARN, label: text('omBarnetSteg.valgAnnetBarn') },
     ];
@@ -141,7 +142,7 @@ export const OmBarnetForm = () => {
                     </AriaLiveRegion>
 
                     <AriaLiveRegion visible={harValgtBarn}>
-                        <VStack gap="space-16">
+                        <FormLayout.Questions>
                             <RadioGroup
                                 name={OmBarnetFormFields.sammeAdresse}
                                 legend={text('omBarnetSteg.spørsmål.sammeAdresse')}
@@ -156,11 +157,11 @@ export const OmBarnetForm = () => {
                                 validate={validateField(OmBarnetFormFields.sammeAdresse, getRequiredFieldValidator())}
                             />
                             <AriaLiveRegion visible={visIkkeSammeAdresseAlert}>
-                                <FormLayout.QuestionRelatedMessage>
+                                <QuestionRelatedMessage>
                                     <Alert variant="warning">
                                         <AppText id="omBarnetSteg.alert.ikkeSammeAdresse" />
                                     </Alert>
-                                </FormLayout.QuestionRelatedMessage>
+                                </QuestionRelatedMessage>
                             </AriaLiveRegion>
 
                             <YesOrNoQuestion
@@ -172,15 +173,15 @@ export const OmBarnetForm = () => {
                                 )}
                             />
                             <AriaLiveRegion visible={!erKronisk && kroniskEllerFunksjonshemming === YesOrNo.NO}>
-                                <FormLayout.QuestionRelatedMessage>
+                                <QuestionRelatedMessage>
                                     <Alert variant="warning">
                                         <AppText id="omBarnetSteg.alert.ikkeKronisk" />
                                     </Alert>
-                                </FormLayout.QuestionRelatedMessage>
+                                </QuestionRelatedMessage>
                             </AriaLiveRegion>
 
                             <AriaLiveRegion visible={visHøyereRisikoSpørsmål}>
-                                <VStack gap="space-16">
+                                <FormLayout.Questions>
                                     <YesOrNoQuestion
                                         name={OmBarnetFormFields.høyereRisikoForFravær}
                                         legend={text('omBarnetSteg.spørsmål.høyereRisikoForFravær')}
@@ -190,13 +191,13 @@ export const OmBarnetForm = () => {
                                         )}
                                     />
                                     <AriaLiveRegion visible={høyereRisikoForFravær === YesOrNo.NO}>
-                                        <FormLayout.QuestionRelatedMessage>
+                                        <QuestionRelatedMessage>
                                             <Alert variant="warning">
                                                 <AppText id="omBarnetSteg.alert.ikkeHøyereRisiko" />
                                             </Alert>
-                                        </FormLayout.QuestionRelatedMessage>
+                                        </QuestionRelatedMessage>
                                     </AriaLiveRegion>
-                                </VStack>
+                                </FormLayout.Questions>
                             </AriaLiveRegion>
 
                             <AriaLiveRegion visible={visHøyereRisikoBeskrivelseSpørsmål}>
@@ -209,7 +210,7 @@ export const OmBarnetForm = () => {
                                     )}
                                 />
                             </AriaLiveRegion>
-                        </VStack>
+                        </FormLayout.Questions>
                     </AriaLiveRegion>
                 </FormLayout.Questions>
             </FormLayout.Content>
