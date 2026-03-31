@@ -213,7 +213,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@axe-core/playwright@npm:4.11.1, @axe-core/playwright@npm:^4.11.1":
+"@axe-core/playwright@npm:4.11.1":
   version: 4.11.1
   resolution: "@axe-core/playwright@npm:4.11.1"
   dependencies:
@@ -4330,7 +4330,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/aktivitetspenger-innsyn@workspace:apps/aktivitetspenger-innsyn"
   dependencies:
-    "@axe-core/playwright": "npm:^4.11.1"
+    "@axe-core/playwright": "npm:4.11.1"
     "@navikt/aksel-icons": "npm:8.9.0"
     "@navikt/ds-css": "npm:8.9.0"
     "@navikt/ds-react": "npm:8.9.0"
@@ -4345,7 +4345,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@navikt/ung-brukerdialog-api": "workspace:*"
-    "@playwright/test": "npm:^1.58.2"
+    "@playwright/test": "npm:1.58.2"
     "@sentry/react": "npm:10.45.0"
     "@sentry/vite-plugin": "npm:5.1.1"
     "@sif/api": "workspace:*"
@@ -4389,7 +4389,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/aktivitetspenger-soknad@workspace:apps/aktivitetspenger-soknad"
   dependencies:
-    "@axe-core/playwright": "npm:^4.11.1"
+    "@axe-core/playwright": "npm:4.11.1"
     "@navikt/aksel-icons": "npm:8.9.0"
     "@navikt/ds-css": "npm:8.9.0"
     "@navikt/ds-react": "npm:8.9.0"
@@ -4402,7 +4402,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
-    "@playwright/test": "npm:^1.58.2"
+    "@playwright/test": "npm:1.58.2"
     "@sentry/react": "npm:10.45.0"
     "@sentry/vite-plugin": "npm:5.1.1"
     "@sif/api": "workspace:*"
@@ -5074,6 +5074,64 @@ __metadata:
     vite: "npm:8.0.2"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.1"
+  languageName: unknown
+  linkType: soft
+
+"@navikt/omsorgspengesoknad-v2@workspace:apps/omsorgspengesoknad-v2":
+  version: 0.0.0-use.local
+  resolution: "@navikt/omsorgspengesoknad-v2@workspace:apps/omsorgspengesoknad-v2"
+  dependencies:
+    "@axe-core/playwright": "npm:4.11.1"
+    "@navikt/aksel-icons": "npm:8.9.0"
+    "@navikt/ds-css": "npm:8.9.0"
+    "@navikt/ds-react": "npm:8.9.0"
+    "@navikt/ds-tailwind": "npm:8.9.0"
+    "@navikt/fnrvalidator": "npm:2.2.1"
+    "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
+    "@navikt/k9-sak-innsyn-api": "workspace:*"
+    "@navikt/sif-app-register": "workspace:*"
+    "@navikt/sif-common-env": "workspace:*"
+    "@navikt/sif-common-faro": "workspace:*"
+    "@navikt/sif-common-hooks": "workspace:*"
+    "@navikt/sif-validation": "workspace:*"
+    "@playwright/test": "npm:1.58.2"
+    "@sentry/react": "npm:10.45.0"
+    "@sentry/vite-plugin": "npm:5.1.1"
+    "@sif/api": "workspace:*"
+    "@sif/eslint-config": "workspace:*"
+    "@sif/rhf": "workspace:*"
+    "@sif/soknad": "workspace:*"
+    "@sif/soknad-forms": "workspace:*"
+    "@sif/soknad-ui": "workspace:*"
+    "@sonar/scan": "npm:4.3.5"
+    "@storybook/addon-a11y": "npm:10.3.3"
+    "@storybook/react-vite": "npm:10.3.3"
+    "@tailwindcss/vite": "npm:4.2.2"
+    "@tanstack/react-query": "npm:5.95.2"
+    "@types/node": "npm:25.5.0"
+    "@types/react": "npm:19.2.14"
+    "@types/react-dom": "npm:19.2.3"
+    "@vitejs/plugin-react": "npm:6.0.1"
+    "@vitest/browser-playwright": "npm:4.1.1"
+    dayjs: "npm:1.11.20"
+    eslint: "npm:9.39.4"
+    eslint-plugin-storybook: "npm:10.3.3"
+    jsdom: "npm:28.1.0"
+    msw: "npm:2.12.14"
+    react: "npm:19.2.4"
+    react-day-picker: "npm:9.14.0"
+    react-dom: "npm:19.2.4"
+    react-hook-form: "npm:7.72.0"
+    react-intl: "npm:10.1.0"
+    react-router-dom: "npm:7.13.2"
+    storybook: "npm:10.3.3"
+    tailwindcss: "npm:4.2.2"
+    typescript: "npm:5.9.3"
+    uuid: "npm:13.0.0"
+    vite: "npm:8.0.2"
+    vite-plugin-checker: "npm:0.12.0"
+    vitest: "npm:4.1.1"
+    zod: "npm:4.3.6"
   languageName: unknown
   linkType: soft
 
@@ -7370,7 +7428,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:1.58.2, @playwright/test@npm:^1.58.2":
+"@playwright/test@npm:1.58.2":
   version: 1.58.2
   resolution: "@playwright/test@npm:1.58.2"
   dependencies:

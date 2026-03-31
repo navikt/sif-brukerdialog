@@ -59,6 +59,71 @@ After bootstrap:
 - Keep all other changes minimal until App phase starts.
 - Ensure base path is identical across all three places: `package.json` (`dev`/`build`), `vite.config.ts` (`base` and mock service worker rewrite), and `vite.dev.config.ts` (`base` and rewrite).
 
+### Slett domenekode fra kildeappen umiddelbart
+
+Når baseline kopieres fra en eksisterende app (f.eks. `aktivitetspenger-soknad`), følger all domenekode med. Denne skal **slettes umiddelbart** — den er ikke baseline, den er støy.
+
+Slett følgende med én `rm -rf`-kommando:
+
+```bash
+rm -rf src/app/steps src/app/types src/app/utils src/app/hooks src/app/pages src/app/Soknad.tsx
+```
+
+Behold:
+- `src/app/setup/` — rammeverkskode (tilpasses i fase 2)
+- `src/app/i18n/` — struktur beholdes, innhold erstattes
+- `src/App.tsx`, `src/main.tsx`, `src/InitialDataLoader.tsx`, `src/useInitialData.ts` — rewrites i fase 2/3
+
+Etter sletting vil `check:types` gi feil fra `setup/`-filer som peker på slettede typer. Det er forventet og riktig — disse er arbeidsplanen for fase 2.
+
+### Opprydding av mock etter domenekode-sletting
+
+Når domenekode er slettet, må mock tilpasses parallelt:
+
+| Fil | Hva som er app-spesifikt | Aksjon |
+|---|---|---|
+| `mock/scenarios/types.ts` | API-import for kildeappens spesifikke data (f.eks. `KontonummerDto` fra ung-api) | Fjern import og felt som ikke finnes i målappen |
+| `mock/scenarios/scenarioer.ts` | Scenariodata med app-spesifikke felt | Fjern app-spesifikke felt (f.eks. `kontonummer`) |
+| `mock/msw/handlers.ts` | App-spesifikke endepunkter (f.eks. `/deltaker/hent-kontonummer`, `/api/send`) | Erstatt med målappens endepunkter (f.eks. `/omsorgspenger-utvidet-rett/innsending`) |
+| `mock/state/localStorageStore.ts` | Storage-nøkler med kildeappens prefiks (f.eks. `AKT_SOKNAD_*`) | Oppdater til målappens prefiks (f.eks. `OMP_SOKNAD_*`) |
+
+### Opprydding av Playwright-tester
+
+Playwright-tester fra kildeappen tester kildeappens steg og skal **ikke** beholdes. Tøm testfilene med en kommentar:
+
+```ts
+// Playwright-tester skrives etter at søknaden er ferdig implementert.
+```
+
+Testene skrives på nytt etter at alle søknadssteg er implementert.
+
+### Oppdater nais/-konfigurasjon
+
+Nais-filene (`nais/dev-gcp.json`, `nais/prod-gcp.json`) inneholder kildeappens:
+- `app`-navn og `ingresses`
+- `accessPolicyOutApps` (backend-avhengigheter)
+- Alle env-variabler inkl. paths, scopes og URLs
+
+Bruk gammel app i samme repo som referanse for korrekte verdier. Husk at `accessPolicyOutApps` må matche de API-klientene som initialiseres i `initApiClients.ts`.
+
+### Aktivitetspenger-spesifikke referanser som må byttes ut
+
+Når baseline kopieres fra `aktivitetspenger-soknad`, inneholder disse filene app-spesifikke referanser som **alltid** må oppdateres:
+
+| Fil | Hva som er aktivitetspenger-spesifikt | Hva det byttes med |
+|---|---|---|
+| `env.schema.ts` | `ungDeltakelseOpplyserEnvSchema` | Riktig schema for målappen (f.eks. `k9SakInnsynEnvSchema`) |
+| `src/app/setup/env/appEnv.ts` | `getUngDeltakelseOpplyserBrowserEnv()` | Riktig env-helper (f.eks. `getK9SakInnsynEnv()`) |
+| `src/app/api/initApiClients.ts` | `initUngDeltakelseOpplyserApiDeltakerClient` | Riktig klient-init for målappen |
+| `package.json` | `@navikt/ung-deltakelse-opplyser-api-deltaker` | Riktig API-pakke for målappen |
+| `src/App.tsx` | `AktivitetspengerApp` fra `@navikt/sif-app-register` | Riktig app-oppføring |
+| `src/App.tsx` | `appEnv.SIF_PUBLIC_USE_FARO` | `SIF_PUBLIC_USE_FARO` finnes ikke i `commonEnvSchema` — sett `isActive={false}` til Faro er konfigurert |
+| `playwright/playwrightAppSettings.ts` | Stale env-nøkler som ikke finnes i ny `AppEnv` | Fjern nøkler som ikke er i ny `appEnvSchema` |
+| `mock/devAppSettings.ts` | Alle paths og env-verdier fra aktivitetspenger | Oppdater med korrekte paths for målappen |
+| `src/app/lenker.ts` | Aktivitetspenger-spesifikke lenker (f.eks. Skatteetaten) | Erstatt med tomme plassholdere; behold default export til eksisterende step-filer kompilerer |
+
+Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` før første `check:types`.
+
 ### Bootstrap pitfalls and guardrails
 
 - After adding a new app workspace, run `yarn install` from monorepo root before running workspace scripts, so Yarn registers the new workspace in project metadata/lockfile.
