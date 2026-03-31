@@ -34,20 +34,18 @@ export const omBarnetStegMessages_nb = {
 
     'omBarnetForm.validation.barnetSøknadenGjelder.noValue': 'Du må velge et barn',
     'omBarnetForm.validation.barnetsFødselsdato.dateHasNoValue': 'Du må oppgi barnets fødselsdato',
-    'omBarnetForm.validation.barnetsFødselsdato.invalidDate': 'Barnets fødselsdato er ikke en gyldig dato',
+    'omBarnetForm.validation.barnetsFødselsdato.dateHasInvalidFormat': 'Barnets fødselsdato er ikke en gyldig dato',
     'omBarnetForm.validation.barnetsFødselsdato.dateIsAfterMax': 'Barnets fødselsdato kan ikke være frem i tid',
-    'omBarnetForm.validation.barnetsFødselsnummer.noValue': 'Du må oppgi barnets fødselsnummer',
-    'omBarnetForm.validation.barnetsFødselsnummer.invalidFødselsnummer':
-        'Barnets fødselsnummer er ikke gyldig (11 siffer)',
-    'omBarnetForm.validation.barnetsNavn.noValue': 'Du må oppgi barnets navn',
-    'omBarnetForm.validation.barnetsNavn.invalidValue': 'Barnets navn kan ikke være blankt',
+    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Du må oppgi barnets fødselsnummer',
+    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars': 'Barnets fødselsnummer må være 11 siffer',
+    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsInvalid': 'Barnets fødselsnummer er ikke gyldig',
+    'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Du må oppgi barnets navn',
     'omBarnetForm.validation.søkersRelasjonTilBarnet.noValue': 'Du må oppgi din relasjon til barnet',
     'omBarnetForm.validation.sammeAdresse.noValue': 'Du må svare på om barnet har samme adresse som deg',
     'omBarnetForm.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
         'Du må svare på om barnet har en kronisk sykdom eller funksjonshemming',
     'omBarnetForm.validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
         'Du må svare på om det er høyere risiko for fravær',
-    'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.noValue':
+    'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
         'Du må beskrive kort hvorfor det er høyere risiko for fravær',
-    'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.invalidValue': 'Beskrivelsen kan ikke være blank',
 };

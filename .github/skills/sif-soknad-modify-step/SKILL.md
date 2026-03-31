@@ -66,13 +66,17 @@ Alle validatorer importeres fra `@navikt/sif-validation`.
 
 Eksempler på error-koder fra `@navikt/sif-validation`:
 
-| Validator               | Feilkode(r)                                          |
-| ----------------------- | ---------------------------------------------------- |
-| `getYesOrNoValidator`   | `yesOrNoIsUnanswered`                                |
-| `getListValidator`      | `listIsEmpty`, `listHasTooFewItems`, `listHasTooManyItems` |
-| `getRequiredFieldValidator` | `noValue`                                        |
-| `getStringValidator`    | `stringHasNoValue`, `stringIsTooShort`, `stringIsTooLong` |
-| `getCheckedValidator`   | `notChecked`                                         |
+| Validator                   | Feilkode(r)                                                                                                    |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `getYesOrNoValidator`       | `yesOrNoIsUnanswered`                                                                                          |
+| `getListValidator`          | `listIsEmpty`, `listHasTooFewItems`, `listHasTooManyItems`                                                     |
+| `getRequiredFieldValidator` | `noValue`                                                                                                      |
+| `getStringValidator`        | `stringHasNoValue`, `stringIsTooShort`, `stringIsTooLong`                                                      |
+| `getCheckedValidator`       | `notChecked`                                                                                                   |
+| `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                  |
+| `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed` |
+
+**Viktig:** Bruk alltid de eksakte feilkodene fra validatorens enum — ikke dikk opp egne. Feil kode → valideringsmelding vises aldri. Du finner alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
 
 Valideringsnøklene i `i18n/nb.ts` **må** matche dette mønsteret:
 
@@ -253,17 +257,27 @@ Kjør `npx tsc --noEmit` i app-mappen.
 
 ## Betinget visning — mønster
 
-Bruk `methods.watch()` for å observere et annet felt, og vis det nye feltet betinget:
+Bruk `methods.watch()` for å observere et annet felt, og vis det nye feltet betinget med vanlig `&&`-rendering:
 
 ```tsx
 const methods = useSøknadRhfForm(stepId, defaultValues);
 const feltVerdi = methods.watch(<Prefix>FormFields.triggerFelt);
 
-// I JSX:
+// I JSX — ett felt:
 {feltVerdi === YesOrNo.YES && (
     <NyKomponent ... />
 )}
+
+// Flere felt som gruppe — bruk fragment, ikke FormLayout.Questions:
+{feltVerdi === YesOrNo.YES && (
+    <>
+        <FeltA ... />
+        <FeltB ... />
+    </>
+)}
 ```
+
+`FormLayout.Questions` er ikke nødvendig rundt betinget innhold — gapet styres av den ytre `FormLayout.Questions`.
 
 I `toSøknadsdata`, sett avhengige felter til `undefined` når betingelsen ikke er oppfylt:
 
@@ -271,9 +285,23 @@ I `toSøknadsdata`, sett avhengige felter til `undefined` når betingelsen ikke 
 nyttFelt: data.triggerFelt === YesOrNo.YES ? data.nyttFelt : undefined,
 ```
 
-### AriaLiveRegion med tilhørende melding (Alert)
+### Feilmeldinger på betingede felter
 
-Bruk `AriaLiveRegion` fra `@sif/soknad-ui/components` når innhold skal annonseres til skjermlesere ved dynamisk visning. Kombinert med `QuestionRelatedMessage` (fra `@navikt/sif-common-ui`) trekkes meldingen visuelt nærmere spørsmålet den tilhører via `Bleed` med negativ top-margin:
+Når felter skjules (unmountes) beholdes feilmeldinger i RHF sin form state. Rydd opp med `clearErrors` i en `useEffect`:
+
+```tsx
+useEffect(() => {
+    if (feltVerdi !== YesOrNo.YES) {
+        methods.clearErrors([<Prefix>FormFields.nyttFelt]);
+    }
+}, [feltVerdi]);
+```
+
+### AriaLiveRegion — kun for meldinger/Alerts
+
+`AriaLiveRegion` skal **kun** brukes rundt dynamiske meldinger (f.eks. `<Alert>`) som skjermlesere skal annonsere. Bruk **ikke** `AriaLiveRegion` rundt spørsmål/skjemafelter — bruk `&&` i stedet.
+
+Kombinert med `QuestionRelatedMessage` (fra `@navikt/sif-common-ui`) trekkes Alert-en visuelt nærmere spørsmålet den tilhører via `Bleed` med negativ top-margin:
 
 ```tsx
 import { AriaLiveRegion } from '@sif/soknad-ui/components';
@@ -287,7 +315,7 @@ import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
 </AriaLiveRegion>
 ```
 
-Merk: `QuestionRelatedMessage` inne i `AriaLiveRegion` fungerer korrekt — `Bleed`'s negative top-margin trekker Alert-en opp mot spørsmålet over, som er tiltenkt visuell effekt.
+`QuestionRelatedMessage` inne i `AriaLiveRegion` fungerer korrekt — `Bleed`'s negative top-margin trekker Alert-en opp mot spørsmålet over.
 
 ---
 

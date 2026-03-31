@@ -17,6 +17,7 @@ import {
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { AriaLiveRegion, FormLayout } from '@sif/soknad-ui/components';
+import { useEffect } from 'react';
 
 import { toOmBarnetFormValues, toOmBarnetSøknadsdata } from './omBarnetStegUtils';
 import { ANNET_BARN, OmBarnetFormFields, OmBarnetFormValues } from './types';
@@ -57,6 +58,17 @@ export const OmBarnetForm = () => {
     const kroniskEllerFunksjonshemming = watch(OmBarnetFormFields.kroniskEllerFunksjonshemming);
     const høyereRisikoForFravær = watch(OmBarnetFormFields.høyereRisikoForFravær);
 
+    useEffect(() => {
+        if (!søknadenGjelderAnnetBarn) {
+            methods.clearErrors([
+                OmBarnetFormFields.barnetsFødselsdato,
+                OmBarnetFormFields.barnetsFødselsnummer,
+                OmBarnetFormFields.barnetsNavn,
+                OmBarnetFormFields.søkersRelasjonTilBarnet,
+            ]);
+        }
+    }, [søknadenGjelderAnnetBarn]);
+
     const visIkkeSammeAdresseAlert = sammeAdresse === BarnSammeAdresse.NEI;
     const erKronisk = kroniskEllerFunksjonshemming === YesOrNo.YES;
     const visHøyereRisikoSpørsmål = harValgtBarn && kroniskEllerFunksjonshemming === YesOrNo.NO;
@@ -81,7 +93,7 @@ export const OmBarnetForm = () => {
                         validate={validateField(OmBarnetFormFields.barnetSøknadenGjelder, getRequiredFieldValidator())}
                     />
 
-                    <AriaLiveRegion visible={søknadenGjelderAnnetBarn}>
+                    {søknadenGjelderAnnetBarn && (
                         <FormLayout.Section title={text('omBarnetSteg.annetBarn.tittel')}>
                             <FormLayout.Questions>
                                 <Datepicker
@@ -139,10 +151,10 @@ export const OmBarnetForm = () => {
                                 />
                             </FormLayout.Questions>
                         </FormLayout.Section>
-                    </AriaLiveRegion>
+                    )}
 
-                    <AriaLiveRegion visible={harValgtBarn}>
-                        <FormLayout.Questions>
+                    {harValgtBarn && (
+                        <>
                             <RadioGroup
                                 name={OmBarnetFormFields.sammeAdresse}
                                 legend={text('omBarnetSteg.spørsmål.sammeAdresse')}
@@ -180,8 +192,8 @@ export const OmBarnetForm = () => {
                                 </QuestionRelatedMessage>
                             </AriaLiveRegion>
 
-                            <AriaLiveRegion visible={visHøyereRisikoSpørsmål}>
-                                <FormLayout.Questions>
+                            {visHøyereRisikoSpørsmål && (
+                                <>
                                     <YesOrNoQuestion
                                         name={OmBarnetFormFields.høyereRisikoForFravær}
                                         legend={text('omBarnetSteg.spørsmål.høyereRisikoForFravær')}
@@ -197,10 +209,10 @@ export const OmBarnetForm = () => {
                                             </Alert>
                                         </QuestionRelatedMessage>
                                     </AriaLiveRegion>
-                                </FormLayout.Questions>
-                            </AriaLiveRegion>
+                                </>
+                            )}
 
-                            <AriaLiveRegion visible={visHøyereRisikoBeskrivelseSpørsmål}>
+                            {visHøyereRisikoBeskrivelseSpørsmål && (
                                 <Textarea
                                     name={OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}
                                     label={text('omBarnetSteg.spørsmål.høyereRisikoForFraværBeskrivelse')}
@@ -209,9 +221,9 @@ export const OmBarnetForm = () => {
                                         getStringValidator({ required: true }),
                                     )}
                                 />
-                            </AriaLiveRegion>
-                        </FormLayout.Questions>
-                    </AriaLiveRegion>
+                            )}
+                        </>
+                    )}
                 </FormLayout.Questions>
             </FormLayout.Content>
         </AppForm>
