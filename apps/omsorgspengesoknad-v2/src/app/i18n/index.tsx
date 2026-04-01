@@ -3,7 +3,7 @@ import { sifSoknadFormsMessages } from '@sif/soknad-forms';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { appMessages_nb } from './nb/appMessages';
+import { appMessages_nb } from './app-messages/nb';
 
 const libMessages = {
     nb: {
