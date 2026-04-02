@@ -5,12 +5,15 @@
     "version": "0.0.1",
     "scripts": {
         "dev": "vite --base=/aktivitetspenger/innsyn --config vite.dev.config.ts",
+        "pw:dev": "vite --config vite.e2e.config.ts",
         "build": "vite build --base=/aktivitetspenger/innsyn",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
         "test": "vitest run",
+        "pw:run": "playwright test",
+        "pw:run:headed": "playwright test --headed",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build"
     },
@@ -46,6 +49,8 @@
         "zod": "4.3.6"
     },
     "devDependencies": {
+        "@axe-core/playwright": "4.11.1",
+        "@playwright/test": "1.58.2",
         "@sentry/vite-plugin": "5.1.1",
         "@sif/eslint-config": "workspace:*",
         "@sonar/scan": "4.3.5",

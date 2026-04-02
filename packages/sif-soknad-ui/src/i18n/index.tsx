@@ -4,6 +4,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { appErrorFallbackMessages_nb } from '../components/app-error-fallback/i18n/nb';
 import { formLayoutMessages_nb } from '../components/form-layout/i18n/nb';
 import { progressStepperMessages_nb } from '../components/progress-stepper/i18n/nb';
+import { registrerteBarnKildeInfoMessages_nb } from '../components/registrerte-barn-kilde/i18n/nb';
+import { registrerteBarnListeMessages_nb } from '../components/registrerte-barn-liste/i18n/nb';
 import { stepPageMessages_nb } from '../pages/step-page/i18n/nb';
 
 const nb = {
@@ -11,6 +13,8 @@ const nb = {
     ...formLayoutMessages_nb,
     ...progressStepperMessages_nb,
     ...stepPageMessages_nb,
+    ...registrerteBarnKildeInfoMessages_nb,
+    ...registrerteBarnListeMessages_nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {

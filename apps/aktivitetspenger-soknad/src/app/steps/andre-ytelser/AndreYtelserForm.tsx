@@ -3,9 +3,9 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { AndreYtelserSøknadsdata } from '@app/types/Soknadsdata';
-import { FormLayout } from '@navikt/sif-common-ui';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
+import { FormLayout } from '@sif/soknad-ui';
 
 import { toAndreYtelserFormValues, toAndreYtelserSøknadsdata } from './andreYtelserStegUtils';
 import { AndreYtelse, AndreYtelserFormFields, AndreYtelserFormValues } from './types';

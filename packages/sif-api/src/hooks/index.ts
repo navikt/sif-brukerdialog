@@ -1,4 +1,5 @@
 // Alle
+export * as omsorgsdagerKronisk from './omsorgsdager-kronisk-sykt-barn/useHentSisteGyldigeVedtakForAktorId';
 export * from './useArbeidsgivere';
 export * from './useKontonummer';
 export * from './useOppgaver';

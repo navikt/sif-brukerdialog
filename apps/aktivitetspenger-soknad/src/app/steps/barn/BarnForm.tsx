@@ -3,12 +3,11 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { BarnSøknadsdata } from '@app/types/Soknadsdata';
-import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { FormLayout, RegistrerteBarnListe, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { AriaLiveRegion, ExternalLink } from '@sif/soknad-ui/components';
+import { AriaLiveRegion, ExternalLink, FormLayout, RegistrerteBarnListe } from '@sif/soknad-ui/components';
 
 import getLenker from '../../lenker';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
@@ -44,12 +43,11 @@ export const BarnForm = ({ registrerteBarn }: Props) => {
             <FormLayout.Content>
                 <FormLayout.Questions>
                     {registrerteBarn.length > 0 && (
-                        <VStack gap="space-8">
-                            <RegistrerteBarnListeHeading size="small" level="2">
-                                {text('barnSteg.registrerteBarn.tittel')}
-                            </RegistrerteBarnListeHeading>
-                            <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
-                        </VStack>
+                        <RegistrerteBarnListe
+                            headingProps={{ size: 'small' }}
+                            listetittel={text('barnSteg.registrerteBarn.tittel')}
+                            registrerteBarn={registrerteBarn}
+                        />
                     )}
                     <YesOrNoQuestion
                         name={BarnFormFields.informasjonStemmer}

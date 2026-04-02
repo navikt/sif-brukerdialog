@@ -4,6 +4,9 @@ export { hentRegistrerteBarn } from './registrerteBarnApi';
 // Søker API
 export { hentSøker, hentSøkerId } from './sokerApi';
 
+// Omsorgsdager kronisk sykt barn API
+export { hentSisteGyldigeVedtakForAktørId } from './omsorgsdager-kronisk-sykt-barn/hentSisteGyldigeVedtakForAktorId';
+
 // Oppgaver API - varsler til søker angående endringer på ytelse
 export { hentOppgaver } from './oppgaverApi';
 

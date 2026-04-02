@@ -6,8 +6,20 @@ const SCENARIO_KEY = 'AKT_INNSYN_MOCK_SCENARIO';
 
 export const localStorageStore = {
     init: (scenario: ScenarioType) => {
-        const current = localStorage.getItem(SCENARIO_KEY);
-        if (!current) {
+        const currentScenario = localStorage.getItem(SCENARIO_KEY);
+        const currentData = localStorage.getItem(STORAGE_KEY);
+
+        if (currentScenario && Object.values(ScenarioType).includes(currentScenario as ScenarioType) && !currentData) {
+            localStorageStore.setScenario(currentScenario as ScenarioType);
+            return;
+        }
+
+        if (!currentScenario || !currentData) {
+            localStorageStore.setScenario(scenario);
+            return;
+        }
+
+        if (!Object.values(ScenarioType).includes(currentScenario as ScenarioType)) {
             localStorageStore.setScenario(scenario);
         }
     },

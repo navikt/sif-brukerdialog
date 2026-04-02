@@ -30,8 +30,36 @@ Utvid et eksisterende steg med nye spørsmål. Etter at skillen er fulgt skal st
 3. `src/app/steps/<steg>/<prefix>StegUtils.ts` — eksisterende mapping
 4. `src/app/steps/<steg>/i18n/nb.ts` — eksisterende tekster
 5. `src/app/types/Soknadsdata.ts` — eksisterende søknadsdatatype
+6. `src/app/steps/<steg>/i18n/nn.ts` — hvis steget allerede har separat nynorsk-fil
 
 Ikke les andre steg eller utforsk mappestruktur utover dette.
+
+---
+
+## Paneler fra @sif/soknad-forms
+
+Når en søknad porteres til nytt format, bruk ferdige paneler fra `@sif/soknad-forms` fremfor å implementere tilsvarende logikk manuelt. Panelene er typesikre, RHF-baserte og inneholder korrekt visning og i18n.
+
+| Panel | Beskrivelse | Viktige props |
+| ----- | ----------- | ------------- |
+| `VelgRegistrertBarnPanel<T>` | Radiogruppe for valg av registrert barn med fødselsdato og kildeinfo | `name`, `registrerteBarn`, `inkluderAnnetBarn?`, `annetBarnLabel?`, `validate?` |
+
+Eksporterte konstanter:
+- `ANNET_BARN = 'annetBarn'` — verdien som settes i skjemaet når bruker velger "annet barn"
+
+Bruksmønster:
+```tsx
+import { ANNET_BARN, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
+
+<VelgRegistrertBarnPanel<MyFormValues>
+    name={MyFormFields.barnetSøknadenGjelder}
+    registrerteBarn={registrerteBarn}
+    inkluderAnnetBarn={true}
+    validate={validateField(MyFormFields.barnetSøknadenGjelder, getRequiredFieldValidator())}
+/>
+```
+
+Ved migrering fra gammel `VelgBarnFormPart` (fra `@navikt/sif-common-forms-ds`): erstatt den alltid med `VelgRegistrertBarnPanel`. Legg til `@sif/soknad-forms` i `dependencies` hvis det mangler i app-ens `package.json`.
 
 ---
 
@@ -65,13 +93,17 @@ Alle validatorer importeres fra `@navikt/sif-validation`.
 
 Eksempler på error-koder fra `@navikt/sif-validation`:
 
-| Validator               | Feilkode(r)                                          |
-| ----------------------- | ---------------------------------------------------- |
-| `getYesOrNoValidator`   | `yesOrNoIsUnanswered`                                |
-| `getListValidator`      | `listIsEmpty`, `listHasTooFewItems`, `listHasTooManyItems` |
-| `getRequiredFieldValidator` | `noValue`                                        |
-| `getStringValidator`    | `stringHasNoValue`, `stringIsTooShort`, `stringIsTooLong` |
-| `getCheckedValidator`   | `notChecked`                                         |
+| Validator                   | Feilkode(r)                                                                                                    |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `getYesOrNoValidator`       | `yesOrNoIsUnanswered`                                                                                          |
+| `getListValidator`          | `listIsEmpty`, `listHasTooFewItems`, `listHasTooManyItems`                                                     |
+| `getRequiredFieldValidator` | `noValue`                                                                                                      |
+| `getStringValidator`        | `stringHasNoValue`, `stringIsTooShort`, `stringIsTooLong`                                                      |
+| `getCheckedValidator`       | `notChecked`                                                                                                   |
+| `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                  |
+| `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed` |
+
+**Viktig:** Bruk alltid de eksakte feilkodene fra validatorens enum — ikke dikk opp egne. Feil kode → valideringsmelding vises aldri. Du finner alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
 
 Valideringsnøklene i `i18n/nb.ts` **må** matche dette mønsteret:
 
@@ -252,22 +284,72 @@ Kjør `npx tsc --noEmit` i app-mappen.
 
 ## Betinget visning — mønster
 
-Bruk `methods.watch()` for å observere et annet felt, og vis det nye feltet betinget:
+Bruk `methods.watch()` for å observere et annet felt, og vis det nye feltet betinget med vanlig `&&`-rendering:
 
 ```tsx
 const methods = useSøknadRhfForm(stepId, defaultValues);
 const feltVerdi = methods.watch(<Prefix>FormFields.triggerFelt);
 
-// I JSX:
+// I JSX — ett felt:
 {feltVerdi === YesOrNo.YES && (
     <NyKomponent ... />
 )}
+
+// Flere felt som gruppe — bruk fragment, ikke FormLayout.Questions:
+{feltVerdi === YesOrNo.YES && (
+    <>
+        <FeltA ... />
+        <FeltB ... />
+    </>
+)}
 ```
+
+`FormLayout.Questions` er ikke nødvendig rundt betinget innhold — gapet styres av den ytre `FormLayout.Questions`.
 
 I `toSøknadsdata`, sett avhengige felter til `undefined` når betingelsen ikke er oppfylt:
 
 ```ts
 nyttFelt: data.triggerFelt === YesOrNo.YES ? data.nyttFelt : undefined,
+```
+
+### Feilmeldinger på betingede felter
+
+Når felter skjules (unmountes) beholdes feilmeldinger i RHF sin form state. Rydd opp med `clearErrors` i en `useEffect`:
+
+```tsx
+useEffect(() => {
+    if (feltVerdi !== YesOrNo.YES) {
+        methods.clearErrors([<Prefix>FormFields.nyttFelt]);
+    }
+}, [feltVerdi]);
+```
+
+### AriaLiveRegion — kun for meldinger/Alerts
+
+`AriaLiveRegion` skal **kun** brukes rundt dynamiske meldinger (f.eks. `<Alert>`) som skjermlesere skal annonsere. Bruk **ikke** `AriaLiveRegion` rundt spørsmål/skjemafelter — bruk `&&` i stedet.
+
+Kombinert med `QuestionRelatedMessage` (fra `@navikt/sif-common-ui`) trekkes Alert-en visuelt nærmere spørsmålet den tilhører via `Bleed` med negativ top-margin:
+
+```tsx
+import { AriaLiveRegion } from '@sif/soknad-ui/components';
+import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
+
+<YesOrNoQuestion name={...} ... />
+<AriaLiveRegion visible={feltVerdi === YesOrNo.NO}>
+    <QuestionRelatedMessage>
+        <Alert variant="warning">...</Alert>
+    </QuestionRelatedMessage>
+</AriaLiveRegion>
+```
+
+`QuestionRelatedMessage` inne i `AriaLiveRegion` fungerer korrekt — `Bleed`'s negative top-margin trekker Alert-en opp mot spørsmålet over.
+
+**Alert-variant ved migrering:** Sjekk alltid hvilken `variant` v1 bruker på tilsvarende Alert. `info` og `warning` har ulik visuell vekt og betyr ulike ting for brukeren — ikke gjett. Finn alertkomponenten i v1 (gjerne under `alert/`-mappe i steget) og bruk samme variant.
+
+```
+# Eksempel fra v1-mappestruktur:
+steps/om-barnet/alert/IkkeKroniskEllerFuksjonshemningAlert.tsx → variant="info"
+steps/om-barnet/alert/TrengerIkkeSøkeForBarnAlert.tsx         → variant="warning"
 ```
 
 ---

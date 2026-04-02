@@ -2,7 +2,7 @@ import { dateToISODate } from '@navikt/sif-common-utils';
 import { Søker } from '@sif/api/k9-prosessering';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 
-import { SøknadApiData } from '../types/SøknadApiData';
+import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
 
 export const søknadsdataToSøknadDTO = ({
