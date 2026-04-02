@@ -49,8 +49,8 @@
         "zod": "4.3.6"
     },
     "devDependencies": {
-        "@axe-core/playwright": "^4.11.1",
-        "@playwright/test": "^1.58.2",
+        "@axe-core/playwright": "4.11.1",
+        "@playwright/test": "1.58.2",
         "@sentry/vite-plugin": "5.1.1",
         "@sif/eslint-config": "workspace:*",
         "@sonar/scan": "4.3.5",

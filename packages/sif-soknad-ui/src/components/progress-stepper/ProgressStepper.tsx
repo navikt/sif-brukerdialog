@@ -80,24 +80,28 @@ export const ProgressStepper = ({
                 {step.label}
             </Heading>
             <FormProgress activeStep={currentStepIndex + 1} totalSteps={steps.length}>
-                {steps.map((s) => (
-                    <FormProgress.Step
-                        key={s.id}
-                        completed={s.completed}
-                        href="#"
-                        onClick={
-                            s.completed
-                                ? (evt) => {
-                                      evt.stopPropagation();
-                                      evt.preventDefault();
-                                      handleStepChange(s.index + 1);
-                                  }
-                                : undefined
-                        }
-                        interactive={onStepSelect !== undefined && s.completed === true}>
-                        {s.label}
-                    </FormProgress.Step>
-                ))}
+                {steps.map((s) => {
+                    /** En skal ikke kunne gå til fremtidige steg */
+                    const isPreviousAndCompleted = s.index < currentStepIndex && s.completed === true;
+                    return (
+                        <FormProgress.Step
+                            key={s.id}
+                            completed={isPreviousAndCompleted}
+                            href="#"
+                            onClick={
+                                isPreviousAndCompleted
+                                    ? (evt) => {
+                                          evt.stopPropagation();
+                                          evt.preventDefault();
+                                          handleStepChange(s.index + 1);
+                                      }
+                                    : undefined
+                            }
+                            interactive={onStepSelect !== undefined && isPreviousAndCompleted}>
+                            {s.label}
+                        </FormProgress.Step>
+                    );
+                })}
             </FormProgress>
         </VStack>
     );

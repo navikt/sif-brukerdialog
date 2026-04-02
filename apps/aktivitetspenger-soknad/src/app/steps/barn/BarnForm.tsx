@@ -44,6 +44,7 @@ export const BarnForm = ({ registrerteBarn }: Props) => {
                 <FormLayout.Questions>
                     {registrerteBarn.length > 0 && (
                         <RegistrerteBarnListe
+                            headingProps={{ size: 'small' }}
                             listetittel={text('barnSteg.registrerteBarn.tittel')}
                             registrerteBarn={registrerteBarn}
                         />
@@ -59,23 +60,21 @@ export const BarnForm = ({ registrerteBarn }: Props) => {
                         validate={validateField(BarnFormFields.informasjonStemmer, getYesOrNoValidator())}
                     />
                     <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
-                        <FormLayout.QuestionRelatedMessage>
-                            <Alert variant="info">
-                                <Heading level="3" size="small" spacing>
-                                    <AppText id="barnSteg.opplysninger.info.tittel" />
-                                </Heading>
-                                <BodyLong>
-                                    <AppText
-                                        id="barnSteg.opplysninger.info.text"
-                                        values={{
-                                            Lenke: (children) => (
-                                                <ExternalLink href={getLenker().skatteetaten}>{children}</ExternalLink>
-                                            ),
-                                        }}
-                                    />
-                                </BodyLong>
-                            </Alert>
-                        </FormLayout.QuestionRelatedMessage>
+                        <Alert variant="info">
+                            <Heading level="3" size="small" spacing>
+                                <AppText id="barnSteg.opplysninger.info.tittel" />
+                            </Heading>
+                            <BodyLong>
+                                <AppText
+                                    id="barnSteg.opplysninger.info.text"
+                                    values={{
+                                        Lenke: (children) => (
+                                            <ExternalLink href={getLenker().skatteetaten}>{children}</ExternalLink>
+                                        ),
+                                    }}
+                                />
+                            </BodyLong>
+                        </Alert>
                     </AriaLiveRegion>
                 </FormLayout.Questions>
             </FormLayout.Content>

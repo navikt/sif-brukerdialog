@@ -1,10 +1,11 @@
 import { expect, test } from '@playwright/test';
+import { ScenarioType } from '../../mock/scenarios/types';
 
 import { setScenario } from '../utils/scenario';
 import { testAccessibility } from '../utils/testAccessibility';
 
 test('laster appen og starter soknadsflyten', async ({ page }) => {
-    await setScenario(page, 'default');
+    await setScenario(page, ScenarioType.default);
 
     await page.goto('/');
 
