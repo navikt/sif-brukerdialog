@@ -196,9 +196,78 @@ const feltValue = methods.watch(FormFields.felt);
 {feltValue === YesOrNo.YES ? <Textarea ... /> : null}
 ```
 
-## i18n-nøkler
+### Vanlig inversjonsfeil ved portering
+
+Den vanligste feilen ved migrering er invertert betingelseslogikk — man skriver `=== NO` der v1 hadde `=== YES` eller omvendt. Kartlegg eksplisitt betingelsene fra v1 FØR koding:
+
+```
+felt A → alltid synlig
+felt B → synlig når felt A === YES   ← les nøye, ikke inverter
+alert X → synlig når felt A === NO
+```
+
+Sjekk tabellen:
+
+| v1-kode | Feil v2-kode | Riktig v2-kode |
+|---|---|---|
+| `kronisk === YES` | `kronisk === NO` | `kronisk === YES` |
+| `harBarn === false` | `harBarn === true` | `harBarn === false` |
+
+### Betinget visning — bruk `&&`, ikke `AriaLiveRegion`
+
+`AriaLiveRegion` skal **kun** brukes rundt dynamiske meldinger (`<Alert>`) som skal annonseres til skjermlesere. Bruk **ikke** `AriaLiveRegion` rundt spørsmål/skjemafelter — bruk `&&` i stedet:
+
+```tsx
+// Skjemafelter — bruk &&
+{feltVerdi === YesOrNo.YES && <NyttFelt ... />}
+
+// Gruppe av felter — bruk fragment
+{feltVerdi === YesOrNo.YES && (
+    <>
+        <FeltA ... />
+        <FeltB ... />
+    </>
+)}
+
+// Alert som skal annonseres til skjermlesere — bruk AriaLiveRegion
+<AriaLiveRegion visible={feltVerdi === YesOrNo.NO}>
+    <QuestionRelatedMessage>
+        <Alert variant="warning">...</Alert>
+    </QuestionRelatedMessage>
+</AriaLiveRegion>
+```
+
+`FormLayout.Questions` er ikke nødvendig rundt betinget innhold — gapet styres av den ytre `FormLayout.Questions`.
+
+### Feilmeldinger på betingede felter
+
+Når felter skjules (unmountes) beholdes feilmeldinger i RHF's form state (RHF bruker `shouldUnregister: false` som default). Rydd opp med `clearErrors` i en `useEffect`:
+
+```tsx
+useEffect(() => {
+    if (feltVerdi !== YesOrNo.YES) {
+        methods.clearErrors([FormFields.betingetFelt]);
+    }
+}, [feltVerdi]);
+```
+
+## i18n-nøkler og valideringskoder
 
 Valideringsnøkler må matche `<scope>.validation.<fieldName>.<errorCode>`.
+
+**Bruk alltid de eksakte feilkodene fra validatorens enum** — ikke dikk opp egne. Feil kode → valideringsmeldingen vises aldri.
+
+| Validator                   | Faktiske feilkoder                                                                                                          |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `getYesOrNoValidator`       | `yesOrNoIsUnanswered`                                                                                                       |
+| `getRequiredFieldValidator` | `noValue`                                                                                                                   |
+| `getStringValidator`        | `stringHasNoValue`, `stringIsTooShort`, `stringIsTooLong`                                                                   |
+| `getCheckedValidator`       | `notChecked`                                                                                                                |
+| `getListValidator`          | `listIsEmpty`, `listHasTooFewItems`, `listHasTooManyItems`                                                                  |
+| `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                               |
+| `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed`          |
+
+Finn alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
 
 **Sjekk:** Felt-enum i Formik og felt-navnene i i18n-nøklene må matche. Hvis formik brukte `formErrorHandler` med scope `'uttalelseForm.validation'` men felt-enum heter `harUttalelse`, må nøkkelen i `nb.ts` være:
 
@@ -237,10 +306,49 @@ import { DateRange } from '@navikt/sif-common-utils';
 - [ ] `Form` → `SifForm` med `buttons`-prop (repliker submit/cancel-oppførsel)
 - [ ] `useSifValidate`-scope er uten `.validation`-suffiks
 - [ ] async `handleSubmit` har try/catch rundt mutateAsync-kall
-- [ ] Betinget visning bruker `methods.watch()` i stedet for `values`
+- [ ] Betinget visning kartlagt fra v1 og verifisert mot v1 (ingen inversjonsfeile)
+- [ ] Betinget visning bruker `methods.watch()` + `&&`/fragment — ikke `AriaLiveRegion` rundt skjemafelter
+- [ ] `AriaLiveRegion` brukes kun rundt `<Alert>`-meldinger
+- [ ] Betingede felter som skjules får `clearErrors` i `useEffect`
 - [ ] Validatorer med parametere bruker `intl.formatMessage` inline
-- [ ] i18n-nøkler matcher `<scope>.validation.<field>.<errorCode>`
+- [ ] i18n-nøkler bruker eksakte feilkoder fra `@navikt/sif-validation` (sjekk `enum Validate*Error`)
 - [ ] `FormFields`-enum er uendret
 - [ ] `@sif/rhf: workspace:*` finnes i `package.json`
 - [ ] `DateRange`-importer er oppdatert (hvis aktuelt)
 - [ ] Filen kompilerer uten feil
+- [ ] Enhetstester skrevet for `*StegUtils.ts` (se under)
+
+## Enhetstester for `*StegUtils.ts`
+
+Mapping-funksjoner (`toFormValues` og `toSøknadsdata`) er rene funksjoner og enkle å teste. De dekker nøyaktig der inversjons- og mappingfeil oppstår — feil som ikke fanges av kompilator.
+
+**Viktig:** La ikke AI skrive assertions basert på v2-koden — da verifiseres bare AI-ens egen (potensielt feil) forståelse. Bruk **v1-koden som sannhetskilde**:
+
+1. Les `getOmBarnetSøknadsdataFromFormValues` (eller tilsvarende) i kildeappen
+2. Kjør den mentalt eller faktisk med konkrete testdata
+3. Bruk *det resultatet* som forventet output i v2-testen
+
+Alternativt: utvikler skriver assertions basert på domenekunnskap — ikke AI.
+
+Opprett `__tests__/<prefix>StegUtils.test.ts` ved siden av utils-filen. Dekk minst:
+
+- Betingede felt mappes korrekt når betingelsen er oppfylt
+- Betingede felt er `undefined` når betingelsen ikke er oppfylt
+- Round-trip: `toSøknadsdata → toFormValues` gir tilbake originale verdier
+
+```ts
+import { YesOrNo } from '@sif/rhf';
+import { toOmBarnetSøknadsdata, toOmBarnetFormValues } from '../omBarnetStegUtils';
+
+describe('toOmBarnetSøknadsdata', () => {
+    it('lagrer høyereRisikoForFravær når kronisk er YES', () => {
+        const result = toOmBarnetSøknadsdata({ kroniskEllerFunksjonshemming: YesOrNo.YES, høyereRisikoForFravær: YesOrNo.YES, ... }, registrerteBarn);
+        expect(result?.høyereRisikoForFravær).toBe(true);
+    });
+
+    it('høyereRisikoForFravær er undefined når kronisk er NO', () => {
+        const result = toOmBarnetSøknadsdata({ kroniskEllerFunksjonshemming: YesOrNo.NO, ... }, registrerteBarn);
+        expect(result?.høyereRisikoForFravær).toBeUndefined();
+    });
+});
+```

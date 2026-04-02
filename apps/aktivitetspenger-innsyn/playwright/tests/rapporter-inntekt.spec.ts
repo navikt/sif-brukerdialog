@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { ScenarioType } from '../../mock/scenarios/types';
 
 import { setScenario } from '../utils/scenario';
 import { testAccessibility } from '../utils/testAccessibility';
@@ -12,7 +13,7 @@ const åpneRapporterInntektOppgave = async (page: import('@playwright/test').Pag
 };
 
 test('rapporter inntekt med beløp, og viser registrert svar ved gjenåpning', async ({ page }) => {
-    await setScenario(page, 'rapporterInntekt');
+    await setScenario(page, ScenarioType.rapporterInntekt);
 
     await page.goto('/');
     await åpneRapporterInntektOppgave(page);
@@ -42,7 +43,7 @@ test('rapporter inntekt med beløp, og viser registrert svar ved gjenåpning', a
 });
 
 test('rapporter inntekt uten beløp, og viser registrert nei-svar ved gjenåpning', async ({ page }) => {
-    await setScenario(page, 'rapporterInntekt');
+    await setScenario(page, ScenarioType.rapporterInntekt);
 
     await page.goto('/');
     await åpneRapporterInntektOppgave(page);

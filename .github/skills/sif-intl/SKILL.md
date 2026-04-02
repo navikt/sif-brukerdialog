@@ -5,7 +5,7 @@ description: Mønster for typesikker i18n (nb/nn) i apper og pakker — implemen
 
 # sif-intl Skill
 
-## When to use
+## Når skal skillen brukes
 
 - Du skal legge til eller endre tekster i en app eller pakke.
 - Du skal opprette ny `i18n/nb.ts` eller `i18n/nn.ts`.
@@ -289,14 +289,15 @@ Filstiene er **deterministiske** og avledes direkte fra komponent- eller stegnav
 
 Gitt en komponent i `steps/<steg-mappenavn>/`, les følgende fire filer i parallell:
 
-| Fil | Formål |
-| --- | --- |
+| Fil                                          | Formål                                |
+| -------------------------------------------- | ------------------------------------- |
 | `steps/<steg-mappenavn>/<StegComponent>.tsx` | Komponentfilen med hardkodede tekster |
-| `steps/<steg-mappenavn>/i18n/nb.ts` | Eksisterende nb-nøkler for steget |
-| `steps/<steg-mappenavn>/i18n/nn.ts` | Eksisterende nn-nøkler for steget |
-| `i18n/nb/appMessages.ts` | Bekrefter steg-modulen er registrert |
+| `steps/<steg-mappenavn>/i18n/nb.ts`          | Eksisterende nb-nøkler for steget     |
+| `steps/<steg-mappenavn>/i18n/nn.ts`          | Eksisterende nn-nøkler for steget     |
+| `i18n/nb/appMessages.ts`                     | Bekrefter steg-modulen er registrert  |
 
 Eksempel: For `AndreYtelserSteg.tsx` i `steps/andre-ytelser/`, les:
+
 - `steps/andre-ytelser/AndreYtelserSteg.tsx`
 - `steps/andre-ytelser/i18n/nb.ts`
 - `steps/andre-ytelser/i18n/nn.ts`
@@ -306,23 +307,23 @@ Eksempel: For `AndreYtelserSteg.tsx` i `steps/andre-ytelser/`, les:
 
 Gitt en komponent i `pages/<side-mappenavn>/`, les:
 
-| Fil | Formål |
-| --- | --- |
-| `pages/<side-mappenavn>/<PageComponent>.tsx` | Komponentfilen med hardkodede tekster |
-| `pages/<side-mappenavn>/i18n/nb.ts` | Eksisterende nb-nøkler for siden |
-| `pages/<side-mappenavn>/i18n/nn.ts` | Eksisterende nn-nøkler for siden |
-| `i18n/index.tsx` | Bekrefter siden er inkludert i app-meldingene |
+| Fil                                          | Formål                                        |
+| -------------------------------------------- | --------------------------------------------- |
+| `pages/<side-mappenavn>/<PageComponent>.tsx` | Komponentfilen med hardkodede tekster         |
+| `pages/<side-mappenavn>/i18n/nb.ts`          | Eksisterende nb-nøkler for siden              |
+| `pages/<side-mappenavn>/i18n/nn.ts`          | Eksisterende nn-nøkler for siden              |
+| `i18n/index.tsx`                             | Bekrefter siden er inkludert i app-meldingene |
 
 ### Pakke-komponent
 
 Gitt en komponent i `src/<type>/<komponent>/`, les:
 
-| Fil | Formål |
-| --- | --- |
-| `src/<type>/<komponent>/<Component>.tsx` | Komponentfilen med hardkodede tekster |
-| `src/<type>/<komponent>/i18n/nb.ts` | Eksisterende nb-nøkler |
-| `src/<type>/<komponent>/i18n/nn.ts` | Eksisterende nn-nøkler |
-| `src/i18n/index.tsx` | Bekrefter komponenten er registrert i pakke-messages |
+| Fil                                      | Formål                                               |
+| ---------------------------------------- | ---------------------------------------------------- |
+| `src/<type>/<komponent>/<Component>.tsx` | Komponentfilen med hardkodede tekster                |
+| `src/<type>/<komponent>/i18n/nb.ts`      | Eksisterende nb-nøkler                               |
+| `src/<type>/<komponent>/i18n/nn.ts`      | Eksisterende nn-nøkler                               |
+| `src/i18n/index.tsx`                     | Bekrefter komponenten er registrert i pakke-messages |
 
 > **Regel:** Hvis alle fire filene leses i parallell i én batch, har du all nødvendig kontekst. Ikke gjør ytterligere søk.
 
@@ -349,12 +350,14 @@ Les alle aktuelle komponentfiler i én parallell `read_file`-batch. Formålet er
 For hvert steg som skal ekstraheres, les hovedkomponenten (f.eks. `BostedForm.tsx`, `OppsummeringSteg.tsx`).
 
 Fra hver fil, noter alle hardkodede tekster:
+
 - **String-props:** `legend="..."`, `aria-label="..."`, `title="..."`, `placeholder="..."`
-- **Template literals i props:** `` legend={`Tekst ${x}?`} `` → i18n-nøkkel med `{param}`
+- **Template literals i props:** ``legend={`Tekst ${x}?`}`` → i18n-nøkkel med `{param}`
 - **Same-line JSX children:** `<Heading>Tekst</Heading>`, `<Alert variant="info">Tekst</Alert>`
 - **Multi-line JSX children:** tekst som står på egen linje mellom åpnings- og lukketag
 
 **Hva som IKKE skal ekstraheres:**
+
 - Komponent-props som er enums/konstanter (f.eks. `variant="warning"`, `size="small"`)
 - Tekst som allerede er i18n (f.eks. `text('nøkkel')` eller `<AppText id="..." />`)
 - TODO-kommentarer i JSX
@@ -377,10 +380,12 @@ For hvert steg med inline tekster:
 Bruk `multi_replace_string_in_file` for å oppdatere ALLE komponenter i én operasjon.
 
 Regelen for **hook vs. komponent**:
+
 - **String-props** (legend, aria-label, title, placeholder) → `text('nøkkel')` fra hook
 - **JSX children** → `<AppText id="nøkkel" />` komponent
 
 For **hver** komponent som oppdateres:
+
 - Legg til `import { AppText, useAppIntl } from '@app/i18n';` — utelat `useAppIntl` om kun children brukes, utelat `AppText` om kun string-props brukes
 - Legg til `const { text } = useAppIntl();` kun hvis `text()` brukes
 

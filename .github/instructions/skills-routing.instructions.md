@@ -4,16 +4,9 @@ applyTo: '**'
 
 # Skill Routing
 
-## Obligatorisk arbeidsflyt
+## Arbeidsflyt
 
-**STOPP** — Før du bruker verktøy, søker i kodebasen eller foreslår kode:
-
-1. Skann brukerens melding mot signalordene under.
-2. Hvis ett eller flere signalord matcher, les tilhørende `SKILL.md` FØR alt annet.
-3. Følg skillens arbeidsmodus (f.eks. fase 1 → fase 2).
-4. Oppgi i svaret hvilke skills som er brukt.
-
-Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje før skill-matching er utført.
+Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene under. Hvis ett eller flere matcher, les tilhørende `SKILL.md` som første skritt. Følg skillens arbeidsmodus og prioriteringsregler.
 
 ## Signalord til skill
 
@@ -27,6 +20,7 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
     - Oppsett: `env.schema.ts`, `initApiClients`, API-klient-init, `*_API_URL`, `*_API_SCOPE`, `*_FRONTEND_PATH`.
 - `sif-soknad-setup`:
     - Oppsett av `src/app/setup`, `soknadContext`, `soknadStepConfig`, `useStepSubmit`, `useStepDefaultValues`.
+    - Routing shell og pages: `Soknad.tsx`, `VelkommenPage`, `KvitteringPage`, `steps/index.ts`, `pages/index.ts`, `routing-skall`, `sett opp sider`, `legg til routing`.
 - `sif-soknad-add-step`:
     - Legge til steg: `nytt steg`, `legg til steg`, `ny side i søknaden`, `opprett steg`, `førstesteg`, `neste steg`, `eget steg`, `egen side`.
     - Steg-filer: `StegUtils`, `FormFields`, `FormValues`, `SøknadStep`, `stepOrder`, `stepConfig`.
@@ -56,6 +50,9 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 - `sif-playwright-a11y`:
     - Accessibility: `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`.
     - Oppsett: `a11y i playwright`, `uu-test i e2e`.
+- `sif-soknad-oppsummering`:
+    - Oppsett av oppsummeringssteg: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny oppsummering`, `oppsummeringsside`.
+    - Innhold: `FormSummary`, `OmSøkerOppsummering`, `OmBarnetOppsummering`, `VedleggOppsummering`, bekreftelsescheckbox.
 
 ## Prioritering ved overlapp
 
@@ -69,3 +66,5 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 - Hvis oppgaven handler om initial data-henting (kombinere hooks, loading/error-state før søknaden starter), prioriter `sif-initial-data-loader` over `sif-api`.
 - Hvis oppgaven handler om Playwright/e2e-oppsett i app, prioriter `sif-playwright`.
 - Hvis oppgaven handler om accessibility/axe i Playwright-tester, prioriter `sif-playwright-a11y`.
+- Hvis oppgaven handler om å sette opp `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` eller `steps/index.ts`, prioriter `sif-soknad-setup`.
+- Hvis oppgaven handler om å sette opp eller fylle inn innhold i `OppsummeringSteg`, prioriter `sif-soknad-oppsummering`.

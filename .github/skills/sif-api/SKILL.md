@@ -217,6 +217,28 @@ if (søker.isError) return <ApiErrorAlert error={søker.error} />;
 
 ---
 
+## Personvern — aldri logg aktørId eller fødselsnummer
+
+**AktørId og fødselsnummer (fnr) er personidentifiserende og skal aldri skrives til logger, feilmeldinger eller konsoll.**
+
+Eksempel på feil bruk:
+
+```typescript
+// FEIL — aktørId havner i logg/feilmelding
+throw handleApiError(e, `hentSisteGyldigeVedtak-${aktørId}`);
+```
+
+Riktig praksis: bruk kun funksjonsnavn eller nøytral kontekst i feilmeldinger:
+
+```typescript
+// RIKTIG
+throw handleApiError(e, 'hentSisteGyldigeVedtak');
+```
+
+Gjelder alle API-funksjoner i `packages/sif-api/src/api/**` og ethvert annet sted der disse verdiene er tilgjengelige.
+
+---
+
 ## Feilhåndtering (ApiError)
 
 Alle hooks kaster `ApiError` ved feil. Typen har tre varianter: `ValidationError` (Zod-parsing feiler), `NetworkError` (HTTP-feil) og `UnknownError`. Hvert feilobjekt inneholder `type`, `context` (hvilken API-funksjon som feilet), `message` og `originalError`.

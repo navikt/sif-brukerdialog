@@ -1,4 +1,5 @@
 import { expect, Page, test } from '@playwright/test';
+import { ScenarioType } from '../../mock/scenarios/types';
 
 import { setScenario } from '../utils/scenario';
 import { testAccessibility } from '../utils/testAccessibility';
@@ -16,7 +17,7 @@ const gåTilbakeTilForsideOgVerifiserBesvart = async (page: Page) => {
 };
 
 test('rapporterInntektDelerAvMåned kan besvares og viser registrert svar ved gjenåpning', async ({ page }) => {
-    await setScenario(page, 'rapporterInntektDelerAvMåned');
+    await setScenario(page, ScenarioType.rapporterInntektDelerAvMåned);
 
     await åpneOppgaveFraForside(page, /Meld fra om du hadde inntekt i/i);
 
@@ -42,7 +43,7 @@ test('rapporterInntektDelerAvMåned kan besvares og viser registrert svar ved gj
 });
 
 test('avvikInntekt kan besvares med ja og viser registrert svar ved gjenåpning', async ({ page }) => {
-    await setScenario(page, 'avvikInntekt');
+    await setScenario(page, ScenarioType.avvikInntekt);
 
     await åpneOppgaveFraForside(page, /Sjekk inntekten din i/i);
 
@@ -67,7 +68,7 @@ test('avvikInntekt kan besvares med ja og viser registrert svar ved gjenåpning'
 test('avvikInntektDelerAvMåned kan besvares med nei og tekst, og viser registrert svar ved gjenåpning', async ({
     page,
 }) => {
-    await setScenario(page, 'avvikInntektDelerAvMåned');
+    await setScenario(page, ScenarioType.avvikInntektDelerAvMåned);
 
     await åpneOppgaveFraForside(page, /Sjekk inntekten din i/i);
 

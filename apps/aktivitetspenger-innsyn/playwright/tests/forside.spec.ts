@@ -1,10 +1,11 @@
 import { expect, test } from '@playwright/test';
+import { ScenarioType } from '../../mock/scenarios/types';
 
 import { setScenario } from '../utils/scenario';
 import { testAccessibility } from '../utils/testAccessibility';
 
 test('viser tomtilstand for uloste oppgaver i default-scenarioet', async ({ page }) => {
-    await setScenario(page, 'default');
+    await setScenario(page, ScenarioType.default);
 
     await page.goto('/');
 
@@ -17,7 +18,7 @@ test('viser tomtilstand for uloste oppgaver i default-scenarioet', async ({ page
 });
 
 test('kan åpne en oppgave direkte med BrowserRouter og scenario-data', async ({ page }) => {
-    await setScenario(page, 'avvikInntekt');
+    await setScenario(page, ScenarioType.avvikInntekt);
 
     await page.goto('/');
 

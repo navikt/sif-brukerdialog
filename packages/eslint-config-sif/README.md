@@ -38,8 +38,8 @@ Make sure your project has these dependencies:
 ```json
 {
     "devDependencies": {
-        "typescript-eslint": "^8.35.1",
-        "eslint": "^9.30.1"
+        "typescript-eslint": "8.35.1",
+        "eslint": "9.30.1"
     }
 }
 ```

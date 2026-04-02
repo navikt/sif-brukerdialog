@@ -19,6 +19,7 @@ Scaffold et komplett nytt steg i en søknadsapp. Etter at skillen er kjørt skal
 - **Kun** scaffold og kobling — ikke domenelogikk, API-kall eller avansert UI.
 - Stegets innhold utvides etter at grunnstrukturen er på plass.
 - For oppsett av selve setup-laget (context, store, hooks) → bruk `sif-soknad-setup`.
+- For oppsett av `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` og `steps/index.ts` → bruk `sif-soknad-setup` (seksjonen "Routing shell og pages").
 - For i18n-konvensjoner utover det som dekkes her → bruk `sif-intl`.
 
 ## Arbeidsmodus
@@ -56,6 +57,73 @@ Utled navnene fra brukerens beskrivelse. Alle navn er konsekvente:
 I malene under brukes `<felt>` som plassholder for det **konkrete feltnavnet** du velger (f.eks. `harPeriode`, `harArbeid`). Det er lowerCamelCase og velges basert på hva spørsmålet handler om. Erstatt alle forekomster av `<felt>` med dette navnet, akkurat som `<Prefix>`/`<prefix>` erstattes med stegnavnet.
 
 **Posisjon i stepOrder:** Plasser steget der brukeren ber om det. Hvis brukeren sier «førstesteg», legg det først. Hvis ingen posisjon er angitt, legg det sist før `OPPSUMMERING`.
+
+### Steg 1a — Sjekk om paneler fra @sif/soknad-forms kan brukes
+
+Før du bygger UI fra bunnen: sjekk om steget handler om noe `@sif/soknad-forms` allerede dekker.
+
+| Steg handler om                                                   | Bruk panel                |
+| ----------------------------------------------------------------- | ------------------------- |
+| Valg av registrert barn (radiogruppe med fødselsdato + kildeinfo) | `VelgRegistrertBarnPanel` |
+
+Hvis et panel passer: importer det og bruk `ANNET_BARN`-konstanten fra samme pakke i stedet for å definere den lokalt.
+
+```tsx
+import { ANNET_BARN, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
+```
+
+Eksporter `ANNET_BARN` fra `types.ts` via re-eksport hvis andre filer i steget trenger den:
+
+```ts
+import { ANNET_BARN } from '@sif/soknad-forms';
+export { ANNET_BARN };
+```
+
+---
+
+### Steg 1b — Kartlegg betingelseslogikken fra v1 (ved migrering)
+
+Hvis steget porteres fra en eksisterende app: **les v1-skjemakomponenten FØR du skriver kode.** Finn filen som heter `<Prefix>Form.tsx` eller tilsvarende i kildeappen.
+
+Kartlegg eksplisitt:
+
+```
+felt A → alltid synlig
+felt B → synlig når felt A === YES
+felt C → synlig når felt B === NO
+alert X → synlig når felt A === NO
+```
+
+Sjekk spesielt inversjonsfeil — det er den vanligste feilen ved portering:
+
+| v1-kode             | Feil v2-kode       | Riktig v2-kode      |
+| ------------------- | ------------------ | ------------------- |
+| `kronisk === YES`   | `kronisk === NO`   | `kronisk === YES`   |
+| `harBarn === false` | `harBarn === true` | `harBarn === false` |
+
+Skriv ned kartleggingen som kommentarer øverst i `<Prefix>Form.tsx` eller som lokale variabler med selvforklarende navn, og verifiser mot v1 før du leverer.
+
+### Steg 1c — API-typer fra k9-brukerdialog-prosessering-api
+
+Pakken `@navikt/k9-brukerdialog-prosessering-api` re-eksporterer typer fra mange ytelser. Bruk **alltid** ytelse-spesifikk subpath — ikke flat import fra rot.
+
+```ts
+// ✅ Riktig — omsorgspenger-spesifikk Barn og søknadstype
+import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+export type SøknadApiData = omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad;
+
+// ❌ Feil — henter fra legacy client/types.gen.ts som har andre (feil) typer
+import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+```
+
+Tilgjengelige subpaths: `omsorgspenger`, `aktivitetspenger`, `ungdomsytelse`, `ettersendelse`, `omsorgspenger-aleneomsorg`, o.l. — se `src/index.ts` i pakken.
+
+Samme prinsipp gjelder controllers i `sendSoknad.ts`:
+
+```ts
+// ✅
+await omsorgspenger.OmsorgspengerUtvidetRettController.innsendingOmsorgspengerKroniskSyktBarnSøknad(...)
+```
 
 ### Steg 2 — Opprett nye filer
 
@@ -108,6 +176,8 @@ export const <prefix>StegMessages_nb = {
     '<prefix>Form.validation.<felt>.yesOrNoIsUnanswered': '<valideringstekst>',
 };
 ```
+
+> **Valideringsnøkkel-format:** `{scope}.validation.{felt}.{errorCode}` — der `scope` er strengen sendt til `useSifValidate('oppsummeringForm')` og `errorCode` er enum-verdien fra validatoren (f.eks. `notChecked`, `yesOrNoIsUnanswered`). Nøkkelen må finnes i i18n-filene, ellers vises raw key i UI.
 
 #### `i18n/nn.ts`
 
@@ -207,6 +277,20 @@ Legg til i `søknadStepConfig`:
     isCompleted: (s) => s.<camelCase> !== undefined,
 },
 ```
+
+> **Route-strenger må ikke inneholde norske bokstaver (æ, ø, å).** Bruk ASCII-ekvivalenter: `legeerklaring` (ikke `legeerklæring`), `delt-bosted` osv. Norske tegn i URL-path bryter routing i nettlesere.
+
+**Betingede steg** som bare skal vises for noen brukere bruker `isIncluded`:
+
+```ts
+[SøknadStepId.DELT_BOSTED]: {
+    route: 'delt-bosted',
+    isIncluded: (s) => s[SøknadStepId.OM_BARNET]?.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED,
+    isCompleted: (s) => s[SøknadStepId.DELT_BOSTED] !== undefined,
+},
+```
+
+`søknadStepOrder` skal alltid inneholde **alle** steg inkl. betingede — `isIncluded` filtrerer dynamisk basert på søknadsdata. Ikke bruk manuell `getSøknadStepOrder`-funksjon.
 
 Legg til i `søknadStepOrder` på riktig posisjon.
 
