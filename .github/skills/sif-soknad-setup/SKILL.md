@@ -1,27 +1,28 @@
 ---
 name: sif-soknad-setup
-description: Veiledning for oppsett av src/app/setup i nye apper som bruker @sif/soknad og @sif/rhf.
+description: Veiledning for oppsett av src/app/setup og routing shell (Soknad.tsx, VelkommenPage, KvitteringPage) i nye apper som bruker @sif/soknad og @sif/rhf.
 ---
 
 # sif-soknad-setup Skill
 
-## Purpose
+## Formål
 
 Guide for å sette opp `src/app/setup/`-mappen i en ny app som bruker `@sif/soknad` og `@sif/rhf` rammeverket.
 
-## When to use
+## Når skal skillen brukes
 
 - Du oppretter en ny søknadsapp i monorepo-et som skal bruke `@sif/soknad`.
 - Du skal koble en eksisterende app til rammeverket og trenger å bygge opp setup-laget.
 - Du trenger referanse til mønstrene og tilpasningspunktene for setup-laget.
+- Du skal opprette routing-skallet (`Soknad.tsx`, `VelkommenPage`, `KvitteringPage`, barrel-filer).
 
 ## Scope
 
-- Fokus: `src/app/setup/` og tilhørende typer og utils i appen.
-- Omfatter setup-laget, ikke steginnhold, initial data-flyt, API-kall, velkomst- og kvitteringssider.
+- Fokus: `src/app/setup/` og tilhørende typer og utils i appen, pluss routing shell og sider.
+- Omfatter setup-laget og `Soknad.tsx`, `VelkommenPage`, `KvitteringPage`, barrel-filer — ikke steginnhold eller API-kall.
 - Kildereferanse: `apps/sif-demo-app/src/app/setup/` og `apps/aktivitetspenger-soknad/src/app/setup/`.
 - For initial data-flyt (`useInitialData`, `InitialDataLoader`) → bruk `sif-initial-data-loader`.
-- For `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` og `steps/index.ts` → bruk [sif-soknad-pages](../sif-soknad-pages/SKILL.md).
+- For å legge til steg i routingen → bruk [sif-soknad-add-step](../sif-soknad-add-step/SKILL.md).
 
 ## Avgrensning mot initial data
 
@@ -239,7 +240,7 @@ SøknadFormValues   →  toSøknadsdata()  →  Søknadsdata  →  toApiData()  
 
 Det betyr at interne typer (enums, verdier, struktur) kan avvike fra API-kontrakten — det er tilsiktet og ønskelig.
 
-**Når alternativ A er nyttig:** Primært for typer som sendes *direkte* til API-et uten konvertering, eller der du ønsker at interne typer skal samsvare eksakt med API-kontrakten for å unngå mappingkode. Sjekk `types.gen.ts` i `k9-brukerdialog-prosessering-api` under `src/generated/<ytelse>/` for tilgjengelige typer.
+**Når alternativ A er nyttig:** Primært for typer som sendes _direkte_ til API-et uten konvertering, eller der du ønsker at interne typer skal samsvare eksakt med API-kontrakten for å unngå mappingkode. Sjekk `types.gen.ts` i `k9-brukerdialog-prosessering-api` under `src/generated/<ytelse>/` for tilgjengelige typer.
 
 **Zod-skjemaer:** De genererte `zod.gen.ts`-filene inneholder per nå inline `z.enum()`-definisjoner uten separate eksporter. Utled typer fra TypeScript-typen (`types.gen.ts`), ikke fra Zod.
 
@@ -514,3 +515,248 @@ Bruk den i stedet for `QueryClientProvider` i `App.tsx`:
 - 401-feil skippes (forventet ved utløpt sesjon).
 - `isApiError` og `isApiAxiosError` er type guards eksportert fra `@sif/api`.
 - Logger `originalError` (den faktiske `AxiosError`/`ZodError`) for korrekt stack trace i Sentry.
+
+---
+
+## Routing shell og pages
+
+Denne seksjonen dekker filene som må eksistere før første steg kan rendres:
+
+- `src/app/Soknad.tsx` — routing-skall, store-init, kvittering-redirect
+- `src/app/pages/velkommen/VelkommenPage.tsx` — startside med bekreftelse
+- `src/app/pages/kvittering/KvitteringPage.tsx` — kvitteringsside etter innsending
+- `src/app/pages/index.ts` — barrel-eksport
+- `src/app/steps/index.ts` — barrel-eksport for steg (opprettes tom, fylles etter hvert)
+
+**Forutsetning:** setup-laget over er fullført — `useSøknadStore`, `useStepTitles`, `søknadStepConfig`, `SøknadContextProvider` og `SøknadStep` finnes.
+
+### Mappestruktur
+
+```
+src/app/
+    Soknad.tsx
+    pages/
+        index.ts
+        kvittering/
+            KvitteringPage.tsx
+        velkommen/
+            VelkommenPage.tsx
+    steps/
+        index.ts          ← tom ved oppstart, fyll etter hvert som steg legges til
+```
+
+### `src/app/Soknad.tsx`
+
+Routing-skallet. Tilpasningspunkter:
+
+| Linje                       | Tilpass til                                                            |
+| --------------------------- | ---------------------------------------------------------------------- |
+| `Props`-interface           | Feltene fra `InitialData` i `useInitialData.ts`                        |
+| `init({ søker, barn })`     | Match feltene i `SøknadState` (f.eks. fjern `barn` hvis ikke relevant) |
+| `mellomlagring?.skjemadata` | Bytt til `mellomlagring?.søknadsdata` om appen bruker det feltet       |
+| Route-elementer             | Legg til én `<Route>` per `SøknadStepId` etter hvert                   |
+
+```tsx
+import { useEffect } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+
+import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { StepRouteGuard } from '@sif/soknad/navigation';
+
+import { søknadStepConfig } from '@app/setup/config/soknadStepConfig';
+import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { SøknadContextProvider } from '@app/setup/context/soknadContext';
+import { useSøknadStore, useStepTitles } from '@app/setup/hooks';
+
+import { KvitteringPage, VelkommenPage } from './pages';
+import { SøknadMellomlagring } from './types/Mellomlagring';
+// import steg her etter hvert: import { MittSteg } from './steps';
+
+interface Props {
+    søker: Søker;
+    barn: RegistrertBarn[]; // fjern om appen ikke har barn
+    mellomlagring?: SøknadMellomlagring;
+}
+
+export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
+    const stepTitles = useStepTitles();
+    const init = useSøknadStore((s) => s.init);
+    const søknadSendt = useSøknadStore((s) => s.søknadSendt);
+    const søknadState = useSøknadStore((s) => s.søknadState);
+    const currentStepId = useSøknadStore((s) => s.currentStepId);
+    const includedSteps = useSøknadStore((s) => s.includedSteps);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffectOnce(() => {
+        init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
+    });
+
+    useEffect(() => {
+        if (søknadSendt && location.pathname !== '/kvittering') {
+            navigate('/kvittering', { replace: true });
+        } else if (!søknadSendt && location.pathname === '/kvittering') {
+            navigate('/', { replace: true });
+        }
+    }, [søknadSendt, location.pathname, navigate]);
+
+    const currentStepRoute = currentStepId ? søknadStepConfig[currentStepId]?.route : undefined;
+    useEffect(() => {
+        if (currentStepRoute && location.pathname === '/') {
+            navigate(`/soknad/${currentStepRoute}`, { replace: true });
+        }
+    }, [currentStepRoute, location.pathname, navigate]);
+
+    if (søknadSendt && location.pathname !== '/kvittering') {
+        return <KvitteringPage />;
+    }
+
+    if (!søknadSendt && location.pathname === '/kvittering') {
+        return (
+            <SøknadContextProvider stepTitles={stepTitles}>
+                <VelkommenPage />
+            </SøknadContextProvider>
+        );
+    }
+
+    return (
+        <SøknadContextProvider initialFormValues={mellomlagring?.skjemadata} stepTitles={stepTitles}>
+            <Routes>
+                <Route path="/" element={<VelkommenPage />} />
+                <Route path="/kvittering" element={<KvitteringPage />} />
+                <Route
+                    path="/soknad"
+                    element={
+                        <StepRouteGuard
+                            steps={includedSteps}
+                            currentStepId={currentStepId}
+                            isInitialized={!!søknadState}
+                        />
+                    }>
+                    {/* Legg til én Route per steg her */}
+                    <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<div />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                </Route>
+                <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+        </SøknadContextProvider>
+    );
+};
+```
+
+**Viktig: `mellomlagring?.skjemadata` vs. `mellomlagring?.søknadsdata`**
+
+`SøknadContextProvider` tar `initialFormValues` — dette er RHF-skjemadata (`skjemadata`). Ikke forveksle med `mellomlagring?.søknadsdata` som brukes i `init`.
+
+### `src/app/pages/velkommen/VelkommenPage.tsx`
+
+`guide.content` er app-spesifikt. Strukturen (hooks, `handleStart`, `StartPage`) er lik på tvers av apper.
+
+**Krav til `StartPage`:** Komponenten krever `children` (påkrevd prop). Send `<span />` som plassholder om ingenting annet passer.
+
+```tsx
+import { useAppIntl } from '@app/i18n';
+import { søknadStepConfig, søknadStepOrder } from '@app/setup/config/soknadStepConfig';
+import { useSøknadMellomlagring, useSøknadsflyt, useSøknadStore } from '@app/setup/hooks';
+import { BodyLong, VStack } from '@navikt/ds-react';
+import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { StartPage } from '@sif/soknad-ui/pages';
+import { useNavigate } from 'react-router-dom';
+
+export const VelkommenPage = () => {
+    const { text } = useAppIntl();
+    const navigate = useNavigate();
+    const søknadState = useSøknadStore((s) => s.søknadState);
+    const { startSøknad } = useSøknadsflyt();
+    const { clearSøknadFormValues } = useSøknadFormValues();
+    const { opprettMellomlagring, isPending } = useSøknadMellomlagring();
+
+    const handleStart = async (harForståttRettigheterOgPlikter: true) => {
+        const førsteStegId = søknadStepOrder[0];
+        const førsteSteg = søknadStepConfig[førsteStegId];
+        clearSøknadFormValues();
+        startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
+        await opprettMellomlagring();
+        navigate(`/soknad/${førsteSteg.route}`);
+    };
+
+    return (
+        <StartPage
+            onStart={handleStart}
+            isPending={isPending}
+            guide={{
+                navn: søknadState?.søker.fornavn || '',
+                content: (
+                    <VStack gap="space-8">
+                        <BodyLong>{/* App-spesifikt innhold her */}</BodyLong>
+                    </VStack>
+                ),
+            }}
+            title={text('application.title')}>
+            <span />
+        </StartPage>
+    );
+};
+```
+
+### `src/app/pages/kvittering/KvitteringPage.tsx`
+
+`documentTitle` og `tittel` er app-spesifikke.
+
+```tsx
+import { useAppIntl } from '@app/i18n';
+import { Button } from '@navikt/ds-react';
+import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
+import { Kvittering } from '@sif/soknad-ui/components';
+import { ApplicationPage } from '@sif/soknad-ui/pages';
+
+export const KvitteringPage = () => {
+    const { text } = useAppIntl();
+    const path = getRequiredEnv(EnvKey.PUBLIC_PATH);
+
+    const onRestart = () => {
+        window.location.replace(path);
+    };
+
+    return (
+        <ApplicationPage documentTitle="[Søknadsnavn] mottatt" applicationTitle={text('application.title')}>
+            <Kvittering tittel="Vi har mottatt søknaden din om [ytelse]">
+                <div>
+                    <Button variant="secondary" onClick={onRestart}>
+                        Tilbake til forsiden
+                    </Button>
+                </div>
+            </Kvittering>
+        </ApplicationPage>
+    );
+};
+```
+
+### Barrel-filer
+
+**`src/app/pages/index.ts`**
+
+```ts
+export { KvitteringPage } from './kvittering/KvitteringPage';
+export { VelkommenPage } from './velkommen/VelkommenPage';
+```
+
+**`src/app/steps/index.ts`** — opprett tom, legg til én eksport per steg etter hvert:
+
+```ts
+// Fyll etter hvert som steg implementeres:
+// export { MittStegSteg } from './mitt-steg/MittStegSteg';
+```
+
+> Når du legger til et steg: 1) Legg til eksport her, 2) Importer i `Soknad.tsx`, 3) Legg til `<Route>` i `/soknad`-gruppen. Se → [sif-soknad-add-step](../sif-soknad-add-step/SKILL.md).
+
+### Sjekkliste — pages
+
+- [ ] `src/app/Soknad.tsx` opprettet med riktig `Props` og `init`-kalling
+- [ ] `src/app/pages/velkommen/VelkommenPage.tsx` opprettet
+- [ ] `src/app/pages/kvittering/KvitteringPage.tsx` opprettet
+- [ ] `src/app/pages/index.ts` opprettet
+- [ ] `src/app/steps/index.ts` opprettet (tom eller med første steg)
+- [ ] `yarn check:types` passerer

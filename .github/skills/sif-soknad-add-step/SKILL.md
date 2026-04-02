@@ -19,7 +19,7 @@ Scaffold et komplett nytt steg i en søknadsapp. Etter at skillen er kjørt skal
 - **Kun** scaffold og kobling — ikke domenelogikk, API-kall eller avansert UI.
 - Stegets innhold utvides etter at grunnstrukturen er på plass.
 - For oppsett av selve setup-laget (context, store, hooks) → bruk `sif-soknad-setup`.
-- For oppsett av `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` og `steps/index.ts` → bruk [sif-soknad-pages](../sif-soknad-pages/SKILL.md).
+- For oppsett av `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` og `steps/index.ts` → bruk `sif-soknad-setup` (seksjonen "Routing shell og pages").
 - For i18n-konvensjoner utover det som dekkes her → bruk `sif-intl`.
 
 ## Arbeidsmodus
@@ -62,8 +62,8 @@ I malene under brukes `<felt>` som plassholder for det **konkrete feltnavnet** d
 
 Før du bygger UI fra bunnen: sjekk om steget handler om noe `@sif/soknad-forms` allerede dekker.
 
-| Steg handler om | Bruk panel |
-| --------------- | ---------- |
+| Steg handler om                                                   | Bruk panel                |
+| ----------------------------------------------------------------- | ------------------------- |
 | Valg av registrert barn (radiogruppe med fødselsdato + kildeinfo) | `VelgRegistrertBarnPanel` |
 
 Hvis et panel passer: importer det og bruk `ANNET_BARN`-konstanten fra samme pakke i stedet for å definere den lokalt.
@@ -96,9 +96,9 @@ alert X → synlig når felt A === NO
 
 Sjekk spesielt inversjonsfeil — det er den vanligste feilen ved portering:
 
-| v1-kode | Feil v2-kode | Riktig v2-kode |
-|---|---|---|
-| `kronisk === YES` | `kronisk === NO` | `kronisk === YES` |
+| v1-kode             | Feil v2-kode       | Riktig v2-kode      |
+| ------------------- | ------------------ | ------------------- |
+| `kronisk === YES`   | `kronisk === NO`   | `kronisk === YES`   |
 | `harBarn === false` | `harBarn === true` | `harBarn === false` |
 
 Skriv ned kartleggingen som kommentarer øverst i `<Prefix>Form.tsx` eller som lokale variabler med selvforklarende navn, og verifiser mot v1 før du leverer.

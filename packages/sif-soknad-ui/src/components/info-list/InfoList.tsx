@@ -2,7 +2,7 @@ import './infoList.css';
 
 import { Heading, VStack } from '@navikt/ds-react';
 
-interface Props extends React.HTMLAttributes<HTMLUListElement> {
+interface Props extends React.HTMLAttributes<HTMLOListElement> {
     heading?: string;
     headingLevel?: '2' | '3';
 }
@@ -14,6 +14,6 @@ export const InfoList = ({ heading, headingLevel = '2', ...rest }: Props) => (
                 {heading}
             </Heading>
         )}
-        <ol {...rest} className={`infolist ${rest.className ? rest.className : ''}`} />
+        <ol {...rest} className={`infoList ${rest.className ? rest.className : ''}`} />
     </VStack>
 );

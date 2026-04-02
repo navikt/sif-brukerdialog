@@ -13,6 +13,6 @@ export const hentSisteGyldigeVedtakForAktørId = async (aktørId: string): Promi
         });
         return zSisteGyldigeVedtakForAktørId.parse(data);
     } catch (e) {
-        throw handleApiError(e, `hentSisteGyldigeVedtak-${aktørId}`);
+        throw handleApiError(e, `hentSisteGyldigeVedtak`);
     }
 };
