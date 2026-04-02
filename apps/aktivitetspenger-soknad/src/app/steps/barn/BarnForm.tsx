@@ -60,21 +60,23 @@ export const BarnForm = ({ registrerteBarn }: Props) => {
                         validate={validateField(BarnFormFields.informasjonStemmer, getYesOrNoValidator())}
                     />
                     <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
-                        <Alert variant="info">
-                            <Heading level="3" size="small" spacing>
-                                <AppText id="barnSteg.opplysninger.info.tittel" />
-                            </Heading>
-                            <BodyLong>
-                                <AppText
-                                    id="barnSteg.opplysninger.info.text"
-                                    values={{
-                                        Lenke: (children) => (
-                                            <ExternalLink href={getLenker().skatteetaten}>{children}</ExternalLink>
-                                        ),
-                                    }}
-                                />
-                            </BodyLong>
-                        </Alert>
+                        <FormLayout.QuestionRelatedMessage>
+                            <Alert variant="info">
+                                <Heading level="3" size="small" spacing>
+                                    <AppText id="barnSteg.opplysninger.info.tittel" />
+                                </Heading>
+                                <BodyLong>
+                                    <AppText
+                                        id="barnSteg.opplysninger.info.text"
+                                        values={{
+                                            Lenke: (children) => (
+                                                <ExternalLink href={getLenker().skatteetaten}>{children}</ExternalLink>
+                                            ),
+                                        }}
+                                    />
+                                </BodyLong>
+                            </Alert>
+                        </FormLayout.QuestionRelatedMessage>
                     </AriaLiveRegion>
                 </FormLayout.Questions>
             </FormLayout.Content>
