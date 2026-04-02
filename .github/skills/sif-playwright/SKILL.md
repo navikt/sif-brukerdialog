@@ -197,13 +197,15 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
 
 Setter scenario-key i `localStorage` via `addInitScript` (kjører *før* appen).
 Appen bruker `localStorageStore.init()` som leser denne keyen og genererer mockdata.
+Gjenbruk alltid `ScenarioType` fra `mock/scenarios/types` i stedet for `string` for å sikre at testene kun kan bruke gyldige scenarioer.
 
 ```ts
 import { Page } from '@playwright/test';
+import { ScenarioType } from '../../mock/scenarios/types';
 
 const SCENARIO_KEY = '<APP>_MOCK_SCENARIO';
 
-export const setScenario = async (page: Page, scenario: string) => {
+export const setScenario = async (page: Page, scenario: ScenarioType) => {
     await page.addInitScript(
         ({ scenarioKey, selectedScenario }) => {
             window.localStorage.setItem(scenarioKey, selectedScenario);

@@ -56,6 +56,12 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 - `sif-playwright-a11y`:
     - Accessibility: `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`.
     - Oppsett: `a11y i playwright`, `uu-test i e2e`.
+- `sif-soknad-pages`:
+    - Oppsett av sider: `VelkommenPage`, `KvitteringPage`, `Soknad.tsx`, `steps/index.ts`, `pages/index.ts`.
+    - Prerekvisitten for første steg: `første steg`, `routing-skall`, `sett opp sider`, `legg til routing`.
+- `sif-soknad-oppsummering`:
+    - Oppsett av oppsummeringssteg: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny oppsummering`, `oppsummeringsside`.
+    - Innhold: `FormSummary`, `OmSøkerOppsummering`, `OmBarnetOppsummering`, `VedleggOppsummering`, bekreftelsescheckbox.
 
 ## Prioritering ved overlapp
 
@@ -69,3 +75,5 @@ Bryt aldri denne rekkefølgen. Ingen verktøykall eller kodebase-søk skal skje 
 - Hvis oppgaven handler om initial data-henting (kombinere hooks, loading/error-state før søknaden starter), prioriter `sif-initial-data-loader` over `sif-api`.
 - Hvis oppgaven handler om Playwright/e2e-oppsett i app, prioriter `sif-playwright`.
 - Hvis oppgaven handler om accessibility/axe i Playwright-tester, prioriter `sif-playwright-a11y`.
+- Hvis oppgaven handler om å sette opp `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` eller `steps/index.ts`, prioriter `sif-soknad-pages`.
+- Hvis oppgaven handler om å sette opp eller fylle inn innhold i `OppsummeringSteg`, prioriter `sif-soknad-oppsummering`.
