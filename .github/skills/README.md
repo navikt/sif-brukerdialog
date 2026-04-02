@@ -13,8 +13,8 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Fil: `.github/skills/sif-intl/SKILL.md`
 
 - `sif-soknad-setup`
-    - Når: oppsett av `src/app/setup` i app med `@sif/soknad` og `@sif/rhf`.
-    - Triggerord: `soknadContext`, `stepConfig`, `useStepSubmit`, `useStepDefaultValues`, setup-lag.
+    - Når: oppsett av `src/app/setup` og routing shell (`Soknad.tsx`, `VelkommenPage`, `KvitteringPage`) i app med `@sif/soknad` og `@sif/rhf`.
+    - Triggerord: `soknadContext`, `stepConfig`, `useStepSubmit`, `useStepDefaultValues`, `VelkommenPage`, `KvitteringPage`, `Soknad.tsx`, `routing-skall`.
     - Fil: `.github/skills/sif-soknad-setup/SKILL.md`
 
 - `monorepo-frontend`
@@ -56,3 +56,18 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Når: verifisere eller feilsøke proxy/path-oppsett mellom app, env og backend.
     - Triggerord: `reverse proxy`, `proxy`, `returnerer html`, `catch-all`, `api path`, `frontendPath`, `PUBLIC_PATH`, `baseURL`.
     - Fil: `.github/skills/sif-server-proxy-api-config/SKILL.md`
+
+- `sif-playwright`
+    - Når: sette opp Playwright e2e-testing i en app-workspace.
+    - Triggerord: `playwright`, `e2e`, `end-to-end`, `playwright.config`, `test:e2e`, `smoke test`, `første e2e test`.
+    - Fil: `.github/skills/sif-playwright/SKILL.md`
+
+- `sif-playwright-a11y`
+    - Når: legge til accessibility-testing med axe i Playwright-tester.
+    - Triggerord: `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`.
+    - Fil: `.github/skills/sif-playwright-a11y/SKILL.md`
+
+- `sif-soknad-oppsummering`
+    - Når: sette opp eller fylle inn innhold i oppsummeringssteget.
+    - Triggerord: `oppsummering`, `OppsummeringSteg`, `FormSummary`, `OmSøkerOppsummering`, `bekreftelsescheckbox`.
+    - Fil: `.github/skills/sif-soknad-oppsummering/SKILL.md`
