@@ -28,9 +28,22 @@ interface OmBarnetSøknadsdata_AnnetBarn {
 
 export type OmBarnetSøknadsdata = OmBarnetSøknadsdata_RegistrertBarn | OmBarnetSøknadsdata_AnnetBarn;
 
-export type LegeerklæringSøknadsdata = Record<string, never>;
+export interface PersistedVedlegg {
+    id: string;
+    url: string;
+    name: string;
+    size: number;
+    type: string;
+    lastModified: number;
+}
 
-export type DeltBostedSøknadsdata = Record<string, never>;
+export interface LegeerklæringSøknadsdata {
+    vedlegg: PersistedVedlegg[];
+}
+
+export interface DeltBostedSøknadsdata {
+    samværsavtale: PersistedVedlegg[];
+}
 
 export interface Søknadsdata extends BaseSøknadsdata {
     [SøknadStepId.OM_BARNET]?: OmBarnetSøknadsdata;

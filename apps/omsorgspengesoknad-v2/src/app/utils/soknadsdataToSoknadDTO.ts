@@ -18,6 +18,9 @@ export const søknadsdataToSøknadDTO = ({
     språk,
 }: Params): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
     const omBarnet = søknadsdata[SøknadStepId.OM_BARNET];
+    const legeerklæring = søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg.map((vedlegg) => vedlegg.id) ?? [];
+    const samværsavtale = søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale.map((vedlegg) => vedlegg.id) ?? [];
+
     if (!omBarnet) return undefined;
 
     let barn: SøknadApiData['barn'];
@@ -42,8 +45,8 @@ export const søknadsdataToSøknadDTO = ({
     return {
         språk,
         barn,
-        legeerklæring: [],
-        samværsavtale: omBarnet.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED ? [] : undefined,
+        legeerklæring,
+        samværsavtale: omBarnet.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED ? samværsavtale : undefined,
         relasjonTilBarnet,
         kroniskEllerFunksjonshemming: omBarnet.kroniskEllerFunksjonshemming,
         søkerNorskIdent: søker.fødselsnummer,

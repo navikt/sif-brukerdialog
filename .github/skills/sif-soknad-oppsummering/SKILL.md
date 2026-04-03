@@ -22,7 +22,7 @@ Signalord: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny opps
 
 - Kun `OppsummeringSteg.tsx` og tilhørende `i18n/nb.ts`
 - Ikke endre andre steg, søknadsdata-typer eller DTO-mapping
-- For vedlegg: vis antall eller tom-advarsel — ikke bruk komponenter fra gamle pakker (`@navikt/sif-common-core-ds` o.l.)
+- For vedlegg: bruk komponenter fra `@sif/soknad-ui`, ikke fra gamle pakker (`@navikt/sif-common-core-ds` o.l.)
 
 ---
 
@@ -85,19 +85,25 @@ const RelasjonTilBarnetTekst = ({ relasjon }: { relasjon: SøkersRelasjonTilBarn
 
 ### Vedlegg
 
-Vis antall eller tom-advarsel. Bruk `Alert` fra `@navikt/ds-react`:
+Vis vedlegg som lenkeliste, ikke bare antall. Bruk `VedleggSummaryList` fra `@sif/soknad-ui/components` og les vedleggene fra `state.søknadsdata`, ikke fra DTO:
 
 ```tsx
+import { VedleggSummaryList } from '@sif/soknad-ui/components';
+
+const legeerklæring = state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? [];
+
 {
-    vedlegg.length === 0 ? (
+    legeerklæring.length === 0 ? (
         <Alert inline variant="warning">
             <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
         </Alert>
     ) : (
-        `${vedlegg.length} vedlegg`
+        <VedleggSummaryList vedlegg={legeerklæring} />
     );
 }
 ```
+
+DTO-feltene inneholder normalt bare ID-er. Lenkelista trenger `name`, `url` og gjerne `size`, og må derfor bruke `PersistedVedlegg[]` fra søknadsdata.
 
 ### Feil-tilstand
 

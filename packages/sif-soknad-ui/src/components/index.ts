@@ -12,3 +12,5 @@ export { RegistrerteBarnListe } from './registrerte-barn-liste/RegistrerteBarnLi
 export { SifGuidePanel } from './sif-guide-panel/SifGuidePanel';
 export { type SifGuidePanelProps } from './sif-guide-panel/SifGuidePanel';
 export { PictureScanningGuide } from './picture-scanning-guide/PictureScanningGuide';
+export { VedleggSummaryList } from './vedlegg-summary-list';
+export type { SummaryVedlegg } from './vedlegg-summary-list';

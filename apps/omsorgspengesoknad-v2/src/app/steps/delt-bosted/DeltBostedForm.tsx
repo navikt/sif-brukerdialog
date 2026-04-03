@@ -1,21 +1,51 @@
-import { AppText } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
+import getLenker from '@app/lenker';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadRhfForm, useStepSubmit } from '@app/setup/hooks';
+import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
-import { Alert } from '@navikt/ds-react';
+import { DeltBostedSøknadsdata } from '@app/types/Soknadsdata';
+import { UploadedFile } from '@sif/rhf';
+import { VedleggPanel } from '@sif/soknad-forms';
+import { SifGuidePanel } from '@sif/soknad-ui/components';
+import { useIntl } from 'react-intl';
 
-import { DeltBostedFormValues, getDefaultValues, toSøknadsdata } from './deltBostedStegUtils';
+import { toDeltBostedFormValues, toSøknadsdata } from './deltBostedStegUtils';
+import { DeltBostedFormFields, DeltBostedFormValues } from './types';
+
+const stepId = SøknadStepId.DELT_BOSTED;
 
 export const DeltBostedForm = () => {
-    const stepId = SøknadStepId.DELT_BOSTED;
-    const methods = useSøknadRhfForm<DeltBostedFormValues>(stepId, getDefaultValues());
+    const intl = useIntl();
+    const { text } = useAppIntl();
+    const defaultValues = useStepDefaultValues<DeltBostedFormValues, DeltBostedSøknadsdata>({
+        stepId,
+        toFormValues: toDeltBostedFormValues,
+    });
     const { onSubmit, isPending } = useStepSubmit({ stepId, toSøknadsdata });
+    const methods = useSøknadRhfForm<DeltBostedFormValues>(stepId, defaultValues);
+    const samværsavtale: UploadedFile[] = methods.watch(DeltBostedFormFields.samværsavtale) ?? [];
+    const hasPendingUploads = samværsavtale.some((file) => file.pending);
 
     return (
-        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
-            <Alert variant="info">
-                <AppText id="deltBostedSteg.info" />
-            </Alert>
+        <AppForm
+            stepId={stepId}
+            methods={methods}
+            onSubmit={onSubmit}
+            isPending={isPending}
+            submitDisabled={hasPendingUploads}>
+            <SifGuidePanel>
+                <p>
+                    <AppText id="deltBostedSteg.counsellorpanel" />
+                </p>
+            </SifGuidePanel>
+
+            <VedleggPanel<DeltBostedFormValues>
+                name={DeltBostedFormFields.samværsavtale}
+                initialFiles={defaultValues[DeltBostedFormFields.samværsavtale]}
+                label={text('deltBostedSteg.samværsavtale.label')}
+                uploadLaterURL={getLenker(intl.locale).ettersend}
+                showPictureScanningGuide={true}
+            />
         </AppForm>
     );
 };

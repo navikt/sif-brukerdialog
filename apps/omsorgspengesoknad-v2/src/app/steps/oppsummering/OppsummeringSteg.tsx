@@ -9,9 +9,11 @@ import { getCheckedValidator } from '@navikt/sif-validation';
 import { Søker } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { VedleggSummaryList } from '@sif/soknad-ui/components';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
+import { PersistedVedlegg } from '../../types/Soknadsdata';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
 import { SøknadApiData } from '../../types/SoknadApiData';
 import { søknadsdataToSøknadDTO } from '../../utils/soknadsdataToSoknadDTO';
@@ -82,7 +84,10 @@ export const OppsummeringSteg = () => {
                     <>
                         <OmSøkerOppsummering søker={state.søker} />
                         <OmBarnetOppsummering dto={dto} />
-                        <VedleggOppsummering legeerklæring={dto.legeerklæring} samværsavtale={dto.samværsavtale} />
+                        <VedleggOppsummering
+                            legeerklæring={state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []}
+                            samværsavtale={state.søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale}
+                        />
                     </>
                 )}
                 <Checkbox
@@ -245,8 +250,8 @@ const VedleggOppsummering = ({
     legeerklæring,
     samværsavtale,
 }: {
-    legeerklæring: string[];
-    samværsavtale?: string[];
+    legeerklæring: PersistedVedlegg[];
+    samværsavtale?: PersistedVedlegg[];
 }) => {
     return (
         <FormSummary>
@@ -266,7 +271,7 @@ const VedleggOppsummering = ({
                                 <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
                             </Alert>
                         ) : (
-                            `${legeerklæring.length} vedlegg`
+                            <VedleggListe vedlegg={legeerklæring} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>
@@ -281,7 +286,7 @@ const VedleggOppsummering = ({
                                     <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
                                 </Alert>
                             ) : (
-                                `${samværsavtale.length} vedlegg`
+                                <VedleggListe vedlegg={samværsavtale} />
                             )}
                         </FormSummary.Value>
                     </FormSummary.Answer>
@@ -289,6 +294,10 @@ const VedleggOppsummering = ({
             </FormSummary.Answers>
         </FormSummary>
     );
+};
+
+const VedleggListe = ({ vedlegg }: { vedlegg: PersistedVedlegg[] }) => {
+    return <VedleggSummaryList vedlegg={vedlegg} />;
 };
 
 const RelasjonTilBarnetTekst = ({ relasjon }: { relasjon: SøkersRelasjonTilBarnet }): any => {
