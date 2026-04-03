@@ -21,28 +21,29 @@ Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppset
 - Hold deg i samme monorepo-checkout, men arbeid i én workspace om gangen.
 - Refaktorer ikke urelaterte apper med mindre det er eksplisitt bedt om.
 
+
 ## Arbeidsmodus
 
-1. Keep implementation changes in the pilot app first.
-2. Record app-specific findings in the app migration notes.
-3. Promote confirmed patterns to `docs/migration`.
-4. Update this skill only with stable, reusable guidance.
+1. Hold implementasjonsendringer i pilotappen først.
+2. Noter appspesifikke funn i migreringsnotater for appen.
+3. Løft bekreftede mønstre videre til `docs/migration`.
+4. Oppdater denne skillen bare med stabil, gjenbrukbar veiledning.
 
 ## Bootstrap for new app
 
-Use this as the default start for a new migration app before feature work.
+Bruk dette som standard startpunkt for en ny migreringsapp før funksjonelt arbeid.
 
-1. Copy baseline setup from `apps/sif-demo-app` into the target app.
-2. Stop the first phase at `src/main.tsx` rendering `<App />`.
-3. Do not pull code from the legacy app in this phase unless explicitly requested.
+1. Kopier baseline-oppsett fra `apps/sif-demo-app` inn i målappen.
+2. Stopp første fase ved `src/main.tsx` som renderer `<App />`.
+3. Ikke trekk inn kode fra legacy-appen i denne fasen uten eksplisitt bestilling.
 
-After bootstrap:
+Etter bootstrap:
 
-1. Use `sif-soknad-setup` for the app setup layer under `src/app/setup`.
-2. Use `sif-initial-data-loader` for `useInitialData.ts` and `InitialDataLoader.tsx`.
-3. Use `sif-soknad-setup` (seksjonen "Routing shell og pages") for `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` and `steps/index.ts`.
-4. Use `sif-soknad-add-step` and `sif-soknad-modify-step` for step work.
-5. Do i18n cleanup (nynorsk, nøkkelrydding) **after** all steps are implemented — not before. Reason: step implementation reveals the exact keys needed, avoiding placeholder churn.
+1. Bruk `sif-soknad-setup` for appens setup-lag under `src/app/setup`.
+2. Bruk `sif-initial-data-loader` for `useInitialData.ts` og `InitialDataLoader.tsx`.
+3. Bruk `sif-soknad-setup` (seksjonen "Routing shell og pages") for `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` og `steps/index.ts`.
+4. Bruk `sif-soknad-add-step` og `sif-soknad-modify-step` for steg-arbeid.
+5. Ta i18n-opprydding (nynorsk, nøkkelrydding) **etter** at alle steg er implementert, ikke før. Begrunnelse: stegarbeidet avdekker hvilke nøkler som faktisk trengs og reduserer placeholder-støy.
 
 > Skill-rekkefølge per mottaksapp: `sif-migration-baseline` → `sif-soknad-setup` → `sif-initial-data-loader` → `sif-soknad-setup` (routing shell) → `sif-soknad-add-step` (x N steg) → `sif-intl`.
 
@@ -74,7 +75,6 @@ rm -rf src/app/steps src/app/types src/app/utils src/app/hooks src/app/pages src
 ```
 
 Behold:
-
 - `src/app/setup/` — rammeverkskode (tilpasses i fase 2)
 - `src/app/i18n/` — struktur beholdes, innhold erstattes
 - `src/App.tsx`, `src/main.tsx`, `src/InitialDataLoader.tsx`, `src/useInitialData.ts` — rewrites i fase 2/3
@@ -105,7 +105,6 @@ Testene skrives på nytt etter at alle søknadssteg er implementert.
 ### Oppdater nais/-konfigurasjon
 
 Nais-filene (`nais/dev-gcp.json`, `nais/prod-gcp.json`) inneholder kildeappens:
-
 - `app`-navn og `ingresses`
 - `accessPolicyOutApps` (backend-avhengigheter)
 - Alle env-variabler inkl. paths, scopes og URLs

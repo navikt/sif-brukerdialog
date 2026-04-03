@@ -119,7 +119,6 @@ import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-pro
 Tilgjengelige subpaths: `omsorgspenger`, `aktivitetspenger`, `ungdomsytelse`, `ettersendelse`, `omsorgspenger-aleneomsorg`, o.l. — se `src/index.ts` i pakken.
 
 Samme prinsipp gjelder controllers i `sendSoknad.ts`:
-
 ```ts
 // ✅
 await omsorgspenger.OmsorgspengerUtvidetRettController.innsendingOmsorgspengerKroniskSyktBarnSøknad(...)
