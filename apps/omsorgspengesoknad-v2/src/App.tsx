@@ -1,4 +1,3 @@
-import '@navikt/ds-css';
 import './app.css';
 
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
