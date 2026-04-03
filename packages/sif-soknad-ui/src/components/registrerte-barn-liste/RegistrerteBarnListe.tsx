@@ -20,7 +20,7 @@ export const RegistrerteBarnListe = ({
     const renderListe = () => {
         return registrerteBarn.length === 0 ? (
             <Alert variant="info">
-                <SifSoknadUiText id="registrerteBarnListe.ingenbarn" />
+                <SifSoknadUiText id="@sifSoknadUi.registrerteBarnListe.ingenbarn" />
             </Alert>
         ) : (
             <ItemListDarkside<RegistrertBarn>
@@ -30,7 +30,7 @@ export const RegistrerteBarnListe = ({
                     <HStack gap="space-16">
                         <Box>
                             <SifSoknadUiText
-                                id="registrertBarnListe.barn.født"
+                                id="@sifSoknadUi.registrertBarnListe.barn.født"
                                 values={{ dato: dateFormatter.compact(barn.fødselsdato) }}
                             />
                         </Box>
@@ -45,8 +45,8 @@ export const RegistrerteBarnListe = ({
         <VStack gap="space-8">
             <HStack gap="space-8">
                 <Heading {...headingProps}>{listetittel}</Heading>
-                <HelpText title={text('registrerteBarnKildeInfo.helpTextTooltip')}>
-                    <SifSoknadUiText id="registrerteBarnKildeInfo.kilde" />
+                <HelpText title={text('@sifSoknadUi.registrerteBarnKildeInfo.helpTextTooltip')}>
+                    <SifSoknadUiText id="@sifSoknadUi.registrerteBarnKildeInfo.kilde" />
                 </HelpText>
             </HStack>
             {renderListe()}

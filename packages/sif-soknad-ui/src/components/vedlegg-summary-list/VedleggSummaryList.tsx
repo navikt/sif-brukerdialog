@@ -1,5 +1,7 @@
 import { PaperclipIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Link, List } from '@navikt/ds-react';
+import { BodyShort, Box, HStack, Link, List } from '@navikt/ds-react';
+
+import { useSifSoknadUiIntl } from '../../i18n';
 
 export interface SummaryVedlegg {
     id: string;
@@ -10,6 +12,7 @@ export interface SummaryVedlegg {
 
 interface VedleggSummaryListProps {
     vedlegg: SummaryVedlegg[];
+    emptyListText?: string;
     showFileSize?: boolean;
 }
 
@@ -30,7 +33,17 @@ const formatter = new Intl.NumberFormat('nb-NO', {
     roundingMode: 'ceil',
 });
 
-export const VedleggSummaryList = ({ vedlegg, showFileSize = true }: VedleggSummaryListProps) => {
+export const VedleggSummaryList = ({ vedlegg, emptyListText, showFileSize = true }: VedleggSummaryListProps) => {
+    const { text } = useSifSoknadUiIntl();
+
+    if (vedlegg.length === 0) {
+        return (
+            <Box marginBlock="space-8">
+                <BodyShort>{emptyListText || text('@sifSoknadUi.vedleggSummaryList.ingenVedlegg')}</BodyShort>
+            </Box>
+        );
+    }
+
     return (
         <List as="ul">
             {vedlegg.map((fil) => {

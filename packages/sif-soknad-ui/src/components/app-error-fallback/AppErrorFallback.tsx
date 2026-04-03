@@ -6,10 +6,10 @@ export const AppErrorFallback = () => {
     return (
         <Box paddingBlock="space-40">
             <Heading level="2" size="medium">
-                <SifSoknadUiText id="@ui.appErrorFallback.heading" />
+                <SifSoknadUiText id="@sifSoknadUi.appErrorFallback.heading" />
             </Heading>
             <p>
-                <SifSoknadUiText id="@ui.appErrorFallback.description" />
+                <SifSoknadUiText id="@sifSoknadUi.appErrorFallback.description" />
             </p>
         </Box>
     );
