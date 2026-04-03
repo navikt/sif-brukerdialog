@@ -202,7 +202,6 @@ export interface Søknadsdata extends BaseSøknadsdata {
 Når en søknad trenger domenespesifikke typer (f.eks. `BarnSammeAdresse`, `SøkersRelasjonTilBarnet`), er det tre alternativer:
 
 **A) Utled fra generert API-type** — anbefalt når typen finnes som felt i en generert type:
-
 ```ts
 import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 
@@ -214,7 +213,6 @@ export type SøkersRelasjonTilBarnet = NonNullable<OmsorgspengerKroniskSyktBarnS
 ```
 
 Legg til et `const`-objekt for enum-lignende DX (autocomplete, refaktorering):
-
 ```ts
 export const BarnSammeAdresse = {
     JA: 'JA' as BarnSammeAdresse,
