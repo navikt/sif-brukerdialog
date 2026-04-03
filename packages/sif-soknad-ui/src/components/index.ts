@@ -11,3 +11,4 @@ export { type ProgressStep } from './progress-stepper/ProgressStepper';
 export { RegistrerteBarnListe } from './registrerte-barn-liste/RegistrerteBarnListe';
 export { SifGuidePanel } from './sif-guide-panel/SifGuidePanel';
 export { type SifGuidePanelProps } from './sif-guide-panel/SifGuidePanel';
+export { PictureScanningGuide } from './picture-scanning-guide/PictureScanningGuide';

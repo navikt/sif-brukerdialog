@@ -25,7 +25,8 @@
         "@navikt/ds-react": "8.9.0",
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/api": "workspace:*",
-        "@sif/rhf": "workspace:*"
+        "@sif/rhf": "workspace:*",
+        "@sif/soknad-ui": "workspace:*"
     },
     "peerDependencies": {
         "react": ">=19",

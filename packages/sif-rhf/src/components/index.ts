@@ -6,6 +6,14 @@ export { SifCombobox } from './SifCombobox';
 export { SifCountrySelect } from './SifCountrySelect';
 export { SifDatepicker } from './SifDatepicker';
 export { SifDateRangePicker } from './SifDateRangePicker';
+export {
+    canRetryFileUpload,
+    FileUploadErrorReason,
+    getFileUploadErrorReason,
+} from './SifFileUpload/fileUploadErrorUtils';
+export { SifFileUpload } from './SifFileUpload/SifFileUpload';
+export type { PersistedFileInfo, UploadedFile } from './SifFileUpload/types';
+export { useFileUploader } from './SifFileUpload/useFileUploader';
 export { SifForm } from './SifForm';
 export { SifInputGroup } from './SifInputGroup';
 export { SifNumberInput } from './SifNumberInput';

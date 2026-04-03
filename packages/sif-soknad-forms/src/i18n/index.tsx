@@ -3,17 +3,21 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { bostedUtlandMessages_nb } from '../dialogs/bosted-utland/i18n/nb';
 import { bostedUtlandMessages_nn } from '../dialogs/bosted-utland/i18n/nn';
+import { vedleggPanelMessages_nb } from '../panels/vedlegg/i18n/nb';
+import { vedleggPanelMessages_nn } from '../panels/vedlegg/i18n/nn';
 import { velgRegistrertBarnPanelMessages_nb } from '../panels/velg-registrert-barn/i18n/nb';
 import { velgRegistrertBarnPanelMessages_nn } from '../panels/velg-registrert-barn/i18n/nn';
 
 const nb = {
     ...bostedUtlandMessages_nb,
     ...velgRegistrertBarnPanelMessages_nb,
+    ...vedleggPanelMessages_nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
     ...bostedUtlandMessages_nn,
     ...velgRegistrertBarnPanelMessages_nn,
+    ...vedleggPanelMessages_nn,
 };
 
 type SifSoknadFormsMessageKeys = keyof typeof nb;
