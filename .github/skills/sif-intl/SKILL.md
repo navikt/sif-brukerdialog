@@ -237,6 +237,20 @@ export const applicationIntlMessages = {
 - TS-feil ved nøkler i nn som ikke finnes i nb
 - Full dekning garantert av typesystemet
 
+### Manglende nynorsk-oversettelse
+
+Hvis nynorsk ikke finnes eller ikke er levert av en oversetter, **spread `nb` uten å oversette selv**:
+
+```ts
+import { myMessages_nb } from './nb';
+
+export const myMessages_nn: Record<keyof typeof myMessages_nb, string> = {
+    ...myMessages_nb,
+};
+```
+
+**Aldri** lag nynorsk-tekster ved hjelp av AI-oversettelse. Nynorsk skal komme fra et menneske eller en offisiell oversetter.
+
 ### Bruk av komponent vs. hook
 
 Velg basert på om teksten er en **JSX-node (children)** eller en **string-prop**:

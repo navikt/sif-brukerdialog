@@ -3,6 +3,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { appErrorFallbackMessages_nb } from '../components/app-error-fallback/i18n/nb';
 import { formLayoutMessages_nb } from '../components/form-layout/i18n/nb';
+import { pictureScanningGuideMessages_nb } from '../components/picture-scanning-guide/i18n/nb';
+import { pictureScanningGuideMessages_nn } from '../components/picture-scanning-guide/i18n/nn';
 import { progressStepperMessages_nb } from '../components/progress-stepper/i18n/nb';
 import { registrerteBarnKildeInfoMessages_nb } from '../components/registrerte-barn-kilde/i18n/nb';
 import { registrerteBarnListeMessages_nb } from '../components/registrerte-barn-liste/i18n/nb';
@@ -15,10 +17,12 @@ const nb = {
     ...stepPageMessages_nb,
     ...registrerteBarnKildeInfoMessages_nb,
     ...registrerteBarnListeMessages_nb,
+    ...pictureScanningGuideMessages_nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
     ...nb,
+    ...pictureScanningGuideMessages_nn,
 };
 
 type SifSoknadUiMessageKeys = keyof typeof nb;

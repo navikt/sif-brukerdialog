@@ -4,11 +4,6 @@
         "rootDir": "./src",
         "baseUrl": "./src"
     },
-    "include": [
-        "src/**/*",
-        "../sif-common-utils/src/resources/eøsCountries.ts",
-        "../sif-common-utils/src/countryUtils.ts",
-        "../sif-common-utils/src/__tests__/countryUtils.test.ts"
-    ],
+    "include": ["src/**/*"],
     "exclude": ["node_modules"]
 }

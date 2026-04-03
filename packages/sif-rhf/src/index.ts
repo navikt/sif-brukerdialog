@@ -23,3 +23,11 @@ export {
 export type { DatepickerLimitations } from './components/SifDatepicker';
 export { useFocusOnValidationError } from './hooks';
 export { sifValidate, useSifValidate } from './validation';
+export {
+    canRetryFileUpload,
+    FileUploadErrorReason,
+    getFileUploadErrorReason,
+} from './components/SifFileUpload/fileUploadErrorUtils';
+export { SifFileUpload } from './components/SifFileUpload/SifFileUpload';
+export { useFileUploader } from './components/SifFileUpload/useFileUploader';
+export type { UploadedFile, PersistedFileInfo } from './components/SifFileUpload/types';
