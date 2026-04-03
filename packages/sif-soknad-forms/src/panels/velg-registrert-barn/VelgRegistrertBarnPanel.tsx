@@ -54,7 +54,7 @@ export function VelgRegistrertBarnPanel<T extends FieldValues>({
         }
 
         return options;
-    }, [registrerteBarn, inkluderAnnetBarn, annetBarnLabel]);
+    }, [registrerteBarn, inkluderAnnetBarn, annetBarnLabel, text]);
 
     const legend = (
         <HStack gap="space-8">

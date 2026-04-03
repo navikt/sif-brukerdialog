@@ -1,5 +1,5 @@
 import { BodyShort, ProgressBar, VStack } from '@navikt/ds-react';
-import { useMemo } from 'react';
+import { useId } from 'react';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 
@@ -12,7 +12,7 @@ interface Props {
 
 const FileUploadSizeProgress = ({ maxSizeBytes, usedSizeBytes }: Props) => {
     const { text } = useSifSoknadFormsIntl();
-    const id = useMemo(() => `size-progress-${Math.random().toString(36).slice(2)}`, []);
+    const id = useId();
     const usedMB = (usedSizeBytes / BYTES_PER_MB).toFixed(2);
     const maxMB = Math.floor(maxSizeBytes / BYTES_PER_MB);
 

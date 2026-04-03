@@ -52,9 +52,14 @@ export function VedleggPanel<T extends FieldValues>({
 }: Props<T>) {
     const { text } = useSifSoknadFormsIntl();
 
+    const getFileKey = (file: UploadedFile): string => file.info?.id ?? `${file.file.name}-${file.file.lastModified}`;
+
     const uploadFile = useCallback(async (file: File): Promise<{ id: string; url: string }> => {
         const response = await lagreVedlegg(file);
-        const location = (response as any).headers?.location as string;
+        const location = response.headers['location'];
+        if (!location) {
+            throw new Error('Mangler location-header i respons fra lagreVedlegg');
+        }
         const id = getVedleggIdFromResponseHeaderLocation(location);
         return { id, url: location };
     }, []);
@@ -100,19 +105,27 @@ export function VedleggPanel<T extends FieldValues>({
                         <FileUploadSizeProgress maxSizeBytes={MAX_TOTAL_VEDLEGG_SIZE_BYTES} usedSizeBytes={totalSize} />
                     )}
                     <VStack as="ul" gap="space-12">
-                        {acceptedFiles.map((file, index) => (
-                            <FileUpload.Item
-                                as="li"
-                                key={index}
-                                file={file.file}
-                                onFileClick={file.info ? () => window.open(file.info?.url, '_blank') : undefined}
-                                status={file.pending ? 'uploading' : undefined}
-                                button={{ action: 'delete', onClick: () => onRemove(file) }}
-                                translations={{
-                                    uploading: text('@sifSoknadForms.vedlegg.lasterOpp'),
-                                }}
-                            />
-                        ))}
+                        {acceptedFiles.map((file) => {
+                            const fileUrl = file.info?.url;
+
+                            return (
+                                <FileUpload.Item
+                                    as="li"
+                                    key={getFileKey(file)}
+                                    file={file.file}
+                                    onFileClick={
+                                        fileUrl
+                                            ? () => window.open(fileUrl, '_blank', 'noopener,noreferrer')
+                                            : undefined
+                                    }
+                                    status={file.pending ? 'uploading' : undefined}
+                                    button={{ action: 'delete', onClick: () => onRemove(file) }}
+                                    translations={{
+                                        uploading: text('@sifSoknadForms.vedlegg.lasterOpp'),
+                                    }}
+                                />
+                            );
+                        })}
                     </VStack>
                 </VStack>
             )}
@@ -123,10 +136,10 @@ export function VedleggPanel<T extends FieldValues>({
                         <SifSoknadFormsText id="@sifSoknadForms.vedlegg.filerAvvist.tittel" />
                     </Heading>
                     <VStack as="ul" gap="space-12">
-                        {rejectedFiles.map((file, index) => (
+                        {rejectedFiles.map((file) => (
                             <FileUpload.Item
                                 as="li"
-                                key={index}
+                                key={getFileKey(file)}
                                 file={file.file}
                                 error={getRejectedFileError(
                                     { text },
