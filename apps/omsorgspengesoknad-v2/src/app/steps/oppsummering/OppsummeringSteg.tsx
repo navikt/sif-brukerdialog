@@ -3,7 +3,7 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { SøknadStep } from '@app/setup/soknad/SoknadStep';
-import { Alert, FormSummary, InfoCard } from '@navikt/ds-react';
+import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
 import { dateFormatter, formatName, ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { Søker } from '@sif/api/k9-prosessering';
@@ -13,9 +13,9 @@ import { VedleggSummaryList } from '@sif/soknad-ui/components';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
-import { PersistedVedlegg } from '../../types/Soknadsdata';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
 import { SøknadApiData } from '../../types/SoknadApiData';
+import { PersistedVedlegg } from '../../types/Soknadsdata';
 import { søknadsdataToSøknadDTO } from '../../utils/soknadsdataToSoknadDTO';
 
 enum FormFields {
@@ -69,16 +69,16 @@ export const OppsummeringSteg = () => {
                 isFinalSubmit={true}
                 submitDisabled={!dto}>
                 {!dto && (
-                    <InfoCard data-color="warning">
-                        <InfoCard.Header>
-                            <InfoCard.Title>
+                    <LocalAlert status="error">
+                        <LocalAlert.Header>
+                            <LocalAlert.Title>
                                 <AppText id="oppsummeringSteg.feil.tittel" />
-                            </InfoCard.Title>
-                        </InfoCard.Header>
-                        <InfoCard.Content>
+                            </LocalAlert.Title>
+                        </LocalAlert.Header>
+                        <LocalAlert.Content>
                             <AppText id="oppsummeringSteg.feil.innhold" />
-                        </InfoCard.Content>
-                    </InfoCard>
+                        </LocalAlert.Content>
+                    </LocalAlert>
                 )}
                 {dto && (
                     <>
@@ -267,9 +267,9 @@ const VedleggOppsummering = ({
                     </FormSummary.Label>
                     <FormSummary.Value>
                         {legeerklæring.length === 0 ? (
-                            <Alert inline={true} variant="warning">
+                            <InlineMessage status="warning">
                                 <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
-                            </Alert>
+                            </InlineMessage>
                         ) : (
                             <VedleggListe vedlegg={legeerklæring} />
                         )}
@@ -282,9 +282,9 @@ const VedleggOppsummering = ({
                         </FormSummary.Label>
                         <FormSummary.Value>
                             {samværsavtale.length === 0 ? (
-                                <Alert inline={true} variant="info">
+                                <InlineMessage status="info">
                                     <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
-                                </Alert>
+                                </InlineMessage>
                             ) : (
                                 <VedleggListe vedlegg={samværsavtale} />
                             )}

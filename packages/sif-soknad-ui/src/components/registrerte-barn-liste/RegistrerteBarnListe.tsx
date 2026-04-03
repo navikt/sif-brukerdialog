@@ -1,4 +1,5 @@
-import { Alert, Box, Heading, HeadingProps, HelpText, HStack, VStack } from '@navikt/ds-react';
+import { InformationSquareIcon } from '@navikt/aksel-icons';
+import { Box, Heading, HeadingProps, HelpText, HStack, InfoCard, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { dateFormatter, formatName } from '@navikt/sif-common-utils';
 
@@ -19,9 +20,11 @@ export const RegistrerteBarnListe = ({
     const { text } = useSifSoknadUiIntl();
     const renderListe = () => {
         return registrerteBarn.length === 0 ? (
-            <Alert variant="info">
-                <SifSoknadUiText id="@sifSoknadUi.registrerteBarnListe.ingenbarn" />
-            </Alert>
+            <InfoCard data-color="info">
+                <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>
+                    <SifSoknadUiText id="@sifSoknadUi.registrerteBarnListe.ingenbarn" />
+                </InfoCard.Message>
+            </InfoCard>
         ) : (
             <ItemListDarkside<RegistrertBarn>
                 getItemId={(barn): string => barn.aktørId}

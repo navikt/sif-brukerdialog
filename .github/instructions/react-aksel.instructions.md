@@ -16,6 +16,10 @@ Use these instructions for non-Next React apps in this monorepo.
 - Use Aksel as the UI foundation.
 - Reuse existing components and patterns from the target app before creating new ones.
 - Keep styling aligned with Aksel tokens and established app conventions.
+- Do not use the `Alert` component.
+- Use `SifInfoMessage` for info- og warning-meldinger.
+- Use `InlineMessage` when the old solution used inline alerting.
+- Use `LocalAlert` with `status="error"` for error-meldinger.
 
 ## Forms and dialogs
 

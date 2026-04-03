@@ -367,7 +367,7 @@ Fra hver fil, noter alle hardkodede tekster:
 
 - **String-props:** `legend="..."`, `aria-label="..."`, `title="..."`, `placeholder="..."`
 - **Template literals i props:** ``legend={`Tekst ${x}?`}`` → i18n-nøkkel med `{param}`
-- **Same-line JSX children:** `<Heading>Tekst</Heading>`, `<Alert variant="info">Tekst</Alert>`
+- **Same-line JSX children:** `<Heading>Tekst</Heading>`, `<SifInfoCard>Tekst</SifInfoCard>`
 - **Multi-line JSX children:** tekst som står på egen linje mellom åpnings- og lukketag
 
 **Hva som IKKE skal ekstraheres:**

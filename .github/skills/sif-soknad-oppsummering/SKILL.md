@@ -87,6 +87,8 @@ const RelasjonTilBarnetTekst = ({ relasjon }: { relasjon: SøkersRelasjonTilBarn
 
 Vis vedlegg som lenkeliste, ikke bare antall. Bruk `VedleggSummaryList` fra `@sif/soknad-ui/components` og les vedleggene fra `state.søknadsdata`, ikke fra DTO:
 
+Når gammel løsning brukte `Alert inline`, bruk `InlineMessage` fra Aksel.
+
 ```tsx
 import { VedleggSummaryList } from '@sif/soknad-ui/components';
 
@@ -94,9 +96,9 @@ const legeerklæring = state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg
 
 {
     legeerklæring.length === 0 ? (
-        <Alert inline variant="warning">
+        <InlineMessage status="warning">
             <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
-        </Alert>
+        </InlineMessage>
     ) : (
         <VedleggSummaryList vedlegg={legeerklæring} />
     );
@@ -107,7 +109,7 @@ DTO-feltene inneholder normalt bare ID-er. Lenkelista trenger `name`, `url` og g
 
 ### Feil-tilstand
 
-Hvis DTO ikke kan bygges (`dto === undefined`), vis en `InfoCard` med advarsel og disable submit:
+Hvis DTO ikke kan bygges (`dto === undefined`), vis `LocalAlert status="error"` og disable submit:
 
 ```tsx
 submitDisabled={!dto}
@@ -115,7 +117,7 @@ submitDisabled={!dto}
 
 ```tsx
 {
-    !dto && <InfoCard data-color="warning">...</InfoCard>;
+    !dto && <LocalAlert status="error">...</LocalAlert>;
 }
 {
     dto && (
