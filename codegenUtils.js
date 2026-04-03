@@ -40,6 +40,15 @@ const PATTERNS = {
         replacement: '$1\n',
         description: '@ts-expect-error after arrow function removed',
     },
+
+    /** Fikser feil Zod-type for vedlegg-felter: format: binary genereres som z.string()
+     * men skal være z.instanceof(Blob) for å ikke feile synkront ved filopplasting
+     */
+    fixVedleggBlobType: {
+        pattern: /vedlegg: z\.string\(\)/g,
+        replacement: 'vedlegg: z.instanceof(Blob)',
+        description: 'vedlegg z.string() fixed to z.instanceof(Blob)',
+    },
 };
 
 export function fixGeneratedCode(globPath, extraPatterns = {}) {

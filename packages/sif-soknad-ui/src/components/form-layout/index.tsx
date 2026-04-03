@@ -153,7 +153,7 @@ const FormButtons = ({
                     onClick={onPrevious}
                     disabled={previousDisabled}
                     icon={<ArrowLeftIcon aria-hidden />}>
-                    {previousLabel || <SifSoknadUiText id="@ui.formLayout.formButtons.previousLabel" />}
+                    {previousLabel || <SifSoknadUiText id="@sifSoknadUi.formLayout.formButtons.previousLabel" />}
                 </Button>
             )}
             <Button
@@ -165,9 +165,9 @@ const FormButtons = ({
                 icon={isFinalSubmit ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}>
                 {submitLabel ||
                     (isFinalSubmit ? (
-                        <SifSoknadUiText id="@ui.formLayout.formButtons.finalSubmitLabel" />
+                        <SifSoknadUiText id="@sifSoknadUi.formLayout.formButtons.finalSubmitLabel" />
                     ) : (
-                        <SifSoknadUiText id="@ui.formLayout.formButtons.submitLabel" />
+                        <SifSoknadUiText id="@sifSoknadUi.formLayout.formButtons.submitLabel" />
                     ))}
             </Button>
         </HStack>

@@ -16,6 +16,10 @@ Use these instructions for Next.js apps in this monorepo.
 - Use Aksel components and tokens (`@navikt/ds-react`, Aksel spacing tokens).
 - Do not introduce alternative UI libraries or custom design token systems.
 - Prefer existing layout patterns already used in the target app.
+- Do not use the `Alert` component.
+- Use `SifInfoMessage` for info- og warning-meldinger.
+- Use `InlineMessage` when the old solution used inline alerting.
+- Use `LocalAlert` with `status="error"` for error-meldinger.
 
 ## Next.js patterns
 

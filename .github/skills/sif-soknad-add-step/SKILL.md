@@ -91,7 +91,7 @@ Kartlegg eksplisitt:
 felt A → alltid synlig
 felt B → synlig når felt A === YES
 felt C → synlig når felt B === NO
-alert X → synlig når felt A === NO
+melding X → synlig når felt A === NO
 ```
 
 Sjekk spesielt inversjonsfeil — det er den vanligste feilen ved portering:
