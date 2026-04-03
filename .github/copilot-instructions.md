@@ -28,5 +28,6 @@ This repository is a Yarn 4 + Turborepo monorepo.
 
 ## Coding Style
 
-- Follow local conventions in each workspace.
+- Follow local conventions in each app or package.
 - Keep diffs small and avoid unrelated formatting changes.
+- For links opened with `target="_blank"`, always set `rel="noopener noreferrer"`.

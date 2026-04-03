@@ -128,7 +128,10 @@ export const PictureScanningGuide = ({ headingLevel = '2' }: Props) => {
                                     />
                                 </div>
                             </div>
-                            <Link target="_blank" href={text('@sifSoknadUi.psg.lenkepanel.url')}>
+                            <Link
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href={text('@sifSoknadUi.psg.lenkepanel.url')}>
                                 {text('@sifSoknadUi.psg.lenkepanel.text')}
                                 <ExternalLinkIcon role="presentation" aria-hidden={true} />
                             </Link>
