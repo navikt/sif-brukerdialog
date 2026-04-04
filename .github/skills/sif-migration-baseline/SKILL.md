@@ -102,6 +102,12 @@ Playwright-tester fra kildeappen tester kildeappens steg og skal **ikke** behold
 
 Testene skrives på nytt etter at alle søknadssteg er implementert.
 
+Ved baseline-kopi må også Playwright-oppsettet vaskes for kildeapp-spesifikke paths og nøkler:
+
+- `playwright.config.ts`: oppdater `use.baseURL` og `webServer.url` til målappens `PUBLIC_PATH`.
+- `vite.e2e.config.ts`: oppdater `base` og `server.proxy['/mockServiceWorker.js'].rewrite` til målappens path.
+- `playwright/utils/scenario.ts`: sørg for at `SCENARIO_KEY` matcher nøkkelen i `mock/state/localStorageStore.ts`.
+
 ### Oppdater nais/-konfigurasjon
 
 Nais-filene (`nais/dev-gcp.json`, `nais/prod-gcp.json`) inneholder kildeappens:
@@ -123,7 +129,10 @@ Når baseline kopieres fra `aktivitetspenger-soknad`, inneholder disse filene ap
 | `package.json`                        | `@navikt/ung-deltakelse-opplyser-api-deltaker`           | Riktig API-pakke for målappen                                                                           |
 | `src/App.tsx`                         | `AktivitetspengerApp` fra `@navikt/sif-app-register`     | Riktig app-oppføring                                                                                    |
 | `src/App.tsx`                         | `appEnv.SIF_PUBLIC_USE_FARO`                             | `SIF_PUBLIC_USE_FARO` finnes ikke i `commonEnvSchema` — sett `isActive={false}` til Faro er konfigurert |
+| `playwright.config.ts`                | `baseURL` og `webServer.url` for aktivitetspenger        | Bytt til målappens `PUBLIC_PATH`                                                                        |
+| `vite.e2e.config.ts`                  | `base` og MSW-rewrite for aktivitetspenger               | Bytt til målappens path og `mockServiceWorker.js`-rewrite                                               |
 | `playwright/playwrightAppSettings.ts` | Stale env-nøkler som ikke finnes i ny `AppEnv`           | Fjern nøkler som ikke er i ny `appEnvSchema`                                                            |
+| `playwright/utils/scenario.ts`        | Feil `SCENARIO_KEY` fra kildeappen                       | Må matche `mock/state/localStorageStore.ts` i målappen                                                  |
 | `mock/devAppSettings.ts`              | Alle paths og env-verdier fra aktivitetspenger           | Oppdater med korrekte paths for målappen                                                                |
 | `src/app/lenker.ts`                   | Aktivitetspenger-spesifikke lenker (f.eks. Skatteetaten) | Erstatt med tomme plassholdere; behold default export til eksisterende step-filer kompilerer            |
 

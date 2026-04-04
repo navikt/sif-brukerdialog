@@ -32,7 +32,7 @@ export default defineConfig({
             '@app': resolve(__dirname, './src/app'),
         },
     },
-    base: '/aktivitetspenger/soknad/',
+    base: '/familie/sykdom-i-familien/soknad/omsorgspenger/',
     define: {
         __IS_DEMO__: false,
         __INJECT_DECORATOR_CLIENT_SIDE__: false,
@@ -45,7 +45,7 @@ export default defineConfig({
         proxy: {
             '/mockServiceWorker.js': {
                 target: 'http://127.0.0.1:4173',
-                rewrite: () => '/aktivitetspenger/soknad/mockServiceWorker.js',
+                rewrite: () => '/familie/sykdom-i-familien/soknad/omsorgspenger/mockServiceWorker.js',
             },
         },
     },
