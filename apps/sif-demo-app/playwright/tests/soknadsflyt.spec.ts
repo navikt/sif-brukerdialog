@@ -13,6 +13,7 @@ test('fyller ut søknaden med registrert barn og vedlegg', async ({ page }) => {
     await setScenario(page, ScenarioType.default);
 
     await page.goto('/');
+    await page.locator('input[type="checkbox"]').waitFor();
     await testAccessibility(page);
     await page.locator('input[type="checkbox"]').check();
     await page.locator('button[type="submit"]').click();

@@ -39,8 +39,23 @@ Appen har et fungerende Playwright-oppsett. For grunnoppsett, bruk `sif-playwrig
 1. Kjør `testAccessibility(page)` etter at siden er ferdig rendret.
 2. Kjør `testAccessibility(page)` igjen etter viktig navigasjon i samme test.
 3. Hold assertions på faktiske violations (`toEqual([])`) som standard.
-4. Kjør scannen etter at headingen eller annen tydelig ankertekst for siden er synlig.
+4. Kjør scannen etter at headingen eller annen tydelig ankertekst for siden er synlig — aldri rett etter `page.goto()` uten å vente på et element først.
 5. I flyttester: kjør scannen på forside/startside og én gang til på en sentral ferdig utfylt side, typisk oppsummering.
+
+**Eksempel — riktig plassering:**
+
+```ts
+await page.goto('/');
+await page.locator('input[type="checkbox"]').waitFor(); // vent på et synlig element
+await testAccessibility(page);
+```
+
+**Feil mønster — ikke gjør dette:**
+
+```ts
+await page.goto('/');
+await testAccessibility(page); // for tidlig — siden kan være tom
+```
 
 ## `testAccessibility` helper
 
