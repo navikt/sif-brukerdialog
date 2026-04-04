@@ -217,6 +217,27 @@ export const setScenario = async (page: Page, scenario: ScenarioType) => {
 
 `SCENARIO_KEY` må matche keyen appen bruker i sin `localStorageStore`.
 
+> ⚠️ **`localStorageStore.init` must not overwrite Playwright-set scenario**
+> Playwright setter kun scenario-key via `addInitScript` — ikke mockdata. `init()` kjøres etterpå i appen.
+> Sørg for at `init()` kun skriver data hvis data mangler — aldri hvis scenario-key allerede er satt:
+>
+> ```ts
+> init: (defaultScenario) => {
+>     const current = localStorage.getItem(SCENARIO_KEY);
+>     const hasData = localStorage.getItem(STORAGE_KEY) !== null;
+>     if (!current) {
+>         setScenario(defaultScenario); // ingen key satt — bruk default
+>         return;
+>     }
+>     if (!hasData) {
+>         setScenario(current); // key finnes (satt av Playwright), men data mangler
+>     }
+>     // key og data finnes — ikke gjør noe
+> }
+> ```
+>
+> Feilen `if (current !== defaultScenario) { setScenario(defaultScenario); }` overskriver Playwright-scenario med default.
+
 ### Scenario-mekanikk
 
 Flyten er:
