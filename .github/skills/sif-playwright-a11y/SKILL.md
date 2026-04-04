@@ -77,7 +77,7 @@ Bruk helperen direkte i eksisterende tester i stedet for å lage egne a11y-spesi
 
 - A11y-scan i minst én forside/smoke-test.
 - A11y-scan i minst én sentral brukerflyt.
-- Hvis appen har oppsummeringssteg, foretrekk a11y-scan der fremfor på et tilfeldig mellomsteg.
+- Alle steg skal ha a11y-scan etter at siden er ferdig rendret.
 
 ## Verifisering
 

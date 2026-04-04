@@ -268,17 +268,15 @@ Viktig: `localStorageStore.init()` må håndtere tilfellet der scenario-key finn
 
 ## Lokal/demo scenariovelger
 
-For søknadsapper med mock/scenario-oppsett skal lokal/demo-kjøring ha en synlig scenariovelger i appen, typisk `src/demo/ScenarioHeader.tsx`.
+For apper med mock/scenario-oppsett skal lokal/demo-kjøring ha en synlig scenariovelger, typisk `src/demo/ScenarioHeader.tsx`.
 
-Playwright bruker fortsatt `addInitScript` og `setScenario(page, ...)`, men den synlige scenariovelgeren er del av samme kontrakt:
+Hold denne delen kort og kontraktsstyrt:
 
-- begge bruker samme `ScenarioType`
-- begge skriver til samme store/localStorage-nøkkel
-- begge laster appen på nytt med samme `PUBLIC_PATH`
+- bruk samme `ScenarioType` som Playwright-testene
+- skriv til samme store/localStorage-nøkkel som `setScenario(page, ...)`
+- reload på samme `PUBLIC_PATH` som resten av appen
 
-Når du setter opp Playwright i en app som mangler dette, vurder det som en del av helheten for lokal/demo-støtte, ikke som separat pynt.
-
-Dette gir en stabil flyt også etter `page.reload()` eller ny `page.goto('/')`, og er grunnlaget for tester som verifiserer gjenopptak fra mellomlagring.
+Detaljer for implementasjon og montering av `ScenarioHeader` hører hjemme i `sif-soknad-setup` eller appens eksisterende demo-oppsett, ikke i denne skillen.
 
 ## Mellomlagring og gjenopptak
 
@@ -332,7 +330,7 @@ Dette gjør Playwright-flyten stabil uten å binde referanseappen til runtime-va
 - Minst én gjenopptakstest når appen bruker mellomlagring.
 - Minst én opplastingstest når appen har vedlegg.
 
-For apper med mock/scenario-støtte forventes også en synlig scenariovelger i lokal/demo, selv om selve Playwright-testene setter scenario programmatisk.
+For apper med mock/scenario-støtte forventes en synlig scenariovelger i lokal/demo, men Playwright-skillen trenger bare å sikre at den følger samme scenario-kontrakt som testene.
 
 ## A11y
 
