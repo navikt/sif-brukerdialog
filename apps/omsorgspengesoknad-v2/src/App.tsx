@@ -11,6 +11,7 @@ import { applicationIntlMessages } from './app/i18n';
 import { getAppEnv } from './app/setup/env/appEnv';
 import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
+import { ScenarioHeader } from './demo/ScenarioHeader';
 import { InitialDataLoader } from './InitialDataLoader';
 
 initApiClients();
@@ -29,6 +30,7 @@ export const App = () => {
                 <SifQueryClientProvider>
                     <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
                         <BrowserRouter basename={basePath}>
+                            <ScenarioHeader />
                             <InitialDataLoader />
                         </BrowserRouter>
                     </IntlProvider>

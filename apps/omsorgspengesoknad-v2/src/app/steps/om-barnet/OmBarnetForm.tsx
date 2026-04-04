@@ -81,6 +81,7 @@ export const OmBarnetForm = () => {
                     <Heading size="medium" level="2">
                         <AppText id="omBarnetSteg.spørsmål.barnetSøknadenGjelder" />
                     </Heading>
+
                     <VelgRegistrertBarnPanel<OmBarnetFormValues>
                         name={OmBarnetFormFields.barnetSøknadenGjelder}
                         registrerteBarn={registrerteBarn}

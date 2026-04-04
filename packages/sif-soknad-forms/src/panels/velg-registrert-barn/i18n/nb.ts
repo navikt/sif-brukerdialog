@@ -5,4 +5,5 @@ export const velgRegistrertBarnPanelMessages_nb = {
     '@sifSoknadForms.velgRegistrertBarn.kildeInfo.helpTextTooltip': 'Hvor kommer disse opplysningene fra?',
     '@sifSoknadForms.velgRegistrertBarn.kildeInfo.kilde':
         'Listen viser barn som er registrert på deg i Folkeregisteret. Hvis dette ikke stemmer, kan du kontakte Skatteetaten.',
+    '@sifSoknadForms.velgRegistrertBarn.ingenBarn': 'Det er ingen barn registrert på deg i Folkeregisteret.',
 };

@@ -202,6 +202,7 @@ export interface Søknadsdata extends BaseSøknadsdata {
 Når en søknad trenger domenespesifikke typer (f.eks. `BarnSammeAdresse`, `SøkersRelasjonTilBarnet`), er det tre alternativer:
 
 **A) Utled fra generert API-type** — anbefalt når typen finnes som felt i en generert type:
+
 ```ts
 import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 
@@ -213,6 +214,7 @@ export type SøkersRelasjonTilBarnet = NonNullable<OmsorgspengerKroniskSyktBarnS
 ```
 
 Legg til et `const`-objekt for enum-lignende DX (autocomplete, refaktorering):
+
 ```ts
 export const BarnSammeAdresse = {
     JA: 'JA' as BarnSammeAdresse,
@@ -759,4 +761,72 @@ export { VelkommenPage } from './velkommen/VelkommenPage';
 - [ ] `src/app/pages/kvittering/KvitteringPage.tsx` opprettet
 - [ ] `src/app/pages/index.ts` opprettet
 - [ ] `src/app/steps/index.ts` opprettet (tom eller med første steg)
+- [ ] `src/demo/ScenarioHeader.tsx` opprettet og montert i `App.tsx`
 - [ ] `yarn check:types` passerer
+
+---
+
+## Scenariovelger (dev-only)
+
+Alle søknadsapper skal ha en scenariovelger som kun vises lokalt og i dev/demo-bygg. Den monteres direkte i `App.tsx`, og vises automatisk bare når `import.meta.env.PROD` er `false`.
+
+### Oppsett
+
+**1. Opprett `src/demo/ScenarioHeader.tsx`**
+
+```tsx
+import { getRequiredEnv } from '@navikt/sif-common-env';
+import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
+
+import { ScenarioType } from '../../mock/scenarios/types';
+import { store } from '../../mock/state/store';
+
+const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
+    {
+        label: 'Gruppe (valgfritt)',
+        options: [
+            { value: ScenarioType.default, label: 'Standard' },
+            // legg til øvrige scenarioer her
+        ],
+    },
+];
+
+export const ScenarioHeader = () => {
+    if (import.meta.env.PROD) {
+        return null;
+    }
+
+    const setScenario = (scenario: ScenarioType) => {
+        store.setScenario(scenario);
+        globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
+        globalThis.location.reload();
+    };
+
+    return <ScenarioSelectorHeader title="Demo av <appnavn>" groups={scenarioGroups} onSelectScenario={setScenario} />;
+};
+```
+
+**2. Mont `<ScenarioHeader />` i `App.tsx` inne i `<BrowserRouter>`**
+
+```tsx
+import { ScenarioHeader } from './demo/ScenarioHeader';
+
+// ...
+<BrowserRouter basename={basePath}>
+    <ScenarioHeader />
+    <InitialDataLoader />
+</BrowserRouter>;
+```
+
+`ScenarioSelectorHeader` returnerer `null` i produksjonsbygg via `import.meta.env.PROD`-sjekken i `ScenarioHeader`-wrapperen i appen, så ingen ekstra guard trengs andre steder.
+
+### `ScenarioSelectorHeader` API
+
+| Prop               | Type                                           | Beskrivelse                                           |
+| ------------------ | ---------------------------------------------- | ----------------------------------------------------- |
+| `title`            | `string`                                       | Tittelen som vises i headeren                         |
+| `buttonLabel`      | `string` (valgfritt, default: "Velg scenario") | Tekst på knappen                                      |
+| `groups`           | `Array<ScenarioSelectorHeaderGroup<T>>`        | Grupper med scenarioer. `label` er valgfritt          |
+| `onSelectScenario` | `(value: T) => void`                           | Kalles med scenariotype når bruker velger et scenario |
+
+Eksportert fra `@sif/soknad-ui` (package allerede avhengighet i v2-apper).

@@ -12,6 +12,10 @@ export const localStorageStore = {
             localStorageStore.setScenario(scenario);
             return;
         }
+        if (current !== scenario) {
+            localStorageStore.setScenario(scenario);
+            return;
+        }
         if (!hasData && Object.values(ScenarioType).includes(current)) {
             localStorageStore.setScenario(current);
         }

@@ -4,7 +4,7 @@ import { getDevAppSettings } from '../devAppSettings';
 import { ScenarioType } from '../scenarios/types';
 import { store } from '../state/store';
 
-store.init(ScenarioType.default);
+store.init(ScenarioType.ingenRegistrerteBarn);
 
 let vedleggCounter = 0;
 const vedleggStore = new Map<string, { name: string; type: string; content: ArrayBuffer }>();

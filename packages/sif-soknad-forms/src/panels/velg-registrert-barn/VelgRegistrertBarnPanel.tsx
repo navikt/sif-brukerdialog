@@ -2,6 +2,7 @@ import { Heading, HeadingProps, HelpText, HStack, VStack } from '@navikt/ds-reac
 import { dateFormatter, formatName } from '@navikt/sif-common-utils';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { SifRadioGroup, SifRadioProp } from '@sif/rhf';
+import { SifInfoCard } from '@sif/soknad-ui';
 import { useMemo } from 'react';
 import { FieldValues, Path } from 'react-hook-form';
 
@@ -64,6 +65,13 @@ export function VelgRegistrertBarnPanel<T extends FieldValues>({
             </HelpText>
         </HStack>
     );
+    if (registrerteBarn.length === 0) {
+        return (
+            <SifInfoCard>
+                <SifSoknadFormsText id="@sifSoknadForms.velgRegistrertBarn.ingenBarn" />
+            </SifInfoCard>
+        );
+    }
 
     return <SifRadioGroup<T> name={name} legend={legend} radios={radios} validate={validate} />;
 }
