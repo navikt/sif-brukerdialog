@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 export enum ScenarioType {
     default = 'default',
+    ingenRegistrerteBarn = 'ingenRegistrerteBarn',
 }
 
 export interface ScenarioData {

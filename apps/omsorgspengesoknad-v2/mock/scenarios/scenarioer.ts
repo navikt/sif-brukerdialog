@@ -1,6 +1,6 @@
 import { ScenarioData, ScenarioType } from './types';
 
-const defaultScenarioData: ScenarioData = {
+const søker = {
     søker: {
         aktørId: '2320509955297',
         fødselsdato: '1985-06-02',
@@ -9,6 +9,10 @@ const defaultScenarioData: ScenarioData = {
         mellomnavn: undefined,
         etternavn: 'Testesen',
     },
+};
+
+const defaultScenarioData: ScenarioData = {
+    ...søker,
 
     barn: {
         barn: [
@@ -24,8 +28,17 @@ const defaultScenarioData: ScenarioData = {
     mellomlagring: undefined,
 };
 
+const ingenRegistrerteBarnScenarioData: ScenarioData = {
+    ...søker,
+    barn: {
+        barn: [],
+    },
+    mellomlagring: undefined,
+};
+
 const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
+    [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
 };
 
 export const getScenarioMockData = (scenario: ScenarioType): ScenarioData => {
