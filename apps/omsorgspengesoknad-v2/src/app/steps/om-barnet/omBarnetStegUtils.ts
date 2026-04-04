@@ -50,7 +50,7 @@ export const toOmBarnetSøknadsdata = (
         erKronisk && data.høyereRisikoForFravær !== undefined ? data.høyereRisikoForFravær === YesOrNo.YES : undefined;
     const høyereRisikoForFraværBeskrivelse = høyereRisikoForFravær ? data.høyereRisikoForFraværBeskrivelse : undefined;
 
-    if (barnetSøknadenGjelder === ANNET_BARN) {
+    if (barnetSøknadenGjelder === ANNET_BARN || registrerteBarn.length === 0) {
         const { barnetsFødselsnummer, barnetsFødselsdato, barnetsNavn, søkersRelasjonTilBarnet } = data;
         if (!barnetsFødselsnummer || !barnetsFødselsdato || !barnetsNavn || !søkersRelasjonTilBarnet) return undefined;
         return {

@@ -1,5 +1,5 @@
 import { Søknadsdata } from '@app/types/Soknadsdata';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { SøknadStepId } from '../config/SoknadStepId';
 import { useSøknadsflyt } from '../context/soknadContext';
@@ -16,16 +16,22 @@ export function useStepSubmit<TFormValues, TStepSøknadsdata>({
 }: UseStepSubmitOptions<TFormValues, TStepSøknadsdata>) {
     const flow = useSøknadsflyt();
     const { lagreSøknad, isPending } = useSøknadMellomlagring();
+    const [submitError, setSubmitError] = useState(false);
 
     const onSubmit = useCallback(
         async (data: TFormValues) => {
-            const stepData = toSøknadsdata(data);
-            flow.commitStep(stepId, { [stepId]: stepData } as Partial<Søknadsdata>);
-            await lagreSøknad();
-            flow.navigateToNextStep(stepId);
+            try {
+                setSubmitError(false);
+                const stepData = toSøknadsdata(data);
+                flow.commitStep(stepId, { [stepId]: stepData } as Partial<Søknadsdata>);
+                await lagreSøknad();
+                flow.navigateToNextStep(stepId);
+            } catch {
+                setSubmitError(true);
+            }
         },
         [flow, stepId, toSøknadsdata, lagreSøknad],
     );
 
-    return { onSubmit, isPending };
+    return { onSubmit, isPending, submitError };
 }

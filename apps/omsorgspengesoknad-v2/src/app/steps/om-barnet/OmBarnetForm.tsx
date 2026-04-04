@@ -6,6 +6,7 @@ import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { Heading } from '@navikt/ds-react';
+import { isDevMode } from '@navikt/sif-common-env';
 import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
 import {
     getDateValidator,
@@ -39,7 +40,7 @@ export const OmBarnetForm = () => {
         toFormValues: toOmBarnetFormValues,
     });
 
-    const { onSubmit, isPending } = useStepSubmit<OmBarnetFormValues, OmBarnetSøknadsdata>({
+    const { onSubmit, isPending, submitError } = useStepSubmit<OmBarnetFormValues, OmBarnetSøknadsdata>({
         stepId,
         toSøknadsdata: (values) => {
             const result = toOmBarnetSøknadsdata(values, registrerteBarn);
@@ -51,9 +52,11 @@ export const OmBarnetForm = () => {
     const methods = useSøknadRhfForm(stepId, defaultValues);
     const { watch } = methods;
 
+    const harRegistrerteBarn = registrerteBarn.length > 0;
+
     const barnetSøknadenGjelder = watch(OmBarnetFormFields.barnetSøknadenGjelder);
     const søknadenGjelderAnnetBarn = barnetSøknadenGjelder === ANNET_BARN;
-    const harValgtBarn = barnetSøknadenGjelder !== undefined;
+    const harValgtBarn = !harRegistrerteBarn || barnetSøknadenGjelder !== undefined;
 
     const sammeAdresse = watch(OmBarnetFormFields.sammeAdresse);
     const kroniskEllerFunksjonshemming = watch(OmBarnetFormFields.kroniskEllerFunksjonshemming);
@@ -75,22 +78,27 @@ export const OmBarnetForm = () => {
     const visHøyereRisikoBeskrivelseSpørsmål = visHøyereRisikoSpørsmål && høyereRisikoForFravær === YesOrNo.YES;
 
     return (
-        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
+        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending} submitError={submitError}>
             <FormLayout.Content>
                 <FormLayout.Questions>
                     <Heading size="medium" level="2">
                         <AppText id="omBarnetSteg.spørsmål.barnetSøknadenGjelder" />
                     </Heading>
 
-                    <VelgRegistrertBarnPanel<OmBarnetFormValues>
-                        name={OmBarnetFormFields.barnetSøknadenGjelder}
-                        registrerteBarn={registrerteBarn}
-                        inkluderAnnetBarn={true}
-                        annetBarnLabel={text('omBarnetSteg.valgAnnetBarn')}
-                        validate={validateField(OmBarnetFormFields.barnetSøknadenGjelder, getRequiredFieldValidator())}
-                    />
+                    {harRegistrerteBarn && (
+                        <VelgRegistrertBarnPanel<OmBarnetFormValues>
+                            name={OmBarnetFormFields.barnetSøknadenGjelder}
+                            registrerteBarn={registrerteBarn}
+                            inkluderAnnetBarn={true}
+                            annetBarnLabel={text('omBarnetSteg.valgAnnetBarn')}
+                            validate={validateField(
+                                OmBarnetFormFields.barnetSøknadenGjelder,
+                                getRequiredFieldValidator(),
+                            )}
+                        />
+                    )}
 
-                    {søknadenGjelderAnnetBarn && (
+                    {(søknadenGjelderAnnetBarn || !harRegistrerteBarn) && (
                         <FormLayout.Section title={text('omBarnetSteg.annetBarn.tittel')}>
                             <FormLayout.Questions>
                                 <Datepicker
@@ -109,7 +117,7 @@ export const OmBarnetForm = () => {
                                     maxLength={11}
                                     validate={validateField(
                                         OmBarnetFormFields.barnetsFødselsnummer,
-                                        getFødselsnummerValidator({ required: true }),
+                                        getFødselsnummerValidator({ required: true, allowHnr: isDevMode() }),
                                     )}
                                 />
                                 <TextField
@@ -150,7 +158,7 @@ export const OmBarnetForm = () => {
                         </FormLayout.Section>
                     )}
 
-                    {harValgtBarn && (
+                    {(harValgtBarn || !harRegistrerteBarn) && (
                         <>
                             <RadioGroup
                                 name={OmBarnetFormFields.sammeAdresse}

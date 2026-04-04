@@ -1,3 +1,5 @@
+import { AppText } from '@app/i18n';
+import { LocalAlert } from '@navikt/ds-react';
 import { SifForm } from '@sif/rhf';
 import { StepFormValues } from '@sif/soknad/types';
 import { FormLayout } from '@sif/soknad-ui/components';
@@ -15,6 +17,7 @@ interface Props<T extends StepFormValues> {
     isFinalSubmit?: boolean;
     submitLabel?: string;
     submitDisabled?: boolean;
+    submitError?: boolean;
     children: ReactNode;
 }
 
@@ -26,6 +29,7 @@ export function AppForm<T extends StepFormValues>({
     isFinalSubmit,
     submitDisabled,
     submitLabel,
+    submitError,
     children,
 }: Readonly<Props<T>>) {
     const søknadsflyt = useSøknadsflyt();
@@ -47,9 +51,19 @@ export function AppForm<T extends StepFormValues>({
                     submitLabel={submitLabel}
                 />
             }>
-            <FormLayout.Content>
-                <FormLayout.Questions>{children}</FormLayout.Questions>
-            </FormLayout.Content>
+            {children}
+            {submitError && (
+                <LocalAlert status="error">
+                    <LocalAlert.Header>
+                        <LocalAlert.Title as="h2">
+                            <AppText id="appForm.submitFeil.tittel" />
+                        </LocalAlert.Title>
+                    </LocalAlert.Header>
+                    <LocalAlert.Content>
+                        <AppText id="appForm.submitFeil.innhold" />
+                    </LocalAlert.Content>
+                </LocalAlert>
+            )}
         </SifForm>
     );
 }

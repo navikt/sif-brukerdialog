@@ -6,6 +6,8 @@ import { omBarnetStegMessages_nb } from '../../steps/om-barnet/i18n/nb';
 import { oppsummeringStegMessages_nb } from '../../steps/oppsummering/i18n/nb';
 
 export const appMessages_nb = {
+    'appForm.submitFeil.tittel': 'Noe gikk galt',
+    'appForm.submitFeil.innhold': 'Sjekk at alle feltene er fylt ut og prøv igjen.',
     'application.title':
         'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
     'step.omBarnet.title': 'Barn',

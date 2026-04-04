@@ -9,7 +9,7 @@ import { getCheckedValidator } from '@navikt/sif-validation';
 import { Søker } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
-import { VedleggSummaryList } from '@sif/soknad-ui/components';
+import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
@@ -68,33 +68,35 @@ export const OppsummeringSteg = () => {
                 isPending={isPending}
                 isFinalSubmit={true}
                 submitDisabled={!dto}>
-                {!dto && (
-                    <LocalAlert status="error">
-                        <LocalAlert.Header>
-                            <LocalAlert.Title>
-                                <AppText id="oppsummeringSteg.feil.tittel" />
-                            </LocalAlert.Title>
-                        </LocalAlert.Header>
-                        <LocalAlert.Content>
-                            <AppText id="oppsummeringSteg.feil.innhold" />
-                        </LocalAlert.Content>
-                    </LocalAlert>
-                )}
-                {dto && (
-                    <>
-                        <OmSøkerOppsummering søker={state.søker} />
-                        <OmBarnetOppsummering dto={dto} />
-                        <VedleggOppsummering
-                            legeerklæring={state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []}
-                            samværsavtale={state.søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale}
-                        />
-                    </>
-                )}
-                <Checkbox
-                    name={FormFields.bekrefterOpplysninger}
-                    validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
-                    <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
-                </Checkbox>
+                <FormLayout.Content>
+                    {!dto && (
+                        <LocalAlert status="error">
+                            <LocalAlert.Header>
+                                <LocalAlert.Title>
+                                    <AppText id="oppsummeringSteg.feil.tittel" />
+                                </LocalAlert.Title>
+                            </LocalAlert.Header>
+                            <LocalAlert.Content>
+                                <AppText id="oppsummeringSteg.feil.innhold" />
+                            </LocalAlert.Content>
+                        </LocalAlert>
+                    )}
+                    {dto && (
+                        <>
+                            <OmSøkerOppsummering søker={state.søker} />
+                            <OmBarnetOppsummering dto={dto} />
+                            <VedleggOppsummering
+                                legeerklæring={state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []}
+                                samværsavtale={state.søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale}
+                            />
+                        </>
+                    )}
+                    <Checkbox
+                        name={FormFields.bekrefterOpplysninger}
+                        validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
+                        <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
+                    </Checkbox>
+                </FormLayout.Content>
             </AppForm>
         </SøknadStep>
     );

@@ -6,7 +6,7 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { LegeerklæringSøknadsdata } from '@app/types/Soknadsdata';
 import { UploadedFile } from '@sif/rhf';
 import { VedleggPanel } from '@sif/soknad-forms';
-import { SifGuidePanel } from '@sif/soknad-ui/components';
+import { SifGuidePanel, FormLayout } from '@sif/soknad-ui/components';
 import { useIntl } from 'react-intl';
 
 import { toLegeerklæringFormValues, toSøknadsdata } from './legeerklæringStegUtils';
@@ -33,22 +33,24 @@ export const LegeerklæringForm = () => {
             onSubmit={onSubmit}
             isPending={isPending}
             submitDisabled={hasPendingUploads}>
-            <SifGuidePanel>
-                <p>
-                    <AppText id="legeerklæringSteg.counsellorpanel.1" />
-                </p>
-                <p>
-                    <AppText id="legeerklæringSteg.counsellorpanel.2" />
-                </p>
-            </SifGuidePanel>
+            <FormLayout.Content>
+                <SifGuidePanel>
+                    <p>
+                        <AppText id="legeerklæringSteg.counsellorpanel.1" />
+                    </p>
+                    <p>
+                        <AppText id="legeerklæringSteg.counsellorpanel.2" />
+                    </p>
+                </SifGuidePanel>
 
-            <VedleggPanel<LegeerklæringFormValues>
-                name={LegeerklæringFormFields.vedlegg}
-                initialFiles={defaultValues[LegeerklæringFormFields.vedlegg]}
-                label={text('legeerklæringSteg.vedlegg.label')}
-                uploadLaterURL={getLenker(intl.locale).ettersend}
-                showPictureScanningGuide={true}
-            />
+                <VedleggPanel<LegeerklæringFormValues>
+                    name={LegeerklæringFormFields.vedlegg}
+                    initialFiles={defaultValues[LegeerklæringFormFields.vedlegg]}
+                    label={text('legeerklæringSteg.vedlegg.label')}
+                    uploadLaterURL={getLenker(intl.locale).ettersend}
+                    showPictureScanningGuide={true}
+                />
+            </FormLayout.Content>
         </AppForm>
     );
 };

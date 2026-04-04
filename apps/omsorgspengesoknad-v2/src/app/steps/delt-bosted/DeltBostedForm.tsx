@@ -6,7 +6,7 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { DeltBostedSøknadsdata } from '@app/types/Soknadsdata';
 import { UploadedFile } from '@sif/rhf';
 import { VedleggPanel } from '@sif/soknad-forms';
-import { SifGuidePanel } from '@sif/soknad-ui/components';
+import { SifGuidePanel, FormLayout } from '@sif/soknad-ui/components';
 import { useIntl } from 'react-intl';
 
 import { toDeltBostedFormValues, toSøknadsdata } from './deltBostedStegUtils';
@@ -33,19 +33,21 @@ export const DeltBostedForm = () => {
             onSubmit={onSubmit}
             isPending={isPending}
             submitDisabled={hasPendingUploads}>
-            <SifGuidePanel>
-                <p>
-                    <AppText id="deltBostedSteg.counsellorpanel" />
-                </p>
-            </SifGuidePanel>
+            <FormLayout.Content>
+                <SifGuidePanel>
+                    <p>
+                        <AppText id="deltBostedSteg.counsellorpanel" />
+                    </p>
+                </SifGuidePanel>
 
-            <VedleggPanel<DeltBostedFormValues>
-                name={DeltBostedFormFields.samværsavtale}
-                initialFiles={defaultValues[DeltBostedFormFields.samværsavtale]}
-                label={text('deltBostedSteg.samværsavtale.label')}
-                uploadLaterURL={getLenker(intl.locale).ettersend}
-                showPictureScanningGuide={true}
-            />
+                <VedleggPanel<DeltBostedFormValues>
+                    name={DeltBostedFormFields.samværsavtale}
+                    initialFiles={defaultValues[DeltBostedFormFields.samværsavtale]}
+                    label={text('deltBostedSteg.samværsavtale.label')}
+                    uploadLaterURL={getLenker(intl.locale).ettersend}
+                    showPictureScanningGuide={true}
+                />
+            </FormLayout.Content>
         </AppForm>
     );
 };
