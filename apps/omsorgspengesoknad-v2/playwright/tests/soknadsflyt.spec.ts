@@ -115,7 +115,7 @@ test('fyller ut søknaden uten registrerte barn, vedlegg og sender inn', async (
     await expectFellesOppsummering(page);
     await expect(page.getByText('Beta Testesen')).toBeVisible();
     await expect(page.getByText('09847696068')).toBeVisible();
-    await expect(page.getByText('7. juni 2019')).toBeVisible();
+    await expect(page.getByText('8. juni 2019')).toBeVisible();
     await expectSummaryValue(page, 'Din relasjon til barnet', 'Mor');
 
     await sendInnSøknad(page);

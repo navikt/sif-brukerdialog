@@ -29,7 +29,7 @@ const isISODateString = (value: any): value is ISODateString =>
     typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
 
 const dateToISODateString = (date: Date): string => {
-    const d = dayjs.utc(date);
+    const d = dayjs(date);
     return d.isValid() ? d.format(ISO_FORMAT) : INVALID_DATE;
 };
 
@@ -49,6 +49,7 @@ const getDisabledDates = ({
     maxDate,
     disabledDateRanges,
     disableWeekends,
+    disabledDaysOfWeek,
 }: DatepickerLimitations): Matcher[] => {
     const matchers: Matcher[] = [];
     if (minDate) matchers.push({ before: minDate });
@@ -56,7 +57,16 @@ const getDisabledDates = ({
     if (disabledDateRanges) {
         disabledDateRanges.forEach(({ from, to }) => matchers.push({ from, to }));
     }
-    if (disableWeekends) matchers.push({ dayOfWeek: [0, 6] });
+    const disabledDays: number[] = disableWeekends ? [0, 6] : [];
+    if (disabledDaysOfWeek) {
+        const additionalDays = Array.isArray(disabledDaysOfWeek.dayOfWeek)
+            ? disabledDaysOfWeek.dayOfWeek
+            : [disabledDaysOfWeek.dayOfWeek];
+        disabledDays.push(...additionalDays);
+    }
+    if (disabledDays.length > 0) {
+        matchers.push({ dayOfWeek: disabledDays });
+    }
     return matchers;
 };
 
