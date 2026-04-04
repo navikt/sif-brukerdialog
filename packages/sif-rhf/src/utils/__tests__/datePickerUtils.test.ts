@@ -83,6 +83,11 @@ describe('getDisabledDates', () => {
         expect(result).toEqual([{ dayOfWeek: [0, 6] }]);
     });
 
+    it('adds explicit disabled weekdays from legacy object shape', () => {
+        const result = getDisabledDates({ disabledDaysOfWeek: { dayOfWeek: [1, 3] } });
+        expect(result).toEqual([{ dayOfWeek: [1, 3] }]);
+    });
+
     it('adds date range matchers', () => {
         const range = { from: new Date('2024-06-01'), to: new Date('2024-06-15') };
         const result = getDisabledDates({ disabledDateRanges: [range] });

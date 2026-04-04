@@ -8,7 +8,7 @@ export interface DatepickerLimitations {
     maxDate?: Date;
     disabledDateRanges?: Array<{ from: Date; to: Date }>;
     disableWeekends?: boolean;
-    disabledDaysOfWeek?: DayOfWeek | DayOfWeek[];
+    disabledDaysOfWeek?: DayOfWeek;
 }
 
 import { datePickerUtils } from '../utils/datePickerUtils';

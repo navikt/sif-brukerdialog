@@ -21,7 +21,7 @@ describe('datePickerUtils', () => {
         expect(
             datePickerUtils.getDisabledDates({
                 disableWeekends: true,
-                disabledDaysOfWeek: 3,
+                disabledDaysOfWeek: { dayOfWeek: 3 },
             }),
         ).toContainEqual({ dayOfWeek: [0, 6, 3] });
     });

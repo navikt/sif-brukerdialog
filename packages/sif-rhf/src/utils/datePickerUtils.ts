@@ -59,7 +59,9 @@ const getDisabledDates = ({
     }
     const disabledDays: number[] = disableWeekends ? [0, 6] : [];
     if (disabledDaysOfWeek !== undefined) {
-        const additionalDays = Array.isArray(disabledDaysOfWeek) ? disabledDaysOfWeek : [disabledDaysOfWeek];
+        const additionalDays = Array.isArray(disabledDaysOfWeek.dayOfWeek)
+            ? disabledDaysOfWeek.dayOfWeek
+            : [disabledDaysOfWeek.dayOfWeek];
         disabledDays.push(...additionalDays);
     }
     if (disabledDays.length > 0) {
