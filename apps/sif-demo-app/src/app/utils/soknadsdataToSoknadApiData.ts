@@ -1,4 +1,4 @@
-import { formatName } from '@navikt/sif-common-utils';
+import { dateToISODate, formatName } from '@navikt/sif-common-utils';
 import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
 
 import { SøknadStepId } from '../setup/config/soknadStepConfig';
@@ -33,7 +33,7 @@ export const getSøknadApiDataFromSøknad = ({
         barn: {
             aktørId: registrertBarn.aktørId,
             navn: formatName(registrertBarn.fornavn, registrertBarn.etternavn, registrertBarn.mellomnavn),
-            fødselsdato: registrertBarn.fødselsdato,
+            fødselsdato: dateToISODate(registrertBarn.fødselsdato),
         },
         borITrondheim: bosted.borITrondheim,
         vedlegg: vedlegg?.vedlegg.map((file) => file.id) ?? [],

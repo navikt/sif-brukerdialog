@@ -58,10 +58,8 @@ const getDisabledDates = ({
         disabledDateRanges.forEach(({ from, to }) => matchers.push({ from, to }));
     }
     const disabledDays: number[] = disableWeekends ? [0, 6] : [];
-    if (disabledDaysOfWeek) {
-        const additionalDays = Array.isArray(disabledDaysOfWeek.dayOfWeek)
-            ? disabledDaysOfWeek.dayOfWeek
-            : [disabledDaysOfWeek.dayOfWeek];
+    if (disabledDaysOfWeek !== undefined) {
+        const additionalDays = Array.isArray(disabledDaysOfWeek) ? disabledDaysOfWeek : [disabledDaysOfWeek];
         disabledDays.push(...additionalDays);
     }
     if (disabledDays.length > 0) {

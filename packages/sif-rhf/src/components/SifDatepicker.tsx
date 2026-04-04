@@ -1,14 +1,14 @@
 import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
 import { FocusEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 import { DayOfWeek } from 'react-day-picker';
+import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 
 export interface DatepickerLimitations {
     minDate?: Date;
     maxDate?: Date;
     disabledDateRanges?: Array<{ from: Date; to: Date }>;
     disableWeekends?: boolean;
-    disabledDaysOfWeek?: DayOfWeek;
+    disabledDaysOfWeek?: DayOfWeek | DayOfWeek[];
 }
 
 import { datePickerUtils } from '../utils/datePickerUtils';

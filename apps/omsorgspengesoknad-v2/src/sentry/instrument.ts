@@ -37,7 +37,7 @@ Sentry.init({
     environment: window.location.hostname.includes('localhost') ? 'localhost' : import.meta.env.MODE,
     enabled: !window.location.hostname.includes('localhost'),
     initialScope: {
-        tags: { application: 'aktivitetspenger-soknad' },
+        tags: { application: 'omsorgspengesoknad-v2' },
     },
     ignoreErrors: errorsToIgnore,
     allowUrls: [/https?:\/\/.*\.?nav\.no/],

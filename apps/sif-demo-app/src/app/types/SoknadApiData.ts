@@ -4,7 +4,7 @@ export type SøknadApiData = {
     barn: {
         aktørId: string;
         navn: string;
-        fødselsdato: Date;
+        fødselsdato: string;
     };
     borITrondheim: boolean;
     vedlegg: string[];

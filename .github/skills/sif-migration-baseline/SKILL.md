@@ -156,6 +156,9 @@ Når baseline kopieres fra `aktivitetspenger-soknad`, inneholder disse filene ap
 
 | Fil                                   | Hva som er aktivitetspenger-spesifikt                    | Hva det byttes med                                                                                      |
 | ------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `src/sentry/instrument.ts`            | `tags: { application: 'aktivitetspenger-soknad' }`       | Bytt til appnavnet for målappen (f.eks. `omsorgspengesoknad-v2`)                                        |
+| `nais/dev-gcp.json`                   | `ingresses` og `SIF_PUBLIC_LOGIN_URL` med `aktivitetspenger-soknad`-hostname | Bytt til målappens hostname (f.eks. `omsorgspengesoknad.intern.dev.nav.no`) |
+| `nais/prod-gcp.json`                  | `ingresses` og `SIF_PUBLIC_LOGIN_URL` med `aktivitetspenger-soknad`-hostname | Bytt til målappens prod-hostname                                            |
 | `env.schema.ts`                       | `ungDeltakelseOpplyserEnvSchema`                         | Riktig schema for målappen (f.eks. `k9SakInnsynEnvSchema`)                                              |
 | `src/app/setup/env/appEnv.ts`         | `getUngDeltakelseOpplyserBrowserEnv()`                   | Riktig env-helper (f.eks. `getK9SakInnsynEnv()`)                                                        |
 | `src/app/api/initApiClients.ts`       | `initUngDeltakelseOpplyserApiDeltakerClient`             | Riktig klient-init for målappen                                                                         |
