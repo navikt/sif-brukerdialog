@@ -1,10 +1,10 @@
 export const velkommenPageMessages_nb = {
-    'page.velkommen.sidetittel': 'Søknad om ekstra omsorgsdager',
+    'page.velkommen.sidetittel': 'Søknad om YTELSE',
     'page.velkommen.guide.tittel': 'Hei {navn}',
     'page.velkommen.guide.ingress':
-        'Velkommen til søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn.',
+        'Velkommen til søknad om YTELSE når den andre forelderen ikke kan ha tilsyn med barn.',
     'page.velkommen.guide.tekst.1':
-        'Denne søknaden er for deg som skal søke om ekstra omsorgsdager fordi den andre forelderen ikke kan ha tilsyn med barn i en periode som varer i minst 6 måneder. Dette er i situasjoner hvor den andre forelderen for eksempel',
+        'Denne søknaden er for deg som skal søke om YTELSE fordi den andre forelderen ikke kan ha tilsyn med barn i en periode som varer i minst 6 måneder. Dette er i situasjoner hvor den andre forelderen for eksempel',
     'page.velkommen.guide.tekst.1.1': 'er fysisk eller psykisk syk',
     'page.velkommen.guide.tekst.1.2': 'er innlagt i helseinstitusjon',
     'page.velkommen.guide.tekst.1.3': 'har en funksjonshemning',
@@ -12,7 +12,7 @@ export const velkommenPageMessages_nb = {
     'page.velkommen.guide.tekst.1.5': 'utøver verneplikt',
 
     'page.velkommen.guide.tekst.2':
-        'Hvis du får innvilget søknaden får du doblet antall omsorgsdager så lenge vedtaket gjelder. Du trenger ikke å søke på nytt hvert kalenderår, vedtaket vil bekrefte hvor lenge du har rett til ekstra omsorgsdager.',
+        'Hvis du får innvilget søknaden får du doblet antall omsorgsdager så lenge vedtaket gjelder. Du trenger ikke å søke på nytt hvert kalenderår, vedtaket vil bekrefte hvor lenge du har rett til YTELSE.',
 
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',

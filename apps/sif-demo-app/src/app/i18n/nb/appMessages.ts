@@ -6,6 +6,6 @@ export const appMessages_nb = {
     ...barnStepMessages_nb,
     ...vedleggStepMessages_nb,
     ...oppsummeringStepMessages_nb,
-    'application.title': 'Søknad om ekstra omsorgsdager',
+    'application.title': 'Søknad om YTELSE',
     '@soknad.loadingPage.henterInformasjon': 'Henter informasjon ...',
 };

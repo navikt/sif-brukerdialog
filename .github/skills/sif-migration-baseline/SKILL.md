@@ -21,7 +21,6 @@ Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppset
 - Hold deg i samme monorepo-checkout, men arbeid i én workspace om gangen.
 - Refaktorer ikke urelaterte apper med mindre det er eksplisitt bedt om.
 
-
 ## Arbeidsmodus
 
 1. Hold implementasjonsendringer i pilotappen først.
@@ -62,6 +61,7 @@ Etter bootstrap:
 - Tooling/config: `package.json`, `vite.config.ts`, `vite.dev.config.ts`, `tsconfig.json`, `eslint.config.js`, `tailwind.config.ts`, `env.schema.ts`, `vite-env.d.ts`, `vitest.shims.d.ts`, `index.html`, `Dockerfile`.
 - Storybook: `.storybook/main.ts`, `.storybook/preview.ts`, `.storybook/vitest.setup.ts`.
 - Bootstrap source: `src/main.tsx`, `src/App.tsx`, `src/InitialDataLoader.tsx`, `src/useInitialData.ts`, `src/app.css`, `src/sentry/instrument.ts`, and required setup wrappers/env helpers.
+- Demo/local source: `src/demo/ScenarioHeader.tsx` når appen har mock/scenario-støtte og `VELG_SCENARIO` brukes lokalt.
 - Mocking baseline: `mock/enableMocking.ts`, `mock/devAppSettings.ts`, `mock/msw/**`, and `public/mockServiceWorker.js`.
 
 ### Minimal target-app edits after copy
@@ -71,8 +71,29 @@ Etter bootstrap:
 - Update `<title>` in `index.html`.
 - Update `APP` and `SCOPE` in `Dockerfile`.
 - Update `BrowserRouter basename` in `App.tsx`.
+- Behold lokal/demo-scenariovelger når appen har mockdata og `VELG_SCENARIO`; oppdater bare tittel, scenario-grupper og `PUBLIC_PATH`.
 - Keep all other changes minimal until App phase starts.
 - Ensure base path is identical across all three places: `package.json` (`dev`/`build`), `vite.config.ts` (`base` and mock service worker rewrite), and `vite.dev.config.ts` (`base` and rewrite).
+
+### Lokal/demo-scenariovelger er del av baseline
+
+For søknadsapper med mock/scenario-oppsett skal en synlig scenariovelger være del av lokal/demo-opplevelsen.
+
+Dette gir tre gevinster:
+
+- utviklere kan bytte mocktilstand uten å redigere kode eller localStorage manuelt
+- referanseapper viser hele scenario-mønsteret, ikke bare dataformatene
+- Playwright og manuell verifisering bruker samme scenarioinfrastruktur
+
+Bruk mønsteret fra `src/demo/ScenarioHeader.tsx`:
+
+- bygg UI med `ScenarioSelectorHeader` fra `@sif/soknad-ui`
+- les scenario-typer fra `mock/scenarios/types.ts`
+- oppdater scenario via `store.setScenario(...)`
+- naviger til `PUBLIC_PATH` og reload appen etter scenario-bytte
+- la komponenten returnere `null` i prod
+
+Når appen bruker `BrowserRouter`, plasser scenariovelgeren i `App.tsx` inne i routeren og over `InitialDataLoader` eller tilsvarende app-shell.
 
 ### Slett domenekode fra kildeappen umiddelbart
 
@@ -85,6 +106,7 @@ rm -rf src/app/steps src/app/types src/app/utils src/app/hooks src/app/pages src
 ```
 
 Behold:
+
 - `src/app/setup/` — rammeverkskode (tilpasses i fase 2)
 - `src/app/i18n/` — struktur beholdes, innhold erstattes
 - `src/App.tsx`, `src/main.tsx`, `src/InitialDataLoader.tsx`, `src/useInitialData.ts` — rewrites i fase 2/3
@@ -121,6 +143,7 @@ Ved baseline-kopi må også Playwright-oppsettet vaskes for kildeapp-spesifikke 
 ### Oppdater nais/-konfigurasjon
 
 Nais-filene (`nais/dev-gcp.json`, `nais/prod-gcp.json`) inneholder kildeappens:
+
 - `app`-navn og `ingresses`
 - `accessPolicyOutApps` (backend-avhengigheter)
 - Alle env-variabler inkl. paths, scopes og URLs

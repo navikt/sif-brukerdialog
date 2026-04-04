@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 
 import { ScenarioType } from '../../mock/scenarios/types';
 import { setScenario } from '../utils/scenario';
+import { testAccessibility } from '../utils/testAccessibility';
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 const filePath = path.resolve(currentDir, '../files/test.pdf');
@@ -12,6 +13,7 @@ test('fyller ut søknaden med registrert barn og vedlegg', async ({ page }) => {
     await setScenario(page, ScenarioType.default);
 
     await page.goto('/');
+    await testAccessibility(page);
     await page.locator('input[type="checkbox"]').check();
     await page.locator('button[type="submit"]').click();
 
@@ -36,10 +38,9 @@ test('fyller ut søknaden med registrert barn og vedlegg', async ({ page }) => {
     await expect(page.getByText('Test Testesen')).toBeVisible();
     await expect(page.getByText('Alfa Testesen')).toBeVisible();
     await expect(page.getByText('test.pdf')).toBeVisible();
+    await testAccessibility(page);
 
-    await page
-        .getByRole('checkbox', { name: 'Jeg bekrefter at opplysningene jeg har gitt er riktige.' })
-        .check();
+    await page.getByRole('checkbox', { name: 'Jeg bekrefter at opplysningene jeg har gitt er riktige.' }).check();
     await page.getByRole('button', { name: 'Send inn' }).click();
 
     await expect(page).toHaveURL(/\/kvittering$/);

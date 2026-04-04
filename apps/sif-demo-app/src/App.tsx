@@ -10,12 +10,14 @@ import { initApiClients } from './app/api/initApiClients';
 import { applicationIntlMessages } from './app/i18n';
 import { getAppEnv } from './app/setup/env/appEnv';
 import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
+import { ScenarioHeader } from './demo/ScenarioHeader';
 import { InitialDataLoader } from './InitialDataLoader';
 
 initApiClients();
 
 const appEnv = getAppEnv();
 const queryClient = new QueryClient();
+const basePath = appEnv.PUBLIC_PATH;
 
 export const App = () => {
     return (
@@ -26,7 +28,8 @@ export const App = () => {
             <AppErrorBoundary>
                 <QueryClientProvider client={queryClient}>
                     <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                        <BrowserRouter basename="/sif-demo">
+                        <BrowserRouter basename={basePath}>
+                            {appEnv.VELG_SCENARIO === 'on' && <ScenarioHeader />}
                             <InitialDataLoader />
                         </BrowserRouter>
                     </IntlProvider>

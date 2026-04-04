@@ -31,11 +31,5 @@ export const ScenarioHeader = () => {
         globalThis.location.reload();
     };
 
-    return (
-        <ScenarioSelectorHeader
-            title="Demo av omsorgspengesøknad"
-            groups={scenarioGroups}
-            onSelectScenario={setScenario}
-        />
-    );
+    return <ScenarioSelectorHeader title="Demo av søknad" groups={scenarioGroups} onSelectScenario={setScenario} />;
 };

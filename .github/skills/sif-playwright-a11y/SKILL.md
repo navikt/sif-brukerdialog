@@ -24,6 +24,7 @@ Legge til accessibility-sjekker med axe i eksisterende Playwright-tester.
 - `@axe-core/playwright` i appens `devDependencies`
 - `playwright/utils/testAccessibility.ts`
 - A11y-scan koblet inn i minst to eksisterende tester
+- A11y-scan koblet inn på et stabilt tidspunkt i hver test
 
 ## Forutsetning
 
@@ -38,6 +39,8 @@ Appen har et fungerende Playwright-oppsett. For grunnoppsett, bruk `sif-playwrig
 1. Kjør `testAccessibility(page)` etter at siden er ferdig rendret.
 2. Kjør `testAccessibility(page)` igjen etter viktig navigasjon i samme test.
 3. Hold assertions på faktiske violations (`toEqual([])`) som standard.
+4. Kjør scannen etter at headingen eller annen tydelig ankertekst for siden er synlig.
+5. I flyttester: kjør scannen på forside/startside og én gang til på en sentral ferdig utfylt side, typisk oppsummering.
 
 ## `testAccessibility` helper
 
@@ -53,10 +56,13 @@ export const testAccessibility = async (page: Page) => {
 };
 ```
 
+Bruk helperen direkte i eksisterende tester i stedet for å lage egne a11y-spesialtester først. Det gir best signal på de faktiske brukerflytene appen støtter.
+
 ## Minimum dekning per app
 
 - A11y-scan i minst én forside/smoke-test.
 - A11y-scan i minst én sentral brukerflyt.
+- Hvis appen har oppsummeringssteg, foretrekk a11y-scan der fremfor på et tilfeldig mellomsteg.
 
 ## Verifisering
 
