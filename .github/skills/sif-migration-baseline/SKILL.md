@@ -29,6 +29,15 @@ Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppset
 3. Løft bekreftede mønstre videre til `docs/migration`.
 4. Oppdater denne skillen bare med stabil, gjenbrukbar veiledning.
 
+## Regler for tekster i migrering
+
+- Behold eksisterende brukertekster uendret gjennom migreringen.
+- Ikke omskriv, forbedre, forkorte eller moderniser tekster som del av migreringsarbeidet.
+- Verifiser eksplisitt at tekster i målappen samsvarer med kildeappen etter migrering av sider og steg.
+- Endre tekster bare når ny komponentstruktur eller nytt funksjonelt innhold gjør det nødvendig.
+- Hvis nye tekster er strengt nødvendige, skal de hentes fra eksisterende kildeapp, etablert copy eller eksplisitt brukerbestilling.
+- AI skal ikke finne på eller forfatte nye tekster på egen hånd i migreringsoppgaver.
+
 ## Bootstrap for new app
 
 Bruk dette som standard startpunkt for en ny migreringsapp før funksjonelt arbeid.
@@ -44,6 +53,7 @@ Etter bootstrap:
 3. Bruk `sif-soknad-setup` (seksjonen "Routing shell og pages") for `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` og `steps/index.ts`.
 4. Bruk `sif-soknad-add-step` og `sif-soknad-modify-step` for steg-arbeid.
 5. Ta i18n-opprydding (nynorsk, nøkkelrydding) **etter** at alle steg er implementert, ikke før. Begrunnelse: stegarbeidet avdekker hvilke nøkler som faktisk trengs og reduserer placeholder-støy.
+6. Når steg eller sider flyttes til nytt oppsett, sammenlign tekstinnholdet mot kildeappen og korriger avvik før oppgaven regnes som ferdig.
 
 > Skill-rekkefølge per mottaksapp: `sif-migration-baseline` → `sif-soknad-setup` → `sif-initial-data-loader` → `sif-soknad-setup` (routing shell) → `sif-soknad-add-step` (x N steg) → `sif-intl`.
 

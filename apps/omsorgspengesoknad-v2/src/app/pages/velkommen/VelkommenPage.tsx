@@ -6,6 +6,8 @@ import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { StartPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
 
+import OmSøknaden from './om-søknaden/OmSøknaden';
+
 export const VelkommenPage = () => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
@@ -45,7 +47,7 @@ export const VelkommenPage = () => {
                 ),
             }}
             title={text('application.title')}>
-            <span />
+            <OmSøknaden />
         </StartPage>
     );
 };
