@@ -9,7 +9,7 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 
 import { KvitteringPage, VelkommenPage } from './pages';
 import { RhfEksempelForm } from './pages/rhf-eksempel/RhfEksempelForm';
-import { BarnSteg, BostedSteg, OppsummeringSteg } from './steps';
+import { BarnSteg, BostedSteg, OppsummeringSteg, VedleggSteg } from './steps';
 import { SøknadMellomlagring } from './types/Mellomlagring';
 
 interface Props {
@@ -72,6 +72,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                     }>
                     <Route path={søknadStepConfig[SøknadStepId.BARN].route} element={<BarnSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedSteg />} />
+                    <Route path={søknadStepConfig[SøknadStepId.VEDLEGG].route} element={<VedleggSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<OppsummeringSteg />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Route>

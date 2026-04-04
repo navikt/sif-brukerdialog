@@ -1,17 +1,23 @@
-import { YesOrNo } from '@sif/rhf';
-
 import { BarnSøknadsdata } from '../../types/Soknadsdata';
-import { BarnFormValues } from './BarnForm';
+import { BarnFormFields, BarnFormValues } from './types';
 
 export const toBarnFormValues = (søknadsdata: BarnSøknadsdata | undefined): Partial<BarnFormValues> => {
-    if (søknadsdata?.stemmerInfoOmBarn === undefined) {
+    if (!søknadsdata) {
         return {};
     }
+
     return {
-        stemmerInfoOmBarn: søknadsdata.stemmerInfoOmBarn ? YesOrNo.YES : YesOrNo.NO,
+        [BarnFormFields.barnetSøknadenGjelder]: søknadsdata.barnetSøknadenGjelder,
     };
 };
 
-export const toBarnSøknadsdata = (data: BarnFormValues): BarnSøknadsdata => ({
-    stemmerInfoOmBarn: data.stemmerInfoOmBarn === YesOrNo.YES,
-});
+export const toBarnSøknadsdata = (data: BarnFormValues): BarnSøknadsdata | undefined => {
+    const aktørId = data[BarnFormFields.barnetSøknadenGjelder];
+    if (!aktørId) {
+        return undefined;
+    }
+
+    return {
+        barnetSøknadenGjelder: aktørId,
+    };
+};

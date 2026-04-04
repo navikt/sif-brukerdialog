@@ -1,11 +1,11 @@
-import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { ApiError } from '@sif/api';
 import { useMutation } from '@tanstack/react-query';
 
 import { sendSøknad } from '../api/sendSoknad';
+import { SøknadApiData } from '../types/SoknadApiData';
 
 export const useSendSøknad = () => {
-    return useMutation<void, ApiError, aktivitetspenger.Aktivitetspengersøknad>({
+    return useMutation<void, ApiError, SøknadApiData>({
         mutationFn: (data) => sendSøknad(data),
     });
 };
