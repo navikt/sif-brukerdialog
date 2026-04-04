@@ -269,7 +269,7 @@ const VedleggOppsummering = ({
                     </FormSummary.Label>
                     <FormSummary.Value>
                         {legeerklæring.length === 0 ? (
-                            <InlineMessage status="warning">
+                            <InlineMessage status="info">
                                 <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
                             </InlineMessage>
                         ) : (
