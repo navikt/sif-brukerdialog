@@ -31,7 +31,7 @@
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-utils": "workspace:^",
         "@navikt/sif-validation": "workspace:*",
-        "@sentry/react": "10.45.0",
+        "@sentry/react": "10.46.0",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad": "workspace:*",
