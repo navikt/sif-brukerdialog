@@ -13,6 +13,7 @@ interface Props<T extends StepFormValues> {
     onSubmit: SubmitHandler<T>;
     isPending: boolean;
     isFinalSubmit?: boolean;
+    submitDisabled?: boolean;
     submitLabel?: string;
     children: ReactNode;
 }
@@ -23,6 +24,7 @@ export function AppForm<T extends StepFormValues>({
     onSubmit,
     isPending,
     isFinalSubmit,
+    submitDisabled = false,
     submitLabel,
     children,
 }: Props<T>) {
@@ -30,7 +32,7 @@ export function AppForm<T extends StepFormValues>({
 
     const canGoPrevious = ctx.canGoPrevious(stepId);
     const onPrevious = canGoPrevious ? () => ctx.navigateToPreviousStep(stepId) : undefined;
-    const submitDisabled = ctx.checkConsistency(stepId) !== undefined;
+    const isConsistencyInvalid = ctx.checkConsistency(stepId) !== undefined;
 
     return (
         <SifForm
@@ -39,7 +41,7 @@ export function AppForm<T extends StepFormValues>({
             buttons={
                 <FormLayout.FormButtons
                     submitPending={isPending}
-                    submitDisabled={submitDisabled}
+                    submitDisabled={submitDisabled || isConsistencyInvalid}
                     onPrevious={onPrevious}
                     isFinalSubmit={isFinalSubmit}
                     submitLabel={submitLabel}

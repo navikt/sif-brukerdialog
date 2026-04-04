@@ -1,7 +1,7 @@
 import { Box } from '@navikt/ds-react';
 import { InconsistentFormValuesMessage } from '@sif/soknad/consistency';
-import { StepPage } from '@sif/soknad-ui/pages';
 import { getProgressSteps } from '@sif/soknad/utils';
+import { StepPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppIntl } from '../../i18n';

@@ -1,16 +1,24 @@
 import { LocalAlert } from '@navikt/ds-react';
 import { ApplicationPage } from '@sif/soknad-ui/pages';
 
+import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
+
 interface Props {
     applicationTitle: string;
 }
 
 export const ErrorPage = ({ applicationTitle }: Props) => {
+    const { text } = useSifSoknadUiIntl();
+
     return (
-        <ApplicationPage documentTitle="Noe gikk galt" applicationTitle={applicationTitle}>
+        <ApplicationPage
+            documentTitle={text('@sifSoknadUi.errorPage.documentTitle')}
+            applicationTitle={applicationTitle}>
             <LocalAlert status="error">
                 <LocalAlert.Header>
-                    <LocalAlert.Title>Det oppstod en feil. Vennligst prøv igjen senere.</LocalAlert.Title>
+                    <LocalAlert.Title>
+                        <SifSoknadUiText id="@sifSoknadUi.errorPage.alertTitle" />
+                    </LocalAlert.Title>
                 </LocalAlert.Header>
             </LocalAlert>
         </ApplicationPage>

@@ -1,27 +1,22 @@
+import { useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/soknadStepConfig';
-import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
+import { useSøknadRhfForm, useSøknadState, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { useSifValidate } from '@sif/rhf';
+import { VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 
 import { BarnSøknadsdata } from '../../types/Soknadsdata';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
-
-export enum BarnFormFields {
-    stemmerInfoOmBarn = 'stemmerInfoOmBarn',
-}
-
-export interface BarnFormValues extends StepFormValues {
-    [BarnFormFields.stemmerInfoOmBarn]?: YesOrNo;
-}
-
-const { YesOrNoQuestion } = createSifFormComponents<BarnFormValues>();
+import { BarnFormFields, BarnFormValues } from './types';
 
 const stepId = SøknadStepId.BARN;
 
 export const BarnForm = () => {
     const { validateField } = useSifValidate('barnForm');
+    const { text } = useAppIntl();
+    const { barn: registrerteBarn } = useSøknadState();
+
     const defaultValues = useStepDefaultValues<BarnFormValues, BarnSøknadsdata>({
         stepId,
         toFormValues: toBarnFormValues,
@@ -29,17 +24,24 @@ export const BarnForm = () => {
 
     const { onSubmit, isPending } = useStepSubmit<BarnFormValues, BarnSøknadsdata>({
         stepId,
-        toSøknadsdata: toBarnSøknadsdata,
+        toSøknadsdata: (values) => {
+            const søknadsdata = toBarnSøknadsdata(values);
+            if (!søknadsdata || !registrerteBarn.some((barn) => barn.aktørId === søknadsdata.barnetSøknadenGjelder)) {
+                throw new Error('Barn: mangler valgt registrert barn etter validering');
+            }
+            return søknadsdata;
+        },
     });
 
     const methods = useSøknadRhfForm(stepId, defaultValues);
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
-            <YesOrNoQuestion
-                name={BarnFormFields.stemmerInfoOmBarn}
-                legend="Stemmer informasjonen om barn?"
-                validate={validateField(BarnFormFields.stemmerInfoOmBarn, getYesOrNoValidator())}
+            <VelgRegistrertBarnPanel<BarnFormValues>
+                name={BarnFormFields.barnetSøknadenGjelder}
+                registrerteBarn={registrerteBarn}
+                label={text('barnSteg.spørsmål.barnetSøknadenGjelder')}
+                validate={validateField(BarnFormFields.barnetSøknadenGjelder, getRequiredFieldValidator())}
             />
         </AppForm>
     );

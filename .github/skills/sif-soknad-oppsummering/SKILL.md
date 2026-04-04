@@ -20,8 +20,9 @@ Signalord: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny opps
 
 ## Avgrensning
 
-- Kun `OppsummeringSteg.tsx` og tilhørende `i18n/nb.ts`
-- Ikke endre andre steg, søknadsdata-typer eller DTO-mapping
+- Primært `OppsummeringSteg.tsx` og tilhørende `i18n/nb.ts`
+- Oppretter også `useSendSøknad.ts` og `soknadsdataToSøknadDTO.ts` hvis de ikke finnes fra før
+- Ikke endre andre steg eller søknadsdata-typer
 - For vedlegg: bruk komponenter fra `@sif/soknad-ui`, ikke fra gamle pakker (`@navikt/sif-common-core-ds` o.l.)
 
 ---
@@ -32,11 +33,77 @@ Signalord: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny opps
 
 1. `src/app/steps/oppsummering/OppsummeringSteg.tsx` — eksisterende skall
 2. `src/app/steps/oppsummering/i18n/nb.ts` — eksisterende i18n-nøkler
-3. `src/app/utils/soknadsdataToSoknadDTO.ts` — forstå DTO-strukturen
+3. `src/app/utils/soknadsdataToSoknadDTO.ts` — forstå DTO-strukturen (opprett om den ikke finnes)
 4. `src/app/types/SoknadApiData.ts` — DTO-typen
-5. Tilsvarende oppsummeringsfiler i v1-appen — for tekster og rekkefølge på seksjoner
+5. `src/app/hooks/useSendSoknad.ts` — innsendingshook (opprett om den ikke finnes)
+6. Tilsvarende oppsummeringsfiler i v1-appen — for tekster og rekkefølge på seksjoner
 
 **Les ikke** andre steg, setup-filer eller packages utover dette.
+
+---
+
+## Støttefiler som må finnes
+
+Disse to filene er forutsetninger for `OppsummeringSteg`. Opprett dem om de ikke finnes fra før.
+
+### `src/app/hooks/useSendSoknad.ts`
+
+```ts
+import { ApiError } from '@sif/api';
+import { useMutation } from '@tanstack/react-query';
+
+import { sendSøknad } from '../api/sendSoknad';
+import { SøknadApiData } from '../types/SoknadApiData';
+
+export const useSendSøknad = () => {
+    return useMutation<void, ApiError, SøknadApiData>({
+        mutationFn: (data) => sendSøknad(data),
+    });
+};
+```
+
+### `src/app/utils/soknadsdataToSoknadDTO.ts`
+
+Mapper `Søknadsdata` + `Søker` + `språk` til `SøknadApiData` (minus `harBekreftetOpplysninger` som legges til ved innsending).
+
+```ts
+import { Søker } from '@sif/api/k9-prosessering';
+
+import { SøknadStepId } from '../setup/config/SoknadStepId';
+import { SøknadApiData } from '../types/SoknadApiData';
+import { Søknadsdata } from '../types/Soknadsdata';
+
+interface Params {
+    søker: Søker;
+    søknadsdata: Søknadsdata;
+    språk: string;
+}
+
+export const søknadsdataToSøknadDTO = ({
+    søker,
+    søknadsdata,
+    språk,
+}: Params): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
+    const mittSteg = søknadsdata[SøknadStepId.MITT_STEG];
+    if (!mittSteg) return undefined; // returner undefined om obligatoriske steg mangler
+
+    // Vedlegg sendes som ID-array, ikke som PersistedVedlegg-objekter:
+    const vedlegg = søknadsdata[SøknadStepId.VEDLEGG]?.vedlegg.map((v) => v.id) ?? [];
+
+    return {
+        språk,
+        søkerNorskIdent: søker.fødselsnummer,
+        // ... map domenefeltene til API-kontrakten
+        vedlegg,
+    };
+};
+```
+
+Viktige detaljer:
+- Returner `undefined` om obligatoriske steg mangler i søknadsdata
+- Vedlegg må mappes til ID-array: `.map(v => v.id)` — DTO-kontrakten forventer `string[]`, ikke `PersistedVedlegg[]`
+- `harBekreftetOpplysninger` legges til separat i `OppsummeringSteg` ved innsending (ikke her)
+- Optional steg (f.eks. DELT_BOSTED): bruk `?? undefined` eller `?? []` avhengig av API-feltet
 
 ### Steg 2 — Kartlegg DTO-felter
 

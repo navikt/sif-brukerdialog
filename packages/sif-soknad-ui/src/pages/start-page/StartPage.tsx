@@ -1,6 +1,7 @@
-import { BodyLong, Box, Button, Checkbox, CheckboxGroup, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Checkbox, CheckboxGroup, GuidePanel, Heading, Link, VStack } from '@navikt/ds-react';
 import { ReactNode, useState } from 'react';
 
+import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
 import { ApplicationPage } from '../application-page/ApplicationPage';
 
 interface Props {
@@ -20,6 +21,7 @@ interface Props {
 }
 
 export const StartPage = ({ title, guide, children, onStart, isPending }: Props) => {
+    const { text } = useSifSoknadUiIntl();
     const [error, setError] = useState(false);
     const [bekrefter, setBekrefter] = useState(false);
 
@@ -44,21 +46,28 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                 <GuidePanel poster={true}>
                     <Box paddingBlock="space-8 space-0">
                         <Heading level="2" size="medium" spacing={true}>
-                            Hei {guide.navn}
+                            <SifSoknadUiText id="@sifSoknadUi.startPage.guide.greeting" values={{ navn: guide.navn }} />
                         </Heading>
                         <BodyLong as="div">{guide.content}</BodyLong>
                     </Box>
                 </GuidePanel>
 
                 <div>{children}</div>
-                <section aria-label="Skjema">
+                <section aria-label={text('@sifSoknadUi.startPage.form.ariaLabel')}>
                     <form onSubmit={handleSubmit}>
                         <div>
+                            <BodyLong spacing>
+                                <SifSoknadUiText id="@sifSoknadUi.startPage.disclosure.text" />{' '}
+                                <Link href="https://www.nav.no/endringer">
+                                    <SifSoknadUiText id="@sifSoknadUi.startPage.disclosure.linkText" />
+                                </Link>
+                                .
+                            </BodyLong>
                             <Box paddingBlock="space-0 space-32">
                                 <CheckboxGroup
-                                    legend="Jeg bekrefter at jeg vil svare så riktig som jeg kan"
+                                    legend={text('@sifSoknadUi.startPage.confirmation.legend')}
                                     hideLegend={true}
-                                    error={error ? 'Du må bekrefte at du vil svare så riktig som du kan' : undefined}>
+                                    error={error ? text('@sifSoknadUi.startPage.confirmation.error') : undefined}>
                                     <Checkbox
                                         name="bekrefter"
                                         value="bekrefter"
@@ -68,12 +77,12 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                                                 setError(false);
                                             }
                                         }}>
-                                        Jeg bekrefter at jeg vil svare så riktig som jeg kan.
+                                        <SifSoknadUiText id="@sifSoknadUi.startPage.confirmation.checkboxLabel" />
                                     </Checkbox>
                                 </CheckboxGroup>
                             </Box>
                             <Button type="submit" loading={isPending} disabled={isPending}>
-                                Start søknad
+                                <SifSoknadUiText id="@sifSoknadUi.startPage.submitButton" />
                             </Button>
                         </div>
                     </form>

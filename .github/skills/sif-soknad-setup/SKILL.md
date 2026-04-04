@@ -20,6 +20,7 @@ Guide for å sette opp `src/app/setup/`-mappen i en ny app som bruker `@sif/sokn
 
 - Fokus: `src/app/setup/` og tilhørende typer og utils i appen, pluss routing shell og sider.
 - Omfatter setup-laget og `Soknad.tsx`, `VelkommenPage`, `KvitteringPage`, barrel-filer — ikke steginnhold eller API-kall.
+- Omfatter også lokal/demo scenariovelger når appen har mock/scenario-støtte.
 - Kildereferanse: `apps/sif-demo-app/src/app/setup/` og `apps/aktivitetspenger-soknad/src/app/setup/`.
 - For initial data-flyt (`useInitialData`, `InitialDataLoader`) → bruk `sif-initial-data-loader`.
 - For å legge til steg i routingen → bruk [sif-soknad-add-step](../sif-soknad-add-step/SKILL.md).
@@ -54,6 +55,8 @@ Resten av appen importerer normalt fra `@app/setup` i stedet for å kjenne ramme
 
 ```
 src/app/
+    demo/
+        ScenarioHeader.tsx                 # lokal/demo scenariovelger når appen har mock-scenarier
   setup/
     constants.ts                       # APP_YTELSE og MELLOMLAGRING_VERSJON
     context/
@@ -111,6 +114,7 @@ cp -r $SRC/setup $DST/setup
 cp -r $SRC/types $DST/types
 cp -r $SRC/utils $DST/utils
 cp -r $SRC/i18n  $DST/i18n
+cp -r $SRC/../demo $DST/../demo 2>/dev/null || true
 ```
 
 Deretter gjør du målrettede endringer på de tilpasningspunktene som er listet i tabellen nedenfor. Kjør `check:types` etter at du er ferdig — typefeilen vil peke nøyaktig på det som gjenstår.
@@ -120,11 +124,67 @@ Deretter gjør du målrettede endringer på de tilpasningspunktene som er listet
 - **Lenker** — bruk enten en lokal `lenker.ts`-helper eller inline URL-er direkte i komponentene.
 - **`APP_YTELSE`** i `constants.ts` — sett til riktig `MellomlagringYtelse`-verdi for appen.
 - **`basePath`** i `soknadContext.ts` — sett til appens URL-base (eks. `/aktivitetspenger-soknad`).
+- **Scenariovelger i lokal/demo** — når appen har `mock/scenarios/**` og `VELG_SCENARIO`, legg inn `src/demo/ScenarioHeader.tsx` og rendre den i `App.tsx`.
 - **`soknadStepConfig.ts`** — bytt ut alle steg-IDer, routes, titler og `isCompleted`-sjekker.
 - **`Soknadsdata.ts`** — juster per-steg typene til domenefeltene for appen.
 - **`formValuesToSoknadsdata.ts`** — oppdater `switch`-casene til å matche de nye `SøknadStepId`-verdiene (start med `return undefined` og fyll ut steg for steg).
 - **`appMessages.ts`** — sett `application.title` til riktig ytelsesnavn.
 - **Initial data-flyt** — hold `useInitialData.ts` og `InitialDataLoader.tsx` adskilt. Detaljer for metadata-typing og mellomlagring ligger i `sif-initial-data-loader`.
+
+### Lokal/demo-scenariovelger
+
+Når appen har mockscenarier, er scenariovelger del av det anbefalte setup-laget for lokal kjøring og demo.
+
+Bruk dette mønsteret:
+
+1. Opprett `src/demo/ScenarioHeader.tsx`.
+2. Bruk `ScenarioSelectorHeader` fra `@sif/soknad-ui`.
+3. Definer grupper og valg fra `ScenarioType` i `mock/scenarios/types.ts`.
+4. Ved valg av scenario: kall `store.setScenario(scenario)` og reload appen på `PUBLIC_PATH`.
+5. Returner `null` i prod.
+6. Render komponenten i `App.tsx` inne i `BrowserRouter`.
+
+Eksempel:
+
+```tsx
+import { getRequiredEnv } from '@navikt/sif-common-env';
+import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
+
+import { ScenarioType } from '../mock/scenarios/types';
+import { store } from '../mock/state/store';
+
+const scenarioGroups: ScenarioSelectorHeaderGroup<ScenarioType>[] = [
+    {
+        label: 'Scenarioer',
+        options: [{ value: ScenarioType.default, label: 'Standard' }],
+    },
+];
+
+export const ScenarioHeader = () => {
+    if (import.meta.env.PROD) {
+        return null;
+    }
+
+    const setScenario = (scenario: ScenarioType) => {
+        store.setScenario(scenario);
+        globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
+        globalThis.location.reload();
+    };
+
+    return <ScenarioSelectorHeader title="Demo" groups={scenarioGroups} onSelectScenario={setScenario} />;
+};
+```
+
+I `App.tsx`:
+
+```tsx
+<BrowserRouter basename={basePath}>
+    <ScenarioHeader />
+    <InitialDataLoader />
+</BrowserRouter>
+```
+
+Dette fungerer godt sammen med lokal mock, manuell verifisering og Playwright.
 
 ---
 
@@ -202,6 +262,7 @@ export interface Søknadsdata extends BaseSøknadsdata {
 Når en søknad trenger domenespesifikke typer (f.eks. `BarnSammeAdresse`, `SøkersRelasjonTilBarnet`), er det tre alternativer:
 
 **A) Utled fra generert API-type** — anbefalt når typen finnes som felt i en generert type:
+
 ```ts
 import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 
@@ -213,6 +274,7 @@ export type SøkersRelasjonTilBarnet = NonNullable<OmsorgspengerKroniskSyktBarnS
 ```
 
 Legg til et `const`-objekt for enum-lignende DX (autocomplete, refaktorering):
+
 ```ts
 export const BarnSammeAdresse = {
     JA: 'JA' as BarnSammeAdresse,
@@ -759,4 +821,72 @@ export { VelkommenPage } from './velkommen/VelkommenPage';
 - [ ] `src/app/pages/kvittering/KvitteringPage.tsx` opprettet
 - [ ] `src/app/pages/index.ts` opprettet
 - [ ] `src/app/steps/index.ts` opprettet (tom eller med første steg)
+- [ ] `src/demo/ScenarioHeader.tsx` opprettet og montert i `App.tsx`
 - [ ] `yarn check:types` passerer
+
+---
+
+## Scenariovelger (dev-only)
+
+Alle søknadsapper skal ha en scenariovelger som kun vises lokalt og i dev/demo-bygg. Den monteres direkte i `App.tsx`, og vises automatisk bare når `import.meta.env.PROD` er `false`.
+
+### Oppsett
+
+**1. Opprett `src/demo/ScenarioHeader.tsx`**
+
+```tsx
+import { getRequiredEnv } from '@navikt/sif-common-env';
+import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
+
+import { ScenarioType } from '../../mock/scenarios/types';
+import { store } from '../../mock/state/store';
+
+const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
+    {
+        label: 'Gruppe (valgfritt)',
+        options: [
+            { value: ScenarioType.default, label: 'Standard' },
+            // legg til øvrige scenarioer her
+        ],
+    },
+];
+
+export const ScenarioHeader = () => {
+    if (import.meta.env.PROD) {
+        return null;
+    }
+
+    const setScenario = (scenario: ScenarioType) => {
+        store.setScenario(scenario);
+        globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
+        globalThis.location.reload();
+    };
+
+    return <ScenarioSelectorHeader title="Demo av <appnavn>" groups={scenarioGroups} onSelectScenario={setScenario} />;
+};
+```
+
+**2. Mont `<ScenarioHeader />` i `App.tsx` inne i `<BrowserRouter>`**
+
+```tsx
+import { ScenarioHeader } from './demo/ScenarioHeader';
+
+// ...
+<BrowserRouter basename={basePath}>
+    <ScenarioHeader />
+    <InitialDataLoader />
+</BrowserRouter>;
+```
+
+`ScenarioSelectorHeader` returnerer `null` i produksjonsbygg via `import.meta.env.PROD`-sjekken i `ScenarioHeader`-wrapperen i appen, så ingen ekstra guard trengs andre steder.
+
+### `ScenarioSelectorHeader` API
+
+| Prop               | Type                                           | Beskrivelse                                           |
+| ------------------ | ---------------------------------------------- | ----------------------------------------------------- |
+| `title`            | `string`                                       | Tittelen som vises i headeren                         |
+| `buttonLabel`      | `string` (valgfritt, default: "Velg scenario") | Tekst på knappen                                      |
+| `groups`           | `Array<ScenarioSelectorHeaderGroup<T>>`        | Grupper med scenarioer. `label` er valgfritt          |
+| `onSelectScenario` | `(value: T) => void`                           | Kalles med scenariotype når bruker velger et scenario |
+
+Eksportert fra `@sif/soknad-ui` (package allerede avhengighet i v2-apper).

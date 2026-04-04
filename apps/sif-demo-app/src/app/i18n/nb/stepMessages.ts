@@ -1,9 +1,12 @@
 export const stepMessages_nb = {
-    'step.barn.title': 'Barn',
-    'step.barn.documentTitle': 'Barn',
+    'step.barn.title': 'Om barnet',
+    'step.barn.documentTitle': 'Om barnet',
 
     'step.bosted.title': 'Bosted',
     'step.bosted.documentTitle': 'Bosted',
+
+    'step.vedlegg.title': 'Vedlegg',
+    'step.vedlegg.documentTitle': 'Vedlegg',
 
     'step.oppsummering.title': 'Oppsummering',
     'step.oppsummering.documentTitle': 'Oppsummering',
@@ -35,4 +38,5 @@ export const stepMessages_nb = {
     'validation.rolle.noValue': 'Du må velge en rolle',
     'validation.interesser.listIsEmpty': 'Du må velge minst ett alternativ',
     'validation.samtykke.notChecked': 'Du må svare på om du samtykker',
+    'validation.barnetSøknadenGjelder.noValue': 'Du må velge hvilket barn søknaden gjelder',
 };

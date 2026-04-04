@@ -35,6 +35,7 @@
         "@sentry/react": "10.45.0",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
+        "@sif/soknad-ui": "workspace:*",
         "@sif/ung-innsyn": "workspace:*",
         "@tanstack/react-query": "5.95.2",
         "dayjs": "1.11.20",

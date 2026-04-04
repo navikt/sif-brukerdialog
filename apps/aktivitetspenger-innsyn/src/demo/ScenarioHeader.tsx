@@ -1,6 +1,5 @@
-import { PersonCircleIcon } from '@navikt/aksel-icons';
-import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
 import { getRequiredEnv } from '@navikt/sif-common-env';
+import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
 import { useNavigate } from 'react-router-dom';
 
 import { scenarioer } from '../../mock/scenarios/scenarioer';
@@ -8,6 +7,10 @@ import { ScenarioType } from '../../mock/scenarios/types';
 import { store } from '../../mock/state/store';
 
 const ScenarioHeader = () => {
+    if (import.meta.env.PROD) {
+        return null;
+    }
+
     const navigate = useNavigate();
     const setScenario = (type: ScenarioType) => {
         const scenario = scenarioer[type];
@@ -18,35 +21,36 @@ const ScenarioHeader = () => {
         }
     };
 
+    const groups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
+        {
+            label: 'Oppgaver',
+            options: [
+                {
+                    value: ScenarioType.rapporterInntekt,
+                    label: 'Rapportere inntekt månedlig',
+                },
+                {
+                    value: ScenarioType.rapporterInntektDelerAvMåned,
+                    label: 'Rapportere inntekt månedlig (deler av måned)',
+                },
+                {
+                    value: ScenarioType.avvikInntekt,
+                    label: 'Inntektskontroll - sjekke avvik i inntekt',
+                },
+                {
+                    value: ScenarioType.avvikInntektDelerAvMåned,
+                    label: 'Inntektskontroll - sjekke avvik i inntekt (deler av måned)',
+                },
+            ],
+        },
+    ];
+
     return (
-        <InternalHeader>
-            <InternalHeader.Title>Demo av &quot;Dine aktivitetspenger&quot;</InternalHeader.Title>
-            <Spacer />
-            <ActionMenu>
-                <ActionMenu.Trigger>
-                    <InternalHeader.Button>
-                        <PersonCircleIcon fontSize="1.5rem" title="Informasjonikon" />
-                        Velg scenario
-                    </InternalHeader.Button>
-                </ActionMenu.Trigger>
-                <ActionMenu.Content>
-                    <ActionMenu.Group label="Oppgaver">
-                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.rapporterInntekt)}>
-                            Rapportere inntekt månedlig
-                        </ActionMenu.Item>
-                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.rapporterInntektDelerAvMåned)}>
-                            Rapportere inntekt månedlig (deler av måned)
-                        </ActionMenu.Item>
-                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntekt)}>
-                            Inntektskontroll - sjekke avvik i inntekt
-                        </ActionMenu.Item>
-                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntektDelerAvMåned)}>
-                            Inntektskontroll - sjekke avvik i inntekt (deler av måned)
-                        </ActionMenu.Item>
-                    </ActionMenu.Group>
-                </ActionMenu.Content>
-            </ActionMenu>
-        </InternalHeader>
+        <ScenarioSelectorHeader
+            title='Demo av "Dine aktivitetspenger"'
+            groups={groups}
+            onSelectScenario={setScenario}
+        />
     );
 };
 

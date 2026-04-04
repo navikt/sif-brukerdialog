@@ -1,4 +1,5 @@
 export const stepPageMessages_nb = {
+    '@sifSoknadUi.stepPage.form.ariaLabel': 'Skjema',
     '@sifSoknadUi.stepFooter.fortsettSenere.trigger.label': 'Lagre og fortsett senere',
     '@sifSoknadUi.stepFooter.fortsettSenere.dialog.title': 'Lagre og fortsett senere',
     '@sifSoknadUi.stepFooter.fortsettSenere.dialog.text.1':
@@ -13,4 +14,4 @@ export const stepPageMessages_nb = {
     '@sifSoknadUi.stepFooter.slettSøknad.dialog.text.2': 'Ønsker du å slette?',
     '@sifSoknadUi.stepFooter.slettSøknad.dialog.avbryt.label': 'Nei',
     '@sifSoknadUi.stepFooter.slettSøknad.dialog.confirm.label': 'Ja, slett',
-};
+} as const;

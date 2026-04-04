@@ -10,6 +10,11 @@ export { PictureScanningGuide } from './picture-scanning-guide/PictureScanningGu
 export { ProgressStepper } from './progress-stepper/ProgressStepper';
 export { type ProgressStep } from './progress-stepper/ProgressStepper';
 export { RegistrerteBarnListe } from './registrerte-barn-liste/RegistrerteBarnListe';
+export {
+    ScenarioSelectorHeader,
+    type ScenarioSelectorHeaderGroup,
+    type ScenarioSelectorHeaderOption,
+} from './scenario-selector-header/ScenarioSelectorHeader';
 export { SifGuidePanel } from './sif-guide-panel/SifGuidePanel';
 export { type SifGuidePanelProps } from './sif-guide-panel/SifGuidePanel';
 export { SifInfoCard } from './sif-info-card/SifInfoCard';

@@ -1,6 +1,7 @@
 import { VStack } from '@navikt/ds-react';
 
 import { ProgressStep, ProgressStepper } from '../../components';
+import { useSifSoknadUiIntl } from '../../i18n';
 import { ApplicationPage } from '../application-page/ApplicationPage';
 import { StepFooter } from './StepFooter';
 
@@ -25,11 +26,12 @@ export function StepPage({
     onResumeLater,
     children,
 }: Props) {
+    const { text } = useSifSoknadUiIntl();
     const currentStepIndex = steps.findIndex((s) => s.id === stepId);
     return (
         <ApplicationPage documentTitle={documentTitle} applicationTitle={applicationTitle}>
             <VStack gap="space-40">
-                <section aria-label="Skjema">
+                <section aria-label={text('@sifSoknadUi.stepPage.form.ariaLabel')}>
                     <VStack gap="space-40">
                         {steps.length > 0 && currentStepIndex !== -1 && (
                             <ProgressStepper
