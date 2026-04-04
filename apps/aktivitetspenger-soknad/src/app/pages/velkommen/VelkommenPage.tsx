@@ -1,7 +1,6 @@
 import { useAppIntl } from '@app/i18n';
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/config/soknadStepConfig';
 import { useSøknadMellomlagring, useSøknadsflyt, useSøknadStore } from '@app/setup/hooks';
-import { BodyLong, Link, VStack } from '@navikt/ds-react';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { StartPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
@@ -40,15 +39,7 @@ export const VelkommenPage = () => {
                 ),
             }}
             title={text('application.title')}>
-            <VStack gap="space-24">
-                <OmSøknaden />
-                <BodyLong>
-                    Det er viktig at du gir oss riktige opplysninger slik at vi kan behandle saken din.{' '}
-                    <Link href="https://www.nav.no/endringer">
-                        Les mer om viktigheten av å gi riktige opplysninger.
-                    </Link>
-                </BodyLong>
-            </VStack>
+            <OmSøknaden />
         </StartPage>
     );
 };
