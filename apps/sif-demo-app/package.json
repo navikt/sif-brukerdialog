@@ -5,12 +5,15 @@
     "version": "0.0.2",
     "scripts": {
         "dev": "vite --base=/sif-demo --config vite.dev.config.ts",
+        "pw:dev": "vite --config vite.e2e.config.ts",
         "build": "vite build --base=/sif-demo",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
         "test": "vitest run",
+        "pw:run": "playwright test",
+        "pw:run:headed": "playwright test --headed",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build"
     },
@@ -31,6 +34,7 @@
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad": "workspace:*",
+        "@sif/soknad-forms": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@tanstack/react-query": "5.95.2",
         "dayjs": "1.11.20",
@@ -42,6 +46,8 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
+        "@axe-core/playwright": "4.11.1",
+        "@playwright/test": "1.58.2",
         "@sentry/vite-plugin": "5.1.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.3.3",

@@ -1,27 +1,42 @@
-import { Søker } from '@sif/api/k9-prosessering';
+import { dateToISODate, formatName } from '@navikt/sif-common-utils';
+import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
 
+import { SøknadStepId } from '../setup/config/soknadStepConfig';
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
 
 export const getSøknadApiDataFromSøknad = ({
     søker,
     søknadsdata,
+    registrerteBarn,
     språk = 'nb',
 }: {
     søknadsdata: Søknadsdata;
     søker: Søker;
+    registrerteBarn: RegistrertBarn[];
     språk?: 'nb' | 'nn';
-}): Omit<SøknadApiData, 'harBekreftetOpplysninger'> => {
-    const { barn, harForståttRettigheterOgPlikter, bosted } = søknadsdata;
+}): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
+    const barn = søknadsdata[SøknadStepId.BARN];
+    const bosted = søknadsdata[SøknadStepId.BOSTED];
+    const vedlegg = søknadsdata[SøknadStepId.VEDLEGG];
+    const { harForståttRettigheterOgPlikter } = søknadsdata;
 
-    if (!barn || !harForståttRettigheterOgPlikter || !bosted) {
-        throw new Error('Manglende data i søknadsdata');
+    const registrertBarn = registrerteBarn.find((item) => item.aktørId === barn?.barnetSøknadenGjelder);
+
+    if (!barn || !registrertBarn || !harForståttRettigheterOgPlikter || !bosted) {
+        return undefined;
     }
 
     return {
         søkerNorskIdent: søker.fødselsnummer,
         språk,
-        barnErRiktig: barn.stemmerInfoOmBarn === true,
+        barn: {
+            aktørId: registrertBarn.aktørId,
+            navn: formatName(registrertBarn.fornavn, registrertBarn.etternavn, registrertBarn.mellomnavn),
+            fødselsdato: dateToISODate(registrertBarn.fødselsdato),
+        },
+        borITrondheim: bosted.borITrondheim,
+        vedlegg: vedlegg?.vedlegg.map((file) => file.id) ?? [],
         harForståttRettigheterOgPlikter,
     };
 };

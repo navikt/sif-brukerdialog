@@ -53,6 +53,8 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-soknad-oppsummering`:
     - Oppsett av oppsummeringssteg: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny oppsummering`, `oppsummeringsside`.
     - Innhold: `FormSummary`, `OmSøkerOppsummering`, `OmBarnetOppsummering`, `VedleggOppsummering`, bekreftelsescheckbox.
+- `sif-soknad-vedlegg-step`:
+    - Legge til filvedlegg i et steg: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
 
 ## Prioritering ved overlapp
 
@@ -68,3 +70,4 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om accessibility/axe i Playwright-tester, prioriter `sif-playwright-a11y`.
 - Hvis oppgaven handler om å sette opp `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` eller `steps/index.ts`, prioriter `sif-soknad-setup`.
 - Hvis oppgaven handler om å sette opp eller fylle inn innhold i `OppsummeringSteg`, prioriter `sif-soknad-oppsummering`.
+- Hvis oppgaven handler om filvedlegg i et steg (`VedleggPanel`, `PersistedVedlegg`, opplasting), prioriter `sif-soknad-vedlegg-step`.

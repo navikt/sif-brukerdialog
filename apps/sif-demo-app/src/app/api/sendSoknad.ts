@@ -1,13 +1,18 @@
-import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
-import { commonRequestHeader, handleApiError } from '@sif/api';
+import { commonRequestHeader } from '@sif/api';
 
-export const sendSøknad = async (data: aktivitetspenger.Aktivitetspengersøknad): Promise<any> => {
-    try {
-        await aktivitetspenger.AktivitetspengerController.innsendingAktivitetspengersøknad({
-            body: data,
-            headers: commonRequestHeader,
-        });
-    } catch (e) {
-        throw handleApiError(e, 'sendSøknad');
+import { SøknadApiData } from '../types/SoknadApiData';
+
+export const sendSøknad = async (data: SøknadApiData): Promise<any> => {
+    const response = await fetch('/sif-demo/api/aktivitetspenger/soknad/innsending', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            ...commonRequestHeader,
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        throw new Error(`sendSøknad feilet med status ${response.status}`);
     }
 };

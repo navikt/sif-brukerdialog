@@ -1,21 +1,26 @@
-import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { LocalAlert } from '@navikt/ds-react';
 import { ApplicationPage } from '@sif/soknad-ui/pages';
+
+import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
 
 interface Props {
     applicationTitle: string;
 }
 
 export const ErrorPage = ({ applicationTitle }: Props) => {
+    const { text } = useSifSoknadUiIntl();
+
     return (
-        <ApplicationPage documentTitle="Noe gikk galt" applicationTitle={applicationTitle}>
-            <VStack gap="space-24">
-                <Heading size="xlarge" level="1">
-                    Oops, noe gikk galt
-                </Heading>
-                <Alert variant="error">
-                    <BodyLong>Det oppstod en feil. Vennligst prøv igjen senere.</BodyLong>
-                </Alert>
-            </VStack>
+        <ApplicationPage
+            documentTitle={text('@sifSoknadUi.errorPage.documentTitle')}
+            applicationTitle={applicationTitle}>
+            <LocalAlert status="error">
+                <LocalAlert.Header>
+                    <LocalAlert.Title>
+                        <SifSoknadUiText id="@sifSoknadUi.errorPage.alertTitle" />
+                    </LocalAlert.Title>
+                </LocalAlert.Header>
+            </LocalAlert>
         </ApplicationPage>
     );
 };

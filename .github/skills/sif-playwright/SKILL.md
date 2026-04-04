@@ -26,6 +26,7 @@ Sette opp et minimalt, fungerende Playwright e2e-grunnlag i én app-workspace.
 - `vite.e2e.config.ts`
 - `playwright/playwrightAppSettings.ts`
 - `playwright/utils/scenario.ts` ved behov
+- `playwright/files/*` ved behov for opplastingstester
 - `playwright/tests/*.spec.ts` med minst to tester
 - Scripts i `package.json`: `pw:dev`, `pw:run`, `pw:run:headed`
 - `tsconfig.json` oppdatert med Playwright-filer i `include`
@@ -39,9 +40,24 @@ Sette opp et minimalt, fungerende Playwright e2e-grunnlag i én app-workspace.
   playwright/
     playwrightAppSettings.ts
     tests/
+        files/
     utils/
       scenario.ts
 ```
+
+## Hold disse pathene identiske
+
+For BrowserRouter-apper må base path være samme verdi i alle relevante steder. Dette er et av de viktigste ferdigkriteriene for et stabilt e2e-oppsett.
+
+- `src/App.tsx` eller tilsvarende: `BrowserRouter basename`
+- `vite.dev.config.ts`: `base`
+- `vite.e2e.config.ts`: `base`
+- `vite.e2e.config.ts`: proxy-rewrite for `mockServiceWorker.js`
+- `playwright.config.ts`: `use.baseURL`
+- `playwright.config.ts`: `webServer.url`
+- `playwright/playwrightAppSettings.ts`: `PUBLIC_PATH` når appen leser path fra app settings
+
+Hvis én av disse peker til en annen path, blir navigasjon, kvittering og MSW-ressurser ustabile i Playwright.
 
 ## tsconfig-krav
 
@@ -114,6 +130,7 @@ export default defineConfig({
 ### `vite.e2e.config.ts`
 
 Bruk `mode: 'msw'` for å aktivere MSW-mocking. Viktige punkter:
+
 - Sett `__IS_DEMO__: false` for å bruke BrowserRouter (ikke HashRouter/demo-modus).
 - Sett `__USE_FIXED_MOCKED_DATE__: true` for deterministisk datodata.
 - Inkluder proxy for `mockServiceWorker.js` som rewrites til base-path.
@@ -137,10 +154,7 @@ export default defineConfig({
         {
             name: 'crossorigin',
             transformIndexHtml(html) {
-                return html.replace(
-                    /<link rel="stylesheet" crossorigin/g,
-                    '<link rel="stylesheet" type="text/css"',
-                );
+                return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
             },
         },
         {
@@ -188,14 +202,17 @@ import { getDevAppSettings } from '../mock/devAppSettings';
 
 export const getPlaywrightAppSettings = (): AppEnv => ({
     ...getDevAppSettings(),
+    PUBLIC_PATH: '/<app-base-path>',
     SIF_PUBLIC_USE_ANALYTICS: 'false',
     SIF_PUBLIC_USE_FARO: 'false',
 });
 ```
 
+Hvis appen bruker `PUBLIC_PATH` i routing, dekorator eller lenkebygging, skal Playwright-varianten alltid sette denne eksplisitt til samme base path som resten av e2e-oppsettet.
+
 ### `playwright/utils/scenario.ts`
 
-Setter scenario-key i `localStorage` via `addInitScript` (kjører *før* appen).
+Setter scenario-key i `localStorage` via `addInitScript` (kjører _før_ appen).
 Appen bruker `localStorageStore.init()` som leser denne keyen og genererer mockdata.
 Gjenbruk alltid `ScenarioType` fra `mock/scenarios/types` i stedet for `string` for å sikre at testene kun kan bruke gyldige scenarioer.
 
@@ -217,6 +234,27 @@ export const setScenario = async (page: Page, scenario: ScenarioType) => {
 
 `SCENARIO_KEY` må matche keyen appen bruker i sin `localStorageStore`.
 
+> ⚠️ **`localStorageStore.init` must not overwrite Playwright-set scenario**
+> Playwright setter kun scenario-key via `addInitScript` — ikke mockdata. `init()` kjøres etterpå i appen.
+> Sørg for at `init()` kun skriver data hvis data mangler — aldri hvis scenario-key allerede er satt:
+>
+> ```ts
+> init: (defaultScenario) => {
+>     const current = localStorage.getItem(SCENARIO_KEY);
+>     const hasData = localStorage.getItem(STORAGE_KEY) !== null;
+>     if (!current) {
+>         setScenario(defaultScenario); // ingen key satt — bruk default
+>         return;
+>     }
+>     if (!hasData) {
+>         setScenario(current); // key finnes (satt av Playwright), men data mangler
+>     }
+>     // key og data finnes — ikke gjør noe
+> };
+> ```
+>
+> Feilen `if (current !== defaultScenario) { setScenario(defaultScenario); }` overskriver Playwright-scenario med default.
+
 ### Scenario-mekanikk
 
 Flyten er:
@@ -228,18 +266,71 @@ Flyten er:
 
 Viktig: `localStorageStore.init()` må håndtere tilfellet der scenario-key finnes men data mangler (Playwright setter kun key). Sørg for at init-logikken genererer data fra key alene.
 
+## Lokal/demo scenariovelger
+
+For apper med mock/scenario-oppsett skal lokal/demo-kjøring ha en synlig scenariovelger, typisk `src/demo/ScenarioHeader.tsx`.
+
+Hold denne delen kort og kontraktsstyrt:
+
+- bruk samme `ScenarioType` som Playwright-testene
+- skriv til samme store/localStorage-nøkkel som `setScenario(page, ...)`
+- reload på samme `PUBLIC_PATH` som resten av appen
+
+Detaljer for implementasjon og montering av `ScenarioHeader` hører hjemme i `sif-soknad-setup` eller appens eksisterende demo-oppsett, ikke i denne skillen.
+
+## Mellomlagring og gjenopptak
+
+Når appen bruker mellomlagring, bør første Playwright-runde inkludere én test som verifiserer gjenopptak.
+
+Anbefalt mønster:
+
+1. Start søknaden og fyll ut minst første steg.
+2. Naviger videre slik at `currentStepId` og `søknadsdata` lagres.
+3. Gå til `/` på nytt eller reload siden.
+4. Verifiser at appen sender brukeren tilbake til riktig steg og at tidligere valg fortsatt er synlige.
+
+Dette er særlig nyttig i referanseapper, fordi det bekrefter at `useInitialData`, mellomlagring og routing spiller sammen.
+
+## Vedlegg i e2e
+
+Når appen har vedleggssteg:
+
+- legg testfilene under `playwright/files/`
+- bruk små, deterministiske filer med stabile filnavn
+- verifiser både at filen vises i steglisten og at den vises igjen i oppsummeringen
+
+Målet er å teste hele UI-flyten for opplasting, ikke filinnholdet.
+
+## Innsending i referanse- og demo-apper
+
+Når appen er en referanseapp eller demo-app med forenklet lokal DTO, fungerer det best å holde innsendingen enkel og mockbar i e2e.
+
+Anbefalt mønster:
+
+- la appen sende til en eksplisitt frontend-path via `fetch`
+- dekk samme path i MSW-handlers
+- bruk dette når målet er å verifisere søknadsflyt, routing og oppsummering, ikke backend-kontrakten
+
+Dette gjør Playwright-flyten stabil uten å binde referanseappen til runtime-validering i genererte API-klienter.
+
 ## Standard testmønster
 
 1. Start appen via `pw:dev` (Vite dev med MSW og BrowserRouter).
-2. Bruk `setScenario()` for å velge testdata *før* `page.goto('/')`.
+2. Bruk `setScenario()` for å velge testdata _før_ `page.goto('/')`.
 3. Hold nettverksstubbing i Playwright minimal — MSW håndterer API-mocking.
 4. Verifiser minst én forsideflyt og én sentral brukerflyt.
 5. Bruk stabile selectors (`getByRole`, `getByLabel`, `getByText` med tydelig tekst).
+6. For mellomlagringsapper: legg til én gjenopptakstest etter reload eller ny `goto('/')`.
+7. For vedleggsapper: verifiser opplasting både i steg og i oppsummering.
 
 ## Minimum dekning per app
 
 - Minst én test for hovedside/forside.
 - Minst én test for en sentral brukerflyt.
+- Minst én gjenopptakstest når appen bruker mellomlagring.
+- Minst én opplastingstest når appen har vedlegg.
+
+For apper med mock/scenario-støtte forventes en synlig scenariovelger i lokal/demo, men Playwright-skillen trenger bare å sikre at den følger samme scenario-kontrakt som testene.
 
 ## A11y
 

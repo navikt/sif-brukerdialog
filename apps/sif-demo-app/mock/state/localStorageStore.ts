@@ -7,8 +7,15 @@ const SCENARIO_KEY = 'DEMO_MOCK_SCENARIO';
 export const localStorageStore = {
     init: (scenario: ScenarioType) => {
         const current = localStorage.getItem(SCENARIO_KEY);
+        const hasData = localStorage.getItem(STORAGE_KEY) !== null;
+
         if (!current) {
             localStorageStore.setScenario(scenario);
+            return;
+        }
+
+        if (!hasData && Object.values(ScenarioType).includes(current as ScenarioType)) {
+            localStorageStore.setScenario(current as ScenarioType);
         }
     },
     setScenario: (scenario: ScenarioType) => {

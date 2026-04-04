@@ -220,6 +220,14 @@ export const applicationIntlMessages = {
 
 ## Regler og konvensjoner
 
+### Regler for copy og tekstendringer
+
+- AI skal ikke finne på, skrive om eller forbedre brukervendte tekster på egen hånd.
+- Når oppgaven er å flytte, trekke ut eller strukturere tekster, skal tekstinnholdet beholdes uendret.
+- Nye tekster skal bare legges inn når teksten er eksplisitt oppgitt av bruker, finnes i eksisterende kildefil, eller kommer fra etablert copy.
+- Hvis nødvendig tekstgrunnlag mangler, stopp og be om teksten i stedet for å dikte den.
+- Ved migrering eller refaktorering er hovedregelen at eksisterende tekster skal være identiske før og etter endringen.
+
 ### Nøkkelstruktur
 
 | Kontekst   | Prefiks-konvensjon | Eksempel                                    |
@@ -347,11 +355,13 @@ Gitt en komponent i `src/<type>/<komponent>/`, les:
 
 Når du skal opprette eller oppdatere i18n-filer:
 
-1. Opprett/oppdater `nb.ts` med bokmålstekster.
+1. Opprett/oppdater `nb.ts` med eksisterende eller eksplisitt levert bokmålstekst, uten omskriving.
 2. Opprett/oppdater `nn.ts` med `Record<keyof typeof ..._nb, string>` — ikke kopier nb som utgangspunkt, bruk heller spread ...nb. Da ser vi nå noen nn nøkler mangler
 3. Importer og spread i riktig `appMessages.ts` (nb og nn).
 4. Verifiser at `index.tsx` i appen inkluderer nn-versjon av alle kilder.
 5. Sjekk at `applicationIntlMessages` eksporterer `{ nb, nn }`.
+
+Hvis oppgaven gjelder uttrekk fra hardkodede tekster i komponenter, skal `nb.ts` gjengi nøyaktig samme tekst som stod i komponenten før uttrekket.
 
 ---
 
@@ -367,7 +377,7 @@ Fra hver fil, noter alle hardkodede tekster:
 
 - **String-props:** `legend="..."`, `aria-label="..."`, `title="..."`, `placeholder="..."`
 - **Template literals i props:** ``legend={`Tekst ${x}?`}`` → i18n-nøkkel med `{param}`
-- **Same-line JSX children:** `<Heading>Tekst</Heading>`, `<Alert variant="info">Tekst</Alert>`
+- **Same-line JSX children:** `<Heading>Tekst</Heading>`, `<SifInfoCard>Tekst</SifInfoCard>`
 - **Multi-line JSX children:** tekst som står på egen linje mellom åpnings- og lukketag
 
 **Hva som IKKE skal ekstraheres:**

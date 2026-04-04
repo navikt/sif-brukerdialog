@@ -15,6 +15,18 @@ export const zProblemDetail = z.object({
     properties: z.record(z.string(), z.unknown()).optional(),
 });
 
+export const zBosted = z.object({
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
+    landkode: z.string().min(1),
+    landnavn: z.string(),
+});
+
+export const zForutgåendeBosteder = z.object({
+    harBoddIUtlandetSiste5År: z.boolean(),
+    utenlandsoppholdSiste5År: z.array(zBosted),
+});
+
 export const zKontonummerInfo = z.object({
     harKontonummer: z.enum(['JA', 'NEI', 'UVISST']),
     kontonummerFraRegister: z.string().optional(),
@@ -22,6 +34,7 @@ export const zKontonummerInfo = z.object({
 });
 
 export const zAktivitetspengersøknad = z.object({
+    forutgåendeBosteder: zForutgåendeBosteder,
     språk: z.string(),
     startdato: z.iso.date(),
     søkerNorskIdent: z.string(),
@@ -122,7 +135,7 @@ export const zUpdateMellomlagringData = z.object({
 export const zLagreVedleggData = z.object({
     body: z
         .object({
-            vedlegg: z.string(),
+            vedlegg: z.instanceof(Blob),
         })
         .optional(),
     path: z.never().optional(),

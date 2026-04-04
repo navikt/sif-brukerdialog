@@ -12,7 +12,7 @@ const queryClient = new QueryClient({
             }
             const extras = isApiError(error)
                 ? { type: error.type, context: error.context, message: error.message, queryKey: query.queryKey }
-                : { message: error.message, queryKey: query.queryKey };
+                : { message: error instanceof Error ? error.message : String(error), queryKey: query.queryKey };
 
             Sentry.withScope((scope) => {
                 scope.setExtras(extras);

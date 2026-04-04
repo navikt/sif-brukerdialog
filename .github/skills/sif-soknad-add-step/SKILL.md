@@ -91,7 +91,7 @@ Kartlegg eksplisitt:
 felt A → alltid synlig
 felt B → synlig når felt A === YES
 felt C → synlig når felt B === NO
-alert X → synlig når felt A === NO
+melding X → synlig når felt A === NO
 ```
 
 Sjekk spesielt inversjonsfeil — det er den vanligste feilen ved portering:
@@ -200,9 +200,9 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
-import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { FormLayout } from '@sif/soknad-ui/components';
 
 import { to<Prefix>FormValues, to<Prefix>Søknadsdata } from './<prefix>StegUtils';
 import { <Prefix>FormFields, <Prefix>FormValues } from './types';
@@ -220,7 +220,7 @@ export const <Prefix>Form = () => {
         toFormValues: to<Prefix>FormValues,
     });
 
-    const { onSubmit, isPending } = useStepSubmit<<Prefix>FormValues, <Prefix>Søknadsdata>({
+    const { onSubmit, isPending, submitError } = useStepSubmit<<Prefix>FormValues, <Prefix>Søknadsdata>({
         stepId,
         toSøknadsdata: to<Prefix>Søknadsdata,
     });
@@ -228,7 +228,7 @@ export const <Prefix>Form = () => {
     const methods = useSøknadRhfForm(stepId, defaultValues);
 
     return (
-        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
+        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending} submitError={submitError}>
             <FormLayout.Content>
                 <FormLayout.Questions>
                     <YesOrNoQuestion

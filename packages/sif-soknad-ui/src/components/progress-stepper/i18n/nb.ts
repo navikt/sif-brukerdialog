@@ -1,3 +1,3 @@
 export const progressStepperMessages_nb = {
-    '@ui.progressStepper.goToPreviousStepLabel': 'Forrige steg',
+    '@sifSoknadUi.progressStepper.goToPreviousStepLabel': 'Forrige steg',
 };

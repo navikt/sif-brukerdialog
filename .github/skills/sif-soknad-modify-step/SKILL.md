@@ -324,11 +324,11 @@ useEffect(() => {
 }, [feltVerdi]);
 ```
 
-### AriaLiveRegion — kun for meldinger/Alerts
+### AriaLiveRegion — kun for meldinger
 
-`AriaLiveRegion` skal **kun** brukes rundt dynamiske meldinger (f.eks. `<Alert>`) som skjermlesere skal annonsere. Bruk **ikke** `AriaLiveRegion` rundt spørsmål/skjemafelter — bruk `&&` i stedet.
+`AriaLiveRegion` skal **kun** brukes rundt dynamiske meldinger som skjermlesere skal annonsere. Bruk **ikke** `AriaLiveRegion` rundt spørsmål/skjemafelter — bruk `&&` i stedet.
 
-Kombinert med `QuestionRelatedMessage` (fra `@navikt/sif-common-ui`) trekkes Alert-en visuelt nærmere spørsmålet den tilhører via `Bleed` med negativ top-margin:
+Kombinert med `QuestionRelatedMessage` (fra `@navikt/sif-common-ui`) trekkes meldingen visuelt nærmere spørsmålet den tilhører via `Bleed` med negativ top-margin:
 
 ```tsx
 import { AriaLiveRegion } from '@sif/soknad-ui/components';
@@ -337,19 +337,20 @@ import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
 <YesOrNoQuestion name={...} ... />
 <AriaLiveRegion visible={feltVerdi === YesOrNo.NO}>
     <QuestionRelatedMessage>
-        <Alert variant="warning">...</Alert>
+        <SifInfoMessage>...</SifInfoMessage>
     </QuestionRelatedMessage>
 </AriaLiveRegion>
 ```
 
-`QuestionRelatedMessage` inne i `AriaLiveRegion` fungerer korrekt — `Bleed`'s negative top-margin trekker Alert-en opp mot spørsmålet over.
+`QuestionRelatedMessage` inne i `AriaLiveRegion` fungerer korrekt — `Bleed`'s negative top-margin trekker meldingen opp mot spørsmålet over.
 
-**Alert-variant ved migrering:** Sjekk alltid hvilken `variant` v1 bruker på tilsvarende Alert. `info` og `warning` har ulik visuell vekt og betyr ulike ting for brukeren — ikke gjett. Finn alertkomponenten i v1 (gjerne under `alert/`-mappe i steget) og bruk samme variant.
+**Komponentvalg ved migrering:** Sjekk alltid hvilken status og presentasjon v1 bruker på tilsvarende melding. Bruk `SifInfoMessage` for info/warning, `InlineMessage` når den gamle løsningen var inline, og `LocalAlert status="error"` for feil. Ikke gjett. Finn meldingskomponenten i v1 (gjerne under `alert/`-mappe i steget) og bevar betydningen.
 
 ```
 # Eksempel fra v1-mappestruktur:
-steps/om-barnet/alert/IkkeKroniskEllerFuksjonshemningAlert.tsx → variant="info"
-steps/om-barnet/alert/TrengerIkkeSøkeForBarnAlert.tsx         → variant="warning"
+steps/om-barnet/alert/IkkeKroniskEllerFuksjonshemningAlert.tsx → SifInfoMessage
+steps/om-barnet/alert/TrengerIkkeSøkeForBarnAlert.tsx         → SifInfoMessage
+steps/oppsummering/alert/UgyldigSøknadAlert.tsx               → LocalAlert status="error"
 ```
 
 ---

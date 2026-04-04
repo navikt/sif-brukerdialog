@@ -1,5 +1,6 @@
 import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
 import { FocusEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { DayOfWeek } from 'react-day-picker';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 
 export interface DatepickerLimitations {
@@ -7,6 +8,7 @@ export interface DatepickerLimitations {
     maxDate?: Date;
     disabledDateRanges?: Array<{ from: Date; to: Date }>;
     disableWeekends?: boolean;
+    disabledDaysOfWeek?: DayOfWeek;
 }
 
 import { datePickerUtils } from '../utils/datePickerUtils';
@@ -48,6 +50,7 @@ function DatepickerController<T extends FieldValues>({
     maxDate,
     disabledDateRanges,
     disableWeekends,
+    disabledDaysOfWeek,
     value,
     onFieldChange,
     error,
@@ -56,7 +59,13 @@ function DatepickerController<T extends FieldValues>({
     const [inputHasFocus, setInputHasFocus] = useState(false);
     const [listenForInputChange, setListenForInputChange] = useState(false);
 
-    const disabledDates = getDisabledDates({ minDate, maxDate, disabledDateRanges, disableWeekends });
+    const disabledDates = getDisabledDates({
+        minDate,
+        maxDate,
+        disabledDateRanges,
+        disableWeekends,
+        disabledDaysOfWeek,
+    });
 
     const handleChange = useCallback(
         (dateString: string) => {
@@ -67,6 +76,7 @@ function DatepickerController<T extends FieldValues>({
     );
 
     const { inputProps, datepickerProps, selectedDay, setSelected } = useDatepicker({
+        ...restProps,
         disabled: disabledDates,
         fromDate: minDate,
         toDate: maxDate,
@@ -114,7 +124,7 @@ function DatepickerController<T extends FieldValues>({
     };
 
     return (
-        <DatePicker {...(datepickerProps as any)} {...restProps} mode="single">
+        <DatePicker {...(datepickerProps as any)} {...restProps} mode="single" inputDisabled={inputDisabled}>
             <DatePicker.Input
                 {...inputProps}
                 id={inputId || (name as string)}
