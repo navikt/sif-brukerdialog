@@ -10,11 +10,13 @@ test('viser forside for søknaden', async ({ page }) => {
 
     await expect(
         page.getByRole('heading', {
-            name: 'Søknad om ekstra omsorgsdager ved kronisk sykt eller funksjonshemmet barn',
+            name: 'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         }),
     ).toBeVisible();
     await expect(
-        page.getByText('Du kan søke om ekstra omsorgsdager hvis barnet ditt har en kronisk sykdom'),
+        page.getByText(
+            'Velkommen til søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning.',
+        ),
     ).toBeVisible();
     await expect(page.locator('input[type="checkbox"]')).toHaveCount(1);
     await expect(page.locator('button[type="submit"]')).toBeVisible();

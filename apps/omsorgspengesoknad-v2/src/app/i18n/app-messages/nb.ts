@@ -6,10 +6,11 @@ import { omBarnetStegMessages_nb } from '../../steps/om-barnet/i18n/nb';
 import { oppsummeringStegMessages_nb } from '../../steps/oppsummering/i18n/nb';
 
 export const appMessages_nb = {
-    'application.title': 'Søknad om ekstra omsorgsdager ved kronisk sykt eller funksjonshemmet barn',
-    'step.omBarnet.title': 'Om barnet',
+    'application.title':
+        'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
+    'step.omBarnet.title': 'Barn',
     'step.legeerklaering.title': 'Legeerklæring',
-    'step.deltBosted.title': 'Delt bosted',
+    'step.deltBosted.title': 'Delt fast bosted',
     'step.oppsummering.title': 'Oppsummering',
     ...omBarnetStegMessages_nb,
     ...legeerklæringStegMessages_nb,

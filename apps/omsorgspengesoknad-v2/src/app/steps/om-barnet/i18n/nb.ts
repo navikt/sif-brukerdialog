@@ -1,51 +1,56 @@
 export const omBarnetStegMessages_nb = {
-    'omBarnetSteg.tittel': 'Om barnet',
+    'omBarnetSteg.tittel': 'Barn',
 
     'omBarnetSteg.spørsmål.barnetSøknadenGjelder': 'Hvilket barn gjelder søknaden?',
-    'omBarnetSteg.valgAnnetBarn': 'Et annet barn',
+    'omBarnetSteg.valgAnnetBarn': 'Søknaden gjelder et annet barn',
 
-    'omBarnetSteg.annetBarn.tittel': 'Om barnet det søkes for',
+    'omBarnetSteg.annetBarn.tittel': 'Annet barn',
     'omBarnetSteg.spørsmål.barnetsFødselsdato': 'Barnets fødselsdato',
-    'omBarnetSteg.spørsmål.barnetsFødselsnummer': 'Barnets fødselsnummer',
+    'omBarnetSteg.spørsmål.barnetsFødselsnummer': 'Barnets fødselsnummer/D-nummer',
     'omBarnetSteg.spørsmål.barnetsNavn': 'Barnets navn',
-    'omBarnetSteg.spørsmål.søkersRelasjonTilBarnet': 'Din relasjon til barnet',
+    'omBarnetSteg.spørsmål.søkersRelasjonTilBarnet': 'Min relasjon til barnet',
     'omBarnetSteg.relasjon.mor': 'Mor',
     'omBarnetSteg.relasjon.far': 'Far',
     'omBarnetSteg.relasjon.adoptivforelder': 'Adoptivforelder',
     'omBarnetSteg.relasjon.fosterforelder': 'Fosterforelder',
 
-    'omBarnetSteg.spørsmål.sammeAdresse': 'Har barnet samme adresse som deg?',
+    'omBarnetSteg.spørsmål.sammeAdresse': 'Bor du sammen med barnet?',
     'omBarnetSteg.sammeAdresse.JA': 'Ja',
-    'omBarnetSteg.sammeAdresse.JA_DELT_BOSTED': 'Ja, men med delt bosted',
+    'omBarnetSteg.sammeAdresse.JA_DELT_BOSTED': 'Ja, barnet har delt fast bosted',
     'omBarnetSteg.sammeAdresse.NEI': 'Nei',
     'omBarnetSteg.alert.ikkeSammeAdresse':
-        'Du må bo på samme adresse som barnet for å kunne søke. Barn og foreldre med delt bosted regnes som samme adresse.',
+        'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra Nav. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
 
-    'omBarnetSteg.spørsmål.kroniskEllerFunksjonshemming':
-        'Har barnet en kronisk sykdom eller funksjonshemming som gir høyere risiko for fravær fra arbeid enn det som er vanlig?',
+    'omBarnetSteg.spørsmål.kroniskEllerFunksjonshemming': 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?',
     'omBarnetSteg.alert.ikkeKronisk':
-        'Du kan bare søke om ekstra omsorgsdager dersom barnet har en kronisk sykdom eller funksjonshemming.',
+        'Denne søknaden om ekstra omsorgsdager gjelder kun for de som har barn med kronisk/langvarig sykdom eller funksjonshemning.',
 
     'omBarnetSteg.spørsmål.høyereRisikoForFravær':
-        'Er risikoen for fravær fra arbeid høyere enn det som er vanlig for sykdom hos barn?',
+        'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning? ',
     'omBarnetSteg.alert.ikkeHøyereRisiko':
-        'Du kan bare søke om ekstra omsorgsdager dersom det er høyere risiko for fravær fra arbeid.',
-    'omBarnetSteg.spørsmål.høyereRisikoForFraværBeskrivelse': 'Beskriv kort hvorfor det er høyere risiko for fravær',
+        'For å ha rett til ekstra omsorgsdager på grunn av sykdom eller funksjonshemning, må det være en sammenheng mellom barnets sykdom/funksjonshemning og risikoen for høyere fravær fra jobb.',
+    'omBarnetSteg.spørsmål.høyereRisikoForFraværBeskrivelse':
+        'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb:',
 
-    'omBarnetForm.validation.barnetSøknadenGjelder.noValue': 'Du må velge et barn',
-    'omBarnetForm.validation.barnetsFødselsdato.dateHasNoValue': 'Du må oppgi barnets fødselsdato',
-    'omBarnetForm.validation.barnetsFødselsdato.dateHasInvalidFormat': 'Barnets fødselsdato er ikke en gyldig dato',
-    'omBarnetForm.validation.barnetsFødselsdato.dateIsAfterMax': 'Barnets fødselsdato kan ikke være frem i tid',
-    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Du må oppgi barnets fødselsnummer',
-    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars': 'Barnets fødselsnummer må være 11 siffer',
-    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsInvalid': 'Barnets fødselsnummer er ikke gyldig',
-    'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Du må oppgi barnets navn',
-    'omBarnetForm.validation.søkersRelasjonTilBarnet.noValue': 'Du må oppgi din relasjon til barnet',
-    'omBarnetForm.validation.sammeAdresse.noValue': 'Du må svare på om barnet har samme adresse som deg',
+    'omBarnetForm.validation.barnetSøknadenGjelder.noValue':
+        'Du må velge hvilket barn søknaden gjelder, eller velge at søknaden gjelder et annet barn.',
+    'omBarnetForm.validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn barnets fødselsdato.',
+    'omBarnetForm.validation.barnetsFødselsdato.dateHasInvalidFormat':
+        'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
+    'omBarnetForm.validation.barnetsFødselsdato.dateIsAfterMax':
+        'Fødselsdato kan ikke være etter dagens dato. Skriv inn eller velg dato fra datovelgeren.',
+    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Skriv inn barnets fødselsnummer.',
+    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
+        'Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.',
+    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsInvalid':
+        'Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.',
+    'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
+    'omBarnetForm.validation.søkersRelasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
+    'omBarnetForm.validation.sammeAdresse.noValue': 'Du må svare ja eller nei på om du bor sammen med barnet.',
     'omBarnetForm.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
-        'Du må svare på om barnet har en kronisk sykdom eller funksjonshemming',
+        'Du må svare ja eller nei på om barnet har en kronisk/langvarig sykdom eller funksjonshemning.',
     'omBarnetForm.validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
-        'Du må svare på om det er høyere risiko for fravær',
+        'Du må svare ja eller nei på om du har høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning.',
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
-        'Du må beskrive kort hvorfor det er høyere risiko for fravær',
+        'Skriv inn en beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb.',
 };

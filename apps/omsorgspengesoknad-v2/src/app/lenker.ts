@@ -1,10 +1,7 @@
 import { SifCommonLenker, sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
 const lenkerBokmål = {
-    ettersend:
-        'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/ettersendelse',
-    opplæringspengerNavNo: 'https://www.nav.no/opplaringspenger',
-    søknadPåPapir: 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger#NAV091205',
+    ettersend: 'https://www.nav.no/ettersende#omsorgspenger-hjemme-med-sykt-barn-dager',
 };
 
 type Lenker = typeof lenkerBokmål;

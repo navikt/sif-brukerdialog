@@ -1,7 +1,7 @@
-import { useAppIntl } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/config/soknadStepConfig';
 import { useSøknadMellomlagring, useSøknadsflyt, useSøknadStore } from '@app/setup/hooks';
-import { BodyLong, Link, VStack } from '@navikt/ds-react';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { StartPage } from '@sif/soknad-ui/pages';
 import { useNavigate } from 'react-router-dom';
@@ -34,19 +34,18 @@ export const VelkommenPage = () => {
                 content: (
                     <VStack gap="space-8">
                         <BodyLong>
-                            Du kan søke om ekstra omsorgsdager hvis barnet ditt har en kronisk sykdom eller
-                            funksjonshemming som gir deg høyere risiko for fravær fra arbeid.
+                            <AppText id="page.velkommen.guide.ingress" />
                         </BodyLong>
                         <BodyLong>
-                            Det er viktig at du gir oss riktige opplysninger slik at vi kan behandle saken din.{' '}
-                            <Link href="https://www.nav.no/endringer">
-                                Les mer om viktigheten av å gi riktige opplysninger.
-                            </Link>
+                            <AppText id="page.velkommen.guide.tekst.1" />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText id="page.velkommen.guide.tekst.2" />
                         </BodyLong>
                     </VStack>
                 ),
             }}
-            title={text('application.title')}>
+            title={text('page.velkommen.sidetittel')}>
             <OmSøknaden />
         </StartPage>
     );

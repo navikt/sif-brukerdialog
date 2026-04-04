@@ -1,6 +1,7 @@
 import { Button } from '@navikt/ds-react';
 import React from 'react';
 
+import { SifSoknadUiText } from '../../i18n';
 import Trashcan from './TrashcanSvg';
 
 interface Props {
@@ -26,7 +27,12 @@ const DeleteButton = ({ ariaLabel, useTrashcan = true, onClick, children }: Prop
         </>
     ) : (
         <Button size="small" variant="tertiary" onClick={onClick} aria-label={ariaLabel} type="button">
-            {children || ' Fjern'}
+            {children || (
+                <>
+                    {' '}
+                    <SifSoknadUiText id="@sifSoknadUi.deleteButton.removeLabel" />
+                </>
+            )}
         </Button>
     );
 };

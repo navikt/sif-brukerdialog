@@ -3,6 +3,7 @@ import './itemListDarkside.css';
 import { guid } from '@navikt/sif-common-utils';
 import React from 'react';
 
+import { useSifSoknadUiIntl } from '../../i18n';
 import ActionLink from '../action-link/ActionLink';
 import DeleteButton from '../delete-button/DeleteButton';
 
@@ -29,6 +30,8 @@ function ItemListDarkside<T>({
     deleteRenderer,
     useTrashcan = false,
 }: Props<T>) {
+    const { text } = useSifSoknadUiIntl();
+
     return (
         <ol className="itemListDarkside">
             {items.map((item) => {
@@ -52,7 +55,9 @@ function ItemListDarkside<T>({
                         {onDelete && (
                             <span className="itemListDarkside__item__delete">
                                 <DeleteButton
-                                    ariaLabel={`Fjern ${itemTitle}`}
+                                    ariaLabel={text('@sifSoknadUi.itemListDarkside.deleteAriaLabel', {
+                                        itemTitle,
+                                    })}
                                     onClick={() => onDelete(item)}
                                     useTrashcan={useTrashcan}
                                 />

@@ -24,8 +24,14 @@ export const KvitteringPage = () => {
                         <AppText id="page.kvittering.list.item.1" />
                     </li>
                     <li>
+                        <AppText id="page.kvittering.list.item.2" />
+                    </li>
+                    <li>
+                        <AppText id="page.kvittering.list.item.3" />
+                    </li>
+                    <li>
                         <AppText
-                            id="page.kvittering.list.item.2"
+                            id="page.kvittering.list.item.4"
                             values={{
                                 MinSideLenke: (children) => (
                                     <Link
