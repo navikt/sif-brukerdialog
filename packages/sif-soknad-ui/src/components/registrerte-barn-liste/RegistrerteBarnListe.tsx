@@ -1,4 +1,5 @@
-import { Alert, Box, Heading, HeadingProps, HelpText, HStack, VStack } from '@navikt/ds-react';
+import { InformationSquareIcon } from '@navikt/aksel-icons';
+import { Box, Heading, HeadingProps, HelpText, HStack, InfoCard, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { dateFormatter, formatName } from '@navikt/sif-common-utils';
 
@@ -19,9 +20,11 @@ export const RegistrerteBarnListe = ({
     const { text } = useSifSoknadUiIntl();
     const renderListe = () => {
         return registrerteBarn.length === 0 ? (
-            <Alert variant="info">
-                <SifSoknadUiText id="registrerteBarnListe.ingenbarn" />
-            </Alert>
+            <InfoCard data-color="info">
+                <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>
+                    <SifSoknadUiText id="@sifSoknadUi.registrerteBarnListe.ingenbarn" />
+                </InfoCard.Message>
+            </InfoCard>
         ) : (
             <ItemListDarkside<RegistrertBarn>
                 getItemId={(barn): string => barn.aktørId}
@@ -30,7 +33,7 @@ export const RegistrerteBarnListe = ({
                     <HStack gap="space-16">
                         <Box>
                             <SifSoknadUiText
-                                id="registrertBarnListe.barn.født"
+                                id="@sifSoknadUi.registrertBarnListe.barn.født"
                                 values={{ dato: dateFormatter.compact(barn.fødselsdato) }}
                             />
                         </Box>
@@ -45,8 +48,8 @@ export const RegistrerteBarnListe = ({
         <VStack gap="space-8">
             <HStack gap="space-8">
                 <Heading {...headingProps}>{listetittel}</Heading>
-                <HelpText title={text('registrerteBarnKildeInfo.helpTextTooltip')}>
-                    <SifSoknadUiText id="registrerteBarnKildeInfo.kilde" />
+                <HelpText title={text('@sifSoknadUi.registrerteBarnKildeInfo.helpTextTooltip')}>
+                    <SifSoknadUiText id="@sifSoknadUi.registrerteBarnKildeInfo.kilde" />
                 </HelpText>
             </HStack>
             {renderListe()}

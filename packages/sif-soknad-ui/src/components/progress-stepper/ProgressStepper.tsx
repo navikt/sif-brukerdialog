@@ -66,7 +66,7 @@ export const ProgressStepper = ({
                     <BodyShort size="medium" as="div">
                         <Link href="#" onClick={handleBackClick}>
                             <ArrowLeftIcon aria-hidden="true" />
-                            {text('@ui.progressStepper.goToPreviousStepLabel')}
+                            {text('@sifSoknadUi.progressStepper.goToPreviousStepLabel')}
                         </Link>
                     </BodyShort>
                 </Box>

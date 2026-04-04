@@ -203,7 +203,7 @@ Den vanligste feilen ved migrering er invertert betingelseslogikk — man skrive
 ```
 felt A → alltid synlig
 felt B → synlig når felt A === YES   ← les nøye, ikke inverter
-alert X → synlig når felt A === NO
+melding X → synlig når felt A === NO
 ```
 
 Sjekk tabellen:
@@ -215,7 +215,7 @@ Sjekk tabellen:
 
 ### Betinget visning — bruk `&&`, ikke `AriaLiveRegion`
 
-`AriaLiveRegion` skal **kun** brukes rundt dynamiske meldinger (`<Alert>`) som skal annonseres til skjermlesere. Bruk **ikke** `AriaLiveRegion` rundt spørsmål/skjemafelter — bruk `&&` i stedet:
+`AriaLiveRegion` skal **kun** brukes rundt dynamiske meldinger som skal annonseres til skjermlesere. Bruk **ikke** `AriaLiveRegion` rundt spørsmål/skjemafelter — bruk `&&` i stedet:
 
 ```tsx
 // Skjemafelter — bruk &&
@@ -229,10 +229,10 @@ Sjekk tabellen:
     </>
 )}
 
-// Alert som skal annonseres til skjermlesere — bruk AriaLiveRegion
+// Melding som skal annonseres til skjermlesere — bruk AriaLiveRegion
 <AriaLiveRegion visible={feltVerdi === YesOrNo.NO}>
     <QuestionRelatedMessage>
-        <Alert variant="warning">...</Alert>
+        <SifInfoMessage>...</SifInfoMessage>
     </QuestionRelatedMessage>
 </AriaLiveRegion>
 ```
@@ -308,7 +308,7 @@ import { DateRange } from '@navikt/sif-common-utils';
 - [ ] async `handleSubmit` har try/catch rundt mutateAsync-kall
 - [ ] Betinget visning kartlagt fra v1 og verifisert mot v1 (ingen inversjonsfeile)
 - [ ] Betinget visning bruker `methods.watch()` + `&&`/fragment — ikke `AriaLiveRegion` rundt skjemafelter
-- [ ] `AriaLiveRegion` brukes kun rundt `<Alert>`-meldinger
+- [ ] `AriaLiveRegion` brukes kun rundt dynamiske meldinger (`SifInfoMessage`, `InlineMessage`, `LocalAlert`)
 - [ ] Betingede felter som skjules får `clearErrors` i `useEffect`
 - [ ] Validatorer med parametere bruker `intl.formatMessage` inline
 - [ ] i18n-nøkler bruker eksakte feilkoder fra `@navikt/sif-validation` (sjekk `enum Validate*Error`)

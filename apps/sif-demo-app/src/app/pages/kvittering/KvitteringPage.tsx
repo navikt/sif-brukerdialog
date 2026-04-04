@@ -1,4 +1,4 @@
-import { Alert, Button, Heading, VStack } from '@navikt/ds-react';
+import { Button, Heading, LocalAlert, VStack } from '@navikt/ds-react';
 import { ApplicationPage } from '@sif/soknad-ui/pages';
 
 import { useAppIntl } from '../../i18n';
@@ -12,7 +12,11 @@ export const KvitteringPage = () => {
         <ApplicationPage documentTitle="Kvittering" applicationTitle={text('application.title')}>
             <VStack gap="space-24">
                 <Heading size="xlarge">Kvittering</Heading>
-                <Alert variant="success">Søknaden din er sendt inn!</Alert>
+                <LocalAlert status="success">
+                    <LocalAlert.Header>
+                        <LocalAlert.Title>Søknaden din er sendt inn!</LocalAlert.Title>
+                    </LocalAlert.Header>
+                </LocalAlert>
                 <div>
                     <Button variant="secondary" onClick={onRestart}>
                         Tilbake til forsiden

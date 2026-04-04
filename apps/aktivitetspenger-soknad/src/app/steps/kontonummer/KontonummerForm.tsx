@@ -3,12 +3,12 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
-import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { FormLayout } from '@sif/soknad-ui';
-import { AriaLiveRegion } from '@sif/soknad-ui/components';
+import { AriaLiveRegion, SifInfoCard } from '@sif/soknad-ui/components';
 
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
 import { KontonummerFormFields, KontonummerFormValues } from './types';
@@ -52,32 +52,32 @@ export const KontonummerForm = ({ kontonummerInfo }: Props) => {
                         />
                         <AriaLiveRegion visible={kontonummerErRiktig === YesOrNo.NO}>
                             <FormLayout.QuestionRelatedMessage>
-                                <Alert variant="info">
+                                <SifInfoCard>
                                     <AppText id="kontonummerSteg.kontonummerStemmerIkke.info" />
-                                </Alert>
+                                </SifInfoCard>
                             </FormLayout.QuestionRelatedMessage>
                         </AriaLiveRegion>
                     </>
                 )}
                 {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
-                    <Alert variant="warning">
+                    <SifInfoCard variant="warning">
                         <Heading level="3" size="small" spacing>
                             <AppText id="kontonummerSteg.harIkkeKontonummer.tittel" />
                         </Heading>
                         <BodyLong spacing>
                             <AppText id="kontonummerSteg.harIkkeKontonummer.info" />
                         </BodyLong>
-                    </Alert>
+                    </SifInfoCard>
                 )}
                 {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
-                    <Alert variant="warning">
+                    <SifInfoCard variant="warning">
                         <Heading level="3" size="small" spacing>
                             <AppText id="kontonummerSteg.uvissOmKontonummer.tittel" />
                         </Heading>
                         <BodyLong spacing>
                             <AppText id="kontonummerSteg.uvissOmKontonummer.info" />
                         </BodyLong>
-                    </Alert>
+                    </SifInfoCard>
                 )}
             </FormLayout.Questions>
         </AppForm>

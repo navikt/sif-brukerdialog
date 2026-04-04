@@ -1,4 +1,4 @@
-import { Alert, Box, Heading, Link } from '@navikt/ds-react';
+import { Box, Link, LocalAlert } from '@navikt/ds-react';
 
 interface Props {
     /** StepId som har ugyldige/ulagrede endringer */
@@ -38,15 +38,17 @@ export const InconsistentFormValuesMessage = ({
 
     return (
         <Box marginBlock="space-8">
-            <Alert variant="warning">
-                <Heading level="2" size="small" spacing>
-                    {heading}
-                </Heading>
-                {description ?? defaultDescription}{' '}
-                <Link href="#" onClick={handleClick}>
-                    Gå til {stepTitle}
-                </Link>
-            </Alert>
+            <LocalAlert status="warning">
+                <LocalAlert.Header>
+                    <LocalAlert.Title>{heading}</LocalAlert.Title>
+                </LocalAlert.Header>
+                <LocalAlert.Content>
+                    {description ?? defaultDescription}{' '}
+                    <Link href="#" onClick={handleClick}>
+                        Gå til {stepTitle}
+                    </Link>
+                </LocalAlert.Content>
+            </LocalAlert>
         </Box>
     );
 };

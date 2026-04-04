@@ -134,7 +134,7 @@ export const zUpdateMellomlagringData = z.object({
 export const zLagreVedleggData = z.object({
     body: z
         .object({
-            vedlegg: z.string(),
+            vedlegg: z.instanceof(Blob),
         })
         .optional(),
     path: z.never().optional(),
