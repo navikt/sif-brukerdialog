@@ -1,0 +1,84 @@
+import { erDeltakelseAvsluttet, erDeltakelseStartet } from '@innsyn/utils/deltakelseUtils';
+import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { sortDates } from '@navikt/sif-common-utils';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { AppText } from '@shared/i18n';
+import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
+import { OppgaverList } from '@sif/ung-innsyn/components';
+
+import { Oppgave } from '../../../../types/Oppgave';
+import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
+import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';
+import DeltakelseOpphørtInfo from './parts/DeltakelseOpphørtInfo';
+import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';
+interface Props {
+    deltakelsePeriode: DeltakelsePeriode;
+    oppgaver: Oppgave[];
+}
+
+const DeltakelseContent = ({ deltakelsePeriode, oppgaver }: Props) => {
+    const { harOpphørsvedtak } = deltakelsePeriode;
+    const { programPeriode } = deltakelsePeriode;
+
+    const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
+    const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
+
+    const visInfoOmDeltakelseIkkeStartet = !deltakelseStartet;
+    const visInfoOmDeltakelseAvsluttet = deltakelseStartet && deltakelseAvsluttet;
+    const visInfoOmInntektsrapportering = deltakelseStartet && !deltakelseAvsluttet;
+
+    const uløsteOppgaver = oppgaver
+        .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
+        .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
+
+    const tidligereOppgaver = oppgaver
+        .filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST)
+        .sort((o1, o2) => sortDates(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
+
+    const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
+    return (
+        <VStack gap="space-40">
+            {harOpphørsvedtak ? (
+                <DeltakelseOpphørtInfo />
+            ) : (
+                <>
+                    {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
+                    {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
+                    {visInfoOmDeltakelseAvsluttet && programPeriode.to && (
+                        <DeltakelseAvsluttetInfo fraOgMed={programPeriode.from} tilOgMed={programPeriode.to} />
+                    )}
+                </>
+            )}
+
+            {harOpphørsvedtak ? null : (
+                <VStack gap="space-16" marginBlock={medMelding ? 'space-0' : 'space-24'}>
+                    <Heading level="2" size="medium">
+                        <AppText id="deltakelseContent.dineOppgaver" />
+                    </Heading>
+
+                    {uløsteOppgaver.length > 0 ? (
+                        <OppgaverList oppgaver={uløsteOppgaver} />
+                    ) : (
+                        <BodyLong>
+                            <AppText id="deltakelseContent.ingenUløsteOppgaver" />
+                        </BodyLong>
+                    )}
+                </VStack>
+            )}
+            <VStack gap="space-16">
+                <Heading level="2" size="medium">
+                    <AppText id="deltakelseContent.tidligereOppgaver" />
+                </Heading>
+                {tidligereOppgaver.length > 0 ? (
+                    <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" visBeskrivelse={false} />
+                ) : (
+                    <BodyLong>
+                        <AppText id="deltakelseContent.ingenTidligereOppgaver" />
+                    </BodyLong>
+                )}
+            </VStack>
+        </VStack>
+    );
+};
+
+export default DeltakelseContent;

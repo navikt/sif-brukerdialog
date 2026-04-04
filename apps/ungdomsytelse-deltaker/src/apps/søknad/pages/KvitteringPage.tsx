@@ -1,9 +1,9 @@
 import { Alert, BodyLong, Button, Heading, Link, List, VStack } from '@navikt/ds-react';
+import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';
 import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 import getLenker from '@shared/utils/lenker';
 
-import ExternalLink from '../../../components/external-link/ExternalLink';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 
 const KvitteringPage = () => {
