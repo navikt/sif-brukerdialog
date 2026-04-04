@@ -741,7 +741,13 @@ export const zEttersendelse = z.object({
     harForståttRettigheterOgPlikter: z.boolean(),
 });
 
+export const zForutgåendeBosteder = z.object({
+    harBoddIUtlandetSiste5År: z.boolean(),
+    utenlandsoppholdSiste5År: z.array(zBosted),
+});
+
 export const zAktivitetspengersøknad = z.object({
+    forutgåendeBosteder: zForutgåendeBosteder,
     språk: z.string(),
     startdato: z.iso.date(),
     søkerNorskIdent: z.string(),
