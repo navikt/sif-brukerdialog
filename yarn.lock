@@ -9385,6 +9385,7 @@ __metadata:
   resolution: "@sif/api@workspace:packages/sif-api"
   dependencies:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
+    "@navikt/sif-common-env": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/ung-brukerdialog-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
