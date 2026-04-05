@@ -1,4 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('@sif/api/k9-prosessering', () => ({
+    getVedleggApiUrl: (id: string) => `https://api.example.com/vedlegg/${id}`,
+}));
 
 import { toLegeerklæringFormValues, toSøknadsdata } from './legeerklæringStegUtils';
 import { LegeerklæringFormFields } from './types';
@@ -41,6 +45,7 @@ describe('legeerklæringStegUtils', () => {
                 {
                     id: 'vedlegg-1',
                     url: '/vedlegg/vedlegg-1',
+                    backendUrl: 'https://api.example.com/vedlegg/vedlegg-1',
                     name: 'legeerklaering.pdf',
                     size: uploadedFile.size,
                     type: 'application/pdf',
@@ -75,6 +80,7 @@ describe('legeerklæringStegUtils', () => {
                 {
                     id: 'vedlegg-2',
                     url: '/vedlegg/vedlegg-2',
+                    backendUrl: 'https://api.example.com/vedlegg/vedlegg-2',
                     name: 'dokument.jpg',
                     size: 2048,
                     type: 'image/jpeg',

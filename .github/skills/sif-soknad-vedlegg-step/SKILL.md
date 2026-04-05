@@ -29,22 +29,17 @@ Signalord: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedleg
 
 ## 1. Lagre vedlegg i søknadsdata
 
+`PersistedVedlegg` er en delt type fra `@sif/soknad-forms`. Ikke definer den lokalt.
+
 ```ts
-export interface PersistedVedlegg {
-    id: string;
-    url: string;
-    name: string;
-    size: number;
-    type: string;
-    lastModified: number;
-}
+import { PersistedVedlegg } from '@sif/soknad-forms';
 
 export interface <Prefix>Søknadsdata {
     vedlegg: PersistedVedlegg[];
 }
 ```
 
-Hvis flere steg bruker vedlegg: ha `PersistedVedlegg` felles.
+`PersistedVedlegg` inneholder `id`, `url` (frontend-URL for visning), `backendUrl` (full API-URL for innsending), `name`, `size`, `type` og `lastModified`.
 
 ## 2. Bruk `UploadedFile[]` i formen
 
@@ -60,43 +55,32 @@ export interface <Prefix>FormValues extends StepFormValues {
 
 ## 3. Hydration og mapping
 
+Bruk delte hjelpere fra `@sif/soknad-forms`. Ikke dupliser disse lokalt.
+
 ```ts
-const createPersistedFile = ({ lastModified, name, size, type }: PersistedVedlegg): File => {
-    const file = new File([], name, { lastModified, type });
-    try {
-        Object.defineProperty(file, 'size', { value: size });
-    } catch {}
-    return file;
-};
+import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
+import { getVedleggApiUrl } from '@sif/api/k9-prosessering';
+import { isUploadedVedlegg, toPersistedVedlegg, toUploadedFile } from '@sif/soknad-forms';
 
-const toUploadedFile = (vedlegg: PersistedVedlegg): UploadedFile => ({
-    file: createPersistedFile(vedlegg),
-    pending: false,
-    uploaded: true,
-    error: false,
-    reasons: [],
-    canRetry: false,
-    info: { id: vedlegg.id, url: vedlegg.url },
-});
+import { <Prefix>FormFields, <Prefix>FormValues } from './types';
 
-const isUploadedVedlegg = (file: UploadedFile): file is UploadedFile & { info: { id: string; url: string } } =>
-    file.uploaded && !file.pending && !file.error && file.info !== undefined;
-
-export const to<Prefix>FormValues = (søknadsdata: <Prefix>Søknadsdata | undefined): <Prefix>FormValues => ({
+export const to<Prefix>FormValues = (
+    søknadsdata: <Prefix>Søknadsdata | undefined,
+): <Prefix>FormValues => ({
     [<Prefix>FormFields.vedlegg]: søknadsdata?.vedlegg.map(toUploadedFile) ?? [],
 });
 
 export const toSøknadsdata = (values: <Prefix>FormValues): <Prefix>Søknadsdata => ({
-    vedlegg: (values[<Prefix>FormFields.vedlegg] ?? []).filter(isUploadedVedlegg).map((file) => ({
-        id: file.info.id,
-        url: file.info.url,
-        name: file.file.name,
-        size: file.file.size,
-        type: file.file.type,
-        lastModified: file.file.lastModified,
-    })),
+    vedlegg: (values[<Prefix>FormFields.vedlegg] ?? [])
+        .filter(isUploadedVedlegg)
+        .map((file) => toPersistedVedlegg(file, getVedleggApiUrl(file.info.id))),
 });
 ```
+
+Hjelperne gjør følgende:
+- `toUploadedFile(vedlegg)` — hydrerer et `PersistedVedlegg` til `UploadedFile` (for react-hook-form)
+- `isUploadedVedlegg(file)` — type guard som filtrerer bort feil/pending filer
+- `toPersistedVedlegg(file, backendUrl)` — mapper tilbake til `PersistedVedlegg` med file-metadata og `backendUrl`
 
 ## 4. Form-komponent
 
@@ -126,13 +110,19 @@ Bruk `initialFiles={defaultValues[...]}`. Ikke send `watch(...)` inn i `initialF
 
 ## 5. Wire opp mapping
 
+### formValuesToSoknadsdata
+
 ```ts
 case SøknadStepId.<PREFIX>:
     return toSøknadsdata(formValues as <Prefix>FormValues);
 ```
 
+### soknadsdataToSoknadDTO
+
+Vedlegg sendes som backend-URLer (full API-URL), ikke bare IDer. `backendUrl` er allerede satt på `PersistedVedlegg` av `toPersistedVedlegg` i steg-utils.
+
 ```ts
-const <prefix>Vedlegg = søknadsdata[SøknadStepId.<PREFIX>]?.vedlegg.map((v) => v.id) ?? [];
+const <prefix>Vedlegg = søknadsdata[SøknadStepId.<PREFIX>]?.vedlegg.map((v) => v.backendUrl) ?? [];
 
 return {
     ...,

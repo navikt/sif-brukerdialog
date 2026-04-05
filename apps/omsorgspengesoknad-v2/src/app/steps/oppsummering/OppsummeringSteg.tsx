@@ -9,13 +9,13 @@ import { getCheckedValidator } from '@navikt/sif-validation';
 import { Søker } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
 import { SøknadApiData } from '../../types/SoknadApiData';
-import { PersistedVedlegg } from '../../types/Soknadsdata';
 import { søknadsdataToSøknadDTO } from '../../utils/soknadsdataToSoknadDTO';
 
 enum FormFields {

@@ -90,6 +90,21 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 | `useRapporterInntekt()`                                                | Mutation for inntektsrapportering           | —                                  |
 | `useSendOppgavebekreftelse()`                                          | Mutation for oppgavebekreftelse             | —                                  |
 
+### Vedlegg-utilities (ikke hooks)
+
+`@sif/api/k9-prosessering` eksporterer også rene funksjoner for vedlegg:
+
+| Funksjon                                          | Returnerer     | Bruk                                                       |
+| ------------------------------------------------- | -------------- | ---------------------------------------------------------- |
+| `lagreVedlegg(file)`                              | Response       | Laster opp vedlegg (brukes i VedleggPanel)                 |
+| `slettVedlegg(id)`                                | Response       | Sletter vedlegg (brukes i VedleggPanel)                    |
+| `hentVedlegg(id)`                                 | Vedleggsdata   | Henter vedlegg                                             |
+| `getVedleggFrontendUrl(id)`                       | `string`       | Frontend-proxy-URL for visning i nettleseren               |
+| `getVedleggApiUrl(id)`                            | `string`       | Full backend-API-URL for innsending i DTO                  |
+| `getVedleggIdFromResponseHeaderLocation(url)`     | `string`       | Ekstraher vedlegg-ID fra Location-header etter opplasting  |
+
+`getVedleggFrontendUrl` bruker `K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH`, mens `getVedleggApiUrl` bruker `K9_BRUKERDIALOG_PROSESSERING_API_URL`.
+
 ### `@sif/api/ung-brukerdialog` (ung-brukerdialog-api)
 
 | Hook                  | Returnerer  | Typisk caching |

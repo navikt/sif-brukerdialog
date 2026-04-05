@@ -55,6 +55,7 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Innhold: `FormSummary`, `OmSøkerOppsummering`, `OmBarnetOppsummering`, `VedleggOppsummering`, bekreftelsescheckbox.
 - `sif-soknad-vedlegg-step`:
     - Legge til filvedlegg i et steg: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
+    - Vedlegg-hjelpere: `toPersistedVedlegg`, `isUploadedVedlegg`, `toUploadedFile`, `getVedleggApiUrl`, `getVedleggFrontendUrl`, `backendUrl`.
 
 ## Prioritering ved overlapp
 
