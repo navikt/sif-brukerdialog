@@ -1,5 +1,5 @@
 {
-    "app": "omsorgspengesoknad-v2",
+    "app": "omsorgspengesoknad",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "ingresses": ["https://omsorgspengesoknad.intern.dev.nav.no"],
