@@ -16,6 +16,7 @@ export { sendOppgavebekreftelse } from '../api/sendOppgavebekreftelse';
 export { hentSøker, hentSøkerId } from '../api/sokerApi';
 export { validerFritekst } from '../api/validerFritekstApi';
 export {
+    getVedleggApiUrl,
     getVedleggFrontendUrl,
     getVedleggIdFromResponseHeaderLocation,
     hentVedlegg,

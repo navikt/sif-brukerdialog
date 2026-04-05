@@ -1,5 +1,10 @@
 import { FileUpload, Heading, VStack } from '@navikt/ds-react';
-import { getVedleggFrontendUrl, getVedleggIdFromResponseHeaderLocation, lagreVedlegg, slettVedlegg } from '@sif/api/k9-prosessering';
+import {
+    getVedleggFrontendUrl,
+    getVedleggIdFromResponseHeaderLocation,
+    lagreVedlegg,
+    slettVedlegg,
+} from '@sif/api/k9-prosessering';
 import { SifFileUpload, UploadedFile, useFileUploader } from '@sif/rhf';
 import { PictureScanningGuide } from '@sif/soknad-ui';
 import { useCallback } from 'react';

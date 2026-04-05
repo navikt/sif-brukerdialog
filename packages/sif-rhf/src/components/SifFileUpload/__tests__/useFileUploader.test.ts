@@ -6,7 +6,10 @@ import { useFileUploader } from '../useFileUploader';
 
 const makeFile = (name = 'file.jpg') => new File(['content'], name, { type: 'image/jpeg' });
 
-const uploadFile = vi.fn().mockResolvedValue({ id: 'id-1', url: 'http://example.com/id-1' });
+const uploadFile = vi.fn().mockResolvedValue({
+    id: 'id-1',
+    url: 'http://example.com/id-1',
+});
 const deleteFile = vi.fn().mockResolvedValue(undefined);
 
 beforeEach(() => vi.clearAllMocks());
@@ -20,7 +23,10 @@ describe('useFileUploader', () => {
 
         expect(uploadFile).toHaveBeenCalledWith(file);
         expect(result.current.acceptedFiles[0].uploaded).toBe(true);
-        expect(result.current.acceptedFiles[0].info).toEqual({ id: 'id-1', url: 'http://example.com/id-1' });
+        expect(result.current.acceptedFiles[0].info).toEqual({
+            id: 'id-1',
+            url: 'http://example.com/id-1',
+        });
     });
 
     it('legger filer avvist av dropzone (fileType) i rejectedFiles uten å laste opp', async () => {

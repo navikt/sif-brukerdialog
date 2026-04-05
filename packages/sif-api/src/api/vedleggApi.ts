@@ -19,6 +19,11 @@ export const getVedleggFrontendUrl = (id: string): string => {
     return `${K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}/vedlegg/${id}`;
 };
 
+export const getVedleggApiUrl = (id: string): string => {
+    const { K9_BRUKERDIALOG_PROSESSERING_API_URL } = getCommonEnv();
+    return `${K9_BRUKERDIALOG_PROSESSERING_API_URL}/vedlegg/${id}`;
+};
+
 /**
  * Lagrer et vedlegg til k9-brukerdialog-prosessering-api
  *
