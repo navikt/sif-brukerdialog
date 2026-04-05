@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@tanstack/react-query": "5.95.2",

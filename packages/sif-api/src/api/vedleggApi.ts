@@ -1,4 +1,5 @@
 import { VedleggController, zHentVedleggResponse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { getCommonEnv } from '@navikt/sif-common-env';
 
 /**
  * Extract vedlegg ID from response location header
@@ -11,6 +12,11 @@ export const getVedleggIdFromResponseHeaderLocation = (url: string): string => {
         throw new Error('Kunne ikke hente vedleggId fra url');
     }
     return id;
+};
+
+export const getVedleggFrontendUrl = (id: string): string => {
+    const { K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH } = getCommonEnv();
+    return `${K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}/vedlegg/${id}`;
 };
 
 /**
