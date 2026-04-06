@@ -53,6 +53,7 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-soknad-oppsummering`:
     - Oppsett av oppsummeringssteg: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny oppsummering`, `oppsummeringsside`.
     - Innhold: `FormSummary`, `OmSøkerOppsummering`, `OmBarnetOppsummering`, `VedleggOppsummering`, bekreftelsescheckbox.
+    - Innsendingsfeil: `innsendingsfeil`, `InnsendingFeiletAlert`, `invalidParameters`, `getInvalidParametersFromApiError`, `feil ved innsending`.
 - `sif-soknad-vedlegg-step`:
     - Legge til filvedlegg i et steg: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
     - Vedlegg-hjelpere: `toPersistedVedlegg`, `isUploadedVedlegg`, `toUploadedFile`, `getVedleggApiUrl`, `getVedleggFrontendUrl`, `backendUrl`.

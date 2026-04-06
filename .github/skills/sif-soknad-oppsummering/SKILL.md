@@ -205,6 +205,50 @@ Nøkkelprefikset for oppsummeringssteget er `oppsummeringSteg.*`. Alltid inklude
 - `oppsummeringSteg.feil.tittel` + `oppsummeringSteg.feil.innhold`
 - `oppsummeringForm.validation.bekrefterOpplysninger.notChecked`
 
+### Innsendingsfeil
+
+Håndter feil fra `useSendSøknad` ved innsending. `mutateAsync` kaster `ApiError` — bruk `getInvalidParametersFromApiError` fra `@sif/api` for å sjekke om feilen inneholder ugyldige parametre.
+
+Mønster:
+
+1. Hent `error` fra `useSendSøknad()` (via `useMutation`)
+2. Bruk `getInvalidParametersFromApiError(error)` for å ekstrahere eventuelle `InvalidParameterViolation[]`
+3. Vis domenespesifikk feilmelding i en `LocalAlert status="error"` (med `LocalAlert.Header`/`LocalAlert.Content`) hvis `invalidParameters` finnes
+4. Vis generell `ErrorSummary` med `error.message` ellers
+
+```tsx
+import { getInvalidParametersFromApiError } from '@sif/api';
+
+const { isPending, mutateAsync, error: sendSøknadError } = useSendSøknad();
+const invalidParameters = getInvalidParametersFromApiError(sendSøknadError);
+
+const onSubmit = async () => {
+    try {
+        await mutateAsync({ ...dto, harBekreftetOpplysninger });
+        await slettMellomlagring();
+        clearSøknadFormValues();
+        setSøknadSendt();
+    } catch {
+        return; // Feilen håndteres via sendSøknadError-state
+    }
+};
+
+// I JSX:
+{sendSøknadError && invalidParameters && (
+    <InnsendingFeiletAlert invalidParameters={invalidParameters} />
+)}
+{sendSøknadError && !invalidParameters && (
+    <ErrorSummary ref={errorSummaryRef}>
+        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+    </ErrorSummary>
+)}
+```
+
+i18n-nøkler for innsendingsfeil (prefiks `oppsummeringSteg.innsendingFeilet.*`):
+- `oppsummeringSteg.innsendingFeilet.tittel`
+- Domenespesifikke feilmeldinger per `parameterName`
+- Generelle fallback-tekster
+
 ---
 
 ## Verifisering mot v1

@@ -128,3 +128,39 @@ export const isProblemDetail = (obj: unknown): obj is ProblemDetail => {
     }
     return false;
 };
+
+export interface InvalidParameterViolation {
+    parameterName: string;
+}
+
+export const getInvalidParametersFromApiError = (error: ApiError | null): InvalidParameterViolation[] | undefined => {
+    if (!error || !isApiAxiosError(error)) {
+        return undefined;
+    }
+
+    const data = error.originalError.response?.data;
+    if (!data || typeof data !== 'object') {
+        return undefined;
+    }
+
+    const invalidParameters =
+        'invalidParameters' in data
+            ? (data as { invalidParameters?: unknown }).invalidParameters
+            : 'invalid_parameters' in data
+              ? (data as { invalid_parameters?: unknown }).invalid_parameters
+              : undefined;
+
+    if (!Array.isArray(invalidParameters)) {
+        return undefined;
+    }
+
+    const violations = invalidParameters.filter(
+        (item): item is InvalidParameterViolation =>
+            typeof item === 'object' &&
+            item !== null &&
+            'parameterName' in item &&
+            typeof (item as { parameterName?: unknown }).parameterName === 'string',
+    );
+
+    return violations.length > 0 ? violations : undefined;
+};

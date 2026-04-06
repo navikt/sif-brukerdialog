@@ -71,6 +71,12 @@ export const handlers = [
     }),
 
     http.post(`**/omsorgspenger-utvidet-rett/innsending`, () => {
+        const { innsendingResponse } = store.get();
+
+        if (innsendingResponse) {
+            return HttpResponse.json(innsendingResponse.body ?? {}, { status: innsendingResponse.status });
+        }
+
         return HttpResponse.json({}, { status: 202 });
     }),
 

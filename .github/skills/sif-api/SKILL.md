@@ -261,7 +261,20 @@ Alle hooks kaster `ApiError` ved feil. Typen har tre varianter: `ValidationError
 Nyttige hjelpefunksjoner:
 
 - `isApiAxiosError(error)` — type guard for `NetworkError` med tilgang til `originalError.response?.status`
+- `getInvalidParametersFromApiError(error)` — ekstraher `InvalidParameterViolation[]` fra en `ApiError`. Støtter både `invalidParameters` og `invalid_parameters` i response-body. Returnerer `undefined` om feilen ikke inneholder ugyldige parametre.
 - `ApiErrorAlert` — komponent som viser feil direkte i UI
+
+### InvalidParameterViolation
+
+Typen `InvalidParameterViolation` eksporteres fra `@sif/api` og representerer ett ugyldig felt returnert fra backend:
+
+```typescript
+import { getInvalidParametersFromApiError, InvalidParameterViolation } from '@sif/api';
+
+const invalidParameters = getInvalidParametersFromApiError(apiError);
+// => InvalidParameterViolation[] | undefined
+// Hvert element har { parameterName: string }
+```
 
 ---
 

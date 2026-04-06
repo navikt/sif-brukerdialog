@@ -1,99 +1,19 @@
-import { expect, Page, test } from '@playwright/test';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { expect, test } from '@playwright/test';
 
 import { ScenarioType } from '../../mock/scenarios/types';
-import { setScenario } from '../utils/scenario';
-
-const currentDir = path.dirname(fileURLToPath(import.meta.url));
-const filePath = path.resolve(currentDir, '../files/navlogopng.png');
-const høyereRisikoBeskrivelse =
-    'Barnet trenger tett oppfølging og hyppige kontroller som gjør at jeg må være borte fra jobb oftere.';
-
-const expectSummaryValue = async (page: Page, term: string, value: string) => {
-    const row = page.locator('div').filter({ hasText: term }).filter({ hasText: value }).first();
-    await expect(row).toBeVisible();
-};
-
-const startSøknad = async (page: Page, scenario: ScenarioType) => {
-    await setScenario(page, scenario);
-    await page.goto('/');
-    await page.locator('input[type="checkbox"]').check();
-    await page.locator('button[type="submit"]').click();
-    await expect(page.getByRole('heading', { name: 'Hvilket barn gjelder søknaden?' })).toBeVisible();
-};
-
-const fyllUtFellesBarnespørsmål = async (page: Page) => {
-    await page.getByRole('group', { name: 'Bor du sammen med barnet?' }).getByLabel('Ja', { exact: true }).check();
-    await page
-        .getByRole('group', { name: 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?' })
-        .getByRole('radio', { name: 'Ja' })
-        .check();
-    await page
-        .getByRole('group', {
-            name: 'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning?',
-        })
-        .getByRole('radio', { name: 'Ja' })
-        .check();
-    await page
-        .getByRole('textbox', {
-            name: 'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb:',
-        })
-        .fill(høyereRisikoBeskrivelse);
-    await page.locator('button[type="submit"]').click();
-};
-
-const lastOppLegeerklæringOgGåTilOppsummering = async (page: Page) => {
-    await expect(page.getByText('Last opp legeerklæringen')).toBeVisible();
-    await page.locator('input[type="file"]').setInputFiles(filePath);
-    await expect(page.getByText('navlogopng.png')).toBeVisible();
-    await page.locator('button[type="submit"]').click();
-    await expect(page.getByRole('heading', { name: 'Om deg' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Vedlegg' })).toBeVisible();
-};
-
-const sendInnSøknad = async (page: Page) => {
-    await page
-        .getByRole('checkbox', {
-            name: 'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
-        })
-        .check();
-    await page.locator('button[type="submit"]').click();
-    await expect(
-        page.getByRole('heading', {
-            name: 'Vi har mottatt søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
-        }),
-    ).toBeVisible();
-    await expect(page).toHaveURL(/\/kvittering$/);
-};
-
-const expectFellesOppsummering = async (page: Page) => {
-    await expect(page.getByText('Test Testesen')).toBeVisible();
-    await expect(page.getByText('02068599258')).toBeVisible();
-    await expectSummaryValue(page, 'Bor du sammen med barnet?', 'Ja');
-    await expectSummaryValue(page, 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?', 'Ja');
-    await expectSummaryValue(
-        page,
-        'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning?',
-        'Ja',
-    );
-    await expectSummaryValue(
-        page,
-        'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb',
-        høyereRisikoBeskrivelse,
-    );
-    await expect(page.getByRole('term').filter({ hasText: 'Legeerklæring' })).toBeVisible();
-    await expect(page.getByText('navlogopng.png')).toBeVisible();
-    await expect(page.getByText('Avtale om delt fast bosted')).toHaveCount(0);
-};
+import {
+    expectFellesOppsummering,
+    expectSummaryValue,
+    fyllUtFellesBarnespørsmål,
+    gåTilOppsummeringMedRegistrertBarn,
+    lastOppLegeerklæringOgGåTilOppsummering,
+    lastOppVedleggOgFortsett,
+    sendInnSøknad,
+    startSøknad,
+} from '../utils/soknadFlow';
 
 test('fyller ut søknaden med registrert barn, vedlegg og sender inn', async ({ page }) => {
-    await startSøknad(page, ScenarioType.default);
-
-    await page.getByText('Alfa Testesen').click();
-    await fyllUtFellesBarnespørsmål(page);
-    await lastOppLegeerklæringOgGåTilOppsummering(page);
+    await gåTilOppsummeringMedRegistrertBarn(page, ScenarioType.default);
     await expectFellesOppsummering(page);
     await expect(page.getByText('Alfa Testesen')).toBeVisible();
     await expect(page.getByText('8. juni 2019')).toBeVisible();
@@ -129,18 +49,12 @@ test('fyller ut søknaden med registrerte barn, velger annet barn med delt boste
         .getByRole('textbox', {
             name: 'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb:',
         })
-        .fill(høyereRisikoBeskrivelse);
+        .fill('Barnet trenger tett oppfølging og hyppige kontroller som gjør at jeg må være borte fra jobb oftere.');
     await page.locator('button[type="submit"]').click();
 
-    await expect(page.getByText('Last opp legeerklæringen')).toBeVisible();
-    await page.locator('input[type="file"]').setInputFiles(filePath);
-    await expect(page.getByText('navlogopng.png')).toBeVisible();
-    await page.locator('button[type="submit"]').click();
+    await lastOppVedleggOgFortsett(page, 'Last opp legeerklæringen');
 
-    await expect(page.getByText('Last opp avtalen')).toBeVisible();
-    await page.locator('input[type="file"]').setInputFiles(filePath);
-    await expect(page.getByText('navlogopng.png')).toBeVisible();
-    await page.locator('button[type="submit"]').click();
+    await lastOppVedleggOgFortsett(page, 'Last opp avtalen');
 
     await expect(page.getByRole('heading', { name: 'Om deg' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
