@@ -43,13 +43,14 @@ export const OppsummeringSteg = () => {
     const { slettMellomlagring } = useSøknadMellomlagring();
     const state = useSøknadState();
 
+    const { locale } = useAppIntl();
     const { isPending, mutateAsync, error: sendSøknadError } = useSendSøknad();
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 
     const dto = søknadsdataToSøknadDTO({
         søker: state.søker,
         søknadsdata: state.søknadsdata,
-        språk: 'nb',
+        språk: locale,
     });
 
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
