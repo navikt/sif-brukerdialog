@@ -1,10 +1,9 @@
-import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { YesOrNo } from '@sif/rhf';
 import dayjs from 'dayjs';
 
-import { ANNET_BARN, OmBarnetFormFields, OmBarnetFormValues } from './types';
+import { ANNET_BARN, OmBarnetFormValues } from './types';
 
 export const toOmBarnetFormValues = (søknadsdata: OmBarnetSøknadsdata | undefined): Partial<OmBarnetFormValues> => {
     if (!søknadsdata) return {};
@@ -39,7 +38,7 @@ export const toOmBarnetFormValues = (søknadsdata: OmBarnetSøknadsdata | undefi
 };
 
 export const toOmBarnetSøknadsdata = (
-    data: OmBarnetFormValues,
+    data: Partial<OmBarnetFormValues>,
     registrerteBarn: RegistrertBarn[],
 ): OmBarnetSøknadsdata | undefined => {
     const { barnetSøknadenGjelder, sammeAdresse, kroniskEllerFunksjonshemming } = data;
@@ -79,18 +78,6 @@ export const toOmBarnetSøknadsdata = (
         høyereRisikoForFraværBeskrivelse,
     };
 };
-
-export const getSammeAdresseOptions = (): Array<{ value: BarnSammeAdresse; label: string }> => [
-    { value: BarnSammeAdresse.JA, label: 'Ja' },
-    { value: BarnSammeAdresse.JA_DELT_BOSTED, label: 'Ja, men med delt bosted' },
-    { value: BarnSammeAdresse.NEI, label: 'Nei' },
-];
-
-export const getOmBarnetDefaultValues = (): Partial<OmBarnetFormValues> => ({
-    [OmBarnetFormFields.barnetsFødselsdato]: '',
-    [OmBarnetFormFields.barnetsFødselsnummer]: '',
-    [OmBarnetFormFields.barnetsNavn]: '',
-});
 
 export const getMinDatoForBarnetsFødselsdato = (): Date => {
     // April 1 dette år
