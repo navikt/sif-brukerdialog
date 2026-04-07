@@ -13,7 +13,7 @@
         "@changesets/cli": "2.30.0",
         "glob": "13.0.6",
         "tailwindcss": "4.2.2",
-        "turbo": "2.8.20"
+        "turbo": "2.9.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
