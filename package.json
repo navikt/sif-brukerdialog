@@ -13,7 +13,7 @@
         "@changesets/cli": "2.30.0",
         "glob": "13.0.6",
         "tailwindcss": "4.2.2",
-        "turbo": "2.8.20"
+        "turbo": "2.9.3"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -23,7 +23,7 @@
         "lint-staged": "16.4.0",
         "prettier": "3.8.1",
         "typescript": "5.9.3",
-        "vitest": "4.1.1"
+        "vitest": "4.1.2"
     },
     "lint-staged": {
         "apps/**/*.{ts,tsx,js,jsx, css}": [

@@ -16,10 +16,10 @@
         "sanity"
     ],
     "dependencies": {
-        "@sanity/vision": "5.17.1",
+        "@sanity/vision": "5.19.0",
         "react": "19.2.4",
         "react-dom": "19.2.4",
-        "sanity": "5.17.1"
+        "sanity": "5.19.0"
     },
     "devDependencies": {
         "@sanity/eslint-config-studio": "6.0.0",
@@ -29,6 +29,7 @@
         "postcss": "8.5.8",
         "prettier": "3.8.1",
         "react-is": "19.2.4",
+        "styled-components": "6.3.12",
         "typescript": "5.9.3"
     },
     "prettier": {
