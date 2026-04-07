@@ -59,8 +59,7 @@ export function VedleggPanel<T extends FieldValues>({
 
     const uploadFile = useCallback(async (file: File): Promise<{ id: string; url: string }> => {
         const response = await lagreVedlegg(file);
-        const location = (response as any).headers?.location as string;
-        const id = getVedleggIdFromResponseHeaderLocation(location);
+        const id = getVedleggIdFromResponseHeaderLocation(response.headers.location);
         return { id, url: getVedleggFrontendUrl(id) };
     }, []);
 
