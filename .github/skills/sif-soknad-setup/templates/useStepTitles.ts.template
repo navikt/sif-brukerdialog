@@ -1,0 +1,12 @@
+// Eksempel: setup/hooks/useStepTitles.ts
+// Tilpass: legg til alle SøknadStepId
+import { useAppIntl } from '../../i18n';
+import { SøknadStepId } from '../config/SøknadStepId';
+
+export const useStepTitles = (): Record<SøknadStepId, string> => {
+    const { text } = useAppIntl();
+    return {
+        [SøknadStepId.MITT_STEG]: text('step.mittSteg.title'),
+        [SøknadStepId.OPPSUMMERING]: text('step.oppsummering.title'),
+    };
+};

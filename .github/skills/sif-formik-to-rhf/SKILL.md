@@ -1,9 +1,8 @@
----
 name: sif-formik-to-rhf
 description: Migrer et skjema fra @navikt/sif-common-formik-ds (Formik) til @sif/rhf (React Hook Form). Bevarer oppførsel og data inn/ut.
 ---
 
-# sif-formik-to-rhf Skill
+# sif-formik-to-rhf
 
 ## Formål
 

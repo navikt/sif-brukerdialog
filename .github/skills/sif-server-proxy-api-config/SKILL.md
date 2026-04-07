@@ -1,9 +1,8 @@
----
 name: sif-server-proxy-api-config
 description: Bruk denne skillen når en utvikler vil verifisere at en app er riktig satt opp med server, reverse proxy, init av API-klienter og env-variabler (PUBLIC_PATH, *_FRONTEND_PATH, *_API_SCOPE, *_API_URL).
 ---
 
-# sif-server-proxy-api-config Skill
+# sif-server-proxy-api-config
 
 Denne skillen er for end-to-end verifisering av at app, server og miljøkonfigurasjon matcher for API-kall i SIF-appene.
 
@@ -18,7 +17,7 @@ Dekker kjeden:
 3. Serverens reverse proxy-oppsett
 4. Faktisk request-path fra SDK/hook
 
-## Når skillen skal brukes
+## Når skal skillen brukes
 
 - API-endepunkter returnerer HTML i stedet for JSON
 - `/api/...` eller `/<public_path>/api/...` virker ikke som forventet

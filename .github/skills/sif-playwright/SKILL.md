@@ -1,9 +1,8 @@
----
 name: sif-playwright
-description: Standard for Playwright e2e-oppsett i app-workspaces (config, scripts, scenario-flyt, første tester).
+description: Standard for Playwright e2e-oppsett i app-workspaces (config, scripts, scenario-flyt, første tester, a11y med axe).
 ---
 
-# sif-playwright Skill
+# sif-playwright
 
 ## Formål
 
@@ -13,8 +12,9 @@ Sette opp et minimalt, fungerende Playwright e2e-grunnlag i én app-workspace.
 
 - Du setter opp Playwright i en app som ikke har e2e-oppsett.
 - Du etablerer første e2e-flyt i appen.
+- Du vil legge til accessibility-sjekker med axe i e2e-testene.
 
-## Scope
+## Omfang
 
 - Én app-workspace per oppgave.
 - Oppsett av config, scripts og første tester.
@@ -26,6 +26,7 @@ Sette opp et minimalt, fungerende Playwright e2e-grunnlag i én app-workspace.
 - `vite.e2e.config.ts`
 - `playwright/playwrightAppSettings.ts`
 - `playwright/utils/scenario.ts` ved behov
+- `playwright/utils/testAccessibility.ts`
 - `playwright/files/*` ved behov for opplastingstester
 - `playwright/tests/*.spec.ts` med minst to tester
 - Scripts i `package.json`: `pw:dev`, `pw:run`, `pw:run:headed`
@@ -83,6 +84,7 @@ Sjekk også at `lib` i tsconfig-kjeden inkluderer minst `ES2020`. Hvis delt conf
 ## Standard dependency-sett
 
 - `@playwright/test`
+- `@axe-core/playwright`
 
 ## Standard scripts
 
@@ -332,11 +334,50 @@ Dette gjør Playwright-flyten stabil uten å binde referanseappen til runtime-va
 
 For apper med mock/scenario-støtte forventes en synlig scenariovelger i lokal/demo, men Playwright-skillen trenger bare å sikre at den følger samme scenario-kontrakt som testene.
 
-## A11y
+## A11y med axe
 
-For accessibility-sjekker med axe, bruk skillen `sif-playwright-a11y` i tillegg.
+Accessibility-sjekker er en del av standard Playwright-oppsettet.
 
-Etter at grunnoppsettet er ferdig, skal du alltid eksplisitt vurdere om `sif-playwright-a11y` også skal brukes i samme oppgave.
+### `testAccessibility` helper
+
+Opprett `playwright/utils/testAccessibility.ts`:
+
+```ts
+import AxeBuilder from '@axe-core/playwright';
+import { expect, Page } from '@playwright/test';
+
+export const testAccessibility = async (page: Page) => {
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    await expect(accessibilityScanResults.violations).toEqual([]);
+};
+```
+
+### Bruksmønster
+
+1. Kjør `testAccessibility(page)` etter at siden er ferdig rendret.
+2. Kjør igjen etter viktig navigasjon i samme test.
+3. Kjør scannen etter at heading eller annen ankertekst er synlig — aldri rett etter `page.goto()` uten å vente på et element først.
+
+**Riktig:**
+
+```ts
+await page.goto('/');
+await page.locator('input[type="checkbox"]').waitFor();
+await testAccessibility(page);
+```
+
+**Feil:**
+
+```ts
+await page.goto('/');
+await testAccessibility(page); // for tidlig — siden kan være tom
+```
+
+### Minimum a11y-dekning per app
+
+- A11y-scan i minst én forside/smoke-test.
+- A11y-scan i minst én sentral brukerflyt.
+- Alle steg skal ha a11y-scan etter at siden er ferdig rendret.
 
 ## Verifisering
 
@@ -352,11 +393,10 @@ yarn check:types
 - `yarn pw:run` passerer lokalt.
 - `yarn check:types` passerer lokalt.
 - Testene bruker BrowserRouter-flyt (ikke demo/HashRouter).
-- Avklar om a11y-sjekker skal inn nå; hvis ja, bruk `sif-playwright-a11y` før oppgaven avsluttes.
+- A11y-scan er inkludert i minst forside- og sentral flyttest.
 
 ## Arbeidsmodus
 
 - Fase 1: Etabler oppsett (config, scripts, dependencies, tsconfig).
-- Fase 2: Legg til første flyttester.
+- Fase 2: Legg til første flyttester med a11y-scan.
 - Fase 3: Verifiser `yarn pw:run` og `yarn check:types`.
-- Fase 4: Ta stilling til a11y-utvidelse via `sif-playwright-a11y`.

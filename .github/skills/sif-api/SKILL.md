@@ -1,9 +1,8 @@
----
 name: sif-api
 description: Bruk denne skillen når en utvikler trenger å hente informasjon fra ett av API-ene i appen via @sif/api (f.eks. kontonummer, søker, barn, arbeidsgivere, mellomlagring).
 ---
 
-# sif-api Skill
+# sif-api
 
 Denne skillen dekker kun valg av hook, nødvendig API-klient og påkrevd env-oppsett for `@sif/api`. I første respons skal agenten kun gi generell veiledning og et minimalt brukseksempel. Verifisering mot repo eller appfiler skjer bare når brukeren eksplisitt ber om det.
 

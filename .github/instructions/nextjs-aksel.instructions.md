@@ -16,6 +16,7 @@ Use these instructions for Next.js apps in this monorepo.
 - Use Aksel components and tokens (`@navikt/ds-react`, Aksel spacing tokens).
 - Do not introduce alternative UI libraries or custom design token systems.
 - Prefer existing layout patterns already used in the target app.
+- Never use Tailwind padding/margin (`p-`, `m-`, `px-`, `py-`) with Aksel components. Use Aksel spacing-tokens (`space-4`, `space-6`, etc.).
 - Do not use the `Alert` component.
 - Use `SifInfoMessage` for info- og warning-meldinger.
 - Use `InlineMessage` when the old solution used inline alerting.
