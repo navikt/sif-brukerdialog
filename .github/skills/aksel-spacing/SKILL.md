@@ -1,9 +1,8 @@
----
 name: aksel-spacing
 description: Responsiv layout med Aksel spacing-tokens og Box, VStack, HStack og HGrid
 ---
 
-# Aksel Spacing Skill
+# aksel-spacing
 
 Bruk denne skillen for spesifikke layout-oppgaver med Aksel spacing-tokens.
 
@@ -13,7 +12,7 @@ Bruk denne skillen for spesifikke layout-oppgaver med Aksel spacing-tokens.
 2. Bruk `Box` for padding/border/bakgrunn, `VStack` for vertikal stacking, `HStack` for horisontal og `HGrid` for responsive grids.
 3. Bruk responsive verdier (`{ xs: 'space-4', md: 'space-8' }`) for padding og gap som skal tilpasse seg skjermstørrelse.
 
-## Spacing Tokens
+## Spacing-tokens
 
 ```
 "space-0"   // 0px
@@ -28,7 +27,7 @@ Bruk denne skillen for spesifikke layout-oppgaver med Aksel spacing-tokens.
 "space-12"  // 48px  ← Page padding block (desktop)
 ```
 
-## Responsive Breakpoints
+## Responsive brytepunkter
 
 ```
 xs: "0px"     // Mobil (default)

@@ -1,9 +1,8 @@
----
 name: sif-migration-baseline
 description: Lettvekts runbook for migrering av en dialog-app til ny v2 setup med sif-soknad og sif-rhf.
 ---
 
-# sif-migration-baseline Skill
+# sif-migration-baseline
 
 ## Formål
 
@@ -86,16 +85,16 @@ Etter bootstrap:
 - Demo/local source: `src/demo/ScenarioHeader.tsx` når appen har mock/scenario-støtte og `VELG_SCENARIO` brukes lokalt.
 - Mocking baseline: `mock/enableMocking.ts`, `mock/devAppSettings.ts`, `mock/msw/**`, and `public/mockServiceWorker.js`.
 
-### Minimal target-app edits after copy
+### Minste nødvendige endringer i målappen etter kopiering
 
-- Update app name and scripts in `package.json`.
-- Update base path in `vite.config.ts` and `vite.dev.config.ts`.
-- Update `<title>` in `index.html`.
-- Update `APP` and `SCOPE` in `Dockerfile`.
-- Update `BrowserRouter basename` in `App.tsx`.
+- Oppdater appnavn og scripts i `package.json`.
+- Oppdater base path i `vite.config.ts` og `vite.dev.config.ts`.
+- Oppdater `<title>` i `index.html`.
+- Oppdater `APP` og `SCOPE` i `Dockerfile`.
+- Oppdater `BrowserRouter basename` i `App.tsx`.
 - Behold lokal/demo-scenariovelger når appen har mockdata og `VELG_SCENARIO`; oppdater bare tittel, scenario-grupper og `PUBLIC_PATH`.
-- Keep all other changes minimal until App phase starts.
-- Ensure base path is identical across all three places: `package.json` (`dev`/`build`), `vite.config.ts` (`base` and mock service worker rewrite), and `vite.dev.config.ts` (`base` and rewrite).
+- Hold alle andre endringer minimale til App-fasen starter.
+- Sørg for at base path er identisk i alle tre steder: `package.json` (`dev`/`build`), `vite.config.ts` (`base` og mock service worker-rewrite), og `vite.dev.config.ts` (`base` og rewrite).
 
 ### Lokal/demo-scenariovelger er del av baseline
 
@@ -196,26 +195,26 @@ Når baseline kopieres fra `aktivitetspenger-soknad`, inneholder disse filene ap
 
 Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` før første `check:types`.
 
-### Bootstrap pitfalls and guardrails
+### Fallgruver og føringer i bootstrap-fasen
 
-- After adding a new app workspace, run `yarn install` from monorepo root before running workspace scripts, so Yarn registers the new workspace in project metadata/lockfile.
-- Do not run dependency install inside a single app workspace. Use root install only, to avoid local `node_modules` drift and duplicated tool types.
-- Keep the placeholder `App` minimal. For UI/layout details, delegate to the dedicated Aksel references below.
-- If Vite plugin type errors appear with two different `vite` paths, verify root install is used and `tsconfig.json` keeps the `"vite": ["../../node_modules/vite"]` path mapping.
-- For bootstrap validation, do not run `yarn build` at monorepo root. Run build/check scripts only in the target app workspace.
-- `AppErrorBoundary` must be inside `FaroProvider` in `App.tsx`, not wrapping `<App />` in `main.tsx`. Otherwise `useFaroInstance()` has no context and error logging to Faro will not work.
-- `enableMocking.ts` includes ENV checks — MSW only starts when `ENV === 'development'` and `import.meta.env.MODE === 'msw'`. Do not remove these guards.
-- `vite.config.ts` uses a conditional Sentry plugin that only activates when `SENTRY_AUTH_TOKEN` is present. Sentry build warnings are expected locally without the token.
-- Data loading is split into `useInitialData.ts` (hook with data logic) and `InitialDataLoader.tsx` (thin component). Keep this separation when adapting, and delegate detailed guidance to `sif-initial-data-loader`.
+- Etter at du har lagt til en ny app-workspace, kjør `yarn install` fra monorepo-roten før du kjører workspace-scripts, slik at Yarn registrerer den nye workspacen i prosjektmetadata/lockfile.
+- Ikke kjør dependency-install inne i en enkelt app-workspace. Bruk kun install fra rot, for å unngå lokal `node_modules`-drift og dupliserte verktøytyper.
+- Hold placeholder-`App` minimal. For UI/layout-detaljer, bruk Aksel-referansene nedenfor.
+- Hvis Vite-plugin-typefeil dukker opp med to ulike `vite`-paths, verifiser at root-install er brukt og at `tsconfig.json` beholder path-mappingen `"vite": ["../../node_modules/vite"]`.
+- For bootstrap-validering, ikke kjør `yarn build` i monorepo-roten. Kjør build/check-scripts kun i målappens workspace.
+- `AppErrorBoundary` må ligge inni `FaroProvider` i `App.tsx`, ikke rundt `<App />` i `main.tsx`. Ellers har `useFaroInstance()` ingen context, og feillogging til Faro vil ikke fungere.
+- `enableMocking.ts` inneholder ENV-sjekker — MSW starter kun når `ENV === 'development'` og `import.meta.env.MODE === 'msw'`. Ikke fjern disse guardene.
+- `vite.config.ts` bruker en betinget Sentry-plugin som kun aktiveres når `SENTRY_AUTH_TOKEN` er satt. Sentry-build-advarsler er forventet lokalt uten token.
+- Data loading er delt i `useInitialData.ts` (hook med datalogikk) og `InitialDataLoader.tsx` (tynn komponent). Behold denne separasjonen når du tilpasser, og deleger detaljveiledning til `sif-initial-data-loader`.
 
-### UI and spacing references
+### Referanser for UI og spacing
 
-- Use [Aksel spacing skill](../aksel-spacing/SKILL.md) for spacing tokens, responsive layout props, and Box/VStack/HStack/HGrid patterns.
-- Use `aksel-agent` for broader Aksel design-system choices beyond migration bootstrap scope.
+- Bruk [aksel-spacing](../aksel-spacing/SKILL.md) for spacing-tokens, responsive layout-props og Box/VStack/HStack/HGrid-mønstre.
+- Bruk `aksel-agent` for bredere Aksel-designsystemvalg utover bootstrap-omfanget.
 
-### Bootstrap validation checklist
+### Sjekkliste for validering i bootstrap-fasen
 
-Run in target app workspace:
+Kjør i målappens workspace:
 
 1. `yarn check:types`
 2. `yarn lint:eslint`
@@ -223,26 +222,26 @@ Run in target app workspace:
 4. `yarn dev`
 5. `yarn storybook`
 
-Expected early-phase behavior:
+Forventet oppførsel tidlig i fasen:
 
-- `yarn test` may fail with `No test files found` before tests are added.
-- Sentry build warnings about missing auth token are expected locally unless configured.
+- `yarn test` kan feile med `No test files found` før tester er lagt til.
+- Sentry-build-advarsler om manglende auth-token er forventet lokalt hvis det ikke er konfigurert.
 
 ## Avhengighetsstrategi
 
-- Prefer using existing shared packages as-is in early steps.
-- Prefer adapters in the app over copying shared code.
-- Replace with `sif-soknad`/`sif-rhf` incrementally when the path is clear.
-- Copy code only when there is explicit ownership and a cleanup plan.
+- Foretrekk å bruke eksisterende delte pakker som de er i tidlige steg.
+- Foretrekk adaptere i appen fremfor å kopiere delt kode.
+- Bytt til `sif-soknad`/`sif-rhf` inkrementelt når veien videre er tydelig.
+- Kopier kode kun når eierskap og oppryddingsplan er eksplisitt avklart.
 
 ## Validering
 
-- Run workspace-local scripts first (for example `lint:eslint`, `lint:tsc`, `test`).
-- During bootstrap phase, keep validation app-local and skip root-level build/lint/test commands.
-- Run broader root checks only when needed outside bootstrap scope (`yarn lint`, `yarn test`).
+- Kjør workspace-lokale scripts først (for eksempel `lint:eslint`, `lint:tsc`, `test`).
+- I bootstrap-fasen: hold validering app-lokal og hopp over root-level build/lint/test-kommandoer.
+- Kjør bredere root-sjekker kun ved behov utenfor bootstrap-omfanget (`yarn lint`, `yarn test`).
 
 ## Ferdigkriterier
 
-- Pilot app compiles and passes relevant workspace checks.
+- Pilotappen kompilerer og passerer relevante workspace-sjekker.
 - Main migration decisions are captured in `docs/migration/decisions.md`.
 - Reusable lessons are promoted from app notes to shared docs.

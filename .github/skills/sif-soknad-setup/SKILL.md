@@ -1,9 +1,8 @@
----
 name: sif-soknad-setup
 description: Veiledning for oppsett av src/app/setup og routing shell (Soknad.tsx, VelkommenPage, KvitteringPage) i nye apper som bruker @sif/soknad og @sif/rhf.
 ---
 
-# sif-soknad-setup Skill
+# sif-soknad-setup
 
 ## Når skal skillen brukes
 
@@ -11,7 +10,7 @@ description: Veiledning for oppsett av src/app/setup og routing shell (Soknad.ts
 - Du kobler en eksisterende app til rammeverket og trenger setup-laget.
 - Du skal opprette routing-skallet (`Soknad.tsx`, `VelkommenPage`, `KvitteringPage`).
 
-## Scope
+## Omfang
 
 - **Innenfor:** `src/app/setup/`, `src/app/types/`, `src/app/utils/formValuesToSoknadsdata.ts`, `src/app/i18n/`, `src/app/Soknad.tsx`, `src/app/pages/`, `src/app/steps/index.ts`, `src/demo/ScenarioHeader.tsx`, Sentry.
 - **Utenfor:** steginnhold → `sif-soknad-add-step`, API-kall → `sif-api`, initial data → `sif-initial-data-loader`.
