@@ -6,7 +6,7 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "typescript": "5.9.3"
+        "typescript": "6.0.2"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
