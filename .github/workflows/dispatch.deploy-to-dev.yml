@@ -17,6 +17,7 @@ on:
                     - omsorgspengerutbetaling-arbeidstaker-soknad
                     - omsorgspengerutbetaling-soknad
                     - omsorgspengesoknad
+                    - omsorgspengesoknad-v2
                     - opplaringspenger-soknad
                     - pleiepenger-i-livets-sluttfase-soknad
                     - pleiepenger-sykt-barn

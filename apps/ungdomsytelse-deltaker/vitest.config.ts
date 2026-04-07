@@ -10,7 +10,7 @@ export default defineConfig({
         alias: createAliasConfig(),
     },
     test: {
-        exclude: ['./playwright/**/*', 'node_modules', './dist/**/*', '**/*.spec.tsx', '**/*.spec.ts'],
+        exclude: ['./playwright/**/*', './build/**/*', './dist/**/*', 'node_modules'],
         globals: true,
         environment: 'jsdom',
         css: false,

@@ -5,9 +5,10 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
-import { Heading } from '@navikt/ds-react';
+import { Heading, ReadMore } from '@navikt/ds-react';
 import { isDevMode } from '@navikt/sif-common-env';
 import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
+import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
     getFødselsnummerValidator,
@@ -21,7 +22,12 @@ import { VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 import { AriaLiveRegion, FormLayout, SifInfoCard } from '@sif/soknad-ui/components';
 import { useEffect } from 'react';
 
-import { toOmBarnetFormValues, toOmBarnetSøknadsdata } from './omBarnetStegUtils';
+import {
+    getMinDatoForBarnetsFødselsdato,
+    isBarnOver18år,
+    toOmBarnetFormValues,
+    toOmBarnetSøknadsdata,
+} from './omBarnetStegUtils';
 import { ANNET_BARN, OmBarnetFormFields, OmBarnetFormValues } from './types';
 
 const { RadioGroup, TextField, Datepicker, Textarea, YesOrNoQuestion } = createSifFormComponents<OmBarnetFormValues>();
@@ -31,7 +37,7 @@ const stepId = SøknadStepId.OM_BARNET;
 export const OmBarnetForm = () => {
     const { validateField } = useSifValidate('omBarnetForm');
     const { text } = useAppIntl();
-    const { barn } = useSøknadState();
+    const { barn, søker } = useSøknadState();
 
     const registrerteBarn: RegistrertBarn[] = barn ?? [];
 
@@ -62,6 +68,10 @@ export const OmBarnetForm = () => {
     const kroniskEllerFunksjonshemming = watch(OmBarnetFormFields.kroniskEllerFunksjonshemming);
     const høyereRisikoForFravær = watch(OmBarnetFormFields.høyereRisikoForFravær);
 
+    const visIkkeSammeAdresseAlert = sammeAdresse === BarnSammeAdresse.NEI;
+    const visHøyereRisikoSpørsmål = harValgtBarn && kroniskEllerFunksjonshemming === YesOrNo.YES;
+    const visHøyereRisikoBeskrivelseSpørsmål = visHøyereRisikoSpørsmål && høyereRisikoForFravær === YesOrNo.YES;
+
     useEffect(() => {
         if (!søknadenGjelderAnnetBarn) {
             methods.clearErrors([
@@ -73,9 +83,13 @@ export const OmBarnetForm = () => {
         }
     }, [søknadenGjelderAnnetBarn]);
 
-    const visIkkeSammeAdresseAlert = sammeAdresse === BarnSammeAdresse.NEI;
-    const visHøyereRisikoSpørsmål = harValgtBarn && kroniskEllerFunksjonshemming === YesOrNo.YES;
-    const visHøyereRisikoBeskrivelseSpørsmål = visHøyereRisikoSpørsmål && høyereRisikoForFravær === YesOrNo.YES;
+    useEffect(() => {
+        if (!visHøyereRisikoBeskrivelseSpørsmål) {
+            methods.clearErrors([OmBarnetFormFields.høyereRisikoForFraværBeskrivelse]);
+        }
+    }, [visHøyereRisikoBeskrivelseSpørsmål]);
+
+    const minDatoForBarnetsFødselsdato = getMinDatoForBarnetsFødselsdato();
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending} submitError={submitError}>
@@ -104,20 +118,40 @@ export const OmBarnetForm = () => {
                                 <Datepicker
                                     name={OmBarnetFormFields.barnetsFødselsdato}
                                     label={text('omBarnetSteg.spørsmål.barnetsFødselsdato')}
-                                    maxDate={new Date()}
-                                    validate={validateField(
-                                        OmBarnetFormFields.barnetsFødselsdato,
-                                        getDateValidator({ required: true, max: new Date() }),
-                                    )}
+                                    description={text('omBarnetSteg.spørsmål.barnetsFødselsdato.info', {
+                                        minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
+                                    })}
+                                    minDate={minDatoForBarnetsFødselsdato}
+                                    maxDate={getDateToday()}
+                                    validate={validateField(OmBarnetFormFields.barnetsFødselsdato, (value) => {
+                                        const dateValidationerror = getDateValidator({
+                                            required: true,
+                                            min: minDatoForBarnetsFødselsdato,
+                                            max: getDateToday(),
+                                        })(value);
+
+                                        if (dateValidationerror) {
+                                            return dateValidationerror;
+                                        }
+                                        if (isBarnOver18år(value)) {
+                                            return 'barnOver18år';
+                                        }
+                                        return undefined;
+                                    })}
                                 />
                                 <TextField
                                     name={OmBarnetFormFields.barnetsFødselsnummer}
                                     label={text('omBarnetSteg.spørsmål.barnetsFødselsnummer')}
                                     inputMode="numeric"
+                                    htmlSize={15}
                                     maxLength={11}
                                     validate={validateField(
                                         OmBarnetFormFields.barnetsFødselsnummer,
-                                        getFødselsnummerValidator({ required: true, allowHnr: isDevMode() }),
+                                        getFødselsnummerValidator({
+                                            required: true,
+                                            allowHnr: isDevMode(),
+                                            disallowedValues: [søker.fødselsnummer],
+                                        }),
                                     )}
                                 />
                                 <TextField
@@ -125,7 +159,7 @@ export const OmBarnetForm = () => {
                                     label={text('omBarnetSteg.spørsmål.barnetsNavn')}
                                     validate={validateField(
                                         OmBarnetFormFields.barnetsNavn,
-                                        getStringValidator({ required: true }),
+                                        getStringValidator({ required: true, maxLength: 50 }),
                                     )}
                                 />
                                 <RadioGroup
@@ -172,6 +206,11 @@ export const OmBarnetForm = () => {
                                     { value: BarnSammeAdresse.NEI, label: text('omBarnetSteg.sammeAdresse.NEI') },
                                 ]}
                                 validate={validateField(OmBarnetFormFields.sammeAdresse, getRequiredFieldValidator())}
+                                description={
+                                    <ReadMore header={text('omBarnetSteg.sammeAdresse.hvaBetyrDette')}>
+                                        {text('omBarnetSteg.sammeAdresse.hvaBetyrDette.info')}
+                                    </ReadMore>
+                                }
                             />
                             <AriaLiveRegion visible={visIkkeSammeAdresseAlert}>
                                 <QuestionRelatedMessage>
@@ -221,9 +260,15 @@ export const OmBarnetForm = () => {
                                 <Textarea
                                     name={OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}
                                     label={text('omBarnetSteg.spørsmål.høyereRisikoForFraværBeskrivelse')}
+                                    maxLength={1000}
                                     validate={validateField(
                                         OmBarnetFormFields.høyereRisikoForFraværBeskrivelse,
-                                        getStringValidator({ required: true }),
+                                        getStringValidator({
+                                            required: true,
+                                            minLength: 5,
+                                            maxLength: 1000,
+                                            disallowInvalidBackendCharacters: true,
+                                        }),
                                     )}
                                 />
                             )}

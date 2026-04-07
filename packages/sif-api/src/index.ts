@@ -7,3 +7,4 @@ export * from './utils/initApiClient';
 
 // Komponenter (kryssdomene)
 export { ApiErrorAlert } from './components/ApiErrorAlert';
+export type { InvalidParameterViolation } from './types';

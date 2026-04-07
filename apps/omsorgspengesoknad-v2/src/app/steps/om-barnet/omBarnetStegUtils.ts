@@ -1,9 +1,9 @@
-import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { YesOrNo } from '@sif/rhf';
+import dayjs from 'dayjs';
 
-import { ANNET_BARN, OmBarnetFormFields, OmBarnetFormValues } from './types';
+import { ANNET_BARN, OmBarnetFormValues } from './types';
 
 export const toOmBarnetFormValues = (søknadsdata: OmBarnetSøknadsdata | undefined): Partial<OmBarnetFormValues> => {
     if (!søknadsdata) return {};
@@ -38,7 +38,7 @@ export const toOmBarnetFormValues = (søknadsdata: OmBarnetSøknadsdata | undefi
 };
 
 export const toOmBarnetSøknadsdata = (
-    data: OmBarnetFormValues,
+    data: Partial<OmBarnetFormValues>,
     registrerteBarn: RegistrertBarn[],
 ): OmBarnetSøknadsdata | undefined => {
     const { barnetSøknadenGjelder, sammeAdresse, kroniskEllerFunksjonshemming } = data;
@@ -79,14 +79,21 @@ export const toOmBarnetSøknadsdata = (
     };
 };
 
-export const getSammeAdresseOptions = (): Array<{ value: BarnSammeAdresse; label: string }> => [
-    { value: BarnSammeAdresse.JA, label: 'Ja' },
-    { value: BarnSammeAdresse.JA_DELT_BOSTED, label: 'Ja, men med delt bosted' },
-    { value: BarnSammeAdresse.NEI, label: 'Nei' },
-];
+export const getMinDatoForBarnetsFødselsdato = (): Date => {
+    // April 1 dette år
+    const today = dayjs();
+    const frist = dayjs(today).set('month', 3).set('date', 1);
 
-export const getOmBarnetDefaultValues = (): Partial<OmBarnetFormValues> => ({
-    [OmBarnetFormFields.barnetsFødselsdato]: '',
-    [OmBarnetFormFields.barnetsFødselsnummer]: '',
-    [OmBarnetFormFields.barnetsNavn]: '',
-});
+    return today.isBefore(frist)
+        ? today.subtract(19, 'year').startOf('year').toDate()
+        : today.subtract(18, 'year').startOf('year').toDate();
+};
+
+export const isBarnOver18år = (fødselsdato: Date | string): boolean => {
+    const dato18år = dayjs(fødselsdato).add(18, 'year');
+
+    // Siden det kan gis ekstra dager opp til 3 måneder tilbake i tid fra søknadsdato brukes det 1. april året etter det kalenderåret barnet fylte 18 år som frist.
+    const frist = dato18år.add(1, 'year').set('month', 3).set('date', 1);
+
+    return dayjs().isSame(frist) || dayjs().isAfter(frist);
+};

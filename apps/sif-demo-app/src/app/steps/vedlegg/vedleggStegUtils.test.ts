@@ -1,4 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('@sif/api/k9-prosessering', () => ({
+    getVedleggApiUrl: (id: string) => `https://api.example.com/vedlegg/${id}`,
+}));
 
 import { toVedleggFormValues, toVedleggSøknadsdata } from './vedleggStegUtils';
 
@@ -9,6 +13,7 @@ describe('vedleggStegUtils', () => {
                 {
                     id: 'vedlegg-1',
                     url: '/vedlegg/vedlegg-1',
+                    backendUrl: 'https://api.example.com/vedlegg/vedlegg-1',
                     name: 'test.pdf',
                     size: 1234,
                     type: 'application/pdf',
@@ -54,6 +59,7 @@ describe('vedleggStegUtils', () => {
             {
                 id: 'vedlegg-2',
                 url: '/vedlegg/vedlegg-2',
+                backendUrl: 'https://api.example.com/vedlegg/vedlegg-2',
                 name: 'ok.pdf',
                 size: uploadedFile.file.size,
                 type: 'application/pdf',

@@ -1,4 +1,4 @@
-import { ExclamationmarkTriangleFillIcon, InformationSquareIcon } from '@navikt/aksel-icons';
+import { ExclamationmarkTriangleFillIcon, InformationSquareFillIcon } from '@navikt/aksel-icons';
 import { InfoCard, InfoCardProps } from '@navikt/ds-react';
 import React from 'react';
 
@@ -12,7 +12,13 @@ export const SifInfoCard = ({ children, ...props }: Props) => {
         case 'warning':
             return (
                 <InfoCard data-color="warning" {...props}>
-                    <InfoCard.Message icon={<ExclamationmarkTriangleFillIcon aria-hidden />}>
+                    <InfoCard.Message
+                        icon={
+                            <ExclamationmarkTriangleFillIcon
+                                style={{ color: 'var(--ax-bg-warning-strong)' }}
+                                aria-hidden
+                            />
+                        }>
                         {children}
                     </InfoCard.Message>
                 </InfoCard>
@@ -20,7 +26,10 @@ export const SifInfoCard = ({ children, ...props }: Props) => {
         default:
             return (
                 <InfoCard data-color="info" {...props}>
-                    <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>{children}</InfoCard.Message>
+                    <InfoCard.Message
+                        icon={<InformationSquareFillIcon style={{ color: 'var(--ax-bg-info-strong)' }} aria-hidden />}>
+                        {children}
+                    </InfoCard.Message>
                 </InfoCard>
             );
     }

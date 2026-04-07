@@ -1,5 +1,6 @@
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { BaseSøknadsdata } from '@sif/soknad/types';
+import { PersistedVedlegg } from '@sif/soknad-forms';
 
 import { SøknadStepId } from '../setup/config/SoknadStepId';
 import { BarnSammeAdresse } from './BarnSammeAdresse';
@@ -27,15 +28,6 @@ interface OmBarnetSøknadsdata_AnnetBarn {
 }
 
 export type OmBarnetSøknadsdata = OmBarnetSøknadsdata_RegistrertBarn | OmBarnetSøknadsdata_AnnetBarn;
-
-export interface PersistedVedlegg {
-    id: string;
-    url: string;
-    name: string;
-    size: number;
-    type: string;
-    lastModified: number;
-}
 
 export interface LegeerklæringSøknadsdata {
     vedlegg: PersistedVedlegg[];

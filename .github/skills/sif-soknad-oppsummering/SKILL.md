@@ -87,8 +87,8 @@ export const søknadsdataToSøknadDTO = ({
     const mittSteg = søknadsdata[SøknadStepId.MITT_STEG];
     if (!mittSteg) return undefined; // returner undefined om obligatoriske steg mangler
 
-    // Vedlegg sendes som ID-array, ikke som PersistedVedlegg-objekter:
-    const vedlegg = søknadsdata[SøknadStepId.VEDLEGG]?.vedlegg.map((v) => v.id) ?? [];
+    // Vedlegg sendes som backend-URL-array (full API-URL, ikke bare ID):
+    const vedlegg = søknadsdata[SøknadStepId.VEDLEGG]?.vedlegg.map((v) => v.backendUrl) ?? [];
 
     return {
         språk,
@@ -101,7 +101,8 @@ export const søknadsdataToSøknadDTO = ({
 
 Viktige detaljer:
 - Returner `undefined` om obligatoriske steg mangler i søknadsdata
-- Vedlegg må mappes til ID-array: `.map(v => v.id)` — DTO-kontrakten forventer `string[]`, ikke `PersistedVedlegg[]`
+- Vedlegg mappes til backend-URL-array: `.map(v => v.backendUrl)` — DTO-kontrakten forventer `string[]` med fulle API-URLer
+- `backendUrl` er allerede satt på `PersistedVedlegg` av `toPersistedVedlegg` i steg-utils
 - `harBekreftetOpplysninger` legges til separat i `OppsummeringSteg` ved innsending (ikke her)
 - Optional steg (f.eks. DELT_BOSTED): bruk `?? undefined` eller `?? []` avhengig av API-feltet
 
@@ -152,7 +153,7 @@ const RelasjonTilBarnetTekst = ({ relasjon }: { relasjon: SøkersRelasjonTilBarn
 
 ### Vedlegg
 
-Vis vedlegg som lenkeliste, ikke bare antall. Bruk `VedleggSummaryList` fra `@sif/soknad-ui/components` og les vedleggene fra `state.søknadsdata`, ikke fra DTO:
+Vis vedlegg som lenkeliste, ikke bare antall. Bruk `VedleggSummaryList` fra `@sif/soknad-ui/components` og les vedleggene fra `state.søknadsdata`, ikke fra DTO. Importer `PersistedVedlegg` fra `@sif/soknad-forms` for type-annotering.
 
 Når gammel løsning brukte `Alert inline`, bruk `InlineMessage` fra Aksel.
 
@@ -172,7 +173,7 @@ const legeerklæring = state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg
 }
 ```
 
-DTO-feltene inneholder normalt bare ID-er. Lenkelista trenger `name`, `url` og gjerne `size`, og må derfor bruke `PersistedVedlegg[]` fra søknadsdata.
+DTO-feltene inneholder backend-URLer (strenger). Lenkelista trenger `name`, `url` og gjerne `size`, og må derfor bruke `PersistedVedlegg[]` fra søknadsdata. `PersistedVedlegg` importeres fra `@sif/soknad-forms`.
 
 ### Feil-tilstand
 
@@ -203,6 +204,50 @@ Nøkkelprefikset for oppsummeringssteget er `oppsummeringSteg.*`. Alltid inklude
 - `oppsummeringSteg.bekrefterOpplysninger.label`
 - `oppsummeringSteg.feil.tittel` + `oppsummeringSteg.feil.innhold`
 - `oppsummeringForm.validation.bekrefterOpplysninger.notChecked`
+
+### Innsendingsfeil
+
+Håndter feil fra `useSendSøknad` ved innsending. `mutateAsync` kaster `ApiError` — bruk `getInvalidParametersFromApiError` fra `@sif/api` for å sjekke om feilen inneholder ugyldige parametre.
+
+Mønster:
+
+1. Hent `error` fra `useSendSøknad()` (via `useMutation`)
+2. Bruk `getInvalidParametersFromApiError(error)` for å ekstrahere eventuelle `InvalidParameterViolation[]`
+3. Vis domenespesifikk feilmelding i en `LocalAlert status="error"` (med `LocalAlert.Header`/`LocalAlert.Content`) hvis `invalidParameters` finnes
+4. Vis generell `ErrorSummary` med `error.message` ellers
+
+```tsx
+import { getInvalidParametersFromApiError } from '@sif/api';
+
+const { isPending, mutateAsync, error: sendSøknadError } = useSendSøknad();
+const invalidParameters = getInvalidParametersFromApiError(sendSøknadError);
+
+const onSubmit = async () => {
+    try {
+        await mutateAsync({ ...dto, harBekreftetOpplysninger });
+        await slettMellomlagring();
+        clearSøknadFormValues();
+        setSøknadSendt();
+    } catch {
+        return; // Feilen håndteres via sendSøknadError-state
+    }
+};
+
+// I JSX:
+{sendSøknadError && invalidParameters && (
+    <InnsendingFeiletAlert invalidParameters={invalidParameters} />
+)}
+{sendSøknadError && !invalidParameters && (
+    <ErrorSummary ref={errorSummaryRef}>
+        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+    </ErrorSummary>
+)}
+```
+
+i18n-nøkler for innsendingsfeil (prefiks `oppsummeringSteg.innsendingFeilet.*`):
+- `oppsummeringSteg.innsendingFeilet.tittel`
+- Domenespesifikke feilmeldinger per `parameterName`
+- Generelle fallback-tekster
 
 ---
 

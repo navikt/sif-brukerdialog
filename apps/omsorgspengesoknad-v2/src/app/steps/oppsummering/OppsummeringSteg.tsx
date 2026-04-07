@@ -3,20 +3,24 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { SøknadStep } from '@app/setup/soknad/SoknadStep';
-import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
+import { ErrorSummary, FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { dateFormatter, formatName, ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
+import { getInvalidParametersFromApiError } from '@sif/api';
 import { Søker } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
+import { useEffect, useRef } from 'react';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
 import { SøknadApiData } from '../../types/SoknadApiData';
-import { PersistedVedlegg } from '../../types/Soknadsdata';
 import { søknadsdataToSøknadDTO } from '../../utils/soknadsdataToSoknadDTO';
+import { InnsendingFeiletAlert } from './InnsendingFeiletAlert';
 
 enum FormFields {
     bekrefterOpplysninger = 'bekrefterOpplysninger',
@@ -39,24 +43,37 @@ export const OppsummeringSteg = () => {
     const { slettMellomlagring } = useSøknadMellomlagring();
     const state = useSøknadState();
 
-    const { isPending, mutateAsync } = useSendSøknad();
+    const { locale } = useAppIntl();
+    const { isPending, mutateAsync, error: sendSøknadError } = useSendSøknad();
+    const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 
     const dto = søknadsdataToSøknadDTO({
         søker: state.søker,
         søknadsdata: state.søknadsdata,
-        språk: 'nb',
+        språk: locale,
     });
 
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
+    const invalidParameters = getInvalidParametersFromApiError(sendSøknadError);
+
+    useEffect(() => {
+        if (sendSøknadError && !invalidParameters) {
+            sendSøknadErrorSummary.current?.focus();
+        }
+    }, [sendSøknadError, invalidParameters]);
 
     const onSubmit = async () => {
         if (dto === undefined) {
             return;
         }
-        await mutateAsync({ ...dto, harBekreftetOpplysninger });
-        await slettMellomlagring();
-        clearSøknadFormValues();
-        setSøknadSendt();
+        try {
+            await mutateAsync({ ...dto, harBekreftetOpplysninger });
+            await slettMellomlagring();
+            clearSøknadFormValues();
+            setSøknadSendt();
+        } catch {
+            return;
+        }
     };
 
     return (
@@ -96,6 +113,14 @@ export const OppsummeringSteg = () => {
                         validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
                         <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
                     </Checkbox>
+                    {sendSøknadError && invalidParameters && (
+                        <InnsendingFeiletAlert invalidParameters={invalidParameters} />
+                    )}
+                    {sendSøknadError && !invalidParameters && (
+                        <ErrorSummary ref={sendSøknadErrorSummary}>
+                            <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                        </ErrorSummary>
+                    )}
                 </FormLayout.Content>
             </AppForm>
         </SøknadStep>
@@ -269,7 +294,7 @@ const VedleggOppsummering = ({
                     </FormSummary.Label>
                     <FormSummary.Value>
                         {legeerklæring.length === 0 ? (
-                            <InlineMessage status="warning">
+                            <InlineMessage status="info">
                                 <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
                             </InlineMessage>
                         ) : (
