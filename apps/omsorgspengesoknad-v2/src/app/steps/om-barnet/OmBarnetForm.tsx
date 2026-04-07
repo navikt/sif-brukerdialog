@@ -126,6 +126,7 @@ export const OmBarnetForm = () => {
                                     validate={validateField(OmBarnetFormFields.barnetsFødselsdato, (value) => {
                                         const dateValidationerror = getDateValidator({
                                             required: true,
+                                            min: minDatoForBarnetsFødselsdato,
                                             max: getDateToday(),
                                         })(value);
 

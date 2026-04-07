@@ -163,7 +163,7 @@ export function VedleggPanel<T extends FieldValues>({
                         {rejectedFiles.map((file, index) => (
                             <FileUpload.Item
                                 as="li"
-                                key={index}
+                                key={file.info?.id ?? index}
                                 file={file.file}
                                 error={getRejectedFileError(
                                     { text },
