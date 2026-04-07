@@ -1,0 +1,31 @@
+// Eksempel: src/demo/ScenarioHeader.tsx
+// Tilpass: scenarioGroups, title, import-paths
+import { getRequiredEnv } from '@navikt/sif-common-env';
+import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
+
+import { ScenarioType } from '../../mock/scenarios/types';
+import { store } from '../../mock/state/store';
+
+const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
+    {
+        label: 'Gruppe (valgfritt)',
+        options: [
+            { value: ScenarioType.default, label: 'Standard' },
+            // legg til øvrige scenarioer her
+        ],
+    },
+];
+
+export const ScenarioHeader = () => {
+    if (import.meta.env.PROD) {
+        return null;
+    }
+
+    const setScenario = (scenario: ScenarioType) => {
+        store.setScenario(scenario);
+        globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
+        globalThis.location.reload();
+    };
+
+    return <ScenarioSelectorHeader title="Demo av <appnavn>" groups={scenarioGroups} onSelectScenario={setScenario} />;
+};
