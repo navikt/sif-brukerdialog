@@ -2,7 +2,7 @@ import { ProblemDetail, zProblemDetail } from '@navikt/k9-brukerdialog-prosesser
 import axios, { AxiosError, isAxiosError } from 'axios';
 import { z, ZodError } from 'zod';
 
-import { InvalidParameterViolation } from '../types';
+import { invalidParameterViolationSchema, InvalidParameterViolation } from '../types';
 
 export enum ApiErrorType {
     ZodValidationError = 'ZodValidationError',
@@ -152,13 +152,10 @@ export const getInvalidParametersFromApiError = (error: ApiError | null): Invali
         return undefined;
     }
 
-    const violations = invalidParameters.filter(
-        (item): item is InvalidParameterViolation =>
-            typeof item === 'object' &&
-            item !== null &&
-            'parameterName' in item &&
-            typeof (item as { parameterName?: unknown }).parameterName === 'string',
-    );
+    const violations = invalidParameters.flatMap((item) => {
+        const result = invalidParameterViolationSchema.safeParse(item);
+        return result.success ? [result.data] : [];
+    });
 
     return violations.length > 0 ? violations : undefined;
 };

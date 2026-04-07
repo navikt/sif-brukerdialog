@@ -3,6 +3,13 @@ import { describe, expect, it } from 'vitest';
 
 import { ApiError, ApiErrorType, getInvalidParametersFromApiError } from '../errorHandlers';
 
+const validViolation = {
+    invalidValue: 'for lang tekst',
+    parameterName: 'høyereRisikoForFraværBeskrivelse',
+    parameterType: 'body',
+    reason: 'må være kortere',
+};
+
 const createAxiosError = (data: unknown, status = 400): AxiosError => {
     const error = new AxiosError('Request failed', AxiosError.ERR_BAD_REQUEST, undefined, undefined, {
         data,
@@ -53,26 +60,32 @@ describe('getInvalidParametersFromApiError', () => {
 
     it('returnerer violations fra invalidParameters (camelCase)', () => {
         const error = createNetworkApiError({
-            invalidParameters: [{ parameterName: 'høyereRisikoForFraværBeskrivelse' }],
+            invalidParameters: [validViolation],
         });
         const result = getInvalidParametersFromApiError(error);
-        expect(result).toEqual([{ parameterName: 'høyereRisikoForFraværBeskrivelse' }]);
+        expect(result).toEqual([validViolation]);
     });
 
     it('returnerer violations fra invalid_parameters (snake_case)', () => {
         const error = createNetworkApiError({
-            invalid_parameters: [{ parameterName: 'felt1' }, { parameterName: 'felt2' }],
+            invalid_parameters: [
+                validViolation,
+                { ...validViolation, parameterName: 'felt2', invalidValue: 'annen verdi' },
+            ],
         });
         const result = getInvalidParametersFromApiError(error);
-        expect(result).toEqual([{ parameterName: 'felt1' }, { parameterName: 'felt2' }]);
+        expect(result).toEqual([
+            validViolation,
+            { ...validViolation, parameterName: 'felt2', invalidValue: 'annen verdi' },
+        ]);
     });
 
     it('filtrerer bort ugyldig innhold i invalidParameters', () => {
         const error = createNetworkApiError({
-            invalidParameters: [{ parameterName: 'gyldig' }, { noe: 'annet' }, null, 'streng', { parameterName: 123 }],
+            invalidParameters: [validViolation, { noe: 'annet' }, null, 'streng', { parameterName: 123 }],
         });
         const result = getInvalidParametersFromApiError(error);
-        expect(result).toEqual([{ parameterName: 'gyldig' }]);
+        expect(result).toEqual([validViolation]);
     });
 
     it('returnerer undefined når alle elementer er ugyldige', () => {

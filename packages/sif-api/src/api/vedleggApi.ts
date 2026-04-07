@@ -6,7 +6,11 @@ import { getCommonEnv } from '@navikt/sif-common-env';
  * @param url The location URL returned from the upload response
  * @returns The vedlegg ID
  */
-export const getVedleggIdFromResponseHeaderLocation = (url: string): string => {
+export const getVedleggIdFromResponseHeaderLocation = (url: string | undefined): string => {
+    if (!url) {
+        throw new Error('Kunne ikke hente vedleggId fordi response header Location mangler');
+    }
+
     const id = url.split('vedlegg/')[1];
     if (!id || id.length === 0) {
         throw new Error('Kunne ikke hente vedleggId fra url');

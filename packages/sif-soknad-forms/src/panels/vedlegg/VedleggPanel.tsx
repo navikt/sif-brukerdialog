@@ -38,10 +38,8 @@ interface VedleggPanelLimits {
 
 interface Props<T extends FieldValues> {
     name: Path<T>;
-    validate?: (value: UploadedFile[]) => string | undefined;
     initialFiles?: UploadedFile[];
     otherFiles?: UploadedFile[];
-    onVedleggEndret?: () => void;
     limits?: VedleggPanelLimits;
     headingLevel?: '2' | '3' | '4';
     showSizeProgress?: boolean;
@@ -50,6 +48,8 @@ interface Props<T extends FieldValues> {
     retryEnabled?: boolean;
     label?: string;
     description?: string;
+    validate?: (value: UploadedFile[]) => string | undefined;
+    onVedleggEndret?: () => void;
 }
 
 export function VedleggPanel<T extends FieldValues>({
