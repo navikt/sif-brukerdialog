@@ -15,7 +15,14 @@ export { hentRegistrerteBarn } from '../api/registrerteBarnApi';
 export { sendOppgavebekreftelse } from '../api/sendOppgavebekreftelse';
 export { hentSøker, hentSøkerId } from '../api/sokerApi';
 export { validerFritekst } from '../api/validerFritekstApi';
-export { getVedleggIdFromResponseHeaderLocation, hentVedlegg, lagreVedlegg, slettVedlegg } from '../api/vedleggApi';
+export {
+    getVedleggApiUrl,
+    getVedleggFrontendUrl,
+    getVedleggIdFromResponseHeaderLocation,
+    hentVedlegg,
+    lagreVedlegg,
+    slettVedlegg,
+} from '../api/vedleggApi';
 export {
     hentYtelseMellomlagring,
     oppdaterYtelseMellomlagring,

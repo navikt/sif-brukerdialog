@@ -1,4 +1,5 @@
 import { delay, http, HttpResponse } from 'msw';
+import { v4 } from 'uuid';
 
 import { getDevAppSettings } from '../devAppSettings';
 import { ScenarioType } from '../scenarios/types';
@@ -6,7 +7,6 @@ import { store } from '../state/store';
 
 store.init(ScenarioType.ingenRegistrerteBarn);
 
-let vedleggCounter = 0;
 const vedleggStore = new Map<string, { name: string; type: string; content: ArrayBuffer }>();
 
 const { K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH } = getDevAppSettings();
@@ -30,8 +30,7 @@ export const handlers = [
             return HttpResponse.json({ message: 'Mangler vedlegg i request' }, { status: 400 });
         }
 
-        vedleggCounter += 1;
-        const vedleggId = `mock-vedlegg-${vedleggCounter}`;
+        const vedleggId = `mock-vedlegg-${v4()}`;
         vedleggStore.set(vedleggId, {
             name: vedlegg.name,
             type: vedlegg.type,
@@ -71,6 +70,12 @@ export const handlers = [
     }),
 
     http.post(`**/omsorgspenger-utvidet-rett/innsending`, () => {
+        const { innsendingResponse } = store.get();
+
+        if (innsendingResponse) {
+            return HttpResponse.json(innsendingResponse.body ?? {}, { status: innsendingResponse.status });
+        }
+
         return HttpResponse.json({}, { status: 202 });
     }),
 

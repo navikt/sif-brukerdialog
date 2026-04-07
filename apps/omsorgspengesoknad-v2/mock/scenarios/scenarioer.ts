@@ -36,9 +36,33 @@ const ingenRegistrerteBarnScenarioData: ScenarioData = {
     mellomlagring: undefined,
 };
 
+const innsendingFeilerScenarioData: ScenarioData = {
+    ...defaultScenarioData,
+    innsendingResponse: {
+        status: 500,
+        body: {
+            title: 'Noe gikk galt',
+            detail: 'Kunne ikke sende søknaden.',
+        },
+    },
+};
+
+const innsendingFeilerMedUgyldigeParametreScenarioData: ScenarioData = {
+    ...defaultScenarioData,
+    innsendingResponse: {
+        status: 400,
+        body: {
+            title: 'Ugyldig forespørsel',
+            invalidParameters: [{ parameterName: 'høyereRisikoForFraværBeskrivelse' }],
+        },
+    },
+};
+
 const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
     [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
+    [ScenarioType.innsendingFeiler]: innsendingFeilerScenarioData,
+    [ScenarioType.innsendingFeilerMedUgyldigeParametre]: innsendingFeilerMedUgyldigeParametreScenarioData,
 };
 
 export const getScenarioMockData = (scenario: ScenarioType): ScenarioData => {

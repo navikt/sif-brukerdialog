@@ -6,7 +6,7 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { DeltBostedSøknadsdata } from '@app/types/Soknadsdata';
 import { UploadedFile } from '@sif/rhf';
 import { VedleggPanel } from '@sif/soknad-forms';
-import { SifGuidePanel, FormLayout } from '@sif/soknad-ui/components';
+import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
 import { useIntl } from 'react-intl';
 
 import { toDeltBostedFormValues, toSøknadsdata } from './deltBostedStegUtils';

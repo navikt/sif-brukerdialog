@@ -22,11 +22,11 @@ Konverter ett Formik-skjema til React Hook Form via `@sif/rhf`. Etter migrering 
 
 - Skillen gjelder **ett skjema om gangen**. Gjenta for hvert skjema.
 - **Rør IKKE:**
-  - `FormFields`-enum (behold eksisterende feltnavn)
-  - `handleSubmit`-logikk utover try/catch-wrapping (se fallgruver)
-  - API-kall, DTOer, onSuccess-callbacks
-  - Layout/JSX-struktur inni felter (labels, descriptions, betinget visning)
-  - Filnavn eller mappestruktur
+    - `FormFields`-enum (behold eksisterende feltnavn)
+    - `handleSubmit`-logikk utover try/catch-wrapping (se fallgruver)
+    - API-kall, DTOer, onSuccess-callbacks
+    - Layout/JSX-struktur inni felter (labels, descriptions, betinget visning)
+    - Filnavn eller mappestruktur
 - For rene i18n-endringer → bruk `sif-intl`.
 - For nye felter → bruk `sif-soknad-modify-step`.
 
@@ -49,6 +49,8 @@ Les disse filene for skjemaet som skal migreres:
 1. **Skjema-filen** (den som importerer `@navikt/sif-common-formik-ds`)
 2. **i18n-filer** brukt av skjemaet (sjekk `validation.*`-nøkler)
 3. **package.json** for workspace som eier skjemaet
+4. **Spørsmål-komponenter** i `spørsmål/`-mappen — les alle for å fange validatorparametere (minLength, maxLength, disallowedValues, disallowInvalidBackendCharacters)
+5. **Testfiler** (`__tests__/` og `.test.ts`-filer) for stegets utils
 
 **Fase 2 — Migrer**
 
@@ -59,6 +61,8 @@ Utfør alle endringer. Bruk erstatningstabellen under.
 - Sjekk at filen er feilfri (`get_errors`).
 - Sjekk at `@sif/rhf` finnes i `package.json` → `dependencies`.
 - Sjekk at i18n-nøkler matcher nye scope-mønster.
+- Sjekk validatorparitet mot kildeappen (se Strategi B Fase 3 for detaljer).
+- Overfør relevante tester fra kildeappen.
 
 ---
 
@@ -72,11 +76,12 @@ Les skjema-filen, i18n-filer og package.json. Dokumenter følgende internt (ikke
 
 1. **Props** — hva mottar komponenten (oppgaveReferanse, callbacks, etc.)
 2. **Felter** — enum-verdier, typer, defaultValues
-3. **Valideringsregler** — per felt: hvilken validator, evt. parametere
-4. **i18n-scope** — full prefiks fra `nb.ts` (f.eks. `@ungInnsyn.inntektForm`), inkl. alle valideringsnøkler
+3. **Valideringsregler** — per felt: hvilken validator, **alle parametere** (required, minLength, maxLength, disallowedValues, disallowInvalidBackendCharacters, allowHnr, etc.)
+4. **i18n-scope** — full prefiks fra `nb.ts` (f.eks. `@ungInnsyn.inntektForm`), inkl. alle valideringsnøkler. List opp **alle mulige feilkoder** per validator.
 5. **Betinget visning** — hvilke felter vises/skjules basert på andre felter
 6. **Submit-logikk** — hva skjer ved submit (DTO-bygging, mutateAsync, onSuccess)
 7. **Knapper** — submit-label, cancel-label, loading-state
+8. **Tester** — list opp alle testfiler som dekker utils-funksjoner i steget
 
 **Fase 2 — Reimplementer**
 
@@ -97,30 +102,38 @@ Behold: `FormFields`-enum, filnavn, mappestruktur, layout/JSX inni felter.
 - Sjekk at `@sif/rhf` finnes i `package.json` → `dependencies`.
 - Sjekk at i18n-nøkler matcher nye scope-mønster.
 - Sjekk at alle Formik-importer er fjernet.
+- Sjekk validatorparitet: sammenlign hvert felt sin validator og parametere mot kildeappen. Alle parametere (minLength, maxLength, disallowedValues, disallowInvalidBackendCharacters) må være identiske.
+- Sjekk at alle mulige feilkoder fra hver validator har tilhørende i18n-nøkkel i `nb.ts` og `nn.ts`.
+- Overfør tester fra kildeappens `__tests__/` og `.test.ts`-filer for utils-funksjoner som er med videre. Tilpass import (eksplisitt `import { describe, expect, it, vi } from 'vitest'` hvis appen ikke bruker globals).
 
 ---
 
 ## Erstatningstabell
 
-| Formik (`@navikt/sif-common-formik-ds`) | RHF (`@sif/rhf` + `react-hook-form`) |
-|---|---|
-| `getTypedFormComponents<Fields, Values, ValidationError>()` | `createSifFormComponents<FormValues>()` |
-| `FormikWrapper initialValues={…} onSubmit={…} renderForm={({ values }) => …}` | `useForm<FormValues>({ defaultValues, mode: 'onSubmit', reValidateMode: 'onChange' })` + `<SifForm methods={methods} onSubmit={handleSubmit}>` |
-| `<Form submitButtonLabel cancelButtonLabel submitPending onCancel includeValidationSummary formErrorHandler>` | `<SifForm buttons={…}>` — repliker knapper med `<Button type="submit" loading={isPending}>` / `<Button type="button" onClick={onCancel}>` |
-| `values.feltNavn` (fra renderForm callback) | `methods.watch(feltNavn)` |
-| `getIntlFormErrorHandler(intl, 'scope.validation')` | `useSifValidate('scope')` → `validateField(fieldName, validator)` |
-| `validate={getYesOrNoValidator()}` (returnerer error-objekt `{ key, values }`) | `validate={validateField(fieldName, getYesOrNoValidator())}` (returnerer streng) |
-| `YesOrNo` fra `@navikt/sif-common-formik-ds` | `YesOrNo` fra `@sif/rhf` |
-| `ValidationError` type | Ikke nødvendig — fjern |
-| `getNumberFromNumberInputValue(value)` | `getNumberFromNumberInputValue` fra `@sif/rhf/utils` — samme funksjon, ny import |
-| `initialValues={data}` (pre-filled fra API) | `defaultValues: data` — funksjonelt ekvivalent |
+| Formik (`@navikt/sif-common-formik-ds`)                                                                       | RHF (`@sif/rhf` + `react-hook-form`)                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getTypedFormComponents<Fields, Values, ValidationError>()`                                                   | `createSifFormComponents<FormValues>()`                                                                                                        |
+| `FormikWrapper initialValues={…} onSubmit={…} renderForm={({ values }) => …}`                                 | `useForm<FormValues>({ defaultValues, mode: 'onSubmit', reValidateMode: 'onChange' })` + `<SifForm methods={methods} onSubmit={handleSubmit}>` |
+| `<Form submitButtonLabel cancelButtonLabel submitPending onCancel includeValidationSummary formErrorHandler>` | `<SifForm buttons={…}>` — repliker knapper med `<Button type="submit" loading={isPending}>` / `<Button type="button" onClick={onCancel}>`      |
+| `values.feltNavn` (fra renderForm callback)                                                                   | `methods.watch(feltNavn)`                                                                                                                      |
+| `getIntlFormErrorHandler(intl, 'scope.validation')`                                                           | `useSifValidate('scope')` → `validateField(fieldName, validator)`                                                                              |
+| `validate={getYesOrNoValidator()}` (returnerer error-objekt `{ key, values }`)                                | `validate={validateField(fieldName, getYesOrNoValidator())}` (returnerer streng)                                                               |
+| `YesOrNo` fra `@navikt/sif-common-formik-ds`                                                                  | `YesOrNo` fra `@sif/rhf`                                                                                                                       |
+| `ValidationError` type                                                                                        | Ikke nødvendig — fjern                                                                                                                         |
+| `getNumberFromNumberInputValue(value)`                                                                        | `getNumberFromNumberInputValue` fra `@sif/rhf/utils` — samme funksjon, ny import                                                               |
+| `initialValues={data}` (pre-filled fra API)                                                                   | `defaultValues: data` — funksjonelt ekvivalent                                                                                                 |
 
 ## Import-endringer
 
 ### Fjern
 
 ```ts
-import { getTypedFormComponents, getIntlFormErrorHandler, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import {
+    getTypedFormComponents,
+    getIntlFormErrorHandler,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
 ```
 
 ### Legg til
@@ -131,6 +144,15 @@ import { useForm } from 'react-hook-form';
 ```
 
 Validatorer fra `@navikt/sif-validation` beholdes uendret.
+
+## Komponenterstatninger
+
+Ikke importer fra gamle pakker i v2-apper. Bruk Aksel-komponenter eller `@sif/*`-pakker:
+
+| Gammel komponent | Gammel pakke                 | Erstatning   | Ny pakke                    |
+| ---------------- | ---------------------------- | ------------ | --------------------------- |
+| `ExpandableInfo` | `@navikt/sif-common-core-ds` | `ReadMore`   | `@navikt/ds-react`          |
+| `FormLayout`     | `@navikt/sif-common-ui`      | `FormLayout` | `@sif/soknad-ui/components` |
 
 ## Fallgruver
 
@@ -173,8 +195,12 @@ Bruk alltid `gap="space-16"` på `<HStack>` rundt submit/cancel-knapper — ikke
 
 ```tsx
 <HStack gap="space-16">
-    <Button type="submit" loading={isPending}>…</Button>
-    <Button variant="secondary" type="button" onClick={onCancel}>…</Button>
+    <Button type="submit" loading={isPending}>
+        …
+    </Button>
+    <Button variant="secondary" type="button" onClick={onCancel}>
+        …
+    </Button>
 </HStack>
 ```
 
@@ -208,9 +234,9 @@ melding X → synlig når felt A === NO
 
 Sjekk tabellen:
 
-| v1-kode | Feil v2-kode | Riktig v2-kode |
-|---|---|---|
-| `kronisk === YES` | `kronisk === NO` | `kronisk === YES` |
+| v1-kode             | Feil v2-kode       | Riktig v2-kode      |
+| ------------------- | ------------------ | ------------------- |
+| `kronisk === YES`   | `kronisk === NO`   | `kronisk === YES`   |
 | `harBarn === false` | `harBarn === true` | `harBarn === false` |
 
 ### Betinget visning — bruk `&&`, ikke `AriaLiveRegion`
@@ -241,15 +267,29 @@ Sjekk tabellen:
 
 ### Feilmeldinger på betingede felter
 
-Når felter skjules (unmountes) beholdes feilmeldinger i RHF's form state (RHF bruker `shouldUnregister: false` som default). Rydd opp med `clearErrors` i en `useEffect`:
+Når felter skjules (unmountes) beholdes feilmeldinger i RHF's form state (RHF bruker `shouldUnregister: false` som default). Rydd opp med `clearErrors` i en `useEffect` som kjører når betingelsen som skjuler feltet endrer seg.
+
+**Prinsipp:** dependency-arrayet skal inneholde det uttrykket som avgjør om feltet er synlig — enten det er en enkel verdi, en beregnet boolean, eller en kombinasjon.
 
 ```tsx
+// Enkel verdi som dependency
 useEffect(() => {
-    if (feltVerdi !== YesOrNo.YES) {
+    if (triggerFelt !== YesOrNo.YES) {
         methods.clearErrors([FormFields.betingetFelt]);
     }
-}, [feltVerdi]);
+}, [triggerFelt]);
+
+// Beregnet synlighetsuttrykk som dependency
+const feltErSynlig = betingelse1 && betingelse2;
+
+useEffect(() => {
+    if (!feltErSynlig) {
+        methods.clearErrors([FormFields.betingetFelt]);
+    }
+}, [feltErSynlig]);
 ```
+
+Velg den varianten som passer skjemaets logikk. Det viktige er at `clearErrors` kalles for alle felter som forsvinner fra skjermen, uavhengig av hva som utløste skjulingen.
 
 ## i18n-nøkler og valideringskoder
 
@@ -257,15 +297,15 @@ Valideringsnøkler må matche `<scope>.validation.<fieldName>.<errorCode>`.
 
 **Bruk alltid de eksakte feilkodene fra validatorens enum** — ikke dikk opp egne. Feil kode → valideringsmeldingen vises aldri.
 
-| Validator                   | Faktiske feilkoder                                                                                                          |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `getYesOrNoValidator`       | `yesOrNoIsUnanswered`                                                                                                       |
-| `getRequiredFieldValidator` | `noValue`                                                                                                                   |
-| `getStringValidator`        | `stringHasNoValue`, `stringIsTooShort`, `stringIsTooLong`                                                                   |
-| `getCheckedValidator`       | `notChecked`                                                                                                                |
-| `getListValidator`          | `listIsEmpty`, `listHasTooFewItems`, `listHasTooManyItems`                                                                  |
-| `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                               |
-| `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed`          |
+| Validator                   | Faktiske feilkoder                                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `getYesOrNoValidator`       | `yesOrNoIsUnanswered`                                                                                              |
+| `getRequiredFieldValidator` | `noValue`                                                                                                          |
+| `getStringValidator`        | `stringHasNoValue`, `stringIsTooShort`, `stringIsTooLong`                                                          |
+| `getCheckedValidator`       | `notChecked`                                                                                                       |
+| `getListValidator`          | `listIsEmpty`, `listHasTooFewItems`, `listHasTooManyItems`                                                         |
+| `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                      |
+| `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed` |
 
 Finn alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
 
@@ -326,7 +366,7 @@ Mapping-funksjoner (`toFormValues` og `toSøknadsdata`) er rene funksjoner og en
 
 1. Les `getOmBarnetSøknadsdataFromFormValues` (eller tilsvarende) i kildeappen
 2. Kjør den mentalt eller faktisk med konkrete testdata
-3. Bruk *det resultatet* som forventet output i v2-testen
+3. Bruk _det resultatet_ som forventet output i v2-testen
 
 Alternativt: utvikler skriver assertions basert på domenekunnskap — ikke AI.
 

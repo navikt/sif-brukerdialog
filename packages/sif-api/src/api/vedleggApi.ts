@@ -1,16 +1,31 @@
 import { VedleggController, zHentVedleggResponse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { getCommonEnv } from '@navikt/sif-common-env';
 
 /**
  * Extract vedlegg ID from response location header
  * @param url The location URL returned from the upload response
  * @returns The vedlegg ID
  */
-export const getVedleggIdFromResponseHeaderLocation = (url: string): string => {
+export const getVedleggIdFromResponseHeaderLocation = (url: string | undefined): string => {
+    if (!url) {
+        throw new Error('Kunne ikke hente vedleggId fordi response header Location mangler');
+    }
+
     const id = url.split('vedlegg/')[1];
     if (!id || id.length === 0) {
         throw new Error('Kunne ikke hente vedleggId fra url');
     }
     return id;
+};
+
+export const getVedleggFrontendUrl = (id: string): string => {
+    const { K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH } = getCommonEnv();
+    return `${K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}/vedlegg/${id}`;
+};
+
+export const getVedleggApiUrl = (id: string): string => {
+    const { K9_BRUKERDIALOG_PROSESSERING_API_URL } = getCommonEnv();
+    return `${K9_BRUKERDIALOG_PROSESSERING_API_URL}/vedlegg/${id}`;
 };
 
 /**

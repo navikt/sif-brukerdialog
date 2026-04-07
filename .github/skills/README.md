@@ -71,3 +71,8 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Når: sette opp eller fylle inn innhold i oppsummeringssteget.
     - Triggerord: `oppsummering`, `OppsummeringSteg`, `FormSummary`, `OmSøkerOppsummering`, `bekreftelsescheckbox`.
     - Fil: `.github/skills/sif-soknad-oppsummering/SKILL.md`
+
+- `sif-soknad-vedlegg-step`
+    - Når: implementere eller endre vedleggssteg med opplasting, sletting, hydration og mellomlagring.
+    - Triggerord: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
+    - Fil: `.github/skills/sif-soknad-vedlegg-step/SKILL.md`

@@ -21,13 +21,14 @@ export {
     YesOrNo,
 } from './components';
 export type { DatepickerLimitations } from './components/SifDatepicker';
-export { useFocusOnValidationError } from './hooks';
-export { sifValidate, useSifValidate } from './validation';
 export {
     canRetryFileUpload,
     FileUploadErrorReason,
     getFileUploadErrorReason,
 } from './components/SifFileUpload/fileUploadErrorUtils';
 export { SifFileUpload } from './components/SifFileUpload/SifFileUpload';
+export type { PersistedFile, PersistedFileInfo, UploadedFile } from './components/SifFileUpload/types';
+export { isPersistedFile, mapFileToPersistedFile } from './components/SifFileUpload/types';
 export { useFileUploader } from './components/SifFileUpload/useFileUploader';
-export type { UploadedFile, PersistedFileInfo } from './components/SifFileUpload/types';
+export { useFocusOnValidationError } from './hooks';
+export { sifValidate, useSifValidate } from './validation';

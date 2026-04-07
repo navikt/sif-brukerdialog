@@ -355,6 +355,11 @@ Disse filene er like på tvers av apper og trenger minimal eller ingen tilpasnin
 | `soknad/AppForm.tsx`              | Ingenting                                  |
 | `wrappers/AppErrorBoundary.tsx`   | Ingenting                                  |
 
+`useSoknadMellomlagring.ts` eksponerer både `lagreSøknad()` og `lagreSøknadSteg(stepId, values)`.
+
+- Bruk `lagreSøknad()` når hele søknadsstate allerede er oppdatert i store, for eksempel ved «fortsett senere».
+- Bruk `lagreSøknadSteg(stepId, values)` når et steg trenger å mellomlagre ferske RHF-verdier før submit, for eksempel når vedlegg lastes opp eller slettes.
+
 ### 6. Tilpass soknadContext.ts
 
 Tre punkter å tilpasse:

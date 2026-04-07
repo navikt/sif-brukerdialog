@@ -1,4 +1,5 @@
 import { BaseSøknadsdata } from '@sif/soknad/types';
+import { PersistedVedlegg } from '@sif/soknad-forms';
 
 import { SøknadStepId } from '../setup/config/soknadStepConfig';
 
@@ -9,15 +10,6 @@ export type BarnSøknadsdata = {
 export type BostedSøknadsdata = {
     borITrondheim: boolean;
 };
-
-export interface PersistedVedlegg {
-    id: string;
-    url: string;
-    name: string;
-    size: number;
-    type: string;
-    lastModified: number;
-}
 
 export type VedleggSøknadsdata = {
     vedlegg: PersistedVedlegg[];

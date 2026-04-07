@@ -2,6 +2,8 @@ import { ProblemDetail, zProblemDetail } from '@navikt/k9-brukerdialog-prosesser
 import axios, { AxiosError, isAxiosError } from 'axios';
 import { z, ZodError } from 'zod';
 
+import { invalidParameterViolationSchema, InvalidParameterViolation } from '../types';
+
 export enum ApiErrorType {
     ZodValidationError = 'ZodValidationError',
     NetworkError = 'NetworkError',
@@ -127,4 +129,33 @@ export const isProblemDetail = (obj: unknown): obj is ProblemDetail => {
         return true;
     }
     return false;
+};
+
+export const getInvalidParametersFromApiError = (error: ApiError | null): InvalidParameterViolation[] | undefined => {
+    if (!error || !isApiAxiosError(error)) {
+        return undefined;
+    }
+
+    const data = error.originalError.response?.data;
+    if (!data || typeof data !== 'object') {
+        return undefined;
+    }
+
+    const invalidParameters =
+        'invalidParameters' in data
+            ? (data as { invalidParameters?: unknown }).invalidParameters
+            : 'invalid_parameters' in data
+              ? (data as { invalid_parameters?: unknown }).invalid_parameters
+              : undefined;
+
+    if (!Array.isArray(invalidParameters)) {
+        return undefined;
+    }
+
+    const violations = invalidParameters.flatMap((item) => {
+        const result = invalidParameterViolationSchema.safeParse(item);
+        return result.success ? [result.data] : [];
+    });
+
+    return violations.length > 0 ? violations : undefined;
 };

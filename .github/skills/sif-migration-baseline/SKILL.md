@@ -37,6 +37,28 @@ Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppset
 - Hvis nye tekster er strengt nødvendige, skal de hentes fra eksisterende kildeapp, etablert copy eller eksplisitt brukerbestilling.
 - AI skal ikke finne på eller forfatte nye tekster på egen hånd i migreringsoppgaver.
 
+## Regler for validering i migrering
+
+- Alle valideringsparametere fra kildeappen (minLength, maxLength, disallowedValues, disallowInvalidBackendCharacters, etc.) **må** overføres identisk til målappen.
+- Sammenlign validator-kall felt for felt mellom kilde og mål. Sjekk spesielt:
+  - `getStringValidator` — minLength, maxLength, disallowInvalidBackendCharacters
+  - `getFødselsnummerValidator` — disallowedValues (f.eks. søkers eget fnr), allowHnr
+  - `getDateValidator` — min, max
+- For hvert felt: alle mulige error-koder fra validatoren **må** ha tilhørende i18n-nøkkel i `nb.ts` og `nn.ts`. Sjekk feilkode-enumen i `packages/sif-validation/src/get*Validator.ts` mot nøklene i kildeappen.
+- Ikke fjern validering under migrering. Strengere validering kan bare legges til med eksplisitt bestilling.
+
+## Regler for tester i migrering
+
+- Når kildeappen har tester for utility-funksjoner som overføres til målappen, **må** testene også overføres.
+- Tilpass import-stier og vitest-importmønster til målappens oppsett (f.eks. eksplisitt `import { describe, expect, it, vi } from 'vitest'` hvis appen ikke bruker globals).
+- Dropp tester kun når funksjonen de tester er fjernet eller erstattet med en annen mekanisme.
+- Sjekk `__tests__/`-mapper og `.test.ts`-filer i kildeappens steg-mapper som del av steg-migrering.
+
+## Regler for komponentvalg i migrering
+
+- Ikke importer fra gamle pakker (`@navikt/sif-common-core-ds`, `@navikt/sif-common-formik-ds`, `@navikt/sif-common-ui`). Bruk Aksel-komponenter (`@navikt/ds-react`) eller pakker fra `@sif/*` i stedet.
+- Vanlige erstatninger: `ExpandableInfo` → `ReadMore` fra `@navikt/ds-react`.
+
 ## Bootstrap for new app
 
 Bruk dette som standard startpunkt for en ny migreringsapp før funksjonelt arbeid.

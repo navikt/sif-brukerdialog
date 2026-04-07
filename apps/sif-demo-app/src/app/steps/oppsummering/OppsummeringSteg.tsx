@@ -8,10 +8,10 @@ import { dateFormatter, formatName } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { PersistedVedlegg } from '@sif/soknad-forms';
 import { VedleggSummaryList } from '@sif/soknad-ui/components';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';
-import { PersistedVedlegg } from '../../types/Soknadsdata';
 import { getSøknadApiDataFromSøknad } from '../../utils/soknadsdataToSoknadApiData';
 
 enum FormFields {
