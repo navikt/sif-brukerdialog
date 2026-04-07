@@ -2,6 +2,8 @@ import { ProblemDetail, zProblemDetail } from '@navikt/k9-brukerdialog-prosesser
 import axios, { AxiosError, isAxiosError } from 'axios';
 import { z, ZodError } from 'zod';
 
+import { InvalidParameterViolation } from '../types';
+
 export enum ApiErrorType {
     ZodValidationError = 'ZodValidationError',
     NetworkError = 'NetworkError',
@@ -128,10 +130,6 @@ export const isProblemDetail = (obj: unknown): obj is ProblemDetail => {
     }
     return false;
 };
-
-export interface InvalidParameterViolation {
-    parameterName: string;
-}
 
 export const getInvalidParametersFromApiError = (error: ApiError | null): InvalidParameterViolation[] | undefined => {
     if (!error || !isApiAxiosError(error)) {

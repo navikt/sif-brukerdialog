@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const omBarnetStegMessages_nb = {
     'omBarnetSteg.tittel': 'Barn',
 
@@ -64,7 +65,7 @@ export const omBarnetStegMessages_nb = {
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
         'Skriv inn en beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb.',
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
-        'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb kan ikke inneholde flere enn 2000 tegn.',
+        'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb kan ikke inneholde flere enn 1000 tegn.',
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb må være på minst 5 tegn.',
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringHasInvalidCharacters':

@@ -69,7 +69,7 @@ export const omBarnetStegMessages_nn: Record<keyof typeof omBarnetStegMessages_n
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
         'Skriv inn ei skildring av korleis barnet sin sjukdom eller funksjonshemming gjer det meir sannsynleg at du må vera borte frå jobb.',
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
-        'Skildringa av korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, kan ikkje vera lengre enn 2000 teikn.',
+        'Skildringa av korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, kan ikkje vera lengre enn 1000 teikn.',
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Skildringa på korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, må vera minst 5 teikn lang.',
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringHasInvalidCharacters':

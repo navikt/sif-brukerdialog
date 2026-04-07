@@ -108,7 +108,7 @@ export function VedleggPanel<T extends FieldValues>({
                         {acceptedFiles.map((file, index) => (
                             <FileUpload.Item
                                 as="li"
-                                key={index}
+                                key={file.info?.id ?? index}
                                 file={file.file}
                                 onFileClick={
                                     file.info?.url
