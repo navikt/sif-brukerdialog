@@ -19,7 +19,9 @@ describe('useFileUploader', () => {
         const file = makeFile();
         const { result } = renderHook(() => useFileUploader({ uploadFile, deleteFile }));
 
-        await act(() => result.current.onSelect([{ file, error: false }]));
+        await act(async () => {
+            await result.current.onSelect([{ file, error: false }]);
+        });
 
         expect(uploadFile).toHaveBeenCalledWith(file);
         expect(result.current.acceptedFiles[0].uploaded).toBe(true);
@@ -27,13 +29,39 @@ describe('useFileUploader', () => {
             id: 'id-1',
             url: 'http://example.com/id-1',
         });
+        expect(result.current.acceptedFiles[0].file).not.toBeInstanceOf(File);
+        expect(result.current.acceptedFiles[0].file).toMatchObject({
+            isPersistedFile: true,
+            name: file.name,
+            size: file.size,
+            type: file.type,
+            lastModified: file.lastModified,
+        });
+    });
+
+    it('gir duplikate filer ulike clientId-er', async () => {
+        const fileA = makeFile('same.jpg');
+        const fileB = makeFile('same.jpg');
+        const { result } = renderHook(() => useFileUploader({ uploadFile, deleteFile }));
+
+        await act(async () => {
+            await result.current.onSelect([
+                { file: fileA, error: false },
+                { file: fileB, error: false },
+            ]);
+        });
+
+        expect(result.current.acceptedFiles).toHaveLength(2);
+        expect(result.current.acceptedFiles[0].clientId).not.toBe(result.current.acceptedFiles[1].clientId);
     });
 
     it('legger filer avvist av dropzone (fileType) i rejectedFiles uten å laste opp', async () => {
         const file = makeFile();
         const { result } = renderHook(() => useFileUploader({ uploadFile, deleteFile }));
 
-        await act(() => result.current.onSelect([{ file, error: true, reasons: ['fileType'] } as any]));
+        await act(async () => {
+            await result.current.onSelect([{ file, error: true, reasons: ['fileType'] } as any]);
+        });
 
         expect(uploadFile).not.toHaveBeenCalled();
         expect(result.current.rejectedFiles[0].reasons).toEqual(['fileType']);
@@ -43,7 +71,9 @@ describe('useFileUploader', () => {
         const failingUpload = vi.fn().mockRejectedValue(new Error('ECONNABORTED'));
         const { result } = renderHook(() => useFileUploader({ uploadFile: failingUpload, deleteFile }));
 
-        await act(() => result.current.onSelect([{ file: makeFile(), error: false }]));
+        await act(async () => {
+            await result.current.onSelect([{ file: makeFile(), error: false }]);
+        });
 
         expect(result.current.rejectedFiles[0].canRetry).toBe(true);
     });
@@ -52,7 +82,9 @@ describe('useFileUploader', () => {
         const failingUpload = vi.fn().mockRejectedValue({ response: { status: 400 } });
         const { result } = renderHook(() => useFileUploader({ uploadFile: failingUpload, deleteFile }));
 
-        await act(() => result.current.onSelect([{ file: makeFile(), error: false }]));
+        await act(async () => {
+            await result.current.onSelect([{ file: makeFile(), error: false }]);
+        });
 
         expect(result.current.rejectedFiles[0].reasons).toEqual([FileUploadErrorReason.BAD_REQUEST]);
         expect(result.current.rejectedFiles[0].canRetry).toBe(false);
@@ -73,7 +105,9 @@ describe('useFileUploader', () => {
         ];
         const { result } = renderHook(() => useFileUploader({ initialFiles: initial, uploadFile, deleteFile }));
 
-        await act(() => result.current.onRemove(result.current.acceptedFiles[0]));
+        await act(async () => {
+            await result.current.onRemove(result.current.acceptedFiles[0]);
+        });
 
         expect(deleteFile).toHaveBeenCalledWith('rem-1');
         expect(result.current.acceptedFiles).toHaveLength(0);
@@ -82,11 +116,20 @@ describe('useFileUploader', () => {
     it('onRetryUpload laster opp filen på nytt og flytter den til acceptedFiles', async () => {
         const file = makeFile();
         const initial = [
-            { file, pending: false, uploaded: false, error: true, reasons: ['ECONNABORTED'], canRetry: true },
+            {
+                file,
+                pending: false,
+                uploaded: false,
+                error: true,
+                reasons: ['ECONNABORTED'],
+                canRetry: true,
+            },
         ];
         const { result } = renderHook(() => useFileUploader({ initialFiles: initial, uploadFile, deleteFile }));
 
-        await act(() => result.current.onRetryUpload(result.current.rejectedFiles[0]));
+        await act(async () => {
+            await result.current.onRetryUpload(result.current.rejectedFiles[0]);
+        });
 
         expect(uploadFile).toHaveBeenCalledWith(file);
         expect(result.current.acceptedFiles[0].uploaded).toBe(true);

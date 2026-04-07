@@ -11,6 +11,8 @@ interface UseFileUploaderProps {
     onFilesChanged?: (files: UploadedFile[]) => void;
 }
 
+let fileIdCounter = 0;
+
 export const useFileUploader = ({
     initialFiles = [],
     uploadFile,
@@ -69,6 +71,7 @@ export const useFileUploader = ({
             const withError: UploadedFile[] = selectedFiles
                 .filter((f) => f.error)
                 .map((f) => ({
+                    clientId: `file-${++fileIdCounter}`,
                     file: f.file,
                     pending: false,
                     uploaded: false,
@@ -79,6 +82,7 @@ export const useFileUploader = ({
             const toUpload: UploadedFile[] = selectedFiles
                 .filter((f) => !f.error)
                 .map((f) => ({
+                    clientId: `file-${++fileIdCounter}`,
                     file: f.file,
                     pending: true,
                     uploaded: false,

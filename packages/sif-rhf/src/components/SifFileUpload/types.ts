@@ -23,6 +23,7 @@ export const mapFileToPersistedFile = (file: File | PersistedFile): PersistedFil
 });
 
 export interface UploadedFile {
+    clientId?: string;
     file: File | PersistedFile;
     pending: boolean;
     uploaded: boolean;

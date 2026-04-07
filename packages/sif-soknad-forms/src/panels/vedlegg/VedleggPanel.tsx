@@ -28,6 +28,9 @@ const getUploadedVedleggIds = (files: UploadedFile[]): string =>
         .sort()
         .join(',');
 
+const getFileKey = (file: UploadedFile): string =>
+    file.info?.id ?? file.clientId ?? `${file.file.name}-${file.file.lastModified}-${file.file.size}`;
+
 interface VedleggPanelLimits {
     MAX_FILES: number;
     MAX_SIZE_MB: number;
@@ -133,10 +136,10 @@ export function VedleggPanel<T extends FieldValues>({
                         <FileUploadSizeProgress maxSizeBytes={MAX_TOTAL_VEDLEGG_SIZE_BYTES} usedSizeBytes={totalSize} />
                     )}
                     <VStack as="ul" gap="space-12">
-                        {acceptedFiles.map((file, index) => (
+                        {acceptedFiles.map((file) => (
                             <FileUpload.Item
                                 as="li"
-                                key={file.info?.id ?? index}
+                                key={getFileKey(file)}
                                 file={file.file}
                                 onFileClick={
                                     file.info?.url
@@ -160,10 +163,10 @@ export function VedleggPanel<T extends FieldValues>({
                         <SifSoknadFormsText id="@sifSoknadForms.vedlegg.filerAvvist.tittel" />
                     </Heading>
                     <VStack as="ul" gap="space-12">
-                        {rejectedFiles.map((file, index) => (
+                        {rejectedFiles.map((file) => (
                             <FileUpload.Item
                                 as="li"
-                                key={file.info?.id ?? index}
+                                key={getFileKey(file)}
                                 file={file.file}
                                 error={getRejectedFileError(
                                     { text },
