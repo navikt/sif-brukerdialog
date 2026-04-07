@@ -39,20 +39,20 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@storybook/addon-a11y": "10.3.3",
-        "@storybook/addon-docs": "10.3.3",
-        "@storybook/addon-onboarding": "10.3.3",
-        "@storybook/addon-vitest": "10.3.3",
-        "@storybook/react-vite": "10.3.3",
+        "@storybook/addon-a11y": "10.3.4",
+        "@storybook/addon-docs": "10.3.4",
+        "@storybook/addon-onboarding": "10.3.4",
+        "@storybook/addon-vitest": "10.3.4",
+        "@storybook/react-vite": "10.3.4",
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
-        "eslint-plugin-storybook": "10.3.3",
+        "eslint-plugin-storybook": "10.3.4",
         "react": "19.2.4",
         "react-dom": "19.2.4",
-        "react-router-dom": "7.13.2",
-        "storybook": "10.3.3",
+        "react-router-dom": "7.14.0",
+        "storybook": "10.3.4",
         "typescript": "5.9.3",
-        "vite": "8.0.2",
-        "vitest": "4.1.1"
+        "vite": "8.0.3",
+        "vitest": "4.1.2"
     }
 }
