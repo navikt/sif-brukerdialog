@@ -27,7 +27,8 @@ export {
     getFileUploadErrorReason,
 } from './components/SifFileUpload/fileUploadErrorUtils';
 export { SifFileUpload } from './components/SifFileUpload/SifFileUpload';
-export type { PersistedFileInfo, UploadedFile } from './components/SifFileUpload/types';
+export type { PersistedFile, PersistedFileInfo, UploadedFile } from './components/SifFileUpload/types';
+export { isPersistedFile, mapFileToPersistedFile } from './components/SifFileUpload/types';
 export { useFileUploader } from './components/SifFileUpload/useFileUploader';
 export { useFocusOnValidationError } from './hooks';
 export { sifValidate, useSifValidate } from './validation';

@@ -12,6 +12,7 @@ Signalord: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedleg
 ## Mål
 
 - Opplasting, sletting og hydration virker
+- Mellomlagring oppdateres når vedlegg lastes opp eller slettes
 - Submit sperres ved pending uploads
 - DTO får vedleggs-IDer
 - Oppsummering kan vise vedlegg som lenker
@@ -78,6 +79,7 @@ export const toSøknadsdata = (values: <Prefix>FormValues): <Prefix>Søknadsdata
 ```
 
 Hjelperne gjør følgende:
+
 - `toUploadedFile(vedlegg)` — hydrerer et `PersistedVedlegg` til `UploadedFile` (for react-hook-form)
 - `isUploadedVedlegg(file)` — type guard som filtrerer bort feil/pending filer
 - `toPersistedVedlegg(file, backendUrl)` — mapper tilbake til `PersistedVedlegg` med file-metadata og `backendUrl`
@@ -90,6 +92,7 @@ const defaultValues = useStepDefaultValues<<Prefix>FormValues, <Prefix>Søknadsd
     toFormValues: to<Prefix>FormValues,
 });
 
+const { lagreSøknadSteg } = useSøknadMellomlagring();
 const methods = useSøknadRhfForm<<Prefix>FormValues>(stepId, defaultValues);
 const vedlegg: UploadedFile[] = methods.watch(<Prefix>FormFields.vedlegg) ?? [];
 const hasPendingUploads = vedlegg.some((file) => file.pending);
@@ -99,6 +102,7 @@ const hasPendingUploads = vedlegg.some((file) => file.pending);
     <VedleggPanel<<Prefix>FormValues>
         name={<Prefix>FormFields.vedlegg}
         initialFiles={defaultValues[<Prefix>FormFields.vedlegg]}
+        onVedleggEndret={() => lagreSøknadSteg(stepId, methods.getValues())}
         label={text('<prefix>Steg.vedlegg.label')}
         uploadLaterURL={getLenker(intl.locale).ettersend}
         showPictureScanningGuide={true}
@@ -107,6 +111,11 @@ const hasPendingUploads = vedlegg.some((file) => file.pending);
 ```
 
 Bruk `initialFiles={defaultValues[...]}`. Ikke send `watch(...)` inn i `initialFiles`.
+
+Vedleggssteg skal alltid mellomlagre når vedleggslisten er ferdig oppdatert etter opplasting eller sletting.
+
+- Bruk `onVedleggEndret` fra `VedleggPanel`. Panelet håndterer init-guard og pending-filter internt — callbacken fyrer bare når vedleggslisten faktisk har endret seg og ingen filer er pending.
+- Kall `lagreSøknadSteg(stepId, methods.getValues())`, ikke `lagreSøknad()`, siden vedleggsendringen ellers ikke nødvendigvis finnes i `søknadsdata` i store ennå.
 
 ## 5. Wire opp mapping
 
@@ -137,7 +146,7 @@ Bruk vedlegg fra `state.søknadsdata`, ikke DTO.
 ```tsx
 import { VedleggSummaryList } from '@sif/soknad-ui/components';
 
-<VedleggSummaryList vedlegg={state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []} />
+<VedleggSummaryList vedlegg={state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []} />;
 ```
 
 DTO har normalt bare ID-er. Oppsummering trenger `name`, `url` og `size`.

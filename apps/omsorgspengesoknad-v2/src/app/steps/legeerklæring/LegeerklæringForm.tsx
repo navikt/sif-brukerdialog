@@ -1,7 +1,7 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import getLenker from '@app/lenker';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
+import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { LegeerklæringSøknadsdata } from '@app/types/Soknadsdata';
 import { UploadedFile } from '@sif/rhf';
@@ -21,6 +21,7 @@ export const LegeerklæringForm = () => {
         stepId,
         toFormValues: toLegeerklæringFormValues,
     });
+    const { lagreSøknadSteg } = useSøknadMellomlagring();
     const { onSubmit, isPending } = useStepSubmit({ stepId, toSøknadsdata });
     const methods = useSøknadRhfForm<LegeerklæringFormValues>(stepId, defaultValues);
     const vedlegg: UploadedFile[] = methods.watch(LegeerklæringFormFields.vedlegg) ?? [];
@@ -46,6 +47,7 @@ export const LegeerklæringForm = () => {
                 <VedleggPanel<LegeerklæringFormValues>
                     name={LegeerklæringFormFields.vedlegg}
                     initialFiles={defaultValues[LegeerklæringFormFields.vedlegg]}
+                    onVedleggEndret={() => lagreSøknadSteg(stepId, methods.getValues())}
                     label={text('legeerklæringSteg.vedlegg.label')}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     showPictureScanningGuide={true}

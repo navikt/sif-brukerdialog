@@ -1,4 +1,4 @@
-import { PersistedFileInfo, UploadedFile } from '@sif/rhf';
+import { PersistedFile, PersistedFileInfo, UploadedFile } from '@sif/rhf';
 
 export interface PersistedVedlegg {
     id: string;
@@ -10,18 +10,16 @@ export interface PersistedVedlegg {
     lastModified: number;
 }
 
-const createPersistedFile = ({ lastModified, name, size, type }: PersistedVedlegg): File => {
-    const file = new File([], name, { lastModified, type });
-    try {
-        Object.defineProperty(file, 'size', { value: size });
-    } catch {
-        // File.size kan være read-only i enkelte miljøer
-    }
-    return file;
-};
+const toPersistedFile = ({ lastModified, name, size, type }: PersistedVedlegg): PersistedFile => ({
+    isPersistedFile: true,
+    name,
+    lastModified,
+    size,
+    type,
+});
 
 export const toUploadedFile = (vedlegg: PersistedVedlegg): UploadedFile => ({
-    file: createPersistedFile(vedlegg),
+    file: toPersistedFile(vedlegg),
     pending: false,
     uploaded: true,
     error: false,
