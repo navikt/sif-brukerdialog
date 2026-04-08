@@ -29,14 +29,14 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.9.0",
+        "@navikt/aksel-icons": "8.9.1",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-react": "8.9.0",
+        "@navikt/ds-react": "8.9.1",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@sentry/react": "10.47.0",
-        "react-hook-form": "7.72.0",
+        "react-hook-form": "7.72.1",
         "react-intl": "10.1.1",
         "react-router-dom": "7.14.0",
         "zustand": "5.0.12"

@@ -25,10 +25,10 @@
         "pw:start": "vite preview --base / --config vite.playwright.config.ts"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.9.0",
-        "@navikt/ds-css": "8.9.0",
-        "@navikt/ds-react": "8.9.0",
-        "@navikt/ds-tailwind": "8.9.0",
+        "@navikt/aksel-icons": "8.9.1",
+        "@navikt/ds-css": "8.9.1",
+        "@navikt/ds-react": "8.9.1",
+        "@navikt/ds-tailwind": "8.9.1",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
@@ -49,7 +49,7 @@
         "csp-header": "6.3.1",
         "dayjs": "1.11.20",
         "formik": "2.4.9",
-        "html-react-parser": "5.2.17",
+        "html-react-parser": "6.0.0",
         "jsdom": "28.1.0",
         "object-hash": "3.0.0",
         "react": "19.2.4",
