@@ -6,13 +6,6 @@ import Checker from 'vite-plugin-checker';
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react(), Checker({ typescript: true })],
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
-            },
-        },
-    },
     test: {
         globals: true,
         environment: 'jsdom',

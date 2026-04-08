@@ -53,12 +53,5 @@ export default defineConfig(({ mode }) => {
         build: {
             sourcemap: true,
         },
-        css: {
-            preprocessorOptions: {
-                scss: {
-                    api: 'modern-compiler', // or "modern", "legacy"
-                },
-            },
-        },
     };
 });
