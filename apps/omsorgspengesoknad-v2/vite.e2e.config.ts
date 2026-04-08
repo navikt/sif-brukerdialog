@@ -34,10 +34,7 @@ export default defineConfig({
     },
     base: '/familie/sykdom-i-familien/soknad/omsorgspenger/',
     define: {
-        __IS_DEMO__: false,
-        __INJECT_DECORATOR_CLIENT_SIDE__: false,
-        __USE_FIXED_MOCKED_DATE__: true,
-        __IS_GITHUB_PAGES__: false,
+        __SCENARIO_HEADER__: true,
     },
     server: {
         host: '127.0.0.1',

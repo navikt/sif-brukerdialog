@@ -47,5 +47,8 @@ export default defineConfig(({ mode }) => {
         build: {
             sourcemap: true,
         },
+        define: {
+            __SCENARIO_HEADER__: false,
+        },
     };
 });
