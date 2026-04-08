@@ -1,13 +1,7 @@
----
 name: sif-soknad-add-step
 description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad og @sif/rhf — oppretter alle filer og oppdaterer config/routing/i18n.
 ---
-
-# sif-soknad-add-step Skill
-
-## Formål
-
-Scaffold et komplett nytt steg i en søknadsapp. Etter at skillen er kjørt skal steget kompilere, rute korrekt og vise et tomt skjema klart for domeneinnhold.
+# sif-soknad-add-step
 
 ## Når skal skillen brukes
 

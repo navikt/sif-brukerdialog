@@ -1,13 +1,7 @@
----
 name: sif-soknad-modify-step
 description: Legg til nye spørsmål/felter i et eksisterende steg i en søknadsapp som bruker @sif/soknad og @sif/rhf.
 ---
-
-# sif-soknad-modify-step Skill
-
-## Formål
-
-Utvid et eksisterende steg med nye spørsmål. Etter at skillen er fulgt skal steget kompilere, nye felter vises korrekt (evt. betinget) og data mappes riktig til/fra søknadsdata.
+# sif-soknad-modify-step
 
 ## Når skal skillen brukes
 

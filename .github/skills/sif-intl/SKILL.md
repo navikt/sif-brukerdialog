@@ -1,9 +1,8 @@
----
 name: sif-intl
 description: Mønster for typesikker i18n (nb/nn) i apper og pakker — implementering, parametersjekk og meningssjekk.
 ---
 
-# sif-intl Skill
+# sif-intl
 
 ## Når skal skillen brukes
 

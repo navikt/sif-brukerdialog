@@ -17,11 +17,6 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `soknadContext`, `stepConfig`, `useStepSubmit`, `useStepDefaultValues`, `VelkommenPage`, `KvitteringPage`, `Soknad.tsx`, `routing-skall`.
     - Fil: `.github/skills/sif-soknad-setup/SKILL.md`
 
-- `monorepo-frontend`
-    - Når: generelt frontendarbeid i monorepo (workspace-scoping, scriptvalg, validering).
-    - Triggerord: `apps/**`, `packages/**`, `lint:eslint`, `lint:tsc`, `test`, Turborepo.
-    - Fil: `.github/skills/monorepo-frontend/SKILL.md`
-
 - `aksel-spacing`
     - Når: layout/spacing med Aksel Design System.
     - Triggerord: `Box`, `VStack`, `HStack`, `HGrid`, `space-*`.
@@ -58,14 +53,9 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Fil: `.github/skills/sif-server-proxy-api-config/SKILL.md`
 
 - `sif-playwright`
-    - Når: sette opp Playwright e2e-testing i en app-workspace.
-    - Triggerord: `playwright`, `e2e`, `end-to-end`, `playwright.config`, `test:e2e`, `smoke test`, `første e2e test`.
+    - Når: sette opp Playwright e2e-testing i en app-workspace, inkludert accessibility-testing med axe.
+    - Triggerord: `playwright`, `e2e`, `end-to-end`, `playwright.config`, `test:e2e`, `smoke test`, `første e2e test`, `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`.
     - Fil: `.github/skills/sif-playwright/SKILL.md`
-
-- `sif-playwright-a11y`
-    - Når: legge til accessibility-testing med axe i Playwright-tester.
-    - Triggerord: `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`.
-    - Fil: `.github/skills/sif-playwright-a11y/SKILL.md`
 
 - `sif-soknad-oppsummering`
     - Når: sette opp eller fylle inn innhold i oppsummeringssteget.

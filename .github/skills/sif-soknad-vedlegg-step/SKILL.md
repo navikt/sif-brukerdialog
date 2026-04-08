@@ -1,13 +1,9 @@
----
 name: sif-soknad-vedlegg-step
 description: Implementer et vedleggssteg i en v2-app — VedleggPanel, PersistedVedlegg, hydration og MSW-handlere.
 ---
-
-# sif-soknad-vedlegg-step Skill
+# sif-soknad-vedlegg-step
 
 ## Bruk når
-
-Signalord: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
 
 ## Mål
 

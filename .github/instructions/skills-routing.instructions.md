@@ -27,8 +27,6 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-soknad-modify-step`:
     - Endre eksisterende steg: `legg til spørsmål`, `nytt felt`, `ny checkbox`, `ny radiogruppe`, `utvid steg`, `følgespørsmål`, `betinget visning`, `vis bare hvis`.
     - Komponenter: `CheckboxGroup`, `RadioGroup`, `TextField`, `Datepicker`, `Select`, `createSifFormComponents`, `getListValidator`.
-- `monorepo-frontend`:
-    - Generell frontend-arbeid i `apps/**` eller `packages/**`, workspace-scoping, lint/test-kjoring.
 - `aksel-spacing`:
     - Layout/spacing med Aksel-komponenter (`Box`, `VStack`, `HStack`, `HGrid`) og spacing-tokens.
 - `sif-formik-to-rhf`:
@@ -47,9 +45,7 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - E2E-oppsett: `playwright`, `e2e`, `end-to-end`, `playwright.config`, `test:e2e`, `dev:e2e`.
     - Struktur: `vite.e2e.config`, `playwright/tests`, `scenario i playwright`, `browserrouter i test`.
     - Første tester: `smoke test`, `første e2e test`.
-- `sif-playwright-a11y`:
-    - Accessibility: `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`.
-    - Oppsett: `a11y i playwright`, `uu-test i e2e`.
+    - Accessibility: `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`, `a11y i playwright`, `uu-test i e2e`.
 - `sif-soknad-oppsummering`:
     - Oppsett av oppsummeringssteg: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny oppsummering`, `oppsummeringsside`.
     - Innhold: `FormSummary`, `OmSøkerOppsummering`, `OmBarnetOppsummering`, `VedleggOppsummering`, bekreftelsescheckbox.
@@ -68,8 +64,7 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om å legge til nye felter/spørsmål i et eksisterende steg, prioriter `sif-soknad-modify-step`. Hvis det er et helt nytt steg, prioriter `sif-soknad-add-step`.
 - Hvis oppgaven handler om å bytte formik med rhf i et eksisterende skjema (uten nye felter), prioriter `sif-formik-to-rhf`.
 - Hvis oppgaven handler om initial data-henting (kombinere hooks, loading/error-state før søknaden starter), prioriter `sif-initial-data-loader` over `sif-api`.
-- Hvis oppgaven handler om Playwright/e2e-oppsett i app, prioriter `sif-playwright`.
-- Hvis oppgaven handler om accessibility/axe i Playwright-tester, prioriter `sif-playwright-a11y`.
+- Hvis oppgaven handler om Playwright/e2e-oppsett eller accessibility/axe i Playwright-tester, prioriter `sif-playwright`.
 - Hvis oppgaven handler om å sette opp `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` eller `steps/index.ts`, prioriter `sif-soknad-setup`.
 - Hvis oppgaven handler om å sette opp eller fylle inn innhold i `OppsummeringSteg`, prioriter `sif-soknad-oppsummering`.
 - Hvis oppgaven handler om filvedlegg i et steg (`VedleggPanel`, `PersistedVedlegg`, opplasting), prioriter `sif-soknad-vedlegg-step`.
