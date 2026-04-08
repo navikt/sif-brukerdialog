@@ -24,6 +24,7 @@
         "@navikt/ds-tailwind": "8.9.1",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-faro": "workspace:*",
