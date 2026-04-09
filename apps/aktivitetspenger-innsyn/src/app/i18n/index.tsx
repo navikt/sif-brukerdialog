@@ -1,4 +1,3 @@
-import { uiMessages } from '@navikt/sif-common-ui';
 import { typedIntlHelper } from '@navikt/sif-common-utils';
 import { ungUiMessages } from '@sif/ung-innsyn/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -8,7 +7,6 @@ import { appMessages_nb } from './nb/appMessages';
 const libMessages = {
     nb: {
         ...ungUiMessages.nb,
-        ...uiMessages.nb,
     },
 };
 

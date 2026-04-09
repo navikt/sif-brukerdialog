@@ -62,11 +62,4 @@ export default defineConfig({
         copyPublicDir: false,
     },
     publicDir: false,
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
-            },
-        },
-    },
 });
