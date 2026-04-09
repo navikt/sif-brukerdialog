@@ -1,5 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 
 import { StoryFormikWrapper } from '../../../storybook/decorators/StoryFormikWrapper';
 import * as stories from '../../../storybook/stories/components/FormikCheckbox.stories';
@@ -7,7 +8,7 @@ import * as stories from '../../../storybook/stories/components/FormikCheckbox.s
 const { Default } = stories;
 
 describe('<FormikCheckbox>', () => {
-    const handleChange = vitest.fn();
+    const handleChange = vi.fn();
 
     const renderComponent = (content) => {
         return render(<StoryFormikWrapper parameters={{ includeButtons: true }}>{content}</StoryFormikWrapper>);
