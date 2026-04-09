@@ -2,10 +2,8 @@
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
         "outDir": "build/dist",
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
-        "baseUrl": "./",
         "paths": {
-            "@app/*": ["src/app/*"],
+            "@app/*": ["./src/app/*"],
             "vite": ["../../node_modules/vite"]
         }
     },

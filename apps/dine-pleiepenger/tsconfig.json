@@ -1,11 +1,8 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
-        "target": "es5",
-        "downlevelIteration": true,
-        "lib": ["dom", "dom.iterable", "esnext"],
+        "lib": ["DOM", "ESNext"],
         "outDir": "build/dist",
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
         "plugins": [
             {
                 "name": "next"
@@ -15,10 +12,8 @@
             "@/*": ["./src/*"]
         },
         "allowJs": true,
-        "strict": true,
         "incremental": true,
         "isolatedModules": true,
-        "resolveJsonModule": true,
         "jsx": "preserve"
     },
     "exclude": ["node_modules", "pages/build", "**.js", "dist"],

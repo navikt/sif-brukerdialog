@@ -4,8 +4,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "start": "node ./server.js",
-        "build": "ncc build ./src/index.ts -o dist -t --no-cache"
+        "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=cjs"
     },
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "3.7.1",
@@ -23,12 +22,12 @@
         "@types/express": "5.0.6",
         "@types/morgan": "1.9.10",
         "@types/node": "25.5.2",
-        "@vercel/ncc": "0.38.4",
         "axios": "1.14.0",
+        "esbuild": "0.25.4",
         "morgan": "1.10.1",
         "postcss": "8.5.8",
         "prettier": "3.8.1",
-        "typescript": "5.9.3",
+        "typescript": "6.0.2",
         "winston": "3.19.0"
     },
     "packageManager": "yarn@4.5.0"
