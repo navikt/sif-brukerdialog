@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
     plugins: [
         react({
             include: '**/*.{tsx}',
@@ -22,7 +22,7 @@ export default defineConfig({
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,
-        minify: false,
+        minify: mode === 'production',
         target: 'esnext',
         rolldownOptions: {
             output: {
@@ -38,4 +38,4 @@ export default defineConfig({
             },
         },
     },
-});
+}));

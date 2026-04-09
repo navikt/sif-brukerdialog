@@ -46,6 +46,7 @@ export default defineConfig(({ mode }) => {
         },
         build: {
             sourcemap: 'inline',
+            minify: mode === 'production',
         },
     };
 });

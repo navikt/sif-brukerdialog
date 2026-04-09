@@ -6,7 +6,7 @@ import checker from 'vite-plugin-checker';
 
 import { createAliasConfig } from './vite.shared';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
     plugins: [
         tailwindcss(),
         react({
@@ -35,7 +35,7 @@ export default defineConfig({
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,
-        minify: false,
+        minify: mode === 'production',
         rolldownOptions: {
             output: {
                 codeSplitting: {
@@ -48,4 +48,4 @@ export default defineConfig({
             },
         },
     },
-});
+}));
