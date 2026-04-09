@@ -4435,7 +4435,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
     zod: "npm:4.3.6"
@@ -4494,7 +4494,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
     zod: "npm:4.3.6"
@@ -4581,7 +4581,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vitest: "npm:4.1.2"
     webpack: "npm:5.105.4"
     zod: "npm:4.3.6"
@@ -4686,7 +4686,7 @@ __metadata:
     rimraf: "npm:6.1.3"
     storybook: "npm:10.3.4"
     typescript: "npm:5.9.3"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   languageName: unknown
@@ -4767,7 +4767,7 @@ __metadata:
     storybook: "npm:10.3.4"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   languageName: unknown
@@ -4942,7 +4942,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   languageName: unknown
@@ -4987,7 +4987,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
   languageName: unknown
   linkType: soft
 
@@ -5058,7 +5058,7 @@ __metadata:
     typescript: "npm:5.9.3"
     ulid: "npm:3.0.2"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   languageName: unknown
@@ -5129,7 +5129,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   languageName: unknown
@@ -5188,7 +5188,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
     zod: "npm:4.3.6"
@@ -5266,7 +5266,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.58.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   languageName: unknown
@@ -5345,7 +5345,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
     zod: "npm:4.3.6"
@@ -5432,7 +5432,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
   languageName: unknown
   linkType: soft
@@ -5510,7 +5510,7 @@ __metadata:
     storybook: "npm:10.3.4"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   languageName: unknown
@@ -5674,7 +5674,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   languageName: unknown
@@ -5747,7 +5747,7 @@ __metadata:
     style-loader: "npm:4.0.0"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
     webpack: "npm:5.105.4"
@@ -5800,7 +5800,7 @@ __metadata:
     rimraf: "npm:6.1.3"
     storybook: "npm:10.3.4"
     typescript: "npm:5.9.3"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   peerDependencies:
@@ -5911,7 +5911,7 @@ __metadata:
     style-loader: "npm:4.0.0"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
     webpack: "npm:5.105.4"
@@ -6043,7 +6043,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   languageName: unknown
@@ -6112,7 +6112,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
     zod: "npm:4.3.6"
@@ -6150,7 +6150,7 @@ __metadata:
     storybook: "npm:10.3.4"
     storybook-react-intl: "npm:10.1.1"
     typescript: "npm:5.9.3"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
   peerDependencies:
@@ -6368,7 +6368,7 @@ __metadata:
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.58.0"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
     zod: "npm:4.3.6"
@@ -6457,7 +6457,7 @@ __metadata:
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.58.0"
     uuid: "npm:13.0.0"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vite-plugin-checker: "npm:0.12.0"
     vitest: "npm:4.1.2"
     zod: "npm:4.3.6"
@@ -9675,7 +9675,7 @@ __metadata:
     react-router-dom: "npm:7.14.0"
     storybook: "npm:10.3.4"
     typescript: "npm:5.9.3"
-    vite: "npm:8.0.3"
+    vite: "npm:8.0.5"
     vitest: "npm:4.1.2"
   peerDependencies:
     react: ">=19"
@@ -28867,7 +28867,64 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:8.0.3, vite@npm:^6.0.0 || ^7.0.0 || ^8.0.0":
+"vite@npm:8.0.5":
+  version: 8.0.5
+  resolution: "vite@npm:8.0.5"
+  dependencies:
+    fsevents: "npm:~2.3.3"
+    lightningcss: "npm:^1.32.0"
+    picomatch: "npm:^4.0.4"
+    postcss: "npm:^8.5.8"
+    rolldown: "npm:1.0.0-rc.12"
+    tinyglobby: "npm:^0.2.15"
+  peerDependencies:
+    "@types/node": ^20.19.0 || >=22.12.0
+    "@vitejs/devtools": ^0.1.0
+    esbuild: ^0.27.0 || ^0.28.0
+    jiti: ">=1.21.0"
+    less: ^4.0.0
+    sass: ^1.70.0
+    sass-embedded: ^1.70.0
+    stylus: ">=0.54.8"
+    sugarss: ^5.0.0
+    terser: ^5.16.0
+    tsx: ^4.8.1
+    yaml: ^2.4.2
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    "@vitejs/devtools":
+      optional: true
+    esbuild:
+      optional: true
+    jiti:
+      optional: true
+    less:
+      optional: true
+    sass:
+      optional: true
+    sass-embedded:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+    tsx:
+      optional: true
+    yaml:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 10/eca1ddd6309193a80a8c82607e672df3fecff88d3639382c6eaaf4c3094accd0412c16e2f1cc4a25c835f055133325eaa0355e484d4c253ffb015a7d83d68250
+  languageName: node
+  linkType: hard
+
+"vite@npm:^6.0.0 || ^7.0.0 || ^8.0.0":
   version: 8.0.3
   resolution: "vite@npm:8.0.3"
   dependencies:
