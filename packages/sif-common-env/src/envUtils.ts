@@ -8,7 +8,7 @@ import {
     UngDeltakelseOpplyserBrowserEnv,
 } from './schemas';
 
-let envs;
+let envs: Record<string, string | undefined> | undefined;
 
 const getEnvFromAppSettings = (envName: string): string | undefined => {
     if (!envs) {
@@ -16,7 +16,8 @@ const getEnvFromAppSettings = (envName: string): string | undefined => {
         const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
         envs = appSettingsInline || (window as any).appSettings || {};
     }
-    const envValue = envs[envName] || envs[`SIF_PUBLIC_${envName}`];
+    const resolvedEnvs = envs!;
+    const envValue = resolvedEnvs[envName] || resolvedEnvs[`SIF_PUBLIC_${envName}`];
     return envValue === undefined || envValue === 'undefined' ? undefined : envValue;
 };
 

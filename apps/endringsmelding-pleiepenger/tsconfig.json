@@ -1,11 +1,10 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
-        "baseUrl": "src",
         "outDir": "build/dist",
         "paths": {
-            "@app/*": ["app/*"],
-            "@app": ["app"]
+            "@app/*": ["./src/app/*"],
+            "@app": ["./src/app"]
         },
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/app/types"]
     },

@@ -41,7 +41,7 @@ export const SamtykkeFormPart = () => {
                 <List.Item>{text('@soknad.samtykkeForm.ansvar.list.1')}</List.Item>
                 <List.Item>
                     {text('@soknad.samtykkeForm.ansvar.list.2', {
-                        a: (msg) => (
+                        a: (msg: string) => (
                             <Link href={RettOgPliktURL} target="_blank" key="link" data-color="accent">
                                 {msg}
                             </Link>
