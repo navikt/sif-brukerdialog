@@ -6,8 +6,8 @@ import { BostedSøknadsdata } from '@app/types/Soknadsdata';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
+import { SifInfoCard } from '@sif/soknad-ui';
 
-import { SifInfoCard } from '../../../../../../packages/sif-soknad-ui/src/components/sif-info-card/SifInfoCard';
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 import { BostedFormFields, BostedFormValues } from './types';
 

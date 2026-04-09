@@ -2,24 +2,23 @@
     "$schema": "https://json.schemastore.org/tsconfig",
     "display": "Default",
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
         "composite": false,
-        "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "jsx": "react-jsx",
         "module": "ESNext",
         "moduleResolution": "bundler",
         "noEmit": false,
         "noFallthroughCasesInSwitch": true,
+        "noUncheckedSideEffectImports": false,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "preserveWatchOutput": true,
-        "removeComments": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "sourceMap": true,
+        "strict": false,
         "strictNullChecks": true,
-        "target": "ES2020"
+        "target": "ES2022",
+        "types": ["node", "vitest/globals"]
     },
     "exclude": ["node_modules"]
 }

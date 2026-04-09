@@ -19,13 +19,13 @@ export const fetchArbeidsgivere = async ({
             params: { fra_og_med: dateToISODate(from), til_og_med: dateToISODate(to), frilansoppdrag },
         });
     } catch (e) {
-        getSentryLoggerForApp('sif-common-api', []).logError('fetchArbeidsgivere network error', e);
+        getSentryLoggerForApp('sif-common-api', []).logError('fetchArbeidsgivere network error', e instanceof Error ? e.message : String(e));
         throw e;
     }
     try {
         return arbeidsgivereResponseSchema.parse(response.data);
     } catch (e) {
-        getSentryLoggerForApp('sif-common-api', []).logError('fetchArbeidsgivere ZOD parse error', e);
+        getSentryLoggerForApp('sif-common-api', []).logError('fetchArbeidsgivere ZOD parse error', e instanceof Error ? e.message : String(e));
         return {
             organisasjoner: [],
             privateArbeidsgivere: [],

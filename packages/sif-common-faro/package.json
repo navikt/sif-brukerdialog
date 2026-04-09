@@ -6,7 +6,7 @@
     "type": "module",
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "typescript": "5.9.3"
+        "typescript": "6.0.2"
     },
     "dependencies": {
         "@grafana/faro-web-sdk": "2.3.1",
