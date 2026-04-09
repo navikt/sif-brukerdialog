@@ -4,7 +4,6 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "start": "node ./server.js",
         "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=cjs"
     },
     "dependencies": {
