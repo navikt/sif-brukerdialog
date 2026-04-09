@@ -25,7 +25,7 @@ export const RegelverkOgInnsynReadMore = () => {
                 <BodyLong>
                     <UngUiText
                         id="@ungInnsyn.regelverkOgInnsyn.readMore.dokumenter"
-                        values={{ link: (content: string) => <Link href="https://www.nav.no/innsynskrav">{content}</Link> }}
+                        values={{ link: (content) => <Link href="https://www.nav.no/innsynskrav">{content}</Link> }}
                     />
                 </BodyLong>
             </VStack>

@@ -79,7 +79,7 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
                                 <UngUiText
                                     id="@ungInnsyn.rapporterInntektOppgave.readMore.tekst.3"
                                     values={{
-                                        link: (value: string) => (
+                                        link: (value) => (
                                             <ExternalLink
                                                 href={ungInnsynLenker.lovdataInntekt}
                                                 target="_blank"
