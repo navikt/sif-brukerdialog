@@ -33,13 +33,6 @@ export default defineConfig({
         },
     },
 
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler', // or "modern", "legacy"
-            },
-        },
-    },
     define: {
         __IS_GITHUB_PAGES__: false,
         'import.meta.env.INJECT_DECORATOR': false,

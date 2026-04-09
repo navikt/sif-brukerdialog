@@ -26,9 +26,12 @@
         "build-storybook": "storybook build"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.9.0",
+        "@navikt/ds-react": "8.9.1",
+        "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
+        "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*"
@@ -52,7 +55,7 @@
         "react-router-dom": "7.14.0",
         "storybook": "10.3.4",
         "typescript": "5.9.3",
-        "vite": "8.0.3",
+        "vite": "8.0.5",
         "vitest": "4.1.2"
     }
 }

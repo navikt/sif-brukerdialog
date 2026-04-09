@@ -21,8 +21,8 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.9.0",
-        "@navikt/ds-react": "8.9.0",
+        "@navikt/aksel-icons": "8.9.1",
+        "@navikt/ds-react": "8.9.1",
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
