@@ -66,7 +66,7 @@ export const setupMockRoutes = async (page: Page, scenario: MockScenario = MockS
     await page.route('**/api/sak/*', async (route) => {
         const url = new URL(route.request().url());
         const sakId = url.pathname.split('/').pop();
-        const sak = mockData.saker.find((s) => s.saksnummer === sakId);
+        const sak = mockData.saker.find((s: any) => s.saksnummer === sakId);
 
         const response = getSakResponseMedUtledetStatus(sak, {
             saksbehandlingsFrist: dayjs().add(1, 'day').toDate(),

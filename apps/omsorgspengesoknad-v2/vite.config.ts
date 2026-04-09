@@ -46,6 +46,7 @@ export default defineConfig(({ mode }) => {
         },
         build: {
             sourcemap: true,
+            minify: mode === 'production',
         },
         define: {
             __SCENARIO_HEADER__: false,

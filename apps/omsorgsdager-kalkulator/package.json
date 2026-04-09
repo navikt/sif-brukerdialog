@@ -50,7 +50,7 @@
         "playwright-core": "1.59.1",
         "postcss": "8.5.8",
         "tailwindcss": "4.2.2",
-        "typescript": "5.9.3",
+        "typescript": "6.0.2",
         "vite": "8.0.5"
     }
 }

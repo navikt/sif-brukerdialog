@@ -74,6 +74,8 @@ jobs:
                   image_suffix: ${{inputs.app-name}}-mono
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+                  build_args: |
+                      VITE_BUILD_MODE=development
                   build_secrets: |
                       PACKAGES_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
 

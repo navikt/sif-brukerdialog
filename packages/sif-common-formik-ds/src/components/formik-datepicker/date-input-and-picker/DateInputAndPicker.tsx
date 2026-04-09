@@ -51,7 +51,7 @@ const DateInputAndPicker = ({
         disableWeekends,
     });
 
-    const onInputBlur = (evt) => {
+    const onInputBlur = (evt: React.FocusEvent<HTMLInputElement>) => {
         setInputHasFocus(false);
         if (inputProps.onBlur) {
             inputProps.onBlur(evt);
@@ -71,7 +71,7 @@ const DateInputAndPicker = ({
         }
     };
 
-    const onInputFocus = (evt) => {
+    const onInputFocus = (evt: React.FocusEvent<HTMLInputElement>) => {
         if (inputProps.onFocus) {
             inputProps.onFocus(evt);
         }
