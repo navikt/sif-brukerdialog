@@ -6,7 +6,7 @@
             "@app/*": ["./src/app/*"],
             "@app": ["./src/app"]
         },
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/app/types"]
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "../../node_modules", "./src/app/types"]
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
     "include": [
