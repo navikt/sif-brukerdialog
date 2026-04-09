@@ -50,6 +50,7 @@
 
         "DEBUG": "true",
         "VELG_SCENARIO": "on",
-        "SIF_PUBLIC_ENDRE_OMSORGSTILBUD": "on"
+        "SIF_PUBLIC_ENDRE_OMSORGSTILBUD": "on",
+        "SIF_PUBLIC_SKJUL_TID_I_OMSORGSTILBUD": "on"
     }
 }

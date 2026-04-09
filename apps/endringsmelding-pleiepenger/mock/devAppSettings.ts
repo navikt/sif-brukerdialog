@@ -29,6 +29,7 @@ export const getDevAppSettings = (isTest?: boolean) => {
         SIF_INNSYN_API_URL: 'http://sif-innsyn-api',
 
         SIF_PUBLIC_ENDRE_OMSORGSTILBUD: 'on', //isTest ? 'off' : 'on',
+        SIF_PUBLIC_SKJUL_TID_I_OMSORGSTILBUD: 'on', //isTest ? 'off' : 'on',
 
         VELG_SCENARIO: isTest ? 'on' : 'on',
         MSW: isTest ? 'off' : 'on',
