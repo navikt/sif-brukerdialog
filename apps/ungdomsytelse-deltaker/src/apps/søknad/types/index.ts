@@ -1,7 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
-import { SøkYtelseOppgave } from '@shared/types/Oppgave';
 import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 
 export enum Steg {

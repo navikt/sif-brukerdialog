@@ -1,7 +1,7 @@
 import { logUtils } from '@innsyn/utils/logUtils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
-import { ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { ParsedOppgavetype, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
 import dayjs from 'dayjs';

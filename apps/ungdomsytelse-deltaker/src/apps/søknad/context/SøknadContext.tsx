@@ -3,8 +3,8 @@ import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { DeltakerSkjemaId } from '@shared/types/DeltakerSkjemaId';
-import { Oppgave, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { Oppgave, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import React, { createContext, useMemo, useState } from 'react';
 

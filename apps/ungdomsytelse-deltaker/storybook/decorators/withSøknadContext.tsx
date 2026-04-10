@@ -1,4 +1,5 @@
 import { Theme } from '@navikt/ds-react';
+import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 
 import { getScenarioMockData } from '../../mock/scenarios/scenarioer';
 import { ScenarioType } from '../../mock/scenarios/types';
@@ -6,7 +7,6 @@ import { SøknadProvider } from '../../src/apps/søknad/context/SøknadContext';
 import { HarKontonummerEnum } from '../../src/apps/søknad/steg/oppsummering/oppsummeringUtils';
 import { SøknadContextType } from '../../src/apps/søknad/types';
 import { DeltakelsePeriode, deltakelsePeriodeSchema } from '../../src/types/DeltakelsePeriode';
-import { SøkYtelseOppgave } from '../../src/types/Oppgave';
 
 const data = getScenarioMockData(ScenarioType.søknad);
 

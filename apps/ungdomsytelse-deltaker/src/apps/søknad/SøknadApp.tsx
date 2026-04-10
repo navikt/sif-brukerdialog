@@ -1,5 +1,6 @@
 import { Theme } from '@navikt/ds-react';
 import { useRegistrerteBarn } from '@sif/api/k9-prosessering';
+import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { kontonummerFallback, useKontonummer } from '@sif/api/ung-deltaker';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,7 +11,6 @@ import { useAppIntl } from '../../i18n';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenSendSøknadOppgave from '../../pages/IngenSendSøknadOppgave';
 import UngLoadingPage from '../../pages/UngLoadingPage';
-import { ParsedOppgavetype } from '../../types/Oppgave';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { SøknadProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';

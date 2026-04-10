@@ -1,7 +1,7 @@
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiError } from '@sif/api';
 import { useSøker } from '@sif/api/k9-prosessering';
-import { useOppgaver } from '@sif/api/ung-brukerdialog';
+import { ParsedOppgavetype, useOppgaver } from '@sif/api/ung-brukerdialog';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
@@ -15,7 +15,6 @@ import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
-import { ParsedOppgavetype } from '../../types/Oppgave';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { logFaroError } from '../../utils/faroUtils';
 
