@@ -8,7 +8,7 @@
     "devDependencies": {
         "@hey-api/openapi-ts": "0.95.0",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.14.0",
+        "axios": "1.15.0",
         "config": "workspace:*",
         "postcss": "8.5.8",
         "typescript": "6.0.2",

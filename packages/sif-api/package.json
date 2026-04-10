@@ -20,7 +20,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@tanstack/react-query": "5.96.2",
-        "axios": "1.14.0",
+        "axios": "1.15.0",
         "dayjs": "1.11.20",
         "object-hash": "3.0.0",
         "uuid": "13.0.0"
