@@ -7,6 +7,10 @@ import { AndreYtelse } from '../steps/andre-ytelser/types';
 
 export type KontonummerSøknadsdata = Pick<KontonummerInfo, 'kontonummerErRiktig'>;
 
+export type StartdatoSøknadsdata = {
+    startdato: string;
+};
+
 export type BostedSøknadsdata = {
     borITrondheim: boolean;
 };
@@ -30,6 +34,7 @@ export type AndreYtelserSøknadsdata = {
  * fyller ut og submitter et gyldig steg i søknaden.
  */
 export interface Søknadsdata extends BaseSøknadsdata {
+    [SøknadStepId.STARTDATO]?: StartdatoSøknadsdata;
     [SøknadStepId.ANDRE_YTELSER]?: AndreYtelserSøknadsdata;
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;

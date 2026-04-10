@@ -3,6 +3,7 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { SøknadStep } from '@app/setup/soknad/SoknadStep';
+import { prettifyApiDate } from '@navikt/sif-common-utils';
 import { FormSummary, InfoCard } from '@navikt/ds-react';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
@@ -83,7 +84,16 @@ export const OppsummeringSteg = () => {
                                 <AppText id="oppsummeringSteg.oppsummering.tittel" />
                             </FormSummary.Heading>
                         </FormSummary.Header>
-                        {/* TODO: legg til oppsummeringsinnhold basert på søknadsdata */}
+                        {dto && (
+                            <FormSummary.Answers>
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="oppsummeringSteg.startdato.label" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>{prettifyApiDate(dto.startdato)}</FormSummary.Value>
+                                </FormSummary.Answer>
+                            </FormSummary.Answers>
+                        )}
                     </FormSummary>
                 </FormLayout.Summary>
                 <FormLayout.Questions>

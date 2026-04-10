@@ -6,6 +6,7 @@ export const useStepTitles = (): Record<SøknadStepId, string> => {
     const { text } = useAppIntl();
 
     const stepTitles: Record<SøknadStepId, string> = {
+        [SøknadStepId.STARTDATO]: text('step.startdato.title'),
         [SøknadStepId.ANDRE_YTELSER]: text('step.andreYtelser.title'),
         [SøknadStepId.KONTONUMMER]: text('step.kontonummer.title'),
         [SøknadStepId.BOSTED]: text('step.bosted.title'),
