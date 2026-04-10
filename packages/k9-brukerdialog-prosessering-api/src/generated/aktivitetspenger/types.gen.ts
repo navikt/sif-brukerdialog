@@ -44,6 +44,15 @@ export type KontonummerInfo = {
     kontonummerErRiktig?: boolean;
 };
 
+export type AktivitetspengerInntektsrapportering = {
+    oppgaveReferanse: string;
+    oppgittInntekt: OppgittInntekt;
+};
+
+export type OppgittInntekt = {
+    arbeidstakerOgFrilansInntekt?: number;
+};
+
 export type Søker = {
     aktørId: string;
     fødselsdato: string;
@@ -319,6 +328,44 @@ export type InnsendingAktivitetspengersøknadError =
     InnsendingAktivitetspengersøknadErrors[keyof InnsendingAktivitetspengersøknadErrors];
 
 export type InnsendingAktivitetspengersøknadResponses = {
+    /**
+     * Accepted
+     */
+    202: unknown;
+};
+
+export type InntektrapporteringData = {
+    body: AktivitetspengerInntektsrapportering;
+    headers: {
+        'X-Brukerdialog-Git-Sha': string;
+    };
+    path?: never;
+    query?: never;
+    url: '/aktivitetspenger/inntektsrapportering/innsending';
+};
+
+export type InntektrapporteringErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type InntektrapporteringError = InntektrapporteringErrors[keyof InntektrapporteringErrors];
+
+export type InntektrapporteringResponses = {
     /**
      * Accepted
      */
