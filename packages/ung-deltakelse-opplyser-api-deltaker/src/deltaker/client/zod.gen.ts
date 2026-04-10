@@ -190,12 +190,8 @@ export const zKontonummerDto = z.object({
     kontonummer: z.string().optional(),
 });
 
-export const zMarkerDeltakelseSomSøktData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        id: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zMarkerDeltakelseSomSøktPath = z.object({
+    id: z.uuid(),
 });
 
 /**
@@ -203,23 +199,13 @@ export const zMarkerDeltakelseSomSøktData = z.object({
  */
 export const zMarkerDeltakelseSomSøktResponse = zDeltakelseKomposittDto;
 
-export const zHentKontonummerData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
-
 /**
  * OK
  */
 export const zHentKontonummerResponse = zKontonummerDto;
 
-export const zHentDeltakersOppgaveData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        oppgaveReferanse: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zHentDeltakersOppgavePath = z.object({
+    oppgaveReferanse: z.uuid(),
 });
 
 /**
@@ -227,12 +213,8 @@ export const zHentDeltakersOppgaveData = z.object({
  */
 export const zHentDeltakersOppgaveResponse = zOppgaveDto;
 
-export const zMarkerOppgaveSomLøstData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        oppgaveReferanse: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zMarkerOppgaveSomLøstPath = z.object({
+    oppgaveReferanse: z.uuid(),
 });
 
 /**
@@ -240,12 +222,8 @@ export const zMarkerOppgaveSomLøstData = z.object({
  */
 export const zMarkerOppgaveSomLøstResponse = zOppgaveDto;
 
-export const zMarkerOppgaveSomLukketData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        oppgaveReferanse: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zMarkerOppgaveSomLukketPath = z.object({
+    oppgaveReferanse: z.uuid(),
 });
 
 /**
@@ -253,24 +231,14 @@ export const zMarkerOppgaveSomLukketData = z.object({
  */
 export const zMarkerOppgaveSomLukketResponse = zOppgaveDto;
 
-export const zMarkerOppgaveSomÅpnetData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        oppgaveReferanse: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zMarkerOppgaveSomÅpnetPath = z.object({
+    oppgaveReferanse: z.uuid(),
 });
 
 /**
  * OK
  */
 export const zMarkerOppgaveSomÅpnetResponse = zOppgaveDto;
-
-export const zHentAlleMineDeltakelserData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
 
 /**
  * OK

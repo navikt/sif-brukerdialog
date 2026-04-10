@@ -51,7 +51,7 @@
         "@navikt/ung-common": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*",
         "@tanstack/react-query": "5.96.2",
-        "axios": "1.14.0",
+        "axios": "1.15.0",
         "clsx": "2.1.1",
         "constate": "3.3.3",
         "csp-header": "6.3.1",

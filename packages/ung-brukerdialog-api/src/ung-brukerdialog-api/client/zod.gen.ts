@@ -192,14 +192,8 @@ export const zBrukerdialogOppgaveDto = z.object({
     status: zOppgaveStatus,
 });
 
-export const zHentAlleOppgaverData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z
-        .object({
-            ytelsetype: zOppgaveYtelsetype.optional(),
-        })
-        .optional(),
+export const zHentAlleOppgaverQuery = z.object({
+    ytelsetype: zOppgaveYtelsetype.optional(),
 });
 
 /**
@@ -207,12 +201,8 @@ export const zHentAlleOppgaverData = z.object({
  */
 export const zHentAlleOppgaverResponse = z.array(zBrukerdialogOppgaveDto);
 
-export const zHentOppgaveData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        oppgavereferanse: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zHentOppgavePath = z.object({
+    oppgavereferanse: z.uuid(),
 });
 
 /**
@@ -220,12 +210,13 @@ export const zHentOppgaveData = z.object({
  */
 export const zHentOppgaveResponse = zBrukerdialogOppgaveDto;
 
-export const zLøsOppgaveData = z.object({
-    body: zLøsOppgaveRequest,
-    path: z.object({
-        oppgavereferanse: z.uuid(),
-    }),
-    query: z.never().optional(),
+/**
+ * Løsningsdata for oppgaven
+ */
+export const zLøsOppgaveBody = zLøsOppgaveRequest;
+
+export const zLøsOppgavePath = z.object({
+    oppgavereferanse: z.uuid(),
 });
 
 /**

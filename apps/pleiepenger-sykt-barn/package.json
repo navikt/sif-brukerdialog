@@ -28,7 +28,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@tanstack/react-query": "5.96.2",
-        "axios": "1.14.0",
+        "axios": "1.15.0",
         "classnames": "2.5.1",
         "csp-header": "6.3.1",
         "date-fns": "4.1.0",

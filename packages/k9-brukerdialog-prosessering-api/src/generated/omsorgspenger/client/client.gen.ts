@@ -35,7 +35,9 @@ export const createClient = (config: Config = {}): Client => {
         return getConfig();
     };
 
-    const beforeRequest = async (options: RequestOptions) => {
+    const beforeRequest = async <TData = unknown, ThrowOnError extends boolean = boolean, Url extends string = string>(
+        options: RequestOptions<TData, ThrowOnError, Url>,
+    ) => {
         const opts = {
             ..._config,
             ...options,
@@ -65,7 +67,6 @@ export const createClient = (config: Config = {}): Client => {
 
     // @ts-ignore
     const request: Client['request'] = async (options) => {
-        // @ts-ignore
         const { opts, url } = await beforeRequest(options);
         try {
             // assign Axios here for consistency with fetch
