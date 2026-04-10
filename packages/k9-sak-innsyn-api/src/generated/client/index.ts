@@ -25,11 +25,9 @@ export type {
     ProblemDetail,
 } from './types.gen';
 export {
-    zHentAktiveOpplæringsinstitusjonerData,
     zHentAktiveOpplæringsinstitusjonerResponse,
-    zHentOpplæringsinstitusjonerData,
     zHentOpplæringsinstitusjonerResponse,
-    zHentSisteGyldigeVedtakForAktorIdData,
+    zHentSisteGyldigeVedtakForAktorIdBody,
     zHentSisteGyldigeVedtakForAktorIdResponse,
     zHentSisteGyldigeVedtakForAktorIdResponse2,
     zOmsorgsdagerKronsinskSuktBarnRequestDto,
