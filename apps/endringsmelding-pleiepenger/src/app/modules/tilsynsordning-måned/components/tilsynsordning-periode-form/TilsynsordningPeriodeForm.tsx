@@ -10,18 +10,19 @@ import {
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DurationWeekdays } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
-import React from 'react';
 
 import TidFasteUkedagerInput from '../../../../local-sif-common-pleiepenger/components/tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { getTilsynsordningFastDagValidator, validateTilsynsordningFasteDager } from './tilsynsordningFormValidation';
 
 export interface TilsynsordningPeriodeFormProps {
+    id?: string;
     periode: DateRange;
     onSubmit: (data: TilsynsordningPeriodeData) => void;
     onCancel: () => void;
 }
 
 export type TilsynsordningPeriodeData = {
+    id?: string;
     fom: Date;
     tom: Date;
     tidFasteDager: DurationWeekdays;
@@ -44,7 +45,7 @@ const initialFormValues: Partial<FormValues> = {};
 
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
-const TilsynsordningPeriodeForm: React.FC<TilsynsordningPeriodeFormProps> = ({ periode, onSubmit, onCancel }) => {
+const TilsynsordningPeriodeForm = ({ id, periode, onSubmit, onCancel }: TilsynsordningPeriodeFormProps) => {
     const { intl, text } = useAppIntl();
 
     const onValidSubmit = (values: Partial<FormValues>) => {
@@ -56,6 +57,7 @@ const TilsynsordningPeriodeForm: React.FC<TilsynsordningPeriodeFormProps> = ({ p
         }
 
         onSubmit({
+            id,
             fom,
             tom,
             tidFasteDager: values.tidFasteDager,

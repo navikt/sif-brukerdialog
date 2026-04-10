@@ -36,7 +36,7 @@ export const getSøknadSteps = (
     }
 
     if (valgteEndringer.tilsynsordning) {
-        steps.push(StepId.TILSYNSORDNING);
+        steps.push(StepId.TILSYNSORDNING_FORENKLET);
     }
 
     steps.push(StepId.OPPSUMMERING);

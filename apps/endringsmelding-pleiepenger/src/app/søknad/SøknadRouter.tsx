@@ -26,6 +26,7 @@ import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import TilsynsordningStep from './steps/tilsynsordning/TilsynsordningStep';
+import TilsynsordningForenkletStep from './steps/tilsynsordning-forenklet/TilsynsordningForenkletStep';
 import UkjentArbeidsforholdStep from './steps/ukjent-arbeidsforhold/UkjentArbeidsforholdStep';
 
 const SøknadRouter = () => {
@@ -101,6 +102,12 @@ const SøknadRouter = () => {
                 )}
                 {isStepAvailable(StepId.TILSYNSORDNING) && (
                     <Route path={SøknadStepRoute[StepId.TILSYNSORDNING]} element={<TilsynsordningStep />} />
+                )}
+                {isStepAvailable(StepId.TILSYNSORDNING_FORENKLET) && (
+                    <Route
+                        path={SøknadStepRoute[StepId.TILSYNSORDNING_FORENKLET]}
+                        element={<TilsynsordningForenkletStep />}
+                    />
                 )}
                 {isStepAvailable(StepId.OPPSUMMERING) && (
                     <Route path={SøknadStepRoute[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />

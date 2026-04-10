@@ -4,6 +4,7 @@ import { ArbeidstidFormValues } from '../steps/arbeidstid/ArbeidstidForm';
 import { LovbestemtFerieFormValues } from '../steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { OppsummeringFormValues } from '../steps/oppsummering/OppsummeringStep';
 import { TilsynsordningFormValues } from '../steps/tilsynsordning/TilsynsordningForm';
+import { TilsynsordningForenkletFormValues } from '../steps/tilsynsordning-forenklet/TilsynsordningForenkletForm';
 import { UkjentArbeidsforholdFormValues } from '../steps/ukjent-arbeidsforhold/UkjentArbeidsforholdForm';
 import { StepId } from './StepId';
 
@@ -13,6 +14,7 @@ export interface StepFormValues {
     [StepId.ARBEIDSTID]?: ArbeidstidFormValues;
     [StepId.LOVBESTEMT_FERIE]?: LovbestemtFerieFormValues;
     [StepId.TILSYNSORDNING]?: TilsynsordningFormValues;
+    [StepId.TILSYNSORDNING_FORENKLET]?: TilsynsordningForenkletFormValues;
     [StepId.OPPSUMMERING]?: OppsummeringFormValues;
     [StepId.MELDING_SENDT]?: undefined;
 }

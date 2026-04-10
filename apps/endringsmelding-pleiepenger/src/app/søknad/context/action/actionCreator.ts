@@ -9,6 +9,7 @@ import {
     UkjentArbeidsforholdSøknadsdata,
 } from '@app/types';
 
+import { TilsynsordningForenkletSøknadsdata } from '../../../types/TilsynsordningForenkletSøknadsdata';
 import { TilsynsordningSøknadsdata } from '../../../types/TilsynsordningSøknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
@@ -23,6 +24,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
     SET_SØKNAD_LOVBESTEMT_FERIE = 'setSøknadLovbestemtFerie',
     SET_SØKNAD_TILSYNSORDNING = 'setSøknadTilsynsordning',
+    SET_SØKNAD_TILSYNSORDNING_FORENKLET = 'setSøknadTilsynsordningForenklet',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -80,6 +82,16 @@ interface SetSøknadLovbestemtFerie {
 interface SetSøknadTilsynsordning {
     type: SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING;
     payload: TilsynsordningSøknadsdata;
+}
+
+interface SetSøknadTilsynsordning {
+    type: SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING;
+    payload: TilsynsordningSøknadsdata;
+}
+
+interface SetSøknadTilsynsordningForenklet {
+    type: SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING_FORENKLET;
+    payload: TilsynsordningForenkletSøknadsdata;
 }
 
 interface SetSøknadHarBekreftetOpplysninger {
@@ -150,6 +162,13 @@ const setSøknadTilsynsordning = (payload: TilsynsordningSøknadsdata): SetSøkn
     payload,
 });
 
+const setSøknadTilsynsordningForenklet = (
+    payload: TilsynsordningForenkletSøknadsdata,
+): SetSøknadTilsynsordningForenklet => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING_FORENKLET,
+    payload,
+});
+
 const setSøknadHarBekreftetOpplysninger = (payload: OppsummeringFormValues): SetSøknadHarBekreftetOpplysninger => ({
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER,
     payload,
@@ -186,6 +205,7 @@ export type SøknadContextAction =
     | SetSøknadArbeidstid
     | SetSøknadLovbestemtFerie
     | SetSøknadTilsynsordning
+    | SetSøknadTilsynsordningForenklet
     | SetSøknadRoute
     | SetEndringsmeldingSendt
     | StartSøknad
@@ -204,6 +224,7 @@ const actionsCreator = {
     setSøknadArbeidstid,
     setSøknadLovbestemtFerie,
     setSøknadTilsynsordning,
+    setSøknadTilsynsordningForenklet,
     setSøknadRoute,
     setEndringsmeldingSendt,
     startSøknad,
