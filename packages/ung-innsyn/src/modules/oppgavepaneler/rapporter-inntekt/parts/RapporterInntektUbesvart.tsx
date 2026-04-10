@@ -23,6 +23,7 @@ export const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKv
                 />
             </GuidePanel>
             <RapporterInntektForm
+                oppgaveYtelsetype={oppgave.oppgaveYtelsetype}
                 måned={måned}
                 oppgaveReferanse={oppgave.oppgaveReferanse}
                 onSuccess={(harRapportertInntekt) => setKvitteringData({ harHattInntektOver0: harRapportertInntekt })}

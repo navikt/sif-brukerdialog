@@ -15,7 +15,7 @@ export const handlers = [
         return HttpResponse.json(oppgaver);
     }),
 
-    http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
+    http.post('**/aktivitetspenger/oppgavebekreftelse/innsending', async ({ request }) => {
         const text = await request.text();
         try {
             const parsed: UngdomsytelseOppgavebekreftelse = JSON.parse(text);
@@ -27,7 +27,7 @@ export const handlers = [
         return new HttpResponse(null, { status: 200 });
     }),
 
-    http.post('**/ungdomsytelse/inntektsrapportering/innsending', async ({ request }) => {
+    http.post('**/aktivitetspenger/inntektsrapportering/innsending', async ({ request }) => {
         const text = await request.text();
         const parsed = JSON.parse(text);
         mockUtils.setRapportertInntekt(parsed.oppgaveReferanse, parsed);

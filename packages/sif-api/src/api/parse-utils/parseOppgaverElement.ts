@@ -10,6 +10,7 @@ import {
     OppgaveResponsDto,
     OppgaveStatus,
     OppgaveType,
+    OppgaveYtelsetype,
     PeriodeEndringType,
     RapportertInntektDto,
     SøkYtelseOppgavetypeDataDto,
@@ -204,7 +205,10 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
     throw new Error(`Kan ikke lage oppgave fra endret periode oppgave med endringer: ${endringer.join(', ')}`);
 };
 
-export const parseOppgaverElement = (oppgaver: BrukerdialogOppgaveDto[]): Oppgave[] => {
+export const parseOppgaverElement = (
+    oppgaveYtelsetype: OppgaveYtelsetype,
+    oppgaver: BrukerdialogOppgaveDto[],
+): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
@@ -240,6 +244,7 @@ export const parseOppgaverElement = (oppgaver: BrukerdialogOppgaveDto[]): Oppgav
                 const rapporterInntektData = oppgave.oppgavetypeData as InntektsrapporteringOppgavetypeDataDto;
                 const rapporterInntektOppgave: RapporterInntektOppgave = {
                     ...getOppgaveBaseProps(oppgave),
+                    oppgaveYtelsetype,
                     oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
                     oppgavetypeData: {
                         fraOgMed: ISODateToDate(rapporterInntektData.fraOgMed),
