@@ -1,3 +1,4 @@
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
@@ -14,6 +15,7 @@ const meta = {
     },
     tags: ['autodocs'],
     args: {
+        oppgaveYtelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
         oppgaveReferanse: 'test-ref-123',
         måned: 'januar 2026',
         onSuccess: fn(),

@@ -1,9 +1,9 @@
 import { Alert, BodyLong, Button, HStack, ReadMore, VStack } from '@navikt/ds-react';
-import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiErrorAlert } from '@sif/api';
-import { useRapporterInntekt } from '@sif/api/k9-prosessering';
+import { InntektsrapporteringDto, useRapporterInntekt } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
 import { getNumberFromNumberInputValue } from '@sif/rhf/utils';
 import { useState } from 'react';
@@ -27,14 +27,20 @@ export interface InntektFormValues {
 const { YesOrNoQuestion, NumberInput } = createSifFormComponents<InntektFormValues>();
 
 export interface RapporterInntektFormProps {
+    oppgaveYtelsetype: OppgaveYtelsetype;
     oppgaveReferanse: string;
     måned: string;
     onSuccess: (harRapportertInntekt: boolean) => void;
 }
 
-export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: RapporterInntektFormProps) => {
+export const RapporterInntektForm = ({
+    oppgaveYtelsetype,
+    måned,
+    oppgaveReferanse,
+    onSuccess,
+}: RapporterInntektFormProps) => {
     const { text } = useUngUiIntl();
-    const { error, isPending, mutateAsync } = useRapporterInntekt();
+    const { error, isPending, mutateAsync } = useRapporterInntekt(oppgaveYtelsetype);
     const { validateField } = useSifValidate('@ungInnsyn.inntektForm');
     const { onCancel, onSuccess: onPageSuccess } = useOppgavePage();
     const [dtoError, setDtoError] = useState<string | undefined>(undefined);
@@ -59,7 +65,7 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: Ra
             return;
         }
 
-        const data: UngdomsytelseInntektsrapportering = {
+        const data: InntektsrapporteringDto = {
             oppgittInntekt: {
                 arbeidstakerOgFrilansInntekt,
             },
@@ -106,6 +112,8 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: Ra
                                 integerValue={true}
                                 description={text('@ungInnsyn.inntektForm.inntektDescription')}
                                 onFocus={dtoError ? () => setDtoError(undefined) : undefined}
+                                htmlSize={10}
+                                maxLength={10}
                                 validate={validateField(
                                     InntektFormFields.inntekt,
                                     getNumberValidator({
