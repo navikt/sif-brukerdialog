@@ -497,9 +497,9 @@ export const zFagsakYtelseType = z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_
 export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSMELDING', 'UKJENT']);
 
 export const zInnsending = z.object({
-    versjon: z.string().optional(),
     mottattDato: z.iso.datetime({ local: true }).optional(),
     søker: zSøker.optional(),
+    versjon: z.string().optional(),
     søknadId: z.string().optional(),
 });
 
@@ -731,25 +731,17 @@ export const zFraværPeriodeWritable = z.object({
     arbeidsgiverOrgNr: z.string().optional(),
 });
 
-export const zHentSøknaderData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
-
 /**
  * OK
  */
 export const zHentSøknaderResponse = z.array(zSøknadDto);
 
-export const zLastNedArbeidsgivermeldingData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        søknadId: z.uuid(),
-    }),
-    query: z.object({
-        organisasjonsnummer: z.string(),
-    }),
+export const zLastNedArbeidsgivermeldingPath = z.object({
+    søknadId: z.uuid(),
+});
+
+export const zLastNedArbeidsgivermeldingQuery = z.object({
+    organisasjonsnummer: z.string(),
 });
 
 /**
@@ -757,45 +749,23 @@ export const zLastNedArbeidsgivermeldingData = z.object({
  */
 export const zLastNedArbeidsgivermeldingResponse = z.string();
 
-export const zHentMineSakerData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
-
 /**
  * OK
  */
 export const zHentMineSakerResponse = zPleietrengendeMedSak;
-
-export const zHentSaksbehandlingstidData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
 
 /**
  * OK
  */
 export const zHentSaksbehandlingstidResponse = zSaksbehandlingtidDto;
 
-export const zHentSakerMetadataData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
-
 /**
  * OK
  */
 export const zHentSakerMetadataResponse = zSakerMetadataDto;
 
-export const zHentSakData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        saksnummer: z.string(),
-    }),
-    query: z.never().optional(),
+export const zHentSakPath = z.object({
+    saksnummer: z.string(),
 });
 
 /**
@@ -803,12 +773,8 @@ export const zHentSakData = z.object({
  */
 export const zHentSakResponse = zSakDto;
 
-export const zHentInntektsmeldingerPåSakData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        saksnummer: z.string(),
-    }),
-    query: z.never().optional(),
+export const zHentInntektsmeldingerPåSakPath = z.object({
+    saksnummer: z.string(),
 });
 
 /**
@@ -816,16 +782,14 @@ export const zHentInntektsmeldingerPåSakData = z.object({
  */
 export const zHentInntektsmeldingerPåSakResponse = z.array(zSakInntektsmeldingDto);
 
-export const zHentDokumentData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        journalpostId: z.string(),
-        dokumentInfoId: z.string(),
-        variantFormat: z.string(),
-    }),
-    query: z.object({
-        dokumentTittel: z.string(),
-    }),
+export const zHentDokumentPath = z.object({
+    journalpostId: z.string(),
+    dokumentInfoId: z.string(),
+    variantFormat: z.string(),
+});
+
+export const zHentDokumentQuery = z.object({
+    dokumentTittel: z.string(),
 });
 
 /**

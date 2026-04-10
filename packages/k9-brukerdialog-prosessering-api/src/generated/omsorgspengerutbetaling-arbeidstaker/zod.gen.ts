@@ -151,20 +151,12 @@ export const zOmsorgspengerutbetalingArbeidstakerSøknadWritable = z.object({
     dataBruktTilUtledningAnnetData: z.string().optional(),
 });
 
-export const zDeleteMellomlagringData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        ytelse: z.string(),
-    }),
-    query: z.never().optional(),
+export const zDeleteMellomlagringPath = z.object({
+    ytelse: z.string(),
 });
 
-export const zGetMellomlagringData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        ytelse: z.string(),
-    }),
-    query: z.never().optional(),
+export const zGetMellomlagringPath = z.object({
+    ytelse: z.string(),
 });
 
 /**
@@ -172,47 +164,30 @@ export const zGetMellomlagringData = z.object({
  */
 export const zGetMellomlagringResponse = zJsonNode;
 
-export const zCreateMellomlagringData = z.object({
-    body: z.record(z.string(), z.unknown()),
-    path: z.object({
-        ytelse: z.string(),
-    }),
-    query: z.never().optional(),
+export const zCreateMellomlagringBody = z.record(z.string(), z.unknown());
+
+export const zCreateMellomlagringPath = z.object({
+    ytelse: z.string(),
 });
 
-export const zUpdateMellomlagringData = z.object({
-    body: z.record(z.string(), z.unknown()),
-    path: z.object({
-        ytelse: z.string(),
-    }),
-    query: z.never().optional(),
+export const zUpdateMellomlagringBody = z.record(z.string(), z.unknown());
+
+export const zUpdateMellomlagringPath = z.object({
+    ytelse: z.string(),
 });
 
-export const zLagreVedleggData = z.object({
-    body: z
-        .object({
-            vedlegg: z.instanceof(Blob),
-        })
-        .optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
+export const zLagreVedleggBody = z.object({
+    vedlegg: z.instanceof(Blob),
 });
 
-export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadData = z.object({
-    body: zOmsorgspengerutbetalingArbeidstakerSøknad,
-    path: z.never().optional(),
-    query: z.never().optional(),
-    headers: z.object({
-        'X-Brukerdialog-Git-Sha': z.string(),
-    }),
+export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadBody = zOmsorgspengerutbetalingArbeidstakerSøknad;
+
+export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadHeaders = z.object({
+    'X-Brukerdialog-Git-Sha': z.string(),
 });
 
-export const zSlettVedleggData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        vedleggId: z.string().min(1),
-    }),
-    query: z.never().optional(),
+export const zSlettVedleggPath = z.object({
+    vedleggId: z.string().min(1),
 });
 
 /**
@@ -220,12 +195,8 @@ export const zSlettVedleggData = z.object({
  */
 export const zSlettVedleggResponse = z.void();
 
-export const zHentVedleggData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        vedleggId: z.string().min(1),
-    }),
-    query: z.never().optional(),
+export const zHentVedleggPath = z.object({
+    vedleggId: z.string().min(1),
 });
 
 /**
@@ -233,38 +204,22 @@ export const zHentVedleggData = z.object({
  */
 export const zHentVedleggResponse = z.string();
 
-export const zHentSøkerData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
-
 /**
  * OK
  */
 export const zHentSøkerResponse = zSøker;
-
-export const zHentBarnData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
 
 /**
  * OK
  */
 export const zHentBarnResponse = zBarnOppslagListe;
 
-export const zHentArbeidsgivereData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.object({
-        fra_og_med: z.string(),
-        til_og_med: z.string(),
-        inkluderAlleAnsettelsesperioder: z.boolean().optional(),
-        frilansoppdrag: z.boolean().optional().default(false),
-        private_arbeidsgivere: z.boolean().optional().default(false),
-    }),
+export const zHentArbeidsgivereQuery = z.object({
+    fra_og_med: z.string(),
+    til_og_med: z.string(),
+    inkluderAlleAnsettelsesperioder: z.boolean().optional(),
+    frilansoppdrag: z.boolean().optional().default(false),
+    private_arbeidsgivere: z.boolean().optional().default(false),
 });
 
 /**

@@ -36,33 +36,17 @@ export const zOpplæringsinstitusjon = z.object({
     perioder: z.array(zPeriode),
 });
 
-export const zHentSisteGyldigeVedtakForAktorIdData = z.object({
-    body: zOmsorgsdagerKronsinskSuktBarnRequestDto,
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
+export const zHentSisteGyldigeVedtakForAktorIdBody = zOmsorgsdagerKronsinskSuktBarnRequestDto;
 
 /**
  * OK
  */
 export const zHentSisteGyldigeVedtakForAktorIdResponse2 = zHentSisteGyldigeVedtakForAktorIdResponse;
 
-export const zHentOpplæringsinstitusjonerData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
-
 /**
  * OK
  */
 export const zHentOpplæringsinstitusjonerResponse = z.array(zOpplæringsinstitusjon);
-
-export const zHentAktiveOpplæringsinstitusjonerData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
 
 /**
  * OK

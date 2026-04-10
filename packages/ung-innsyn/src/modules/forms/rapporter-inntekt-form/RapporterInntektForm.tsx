@@ -3,7 +3,7 @@ import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prose
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { ApiErrorAlert } from '@sif/api';
-import { useRapporterInntekt } from '@sif/api/k9-prosessering';
+import { aktivitetspenger } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
 import { getNumberFromNumberInputValue } from '@sif/rhf/utils';
 import { useState } from 'react';
@@ -34,7 +34,7 @@ export interface RapporterInntektFormProps {
 
 export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: RapporterInntektFormProps) => {
     const { text } = useUngUiIntl();
-    const { error, isPending, mutateAsync } = useRapporterInntekt();
+    const { error, isPending, mutateAsync } = aktivitetspenger.useRapporterInntektAktivitetspenger();
     const { validateField } = useSifValidate('@ungInnsyn.inntektForm');
     const { onCancel, onSuccess: onPageSuccess } = useOppgavePage();
     const [dtoError, setDtoError] = useState<string | undefined>(undefined);
