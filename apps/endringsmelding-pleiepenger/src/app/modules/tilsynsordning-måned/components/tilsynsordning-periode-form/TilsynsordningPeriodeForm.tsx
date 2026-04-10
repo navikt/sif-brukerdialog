@@ -12,6 +12,7 @@ import { DurationWeekdays } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
 
 import TidFasteUkedagerInput from '../../../../local-sif-common-pleiepenger/components/tid-faste-ukedager-input/TidFasteUkedagerInput';
+import { TilsynsordningPeriodeData } from '../../../../søknad/steps/tilsynsordning-forenklet/types';
 import { getTilsynsordningFastDagValidator, validateTilsynsordningFasteDager } from './tilsynsordningFormValidation';
 
 export interface TilsynsordningPeriodeFormProps {
@@ -20,13 +21,6 @@ export interface TilsynsordningPeriodeFormProps {
     onSubmit: (data: TilsynsordningPeriodeData) => void;
     onCancel: () => void;
 }
-
-export type TilsynsordningPeriodeData = {
-    id?: string;
-    fom: Date;
-    tom: Date;
-    tidFasteDager: DurationWeekdays;
-};
 
 enum FormFields {
     'fom' = 'fom',
@@ -58,8 +52,10 @@ const TilsynsordningPeriodeForm = ({ id, periode, onSubmit, onCancel }: Tilsynso
 
         onSubmit({
             id,
-            fom,
-            tom,
+            periode: {
+                from: fom,
+                to: tom,
+            },
             tidFasteDager: values.tidFasteDager,
         });
     };

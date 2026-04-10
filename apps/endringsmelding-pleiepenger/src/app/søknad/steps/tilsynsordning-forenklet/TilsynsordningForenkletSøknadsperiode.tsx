@@ -4,46 +4,61 @@ import { Button, HStack, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
-import { oppdaterDagerMedOmsorgstilbudIPeriode } from './tilsynsordningForenkletStepUtils';
-import { TilsynsordningEndring } from './types';
+import EndringTilsynsordningListe from '../../../modules/endring-tilsynsordning-liste/EndringTilsynsordningListe';
+import { TilsynsordningPeriodeData } from './types';
 
 interface Props {
     søknadsperiode: DateRange;
-    endringer: TilsynsordningEndring[];
-    onChange: (endringer: TilsynsordningEndring[]) => void;
+    endringer: TilsynsordningPeriodeData[] | undefined;
+    onChange: (endringer: TilsynsordningPeriodeData[]) => void;
 }
 
-const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, onChange }: Props) => {
-    const [visPeriodeDialog, setVisPeriodeDialog] = useState(false);
+const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringer = [], onChange }: Props) => {
+    const [visPeriodeDialog, setVisPeriodeDialog] = useState<
+        { søknadsperiode: DateRange; endring: TilsynsordningPeriodeData | undefined } | undefined
+    >(undefined);
 
     return (
         <>
             <VStack gap="space-16">
-                <VStack gap="space-8">
-                    <HStack gap="space-4" justify="space-between" marginBlock="space-0 space-8">
-                        <Button
-                            type="button"
-                            variant="secondary"
-                            size="small"
-                            data-color="accent"
-                            onClick={() => setVisPeriodeDialog(true)}
-                            icon={<PencilIcon role="presentation" />}>
-                            Registrer tid for en periode
-                        </Button>
-                    </HStack>
-                    Endringer liste
-                </VStack>
+                <EndringTilsynsordningListe
+                    perioder={endringer}
+                    onEdit={(periode) => {
+                        setVisPeriodeDialog({
+                            søknadsperiode,
+                            endring: periode,
+                        });
+                    }}
+                    onDelete={() => {
+                        console.log('onDelete');
+                        // onChange(fjernEndring(endringer, periode));
+                    }}
+                />
+                <HStack gap="space-4" justify="space-between" marginBlock="space-0 space-8">
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        size="small"
+                        data-color="accent"
+                        onClick={() => setVisPeriodeDialog({ søknadsperiode, endring: undefined })}
+                        icon={<PencilIcon role="presentation" />}>
+                        Registrer endring
+                    </Button>
+                </HStack>
             </VStack>
 
             <TilsynsordningPeriodeDialog
-                isOpen={visPeriodeDialog}
+                isOpen={visPeriodeDialog !== undefined}
                 formProps={{
                     periode: søknadsperiode,
-                    onCancel: () => setVisPeriodeDialog(false),
+                    onCancel: () => setVisPeriodeDialog(undefined),
                     onSubmit: (values) => {
-                        onChange(oppdaterDagerMedOmsorgstilbudIPeriode(values));
+                        const nyeEndringer: TilsynsordningPeriodeData[] = values.id
+                            ? endringer.map((e) => (e.id === values.id ? values : e))
+                            : [...endringer, values];
+                        onChange(nyeEndringer);
                         setTimeout(() => {
-                            setVisPeriodeDialog(false);
+                            setVisPeriodeDialog(undefined);
                         });
                     },
                 }}

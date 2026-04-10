@@ -1,4 +1,3 @@
-import { TilsynsordningPeriodeData } from '@app/modules/tilsynsordning-måned/components/tilsynsordning-periode-form/TilsynsordningPeriodeForm';
 import { TilsynsordningSøknadsdata } from '@app/types';
 import {
     DateDurationMap,
@@ -9,6 +8,7 @@ import {
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
+import { TilsynsordningPeriodeData } from '../tilsynsordning-forenklet/types';
 import { TilsynsordningFormValues } from './TilsynsordningForm';
 
 export const getTilsynsordningStepInitialValues = (
@@ -37,11 +37,10 @@ export const getTilsynsordningSøknadsdataFromFormValues = (
 };
 
 export const oppdaterDagerMedOmsorgstilbudIPeriode = ({
-    fom,
-    tom,
+    periode,
     tidFasteDager,
 }: TilsynsordningPeriodeData): DateDurationMap => {
-    const datoerIPeriode = getDatesInDateRange({ from: fom, to: tom }, true);
+    const datoerIPeriode = getDatesInDateRange({ from: periode.from, to: periode.to }, true);
     const dagerSomSkalEndres: DateDurationMap = {};
     datoerIPeriode.forEach((dato) => {
         const isoDate = dateToISODate(dato);

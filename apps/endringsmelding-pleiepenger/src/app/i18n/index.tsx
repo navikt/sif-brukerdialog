@@ -5,6 +5,7 @@ import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { endringTilsynsordningListeMessages_nb } from '../modules/endring-tilsynsordning-liste/i18n/nb';
 import { appMessages } from './appMessages';
 
 export const libMessages = {
@@ -13,6 +14,7 @@ export const libMessages = {
         ...uiMessages.nb,
         ...soknadMessages.nb,
         ...ferieuttakMessages.nb,
+        ...endringTilsynsordningListeMessages_nb,
     },
     nn: {
         ...commonMessages.nn,

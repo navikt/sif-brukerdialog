@@ -19,7 +19,7 @@ import {
     getTilsynsordningSøknadsdataFromFormValues,
     getTilsynsordningStepInitialValues,
 } from './tilsynsordningForenkletStepUtils';
-import { TilsynsordningEndring } from './types';
+import { SøknadsperiodeTilsynsordningEndringer } from './types';
 
 const { FormikWrapper } = tilsynsordningForenkletFormComponents;
 
@@ -57,7 +57,7 @@ const TilsynsordningForenkletStep = () => {
         },
     );
 
-    const oppdaterSøknadState = (e: TilsynsordningEndring[]) => {
+    const oppdaterSøknadState = (e: SøknadsperiodeTilsynsordningEndringer) => {
         dispatch(
             actionsCreator.setSøknadTilsynsordningForenklet(
                 getTilsynsordningSøknadsdataFromFormValues({ endringer: e }),
@@ -77,6 +77,8 @@ const TilsynsordningForenkletStep = () => {
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="omsorgstilbudStep.title" />
                 </Heading>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit auctor dui, id faucibus nisl.
+                Donec
             </FormLayout.Guide>
             <VStack gap="space-32">
                 <FormikWrapper

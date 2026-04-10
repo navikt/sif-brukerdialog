@@ -1,7 +1,9 @@
-import { DateRange, DurationWeekdays } from '@navikt/sif-common-utils';
+import { DateRange, DurationWeekdays, ISODateRange } from '@navikt/sif-common-utils';
 
-export type TilsynsordningEndring = {
+export type TilsynsordningPeriodeData = {
     id?: string;
     periode: DateRange;
-    ukedager: DurationWeekdays;
+    tidFasteDager: DurationWeekdays;
 };
+
+export type SøknadsperiodeTilsynsordningEndringer = Record<ISODateRange, TilsynsordningPeriodeData[]>;

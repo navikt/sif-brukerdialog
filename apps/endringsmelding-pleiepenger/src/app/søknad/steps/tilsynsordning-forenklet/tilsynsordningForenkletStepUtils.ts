@@ -1,16 +1,8 @@
-import { TilsynsordningPeriodeData } from '@app/modules/tilsynsordning-måned/components/tilsynsordning-periode-form/TilsynsordningPeriodeForm';
-import {
-    DateDurationMap,
-    dateToISODate,
-    getDatesInDateRange,
-    getDurationForISOWeekdayNumber,
-    ISODateToDate,
-} from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
+import { DateRange, dateRangeToISODateRange } from '@navikt/sif-common-utils';
 
 import { TilsynsordningForenkletSøknadsdata } from '../../../types/TilsynsordningForenkletSøknadsdata';
 import { TilsynsordningForenkletFormValues } from './TilsynsordningForenkletForm';
-import { TilsynsordningEndring } from './types';
+import { TilsynsordningPeriodeData } from './types';
 
 export const getTilsynsordningStepInitialValues = (
     tilsynsordningSøknadsdata: TilsynsordningForenkletSøknadsdata | undefined,
@@ -21,7 +13,7 @@ export const getTilsynsordningStepInitialValues = (
     }
     if (tilsynsordningSøknadsdata === undefined) {
         return {
-            endringer: [],
+            endringer: {},
         };
     }
     return {
@@ -37,19 +29,14 @@ export const getTilsynsordningSøknadsdataFromFormValues = (
     };
 };
 
-export const oppdaterDagerMedOmsorgstilbudIPeriode = ({
-    fom,
-    tom,
-    tidFasteDager,
-}: TilsynsordningPeriodeData): TilsynsordningEndring[] => {
-    const datoerIPeriode = getDatesInDateRange({ from: fom, to: tom }, true);
-    const dagerSomSkalEndres: DateDurationMap = {};
-    datoerIPeriode.forEach((dato) => {
-        const isoDate = dateToISODate(dato);
-        const varighet = getDurationForISOWeekdayNumber(tidFasteDager, dayjs(ISODateToDate(isoDate)).isoWeekday());
-        if (varighet) {
-            dagerSomSkalEndres[isoDate] = { ...varighet };
-        }
+export const erTilsynsordningEndretIPeriode = (
+    periode: DateRange,
+    endringer?: TilsynsordningPeriodeData[],
+): boolean => {
+    if (!endringer) {
+        return false;
+    }
+    return endringer.some((endring) => {
+        return dateRangeToISODateRange(endring.periode) === dateRangeToISODateRange(periode);
     });
-    return [];
 };

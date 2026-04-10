@@ -1,0 +1,43 @@
+.endringTilsynsordningListe {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--ax-border-neutral);
+    li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--ax-border-neutral);
+    }
+    &__endring {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        &__periode {
+            flex-grow: 2;
+            &::first-letter {
+                text-transform: capitalize;
+            }
+            &--fjernet {
+                .dato {
+                    text-decoration: line-through;
+                }
+            }
+            .dato {
+                padding-right: 0.5rem;
+            }
+            .navds-tag {
+                position: relative;
+            }
+        }
+        &__actions {
+            display: flex;
+            line-height: 1;
+            flex-direction: row;
+            margin-top: -0.25rem;
+            margin-bottom: -0.25rem;
+        }
+        &__fjernKnapp {
+            margin-left: 1rem;
+        }
+    }
+}

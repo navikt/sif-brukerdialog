@@ -1,5 +1,5 @@
-import { TilsynsordningEndring } from '../søknad/steps/tilsynsordning-forenklet/types';
+import { SøknadsperiodeTilsynsordningEndringer } from '../søknad/steps/tilsynsordning-forenklet/types';
 
 export interface TilsynsordningForenkletSøknadsdata {
-    endringer: TilsynsordningEndring[];
+    endringer: SøknadsperiodeTilsynsordningEndringer;
 }
