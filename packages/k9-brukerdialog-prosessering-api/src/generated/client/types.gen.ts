@@ -747,6 +747,11 @@ export type ForutgåendeBosteder = {
     utenlandsoppholdSiste5År: Bosted[];
 };
 
+export type AktivitetspengerInntektsrapportering = {
+    oppgaveReferanse: string;
+    oppgittInntekt: OppgittInntekt;
+};
+
 export type Søker = {
     aktørId: string;
     fødselsdato: string;
@@ -1756,6 +1761,44 @@ export type InnsendingAktivitetspengersøknadError =
     InnsendingAktivitetspengersøknadErrors[keyof InnsendingAktivitetspengersøknadErrors];
 
 export type InnsendingAktivitetspengersøknadResponses = {
+    /**
+     * Accepted
+     */
+    202: unknown;
+};
+
+export type Inntektrapportering1Data = {
+    body: AktivitetspengerInntektsrapportering;
+    headers: {
+        'X-Brukerdialog-Git-Sha': string;
+    };
+    path?: never;
+    query?: never;
+    url: '/aktivitetspenger/inntektsrapportering/innsending';
+};
+
+export type Inntektrapportering1Errors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type Inntektrapportering1Error = Inntektrapportering1Errors[keyof Inntektrapportering1Errors];
+
+export type Inntektrapportering1Responses = {
     /**
      * Accepted
      */

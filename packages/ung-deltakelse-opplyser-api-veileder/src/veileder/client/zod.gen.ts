@@ -81,12 +81,10 @@ export const zDeltakelseHistorikkDto = z.object({
     aktør: z.string(),
 });
 
-export const zEndreStartdatoData = z.object({
-    body: zEndrePeriodeDatoDto,
-    path: z.object({
-        deltakelseId: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zEndreStartdatoBody = zEndrePeriodeDatoDto;
+
+export const zEndreStartdatoPath = z.object({
+    deltakelseId: z.uuid(),
 });
 
 /**
@@ -94,12 +92,10 @@ export const zEndreStartdatoData = z.object({
  */
 export const zEndreStartdatoResponse = zDeltakelseDto;
 
-export const zEndreSluttdatoData = z.object({
-    body: zEndrePeriodeDatoDto,
-    path: z.object({
-        deltakelseId: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zEndreSluttdatoBody = zEndrePeriodeDatoDto;
+
+export const zEndreSluttdatoPath = z.object({
+    deltakelseId: z.uuid(),
 });
 
 /**
@@ -107,12 +103,10 @@ export const zEndreSluttdatoData = z.object({
  */
 export const zEndreSluttdatoResponse = zDeltakelseDto;
 
-export const zMeldUtDeltakerData = z.object({
-    body: zDeltakelseUtmeldingDto,
-    path: z.object({
-        deltakelseId: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zMeldUtDeltakerBody = zDeltakelseUtmeldingDto;
+
+export const zMeldUtDeltakerPath = z.object({
+    deltakelseId: z.uuid(),
 });
 
 /**
@@ -120,34 +114,22 @@ export const zMeldUtDeltakerData = z.object({
  */
 export const zMeldUtDeltakerResponse = zDeltakelseDto;
 
-export const zMeldInnDeltakerData = z.object({
-    body: zDeltakelseInnmeldingDto,
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
+export const zMeldInnDeltakerBody = zDeltakelseInnmeldingDto;
 
 /**
  * OK
  */
 export const zMeldInnDeltakerResponse = zDeltakelseDto;
 
-export const zHentDeltakerInfoGittDeltakerData = z.object({
-    body: zDeltakerDto,
-    path: z.never().optional(),
-    query: z.never().optional(),
-});
+export const zHentDeltakerInfoGittDeltakerBody = zDeltakerDto;
 
 /**
  * OK
  */
 export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
 
-export const zHentAlleDeltakelserGittDeltakerIdData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        deltakerId: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zHentAlleDeltakelserGittDeltakerIdPath = z.object({
+    deltakerId: z.uuid(),
 });
 
 /**
@@ -155,12 +137,8 @@ export const zHentAlleDeltakelserGittDeltakerIdData = z.object({
  */
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseDto);
 
-export const zDeltakelseHistorikkData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        deltakelseId: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zDeltakelseHistorikkPath = z.object({
+    deltakelseId: z.uuid(),
 });
 
 /**
@@ -168,12 +146,8 @@ export const zDeltakelseHistorikkData = z.object({
  */
 export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
 
-export const zHentDeltakerInfoGittDeltakerIdData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        id: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zHentDeltakerInfoGittDeltakerIdPath = z.object({
+    id: z.uuid(),
 });
 
 /**
@@ -181,12 +155,8 @@ export const zHentDeltakerInfoGittDeltakerIdData = z.object({
  */
 export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 
-export const zFjernFraProgramData = z.object({
-    body: z.never().optional(),
-    path: z.object({
-        deltakerId: z.uuid(),
-    }),
-    query: z.never().optional(),
+export const zFjernFraProgramPath = z.object({
+    deltakerId: z.uuid(),
 });
 
 /**
