@@ -1,7 +1,6 @@
 // Hooks
-export { aktivitetspenger } from '../hooks';
-export { ungdomsprogramytelse } from '../hooks';
 export { useArbeidsgivere } from '../hooks/useArbeidsgivere';
+export { useRapporterInntekt } from '../hooks/useRapporterInntekt';
 export { useRegistrerteBarn } from '../hooks/useRegistrerteBarn';
 export { useSendOppgavebekreftelse } from '../hooks/useSendOppgavebekreftelse';
 export { useSøker } from '../hooks/useSoker';

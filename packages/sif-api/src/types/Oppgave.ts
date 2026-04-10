@@ -2,6 +2,7 @@ import { DateRange, OpenDateRange } from '@navikt/sif-common-utils';
 import {
     BrukerdialogOppgaveDto,
     OppgaveStatus,
+    OppgaveYtelsetype,
     RapportertInntektDto,
     RegisterinntektDto,
     SvarPåVarselDto,
@@ -106,6 +107,7 @@ export type BekreftelseOppgave =
       });
 
 export interface RapporterInntektOppgave extends ParsedRapportertInntektOppgave {
+    oppgaveYtelsetype: OppgaveYtelsetype;
     oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
