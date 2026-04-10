@@ -106,6 +106,8 @@ export const RapporterInntektForm = ({ måned, oppgaveReferanse, onSuccess }: Ra
                                 integerValue={true}
                                 description={text('@ungInnsyn.inntektForm.inntektDescription')}
                                 onFocus={dtoError ? () => setDtoError(undefined) : undefined}
+                                htmlSize={10}
+                                maxLength={10}
                                 validate={validateField(
                                     InntektFormFields.inntekt,
                                     getNumberValidator({
