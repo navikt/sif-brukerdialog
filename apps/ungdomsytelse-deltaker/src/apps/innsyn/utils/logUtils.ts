@@ -1,9 +1,9 @@
 import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
-import { BekreftelseOppgave, Oppgave, ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { BekreftelseOppgave, Oppgave, ParsedOppgavetype, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
-import { KontonummerOppslagInfo } from '@søknad/types';
 import dayjs from 'dayjs';
 
 type DeltakelsePeriodeMeta = {
@@ -72,7 +72,7 @@ const getSøknadInnsendingMeta = (
         antallBarn: number;
         barnStemmer: boolean;
         kontonummerStemmer?: boolean;
-        kontonummerOppslagInfo: KontonummerOppslagInfo;
+        kontonummerOppslagInfo: UtvidetKontonummerInfo;
     },
     oppgaver: Oppgave[],
 ) => {

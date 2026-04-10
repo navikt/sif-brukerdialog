@@ -1,22 +1,23 @@
 import { logUtils } from '@innsyn/utils/logUtils';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { DeltakerSkjemaId } from '@shared/types/DeltakerSkjemaId';
-import { Oppgave, SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { Oppgave, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import React, { createContext, useMemo, useState } from 'react';
 
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../analytics/analytics';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
-import { KontonummerOppslagInfo, SøknadContextType, SøknadSvar, Spørsmål, Steg } from '../types';
+import { SøknadContextType, SøknadSvar, Spørsmål, Steg } from '../types';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
 interface SøknadProviderProps {
     children: React.ReactNode;
     barn: RegistrertBarn[];
-    kontonummerInfo: KontonummerOppslagInfo;
+    kontonummerInfo: UtvidetKontonummerInfo;
     søker: Søker;
     initialSvar?: SøknadSvar;
     søknadOppgave: SøkYtelseOppgave;

@@ -1,5 +1,5 @@
-import { commonRequestHeader, handleApiError } from '@navikt/ung-common';
 import { Deltakelse } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { commonRequestHeader, handleApiError } from '@sif/api';
 
 export const markerDeltakelseSomSøkt = async (deltakelseId: string): Promise<void> => {
     try {

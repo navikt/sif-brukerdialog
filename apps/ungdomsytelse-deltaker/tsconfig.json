@@ -19,7 +19,6 @@
 
             // Innsyn-app alias
             "@innsyn/*": ["./src/apps/innsyn/*"],
-            "@innsyn/atoms/*": ["./src/apps/innsyn/atoms/*"],
             "@innsyn/components/*": ["./src/apps/innsyn/components/*"],
             "@innsyn/modules/*": ["./src/apps/innsyn/modules/*"],
             "@innsyn/pages/*": ["./src/apps/innsyn/pages/*"],
