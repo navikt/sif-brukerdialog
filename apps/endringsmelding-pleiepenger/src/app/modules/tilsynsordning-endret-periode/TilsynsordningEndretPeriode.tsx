@@ -33,10 +33,13 @@ export const TilsynsordningEndretPeriode = ({ endretPeriode, onEdit, onDelete }:
                     borderWidth="1"
                     padding="space-16"
                     background="neutral-softA">
-                    <VStack gap="space-16">
+                    <VStack gap="space-12">
+                        <Heading level="4" size="xsmall" style={{ fontWeight: 'normal' }}>
+                            Ukeplan for perioden
+                        </Heading>
                         <TidUkedager fasteDager={tidFasteDager} />
                         {onEdit || onDelete ? (
-                            <HStack gap="space-12">
+                            <HStack gap="space-12" marginBlock="space-8 space-0">
                                 {onEdit && (
                                     <EditButton
                                         variant="secondary"

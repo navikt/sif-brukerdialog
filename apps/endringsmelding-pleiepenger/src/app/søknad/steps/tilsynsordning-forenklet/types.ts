@@ -6,4 +6,4 @@ export type TilsynsordningPeriodeData = {
     tidFasteDager: DurationWeekdays;
 };
 
-export type SøknadsperiodeTilsynsordningEndringer = Record<ISODateRange, TilsynsordningPeriodeData[]>;
+export type TilsynsordningEndringerIPeriode = Record<ISODateRange, TilsynsordningPeriodeData[]>;

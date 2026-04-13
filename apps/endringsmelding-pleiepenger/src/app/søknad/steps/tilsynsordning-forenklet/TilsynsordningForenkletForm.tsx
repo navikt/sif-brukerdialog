@@ -7,7 +7,7 @@ import { useFormikContext } from 'formik';
 import { useIntl } from 'react-intl';
 
 import TilsynsordningForenkletSøknadsperiode from './TilsynsordningForenkletSøknadsperiode';
-import { SøknadsperiodeTilsynsordningEndringer, TilsynsordningPeriodeData } from './types';
+import { TilsynsordningEndringerIPeriode, TilsynsordningPeriodeData } from './types';
 
 export const tilsynsordningForenkletFormComponents = getTypedFormComponents<
     TilsynsordningForenkletFormFields,
@@ -18,7 +18,7 @@ export const tilsynsordningForenkletFormComponents = getTypedFormComponents<
 const { Form } = tilsynsordningForenkletFormComponents;
 
 export interface TilsynsordningForenkletFormValues {
-    endringer: SøknadsperiodeTilsynsordningEndringer;
+    endringer: TilsynsordningEndringerIPeriode;
 }
 
 export enum TilsynsordningForenkletFormFields {
@@ -29,7 +29,7 @@ interface Props {
     søknadsperioder: DateRange[];
     isSubmitting?: boolean;
     goBack?: () => void;
-    onChange: (endringer: SøknadsperiodeTilsynsordningEndringer) => void;
+    onChange: (endringer: TilsynsordningEndringerIPeriode) => void;
 }
 
 const TilsynsordningForenkletForm = ({ goBack, søknadsperioder, isSubmitting, onChange }: Props) => {

@@ -127,7 +127,7 @@ const OppsummeringStep = () => {
                         {tilsynsordning !== undefined && tilsynsordningErEndret ? (
                             <TilsynsordningOppsummering
                                 tilsynsordning={tilsynsordning}
-                                tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
+                                søknadsdata={søknadsdata.tilsynsordningForenklet}
                             />
                         ) : (
                             <Alert variant="info">

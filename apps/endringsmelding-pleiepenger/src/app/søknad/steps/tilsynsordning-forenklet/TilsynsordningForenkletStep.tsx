@@ -19,7 +19,7 @@ import {
     getTilsynsordningForenkletSøknadsdataFromFormValues,
     getTilsynsordningStepInitialValues,
 } from './tilsynsordningForenkletStepUtils';
-import { SøknadsperiodeTilsynsordningEndringer } from './types';
+import { TilsynsordningEndringerIPeriode } from './types';
 
 const { FormikWrapper } = tilsynsordningForenkletFormComponents;
 
@@ -57,7 +57,7 @@ const TilsynsordningForenkletStep = () => {
         },
     );
 
-    const oppdaterSøknadState = (e: SøknadsperiodeTilsynsordningEndringer) => {
+    const oppdaterSøknadState = (e: TilsynsordningEndringerIPeriode) => {
         dispatch(
             actionsCreator.setSøknadTilsynsordningForenklet(
                 getTilsynsordningForenkletSøknadsdataFromFormValues({ endringer: e }),

@@ -3,12 +3,14 @@ import { BodyShort, ExpansionCard, VStack } from '@navikt/ds-react';
 import { DateDurationMap, dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 
 import { AppText } from '../../../../i18n';
+import { TilsynsordningForenkletSøknadsdata } from '../../../../types/TilsynsordningForenkletSøknadsdata';
 import { getMånederMedDagerEndretTilsyn } from '../oppsummeringStepUtils';
 import EndretTilsynTabell from './EndretTilsynTabell';
 
 interface Props {
     tilsynsordning: TilsynsordningApiData;
     tidOpprinnelig?: DateDurationMap;
+    søknadsdata?: TilsynsordningForenkletSøknadsdata;
 }
 
 const TilsynsordningOppsummering = ({ tilsynsordning, tidOpprinnelig }: Props) => {
@@ -27,7 +29,6 @@ const TilsynsordningOppsummering = ({ tilsynsordning, tidOpprinnelig }: Props) =
                                 <div className="capsFirstLetter">
                                     {`${dateFormatter.monthFullYear(måned)}`}
                                     <BodyShort as="span" weight="regular">
-                                        {' '}
                                         <AppText
                                             id="oppsummeringStep.tilsynsordning.dagerEndret"
                                             values={{ antall: antallDagerEndret }}
