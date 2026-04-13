@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.69
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 3.49.68
 
 ### Patch Changes

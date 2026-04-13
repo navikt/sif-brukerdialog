@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.69
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 1.41.68
 
 ### Patch Changes

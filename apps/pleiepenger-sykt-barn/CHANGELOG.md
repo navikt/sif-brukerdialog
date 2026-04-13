@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.71
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 4.11.70
 
 ### Patch Changes
