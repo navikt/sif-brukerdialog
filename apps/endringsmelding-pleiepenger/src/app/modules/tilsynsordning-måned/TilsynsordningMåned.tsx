@@ -26,6 +26,8 @@ interface Props {
     månedTittelHeadingLevel?: '2' | '3' | '4';
     søknadsperiode: DateRange;
     defaultOpen?: boolean;
+    visOpprinneligTid?: boolean;
+    visEndretTag?: boolean;
     onEnkeltdagChange?: EnkeltdagChangeEvent;
 }
 
@@ -35,7 +37,9 @@ const TilsynsordningMåned = ({
     tidTilsynsordningOpprinnelig,
     søknadsperiode,
     defaultOpen,
+    visOpprinneligTid,
     månedTittelHeadingLevel,
+    visEndretTag = false,
     onEnkeltdagChange,
 }: Props) => {
     const { text } = useAppIntl();
@@ -65,14 +69,14 @@ const TilsynsordningMåned = ({
                     <ExpansionCard.Title size="small" as="div">
                         <HStack gap="space-16" justify="start">
                             <Box className="capsFirstLetter" marginBlock="space-2 space-0">
-                                <Heading level={månedTittelHeadingLevel || '3'} size="small">
+                                <Heading level={månedTittelHeadingLevel || '3'} size="xsmall">
                                     <AppText
                                         id="tilsynsordningMåned.ukeOgÅr"
                                         values={{ ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') }}
                                     />
                                 </Heading>
                             </Box>
-                            {antallDagerEndret === 0 ? null : (
+                            {!visEndretTag || antallDagerEndret === 0 ? null : (
                                 <span>
                                     <EndretTag size="small">
                                         <AppText
@@ -93,7 +97,7 @@ const TilsynsordningMåned = ({
                     dagerMedTidOpprinnelig={tidTilsynsordningOpprinnelig}
                     utilgjengeligeDatoer={utilgjengeligeDatoer}
                     skjulTommeDagerIListe={false}
-                    visOpprinneligTid={true}
+                    visOpprinneligTid={visOpprinneligTid}
                     skjulUkerMedKunUtilgjengeligeDager={true}
                     onDateClick={
                         onEnkeltdagChange

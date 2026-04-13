@@ -1,11 +1,22 @@
+/* eslint-disable no-constant-binary-expression */
 import DeleteButton from '@app/components/buttons/DeleteButton';
 import EditButton from '@app/components/buttons/EditButton';
-import { Box, Heading, HStack, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { Bleed, Box, Heading, HStack, Switch, VStack } from '@navikt/ds-react';
+import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
+import {
+    dateFormatter,
+    dateRangeUtils,
+    durationToISODuration,
+    getDatesInMonthOutsideDateRange,
+} from '@navikt/sif-common-utils';
+import { useState } from 'react';
 
 import TidUkedager from '../../components/tid-ukedager/TidUkedager';
 import { useAppIntl } from '../../i18n';
+import TidsbrukKalender from '../../local-sif-common-pleiepenger/components/tidsbruk-kalender/TidsbrukKalender';
+import { oppdaterDagerMedOmsorgstilbudIPeriode } from '../../søknad/steps/tilsynsordning/tilsynsordningStepUtils';
 import { TilsynsordningPeriodeData } from '../../søknad/steps/tilsynsordning-forenklet/types';
+import TilsynsordningMåned from '../tilsynsordning-måned/TilsynsordningMåned';
 
 interface Props {
     endretPeriode: TilsynsordningPeriodeData;
@@ -13,14 +24,33 @@ interface Props {
     onDelete?: (periode: TilsynsordningPeriodeData) => void;
 }
 
+const createPeriodeKey = (startDate: string, endDate: string): string => `${startDate}/${endDate}`;
+
 export const TilsynsordningEndretPeriode = ({ endretPeriode, onEdit, onDelete }: Props) => {
+    const [visKalender, setVisKalender] = useState(false);
     const { text } = useAppIntl();
     const { from, to } = endretPeriode.periode;
-    const { tidFasteDager } = endretPeriode;
+    const { periode, tidFasteDager } = endretPeriode;
     const fra = dateFormatter.dayCompactDate(from);
     const til = dateFormatter.dayCompactDate(to);
     const periodeTekst = fra === til ? fra : `${fra} - ${til}`;
 
+    const tilsynsordningDager: Record<string, { etablertTilsynTimerPerDag: string }> = {};
+
+    const endredeTilsynsdager = oppdaterDagerMedOmsorgstilbudIPeriode({ periode, tidFasteDager });
+    Object.keys(endredeTilsynsdager).forEach((dagKey) => {
+        const dagPeriodeKey = createPeriodeKey(dagKey, dagKey);
+        const varighet = durationToISODuration(endredeTilsynsdager[dagKey]);
+        tilsynsordningDager[dagPeriodeKey] = {
+            etablertTilsynTimerPerDag: varighet,
+        };
+    });
+
+    const månederIPeriode = dateRangeUtils
+        .getMonthsInDateRange(periode)
+        .filter(dateRangeUtils.dateRangeIncludesWeekdays);
+
+    const utilgjengeligeDatoer = getDatesInMonthOutsideDateRange(periode.from, periode);
     return (
         <Box>
             <VStack gap="space-12">
@@ -38,6 +68,7 @@ export const TilsynsordningEndretPeriode = ({ endretPeriode, onEdit, onDelete }:
                             Ukeplan for perioden
                         </Heading>
                         <TidUkedager fasteDager={tidFasteDager} />
+
                         {onEdit || onDelete ? (
                             <HStack gap="space-12" marginBlock="space-8 space-0">
                                 {onEdit && (
@@ -64,8 +95,62 @@ export const TilsynsordningEndretPeriode = ({ endretPeriode, onEdit, onDelete }:
                                         Fjern
                                     </DeleteButton>
                                 )}
+                                {1 + 1 === 2 && (
+                                    <Box paddingInline="space-32">
+                                        <Switch
+                                            size="small"
+                                            checked={visKalender}
+                                            onChange={() => setVisKalender(!visKalender)}>
+                                            Vis kalender
+                                        </Switch>
+                                    </Box>
+                                )}
                             </HStack>
                         ) : null}
+                        {!visKalender ? null : (
+                            <VStack gap="space-8" marginBlock="space-16 space-0">
+                                <AriaAlternative
+                                    ariaText={
+                                        <Heading level="4" size="small">
+                                            Kalender
+                                        </Heading>
+                                    }
+                                    visibleText={null}
+                                />
+                                {månederIPeriode.map((måned) => {
+                                    return (
+                                        <Bleed marginInline="space-8" key={måned.from.toDateString()}>
+                                            <Box background="default" borderRadius="4" padding="space-8">
+                                                <VStack gap="space-4" paddingBlock="space-8 space-0">
+                                                    <Heading level="5" size="xsmall">
+                                                        {dateFormatter.MonthFullYear(måned.from)}
+                                                    </Heading>
+                                                    {1 + 1 === 2 && (
+                                                        <TidsbrukKalender
+                                                            måned={måned}
+                                                            dagerMedTid={endredeTilsynsdager}
+                                                            skjulTommeDagerIListe={true}
+                                                            utilgjengeligeDatoer={utilgjengeligeDatoer}
+                                                            visOpprinneligTid={false}
+                                                            skjulUkerMedKunUtilgjengeligeDager={true}
+                                                        />
+                                                    )}
+                                                    {1 + 1 === 3 && (
+                                                        <TilsynsordningMåned
+                                                            key={måned.from.toDateString()}
+                                                            søknadsperiode={måned}
+                                                            måned={måned}
+                                                            visOpprinneligTid={false}
+                                                            tidTilsynsordning={endredeTilsynsdager}
+                                                        />
+                                                    )}
+                                                </VStack>
+                                            </Box>
+                                        </Bleed>
+                                    );
+                                })}
+                            </VStack>
+                        )}
                     </VStack>
                 </Box>
             </VStack>

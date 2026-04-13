@@ -5,6 +5,7 @@ import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
+    dateRangeUtils,
     dateToISODate,
     getDatesInDateRange,
     getDatesInMonth,
@@ -108,7 +109,8 @@ const CalendarGrid = ({
         const renderAsButton = onDateClick !== undefined && dateIsDisabled === false;
 
         const ButtonOrDivComponent = renderAsButton ? 'button' : 'div';
-        return dayjs(date).isSame(month.from, 'month') === false ? (
+        return dayjs(date).isSame(month.from, 'month') === false ||
+            dateRangeUtils.isDateInDateRange(date, month) === false ? (
             <div key={dateKey} aria-hidden={true} className={classNames(bem.element('day', 'outsideMonth'))} />
         ) : (
             <ButtonOrDivComponent
@@ -147,7 +149,9 @@ const CalendarGrid = ({
         const areAllDaysInWeekDisabledOrOutsideMonth =
             datesInWeek.filter(
                 (date) =>
-                    isDateInDates(date, disabledDates) === true || dayjs(date).isSame(month.from, 'month') === false,
+                    isDateInDates(date, disabledDates) === true ||
+                    dayjs(date).isSame(month.from, 'month') === false ||
+                    dateRangeUtils.isDateInDateRange(date, month) === false,
             ).length === datesInWeek.length;
 
         if (hideWeeksWithOnlyDisabledContent && areAllDaysInWeekDisabledOrOutsideMonth) {

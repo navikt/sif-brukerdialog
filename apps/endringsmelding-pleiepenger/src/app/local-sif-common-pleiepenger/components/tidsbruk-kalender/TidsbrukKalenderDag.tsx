@@ -56,7 +56,7 @@ const TidsbrukKalenderDag = ({
                                 'endret',
                                 durationIsGreatherThanZero(tid) === false ? 'ingenTid' : undefined,
                             )}>
-                            <BodyShort weight="semibold" as="span" className={bem.block}>
+                            <BodyShort weight="regular" as="span" className={bem.block}>
                                 {renderTid(ensureDuration(tid))}
                             </BodyShort>
                             {visOpprinneligTid && (
