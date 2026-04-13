@@ -1,10 +1,11 @@
 import TilsynsordningPeriodeDialog from '@app/modules/tilsynsordning-måned/components/tilsynsordning-periode-dialog/TilsynsordningPeriodeDialog';
-import { Button, HStack, InlineMessage, VStack } from '@navikt/ds-react';
+import { Box, Button, HStack, InlineMessage, Switch, VStack } from '@navikt/ds-react';
 import { DateRange, dateRangeToISODateRange } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 import { v4 } from 'uuid';
 
 import { TilsynsordningEndretPeriode } from '../../../modules/tilsynsordning-endret-periode/TilsynsordningEndretPeriode';
+import { EndringerKalender } from './EndringerKalender';
 import { TilsynsordningPeriodeData } from './types';
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringerISøknadsperiode = [], onChange }: Props) => {
+    const [visKalender, setVisKalender] = useState(false);
     const [visPeriodeDialog, setVisPeriodeDialog] = useState<
         | {
               søknadsperiode: DateRange;
@@ -22,6 +24,18 @@ const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringerISø
           }
         | undefined
     >(undefined);
+
+    const sorterteEndringer = endringerISøknadsperiode.sort(
+        (a, b) => a.periode.from.getTime() - b.periode.from.getTime(),
+    );
+
+    const tidsromEndringer: DateRange | undefined =
+        sorterteEndringer.length > 0
+            ? {
+                  from: sorterteEndringer[0].periode.from,
+                  to: sorterteEndringer[sorterteEndringer.length - 1].periode.to,
+              }
+            : undefined;
 
     return (
         <VStack gap="space-16">
@@ -37,7 +51,7 @@ const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringerISø
                                 onEdit={(endretPeriode) => {
                                     setVisPeriodeDialog({
                                         søknadsperiode,
-                                        endringerISøknadsperiode,
+                                        endringerISøknadsperiode: sorterteEndringer,
                                         endretPeriode,
                                     });
                                 }}
@@ -48,7 +62,7 @@ const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringerISø
                         ))}
                     </VStack>
                 )}
-                <HStack gap="space-4" justify="space-between" marginBlock="space-0 space-8">
+                <HStack gap="space-24" marginBlock="space-0 space-8">
                     <Button
                         type="button"
                         variant="secondary"
@@ -59,7 +73,15 @@ const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringerISø
                         }>
                         Legg til endring
                     </Button>
+                    <Box>
+                        <Switch size="small" checked={visKalender} onChange={() => setVisKalender(!visKalender)}>
+                            Vis registrerte endringer i kalender
+                        </Switch>
+                    </Box>
                 </HStack>
+                {tidsromEndringer && visKalender && (
+                    <EndringerKalender tidsrom={tidsromEndringer} endringer={endringerISøknadsperiode} />
+                )}
             </VStack>
 
             <TilsynsordningPeriodeDialog

@@ -43,7 +43,7 @@ const TilsynsordningForenkletForm = ({ goBack, søknadsperioder, isSubmitting, o
         periodeEndringer: TilsynsordningPeriodeData[],
     ): void => {
         const key = dateRangeToISODateRange(søknadsperiode);
-        const endring = { ...values.endringer, [key]: periodeEndringer };
+        const endring = { [key]: periodeEndringer };
         setFieldValue(TilsynsordningForenkletFormFields.endringer, endring);
         onChange(endring);
     };

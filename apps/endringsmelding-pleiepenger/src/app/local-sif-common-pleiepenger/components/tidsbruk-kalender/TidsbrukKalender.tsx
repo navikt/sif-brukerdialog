@@ -1,3 +1,4 @@
+import { Detail } from '@navikt/ds-react/Typography';
 import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
 import { DateRange, InputTime } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, dateToISODate, Duration, ensureDuration } from '@navikt/sif-common-utils';
@@ -99,7 +100,9 @@ const TidsbrukKalender = ({
                         footerRenderer={footerRenderer}
                     />
                 ) : (
-                    <span />
+                    <Detail as="div" align="center" data-color="info">
+                        Uendret
+                    </Detail>
                 );
             }}
         />

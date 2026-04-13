@@ -3,12 +3,7 @@ import DeleteButton from '@app/components/buttons/DeleteButton';
 import EditButton from '@app/components/buttons/EditButton';
 import { Bleed, Box, Heading, HStack, Switch, VStack } from '@navikt/ds-react';
 import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
-import {
-    dateFormatter,
-    dateRangeUtils,
-    durationToISODuration,
-    getDatesInMonthOutsideDateRange,
-} from '@navikt/sif-common-utils';
+import { dateFormatter, dateRangeUtils, getDatesInMonthOutsideDateRange } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
 import TidUkedager from '../../components/tid-ukedager/TidUkedager';
@@ -24,7 +19,7 @@ interface Props {
     onDelete?: (periode: TilsynsordningPeriodeData) => void;
 }
 
-const createPeriodeKey = (startDate: string, endDate: string): string => `${startDate}/${endDate}`;
+// const createPeriodeKey = (startDate: string, endDate: string): string => `${startDate}/${endDate}`;
 
 export const TilsynsordningEndretPeriode = ({ endretPeriode, onEdit, onDelete }: Props) => {
     const [visKalender, setVisKalender] = useState(false);
@@ -35,16 +30,7 @@ export const TilsynsordningEndretPeriode = ({ endretPeriode, onEdit, onDelete }:
     const til = dateFormatter.dayCompactDate(to);
     const periodeTekst = fra === til ? fra : `${fra} - ${til}`;
 
-    const tilsynsordningDager: Record<string, { etablertTilsynTimerPerDag: string }> = {};
-
     const endredeTilsynsdager = oppdaterDagerMedOmsorgstilbudIPeriode({ periode, tidFasteDager });
-    Object.keys(endredeTilsynsdager).forEach((dagKey) => {
-        const dagPeriodeKey = createPeriodeKey(dagKey, dagKey);
-        const varighet = durationToISODuration(endredeTilsynsdager[dagKey]);
-        tilsynsordningDager[dagPeriodeKey] = {
-            etablertTilsynTimerPerDag: varighet,
-        };
-    });
 
     const månederIPeriode = dateRangeUtils
         .getMonthsInDateRange(periode)
@@ -95,7 +81,7 @@ export const TilsynsordningEndretPeriode = ({ endretPeriode, onEdit, onDelete }:
                                         Fjern
                                     </DeleteButton>
                                 )}
-                                {1 + 1 === 2 && (
+                                {1 + 1 === 3 && (
                                     <Box paddingInline="space-32">
                                         <Switch
                                             size="small"
