@@ -73,11 +73,13 @@ const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringerISø
                         }>
                         Legg til endring
                     </Button>
-                    <Box>
-                        <Switch size="small" checked={visKalender} onChange={() => setVisKalender(!visKalender)}>
-                            Vis registrerte endringer i kalender
-                        </Switch>
-                    </Box>
+                    {endringerISøknadsperiode.length > 0 && (
+                        <Box>
+                            <Switch size="small" checked={visKalender} onChange={() => setVisKalender(!visKalender)}>
+                                Vis registrerte endringer i kalender
+                            </Switch>
+                        </Box>
+                    )}
                 </HStack>
                 {tidsromEndringer && visKalender && (
                     <EndringerKalender tidsrom={tidsromEndringer} endringer={endringerISøknadsperiode} />
