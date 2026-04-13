@@ -2,7 +2,7 @@
     "name": "@navikt/omsorgspengesoknad-v2",
     "type": "module",
     "private": true,
-    "version": "0.0.1",
+    "version": "0.0.2",
     "scripts": {
         "dev": "vite --base=/familie/sykdom-i-familien/soknad/omsorgspenger --config vite.dev.config.ts",
         "pw:dev": "vite --config vite.e2e.config.ts",

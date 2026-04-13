@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.68
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 2.28.67
 
 ### Patch Changes

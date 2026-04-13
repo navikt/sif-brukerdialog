@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.50
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 1.5.49
 
 ### Patch Changes

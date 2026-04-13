@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.8
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 2.2.7
 
 ### Patch Changes

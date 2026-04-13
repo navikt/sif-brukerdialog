@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.14.6
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 3.14.5
 
 ### Patch Changes

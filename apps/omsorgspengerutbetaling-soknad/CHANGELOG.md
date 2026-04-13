@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.26.68
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 1.26.67
 
 ### Patch Changes
