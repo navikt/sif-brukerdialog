@@ -24,13 +24,13 @@
         "date-fns": "4.1.0",
         "dayjs": "1.11.20",
         "formik": "2.4.9",
-        "html-react-parser": "6.0.0",
+        "html-react-parser": "6.0.1",
         "jsdom": "28.1.0",
-        "next": "16.2.2",
+        "next": "16.2.3",
         "node-fetch": "3.3.2",
-        "react": "19.2.4",
+        "react": "19.2.5",
         "react-day-picker": "9.14.0",
-        "react-dom": "19.2.4",
+        "react-dom": "19.2.5",
         "react-intl": "10.1.1",
         "uuid": "13.0.0"
     },
@@ -44,13 +44,13 @@
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
         "eslint": "9.39.4",
-        "eslint-config-next": "16.2.2",
+        "eslint-config-next": "16.2.3",
         "jest": "30.3.0",
         "jest-environment-jsdom": "30.3.0",
         "playwright-core": "1.59.1",
-        "postcss": "8.5.8",
+        "postcss": "8.5.9",
         "tailwindcss": "4.2.2",
         "typescript": "6.0.2",
-        "vite": "8.0.5"
+        "vite": "8.0.8"
     }
 }
