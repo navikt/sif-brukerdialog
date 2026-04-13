@@ -101,6 +101,7 @@ const TilsynsordningSøknadsperiode = ({
             </ConfirmationDialog>
             <TilsynsordningPeriodeDialog
                 isOpen={visPeriodeDialog}
+                endringerISøknadsperiode={[]}
                 formProps={{
                     periode: søknadsperiode,
                     onCancel: () => setVisPeriodeDialog(false),

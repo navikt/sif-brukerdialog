@@ -1,61 +1,78 @@
 import TilsynsordningPeriodeDialog from '@app/modules/tilsynsordning-måned/components/tilsynsordning-periode-dialog/TilsynsordningPeriodeDialog';
-import { PencilIcon } from '@navikt/aksel-icons';
-import { Button, HStack, VStack } from '@navikt/ds-react';
-import { DateRange } from '@navikt/sif-common-utils';
+import { Button, HStack, InlineMessage, VStack } from '@navikt/ds-react';
+import { DateRange, dateRangeToISODateRange } from '@navikt/sif-common-utils';
 import { useState } from 'react';
+import { v4 } from 'uuid';
 
-import EndringTilsynsordningListe from '../../../modules/endring-tilsynsordning-liste/EndringTilsynsordningListe';
+import { TilsynsordningEndretPeriode } from '../../../modules/tilsynsordning-endret-periode/TilsynsordningEndretPeriode';
 import { TilsynsordningPeriodeData } from './types';
 
 interface Props {
     søknadsperiode: DateRange;
-    endringer: TilsynsordningPeriodeData[] | undefined;
+    endringerISøknadsperiode: TilsynsordningPeriodeData[] | undefined;
     onChange: (endringer: TilsynsordningPeriodeData[]) => void;
 }
 
-const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringer = [], onChange }: Props) => {
+const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringerISøknadsperiode = [], onChange }: Props) => {
     const [visPeriodeDialog, setVisPeriodeDialog] = useState<
-        { søknadsperiode: DateRange; endring: TilsynsordningPeriodeData | undefined } | undefined
+        | {
+              søknadsperiode: DateRange;
+              endringerISøknadsperiode: TilsynsordningPeriodeData[];
+              endretPeriode: TilsynsordningPeriodeData | undefined;
+          }
+        | undefined
     >(undefined);
 
     return (
-        <>
-            <VStack gap="space-16">
-                <EndringTilsynsordningListe
-                    perioder={endringer}
-                    onEdit={(periode) => {
-                        setVisPeriodeDialog({
-                            søknadsperiode,
-                            endring: periode,
-                        });
-                    }}
-                    onDelete={() => {
-                        console.log('onDelete');
-                        // onChange(fjernEndring(endringer, periode));
-                    }}
-                />
+        <VStack gap="space-16">
+            <VStack gap="space-32">
+                {endringerISøknadsperiode.length === 0 ? (
+                    <InlineMessage status="info">Ingen endringer registrert for denne perioden.</InlineMessage>
+                ) : (
+                    <VStack gap="space-32">
+                        {endringerISøknadsperiode.map((p) => (
+                            <TilsynsordningEndretPeriode
+                                key={dateRangeToISODateRange(p.periode)}
+                                endretPeriode={p}
+                                onEdit={(endretPeriode) => {
+                                    setVisPeriodeDialog({
+                                        søknadsperiode,
+                                        endringerISøknadsperiode,
+                                        endretPeriode,
+                                    });
+                                }}
+                                onDelete={(endretPeriode) => {
+                                    onChange(endringerISøknadsperiode.filter((e) => e.id !== endretPeriode.id));
+                                }}
+                            />
+                        ))}
+                    </VStack>
+                )}
                 <HStack gap="space-4" justify="space-between" marginBlock="space-0 space-8">
                     <Button
                         type="button"
                         variant="secondary"
                         size="small"
                         data-color="accent"
-                        onClick={() => setVisPeriodeDialog({ søknadsperiode, endring: undefined })}
-                        icon={<PencilIcon role="presentation" />}>
-                        Registrer endring
+                        onClick={() =>
+                            setVisPeriodeDialog({ søknadsperiode, endringerISøknadsperiode, endretPeriode: undefined })
+                        }>
+                        Legg til endring
                     </Button>
                 </HStack>
             </VStack>
 
             <TilsynsordningPeriodeDialog
                 isOpen={visPeriodeDialog !== undefined}
+                endretPeriode={visPeriodeDialog?.endretPeriode}
+                endringerISøknadsperiode={endringerISøknadsperiode}
                 formProps={{
                     periode: søknadsperiode,
                     onCancel: () => setVisPeriodeDialog(undefined),
                     onSubmit: (values) => {
                         const nyeEndringer: TilsynsordningPeriodeData[] = values.id
-                            ? endringer.map((e) => (e.id === values.id ? values : e))
-                            : [...endringer, values];
+                            ? endringerISøknadsperiode.map((e) => (e.id === values.id ? values : e))
+                            : [...endringerISøknadsperiode, { ...values, id: v4() }];
                         onChange(nyeEndringer);
                         setTimeout(() => {
                             setVisPeriodeDialog(undefined);
@@ -63,7 +80,7 @@ const TilsynsordningForenkletSøknadsperiode = ({ søknadsperiode, endringer = [
                     },
                 }}
             />
-        </>
+        </VStack>
     );
 };
 

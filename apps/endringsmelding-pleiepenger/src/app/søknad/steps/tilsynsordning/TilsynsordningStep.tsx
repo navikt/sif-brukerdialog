@@ -65,7 +65,7 @@ const TilsynsordningStep = () => {
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
-                    <AppText id="omsorgstilbudStep.title" />
+                    <AppText id="tilsynsordningStep.guide.title" />
                 </Heading>
                 <List>
                     <List.Item>Hva kan du endre på her?</List.Item>

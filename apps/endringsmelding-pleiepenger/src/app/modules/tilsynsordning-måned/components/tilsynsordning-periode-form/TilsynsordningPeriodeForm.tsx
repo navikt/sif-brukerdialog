@@ -8,7 +8,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { DurationWeekdays } from '@navikt/sif-common-utils';
+import { dateToISODate, DurationWeekdays } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
 
 import TidFasteUkedagerInput from '../../../../local-sif-common-pleiepenger/components/tid-faste-ukedager-input/TidFasteUkedagerInput';
@@ -18,6 +18,8 @@ import { getTilsynsordningFastDagValidator, validateTilsynsordningFasteDager } f
 export interface TilsynsordningPeriodeFormProps {
     id?: string;
     periode: DateRange;
+    endretPeriode?: TilsynsordningPeriodeData;
+    endringerISøknadsperiode: TilsynsordningPeriodeData[];
     onSubmit: (data: TilsynsordningPeriodeData) => void;
     onCancel: () => void;
 }
@@ -35,11 +37,27 @@ interface FormValues {
     [FormFields.tidFasteDager]: DurationWeekdays;
 }
 
-const initialFormValues: Partial<FormValues> = {};
-
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
-const TilsynsordningPeriodeForm = ({ id, periode, onSubmit, onCancel }: TilsynsordningPeriodeFormProps) => {
+const getInitialFormValues = (endretPeriode: TilsynsordningPeriodeData | undefined): Partial<FormValues> => {
+    if (endretPeriode) {
+        return {
+            fom: dateToISODate(endretPeriode.periode.from),
+            tom: dateToISODate(endretPeriode.periode.to),
+            tidFasteDager: endretPeriode.tidFasteDager,
+        };
+    }
+
+    return {};
+};
+
+const TilsynsordningPeriodeForm = ({
+    periode,
+    endretPeriode,
+    endringerISøknadsperiode,
+    onSubmit,
+    onCancel,
+}: TilsynsordningPeriodeFormProps) => {
     const { intl, text } = useAppIntl();
 
     const onValidSubmit = (values: Partial<FormValues>) => {
@@ -51,7 +69,7 @@ const TilsynsordningPeriodeForm = ({ id, periode, onSubmit, onCancel }: Tilsynso
         }
 
         onSubmit({
-            id,
+            id: endretPeriode?.id,
             periode: {
                 from: fom,
                 to: tom,
@@ -60,9 +78,11 @@ const TilsynsordningPeriodeForm = ({ id, periode, onSubmit, onCancel }: Tilsynso
         });
     };
 
+    const disabledDateRanges = endringerISøknadsperiode.filter((e) => e.id !== endretPeriode?.id).map((e) => e.periode);
+
     return (
         <FormComponents.FormikWrapper
-            initialValues={initialFormValues}
+            initialValues={getInitialFormValues(endretPeriode)}
             onSubmit={onValidSubmit}
             renderForm={({ values: { fom, tom, tidFasteDager } }) => {
                 const from = datepickerUtils.getDateFromDateString(fom);
@@ -83,6 +103,7 @@ const TilsynsordningPeriodeForm = ({ id, periode, onSubmit, onCancel }: Tilsynso
                                     disableWeekends={true}
                                     minDate={periode.from}
                                     maxDate={periode.to}
+                                    disabledDateRanges={disabledDateRanges}
                                     fromInputProps={{
                                         label: text('tilsynsordningPeriodeForm.fraOgMed.label'),
                                         name: FormFields.fom,

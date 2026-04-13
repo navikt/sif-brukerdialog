@@ -7,7 +7,6 @@ import { useFormikContext } from 'formik';
 import { useIntl } from 'react-intl';
 
 import TilsynsordningForenkletSøknadsperiode from './TilsynsordningForenkletSøknadsperiode';
-import { erTilsynsordningEndretIPeriode } from './tilsynsordningForenkletStepUtils';
 import { SøknadsperiodeTilsynsordningEndringer, TilsynsordningPeriodeData } from './types';
 
 export const tilsynsordningForenkletFormComponents = getTypedFormComponents<
@@ -58,7 +57,7 @@ const TilsynsordningForenkletForm = ({ goBack, søknadsperioder, isSubmitting, o
             onBack={goBack}>
             <VStack gap="space-24">
                 {søknadsperioder.length === 1 ? null : (
-                    <Heading level="3" size="small">
+                    <Heading level="3" size="medium">
                         Dine perioder med pleiepenger
                     </Heading>
                 )}
@@ -66,31 +65,32 @@ const TilsynsordningForenkletForm = ({ goBack, søknadsperioder, isSubmitting, o
                     dateRanges={søknadsperioder}
                     renderContent={(søknadsperiode) => {
                         const søknadsperiodeKey = dateRangeToISODateRange(søknadsperiode);
+                        const endringerISøknadsperiode = endringer[søknadsperiodeKey] || [];
                         return (
-                            <>
-                                <Heading
-                                    level={søknadsperioder.length === 1 ? '3' : '4'}
-                                    size={søknadsperioder.length === 1 ? 'small' : 'xsmall'}
-                                    spacing={true}>
-                                    Registrerte endringer
-                                </Heading>
+                            <VStack gap="space-16" paddingBlock="space-8">
+                                {søknadsperioder.length === 1 ? (
+                                    <Heading level="3" size="small">
+                                        Registrerte endringer
+                                    </Heading>
+                                ) : null}
                                 <TilsynsordningForenkletSøknadsperiode
                                     key={søknadsperiode.from.toDateString()}
                                     søknadsperiode={søknadsperiode}
-                                    endringer={endringer[søknadsperiodeKey]}
+                                    endringerISøknadsperiode={endringerISøknadsperiode}
                                     onChange={(e) => handleOnChangeInSøknadsperiode(søknadsperiode, e)}
                                 />
-                            </>
+                            </VStack>
                         );
                     }}
                     renderHeader={(søknadsperiode) => {
                         const søknadsperiodeKey = dateRangeToISODateRange(søknadsperiode);
+                        const endringerISøknadsperiode = endringer[søknadsperiodeKey] || [];
                         return (
                             <>
                                 <span style={{ display: 'inlineBlock' }}>
                                     {dateFormatter.full(søknadsperiode.from)} - {dateFormatter.full(søknadsperiode.to)}
                                 </span>
-                                {erTilsynsordningEndretIPeriode(søknadsperiode, endringer[søknadsperiodeKey]) && (
+                                {endringerISøknadsperiode.length > 0 && (
                                     <span
                                         style={{
                                             position: 'relative',
@@ -98,7 +98,7 @@ const TilsynsordningForenkletForm = ({ goBack, søknadsperioder, isSubmitting, o
                                             top: '-.125rem',
                                         }}>
                                         {` `}
-                                        <EndretTag>Endret</EndretTag>
+                                        <EndretTag>Endring lag til</EndretTag>
                                     </span>
                                 )}
                             </>

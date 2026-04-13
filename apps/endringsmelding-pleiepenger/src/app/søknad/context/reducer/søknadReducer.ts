@@ -122,6 +122,17 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
 
+            case SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING_FORENKLET:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        tilsynsordningForenklet: {
+                            ...action.payload,
+                        },
+                    },
+                };
+
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
                 return {
                     ...state,

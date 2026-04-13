@@ -28,6 +28,7 @@ const nb = {
 
     'psb.timerOgMinutter':
         '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
+    'psb.timerOgMinutter.kompakt': '{timer} t. {minutter} m.',
 
     'mandag.caps': 'Mandag',
     'tirsdag.caps': 'Tirsdag',
@@ -45,6 +46,7 @@ const nb = {
     'step.arbeidstid.stepTitle': 'Jobb i pleiepengeperioden',
     'step.lovbestemtFerie.stepTitle': 'Ferie i pleiepengeperioden',
     'step.tilsynsordning.stepTitle': 'Tid i omsorgstilbud',
+    'step.tilsynsordningForenklet.stepTitle': 'Tid i omsorgstilbud',
     'step.oppsummering.stepTitle': 'Oppsummering',
 
     'arbeidsaktivitetBlockHeader.nyttArbeidsforhold': 'Nytt arbeidsforhold',

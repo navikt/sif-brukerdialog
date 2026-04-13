@@ -7,8 +7,37 @@ import {
     ISODuration,
 } from '@navikt/sif-common-utils';
 
+import { oppdaterDagerMedOmsorgstilbudIPeriode } from '../../søknad/steps/tilsynsordning/tilsynsordningStepUtils';
+import { TilsynsordningForenkletSøknadsdata } from '../../types/TilsynsordningForenkletSøknadsdata';
+
 /**
- *
+ * Konverterer forenklet tilsynsordning til API-data
+ * @param tilsynsordning
+ * @returns Map hvor hver periode er én dag - for enkelheltsskyld
+ */
+export const getTilsynsordningForenkletApiDataFraSøknadsdata = (
+    tilsynsordning: TilsynsordningForenkletSøknadsdata,
+): TilsynsordningApiData => {
+    const tilsynsordningDager: ISODateRangeMap<TilsynsordningPeriodeApiData> = {};
+    Object.keys(tilsynsordning.endringer).map((key) => {
+        const endringer = tilsynsordning.endringer[key];
+        endringer.forEach((endring) => {
+            const { periode, tidFasteDager } = endring;
+            const dagerSomSkalEndres = oppdaterDagerMedOmsorgstilbudIPeriode({ periode, tidFasteDager });
+            Object.keys(dagerSomSkalEndres).forEach((dagKey) => {
+                const dagPeriodeKey = createPeriodeKey(dagKey, dagKey);
+                const varighet = durationToISODuration(dagerSomSkalEndres[dagKey]);
+                tilsynsordningDager[dagPeriodeKey] = {
+                    etablertTilsynTimerPerDag: varighet,
+                };
+            });
+        });
+    });
+    return { perioder: tilsynsordningDager };
+};
+
+/**
+ * Konverterer tilsynsordning til API-data.
  * @param tilsynsordning
  * @returns Map hvor hver periode er én dag - for enkelheltsskyld
  */

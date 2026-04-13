@@ -6,15 +6,16 @@ import { DagMedEndretTilsyn } from '../../../../utils';
 
 interface Props {
     dagerMedEndretTilsyn: DagMedEndretTilsyn[];
+    visOpprinneligTid?: boolean;
 }
 
-const EndretTilsynTabell = ({ dagerMedEndretTilsyn }: Props) => {
+const EndretTilsynTabell = ({ dagerMedEndretTilsyn, visOpprinneligTid = false }: Props) => {
     return (
         <Table>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Dato</Table.HeaderCell>
-                    <Table.HeaderCell>Endret fra</Table.HeaderCell>
+                    {visOpprinneligTid && <Table.HeaderCell>Endret fra</Table.HeaderCell>}
                     <Table.HeaderCell>Endret til</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
@@ -24,19 +25,21 @@ const EndretTilsynTabell = ({ dagerMedEndretTilsyn }: Props) => {
                         <Table.DataCell className="capsFirstLetter">
                             {dateFormatter.dayCompactDate(dag.dato)}
                         </Table.DataCell>
-                        <Table.DataCell>
-                            {dag.tidOpprinnelig ? (
-                                <DurationText
-                                    duration={{
-                                        hours: dag.tidOpprinnelig.hours,
-                                        minutes: dag.tidOpprinnelig.minutes,
-                                    }}
-                                    fullText={true}
-                                />
-                            ) : (
-                                '-'
-                            )}
-                        </Table.DataCell>
+                        {visOpprinneligTid && (
+                            <Table.DataCell>
+                                {dag.tidOpprinnelig ? (
+                                    <DurationText
+                                        duration={{
+                                            hours: dag.tidOpprinnelig.hours,
+                                            minutes: dag.tidOpprinnelig.minutes,
+                                        }}
+                                        fullText={true}
+                                    />
+                                ) : (
+                                    '-'
+                                )}
+                            </Table.DataCell>
+                        )}
                         <Table.DataCell>
                             <DurationText
                                 duration={{ hours: dag.tid.hours, minutes: dag.tid.minutes }}

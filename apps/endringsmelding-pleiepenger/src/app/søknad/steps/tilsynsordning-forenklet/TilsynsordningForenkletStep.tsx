@@ -8,7 +8,7 @@ import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesCon
 import SøknadStep from '@app/søknad/SøknadStep';
 import { SøknadContextState } from '@app/types';
 import { lagreSøknadState } from '@app/utils';
-import { Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 
 import TilsynsordningForenkletForm, {
@@ -16,7 +16,7 @@ import TilsynsordningForenkletForm, {
     TilsynsordningForenkletFormValues,
 } from './TilsynsordningForenkletForm';
 import {
-    getTilsynsordningSøknadsdataFromFormValues,
+    getTilsynsordningForenkletSøknadsdataFromFormValues,
     getTilsynsordningStepInitialValues,
 } from './tilsynsordningForenkletStepUtils';
 import { SøknadsperiodeTilsynsordningEndringer } from './types';
@@ -41,7 +41,7 @@ const TilsynsordningForenkletStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: TilsynsordningForenkletFormValues) => {
-        const tilsynsordningSøknadsdata = getTilsynsordningSøknadsdataFromFormValues(values);
+        const tilsynsordningSøknadsdata = getTilsynsordningForenkletSøknadsdataFromFormValues(values);
         if (tilsynsordningSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadTilsynsordningForenklet(tilsynsordningSøknadsdata)];
@@ -60,7 +60,7 @@ const TilsynsordningForenkletStep = () => {
     const oppdaterSøknadState = (e: SøknadsperiodeTilsynsordningEndringer) => {
         dispatch(
             actionsCreator.setSøknadTilsynsordningForenklet(
-                getTilsynsordningSøknadsdataFromFormValues({ endringer: e }),
+                getTilsynsordningForenkletSøknadsdataFromFormValues({ endringer: e }),
             ),
         );
         dispatch(actionsCreator.requestLagreSøknad());
@@ -75,10 +75,12 @@ const TilsynsordningForenkletStep = () => {
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
-                    <AppText id="omsorgstilbudStep.title" />
+                    <AppText id="tilsynsordningStep.guide.title" />
                 </Heading>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit auctor dui, id faucibus nisl.
-                Donec
+                <BodyShort spacing>
+                    Har du kan du legge til endringer i tiden barnet er i omsorgstilbud. Vi kan desverre ikke vise tiden
+                    som allerede er registrert på saken. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </BodyShort>
             </FormLayout.Guide>
             <VStack gap="space-32">
                 <FormikWrapper

@@ -3,7 +3,7 @@ import { durationUtils, DurationWeekdays, summarizeDurationInDurationWeekdays } 
 import { getTimeValidator } from '@navikt/sif-validation';
 
 export const getTilsynsordningFastDagValidator = () =>
-    getTimeValidator({ max: { hours: 7, minutes: 30 }, min: { hours: 0, minutes: 0 } });
+    getTimeValidator({ required: true, max: { hours: 7, minutes: 30 }, min: { hours: 0, minutes: 0 } });
 
 export const validateTilsynsordningFasteDager = (
     fasteDager: DurationWeekdays | undefined,
