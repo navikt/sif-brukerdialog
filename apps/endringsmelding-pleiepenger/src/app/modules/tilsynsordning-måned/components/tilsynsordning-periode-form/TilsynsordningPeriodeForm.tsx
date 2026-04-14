@@ -8,7 +8,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateToISODate, DurationWeekdays } from '@navikt/sif-common-utils';
+import { dateRangeUtils, dateToISODate, DurationWeekdays, Weekday } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
 
 import TidFasteUkedagerInput from '../../../../local-sif-common-pleiepenger/components/tid-faste-ukedager-input/TidFasteUkedagerInput';
@@ -51,6 +51,8 @@ const getInitialFormValues = (endretPeriode: TilsynsordningPeriodeData | undefin
     return {};
 };
 
+const ukedager: Weekday[] = [Weekday.monday, Weekday.tuesday, Weekday.wednesday, Weekday.thursday, Weekday.friday];
+
 const TilsynsordningPeriodeForm = ({
     periode,
     endretPeriode,
@@ -87,6 +89,11 @@ const TilsynsordningPeriodeForm = ({
             renderForm={({ values: { fom, tom, tidFasteDager } }) => {
                 const from = datepickerUtils.getDateFromDateString(fom);
                 const to = datepickerUtils.getDateFromDateString(tom);
+
+                const ukedagerIPeriode = from && to ? dateRangeUtils.getUkedagerInDateRange({ from, to }) : undefined;
+                const ukerdagerIkkeIPeriode = ukedagerIPeriode
+                    ? ukedager.filter((dag) => !ukedagerIPeriode.includes(dag))
+                    : undefined;
 
                 return (
                     <FormComponents.Form
@@ -147,6 +154,7 @@ const TilsynsordningPeriodeForm = ({
                                 <Box paddingBlock="space-8 space-0">
                                     <TidFasteUkedagerInput
                                         name={FormFields.tidFasteDager}
+                                        disabledDays={ukerdagerIkkeIPeriode}
                                         validateDag={(dag, value) => {
                                             const error = getTilsynsordningFastDagValidator()(value);
                                             return error

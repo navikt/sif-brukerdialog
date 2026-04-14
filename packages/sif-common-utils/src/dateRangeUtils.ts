@@ -5,7 +5,7 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import minMax from 'dayjs/plugin/minMax';
 import { isDate, uniq, uniqBy } from 'lodash';
 
-import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange } from '.';
+import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange, Weekday } from '.';
 import {
     dateToISODate,
     getFirstWeekDayInMonth,
@@ -775,6 +775,34 @@ export const dateRangeIncludesWeekdays = (dateRange: DateRange): boolean => {
     return dates.some((date) => isDateWeekDay(date));
 };
 
+export const getUkedagerInDateRange = (dateRange: DateRange): Weekday[] => {
+    const dates = getDatesInDateRange(dateRange).slice(0, 7); // Periode på 7 dager dekker alle dager
+    const ukedager: Weekday[] = [];
+    dates.forEach((date) => {
+        if (isDateWeekDay(date)) {
+            const weekday = dayjs(date).isoWeekday();
+            switch (weekday) {
+                case 1:
+                    ukedager.push(Weekday.monday);
+                    break;
+                case 2:
+                    ukedager.push(Weekday.tuesday);
+                    break;
+                case 3:
+                    ukedager.push(Weekday.wednesday);
+                    break;
+                case 4:
+                    ukedager.push(Weekday.thursday);
+                    break;
+                case 5:
+                    ukedager.push(Weekday.friday);
+                    break;
+            }
+        }
+    });
+    return ukedager;
+};
+
 export const dateRangeUtils = {
     dateRangeIncludesWeekdays,
     dateRangeIsAdjacentToDateRange,
@@ -793,6 +821,7 @@ export const dateRangeUtils = {
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
+    getUkedagerInDateRange,
     getWeekDateRange,
     includeWeekendIfDateRangeEndsOnFridayOrLater,
     isDateInDateRange,
