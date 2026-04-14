@@ -41,7 +41,7 @@ export const EndringerKalender = ({ tidsrom, endringer }: Props) => {
                     <Box
                         key={dateRangeToISODateRange(måned)}
                         borderColor="neutral-subtle"
-                        borderRadius="4"
+                        borderRadius="8"
                         borderWidth="1"
                         padding="space-8"
                         paddingInline="space-16"

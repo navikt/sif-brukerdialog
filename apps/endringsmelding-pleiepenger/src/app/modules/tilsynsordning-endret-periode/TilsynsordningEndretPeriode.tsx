@@ -19,8 +19,6 @@ interface Props {
     onDelete?: (periode: TilsynsordningPeriodeData) => void;
 }
 
-// const createPeriodeKey = (startDate: string, endDate: string): string => `${startDate}/${endDate}`;
-
 export const TilsynsordningEndretPeriode = ({ endretPeriode, onEdit, onDelete }: Props) => {
     const [visKalender, setVisKalender] = useState(false);
     const { text } = useAppIntl();
@@ -45,7 +43,7 @@ export const TilsynsordningEndretPeriode = ({ endretPeriode, onEdit, onDelete }:
                 </Heading>
                 <Box
                     borderColor="neutral-subtle"
-                    borderRadius="4"
+                    borderRadius="8"
                     borderWidth="1"
                     padding="space-16"
                     background="neutral-softA">

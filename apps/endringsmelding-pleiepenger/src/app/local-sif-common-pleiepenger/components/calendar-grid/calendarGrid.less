@@ -1,6 +1,6 @@
 .calendarGridLayout() {
     display: grid;
-    grid-template-columns: 2rem repeat(5, 1fr);
+    grid-template-columns: 2.5rem repeat(5, 1fr);
     width: 100%;
     > * {
         align-items: flex-start;
@@ -12,7 +12,6 @@
         content: '';
         display: inline-block;
         height: 0;
-        // padding-bottom: 100%;
     }
     > *.today {
         color: white;
@@ -51,9 +50,9 @@
         }
         &__dayHeader {
             padding: 0 0.5rem 0.5rem 0.5rem;
-            margin-bottom: 0.5rem;
             justify-self: center;
             text-overflow: ellipsis;
+            font-size: 0.9rem;
             &--week {
                 padding-left: 0;
             }
@@ -154,7 +153,8 @@
         position: relative;
         margin: 1px;
         border-radius: 0.125rem;
-        border: 1px solid #c6c2bf;
+        border: 1px solid var(--ax-border-neutral-subtle);
+        // background-color: var(--ax-bg-sunken);
         &--outsideMonth {
             border: none;
             background-color: transparent !important;
@@ -163,10 +163,10 @@
             .disabledDay();
         }
         &--button {
-            background-color: white;
+            background-color: var(--ax-bg-raised);
             padding: 0;
             color: inherit;
-            border: 1px solid #c6c2bf;
+            border: 1px solid var(--ax-border-neutral-subtle);
             border-width: 1px !important;
             cursor: pointer;
         }
@@ -188,10 +188,9 @@
         font-weight: bold;
     }
     &__dayHeader {
-        padding: 0.5rem 0.5rem;
+        padding: 0.5rem 0.5rem 0rem 0.5rem;
         margin-right: 1px;
         margin-top: 0.5rem;
-        font-weight: bold;
         &--week {
             padding-left: 0;
         }

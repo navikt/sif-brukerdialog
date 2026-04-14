@@ -10,7 +10,7 @@ interface Props {
 const TidUkedager = ({ fasteDager }: Props) => {
     return (
         <Box>
-            <HGrid columns={5} gap="space-0">
+            <HGrid columns={{ sm: 5 }} gap={{ sm: 'space-0', xs: 'space-12' }}>
                 <TidDag title="Mandag" tid={fasteDager[Weekday.monday] || { hours: '0' }} />
                 <TidDag title="Tirsdag" tid={fasteDager[Weekday.tuesday] || { hours: '0' }} />
                 <TidDag title="Onsdag" tid={fasteDager[Weekday.wednesday] || { hours: '0' }} />
