@@ -15,15 +15,14 @@ export type ProblemDetail = {
     };
 };
 
-export type ArbeidOgFrilansRegisterInntektDto = {
-    inntekt: number;
-    arbeidsgiver: string;
-    arbeidsgiverNavn?: string;
-};
-
-export type BekreftelseDto = {
-    harUttalelse: boolean;
-    uttalelseFraBruker?: string;
+export type DeltakelseDto = {
+    id?: string;
+    deltaker: DeltakerDto;
+    fraOgMed: string;
+    tilOgMed?: string;
+    erSlettet: boolean;
+    harOpphørsvedtak: boolean;
+    søktTidspunkt?: string;
 };
 
 export type DeltakelseKomposittDto = {
@@ -34,132 +33,13 @@ export type DeltakelseKomposittDto = {
     erSlettet: boolean;
     harOpphørsvedtak: boolean;
     søktTidspunkt?: string;
-    oppgaver: OppgaveDto[];
+    oppgaver: unknown[];
 };
 
 export type DeltakerDto = {
     id?: string;
     deltakerIdent: string;
 };
-
-export type EndretPeriodeDataDto = OppgavetypeDataDto & {
-    nyPeriode?: PeriodeDto;
-    forrigePeriode?: PeriodeDto;
-    endringer: PeriodeEndringType[];
-};
-
-export type EndretSluttdatoDataDto = OppgavetypeDataDto & {
-    nySluttdato: string;
-    forrigeSluttdato?: string;
-};
-
-export type EndretStartdatoDataDto = OppgavetypeDataDto & {
-    nyStartdato: string;
-    forrigeStartdato: string;
-};
-
-export type FjernetPeriodeDataDto = OppgavetypeDataDto & {
-    forrigeStartdato: string;
-    forrigeSluttdato?: string;
-};
-
-export type InntektsrapporteringOppgavetypeDataDto = OppgavetypeDataDto & {
-    fraOgMed: string;
-    tilOgMed: string;
-    rapportertInntekt?: RapportertInntektPeriodeinfoDto;
-    gjelderDelerAvMåned: boolean;
-};
-
-export type KontrollerRegisterinntektOppgavetypeDataDto = OppgavetypeDataDto & {
-    fraOgMed: string;
-    tilOgMed: string;
-    registerinntekt: RegisterinntektDto;
-    gjelderDelerAvMåned: boolean;
-};
-
-export type OppgaveDto = {
-    oppgaveReferanse: string;
-    oppgavetype: Oppgavetype;
-    oppgavetypeData:
-        | EndretPeriodeDataDto
-        | EndretSluttdatoDataDto
-        | EndretStartdatoDataDto
-        | FjernetPeriodeDataDto
-        | InntektsrapporteringOppgavetypeDataDto
-        | KontrollerRegisterinntektOppgavetypeDataDto
-        | SøkYtelseOppgavetypeDataDto;
-    bekreftelse?: BekreftelseDto;
-    status: OppgaveStatus;
-    opprettetDato: string;
-    løstDato?: string;
-    åpnetDato?: string;
-    lukketDato?: string;
-    frist?: string;
-};
-
-export enum OppgaveStatus {
-    LØST = 'LØST',
-    ULØST = 'ULØST',
-    AVBRUTT = 'AVBRUTT',
-    UTLØPT = 'UTLØPT',
-    LUKKET = 'LUKKET',
-}
-
-export enum Oppgavetype {
-    BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
-    BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
-    BEKREFT_ENDRET_PERIODE = 'BEKREFT_ENDRET_PERIODE',
-    BEKREFT_FJERNET_PERIODE = 'BEKREFT_FJERNET_PERIODE',
-    BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
-    RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
-    SØK_YTELSE = 'SØK_YTELSE',
-}
-
-export type OppgavetypeDataDto = unknown;
-
-export type PeriodeDto = {
-    fom: string;
-    tom?: string;
-};
-
-export enum PeriodeEndringType {
-    ENDRET_STARTDATO = 'ENDRET_STARTDATO',
-    ENDRET_SLUTTDATO = 'ENDRET_SLUTTDATO',
-    FJERNET_PERIODE = 'FJERNET_PERIODE',
-    ANDRE_ENDRINGER = 'ANDRE_ENDRINGER',
-}
-
-export type RapportertInntektPeriodeinfoDto = {
-    fraOgMed: string;
-    tilOgMed: string;
-    arbeidstakerOgFrilansInntekt?: number;
-};
-
-export type RegisterinntektDto = {
-    arbeidOgFrilansInntekter: ArbeidOgFrilansRegisterInntektDto[];
-    ytelseInntekter: YtelseRegisterInntektDto[];
-    totalInntektArbeidOgFrilans: number;
-    totalInntektYtelse: number;
-    totalInntekt: number;
-};
-
-export type SøkYtelseOppgavetypeDataDto = OppgavetypeDataDto & {
-    fomDato: string;
-};
-
-export type YtelseRegisterInntektDto = {
-    inntekt: number;
-    ytelsetype: YtelseType;
-};
-
-export enum YtelseType {
-    SYKEPENGER = 'SYKEPENGER',
-    OMSORGSPENGER = 'OMSORGSPENGER',
-    PLEIEPENGER = 'PLEIEPENGER',
-    PLEIEPENGER_SYKT_BARN = 'PLEIEPENGER_SYKT_BARN',
-    PLEIEPENGER_LIVETS_SLUTTFASE = 'PLEIEPENGER_LIVETS_SLUTTFASE',
-    OPPLAERINGSPENGER = 'OPPLAERINGSPENGER',
-}
 
 export type KontonummerDto = {
     harKontonummer: boolean;
@@ -201,6 +81,42 @@ export type MarkerDeltakelseSomSøktResponses = {
 
 export type MarkerDeltakelseSomSøktResponse = MarkerDeltakelseSomSøktResponses[keyof MarkerDeltakelseSomSøktResponses];
 
+export type MarkerDeltakelseSomSøktV2Data = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: never;
+    url: '/deltakelse/register/{id}/marker-har-sokt/v2';
+};
+
+export type MarkerDeltakelseSomSøktV2Errors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type MarkerDeltakelseSomSøktV2Error = MarkerDeltakelseSomSøktV2Errors[keyof MarkerDeltakelseSomSøktV2Errors];
+
+export type MarkerDeltakelseSomSøktV2Responses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+
+export type MarkerDeltakelseSomSøktV2Response =
+    MarkerDeltakelseSomSøktV2Responses[keyof MarkerDeltakelseSomSøktV2Responses];
+
 export type HentKontonummerData = {
     body?: never;
     path?: never;
@@ -234,146 +150,6 @@ export type HentKontonummerResponses = {
 
 export type HentKontonummerResponse = HentKontonummerResponses[keyof HentKontonummerResponses];
 
-export type HentDeltakersOppgaveData = {
-    body?: never;
-    path: {
-        oppgaveReferanse: string;
-    };
-    query?: never;
-    url: '/deltakelse/register/oppgave/{oppgaveReferanse}';
-};
-
-export type HentDeltakersOppgaveErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type HentDeltakersOppgaveError = HentDeltakersOppgaveErrors[keyof HentDeltakersOppgaveErrors];
-
-export type HentDeltakersOppgaveResponses = {
-    /**
-     * OK
-     */
-    200: OppgaveDto;
-};
-
-export type HentDeltakersOppgaveResponse = HentDeltakersOppgaveResponses[keyof HentDeltakersOppgaveResponses];
-
-export type MarkerOppgaveSomLøstData = {
-    body?: never;
-    path: {
-        oppgaveReferanse: string;
-    };
-    query?: never;
-    url: '/deltakelse/register/oppgave/{oppgaveReferanse}/løst';
-};
-
-export type MarkerOppgaveSomLøstErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type MarkerOppgaveSomLøstError = MarkerOppgaveSomLøstErrors[keyof MarkerOppgaveSomLøstErrors];
-
-export type MarkerOppgaveSomLøstResponses = {
-    /**
-     * OK
-     */
-    200: OppgaveDto;
-};
-
-export type MarkerOppgaveSomLøstResponse = MarkerOppgaveSomLøstResponses[keyof MarkerOppgaveSomLøstResponses];
-
-export type MarkerOppgaveSomLukketData = {
-    body?: never;
-    path: {
-        oppgaveReferanse: string;
-    };
-    query?: never;
-    url: '/deltakelse/register/oppgave/{oppgaveReferanse}/lukk';
-};
-
-export type MarkerOppgaveSomLukketErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type MarkerOppgaveSomLukketError = MarkerOppgaveSomLukketErrors[keyof MarkerOppgaveSomLukketErrors];
-
-export type MarkerOppgaveSomLukketResponses = {
-    /**
-     * OK
-     */
-    200: OppgaveDto;
-};
-
-export type MarkerOppgaveSomLukketResponse = MarkerOppgaveSomLukketResponses[keyof MarkerOppgaveSomLukketResponses];
-
-export type MarkerOppgaveSomÅpnetData = {
-    body?: never;
-    path: {
-        oppgaveReferanse: string;
-    };
-    query?: never;
-    url: '/deltakelse/register/oppgave/{oppgaveReferanse}/apnet';
-};
-
-export type MarkerOppgaveSomÅpnetErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type MarkerOppgaveSomÅpnetError = MarkerOppgaveSomÅpnetErrors[keyof MarkerOppgaveSomÅpnetErrors];
-
-export type MarkerOppgaveSomÅpnetResponses = {
-    /**
-     * OK
-     */
-    200: OppgaveDto;
-};
-
-export type MarkerOppgaveSomÅpnetResponse = MarkerOppgaveSomÅpnetResponses[keyof MarkerOppgaveSomÅpnetResponses];
-
 export type HentAlleMineDeltakelserData = {
     body?: never;
     path?: never;
@@ -406,3 +182,37 @@ export type HentAlleMineDeltakelserResponses = {
 };
 
 export type HentAlleMineDeltakelserResponse = HentAlleMineDeltakelserResponses[keyof HentAlleMineDeltakelserResponses];
+
+export type HentAlleMineDeltakelserV2Data = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/deltakelse/register/hent/alle/v2';
+};
+
+export type HentAlleMineDeltakelserV2Errors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentAlleMineDeltakelserV2Error = HentAlleMineDeltakelserV2Errors[keyof HentAlleMineDeltakelserV2Errors];
+
+export type HentAlleMineDeltakelserV2Responses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto[];
+};
+
+export type HentAlleMineDeltakelserV2Response =
+    HentAlleMineDeltakelserV2Responses[keyof HentAlleMineDeltakelserV2Responses];

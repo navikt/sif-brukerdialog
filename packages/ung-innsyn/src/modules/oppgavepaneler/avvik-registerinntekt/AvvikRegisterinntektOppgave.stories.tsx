@@ -2,6 +2,7 @@ import { Heading, VStack } from '@navikt/ds-react';
 import {
     ArbeidOgFrilansRegisterInntektDto,
     OppgaveStatus,
+    OppgaveYtelsetype,
     RegisterinntektDto,
     YtelseRegisterInntektDto,
     YtelseType,
@@ -61,6 +62,7 @@ const oppgave: AvvikRegisterinntektOppgave = {
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 
 const getOppgaveMedInntekt = (

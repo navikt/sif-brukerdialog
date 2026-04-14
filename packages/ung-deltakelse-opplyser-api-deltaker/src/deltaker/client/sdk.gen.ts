@@ -8,38 +8,27 @@ import type {
     HentAlleMineDeltakelserData,
     HentAlleMineDeltakelserErrors,
     HentAlleMineDeltakelserResponses,
-    HentDeltakersOppgaveData,
-    HentDeltakersOppgaveErrors,
-    HentDeltakersOppgaveResponses,
+    HentAlleMineDeltakelserV2Data,
+    HentAlleMineDeltakelserV2Errors,
+    HentAlleMineDeltakelserV2Responses,
     HentKontonummerData,
     HentKontonummerErrors,
     HentKontonummerResponses,
     MarkerDeltakelseSomSøktData,
     MarkerDeltakelseSomSøktErrors,
     MarkerDeltakelseSomSøktResponses,
-    MarkerOppgaveSomÅpnetData,
-    MarkerOppgaveSomÅpnetErrors,
-    MarkerOppgaveSomÅpnetResponses,
-    MarkerOppgaveSomLøstData,
-    MarkerOppgaveSomLøstErrors,
-    MarkerOppgaveSomLøstResponses,
-    MarkerOppgaveSomLukketData,
-    MarkerOppgaveSomLukketErrors,
-    MarkerOppgaveSomLukketResponses,
+    MarkerDeltakelseSomSøktV2Data,
+    MarkerDeltakelseSomSøktV2Errors,
+    MarkerDeltakelseSomSøktV2Responses,
 } from './types.gen';
 import {
     zHentAlleMineDeltakelserResponse,
-    zHentDeltakersOppgavePath,
-    zHentDeltakersOppgaveResponse,
+    zHentAlleMineDeltakelserV2Response,
     zHentKontonummerResponse,
     zMarkerDeltakelseSomSøktPath,
     zMarkerDeltakelseSomSøktResponse,
-    zMarkerOppgaveSomÅpnetPath,
-    zMarkerOppgaveSomÅpnetResponse,
-    zMarkerOppgaveSomLøstPath,
-    zMarkerOppgaveSomLøstResponse,
-    zMarkerOppgaveSomLukketPath,
-    zMarkerOppgaveSomLukketResponse,
+    zMarkerDeltakelseSomSøktV2Path,
+    zMarkerDeltakelseSomSøktV2Response,
 } from './zod.gen';
 
 export type Options<
@@ -62,7 +51,9 @@ export type Options<
 
 export class Deltakelse {
     /**
-     * Markerer at deltakelsen er søkt om
+     * Markerer at deltakelsen er søkt om (deprecated – bruk /{id}/marker-har-sokt/v2)
+     *
+     * @deprecated
      */
     public static markerDeltakelseSomSøkt<ThrowOnError extends boolean = true>(
         options: Options<MarkerDeltakelseSomSøktData, ThrowOnError>,
@@ -85,6 +76,7 @@ export class Deltakelse {
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/{id}/marker-har-sokt',
             ...options,
@@ -92,119 +84,40 @@ export class Deltakelse {
     }
 
     /**
-     * Henter en oppgave for en gitt deltakelse
+     * Markerer at deltakelsen er søkt om
      */
-    public static hentDeltakersOppgave<ThrowOnError extends boolean = true>(
-        options: Options<HentDeltakersOppgaveData, ThrowOnError>,
+    public static markerDeltakelseSomSøktV2<ThrowOnError extends boolean = true>(
+        options: Options<MarkerDeltakelseSomSøktV2Data, ThrowOnError>,
     ) {
-        return (options.client ?? client).get<HentDeltakersOppgaveResponses, HentDeltakersOppgaveErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zHentDeltakersOppgavePath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zHentDeltakersOppgaveResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/deltakelse/register/oppgave/{oppgaveReferanse}',
-            ...options,
-        });
-    }
-
-    /**
-     * Markerer en oppgave som åpnet
-     */
-    public static markerOppgaveSomLøst<ThrowOnError extends boolean = true>(
-        options: Options<MarkerOppgaveSomLøstData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).get<MarkerOppgaveSomLøstResponses, MarkerOppgaveSomLøstErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zMarkerOppgaveSomLøstPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zMarkerOppgaveSomLøstResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/deltakelse/register/oppgave/{oppgaveReferanse}/løst',
-            ...options,
-        });
-    }
-
-    /**
-     * Markerer en oppgave som lukket
-     */
-    public static markerOppgaveSomLukket<ThrowOnError extends boolean = true>(
-        options: Options<MarkerOppgaveSomLukketData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).get<
-            MarkerOppgaveSomLukketResponses,
-            MarkerOppgaveSomLukketErrors,
+        return (options.client ?? client).put<
+            MarkerDeltakelseSomSøktV2Responses,
+            MarkerDeltakelseSomSøktV2Errors,
             ThrowOnError
         >({
             requestValidator: async (data) =>
                 await z
                     .object({
                         body: z.never().optional(),
-                        path: zMarkerOppgaveSomLukketPath,
+                        path: zMarkerDeltakelseSomSøktV2Path,
                         query: z.never().optional(),
                     })
                     .parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => await zMarkerOppgaveSomLukketResponse.parseAsync(data),
+            responseValidator: async (data) => await zMarkerDeltakelseSomSøktV2Response.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
-            url: '/deltakelse/register/oppgave/{oppgaveReferanse}/lukk',
+            url: '/deltakelse/register/{id}/marker-har-sokt/v2',
             ...options,
         });
     }
 
     /**
-     * Markerer en oppgave som åpnet
-     */
-    public static markerOppgaveSomÅpnet<ThrowOnError extends boolean = true>(
-        options: Options<MarkerOppgaveSomÅpnetData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).get<
-            MarkerOppgaveSomÅpnetResponses,
-            MarkerOppgaveSomÅpnetErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zMarkerOppgaveSomÅpnetPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zMarkerOppgaveSomÅpnetResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/deltakelse/register/oppgave/{oppgaveReferanse}/apnet',
-            ...options,
-        });
-    }
-
-    /**
-     * Henter alle deltakelser for en deltaker i ungdomsprogrammet
+     * Henter alle deltakelser for en deltaker i ungdomsprogrammet (deprecated – bruk /hent/alle/v2)
+     *
+     * @deprecated
      */
     public static hentAlleMineDeltakelser<ThrowOnError extends boolean = true>(
         options?: Options<HentAlleMineDeltakelserData, ThrowOnError>,
@@ -227,8 +140,40 @@ export class Deltakelse {
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/hent/alle',
+            ...options,
+        });
+    }
+
+    /**
+     * Henter alle deltakelser for en deltaker i ungdomsprogrammet
+     */
+    public static hentAlleMineDeltakelserV2<ThrowOnError extends boolean = true>(
+        options?: Options<HentAlleMineDeltakelserV2Data, ThrowOnError>,
+    ) {
+        return (options?.client ?? client).get<
+            HentAlleMineDeltakelserV2Responses,
+            HentAlleMineDeltakelserV2Errors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zHentAlleMineDeltakelserV2Response.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/deltakelse/register/hent/alle/v2',
             ...options,
         });
     }
@@ -253,6 +198,7 @@ export class Deltaker {
             responseType: 'json',
             responseValidator: async (data) => await zHentKontonummerResponse.parseAsync(data),
             security: [
+                { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
             ],

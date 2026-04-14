@@ -1,5 +1,11 @@
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { BrukerdialogOppgaveDto, OppgaveStatus, OppgaveType, PeriodeEndringType } from '@navikt/ung-brukerdialog-api';
+import {
+    BrukerdialogOppgaveDto,
+    OppgaveStatus,
+    OppgaveType,
+    OppgaveYtelsetype,
+    PeriodeEndringType,
+} from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
 
 import { getMockToday } from '../utils/mockDate';
@@ -24,6 +30,7 @@ const getSøkYtelseOppgaveDto = (): BrukerdialogOppgaveDto => {
             fomDato: dateToISODate(søkYtelseDay.toDate()),
         },
         opprettetDato: søkYtelseDay.toISOString(),
+        ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
     };
 };
 
@@ -51,6 +58,7 @@ const getEndretStartdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getEndretStartdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -69,6 +77,7 @@ const getEndretStartdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
     løstDato: getDatoer().oppgaveMåned.add(3, 'days').startOf('day').add(12, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getMeldtUtOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -81,6 +90,7 @@ const getMeldtUtOppgaveDto = (): BrukerdialogOppgaveDto => ({
     status: OppgaveStatus.ULØST,
     opprettetDato: '2025-09-22T05:39:32.420085Z',
     frist: '2025-09-23T07:39:32.310154Z',
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getMeldtUtOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -99,6 +109,7 @@ const getMeldtUtOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     opprettetDato: '2025-09-22T05:39:32.420085Z',
     løstDato: '2025-09-22T05:40:05.767753Z',
     frist: '2025-09-23T07:39:32.310154Z',
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getEndretSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -112,6 +123,7 @@ const getEndretSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     status: OppgaveStatus.ULØST,
     opprettetDato: '2025-09-22T05:39:32.420085Z',
     frist: '2025-09-23T07:39:32.310154Z',
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getEndretSluttdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -131,6 +143,7 @@ const getEndretSluttdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     opprettetDato: '2025-09-22T05:39:32.420085Z',
     løstDato: '2025-09-22T05:40:05.767753Z',
     frist: '2025-09-23T07:39:32.310154Z',
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getRapporterInntektOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -145,6 +158,7 @@ const getRapporterInntektOppgaveDto = (): BrukerdialogOppgaveDto => ({
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
         gjelderDelerAvMåned: false,
     },
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -166,6 +180,7 @@ const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
         arbeidstakerOgFrilansInntekt: 23000,
     } as any,
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getRapporterInntektDelerAvMånedOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -180,6 +195,7 @@ const getRapporterInntektDelerAvMånedOppgaveDto = (): BrukerdialogOppgaveDto =>
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').subtract(4, 'days').toDate()),
         gjelderDelerAvMåned: true,
     },
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -201,6 +217,7 @@ const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): BrukerdialogOppgaveD
         tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
         arbeidstakerOgFrilansInntekt: 23000,
     },
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getBekreftAvvikOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -228,6 +245,7 @@ const getBekreftAvvikOppgaveDto = (): BrukerdialogOppgaveDto => ({
     frist: getDatoer().oppgaveMåned.add(28, 'days').add(7, 'hours').toISOString(),
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     status: OppgaveStatus.ULØST,
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getBekreftAvvikOppgaveDelerAvMånedDto = (): BrukerdialogOppgaveDto => ({
@@ -256,6 +274,7 @@ const getBekreftAvvikOppgaveDelerAvMånedDto = (): BrukerdialogOppgaveDto => ({
     frist: getDatoer().oppgaveMåned.add(28, 'days').add(7, 'hours').toISOString(),
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     status: OppgaveStatus.ULØST,
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getBekreftAvvikOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -302,6 +321,7 @@ const getFjernetPeriodeOppgaveDto = (): BrukerdialogOppgaveDto => ({
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -319,6 +339,7 @@ const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
     løstDato: getDatoer().oppgaveMåned.add(28, 'days').add(54, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -338,6 +359,7 @@ const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
 export const getMockOppgaver = () => ({
