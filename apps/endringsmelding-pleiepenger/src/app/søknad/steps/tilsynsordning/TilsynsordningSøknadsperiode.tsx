@@ -76,7 +76,8 @@ const TilsynsordningSøknadsperiode = ({
                         return (
                             <TilsynsordningMåned
                                 key={måned.from.toDateString()}
-                                søknadsperiode={måned}
+                                søknadsperiode={søknadsperiode}
+                                periode={måned}
                                 måned={måned}
                                 tidTilsynsordning={endredeTilsynsdager}
                                 tidTilsynsordningOpprinnelig={opprinneligTilsynsdager}

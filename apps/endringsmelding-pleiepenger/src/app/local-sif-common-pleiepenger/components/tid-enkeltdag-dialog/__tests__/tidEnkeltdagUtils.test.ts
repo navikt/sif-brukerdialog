@@ -11,8 +11,9 @@ vi.mock('@navikt/sif-common-env', () => {
 
 describe('tidEnkeltdagUtils', () => {
     describe('getDagerMedNyTid', () => {
-        it('velger velger to dager når gjentagelse er to faste dager innenfor en periode på to uker', () => {
+        it('velger to dager når gjentagelse er to faste dager innenfor en periode på to uker', () => {
             const result = getDagerMedNyTid(
+                ISODateRangeToDateRange('2022-01-13/2022-05-20'),
                 ISODateRangeToDateRange('2022-01-13/2022-01-20'),
                 ISODateToDate('2022-01-13'),
                 { hours: '5', minutes: '0' },
@@ -23,6 +24,30 @@ describe('tidEnkeltdagUtils', () => {
             expect(result['2022-01-13'].minutes).toEqual('0');
             expect(result['2022-01-20'].hours).toEqual('5');
             expect(result['2022-01-20'].minutes).toEqual('0');
+        });
+
+        it('bruker søknadsperioden som filter for lik dag i hele søknadsperioden', () => {
+            const result = getDagerMedNyTid(
+                ISODateRangeToDateRange('2022-01-13/2022-02-10'),
+                ISODateRangeToDateRange('2022-01-13/2022-01-20'),
+                ISODateToDate('2022-01-13'),
+                { hours: '5', minutes: '0' },
+                { gjentagelsetype: GjentagelseType.likDagHeleSøknadsperioden },
+            );
+
+            expect(Object.keys(result)).toEqual(['2022-01-13', '2022-01-20', '2022-01-27', '2022-02-03', '2022-02-10']);
+        });
+
+        it('bruker søknadsperioden som filter for alle dager ut søknadsperioden', () => {
+            const result = getDagerMedNyTid(
+                ISODateRangeToDateRange('2022-01-13/2022-01-19'),
+                ISODateRangeToDateRange('2022-01-13/2022-01-14'),
+                ISODateToDate('2022-01-13'),
+                { hours: '5', minutes: '0' },
+                { gjentagelsetype: GjentagelseType.alleDagerUtSøknadsperioden },
+            );
+
+            expect(Object.keys(result)).toEqual(['2022-01-13', '2022-01-14', '2022-01-17', '2022-01-18', '2022-01-19']);
         });
     });
     describe('getDateRangeWithinDateRange', () => {

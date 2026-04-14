@@ -26,6 +26,7 @@ import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { ReactElement } from 'react';
 
+import { Feature, isFeatureEnabled } from '../../../utils';
 import {
     getDagerMedNyTid,
     getDateRangeWithinDateRange,
@@ -43,6 +44,7 @@ export interface TidEnkeltdagFormProps {
     tidOpprinnelig?: Duration;
     maksTid?: NumberDuration;
     minTid?: NumberDuration;
+    søknadsperiode: DateRange;
     erIkkeIOmsorgstilbudLabelRenderer: (date: Date) => string;
     hvorMyeSpørsmålRenderer: (date: Date) => string;
     beskrivelseRenderer: (date: Date) => ReactElement | string;
@@ -52,7 +54,6 @@ export interface TidEnkeltdagFormProps {
 
 export interface GjentagelseEnkeltdag {
     gjentagelsetype: GjentagelseType;
-    tom?: Date;
 }
 
 export interface TidEnkeltdagEndring {
@@ -65,14 +66,14 @@ enum FormFields {
     'tid' = 'tid',
     'skalGjentas' = 'skalGjentas',
     'gjentagelse' = 'gjentagelse',
-    'stopDato' = 'stopDato',
 }
 
 export enum GjentagelseType {
     hverUke = 'hverUke',
-    hverAndreUke = 'hverAndreUke',
     heleUken = 'heleUken',
     heleMåneden = 'heleMåneden',
+    likDagHeleSøknadsperioden = 'likDagHeleSøknadsperioden',
+    alleDagerUtSøknadsperioden = 'alleDagerUtSøknadsperioden',
 }
 
 export interface TidEnkeltdagFormValues {
@@ -81,7 +82,6 @@ export interface TidEnkeltdagFormValues {
     [FormFields.tid]: InputTime;
     [FormFields.skalGjentas]: boolean;
     [FormFields.gjentagelse]: GjentagelseType;
-    [FormFields.stopDato]: string;
 }
 
 const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues, ValidationError>();
@@ -123,6 +123,7 @@ const TidEnkeltdagForm = ({
     tid,
     tidOpprinnelig,
     periode,
+    søknadsperiode,
     maksTid = { hours: 24, minutes: 0 },
     minTid = { hours: 0, minutes: 0 },
     hvorMyeSpørsmålRenderer,
@@ -134,12 +135,19 @@ const TidEnkeltdagForm = ({
     const onValidSubmit = (values: Partial<TidEnkeltdagFormValues>) => {
         if (values.tid && values.erBarnetIOmsorgstilbud === YesOrNo.YES) {
             onSubmit({
-                dagerMedTid: getDagerMedNyTid(periode, dato, values.tid, getGjentagelseEnkeltdagFraFormValues(values)),
+                dagerMedTid: getDagerMedNyTid(
+                    søknadsperiode,
+                    periode,
+                    dato,
+                    values.tid,
+                    getGjentagelseEnkeltdagFraFormValues(values),
+                ),
             });
         }
         if (values.erBarnetIOmsorgstilbud === YesOrNo.NO) {
             onSubmit({
                 dagerMedTid: getDagerMedNyTid(
+                    søknadsperiode,
                     periode,
                     dato,
                     { hours: '0', minutes: '0' },
@@ -172,6 +180,7 @@ const TidEnkeltdagForm = ({
     const månedNavn = dayjs(dato).format('MMMM YYYY');
 
     const sluttDatoTxt = dateFormatter.dayDateShortMonth(getLastWeekdayOnOrBeforeDate(periode.to));
+    const sluttSøknadsperiodeDatoTxt = dateFormatter.dayDateShortMonth(getLastWeekdayOnOrBeforeDate(søknadsperiode.to));
 
     const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(periode) > 2;
 
@@ -180,6 +189,8 @@ const TidEnkeltdagForm = ({
     );
 
     const initalValues = getInitialValues({ tid, tidOpprinnelig });
+
+    const visOpprinneligTid = isFeatureEnabled(Feature.SIF_PUBLIC_SKJUL_TID_I_OMSORGSTILBUD) === false;
 
     return (
         <FormComponents.FormikWrapper
@@ -202,18 +213,20 @@ const TidEnkeltdagForm = ({
                                 Velg om barnet er i omsorgstilbud denne dagen, og eventuelt hvor mye tid barnet er i
                                 omsorgstilbudet.
                             </BodyLong>
-                            <Alert variant="info" inline>
-                                {tidOpprinnelig ? (
-                                    <>
-                                        <AppText id="tidEnkeltdagForm.opprinneligTid" />{' '}
-                                        <DurationText duration={tidOpprinnelig} fullText={true} />
-                                    </>
-                                ) : (
-                                    <>
-                                        <AppText id="tidEnkeltdagForm.ingenOpprinneligTid" />
-                                    </>
-                                )}
-                            </Alert>
+                            {visOpprinneligTid && (
+                                <Alert variant="info" inline>
+                                    {tidOpprinnelig ? (
+                                        <>
+                                            <AppText id="tidEnkeltdagForm.opprinneligTid" />{' '}
+                                            <DurationText duration={tidOpprinnelig} fullText={true} />
+                                        </>
+                                    ) : (
+                                        <>
+                                            <AppText id="tidEnkeltdagForm.ingenOpprinneligTid" />
+                                        </>
+                                    )}
+                                </Alert>
+                            )}
                             <VStack gap="space-32">
                                 <FormLayout.Panel>
                                     <VStack gap="space-16">
@@ -278,6 +291,17 @@ const TidEnkeltdagForm = ({
                                                 },
                                                 {
                                                     label: renderGjentagelseRadioLabel(
+                                                        'alleDagerUtSøknadsperioden',
+                                                        {
+                                                            fra: valgtDatoTxt,
+                                                            til: sluttSøknadsperiodeDatoTxt,
+                                                        },
+                                                        { dagerNavn, månedNavn },
+                                                    ),
+                                                    value: GjentagelseType.alleDagerUtSøknadsperioden,
+                                                },
+                                                {
+                                                    label: renderGjentagelseRadioLabel(
                                                         'dagerFremover',
                                                         {
                                                             fra: valgtDatoTxt,
@@ -287,6 +311,17 @@ const TidEnkeltdagForm = ({
                                                     ),
 
                                                     value: GjentagelseType.hverUke,
+                                                },
+                                                {
+                                                    label: renderGjentagelseRadioLabel(
+                                                        'likDagHeleSøknadsperioden',
+                                                        {
+                                                            fra: valgtDatoTxt,
+                                                            til: sluttSøknadsperiodeDatoTxt,
+                                                        },
+                                                        { dagerNavn, månedNavn },
+                                                    ),
+                                                    value: GjentagelseType.likDagHeleSøknadsperioden,
                                                 },
                                             ]}
                                         />

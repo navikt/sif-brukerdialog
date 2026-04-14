@@ -79,7 +79,11 @@ export const sifCommonPleiepengerMessages_nn: Record<keyof typeof sifCommonPleie
     'tidEnkeltdagForm.gjentagelse.delAvUke': 'Alle dagar i veke {ukeNavn}',
     'tidEnkeltdagForm.gjentagelse.helMåned': 'Alle dagar i {månedNavn}',
     'tidEnkeltdagForm.gjentagelse.delAvMåned': 'Alle dagar i {månedNavn}',
-    'tidEnkeltdagForm.gjentagelse.dagerFremover': 'Alle {dagerNavn} frå og med {fra}',
+    'tidEnkeltdagForm.gjentagelse.dagerFremover': 'Alle {dagerNavn} i {månedNavn}, fra og med {fra}',
+    'tidEnkeltdagForm.gjentagelse.likDagHeleSøknadsperioden':
+        'Alle {dagerNavn} i søknadsperioden frå og med {fra} til og med {til}',
+    'tidEnkeltdagForm.gjentagelse.alleDagerUtSøknadsperioden':
+        'Alle dagar i søknadsperioden frå og med {fra} til og med {til}',
     'tidEnkeltdagForm.gjentagelse.periode': '({fra} - {til})',
     'tidEnkeltdagForm.stoppGjentagelse.label': 'Vel ein annan til og med dato',
     'tidEnkeltdagForm.stopDato.label': 'Vel til og med dato',

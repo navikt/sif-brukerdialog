@@ -1,4 +1,3 @@
-import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import {
     DateDurationMap,
     DateRange,
@@ -27,41 +26,70 @@ const getDagerMedInterval = (interval: number, periode: DateRange) => {
     });
 };
 
-const getGjentagendeDager = (endringsperiode: DateRange, dato: Date, gjentagelse?: GjentagelseEnkeltdag): ISODate[] => {
+const getPeriodeForGjentageneEndring = (
+    from: Date,
+    søknadsperiode: DateRange,
+    endringsperiodeIMåned: DateRange,
+    gjentagelsetype: GjentagelseType,
+): DateRange => {
+    switch (gjentagelsetype) {
+        case GjentagelseType.heleMåneden:
+            return endringsperiodeIMåned;
+        case GjentagelseType.likDagHeleSøknadsperioden:
+        case GjentagelseType.alleDagerUtSøknadsperioden:
+            return { from, to: søknadsperiode.to };
+        default:
+            return { from, to: endringsperiodeIMåned.to };
+    }
+};
+
+const getGjentagendeDager = (
+    søknadsperiode: DateRange,
+    endringsperiodeIMåned: DateRange,
+    dato: Date,
+    gjentagelse?: GjentagelseEnkeltdag,
+): ISODate[] => {
     if (gjentagelse) {
         let gjentagendeDatoer: Date[] = [];
-        const periode: DateRange = {
-            from: dato,
-            to: gjentagelse.tom || endringsperiode.to,
-        };
-        if (gjentagelse.gjentagelsetype === GjentagelseType.hverUke) {
-            gjentagendeDatoer = getDagerMedInterval(1, periode);
-        }
-        if (gjentagelse.gjentagelsetype === GjentagelseType.hverAndreUke) {
-            gjentagendeDatoer = getDagerMedInterval(2, periode);
-        }
-        if (gjentagelse.gjentagelsetype === GjentagelseType.heleUken) {
-            gjentagendeDatoer = getDatesInDateRange(getWeekDateRange(periode.from, true), true);
-        }
-        if (gjentagelse.gjentagelsetype === GjentagelseType.heleMåneden) {
-            gjentagendeDatoer = getDatesInDateRange(getMonthDateRange(periode.from), true);
+        const periode = getPeriodeForGjentageneEndring(
+            dato,
+            søknadsperiode,
+            endringsperiodeIMåned,
+            gjentagelse.gjentagelsetype,
+        );
+
+        switch (gjentagelse.gjentagelsetype) {
+            case GjentagelseType.hverUke:
+            case GjentagelseType.likDagHeleSøknadsperioden:
+                gjentagendeDatoer = getDagerMedInterval(1, periode);
+                break;
+            case GjentagelseType.heleUken:
+                gjentagendeDatoer = getDatesInDateRange(getWeekDateRange(periode.from, true), true);
+                break;
+            case GjentagelseType.heleMåneden:
+                gjentagendeDatoer = getDatesInDateRange(getMonthDateRange(periode.from), true);
+                break;
+            case GjentagelseType.alleDagerUtSøknadsperioden:
+                gjentagendeDatoer = getDatesInDateRange(periode, true);
+                break;
         }
         return gjentagendeDatoer
             .filter(isDateWeekDay)
-            .filter((d) => isDateInDateRange(d, endringsperiode))
+            .filter((d) => isDateInDateRange(d, periode))
             .map((date) => dateToISODate(date));
     }
     return [dateToISODate(dato)];
 };
 
 export const getDagerMedNyTid = (
+    søknadsperiode: DateRange,
     endringsperiode: DateRange,
     dato: Date,
     varighet: Duration,
     gjentagelse?: GjentagelseEnkeltdag,
 ): DateDurationMap => {
     const datoerMedTid: DateDurationMap = {};
-    const datoerSomSkalEndres = getGjentagendeDager(endringsperiode, dato, gjentagelse);
+    const datoerSomSkalEndres = getGjentagendeDager(søknadsperiode, endringsperiode, dato, gjentagelse);
     datoerSomSkalEndres.forEach((isoDate) => {
         datoerMedTid[isoDate] = { ...varighet };
     });
@@ -76,7 +104,6 @@ export const getGjentagelseEnkeltdagFraFormValues = (
         values.gjentagelse && values.skalGjentas === true
             ? {
                   gjentagelsetype: values.gjentagelse,
-                  tom: values.stopDato ? datepickerUtils.getDateFromDateString(values.stopDato) : undefined,
               }
             : undefined;
     return gjentagelse;

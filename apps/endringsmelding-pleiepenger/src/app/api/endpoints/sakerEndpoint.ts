@@ -1,8 +1,10 @@
 import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@app/types';
 import {
     appSentryLogger,
+    Feature,
     getEndringsdato,
     getTillattEndringsperiode,
+    isFeatureEnabled,
     isK9SakErInnenforGyldigEndringsperiode,
     maskString,
     parseK9Format,
@@ -48,6 +50,10 @@ const sakerEndpoint = {
                     const erGyldig = verifyK9Format(sak);
                     if (erGyldig) {
                         const parsedSak = parseK9Format(sak);
+                        /** Fjern tilsynsordning informasjon hvis dette ikke skal vises */
+                        if (isFeatureEnabled(Feature.SIF_PUBLIC_SKJUL_TID_I_OMSORGSTILBUD) === true) {
+                            parsedSak.ytelse.tilsynsordning.perioder = {};
+                        }
                         if (isK9SakErInnenforGyldigEndringsperiode(parsedSak, endringsperiode)) {
                             k9Saker.push(parsedSak);
                         } else {

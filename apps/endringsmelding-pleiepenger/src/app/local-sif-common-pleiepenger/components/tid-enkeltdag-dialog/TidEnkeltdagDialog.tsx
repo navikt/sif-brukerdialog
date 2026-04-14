@@ -20,7 +20,7 @@ const TidEnkeltdagDialog = ({ open = false, formProps, dialogTitle }: TidEnkeltd
             defaultOpen={true}
             onOpenChange={(isOpen) => isOpen === false && formProps.onCancel()}
             size="medium">
-            <Dialog.Popup>
+            <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>{dialogTitle}</Dialog.Title>
                 </Dialog.Header>

@@ -20,20 +20,25 @@ import TilsynsordningEnkeltdagDialog from '../../local-sif-common-pleiepenger/co
 
 export type EnkeltdagChangeEvent = (evt: TidEnkeltdagEndring) => void;
 interface Props {
+    /** Hele søknadsperioden måneden er innenfor */
+    søknadsperiode: DateRange;
+    /** Brukes til å låse måned */
     måned: DateRange;
+    /** Avgrensning innenfor måned */
+    periode: DateRange;
     tidTilsynsordning: DateDurationMap;
     tidTilsynsordningOpprinnelig?: DateDurationMap;
     månedTittelHeadingLevel?: '2' | '3' | '4';
-    søknadsperiode: DateRange;
     defaultOpen?: boolean;
     onEnkeltdagChange?: EnkeltdagChangeEvent;
 }
 
 const TilsynsordningMåned = ({
     måned,
+    søknadsperiode,
+    periode,
     tidTilsynsordning,
     tidTilsynsordningOpprinnelig,
-    søknadsperiode,
     defaultOpen,
     månedTittelHeadingLevel,
     onEnkeltdagChange,
@@ -93,7 +98,7 @@ const TilsynsordningMåned = ({
                     dagerMedTidOpprinnelig={tidTilsynsordningOpprinnelig}
                     utilgjengeligeDatoer={utilgjengeligeDatoer}
                     skjulTommeDagerIListe={false}
-                    visOpprinneligTid={true}
+                    visOpprinneligTid={false}
                     skjulUkerMedKunUtilgjengeligeDager={true}
                     onDateClick={
                         onEnkeltdagChange
@@ -108,7 +113,8 @@ const TilsynsordningMåned = ({
                     <TilsynsordningEnkeltdagDialog
                         open={editDate !== undefined}
                         formProps={{
-                            periode: søknadsperiode,
+                            søknadsperiode,
+                            periode,
                             dato: editDate.dato,
                             tid: editDate.tid,
                             tidOpprinnelig: dagerMedOpprinnelig[dateToISOString(editDate.dato)],

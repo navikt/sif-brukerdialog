@@ -24,6 +24,10 @@ const defaultFormProps: TidEnkeltdagFormProps = {
         from: new Date(2026, 1, 1),
         to: new Date(2026, 1, 28),
     },
+    søknadsperiode: {
+        from: new Date(2025, 1, 12),
+        to: new Date(2026, 3, 31),
+    },
     tidOpprinnelig: {
         hours: '4',
         minutes: '0',

@@ -74,6 +74,10 @@ export const sifCommonPleiepengerMessages_nb = {
     'tidEnkeltdagForm.gjentagelse.helMåned': 'Alle dager i {månedNavn}',
     'tidEnkeltdagForm.gjentagelse.delAvMåned': 'Alle dager i {månedNavn}',
     'tidEnkeltdagForm.gjentagelse.dagerFremover': 'Alle {dagerNavn} i {månedNavn}, fra og med {fra}',
+    'tidEnkeltdagForm.gjentagelse.likDagHeleSøknadsperioden':
+        'Alle {dagerNavn} i søknadsperioden fra og med {fra} til og med {til}',
+    'tidEnkeltdagForm.gjentagelse.alleDagerUtSøknadsperioden':
+        'Alle dager i hele søknadsperioden fra og med {fra} til og med {til}',
     'tidEnkeltdagForm.gjentagelse.periode': '({fra} - {til})',
     'tidEnkeltdagForm.stoppGjentagelse.label': 'Velg en annen til og med dato',
     'tidEnkeltdagForm.stopDato.label': 'Velg til og med dato',
