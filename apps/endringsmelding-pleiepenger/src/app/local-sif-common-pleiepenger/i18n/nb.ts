@@ -55,6 +55,8 @@ export const sifCommonPleiepengerMessages_nb = {
     'tilsynsordningPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbud',
 
     'tilsynsordningEnkeltdagForm.tittel': 'Tid i omsorgstilbud {dato}',
+    'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm': 'Er barnet i omsorgstilbud {dato}?',
+    'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm.historisk': 'Var barnet i omsorgstilbud {dato}?',
     'tilsynsordningEnkeltdagForm.tid.spm': 'Hvor mye skal barnet være i omsorgstilbud {dato}?',
     'tilsynsordningEnkeltdagForm.tid.spm.historisk': 'Hvor mye var barnet i omsorgstilbud {dato}?',
     'tilsynsordningEnkeltdagForm.tid.beskrivelse':

@@ -46,6 +46,7 @@ export interface TidEnkeltdagFormProps {
     minTid?: NumberDuration;
     søknadsperiode: DateRange;
     erIkkeIOmsorgstilbudLabelRenderer: (date: Date) => string;
+    erBarnetIOmsorgstilbudLabelRenderer: (date: Date) => string;
     hvorMyeSpørsmålRenderer: (date: Date) => string;
     beskrivelseRenderer: (date: Date) => ReactElement | string;
     onSubmit: (dagerMedTid: TidEnkeltdagEndring) => void;
@@ -126,6 +127,7 @@ const TidEnkeltdagForm = ({
     søknadsperiode,
     maksTid = { hours: 24, minutes: 0 },
     minTid = { hours: 0, minutes: 0 },
+    erBarnetIOmsorgstilbudLabelRenderer,
     hvorMyeSpørsmålRenderer,
     onSubmit,
     onCancel,
@@ -232,7 +234,7 @@ const TidEnkeltdagForm = ({
                                     <VStack gap="space-16">
                                         <FormComponents.YesOrNoQuestion
                                             name={FormFields.erBarnetIOmsorgstilbud}
-                                            legend={`Er barnet i omsorgstilbud ${dateFormatter.dayCompactDate(dato)}?`}
+                                            legend={erBarnetIOmsorgstilbudLabelRenderer(dato)}
                                             renderHorizontal={true}
                                             validate={getYesOrNoValidator()}
                                         />

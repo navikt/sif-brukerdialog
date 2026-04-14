@@ -33,6 +33,7 @@ const defaultFormProps: TidEnkeltdagFormProps = {
         minutes: '0',
     },
     hvorMyeSpørsmålRenderer: (dato) => `Hvor mye var barnet i omsorgstilbud ${dateFormatter.dayDateMonthYear(dato)}?`,
+    erBarnetIOmsorgstilbudLabelRenderer: (dato) => `Er barnet i omsorgstilbud ${dateFormatter.dayDateMonthYear(dato)}?`,
     beskrivelseRenderer: () =>
         `Legg inn timer og minutter barnet var i omsorgstilbudet, eller kryss av for at barnet ikke var det denne dagen.`,
     erIkkeIOmsorgstilbudLabelRenderer: () => `Barnet var ikke i omsorgstilbud denne dagen`,

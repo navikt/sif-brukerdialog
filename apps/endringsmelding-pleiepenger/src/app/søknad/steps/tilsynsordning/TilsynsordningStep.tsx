@@ -8,7 +8,7 @@ import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesCon
 import SøknadStep from '@app/søknad/SøknadStep';
 import { SøknadContextState } from '@app/types';
 import { lagreSøknadState } from '@app/utils';
-import { BodyLong, Heading, List, VStack } from '@navikt/ds-react';
+import { Heading, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 
@@ -33,7 +33,7 @@ const TilsynsordningStep = () => {
             søknadsdata: { tilsynsordning },
         },
     } = useSøknadContext();
-    const { samletSøknadsperiodeTekst } = useSakUtledet();
+    const { samletSøknadsperiodeTekstVariant2 } = useSakUtledet();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
@@ -70,23 +70,13 @@ const TilsynsordningStep = () => {
                 </Heading>
                 <VStack gap="space-24">
                     <List>
-                        <List.Item>Hva kan du endre på her?</List.Item>
-                        <List.Item>Kort recap på omsorgstilbud - her er det mye info i søknaden</List.Item>
-                        <List.Item>Melding/varsel om beredskap og nattvåk</List.Item>
                         <List.Item>
-                            Hvordan påvirker perioder; f.eks. nattevåk/beredskap i én periode, men ikke annen periode.
-                            Hvis en skal søke om dette i perioder hvor en ikke har søkt om det, må en bruke søknad
+                            Her kan du sende inn endringer i barnets oppholdstid i omsorgstilbudet. Du kan gjøre
+                            endringer i perioden <strong>{samletSøknadsperiodeTekstVariant2}</strong>. Hvis du skal
+                            gjøre endringer utenfor denne perioden, må du kontakte oss.
                         </List.Item>
-                        <List.Item>
-                            Få frem at dette er kun informasjon som du har sendt inn - trenger info om eventuell annen
-                            part
-                        </List.Item>
-                        <List.Item>Få frem forskjellen på 0 tid og ingen informasjon</List.Item>
-                        <List.Item>Ferie ..</List.Item>
+                        <List.Item>Vi kan desverre ikke visen tiden som allerede er registert på saken din.</List.Item>
                     </List>
-                    <BodyLong as="div">
-                        Du kan gjøre endringer i perioden <strong>{samletSøknadsperiodeTekst}</strong>.
-                    </BodyLong>
                 </VStack>
             </FormLayout.Guide>
             <VStack gap="space-32">

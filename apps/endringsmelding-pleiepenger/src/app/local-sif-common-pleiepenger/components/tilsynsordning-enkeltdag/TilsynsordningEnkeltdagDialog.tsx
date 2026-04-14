@@ -8,13 +8,26 @@ import { TidEnkeltdagFormProps } from '../tid-enkeltdag-dialog/TidEnkeltdagForm'
 interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps'> {
     formProps: Omit<
         TidEnkeltdagFormProps,
-        'hvorMyeSpørsmålRenderer' | 'beskrivelseRenderer' | 'erIkkeIOmsorgstilbudLabelRenderer' | 'maksTid'
+        | 'erBarnetIOmsorgstilbudLabelRenderer'
+        | 'hvorMyeSpørsmålRenderer'
+        | 'beskrivelseRenderer'
+        | 'erIkkeIOmsorgstilbudLabelRenderer'
+        | 'maksTid'
     >;
 }
 
 const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
     const { text } = useAppIntl();
 
+    const erBarnetIOmsorgstilbudLabelRenderer = (dato: Date): string => {
+        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
+        return text(
+            erHistorisk
+                ? 'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm.historisk'
+                : 'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm',
+            { dato: dateFormatter.dayDateMonthYear(dato) },
+        );
+    };
     const hvorMyeSpørsmålRenderer = (dato: Date): string => {
         const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
         return text(
@@ -49,6 +62,7 @@ const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
             formProps={{
                 ...formProps,
                 hvorMyeSpørsmålRenderer,
+                erBarnetIOmsorgstilbudLabelRenderer,
                 beskrivelseRenderer,
                 erIkkeIOmsorgstilbudLabelRenderer,
                 maksTid: { hours: 7, minutes: 30 },

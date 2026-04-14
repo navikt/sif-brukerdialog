@@ -60,6 +60,8 @@ export const sifCommonPleiepengerMessages_nn: Record<keyof typeof sifCommonPleie
     'tilsynsordningPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbod',
 
     'tilsynsordningEnkeltdagForm.tittel': 'Tid i omsorgstilbod {dato}',
+    'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm': 'Er barnet i omsorgstilbud {dato}?',
+    'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm.historisk': 'Var barnet i omsorgstilbud {dato}?',
     'tilsynsordningEnkeltdagForm.tid.spm': 'Kor mykje skal barnet vere i omsorgstilbod {dato}?',
     'tilsynsordningEnkeltdagForm.tid.spm.historisk': 'Kor mykje var barnet i omsorgstilbod {dato}?',
     'tilsynsordningEnkeltdagForm.tid.beskrivelse':

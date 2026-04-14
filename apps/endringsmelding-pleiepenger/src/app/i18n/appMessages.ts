@@ -35,6 +35,8 @@ const nb = {
     'torsdag.caps': 'Torsdag',
     'fredag.caps': 'Fredag',
 
+    samletSøknadsperiodeTekstVariant2: 'fra {fra} til {til}',
+
     'lenke.skrivTilOss': 'Skriv til oss',
     'lenke.sendBeskjed': 'Send beskjed',
 
