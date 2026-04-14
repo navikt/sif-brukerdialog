@@ -42,7 +42,7 @@ const TilsynsordningSøknadsperiode = ({
             <VStack gap="space-16">
                 <VStack gap="space-16">
                     <BodyLong as="div">
-                        Legg til endring ved å velge en dag i kalenderen, eller bruke knappen &quot;Registrer tid for en
+                        Legg til endring ved å velge dag i kalenderen, eller bruke knappen &quot;Registrer tid for en
                         periode&quot;.
                     </BodyLong>
                     <HStack gap="space-4" justify="space-between">
