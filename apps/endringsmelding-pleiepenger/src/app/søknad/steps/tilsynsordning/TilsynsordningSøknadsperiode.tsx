@@ -33,7 +33,7 @@ const TilsynsordningSøknadsperiode = ({
         .getMonthsInDateRange(søknadsperiode)
         .filter(dateRangeUtils.dateRangeIncludesWeekdays);
 
-    const tilbakestillAlleEndringer = () => {
+    const fjernAlleEndringer = () => {
         onRevert(søknadsperiode);
     };
 
@@ -87,17 +87,16 @@ const TilsynsordningSøknadsperiode = ({
                 </VStack>
             </VStack>
             <ConfirmationDialog
-                title="Tilbakestille alle endringer"
+                title="Fjern alle endringer"
                 open={visTilbakestillEndringerDialog}
-                okLabel="Ja, tilbakestill"
+                okLabel="Ja, fjern"
                 cancelLabel="Nei, avbryt"
                 onConfirm={() => {
-                    tilbakestillAlleEndringer();
+                    fjernAlleEndringer();
                     setVisTilbakestillEndringerDialog(false);
                 }}
                 onCancel={() => setVisTilbakestillEndringerDialog(false)}>
-                Bekreft at du ønsker å tilbakestille alle endringer du har gjort for omsorgstilbudet i denne
-                søknadsperioden.
+                Bekreft at du ønsker å fjerne alle endringer du har lagt til i denne søknadsperioden.
             </ConfirmationDialog>
 
             <TilsynsordningPeriodeDialog
