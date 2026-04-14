@@ -1,6 +1,6 @@
 import TilsynsordningPeriodeDialog from '@app/modules/tilsynsordning-måned/components/tilsynsordning-periode-dialog/TilsynsordningPeriodeDialog';
 import TilsynsordningMåned, { EnkeltdagChangeEvent } from '@app/modules/tilsynsordning-måned/TilsynsordningMåned';
-import { ArrowUndoIcon, PencilIcon } from '@navikt/aksel-icons';
+import { PencilIcon, TrashIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, HStack, VStack } from '@navikt/ds-react';
 import { ConfirmationDialog } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
@@ -63,7 +63,7 @@ const TilsynsordningSøknadsperiode = ({
                                 size="small"
                                 data-color="accent"
                                 onClick={() => setVisTilbakestillEndringerDialog(true)}
-                                icon={<ArrowUndoIcon role="presentation" />}>
+                                icon={<TrashIcon role="presentation" />}>
                                 Fjern alle endringer
                             </Button>
                         )}

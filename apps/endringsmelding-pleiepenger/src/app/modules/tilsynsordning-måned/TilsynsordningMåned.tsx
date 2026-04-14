@@ -2,7 +2,7 @@ import './tilsynsordningMåned.css';
 
 import EndretTag from '@app/components/tags/EndretTag';
 import { AppText, useAppIntl } from '@app/i18n';
-import { ArrowUndoIcon } from '@navikt/aksel-icons';
+import { TrashIcon } from '@navikt/aksel-icons';
 import { Box, Button, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
 import { ExpansionCardContent } from '@navikt/ds-react/ExpansionCard';
 import { ConfirmationDialog, DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
@@ -120,7 +120,7 @@ const TilsynsordningMåned = ({
                                 size="small"
                                 data-color="accent"
                                 onClick={() => setVisTilbakestillEndringerDialog(true)}
-                                icon={<ArrowUndoIcon role="presentation" />}>
+                                icon={<TrashIcon role="presentation" />}>
                                 Fjern endringer i{' '}
                                 <AppText id="tilsynsordningMåned.ukeOgÅr" values={{ ukeOgÅr: månedNavn }} />
                             </Button>
