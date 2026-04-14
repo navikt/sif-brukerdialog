@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.45
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 1.4.44
 
 ### Patch Changes

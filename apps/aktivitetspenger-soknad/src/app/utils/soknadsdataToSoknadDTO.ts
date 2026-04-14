@@ -16,9 +16,9 @@ export const søknadsdataToSøknadDTO = ({
     språk?: 'nb' | 'nn';
     kontoInfo: UtvidetKontonummerInfo;
 }): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
-    const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted } = søknadsdata;
+    const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted, startdato } = søknadsdata;
 
-    if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !bostedUtland) {
+    if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !bostedUtland || !startdato) {
         // eslint-disable-next-line no-console
         console.error('Manglende data i søknadsdata');
         return undefined;
@@ -41,7 +41,7 @@ export const søknadsdataToSøknadDTO = ({
                 landnavn: b.landnavn,
             })),
         },
-        startdato: dateToISODate(new Date()),
+        startdato: startdato.startdato,
         harForståttRettigheterOgPlikter,
     };
 };
