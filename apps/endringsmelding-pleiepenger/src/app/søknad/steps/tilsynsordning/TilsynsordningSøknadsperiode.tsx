@@ -54,7 +54,7 @@ const TilsynsordningSøknadsperiode = ({
                             data-color="accent"
                             onClick={() => setVisPeriodeDialog(true)}
                             icon={<PencilIcon role="presentation" />}>
-                            Registrer tid for en periode
+                            Legg til endring for en periode
                         </Button>
                         {harEndringer && (
                             <Button
