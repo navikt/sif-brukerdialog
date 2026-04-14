@@ -12,6 +12,7 @@ import { Heading, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 
+import { SkrivTilOssLink } from '../../../lenker';
 import TilsynsordningForm, { tilsynsordningFormComponents, TilsynsordningFormValues } from './TilsynsordningForm';
 import {
     getTilsynsordningSøknadsdataFromFormValues,
@@ -33,7 +34,7 @@ const TilsynsordningStep = () => {
             søknadsdata: { tilsynsordning },
         },
     } = useSøknadContext();
-    const { samletSøknadsperiodeTekstVariant2 } = useSakUtledet();
+    const { samletSøknadsperiodeTekstVariant3 } = useSakUtledet();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
@@ -71,11 +72,16 @@ const TilsynsordningStep = () => {
                 <VStack gap="space-24">
                     <List>
                         <List.Item>
-                            Her kan du sende inn endringer i barnets oppholdstid i omsorgstilbudet. Du kan gjøre
-                            endringer i perioden <strong>{samletSøknadsperiodeTekstVariant2}</strong>. Hvis du skal
-                            gjøre endringer utenfor denne perioden, må du kontakte oss.
+                            Her kan du sende inn endringer på hvor lenge barnet er i et omsorgstilbud.
                         </List.Item>
-                        <List.Item>Vi kan desverre ikke visen tiden som allerede er registert på saken din.</List.Item>
+                        <List.Item>
+                            Du kan gjøre endringer i perioden <strong>{samletSøknadsperiodeTekstVariant3}</strong>. Hvis
+                            du skal gjøre endringer utenfor denne perioden, må du sende oss en melding via{' '}
+                            <SkrivTilOssLink />.
+                        </List.Item>
+                        <List.Item>
+                            Vi kan desverre ikke visen tiden i omsorgstilbud som allerede er registert på saken din.
+                        </List.Item>
                     </List>
                 </VStack>
             </FormLayout.Guide>

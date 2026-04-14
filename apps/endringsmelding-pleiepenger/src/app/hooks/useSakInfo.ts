@@ -34,5 +34,9 @@ export const useSakUtledet = () => {
             fra: dateFormatter.dayDateMonthYear(sak.samletSøknadsperiode.from, locale),
             til: dateFormatter.dayDateMonthYear(sak.samletSøknadsperiode.to, locale),
         }),
+        samletSøknadsperiodeTekstVariant3: text('samletSøknadsperiodeTekstVariant3', {
+            fra: dateFormatter.dayDateMonthYear(sak.samletSøknadsperiode.from, locale),
+            til: dateFormatter.dayDateMonthYear(sak.samletSøknadsperiode.to, locale),
+        }),
     };
 };

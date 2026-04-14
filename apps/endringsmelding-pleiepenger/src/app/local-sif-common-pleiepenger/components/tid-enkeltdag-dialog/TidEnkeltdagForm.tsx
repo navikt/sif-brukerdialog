@@ -15,6 +15,7 @@ import {
     DateDurationOrUndefinedMap,
     dateFormatter,
     Duration,
+    getDateToday,
     getLastWeekdayOnOrBeforeDate,
     getMonthDateRange,
     getNumberOfDaysInDateRange,
@@ -201,6 +202,7 @@ const TidEnkeltdagForm = ({
             onSubmit={onValidSubmit}
             renderForm={({ values }) => {
                 const { skalGjentas, erBarnetIOmsorgstilbud } = values;
+                const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
                 return (
                     <FormComponents.Form
                         onCancel={onCancel}
@@ -212,8 +214,8 @@ const TidEnkeltdagForm = ({
                         cancelButtonLabel="Avbryt">
                         <VStack gap="space-24">
                             <BodyLong className="noPadding">
-                                Velg om barnet er i omsorgstilbud denne dagen, og eventuelt hvor mye tid barnet er i
-                                omsorgstilbudet.
+                                Velg om barnet {erHistorisk ? 'var' : 'er'} i omsorgstilbud denne dagen, og eventuelt
+                                hvor mye tid barnet {erHistorisk ? 'var' : 'er'} i omsorgstilbudet.
                             </BodyLong>
                             {visOpprinneligTid && (
                                 <Alert variant="info" inline>
