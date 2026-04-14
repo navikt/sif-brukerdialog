@@ -40,17 +40,12 @@ const TilsynsordningSøknadsperiode = ({
     return (
         <>
             <VStack gap="space-16">
-                <VStack gap="space-8">
-                    <VStack gap="space-8" marginBlock="space-0 space-16">
-                        <BodyLong as="div">
-                            Velg måned og dag i kalenderen for å endre tiden i omsorgstilbud for enkeltdager, eller bruk
-                            knappen &quot;Registrer tid for en periode&quot; for å oppdatere tiden for en periode.
-                        </BodyLong>
-                        <BodyLong as="div">
-                            Du kan kun endre tid for dager som er innenfor tillatt endringsperiode.
-                        </BodyLong>
-                    </VStack>
-                    <HStack gap="space-4" justify="space-between" marginBlock="space-0 space-8">
+                <VStack gap="space-16">
+                    <BodyLong as="div">
+                        Legg til endring ved å velge en dag i kalenderen, eller bruke knappen &quot;Registrer tid for en
+                        periode&quot;.
+                    </BodyLong>
+                    <HStack gap="space-4" justify="space-between">
                         <Button
                             type="button"
                             variant="secondary"
@@ -72,19 +67,21 @@ const TilsynsordningSøknadsperiode = ({
                             </Button>
                         )}
                     </HStack>
-                    {månederISøknadsperiode.map((måned) => {
-                        return (
-                            <TilsynsordningMåned
-                                key={måned.from.toDateString()}
-                                søknadsperiode={søknadsperiode}
-                                periode={måned}
-                                måned={måned}
-                                tidTilsynsordning={endredeTilsynsdager}
-                                tidTilsynsordningOpprinnelig={opprinneligTilsynsdager}
-                                onEnkeltdagChange={onEnkeltdagChange}
-                            />
-                        );
-                    })}
+                    <VStack gap="space-8">
+                        {månederISøknadsperiode.map((måned) => {
+                            return (
+                                <TilsynsordningMåned
+                                    key={måned.from.toDateString()}
+                                    søknadsperiode={søknadsperiode}
+                                    periode={måned}
+                                    måned={måned}
+                                    tidTilsynsordning={endredeTilsynsdager}
+                                    tidTilsynsordningOpprinnelig={opprinneligTilsynsdager}
+                                    onEnkeltdagChange={onEnkeltdagChange}
+                                />
+                            );
+                        })}
+                    </VStack>
                 </VStack>
             </VStack>
             <ConfirmationDialog

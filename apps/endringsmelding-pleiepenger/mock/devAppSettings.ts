@@ -34,6 +34,6 @@ export const getDevAppSettings = (isTest?: boolean) => {
         VELG_SCENARIO: isTest ? 'on' : 'on',
         MSW: isTest ? 'off' : 'on',
         E2E_TEST: isTest ? 'true' : false,
-        NOW: '2023-01-01',
+        NOW: '2023-02-01',
     };
 };

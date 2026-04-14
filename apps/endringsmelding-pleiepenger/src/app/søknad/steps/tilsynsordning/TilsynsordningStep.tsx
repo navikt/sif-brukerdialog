@@ -1,4 +1,4 @@
-import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
+import { useOnValidSubmit, useSakUtledet, useSøknadContext } from '@app/hooks';
 import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText } from '@app/i18n';
 import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
@@ -8,7 +8,7 @@ import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesCon
 import SøknadStep from '@app/søknad/SøknadStep';
 import { SøknadContextState } from '@app/types';
 import { lagreSøknadState } from '@app/utils';
-import { Heading, List, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 
@@ -33,6 +33,7 @@ const TilsynsordningStep = () => {
             søknadsdata: { tilsynsordning },
         },
     } = useSøknadContext();
+    const { samletSøknadsperiodeTekst } = useSakUtledet();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
@@ -67,20 +68,26 @@ const TilsynsordningStep = () => {
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="omsorgstilbudStep.title" />
                 </Heading>
-                <List>
-                    <List.Item>Hva kan du endre på her?</List.Item>
-                    <List.Item>Kort recap på omsorgstilbud - her er det mye info i søknaden</List.Item>
-                    <List.Item>Melding/varsel om beredskap og nattvåk</List.Item>
-                    <List.Item>
-                        Hvordan påvirker perioder; f.eks. nattevåk/beredskap i én periode, men ikke annen periode. Hvis
-                        en skal søke om dette i perioder hvor en ikke har søkt om det, må en bruke søknad
-                    </List.Item>
-                    <List.Item>
-                        Få frem at dette er kun informasjon som du har sendt inn - trenger info om eventuell annen part
-                    </List.Item>
-                    <List.Item>Få frem forskjellen på 0 tid og ingen informasjon</List.Item>
-                    <List.Item>Ferie ..</List.Item>
-                </List>
+                <VStack gap="space-24">
+                    <List>
+                        <List.Item>Hva kan du endre på her?</List.Item>
+                        <List.Item>Kort recap på omsorgstilbud - her er det mye info i søknaden</List.Item>
+                        <List.Item>Melding/varsel om beredskap og nattvåk</List.Item>
+                        <List.Item>
+                            Hvordan påvirker perioder; f.eks. nattevåk/beredskap i én periode, men ikke annen periode.
+                            Hvis en skal søke om dette i perioder hvor en ikke har søkt om det, må en bruke søknad
+                        </List.Item>
+                        <List.Item>
+                            Få frem at dette er kun informasjon som du har sendt inn - trenger info om eventuell annen
+                            part
+                        </List.Item>
+                        <List.Item>Få frem forskjellen på 0 tid og ingen informasjon</List.Item>
+                        <List.Item>Ferie ..</List.Item>
+                    </List>
+                    <BodyLong as="div">
+                        Du kan gjøre endringer i perioden <strong>{samletSøknadsperiodeTekst}</strong>.
+                    </BodyLong>
+                </VStack>
             </FormLayout.Guide>
             <VStack gap="space-32">
                 <FormikWrapper
@@ -91,6 +98,7 @@ const TilsynsordningStep = () => {
                             <>
                                 <PersistStepFormValues stepId={stepId} />
                                 <TilsynsordningForm
+                                    harFlereSøknadsperioder={sak.søknadsperioder.length > 1}
                                     goBack={goBack}
                                     søknadsperioder={sak.søknadsperioder}
                                     opprinneligTilsynsdager={sak.tilsynsordning.tilsynsdagerMap}

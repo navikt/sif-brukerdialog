@@ -36,6 +36,7 @@ export enum TilsynsordningFormFields {
 
 interface Props {
     søknadsperioder: DateRange[];
+    harFlereSøknadsperioder: boolean;
     opprinneligTilsynsdager: DateDurationMap;
     isSubmitting?: boolean;
     goBack?: () => void;
@@ -47,6 +48,7 @@ const TilsynsordningForm = ({
     søknadsperioder,
     opprinneligTilsynsdager,
     isSubmitting,
+    harFlereSøknadsperioder,
     onTilsynsordningChanged,
 }: Props) => {
     const intl = useIntl();
@@ -117,7 +119,7 @@ const TilsynsordningForm = ({
             onBack={goBack}>
             <VStack gap="space-16">
                 <Heading level="2" size="small">
-                    Dine perioder med pleiepenger
+                    {harFlereSøknadsperioder ? 'Dine perioder med pleiepenger' : 'Din periode med pleiepenger'}
                 </Heading>
                 <DateRangeExpansionCards
                     dateRanges={søknadsperioder}
