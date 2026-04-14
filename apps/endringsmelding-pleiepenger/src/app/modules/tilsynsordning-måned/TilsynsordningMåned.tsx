@@ -2,7 +2,8 @@ import './tilsynsordningMåned.css';
 
 import EndretTag from '@app/components/tags/EndretTag';
 import { AppText, useAppIntl } from '@app/i18n';
-import { Box, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
+import { ArrowUndoIcon } from '@navikt/aksel-icons';
+import { Box, Button, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
 import { ExpansionCardContent } from '@navikt/ds-react/ExpansionCard';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
 import {
@@ -30,6 +31,7 @@ interface Props {
     tidTilsynsordningOpprinnelig?: DateDurationMap;
     månedTittelHeadingLevel?: '2' | '3' | '4';
     defaultOpen?: boolean;
+    onTilbakestillEndringer?: (måned: DateRange) => void;
     onEnkeltdagChange?: EnkeltdagChangeEvent;
 }
 
@@ -41,6 +43,7 @@ const TilsynsordningMåned = ({
     tidTilsynsordningOpprinnelig,
     defaultOpen,
     månedTittelHeadingLevel,
+    onTilbakestillEndringer,
     onEnkeltdagChange,
 }: Props) => {
     const { text } = useAppIntl();
@@ -92,23 +95,42 @@ const TilsynsordningMåned = ({
                 </VStack>
             </ExpansionCard.Header>
             <ExpansionCardContent>
-                <TidsbrukKalender
-                    måned={måned}
-                    dagerMedTid={dagerMedTid}
-                    dagerMedTidOpprinnelig={tidTilsynsordningOpprinnelig}
-                    utilgjengeligeDatoer={utilgjengeligeDatoer}
-                    skjulTommeDagerIListe={false}
-                    visOpprinneligTid={false}
-                    skjulUkerMedKunUtilgjengeligeDager={true}
-                    onDateClick={
-                        onEnkeltdagChange
-                            ? (dato) => {
-                                  const tid: Partial<InputTime> = dagerMedTid[dateToISOString(dato)] || undefined;
-                                  setEditDate({ dato, tid });
-                              }
-                            : undefined
-                    }
-                />
+                <VStack gap="space-8" paddingBlock="space-0 space-8">
+                    <TidsbrukKalender
+                        måned={måned}
+                        dagerMedTid={dagerMedTid}
+                        dagerMedTidOpprinnelig={tidTilsynsordningOpprinnelig}
+                        utilgjengeligeDatoer={utilgjengeligeDatoer}
+                        skjulTommeDagerIListe={false}
+                        visOpprinneligTid={false}
+                        skjulUkerMedKunUtilgjengeligeDager={true}
+                        onDateClick={
+                            onEnkeltdagChange
+                                ? (dato) => {
+                                      const tid: Partial<InputTime> = dagerMedTid[dateToISOString(dato)] || undefined;
+                                      setEditDate({ dato, tid });
+                                  }
+                                : undefined
+                        }
+                    />
+                    {antallDagerEndret > 0 && onTilbakestillEndringer && (
+                        <HStack justify="end">
+                            <Button
+                                type="button"
+                                variant="tertiary"
+                                size="small"
+                                data-color="accent"
+                                onClick={() => onTilbakestillEndringer(måned)}
+                                icon={<ArrowUndoIcon role="presentation" />}>
+                                Fjern endringer i{' '}
+                                <AppText
+                                    id="tilsynsordningMåned.ukeOgÅr"
+                                    values={{ ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') }}
+                                />
+                            </Button>
+                        </HStack>
+                    )}
+                </VStack>
                 {editDate && onEnkeltdagChange && (
                     <TilsynsordningEnkeltdagDialog
                         open={editDate !== undefined}

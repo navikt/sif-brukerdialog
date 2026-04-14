@@ -42,8 +42,9 @@ const TilsynsordningSøknadsperiode = ({
             <VStack gap="space-16">
                 <VStack gap="space-16">
                     <BodyLong as="div">
-                        Legg til endring ved å velge dag i kalenderen, eller bruke knappen &quot;Registrer tid for en
-                        periode&quot;.
+                        Legg til endring ved å velge dato i kalenderen, eller bruke knappen &quot;Registrer tid for en
+                        periode&quot;. Hvis du velger en dato, vil du også få muligheten til å si at endringen skal
+                        gjelde flere dager i perioden.
                     </BodyLong>
                     <HStack gap="space-4" justify="space-between">
                         <Button
@@ -63,7 +64,7 @@ const TilsynsordningSøknadsperiode = ({
                                 data-color="accent"
                                 onClick={() => setVisTilbakestillEndringerDialog(true)}
                                 icon={<ArrowUndoIcon role="presentation" />}>
-                                Tilbakestill alle endringer
+                                Fjern alle endringer
                             </Button>
                         )}
                     </HStack>
@@ -78,6 +79,7 @@ const TilsynsordningSøknadsperiode = ({
                                     tidTilsynsordning={endredeTilsynsdager}
                                     tidTilsynsordningOpprinnelig={opprinneligTilsynsdager}
                                     onEnkeltdagChange={onEnkeltdagChange}
+                                    onTilbakestillEndringer={(periode) => onRevert(periode)}
                                 />
                             );
                         })}
@@ -97,6 +99,7 @@ const TilsynsordningSøknadsperiode = ({
                 Bekreft at du ønsker å tilbakestille alle endringer du har gjort for omsorgstilbudet i denne
                 søknadsperioden.
             </ConfirmationDialog>
+
             <TilsynsordningPeriodeDialog
                 isOpen={visPeriodeDialog}
                 formProps={{

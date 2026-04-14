@@ -72,7 +72,7 @@ const TilsynsordningStep = () => {
                 <VStack gap="space-24">
                     <List>
                         <List.Item>
-                            Her kan du sende inn endringer på hvor lenge barnet er i et omsorgstilbud.
+                            Her kan du sende inn endringer på tiden barnet er i et fast og regelmessig omsorgstilbud.
                         </List.Item>
                         <List.Item>
                             Du kan gjøre endringer i perioden <strong>{samletSøknadsperiodeTekstVariant3}</strong>. Hvis
