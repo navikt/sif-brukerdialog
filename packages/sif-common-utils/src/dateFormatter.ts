@@ -57,6 +57,13 @@ export const dateFormatter = {
     /**
      *
      * @param date: Date
+     * @returns 1. januar 2021
+     */
+    dateMonth: (date: Date, locale?: string) => dayjs(date).locale(getValidLocale(locale)).format('D. MMMM'),
+
+    /**
+     *
+     * @param date: Date
      * @returns fredag
      */
     day: (date: Date, locale?: string) => `${dayjs(date).locale(getValidLocale(locale)).format('dddd')}`,

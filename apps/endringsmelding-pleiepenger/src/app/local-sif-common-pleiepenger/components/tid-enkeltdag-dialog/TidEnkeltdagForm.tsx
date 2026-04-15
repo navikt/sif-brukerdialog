@@ -161,7 +161,7 @@ const TidEnkeltdagForm = ({
     };
 
     const dagerNavn = `${dayjs(dato).format('dddd')}er`;
-    const valgtDatoTxt = dateFormatter.dayDateMonthYear(dato);
+    // const valgtDatoTxt = dateFormatter.dayCompactDate(dato);
 
     const ukePeriode: DateRange = trimDateRangeToWeekdays(
         getDateRangeWithinDateRange(getWeekDateRange(dato, true), periode),
@@ -173,17 +173,16 @@ const TidEnkeltdagForm = ({
     const månedErHel =
         dayjs(periode.from).isBefore(månedPeriode.from, 'month') && dayjs(periode.to).isAfter(månedPeriode.to, 'month');
 
-    const ukePeriodeStartTxt = dateFormatter.dayDateShortMonth(ukePeriode.from);
-    const ukePeriodeSluttTxt = dateFormatter.dayDateShortMonth(ukePeriode.to);
+    const ukePeriodeStartTxt = dateFormatter.dayCompactDate(ukePeriode.from);
+    const ukePeriodeSluttTxt = dateFormatter.dayCompactDate(ukePeriode.to);
 
-    const månedPeriodeStartTxt = dateFormatter.dayDateShortMonth(månedPeriode.from);
-    const månedPeriodeSluttTxt = dateFormatter.dayDateShortMonth(månedPeriode.to);
+    const månedPeriodeStartTxt = 'sdf'; //dateFormatter.dayCompactDate(månedPeriode.from);
+    const månedPeriodeSluttTxt = 'sdf'; //dateFormatter.dayCompactDate(månedPeriode.to);
 
     const ukeNavn = `${dayjs(dato).isoWeek()}`;
     const månedNavn = dayjs(dato).format('MMMM YYYY');
 
-    const sluttDatoTxt = dateFormatter.dayDateShortMonth(getLastWeekdayOnOrBeforeDate(periode.to));
-    const sluttSøknadsperiodeDatoTxt = dateFormatter.dayDateShortMonth(getLastWeekdayOnOrBeforeDate(søknadsperiode.to));
+    const sluttDatoTxt = dateFormatter.full(getLastWeekdayOnOrBeforeDate(periode.to));
 
     const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(periode) > 2;
 
@@ -272,6 +271,11 @@ const TidEnkeltdagForm = ({
                                             validate={getRequiredFieldValidator()}
                                             radios={[
                                                 {
+                                                    label: `Alle dager`,
+                                                    isSeparator: true,
+                                                    value: 'separator-1',
+                                                },
+                                                {
                                                     label: renderGjentagelseRadioLabel(
                                                         ukeErHel ? 'helUke' : 'delAvUke',
                                                         {
@@ -297,18 +301,25 @@ const TidEnkeltdagForm = ({
                                                     label: renderGjentagelseRadioLabel(
                                                         'alleDagerUtSøknadsperioden',
                                                         {
-                                                            fra: valgtDatoTxt,
-                                                            til: sluttSøknadsperiodeDatoTxt,
+                                                            fra: dateFormatter.full(dato),
+                                                            til: dateFormatter.full(
+                                                                getLastWeekdayOnOrBeforeDate(søknadsperiode.to),
+                                                            ),
                                                         },
                                                         { dagerNavn, månedNavn },
                                                     ),
                                                     value: GjentagelseType.alleDagerUtSøknadsperioden,
                                                 },
                                                 {
+                                                    label: `Alle ${dagerNavn}`,
+                                                    isSeparator: true,
+                                                    value: 'separator-1',
+                                                },
+                                                {
                                                     label: renderGjentagelseRadioLabel(
                                                         'dagerFremover',
                                                         {
-                                                            fra: valgtDatoTxt,
+                                                            fra: dateFormatter.full(dato),
                                                             til: sluttDatoTxt,
                                                         },
                                                         { dagerNavn, månedNavn },
@@ -320,8 +331,10 @@ const TidEnkeltdagForm = ({
                                                     label: renderGjentagelseRadioLabel(
                                                         'likDagHeleSøknadsperioden',
                                                         {
-                                                            fra: valgtDatoTxt,
-                                                            til: sluttSøknadsperiodeDatoTxt,
+                                                            fra: dateFormatter.full(dato),
+                                                            til: dateFormatter.full(
+                                                                getLastWeekdayOnOrBeforeDate(søknadsperiode.to),
+                                                            ),
                                                         },
                                                         { dagerNavn, månedNavn },
                                                     ),
