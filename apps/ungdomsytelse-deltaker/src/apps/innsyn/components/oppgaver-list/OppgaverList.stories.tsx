@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
@@ -29,6 +29,7 @@ type Story = StoryObj;
  */
 
 const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -73,6 +74,8 @@ export const EndretSluttdato: Story = {
  */
 
 const endretStartdatoOppgave: EndretStartdatoOppgave = {
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
+
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
@@ -117,6 +120,7 @@ export const EndretStartdato: Story = {
  */
 
 const rapporterInntektOppgave: RapporterInntektOppgave = {
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {
