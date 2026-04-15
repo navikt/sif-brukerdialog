@@ -1,3 +1,4 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import TilsynsordningPeriodeDialog from '@app/modules/tilsynsordning-måned/components/tilsynsordning-periode-dialog/TilsynsordningPeriodeDialog';
 import TilsynsordningMåned, { EnkeltdagChangeEvent } from '@app/modules/tilsynsordning-måned/TilsynsordningMåned';
 import { PencilIcon, TrashIcon } from '@navikt/aksel-icons';
@@ -29,6 +30,7 @@ const TilsynsordningSøknadsperiode = ({
 }: Props) => {
     const [visPeriodeDialog, setVisPeriodeDialog] = useState(false);
     const [visTilbakestillEndringerDialog, setVisTilbakestillEndringerDialog] = useState(false);
+    const { text } = useAppIntl();
     const månederISøknadsperiode = dateRangeUtils
         .getMonthsInDateRange(søknadsperiode)
         .filter(dateRangeUtils.dateRangeIncludesWeekdays);
@@ -42,9 +44,7 @@ const TilsynsordningSøknadsperiode = ({
             <VStack gap="space-16">
                 <VStack gap="space-16">
                     <BodyLong as="div">
-                        Legg til endring ved å velge dato i kalenderen, eller bruke knappen &quot;Registrer tid for en
-                        periode&quot;. Hvis du velger en dato, vil du også få muligheten til å si at endringen skal
-                        gjelde flere dager i perioden.
+                        <AppText id="tilsynsordningSøknadsperiode.info" />
                     </BodyLong>
                     <HStack gap="space-4" justify="space-between">
                         <Button
@@ -54,7 +54,7 @@ const TilsynsordningSøknadsperiode = ({
                             data-color="accent"
                             onClick={() => setVisPeriodeDialog(true)}
                             icon={<PencilIcon role="presentation" />}>
-                            Legg til endring for en periode
+                            <AppText id="tilsynsordningSøknadsperiode.leggTilEndring" />
                         </Button>
                         {harEndringer && (
                             <Button
@@ -64,7 +64,7 @@ const TilsynsordningSøknadsperiode = ({
                                 data-color="accent"
                                 onClick={() => setVisTilbakestillEndringerDialog(true)}
                                 icon={<TrashIcon role="presentation" />}>
-                                Fjern alle endringer
+                                <AppText id="tilsynsordningSøknadsperiode.fjernAlleEndringer" />
                             </Button>
                         )}
                     </HStack>
@@ -87,16 +87,16 @@ const TilsynsordningSøknadsperiode = ({
                 </VStack>
             </VStack>
             <ConfirmationDialog
-                title="Fjern alle endringer"
+                title={text('tilsynsordningSøknadsperiode.fjernAlleEndringer')}
                 open={visTilbakestillEndringerDialog}
-                okLabel="Ja, fjern"
-                cancelLabel="Nei, avbryt"
+                okLabel={text('tilsynsordningSøknadsperiode.bekreftFjern.okLabel')}
+                cancelLabel={text('tilsynsordningSøknadsperiode.bekreftFjern.cancelLabel')}
                 onConfirm={() => {
                     fjernAlleEndringer();
                     setVisTilbakestillEndringerDialog(false);
                 }}
                 onCancel={() => setVisTilbakestillEndringerDialog(false)}>
-                Bekreft at du ønsker å fjerne alle endringer du har lagt til i denne søknadsperioden.
+                <AppText id="tilsynsordningSøknadsperiode.bekreftFjern.innhold" />
             </ConfirmationDialog>
 
             <TilsynsordningPeriodeDialog

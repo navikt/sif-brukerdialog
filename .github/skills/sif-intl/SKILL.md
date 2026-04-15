@@ -1,3 +1,4 @@
+---
 name: sif-intl
 description: Mønster for typesikker i18n (nb/nn) i apper og pakker — implementering, parametersjekk og meningssjekk.
 ---
@@ -229,12 +230,15 @@ export const applicationIntlMessages = {
 
 ### Nøkkelstruktur
 
-| Kontekst   | Prefiks-konvensjon | Eksempel                                    |
-| ---------- | ------------------ | ------------------------------------------- |
-| Pakke      | `@pkgName.`        | `@sifSoknadUi.stepFooter.slettSøknad.label` |
-| Side (app) | `page.pageName.`   | `page.velkommen.guide.tittel`               |
-| Steg (app) | `stepName.`        | `barnSteg.tittel`                           |
-| App-nivå   | fritt              | `application.title`                         |
+| Kontekst                      | Prefiks-konvensjon      | Eksempel                                           |
+| ----------------------------- | ----------------------- | -------------------------------------------------- |
+| Pakke                         | `@pkgName.`             | `@sifSoknadUi.stepFooter.slettSøknad.label`        |
+| Side (app)                    | `page.pageName.`        | `page.velkommen.guide.tittel`                      |
+| Steg (app)                    | `stepName.`             | `barnSteg.tittel`                                  |
+| Sub-komponent innen et steg   | `componentName.`        | `tilsynsordningSøknadsperiode.leggTilEndring`       |
+| App-nivå                      | fritt                   | `application.title`                                |
+
+**Grunnpattern for sub-komponenter:** Bruk komponentnavnet (camelCase) som prefiks — ikke domenebetegnelsen for innholdet. Eksempel: nøkler i `TilsynsordningSøknadsperiode.tsx` bruker prefikset `tilsynsordningSøknadsperiode.`.
 
 ### nn.ts-typing
 

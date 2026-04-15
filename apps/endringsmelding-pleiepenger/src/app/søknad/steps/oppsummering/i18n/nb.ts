@@ -1,4 +1,4 @@
-const nb = {
+export const oppsummeringStepMessages_nb = {
     'oppsummeringStep.guide':
         'Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Hvis noe ikke stemmer, kan du gå tilbake og endre igjen.',
 
@@ -29,6 +29,10 @@ const nb = {
     'oppsummeringStep.tilsynsordning.ingenEndringer': 'Det er ikke registrert noen endringer i omsorgstilbud',
     'oppsummeringStep.tilsynsordning.dagerEndret': ' - {antall} {antall, plural, one {dag} other {dager}} endret',
 
+    'endretTilsynTabell.header.dato': 'Dato',
+    'endretTilsynTabell.header.endretFra': 'Endret fra',
+    'endretTilsynTabell.header.endretTil': 'Endret til',
+
     'oppsummeringStep.forrige': 'Forrige steg',
     'oppsummeringStep.forrige.ariaLabel': 'Pil venstre',
 
@@ -37,11 +41,4 @@ const nb = {
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
 
     'oppsummeringForm.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene er riktig',
-};
-
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
-export const oppsummeringStepMessages = {
-    nb,
-    nn,
 };

@@ -6,7 +6,7 @@ import { dagerMedTidMessages } from '../local-sif-common-pleiepenger/components/
 import { sifCommonPleiepengerMessages_nb } from '../local-sif-common-pleiepenger/i18n/nb';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
-import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';
+import { oppsummeringStepMessages_nb } from '../søknad/steps/oppsummering/i18n/nb';
 import { tilsynsordningMessages_nb } from '../søknad/steps/tilsynsordning/i18n/nb';
 import { ukjentArbeidsforholdFormMessages } from '../søknad/steps/ukjent-arbeidsforhold/ukjentArbeidsforholdFormMessages';
 import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
@@ -19,7 +19,7 @@ const nb = {
     ...samtykkeFormOverrideMessages.nb,
     ...ukjentArbeidsforholdFormMessages.nb,
     ...velkommenPageMessages.nb,
-    ...oppsummeringStepMessages.nb,
+    ...oppsummeringStepMessages_nb,
     ...sifCommonSoknadOverrideMessages.nb,
     ...arbeidstidUkerMessages.nb,
     ...tilsynsordningMessages_nb,

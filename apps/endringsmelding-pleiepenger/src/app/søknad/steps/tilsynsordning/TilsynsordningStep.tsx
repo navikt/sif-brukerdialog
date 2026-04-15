@@ -72,15 +72,20 @@ const TilsynsordningStep = () => {
                 <VStack gap="space-24">
                     <List>
                         <List.Item>
-                            Her kan du sende inn endringer på tiden barnet er i et fast og regelmessig omsorgstilbud.
+                            <AppText id="omsorgstilbudStep.guide.listItem.1" />
                         </List.Item>
                         <List.Item>
-                            Du kan gjøre endringer i perioden <strong>{samletSøknadsperiodeTekstVariant3}</strong>. Hvis
-                            du skal gjøre endringer utenfor denne perioden, må du sende oss en melding via{' '}
-                            <SkrivTilOssLink />.
+                            <AppText
+                                id="omsorgstilbudStep.guide.listItem.2"
+                                values={{
+                                    periode: samletSøknadsperiodeTekstVariant3,
+                                    strong: (children) => <strong>{children}</strong>,
+                                    SkrivTilOssLink: () => <SkrivTilOssLink />,
+                                }}
+                            />
                         </List.Item>
                         <List.Item>
-                            Vi kan desverre ikke visen tiden i omsorgstilbud som allerede er registert på saken din.
+                            <AppText id="omsorgstilbudStep.guide.listItem.3" />
                         </List.Item>
                     </List>
                 </VStack>
@@ -94,7 +99,6 @@ const TilsynsordningStep = () => {
                             <>
                                 <PersistStepFormValues stepId={stepId} />
                                 <TilsynsordningForm
-                                    harFlereSøknadsperioder={sak.søknadsperioder.length > 1}
                                     goBack={goBack}
                                     søknadsperioder={sak.søknadsperioder}
                                     opprinneligTilsynsdager={sak.tilsynsordning.tilsynsdagerMap}

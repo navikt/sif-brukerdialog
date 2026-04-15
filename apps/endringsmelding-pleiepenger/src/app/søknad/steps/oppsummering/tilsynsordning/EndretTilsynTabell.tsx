@@ -2,6 +2,7 @@ import { Table } from '@navikt/ds-react';
 import { DurationText } from '@navikt/sif-common-ui';
 import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 
+import { AppText } from '../../../../i18n';
 import { DagMedEndretTilsyn, Feature, isFeatureEnabled } from '../../../../utils';
 
 interface Props {
@@ -14,9 +15,17 @@ const EndretTilsynTabell = ({ dagerMedEndretTilsyn }: Props) => {
         <Table>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>Dato</Table.HeaderCell>
-                    {!skjulOpprinneligTid && <Table.HeaderCell>Endret fra</Table.HeaderCell>}
-                    <Table.HeaderCell>Endret til</Table.HeaderCell>
+                    <Table.HeaderCell>
+                        <AppText id="endretTilsynTabell.header.dato" />
+                    </Table.HeaderCell>
+                    {!skjulOpprinneligTid && (
+                        <Table.HeaderCell>
+                            <AppText id="endretTilsynTabell.header.endretFra" />
+                        </Table.HeaderCell>
+                    )}
+                    <Table.HeaderCell>
+                        <AppText id="endretTilsynTabell.header.endretTil" />
+                    </Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
