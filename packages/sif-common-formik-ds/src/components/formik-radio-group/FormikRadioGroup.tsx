@@ -34,7 +34,7 @@ const renderRadiobuttons = (
         const { label, isSeparator, ...rest } = rb;
         if (isSeparator) {
             return (
-                <Box key={idx} marginBlock="space-24 space-4">
+                <Box key={idx} marginBlock="space-24 space-4" role="presentation">
                     <Detail weight="semibold" uppercase>
                         {label}
                     </Detail>

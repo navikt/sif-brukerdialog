@@ -13,7 +13,6 @@ const getBarnetsNavn = (barn): string => {
 };
 
 export const useSakUtledet = () => {
-    // const { locale } = useIntl();
     const { text, locale } = useAppIntl();
     const {
         state: { sak, søker },
