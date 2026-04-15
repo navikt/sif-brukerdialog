@@ -96,7 +96,6 @@ export class Veileder {
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/endre/startdato',
             ...options,
@@ -125,7 +124,6 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zEndreSluttdatoResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
             ],
@@ -158,7 +156,6 @@ export class Veileder {
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/avslutt',
             ...options,
@@ -187,7 +184,6 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zMeldInnDeltakerResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
             ],
@@ -224,7 +220,6 @@ export class Veileder {
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltaker/{deltakerId}/deltakelser',
             ...options,
@@ -246,7 +241,6 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zDeltakelseHistorikkResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
             ],
@@ -272,7 +266,6 @@ export class Veileder {
                     .parseAsync(data),
             responseValidator: async (data) => await zFjernFraProgramResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
             ],
@@ -307,7 +300,6 @@ export class Oppslag {
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
             ],
             url: '/oppslag/deltaker',
             ...options,
@@ -340,7 +332,6 @@ export class Oppslag {
             responseType: 'json',
             responseValidator: async (data) => await zHentDeltakerInfoGittDeltakerIdResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
             ],

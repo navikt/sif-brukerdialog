@@ -499,9 +499,9 @@ export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSME
 
 export const zInnsending = z.object({
     søknadId: z.string().optional(),
+    søker: zSøker.optional(),
     versjon: z.string().optional(),
     mottattDato: z.iso.datetime({ local: true }).optional(),
-    søker: zSøker.optional(),
 });
 
 export const zOrganisasjon = z.object({

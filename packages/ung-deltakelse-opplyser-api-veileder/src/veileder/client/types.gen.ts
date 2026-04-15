@@ -52,8 +52,8 @@ export type DeltakerPersonalia = {
      * Diskresjonskoder som gjelder for deltakeren. Vil være tom hvis deltaker ikke har diskresjonskoder satt.
      */
     diskresjonskoder: Diskresjonskode[];
-    førsteMuligeInnmeldingsdato: string;
     sisteMuligeInnmeldingsdato: string;
+    førsteMuligeInnmeldingsdato: string;
 };
 
 export enum Diskresjonskode {

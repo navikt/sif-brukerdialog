@@ -76,7 +76,6 @@ export class Deltakelse {
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/{id}/marker-har-sokt',
             ...options,
@@ -105,7 +104,6 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zMarkerDeltakelseSomSøktV2Response.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
             ],
@@ -140,7 +138,6 @@ export class Deltakelse {
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/hent/alle',
             ...options,
@@ -171,7 +168,6 @@ export class Deltakelse {
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/hent/alle/v2',
             ...options,
@@ -198,7 +194,6 @@ export class Deltaker {
             responseType: 'json',
             responseValidator: async (data) => await zHentKontonummerResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
             ],
