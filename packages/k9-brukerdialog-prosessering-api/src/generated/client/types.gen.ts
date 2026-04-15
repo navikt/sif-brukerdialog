@@ -747,6 +747,20 @@ export type ForutgåendeBosteder = {
     utenlandsoppholdSiste5År: Bosted[];
 };
 
+export type AktivitetspengerOppgaveDto = {
+    oppgaveReferanse: string;
+    uttalelse: AktivitetspengerOppgaveUttalelseDto;
+};
+
+export type AktivitetspengerOppgaveUttalelseDto = {
+    harUttalelse: boolean;
+    uttalelseFraDeltaker?: string;
+};
+
+export type AktivitetspengerOppgavebekreftelse = {
+    oppgave: AktivitetspengerOppgaveDto;
+};
+
 export type AktivitetspengerInntektsrapportering = {
     oppgaveReferanse: string;
     oppgittInntekt: OppgittInntekt;
@@ -1761,6 +1775,44 @@ export type InnsendingAktivitetspengersøknadError =
     InnsendingAktivitetspengersøknadErrors[keyof InnsendingAktivitetspengersøknadErrors];
 
 export type InnsendingAktivitetspengersøknadResponses = {
+    /**
+     * Accepted
+     */
+    202: unknown;
+};
+
+export type Oppgavebekreftelse1Data = {
+    body: AktivitetspengerOppgavebekreftelse;
+    headers: {
+        'X-Brukerdialog-Git-Sha': string;
+    };
+    path?: never;
+    query?: never;
+    url: '/aktivitetspenger/oppgavebekreftelse/innsending';
+};
+
+export type Oppgavebekreftelse1Errors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type Oppgavebekreftelse1Error = Oppgavebekreftelse1Errors[keyof Oppgavebekreftelse1Errors];
+
+export type Oppgavebekreftelse1Responses = {
     /**
      * Accepted
      */

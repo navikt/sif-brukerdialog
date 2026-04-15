@@ -1,13 +1,16 @@
-import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 
 import { handleApiError } from '../../utils/errorHandlers';
 import { commonRequestHeader } from '../../utils/initApiClient';
 
 export const sendOppgavebekreftelseAktivitetspenger = async (
-    oppgave: ungdomsytelse.UngdomsytelseOppgavebekreftelse,
+    oppgave: aktivitetspenger.AktivitetspengerOppgavebekreftelse,
 ): Promise<void> => {
     try {
-        await ungdomsytelse.UngdomsytelseController.oppgavebekreftelse({ body: oppgave, headers: commonRequestHeader });
+        await aktivitetspenger.AktivitetspengerController.oppgavebekreftelse({
+            body: oppgave,
+            headers: commonRequestHeader,
+        });
     } catch (e) {
         throw handleApiError(e, 'sendOppgavebekreftelseAktivitetspenger');
     }

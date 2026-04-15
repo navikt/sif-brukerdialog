@@ -35,6 +35,9 @@ import type {
     LagreVedleggData,
     LagreVedleggErrors,
     LagreVedleggResponses,
+    OppgavebekreftelseData,
+    OppgavebekreftelseErrors,
+    OppgavebekreftelseResponses,
     SlettVedleggData,
     SlettVedleggErrors,
     SlettVedleggResponses,
@@ -59,6 +62,8 @@ import {
     zInntektrapporteringBody,
     zInntektrapporteringHeaders,
     zLagreVedleggBody,
+    zOppgavebekreftelseBody,
+    zOppgavebekreftelseHeaders,
     zSlettVedleggPath,
     zSlettVedleggResponse,
     zUpdateMellomlagringBody,
@@ -246,6 +251,29 @@ export class AktivitetspengerController {
                     .parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/aktivitetspenger/soknad/innsending',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers,
+            },
+        });
+    }
+
+    public static oppgavebekreftelse<ThrowOnError extends boolean = true>(
+        options: Options<OppgavebekreftelseData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).post<OppgavebekreftelseResponses, OppgavebekreftelseErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: zOppgavebekreftelseBody,
+                        headers: zOppgavebekreftelseHeaders,
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/aktivitetspenger/oppgavebekreftelse/innsending',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
