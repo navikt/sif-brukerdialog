@@ -40,7 +40,7 @@
         "@sif/ung-innsyn": "workspace:*",
         "@tanstack/react-query": "5.97.0",
         "dayjs": "1.11.20",
-        "jsdom": "28.1.0",
+        "jsdom": "29.0.2",
         "react": "19.2.5",
         "react-day-picker": "9.14.0",
         "react-dom": "19.2.5",
