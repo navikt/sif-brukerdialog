@@ -6,6 +6,7 @@ import { createRoot } from 'react-dom/client';
 
 import { enableMocking } from '../mock/enableMocking';
 import { App } from './App';
+import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 
 enableMocking().then(() => {
     createRoot(document.getElementById('root')!, {
@@ -14,7 +15,9 @@ enableMocking().then(() => {
         onRecoverableError: reactErrorHandler(),
     }).render(
         <StrictMode>
-            <App />
+            <AppErrorBoundary>
+                <App />
+            </AppErrorBoundary>
         </StrictMode>,
     );
 });

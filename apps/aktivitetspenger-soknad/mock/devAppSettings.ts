@@ -13,6 +13,8 @@ export const getDevAppSettings = (): AppEnv => ({
     SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false',
     SIF_PUBLIC_LOGIN_URL: '#',
     SIF_PUBLIC_MINSIDE_URL: '#',
+    SIF_PUBLIC_URL_PERSONOPPLYSNINGER: '#',
+    SIF_PUBLIC_URL_ENDRE_KONTONUMMER: '#',
     SIF_PUBLIC_USE_ANALYTICS: 'true',
     SIF_PUBLIC_USE_FARO: 'true',
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '#',
