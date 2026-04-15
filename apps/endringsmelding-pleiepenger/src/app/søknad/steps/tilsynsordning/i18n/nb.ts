@@ -3,7 +3,7 @@ export const tilsynsordningMessages_nb = {
     'omsorgstilbudStep.guide.listItem.1':
         'Her kan du sende inn endringer på tiden barnet er i et fast og regelmessig omsorgstilbud.',
     'omsorgstilbudStep.guide.listItem.2':
-        'Du kan gjøre endringer i perioden <strong>{periode}</strong>. Hvis du skal gjøre endringer utenfor denne perioden, må du sende oss en melding via <SkrivTilOssLink />.',
+        'Du kan gjøre endringer i perioden <strong>{periode}</strong>. Hvis du skal gjøre endringer utenfor denne perioden, må du sende oss en melding via <SkrivTilOssLink></SkrivTilOssLink>.',
     'omsorgstilbudStep.guide.listItem.3':
         'Vi kan desverre ikke visen tiden i omsorgstilbud som allerede er registert på saken din.',
     'omsorgstilbudForm.periodeHeading':

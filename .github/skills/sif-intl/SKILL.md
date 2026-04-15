@@ -282,6 +282,29 @@ export const MyComponent = () => {
 };
 ```
 
+### Custom tags i ICU-meldinger
+
+react-intl støtter custom tags for å sende inn React-komponenter som `values`. Viktig gotcha:
+
+- **Self-closing fungerer ikke** i meldingsstrengen. Bruk alltid eksplisitt åpnings- og lukketag.
+
+```ts
+// ❌ Virker ikke — react-intl parser ikke self-closing custom tags
+'melding': 'Send oss en melding via <SkrivTilOssLink />.'
+
+// ✅ Riktig
+'melding': 'Send oss en melding via <SkrivTilOssLink></SkrivTilOssLink>.'
+```
+
+I komponenten sendes taggen inn som en `values`-funksjon:
+
+```tsx
+<AppText
+    id="melding"
+    values={{ SkrivTilOssLink: () => <SkrivTilOssLink /> }}
+/>
+```
+
 ### Aggregering
 
 - Bruk spread (`...`) for å samle meldinger fra steg/sider inn i `appMessages.ts`.
