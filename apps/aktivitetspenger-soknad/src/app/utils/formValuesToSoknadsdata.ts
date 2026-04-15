@@ -9,13 +9,13 @@ import { toBostedUtlandStegSøknadsdata } from '../steps/bosted-utland/bostedUtl
 import { BostedUtlandFormValues } from '../steps/bosted-utland/types';
 import { toKontonummerSøknadsdata } from '../steps/kontonummer/kontonummerStegUtils';
 import { KontonummerFormValues } from '../steps/kontonummer/types';
-import { toAndreYtelserSøknadsdata } from '../steps/andre-ytelser/andreYtelserStegUtils';
-import { AndreYtelserFormValues } from '../steps/andre-ytelser/types';
+import { toStartdatoSøknadsdata } from '../steps/startdato/startdatoStegUtils';
+import { StartdatoFormValues } from '../steps/startdato/types';
 
 export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormValues): StepSøknadsdata | undefined => {
     switch (stepId) {
-        case SøknadStepId.ANDRE_YTELSER:
-            return toAndreYtelserSøknadsdata(formValues as AndreYtelserFormValues);
+        case SøknadStepId.STARTDATO:
+            return toStartdatoSøknadsdata(formValues as StartdatoFormValues);
         case SøknadStepId.KONTONUMMER:
             return toKontonummerSøknadsdata(formValues as KontonummerFormValues);
         case SøknadStepId.BOSTED:

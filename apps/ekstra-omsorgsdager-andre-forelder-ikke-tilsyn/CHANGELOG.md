@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.35.76
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 1.35.75
 
 ### Patch Changes

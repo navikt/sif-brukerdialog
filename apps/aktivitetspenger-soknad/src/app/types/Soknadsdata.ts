@@ -3,9 +3,12 @@ import { BaseSøknadsdata } from '@sif/soknad/types';
 import { BostedUtland } from '@sif/soknad-forms';
 
 import { SøknadStepId } from '../setup/config/SoknadStepId';
-import { AndreYtelse } from '../steps/andre-ytelser/types';
 
 export type KontonummerSøknadsdata = Pick<KontonummerInfo, 'kontonummerErRiktig'>;
+
+export type StartdatoSøknadsdata = {
+    startdato: string;
+};
 
 export type BostedSøknadsdata = {
     borITrondheim: boolean;
@@ -20,17 +23,12 @@ export type BarnSøknadsdata = {
     informasjonStemmer: boolean;
 };
 
-export type AndreYtelserSøknadsdata = {
-    harAndreYtelser: boolean;
-    andreYtelser?: AndreYtelse[];
-};
-
 /**
  * Strukturert data for hvert steg som settes når bruker
  * fyller ut og submitter et gyldig steg i søknaden.
  */
 export interface Søknadsdata extends BaseSøknadsdata {
-    [SøknadStepId.ANDRE_YTELSER]?: AndreYtelserSøknadsdata;
+    [SøknadStepId.STARTDATO]?: StartdatoSøknadsdata;
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;
     [SøknadStepId.BOSTED_UTLAND]?: BostedUtlandSøknadsdata;
