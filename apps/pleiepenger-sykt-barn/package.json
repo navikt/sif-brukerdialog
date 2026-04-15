@@ -64,7 +64,7 @@
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "dayjs": "1.11.20",
-        "eslint": "9.39.4",
+        "eslint": "10.2.0",
         "eslint-plugin-storybook": "10.3.5",
         "express": "5.2.1",
         "helmet": "8.1.0",
