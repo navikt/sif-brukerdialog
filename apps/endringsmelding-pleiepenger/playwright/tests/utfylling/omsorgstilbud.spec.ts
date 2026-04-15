@@ -1,6 +1,6 @@
+import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { expect, test } from '@playwright/test';
 
-import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow as setNow } from '../../utils/setNow';
 
@@ -21,9 +21,6 @@ test('Sende endring om tid omsorgstilbud', async ({ page }) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByRole('button', { name: 'Legg til endring for en periode' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
-    await page.getByRole('button', { name: 'Gå til neste måned' }).click();
-    await page.getByRole('button', { name: 'Gå til neste måned' }).click();
-    await page.getByRole('button', { name: 'Gå til neste måned' }).click();
     await page.getByRole('button', { name: 'Gå til neste måned' }).click();
     await page.getByRole('button', { name: 'mandag 6' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
