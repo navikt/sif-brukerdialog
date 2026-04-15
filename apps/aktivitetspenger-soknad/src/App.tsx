@@ -11,7 +11,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { initApiClients } from './app/api/initApiClients';
 import { applicationIntlMessages } from './app/i18n';
 import { getAppEnv } from './app/setup/env/appEnv';
-import { PageErrorBoundary } from './app/setup/wrappers/PageErrorBoundary';
+import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
 import { InitialDataLoader } from './InitialDataLoader';
 
@@ -33,7 +33,7 @@ export const App = () => {
             applicationKey={AktivitetspengerApp.key}
             appVersion={appEnv.APP_VERSION}
             isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
-            <PageErrorBoundary>
+            <AppErrorBoundary>
                 <SifQueryClientProvider>
                     <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
                         <BrowserRouter basename={basePath}>
@@ -41,7 +41,7 @@ export const App = () => {
                         </BrowserRouter>
                     </IntlProvider>
                 </SifQueryClientProvider>
-            </PageErrorBoundary>
+            </AppErrorBoundary>
         </FaroProvider>
     );
 };

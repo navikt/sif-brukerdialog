@@ -203,6 +203,9 @@ Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` f
 - Hvis Vite-plugin-typefeil dukker opp med to ulike `vite`-paths, verifiser at root-install er brukt og at `tsconfig.json` beholder path-mappingen `"vite": ["../../node_modules/vite"]`.
 - For bootstrap-validering, ikke kjør `yarn build` i monorepo-roten. Kjør build/check-scripts kun i målappens workspace.
 - `AppErrorBoundary` må ligge inni `FaroProvider` i `App.tsx`, ikke rundt `<App />` i `main.tsx`. Ellers har `useFaroInstance()` ingen context, og feillogging til Faro vil ikke fungere.
+- `AppErrorBoundary` bruker en ren React ErrorBoundary med Faro-logging — ikke `SentryErrorBoundary`. Sentry-feilrapportering dekkes av `reactErrorHandler()` i `main.tsx` (`onUncaughtError`/`onCaughtError`/`onRecoverableError`), slik at feil ikke dobbeltrapporteres.
+- `main.tsx` skal være ren: `sentry/instrument` → `reactErrorHandler` → `<App />`. Ingen providers eller error boundaries i `main.tsx`.
+- Env-feil fra `getAppEnv()` fanges av `reactErrorHandler` (Sentry). Faro er utilgjengelig for env-feil siden `FaroProvider` er inne i `App` — dette er akseptabelt.
 - `enableMocking.ts` inneholder ENV-sjekker — MSW starter kun når `ENV === 'development'` og `import.meta.env.MODE === 'msw'`. Ikke fjern disse guardene.
 - `vite.config.ts` bruker en betinget Sentry-plugin som kun aktiveres når `SENTRY_AUTH_TOKEN` er satt. Sentry-build-advarsler er forventet lokalt uten token.
 - Data loading er delt i `useInitialData.ts` (hook med datalogikk) og `InitialDataLoader.tsx` (tynn komponent). Behold denne separasjonen når du tilpasser, og deleger detaljveiledning til `sif-initial-data-loader`.
