@@ -16,10 +16,10 @@
         "axios": "1.15.0",
         "config": "workspace:*",
         "dayjs": "1.11.20",
-        "postcss": "8.5.8",
+        "postcss": "8.5.9",
         "typescript": "6.0.2",
         "uuid": "13.0.0",
-        "vitest": "4.1.2",
+        "vitest": "4.1.4",
         "zod": "4.3.6"
     },
     "peerDependencies": {

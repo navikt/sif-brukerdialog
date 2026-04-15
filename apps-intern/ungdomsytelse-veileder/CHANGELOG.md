@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.61
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 0.9.60
 
 ### Patch Changes

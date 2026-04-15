@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.40.68
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
 ## 2.40.67
 
 ### Patch Changes

@@ -15,18 +15,18 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.5.2",
+        "@types/node": "25.6.0",
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
         "globals": "17.4.0",
         "intl": "1.2.5",
-        "postcss": "8.5.8",
-        "react": "19.2.4",
-        "react-dom": "19.2.4",
+        "postcss": "8.5.9",
+        "react": "19.2.5",
+        "react-dom": "19.2.5",
         "react-intl": "10.1.1",
         "typescript": "6.0.2",
-        "vitest": "4.1.2"
+        "vitest": "4.1.4"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
