@@ -8,7 +8,7 @@ import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { BostedUtland, BostedUtlandFormDialog, BostedUtlandList } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
 import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
@@ -55,6 +55,10 @@ export const BostedUtlandForm = () => {
             }
         },
     });
+
+    useEffect(() => {
+        methods.trigger(BostedUtlandFormFields.bosteder);
+    }, [harBoddIUtlandetSiste5år]);
 
     const oppdaterBosted = (bosted: BostedUtland) => {
         methods.setValue(BostedUtlandFormFields.bosteder, oppdaterBosteder(bosteder, bosted));
