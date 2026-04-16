@@ -4,6 +4,42 @@ import { readFileSync, writeFileSync } from 'fs';
 import { glob } from 'glob';
 import path from 'path';
 
+function sortKeysDeep(obj) {
+    if (Array.isArray(obj)) {
+        return obj.map(sortKeysDeep);
+    }
+    if (obj !== null && typeof obj === 'object') {
+        return Object.keys(obj)
+            .sort()
+            .reduce((acc, key) => {
+                acc[key] = sortKeysDeep(obj[key]);
+                return acc;
+            }, {});
+    }
+    return obj;
+}
+
+export function parseCodegenEnv() {
+    const value = process.env.CODEGEN_ENV;
+    if (value === 'prod') return 'prod';
+    if (value === 'dev' || value === undefined) return 'dev';
+    throw new Error(`Invalid CODEGEN_ENV: '${value}'. Must be 'dev' or 'prod'.`);
+}
+
+export function getNavBaseUrl(env) {
+    return env === 'dev' ? 'intern.dev.nav.no' : 'intern.nav.no';
+}
+
+export async function fetchAndNormalizeSpec(url, outputPath) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch spec from ${url}: ${response.status}`);
+    }
+    const spec = await response.json();
+    const sorted = sortKeysDeep(spec);
+    writeFileSync(outputPath, JSON.stringify(sorted, null, 2) + '\n');
+}
+
 const PATTERNS = {
     removeZodRegex: {
         pattern: /\.regex\([^)]*\)/g,

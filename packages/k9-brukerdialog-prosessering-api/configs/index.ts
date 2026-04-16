@@ -1,18 +1,5 @@
 import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
-export type Env = 'dev' | 'prod';
-
-export const parseEnv = (value: string | undefined): Env => {
-    if (value === 'prod') return 'prod';
-    if (value === 'dev' || value === undefined) return 'dev';
-    throw new Error(`Invalid CODEGEN_ENV: '${value}'. Must be 'dev' or 'prod'.`);
-};
-
-export const getEnvBaseUrl = (env: Env): string => {
-    /**  I påvente av at prod-spec ikke er tilgjengelig enda returneres alltid dev her */
-    return env === 'dev' ? 'intern.dev.nav.no' : 'intern.dev.nav.no';
-};
-
 interface ConfigOptions {
     /** API docs path segment, e.g. 'ettersendelse' or '' for root */
     apiDocsPath: string;
@@ -21,12 +8,10 @@ interface ConfigOptions {
 }
 
 export const createOpenApiConfig = (options: ConfigOptions): UserConfig => {
-    const env = parseEnv(process.env.CODEGEN_ENV);
-    const baseUrl = getEnvBaseUrl(env);
-    const apiPath = options.apiDocsPath ? `/v3/api-docs/${options.apiDocsPath}` : '/v3/api-docs';
+    const specFile = options.apiDocsPath ? `${options.apiDocsPath}.json` : 'default.json';
 
     return {
-        input: `https://k9-brukerdialog-prosessering.${baseUrl}${apiPath}`,
+        input: `./specs/${specFile}`,
         output: {
             format: 'prettier',
             lint: 'eslint',

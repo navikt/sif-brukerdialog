@@ -49,6 +49,10 @@ packages/**/*/lib
 playwright-report
 test-results
 
+# codegen downloaded specs
+openapi-spec.json
+specs/*.json
+
 .yarn/*
 !.yarn/patches
 !.yarn/plugins

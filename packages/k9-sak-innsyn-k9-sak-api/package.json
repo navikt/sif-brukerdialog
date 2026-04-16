@@ -29,8 +29,9 @@
         "lint:fix": "eslint --quiet --fix './src/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts",
-        "codegen:dev": "CODEGEN_ENV=dev yarn openapi-ts && yarn fix-regex",
-        "codegen:prod": "CODEGEN_ENV=prod yarn openapi-ts && yarn fix-regex"
+        "download-spec": "node scripts/download-spec.mjs",
+        "codegen:dev": "CODEGEN_ENV=dev yarn download-spec && yarn openapi-ts && yarn fix-regex",
+        "codegen:prod": "CODEGEN_ENV=prod yarn download-spec && yarn openapi-ts && yarn fix-regex"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",
