@@ -1,5 +1,16 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.51
+
+### Patch Changes
+
+- 062d83e: Utvide med oppgavebekreftelse for aktivitetspenger + tilhørende refactoring
+- Updated dependencies [062d83e]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.17
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.14
+    - @navikt/ung-brukerdialog-api@0.0.4
+    - @navikt/ung-common@0.0.99
+
 ## 1.5.50
 
 ### Patch Changes

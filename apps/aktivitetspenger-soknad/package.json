@@ -2,7 +2,7 @@
     "name": "@navikt/aktivitetspenger-soknad",
     "type": "module",
     "private": true,
-    "version": "0.0.2",
+    "version": "0.0.3",
     "scripts": {
         "dev": "vite --base=/aktivitetspenger/soknad --config vite.dev.config.ts",
         "pw:dev": "vite --config vite.e2e.config.ts",
