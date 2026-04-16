@@ -1,6 +1,6 @@
 ---
 name: nav-troubleshoot
-description: Strukturerte diagnostiske trær for vanlige Nav-plattformproblemer — pod-krasj, auth-feil, Kafka-lag og databaseproblemer
+description: Nav Troubleshoot — Platform Diagnostics
 ---
 
 # Nav Troubleshoot — Platform Diagnostics
@@ -16,14 +16,14 @@ Strukturerte diagnostiske trær for vanlige problemer på Nais-plattformen. Erst
 
 ## Symptom-oversikt
 
-| Symptom | Start her |
-|---------|-----------|
-| Pod starter ikke / krasjer | [Pod-problemer](#pod-problemer) |
-| 401 Unauthorized / 403 Forbidden | [Auth-feil](#auth-feil) |
-| Kafka consumer lag / meldinger prosesseres ikke | [Kafka-problemer](#kafka-problemer) |
-| Database-tilkoblingsfeil | [Database-problemer](#database-problemer) |
-| Treg responstid | [Ytelse](#ytelsesproblemer) |
-| Deploy feiler | [Deploy-problemer](#deploy-problemer) |
+| Symptom                                         | Start her                                 |
+| ----------------------------------------------- | ----------------------------------------- |
+| Pod starter ikke / krasjer                      | [Pod-problemer](#pod-problemer)           |
+| 401 Unauthorized / 403 Forbidden                | [Auth-feil](#auth-feil)                   |
+| Kafka consumer lag / meldinger prosesseres ikke | [Kafka-problemer](#kafka-problemer)       |
+| Database-tilkoblingsfeil                        | [Database-problemer](#database-problemer) |
+| Treg responstid                                 | [Ytelse](#ytelsesproblemer)               |
+| Deploy feiler                                   | [Deploy-problemer](#deploy-problemer)     |
 
 Se [diagnostic-trees.md](./references/diagnostic-trees.md) for detaljerte diagnostiske trær med kommandoer.
 
@@ -44,14 +44,14 @@ kubectl describe pod -n {namespace} {pod-name} | grep -A 20 Events
 
 **Vanlige årsaker:**
 
-| Log-output | Årsak | Løsning |
-|-----------|-------|---------|
-| `OOMKilled` | For lite minne | Øk `resources.limits.memory` |
-| `java.lang.OutOfMemoryError` | Java heap for liten | Legg til `-Xmx` eller øk memory limit |
-| `Connection refused: localhost:5432` | Database ikke klar | Sjekk Cloud SQL-instans, Flyway-migrasjon |
-| `AZURE_APP_CLIENT_ID not set` | Manglende env-var | Sjekk at `azure.application.enabled: true` i Nais |
-| `No such file or directory` | Feil Dockerfile COPY | Verifiser at build-artefakt kopieres riktig |
-| Port-mismatch | App lytter på feil port | Sjekk at `spec.port` matcher appens port |
+| Log-output                           | Årsak                   | Løsning                                           |
+| ------------------------------------ | ----------------------- | ------------------------------------------------- |
+| `OOMKilled`                          | For lite minne          | Øk `resources.limits.memory`                      |
+| `java.lang.OutOfMemoryError`         | Java heap for liten     | Legg til `-Xmx` eller øk memory limit             |
+| `Connection refused: localhost:5432` | Database ikke klar      | Sjekk Cloud SQL-instans, Flyway-migrasjon         |
+| `AZURE_APP_CLIENT_ID not set`        | Manglende env-var       | Sjekk at `azure.application.enabled: true` i Nais |
+| `No such file or directory`          | Feil Dockerfile COPY    | Verifiser at build-artefakt kopieres riktig       |
+| Port-mismatch                        | App lytter på feil port | Sjekk at `spec.port` matcher appens port          |
 
 ### ImagePullBackOff
 

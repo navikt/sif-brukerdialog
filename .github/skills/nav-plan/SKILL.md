@@ -1,6 +1,6 @@
 ---
 name: nav-plan
-description: Arkitekturplanlegging med beslutningstrær for auth, kommunikasjon, database og Nais-konfigurasjon
+description: Nav Architecture Plan
 ---
 
 # Nav Architecture Plan
@@ -18,24 +18,24 @@ Gå fra en vag idé til en konkret, Nav-kompatibel arkitekturplan. Bruker beslut
 
 ## Steg 1: Arketype
 
-| Arketype | Stack | Nais-type |
-|----------|-------|-----------|
-| Backend API | Kotlin/Ktor eller Spring Boot | Application |
-| Hendelsekonsument | Kotlin + Kafka + Rapids & Rivers | Application |
-| Frontend (innbygger) | Next.js + ID-porten + Wonderwall | Application |
-| Frontend (saksbehandler) | Next.js + Azure AD + Wonderwall | Application |
-| Batchjobb | Kotlin + scheduled | Naisjob |
-| BFF (Backend-for-Frontend) | Next.js API routes | Application |
+| Arketype                   | Stack                            | Nais-type   |
+| -------------------------- | -------------------------------- | ----------- |
+| Backend API                | Kotlin/Ktor eller Spring Boot    | Application |
+| Hendelsekonsument          | Kotlin + Kafka + Rapids & Rivers | Application |
+| Frontend (innbygger)       | Next.js + ID-porten + Wonderwall | Application |
+| Frontend (saksbehandler)   | Next.js + Azure AD + Wonderwall  | Application |
+| Batchjobb                  | Kotlin + scheduled               | Naisjob     |
+| BFF (Backend-for-Frontend) | Next.js API routes               | Application |
 
 ### Endringstype
 
 I tillegg til arketype, avklar om dette er nytt eller en endring:
 
-| Endringstype | Ekstra beslutninger |
-|-------------|-------------------|
-| **Nybygg** | Standard beslutningstrær (auth, data, kommunikasjon) |
+| Endringstype      | Ekstra beslutninger                                                    |
+| ----------------- | ---------------------------------------------------------------------- |
+| **Nybygg**        | Standard beslutningstrær (auth, data, kommunikasjon)                   |
 | **Modernisering** | Migreringsstrategi, bakoverkompatibilitet, utrulling, dekommisjonering |
-| **Refaktorering** | Karakteriseringstester, rollback-plan, parallellkjøring |
+| **Refaktorering** | Karakteriseringstester, rollback-plan, parallellkjøring                |
 
 For modernisering og refaktorering — se [modernization-patterns.md](./references/modernization-patterns.md) for konkrete mønstre og [decision-trees.md](./references/decision-trees.md) for migreringsbeslutningstrær.
 
@@ -115,7 +115,7 @@ Trenger du persistent lagring?
 │       gcp.sqlInstances[].type: POSTGRES_15
 │       Flyway for migrasjoner
 │       HikariCP pool: 3-5 (containere!)
-│       
+│
 │       Primærnøkkel?
 │       ├── Domene-ID (fnr, saksnummer) → VARCHAR
 │       └── Systemgenerert → BIGSERIAL eller UUID
@@ -128,7 +128,7 @@ Trenger du persistent lagring?
 ├── Ja, cache / sesjon
 │   └── Redis via Nais
 │       gcp.redis[].tier: BASIC
-│       
+│
 └── Nei
     └── Stateless tjeneste (bra! enklere drift)
 ```
@@ -146,52 +146,53 @@ Se [nais-templates.md](./references/nais-templates.md) for komplette maler per a
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: {app-name}
-  namespace: {team}
-  labels:
-    team: {team}
+    name: { app-name }
+    namespace: { team }
+    labels:
+        team: { team }
 spec:
-  image: "{{ image }}"
-  port: 8080
-  
-  # Auth — fra beslutningstre
-  # [genereres basert på valgt mekanisme]
-  
-  # Database — fra beslutningstre  
-  # [genereres hvis PostgreSQL valgt]
-  
-  # Kafka — fra beslutningstre
-  # [genereres hvis Kafka valgt]
-  
-  # Alltid inkluder:
-  liveness:
-    path: /isalive
-  readiness:
-    path: /isready
-  prometheus:
-    enabled: true
-    path: /metrics
-  resources:
-    requests:
-      cpu: 15m
-      memory: 256Mi
-    limits:
-      memory: 512Mi
-  replicas:
-    min: 2
-    max: 4
-  
-  # accessPolicy — ALLTID eksplisitt
-  accessPolicy:
-    inbound:
-      rules: []  # Fyll inn basert på hvem som kaller
-    outbound:
-      rules: []  # Fyll inn basert på avhengigheter
+    image: '{{ image }}'
+    port: 8080
+
+    # Auth — fra beslutningstre
+    # [genereres basert på valgt mekanisme]
+
+    # Database — fra beslutningstre
+    # [genereres hvis PostgreSQL valgt]
+
+    # Kafka — fra beslutningstre
+    # [genereres hvis Kafka valgt]
+
+    # Alltid inkluder:
+    liveness:
+        path: /isalive
+    readiness:
+        path: /isready
+    prometheus:
+        enabled: true
+        path: /metrics
+    resources:
+        requests:
+            cpu: 15m
+            memory: 256Mi
+        limits:
+            memory: 512Mi
+    replicas:
+        min: 2
+        max: 4
+
+    # accessPolicy — ALLTID eksplisitt
+    accessPolicy:
+        inbound:
+            rules: [] # Fyll inn basert på hvem som kaller
+        outbound:
+            rules: [] # Fyll inn basert på avhengigheter
 ```
 
 ### Prosjektstruktur
 
 **Kotlin/Ktor:**
+
 ```
 {app-name}/
 ├── .nais/
@@ -217,6 +218,7 @@ spec:
 ```
 
 **Next.js:**
+
 ```
 {app-name}/
 ├── .nais/
@@ -243,48 +245,48 @@ spec:
 ```yaml
 name: Build and deploy
 on:
-  push:
-    branches: [main]
+    push:
+        branches: [main]
 
 permissions:
-  contents: read
-  id-token: write
+    contents: read
+    id-token: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    outputs:
-      image: ${{ steps.docker-build-push.outputs.image }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: nais/docker-build-push@v0
-        id: docker-build-push
-        with:
-          team: {team}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+    build:
+        runs-on: ubuntu-latest
+        outputs:
+            image: ${{ steps.docker-build-push.outputs.image }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: nais/docker-build-push@v0
+              id: docker-build-push
+              with:
+                  team: { team }
+                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
-  deploy-dev:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: dev-gcp
-          RESOURCE: .nais/nais-dev.yaml
-          VAR: image=${{ needs.build.outputs.image }}
+    deploy-dev:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: nais/deploy/actions/deploy@v2
+              env:
+                  CLUSTER: dev-gcp
+                  RESOURCE: .nais/nais-dev.yaml
+                  VAR: image=${{ needs.build.outputs.image }}
 
-  deploy-prod:
-    needs: [build, deploy-dev]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: prod-gcp
-          RESOURCE: .nais/nais.yaml
-          VAR: image=${{ needs.build.outputs.image }}
+    deploy-prod:
+        needs: [build, deploy-dev]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: nais/deploy/actions/deploy@v2
+              env:
+                  CLUSTER: prod-gcp
+                  RESOURCE: .nais/nais.yaml
+                  VAR: image=${{ needs.build.outputs.image }}
 ```
 
 ## Steg 3b: Teststrategi
@@ -293,15 +295,16 @@ Velg riktig testnivå basert på arketype og endringstype. Se [Teststrategi-besl
 
 **Minimum for alle arketyper:**
 
-| Arketype | Unit | Integrasjon | E2E |
-|----------|------|-------------|-----|
-| Backend API | Forretningslogikk | DB + auth | — |
-| Hendelsekonsument | Meldingsbehandling | TestRapid | — |
-| Frontend | Komponenter | — | Kritiske reiser |
-| BFF | Transformasjoner | Auth-proxy | — |
-| Batchjobb | Beregninger | DB | — |
+| Arketype          | Unit               | Integrasjon | E2E             |
+| ----------------- | ------------------ | ----------- | --------------- |
+| Backend API       | Forretningslogikk  | DB + auth   | —               |
+| Hendelsekonsument | Meldingsbehandling | TestRapid   | —               |
+| Frontend          | Komponenter        | —           | Kritiske reiser |
+| BFF               | Transformasjoner   | Auth-proxy  | —               |
+| Batchjobb         | Beregninger        | DB          | —               |
 
 **Tillegg for modernisering:**
+
 - Karakteriseringstester **før** du endrer kode
 - Migreringsverifisering (gammel kode + nytt skjema og omvendt)
 - Regresjonstester for grenseflater mellom ny og gammel kode
@@ -312,14 +315,15 @@ Se [Endringskonsekvensanalyse-tre](./references/decision-trees.md#endringskonsek
 
 Generer relevante dokumenter basert på endringstype og risiko. Se [dokumentasjon og leveransemaler](./references/documentation-templates.md) for fullstendige maler.
 
-| Dokument | Når | Formål |
-|----------|-----|--------|
-| Endringsdokument | Alltid for ikke-trivielle endringer | Beslutning, påvirkning, utrulling, rollback |
-| Runbook-oppdatering | Ny tjeneste eller endret driftsadferd | Feilsøking, eskalering, helsesjekk |
-| API-endringsdokument | Breaking changes eller nye API-er | Migrasjonsveiledning for konsumenter |
-| Observerbarhet | Alle endringer i produksjonsadferd | Suksesskriterier, dashboards, alarmer |
+| Dokument             | Når                                   | Formål                                      |
+| -------------------- | ------------------------------------- | ------------------------------------------- |
+| Endringsdokument     | Alltid for ikke-trivielle endringer   | Beslutning, påvirkning, utrulling, rollback |
+| Runbook-oppdatering  | Ny tjeneste eller endret driftsadferd | Feilsøking, eskalering, helsesjekk          |
+| API-endringsdokument | Breaking changes eller nye API-er     | Migrasjonsveiledning for konsumenter        |
+| Observerbarhet       | Alle endringer i produksjonsadferd    | Suksesskriterier, dashboards, alarmer       |
 
 **Minimum output for enhver plan:**
+
 1. Endringsdokument med rollback-plan
 2. Post-deploy-verifiseringssjekkliste
 3. Observerbarhetsplan (hva måles, hva alarmeres)

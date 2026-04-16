@@ -1,6 +1,8 @@
+---
 name: sif-soknad-modify-step
 description: Legg til nye spørsmål/felter i et eksisterende steg i en søknadsapp som bruker @sif/soknad og @sif/rhf.
 ---
+
 # sif-soknad-modify-step
 
 ## Når skal skillen brukes
@@ -34,14 +36,16 @@ Ikke les andre steg eller utforsk mappestruktur utover dette.
 
 Når en søknad porteres til nytt format, bruk ferdige paneler fra `@sif/soknad-forms` fremfor å implementere tilsvarende logikk manuelt. Panelene er typesikre, RHF-baserte og inneholder korrekt visning og i18n.
 
-| Panel | Beskrivelse | Viktige props |
-| ----- | ----------- | ------------- |
+| Panel                        | Beskrivelse                                                          | Viktige props                                                                   |
+| ---------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `VelgRegistrertBarnPanel<T>` | Radiogruppe for valg av registrert barn med fødselsdato og kildeinfo | `name`, `registrerteBarn`, `inkluderAnnetBarn?`, `annetBarnLabel?`, `validate?` |
 
 Eksporterte konstanter:
+
 - `ANNET_BARN = 'annetBarn'` — verdien som settes i skjemaet når bruker velger "annet barn"
 
 Bruksmønster:
+
 ```tsx
 import { ANNET_BARN, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 
@@ -50,7 +54,7 @@ import { ANNET_BARN, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
     registrerteBarn={registrerteBarn}
     inkluderAnnetBarn={true}
     validate={validateField(MyFormFields.barnetSøknadenGjelder, getRequiredFieldValidator())}
-/>
+/>;
 ```
 
 Ved migrering fra gammel `VelgBarnFormPart` (fra `@navikt/sif-common-forms-ds`): erstatt den alltid med `VelgRegistrertBarnPanel`. Legg til `@sif/soknad-forms` i `dependencies` hvis det mangler i app-ens `package.json`.
@@ -61,17 +65,17 @@ Ved migrering fra gammel `VelgBarnFormPart` (fra `@navikt/sif-common-forms-ds`):
 
 `createSifFormComponents<T>()` fra `@sif/rhf` gir disse komponentene:
 
-| Komponent        | Bruksområde                       | Verditype i FormValues    | Validator                                         |
-| ---------------- | --------------------------------- | ------------------------- | ------------------------------------------------- |
-| `YesOrNoQuestion` | Ja/nei-spørsmål                  | `YesOrNo`                 | `getYesOrNoValidator()`                            |
-| `CheckboxGroup`  | Flervalg med checkboxer           | `string[]` / `enum[]`     | `getListValidator({ required: true })`             |
-| `RadioGroup`     | Enkeltvalg med radioknapper       | `string` / `enum`         | `getRequiredFieldValidator()`                      |
-| `TextField`      | Fritekstfelt                      | `string`                  | `getStringValidator({ required: true })`           |
-| `Textarea`       | Lengre fritekst                   | `string`                  | `getStringValidator({ required: true, maxLength })` |
-| `NumberInput`    | Tallfelt                          | `string`                  | `getNumberValidator({ required: true })`           |
-| `Datepicker`     | Datovelger                        | `string`                  | `getDateValidator()`                               |
-| `Select`         | Nedtrekksliste                    | `string`                  | `getRequiredFieldValidator()`                      |
-| `Checkbox`       | Enkelt avkrysningsboks            | `boolean`                 | `getCheckedValidator()`                            |
+| Komponent         | Bruksområde                 | Verditype i FormValues | Validator                                           |
+| ----------------- | --------------------------- | ---------------------- | --------------------------------------------------- |
+| `YesOrNoQuestion` | Ja/nei-spørsmål             | `YesOrNo`              | `getYesOrNoValidator()`                             |
+| `CheckboxGroup`   | Flervalg med checkboxer     | `string[]` / `enum[]`  | `getListValidator({ required: true })`              |
+| `RadioGroup`      | Enkeltvalg med radioknapper | `string` / `enum`      | `getRequiredFieldValidator()`                       |
+| `TextField`       | Fritekstfelt                | `string`               | `getStringValidator({ required: true })`            |
+| `Textarea`        | Lengre fritekst             | `string`               | `getStringValidator({ required: true, maxLength })` |
+| `NumberInput`     | Tallfelt                    | `string`               | `getNumberValidator({ required: true })`            |
+| `Datepicker`      | Datovelger                  | `string`               | `getDateValidator()`                                |
+| `Select`          | Nedtrekksliste              | `string`               | `getRequiredFieldValidator()`                       |
+| `Checkbox`        | Enkelt avkrysningsboks      | `boolean`              | `getCheckedValidator()`                             |
 
 Alle validatorer importeres fra `@navikt/sif-validation`.
 
@@ -87,14 +91,14 @@ Alle validatorer importeres fra `@navikt/sif-validation`.
 
 Eksempler på error-koder fra `@navikt/sif-validation`:
 
-| Validator                   | Feilkode(r)                                                                                                    |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `getYesOrNoValidator`       | `yesOrNoIsUnanswered`                                                                                          |
-| `getListValidator`          | `listIsEmpty`, `listHasTooFewItems`, `listHasTooManyItems`                                                     |
-| `getRequiredFieldValidator` | `noValue`                                                                                                      |
-| `getStringValidator`        | `stringHasNoValue`, `stringIsTooShort`, `stringIsTooLong`                                                      |
-| `getCheckedValidator`       | `notChecked`                                                                                                   |
-| `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                  |
+| Validator                   | Feilkode(r)                                                                                                        |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `getYesOrNoValidator`       | `yesOrNoIsUnanswered`                                                                                              |
+| `getListValidator`          | `listIsEmpty`, `listHasTooFewItems`, `listHasTooManyItems`                                                         |
+| `getRequiredFieldValidator` | `noValue`                                                                                                          |
+| `getStringValidator`        | `stringHasNoValue`, `stringIsTooShort`, `stringIsTooLong`                                                          |
+| `getCheckedValidator`       | `notChecked`                                                                                                       |
+| `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                      |
 | `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed` |
 
 **Viktig:** Bruk alltid de eksakte feilkodene fra validatorens enum — ikke dikk opp egne. Feil kode → valideringsmelding vises aldri. Du finner alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
@@ -200,7 +204,7 @@ Legg til mapping av det nye feltet. For array-felt:
 ```ts
 return {
     eksisterendeFelt: søknadsdata.eksisterendeFelt ? YesOrNo.YES : YesOrNo.NO,
-    nyttFelt: søknadsdata.nyttFelt,  // ← legg til
+    nyttFelt: søknadsdata.nyttFelt, // ← legg til
 };
 ```
 

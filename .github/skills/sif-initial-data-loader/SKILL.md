@@ -1,3 +1,4 @@
+---
 name: sif-initial-data-loader
 description: Mønster for å kombinere flere API-hooks til én asynkron laster (useInitialData + InitialDataLoader) i sif-soknad-apper.
 ---

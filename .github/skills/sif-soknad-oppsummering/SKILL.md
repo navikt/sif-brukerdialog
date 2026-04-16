@@ -1,3 +1,4 @@
+---
 name: sif-soknad-oppsummering
 description: Sett opp OppsummeringSteg i en v2-app — DTO-basert oppsummering med FormSummary, bekreftelsescheckbox og i18n-nøkler.
 ---
