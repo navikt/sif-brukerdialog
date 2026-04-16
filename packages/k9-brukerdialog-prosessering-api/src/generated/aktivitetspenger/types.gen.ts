@@ -44,6 +44,20 @@ export type KontonummerInfo = {
     kontonummerErRiktig?: boolean;
 };
 
+export type AktivitetspengerOppgaveDto = {
+    oppgaveReferanse: string;
+    uttalelse: AktivitetspengerOppgaveUttalelseDto;
+};
+
+export type AktivitetspengerOppgaveUttalelseDto = {
+    harUttalelse: boolean;
+    uttalelseFraDeltaker?: string;
+};
+
+export type AktivitetspengerOppgavebekreftelse = {
+    oppgave: AktivitetspengerOppgaveDto;
+};
+
 export type AktivitetspengerInntektsrapportering = {
     oppgaveReferanse: string;
     oppgittInntekt: OppgittInntekt;
@@ -328,6 +342,44 @@ export type InnsendingAktivitetspengersøknadError =
     InnsendingAktivitetspengersøknadErrors[keyof InnsendingAktivitetspengersøknadErrors];
 
 export type InnsendingAktivitetspengersøknadResponses = {
+    /**
+     * Accepted
+     */
+    202: unknown;
+};
+
+export type OppgavebekreftelseData = {
+    body: AktivitetspengerOppgavebekreftelse;
+    headers: {
+        'X-Brukerdialog-Git-Sha': string;
+    };
+    path?: never;
+    query?: never;
+    url: '/aktivitetspenger/oppgavebekreftelse/innsending';
+};
+
+export type OppgavebekreftelseErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type OppgavebekreftelseError = OppgavebekreftelseErrors[keyof OppgavebekreftelseErrors];
+
+export type OppgavebekreftelseResponses = {
     /**
      * Accepted
      */

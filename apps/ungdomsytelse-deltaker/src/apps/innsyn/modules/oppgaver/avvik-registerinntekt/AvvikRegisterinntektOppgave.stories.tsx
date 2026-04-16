@@ -3,6 +3,7 @@ import { Heading, VStack } from '@navikt/ds-react';
 import {
     ArbeidOgFrilansRegisterInntektDto,
     OppgaveStatus,
+    OppgaveYtelsetype,
     RegisterinntektDto,
     YtelseRegisterInntektDto,
     YtelseType,
@@ -52,6 +53,7 @@ const registerInntektEnArbeidsgiver: RegisterinntektDto = {
 };
 
 const oppgave: AvvikRegisterinntektOppgave = {
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.2
+
+### Patch Changes
+
+- 062d83e: Utvide med oppgavebekreftelse for aktivitetspenger + tilhørende refactoring
+- Updated dependencies [062d83e]
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.14
+    - @navikt/ung-brukerdialog-api@0.0.4
+
 ## 0.1.75
 
 ### Patch Changes

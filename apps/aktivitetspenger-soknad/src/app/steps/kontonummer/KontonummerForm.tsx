@@ -3,13 +3,14 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { FormLayout } from '@sif/soknad-ui';
-import { AriaLiveRegion, SifInfoCard } from '@sif/soknad-ui/components';
+import { AriaLiveRegion, ExternalLink, SifInfoCard } from '@sif/soknad-ui/components';
 
+import getLenker from '../../lenker';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
 import { KontonummerFormFields, KontonummerFormValues } from './types';
 
@@ -53,7 +54,21 @@ export const KontonummerForm = ({ kontonummerInfo }: Props) => {
                         <AriaLiveRegion visible={kontonummerErRiktig === YesOrNo.NO}>
                             <FormLayout.QuestionRelatedMessage>
                                 <SifInfoCard>
-                                    <AppText id="kontonummerSteg.kontonummerStemmerIkke.info" />
+                                    <BodyShort spacing>
+                                        <AppText
+                                            id="kontonummerSteg.kontonummer.stemmerIkke.info"
+                                            values={{
+                                                Lenke: (children) => (
+                                                    <ExternalLink href={getLenker().personopplysninger}>
+                                                        {children}
+                                                    </ExternalLink>
+                                                ),
+                                            }}
+                                        />
+                                    </BodyShort>
+                                    <BodyShort>
+                                        <AppText id="kontonummerSteg.kontonummer.stemmerIkke.info.2" />
+                                    </BodyShort>
                                 </SifInfoCard>
                             </FormLayout.QuestionRelatedMessage>
                         </AriaLiveRegion>
@@ -62,20 +77,40 @@ export const KontonummerForm = ({ kontonummerInfo }: Props) => {
                 {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
                     <SifInfoCard variant="warning">
                         <Heading level="3" size="small" spacing>
-                            <AppText id="kontonummerSteg.harIkkeKontonummer.tittel" />
+                            <AppText id="kontonummerSteg.harIkkeKontonummer.info.1" />
                         </Heading>
                         <BodyLong spacing>
-                            <AppText id="kontonummerSteg.harIkkeKontonummer.info" />
+                            <AppText
+                                id="kontonummerSteg.harIkkeKontonummer.info.2"
+                                values={{
+                                    Lenke: (children) => (
+                                        <ExternalLink href={getLenker().endreKontonummer}>{children}</ExternalLink>
+                                    ),
+                                }}
+                            />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText id="kontonummerSteg.harIkkeKontonummer.info.3" />
                         </BodyLong>
                     </SifInfoCard>
                 )}
                 {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
                     <SifInfoCard variant="warning">
                         <Heading level="3" size="small" spacing>
-                            <AppText id="kontonummerSteg.uvissOmKontonummer.tittel" />
+                            <AppText id="kontonummerSteg.kontonummerInfoMangler.info.1" />
                         </Heading>
                         <BodyLong spacing>
-                            <AppText id="kontonummerSteg.uvissOmKontonummer.info" />
+                            <AppText
+                                id="kontonummerSteg.kontonummerInfoMangler.info.2"
+                                values={{
+                                    Lenke: (children) => (
+                                        <ExternalLink href={getLenker().endreKontonummer}>{children}</ExternalLink>
+                                    ),
+                                }}
+                            />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText id="kontonummerSteg.kontonummerInfoMangler.info.3" />
                         </BodyLong>
                     </SifInfoCard>
                 )}
