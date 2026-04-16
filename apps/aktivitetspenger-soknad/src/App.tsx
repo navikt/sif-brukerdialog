@@ -4,7 +4,6 @@ import './app.css';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
-import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -19,9 +18,7 @@ export const App = () => {
     const appEnv = getAppEnv();
     const basePath = appEnv[EnvKey.PUBLIC_PATH];
 
-    useEffect(() => {
-        initApiClients();
-    }, []);
+    initApiClients();
 
     if (globalThis.location.pathname === '/') {
         globalThis.location.pathname = basePath;

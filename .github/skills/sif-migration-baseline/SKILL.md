@@ -205,6 +205,7 @@ Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` f
 - `AppErrorBoundary` må ligge inni `FaroProvider` i `App.tsx`, ikke rundt `<App />` i `main.tsx`. Ellers har `useFaroInstance()` ingen context, og feillogging til Faro vil ikke fungere.
 - `AppErrorBoundary` bruker en ren React ErrorBoundary med Faro-logging — ikke `SentryErrorBoundary`. Sentry-feilrapportering dekkes av `reactErrorHandler()` i `main.tsx` (`onUncaughtError`/`onCaughtError`/`onRecoverableError`), slik at feil ikke dobbeltrapporteres.
 - `main.tsx` skal være ren: `sentry/instrument` → `reactErrorHandler` → `<App />`. Ingen providers eller error boundaries i `main.tsx`.
+- `initApiClients()` skal kalles synkront i `App`-komponenten (etter `getAppEnv()`, før render), ikke i `useEffect`. Queries i `InitialDataLoader` kjører ved første render og trenger konfigurerte klienter.
 - Env-feil fra `getAppEnv()` fanges av `reactErrorHandler` (Sentry). Faro er utilgjengelig for env-feil siden `FaroProvider` er inne i `App` — dette er akseptabelt.
 - `enableMocking.ts` inneholder ENV-sjekker — MSW starter kun når `ENV === 'development'` og `import.meta.env.MODE === 'msw'`. Ikke fjern disse guardene.
 - `vite.config.ts` bruker en betinget Sentry-plugin som kun aktiveres når `SENTRY_AUTH_TOKEN` er satt. Sentry-build-advarsler er forventet lokalt uten token.

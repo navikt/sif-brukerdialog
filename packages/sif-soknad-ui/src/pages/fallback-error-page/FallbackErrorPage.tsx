@@ -27,18 +27,28 @@ export const FallbackErrorPage = ({ preTitle, title = 'Beklager, noe gikk galt.'
                                     </Heading>
                                 </div>
                                 <BodyShort>
-                                    En teknisk feil på gjør at siden er utilgjengelig. Dette skyldes ikke noe du gjorde.
+                                    En teknisk feil gjør at siden er utilgjengelig. Dette skyldes ikke noe du gjorde.
                                 </BodyShort>
                                 <BodyShort>Du kan prøve å</BodyShort>
                                 <List>
                                     <List.Item>
                                         vente noen minutter og{' '}
-                                        <Link href="#" onClick={() => location.reload()}>
+                                        <Link
+                                            href="#"
+                                            onClick={(evt) => {
+                                                evt.preventDefault();
+                                                location.reload();
+                                            }}>
                                             laste siden på nytt
                                         </Link>
                                     </List.Item>
                                     <List.Item>
-                                        <Link href="#" onClick={() => history.back()}>
+                                        <Link
+                                            href="#"
+                                            onClick={(evt) => {
+                                                evt.preventDefault();
+                                                history.back();
+                                            }}>
                                             gå tilbake til forrige side
                                         </Link>
                                     </List.Item>

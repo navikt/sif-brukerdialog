@@ -14,6 +14,10 @@ export const useSendOppgavebekreftelse = (ytelse: OppgaveYtelsetype) => {
                     return sendOppgavebekreftelseAktivitetspenger(data);
                 case OppgaveYtelsetype.UNGDOMSYTELSE:
                     return sendOppgavebekreftelseUngdomsytelse(data);
+                default: {
+                    const _exhaustive: never = ytelse;
+                    throw new Error(`Ukjent OppgaveYtelsetype: ${_exhaustive}`);
+                }
             }
         },
     });

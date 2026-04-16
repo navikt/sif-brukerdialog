@@ -111,7 +111,7 @@ export const KontonummerForm = ({ kontonummerInfo }: Props) => {
                         </BodyLong>
                         <BodyLong>
                             <AppText id="kontonummerSteg.kontonummerInfoMangler.info.3" />
-                        </BodyLong>{' '}
+                        </BodyLong>
                     </SifInfoCard>
                 )}
             </FormLayout.Questions>
