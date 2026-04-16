@@ -1,7 +1,7 @@
 import { useOnValidSubmit, useSakUtledet, useSøknadContext } from '@app/hooks';
 import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText } from '@app/i18n';
-import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
+import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
