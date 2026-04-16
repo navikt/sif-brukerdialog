@@ -24,7 +24,7 @@ import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { ReactElement } from 'react';
 
-import { Feature, isFeatureEnabled } from '../../../utils';
+import { Feature, isFeatureEnabled } from '../../utils';
 import { getDagerMedNyTid, getGjentagelseEnkeltdagFraFormValues } from './utils/tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
 

@@ -2,8 +2,10 @@ import { useAppIntl } from '@app/i18n';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
-import TidEnkeltdagDialog, { TidEnkeltdagDialogProps } from '../tid-enkeltdag-dialog/TidEnkeltdagDialog';
-import { TidEnkeltdagFormProps } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
+import TidEnkeltdagDialog, {
+    TidEnkeltdagDialogProps,
+} from '../../../../components/tid-enkeltdag-dialog/TidEnkeltdagDialog';
+import { TidEnkeltdagFormProps } from '../../../../components/tid-enkeltdag-dialog/TidEnkeltdagForm';
 
 interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps'> {
     formProps: Omit<

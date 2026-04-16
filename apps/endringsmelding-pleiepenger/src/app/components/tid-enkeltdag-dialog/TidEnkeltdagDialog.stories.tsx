@@ -1,9 +1,9 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withIntl } from '../../../../storybook/decorators/withIntl';
-import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
-import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
+import { withIntl } from '../../../storybook/decorators/withIntl';
+import { withRouterProvider } from '../../../storybook/decorators/withRouter';
+import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
 import TidEnkeltdagDialog from './TidEnkeltdagDialog';
 import { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 

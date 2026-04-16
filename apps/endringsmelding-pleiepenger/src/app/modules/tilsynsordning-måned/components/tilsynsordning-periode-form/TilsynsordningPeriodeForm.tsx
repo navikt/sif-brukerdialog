@@ -12,7 +12,7 @@ import { dateRangeUtils, DurationWeekdays, getDateToday } from '@navikt/sif-comm
 import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
 import React from 'react';
 
-import TidFasteUkedagerInput from '../../../../local-sif-common-pleiepenger/components/tid-faste-ukedager-input/TidFasteUkedagerInput';
+import TidFasteUkedagerInput from '../../../../components/tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { getTilsynsordningFastDagValidator, validateTilsynsordningFasteDager } from './tilsynsordningFormValidation';
 
 export interface TilsynsordningPeriodeFormProps {

@@ -16,7 +16,7 @@ import {
 import { useFormikContext } from 'formik';
 import { useIntl } from 'react-intl';
 
-import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
+import { TidEnkeltdagEndring } from '../../../components/tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TilsynsordningSøknadsperiode from './TilsynsordningSøknadsperiode';
 
 export const tilsynsordningFormComponents = getTypedFormComponents<
