@@ -1,6 +1,8 @@
+---
 name: sif-soknad-add-step
 description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad og @sif/rhf — oppretter alle filer og oppdaterer config/routing/i18n.
 ---
+
 # sif-soknad-add-step
 
 ## Når skal skillen brukes

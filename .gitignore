@@ -63,3 +63,6 @@ specs/*.json
 
 build-storybook.log
 *storybook.log
+
+# OpenCode skill symlinks (generated)
+.opencode
