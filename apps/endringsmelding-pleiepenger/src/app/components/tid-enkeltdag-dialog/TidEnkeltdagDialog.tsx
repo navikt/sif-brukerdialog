@@ -1,5 +1,3 @@
-import './styles/tidEnkeltdagDialog.less';
-
 import { Dialog } from '@navikt/ds-react';
 
 import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';

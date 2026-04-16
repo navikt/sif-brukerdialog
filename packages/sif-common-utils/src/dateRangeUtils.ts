@@ -9,7 +9,9 @@ import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, ISODateRangeMap, 
 import {
     dateToISODate,
     getFirstWeekDayInMonth,
+    getFirstWeekdayOnOrAfterDate,
     getLastWeekDayInMonth,
+    getLastWeekdayOnOrBeforeDate,
     isDateWeekDay,
     ISODateToDate,
     sortDates,
@@ -775,18 +777,33 @@ export const dateRangeIncludesWeekdays = (dateRange: DateRange): boolean => {
     return dates.some((date) => isDateWeekDay(date));
 };
 
+export const trimDateRangeToWeekdays = (range: DateRange): DateRange => {
+    return {
+        from: getFirstWeekdayOnOrAfterDate(range.from),
+        to: getLastWeekdayOnOrBeforeDate(range.to),
+    };
+};
+
+export const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): DateRange => {
+    return {
+        from: dayjs.max(dayjs(range.from), dayjs(limitRange.from))!.toDate(),
+        to: dayjs.min(dayjs(range.to), dayjs(limitRange.to))!.toDate(),
+    };
+};
+
 export const dateRangeUtils = {
     dateRangeIncludesWeekdays,
     dateRangeIsAdjacentToDateRange,
     dateRangesCollide,
     dateRangeToISODateRange,
     datesCollideWithDateRanges,
-    getDateRangeFromDates,
     getDateRangeFromDateRanges,
+    getDateRangeFromDates,
     getDateRangesBetweenDateRanges,
     getDateRangesFromDates,
     getDateRangesFromISODateRangeMap,
     getDateRangesWithinDateRange,
+    getDateRangeWithinDateRange,
     getDatesInDateRanges,
     getDatesInWeekOutsideDateRange,
     getIsoWeekDateRangeForDate,
@@ -807,4 +824,5 @@ export const dateRangeUtils = {
     limitDateRangeToDateRange,
     sortDateRange,
     sortDateRangeByToDate,
+    trimDateRangeToWeekdays,
 };

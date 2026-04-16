@@ -11,6 +11,7 @@ interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps
     formProps: Omit<
         TidEnkeltdagFormProps,
         | 'erBarnetIOmsorgstilbudLabelRenderer'
+        | 'introRenderer'
         | 'hvorMyeSpørsmålRenderer'
         | 'beskrivelseRenderer'
         | 'erIkkeIOmsorgstilbudLabelRenderer'
@@ -18,43 +19,52 @@ interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps
     >;
 }
 
+const datoErHistorisk = (dato: Date): boolean => {
+    return dayjs(dato).isBefore(getDateToday(), 'day');
+};
+
 const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
     const { text } = useAppIntl();
 
     const erBarnetIOmsorgstilbudLabelRenderer = (dato: Date): string => {
-        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
         return text(
-            erHistorisk
+            datoErHistorisk(dato)
                 ? 'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm.historisk'
                 : 'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm',
             { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
     const hvorMyeSpørsmålRenderer = (dato: Date): string => {
-        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
         return text(
-            erHistorisk ? 'tilsynsordningEnkeltdagForm.tid.spm.historisk' : 'tilsynsordningEnkeltdagForm.tid.spm',
+            datoErHistorisk(dato)
+                ? 'tilsynsordningEnkeltdagForm.tid.spm.historisk'
+                : 'tilsynsordningEnkeltdagForm.tid.spm',
             { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
     const beskrivelseRenderer = (dato: Date): string => {
-        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
         return text(
-            erHistorisk
+            datoErHistorisk(dato)
                 ? 'tilsynsordningEnkeltdagForm.tid.beskrivelse.historisk'
                 : 'tilsynsordningEnkeltdagForm.tid.beskrivelse',
             { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
     const erIkkeIOmsorgstilbudLabelRenderer = (dato: Date): string => {
-        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
         return text(
-            erHistorisk
+            datoErHistorisk(dato)
                 ? 'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud.historisk'
                 : 'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud',
             { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
+
+    const introRenderer = (dato: Date): string => {
+        return text(datoErHistorisk(dato) ? 'tidEnkeltdagForm.intro.historisk' : 'tidEnkeltdagForm.intro', {
+            dato: dateFormatter.dayDateMonthYear(dato),
+        });
+    };
+
     return (
         <TidEnkeltdagDialog
             open={isOpen}
@@ -63,6 +73,7 @@ const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
             })}
             formProps={{
                 ...formProps,
+                introRenderer,
                 hvorMyeSpørsmålRenderer,
                 erBarnetIOmsorgstilbudLabelRenderer,
                 beskrivelseRenderer,

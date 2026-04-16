@@ -1,6 +1,5 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { Alert, BodyLong, VStack } from '@navikt/ds-react';
-import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import {
     DateRange,
     getIntlFormErrorHandler,
@@ -15,7 +14,6 @@ import {
     DateDurationOrUndefinedMap,
     dateFormatter,
     Duration,
-    getDateToday,
     getNumberOfDaysInDateRange,
     NumberDuration,
 } from '@navikt/sif-common-utils';
@@ -38,6 +36,7 @@ export interface TidEnkeltdagFormProps {
     minTid?: NumberDuration;
     søknadsperiode: DateRange;
     månedISøknadsperiode: DateRange;
+    introRenderer: (date: Date) => ReactElement | string;
     erIkkeIOmsorgstilbudLabelRenderer: (date: Date) => string;
     erBarnetIOmsorgstilbudLabelRenderer: (date: Date) => string;
     hvorMyeSpørsmålRenderer: (date: Date) => string;
@@ -79,8 +78,6 @@ export interface TidEnkeltdagFormValues {
 }
 
 const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues, ValidationError>();
-
-const bem = bemUtils('tidEnkeltdagForm');
 
 const getInitialValues = ({
     tid,
@@ -124,6 +121,7 @@ const TidEnkeltdagForm = ({
     minTid = { hours: 0, minutes: 0 },
     erBarnetIOmsorgstilbudLabelRenderer,
     hvorMyeSpørsmålRenderer,
+    introRenderer,
     onSubmit,
     onCancel,
 }: TidEnkeltdagFormProps) => {
@@ -170,7 +168,6 @@ const TidEnkeltdagForm = ({
             onSubmit={onValidSubmit}
             renderForm={({ values }) => {
                 const { skalGjentas, erBarnetIOmsorgstilbud } = values;
-                const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
                 return (
                     <FormComponents.Form
                         onCancel={onCancel}
@@ -181,13 +178,7 @@ const TidEnkeltdagForm = ({
                         showButtonArrows={false}
                         cancelButtonLabel="Avbryt">
                         <VStack gap="space-24">
-                            <BodyLong className="noPadding">
-                                {erHistorisk ? (
-                                    <AppText id="tidEnkeltdagForm.intro.historisk" />
-                                ) : (
-                                    <AppText id="tidEnkeltdagForm.intro" />
-                                )}
-                            </BodyLong>
+                            <BodyLong className="noPadding">{introRenderer(dato)}</BodyLong>
                             {visOpprinneligTid && (
                                 <Alert variant="info" inline>
                                     {tidOpprinnelig ? (
@@ -235,65 +226,71 @@ const TidEnkeltdagForm = ({
                                     </FormLayout.QuestionBleedTop>
                                 )}
                                 {skalGjentas === true && (
-                                    <FormLayout.Panel>
-                                        <FormComponents.RadioGroup
-                                            legend={text('tidEnkeltdagForm.gjelderFlereDager.info')}
-                                            className={bem.element('gjentagelseOptions')}
-                                            name={FormFields.gjentagelse}
-                                            validate={getRequiredFieldValidator()}
-                                            radios={[
-                                                {
-                                                    label: text('tidEnkeltdagForm.gjentagelse.separator.alleUkedager'),
-                                                    isSeparator: true,
-                                                    value: 'separator-1',
-                                                },
-                                                {
-                                                    label: text('tidEnkeltdagForm.gjentagelse.alleDagerIUke', {
-                                                        ukeNavn,
-                                                    }),
-                                                    value: GjentagelseType.heleUken,
-                                                },
-                                                {
-                                                    label: text('tidEnkeltdagForm.gjentagelse.alleDagerIMåned', {
-                                                        månedNavn,
-                                                    }),
-                                                    value: GjentagelseType.heleMåneden,
-                                                },
-                                                {
-                                                    label: text(
-                                                        'tidEnkeltdagForm.gjentagelse.alleDagerUtSøknadsperioden',
-                                                        { fra: dateFormatter.full(dato) },
-                                                    ),
-                                                    value: GjentagelseType.alleDagerUtSøknadsperioden,
-                                                },
-                                                {
-                                                    label: text('tidEnkeltdagForm.gjentagelse.separator.alleSammeDag', {
-                                                        dagnavn: dagerNavn,
-                                                    }),
-                                                    isSeparator: true,
-                                                    value: 'separator-2',
-                                                },
-                                                {
-                                                    label: text('tidEnkeltdagForm.gjentagelse.sammeDagUtMånedFom', {
-                                                        dagerNavn,
-                                                        månedNavn,
-                                                        fra: dateFormatter.full(dato),
-                                                    }),
-                                                    value: GjentagelseType.sammeDagUtMånedFom,
-                                                },
-                                                {
-                                                    label: text(
-                                                        'tidEnkeltdagForm.gjentagelse.sammeDagUtSøknadsperiodenFom',
-                                                        {
+                                    <FormLayout.QuestionBleedTop>
+                                        <FormLayout.Panel>
+                                            <FormComponents.RadioGroup
+                                                legend={text('tidEnkeltdagForm.gjelderFlereDager.info')}
+                                                name={FormFields.gjentagelse}
+                                                validate={getRequiredFieldValidator()}
+                                                radios={[
+                                                    {
+                                                        label: text(
+                                                            'tidEnkeltdagForm.gjentagelse.separator.alleUkedager',
+                                                        ),
+                                                        isSeparator: true,
+                                                        value: 'separator-1',
+                                                    },
+                                                    {
+                                                        label: text('tidEnkeltdagForm.gjentagelse.alleDagerIUke', {
+                                                            ukeNavn,
+                                                        }),
+                                                        value: GjentagelseType.heleUken,
+                                                    },
+                                                    {
+                                                        label: text('tidEnkeltdagForm.gjentagelse.alleDagerIMåned', {
+                                                            månedNavn,
+                                                        }),
+                                                        value: GjentagelseType.heleMåneden,
+                                                    },
+                                                    {
+                                                        label: text(
+                                                            'tidEnkeltdagForm.gjentagelse.alleDagerUtSøknadsperioden',
+                                                            { fra: dateFormatter.full(dato) },
+                                                        ),
+                                                        value: GjentagelseType.alleDagerUtSøknadsperioden,
+                                                    },
+                                                    {
+                                                        label: text(
+                                                            'tidEnkeltdagForm.gjentagelse.separator.alleSammeDag',
+                                                            {
+                                                                dagnavn: dagerNavn,
+                                                            },
+                                                        ),
+                                                        isSeparator: true,
+                                                        value: 'separator-2',
+                                                    },
+                                                    {
+                                                        label: text('tidEnkeltdagForm.gjentagelse.sammeDagUtMånedFom', {
                                                             dagerNavn,
+                                                            månedNavn,
                                                             fra: dateFormatter.full(dato),
-                                                        },
-                                                    ),
-                                                    value: GjentagelseType.sammeDagUtSøknadsperiodenFom,
-                                                },
-                                            ]}
-                                        />
-                                    </FormLayout.Panel>
+                                                        }),
+                                                        value: GjentagelseType.sammeDagUtMånedFom,
+                                                    },
+                                                    {
+                                                        label: text(
+                                                            'tidEnkeltdagForm.gjentagelse.sammeDagUtSøknadsperiodenFom',
+                                                            {
+                                                                dagerNavn,
+                                                                fra: dateFormatter.full(dato),
+                                                            },
+                                                        ),
+                                                        value: GjentagelseType.sammeDagUtSøknadsperiodenFom,
+                                                    },
+                                                ]}
+                                            />
+                                        </FormLayout.Panel>
+                                    </FormLayout.QuestionBleedTop>
                                 )}
                             </VStack>
                         </VStack>
