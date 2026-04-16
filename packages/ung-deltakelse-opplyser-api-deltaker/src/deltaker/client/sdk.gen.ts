@@ -51,68 +51,6 @@ export type Options<
 
 export class Deltakelse {
     /**
-     * Markerer at deltakelsen er søkt om (deprecated – bruk /{id}/marker-har-sokt/v2)
-     *
-     * @deprecated
-     */
-    public static markerDeltakelseSomSøkt<ThrowOnError extends boolean = true>(
-        options: Options<MarkerDeltakelseSomSøktData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).put<
-            MarkerDeltakelseSomSøktResponses,
-            MarkerDeltakelseSomSøktErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zMarkerDeltakelseSomSøktPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zMarkerDeltakelseSomSøktResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/deltakelse/register/{id}/marker-har-sokt',
-            ...options,
-        });
-    }
-
-    /**
-     * Markerer at deltakelsen er søkt om
-     */
-    public static markerDeltakelseSomSøktV2<ThrowOnError extends boolean = true>(
-        options: Options<MarkerDeltakelseSomSøktV2Data, ThrowOnError>,
-    ) {
-        return (options.client ?? client).put<
-            MarkerDeltakelseSomSøktV2Responses,
-            MarkerDeltakelseSomSøktV2Errors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zMarkerDeltakelseSomSøktV2Path,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zMarkerDeltakelseSomSøktV2Response.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/deltakelse/register/{id}/marker-har-sokt/v2',
-            ...options,
-        });
-    }
-
-    /**
      * Henter alle deltakelser for en deltaker i ungdomsprogrammet (deprecated – bruk /hent/alle/v2)
      *
      * @deprecated
@@ -170,6 +108,68 @@ export class Deltakelse {
                 { scheme: 'bearer', type: 'http' },
             ],
             url: '/deltakelse/register/hent/alle/v2',
+            ...options,
+        });
+    }
+
+    /**
+     * Markerer at deltakelsen er søkt om (deprecated – bruk /{id}/marker-har-sokt/v2)
+     *
+     * @deprecated
+     */
+    public static markerDeltakelseSomSøkt<ThrowOnError extends boolean = true>(
+        options: Options<MarkerDeltakelseSomSøktData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).put<
+            MarkerDeltakelseSomSøktResponses,
+            MarkerDeltakelseSomSøktErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zMarkerDeltakelseSomSøktPath,
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zMarkerDeltakelseSomSøktResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/deltakelse/register/{id}/marker-har-sokt',
+            ...options,
+        });
+    }
+
+    /**
+     * Markerer at deltakelsen er søkt om
+     */
+    public static markerDeltakelseSomSøktV2<ThrowOnError extends boolean = true>(
+        options: Options<MarkerDeltakelseSomSøktV2Data, ThrowOnError>,
+    ) {
+        return (options.client ?? client).put<
+            MarkerDeltakelseSomSøktV2Responses,
+            MarkerDeltakelseSomSøktV2Errors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zMarkerDeltakelseSomSøktV2Path,
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zMarkerDeltakelseSomSøktV2Response.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/deltakelse/register/{id}/marker-har-sokt/v2',
             ...options,
         });
     }

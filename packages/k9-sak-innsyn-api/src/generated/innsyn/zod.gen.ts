@@ -2,19 +2,6 @@
 
 import * as z from 'zod';
 
-export const zProblemDetail = z.object({
-    type: z.url().optional(),
-    title: z.string().optional(),
-    status: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
-    detail: z.string().optional(),
-    instance: z.url().optional(),
-    properties: z.record(z.string(), z.unknown()).optional(),
-});
-
 export const zAdressebeskyttelseGradering = z.enum([
     'STRENGT_FORTROLIG_UTLAND',
     'STRENGT_FORTROLIG',
@@ -31,13 +18,28 @@ export const zAktivitetFravær = z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTEND
 export const zAnnenAktivitetType = z.enum(['MILITÆR_ELLER_SIVILTJENESTE', '-']);
 
 export const zAnnenAktivitet = z.object({
-    periode: z.string(),
     annenAktivitetType: zAnnenAktivitetType,
+    periode: z.string(),
+});
+
+export const zArbeidsgiverOrganisasjonDto = z.object({
+    navn: z.string().optional(),
+    organisasjonsnummer: z.string(),
+});
+
+export const zArbeidsgiverPrivatDto = z.object({
+    fødselsnummer: z.string(),
+    navn: z.string().optional(),
+});
+
+export const zArbeidsgiverDto = z.object({
+    organisasjon: zArbeidsgiverOrganisasjonDto.optional(),
+    privat: zArbeidsgiverPrivatDto.optional(),
 });
 
 export const zArbeidstidPeriodeInfo = z.object({
-    jobberNormaltTimerPerDag: z.string(),
     faktiskArbeidTimerPerDag: z.string(),
+    jobberNormaltTimerPerDag: z.string(),
 });
 
 export const zArbeidstidInfo = z.object({
@@ -45,10 +47,10 @@ export const zArbeidstidInfo = z.object({
 });
 
 export const zArbeidstaker = z.object({
-    norskIdentitetsnummer: z.string().optional(),
-    organisasjonsnummer: z.string().optional(),
-    organisasjonsnavn: z.string().optional(),
     arbeidstidInfo: zArbeidstidInfo,
+    norskIdentitetsnummer: z.string().optional(),
+    organisasjonsnavn: z.string().optional(),
+    organisasjonsnummer: z.string().optional(),
 });
 
 export const zArbeidstid = z.object({
@@ -58,18 +60,18 @@ export const zArbeidstid = z.object({
 });
 
 export const zBarn = z.object({
-    norskIdentitetsnummer: z.string(),
     fødselsdato: z.iso.date().optional(),
+    norskIdentitetsnummer: z.string(),
 });
 
 export const zBarnOppslagDto = z.object({
-    fødselsdato: z.iso.date(),
-    fornavn: z.string(),
-    mellomnavn: z.string().optional(),
-    etternavn: z.string(),
-    aktørId: z.string(),
-    identitetsnummer: z.string().optional(),
     adressebeskyttelse$k9_sak_innsyn_api: z.array(zAdressebeskyttelse),
+    aktørId: z.string(),
+    etternavn: z.string(),
+    fornavn: z.string(),
+    fødselsdato: z.iso.date(),
+    identitetsnummer: z.string().optional(),
+    mellomnavn: z.string().optional(),
 });
 
 export const zBarnRelasjon = z.enum(['MOR', 'MEDMOR', 'FAR', 'FOSTERFORELDER', 'ANNET']);
@@ -77,6 +79,8 @@ export const zBarnRelasjon = z.enum(['MOR', 'MEDMOR', 'FAR', 'FOSTERFORELDER', '
 export const zBegrunnelseForInnsending = z.object({
     tekst: z.string().optional(),
 });
+
+export const zBehandlingStatus = z.enum(['OPPRETTET', 'UNDER_BEHANDLING', 'PÅ_VENT', 'AVSLUTTET', 'UKJENT']);
 
 export const zBeredskapPeriodeInfo = z.object({
     tilleggsinformasjon: z.string().min(0).max(4000),
@@ -96,28 +100,73 @@ export const zBosteder = z.object({
 });
 
 export const zDataBruktTilUtledning = z.object({
-    harForståttRettigheterOgPlikter: z.boolean(),
-    harBekreftetOpplysninger: z.boolean(),
-    soknadDialogCommitSha: z.string().optional(),
     annetData: z.string().optional(),
+    harBekreftetOpplysninger: z.boolean(),
+    harForståttRettigheterOgPlikter: z.boolean(),
+    soknadDialogCommitSha: z.string().optional(),
 });
 
+export const zDatotype = z.enum([
+    'DATO_OPPRETTET',
+    'DATO_SENDT_PRINT',
+    'DATO_EKSPEDERT',
+    'DATO_JOURNALFOERT',
+    'DATO_REGISTRERT',
+    'DATO_AVS_RETUR',
+    'DATO_DOKUMENT',
+    'UKJENT',
+]);
+
 export const zDelvisFravær = z.object({
-    normalarbeidstid: z.string(),
     fravær: z.string(),
+    normalarbeidstid: z.string(),
 });
+
+export const zDokumentBrevkode = z.enum([
+    'PLEIEPENGER_SYKT_BARN_SOKNAD',
+    'PLEIEPENGER_SYKT_BARN_ETTERSENDELSE',
+    'ETTERLYST_INNTEKTSMELDING',
+    'ETTERLYST_INNTEKTSMELDING_PURRING',
+    'VEDTAK_INNVILGELSE',
+    'VEDTAK_AVSLAG',
+    'VEDTAK_FRITEKST',
+    'VEDTAK_ENDRING',
+    'VEDTAK_MANUELT',
+    'VEDTAK_UENDRETUTFALL',
+    'UKJENT',
+]);
+
+export const zEndringRefusjonDto = z.object({
+    fom: z.iso.date(),
+    refusjonBeløpPerMnd: z.number(),
+});
+
+export const zFagsakYtelseType = z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_AO', 'OMP', 'OLP']);
 
 export const zFraværÅrsak = z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']);
 
 export const zFrilanser = z.object({
-    startdato: z.iso.date(),
     sluttdato: z.iso.date().optional(),
+    startdato: z.iso.date(),
 });
 
 export const zInfoFraPunsj = z.object({
-    søknadenInneholderInfomasjonSomIkkeKanPunsjes: z.boolean().optional(),
     inneholderMedisinskeOpplysninger: z.boolean().optional(),
+    søknadenInneholderInfomasjonSomIkkeKanPunsjes: z.boolean().optional(),
 });
+
+export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSMELDING', 'UKJENT']);
+
+export const zInnsendingsårsakDto = z.enum(['NY', 'ENDRING', 'UDEFINERT']);
+
+export const zInntektsmeldingStatusDto = z.enum(['I_BRUK', 'ERSTATTET_AV_NYERE', 'IKKE_RELEVANT', 'MANGLER_DATO']);
+
+export const zInntektsmeldingTypeDto = z.enum([
+    'ORDINÆR',
+    'OMSORGSPENGER_REFUSJON',
+    'ARBEIDSGIVERINITIERT_NYANSATT',
+    'ARBEIDSGIVERINITIERT_UREGISTRERT',
+]);
 
 export const zJournalpost = z.object({
     inneholderInfomasjonSomIkkeKanPunsjes: z.boolean(),
@@ -127,13 +176,13 @@ export const zJournalpost = z.object({
 });
 
 export const zKursholder = z.object({
+    institusjonsidentifikator: z.uuid().optional(),
     navn: z
         .string()
         .min(0)
         .max(100)
 
         .optional(),
-    institusjonsidentifikator: z.uuid().optional(),
 });
 
 export const zLovbestemtFeriePeriodeInfo = z.object({
@@ -152,478 +201,6 @@ export const zNattevåk = z.object({
     perioder: z.record(z.string(), zNattevåkPeriodeInfo),
     perioderSomSkalSlettes: z.record(z.string(), zNattevåkPeriodeInfo),
 });
-
-export const zOmsorg = z.object({
-    relasjonTilBarnet: zBarnRelasjon.optional(),
-    beskrivelseAvOmsorgsrollen: z.string().optional(),
-});
-
-export const zOppgittInntektForPeriode = z.object({
-    arbeidstakerOgFrilansInntekt: z.number().gte(0).lte(10000000).optional(),
-    næringsinntekt: z.number().gte(0).lte(10000000).optional(),
-    ytelse: z.number().gte(0).lte(10000000).optional(),
-    periode: z.string(),
-});
-
-export const zOppgittInntekt = z.object({
-    oppgittePeriodeinntekter: z.array(zOppgittInntektForPeriode).min(1).max(2147483647),
-});
-
-export const zPleietrengende = z.object({
-    norskIdentitetsnummer: z.string().optional(),
-    fødselsdato: z.iso.date().optional(),
-});
-
-export const zReise = z.object({
-    reiserUtenforKursdager: z.boolean(),
-    reisedager: z.array(z.iso.date()).optional(),
-    reisedagerBeskrivelse: z
-        .string()
-        .min(0)
-        .max(4000)
-
-        .optional(),
-});
-
-export const zKurs = z.object({
-    kursholder: zKursholder,
-    kursperioder: z.array(z.string()).min(1).max(2147483647),
-    reise: zReise,
-});
-
-export const zSituasjonType = z.enum(['INNLAGT_I_HELSEINSTITUSJON', 'UTØVER_VERNEPLIKT', 'FENGSEL', 'SYKDOM', 'ANNET']);
-
-export const zAnnenForelder = z.object({
-    norskIdentitetsnummer: z.string(),
-    situasjon: zSituasjonType,
-    situasjonBeskrivelse: z
-        .string()
-
-        .optional(),
-    periode: z.string().optional(),
-});
-
-export const zSpråk = z.enum(['nb', 'nn']);
-
-export const zSøker = z.object({
-    norskIdentitetsnummer: z.string(),
-});
-
-export const zSøknadÅrsak = z.enum([
-    'ARBEIDSGIVER_KONKURS',
-    'NYOPPSTARTET_HOS_ARBEIDSGIVER',
-    'KONFLIKT_MED_ARBEIDSGIVER',
-]);
-
-export const zFraværPeriode = z.object({
-    periode: z.string(),
-    duration: z.string().optional(),
-    delvisFravær: zDelvisFravær.optional(),
-    årsak: zFraværÅrsak,
-    søknadÅrsak: zSøknadÅrsak.optional(),
-    aktivitetFravær: z.array(zAktivitetFravær).min(1).max(2),
-    arbeidsforholdId: z.string().optional(),
-    arbeidsgiverOrgNr: z.string().optional(),
-});
-
-export const zTilsynPeriodeInfo = z.object({
-    etablertTilsynTimerPerDag: z.string(),
-});
-
-export const zTilsynsordning = z.object({
-    perioder: z.record(z.string(), zTilsynPeriodeInfo),
-});
-
-export const zUngSøknadstype = z.enum(['DELTAKELSE_SØKNAD', 'RAPPORTERING_SØKNAD']);
-
-export const zUtenlandskArbeidsforhold = z.object({
-    ansettelsePeriode: z.string(),
-    land: z.string(),
-    arbeidsgiversnavn: z.string(),
-});
-
-export const zUtenlandsoppholdÅrsak = z.enum([
-    'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning',
-    'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd',
-]);
-
-export const zUtenlandsoppholdPeriodeInfo = z.object({
-    land: z.string(),
-    årsak: zUtenlandsoppholdÅrsak.optional(),
-    erSammenMedBarnet: z.boolean().optional(),
-});
-
-export const zUtenlandsopphold = z.object({
-    perioder: z.record(z.string(), zUtenlandsoppholdPeriodeInfo).optional(),
-    perioderSomSkalSlettes: z.record(z.string(), zUtenlandsoppholdPeriodeInfo).optional(),
-});
-
-export const zUttakPeriodeInfo = z.object({
-    timerPleieAvBarnetPerDag: z.string(),
-});
-
-export const zUttak = z.object({
-    perioder: z.record(z.string(), zUttakPeriodeInfo),
-});
-
-export const zVirksomhetType = z.enum(['DAGMAMMA', 'FISKE', 'JORDBRUK_SKOGBRUK', 'ANNEN', '-']);
-
-export const zSelvstendigNæringsdrivendePeriodeInfo = z.object({
-    virksomhetstyper: z.array(zVirksomhetType).min(1),
-    regnskapsførerNavn: z
-        .string()
-
-        .optional(),
-    regnskapsførerTlf: z
-        .string()
-
-        .optional(),
-    erVarigEndring: z.boolean().optional(),
-    erNyIArbeidslivet: z.boolean().optional(),
-    endringDato: z.iso.date().optional(),
-    endringBegrunnelse: z
-        .string()
-
-        .optional(),
-    bruttoInntekt: z.number().gte(0).lte(10000000).optional(),
-    erNyoppstartet: z.boolean().optional(),
-    registrertIUtlandet: z.boolean().optional(),
-    landkode: z.string().optional(),
-    erFiskerPåBladB: z.boolean().optional(),
-});
-
-export const zSelvstendigNæringsdrivende = z.object({
-    perioder: z.record(z.string(), zSelvstendigNæringsdrivendePeriodeInfo),
-    organisasjonsnummer: z.string().optional(),
-    virksomhetNavn: z
-        .string()
-
-        .optional(),
-});
-
-export const zOpptjeningAktivitet = z.object({
-    selvstendigNæringsdrivende: z.array(zSelvstendigNæringsdrivende),
-    frilanser: zFrilanser.optional(),
-    utenlandskeArbeidsforhold: z.array(zUtenlandskArbeidsforhold),
-    andreAktiviteter: z.array(zAnnenAktivitet),
-});
-
-export const zYtelse = z.object({
-    type: z.string(),
-});
-
-export const zAktivitetspenger = zYtelse.and(
-    z.object({
-        søknadsperiode: z.string(),
-        forutgåendeBosteder: zBosteder,
-        inntekter: zOppgittInntekt.optional(),
-        type: z.literal('Aktivitetspenger'),
-    }),
-);
-
-export const zOmsorgspengerAleneOmsorg = zYtelse.and(
-    z.object({
-        barn: zBarn,
-        periode: z.string(),
-        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
-        type: z.literal('OmsorgspengerAleneOmsorg'),
-    }),
-);
-
-export const zOmsorgspengerKroniskSyktBarn = zYtelse.and(
-    z.object({
-        barn: zBarn,
-        kroniskEllerFunksjonshemming: z.boolean(),
-        høyereRisikoForFravær: z.boolean().optional(),
-        høyereRisikoForFraværBeskrivelse: z
-            .string()
-            .min(1)
-            .max(1000)
-
-            .optional(),
-        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
-        type: z.literal('OmsorgspengerKroniskSyktBarn'),
-    }),
-);
-
-export const zOmsorgspengerMidlertidigAlene = zYtelse.and(
-    z.object({
-        barn: z.array(zBarn),
-        annenForelder: zAnnenForelder,
-        begrunnelse: z.string().min(0).max(30000).optional(),
-        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
-        type: z.literal('OmsorgspengerMidlertidigAlene'),
-    }),
-);
-
-export const zOmsorgspengerUtbetaling = zYtelse.and(
-    z.object({
-        fosterbarn: z.array(zBarn).optional(),
-        aktivitet: zOpptjeningAktivitet.optional(),
-        fraværsperioder: z.array(zFraværPeriode).optional(),
-        fraværsperioderKorrigeringIm: z.array(zFraværPeriode).optional(),
-        bosteder: zBosteder.optional(),
-        utenlandsopphold: zUtenlandsopphold.optional(),
-        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
-        type: z.literal('OmsorgspengerUtbetaling'),
-    }),
-);
-
-export const zOpplæringspenger = zYtelse.and(
-    z.object({
-        barn: zBarn,
-        søknadsperiode: z.array(z.string()),
-        trekkKravPerioder: z.array(z.string()),
-        opptjeningAktivitet: zOpptjeningAktivitet,
-        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
-        bosteder: zBosteder,
-        utenlandsopphold: zUtenlandsopphold,
-        lovbestemtFerie: zLovbestemtFerie,
-        arbeidstid: zArbeidstid,
-        uttak: zUttak,
-        omsorg: zOmsorg,
-        kurs: zKurs.optional(),
-        skalEttersendeVedlegg: z.boolean().optional(),
-        type: z.literal('Opplæringspenger'),
-    }),
-);
-
-export const zPleiepengerSyktBarn = zYtelse.and(
-    z.object({
-        barn: zBarn,
-        søknadsperiode: z.array(z.string()),
-        endringsperiode: z.array(z.string()),
-        trekkKravPerioder: z.array(z.string()),
-        opptjeningAktivitet: zOpptjeningAktivitet.optional(),
-        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
-        annetDataBruktTilUtledning: zDataBruktTilUtledning.optional(),
-        infoFraPunsj: zInfoFraPunsj.optional(),
-        bosteder: zBosteder,
-        utenlandsopphold: zUtenlandsopphold,
-        beredskap: zBeredskap,
-        nattevåk: zNattevåk,
-        tilsynsordning: zTilsynsordning,
-        lovbestemtFerie: zLovbestemtFerie,
-        arbeidstid: zArbeidstid,
-        uttak: zUttak,
-        omsorg: zOmsorg,
-        erSammenMedBarnet: z.boolean().optional(),
-        type: z.literal('PleiepengerSyktBarn'),
-    }),
-);
-
-export const zPleipengerLivetsSluttfase = zYtelse.and(
-    z.object({
-        pleietrengende: zPleietrengende,
-        søknadsperiode: z.array(z.string()),
-        trekkKravPerioder: z.array(z.string()),
-        opptjeningAktivitet: zOpptjeningAktivitet.optional(),
-        bosteder: zBosteder,
-        utenlandsopphold: zUtenlandsopphold,
-        arbeidstid: zArbeidstid,
-        uttak: zUttak.optional(),
-        lovbestemtFerie: zLovbestemtFerie.optional(),
-        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
-        type: z.literal('PleipengerLivetsSluttfase'),
-    }),
-);
-
-export const zUngdomsytelse = zYtelse.and(
-    z.object({
-        søknadType: zUngSøknadstype,
-        søktFraDatoer: z.array(z.iso.date()),
-        inntekter: zOppgittInntekt.optional(),
-        deltakelseId: z.uuid().optional(),
-        type: z.literal('Ungdomsytelse'),
-    }),
-);
-
-export const zSøknad = z.object({
-    søknadId: z.string(),
-    versjon: z.string(),
-    mottattDato: z.iso.datetime({ local: true }),
-    søker: zSøker,
-    språk: zSpråk.optional(),
-    ytelse: z.union([
-        zAktivitetspenger,
-        zOmsorgspengerAleneOmsorg,
-        zOmsorgspengerKroniskSyktBarn,
-        zOmsorgspengerMidlertidigAlene,
-        zOmsorgspengerUtbetaling,
-        zOpplæringspenger,
-        zPleiepengerSyktBarn,
-        zPleipengerLivetsSluttfase,
-        zUngdomsytelse,
-    ]),
-    journalposter: z.array(zJournalpost).min(0).max(1000).optional(),
-    begrunnelseForInnsending: zBegrunnelseForInnsending.optional(),
-    kildesystem: z.string().optional(),
-});
-
-export const zSøknadDto = z.object({
-    barn: zBarnOppslagDto,
-    søknad: zSøknad,
-    søknader: z.array(zSøknad).optional(),
-});
-
-export const zBehandlingStatus = z.enum(['OPPRETTET', 'UNDER_BEHANDLING', 'PÅ_VENT', 'AVSLUTTET', 'UKJENT']);
-
-export const zDatotype = z.enum([
-    'DATO_OPPRETTET',
-    'DATO_SENDT_PRINT',
-    'DATO_EKSPEDERT',
-    'DATO_JOURNALFOERT',
-    'DATO_REGISTRERT',
-    'DATO_AVS_RETUR',
-    'DATO_DOKUMENT',
-    'UKJENT',
-]);
-
-export const zDokumentBrevkode = z.enum([
-    'PLEIEPENGER_SYKT_BARN_SOKNAD',
-    'PLEIEPENGER_SYKT_BARN_ETTERSENDELSE',
-    'ETTERLYST_INNTEKTSMELDING',
-    'ETTERLYST_INNTEKTSMELDING_PURRING',
-    'VEDTAK_INNVILGELSE',
-    'VEDTAK_AVSLAG',
-    'VEDTAK_FRITEKST',
-    'VEDTAK_ENDRING',
-    'VEDTAK_MANUELT',
-    'VEDTAK_UENDRETUTFALL',
-    'UKJENT',
-]);
-
-export const zFagsakYtelseType = z.enum(['PSB', 'PPN', 'OMP_KS', 'OMP_MA', 'OMP_AO', 'OMP', 'OLP']);
-
-export const zInnsendelsestype = z.enum(['SØKNAD', 'ETTERSENDELSE', 'ENDRINGSMELDING', 'UKJENT']);
-
-export const zInnsending = z.object({
-    søknadId: z.string().optional(),
-    søker: zSøker.optional(),
-    versjon: z.string().optional(),
-    mottattDato: z.iso.datetime({ local: true }).optional(),
-});
-
-export const zOrganisasjon = z.object({
-    organisasjonsnummer: z.string(),
-    navn: z.string().optional(),
-});
-
-export const zPleietrengendeDto = z.object({
-    fødselsdato: z.iso.date(),
-    aktørId: z.string(),
-    fornavn: z.string().optional(),
-    mellomnavn: z.string().optional(),
-    etternavn: z.string().optional(),
-});
-
-export const zRelevantDatoDto = z.object({
-    dato: z.string(),
-    datotype: zDatotype,
-});
-
-export const zDokumentDto = z.object({
-    journalpostId: z.string(),
-    dokumentInfoId: z.string(),
-    saksnummer: z.string().optional(),
-    tittel: z.string(),
-    dokumentType: zDokumentBrevkode.optional(),
-    filtype: z.string(),
-    harTilgang: z.boolean(),
-    url: z.string(),
-    relevanteDatoer: z.array(zRelevantDatoDto),
-});
-
-export const zInnsendelserISakDto = z.object({
-    søknadId: z.uuid(),
-    mottattTidspunkt: z.iso.datetime({ local: true }),
-    innsendelsestype: zInnsendelsestype,
-    k9FormatInnsendelse: zInnsending.optional(),
-    dokumenter: z.array(zDokumentDto),
-    arbeidsgivere: z.array(zOrganisasjon).optional(),
-});
-
-export const zVenteårsak = z.enum(['INNTEKTSMELDING', 'MEDISINSK_DOKUMENTASJON', 'FOR_TIDLIG_SOKNAD', 'MELDEKORT']);
-
-export const zAksjonspunktDto = z.object({
-    venteårsak: zVenteårsak,
-    tidsfrist: z.iso.datetime({ local: true }),
-});
-
-export const zBehandlingDto = z.object({
-    status: zBehandlingStatus,
-    opprettetTidspunkt: z.iso.datetime({ local: true }),
-    avsluttetTidspunkt: z.iso.datetime({ local: true }).optional(),
-    innsendelser: z.array(zInnsendelserISakDto),
-    aksjonspunkter: z.array(zAksjonspunktDto),
-    utgåendeDokumenter: z.array(zDokumentDto),
-});
-
-export const zUtledetStatus = z.object({
-    status: zBehandlingStatus,
-    aksjonspunkter: z.array(zAksjonspunktDto),
-    saksbehandlingsFrist: z.iso.date().optional(),
-});
-
-export const zSakDto = z.object({
-    saksnummer: z.string(),
-    utledetStatus: zUtledetStatus,
-    saksbehandlingsFrist: z.iso.date().optional(),
-    fagsakYtelseType: zFagsakYtelseType,
-    ytelseType: zFagsakYtelseType,
-    behandlinger: z.array(zBehandlingDto),
-});
-
-export const zPleietrengendeMedSak = z.object({
-    pleietrengende: zPleietrengendeDto,
-    sak: zSakDto,
-});
-
-export const zSaksbehandlingtidDto = z.object({
-    saksbehandlingstidUker: z.coerce
-        .bigint()
-        .min(BigInt('-9223372036854775808'), { error: 'Invalid value: Expected int64 to be >= -9223372036854775808' })
-        .max(BigInt('9223372036854775807'), { error: 'Invalid value: Expected int64 to be <= 9223372036854775807' }),
-});
-
-export const zSakerMetadataDto = z.object({
-    saksnummer: z.string(),
-    pleietrengende: zPleietrengendeDto,
-    fagsakYtelseType: zFagsakYtelseType,
-    fagsakOpprettetTidspunkt: z.iso.datetime({ local: true }).optional(),
-    fagsakAvsluttetTidspunkt: z.iso.datetime({ local: true }).optional(),
-});
-
-export const zArbeidsgiverOrganisasjonDto = z.object({
-    navn: z.string().optional(),
-    organisasjonsnummer: z.string(),
-});
-
-export const zArbeidsgiverPrivatDto = z.object({
-    navn: z.string().optional(),
-    fødselsnummer: z.string(),
-});
-
-export const zArbeidsgiverDto = z.object({
-    organisasjon: zArbeidsgiverOrganisasjonDto.optional(),
-    privat: zArbeidsgiverPrivatDto.optional(),
-});
-
-export const zEndringRefusjonDto = z.object({
-    refusjonBeløpPerMnd: z.number(),
-    fom: z.iso.date(),
-});
-
-export const zInnsendingsårsakDto = z.enum(['NY', 'ENDRING', 'UDEFINERT']);
-
-export const zInntektsmeldingStatusDto = z.enum(['I_BRUK', 'ERSTATTET_AV_NYERE', 'IKKE_RELEVANT', 'MANGLER_DATO']);
-
-export const zInntektsmeldingTypeDto = z.enum([
-    'ORDINÆR',
-    'OMSORGSPENGER_REFUSJON',
-    'ARBEIDSGIVERINITIERT_NYANSATT',
-    'ARBEIDSGIVERINITIERT_UREGISTRERT',
-]);
 
 export const zNaturalYtelseTypeDto = z.enum([
     'ELEKTRISK_KOMMUNIKASJON',
@@ -648,19 +225,40 @@ export const zNaturalYtelseTypeDto = z.enum([
     'UDEFINERT',
 ]);
 
+export const zOmsorg = z.object({
+    beskrivelseAvOmsorgsrollen: z.string().optional(),
+    relasjonTilBarnet: zBarnRelasjon.optional(),
+});
+
+export const zOppgittInntektForPeriode = z.object({
+    arbeidstakerOgFrilansInntekt: z.number().gte(0).lte(10000000).optional(),
+    næringsinntekt: z.number().gte(0).lte(10000000).optional(),
+    periode: z.string(),
+    ytelse: z.number().gte(0).lte(10000000).optional(),
+});
+
+export const zOppgittInntekt = z.object({
+    oppgittePeriodeinntekter: z.array(zOppgittInntektForPeriode).min(1).max(2147483647),
+});
+
+export const zOrganisasjon = z.object({
+    navn: z.string().optional(),
+    organisasjonsnummer: z.string(),
+});
+
 export const zPeriodeDto = z.object({
     fom: z.iso.date(),
     tom: z.iso.date(),
 });
 
 export const zGraderingDto = z.object({
-    periode: zPeriodeDto,
     arbeidstidProsent: z.number(),
+    periode: zPeriodeDto,
 });
 
 export const zNaturalYtelseDto = z.object({
-    periode: zPeriodeDto.optional(),
     beløpPerMnd: z.number(),
+    periode: zPeriodeDto.optional(),
     type: zNaturalYtelseTypeDto,
 });
 
@@ -669,9 +267,167 @@ export const zOppholdDto = z.object({
     varighetPerDag: z.string().optional(),
 });
 
+export const zPleietrengende = z.object({
+    fødselsdato: z.iso.date().optional(),
+    norskIdentitetsnummer: z.string().optional(),
+});
+
+export const zPleietrengendeDto = z.object({
+    aktørId: z.string(),
+    etternavn: z.string().optional(),
+    fornavn: z.string().optional(),
+    fødselsdato: z.iso.date(),
+    mellomnavn: z.string().optional(),
+});
+
+export const zProblemDetail = z.object({
+    detail: z.string().optional(),
+    instance: z.url().optional(),
+    properties: z.record(z.string(), z.unknown()).optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    title: z.string().optional(),
+    type: z.url().optional(),
+});
+
 export const zRefusjonDto = z.object({
     refusjonBeløpPerMnd: z.number(),
     refusjonOpphører: z.iso.date().optional(),
+});
+
+export const zReise = z.object({
+    reisedager: z.array(z.iso.date()).optional(),
+    reisedagerBeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    reiserUtenforKursdager: z.boolean(),
+});
+
+export const zKurs = z.object({
+    kursholder: zKursholder,
+    kursperioder: z.array(z.string()).min(1).max(2147483647),
+    reise: zReise,
+});
+
+export const zRelevantDatoDto = z.object({
+    dato: z.string(),
+    datotype: zDatotype,
+});
+
+export const zDokumentDto = z.object({
+    dokumentInfoId: z.string(),
+    dokumentType: zDokumentBrevkode.optional(),
+    filtype: z.string(),
+    harTilgang: z.boolean(),
+    journalpostId: z.string(),
+    relevanteDatoer: z.array(zRelevantDatoDto),
+    saksnummer: z.string().optional(),
+    tittel: z.string(),
+    url: z.string(),
+});
+
+export const zSakerMetadataDto = z.object({
+    fagsakAvsluttetTidspunkt: z.iso.datetime({ local: true }).optional(),
+    fagsakOpprettetTidspunkt: z.iso.datetime({ local: true }).optional(),
+    fagsakYtelseType: zFagsakYtelseType,
+    pleietrengende: zPleietrengendeDto,
+    saksnummer: z.string(),
+});
+
+export const zSaksbehandlingtidDto = z.object({
+    saksbehandlingstidUker: z.coerce
+        .bigint()
+        .min(BigInt('-9223372036854775808'), { error: 'Invalid value: Expected int64 to be >= -9223372036854775808' })
+        .max(BigInt('9223372036854775807'), { error: 'Invalid value: Expected int64 to be <= 9223372036854775807' }),
+});
+
+export const zSituasjonType = z.enum(['INNLAGT_I_HELSEINSTITUSJON', 'UTØVER_VERNEPLIKT', 'FENGSEL', 'SYKDOM', 'ANNET']);
+
+export const zAnnenForelder = z.object({
+    norskIdentitetsnummer: z.string(),
+    periode: z.string().optional(),
+    situasjon: zSituasjonType,
+    situasjonBeskrivelse: z
+        .string()
+
+        .optional(),
+});
+
+export const zSpråk = z.enum(['nb', 'nn']);
+
+export const zSøker = z.object({
+    norskIdentitetsnummer: z.string(),
+});
+
+export const zInnsending = z.object({
+    mottattDato: z.iso.datetime({ local: true }).optional(),
+    søker: zSøker.optional(),
+    søknadId: z.string().optional(),
+    versjon: z.string().optional(),
+});
+
+export const zInnsendelserISakDto = z.object({
+    arbeidsgivere: z.array(zOrganisasjon).optional(),
+    dokumenter: z.array(zDokumentDto),
+    innsendelsestype: zInnsendelsestype,
+    k9FormatInnsendelse: zInnsending.optional(),
+    mottattTidspunkt: z.iso.datetime({ local: true }),
+    søknadId: z.uuid(),
+});
+
+export const zSøknadÅrsak = z.enum([
+    'ARBEIDSGIVER_KONKURS',
+    'NYOPPSTARTET_HOS_ARBEIDSGIVER',
+    'KONFLIKT_MED_ARBEIDSGIVER',
+]);
+
+export const zFraværPeriode = z.object({
+    aktivitetFravær: z.array(zAktivitetFravær).min(1).max(2),
+    arbeidsforholdId: z.string().optional(),
+    arbeidsgiverOrgNr: z.string().optional(),
+    delvisFravær: zDelvisFravær.optional(),
+    duration: z.string().optional(),
+    periode: z.string(),
+    søknadÅrsak: zSøknadÅrsak.optional(),
+    årsak: zFraværÅrsak,
+});
+
+export const zTilsynPeriodeInfo = z.object({
+    etablertTilsynTimerPerDag: z.string(),
+});
+
+export const zTilsynsordning = z.object({
+    perioder: z.record(z.string(), zTilsynPeriodeInfo),
+});
+
+export const zUngSøknadstype = z.enum(['DELTAKELSE_SØKNAD', 'RAPPORTERING_SØKNAD']);
+
+export const zUtenlandskArbeidsforhold = z.object({
+    ansettelsePeriode: z.string(),
+    arbeidsgiversnavn: z.string(),
+    land: z.string(),
+});
+
+export const zUtenlandsoppholdÅrsak = z.enum([
+    'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning',
+    'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd',
+]);
+
+export const zUtenlandsoppholdPeriodeInfo = z.object({
+    erSammenMedBarnet: z.boolean().optional(),
+    land: z.string(),
+    årsak: zUtenlandsoppholdÅrsak.optional(),
+});
+
+export const zUtenlandsopphold = z.object({
+    perioder: z.record(z.string(), zUtenlandsoppholdPeriodeInfo).optional(),
+    perioderSomSkalSlettes: z.record(z.string(), zUtenlandsoppholdPeriodeInfo).optional(),
 });
 
 export const zUtsettelseÅrsakDto = z.enum([
@@ -688,6 +444,92 @@ export const zUtsettelseDto = z.object({
     årsak: zUtsettelseÅrsakDto,
 });
 
+export const zUttakPeriodeInfo = z.object({
+    timerPleieAvBarnetPerDag: z.string(),
+});
+
+export const zUttak = z.object({
+    perioder: z.record(z.string(), zUttakPeriodeInfo),
+});
+
+export const zVenteårsak = z.enum(['INNTEKTSMELDING', 'MEDISINSK_DOKUMENTASJON', 'FOR_TIDLIG_SOKNAD', 'MELDEKORT']);
+
+export const zAksjonspunktDto = z.object({
+    tidsfrist: z.iso.datetime({ local: true }),
+    venteårsak: zVenteårsak,
+});
+
+export const zBehandlingDto = z.object({
+    aksjonspunkter: z.array(zAksjonspunktDto),
+    avsluttetTidspunkt: z.iso.datetime({ local: true }).optional(),
+    innsendelser: z.array(zInnsendelserISakDto),
+    opprettetTidspunkt: z.iso.datetime({ local: true }),
+    status: zBehandlingStatus,
+    utgåendeDokumenter: z.array(zDokumentDto),
+});
+
+export const zUtledetStatus = z.object({
+    aksjonspunkter: z.array(zAksjonspunktDto),
+    saksbehandlingsFrist: z.iso.date().optional(),
+    status: zBehandlingStatus,
+});
+
+export const zSakDto = z.object({
+    behandlinger: z.array(zBehandlingDto),
+    fagsakYtelseType: zFagsakYtelseType,
+    saksbehandlingsFrist: z.iso.date().optional(),
+    saksnummer: z.string(),
+    utledetStatus: zUtledetStatus,
+    ytelseType: zFagsakYtelseType,
+});
+
+export const zPleietrengendeMedSak = z.object({
+    pleietrengende: zPleietrengendeDto,
+    sak: zSakDto,
+});
+
+export const zVirksomhetType = z.enum(['DAGMAMMA', 'FISKE', 'JORDBRUK_SKOGBRUK', 'ANNEN', '-']);
+
+export const zSelvstendigNæringsdrivendePeriodeInfo = z.object({
+    bruttoInntekt: z.number().gte(0).lte(10000000).optional(),
+    endringBegrunnelse: z
+        .string()
+
+        .optional(),
+    endringDato: z.iso.date().optional(),
+    erFiskerPåBladB: z.boolean().optional(),
+    erNyIArbeidslivet: z.boolean().optional(),
+    erNyoppstartet: z.boolean().optional(),
+    erVarigEndring: z.boolean().optional(),
+    landkode: z.string().optional(),
+    registrertIUtlandet: z.boolean().optional(),
+    regnskapsførerNavn: z
+        .string()
+
+        .optional(),
+    regnskapsførerTlf: z
+        .string()
+
+        .optional(),
+    virksomhetstyper: z.array(zVirksomhetType).min(1),
+});
+
+export const zSelvstendigNæringsdrivende = z.object({
+    organisasjonsnummer: z.string().optional(),
+    perioder: z.record(z.string(), zSelvstendigNæringsdrivendePeriodeInfo),
+    virksomhetNavn: z
+        .string()
+
+        .optional(),
+});
+
+export const zOpptjeningAktivitet = z.object({
+    andreAktiviteter: z.array(zAnnenAktivitet),
+    frilanser: zFrilanser.optional(),
+    selvstendigNæringsdrivende: z.array(zSelvstendigNæringsdrivende),
+    utenlandskeArbeidsforhold: z.array(zUtenlandskArbeidsforhold),
+});
+
 export const zYtekseTypeDto = z.enum([
     'PLEIEPENGER_SYKT_BARN',
     'PLEIEPENGER_NÆRSTÅENDE',
@@ -698,72 +540,212 @@ export const zYtekseTypeDto = z.enum([
 ]);
 
 export const zSakInntektsmeldingDto = z.object({
-    ytelseType: zYtekseTypeDto,
-    status: zInntektsmeldingStatusDto,
-    saksnummer: z.string(),
-    innsendingstidspunkt: z.iso.datetime({ local: true }),
-    kildesystem: z.string(),
     arbeidsgiver: zArbeidsgiverDto,
-    nærRelasjon: z.boolean(),
-    journalpostId: z.string(),
-    mottattDato: z.iso.date(),
-    inntektBeløp: z.number(),
-    innsendingsårsak: zInnsendingsårsakDto,
+    endringerRefusjon: z.array(zEndringRefusjonDto).optional(),
     erstattetAv: z.array(z.string()),
     graderinger: z.array(zGraderingDto).optional(),
+    innsendingstidspunkt: z.iso.datetime({ local: true }),
+    innsendingsårsak: zInnsendingsårsakDto,
+    inntektBeløp: z.number(),
+    inntektsmeldingType: zInntektsmeldingTypeDto.optional(),
+    journalpostId: z.string(),
+    kildesystem: z.string(),
+    mottattDato: z.iso.date(),
     naturalYtelser: z.array(zNaturalYtelseDto).optional(),
-    utsettelsePerioder: z.array(zUtsettelseDto).optional(),
-    startDatoPermisjon: z.iso.date().optional(),
+    nærRelasjon: z.boolean(),
     oppgittFravær: z.array(zOppholdDto).optional(),
     refusjon: zRefusjonDto.optional(),
-    inntektsmeldingType: zInntektsmeldingTypeDto.optional(),
-    endringerRefusjon: z.array(zEndringRefusjonDto).optional(),
+    saksnummer: z.string(),
+    startDatoPermisjon: z.iso.date().optional(),
+    status: zInntektsmeldingStatusDto,
+    utsettelsePerioder: z.array(zUtsettelseDto).optional(),
+    ytelseType: zYtekseTypeDto,
+});
+
+export const zYtelse = z.object({
+    type: z.string(),
+});
+
+export const zAktivitetspenger = zYtelse.and(
+    z.object({
+        forutgåendeBosteder: zBosteder,
+        inntekter: zOppgittInntekt.optional(),
+        søknadsperiode: z.string(),
+        type: z.literal('Aktivitetspenger'),
+    }),
+);
+
+export const zOmsorgspengerAleneOmsorg = zYtelse.and(
+    z.object({
+        barn: zBarn,
+        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+        periode: z.string(),
+        type: z.literal('OmsorgspengerAleneOmsorg'),
+    }),
+);
+
+export const zOmsorgspengerKroniskSyktBarn = zYtelse.and(
+    z.object({
+        barn: zBarn,
+        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+        høyereRisikoForFravær: z.boolean().optional(),
+        høyereRisikoForFraværBeskrivelse: z
+            .string()
+            .min(1)
+            .max(1000)
+
+            .optional(),
+        kroniskEllerFunksjonshemming: z.boolean(),
+        type: z.literal('OmsorgspengerKroniskSyktBarn'),
+    }),
+);
+
+export const zOmsorgspengerMidlertidigAlene = zYtelse.and(
+    z.object({
+        annenForelder: zAnnenForelder,
+        barn: z.array(zBarn),
+        begrunnelse: z.string().min(0).max(30000).optional(),
+        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+        type: z.literal('OmsorgspengerMidlertidigAlene'),
+    }),
+);
+
+export const zOmsorgspengerUtbetaling = zYtelse.and(
+    z.object({
+        aktivitet: zOpptjeningAktivitet.optional(),
+        bosteder: zBosteder.optional(),
+        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+        fosterbarn: z.array(zBarn).optional(),
+        fraværsperioder: z.array(zFraværPeriode).optional(),
+        fraværsperioderKorrigeringIm: z.array(zFraværPeriode).optional(),
+        utenlandsopphold: zUtenlandsopphold.optional(),
+        type: z.literal('OmsorgspengerUtbetaling'),
+    }),
+);
+
+export const zOpplæringspenger = zYtelse.and(
+    z.object({
+        arbeidstid: zArbeidstid,
+        barn: zBarn,
+        bosteder: zBosteder,
+        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+        kurs: zKurs.optional(),
+        lovbestemtFerie: zLovbestemtFerie,
+        omsorg: zOmsorg,
+        opptjeningAktivitet: zOpptjeningAktivitet,
+        skalEttersendeVedlegg: z.boolean().optional(),
+        søknadsperiode: z.array(z.string()),
+        trekkKravPerioder: z.array(z.string()),
+        utenlandsopphold: zUtenlandsopphold,
+        uttak: zUttak,
+        type: z.literal('Opplæringspenger'),
+    }),
+);
+
+export const zPleiepengerSyktBarn = zYtelse.and(
+    z.object({
+        annetDataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+        arbeidstid: zArbeidstid,
+        barn: zBarn,
+        beredskap: zBeredskap,
+        bosteder: zBosteder,
+        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+        endringsperiode: z.array(z.string()),
+        erSammenMedBarnet: z.boolean().optional(),
+        infoFraPunsj: zInfoFraPunsj.optional(),
+        lovbestemtFerie: zLovbestemtFerie,
+        nattevåk: zNattevåk,
+        omsorg: zOmsorg,
+        opptjeningAktivitet: zOpptjeningAktivitet.optional(),
+        søknadsperiode: z.array(z.string()),
+        tilsynsordning: zTilsynsordning,
+        trekkKravPerioder: z.array(z.string()),
+        utenlandsopphold: zUtenlandsopphold,
+        uttak: zUttak,
+        type: z.literal('PleiepengerSyktBarn'),
+    }),
+);
+
+export const zPleipengerLivetsSluttfase = zYtelse.and(
+    z.object({
+        arbeidstid: zArbeidstid,
+        bosteder: zBosteder,
+        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+        lovbestemtFerie: zLovbestemtFerie.optional(),
+        opptjeningAktivitet: zOpptjeningAktivitet.optional(),
+        pleietrengende: zPleietrengende,
+        søknadsperiode: z.array(z.string()),
+        trekkKravPerioder: z.array(z.string()),
+        utenlandsopphold: zUtenlandsopphold,
+        uttak: zUttak.optional(),
+        type: z.literal('PleipengerLivetsSluttfase'),
+    }),
+);
+
+export const zUngdomsytelse = zYtelse.and(
+    z.object({
+        deltakelseId: z.uuid().optional(),
+        inntekter: zOppgittInntekt.optional(),
+        søknadType: zUngSøknadstype,
+        søktFraDatoer: z.array(z.iso.date()),
+        type: z.literal('Ungdomsytelse'),
+    }),
+);
+
+export const zSøknad = z.object({
+    begrunnelseForInnsending: zBegrunnelseForInnsending.optional(),
+    journalposter: z.array(zJournalpost).min(0).max(1000).optional(),
+    kildesystem: z.string().optional(),
+    mottattDato: z.iso.datetime({ local: true }),
+    språk: zSpråk.optional(),
+    søker: zSøker,
+    søknadId: z.string(),
+    versjon: z.string(),
+    ytelse: z.union([
+        zAktivitetspenger,
+        zOmsorgspengerAleneOmsorg,
+        zOmsorgspengerKroniskSyktBarn,
+        zOmsorgspengerMidlertidigAlene,
+        zOmsorgspengerUtbetaling,
+        zOpplæringspenger,
+        zPleiepengerSyktBarn,
+        zPleipengerLivetsSluttfase,
+        zUngdomsytelse,
+    ]),
+});
+
+export const zSøknadDto = z.object({
+    barn: zBarnOppslagDto,
+    søknad: zSøknad,
+    søknader: z.array(zSøknad).optional(),
 });
 
 export const zFraværPeriodeWritable = z.object({
-    periode: z.string(),
-    duration: z.string().optional(),
-    delvisFravær: zDelvisFravær.optional(),
-    årsak: zFraværÅrsak,
-    søknadÅrsak: zSøknadÅrsak.optional(),
     aktivitetFravær: z.array(zAktivitetFravær).min(1).max(2),
-    organisasjonsnummer: z.string().optional(),
     arbeidsforholdId: z.string().optional(),
     arbeidsgiverOrgNr: z.string().optional(),
+    delvisFravær: zDelvisFravær.optional(),
+    duration: z.string().optional(),
+    organisasjonsnummer: z.string().optional(),
+    periode: z.string(),
+    søknadÅrsak: zSøknadÅrsak.optional(),
+    årsak: zFraværÅrsak,
+});
+
+export const zHentDokumentPath = z.object({
+    journalpostId: z.string(),
+    dokumentInfoId: z.string(),
+    variantFormat: z.string(),
+});
+
+export const zHentDokumentQuery = z.object({
+    dokumentTittel: z.string(),
 });
 
 /**
  * OK
  */
-export const zHentSøknaderResponse = z.array(zSøknadDto);
-
-export const zLastNedArbeidsgivermeldingPath = z.object({
-    søknadId: z.uuid(),
-});
-
-export const zLastNedArbeidsgivermeldingQuery = z.object({
-    organisasjonsnummer: z.string(),
-});
-
-/**
- * OK
- */
-export const zLastNedArbeidsgivermeldingResponse = z.string();
-
-/**
- * OK
- */
-export const zHentMineSakerResponse = zPleietrengendeMedSak;
-
-/**
- * OK
- */
-export const zHentSaksbehandlingstidResponse = zSaksbehandlingtidDto;
-
-/**
- * OK
- */
-export const zHentSakerMetadataResponse = zSakerMetadataDto;
+export const zHentDokumentResponse = z.string();
 
 export const zHentSakPath = z.object({
     saksnummer: z.string(),
@@ -783,17 +765,35 @@ export const zHentInntektsmeldingerPåSakPath = z.object({
  */
 export const zHentInntektsmeldingerPåSakResponse = z.array(zSakInntektsmeldingDto);
 
-export const zHentDokumentPath = z.object({
-    journalpostId: z.string(),
-    dokumentInfoId: z.string(),
-    variantFormat: z.string(),
+/**
+ * OK
+ */
+export const zHentMineSakerResponse = zPleietrengendeMedSak;
+
+/**
+ * OK
+ */
+export const zHentSakerMetadataResponse = zSakerMetadataDto;
+
+/**
+ * OK
+ */
+export const zHentSaksbehandlingstidResponse = zSaksbehandlingtidDto;
+
+/**
+ * OK
+ */
+export const zHentSøknaderResponse = z.array(zSøknadDto);
+
+export const zLastNedArbeidsgivermeldingPath = z.object({
+    søknadId: z.uuid(),
 });
 
-export const zHentDokumentQuery = z.object({
-    dokumentTittel: z.string(),
+export const zLastNedArbeidsgivermeldingQuery = z.object({
+    organisasjonsnummer: z.string(),
 });
 
 /**
  * OK
  */
-export const zHentDokumentResponse = z.string();
+export const zLastNedArbeidsgivermeldingResponse = z.string();

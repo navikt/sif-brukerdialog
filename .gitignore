@@ -19,6 +19,7 @@ index-decorated.html
 *.code-workspace
 *.zip
 .copilot-workspace
+specs
 
 .env.sentry-build-plugin
 apps-depr

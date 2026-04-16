@@ -4,44 +4,9 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type ProblemDetail = {
-    type?: string;
-    title?: string;
-    status?: number;
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-};
-
-export type Aktivitetspengersøknad = {
-    forutgåendeBosteder: ForutgåendeBosteder;
-    språk: string;
-    startdato: string;
-    søkerNorskIdent: string;
-    barnErRiktig: boolean;
-    kontonummerInfo: KontonummerInfo;
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-};
-
-export type Bosted = {
-    fraOgMed: string;
-    tilOgMed: string;
-    landkode: string;
-    landnavn: string;
-};
-
-export type ForutgåendeBosteder = {
-    harBoddIUtlandetSiste5År: boolean;
-    utenlandsoppholdSiste5År: Bosted[];
-};
-
-export type KontonummerInfo = {
-    harKontonummer: 'JA' | 'NEI' | 'UVISST';
-    kontonummerFraRegister?: string;
-    kontonummerErRiktig?: boolean;
+export type AktivitetspengerInntektsrapportering = {
+    oppgaveReferanse: string;
+    oppgittInntekt: OppgittInntekt;
 };
 
 export type AktivitetspengerOppgaveDto = {
@@ -58,65 +23,215 @@ export type AktivitetspengerOppgavebekreftelse = {
     oppgave: AktivitetspengerOppgaveDto;
 };
 
-export type AktivitetspengerInntektsrapportering = {
-    oppgaveReferanse: string;
-    oppgittInntekt: OppgittInntekt;
+export type Aktivitetspengersøknad = {
+    barnErRiktig: boolean;
+    forutgåendeBosteder: ForutgåendeBosteder;
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    kontonummerInfo: KontonummerInfo;
+    språk: string;
+    startdato: string;
+    søkerNorskIdent: string;
 };
 
-export type OppgittInntekt = {
-    arbeidstakerOgFrilansInntekt?: number;
-};
-
-export type Søker = {
-    aktørId: string;
-    fødselsdato: string;
-    fødselsnummer: string;
-    fornavn?: string;
-    mellomnavn?: string;
-    etternavn?: string;
+export type ArbeidsgivereDto = {
+    frilansoppdrag?: FrilansoppdragDto[];
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
 };
 
 export type BarnOppslag = {
-    fødselsdato: string;
-    fornavn: string;
-    mellomnavn?: string;
-    etternavn: string;
     aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
 };
 
 export type BarnOppslagListe = {
     barn: BarnOppslag[];
 };
 
-export type ArbeidsgivereDto = {
-    organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-    frilansoppdrag?: FrilansoppdragDto[];
+export type Bosted = {
+    fraOgMed: string;
+    landkode: string;
+    landnavn: string;
+    tilOgMed: string;
+};
+
+export type ForutgåendeBosteder = {
+    harBoddIUtlandetSiste5År: boolean;
+    utenlandsoppholdSiste5År: Bosted[];
 };
 
 export type FrilansoppdragDto = {
-    type: string;
-    organisasjonsnummer?: string;
+    ansattFom?: string;
+    ansattTom?: string;
     navn?: string;
     offentligIdent?: string;
-    ansattFom?: string;
-    ansattTom?: string;
-};
-
-export type OrganisasjonDto = {
-    organisasjonsnummer: string;
-    navn?: string;
-    ansattFom?: string;
-    ansattTom?: string;
-};
-
-export type PrivatArbeidsgiverDto = {
-    offentligIdent: string;
-    ansattFom?: string;
-    ansattTom?: string;
+    organisasjonsnummer?: string;
+    type: string;
 };
 
 export type JsonNode = unknown;
+
+export type KontonummerInfo = {
+    harKontonummer: 'JA' | 'NEI' | 'UVISST';
+    kontonummerErRiktig?: boolean;
+    kontonummerFraRegister?: string;
+};
+
+export type OppgittInntekt = {
+    arbeidstakerOgFrilansInntekt?: number;
+};
+
+export type OrganisasjonDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    organisasjonsnummer: string;
+};
+
+export type PrivatArbeidsgiverDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    offentligIdent: string;
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
+};
+
+export type Søker = {
+    aktørId: string;
+    etternavn?: string;
+    fornavn?: string;
+    fødselsdato: string;
+    fødselsnummer: string;
+    mellomnavn?: string;
+};
+
+export type InntektrapporteringData = {
+    body: AktivitetspengerInntektsrapportering;
+    headers: {
+        'X-Brukerdialog-Git-Sha': string;
+    };
+    path?: never;
+    query?: never;
+    url: '/aktivitetspenger/inntektsrapportering/innsending';
+};
+
+export type InntektrapporteringErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type InntektrapporteringError = InntektrapporteringErrors[keyof InntektrapporteringErrors];
+
+export type InntektrapporteringResponses = {
+    /**
+     * Accepted
+     */
+    202: unknown;
+};
+
+export type OppgavebekreftelseData = {
+    body: AktivitetspengerOppgavebekreftelse;
+    headers: {
+        'X-Brukerdialog-Git-Sha': string;
+    };
+    path?: never;
+    query?: never;
+    url: '/aktivitetspenger/oppgavebekreftelse/innsending';
+};
+
+export type OppgavebekreftelseErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type OppgavebekreftelseError = OppgavebekreftelseErrors[keyof OppgavebekreftelseErrors];
+
+export type OppgavebekreftelseResponses = {
+    /**
+     * Accepted
+     */
+    202: unknown;
+};
+
+export type InnsendingAktivitetspengersøknadData = {
+    body: Aktivitetspengersøknad;
+    headers: {
+        'X-Brukerdialog-Git-Sha': string;
+    };
+    path?: never;
+    query?: never;
+    url: '/aktivitetspenger/soknad/innsending';
+};
+
+export type InnsendingAktivitetspengersøknadErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type InnsendingAktivitetspengersøknadError =
+    InnsendingAktivitetspengersøknadErrors[keyof InnsendingAktivitetspengersøknadErrors];
+
+export type InnsendingAktivitetspengersøknadResponses = {
+    /**
+     * Accepted
+     */
+    202: unknown;
+};
 
 export type DeleteMellomlagringData = {
     body?: never;
@@ -272,6 +387,123 @@ export type UpdateMellomlagringResponses = {
     200: unknown;
 };
 
+export type HentArbeidsgivereData = {
+    body?: never;
+    path?: never;
+    query: {
+        fra_og_med: string;
+        til_og_med: string;
+        inkluderAlleAnsettelsesperioder?: boolean;
+        frilansoppdrag?: boolean;
+        private_arbeidsgivere?: boolean;
+    };
+    url: '/oppslag/arbeidsgiver';
+};
+
+export type HentArbeidsgivereErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentArbeidsgivereError = HentArbeidsgivereErrors[keyof HentArbeidsgivereErrors];
+
+export type HentArbeidsgivereResponses = {
+    /**
+     * OK
+     */
+    200: ArbeidsgivereDto;
+};
+
+export type HentArbeidsgivereResponse = HentArbeidsgivereResponses[keyof HentArbeidsgivereResponses];
+
+export type HentBarnData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/oppslag/barn';
+};
+
+export type HentBarnErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentBarnError = HentBarnErrors[keyof HentBarnErrors];
+
+export type HentBarnResponses = {
+    /**
+     * OK
+     */
+    200: BarnOppslagListe;
+};
+
+export type HentBarnResponse = HentBarnResponses[keyof HentBarnResponses];
+
+export type HentSøkerData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/oppslag/soker';
+};
+
+export type HentSøkerErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentSøkerError = HentSøkerErrors[keyof HentSøkerErrors];
+
+export type HentSøkerResponses = {
+    /**
+     * OK
+     */
+    200: Søker;
+};
+
+export type HentSøkerResponse = HentSøkerResponses[keyof HentSøkerResponses];
+
 export type LagreVedleggData = {
     body?: {
         vedlegg: Blob | File;
@@ -307,121 +539,6 @@ export type LagreVedleggResponses = {
      * OK
      */
     200: unknown;
-};
-
-export type InnsendingAktivitetspengersøknadData = {
-    body: Aktivitetspengersøknad;
-    headers: {
-        'X-Brukerdialog-Git-Sha': string;
-    };
-    path?: never;
-    query?: never;
-    url: '/aktivitetspenger/soknad/innsending';
-};
-
-export type InnsendingAktivitetspengersøknadErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type InnsendingAktivitetspengersøknadError =
-    InnsendingAktivitetspengersøknadErrors[keyof InnsendingAktivitetspengersøknadErrors];
-
-export type InnsendingAktivitetspengersøknadResponses = {
-    /**
-     * Accepted
-     */
-    202: unknown;
-};
-
-export type OppgavebekreftelseData = {
-    body: AktivitetspengerOppgavebekreftelse;
-    headers: {
-        'X-Brukerdialog-Git-Sha': string;
-    };
-    path?: never;
-    query?: never;
-    url: '/aktivitetspenger/oppgavebekreftelse/innsending';
-};
-
-export type OppgavebekreftelseErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type OppgavebekreftelseError = OppgavebekreftelseErrors[keyof OppgavebekreftelseErrors];
-
-export type OppgavebekreftelseResponses = {
-    /**
-     * Accepted
-     */
-    202: unknown;
-};
-
-export type InntektrapporteringData = {
-    body: AktivitetspengerInntektsrapportering;
-    headers: {
-        'X-Brukerdialog-Git-Sha': string;
-    };
-    path?: never;
-    query?: never;
-    url: '/aktivitetspenger/inntektsrapportering/innsending';
-};
-
-export type InntektrapporteringErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type InntektrapporteringError = InntektrapporteringErrors[keyof InntektrapporteringErrors];
-
-export type InntektrapporteringResponses = {
-    /**
-     * Accepted
-     */
-    202: unknown;
 };
 
 export type SlettVedleggData = {
@@ -501,120 +618,3 @@ export type HentVedleggResponses = {
 };
 
 export type HentVedleggResponse = HentVedleggResponses[keyof HentVedleggResponses];
-
-export type HentSøkerData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/oppslag/soker';
-};
-
-export type HentSøkerErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type HentSøkerError = HentSøkerErrors[keyof HentSøkerErrors];
-
-export type HentSøkerResponses = {
-    /**
-     * OK
-     */
-    200: Søker;
-};
-
-export type HentSøkerResponse = HentSøkerResponses[keyof HentSøkerResponses];
-
-export type HentBarnData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/oppslag/barn';
-};
-
-export type HentBarnErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type HentBarnError = HentBarnErrors[keyof HentBarnErrors];
-
-export type HentBarnResponses = {
-    /**
-     * OK
-     */
-    200: BarnOppslagListe;
-};
-
-export type HentBarnResponse = HentBarnResponses[keyof HentBarnResponses];
-
-export type HentArbeidsgivereData = {
-    body?: never;
-    path?: never;
-    query: {
-        fra_og_med: string;
-        til_og_med: string;
-        inkluderAlleAnsettelsesperioder?: boolean;
-        frilansoppdrag?: boolean;
-        private_arbeidsgivere?: boolean;
-    };
-    url: '/oppslag/arbeidsgiver';
-};
-
-export type HentArbeidsgivereErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type HentArbeidsgivereError = HentArbeidsgivereErrors[keyof HentArbeidsgivereErrors];
-
-export type HentArbeidsgivereResponses = {
-    /**
-     * OK
-     */
-    200: ArbeidsgivereDto;
-};
-
-export type HentArbeidsgivereResponse = HentArbeidsgivereResponses[keyof HentArbeidsgivereResponses];

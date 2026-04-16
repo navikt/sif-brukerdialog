@@ -4,47 +4,114 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type ProblemDetail = {
-    type?: string;
-    title?: string;
-    status?: number;
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-};
-
 export type DeltakelseDto = {
-    id?: string;
     deltaker: DeltakerDto;
-    fraOgMed: string;
-    tilOgMed?: string;
     erSlettet: boolean;
+    fraOgMed: string;
     harOpphørsvedtak: boolean;
+    id?: string;
     søktTidspunkt?: string;
+    tilOgMed?: string;
 };
 
 export type DeltakelseKomposittDto = {
-    id?: string;
     deltaker: DeltakerDto;
-    fraOgMed: string;
-    tilOgMed?: string;
     erSlettet: boolean;
+    fraOgMed: string;
     harOpphørsvedtak: boolean;
-    søktTidspunkt?: string;
+    id?: string;
     oppgaver: unknown[];
+    søktTidspunkt?: string;
+    tilOgMed?: string;
 };
 
 export type DeltakerDto = {
-    id?: string;
     deltakerIdent: string;
+    id?: string;
 };
 
 export type KontonummerDto = {
     harKontonummer: boolean;
     kontonummer?: string;
 };
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
+};
+
+export type HentAlleMineDeltakelserData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/deltakelse/register/hent/alle';
+};
+
+export type HentAlleMineDeltakelserErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentAlleMineDeltakelserError = HentAlleMineDeltakelserErrors[keyof HentAlleMineDeltakelserErrors];
+
+export type HentAlleMineDeltakelserResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseKomposittDto[];
+};
+
+export type HentAlleMineDeltakelserResponse = HentAlleMineDeltakelserResponses[keyof HentAlleMineDeltakelserResponses];
+
+export type HentAlleMineDeltakelserV2Data = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/deltakelse/register/hent/alle/v2';
+};
+
+export type HentAlleMineDeltakelserV2Errors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentAlleMineDeltakelserV2Error = HentAlleMineDeltakelserV2Errors[keyof HentAlleMineDeltakelserV2Errors];
+
+export type HentAlleMineDeltakelserV2Responses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto[];
+};
+
+export type HentAlleMineDeltakelserV2Response =
+    HentAlleMineDeltakelserV2Responses[keyof HentAlleMineDeltakelserV2Responses];
 
 export type MarkerDeltakelseSomSøktData = {
     body?: never;
@@ -149,70 +216,3 @@ export type HentKontonummerResponses = {
 };
 
 export type HentKontonummerResponse = HentKontonummerResponses[keyof HentKontonummerResponses];
-
-export type HentAlleMineDeltakelserData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/deltakelse/register/hent/alle';
-};
-
-export type HentAlleMineDeltakelserErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type HentAlleMineDeltakelserError = HentAlleMineDeltakelserErrors[keyof HentAlleMineDeltakelserErrors];
-
-export type HentAlleMineDeltakelserResponses = {
-    /**
-     * OK
-     */
-    200: DeltakelseKomposittDto[];
-};
-
-export type HentAlleMineDeltakelserResponse = HentAlleMineDeltakelserResponses[keyof HentAlleMineDeltakelserResponses];
-
-export type HentAlleMineDeltakelserV2Data = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/deltakelse/register/hent/alle/v2';
-};
-
-export type HentAlleMineDeltakelserV2Errors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type HentAlleMineDeltakelserV2Error = HentAlleMineDeltakelserV2Errors[keyof HentAlleMineDeltakelserV2Errors];
-
-export type HentAlleMineDeltakelserV2Responses = {
-    /**
-     * OK
-     */
-    200: DeltakelseDto[];
-};
-
-export type HentAlleMineDeltakelserV2Response =
-    HentAlleMineDeltakelserV2Responses[keyof HentAlleMineDeltakelserV2Responses];

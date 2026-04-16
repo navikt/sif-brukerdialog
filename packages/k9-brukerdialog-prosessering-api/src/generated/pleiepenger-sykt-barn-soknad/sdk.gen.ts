@@ -164,6 +164,94 @@ export class MellomlagringController {
     }
 }
 
+export class ArbeidsgivereController {
+    public static hentArbeidsgivere<ThrowOnError extends boolean = true>(
+        options: Options<HentArbeidsgivereData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).get<HentArbeidsgivereResponses, HentArbeidsgivereErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: zHentArbeidsgivereQuery,
+                    })
+                    .parseAsync(data),
+            responseValidator: async (data) => await zHentArbeidsgivereResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/oppslag/arbeidsgiver',
+            ...options,
+        });
+    }
+}
+
+export class BarnController {
+    public static hentBarn<ThrowOnError extends boolean = true>(options?: Options<HentBarnData, ThrowOnError>) {
+        return (options?.client ?? client).get<HentBarnResponses, HentBarnErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseValidator: async (data) => await zHentBarnResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/oppslag/barn',
+            ...options,
+        });
+    }
+}
+
+export class SØkerController {
+    public static hentSøker<ThrowOnError extends boolean = true>(options?: Options<HentSøkerData, ThrowOnError>) {
+        return (options?.client ?? client).get<HentSøkerResponses, HentSøkerErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseValidator: async (data) => await zHentSøkerResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/oppslag/soker',
+            ...options,
+        });
+    }
+}
+
+export class PleiepengerSyktBarnController {
+    public static innsendingPleiepengerSyktBarnSøknad<ThrowOnError extends boolean = true>(
+        options: Options<InnsendingPleiepengerSyktBarnSøknadData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).post<
+            InnsendingPleiepengerSyktBarnSøknadResponses,
+            InnsendingPleiepengerSyktBarnSøknadErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: zInnsendingPleiepengerSyktBarnSøknadBody,
+                        headers: zInnsendingPleiepengerSyktBarnSøknadHeaders,
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/pleiepenger-sykt-barn/innsending',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers,
+            },
+        });
+    }
+}
+
 export class VedleggController {
     public static lagreVedlegg<ThrowOnError extends boolean = true>(options?: Options<LagreVedleggData, ThrowOnError>) {
         return (options?.client ?? client).post<LagreVedleggResponses, LagreVedleggErrors, ThrowOnError>({
@@ -216,94 +304,6 @@ export class VedleggController {
             responseValidator: async (data) => await zHentVedleggResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/vedlegg/{vedleggId}',
-            ...options,
-        });
-    }
-}
-
-export class PleiepengerSyktBarnController {
-    public static innsendingPleiepengerSyktBarnSøknad<ThrowOnError extends boolean = true>(
-        options: Options<InnsendingPleiepengerSyktBarnSøknadData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).post<
-            InnsendingPleiepengerSyktBarnSøknadResponses,
-            InnsendingPleiepengerSyktBarnSøknadErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: zInnsendingPleiepengerSyktBarnSøknadBody,
-                        headers: zInnsendingPleiepengerSyktBarnSøknadHeaders,
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/pleiepenger-sykt-barn/innsending',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers,
-            },
-        });
-    }
-}
-
-export class SØkerController {
-    public static hentSøker<ThrowOnError extends boolean = true>(options?: Options<HentSøkerData, ThrowOnError>) {
-        return (options?.client ?? client).get<HentSøkerResponses, HentSøkerErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseValidator: async (data) => await zHentSøkerResponse.parseAsync(data),
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/oppslag/soker',
-            ...options,
-        });
-    }
-}
-
-export class BarnController {
-    public static hentBarn<ThrowOnError extends boolean = true>(options?: Options<HentBarnData, ThrowOnError>) {
-        return (options?.client ?? client).get<HentBarnResponses, HentBarnErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseValidator: async (data) => await zHentBarnResponse.parseAsync(data),
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/oppslag/barn',
-            ...options,
-        });
-    }
-}
-
-export class ArbeidsgivereController {
-    public static hentArbeidsgivere<ThrowOnError extends boolean = true>(
-        options: Options<HentArbeidsgivereData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).get<HentArbeidsgivereResponses, HentArbeidsgivereErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: zHentArbeidsgivereQuery,
-                    })
-                    .parseAsync(data),
-            responseValidator: async (data) => await zHentArbeidsgivereResponse.parseAsync(data),
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/oppslag/arbeidsgiver',
             ...options,
         });
     }
