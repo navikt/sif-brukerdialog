@@ -19,6 +19,7 @@ export type BrukerdialogOppgaveDto = {
     opprettetDato: string;
     respons?: OppgaveResponsDto;
     status: OppgaveStatus;
+    ytelsetype: OppgaveYtelsetype;
 };
 
 export type EndretPeriodeDataDto = {

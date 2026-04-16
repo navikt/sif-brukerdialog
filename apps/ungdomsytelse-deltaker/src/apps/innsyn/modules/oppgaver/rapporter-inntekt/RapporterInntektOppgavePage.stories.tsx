@@ -1,6 +1,6 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
@@ -21,6 +21,7 @@ export default meta;
 type Story = StoryObj;
 
 const oppgave: RapporterInntektOppgave = {
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {
@@ -51,6 +52,7 @@ const besvartOppgave: RapporterInntektOppgave = {
 };
 
 const utløptUbesvartOppgave: RapporterInntektOppgave = {
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgaveReferanse: 'ab0a18f8-8a6e-485b-b2b6-8d43a438165d',
     oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {

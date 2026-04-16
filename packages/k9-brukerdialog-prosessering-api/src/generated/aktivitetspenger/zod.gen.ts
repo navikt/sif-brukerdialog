@@ -44,6 +44,20 @@ export const zAktivitetspengersøknad = z.object({
     harForståttRettigheterOgPlikter: z.boolean(),
 });
 
+export const zAktivitetspengerOppgaveUttalelseDto = z.object({
+    harUttalelse: z.boolean(),
+    uttalelseFraDeltaker: z.string().optional(),
+});
+
+export const zAktivitetspengerOppgaveDto = z.object({
+    oppgaveReferanse: z.string(),
+    uttalelse: zAktivitetspengerOppgaveUttalelseDto,
+});
+
+export const zAktivitetspengerOppgavebekreftelse = z.object({
+    oppgave: zAktivitetspengerOppgaveDto,
+});
+
 export const zOppgittInntekt = z.object({
     arbeidstakerOgFrilansInntekt: z
         .int()
@@ -140,6 +154,12 @@ export const zLagreVedleggBody = z.object({
 export const zInnsendingAktivitetspengersøknadBody = zAktivitetspengersøknad;
 
 export const zInnsendingAktivitetspengersøknadHeaders = z.object({
+    'X-Brukerdialog-Git-Sha': z.string(),
+});
+
+export const zOppgavebekreftelseBody = zAktivitetspengerOppgavebekreftelse;
+
+export const zOppgavebekreftelseHeaders = z.object({
     'X-Brukerdialog-Git-Sha': z.string(),
 });
 

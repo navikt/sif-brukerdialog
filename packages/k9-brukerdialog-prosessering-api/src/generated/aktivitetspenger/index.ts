@@ -12,6 +12,9 @@ export {
 } from './sdk.gen';
 export type {
     AktivitetspengerInntektsrapportering,
+    AktivitetspengerOppgavebekreftelse,
+    AktivitetspengerOppgaveDto,
+    AktivitetspengerOppgaveUttalelseDto,
     Aktivitetspengersøknad,
     ArbeidsgivereDto,
     BarnOppslag,
@@ -67,6 +70,10 @@ export type {
     LagreVedleggError,
     LagreVedleggErrors,
     LagreVedleggResponses,
+    OppgavebekreftelseData,
+    OppgavebekreftelseError,
+    OppgavebekreftelseErrors,
+    OppgavebekreftelseResponses,
     OppgittInntekt,
     OrganisasjonDto,
     PrivatArbeidsgiverDto,
@@ -84,6 +91,9 @@ export type {
 } from './types.gen';
 export {
     zAktivitetspengerInntektsrapportering,
+    zAktivitetspengerOppgavebekreftelse,
+    zAktivitetspengerOppgaveDto,
+    zAktivitetspengerOppgaveUttalelseDto,
     zAktivitetspengersøknad,
     zArbeidsgivereDto,
     zBarnOppslag,
@@ -109,6 +119,8 @@ export {
     zJsonNode,
     zKontonummerInfo,
     zLagreVedleggBody,
+    zOppgavebekreftelseBody,
+    zOppgavebekreftelseHeaders,
     zOppgittInntekt,
     zOrganisasjonDto,
     zPrivatArbeidsgiverDto,

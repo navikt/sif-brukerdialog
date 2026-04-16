@@ -101,6 +101,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
             </section>
             <section aria-label={intl.text('@ungInnsyn.oppgavebekreftelse.uttalelseform.ariaLabel')}>
                 <UtalelseForm
+                    oppgaveYtelsetype={oppgave.ytelsetype}
                     svaralternativer={getSvaralternativer(oppgave, intl)}
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, intl)}
                     uttalelseLabel={getTilbakemeldingFritekstLabel(oppgave, intl)}

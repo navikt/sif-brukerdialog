@@ -99,6 +99,7 @@ const getOppgaveBaseProps = (oppgave: BrukerdialogOppgaveDto): Omit<ParsedOppgav
         opprettetDato,
         sisteDatoEnKanSvare: getSisteDatoEnKanSvare(svarfrist),
         løstDato,
+        ytelsetype: oppgave.ytelsetype,
     };
 };
 

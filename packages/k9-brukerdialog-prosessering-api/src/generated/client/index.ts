@@ -25,6 +25,9 @@ export {
 } from './sdk.gen';
 export type {
     AktivitetspengerInntektsrapportering,
+    AktivitetspengerOppgavebekreftelse,
+    AktivitetspengerOppgaveDto,
+    AktivitetspengerOppgaveUttalelseDto,
     Aktivitetspengersøknad,
     AnnenAktivitet,
     AnnenForelder,
@@ -193,6 +196,10 @@ export type {
     OmsorgsstønadMottarHelePerioden,
     OmsorgsstønadMottarIkke,
     Omsorgstilbud,
+    Oppgavebekreftelse1Data,
+    Oppgavebekreftelse1Error,
+    Oppgavebekreftelse1Errors,
+    Oppgavebekreftelse1Responses,
     OppgavebekreftelseData,
     OppgavebekreftelseError,
     OppgavebekreftelseErrors,
@@ -258,6 +265,9 @@ export type {
 } from './types.gen';
 export {
     zAktivitetspengerInntektsrapportering,
+    zAktivitetspengerOppgavebekreftelse,
+    zAktivitetspengerOppgaveDto,
+    zAktivitetspengerOppgaveUttalelseDto,
     zAktivitetspengersøknad,
     zAnnenAktivitet,
     zAnnenForelder,
@@ -369,6 +379,8 @@ export {
     zOmsorgsstønadMottarHelePerioden,
     zOmsorgsstønadMottarIkke,
     zOmsorgstilbud,
+    zOppgavebekreftelse1Body,
+    zOppgavebekreftelse1Headers,
     zOppgavebekreftelseBody,
     zOppgavebekreftelseHeaders,
     zOppgittInntekt,

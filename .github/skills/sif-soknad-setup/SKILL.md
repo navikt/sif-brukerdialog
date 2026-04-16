@@ -103,7 +103,7 @@ src/app/
 | `hooks/index.ts`                  | Ingen                                      |
 | `soknad/SoknadFormButtons.tsx`    | Ingen                                      |
 | `soknad/AppForm.tsx`              | Ingen                                      |
-| `wrappers/AppErrorBoundary.tsx`   | Ingen                                      |
+| `wrappers/AppErrorBoundary.tsx`   | Ingen — bruker FaroErrorBoundary, ikke SentryErrorBoundary. Sentry dekkes av `reactErrorHandler` i `main.tsx`. |
 
 ## Viktige regler og fallgruver
 

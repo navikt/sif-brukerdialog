@@ -42,7 +42,7 @@ export const BostedForm = () => {
             {borITrondheim === YesOrNo.NO && (
                 <SifInfoCard variant="warning">
                     <Heading level="3" size="small" spacing>
-                        Når du ikke bor i Tronheim
+                        Når du ikke bor i Trondheim
                     </Heading>
                     <BodyLong spacing>Info</BodyLong>
                 </SifInfoCard>
