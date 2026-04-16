@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 import { TidEnkeltdagEndring } from '../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TidsbrukKalender from '../../local-sif-common-pleiepenger/components/tidsbruk-kalender/TidsbrukKalender';
-import TilsynsordningEnkeltdagDialog from '../../local-sif-common-pleiepenger/components/tilsynsordning-enkeltdag/TilsynsordningEnkeltdagDialog';
+import TilsynsordningEnkeltdagDialog from '../../local-sif-common-pleiepenger/components/tilsynsordning-enkeltdag-dialog/TilsynsordningEnkeltdagDialog';
 
 export type EnkeltdagChangeEvent = (evt: TidEnkeltdagEndring) => void;
 interface Props {

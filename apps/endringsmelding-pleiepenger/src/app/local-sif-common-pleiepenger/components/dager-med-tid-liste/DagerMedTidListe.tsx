@@ -4,10 +4,15 @@ import { AppText } from '@app/i18n';
 import { Heading, VStack } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DurationText } from '@navikt/sif-common-ui';
+import { Duration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 
-import { DagMedTid } from '../../types/DagMedTid';
+interface DagMedTid {
+    dato: Date;
+    tid: Duration;
+    normaltid?: Duration;
+}
 
 interface Props {
     dagerMedTid: DagMedTid[];

@@ -1,5 +1,3 @@
-import { ComponentMessages } from '../../types';
-
 interface Messages {
     Mandager: string;
     Tirsdager: string;
@@ -26,8 +24,9 @@ const nb: Messages = {
     fredag: 'fredag',
 };
 
-export const tidUkerdagerInputMessages: ComponentMessages<Messages> = {
-    nb: nb,
+export const tidUkerdagerInputMessages = {
+    nb,
+    nn: nb,
 };
 
 export const getTidFasteUkerdagerInputMessages = (locale: string): Messages => {

@@ -183,7 +183,7 @@ const TidEnkeltdagForm = ({
                         <VStack gap="space-24">
                             <BodyLong className="noPadding">
                                 {erHistorisk ? (
-                                    <AppText id="tidEnkeltdagForm.intro.historisk" values={{}} />
+                                    <AppText id="tidEnkeltdagForm.intro.historisk" />
                                 ) : (
                                     <AppText id="tidEnkeltdagForm.intro" />
                                 )}

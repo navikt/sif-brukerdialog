@@ -4,6 +4,7 @@ import { endreArbeidstidMessages } from '@app/modules/endre-arbeidstid-form/endr
 
 import { dagerMedTidMessages } from '../local-sif-common-pleiepenger/components/dager-med-tid-liste/dagerMedTidMessages';
 import { sifCommonPleiepengerMessages_nb } from '../local-sif-common-pleiepenger/i18n/nb';
+import { tilsynsordningMånedMessages_nb } from '../modules/tilsynsordning-måned/i18n/nb';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
 import { oppsummeringStepMessages_nb } from '../søknad/steps/oppsummering/i18n/nb';
@@ -25,6 +26,7 @@ const nb = {
     ...tilsynsordningMessages_nb,
     ...sifCommonPleiepengerMessages_nb,
     ...dagerMedTidMessages.nb,
+    ...tilsynsordningMånedMessages_nb,
 
     'psb.timerOgMinutter':
         '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
