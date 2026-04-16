@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 import { execSync } from 'child_process';
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { glob } from 'glob';
 import path from 'path';
+
+const DANGEROUS_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 
 function sortKeysDeep(obj) {
     if (Array.isArray(obj)) {
@@ -12,9 +14,12 @@ function sortKeysDeep(obj) {
         return Object.keys(obj)
             .sort()
             .reduce((acc, key) => {
+                if (DANGEROUS_KEYS.has(key)) {
+                    return acc;
+                }
                 acc[key] = sortKeysDeep(obj[key]);
                 return acc;
-            }, {});
+            }, Object.create(null));
     }
     return obj;
 }
@@ -33,8 +38,11 @@ export function getNavBaseUrl(env) {
 export async function fetchAndNormalizeSpec(url, outputPath) {
     const response = await fetch(url);
     if (!response.ok) {
-        console.warn(`⚠ Skipping spec ${url}: ${response.status} ${response.statusText}`);
-        return false;
+        if (existsSync(outputPath)) {
+            console.warn(`⚠ Fetch failed for ${url} (${response.status}), using cached spec: ${outputPath}`);
+            return false;
+        }
+        throw new Error(`Failed to fetch spec ${url}: ${response.status} ${response.statusText} (no cached file at ${outputPath})`);
     }
     const spec = await response.json();
     const sorted = sortKeysDeep(spec);

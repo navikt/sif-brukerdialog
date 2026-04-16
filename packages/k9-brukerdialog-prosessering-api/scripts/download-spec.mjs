@@ -2,10 +2,11 @@
 
 import { mkdirSync } from 'fs';
 
-import { fetchAndNormalizeSpec } from '../../../codegenUtils.js';
+import { fetchAndNormalizeSpec, getNavBaseUrl, parseCodegenEnv } from '../../../codegenUtils.js';
 
-/** I påvente av at prod-spec ikke er tilgjengelig enda brukes alltid dev her */
-const service = `k9-brukerdialog-prosessering.intern.dev.nav.no`;
+/** TODO: Fjern override når prod-spec er tilgjengelig */
+const base = parseCodegenEnv() === 'prod' ? 'intern.dev.nav.no' : getNavBaseUrl(parseCodegenEnv());
+const service = `k9-brukerdialog-prosessering.${base}`;
 
 const specs = [
     'aktivitetspenger',
