@@ -1,7 +1,7 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
@@ -22,6 +22,7 @@ export default meta;
 type Story = StoryObj;
 
 const oppgave: SøkYtelseOppgave = {
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
     oppgavetype: ParsedOppgavetype.SØK_YTELSE,
     oppgavetypeData: {

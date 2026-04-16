@@ -11,7 +11,6 @@ export { useYtelseMellomlagring } from '../hooks/useYtelseMellomlagring';
 // API
 export { hentArbeidsgivere } from '../api/arbeidsgivereApi';
 export { hentRegistrerteBarn } from '../api/registrerteBarnApi';
-export { sendOppgavebekreftelse } from '../api/sendOppgavebekreftelse';
 export { hentSøker, hentSøkerId } from '../api/sokerApi';
 export { validerFritekst } from '../api/validerFritekstApi';
 export {

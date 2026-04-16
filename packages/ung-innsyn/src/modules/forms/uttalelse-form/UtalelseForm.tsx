@@ -4,6 +4,7 @@ import {
     UngdomsytelseOppgaveUttalelseDto,
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiErrorAlert } from '@sif/api';
 import { useSendOppgavebekreftelse } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
@@ -14,6 +15,7 @@ import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../../types';
 
 export interface UtalelseFormProps {
+    oppgaveYtelsetype: OppgaveYtelsetype;
     spørsmål: string;
     svaralternativer: UttalelseSvaralternativer;
     uttalelseLabel: string;
@@ -43,9 +45,10 @@ export const UtalelseForm = ({
     uttalelseDescription,
     oppgaveReferanse,
     svaralternativer,
+    oppgaveYtelsetype,
     onSuccess,
 }: UtalelseFormProps) => {
-    const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
+    const { mutateAsync, error, isPending } = useSendOppgavebekreftelse(oppgaveYtelsetype);
     const { intl, text } = useUngUiIntl();
     const { validateField } = useSifValidate('@ungInnsyn.uttalelseForm');
     const { onCancel } = useOppgavePage();

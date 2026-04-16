@@ -1,6 +1,6 @@
 import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
@@ -21,6 +21,7 @@ export default meta;
 type Story = StoryObj;
 
 const oppgave: EndretStartOgSluttdatoOppgave = {
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
     oppgavetypeData: {

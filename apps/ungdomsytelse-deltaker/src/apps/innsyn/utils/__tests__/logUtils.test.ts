@@ -1,5 +1,5 @@
 import { logUtils } from '@innsyn/utils/logUtils';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { ParsedOppgavetype, SøkYtelseOppgave } from '@shared/types/Oppgave';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
@@ -31,6 +31,7 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         oppgavetypeData: {
             fomDato: dayjs().subtract(10, 'days').toDate(),
         },
+        ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     };
 
     describe('kontonummer-logikk', () => {

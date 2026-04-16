@@ -4,36 +4,36 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type ProblemDetail = {
-    type?: string;
-    title?: string;
-    status?: number;
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-};
-
-export type OmsorgsdagerKronsinskSuktBarnRequestDto = {
-    pleietrengendeAktørId: string;
-};
-
 export type HentSisteGyldigeVedtakForAktorIdResponse = {
     harInnvilgedeBehandlinger: boolean;
     saksnummer?: string;
     vedtaksdato?: string;
 };
 
+export type OmsorgsdagerKronsinskSuktBarnRequestDto = {
+    pleietrengendeAktørId: string;
+};
+
 export type Opplæringsinstitusjon = {
-    uuid: string;
     navn: string;
     perioder: Periode[];
+    uuid: string;
 };
 
 export type Periode = {
     fom: string;
     tom: string;
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
 };
 
 export type HentSisteGyldigeVedtakForAktorIdData = {

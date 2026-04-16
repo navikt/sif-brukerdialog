@@ -4,38 +4,22 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type ProblemDetail = {
-    type?: string;
-    title?: string;
-    status?: number;
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-};
-
-export type EndrePeriodeDatoDto = {
-    dato: string;
-};
-
 export type DeltakelseDto = {
-    id?: string;
     deltaker: DeltakerDto;
-    fraOgMed: string;
-    tilOgMed?: string;
     erSlettet: boolean;
+    fraOgMed: string;
     harOpphørsvedtak: boolean;
-    søktTidspunkt?: string;
-};
-
-export type DeltakerDto = {
     id?: string;
-    deltakerIdent: string;
+    søktTidspunkt?: string;
+    tilOgMed?: string;
 };
 
-export type DeltakelseUtmeldingDto = {
-    utmeldingsdato: string;
+export type DeltakelseHistorikkDto = {
+    aktør: string;
+    endring: string;
+    endringstype: Endringstype;
+    revisjonstype: Revisjonstype;
+    tidspunkt: string;
 };
 
 export type DeltakelseInnmeldingDto = {
@@ -43,16 +27,25 @@ export type DeltakelseInnmeldingDto = {
     startdato: string;
 };
 
-export type DeltakerPersonalia = {
-    id?: string;
+export type DeltakelseUtmeldingDto = {
+    utmeldingsdato: string;
+};
+
+export type DeltakerDto = {
     deltakerIdent: string;
-    navn: Navn;
-    fødselsdato: string;
+    id?: string;
+};
+
+export type DeltakerPersonalia = {
+    deltakerIdent: string;
     /**
      * Diskresjonskoder som gjelder for deltakeren. Vil være tom hvis deltaker ikke har diskresjonskoder satt.
      */
     diskresjonskoder: Diskresjonskode[];
+    fødselsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    id?: string;
+    navn: Navn;
     sisteMuligeInnmeldingsdato: string;
 };
 
@@ -62,18 +55,8 @@ export enum Diskresjonskode {
     SKJERMET = 'SKJERMET',
 }
 
-export type Navn = {
-    fornavn: string;
-    mellomnavn?: string;
-    etternavn: string;
-};
-
-export type DeltakelseHistorikkDto = {
-    tidspunkt: string;
-    endringstype: Endringstype;
-    revisjonstype: Revisjonstype;
-    endring: string;
-    aktør: string;
+export type EndrePeriodeDatoDto = {
+    dato: string;
 };
 
 export enum Endringstype {
@@ -86,150 +69,29 @@ export enum Endringstype {
     UKJENT = 'UKJENT',
 }
 
+export type Navn = {
+    etternavn: string;
+    fornavn: string;
+    mellomnavn?: string;
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
+};
+
 export enum Revisjonstype {
     OPPRETTET = 'OPPRETTET',
     ENDRET = 'ENDRET',
     SLETTET = 'SLETTET',
     UKJENT = 'UKJENT',
 }
-
-export type EndreStartdatoData = {
-    body: EndrePeriodeDatoDto;
-    path: {
-        deltakelseId: string;
-    };
-    query?: never;
-    url: '/veileder/register/deltakelse/{deltakelseId}/endre/startdato';
-};
-
-export type EndreStartdatoErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type EndreStartdatoError = EndreStartdatoErrors[keyof EndreStartdatoErrors];
-
-export type EndreStartdatoResponses = {
-    /**
-     * OK
-     */
-    200: DeltakelseDto;
-};
-
-export type EndreStartdatoResponse = EndreStartdatoResponses[keyof EndreStartdatoResponses];
-
-export type EndreSluttdatoData = {
-    body: EndrePeriodeDatoDto;
-    path: {
-        deltakelseId: string;
-    };
-    query?: never;
-    url: '/veileder/register/deltakelse/{deltakelseId}/endre/sluttdato';
-};
-
-export type EndreSluttdatoErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type EndreSluttdatoError = EndreSluttdatoErrors[keyof EndreSluttdatoErrors];
-
-export type EndreSluttdatoResponses = {
-    /**
-     * OK
-     */
-    200: DeltakelseDto;
-};
-
-export type EndreSluttdatoResponse = EndreSluttdatoResponses[keyof EndreSluttdatoResponses];
-
-export type MeldUtDeltakerData = {
-    body: DeltakelseUtmeldingDto;
-    path: {
-        deltakelseId: string;
-    };
-    query?: never;
-    url: '/veileder/register/deltakelse/{deltakelseId}/avslutt';
-};
-
-export type MeldUtDeltakerErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type MeldUtDeltakerError = MeldUtDeltakerErrors[keyof MeldUtDeltakerErrors];
-
-export type MeldUtDeltakerResponses = {
-    /**
-     * OK
-     */
-    200: DeltakelseDto;
-};
-
-export type MeldUtDeltakerResponse = MeldUtDeltakerResponses[keyof MeldUtDeltakerResponses];
-
-export type MeldInnDeltakerData = {
-    body: DeltakelseInnmeldingDto;
-    path?: never;
-    query?: never;
-    url: '/veileder/register/deltaker/innmelding';
-};
-
-export type MeldInnDeltakerErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type MeldInnDeltakerError = MeldInnDeltakerErrors[keyof MeldInnDeltakerErrors];
-
-export type MeldInnDeltakerResponses = {
-    /**
-     * OK
-     */
-    200: DeltakelseDto;
-};
-
-export type MeldInnDeltakerResponse = MeldInnDeltakerResponses[keyof MeldInnDeltakerResponses];
 
 export type HentDeltakerInfoGittDeltakerData = {
     body: DeltakerDto;
@@ -265,78 +127,6 @@ export type HentDeltakerInfoGittDeltakerResponses = {
 
 export type HentDeltakerInfoGittDeltakerResponse =
     HentDeltakerInfoGittDeltakerResponses[keyof HentDeltakerInfoGittDeltakerResponses];
-
-export type HentAlleDeltakelserGittDeltakerIdData = {
-    body?: never;
-    path: {
-        deltakerId: string;
-    };
-    query?: never;
-    url: '/veileder/register/deltaker/{deltakerId}/deltakelser';
-};
-
-export type HentAlleDeltakelserGittDeltakerIdErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type HentAlleDeltakelserGittDeltakerIdError =
-    HentAlleDeltakelserGittDeltakerIdErrors[keyof HentAlleDeltakelserGittDeltakerIdErrors];
-
-export type HentAlleDeltakelserGittDeltakerIdResponses = {
-    /**
-     * OK
-     */
-    200: DeltakelseDto[];
-};
-
-export type HentAlleDeltakelserGittDeltakerIdResponse =
-    HentAlleDeltakelserGittDeltakerIdResponses[keyof HentAlleDeltakelserGittDeltakerIdResponses];
-
-export type DeltakelseHistorikkData = {
-    body?: never;
-    path: {
-        deltakelseId: string;
-    };
-    query?: never;
-    url: '/veileder/register/deltakelse/{deltakelseId}/historikk';
-};
-
-export type DeltakelseHistorikkErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type DeltakelseHistorikkError = DeltakelseHistorikkErrors[keyof DeltakelseHistorikkErrors];
-
-export type DeltakelseHistorikkResponses = {
-    /**
-     * OK
-     */
-    200: DeltakelseHistorikkDto[];
-};
-
-export type DeltakelseHistorikkResponse = DeltakelseHistorikkResponses[keyof DeltakelseHistorikkResponses];
 
 export type HentDeltakerInfoGittDeltakerIdData = {
     body?: never;
@@ -374,6 +164,216 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
 
 export type HentDeltakerInfoGittDeltakerIdResponse =
     HentDeltakerInfoGittDeltakerIdResponses[keyof HentDeltakerInfoGittDeltakerIdResponses];
+
+export type MeldUtDeltakerData = {
+    body: DeltakelseUtmeldingDto;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/avslutt';
+};
+
+export type MeldUtDeltakerErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type MeldUtDeltakerError = MeldUtDeltakerErrors[keyof MeldUtDeltakerErrors];
+
+export type MeldUtDeltakerResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+
+export type MeldUtDeltakerResponse = MeldUtDeltakerResponses[keyof MeldUtDeltakerResponses];
+
+export type EndreSluttdatoData = {
+    body: EndrePeriodeDatoDto;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/endre/sluttdato';
+};
+
+export type EndreSluttdatoErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type EndreSluttdatoError = EndreSluttdatoErrors[keyof EndreSluttdatoErrors];
+
+export type EndreSluttdatoResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+
+export type EndreSluttdatoResponse = EndreSluttdatoResponses[keyof EndreSluttdatoResponses];
+
+export type EndreStartdatoData = {
+    body: EndrePeriodeDatoDto;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/endre/startdato';
+};
+
+export type EndreStartdatoErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type EndreStartdatoError = EndreStartdatoErrors[keyof EndreStartdatoErrors];
+
+export type EndreStartdatoResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+
+export type EndreStartdatoResponse = EndreStartdatoResponses[keyof EndreStartdatoResponses];
+
+export type DeltakelseHistorikkData = {
+    body?: never;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/historikk';
+};
+
+export type DeltakelseHistorikkErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type DeltakelseHistorikkError = DeltakelseHistorikkErrors[keyof DeltakelseHistorikkErrors];
+
+export type DeltakelseHistorikkResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseHistorikkDto[];
+};
+
+export type DeltakelseHistorikkResponse = DeltakelseHistorikkResponses[keyof DeltakelseHistorikkResponses];
+
+export type MeldInnDeltakerData = {
+    body: DeltakelseInnmeldingDto;
+    path?: never;
+    query?: never;
+    url: '/veileder/register/deltaker/innmelding';
+};
+
+export type MeldInnDeltakerErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type MeldInnDeltakerError = MeldInnDeltakerErrors[keyof MeldInnDeltakerErrors];
+
+export type MeldInnDeltakerResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+
+export type MeldInnDeltakerResponse = MeldInnDeltakerResponses[keyof MeldInnDeltakerResponses];
+
+export type HentAlleDeltakelserGittDeltakerIdData = {
+    body?: never;
+    path: {
+        deltakerId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltaker/{deltakerId}/deltakelser';
+};
+
+export type HentAlleDeltakelserGittDeltakerIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentAlleDeltakelserGittDeltakerIdError =
+    HentAlleDeltakelserGittDeltakerIdErrors[keyof HentAlleDeltakelserGittDeltakerIdErrors];
+
+export type HentAlleDeltakelserGittDeltakerIdResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto[];
+};
+
+export type HentAlleDeltakelserGittDeltakerIdResponse =
+    HentAlleDeltakelserGittDeltakerIdResponses[keyof HentAlleDeltakelserGittDeltakerIdResponses];
 
 export type FjernFraProgramData = {
     body?: never;
