@@ -65,6 +65,162 @@ export type Options<
     meta?: Record<string, unknown>;
 };
 
+export class DokumentController {
+    public static hentDokument<ThrowOnError extends boolean = true>(options: Options<HentDokumentData, ThrowOnError>) {
+        return (options.client ?? client).get<HentDokumentResponses, HentDokumentErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zHentDokumentPath,
+                        query: zHentDokumentQuery,
+                    })
+                    .parseAsync(data),
+            responseType: 'blob',
+            responseValidator: async (data) => await zHentDokumentResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/dokument/{journalpostId}/{dokumentInfoId}/{variantFormat}',
+            ...options,
+        });
+    }
+}
+
+export class SakController {
+    /**
+     * Henter saken registrert på pleietrengende som bruker har omsorgen for
+     */
+    public static hentSak<ThrowOnError extends boolean = true>(options: Options<HentSakData, ThrowOnError>) {
+        return (options.client ?? client).get<HentSakResponses, HentSakErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zHentSakPath,
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zHentSakResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/sak/{saksnummer}',
+            ...options,
+        });
+    }
+
+    /**
+     * Henter sakene registrert på pleietrengende som bruker har omsorgen for
+     */
+    public static hentMineSaker<ThrowOnError extends boolean = true>(
+        options?: Options<HentMineSakerData, ThrowOnError>,
+    ) {
+        return (options?.client ?? client).get<HentMineSakerResponses, HentMineSakerErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zHentMineSakerResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/saker',
+            ...options,
+        });
+    }
+
+    /**
+     * Henter metadata om sakene registrert på pleietrengende som bruker har omsorgen for
+     */
+    public static hentSakerMetadata<ThrowOnError extends boolean = true>(
+        options?: Options<HentSakerMetadataData, ThrowOnError>,
+    ) {
+        return (options?.client ?? client).get<HentSakerMetadataResponses, HentSakerMetadataErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zHentSakerMetadataResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/saker/metadata',
+            ...options,
+        });
+    }
+
+    public static hentSaksbehandlingstid<ThrowOnError extends boolean = true>(
+        options?: Options<HentSaksbehandlingstidData, ThrowOnError>,
+    ) {
+        return (options?.client ?? client).get<
+            HentSaksbehandlingstidResponses,
+            HentSaksbehandlingstidErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zHentSaksbehandlingstidResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/saker/saksbehandlingstid',
+            ...options,
+        });
+    }
+}
+
+export class SakInntektsmeldingerController {
+    public static hentInntektsmeldingerPåSak<ThrowOnError extends boolean = true>(
+        options: Options<HentInntektsmeldingerPåSakData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).get<
+            HentInntektsmeldingerPåSakResponses,
+            HentInntektsmeldingerPåSakErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zHentInntektsmeldingerPåSakPath,
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseValidator: async (data) => await zHentInntektsmeldingerPåSakResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/sak/{saksnummer}/inntektsmeldinger',
+            ...options,
+        });
+    }
+}
+
 export class SØknadController {
     public static hentSøknader<ThrowOnError extends boolean = true>(options?: Options<HentSøknaderData, ThrowOnError>) {
         return (options?.client ?? client).get<HentSøknaderResponses, HentSøknaderErrors, ThrowOnError>({
@@ -110,162 +266,6 @@ export class SØknadController {
                 { scheme: 'bearer', type: 'http' },
             ],
             url: '/soknad/{søknadId}/arbeidsgivermelding',
-            ...options,
-        });
-    }
-}
-
-export class SakController {
-    /**
-     * Henter sakene registrert på pleietrengende som bruker har omsorgen for
-     */
-    public static hentMineSaker<ThrowOnError extends boolean = true>(
-        options?: Options<HentMineSakerData, ThrowOnError>,
-    ) {
-        return (options?.client ?? client).get<HentMineSakerResponses, HentMineSakerErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zHentMineSakerResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/saker',
-            ...options,
-        });
-    }
-
-    public static hentSaksbehandlingstid<ThrowOnError extends boolean = true>(
-        options?: Options<HentSaksbehandlingstidData, ThrowOnError>,
-    ) {
-        return (options?.client ?? client).get<
-            HentSaksbehandlingstidResponses,
-            HentSaksbehandlingstidErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zHentSaksbehandlingstidResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/saker/saksbehandlingstid',
-            ...options,
-        });
-    }
-
-    /**
-     * Henter metadata om sakene registrert på pleietrengende som bruker har omsorgen for
-     */
-    public static hentSakerMetadata<ThrowOnError extends boolean = true>(
-        options?: Options<HentSakerMetadataData, ThrowOnError>,
-    ) {
-        return (options?.client ?? client).get<HentSakerMetadataResponses, HentSakerMetadataErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zHentSakerMetadataResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/saker/metadata',
-            ...options,
-        });
-    }
-
-    /**
-     * Henter saken registrert på pleietrengende som bruker har omsorgen for
-     */
-    public static hentSak<ThrowOnError extends boolean = true>(options: Options<HentSakData, ThrowOnError>) {
-        return (options.client ?? client).get<HentSakResponses, HentSakErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zHentSakPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zHentSakResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/sak/{saksnummer}',
-            ...options,
-        });
-    }
-}
-
-export class SakInntektsmeldingerController {
-    public static hentInntektsmeldingerPåSak<ThrowOnError extends boolean = true>(
-        options: Options<HentInntektsmeldingerPåSakData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).get<
-            HentInntektsmeldingerPåSakResponses,
-            HentInntektsmeldingerPåSakErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zHentInntektsmeldingerPåSakPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseValidator: async (data) => await zHentInntektsmeldingerPåSakResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/sak/{saksnummer}/inntektsmeldinger',
-            ...options,
-        });
-    }
-}
-
-export class DokumentController {
-    public static hentDokument<ThrowOnError extends boolean = true>(options: Options<HentDokumentData, ThrowOnError>) {
-        return (options.client ?? client).get<HentDokumentResponses, HentDokumentErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zHentDokumentPath,
-                        query: zHentDokumentQuery,
-                    })
-                    .parseAsync(data),
-            responseType: 'blob',
-            responseValidator: async (data) => await zHentDokumentResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/dokument/{journalpostId}/{dokumentInfoId}/{variantFormat}',
             ...options,
         });
     }

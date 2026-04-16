@@ -2,63 +2,34 @@
 
 import * as z from 'zod';
 
-export const zProblemDetail = z.object({
-    type: z.url().optional(),
-    title: z.string().optional(),
-    status: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
-    detail: z.string().optional(),
-    instance: z.url().optional(),
-    properties: z.record(z.string(), z.unknown()).optional(),
-});
-
-export const zEndrePeriodeDatoDto = z.object({
-    dato: z.iso.date(),
-});
-
-export const zDeltakerDto = z.object({
-    id: z.uuid().optional(),
+export const zDeltakelseInnmeldingDto = z.object({
     deltakerIdent: z.string(),
-});
-
-export const zDeltakelseDto = z.object({
-    id: z.uuid().optional(),
-    deltaker: zDeltakerDto,
-    fraOgMed: z.iso.date(),
-    tilOgMed: z.iso.date().optional(),
-    erSlettet: z.boolean(),
-    harOpphørsvedtak: z.boolean(),
-    søktTidspunkt: z.iso.datetime({ local: true }).optional(),
+    startdato: z.iso.date(),
 });
 
 export const zDeltakelseUtmeldingDto = z.object({
     utmeldingsdato: z.iso.date(),
 });
 
-export const zDeltakelseInnmeldingDto = z.object({
+export const zDeltakerDto = z.object({
     deltakerIdent: z.string(),
-    startdato: z.iso.date(),
+    id: z.uuid().optional(),
+});
+
+export const zDeltakelseDto = z.object({
+    deltaker: zDeltakerDto,
+    erSlettet: z.boolean(),
+    fraOgMed: z.iso.date(),
+    harOpphørsvedtak: z.boolean(),
+    id: z.uuid().optional(),
+    søktTidspunkt: z.iso.datetime({ local: true }).optional(),
+    tilOgMed: z.iso.date().optional(),
 });
 
 export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
 
-export const zNavn = z.object({
-    fornavn: z.string(),
-    mellomnavn: z.string().optional(),
-    etternavn: z.string(),
-});
-
-export const zDeltakerPersonalia = z.object({
-    id: z.uuid().optional(),
-    deltakerIdent: z.string(),
-    navn: zNavn,
-    fødselsdato: z.iso.date(),
-    diskresjonskoder: z.array(zDiskresjonskode),
-    sisteMuligeInnmeldingsdato: z.iso.date(),
-    førsteMuligeInnmeldingsdato: z.iso.date(),
+export const zEndrePeriodeDatoDto = z.object({
+    dato: z.iso.date(),
 });
 
 export const zEndringstype = z.enum([
@@ -71,37 +42,60 @@ export const zEndringstype = z.enum([
     'UKJENT',
 ]);
 
+export const zNavn = z.object({
+    etternavn: z.string(),
+    fornavn: z.string(),
+    mellomnavn: z.string().optional(),
+});
+
+export const zDeltakerPersonalia = z.object({
+    deltakerIdent: z.string(),
+    diskresjonskoder: z.array(zDiskresjonskode),
+    fødselsdato: z.iso.date(),
+    førsteMuligeInnmeldingsdato: z.iso.date(),
+    id: z.uuid().optional(),
+    navn: zNavn,
+    sisteMuligeInnmeldingsdato: z.iso.date(),
+});
+
+export const zProblemDetail = z.object({
+    detail: z.string().optional(),
+    instance: z.url().optional(),
+    properties: z.record(z.string(), z.unknown()).optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    title: z.string().optional(),
+    type: z.url().optional(),
+});
+
 export const zRevisjonstype = z.enum(['OPPRETTET', 'ENDRET', 'SLETTET', 'UKJENT']);
 
 export const zDeltakelseHistorikkDto = z.object({
-    tidspunkt: z.iso.datetime({ local: true }),
+    aktør: z.string(),
+    endring: z.string(),
     endringstype: zEndringstype,
     revisjonstype: zRevisjonstype,
-    endring: z.string(),
-    aktør: z.string(),
+    tidspunkt: z.iso.datetime({ local: true }),
 });
 
-export const zEndreStartdatoBody = zEndrePeriodeDatoDto;
+export const zHentDeltakerInfoGittDeltakerBody = zDeltakerDto;
 
-export const zEndreStartdatoPath = z.object({
-    deltakelseId: z.uuid(),
+/**
+ * OK
+ */
+export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
+
+export const zHentDeltakerInfoGittDeltakerIdPath = z.object({
+    id: z.uuid(),
 });
 
 /**
  * OK
  */
-export const zEndreStartdatoResponse = zDeltakelseDto;
-
-export const zEndreSluttdatoBody = zEndrePeriodeDatoDto;
-
-export const zEndreSluttdatoPath = z.object({
-    deltakelseId: z.uuid(),
-});
-
-/**
- * OK
- */
-export const zEndreSluttdatoResponse = zDeltakelseDto;
+export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 
 export const zMeldUtDeltakerBody = zDeltakelseUtmeldingDto;
 
@@ -114,28 +108,27 @@ export const zMeldUtDeltakerPath = z.object({
  */
 export const zMeldUtDeltakerResponse = zDeltakelseDto;
 
-export const zMeldInnDeltakerBody = zDeltakelseInnmeldingDto;
+export const zEndreSluttdatoBody = zEndrePeriodeDatoDto;
 
-/**
- * OK
- */
-export const zMeldInnDeltakerResponse = zDeltakelseDto;
-
-export const zHentDeltakerInfoGittDeltakerBody = zDeltakerDto;
-
-/**
- * OK
- */
-export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
-
-export const zHentAlleDeltakelserGittDeltakerIdPath = z.object({
-    deltakerId: z.uuid(),
+export const zEndreSluttdatoPath = z.object({
+    deltakelseId: z.uuid(),
 });
 
 /**
  * OK
  */
-export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseDto);
+export const zEndreSluttdatoResponse = zDeltakelseDto;
+
+export const zEndreStartdatoBody = zEndrePeriodeDatoDto;
+
+export const zEndreStartdatoPath = z.object({
+    deltakelseId: z.uuid(),
+});
+
+/**
+ * OK
+ */
+export const zEndreStartdatoResponse = zDeltakelseDto;
 
 export const zDeltakelseHistorikkPath = z.object({
     deltakelseId: z.uuid(),
@@ -146,14 +139,21 @@ export const zDeltakelseHistorikkPath = z.object({
  */
 export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
 
-export const zHentDeltakerInfoGittDeltakerIdPath = z.object({
-    id: z.uuid(),
+export const zMeldInnDeltakerBody = zDeltakelseInnmeldingDto;
+
+/**
+ * OK
+ */
+export const zMeldInnDeltakerResponse = zDeltakelseDto;
+
+export const zHentAlleDeltakelserGittDeltakerIdPath = z.object({
+    deltakerId: z.uuid(),
 });
 
 /**
  * OK
  */
-export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
+export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseDto);
 
 export const zFjernFraProgramPath = z.object({
     deltakerId: z.uuid(),
