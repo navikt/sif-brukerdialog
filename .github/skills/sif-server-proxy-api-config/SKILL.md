@@ -1,3 +1,4 @@
+---
 name: sif-server-proxy-api-config
 description: Bruk denne skillen når en utvikler vil verifisere at en app er riktig satt opp med server, reverse proxy, init av API-klienter og env-variabler (PUBLIC_PATH, *_FRONTEND_PATH, *_API_SCOPE, *_API_URL).
 ---

@@ -1,3 +1,4 @@
+---
 name: sif-api
 description: Bruk denne skillen når en utvikler trenger å hente informasjon fra ett av API-ene i appen via @sif/api (f.eks. kontonummer, søker, barn, arbeidsgivere, mellomlagring).
 ---

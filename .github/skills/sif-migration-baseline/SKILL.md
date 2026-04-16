@@ -1,3 +1,4 @@
+---
 name: sif-migration-baseline
 description: Lettvekts runbook for migrering av en dialog-app til ny v2 setup med sif-soknad og sif-rhf.
 ---

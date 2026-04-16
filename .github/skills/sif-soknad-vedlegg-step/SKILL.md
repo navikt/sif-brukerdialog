@@ -1,6 +1,8 @@
+---
 name: sif-soknad-vedlegg-step
 description: Implementer et vedleggssteg i en v2-app — VedleggPanel, PersistedVedlegg, hydration og MSW-handlere.
 ---
+
 # sif-soknad-vedlegg-step
 
 ## Bruk når

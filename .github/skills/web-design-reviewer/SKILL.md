@@ -1,6 +1,6 @@
 ---
 name: web-design-reviewer
-description: 'Visuell inspeksjon av nettsider for å identifisere og fikse designproblemer. Trigges av forespørsler som "sjekk designet", "gå gjennom UI-en", "fiks layouten", "finn designfeil". Finner problemer med responsivt design, tilgjengelighet, visuell konsistens og layout, og fikser dem i kildekoden.'
+description: Nettside-designgjennomgang
 ---
 
 # Nettside-designgjennomgang
@@ -19,17 +19,17 @@ Visuell inspeksjon og validering av designkvalitet på nettsider. Identifiserer 
 ### Påkrevd
 
 1. **Nettsiden må kjøre**
-   - Lokal utviklingsserver (f.eks. `http://localhost:3000`)
-   - Staging-miljø
-   - Produksjon (kun for gjennomgang uten endringer)
+    - Lokal utviklingsserver (f.eks. `http://localhost:3000`)
+    - Staging-miljø
+    - Produksjon (kun for gjennomgang uten endringer)
 
 2. **Browser-automatisering må være tilgjengelig**
-   - Screenshots
-   - Sidenavigasjon
-   - DOM-informasjon
+    - Screenshots
+    - Sidenavigasjon
+    - DOM-informasjon
 
 3. **Tilgang til kildekode (ved feilretting)**
-   - Prosjektet må finnes i workspace
+    - Prosjektet må finnes i workspace
 
 ## Arbeidsflyt
 
@@ -57,12 +57,12 @@ Hvis URL ikke er oppgitt, spør:
 
 Ved feilretting, finn ut følgende:
 
-| Element | Eksempel |
-|---------|----------|
-| Rammeverk | React / Vue / Next.js etc.? |
-| Styling | CSS / SCSS / Tailwind / CSS-in-JS? |
-| Kildeplassering | Hvor ligger stil- og komponentfiler? |
-| Omfang | Spesifikke sider eller hele nettstedet? |
+| Element         | Eksempel                                |
+| --------------- | --------------------------------------- |
+| Rammeverk       | React / Vue / Next.js etc.?             |
+| Styling         | CSS / SCSS / Tailwind / CSS-in-JS?      |
+| Kildeplassering | Hvor ligger stil- og komponentfiler?    |
+| Omfang          | Spesifikke sider eller hele nettstedet? |
 
 ### 1.3 Automatisk prosjektdeteksjon
 
@@ -81,15 +81,15 @@ Deteksjonsmål:
 
 ### 1.4 Identifisering av stilmetode
 
-| Metode | Deteksjon | Redigeringsmål |
-|--------|-----------|----------------|
-| Ren CSS | `*.css`-filer | Global CSS eller komponent-CSS |
-| SCSS/Sass | `*.scss`, `*.sass` | SCSS-filer |
-| CSS Modules | `*.module.css` | Modul-CSS-filer |
-| Tailwind CSS | `tailwind.config.*` | className i komponenter |
-| styled-components | `styled.` i koden | JS/TS-filer |
-| Emotion | `@emotion/`-imports | JS/TS-filer |
-| CSS-in-JS (annet) | Inline-stiler | JS/TS-filer |
+| Metode            | Deteksjon           | Redigeringsmål                 |
+| ----------------- | ------------------- | ------------------------------ |
+| Ren CSS           | `*.css`-filer       | Global CSS eller komponent-CSS |
+| SCSS/Sass         | `*.scss`, `*.sass`  | SCSS-filer                     |
+| CSS Modules       | `*.module.css`      | Modul-CSS-filer                |
+| Tailwind CSS      | `tailwind.config.*` | className i komponenter        |
+| styled-components | `styled.` i koden   | JS/TS-filer                    |
+| Emotion           | `@emotion/`-imports | JS/TS-filer                    |
+| CSS-in-JS (annet) | Inline-stiler       | JS/TS-filer                    |
 
 ---
 
@@ -106,48 +106,48 @@ Deteksjonsmål:
 
 #### Layout-problemer
 
-| Problem | Beskrivelse | Alvorlighet |
-|---------|-------------|-------------|
-| Overflow | Innhold flyter utenfor forelder eller viewport | Høy |
-| Overlapping | Utilsiktet overlapping av elementer | Høy |
-| Alignment-feil | Grid- eller flex-alignment-problemer | Middels |
-| Inkonsistent spacing | Padding/margin-inkonsistens | Middels |
-| Text overflow | Lang tekst håndteres ikke riktig | Middels |
+| Problem              | Beskrivelse                                    | Alvorlighet |
+| -------------------- | ---------------------------------------------- | ----------- |
+| Overflow             | Innhold flyter utenfor forelder eller viewport | Høy         |
+| Overlapping          | Utilsiktet overlapping av elementer            | Høy         |
+| Alignment-feil       | Grid- eller flex-alignment-problemer           | Middels     |
+| Inkonsistent spacing | Padding/margin-inkonsistens                    | Middels     |
+| Text overflow        | Lang tekst håndteres ikke riktig               | Middels     |
 
 #### Responsive problemer
 
-| Problem | Beskrivelse | Alvorlighet |
-|---------|-------------|-------------|
-| Ikke mobilvennlig | Layout brekker på små skjermer | Høy |
-| Breakpoint-problemer | Unaturlige overganger ved skjermendring | Middels |
-| Touch targets | Knapper for små på mobil | Middels |
+| Problem              | Beskrivelse                             | Alvorlighet |
+| -------------------- | --------------------------------------- | ----------- |
+| Ikke mobilvennlig    | Layout brekker på små skjermer          | Høy         |
+| Breakpoint-problemer | Unaturlige overganger ved skjermendring | Middels     |
+| Touch targets        | Knapper for små på mobil                | Middels     |
 
 #### Tilgjengelighetsproblemer
 
-| Problem | Beskrivelse | Alvorlighet |
-|---------|-------------|-------------|
-| Utilstrekkelig kontrast | Lav kontrastforhold mellom tekst og bakgrunn | Høy |
-| Ingen fokustilstand | Kan ikke se fokus ved tastaturnavigasjon | Høy |
-| Manglende alt-tekst | Ingen alternativtekst for bilder | Middels |
+| Problem                 | Beskrivelse                                  | Alvorlighet |
+| ----------------------- | -------------------------------------------- | ----------- |
+| Utilstrekkelig kontrast | Lav kontrastforhold mellom tekst og bakgrunn | Høy         |
+| Ingen fokustilstand     | Kan ikke se fokus ved tastaturnavigasjon     | Høy         |
+| Manglende alt-tekst     | Ingen alternativtekst for bilder             | Middels     |
 
 #### Visuell konsistens
 
-| Problem | Beskrivelse | Alvorlighet |
-|---------|-------------|-------------|
-| Fontinkonsistens | Blanding av fontfamilier | Middels |
-| Fargeinkonsistens | Ikke-enhetlige merkefarger | Middels |
-| Spacing-inkonsistens | Ulik spacing mellom like elementer | Lav |
+| Problem              | Beskrivelse                        | Alvorlighet |
+| -------------------- | ---------------------------------- | ----------- |
+| Fontinkonsistens     | Blanding av fontfamilier           | Middels     |
+| Fargeinkonsistens    | Ikke-enhetlige merkefarger         | Middels     |
+| Spacing-inkonsistens | Ulik spacing mellom like elementer | Lav         |
 
 ### 2.3 Viewport-testing (responsiv)
 
 Test ved følgende viewports:
 
-| Navn | Bredde | Representativ enhet |
-|------|--------|---------------------|
-| Mobil | 375px | iPhone SE/12 mini |
-| Nettbrett | 768px | iPad |
-| Desktop | 1280px | Standard PC |
-| Bred | 1920px | Stor skjerm |
+| Navn      | Bredde | Representativ enhet |
+| --------- | ------ | ------------------- |
+| Mobil     | 375px  | iPhone SE/12 mini   |
+| Nettbrett | 768px  | iPad                |
+| Desktop   | 1280px | Standard PC         |
+| Bred      | 1920px | Stor skjerm         |
 
 ---
 
@@ -155,30 +155,30 @@ Test ved følgende viewports:
 
 ### 3.1 Prioritering
 
-| Prioritet | Beskrivelse |
-|-----------|-------------|
-| P1 | Fiks umiddelbart — Layout-problemer som påvirker funksjonalitet |
-| P2 | Fiks snart — Visuelle problemer som forringer UX |
-| P3 | Fiks hvis mulig — Mindre visuelle inkonsistenser |
+| Prioritet | Beskrivelse                                                     |
+| --------- | --------------------------------------------------------------- |
+| P1        | Fiks umiddelbart — Layout-problemer som påvirker funksjonalitet |
+| P2        | Fiks snart — Visuelle problemer som forringer UX                |
+| P3        | Fiks hvis mulig — Mindre visuelle inkonsistenser                |
 
 ### 3.2 Finne kildefiler
 
 Identifiser kildefiler fra problematiske elementer:
 
 1. **Selektor-basert søk**
-   - Søk i kodebasen etter klassenavn eller ID
-   - Utforsk stildefinisjoner med `grep_search`
+    - Søk i kodebasen etter klassenavn eller ID
+    - Utforsk stildefinisjoner med `grep_search`
 
 2. **Komponent-basert søk**
-   - Identifiser komponenter fra elementtekst eller struktur
-   - Utforsk relaterte filer med `semantic_search`
+    - Identifiser komponenter fra elementtekst eller struktur
+    - Utforsk relaterte filer med `semantic_search`
 
 3. **Filmønsterfiltrering**
-   ```
-   Stilfiler: src/**/*.css, styles/**/*
-   Komponenter: src/components/**/*
-   Sider: src/pages/**, app/**
-   ```
+    ```
+    Stilfiler: src/**/*.css, styles/**/*
+    Komponenter: src/components/**/*
+    Sider: src/pages/**, app/**
+    ```
 
 ### 3.3 Gjennomføre fiks
 
@@ -221,14 +221,14 @@ Se [references/framework-fixes.md](references/framework-fixes.md) for rammeverks
 
 ## Sammendrag
 
-| Element | Verdi |
-|---------|-------|
-| URL | {URL} |
-| Rammeverk | {Detektert rammeverk} |
-| Styling | {CSS / Tailwind / etc.} |
-| Testede viewports | Desktop, Mobil |
-| Problemer funnet | {N} |
-| Problemer fikset | {M} |
+| Element           | Verdi                   |
+| ----------------- | ----------------------- |
+| URL               | {URL}                   |
+| Rammeverk         | {Detektert rammeverk}   |
+| Styling           | {CSS / Tailwind / etc.} |
+| Testede viewports | Desktop, Mobil          |
+| Problemer funnet  | {N}                     |
+| Problemer fikset  | {M}                     |
 
 ## Problemer funnet
 
@@ -242,11 +242,13 @@ Se [references/framework-fixes.md](references/framework-fixes.md) for rammeverks
 - **Screenshot**: Før/Etter
 
 ### [P2] {Problemtittel}
+
 ...
 
 ## Ikke-fiksede problemer (hvis aktuelt)
 
 ### {Problemtittel}
+
 - **Årsak**: {Hvorfor det ikke ble fikset}
 - **Anbefalt handling**: {Anbefalinger til bruker}
 
