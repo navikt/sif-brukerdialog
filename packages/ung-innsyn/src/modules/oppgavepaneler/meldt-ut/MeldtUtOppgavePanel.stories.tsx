@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { MeldtUtOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
@@ -26,6 +26,7 @@ const oppgave: MeldtUtOppgave = {
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 
 const besvartOppgave: MeldtUtOppgave = {

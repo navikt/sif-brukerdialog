@@ -190,6 +190,7 @@ export const zBrukerdialogOppgaveDto = z.object({
     opprettetDato: z.iso.datetime({ local: true }),
     respons: zOppgaveResponsDto.optional(),
     status: zOppgaveStatus,
+    ytelsetype: zOppgaveYtelsetype,
 });
 
 export const zHentAlleOppgaverQuery = z.object({

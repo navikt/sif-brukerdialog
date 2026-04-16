@@ -2,27 +2,14 @@
 
 import * as z from 'zod';
 
-export const zProblemDetail = z.object({
-    type: z.url().optional(),
-    title: z.string().optional(),
-    status: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
-    detail: z.string().optional(),
-    instance: z.url().optional(),
-    properties: z.record(z.string(), z.unknown()).optional(),
-});
-
-export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({
-    pleietrengendeAktørId: z.string(),
-});
-
 export const zHentSisteGyldigeVedtakForAktorIdResponse = z.object({
     harInnvilgedeBehandlinger: z.boolean(),
     saksnummer: z.string().optional(),
     vedtaksdato: z.iso.date().optional(),
+});
+
+export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({
+    pleietrengendeAktørId: z.string(),
 });
 
 export const zPeriode = z.object({
@@ -31,9 +18,22 @@ export const zPeriode = z.object({
 });
 
 export const zOpplæringsinstitusjon = z.object({
-    uuid: z.uuid(),
     navn: z.string(),
     perioder: z.array(zPeriode),
+    uuid: z.uuid(),
+});
+
+export const zProblemDetail = z.object({
+    detail: z.string().optional(),
+    instance: z.url().optional(),
+    properties: z.record(z.string(), z.unknown()).optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    title: z.string().optional(),
+    type: z.url().optional(),
 });
 
 export const zHentSisteGyldigeVedtakForAktorIdBody = zOmsorgsdagerKronsinskSuktBarnRequestDto;

@@ -2,193 +2,59 @@
 
 import * as z from 'zod';
 
-export const zProblemDetail = z.object({
-    type: z.url().optional(),
-    title: z.string().optional(),
-    status: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
-    detail: z.string().optional(),
-    instance: z.url().optional(),
-    properties: z.record(z.string(), z.unknown()).optional(),
-});
-
-export const zArbeidOgFrilansRegisterInntektDto = z.object({
-    inntekt: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    arbeidsgiver: z.string(),
-    arbeidsgiverNavn: z.string().optional(),
-});
-
-export const zBekreftelseDto = z.object({
-    harUttalelse: z.boolean(),
-    uttalelseFraBruker: z.string().optional(),
-});
-
 export const zDeltakerDto = z.object({
-    id: z.uuid().optional(),
     deltakerIdent: z.string(),
+    id: z.uuid().optional(),
 });
 
-export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT', 'LUKKET']);
-
-export const zOppgavetype = z.enum([
-    'BEKREFT_ENDRET_STARTDATO',
-    'BEKREFT_ENDRET_SLUTTDATO',
-    'BEKREFT_ENDRET_PERIODE',
-    'BEKREFT_FJERNET_PERIODE',
-    'BEKREFT_AVVIK_REGISTERINNTEKT',
-    'RAPPORTER_INNTEKT',
-    'SØK_YTELSE',
-]);
-
-export const zOppgavetypeDataDto = z.unknown();
-
-export const zEndretSluttdatoDataDto = zOppgavetypeDataDto.and(
-    z.object({
-        nySluttdato: z.iso.date(),
-        forrigeSluttdato: z.iso.date().optional(),
-    }),
-);
-
-export const zEndretStartdatoDataDto = zOppgavetypeDataDto.and(
-    z.object({
-        nyStartdato: z.iso.date(),
-        forrigeStartdato: z.iso.date(),
-    }),
-);
-
-export const zFjernetPeriodeDataDto = zOppgavetypeDataDto.and(
-    z.object({
-        forrigeStartdato: z.iso.date(),
-        forrigeSluttdato: z.iso.date().optional(),
-    }),
-);
-
-export const zPeriodeDto = z.object({
-    fom: z.iso.date(),
-    tom: z.iso.date().optional(),
-});
-
-export const zPeriodeEndringType = z.enum([
-    'ENDRET_STARTDATO',
-    'ENDRET_SLUTTDATO',
-    'FJERNET_PERIODE',
-    'ANDRE_ENDRINGER',
-]);
-
-export const zEndretPeriodeDataDto = zOppgavetypeDataDto.and(
-    z.object({
-        nyPeriode: zPeriodeDto.optional(),
-        forrigePeriode: zPeriodeDto.optional(),
-        endringer: z.array(zPeriodeEndringType),
-    }),
-);
-
-export const zRapportertInntektPeriodeinfoDto = z.object({
+export const zDeltakelseDto = z.object({
+    deltaker: zDeltakerDto,
+    erSlettet: z.boolean(),
     fraOgMed: z.iso.date(),
-    tilOgMed: z.iso.date(),
-    arbeidstakerOgFrilansInntekt: z.number().optional(),
-});
-
-export const zInntektsrapporteringOppgavetypeDataDto = zOppgavetypeDataDto.and(
-    z.object({
-        fraOgMed: z.iso.date(),
-        tilOgMed: z.iso.date(),
-        rapportertInntekt: zRapportertInntektPeriodeinfoDto.optional(),
-        gjelderDelerAvMåned: z.boolean(),
-    }),
-);
-
-export const zSøkYtelseOppgavetypeDataDto = zOppgavetypeDataDto.and(
-    z.object({
-        fomDato: z.iso.date(),
-    }),
-);
-
-export const zYtelseType = z.enum([
-    'SYKEPENGER',
-    'OMSORGSPENGER',
-    'PLEIEPENGER',
-    'PLEIEPENGER_SYKT_BARN',
-    'PLEIEPENGER_LIVETS_SLUTTFASE',
-    'OPPLAERINGSPENGER',
-]);
-
-export const zYtelseRegisterInntektDto = z.object({
-    inntekt: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    ytelsetype: zYtelseType,
-});
-
-export const zRegisterinntektDto = z.object({
-    arbeidOgFrilansInntekter: z.array(zArbeidOgFrilansRegisterInntektDto),
-    ytelseInntekter: z.array(zYtelseRegisterInntektDto),
-    totalInntektArbeidOgFrilans: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    totalInntektYtelse: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-    totalInntekt: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
-});
-
-export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.and(
-    z.object({
-        fraOgMed: z.iso.date(),
-        tilOgMed: z.iso.date(),
-        registerinntekt: zRegisterinntektDto,
-        gjelderDelerAvMåned: z.boolean(),
-    }),
-);
-
-export const zOppgaveDto = z.object({
-    oppgaveReferanse: z.uuid(),
-    oppgavetype: zOppgavetype,
-    oppgavetypeData: z.union([
-        zEndretPeriodeDataDto,
-        zEndretSluttdatoDataDto,
-        zEndretStartdatoDataDto,
-        zFjernetPeriodeDataDto,
-        zInntektsrapporteringOppgavetypeDataDto,
-        zKontrollerRegisterinntektOppgavetypeDataDto,
-        zSøkYtelseOppgavetypeDataDto,
-    ]),
-    bekreftelse: zBekreftelseDto.optional(),
-    status: zOppgaveStatus,
-    opprettetDato: z.iso.datetime({ local: true }),
-    løstDato: z.iso.datetime({ local: true }).optional(),
-    åpnetDato: z.iso.datetime({ local: true }).optional(),
-    lukketDato: z.iso.datetime({ local: true }).optional(),
-    frist: z.iso.datetime({ local: true }).optional(),
+    harOpphørsvedtak: z.boolean(),
+    id: z.uuid().optional(),
+    søktTidspunkt: z.iso.datetime({ local: true }).optional(),
+    tilOgMed: z.iso.date().optional(),
 });
 
 export const zDeltakelseKomposittDto = z.object({
-    id: z.uuid().optional(),
     deltaker: zDeltakerDto,
-    fraOgMed: z.iso.date(),
-    tilOgMed: z.iso.date().optional(),
     erSlettet: z.boolean(),
+    fraOgMed: z.iso.date(),
     harOpphørsvedtak: z.boolean(),
+    id: z.uuid().optional(),
+    oppgaver: z.array(z.unknown()),
     søktTidspunkt: z.iso.datetime({ local: true }).optional(),
-    oppgaver: z.array(zOppgaveDto),
+    tilOgMed: z.iso.date().optional(),
 });
 
 export const zKontonummerDto = z.object({
     harKontonummer: z.boolean(),
     kontonummer: z.string().optional(),
 });
+
+export const zProblemDetail = z.object({
+    detail: z.string().optional(),
+    instance: z.url().optional(),
+    properties: z.record(z.string(), z.unknown()).optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    title: z.string().optional(),
+    type: z.url().optional(),
+});
+
+/**
+ * OK
+ */
+export const zHentAlleMineDeltakelserResponse = z.array(zDeltakelseKomposittDto);
+
+/**
+ * OK
+ */
+export const zHentAlleMineDeltakelserV2Response = z.array(zDeltakelseDto);
 
 export const zMarkerDeltakelseSomSøktPath = z.object({
     id: z.uuid(),
@@ -199,48 +65,16 @@ export const zMarkerDeltakelseSomSøktPath = z.object({
  */
 export const zMarkerDeltakelseSomSøktResponse = zDeltakelseKomposittDto;
 
+export const zMarkerDeltakelseSomSøktV2Path = z.object({
+    id: z.uuid(),
+});
+
+/**
+ * OK
+ */
+export const zMarkerDeltakelseSomSøktV2Response = zDeltakelseDto;
+
 /**
  * OK
  */
 export const zHentKontonummerResponse = zKontonummerDto;
-
-export const zHentDeltakersOppgavePath = z.object({
-    oppgaveReferanse: z.uuid(),
-});
-
-/**
- * OK
- */
-export const zHentDeltakersOppgaveResponse = zOppgaveDto;
-
-export const zMarkerOppgaveSomLøstPath = z.object({
-    oppgaveReferanse: z.uuid(),
-});
-
-/**
- * OK
- */
-export const zMarkerOppgaveSomLøstResponse = zOppgaveDto;
-
-export const zMarkerOppgaveSomLukketPath = z.object({
-    oppgaveReferanse: z.uuid(),
-});
-
-/**
- * OK
- */
-export const zMarkerOppgaveSomLukketResponse = zOppgaveDto;
-
-export const zMarkerOppgaveSomÅpnetPath = z.object({
-    oppgaveReferanse: z.uuid(),
-});
-
-/**
- * OK
- */
-export const zMarkerOppgaveSomÅpnetResponse = zOppgaveDto;
-
-/**
- * OK
- */
-export const zHentAlleMineDeltakelserResponse = z.array(zDeltakelseKomposittDto);
