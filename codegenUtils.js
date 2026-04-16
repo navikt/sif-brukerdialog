@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { execSync } from 'child_process';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { glob } from 'glob';
 import path from 'path';
 
@@ -43,6 +43,7 @@ export async function fetchAndNormalizeSpec(url, outputPath) {
     }
     const spec = await response.json();
     const sorted = sortKeysDeep(spec);
+    mkdirSync(path.dirname(outputPath), { recursive: true });
     writeFileSync(outputPath, JSON.stringify(sorted, null, 2) + '\n');
     return true;
 }

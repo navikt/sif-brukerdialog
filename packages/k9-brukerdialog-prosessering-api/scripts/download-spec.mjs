@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-import { mkdirSync } from 'fs';
-
 import { fetchAndNormalizeSpec, getNavBaseUrl, parseCodegenEnv } from '../../../codegenUtils.js';
 
 /** TODO: Fjern override når prod-spec er tilgjengelig */
-const base = parseCodegenEnv() === 'prod' ? 'intern.dev.nav.no' : getNavBaseUrl(parseCodegenEnv());
+const env = parseCodegenEnv();
+const base = env === 'prod' ? 'intern.dev.nav.no' : getNavBaseUrl(env);
 const service = `k9-brukerdialog-prosessering.${base}`;
 
 const specs = [
@@ -22,8 +21,6 @@ const specs = [
     'pleiepenger-sykt-barn-endringsmelding',
     'pleiepenger-sykt-barn-soknad',
 ];
-
-mkdirSync('./specs', { recursive: true });
 
 await Promise.all([
     ...specs.map((name) => fetchAndNormalizeSpec(`https://${service}/v3/api-docs/${name}`, `./specs/${name}.json`)),
