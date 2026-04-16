@@ -777,11 +777,13 @@ export const dateRangeIncludesWeekdays = (dateRange: DateRange): boolean => {
     return dates.some((date) => isDateWeekDay(date));
 };
 
-export const trimDateRangeToWeekdays = (range: DateRange): DateRange => {
-    return {
-        from: getFirstWeekdayOnOrAfterDate(range.from),
-        to: getLastWeekdayOnOrBeforeDate(range.to),
-    };
+export const trimDateRangeToWeekdays = (range: DateRange): DateRange | undefined => {
+    const from = getFirstWeekdayOnOrAfterDate(range.from);
+    const to = getLastWeekdayOnOrBeforeDate(range.to);
+    if (dayjs(from).isAfter(to, 'day')) {
+        return undefined;
+    }
+    return { from, to };
 };
 
 export const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): DateRange => {

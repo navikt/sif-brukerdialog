@@ -22,10 +22,14 @@ const getDagerMedInterval = (interval: number, periode: DateRange) => {
     });
 };
 
-const getGjentagendeDager = (
+export const getGjentagendeDager = (
+    /** Hele søknadsperioden */
     søknadsperiode: DateRange,
+    /** Endringsperioden - dvs dager innenfor samme måned; kan være avkortet */
     endringsperiodeIMåned: DateRange,
+    /** Datoen som skal endres/bruker har valgt */
     dato: Date,
+    /** Gjentagelse for endringen */
     gjentagelse?: GjentagelseEnkeltdag,
 ): ISODate[] => {
     if (!gjentagelse) {
@@ -36,6 +40,8 @@ const getGjentagendeDager = (
 
     switch (gjentagelse.gjentagelsetype) {
         case GjentagelseType.sammeDagUtMånedFom:
+            dager = getDagerMedInterval(1, { from: dato, to: endringsperiodeIMåned.to });
+            break;
         case GjentagelseType.sammeDagUtSøknadsperiodenFom:
             dager = getDagerMedInterval(1, { from: dato, to: søknadsperiode.to });
             break;
