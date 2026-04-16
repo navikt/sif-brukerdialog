@@ -6,9 +6,7 @@ import {
     getDatesInDateRange,
     getFirstWeekdayOnOrAfterDate,
     getLastWeekdayOnOrBeforeDate,
-    getMonthDateRange,
     getWeekDateRange,
-    isDateInDateRange,
     isDateWeekDay,
     ISODate,
     nthItemFilter,
@@ -26,74 +24,65 @@ const getDagerMedInterval = (interval: number, periode: DateRange) => {
     });
 };
 
-const getPeriodeForGjentageneEndring = (
-    from: Date,
-    søknadsperiode: DateRange,
-    endringsperiodeIMåned: DateRange,
-    gjentagelsetype: GjentagelseType,
-): DateRange => {
-    switch (gjentagelsetype) {
-        case GjentagelseType.heleMåneden:
-            return endringsperiodeIMåned;
-        case GjentagelseType.likDagHeleSøknadsperioden:
-        case GjentagelseType.alleDagerUtSøknadsperioden:
-            return { from, to: søknadsperiode.to };
-        default:
-            return { from, to: endringsperiodeIMåned.to };
-    }
-};
-
 const getGjentagendeDager = (
     søknadsperiode: DateRange,
     endringsperiodeIMåned: DateRange,
     dato: Date,
     gjentagelse?: GjentagelseEnkeltdag,
 ): ISODate[] => {
-    if (gjentagelse) {
-        let gjentagendeDatoer: Date[] = [];
-        const periode = getPeriodeForGjentageneEndring(
-            dato,
-            søknadsperiode,
-            endringsperiodeIMåned,
-            gjentagelse.gjentagelsetype,
-        );
-
-        switch (gjentagelse.gjentagelsetype) {
-            case GjentagelseType.hverUke:
-            case GjentagelseType.likDagHeleSøknadsperioden:
-                gjentagendeDatoer = getDagerMedInterval(1, periode);
-                break;
-            case GjentagelseType.heleUken:
-                gjentagendeDatoer = getDatesInDateRange(getWeekDateRange(periode.from, true), true);
-                break;
-            case GjentagelseType.heleMåneden:
-                gjentagendeDatoer = getDatesInDateRange(getMonthDateRange(periode.from), true);
-                break;
-            case GjentagelseType.alleDagerUtSøknadsperioden:
-                gjentagendeDatoer = getDatesInDateRange(periode, true);
-                break;
-        }
-        return gjentagendeDatoer
-            .filter(isDateWeekDay)
-            .filter((d) => isDateInDateRange(d, periode))
-            .map((date) => dateToISODate(date));
+    if (!gjentagelse) {
+        return [dateToISODate(dato)];
     }
-    return [dateToISODate(dato)];
+
+    let dager: Date[];
+
+    switch (gjentagelse.gjentagelsetype) {
+        case GjentagelseType.sammeDagUtMånedFom:
+        case GjentagelseType.sammeDagUtSøknadsperiodenFom:
+            dager = getDagerMedInterval(1, { from: dato, to: søknadsperiode.to });
+            break;
+        case GjentagelseType.heleUken: {
+            const uke = getWeekDateRange(dato, true);
+            dager = getDatesInDateRange(
+                {
+                    from: dayjs.max(dayjs(uke.from), dayjs(endringsperiodeIMåned.from))!.toDate(),
+                    to: dayjs.min(dayjs(uke.to), dayjs(endringsperiodeIMåned.to))!.toDate(),
+                },
+                true,
+            );
+            break;
+        }
+        case GjentagelseType.heleMåneden:
+            dager = getDatesInDateRange(endringsperiodeIMåned, true);
+            break;
+        case GjentagelseType.alleDagerUtSøknadsperioden:
+            dager = getDatesInDateRange({ from: dato, to: søknadsperiode.to }, true);
+            break;
+        default:
+            dager = [];
+    }
+
+    return dager.filter(isDateWeekDay).map(dateToISODate);
 };
 
 export const getDagerMedNyTid = (
+    /** Hele søknadsperioden */
     søknadsperiode: DateRange,
+    /** Endringsperioden */
     endringsperiode: DateRange,
-    dato: Date,
+    /** Datoen som skal endres/bruker har valgt */
+    valgtDato: Date,
+    /** Varighet for endringen */
     varighet: Duration,
+    /** Gjentagelse for endringen */
     gjentagelse?: GjentagelseEnkeltdag,
 ): DateDurationMap => {
     const datoerMedTid: DateDurationMap = {};
-    const datoerSomSkalEndres = getGjentagendeDager(søknadsperiode, endringsperiode, dato, gjentagelse);
+    const datoerSomSkalEndres = getGjentagendeDager(søknadsperiode, endringsperiode, valgtDato, gjentagelse);
     datoerSomSkalEndres.forEach((isoDate) => {
         datoerMedTid[isoDate] = { ...varighet };
     });
-    datoerMedTid[dateToISODate(dato)] = { ...varighet };
+    datoerMedTid[dateToISODate(valgtDato)] = { ...varighet };
     return datoerMedTid;
 };
 

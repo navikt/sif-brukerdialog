@@ -25,8 +25,6 @@ interface Props {
     søknadsperiode: DateRange;
     /** Brukes til å låse måned */
     måned: DateRange;
-    /** Avgrensning innenfor måned */
-    periode: DateRange;
     tidTilsynsordning: DateDurationMap;
     tidTilsynsordningOpprinnelig?: DateDurationMap;
     månedTittelHeadingLevel?: '2' | '3' | '4';
@@ -38,7 +36,6 @@ interface Props {
 const TilsynsordningMåned = ({
     måned,
     søknadsperiode,
-    periode,
     tidTilsynsordning,
     tidTilsynsordningOpprinnelig,
     defaultOpen,
@@ -147,7 +144,7 @@ const TilsynsordningMåned = ({
                         open={editDate !== undefined}
                         formProps={{
                             søknadsperiode,
-                            periode,
+                            måned,
                             dato: editDate.dato,
                             tid: editDate.tid,
                             tidOpprinnelig: dagerMedOpprinnelig[dateToISOString(editDate.dato)],

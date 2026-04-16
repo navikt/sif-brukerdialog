@@ -20,7 +20,7 @@ type Story = StoryObj<typeof TidEnkeltdagDialog>;
 const defaultFormProps: TidEnkeltdagFormProps = {
     dato: new Date(2026, 1, 11),
     tid: undefined,
-    periode: {
+    måned: {
         from: new Date(2026, 1, 1),
         to: new Date(2026, 1, 28),
     },

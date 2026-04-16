@@ -39,13 +39,13 @@ import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation'
 dayjs.extend(minMax);
 
 export interface TidEnkeltdagFormProps {
-    periode: DateRange;
     dato: Date;
     tid?: Partial<Duration>;
     tidOpprinnelig?: Duration;
     maksTid?: NumberDuration;
     minTid?: NumberDuration;
     søknadsperiode: DateRange;
+    måned: DateRange;
     erIkkeIOmsorgstilbudLabelRenderer: (date: Date) => string;
     erBarnetIOmsorgstilbudLabelRenderer: (date: Date) => string;
     hvorMyeSpørsmålRenderer: (date: Date) => string;
@@ -71,10 +71,10 @@ enum FormFields {
 }
 
 export enum GjentagelseType {
-    hverUke = 'hverUke',
+    sammeDagUtMånedFom = 'sammeDagUtMånedFom',
     heleUken = 'heleUken',
     heleMåneden = 'heleMåneden',
-    likDagHeleSøknadsperioden = 'likDagHeleSøknadsperioden',
+    sammeDagUtSøknadsperiodenFom = 'sammeDagUtSøknadsperiodenFom',
     alleDagerUtSøknadsperioden = 'alleDagerUtSøknadsperioden',
 }
 
@@ -124,7 +124,7 @@ const TidEnkeltdagForm = ({
     dato,
     tid,
     tidOpprinnelig,
-    periode,
+    måned,
     søknadsperiode,
     maksTid = { hours: 24, minutes: 0 },
     minTid = { hours: 0, minutes: 0 },
@@ -140,7 +140,7 @@ const TidEnkeltdagForm = ({
             onSubmit({
                 dagerMedTid: getDagerMedNyTid(
                     søknadsperiode,
-                    periode,
+                    måned,
                     dato,
                     values.tid,
                     getGjentagelseEnkeltdagFraFormValues(values),
@@ -151,7 +151,7 @@ const TidEnkeltdagForm = ({
             onSubmit({
                 dagerMedTid: getDagerMedNyTid(
                     søknadsperiode,
-                    periode,
+                    måned,
                     dato,
                     { hours: '0', minutes: '0' },
                     getGjentagelseEnkeltdagFraFormValues(values),
@@ -161,30 +161,29 @@ const TidEnkeltdagForm = ({
     };
 
     const dagerNavn = `${dayjs(dato).format('dddd')}er`;
-    // const valgtDatoTxt = dateFormatter.dayCompactDate(dato);
 
     const ukePeriode: DateRange = trimDateRangeToWeekdays(
-        getDateRangeWithinDateRange(getWeekDateRange(dato, true), periode),
+        getDateRangeWithinDateRange(getWeekDateRange(dato, true), måned),
     );
     const ukeErHel = dayjs(ukePeriode.from).isoWeekday() === 1 && dayjs(ukePeriode.to).isoWeekday() === 5;
     const månedPeriode: DateRange = trimDateRangeToWeekdays(
-        getDateRangeWithinDateRange(getMonthDateRange(dato, true), periode),
+        getDateRangeWithinDateRange(getMonthDateRange(dato, true), måned),
     );
     const månedErHel =
-        dayjs(periode.from).isBefore(månedPeriode.from, 'month') && dayjs(periode.to).isAfter(månedPeriode.to, 'month');
+        dayjs(måned.from).isBefore(månedPeriode.from, 'month') && dayjs(måned.to).isAfter(månedPeriode.to, 'month');
 
     const ukePeriodeStartTxt = dateFormatter.dayCompactDate(ukePeriode.from);
     const ukePeriodeSluttTxt = dateFormatter.dayCompactDate(ukePeriode.to);
 
-    const månedPeriodeStartTxt = 'sdf'; //dateFormatter.dayCompactDate(månedPeriode.from);
-    const månedPeriodeSluttTxt = 'sdf'; //dateFormatter.dayCompactDate(månedPeriode.to);
+    const månedPeriodeStartTxt = dateFormatter.dayCompactDate(månedPeriode.from);
+    const månedPeriodeSluttTxt = dateFormatter.dayCompactDate(månedPeriode.to);
 
     const ukeNavn = `${dayjs(dato).isoWeek()}`;
     const månedNavn = dayjs(dato).format('MMMM YYYY');
 
-    const sluttDatoTxt = dateFormatter.full(getLastWeekdayOnOrBeforeDate(periode.to));
+    const sluttDatoTxt = dateFormatter.full(getLastWeekdayOnOrBeforeDate(måned.to));
 
-    const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(periode) > 2;
+    const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(måned) > 2;
 
     const renderGjentagelseRadioLabel = (key: string, p?: { fra: string; til: string }, values?: any): ReactElement => (
         <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...p }} />
@@ -271,7 +270,7 @@ const TidEnkeltdagForm = ({
                                             validate={getRequiredFieldValidator()}
                                             radios={[
                                                 {
-                                                    label: `Alle dager`,
+                                                    label: text('tidEnkeltdagForm.gjentagelse.separator.alleUkedager'),
                                                     isSeparator: true,
                                                     value: 'separator-1',
                                                 },
@@ -311,13 +310,15 @@ const TidEnkeltdagForm = ({
                                                     value: GjentagelseType.alleDagerUtSøknadsperioden,
                                                 },
                                                 {
-                                                    label: `Alle ${dagerNavn}`,
+                                                    label: text('tidEnkeltdagForm.gjentagelse.separator.alleSammeDag', {
+                                                        dagnavn: dagerNavn,
+                                                    }),
                                                     isSeparator: true,
-                                                    value: 'separator-1',
+                                                    value: 'separator-2',
                                                 },
                                                 {
                                                     label: renderGjentagelseRadioLabel(
-                                                        'dagerFremover',
+                                                        'sammeDagUtMånedFom',
                                                         {
                                                             fra: dateFormatter.full(dato),
                                                             til: sluttDatoTxt,
@@ -325,11 +326,11 @@ const TidEnkeltdagForm = ({
                                                         { dagerNavn, månedNavn },
                                                     ),
 
-                                                    value: GjentagelseType.hverUke,
+                                                    value: GjentagelseType.sammeDagUtMånedFom,
                                                 },
                                                 {
                                                     label: renderGjentagelseRadioLabel(
-                                                        'likDagHeleSøknadsperioden',
+                                                        'sammeDagUtSøknadsperiodenFom',
                                                         {
                                                             fra: dateFormatter.full(dato),
                                                             til: dateFormatter.full(
@@ -338,7 +339,7 @@ const TidEnkeltdagForm = ({
                                                         },
                                                         { dagerNavn, månedNavn },
                                                     ),
-                                                    value: GjentagelseType.likDagHeleSøknadsperioden,
+                                                    value: GjentagelseType.sammeDagUtSøknadsperiodenFom,
                                                 },
                                             ]}
                                         />
