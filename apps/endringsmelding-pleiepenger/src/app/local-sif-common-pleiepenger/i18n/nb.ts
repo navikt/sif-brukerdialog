@@ -66,6 +66,10 @@ export const sifCommonPleiepengerMessages_nb = {
     'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud': 'Barnet var ikke i omsorgstilbud denne dagen',
     'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud.historisk': 'Barnet var ikke i omsorgstilbud denne dagen',
 
+    'tidEnkeltdagForm.intro':
+        'Velg om barnet er i omsorgstilbud denne dagen, og eventuelt hvor mye tid barnet er i omsorgstilbudet.',
+    'tidEnkeltdagForm.intro.historisk':
+        'Velg om barnet var i omsorgstilbud denne dagen, og eventuelt hvor mye tid barnet var i omsorgstilbudet.',
     'tidEnkeltdagForm.opprinneligTid': 'Opprinnelig tid: ',
     'tidEnkeltdagForm.ingenOpprinneligTid': 'Opprinnelig tid: ingen tid registrert',
     'tidEnkeltdagForm.endretFra': 'Endret fra',

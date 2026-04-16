@@ -182,8 +182,11 @@ const TidEnkeltdagForm = ({
                         cancelButtonLabel="Avbryt">
                         <VStack gap="space-24">
                             <BodyLong className="noPadding">
-                                Velg om barnet {erHistorisk ? 'var' : 'er'} i omsorgstilbud denne dagen, og eventuelt
-                                hvor mye tid barnet {erHistorisk ? 'var' : 'er'} i omsorgstilbudet.
+                                {erHistorisk ? (
+                                    <AppText id="tidEnkeltdagForm.intro.historisk" values={{}} />
+                                ) : (
+                                    <AppText id="tidEnkeltdagForm.intro" />
+                                )}
                             </BodyLong>
                             {visOpprinneligTid && (
                                 <Alert variant="info" inline>
