@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { fetchAndNormalizeSpec, parseCodegenEnv, getNavBaseUrl } from '../../../codegenUtils.js';
+import { fetchAndNormalizeSpec, getNavBaseUrl, parseCodegenEnv } from '../../../codegenUtils.js';
 
 const base = getNavBaseUrl(parseCodegenEnv());
 

@@ -33,11 +33,13 @@ export function getNavBaseUrl(env) {
 export async function fetchAndNormalizeSpec(url, outputPath) {
     const response = await fetch(url);
     if (!response.ok) {
-        throw new Error(`Failed to fetch spec from ${url}: ${response.status}`);
+        console.warn(`⚠ Skipping spec ${url}: ${response.status} ${response.statusText}`);
+        return false;
     }
     const spec = await response.json();
     const sorted = sortKeysDeep(spec);
     writeFileSync(outputPath, JSON.stringify(sorted, null, 2) + '\n');
+    return true;
 }
 
 const PATTERNS = {

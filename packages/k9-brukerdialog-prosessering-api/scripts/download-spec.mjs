@@ -9,7 +9,7 @@ const service = `k9-brukerdialog-prosessering.intern.dev.nav.no`;
 
 const specs = [
     'aktivitetspenger',
-    'omsorgspenger',
+    'omsorgspenger-kronisk-sykt-barn',
     'ungdomsytelse',
     'ettersendelse',
     'omsorgspenger-aleneomsorg',
