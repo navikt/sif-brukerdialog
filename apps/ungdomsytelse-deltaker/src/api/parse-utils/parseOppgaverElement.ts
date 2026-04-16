@@ -93,6 +93,7 @@ const getOppgaveBaseProps = (oppgave: BrukerdialogOppgaveDto): Omit<ParsedOppgav
     const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
     const svarfrist = oppgave.frist ? dayjs.utc(oppgave.frist).toDate() : ISODateToDate('2099-01-01');
     return {
+        ytelsetype: oppgave.ytelsetype,
         oppgaveReferanse: oppgave.oppgaveReferanse,
         status: getOppgaveStatusEnum(oppgave.status),
         opprettetDato,

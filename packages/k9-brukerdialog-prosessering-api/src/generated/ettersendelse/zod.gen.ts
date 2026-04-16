@@ -2,30 +2,51 @@
 
 import * as z from 'zod';
 
-export const zProblemDetail = z.object({
-    type: z.url().optional(),
-    title: z.string().optional(),
-    status: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
-    detail: z.string().optional(),
-    instance: z.url().optional(),
-    properties: z.record(z.string(), z.unknown()).optional(),
+export const zBarnOppslag = z.object({
+    aktørId: z.string(),
+    etternavn: z.string(),
+    fornavn: z.string(),
+    fødselsdato: z.iso.date(),
+    mellomnavn: z.string().optional(),
+});
+
+export const zBarnOppslagListe = z.object({
+    barn: z.array(zBarnOppslag),
+});
+
+export const zFrilansoppdragDto = z.object({
+    ansattFom: z.iso.date().optional(),
+    ansattTom: z.iso.date().optional(),
+    navn: z.string().optional(),
+    offentligIdent: z.string().optional(),
+    organisasjonsnummer: z.string().optional(),
+    type: z.string(),
+});
+
+export const zJsonNode = z.unknown();
+
+export const zOrganisasjonDto = z.object({
+    ansattFom: z.iso.date().optional(),
+    ansattTom: z.iso.date().optional(),
+    navn: z.string().optional(),
+    organisasjonsnummer: z.string(),
 });
 
 export const zPleietrengende = z.object({
-    norskIdentitetsnummer: z.string().length(11).optional(),
     aktørId: z.string().optional(),
-    navn: z.string().optional(),
     fødselsdato: z.iso.date().optional(),
+    navn: z.string().optional(),
+    norskIdentitetsnummer: z.string().length(11).optional(),
 });
 
 export const zEttersendelse = z.object({
-    språk: z.string(),
-    vedlegg: z.array(z.string()).min(1),
     beskrivelse: z.string().optional(),
+    ettersendelsesType: z.enum(['LEGEERKLÆRING', 'KURSINFORMASJON', 'ANNET']),
+    harBekreftetOpplysninger: z.boolean(),
+    harForståttRettigheterOgPlikter: z.boolean(),
+    pleietrengende: zPleietrengende.optional(),
+    språk: z.string(),
+    søkerNorskIdent: z.string().optional(),
     søknadstype: z.enum([
         'PLEIEPENGER_SYKT_BARN',
         'PLEIEPENGER_LIVETS_SLUTTFASE',
@@ -36,63 +57,48 @@ export const zEttersendelse = z.object({
         'OMP_UTV_AO',
         'OPPLÆRINGSPENGER',
     ]),
-    ettersendelsesType: z.enum(['LEGEERKLÆRING', 'KURSINFORMASJON', 'ANNET']),
-    søkerNorskIdent: z.string().optional(),
-    pleietrengende: zPleietrengende.optional(),
-    harBekreftetOpplysninger: z.boolean(),
-    harForståttRettigheterOgPlikter: z.boolean(),
+    vedlegg: z.array(z.string()).min(1),
+});
+
+export const zPrivatArbeidsgiverDto = z.object({
+    ansattFom: z.iso.date().optional(),
+    ansattTom: z.iso.date().optional(),
+    offentligIdent: z.string(),
+});
+
+export const zArbeidsgivereDto = z.object({
+    frilansoppdrag: z.array(zFrilansoppdragDto).optional(),
+    organisasjoner: z.array(zOrganisasjonDto),
+    privateArbeidsgivere: z.array(zPrivatArbeidsgiverDto).optional(),
+});
+
+export const zProblemDetail = z.object({
+    detail: z.string().optional(),
+    instance: z.url().optional(),
+    properties: z.record(z.string(), z.unknown()).optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    title: z.string().optional(),
+    type: z.url().optional(),
 });
 
 export const zSøker = z.object({
     aktørId: z.string(),
+    etternavn: z.string().optional(),
+    fornavn: z.string().optional(),
     fødselsdato: z.iso.date(),
     fødselsnummer: z.string(),
-    fornavn: z.string().optional(),
     mellomnavn: z.string().optional(),
-    etternavn: z.string().optional(),
 });
 
-export const zBarnOppslag = z.object({
-    fødselsdato: z.iso.date(),
-    fornavn: z.string(),
-    mellomnavn: z.string().optional(),
-    etternavn: z.string(),
-    aktørId: z.string(),
-});
+export const zInnsendingEttersendelseBody = zEttersendelse;
 
-export const zBarnOppslagListe = z.object({
-    barn: z.array(zBarnOppslag),
+export const zInnsendingEttersendelseHeaders = z.object({
+    'X-Brukerdialog-Git-Sha': z.string(),
 });
-
-export const zFrilansoppdragDto = z.object({
-    type: z.string(),
-    organisasjonsnummer: z.string().optional(),
-    navn: z.string().optional(),
-    offentligIdent: z.string().optional(),
-    ansattFom: z.iso.date().optional(),
-    ansattTom: z.iso.date().optional(),
-});
-
-export const zOrganisasjonDto = z.object({
-    organisasjonsnummer: z.string(),
-    navn: z.string().optional(),
-    ansattFom: z.iso.date().optional(),
-    ansattTom: z.iso.date().optional(),
-});
-
-export const zPrivatArbeidsgiverDto = z.object({
-    offentligIdent: z.string(),
-    ansattFom: z.iso.date().optional(),
-    ansattTom: z.iso.date().optional(),
-});
-
-export const zArbeidsgivereDto = z.object({
-    organisasjoner: z.array(zOrganisasjonDto),
-    privateArbeidsgivere: z.array(zPrivatArbeidsgiverDto).optional(),
-    frilansoppdrag: z.array(zFrilansoppdragDto).optional(),
-});
-
-export const zJsonNode = z.unknown();
 
 export const zDeleteMellomlagringPath = z.object({
     ytelse: z.string(),
@@ -119,14 +125,31 @@ export const zUpdateMellomlagringPath = z.object({
     ytelse: z.string(),
 });
 
-export const zLagreVedleggBody = z.object({
-    vedlegg: z.instanceof(Blob),
+export const zHentArbeidsgivereQuery = z.object({
+    fra_og_med: z.string(),
+    til_og_med: z.string(),
+    inkluderAlleAnsettelsesperioder: z.boolean().optional(),
+    frilansoppdrag: z.boolean().optional().default(false),
+    private_arbeidsgivere: z.boolean().optional().default(false),
 });
 
-export const zInnsendingEttersendelseBody = zEttersendelse;
+/**
+ * OK
+ */
+export const zHentArbeidsgivereResponse = zArbeidsgivereDto;
 
-export const zInnsendingEttersendelseHeaders = z.object({
-    'X-Brukerdialog-Git-Sha': z.string(),
+/**
+ * OK
+ */
+export const zHentBarnResponse = zBarnOppslagListe;
+
+/**
+ * OK
+ */
+export const zHentSøkerResponse = zSøker;
+
+export const zLagreVedleggBody = z.object({
+    vedlegg: z.instanceof(Blob),
 });
 
 export const zSlettVedleggPath = z.object({
@@ -146,26 +169,3 @@ export const zHentVedleggPath = z.object({
  * OK
  */
 export const zHentVedleggResponse = z.string();
-
-/**
- * OK
- */
-export const zHentSøkerResponse = zSøker;
-
-/**
- * OK
- */
-export const zHentBarnResponse = zBarnOppslagListe;
-
-export const zHentArbeidsgivereQuery = z.object({
-    fra_og_med: z.string(),
-    til_og_med: z.string(),
-    inkluderAlleAnsettelsesperioder: z.boolean().optional(),
-    frilansoppdrag: z.boolean().optional().default(false),
-    private_arbeidsgivere: z.boolean().optional().default(false),
-});
-
-/**
- * OK
- */
-export const zHentArbeidsgivereResponse = zArbeidsgivereDto;

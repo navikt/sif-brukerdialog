@@ -1,8 +1,52 @@
 /* eslint-disable no-undef */
 import { execSync } from 'child_process';
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { glob } from 'glob';
 import path from 'path';
+
+function sortKeysDeep(obj) {
+    if (Array.isArray(obj)) {
+        return obj.map(sortKeysDeep);
+    }
+    if (obj !== null && typeof obj === 'object') {
+        return Object.keys(obj)
+            .sort()
+            .reduce((acc, key) => {
+                acc[key] = sortKeysDeep(obj[key]);
+                return acc;
+            }, Object.create(null));
+    }
+    return obj;
+}
+
+export function parseCodegenEnv() {
+    const value = process.env.CODEGEN_ENV;
+    if (value === 'prod') return 'prod';
+    if (value === 'dev' || value === undefined) return 'dev';
+    throw new Error(`Invalid CODEGEN_ENV: '${value}'. Must be 'dev' or 'prod'.`);
+}
+
+export function getNavBaseUrl(env) {
+    return env === 'dev' ? 'intern.dev.nav.no' : 'intern.nav.no';
+}
+
+export async function fetchAndNormalizeSpec(url, outputPath) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        if (existsSync(outputPath)) {
+            console.warn(`⚠ Fetch failed for ${url} (${response.status}), using cached spec: ${outputPath}`);
+            return false;
+        }
+        throw new Error(
+            `Failed to fetch spec ${url}: ${response.status} ${response.statusText} (no cached file at ${outputPath})`,
+        );
+    }
+    const spec = await response.json();
+    const sorted = sortKeysDeep(spec);
+    mkdirSync(path.dirname(outputPath), { recursive: true });
+    writeFileSync(outputPath, JSON.stringify(sorted, null, 2) + '\n');
+    return true;
+}
 
 const PATTERNS = {
     removeZodRegex: {

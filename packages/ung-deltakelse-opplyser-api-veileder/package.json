@@ -4,7 +4,7 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.3.8",
+    "version": "0.3.9",
     "devDependencies": {
         "@hey-api/openapi-ts": "0.95.0",
         "@sif/eslint-config": "workspace:*",
@@ -27,8 +27,9 @@
         "fix-regexp": "node scripts/fix-generated-regex.mjs",
         "gen-types:fixed": "yarn gen-types && yarn fix-regexp",
         "gen-types": "openapi-ts -f openapi-ts.veileder.config.ts",
-        "codegen:dev": "CODEGEN_ENV=dev yarn gen-types:fixed",
-        "codegen:prod": "CODEGEN_ENV=prod yarn gen-types:fixed",
+        "download-spec": "node scripts/download-spec.mjs",
+        "codegen:dev": "CODEGEN_ENV=dev yarn download-spec && yarn gen-types:fixed",
+        "codegen:prod": "CODEGEN_ENV=prod yarn download-spec && yarn gen-types:fixed",
         "lint:eslint": "eslint './src/veileder/client/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/veileder/client/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"

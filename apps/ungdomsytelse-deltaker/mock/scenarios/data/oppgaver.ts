@@ -1,4 +1,10 @@
-import { BrukerdialogOppgaveDto, OppgaveStatus, OppgaveType, PeriodeEndringType } from '@navikt/ung-brukerdialog-api';
+import {
+    BrukerdialogOppgaveDto,
+    OppgaveStatus,
+    OppgaveType,
+    OppgaveYtelsetype,
+    PeriodeEndringType,
+} from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../../utils/dateUtils';
@@ -17,6 +23,7 @@ const getSøkYtelseOppgaveDto = (): BrukerdialogOppgaveDto => {
     return {
         oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e92',
         oppgavetype: OppgaveType.SØK_YTELSE,
+        ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
         status: OppgaveStatus.ULØST,
         frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
         oppgavetypeData: {
@@ -39,6 +46,7 @@ const getSøkYtelseOppgaveDtoLøst = (): BrukerdialogOppgaveDto => {
 const getEndretStartdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_STARTDATO,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'ENDRET_STARTDATO',
         nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
@@ -56,6 +64,7 @@ const getEndretStartdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
 const getEndretStartdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f780223077',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_STARTDATO,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'ENDRET_STARTDATO',
         nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
@@ -74,6 +83,7 @@ const getEndretStartdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
 const getMeldtUtOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7927',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_SLUTTDATO,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'ENDRET_SLUTTDATO',
         nySluttdato: '2026-01-29',
@@ -86,6 +96,7 @@ const getMeldtUtOppgaveDto = (): BrukerdialogOppgaveDto => ({
 const getMeldtUtOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7921',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_SLUTTDATO,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'ENDRET_SLUTTDATO',
         nySluttdato: '2026-01-29',
@@ -104,6 +115,7 @@ const getMeldtUtOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
 const getEndretSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7928',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_SLUTTDATO,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'ENDRET_SLUTTDATO',
         nySluttdato: '2026-01-24',
@@ -117,6 +129,7 @@ const getEndretSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
 const getEndretSluttdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'd6d6d462-66cd-4d87-a015-4709637a7929',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_SLUTTDATO,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'ENDRET_SLUTTDATO',
         nySluttdato: '2026-01-29',
@@ -136,6 +149,7 @@ const getEndretSluttdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
 const getRapporterInntektOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'f3e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
@@ -150,6 +164,7 @@ const getRapporterInntektOppgaveDto = (): BrukerdialogOppgaveDto => ({
 const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a89',
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     status: OppgaveStatus.LØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
@@ -171,6 +186,7 @@ const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
 const getRapporterInntektDelerAvMånedOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'f3e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a82',
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
@@ -185,6 +201,7 @@ const getRapporterInntektDelerAvMånedOppgaveDto = (): BrukerdialogOppgaveDto =>
 const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     status: OppgaveStatus.LØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
@@ -206,6 +223,7 @@ const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): BrukerdialogOppgaveD
 const getBekreftAvvikOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
     oppgavetype: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'KONTROLLER_REGISTERINNTEKT',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
@@ -233,6 +251,7 @@ const getBekreftAvvikOppgaveDto = (): BrukerdialogOppgaveDto => ({
 const getBekreftAvvikOppgaveDelerAvMånedDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'be06ce74-9cb5-4000-bbae-5ab0940b04f7',
     oppgavetype: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'KONTROLLER_REGISTERINNTEKT',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
@@ -291,6 +310,7 @@ const getBekreftAvvikOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
 const getFjernetPeriodeOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f7',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_PERIODE,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'ENDRET_PERIODE',
         endringer: [PeriodeEndringType.FJERNET_PERIODE],
@@ -307,6 +327,7 @@ const getFjernetPeriodeOppgaveDto = (): BrukerdialogOppgaveDto => ({
 const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f2',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_PERIODE,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'ENDRET_PERIODE',
         endringer: [PeriodeEndringType.FJERNET_PERIODE],
@@ -324,6 +345,7 @@ const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
 const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f6',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_PERIODE,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
         type: 'ENDRET_PERIODE',
         endringer: [PeriodeEndringType.ENDRET_SLUTTDATO, PeriodeEndringType.ENDRET_STARTDATO],

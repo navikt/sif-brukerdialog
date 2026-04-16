@@ -29,6 +29,7 @@ const oppgave: RapporterInntektOppgave = {
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs('2025-06-01').toDate(),
     sisteDatoEnKanSvare: dayjs('2025-06-06').startOf('day').toDate(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 
 const besvartOppgave: RapporterInntektOppgave = {
@@ -64,6 +65,7 @@ const utløptUbesvartOppgave: RapporterInntektOppgave = {
     åpnetDato: dayjs('2025-10-23T06:34:31.260740Z').toDate(),
     lukketDato: undefined,
     sisteDatoEnKanSvare: dayjs('2025-10-08T00:00:00Z').toDate(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 
 export const OppgavePanel: Story = {

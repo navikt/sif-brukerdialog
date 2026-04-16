@@ -14,16 +14,17 @@ import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
 import { InitialDataLoader } from './InitialDataLoader';
 
-initApiClients();
-
-const appEnv = getAppEnv();
-const basePath = appEnv[EnvKey.PUBLIC_PATH];
-
-if (globalThis.location.pathname === '/') {
-    globalThis.location.pathname = basePath;
-}
-
 export const App = () => {
+    const appEnv = getAppEnv();
+    const basePath = appEnv[EnvKey.PUBLIC_PATH];
+
+    initApiClients();
+
+    if (globalThis.location.pathname === '/') {
+        globalThis.location.pathname = basePath;
+        return null;
+    }
+
     return (
         <FaroProvider
             applicationKey={AktivitetspengerApp.key}
