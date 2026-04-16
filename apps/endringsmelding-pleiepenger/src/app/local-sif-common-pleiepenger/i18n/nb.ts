@@ -71,8 +71,7 @@ export const sifCommonPleiepengerMessages_nb = {
     'tidEnkeltdagForm.endretFra': 'Endret fra',
     'tidEnkeltdagForm.gjelderFlereDager.label': 'Gjenta denne tiden for flere dager',
     'tidEnkeltdagForm.gjelderFlereDager.info': 'Velg hvilke andre dager du ønsker at denne tiden skal registreres på:',
-    'tidEnkeltdagForm.gjentagelse.helUke': 'Alle dager i uke {ukeNavn}',
-    'tidEnkeltdagForm.gjentagelse.delAvUke': 'Alle dager søkt for i uke {ukeNavn}',
+    'tidEnkeltdagForm.gjentagelse.alleDagerIUke': 'Alle dager i uke {ukeNavn}',
     'tidEnkeltdagForm.gjentagelse.alleDagerIMåned': 'Alle dager i {månedNavn}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtMånedFom': 'Alle {dagerNavn} i {månedNavn}, fra og med {fra}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtSøknadsperiodenFom':

@@ -16,10 +16,7 @@ import {
     dateFormatter,
     Duration,
     getDateToday,
-    getLastWeekdayOnOrBeforeDate,
-    getMonthDateRange,
     getNumberOfDaysInDateRange,
-    getWeekDateRange,
     NumberDuration,
 } from '@navikt/sif-common-utils';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
@@ -28,12 +25,7 @@ import minMax from 'dayjs/plugin/minMax';
 import { ReactElement } from 'react';
 
 import { Feature, isFeatureEnabled } from '../../../utils';
-import {
-    getDagerMedNyTid,
-    getDateRangeWithinDateRange,
-    getGjentagelseEnkeltdagFraFormValues,
-    trimDateRangeToWeekdays,
-} from './utils/tidEnkeltdagUtils';
+import { getDagerMedNyTid, getGjentagelseEnkeltdagFraFormValues } from './utils/tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
 
 dayjs.extend(minMax);
@@ -162,38 +154,14 @@ const TidEnkeltdagForm = ({
         }
     };
 
+    const visOpprinneligTid = isFeatureEnabled(Feature.SIF_PUBLIC_SKJUL_TID_I_OMSORGSTILBUD) === false;
+
     const dagerNavn = `${dayjs(dato).format('dddd')}er`;
-
-    const ukePeriode: DateRange = trimDateRangeToWeekdays(
-        getDateRangeWithinDateRange(getWeekDateRange(dato, true), månedISøknadsperiode),
-    );
-    const ukeErHel = dayjs(ukePeriode.from).isoWeekday() === 1 && dayjs(ukePeriode.to).isoWeekday() === 5;
-
-    /** Avgrenser til ukedager innenfor månedsperioden */
-    const ukedagMåned: DateRange = trimDateRangeToWeekdays(
-        getDateRangeWithinDateRange(getMonthDateRange(dato, true), månedISøknadsperiode),
-    );
-
-    const ukePeriodeStartTxt = dateFormatter.dayCompactDate(ukePeriode.from);
-    const ukePeriodeSluttTxt = dateFormatter.dayCompactDate(ukePeriode.to);
-
-    const månedPeriodeStartTxt = dateFormatter.dayCompactDate(ukedagMåned.from);
-    const månedPeriodeSluttTxt = dateFormatter.dayCompactDate(ukedagMåned.to);
-
     const ukeNavn = `${dayjs(dato).isoWeek()}`;
     const månedNavn = dayjs(dato).format('MMMM YYYY');
 
-    const sluttDatoTxt = dateFormatter.full(getLastWeekdayOnOrBeforeDate(månedISøknadsperiode.to));
-
     const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(månedISøknadsperiode) > 2;
-
-    const renderGjentagelseRadioLabel = (key: string, p?: { fra: string; til: string }, values?: any): ReactElement => (
-        <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...p }} />
-    );
-
     const initalValues = getInitialValues({ tid, tidOpprinnelig });
-
-    const visOpprinneligTid = isFeatureEnabled(Feature.SIF_PUBLIC_SKJUL_TID_I_OMSORGSTILBUD) === false;
 
     return (
         <FormComponents.FormikWrapper
@@ -277,37 +245,21 @@ const TidEnkeltdagForm = ({
                                                     value: 'separator-1',
                                                 },
                                                 {
-                                                    label: renderGjentagelseRadioLabel(
-                                                        ukeErHel ? 'helUke' : 'delAvUke',
-                                                        {
-                                                            fra: ukePeriodeStartTxt,
-                                                            til: ukePeriodeSluttTxt,
-                                                        },
-                                                        { ukeNavn },
-                                                    ),
+                                                    label: text('tidEnkeltdagForm.gjentagelse.alleDagerIUke', {
+                                                        ukeNavn,
+                                                    }),
                                                     value: GjentagelseType.heleUken,
                                                 },
                                                 {
-                                                    label: renderGjentagelseRadioLabel(
-                                                        'alleDagerIMåned',
-                                                        {
-                                                            fra: månedPeriodeStartTxt,
-                                                            til: månedPeriodeSluttTxt,
-                                                        },
-                                                        { månedNavn },
-                                                    ),
+                                                    label: text('tidEnkeltdagForm.gjentagelse.alleDagerIMåned', {
+                                                        månedNavn,
+                                                    }),
                                                     value: GjentagelseType.heleMåneden,
                                                 },
                                                 {
-                                                    label: renderGjentagelseRadioLabel(
-                                                        'alleDagerUtSøknadsperioden',
-                                                        {
-                                                            fra: dateFormatter.full(dato),
-                                                            til: dateFormatter.full(
-                                                                getLastWeekdayOnOrBeforeDate(søknadsperiode.to),
-                                                            ),
-                                                        },
-                                                        { dagerNavn, månedNavn },
+                                                    label: text(
+                                                        'tidEnkeltdagForm.gjentagelse.alleDagerUtSøknadsperioden',
+                                                        { fra: dateFormatter.full(dato) },
                                                     ),
                                                     value: GjentagelseType.alleDagerUtSøknadsperioden,
                                                 },
@@ -319,27 +271,20 @@ const TidEnkeltdagForm = ({
                                                     value: 'separator-2',
                                                 },
                                                 {
-                                                    label: renderGjentagelseRadioLabel(
-                                                        'sammeDagUtMånedFom',
-                                                        {
-                                                            fra: dateFormatter.full(dato),
-                                                            til: sluttDatoTxt,
-                                                        },
-                                                        { dagerNavn, månedNavn },
-                                                    ),
-
+                                                    label: text('tidEnkeltdagForm.gjentagelse.sammeDagUtMånedFom', {
+                                                        dagerNavn,
+                                                        månedNavn,
+                                                        fra: dateFormatter.full(dato),
+                                                    }),
                                                     value: GjentagelseType.sammeDagUtMånedFom,
                                                 },
                                                 {
-                                                    label: renderGjentagelseRadioLabel(
-                                                        'sammeDagUtSøknadsperiodenFom',
+                                                    label: text(
+                                                        'tidEnkeltdagForm.gjentagelse.sammeDagUtSøknadsperiodenFom',
                                                         {
+                                                            dagerNavn,
                                                             fra: dateFormatter.full(dato),
-                                                            til: dateFormatter.full(
-                                                                getLastWeekdayOnOrBeforeDate(søknadsperiode.to),
-                                                            ),
                                                         },
-                                                        { dagerNavn, månedNavn },
                                                     ),
                                                     value: GjentagelseType.sammeDagUtSøknadsperiodenFom,
                                                 },
