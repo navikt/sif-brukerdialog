@@ -45,7 +45,7 @@ export interface TidEnkeltdagFormProps {
     maksTid?: NumberDuration;
     minTid?: NumberDuration;
     søknadsperiode: DateRange;
-    måned: DateRange;
+    månedISøknadsperiode: DateRange;
     erIkkeIOmsorgstilbudLabelRenderer: (date: Date) => string;
     erBarnetIOmsorgstilbudLabelRenderer: (date: Date) => string;
     hvorMyeSpørsmålRenderer: (date: Date) => string;
@@ -124,7 +124,9 @@ const TidEnkeltdagForm = ({
     dato,
     tid,
     tidOpprinnelig,
-    måned,
+    /** Månedsperiode - avgrenset til innenfor søknadsperioden */
+    månedISøknadsperiode,
+    /** Hele søknadsperioden */
     søknadsperiode,
     maksTid = { hours: 24, minutes: 0 },
     minTid = { hours: 0, minutes: 0 },
@@ -140,7 +142,7 @@ const TidEnkeltdagForm = ({
             onSubmit({
                 dagerMedTid: getDagerMedNyTid(
                     søknadsperiode,
-                    måned,
+                    månedISøknadsperiode,
                     dato,
                     values.tid,
                     getGjentagelseEnkeltdagFraFormValues(values),
@@ -151,7 +153,7 @@ const TidEnkeltdagForm = ({
             onSubmit({
                 dagerMedTid: getDagerMedNyTid(
                     søknadsperiode,
-                    måned,
+                    månedISøknadsperiode,
                     dato,
                     { hours: '0', minutes: '0' },
                     getGjentagelseEnkeltdagFraFormValues(values),
@@ -163,27 +165,27 @@ const TidEnkeltdagForm = ({
     const dagerNavn = `${dayjs(dato).format('dddd')}er`;
 
     const ukePeriode: DateRange = trimDateRangeToWeekdays(
-        getDateRangeWithinDateRange(getWeekDateRange(dato, true), måned),
+        getDateRangeWithinDateRange(getWeekDateRange(dato, true), månedISøknadsperiode),
     );
     const ukeErHel = dayjs(ukePeriode.from).isoWeekday() === 1 && dayjs(ukePeriode.to).isoWeekday() === 5;
-    const månedPeriode: DateRange = trimDateRangeToWeekdays(
-        getDateRangeWithinDateRange(getMonthDateRange(dato, true), måned),
+
+    /** Avgrenser til ukedager innenfor månedsperioden */
+    const ukedagMåned: DateRange = trimDateRangeToWeekdays(
+        getDateRangeWithinDateRange(getMonthDateRange(dato, true), månedISøknadsperiode),
     );
-    const månedErHel =
-        dayjs(måned.from).isBefore(månedPeriode.from, 'month') && dayjs(måned.to).isAfter(månedPeriode.to, 'month');
 
     const ukePeriodeStartTxt = dateFormatter.dayCompactDate(ukePeriode.from);
     const ukePeriodeSluttTxt = dateFormatter.dayCompactDate(ukePeriode.to);
 
-    const månedPeriodeStartTxt = dateFormatter.dayCompactDate(månedPeriode.from);
-    const månedPeriodeSluttTxt = dateFormatter.dayCompactDate(månedPeriode.to);
+    const månedPeriodeStartTxt = dateFormatter.dayCompactDate(ukedagMåned.from);
+    const månedPeriodeSluttTxt = dateFormatter.dayCompactDate(ukedagMåned.to);
 
     const ukeNavn = `${dayjs(dato).isoWeek()}`;
     const månedNavn = dayjs(dato).format('MMMM YYYY');
 
-    const sluttDatoTxt = dateFormatter.full(getLastWeekdayOnOrBeforeDate(måned.to));
+    const sluttDatoTxt = dateFormatter.full(getLastWeekdayOnOrBeforeDate(månedISøknadsperiode.to));
 
-    const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(måned) > 2;
+    const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(månedISøknadsperiode) > 2;
 
     const renderGjentagelseRadioLabel = (key: string, p?: { fra: string; til: string }, values?: any): ReactElement => (
         <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...p }} />
@@ -287,7 +289,7 @@ const TidEnkeltdagForm = ({
                                                 },
                                                 {
                                                     label: renderGjentagelseRadioLabel(
-                                                        månedErHel ? 'helMåned' : 'delAvMåned',
+                                                        'alleDagerIMåned',
                                                         {
                                                             fra: månedPeriodeStartTxt,
                                                             til: månedPeriodeSluttTxt,

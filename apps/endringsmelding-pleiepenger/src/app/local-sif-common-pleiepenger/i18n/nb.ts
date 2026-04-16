@@ -73,8 +73,7 @@ export const sifCommonPleiepengerMessages_nb = {
     'tidEnkeltdagForm.gjelderFlereDager.info': 'Velg hvilke andre dager du ønsker at denne tiden skal registreres på:',
     'tidEnkeltdagForm.gjentagelse.helUke': 'Alle dager i uke {ukeNavn}',
     'tidEnkeltdagForm.gjentagelse.delAvUke': 'Alle dager søkt for i uke {ukeNavn}',
-    'tidEnkeltdagForm.gjentagelse.helMåned': 'Alle dager i {månedNavn}',
-    'tidEnkeltdagForm.gjentagelse.delAvMåned': 'Alle dager søkt for i {månedNavn}',
+    'tidEnkeltdagForm.gjentagelse.alleDagerIMåned': 'Alle dager i {månedNavn}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtMånedFom': 'Alle {dagerNavn} i {månedNavn}, fra og med {fra}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtSøknadsperiodenFom':
         'Alle {dagerNavn} i hele søknadsperioden, fra og med {fra}',

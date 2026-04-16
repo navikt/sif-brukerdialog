@@ -80,8 +80,7 @@ export const sifCommonPleiepengerMessages_nn: Record<keyof typeof sifCommonPleie
         'Vel kva andre dagar i søknadsperioden du ønskjer at desse timane skal registrerast på:',
     'tidEnkeltdagForm.gjentagelse.helUke': 'Alle dagar i veke {ukeNavn}',
     'tidEnkeltdagForm.gjentagelse.delAvUke': 'Alle dagar i veke {ukeNavn}',
-    'tidEnkeltdagForm.gjentagelse.helMåned': 'Alle dagar i {månedNavn}',
-    'tidEnkeltdagForm.gjentagelse.delAvMåned': 'Alle dagar i {månedNavn}',
+    'tidEnkeltdagForm.gjentagelse.alleDagerIMåned': 'Alle dagar i {månedNavn}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtMånedFom': 'Alle {dagerNavn} i {månedNavn}, fra og med {fra}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtSøknadsperiodenFom':
         'Alle {dagerNavn} i søknadsperioden frå og med {fra} til og med {til}',

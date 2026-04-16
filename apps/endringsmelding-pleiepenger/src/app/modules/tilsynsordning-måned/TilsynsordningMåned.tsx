@@ -144,7 +144,7 @@ const TilsynsordningMåned = ({
                         open={editDate !== undefined}
                         formProps={{
                             søknadsperiode,
-                            måned,
+                            månedISøknadsperiode: måned,
                             dato: editDate.dato,
                             tid: editDate.tid,
                             tidOpprinnelig: dagerMedOpprinnelig[dateToISOString(editDate.dato)],
