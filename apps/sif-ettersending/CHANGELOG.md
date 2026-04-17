@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.49.70
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 3.49.69
 
 ### Patch Changes

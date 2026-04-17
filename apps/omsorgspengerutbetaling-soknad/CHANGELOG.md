@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.26.69
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 1.26.68
 
 ### Patch Changes

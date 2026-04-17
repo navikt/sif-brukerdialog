@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.14.7
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 3.14.6
 
 ### Patch Changes
