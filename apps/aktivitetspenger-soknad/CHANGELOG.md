@@ -1,5 +1,11 @@
 # @navikt/aktivitetspenger-soknad
 
+## 0.0.4
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 0.0.3
 
 ### Patch Changes

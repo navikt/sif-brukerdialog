@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.69
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 2.28.68
 
 ### Patch Changes

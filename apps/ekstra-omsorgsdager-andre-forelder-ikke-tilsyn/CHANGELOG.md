@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.35.77
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 1.35.76
 
 ### Patch Changes

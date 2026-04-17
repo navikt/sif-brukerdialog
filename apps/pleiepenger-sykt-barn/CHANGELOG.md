@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.72
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 4.11.71
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.46
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 1.4.45
 
 ### Patch Changes
