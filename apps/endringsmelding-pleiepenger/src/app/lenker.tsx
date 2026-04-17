@@ -6,6 +6,7 @@ import { AppText } from './i18n';
 const LenkerBokmål = {
     beskjedTilOssEndringsmelding: 'https://innboks.nav.no/s/beskjed-til-oss?category=Endring-sykdom-familien',
     skrivTilOssPleiepenger: 'https://innboks.nav.no/s/skriv-til-oss?category=Pleiepenger',
+    søknadPleiepenger: 'https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger',
 };
 
 type Lenker = typeof LenkerBokmål;

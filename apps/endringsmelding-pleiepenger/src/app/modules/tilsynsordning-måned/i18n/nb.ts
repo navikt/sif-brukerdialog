@@ -2,11 +2,13 @@ export const tilsynsordningMånedMessages_nb = {
     'tilsynsordningPeriodeForm.tittel': 'Oppgi periode med omsorgstilbud',
     'tilsynsordningPeriodeForm.submitButtonLabel': 'Ok',
     'tilsynsordningPeriodeForm.cancelButtonLabel': 'Avbryt',
-    'tilsynsordningPeriodeForm.periode.legend': 'Velg periode',
+    'tilsynsordningPeriodeForm.periode.legend': 'Velg perioden du vil endre',
     'tilsynsordningPeriodeForm.fraOgMed.label': 'Fra og med',
     'tilsynsordningPeriodeForm.tilOgMed.label': 'Til og med',
-    'tilsynsordningPeriodeForm.tidFasteDager.label': 'Fyll ut tiden i omsorgstilbudet som er fast og regelmessig:',
-    'tilsynsordningPeriodeForm.validation.fom.dateHasNoValue': 'Du må fylle ut periodens fra-dato.',
+    'tilsynsordningPeriodeForm.tidFasteDager.label': 'Fyll inn tiden du vil endre i omsorgstilbudet',
+    'tilsynsordningPeriodeForm.tidFasteDager.text':
+        'Du skal kun fylle inn endringer som er faste og regelmessige. Du trenger ikke fylle inn dager som du ikke skal endre. Skal du fjerne omsorgstilbud, må du legge inn 0 timer.',
+    'tilsynsordningPeriodeForm.validation.fom.dateHasNoValue': 'Du må fylle inn periodens fra-dato.',
     'tilsynsordningPeriodeForm.validation.fom.dateHasInvalidFormat':
         'Du må oppgi periodens fra-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
     'tilsynsordningPeriodeForm.validation.fom.fromDateIsAfterToDate':
@@ -17,7 +19,7 @@ export const tilsynsordningMånedMessages_nb = {
         'Fra-datoen kan ikke være etter perioden du har søkt for.',
     'tilsynsordningPeriodeForm.validation.fom.dateIsNotWeekday':
         'Fra-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-    'tilsynsordningPeriodeForm.validation.tom.dateHasNoValue': 'Du må fylle ut periodens til-dato.',
+    'tilsynsordningPeriodeForm.validation.tom.dateHasNoValue': 'Du må fylle inn periodens til-dato.',
     'tilsynsordningPeriodeForm.validation.tom.dateHasInvalidFormat':
         'Du må oppgi periodens til-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
     'tilsynsordningPeriodeForm.validation.tom.toDateIsBeforeFromDate':
@@ -27,11 +29,11 @@ export const tilsynsordningMånedMessages_nb = {
     'tilsynsordningPeriodeForm.validation.tom.dateIsNotWeekday':
         'Til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
     'tilsynsordningPeriodeForm.validation.tidFasteDager.gruppe.ingenTidRegistrert':
-        'Du må fylle ut tiden i omsorgstilbudet som er fast og regelmessig.',
+        'Du må fylle inn tiden i omsorgstilbudet som er fast og regelmessig.',
     'tilsynsordningPeriodeForm.validation.tidFasteDager.gruppe.forMangeTimer':
         'Du kan ikke oppgi mer enn 37 timer og 30 minutter for en uke.',
     'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.timeHasNoValue':
-        'Du må fylle ut timer og minutter for {dag}.',
+        'Du må fylle inn timer og minutter for {dag}.',
     'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.hoursAreInvalid':
         'Antall timer på {dag} er ikke et gyldig tall.',
     'tilsynsordningPeriodeForm.validation.tidFasteDager.tid.minutesAreInvalid':
@@ -52,7 +54,7 @@ export const tilsynsordningMånedMessages_nb = {
     'tilsynsordningMåned.ukeOgÅr': '{ukeOgÅr}',
     'tilsynsordningMåned.dagerRegistrert.dager': '{dager, plural, one {# dag} other {# dager}} endret',
     'tilsynsordningMåned.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud endret',
-    'tilsynsordningPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbud',
+    'tilsynsordningPeriodeDialog.contentLabel': 'Endre tid i omsorgstilbud',
 
     'tilsynsordningEnkeltdagForm.tittel': 'Tid i omsorgstilbud {dato}',
     'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm': 'Er barnet i omsorgstilbud {dato}?',
@@ -67,9 +69,7 @@ export const tilsynsordningMånedMessages_nb = {
     'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud.historisk': 'Barnet var ikke i omsorgstilbud denne dagen',
 
     'tidEnkeltdagForm.intro':
-        'Velg om barnet er i omsorgstilbud denne dagen, og eventuelt hvor mye tid barnet er i omsorgstilbudet.',
-    'tidEnkeltdagForm.intro.historisk':
-        'Velg om barnet var i omsorgstilbud denne dagen, og eventuelt hvor mye tid barnet var i omsorgstilbudet.',
+        'Du skal kun fylle inn endringer som er faste og regelmessige. Skal du fjerne omsorgstilbud, svarer du nei.',
     'tidEnkeltdagForm.opprinneligTid': 'Opprinnelig tid: ',
     'tidEnkeltdagForm.ingenOpprinneligTid': 'Opprinnelig tid: ingen tid registrert',
     'tidEnkeltdagForm.endretFra': 'Endret fra',
@@ -88,14 +88,14 @@ export const tilsynsordningMånedMessages_nb = {
     'tidEnkeltdagForm.stopDato.label': 'Velg til og med dato',
     'tidEnkeltdagForm.validation.gjentagelse.noValue':
         'Du må velge hvilke flere dager tiden skal gjelde, eller velge bort valget om at det gjelder flere dager.',
-    'tidEnkeltdagForm.validation.stopDato.dateHasNoValue': 'Du må fylle ut til og med dato.',
+    'tidEnkeltdagForm.validation.stopDato.dateHasNoValue': 'Du må fylle inn til og med dato.',
     'tidEnkeltdagForm.validation.stopDato.dateHasInvalidFormat':
         'Du må oppgi til og med dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
     'tidEnkeltdagForm.validation.stopDato.dateIsBeforeMin': 'Du kan ikke sette til og med dato til før fra-datoen.',
     'tidEnkeltdagForm.validation.stopDato.dateIsNotWeekday':
         'Til og med datoen må være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
     'tidEnkeltdagForm.validation.stopDato.dateIsAfterMax': 'Til og med dato kan ikke være etter perioden du søker for.',
-    'tidEnkeltdagForm.validation.tid.timeHasNoValue': 'Du må fylle ut timer og minutter.',
+    'tidEnkeltdagForm.validation.tid.timeHasNoValue': 'Du må fylle inn timer og minutter.',
     'tidEnkeltdagForm.validation.tid.hoursAreInvalid': 'Antall timer er ikke et gyldig tall.',
     'tidEnkeltdagForm.validation.tid.hoursAreNegative': 'Antall timer kan ikke være et negativt tall.',
     'tidEnkeltdagForm.validation.tid.minutesAreInvalid': 'Antall minutter er ikke et gyldig tall.',

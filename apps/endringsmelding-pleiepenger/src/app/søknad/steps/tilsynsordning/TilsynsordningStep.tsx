@@ -1,18 +1,18 @@
+import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit, useSakUtledet, useSøknadContext } from '@app/hooks';
 import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText } from '@app/i18n';
-import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
 import SøknadStep from '@app/søknad/SøknadStep';
 import { SøknadContextState } from '@app/types';
 import { lagreSøknadState } from '@app/utils';
-import { Heading, List, VStack } from '@navikt/ds-react';
+import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 
-import { SkrivTilOssLink } from '../../../lenker';
+import { getLenker, SkrivTilOssLink } from '../../../lenker';
 import TilsynsordningForm, { tilsynsordningFormComponents, TilsynsordningFormValues } from './TilsynsordningForm';
 import {
     getTilsynsordningSøknadsdataFromFormValues,
@@ -86,6 +86,14 @@ const TilsynsordningStep = () => {
                         </List.Item>
                         <List.Item>
                             <AppText id="omsorgstilbudStep.guide.listItem.3" />
+                        </List.Item>
+                        <List.Item>
+                            <AppText
+                                id="omsorgstilbudStep.guide.listItem.4"
+                                values={{
+                                    link: (text) => <Link href={getLenker().søknadPleiepenger}>{text}</Link>,
+                                }}
+                            />
                         </List.Item>
                     </List>
                 </VStack>

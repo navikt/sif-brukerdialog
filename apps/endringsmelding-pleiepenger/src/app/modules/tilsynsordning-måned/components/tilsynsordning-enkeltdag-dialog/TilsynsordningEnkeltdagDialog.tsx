@@ -59,10 +59,8 @@ const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
         );
     };
 
-    const introRenderer = (dato: Date): string => {
-        return text(datoErHistorisk(dato) ? 'tidEnkeltdagForm.intro.historisk' : 'tidEnkeltdagForm.intro', {
-            dato: dateFormatter.dayDateMonthYear(dato),
-        });
+    const introRenderer = (): string => {
+        return text('tidEnkeltdagForm.intro');
     };
 
     return (

@@ -121,6 +121,7 @@ const TilsynsordningPeriodeForm: React.FC<TilsynsordningPeriodeFormProps> = ({ p
 
                             <FormComponents.InputGroup
                                 legend={text('tilsynsordningPeriodeForm.tidFasteDager.label')}
+                                description={text('tilsynsordningPeriodeForm.tidFasteDager.text')}
                                 validate={() => {
                                     const error = validateTilsynsordningFasteDager(tidFasteDager);
                                     return error
