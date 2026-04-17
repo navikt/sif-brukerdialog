@@ -43,7 +43,6 @@ jobs:
               with:
                   node-version: 22
                   cache: "yarn"
-            - run: yarn set version 4.x
 
             - name: Install dependencies (yarn)
               run: yarn install --immutable

@@ -67,9 +67,6 @@ jobs:
           node-version: 22
           cache: "yarn"
 
-      - name: Set Yarn version
-        run: yarn set version 4.x
-
       - name: Install dependencies
         run: yarn install --immutable
 
@@ -104,9 +101,6 @@ jobs:
           node-version: 22
           cache: "yarn"
 
-      - name: Set Yarn version
-        run: yarn set version 4.x
-
       - name: Install dependencies
         run: yarn install --immutable
 
@@ -127,7 +121,8 @@ jobs:
 
       - name: Build application for testing
         if: inputs.e2e-build-command != ''
-        run: yarn turbo ${{ inputs.e2e-build-command }} --filter=${{ inputs.package-name }}
+        run: yarn turbo ${{ inputs.e2e-build-command }} --filter=${{ inputs.package-name
+          }}
 
       - name: Run Playwright tests
         run: yarn turbo playwright-test --filter=${{ inputs.package-name }}
