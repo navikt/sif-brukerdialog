@@ -40,7 +40,6 @@ jobs:
               with:
                   node-version: 22
                   cache: "yarn"
-            - run: yarn set version 4.x
 
             - name: Install dependencies (yarn)
               run: yarn install --immutable
@@ -73,7 +72,7 @@ jobs:
                   IMAGE: ${{ steps.docker-push.outputs.image }}
 
     trivy:
-        needs: [deploy-to-prod]
+        needs: [ deploy-to-prod ]
         uses: navikt/sif-gha-workflows/.github/workflows/trivy.yml@main
         permissions:
             contents: write

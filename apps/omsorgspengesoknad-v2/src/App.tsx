@@ -30,7 +30,7 @@ export const App = () => {
                 <SifQueryClientProvider>
                     <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
                         <BrowserRouter basename={basePath}>
-                            <ScenarioHeader />
+                            {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
                             <InitialDataLoader />
                         </BrowserRouter>
                     </IntlProvider>

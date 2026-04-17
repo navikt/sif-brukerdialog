@@ -1,3 +1,4 @@
+---
 name: sif-soknad-setup
 description: Veiledning for oppsett av src/app/setup og routing shell (Soknad.tsx, VelkommenPage, KvitteringPage) i nye apper som bruker @sif/soknad og @sif/rhf.
 ---

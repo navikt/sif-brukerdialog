@@ -1,3 +1,4 @@
+---
 name: sif-playwright
 description: Standard for Playwright e2e-oppsett i app-workspaces (config, scripts, scenario-flyt, første tester, a11y med axe).
 ---
