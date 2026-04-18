@@ -1,9 +1,9 @@
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
-import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { sifApiQueryKeys } from '@sif/api';
 import { UngOppgaveIkkeFunnetPage, UngOppgavePage } from '@sif/ung-innsyn/pages';
 import { useQueryClient } from '@tanstack/react-query';
+import { useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAppIntl } from '../../../i18n';
@@ -17,11 +17,18 @@ const OppgavePage = () => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const refetchTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
     const {
         oppgaver,
         søker: { fornavn },
     } = useDeltakerContext();
     const oppgave = oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
+
+    useEffect(() => {
+        return () => {
+            clearTimeout(refetchTimeoutRef.current);
+        };
+    }, []);
 
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
 
@@ -33,8 +40,9 @@ const OppgavePage = () => {
             onCancel={() => navigate('/')}
             onSuccess={() => {
                 queryClient.invalidateQueries({ queryKey: sifApiQueryKeys.oppgaver });
-                queryClient.invalidateQueries(commonQueries.deltakelseperioder);
-                setTimeout(() => {
+                clearTimeout(refetchTimeoutRef.current);
+                /** Venter pga oppdateringer i backend kan ta litt tid */
+                refetchTimeoutRef.current = setTimeout(() => {
                     queryClient.refetchQueries({ queryKey: sifApiQueryKeys.oppgaver });
                 }, 3000);
             }}
