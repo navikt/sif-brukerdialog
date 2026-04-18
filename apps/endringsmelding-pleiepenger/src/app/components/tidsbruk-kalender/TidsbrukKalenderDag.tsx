@@ -37,13 +37,21 @@ const TidsbrukKalenderDag = ({
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
 
     const renderTid = (duration: Duration) =>
-        tidRenderer ? tidRenderer({ tid: duration, dato, prosent }) : <DurationText duration={duration} />;
+        tidRenderer ? (
+            tidRenderer({ tid: duration, dato, prosent })
+        ) : (
+            <span style={{ whiteSpace: 'nowrap' }}>
+                <DurationText duration={duration} />
+            </span>
+        );
 
     const renderOpprinneligTid = (duration: Duration) =>
         opprinneligTidRenderer ? (
             opprinneligTidRenderer({ tid: duration, dato, prosent })
         ) : (
-            <DurationText duration={duration} />
+            <span style={{ whiteSpace: 'nowrap' }}>
+                <DurationText duration={duration} />
+            </span>
         );
 
     return (

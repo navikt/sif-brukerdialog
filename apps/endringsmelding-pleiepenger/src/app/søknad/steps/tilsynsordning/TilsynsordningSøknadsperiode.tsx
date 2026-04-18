@@ -1,6 +1,7 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import TilsynsordningPeriodeDialog from '@app/modules/tilsynsordning-måned/components/tilsynsordning-periode-dialog/TilsynsordningPeriodeDialog';
 import TilsynsordningMåned, { EnkeltdagChangeEvent } from '@app/modules/tilsynsordning-måned/TilsynsordningMåned';
-import { ArrowUndoIcon, PencilIcon } from '@navikt/aksel-icons';
+import { PencilIcon, TrashIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, HStack, VStack } from '@navikt/ds-react';
 import { ConfirmationDialog } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
@@ -29,28 +30,23 @@ const TilsynsordningSøknadsperiode = ({
 }: Props) => {
     const [visPeriodeDialog, setVisPeriodeDialog] = useState(false);
     const [visTilbakestillEndringerDialog, setVisTilbakestillEndringerDialog] = useState(false);
+    const { text } = useAppIntl();
     const månederISøknadsperiode = dateRangeUtils
         .getMonthsInDateRange(søknadsperiode)
         .filter(dateRangeUtils.dateRangeIncludesWeekdays);
 
-    const tilbakestillAlleEndringer = () => {
+    const fjernAlleEndringer = () => {
         onRevert(søknadsperiode);
     };
 
     return (
         <>
             <VStack gap="space-16">
-                <VStack gap="space-8">
-                    <VStack gap="space-8" marginBlock="space-0 space-16">
-                        <BodyLong as="div">
-                            Velg måned og dag i kalenderen for å endre tiden i omsorgstilbud for enkeltdager, eller bruk
-                            knappen &quot;Registrer tid for en periode&quot; for å oppdatere tiden for en periode.
-                        </BodyLong>
-                        <BodyLong as="div">
-                            Du kan kun endre tid for dager som er innenfor tillatt endringsperiode.
-                        </BodyLong>
-                    </VStack>
-                    <HStack gap="space-4" justify="space-between" marginBlock="space-0 space-8">
+                <VStack gap="space-16">
+                    <BodyLong as="div">
+                        <AppText id="tilsynsordningSøknadsperiode.info" />
+                    </BodyLong>
+                    <HStack gap="space-4" justify="space-between">
                         <Button
                             type="button"
                             variant="secondary"
@@ -58,7 +54,7 @@ const TilsynsordningSøknadsperiode = ({
                             data-color="accent"
                             onClick={() => setVisPeriodeDialog(true)}
                             icon={<PencilIcon role="presentation" />}>
-                            Registrer tid for en periode
+                            <AppText id="tilsynsordningSøknadsperiode.leggTilEndring" />
                         </Button>
                         {harEndringer && (
                             <Button
@@ -67,38 +63,41 @@ const TilsynsordningSøknadsperiode = ({
                                 size="small"
                                 data-color="accent"
                                 onClick={() => setVisTilbakestillEndringerDialog(true)}
-                                icon={<ArrowUndoIcon role="presentation" />}>
-                                Tilbakestill alle endringer
+                                icon={<TrashIcon role="presentation" />}>
+                                <AppText id="tilsynsordningSøknadsperiode.fjernAlleEndringer" />
                             </Button>
                         )}
                     </HStack>
-                    {månederISøknadsperiode.map((måned) => {
-                        return (
-                            <TilsynsordningMåned
-                                key={måned.from.toDateString()}
-                                søknadsperiode={måned}
-                                måned={måned}
-                                tidTilsynsordning={endredeTilsynsdager}
-                                tidTilsynsordningOpprinnelig={opprinneligTilsynsdager}
-                                onEnkeltdagChange={onEnkeltdagChange}
-                            />
-                        );
-                    })}
+                    <VStack gap="space-8">
+                        {månederISøknadsperiode.map((måned) => {
+                            return (
+                                <TilsynsordningMåned
+                                    key={måned.from.toDateString()}
+                                    søknadsperiode={søknadsperiode}
+                                    måned={måned}
+                                    tidTilsynsordning={endredeTilsynsdager}
+                                    tidTilsynsordningOpprinnelig={opprinneligTilsynsdager}
+                                    onEnkeltdagChange={onEnkeltdagChange}
+                                    onTilbakestillEndringer={(periode) => onRevert(periode)}
+                                />
+                            );
+                        })}
+                    </VStack>
                 </VStack>
             </VStack>
             <ConfirmationDialog
-                title="Tilbakestille alle endringer"
+                title={text('tilsynsordningSøknadsperiode.fjernAlleEndringer')}
                 open={visTilbakestillEndringerDialog}
-                okLabel="Ja, tilbakestill"
-                cancelLabel="Nei, avbryt"
+                okLabel={text('tilsynsordningSøknadsperiode.bekreftFjern.okLabel')}
+                cancelLabel={text('tilsynsordningSøknadsperiode.bekreftFjern.cancelLabel')}
                 onConfirm={() => {
-                    tilbakestillAlleEndringer();
+                    fjernAlleEndringer();
                     setVisTilbakestillEndringerDialog(false);
                 }}
                 onCancel={() => setVisTilbakestillEndringerDialog(false)}>
-                Bekreft at du ønsker å tilbakestille alle endringer du har gjort for omsorgstilbudet i denne
-                søknadsperioden.
+                <AppText id="tilsynsordningSøknadsperiode.bekreftFjern.innhold" />
             </ConfirmationDialog>
+
             <TilsynsordningPeriodeDialog
                 isOpen={visPeriodeDialog}
                 formProps={{

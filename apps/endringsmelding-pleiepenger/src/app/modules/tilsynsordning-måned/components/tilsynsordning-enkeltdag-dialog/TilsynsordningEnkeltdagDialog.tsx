@@ -2,44 +2,67 @@ import { useAppIntl } from '@app/i18n';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
-import TidEnkeltdagDialog, { TidEnkeltdagDialogProps } from '../tid-enkeltdag-dialog/TidEnkeltdagDialog';
-import { TidEnkeltdagFormProps } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
+import TidEnkeltdagDialog, {
+    TidEnkeltdagDialogProps,
+} from '../../../../components/tid-enkeltdag-dialog/TidEnkeltdagDialog';
+import { TidEnkeltdagFormProps } from '../../../../components/tid-enkeltdag-dialog/TidEnkeltdagForm';
 
 interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps'> {
     formProps: Omit<
         TidEnkeltdagFormProps,
-        'hvorMyeSpørsmålRenderer' | 'beskrivelseRenderer' | 'erIkkeIOmsorgstilbudLabelRenderer' | 'maksTid'
+        | 'erBarnetIOmsorgstilbudLabelRenderer'
+        | 'introRenderer'
+        | 'hvorMyeSpørsmålRenderer'
+        | 'beskrivelseRenderer'
+        | 'erIkkeIOmsorgstilbudLabelRenderer'
+        | 'maksTid'
     >;
 }
+
+const datoErHistorisk = (dato: Date): boolean => {
+    return dayjs(dato).isBefore(getDateToday(), 'day');
+};
 
 const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
     const { text } = useAppIntl();
 
-    const hvorMyeSpørsmålRenderer = (dato: Date): string => {
-        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
+    const erBarnetIOmsorgstilbudLabelRenderer = (dato: Date): string => {
         return text(
-            erHistorisk ? 'tilsynsordningEnkeltdagForm.tid.spm.historisk' : 'tilsynsordningEnkeltdagForm.tid.spm',
+            datoErHistorisk(dato)
+                ? 'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm.historisk'
+                : 'tilsynsordningEnkeltdagForm.erBarnetIOmsorgstilbud.spm',
+            { dato: dateFormatter.dayDateMonthYear(dato) },
+        );
+    };
+    const hvorMyeSpørsmålRenderer = (dato: Date): string => {
+        return text(
+            datoErHistorisk(dato)
+                ? 'tilsynsordningEnkeltdagForm.tid.spm.historisk'
+                : 'tilsynsordningEnkeltdagForm.tid.spm',
             { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
     const beskrivelseRenderer = (dato: Date): string => {
-        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
         return text(
-            erHistorisk
+            datoErHistorisk(dato)
                 ? 'tilsynsordningEnkeltdagForm.tid.beskrivelse.historisk'
                 : 'tilsynsordningEnkeltdagForm.tid.beskrivelse',
             { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
     const erIkkeIOmsorgstilbudLabelRenderer = (dato: Date): string => {
-        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
         return text(
-            erHistorisk
+            datoErHistorisk(dato)
                 ? 'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud.historisk'
                 : 'tilsynsordningEnkeltdagForm.tid.erIOmsorgstilbud',
             { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
+
+    const introRenderer = (): string => {
+        return text('tidEnkeltdagForm.intro');
+    };
+
     return (
         <TidEnkeltdagDialog
             open={isOpen}
@@ -48,7 +71,9 @@ const TilsynsordningEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
             })}
             formProps={{
                 ...formProps,
+                introRenderer,
                 hvorMyeSpørsmålRenderer,
+                erBarnetIOmsorgstilbudLabelRenderer,
                 beskrivelseRenderer,
                 erIkkeIOmsorgstilbudLabelRenderer,
                 maksTid: { hours: 7, minutes: 30 },

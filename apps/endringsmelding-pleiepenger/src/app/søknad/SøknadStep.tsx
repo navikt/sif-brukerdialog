@@ -1,4 +1,4 @@
-import InvalidStepSøknadsdataInfo from '@app/modules/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
+import InvalidStepSøknadsdataInfo from '@app/components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import { SoknadStepsConfig, soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import React from 'react';
 

@@ -2,7 +2,7 @@ import ArbeidsaktivitetBlock from '@app/components/arbeidsaktivitet-block/Arbeid
 import IkkeAnsattMelding from '@app/components/ikke-ansatt-melding/IkkeAnsattMelding';
 import InfoNormalarbeidstid from '@app/components/info-normalarbeidstid/InfoNormalarbeidstid';
 import { useOnValidSubmit } from '@app/hooks';
-import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
+import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';

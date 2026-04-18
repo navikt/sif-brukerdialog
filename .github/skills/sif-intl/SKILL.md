@@ -230,12 +230,15 @@ export const applicationIntlMessages = {
 
 ### Nøkkelstruktur
 
-| Kontekst   | Prefiks-konvensjon | Eksempel                                    |
-| ---------- | ------------------ | ------------------------------------------- |
-| Pakke      | `@pkgName.`        | `@sifSoknadUi.stepFooter.slettSøknad.label` |
-| Side (app) | `page.pageName.`   | `page.velkommen.guide.tittel`               |
-| Steg (app) | `stepName.`        | `barnSteg.tittel`                           |
-| App-nivå   | fritt              | `application.title`                         |
+| Kontekst                      | Prefiks-konvensjon      | Eksempel                                           |
+| ----------------------------- | ----------------------- | -------------------------------------------------- |
+| Pakke                         | `@pkgName.`             | `@sifSoknadUi.stepFooter.slettSøknad.label`        |
+| Side (app)                    | `page.pageName.`        | `page.velkommen.guide.tittel`                      |
+| Steg (app)                    | `stepName.`             | `barnSteg.tittel`                                  |
+| Sub-komponent innen et steg   | `componentName.`        | `tilsynsordningSøknadsperiode.leggTilEndring`       |
+| App-nivå                      | fritt                   | `application.title`                                |
+
+**Grunnpattern for sub-komponenter:** Bruk komponentnavnet (camelCase) som prefiks — ikke domenebetegnelsen for innholdet. Eksempel: nøkler i `TilsynsordningSøknadsperiode.tsx` bruker prefikset `tilsynsordningSøknadsperiode.`.
 
 ### nn.ts-typing
 
@@ -277,6 +280,29 @@ export const MyComponent = () => {
         </Button>
     );
 };
+```
+
+### Custom tags i ICU-meldinger
+
+react-intl støtter custom tags for å sende inn React-komponenter som `values`. Viktig gotcha:
+
+- **Self-closing fungerer ikke** i meldingsstrengen. Bruk alltid eksplisitt åpnings- og lukketag.
+
+```ts
+// ❌ Virker ikke — react-intl parser ikke self-closing custom tags
+'melding': 'Send oss en melding via <SkrivTilOssLink />.'
+
+// ✅ Riktig
+'melding': 'Send oss en melding via <SkrivTilOssLink></SkrivTilOssLink>.'
+```
+
+I komponenten sendes taggen inn som en `values`-funksjon:
+
+```tsx
+<AppText
+    id="melding"
+    values={{ SkrivTilOssLink: () => <SkrivTilOssLink /> }}
+/>
 ```
 
 ### Aggregering

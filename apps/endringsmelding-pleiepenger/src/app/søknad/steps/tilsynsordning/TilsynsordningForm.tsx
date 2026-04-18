@@ -1,6 +1,7 @@
 import DateRangeExpansionCards from '@app/components/date-range-expansion-cards/DateRangeExpansionCards';
 import EndretTag from '@app/components/tags/EndretTag';
 import TagsContainer from '@app/components/tags/tags-container/TagsContainer';
+import { AppText } from '@app/i18n';
 import { Heading, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
@@ -15,7 +16,7 @@ import {
 import { useFormikContext } from 'formik';
 import { useIntl } from 'react-intl';
 
-import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
+import { TidEnkeltdagEndring } from '../../../components/tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TilsynsordningSøknadsperiode from './TilsynsordningSøknadsperiode';
 
 export const tilsynsordningFormComponents = getTypedFormComponents<
@@ -103,7 +104,13 @@ const TilsynsordningForm = ({
                 <div className="arbeidsaktivitetContentHeader__title">
                     {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
                 </div>{' '}
-                <TagsContainer>{harPeriodeEndringer(periode) && <EndretTag>Endret</EndretTag>}</TagsContainer>
+                <TagsContainer>
+                    {harPeriodeEndringer(periode) && (
+                        <EndretTag>
+                            <AppText id="tags.endret" />
+                        </EndretTag>
+                    )}
+                </TagsContainer>
             </div>
         );
     };
@@ -117,7 +124,10 @@ const TilsynsordningForm = ({
             onBack={goBack}>
             <VStack gap="space-16">
                 <Heading level="2" size="small">
-                    Dine perioder med pleiepenger
+                    <AppText
+                        id="omsorgstilbudForm.periodeHeading"
+                        values={{ antallPerioder: søknadsperioder.length }}
+                    />
                 </Heading>
                 <DateRangeExpansionCards
                     dateRanges={søknadsperioder}
