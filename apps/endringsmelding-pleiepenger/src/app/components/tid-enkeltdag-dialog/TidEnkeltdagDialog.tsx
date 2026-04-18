@@ -1,5 +1,3 @@
-import './styles/tidEnkeltdagDialog.less';
-
 import { Dialog } from '@navikt/ds-react';
 
 import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
@@ -20,7 +18,7 @@ const TidEnkeltdagDialog = ({ open = false, formProps, dialogTitle }: TidEnkeltd
             defaultOpen={true}
             onOpenChange={(isOpen) => isOpen === false && formProps.onCancel()}
             size="medium">
-            <Dialog.Popup>
+            <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>{dialogTitle}</Dialog.Title>
                 </Dialog.Header>

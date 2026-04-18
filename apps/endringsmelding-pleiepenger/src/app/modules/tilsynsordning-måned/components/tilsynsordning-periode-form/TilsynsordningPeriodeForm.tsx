@@ -8,11 +8,11 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { DurationWeekdays } from '@navikt/sif-common-utils';
+import { dateRangeUtils, DurationWeekdays, getDateToday } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
 import React from 'react';
 
-import TidFasteUkedagerInput from '../../../../local-sif-common-pleiepenger/components/tid-faste-ukedager-input/TidFasteUkedagerInput';
+import TidFasteUkedagerInput from '../../../../components/tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { getTilsynsordningFastDagValidator, validateTilsynsordningFasteDager } from './tilsynsordningFormValidation';
 
 export interface TilsynsordningPeriodeFormProps {
@@ -62,6 +62,11 @@ const TilsynsordningPeriodeForm: React.FC<TilsynsordningPeriodeFormProps> = ({ p
         });
     };
 
+    let defaultMonthFromDate = getDateToday();
+    if (!dateRangeUtils.isDateInDateRange(defaultMonthFromDate, periode)) {
+        defaultMonthFromDate = periode.from;
+    }
+
     return (
         <FormComponents.FormikWrapper
             initialValues={initialFormValues}
@@ -88,7 +93,7 @@ const TilsynsordningPeriodeForm: React.FC<TilsynsordningPeriodeFormProps> = ({ p
                                     fromInputProps={{
                                         label: text('tilsynsordningPeriodeForm.fraOgMed.label'),
                                         name: FormFields.fom,
-                                        defaultMonth: periode.from,
+                                        defaultMonth: defaultMonthFromDate,
                                         validate: getDateRangeValidator({
                                             required: true,
                                             onlyWeekdays: true,
@@ -116,6 +121,7 @@ const TilsynsordningPeriodeForm: React.FC<TilsynsordningPeriodeFormProps> = ({ p
 
                             <FormComponents.InputGroup
                                 legend={text('tilsynsordningPeriodeForm.tidFasteDager.label')}
+                                description={text('tilsynsordningPeriodeForm.tidFasteDager.text')}
                                 validate={() => {
                                     const error = validateTilsynsordningFasteDager(tidFasteDager);
                                     return error

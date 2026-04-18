@@ -1,9 +1,9 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withIntl } from '../../../../storybook/decorators/withIntl';
-import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
-import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
+import { withIntl } from '../../../storybook/decorators/withIntl';
+import { withRouterProvider } from '../../../storybook/decorators/withRouter';
+import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
 import TidEnkeltdagDialog from './TidEnkeltdagDialog';
 import { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 
@@ -20,15 +20,22 @@ type Story = StoryObj<typeof TidEnkeltdagDialog>;
 const defaultFormProps: TidEnkeltdagFormProps = {
     dato: new Date(2026, 1, 11),
     tid: undefined,
-    periode: {
+    månedISøknadsperiode: {
         from: new Date(2026, 1, 1),
         to: new Date(2026, 1, 28),
+    },
+    søknadsperiode: {
+        from: new Date(2025, 1, 12),
+        to: new Date(2026, 3, 31),
     },
     tidOpprinnelig: {
         hours: '4',
         minutes: '0',
     },
+    introRenderer: () =>
+        `Legg inn timer og minutter barnet var i omsorgstilbudet, eller kryss av for at barnet ikke var det denne dagen.`,
     hvorMyeSpørsmålRenderer: (dato) => `Hvor mye var barnet i omsorgstilbud ${dateFormatter.dayDateMonthYear(dato)}?`,
+    erBarnetIOmsorgstilbudLabelRenderer: (dato) => `Er barnet i omsorgstilbud ${dateFormatter.dayDateMonthYear(dato)}?`,
     beskrivelseRenderer: () =>
         `Legg inn timer og minutter barnet var i omsorgstilbudet, eller kryss av for at barnet ikke var det denne dagen.`,
     erIkkeIOmsorgstilbudLabelRenderer: () => `Barnet var ikke i omsorgstilbud denne dagen`,

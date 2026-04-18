@@ -2,11 +2,10 @@ import { infoNormalarbeidstid } from '@app/components/info-normalarbeidstid/info
 import { arbeidstidUkerMessages } from '@app/modules/arbeidstid-uker/arbeidstidUkerMessages';
 import { endreArbeidstidMessages } from '@app/modules/endre-arbeidstid-form/endreArbeidstidMessages';
 
-import { dagerMedTidMessages } from '../local-sif-common-pleiepenger/components/dager-med-tid-liste/dagerMedTidMessages';
-import { sifCommonPleiepengerMessages_nb } from '../local-sif-common-pleiepenger/i18n/nb';
+import { tilsynsordningMånedMessages_nb } from '../modules/tilsynsordning-måned/i18n/nb';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
-import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';
+import { oppsummeringStepMessages_nb } from '../søknad/steps/oppsummering/i18n/nb';
 import { tilsynsordningMessages_nb } from '../søknad/steps/tilsynsordning/i18n/nb';
 import { ukjentArbeidsforholdFormMessages } from '../søknad/steps/ukjent-arbeidsforhold/ukjentArbeidsforholdFormMessages';
 import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
@@ -19,12 +18,11 @@ const nb = {
     ...samtykkeFormOverrideMessages.nb,
     ...ukjentArbeidsforholdFormMessages.nb,
     ...velkommenPageMessages.nb,
-    ...oppsummeringStepMessages.nb,
+    ...oppsummeringStepMessages_nb,
     ...sifCommonSoknadOverrideMessages.nb,
     ...arbeidstidUkerMessages.nb,
     ...tilsynsordningMessages_nb,
-    ...sifCommonPleiepengerMessages_nb,
-    ...dagerMedTidMessages.nb,
+    ...tilsynsordningMånedMessages_nb,
 
     'psb.timerOgMinutter':
         '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
@@ -34,6 +32,9 @@ const nb = {
     'onsdag.caps': 'Onsdag',
     'torsdag.caps': 'Torsdag',
     'fredag.caps': 'Fredag',
+
+    samletSøknadsperiodeTekstVariant2: 'fra {fra} til {til}',
+    samletSøknadsperiodeTekstVariant3: '{fra} til {til}',
 
     'lenke.skrivTilOss': 'Skriv til oss',
     'lenke.sendBeskjed': 'Send beskjed',
@@ -131,6 +132,16 @@ const nb = {
     'lovbestemtFerieStep.tags.ferieEndret': 'Ferie endret',
     'lovbestemtFerieStep.ferieFjernet.melding':
         'Du har fjernet dager med ferie. Hvis du skal du jobbe disse dagene må du se over at jobb i perioden er riktig. Dette gjør du på neste steg.',
+
+    'calendarGrid.Mandag': 'Mandag',
+    'calendarGrid.Tirsdag': 'Tirsdag',
+    'calendarGrid.Onsdag': 'Onsdag',
+    'calendarGrid.Torsdag': 'Torsdag',
+    'calendarGrid.Fredag': 'Fredag',
+    'calendarGrid.uke': 'uke',
+    'calendarGrid.Uke': 'Uke',
+    'calendarGrid.måned': 'måned',
+    'calendarGrid.Måned': 'Måned',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

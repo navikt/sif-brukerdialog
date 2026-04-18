@@ -1,0 +1,138 @@
+name: Deploy all apps to prod
+
+on:
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    security-events: write
+    id-token: write
+    actions: read
+
+concurrency:
+    group: deploy-all-apps-to-prod-${{ github.ref }}
+    cancel-in-progress: false
+
+jobs:
+    deploy-dine-pleiepenger:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "dine-pleiepenger"
+            working-directory: "apps/dine-pleiepenger"
+            package-name: "@navikt/dine-pleiepenger"
+            is-next-app: true
+            needs-env-file: true
+
+    deploy-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+            working-directory: "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+            package-name: "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+
+    deploy-endringsmelding-pleiepenger:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "endringsmelding-pleiepenger"
+            working-directory: "apps/endringsmelding-pleiepenger"
+            package-name: "@navikt/endringsmelding-pleiepenger"
+            playwright-with-deps: true
+
+    deploy-omsorgsdager-aleneomsorg-dialog:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgsdager-aleneomsorg-dialog"
+            working-directory: "apps/omsorgsdager-aleneomsorg-dialog"
+            package-name: "@navikt/omsorgsdager-aleneomsorg-dialog"
+
+    deploy-omsorgsdager-kalkulator:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgsdager-kalkulator"
+            working-directory: "apps/omsorgsdager-kalkulator"
+            package-name: "@navikt/omsorgsdager-kalkulator"
+            e2e-build-command: "build"
+
+    deploy-omsorgspengerutbetaling-arbeidstaker-soknad:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
+            working-directory: "apps/omsorgspengerutbetaling-arbeidstaker-soknad"
+            package-name: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad"
+
+    deploy-omsorgspengerutbetaling-soknad:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgspengerutbetaling-soknad"
+            working-directory: "apps/omsorgspengerutbetaling-soknad"
+            package-name: "@navikt/omsorgspengerutbetaling-soknad"
+
+    deploy-omsorgspengesoknad:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "omsorgspengesoknad"
+            working-directory: "apps/omsorgspengesoknad"
+            package-name: "@navikt/omsorgspengesoknad"
+
+    deploy-opplaringspenger-soknad:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "opplaringspenger-soknad"
+            working-directory: "apps/opplaringspenger-soknad"
+            package-name: "@navikt/opplaringspenger-soknad"
+
+    deploy-pleiepenger-i-livets-sluttfase-soknad:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "pleiepenger-i-livets-sluttfase-soknad"
+            working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
+            package-name: "@navikt/pleiepenger-i-livets-sluttfase-soknad"
+
+    deploy-pleiepenger-sykt-barn:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "pleiepenger-sykt-barn"
+            working-directory: "apps/pleiepenger-sykt-barn"
+            package-name: "@navikt/pleiepenger-sykt-barn"
+            playwright-with-deps: true
+
+    deploy-sif-ettersending:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "sif-ettersending"
+            working-directory: "apps/sif-ettersending"
+            package-name: "@navikt/sif-ettersending"
+
+    deploy-ungdomsytelse-deltaker:
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "ungdomsytelse-deltaker"
+            working-directory: "apps/ungdomsytelse-deltaker"
+            package-name: "@navikt/ungdomsytelse-deltaker"
+            use-turbo-test: true
+            e2e-build-command: "e2e:build"
+            run-sonar: true
+
+    deploy-ungdomsytelse-veileder:
+        uses: ./.github/workflows/.test-and-deploy-to-intern-prod.yml
+        secrets: inherit
+        with:
+            app-name: "ungdomsytelse-veileder"
+            working-directory: "apps-intern/ungdomsytelse-veileder"
+            package-name: "@navikt/ungdomsytelse-veileder"
+            use-turbo-test: true
+            e2e-build-command: "e2e:build"
+            run-sonar: true

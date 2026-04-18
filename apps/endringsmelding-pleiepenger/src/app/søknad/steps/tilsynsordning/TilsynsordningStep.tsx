@@ -1,17 +1,18 @@
-import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
+import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit, useSakUtledet, useSøknadContext } from '@app/hooks';
 import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText } from '@app/i18n';
-import PersistStepFormValues from '@app/modules/persist-step-form-values/PersistStepFormValues';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
 import SøknadStep from '@app/søknad/SøknadStep';
 import { SøknadContextState } from '@app/types';
 import { lagreSøknadState } from '@app/utils';
-import { Heading, List, VStack } from '@navikt/ds-react';
+import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 
+import { getLenker, SkrivTilOssLink } from '../../../lenker';
 import TilsynsordningForm, { tilsynsordningFormComponents, TilsynsordningFormValues } from './TilsynsordningForm';
 import {
     getTilsynsordningSøknadsdataFromFormValues,
@@ -33,6 +34,7 @@ const TilsynsordningStep = () => {
             søknadsdata: { tilsynsordning },
         },
     } = useSøknadContext();
+    const { samletSøknadsperiodeTekstVariant3 } = useSakUtledet();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
@@ -67,20 +69,34 @@ const TilsynsordningStep = () => {
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="omsorgstilbudStep.title" />
                 </Heading>
-                <List>
-                    <List.Item>Hva kan du endre på her?</List.Item>
-                    <List.Item>Kort recap på omsorgstilbud - her er det mye info i søknaden</List.Item>
-                    <List.Item>Melding/varsel om beredskap og nattvåk</List.Item>
-                    <List.Item>
-                        Hvordan påvirker perioder; f.eks. nattevåk/beredskap i én periode, men ikke annen periode. Hvis
-                        en skal søke om dette i perioder hvor en ikke har søkt om det, må en bruke søknad
-                    </List.Item>
-                    <List.Item>
-                        Få frem at dette er kun informasjon som du har sendt inn - trenger info om eventuell annen part
-                    </List.Item>
-                    <List.Item>Få frem forskjellen på 0 tid og ingen informasjon</List.Item>
-                    <List.Item>Ferie ..</List.Item>
-                </List>
+                <VStack gap="space-24">
+                    <List>
+                        <List.Item>
+                            <AppText id="omsorgstilbudStep.guide.listItem.1" />
+                        </List.Item>
+                        <List.Item>
+                            <AppText
+                                id="omsorgstilbudStep.guide.listItem.2"
+                                values={{
+                                    periode: samletSøknadsperiodeTekstVariant3,
+                                    strong: (children) => <strong>{children}</strong>,
+                                    SkrivTilOssLink: () => <SkrivTilOssLink />,
+                                }}
+                            />
+                        </List.Item>
+                        <List.Item>
+                            <AppText id="omsorgstilbudStep.guide.listItem.3" />
+                        </List.Item>
+                        <List.Item>
+                            <AppText
+                                id="omsorgstilbudStep.guide.listItem.4"
+                                values={{
+                                    link: (text) => <Link href={getLenker().søknadPleiepenger}>{text}</Link>,
+                                }}
+                            />
+                        </List.Item>
+                    </List>
+                </VStack>
             </FormLayout.Guide>
             <VStack gap="space-32">
                 <FormikWrapper

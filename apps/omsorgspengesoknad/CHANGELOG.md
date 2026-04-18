@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.70
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 1.41.69
 
 ### Patch Changes

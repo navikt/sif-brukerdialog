@@ -18,7 +18,6 @@ import { groupBy } from 'lodash';
 import React, { useRef } from 'react';
 
 import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
-import { hasIncreasedFontSize } from '../../utils';
 import CalendarGridDate from './CalendarGridDate';
 
 dayjs.extend(isSameOrBefore);
@@ -74,6 +73,17 @@ const getWeeks = (dates: Date[], month: Date): WeekToRender[] => {
 
 const getMinWidthForGridView = () => {
     return hasIncreasedFontSize() ? 600 : 500;
+};
+
+const hasIncreasedFontSize = (defaultFontSize = 20): boolean => {
+    if (window && window.getComputedStyle) {
+        const size = window?.getComputedStyle(window.document.body).fontSize;
+        const pixels = size.replace('px', '');
+        const numPixels = parseInt(pixels, 10);
+        const isIncreased = numPixels > defaultFontSize;
+        return isIncreased;
+    }
+    return false;
 };
 
 const bem = bemUtils('calendarGrid');

@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.40.69
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 2.40.68
 
 ### Patch Changes

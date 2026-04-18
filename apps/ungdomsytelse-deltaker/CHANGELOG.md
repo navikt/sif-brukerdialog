@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.52
+
+### Patch Changes
+
+- Trigger deploy
+
 ## 1.5.51
 
 ### Patch Changes
