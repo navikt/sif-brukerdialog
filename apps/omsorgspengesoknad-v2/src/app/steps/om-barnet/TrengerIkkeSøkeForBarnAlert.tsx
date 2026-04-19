@@ -1,5 +1,5 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { appEnv } from '@app/setup/env/appEnv';
+import { useLenker } from '@app/lenker';
 import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import { SifInfoCard } from '@sif/soknad-ui/components';
 
@@ -9,6 +9,7 @@ interface Props {
 
 export const TrengerIkkeSøkeForBarnAlert = ({ barnetsFornavn }: Props) => {
     const { text } = useAppIntl();
+    const lenker = useLenker();
 
     return (
         <SifInfoCard variant="warning">
@@ -18,7 +19,7 @@ export const TrengerIkkeSøkeForBarnAlert = ({ barnetsFornavn }: Props) => {
                 </Heading>
                 <BodyLong>
                     <AppText id="omBarnetSteg.alert.trengerIkkeSøke.tekst" values={{ barnetsFornavn }} />{' '}
-                    <Link href={appEnv.SIF_PUBLIC_MINSIDE_URL} target="_blank" rel="noopener noreferrer">
+                    <Link href={lenker.minSide} target="_blank" rel="noopener noreferrer">
                         <AppText id="omBarnetSteg.alert.trengerIkkeSøke.minsideLenke" />
                     </Link>
                 </BodyLong>

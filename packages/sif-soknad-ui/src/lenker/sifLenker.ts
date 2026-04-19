@@ -48,6 +48,7 @@ export const sifLenkerProdBokmal = {
 };
 
 export type SifLenker = typeof sifLenkerProdBokmal;
+export type SifLenkeKey = keyof SifLenker;
 export type SifLenkerLocale = 'nb' | 'nn';
 export type SifLenkerEnvironment = 'prod' | 'dev';
 
@@ -106,3 +107,9 @@ export const getSifLenker = (locale: SifLenkerLocale = 'nb', environment: SifLen
 
     return locale === 'nn' ? sifLenkerProdNynorsk : sifLenkerProdBokmal;
 };
+
+export const getSifLenke = (
+    key: SifLenkeKey,
+    locale: SifLenkerLocale = 'nb',
+    environment: SifLenkerEnvironment = 'prod',
+): string => getSifLenker(locale, environment)[key];

@@ -1,14 +1,14 @@
 import { AppText, useAppIntl } from '@app/i18n';
+import { useLenker } from '@app/lenker';
 import { Button, Link } from '@navikt/ds-react';
 import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
 import { InfoList, Kvittering } from '@sif/soknad-ui/components';
 import { ApplicationPage } from '@sif/soknad-ui/pages';
 
-import getLenker from '../../lenker';
-
 export const KvitteringPage = () => {
-    const { intl, text } = useAppIntl();
+    const { text } = useAppIntl();
     const path = getRequiredEnv(EnvKey.PUBLIC_PATH);
+    const lenker = useLenker();
 
     const onRestart = () => {
         window.location.replace(path);
@@ -34,18 +34,12 @@ export const KvitteringPage = () => {
                             id="page.kvittering.list.item.4"
                             values={{
                                 MinSideLenke: (children) => (
-                                    <Link
-                                        href={getLenker(intl.locale).minSide}
-                                        target="_blank"
-                                        rel="noopener noreferrer">
+                                    <Link href={lenker.minSide} target="_blank" rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),
                                 SaksbehandlingstidLenke: (children) => (
-                                    <Link
-                                        href={getLenker(intl.locale).saksbehandlingstider}
-                                        target="_blank"
-                                        rel="noopener noreferrer">
+                                    <Link href={lenker.saksbehandlingstider} target="_blank" rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),

@@ -1,5 +1,5 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import getLenker from '@app/lenker';
+import { useLenker } from '@app/lenker';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
@@ -7,7 +7,6 @@ import { DeltBostedSøknadsdata } from '@app/types/Soknadsdata';
 import { UploadedFile } from '@sif/rhf';
 import { VedleggPanel } from '@sif/soknad-forms';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
-import { useIntl } from 'react-intl';
 
 import { toDeltBostedFormValues, toSøknadsdata } from './deltBostedStegUtils';
 import { DeltBostedFormFields, DeltBostedFormValues } from './types';
@@ -15,7 +14,7 @@ import { DeltBostedFormFields, DeltBostedFormValues } from './types';
 const stepId = SøknadStepId.DELT_BOSTED;
 
 export const DeltBostedForm = () => {
-    const intl = useIntl();
+    const lenker = useLenker();
     const { text } = useAppIntl();
     const defaultValues = useStepDefaultValues<DeltBostedFormValues, DeltBostedSøknadsdata>({
         stepId,
@@ -44,7 +43,7 @@ export const DeltBostedForm = () => {
                     name={DeltBostedFormFields.samværsavtale}
                     initialFiles={defaultValues[DeltBostedFormFields.samværsavtale]}
                     label={text('deltBostedSteg.samværsavtale.label')}
-                    uploadLaterURL={getLenker(intl.locale).ettersend}
+                    uploadLaterURL={lenker.ettersendOmsorgspenger}
                     showPictureScanningGuide={true}
                 />
             </FormLayout.Content>

@@ -65,7 +65,7 @@ src/app/
 5. **Boilerplate-hooks** — kopier direkte fra referanseappen (se tabell under).
 6. **SoknadContext** — `soknadContext.ts`: tilpass `basePath` og `formValuesToSøknadsdata`-referanse. → [mal](templates/soknadContext.ts.template)
 7. **formValuesToSoknadsdata** — placeholder med `return undefined` per steg. → [mal](templates/formValuesToSoknadsdata.ts.template)
-8. **SoknadStep** — tilpass `text('application.title')` og `fortsettSenere`-URL.
+8. **SoknadStep** — tilpass `text('application.title')` og `fortsettSenere`-URL via delt lenkekilde.
 9. **i18n og stegtitler** — `appMessages.ts` med `application.title` + `step.<id>.title`. Opprett `useStepTitles`. → [mal](templates/useStepTitles.ts.template)
 10. **Soknad.tsx** — routing-skall med init, kvittering-redirect og StepRouteGuard. → [mal](templates/Soknad.tsx.template)
 11. **VelkommenPage** — startside med `handleStart`. → [mal](templates/VelkommenPage.tsx.template)
@@ -84,7 +84,7 @@ src/app/
 | `types/Soknadsdata.ts`             | Per-steg søknadsdata-typer                                      |
 | `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)         |
 | `utils/formValuesToSoknadsdata.ts` | Case per steg — fyll ut etter hvert                             |
-| `soknad/SoknadStep.tsx`            | `text('application.title')`, `window.location.href`             |
+| `soknad/SoknadStep.tsx`            | `text('application.title')`, `window.location.href` via delt lenkekilde |
 | `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg                 |
 | `hooks/useStepTitles.ts`           | `Record<SøknadStepId, string>` via `useAppIntl()`               |
 | `Soknad.tsx`                       | `Props`, `init()`-argumenter, Route-elementer                   |
@@ -147,7 +147,15 @@ For domenespesifikke typer:
 
 ### Lenker
 
-Bruk lokal `lenker.ts` eller inline URL-er. Aldri importere lenkeabstraksjoner fra `sif-common-soknad-ds`.
+Eksterne lenker skal i utgangspunktet ligge i én delt lenkekilde for hele monorepoet.
+
+- La `@sif/soknad-ui/lenker` eie selve lenkene.
+- Appen kan ha en tynn lokal adapter, f.eks. `src/app/lenker.ts`, som eksponerer `useLenker()`, `getLenke()` og eventuelt `getLenker()`.
+- Bruk normalt `useLenker()` i React-komponenter og `getLenke()` i ren kode uten hooks.
+- Hvis en ekstern lenke mangler, legg den til i den delte lenkefila i stedet for å hardkode den i appen.
+- Bare interne app-ruter og intern navigasjon skal ligge i appen.
+- Ikke bruk inline URL-er for eksterne brukerlenker.
+- Ikke importere lenkeabstraksjoner fra `sif-common-soknad-ds`.
 
 ### Sentry
 
@@ -174,7 +182,7 @@ Bruk lokal `lenker.ts` eller inline URL-er. Aldri importere lenkeabstraksjoner f
 - [ ] `constants.ts` med riktig `APP_YTELSE`
 - [ ] `soknadContext.ts` med riktig `basePath`
 - [ ] `formValuesToSoknadsdata.ts` med placeholder-cases
-- [ ] `SoknadStep.tsx` med riktig tittel og URL
+- [ ] `SoknadStep.tsx` med riktig tittel og URL fra delt lenkekilde
 - [ ] `appMessages.ts` med `application.title` og steg-titler
 - [ ] `useStepTitles.ts` opprettet og eksportert i `hooks/index.ts`
 - [ ] `Soknad.tsx` med riktig Props og routes
