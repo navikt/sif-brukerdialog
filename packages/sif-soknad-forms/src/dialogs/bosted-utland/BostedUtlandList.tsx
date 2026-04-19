@@ -33,7 +33,7 @@ export const BostedUtlandList = ({ bosteder, onEdit, onDelete }: Props) => {
     return (
         <ItemListDarkside<BostedUtland>
             getItemId={(bosted): string => bosted.id}
-            getItemTitle={(bosted): string => bosted.landnavn}
+            getItemTitle={(bosted): string => getCountryName(bosted.landkode, locale)}
             labelRenderer={(bosted) => renderBostedUtlandLabel(bosted, locale, onEdit)}
             items={bosteder}
             onDelete={onDelete}

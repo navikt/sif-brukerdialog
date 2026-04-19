@@ -5,6 +5,8 @@ import { BostedUtland } from '.';
 import { BostedUtlandDialogForm } from './BostedUtlandDialogForm';
 
 interface Props {
+    minDate?: Date;
+    maxDate?: Date;
     bosted?: BostedUtland;
     alleBosteder?: BostedUtland[];
     isOpen?: boolean;
@@ -12,7 +14,15 @@ interface Props {
     onValidSubmit: (bosted: BostedUtland) => void;
 }
 
-export const BostedUtlandFormDialog = ({ isOpen, bosted, alleBosteder, onValidSubmit, onCancel }: Props) => {
+export const BostedUtlandFormDialog = ({
+    isOpen,
+    minDate,
+    maxDate,
+    bosted,
+    alleBosteder,
+    onValidSubmit,
+    onCancel,
+}: Props) => {
     const formId = 'bostedUtlandForm';
 
     return (
@@ -27,6 +37,8 @@ export const BostedUtlandFormDialog = ({ isOpen, bosted, alleBosteder, onValidSu
                     <BostedUtlandDialogForm
                         alleBosteder={alleBosteder}
                         formId={formId}
+                        minDate={minDate}
+                        maxDate={maxDate}
                         bosted={bosted}
                         onValidSubmit={onValidSubmit}
                     />

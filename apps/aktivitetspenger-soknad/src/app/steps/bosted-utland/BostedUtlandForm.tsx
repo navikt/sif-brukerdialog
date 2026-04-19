@@ -4,11 +4,12 @@ import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useSt
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
 import { Button, Heading, VStack } from '@navikt/ds-react';
+import { getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { BostedUtland, BostedUtlandFormDialog, BostedUtlandList } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
 import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
@@ -16,6 +17,19 @@ import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
 const { YesOrNoQuestion } = createSifFormComponents<BostedUtlandFormValues>();
 
 const stepId = SøknadStepId.BOSTED_UTLAND;
+
+const getMinDate = () => {
+    const minDate = getDateToday();
+    minDate.setFullYear(minDate.getFullYear() - 5);
+    minDate.setHours(0, 0, 0, 0);
+    return minDate;
+};
+
+const getMaxDate = () => {
+    const maxDate = getDateToday();
+    maxDate.setHours(23, 59, 59, 999);
+    return maxDate;
+};
 
 const oppdaterBosteder = (bosteder: BostedUtland[] | undefined, bosted: BostedUtland) => {
     if (!bosteder) return [bosted];
@@ -42,6 +56,8 @@ export const BostedUtlandForm = () => {
     });
 
     const methods = useSøknadRhfForm(stepId, defaultValues);
+    const minDate = useMemo(() => getMinDate(), []);
+    const maxDate = useMemo(() => getMaxDate(), []);
     const { trigger } = methods;
     const harBoddIUtlandetSiste5år = methods.watch(BostedUtlandFormFields.harBoddIUtlandetSiste5år);
     const bosteder = methods.watch(BostedUtlandFormFields.bosteder);
@@ -106,6 +122,8 @@ export const BostedUtlandForm = () => {
                             </Button>
                         </div>
                         <BostedUtlandFormDialog
+                            minDate={minDate}
+                            maxDate={maxDate}
                             bosted={dialogBosted?.bosted}
                             alleBosteder={bosteder}
                             isOpen={dialogBosted !== undefined}
