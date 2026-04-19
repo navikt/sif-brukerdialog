@@ -1,6 +1,6 @@
 import { createSifLenkeUtils, SifLenkeKey, SifLenker } from '@sif/soknad-ui/lenker';
 
-import { getAppEnv } from './setup/env/appEnv';
+import { getAppEnv } from './appEnv';
 
 const getEnvironment = () => (getAppEnv().ENV === 'dev' ? 'dev' : 'prod');
 
