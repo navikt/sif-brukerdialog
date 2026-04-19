@@ -41,8 +41,8 @@
         "react-dom": "19.2.5",
         "react-fast-compare": "3.2.2",
         "react-hook-form": "7.72.1",
-        "react-intl": "10.1.1",
-        "react-router-dom": "7.14.0"
+        "react-intl": "10.1.2",
+        "react-router-dom": "7.14.1"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.11.1",
@@ -60,7 +60,7 @@
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
         "@vitejs/plugin-react": "6.0.1",
-        "axe-core": "4.11.2",
+        "axe-core": "4.11.3",
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "cors": "2.8.6",
@@ -74,13 +74,13 @@
         "mustache-express": "1.3.2",
         "playwright-core": "1.59.1",
         "postcss": "8.5.9",
-        "prettier": "3.8.2",
+        "prettier": "3.8.3",
         "storybook": "10.3.5",
         "tailwindcss": "4.2.2",
         "typescript": "6.0.2",
-        "typescript-eslint": "8.58.1",
+        "typescript-eslint": "8.58.2",
         "vite": "8.0.8",
-        "vite-plugin-checker": "0.12.0",
+        "vite-plugin-checker": "0.13.0",
         "vitest": "4.1.4"
     },
     "scripts": {
