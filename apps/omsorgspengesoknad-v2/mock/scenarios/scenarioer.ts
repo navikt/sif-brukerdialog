@@ -36,6 +36,30 @@ const ingenRegistrerteBarnScenarioData: ScenarioData = {
     mellomlagring: undefined,
 };
 
+const toBarnMedVedtakScenarioData: ScenarioData = {
+    ...søker,
+    barn: {
+        barn: [
+            {
+                fornavn: 'Alfa',
+                etternavn: 'Testesen',
+                aktørId: '2811762539343',
+                fødselsdato: '2019-06-08',
+            },
+            {
+                fornavn: 'Beta',
+                etternavn: 'Testesen',
+                aktørId: '9876543210123',
+                fødselsdato: '2021-03-15',
+            },
+        ],
+    },
+    vedtakPerAktørId: {
+        '2811762539343': { harInnvilgedeBehandlinger: true, saksnummer: 'SAK-001', vedtaksdato: '2024-01-15' },
+        '9876543210123': { harInnvilgedeBehandlinger: false, saksnummer: null, vedtaksdato: null },
+    },
+};
+
 const innsendingFeilerScenarioData: ScenarioData = {
     ...defaultScenarioData,
     innsendingResponse: {
@@ -61,6 +85,7 @@ const innsendingFeilerMedUgyldigeParametreScenarioData: ScenarioData = {
 const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
     [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
+    [ScenarioType.toBarnMedVedtak]: toBarnMedVedtakScenarioData,
     [ScenarioType.innsendingFeiler]: innsendingFeilerScenarioData,
     [ScenarioType.innsendingFeilerMedUgyldigeParametre]: innsendingFeilerMedUgyldigeParametreScenarioData,
 };

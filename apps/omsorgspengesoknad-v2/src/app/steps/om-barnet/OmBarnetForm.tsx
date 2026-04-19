@@ -17,9 +17,10 @@ import {
     getYesOrNoValidator,
 } from '@navikt/sif-validation';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn-api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { VelgRegistrertBarnPanel } from '@sif/soknad-forms';
-import { AriaLiveRegion, FormLayout, SifInfoCard } from '@sif/soknad-ui/components';
+import { AriaLiveRegion, FormContentLoader, FormLayout, SifInfoCard } from '@sif/soknad-ui/components';
 import { useEffect } from 'react';
 
 import {
@@ -28,6 +29,7 @@ import {
     toOmBarnetFormValues,
     toOmBarnetSøknadsdata,
 } from './omBarnetStegUtils';
+import { TrengerIkkeSøkeForBarnAlert } from './TrengerIkkeSøkeForBarnAlert';
 import { ANNET_BARN, OmBarnetFormFields, OmBarnetFormValues } from './types';
 
 const { RadioGroup, TextField, Datepicker, Textarea, YesOrNoQuestion } = createSifFormComponents<OmBarnetFormValues>();
@@ -60,9 +62,18 @@ export const OmBarnetForm = () => {
 
     const harRegistrerteBarn = registrerteBarn.length > 0;
 
+    const { vedtak, isLoading: vedtakIsLoading } = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
+
     const barnetSøknadenGjelder = watch(OmBarnetFormFields.barnetSøknadenGjelder);
     const søknadenGjelderAnnetBarn = barnetSøknadenGjelder === ANNET_BARN;
     const harValgtBarn = !harRegistrerteBarn || barnetSøknadenGjelder !== undefined;
+
+    const valgtBarn =
+        harRegistrerteBarn && barnetSøknadenGjelder && barnetSøknadenGjelder !== ANNET_BARN
+            ? registrerteBarn.find((b) => b.aktørId === barnetSøknadenGjelder)
+            : undefined;
+    const harInnvilgetVedtakForValgtBarn =
+        valgtBarn !== undefined && vedtak[valgtBarn.aktørId]?.harInnvilgedeBehandlinger === true;
 
     const sammeAdresse = watch(OmBarnetFormFields.sammeAdresse);
     const kroniskEllerFunksjonshemming = watch(OmBarnetFormFields.kroniskEllerFunksjonshemming);
@@ -91,8 +102,18 @@ export const OmBarnetForm = () => {
 
     const minDatoForBarnetsFødselsdato = getMinDatoForBarnetsFødselsdato();
 
+    if (vedtakIsLoading) {
+        return <FormContentLoader />;
+    }
+
     return (
-        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending} submitError={submitError}>
+        <AppForm
+            stepId={stepId}
+            methods={methods}
+            onSubmit={onSubmit}
+            isPending={isPending}
+            submitError={submitError}
+            submitDisabled={harInnvilgetVedtakForValgtBarn}>
             <FormLayout.Content>
                 <FormLayout.Questions>
                     <Heading size="medium" level="2">
@@ -112,7 +133,13 @@ export const OmBarnetForm = () => {
                         />
                     )}
 
-                    {(søknadenGjelderAnnetBarn || !harRegistrerteBarn) && (
+                    {harInnvilgetVedtakForValgtBarn && valgtBarn && (
+                        <FormLayout.QuestionRelatedMessage>
+                            <TrengerIkkeSøkeForBarnAlert barnetsFornavn={valgtBarn.fornavn} />
+                        </FormLayout.QuestionRelatedMessage>
+                    )}
+
+                    {!harInnvilgetVedtakForValgtBarn && (søknadenGjelderAnnetBarn || !harRegistrerteBarn) && (
                         <FormLayout.Section title={text('omBarnetSteg.annetBarn.tittel')}>
                             <FormLayout.Questions>
                                 <Datepicker
@@ -192,7 +219,7 @@ export const OmBarnetForm = () => {
                         </FormLayout.Section>
                     )}
 
-                    {(harValgtBarn || !harRegistrerteBarn) && (
+                    {!harInnvilgetVedtakForValgtBarn && (harValgtBarn || !harRegistrerteBarn) && (
                         <>
                             <RadioGroup
                                 name={OmBarnetFormFields.sammeAdresse}
