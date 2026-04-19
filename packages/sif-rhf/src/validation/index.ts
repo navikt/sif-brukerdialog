@@ -1,1 +1,1 @@
-export { sifValidate, useSifValidate } from './sifValidate';
+export { sifValidateField as sifValidate, useSifValidate } from './sifValidate';

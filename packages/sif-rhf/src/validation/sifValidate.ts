@@ -1,15 +1,15 @@
 import { IntlShape, useIntl } from 'react-intl';
 
 type SifValidator = (value: any) => string | undefined;
-type SifValidationMessageValues = Record<string, string | number | boolean | null | undefined | Date>;
-type SifValidationValues = SifValidationMessageValues | ((errorCode: string) => SifValidationMessageValues | undefined);
+type IntlValues = Record<string, string | number | boolean | null | undefined | Date>;
+type IntlValuesOrResolver = IntlValues | ((errorCode: string) => IntlValues | undefined);
 
-export const sifValidate = (
+export const sifValidateField = (
     validator: SifValidator,
     fieldName: string,
     intl: IntlShape,
     scope: string,
-    values?: SifValidationValues,
+    values?: IntlValuesOrResolver,
 ): ((value: any) => string | undefined) => {
     return (value) => {
         const errorCode = validator(value);
@@ -24,7 +24,7 @@ export const sifValidate = (
 export const useSifValidate = (scope: string) => {
     const intl = useIntl();
     return {
-        validateField: (fieldName: string, validator: SifValidator, values?: SifValidationValues) =>
-            sifValidate(validator, fieldName, intl, scope, values),
+        validateField: (fieldName: string, validator: SifValidator, values?: IntlValuesOrResolver) =>
+            sifValidateField(validator, fieldName, intl, scope, values),
     };
 };
