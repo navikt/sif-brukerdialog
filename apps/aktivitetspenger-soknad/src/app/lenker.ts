@@ -1,21 +1,13 @@
-import { getRequiredEnv } from '@navikt/sif-common-env';
+import { createSifLenkeUtils, SifLenkeKey, SifLenker } from '@sif/soknad-ui/lenker';
 
-import { AppEnvKey } from '../../env.schema';
+import { getAppEnv } from './setup/env/appEnv';
 
-interface Lenker {
-    skatteetaten: string;
-    personopplysninger: string;
-    endreKontonummer: string;
-}
+const getEnvironment = () => (getAppEnv().ENV === 'dev' ? 'dev' : 'prod');
 
-const getLenkerBokmål = (): Lenker => ({
-    skatteetaten: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKATTEETATEN),
-    personopplysninger: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_PERSONOPPLYSNINGER),
-    endreKontonummer: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER),
+export const { getLenker, getLenke, useLenker } = createSifLenkeUtils({
+    getEnvironment,
 });
 
-const getLenker = (): Lenker => {
-    return getLenkerBokmål();
-};
+export type { SifLenkeKey, SifLenker };
 
 export default getLenker;

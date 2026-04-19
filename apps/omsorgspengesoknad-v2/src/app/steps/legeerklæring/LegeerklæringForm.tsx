@@ -1,5 +1,5 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import getLenker from '@app/lenker';
+import { useLenker } from '@app/lenker';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
@@ -7,7 +7,6 @@ import { LegeerklæringSøknadsdata } from '@app/types/Soknadsdata';
 import { UploadedFile } from '@sif/rhf';
 import { VedleggPanel } from '@sif/soknad-forms';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
-import { useIntl } from 'react-intl';
 
 import { toLegeerklæringFormValues, toSøknadsdata } from './legeerklæringStegUtils';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './types';
@@ -15,7 +14,7 @@ import { LegeerklæringFormFields, LegeerklæringFormValues } from './types';
 const stepId = SøknadStepId.LEGEERKLÆRING;
 
 export const LegeerklæringForm = () => {
-    const intl = useIntl();
+    const lenker = useLenker();
     const { text } = useAppIntl();
     const defaultValues = useStepDefaultValues<LegeerklæringFormValues, LegeerklæringSøknadsdata>({
         stepId,
@@ -49,7 +48,7 @@ export const LegeerklæringForm = () => {
                     initialFiles={defaultValues[LegeerklæringFormFields.vedlegg]}
                     onVedleggEndret={() => lagreSøknadSteg(stepId, methods.getValues())}
                     label={text('legeerklæringSteg.vedlegg.label')}
-                    uploadLaterURL={getLenker(intl.locale).ettersend}
+                    uploadLaterURL={lenker.omsorgspengerEttersending}
                     showPictureScanningGuide={true}
                 />
             </FormLayout.Content>

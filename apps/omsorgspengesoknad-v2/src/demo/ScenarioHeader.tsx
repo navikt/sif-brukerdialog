@@ -16,6 +16,10 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
                 value: ScenarioType.ingenRegistrerteBarn,
                 label: 'Ingen registrerte barn',
             },
+            {
+                value: ScenarioType.toBarnMedVedtak,
+                label: 'To barn — ett med vedtak',
+            },
         ],
     },
 ];

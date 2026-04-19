@@ -1,4 +1,5 @@
 import { useAppIntl } from '@app/i18n';
+import { useLenker } from '@app/lenker';
 import { Box } from '@navikt/ds-react';
 import { InconsistentFormValuesMessage } from '@sif/soknad/consistency';
 import { getProgressSteps } from '@sif/soknad/utils';
@@ -19,6 +20,7 @@ interface Props {
 
 export const SøknadStep = ({ stepId, children }: Props) => {
     const { text } = useAppIntl();
+    const lenker = useLenker();
     const navigate = useNavigate();
     const søknadsflyt = useSøknadsflyt();
 
@@ -29,7 +31,7 @@ export const SøknadStep = ({ stepId, children }: Props) => {
 
     const fortsettSenere = async () => {
         await lagreSøknad();
-        window.location.href = 'https://www.nav.no/minside';
+        window.location.href = lenker.navMinSide;
     };
 
     const inconsistentStepId = søknadsflyt.checkConsistency(stepId);

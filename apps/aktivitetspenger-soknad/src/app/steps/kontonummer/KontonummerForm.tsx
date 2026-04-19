@@ -59,7 +59,7 @@ export const KontonummerForm = ({ kontonummerInfo }: Props) => {
                                             id="kontonummerSteg.kontonummer.stemmerIkke.info"
                                             values={{
                                                 Lenke: (children) => (
-                                                    <ExternalLink href={getLenker().personopplysninger}>
+                                                    <ExternalLink href={getLenker().navPersonopplysninger}>
                                                         {children}
                                                     </ExternalLink>
                                                 ),
@@ -84,7 +84,7 @@ export const KontonummerForm = ({ kontonummerInfo }: Props) => {
                                 id="kontonummerSteg.harIkkeKontonummer.info.2"
                                 values={{
                                     Lenke: (children) => (
-                                        <ExternalLink href={getLenker().endreKontonummer}>{children}</ExternalLink>
+                                        <ExternalLink href={getLenker().navEndreKontonummer}>{children}</ExternalLink>
                                     ),
                                 }}
                             />
@@ -104,7 +104,7 @@ export const KontonummerForm = ({ kontonummerInfo }: Props) => {
                                 id="kontonummerSteg.kontonummerInfoMangler.info.2"
                                 values={{
                                     Lenke: (children) => (
-                                        <ExternalLink href={getLenker().endreKontonummer}>{children}</ExternalLink>
+                                        <ExternalLink href={getLenker().navEndreKontonummer}>{children}</ExternalLink>
                                     ),
                                 }}
                             />

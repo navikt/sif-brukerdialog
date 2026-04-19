@@ -11,6 +11,7 @@
         "./k9-prosessering": "./src/k9-prosessering/index.ts",
         "./ung-brukerdialog": "./src/ung-brukerdialog/index.ts",
         "./ung-deltaker": "./src/ung-deltaker/index.ts",
+        "./k9-sak-innsyn-api": "./src/k9-sak-innsyn-api/index.ts",
         "./components": "./src/components/index.ts",
         "./schemas": "./src/schemas/index.ts"
     },

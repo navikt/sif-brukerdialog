@@ -15,18 +15,26 @@ Bruk denne skillen for spesifikke layout-oppgaver med Aksel spacing-tokens.
 
 ## Spacing-tokens
 
+Token-navnet er px-verdien. `space-8` = 8px, `space-16` = 16px, osv.
+
 ```
-"space-0"   // 0px
-"space-1"   // 4px
-"space-2"   // 8px
-"space-3"   // 12px
-"space-4"   // 16px  ← Form field gaps, button groups
-"space-5"   // 20px
-"space-6"   // 24px  ← Card padding (mobil)
-"space-8"   // 32px  ← Card padding (desktop), section gaps
-"space-10"  // 40px  ← Page padding (desktop)
-"space-12"  // 48px  ← Page padding block (desktop)
+"space-0"   // 0px   (0rem)
+"space-1"   // 1px   (0.0625rem)
+"space-2"   // 2px   (0.125rem)
+"space-4"   // 4px   (0.25rem)
+"space-6"   // 6px   (0.375rem)
+"space-8"   // 8px   (0.5rem)   ← Kompakt gap inni kort (f.eks. heading + brødtekst)
+"space-12"  // 12px  (0.75rem)
+"space-16"  // 16px  (1rem)     ← Feltgap i skjema, knappgrupper
+"space-20"  // 20px  (1.25rem)
+"space-24"  // 24px  (1.5rem)   ← Kortpadding (mobil)
+"space-28"  // 28px  (1.75rem)
+"space-32"  // 32px  (2rem)     ← Kortpadding (desktop), seksjonsgap
+"space-40"  // 40px  (2.5rem)   ← Sidepadding inline (desktop)
+"space-48"  // 48px  (3rem)     ← Sidepadding block (desktop)
 ```
+
+> Ikke-eksisterende tokens: `space-3`, `space-5`, `space-10` finnes ikke — TypeScript vil gi feil.
 
 ## Responsive brytepunkter
 
@@ -35,34 +43,34 @@ xs: "0px"     // Mobil (default)
 sm: "480px"   // Stor mobil
 md: "768px"   // Nettbrett
 lg: "1024px"  // Desktop
-xl: "1280px"  // Stor desktop
+2xl: "1440px" // Stor desktop
 ```
 
 ## Vanlige mønstre
 
 ```tsx
 // Page container
-<Box paddingBlock={{ xs: 'space-8', md: 'space-12' }} paddingInline={{ xs: 'space-4', md: 'space-10' }}>
-  <VStack gap={{ xs: 'space-6', md: 'space-8' }}>{/* innhold */}</VStack>
+<Box paddingBlock={{ xs: 'space-32', md: 'space-48' }} paddingInline={{ xs: 'space-16', md: 'space-40' }}>
+  <VStack gap={{ xs: 'space-24', md: 'space-32' }}>{/* innhold */}</VStack>
 </Box>
 
 // Card
-<Box background="surface-default" padding={{ xs: 'space-6', md: 'space-8' }} borderRadius="large" borderWidth="1" borderColor="border-subtle">
-  <VStack gap="space-4">{/* innhold */}</VStack>
+<Box background="surface-default" padding={{ xs: 'space-24', md: 'space-32' }} borderRadius="large" borderWidth="1" borderColor="border-subtle">
+  <VStack gap="space-16">{/* innhold */}</VStack>
 </Box>
 
 // Form layout
-<VStack gap="space-6">
-  <VStack gap="space-4">
+<VStack gap="space-24">
+  <VStack gap="space-16">
     <TextField label="Fornavn" />
     <TextField label="Etternavn" />
   </VStack>
-  <HStack gap="space-4" justify="end">
+  <HStack gap="space-16" justify="end">
     <Button variant="secondary">Avbryt</Button>
     <Button variant="primary">Send inn</Button>
   </HStack>
 </VStack>
 
 // Responsive grid
-<HGrid gap="space-4" columns={{ xs: 1, sm: 2, lg: 4 }}>{/* innhold */}</HGrid>
+<HGrid gap="space-16" columns={{ xs: 1, sm: 2, lg: 4 }}>{/* innhold */}</HGrid>
 ```

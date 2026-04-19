@@ -3,6 +3,7 @@ export { AppHeader } from './app-header/AppHeader';
 export { ApplicationPictogram } from './app-header/ApplicationPictogram';
 export { AriaLiveRegion } from './aria-live-region/AriaLiveRegion';
 export { ExternalLink } from './external-link/ExternalLink';
+export { FormContentLoader } from './form-content-loader/FormContentLoader';
 export { FormLayout } from './form-layout';
 export { InfoList } from './info-list/InfoList';
 export { Kvittering } from './kvittering/Kvittering';

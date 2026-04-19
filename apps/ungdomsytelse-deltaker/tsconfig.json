@@ -53,7 +53,7 @@
     "include": [
         "./src/**/*",
         "./mock/**/*",
-        "./playwright-config.ts",
+        "./playwright.config.ts",
         "./env.schema.ts",
         "./playwright/**/*.ts",
         "./vite-env.d.ts",

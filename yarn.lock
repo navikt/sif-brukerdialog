@@ -6114,7 +6114,7 @@ __metadata:
     copyfiles: "npm:2.4.1"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.20"
-    dompurify: "npm:3.3.3"
+    dompurify: "npm:3.4.0"
     eslint: "npm:9.39.4"
     eslint-plugin-storybook: "npm:10.3.5"
     globals: "npm:17.4.0"
@@ -9727,6 +9727,7 @@ __metadata:
     "@types/react-dom": "npm:19.2.3"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
+    react-intl: "npm:10.1.1"
     typescript: "npm:6.0.2"
     vitest: "npm:4.1.4"
   peerDependencies:
@@ -15419,7 +15420,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:3.3.3, dompurify@npm:^3.2.6, dompurify@npm:^3.3.1":
+"dompurify@npm:3.4.0":
+  version: 3.4.0
+  resolution: "dompurify@npm:3.4.0"
+  dependencies:
+    "@types/trusted-types": "npm:^2.0.7"
+  dependenciesMeta:
+    "@types/trusted-types":
+      optional: true
+  checksum: 10/ead40b78ec51cd451f2c74fada4233ee0afeafdbab54af2f4a4bd5d4d138ac04d0d85140e79f533803ecfd1c3758edc1176087039c1e7217824f9794a9d34d2c
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:^3.2.6, dompurify@npm:^3.3.1":
   version: 3.3.3
   resolution: "dompurify@npm:3.3.3"
   dependencies:

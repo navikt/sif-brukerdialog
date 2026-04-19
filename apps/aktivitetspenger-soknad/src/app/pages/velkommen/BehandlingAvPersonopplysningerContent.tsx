@@ -1,8 +1,11 @@
 import { AppText } from '@app/i18n';
+import { useLenker } from '@app/lenker';
 import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import React from 'react';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
+    const lenker = useLenker();
+
     return (
         <VStack gap="space-8" paddingBlock="space-8 space-0">
             <div>
@@ -41,10 +44,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                     id="personopplysninger.5"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link
-                                href="https://www.nav.no/personvernerklaering"
-                                target="_blank"
-                                rel="noopener noreferrer">
+                            <Link href={lenker.navPersonvernerklaering} target="_blank" rel="noopener noreferrer">
                                 {children}
                             </Link>
                         ),

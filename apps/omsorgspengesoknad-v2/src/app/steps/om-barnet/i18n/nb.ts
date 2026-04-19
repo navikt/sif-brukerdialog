@@ -23,6 +23,11 @@ export const omBarnetStegMessages_nb = {
     'omBarnetSteg.sammeAdresse.hvaBetyrDette': 'Hva er delt fast bosted?',
     'omBarnetSteg.sammeAdresse.hvaBetyrDette.info':
         'Hvis foreldrene til barnet ikke bor sammen, kan de inngå en avtale om delt fast bosted etter barneloven §36. Barnet bor da fast med begge sine foreldre.',
+    'omBarnetSteg.alert.trengerIkkeSøke.tittel': 'Du trenger ikke søke for {barnetsFornavn}',
+    'omBarnetSteg.alert.trengerIkkeSøke.tekst':
+        '{barnetsFornavn} har allerede et vedtak om ekstra omsorgsdager, og du trenger ikke søke på nytt.',
+    'omBarnetSteg.alert.trengerIkkeSøke.minsideLenke': 'Se vedtaket på din side',
+
     'omBarnetSteg.alert.ikkeSammeAdresse':
         'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra Nav. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
 
