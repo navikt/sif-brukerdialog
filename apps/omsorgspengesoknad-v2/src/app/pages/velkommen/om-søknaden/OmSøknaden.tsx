@@ -74,7 +74,7 @@ const OmSøknaden = () => {
                                 values={{
                                     Lenke: (children: React.ReactNode) => (
                                         <Link
-                                            href={lenker.personvernerklaering}
+                                            href={lenker.navPersonvernerklaering}
                                             target="_blank"
                                             rel="noopener noreferrer">
                                             {children}

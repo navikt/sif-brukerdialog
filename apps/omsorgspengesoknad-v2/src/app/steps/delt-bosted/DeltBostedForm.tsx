@@ -43,7 +43,7 @@ export const DeltBostedForm = () => {
                     name={DeltBostedFormFields.samværsavtale}
                     initialFiles={defaultValues[DeltBostedFormFields.samværsavtale]}
                     label={text('deltBostedSteg.samværsavtale.label')}
-                    uploadLaterURL={lenker.ettersendOmsorgspenger}
+                    uploadLaterURL={lenker.omsorgspengerEttersending}
                     showPictureScanningGuide={true}
                 />
             </FormLayout.Content>

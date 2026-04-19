@@ -31,7 +31,7 @@ export const SøknadStep = ({ stepId, children }: Props) => {
 
     const fortsettSenere = async () => {
         await lagreSøknad();
-        window.location.href = lenker.minSide;
+        window.location.href = lenker.navMinSide;
     };
 
     const inconsistentStepId = søknadsflyt.checkConsistency(stepId);

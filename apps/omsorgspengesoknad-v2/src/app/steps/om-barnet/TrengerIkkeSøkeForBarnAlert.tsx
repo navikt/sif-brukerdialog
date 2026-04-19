@@ -19,7 +19,7 @@ export const TrengerIkkeSøkeForBarnAlert = ({ barnetsFornavn }: Props) => {
                 </Heading>
                 <BodyLong>
                     <AppText id="omBarnetSteg.alert.trengerIkkeSøke.tekst" values={{ barnetsFornavn }} />{' '}
-                    <Link href={lenker.minSide} target="_blank" rel="noopener noreferrer">
+                    <Link href={lenker.navMinSide} target="_blank" rel="noopener noreferrer">
                         <AppText id="omBarnetSteg.alert.trengerIkkeSøke.minsideLenke" />
                     </Link>
                 </BodyLong>

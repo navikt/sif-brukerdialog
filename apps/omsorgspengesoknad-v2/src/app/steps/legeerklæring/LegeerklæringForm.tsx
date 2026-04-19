@@ -48,7 +48,7 @@ export const LegeerklæringForm = () => {
                     initialFiles={defaultValues[LegeerklæringFormFields.vedlegg]}
                     onVedleggEndret={() => lagreSøknadSteg(stepId, methods.getValues())}
                     label={text('legeerklæringSteg.vedlegg.label')}
-                    uploadLaterURL={lenker.ettersendOmsorgspenger}
+                    uploadLaterURL={lenker.omsorgspengerEttersending}
                     showPictureScanningGuide={true}
                 />
             </FormLayout.Content>

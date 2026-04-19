@@ -34,12 +34,15 @@ export const KvitteringPage = () => {
                             id="page.kvittering.list.item.4"
                             values={{
                                 MinSideLenke: (children) => (
-                                    <Link href={lenker.minSide} target="_blank" rel="noopener noreferrer">
+                                    <Link href={lenker.navMinSide} target="_blank" rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),
                                 SaksbehandlingstidLenke: (children) => (
-                                    <Link href={lenker.saksbehandlingstider} target="_blank" rel="noopener noreferrer">
+                                    <Link
+                                        href={lenker.navSaksbehandlingstider}
+                                        target="_blank"
+                                        rel="noopener noreferrer">
                                         {children}
                                     </Link>
                                 ),

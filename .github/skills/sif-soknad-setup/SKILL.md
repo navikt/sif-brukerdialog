@@ -149,10 +149,20 @@ For domenespesifikke typer:
 
 Eksterne lenker skal i utgangspunktet ligge i én delt lenkekilde for hele monorepoet.
 
+Navngivingsprinsipp for delte lenker:
+
+- Bruk flat struktur ut mot appene. Unngå grupper som `lenker.nav.*` eller `lenker.external.*`.
+- Start nøkkelen med domene/kilde når lenken er generell, for eksempel `navMinSide`, `navPersonvernerklaering`, `skatteetatenSkattekort`.
+- Start nøkkelen med ytelse/fagdomene når lenken hører til en konkret ytelse, for eksempel `omsorgspengerEttersending`, `pleiepengerInnsyn`.
+- Bruk samme suffikser for samme type mål på tvers av domener, for eksempel `Info`, `Soknad`, `Ettersending`, `Brevskjema`, `Innsyn`.
+- Velg navn som beskriver brukerens mål, ikke teknisk plassering eller historikk.
+- Unngå forkortelser og tvetydige navn når et mer eksplisitt navn er praktisk mulig.
+
 - La `@sif/soknad-ui/lenker` eie selve lenkene.
 - Appen kan ha en tynn lokal adapter, f.eks. `src/app/lenker.ts`, som eksponerer `useLenker()`, `getLenke()` og eventuelt `getLenker()`.
 - Bruk normalt `useLenker()` i React-komponenter og `getLenke()` i ren kode uten hooks.
 - Hvis en ekstern lenke mangler, legg den til i den delte lenkefila i stedet for å hardkode den i appen.
+- Bruk selvforklarende nøkkelnavn i den delte lenkefila, typisk med domene/prefix som `navMinSide`, `navPersonvernerklaering` eller `omsorgspengerEttersending`.
 - Bare interne app-ruter og intern navigasjon skal ligge i appen.
 - Ikke bruk inline URL-er for eksterne brukerlenker.
 - Ikke importere lenkeabstraksjoner fra `sif-common-soknad-ds`.

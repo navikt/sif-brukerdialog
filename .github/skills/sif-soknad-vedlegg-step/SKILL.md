@@ -105,13 +105,15 @@ const lenker = useLenker();
         initialFiles={defaultValues[<Prefix>FormFields.vedlegg]}
         onVedleggEndret={() => lagreSøknadSteg(stepId, methods.getValues())}
         label={text('<prefix>Steg.vedlegg.label')}
-        uploadLaterURL={lenker.ettersendOmsorgspenger}
+        uploadLaterURL={lenker.omsorgspengerEttersending}
         showPictureScanningGuide={true}
     />
 </AppForm>
 ```
 
 Eksterne lenker som `uploadLaterURL` skal hentes fra den delte lenkekilden i monorepoet. I appen bør de normalt brukes via en lokal adapter som `useLenker()` eller `getLenke()`. Hvis steget trenger en ny ekstern lenke, legg den til i `@sif/soknad-ui/lenker` i stedet for å definere den i appen.
+
+Foretrekk selvforklarende, domenespesifikke nøkkelnavn i den delte lenkekilden, for eksempel `omsorgspengerEttersending` og `navMinSide`, fremfor generiske navn uten prefix.
 
 Bruk `initialFiles={defaultValues[...]}`. Ikke send `watch(...)` inn i `initialFiles`.
 
