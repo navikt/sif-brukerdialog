@@ -100,6 +100,18 @@ export const handlers = [
         return HttpResponse.json({});
     }),
 
+    http.post(`**/k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak`, async ({ request }) => {
+        const body = (await request.json()) as { pleietrengendeAktørId?: string };
+        const aktørId = body?.pleietrengendeAktørId;
+        const vedtakPerAktørId = store.get().vedtakPerAktørId;
+
+        if (aktørId && vedtakPerAktørId && vedtakPerAktørId[aktørId]) {
+            return HttpResponse.json(vedtakPerAktørId[aktørId]);
+        }
+
+        return HttpResponse.json({ harInnvilgedeBehandlinger: false, saksnummer: null, vedtaksdato: null });
+    }),
+
     http.get(`*`, () => HttpResponse.json({}, { status: 200 })),
     http.post(`*`, () => HttpResponse.json({}, { status: 200 })),
 ];

@@ -1,5 +1,5 @@
 ---
-applyTo: 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**,apps/endringsmelding-pleiepenger/**,apps/ungdomsytelse-deltaker/**,apps/omsorgspengerutbetaling-soknad/**,apps/omsorgsdager-aleneomsorg-dialog/**,apps/opplaringspenger-soknad/**,apps/sif-ettersending/**,apps/pleiepenger-i-livets-sluttfase-soknad/**,apps/omsorgspengesoknad/**,apps/omsorgspengerutbetaling-arbeidstaker-soknad/**,apps/pleiepenger-sykt-barn/**,apps-intern/**'
+applyTo: 'apps/**,apps-intern/**,packages/**'
 ---
 
 # React + Aksel instructions

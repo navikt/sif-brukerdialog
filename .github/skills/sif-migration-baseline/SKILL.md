@@ -59,6 +59,18 @@ Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppset
 - Ikke importer fra gamle pakker (`@navikt/sif-common-core-ds`, `@navikt/sif-common-formik-ds`, `@navikt/sif-common-ui`). Bruk Aksel-komponenter (`@navikt/ds-react`) eller pakker fra `@sif/*` i stedet.
 - Vanlige erstatninger: `ExpandableInfo` → `ReadMore` fra `@navikt/ds-react`.
 
+## appEnv-singleton
+
+`appEnv.ts` i v2-apper eksporterer typisk bare hjelperfunksjonen `getAppEnv()`, ikke en forhåndskalt singleton. Komponenter som trenger env-verdier direkte (f.eks. en lenke til MinSide) vil derfor feile ved import.
+
+Legg til en singleton-eksport i `src/app/setup/env/appEnv.ts` etter at env-schema er satt opp:
+
+```ts
+export const appEnv = getAppEnv();
+```
+
+Dette gjøres én gang per app og gir komponentene en stabil, typesikker tilgang til env-variabler uten å kalle `getAppEnv()` hver gang.
+
 ## Bootstrap for new app
 
 Bruk dette som standard startpunkt for en ny migreringsapp før funksjonelt arbeid.
@@ -116,6 +128,22 @@ Bruk mønsteret fra `src/demo/ScenarioHeader.tsx`:
 - la komponenten returnere `null` i prod
 
 Når appen bruker `BrowserRouter`, plasser scenariovelgeren i `App.tsx` inne i routeren og over `InitialDataLoader` eller tilsvarende app-shell.
+
+### Legg til nye scenarioer i ScenarioHeader
+
+Når et nytt scenario legges til i `mock/scenarios/types.ts` og `mock/scenarios/scenarioer.ts`, **må** det også registreres i `src/demo/ScenarioHeader.tsx`:
+
+1. Legg til et nytt objekt i riktig gruppe under `scenarioGroups` (eller opprett en ny gruppe om det passer bedre).
+2. Bruk `ScenarioType.<nyttScenario>` som `value` og en kort, beskrivende `label`.
+
+```ts
+{
+    value: ScenarioType.toBarnMedVedtak,
+    label: 'To barn — ett med vedtak',
+},
+```
+
+Scenarioet er ikke tilgjengelig for manuell testing eller Playwright før dette er gjort.
 
 ### Slett domenekode fra kildeappen umiddelbart
 

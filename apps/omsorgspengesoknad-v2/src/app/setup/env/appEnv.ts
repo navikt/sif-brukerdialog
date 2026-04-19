@@ -7,3 +7,5 @@ export const getAppEnv = (): AppEnv => ({
     ...getK9SakInnsynEnv(),
     [AppEnvKey.VELG_SCENARIO]: getMaybeEnv(AppEnvKey.VELG_SCENARIO),
 });
+
+export const appEnv = getAppEnv();

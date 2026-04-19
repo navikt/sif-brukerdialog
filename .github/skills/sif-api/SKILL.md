@@ -226,9 +226,19 @@ import { ApiErrorAlert } from '@sif/api';
 const søker = useSøker();
 const barn = useRegistrerteBarn();
 
-if (søker.isLoading || barn.isLoading) return <Loader />;
+if (søker.isPending || barn.isPending) return <Loader />;
 if (søker.isError) return <ApiErrorAlert error={søker.error} />;
 ```
+
+> **React Query v5:** Bruk `isPending` (ikke `isLoading`) for å sjekke om en query ennå ikke har fått svar. `isLoading = isPending && isFetching` — dette betyr at `isLoading` kan forbli `true` under retry. `isPending` blir `false` så snart query har status `success` eller `error`, uavhengig av retry. Gjelder spesielt ved aggregering av flere queries (f.eks. `useQueries`): bruk `queries.some(q => q.isPending)`, ikke `queries.some(q => q.isLoading)`.
+
+---
+
+> **`isolatedModules` og barrel-eksport:** Barrel-filer i `sif-api` har `isolatedModules: true` i `tsconfig.json`. Interfaces og typer kan derfor **ikke** re-eksporteres med vanlig `export { MyInterface }` — bruk alltid `export type { MyInterface }`. Bryt gjerne opp i to linjer:
+> ```ts
+> export { myHook } from './myHook';
+> export type { MyInterface } from './myHook';
+> ```
 
 ---
 
