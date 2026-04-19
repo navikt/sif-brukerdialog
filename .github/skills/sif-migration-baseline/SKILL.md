@@ -220,7 +220,7 @@ Når baseline kopieres fra `aktivitetspenger-soknad`, inneholder disse filene ap
 | `playwright/playwrightAppSettings.ts` | Stale env-nøkler som ikke finnes i ny `AppEnv`           | Fjern nøkler som ikke er i ny `appEnvSchema`                                                            |
 | `playwright/utils/scenario.ts`        | Feil `SCENARIO_KEY` fra kildeappen                       | Må matche `mock/state/localStorageStore.ts` i målappen                                                  |
 | `mock/devAppSettings.ts`              | Alle paths og env-verdier fra aktivitetspenger           | Oppdater med korrekte paths for målappen                                                                |
-| `src/app/lenker.ts`                   | Aktivitetspenger-spesifikke lenker (f.eks. Skatteetaten) | Erstatt med tomme plassholdere; behold default export til eksisterende step-filer kompilerer            |
+| `src/app/lenker.ts`                   | App-lokale eksterne lenker                                | Migrer selve lenkene til `@sif/soknad-ui/lenker`; behold gjerne `src/app/lenker.ts` som en tynn app-adapter for ergonomi (`useLenker`, `getLenke`). Gi nøklene selvforklarende navn som `navMinSide` og `omsorgspengerEttersending` |
 
 Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` før første `check:types`.
 
@@ -239,6 +239,12 @@ Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` f
 - `enableMocking.ts` inneholder ENV-sjekker — MSW starter kun når `ENV === 'development'` og `import.meta.env.MODE === 'msw'`. Ikke fjern disse guardene.
 - `vite.config.ts` bruker en betinget Sentry-plugin som kun aktiveres når `SENTRY_AUTH_TOKEN` er satt. Sentry-build-advarsler er forventet lokalt uten token.
 - Data loading er delt i `useInitialData.ts` (hook med datalogikk) og `InitialDataLoader.tsx` (tynn komponent). Behold denne separasjonen når du tilpasser, og deleger detaljveiledning til `sif-initial-data-loader`.
+- Eksterne brukerlenker skal ikke eies av målappen etter migrering. Flytt dem til den delte lenkekilden i `@sif/soknad-ui/lenker`. Appen kan fortsatt beholde en tynn adapter som skjuler locale/env-oppslag og eksponerer et enklere API som `useLenker()` og `getLenke()`.
+- Når du navngir lenkene i den delte lenkefila, foretrekk domenespesifikke og selvforklarende nøkler fremfor korte generiske navn. Eksempler: `navMinSide`, `navSaksbehandlingstider`, `omsorgspengerEttersending`.
+- Bruk flat struktur i den delte lenkefila. Ikke innfør grupper som `nav`, `external` eller `ytelse` i konsum-APIet med mindre et reelt navnekollisjonsproblem krever det.
+- For generelle lenker: bruk kildeprefix først, som `nav...`, `skatteetaten...`, `lovdata...`, `regjeringen...`.
+- For ytelsesspesifikke lenker: bruk ytelsesprefix først, som `omsorgspenger...` eller `pleiepenger...`.
+- Bruk konsistente suffikser på tvers av nøkler, for eksempel `Info`, `Soknad`, `Ettersending`, `Brevskjema`, `Innsyn`.
 
 ### Referanser for UI og spacing
 

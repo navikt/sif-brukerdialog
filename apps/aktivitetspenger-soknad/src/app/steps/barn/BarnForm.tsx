@@ -70,7 +70,9 @@ export const BarnForm = ({ registrerteBarn }: Props) => {
                                         id="barnSteg.opplysninger.info.text"
                                         values={{
                                             Lenke: (children) => (
-                                                <ExternalLink href={getLenker().skatteetaten}>{children}</ExternalLink>
+                                                <ExternalLink href={getLenker().skatteetatenForside}>
+                                                    {children}
+                                                </ExternalLink>
                                             ),
                                         }}
                                     />

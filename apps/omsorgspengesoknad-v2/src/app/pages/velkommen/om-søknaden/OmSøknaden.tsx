@@ -1,9 +1,11 @@
+import { useLenker } from '@app/lenker';
 import { Box, ExpansionCard, Heading, Link, List, VStack } from '@navikt/ds-react';
 
 import { AppText } from '../../../i18n';
-import getLenker from '../../../lenker';
 
 const OmSøknaden = () => {
+    const lenker = useLenker();
+
     return (
         <VStack gap="space-32">
             <Box>
@@ -72,7 +74,7 @@ const OmSøknaden = () => {
                                 values={{
                                     Lenke: (children: React.ReactNode) => (
                                         <Link
-                                            href={getLenker().personvernerklæring}
+                                            href={lenker.navPersonvernerklaering}
                                             target="_blank"
                                             rel="noopener noreferrer">
                                             {children}
