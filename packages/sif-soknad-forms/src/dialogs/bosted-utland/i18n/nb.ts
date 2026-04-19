@@ -15,7 +15,7 @@ export const bostedUtlandMessages_nb = {
         'Datoen utenlandsoppholdet startet kan ikke være før {dato}. Skriv inn eller velg startdato fra datovelgeren.',
     '@sifSoknadForms.bostedUtlandForm.validation.fom.dateHasInvalidFormat':
         'Du må oppgi når utenlandsoppholdet startet i et gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadForms.bostedUtlandForm.validation.fom.fromDateIsAfterToDate':
+    '@sifSoknadForms.bostedUtlandForm.validation.bosted.fromDateIsAfterToDate':
         'Datoen utenlandsoppholdet startet kan ikke være etter datoen det ble avsluttet. Skriv inn eller velg startdato fra datovelgeren.',
     '@sifSoknadForms.bostedUtlandForm.validation.tom.dateHasNoValue':
         'Du må oppgi hvilken dato utenlandsoppholdet ble avsluttet. Skriv inn eller velg dato fra datovelgeren.',

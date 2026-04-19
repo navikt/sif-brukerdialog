@@ -17,7 +17,7 @@ export const bostedUtlandMessages_nn: Record<keyof typeof bostedUtlandMessages_n
         'Datoen utanlandsopphaldet starta kan ikkje vera før {dato}. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@sifSoknadForms.bostedUtlandForm.validation.fom.dateHasInvalidFormat':
         'Du må oppgje når utanlandsopphaldet starta i eit gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadForms.bostedUtlandForm.validation.fom.fromDateIsAfterToDate':
+    '@sifSoknadForms.bostedUtlandForm.validation.bosted.fromDateIsAfterToDate':
         'Datoen utanlandsopphaldet starta kan ikkje vera etter datoen det vart avslutta. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@sifSoknadForms.bostedUtlandForm.validation.tom.dateHasNoValue':
         'Du må oppgje kva dato utanlandsopphaldet vart avslutta. Skriv inn eller vel dato frå datoveljaren.',

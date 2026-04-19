@@ -4,7 +4,9 @@ import { describe, expect, it, vi } from 'vitest';
 import { sifValidate } from '../sifValidate';
 
 const mockIntl = {
-    formatMessage: vi.fn(({ id }: { id: string }) => `translated:${id}`),
+    formatMessage: vi.fn(({ id }: { id: string }, values?: Record<string, unknown>) =>
+        values ? `translated:${id}:${JSON.stringify(values)}` : `translated:${id}`,
+    ),
 } as unknown as IntlShape;
 
 describe('sifValidate', () => {
@@ -21,5 +23,18 @@ describe('sifValidate', () => {
     it('uses provided scope in message key', () => {
         const validate = sifValidate(() => 'tooShort', 'email', mockIntl, 'registrationForm');
         expect(validate('')).toBe('translated:registrationForm.validation.email.tooShort');
+    });
+
+    it('passes interpolation values when provided', () => {
+        const validate = sifValidate(
+            () => 'dateIsAfterMax',
+            'fom',
+            mockIntl,
+            '@sifSoknadForms.bostedUtlandForm',
+            (errorCode) => (errorCode === 'dateIsAfterMax' ? { dato: '19.04.2026' } : undefined),
+        );
+        expect(validate('')).toBe(
+            'translated:@sifSoknadForms.bostedUtlandForm.validation.fom.dateIsAfterMax:{"dato":"19.04.2026"}',
+        );
     });
 });

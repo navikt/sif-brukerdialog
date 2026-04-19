@@ -44,6 +44,7 @@ Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppset
   - `getStringValidator` — minLength, maxLength, disallowInvalidBackendCharacters
   - `getFødselsnummerValidator` — disallowedValues (f.eks. søkers eget fnr), allowHnr
   - `getDateValidator` — min, max
+  - `getDateRangeValidator` — min, max, toDate, fromDate (resolved verdier)
 - For hvert felt: alle mulige error-koder fra validatoren **må** ha tilhørende i18n-nøkkel i `nb.ts` og `nn.ts`. Sjekk feilkode-enumen i `packages/sif-validation/src/get*Validator.ts` mot nøklene i kildeappen.
 - Ikke fjern validering under migrering. Strengere validering kan bare legges til med eksplisitt bestilling.
 
@@ -58,6 +59,23 @@ Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppset
 
 - Ikke importer fra gamle pakker (`@navikt/sif-common-core-ds`, `@navikt/sif-common-formik-ds`, `@navikt/sif-common-ui`). Bruk Aksel-komponenter (`@navikt/ds-react`) eller pakker fra `@sif/*` i stedet.
 - Vanlige erstatninger: `ExpandableInfo` → `ReadMore` fra `@navikt/ds-react`.
+
+## Migrering av dialoger til `sif-soknad-forms`
+
+Dialoger fra `sif-common-forms-ds/src/forms/` migreres til `sif-soknad-forms/src/dialogs/`. Bruk `sif-formik-to-rhf` (seksjonen «Dialogkomponenter i sif-soknad-forms») for det tekniske mønsteret.
+
+### Sjekkliste per dialog
+
+Sammenlign Formik-originalen i `sif-common-forms-ds` med RHF-varianten i `sif-soknad-forms`:
+
+- [ ] **Tekster**: Alle labels, legends og descriptions matcher originalen ordrett
+- [ ] **Validatorparametere**: `required`, `min`, `max`, `minLength`, `maxLength` etc. er identiske
+- [ ] **Feilkoder → i18n**: Alle mulige feilkoder fra hver validator har nøkkel i `nb.ts` og `nn.ts`
+- [ ] **Interpolasjon**: Feilmeldinger sender samme interpolasjonsverdier som originalen
+- [ ] **Sammensatt validering**: Når originalen kombinerer props, feltverdier eller andre avhengigheter, beholdes samme logikk
+- [ ] **Locale**: Locale-avhengig presentasjon følger originalen
+- [ ] **nn.ts**: Typet med `Record<keyof typeof nb, string>`, ingen spread fra `nb`
+- [ ] **Props-paritet**: Props, inkludert hva som er optional og obligatorisk, matcher originalen
 
 ## appEnv-singleton
 

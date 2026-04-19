@@ -175,19 +175,26 @@ Formik svelger rejected promises i `onSubmit`. RHF gjør det ikke — ubehandled
 
 Formik-validate returnerer `{ key, values }` for feilmeldinger med parametere. RHF-validate returnerer en ren streng.
 
-Når Formik-varianten returnerer `{ key: errorCode, values: { min: 5, maks: 2000 } }`, bruk `intl.formatMessage` direkte:
+Bruk tredje argument til `validateField` — en callback som mottar feilkoden og returnerer interpolasjonsverdier:
 
 ```ts
-validate={(value) => {
-    const errorCode = getStringValidator({ required: true, minLength: 5, maxLength: 2000 })(value);
-    return errorCode
-        ? intl.formatMessage(
-              { id: `scope.validation.feltNavn.${errorCode}` },
-              { min: 5, maks: 2000 },
-          )
-        : undefined;
-}}
+validate={validateField(
+    FormFields.feltNavn,
+    getStringValidator({ required: true, minLength: 5, maxLength: 2000 }),
+    (errorCode) => {
+        if (errorCode === 'stringIsTooShort') return { min: 5 };
+        if (errorCode === 'stringIsTooLong') return { maks: 2000 };
+    },
+)}
 ```
+
+For statiske verdier som ikke avhenger av feilkoden kan du sende et vanlig objekt:
+
+```ts
+validate={validateField(FormFields.feltNavn, validator, { min: 5, maks: 2000 })}
+```
+
+**Ikke bruk `intl.formatMessage` direkte** — `validateField` bygger i18n-nøkkelen og gjør oppslaget for deg.
 
 ### 4. Spacing i knapperaden
 
@@ -348,9 +355,111 @@ import { DateRange } from '@navikt/sif-common-utils';
 - [ ] async `handleSubmit` har try/catch rundt mutateAsync-kall
 - [ ] Betinget visning kartlagt fra v1 og verifisert mot v1 (ingen inversjonsfeile)
 - [ ] Betinget visning bruker `methods.watch()` + `&&`/fragment — ikke `AriaLiveRegion` rundt skjemafelter
+---
+
+## Dialogkomponenter i `sif-soknad-forms`
+
+Dialogkomponenter i `sif-soknad-forms` skal som hovedregel bruke `useSifValidate`, også når scope ligger på pakkenivå.
+
+Bruk scope med full pakke-prefix, for eksempel `@sifSoknadForms.bostedUtlandForm`.
+
+Hvis originalen følger standardmønsteret `<scope>.validation.<fieldName>.<errorCode>`, holder det med:
+
+```ts
+const { validateField } = useSifValidate('@sifSoknadForms.dialogForm');
+
+validate: validateField(FormFields.landkode, getRequiredFieldValidator())
+```
+
+Hvis originalen trenger interpolasjonsverdier, bruk fortsatt `useSifValidate`, men send inn `values`.
+
+Hvis originalen ikke følger standardmønsteret `<scope>.validation.<fieldName>.<errorCode>`, må du vurdere om `useSifValidate` fortsatt passer. Ikke innfør ekstra kompleksitet uten et faktisk behov.
+
+### Interpolasjon med `useSifValidate`
+
+Når originalen trenger interpolasjonsverdier, send dem inn som tredje argument til `validateField`:
+
+```ts
+validate: validateField(
+    FormFields.fom,
+    getDateValidator({ required: true, min: minDate, max: maxDate }),
+    (errorCode) => {
+        if (errorCode === 'dateIsBeforeMin' && minDate)
+            return { dato: sifIntl.date(minDate, 'compact') };
+        if (errorCode === 'dateIsAfterMax' && maxDate)
+            return { dato: sifIntl.date(maxDate, 'compact') };
+    },
+),
+```
+
+### DateRangePicker-migrering
+
+Formik-versjonen bruker `getDateRangeValidator` med manuell beregning av `resolvedMaxDate`/`resolvedMinDate` per felt. I RHF-versjonen er dette unødvendig — `SifDateRangePicker` håndterer cross-field min/max automatisk.
+
+**Mønster:**
+
+- Bruk `getDateValidator` (ikke `getDateRangeValidator`) per felt — hvert felt sjekker bare seg selv
+- `SifDateRangePicker` klemmer automatisk fom sin maxDate ned til tom-verdien, og omvendt
+- Cross-field validering (fom > tom) legges i `DateRangePicker.validate`-prop
+- `validateField` brukes også på gruppenivå for i18n-oppslag
+
+```tsx
+<DateRangePicker
+    name="periode"
+    legend={...}
+    validate={validateField('periode', ({ fromDate, toDate }) => {
+        if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
+    })}
+    fromInputProps={{
+        name: FormFields.fom,
+        validate: validateField(
+            FormFields.fom,
+            getDateValidator({ required: true, min: minDate, max: maxDate }),
+            (errorCode) => {
+                if (errorCode === 'dateIsBeforeMin' && minDate)
+                    return { dato: sifIntl.date(minDate, 'compact') };
+                if (errorCode === 'dateIsAfterMax' && maxDate)
+                    return { dato: sifIntl.date(maxDate, 'compact') };
+            },
+        ),
+    }}
+    toInputProps={{
+        name: FormFields.tom,
+        validate: validateField(
+            FormFields.tom,
+            getDateValidator({ required: true, min: minDate, max: maxDate }),
+            (errorCode) => {
+                if (errorCode === 'dateIsBeforeMin' && minDate)
+                    return { dato: sifIntl.date(minDate, 'compact') };
+                if (errorCode === 'dateIsAfterMax' && maxDate)
+                    return { dato: sifIntl.date(maxDate, 'compact') };
+            },
+        ),
+    }}
+/>
+```
+
+i18n-nøkler for cross-field-feilen bruker gruppens navn som felt: `scope.validation.periode.fromDateIsAfterToDate`.
+
+### Props, sammensatt validering og locale
+
+- Props skal ha samme kontrakt som i originalen, inkludert hva som er optional og hvilke default-antakelser som gjelder.
+- Når originalen kombinerer flere grenser eller avhengigheter i valideringen, skal samme logikk beholdes i RHF-varianten.
+- Interpolasjonsverdier skal følge originalen, uavhengig av om verdien er dato, tall eller tekst.
+- Locale-avhengig presentasjon skal følge originalen. Ikke erstatt locale-sensitive oppslag med lagrede eller hardkodede strenger.
+
+### Sjekkliste for dialogkomponenter
+
+- [ ] Alle feilkoder fra alle validatorer har tilhørende i18n-nøkkel i `nb.ts` og `nn.ts`
+- [ ] `nn.ts` er typet med `Record<keyof typeof nb, string>` — ingen spread fra `nb`
+- [ ] Props og default-oppførsel matcher originalen
+- [ ] Sammensatt validering matcher originalen
+- [ ] Interpolasjonsverdier matcher originalen
+- [ ] Locale-avhengig presentasjon matcher originalen
+- [ ] Tekster matcher originalen i `sif-common-forms-ds` — ikke omskrevet
 - [ ] `AriaLiveRegion` brukes kun rundt dynamiske meldinger (`SifInfoMessage`, `InlineMessage`, `LocalAlert`)
 - [ ] Betingede felter som skjules får `clearErrors` i `useEffect`
-- [ ] Validatorer med parametere bruker `intl.formatMessage` inline
+- [ ] `useSifValidate` brukes når key-strukturen følger standardmønsteret, med `values` ved behov
 - [ ] i18n-nøkler bruker eksakte feilkoder fra `@navikt/sif-validation` (sjekk `enum Validate*Error`)
 - [ ] `FormFields`-enum er uendret
 - [ ] `@sif/rhf: workspace:*` finnes i `package.json`

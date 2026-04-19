@@ -74,6 +74,7 @@ Ved migrering fra gammel `VelgBarnFormPart` (fra `@navikt/sif-common-forms-ds`):
 | `Textarea`        | Lengre fritekst             | `string`               | `getStringValidator({ required: true, maxLength })` |
 | `NumberInput`     | Tallfelt                    | `string`               | `getNumberValidator({ required: true })`            |
 | `Datepicker`      | Datovelger                  | `string`               | `getDateValidator()`                                |
+| `DateRangePicker`  | Fra/til-datoperiode          | `string` (per felt)    | `getDateValidator()` per felt + `validate`-prop på gruppen |
 | `Select`          | Nedtrekksliste              | `string`               | `getRequiredFieldValidator()`                       |
 | `Checkbox`        | Enkelt avkrysningsboks      | `boolean`              | `getCheckedValidator()`                             |
 
@@ -103,7 +104,39 @@ Eksempler på error-koder fra `@navikt/sif-validation`:
 
 **Viktig:** Bruk alltid de eksakte feilkodene fra validatorens enum — ikke dikk opp egne. Feil kode → valideringsmelding vises aldri. Du finner alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
 
-Valideringsnøklene i `i18n/nb.ts` **må** matche dette mønsteret:
+### DateRangePicker-validering
+
+For `DateRangePicker` brukes `getDateValidator` per felt — **ikke** `getDateRangeValidator`. `SifDateRangePicker` håndterer cross-field min/max automatisk. Cross-field validering (fom > tom) legges i `validate`-prop på gruppen:
+
+```tsx
+<DateRangePicker
+    name="periode"
+    legend={text('...')}
+    validate={validateField('periode', ({ fromDate, toDate }) => {
+        if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
+    })}
+    fromInputProps={{
+        name: FormFields.fom,
+        validate: validateField(FormFields.fom,
+            getDateValidator({ required: true, min: minDate, max: maxDate }),
+            (errorCode) => {
+                if (errorCode === 'dateIsBeforeMin' && minDate) return { dato: sifIntl.date(minDate, 'compact') };
+                if (errorCode === 'dateIsAfterMax' && maxDate) return { dato: sifIntl.date(maxDate, 'compact') };
+            }),
+    }}
+    toInputProps={{
+        name: FormFields.tom,
+        validate: validateField(FormFields.tom,
+            getDateValidator({ required: true, min: minDate, max: maxDate }),
+            (errorCode) => {
+                if (errorCode === 'dateIsBeforeMin' && minDate) return { dato: sifIntl.date(minDate, 'compact') };
+                if (errorCode === 'dateIsAfterMax' && maxDate) return { dato: sifIntl.date(maxDate, 'compact') };
+            }),
+    }}
+/>
+```
+
+Valideringsnøkler i `i18n/nb.ts` **må** matche dette mønsteret:
 
 ```ts
 // scope = 'andreYtelserForm', felt = 'andreYtelser', feilkode = 'listIsEmpty':
