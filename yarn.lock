@@ -6445,6 +6445,7 @@ __metadata:
     "@playwright/test": "npm:1.59.1"
     "@sentry/react": "npm:10.48.0"
     "@sif/api": "workspace:*"
+    "@sif/soknad-ui": "workspace:*"
     "@sif/ung-innsyn": "workspace:*"
     "@storybook/addon-docs": "npm:10.3.5"
     "@storybook/react-vite": "npm:10.3.5"

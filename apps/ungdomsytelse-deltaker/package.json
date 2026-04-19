@@ -49,6 +49,7 @@
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sentry/react": "10.48.0",
         "@sif/api": "workspace:*",
+        "@sif/soknad-ui": "workspace:*",
         "@sif/ung-innsyn": "workspace:*",
         "@tanstack/react-query": "5.97.0",
         "axios": "1.15.0",
