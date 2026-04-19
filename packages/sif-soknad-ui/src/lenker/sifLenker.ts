@@ -31,7 +31,7 @@ export const sifLenkerProdBokmal = {
         'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/brev',
     pleiepengerEttersending:
         'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/ettersendelse',
-    ungdomsprogrammet: 'https://www.nav.no/ungdomsprogrammet',
+    navUngdomsprogrammet: 'https://www.nav.no/ungdomsprogrammet',
     navDokumentarkivOmsorgspenger: 'https://www.nav.no/dokumentarkiv/tema/OMS',
     navDokumentarkivUngdomsytelse: 'https://www.nav.no/dokumentarkiv/tema/UNG',
     innboksBeskjedTilOssEndringSykdomIFamilien:

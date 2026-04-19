@@ -13,9 +13,19 @@ interface SifLenkeUtils {
     useLenker: () => SifLenker;
 }
 
+const defaultGetLocale = (locale?: string): SifLenkerLocale => {
+    switch (locale) {
+        case 'nn':
+        case 'no-NN':
+            return 'nn';
+        default:
+            return 'nb';
+    }
+};
+
 export const createSifLenkeUtils = ({
     getEnvironment,
-    getLocale = (locale?: string) => (locale === 'nn' ? 'nn' : 'nb'),
+    getLocale = defaultGetLocale,
 }: CreateSifLenkeUtilsParams): SifLenkeUtils => {
     const getLenker = (locale?: string): SifLenker => getSifLenker(getLocale(locale), getEnvironment());
 
