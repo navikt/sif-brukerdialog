@@ -99,11 +99,19 @@ For hver dialog som porteres:
 - Bruk aktiv locale fra `sifIntl.locale` (via `useSifSoknadFormsIntl()`) når displaydata bygges, f.eks. `getCountryName(landkode, sifIntl.locale)`.
 - Ikke hardkod `'nb'` i mapper-funksjoner som bygger brukervendt tekst.
 
+### Miljøavhengigheter
+
+- Unngå å lese app-miljø direkte via `@navikt/sif-common-env` i `packages/sif-soknad-forms` uten at det er strengt nødvendig.
+- Husk at dialoger i `sif-soknad-forms` også kjøres i Storybook, hvor full `appSettings` ikke alltid finnes.
+- Hvis en dialog trenger miljøstyrt oppførsel, foretrekk eksplisitt prop eller en liten lokal fallback fremfor å binde dialogen til app-env.
+
 ### Dialog-shell
 
 - Bruk Aksel `Dialog` med `Dialog.Popup`, `Dialog.Header`, `Dialog.Body`, `Dialog.Footer`.
 - `onOpenChange` skal wrappe cancel: `onOpenChange={(open) => { if (!open) onCancel(); }}`.
 - Submit-knapp bruker `form={formId}` for å koble til formen i body.
+- Hvis samme formkonfig-props må sendes gjennom flere lag (`XxxDialogForm` → `XxxDialog` → `XxxListAndDialog`), eksporter en egen delt config-type fra form-filen og gjenbruk den i wrapperne.
+- Foretrekk en eksplisitt delt type som `XxxDialogFormConfig` fremfor å repetere feltene eller bygge wrapper-API på `Pick<Props, ...>` fra hele form-komponenten.
 
 ---
 
@@ -115,6 +123,7 @@ Når du lager stories i `packages/sif-soknad-forms`:
 2. Bruk `StoryFrame` fra `src/storybook/components/StoryFrame.tsx` for layout (`maxWidth`, `minHeight`).
 3. Bruk `withRHFForm` fra `src/storybook/decorators/withRHFForm.tsx` hvis storyen trenger RHF-kontekst, med `parameters.rhf.defaultValues`.
 4. Hold lokal state kun for det som demonstreres (`useState` for liste eller åpen dialog).
+5. Send inn sentrale props som påvirker dialoglogikken i storyen, ikke bare minimumsoppsett. Eksempler: `disallowedFødselsnumre`, placeholders, hjelpetekst og andre domeneprops som styrer validering eller visning.
 
 ### Story-eksempel
 
@@ -184,7 +193,7 @@ Fra `packages/sif-common-forms-ds/src/forms/`:
 | `ferieuttak` | Ikke startet |
 | `opptjening-utland` | Ikke startet |
 | `enkeltdatoer` | Ikke startet |
-| `annet-barn` | Ikke startet |
+| `annet-barn` | Ferdig |
 | `utenlandsk-næring` | Ikke startet |
 | `fravær` (perioder + dager) | Ikke startet |
 | `fosterbarn` | Ikke startet |
