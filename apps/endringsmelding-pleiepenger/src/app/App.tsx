@@ -11,6 +11,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
+import { SkyraHandler } from './skyra/SkyraHandler';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
 import { appEnv } from './utils/appEnv';
@@ -31,6 +32,7 @@ ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <Theme>
+        <SkyraHandler />
         <SoknadApplication
             appVersion={APP_VERSION}
             appKey={EndringsmeldingPsbApp.key}
