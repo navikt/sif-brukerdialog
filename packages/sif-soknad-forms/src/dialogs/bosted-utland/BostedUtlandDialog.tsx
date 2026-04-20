@@ -25,6 +25,10 @@ export const BostedUtlandFormDialog = ({
 }: Props) => {
     const formId = 'bostedUtlandForm';
 
+    if (!isOpen) {
+        return null;
+    }
+
     return (
         <Dialog
             open={isOpen}

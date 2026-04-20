@@ -96,6 +96,7 @@ export const BostedUtlandDialogForm = ({
                                 name: BostedUtlandFormFields.fom,
                                 label: sifIntl.text('@sifSoknadForms.bostedUtland.form.fom.label'),
                                 minDate,
+                                maxDate,
                                 disabledDateRanges: utilgjengeligePerioder,
                                 validate: validateField(
                                     BostedUtlandFormFields.fom,
@@ -111,6 +112,7 @@ export const BostedUtlandDialogForm = ({
                             toInputProps={{
                                 name: BostedUtlandFormFields.tom,
                                 label: sifIntl.text('@sifSoknadForms.bostedUtland.form.tom.label'),
+                                minDate,
                                 maxDate,
                                 disabledDateRanges: utilgjengeligePerioder,
                                 validate: validateField(

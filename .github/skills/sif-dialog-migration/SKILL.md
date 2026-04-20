@@ -109,6 +109,10 @@ For hver dialog som porteres:
 
 - Bruk Aksel `Dialog` med `Dialog.Popup`, `Dialog.Header`, `Dialog.Body`, `Dialog.Footer`.
 - `onOpenChange` skal wrappe cancel: `onOpenChange={(open) => { if (!open) onCancel(); }}`.
+- Når en dialog ikke trenger å bevare intern state mens den er lukket, la dialogkomponenten returnere `null` når `isOpen === false` slik at innholdet unmountes mellom åpninger.
+- Dette er spesielt nyttig for liste/dialog-mønstre der mange dialoginstanser ellers kan bli stående rendret i lukket tilstand.
+- For RHF-baserte dialoger gir dette også ferske `useForm({ defaultValues })` ved ny mount, og er ofte enklere enn manuell `reset(...)`-logikk.
+- Behold dialogen mounted mens den er lukket bare når det finnes en konkret grunn, for eksempel bevart lokal state, spesifikk fokus-/animasjonshåndtering eller annen eksplisitt oppførsel.
 - Submit-knapp bruker `form={formId}` for å koble til formen i body.
 - Hvis samme formkonfig-props må sendes gjennom flere lag (`XxxDialogForm` → `XxxDialog` → `XxxListAndDialog`), eksporter en egen delt config-type fra form-filen og gjenbruk den i wrapperne.
 - Foretrekk en eksplisitt delt type som `XxxDialogFormConfig` fremfor å repetere feltene eller bygge wrapper-API på `Pick<Props, ...>` fra hele form-komponenten.
