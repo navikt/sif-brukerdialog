@@ -1,3 +1,4 @@
+import { Button } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { countryIsMemberOfEøsOrEfta, DateRange, dateUtils, getCountryName } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, getRequiredFieldValidator, getYesOrNoValidator, validationUtils } from '@navikt/sif-validation';
@@ -312,14 +313,16 @@ export const UtenlandsoppholdDialogForm = ({
                                     }}
                                     onDelete={handleDeletePeriode}
                                 />
-                                <button
+                                <Button
                                     type="button"
+                                    variant="secondary"
+                                    size="small"
                                     onClick={() => {
                                         setPeriodeUnderRedigering(undefined);
                                         setInnlagtPeriodeDialogIsOpen(true);
                                     }}>
                                     {intl.text('@sifSoknadForms.utenlandsopphold.form.barnInnlagtPerioder.leggTil')}
-                                </button>
+                                </Button>
                                 <TidsperiodeFormDialog
                                     isOpen={innlagtPeriodeDialogIsOpen}
                                     tidsperiode={periodeUnderRedigering}
