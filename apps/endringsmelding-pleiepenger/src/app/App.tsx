@@ -32,7 +32,6 @@ ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <Theme>
-        <SkyraHandler />
         <SoknadApplication
             appVersion={APP_VERSION}
             appKey={EndringsmeldingPsbApp.key}
@@ -48,6 +47,7 @@ const App = () => (
                 },
             }}
             publicPath={PUBLIC_PATH}>
+            <SkyraHandler />
             <Routes>
                 <Route key="dev" path="/dev" element={<DevPage />} />,
                 <Route
