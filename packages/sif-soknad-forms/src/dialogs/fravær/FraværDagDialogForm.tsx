@@ -5,7 +5,7 @@ import { createSifFormComponents } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
-import { dateCollideWithRanges, dateErHelg, toMaybeNumber } from './fraværUtils';
+import { dateCollideWithRanges, dateErHelg, isDateRangeMatchingPeriode, toMaybeNumber } from './fraværUtils';
 import { FraværDag } from './types';
 
 interface Props {
@@ -66,8 +66,7 @@ const getDisabledRangesForDag = (
 ): DateRange[] | undefined => {
     if (!dateRangesToDisable || !fraværDag) return dateRangesToDisable;
     return dateRangesToDisable.filter(
-        (range) =>
-            !(dateUtils.dateToISODate(range.from) === dateUtils.dateToISODate(fraværDag.dato) && dateUtils.dateToISODate(range.to) === dateUtils.dateToISODate(fraværDag.dato)),
+        (range) => !isDateRangeMatchingPeriode(range, fraværDag.dato, fraværDag.dato),
     );
 };
 

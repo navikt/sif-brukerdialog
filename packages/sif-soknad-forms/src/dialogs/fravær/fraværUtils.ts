@@ -42,3 +42,6 @@ export const toMaybeNumber = (value: string | undefined): number | undefined => 
     }
     return undefined;
 };
+
+export const isDateRangeMatchingPeriode = (range: DateRange, fom: Date, tom: Date): boolean =>
+    isSameDay(range.from, fom) && isSameDay(range.to, tom);

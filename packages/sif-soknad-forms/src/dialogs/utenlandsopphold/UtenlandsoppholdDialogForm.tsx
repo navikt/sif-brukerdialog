@@ -69,7 +69,7 @@ const oppholdToFormValues = (opphold: Utenlandsopphold, variant: Utenlandsopphol
 
     if (opphold.type === 'utenfor_eøs') {
         const barnInnlagtPerioder = (opphold.barnInnlagtPerioder || []).map((p) => ({
-            id: crypto.randomUUID(),
+            id: p.id,
             fom: p.fom,
             tom: p.tom,
         }));
