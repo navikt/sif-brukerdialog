@@ -18,7 +18,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
         return () => {
             onUnmount();
         };
-    });
+    }, []);
     return (
         <Page title={text('kvitteringPage.pageTitle')}>
             <VStack gap="space-24">

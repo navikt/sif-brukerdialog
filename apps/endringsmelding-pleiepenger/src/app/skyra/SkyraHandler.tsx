@@ -5,7 +5,7 @@ export const SkyraHandler = () => {
     const location = useLocation();
     useEffect(() => {
         const skyra = (globalThis as any).skyra;
-        if (skyra?.reload) {
+        if (skyra?.reload && document.querySelector('skyra-survey')) {
             skyra.reload();
         }
     }, [location.pathname]);

@@ -192,8 +192,6 @@ export const parseK9Format = (data: K9Format): K9Sak => {
             /** Skjul registrert tid i tilsynsordning.
              * - Vi viser bare tid som innlogget bruker har sendt inn, ikke tid fra annen part.
              * - Bruker skal alltid kunne sende inn ny tid, også når den er lik sist innsending.
-             *
-             * * tilsynsordning: { parseK9FormatTilsynsordning(ytelse.tilsynsordning),
              */
             tilsynsordning: { perioder: {} },
         },
