@@ -86,52 +86,50 @@ export const BostedUtlandDialogForm = ({
                 noValidate>
                 <FormLayout.Content>
                     <FormLayout.Questions>
-                        <FormLayout.Questions>
-                            <DateRangePicker
-                                name="bosted"
-                                legend={sifIntl.text('@sifSoknadForms.bostedUtland.form.tidsperiode.legend')}
-                                validate={validateField('bosted', ({ fromDate, toDate }) => {
-                                    if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
-                                })}
-                                fromInputProps={{
-                                    name: BostedUtlandFormFields.fom,
-                                    label: sifIntl.text('@sifSoknadForms.bostedUtland.form.fom.label'),
-                                    minDate,
-                                    disabledDateRanges: utilgjengeligePerioder,
-                                    validate: validateField(
-                                        BostedUtlandFormFields.fom,
-                                        getDateValidator({ required: true, min: minDate, max: maxDate }),
-                                        (errorCode) => {
-                                            if (errorCode === 'dateIsBeforeMin' && minDate)
-                                                return { dato: sifIntl.date(minDate, 'compact') };
-                                            if (errorCode === 'dateIsAfterMax' && maxDate)
-                                                return { dato: sifIntl.date(maxDate, 'compact') };
-                                        },
-                                    ),
-                                }}
-                                toInputProps={{
-                                    name: BostedUtlandFormFields.tom,
-                                    label: sifIntl.text('@sifSoknadForms.bostedUtland.form.tom.label'),
-                                    maxDate,
-                                    disabledDateRanges: utilgjengeligePerioder,
-                                    validate: validateField(
-                                        BostedUtlandFormFields.tom,
-                                        getDateValidator({ required: true, min: minDate, max: maxDate }),
-                                        (errorCode) => {
-                                            if (errorCode === 'dateIsBeforeMin' && minDate)
-                                                return { dato: sifIntl.date(minDate, 'compact') };
-                                            if (errorCode === 'dateIsAfterMax' && maxDate)
-                                                return { dato: sifIntl.date(maxDate, 'compact') };
-                                        },
-                                    ),
-                                }}
-                            />
-                            <CountrySelect
-                                name={BostedUtlandFormFields.landkode}
-                                label={sifIntl.text('@sifSoknadForms.bostedUtland.form.land.label')}
-                                validate={validateLandkode}
-                            />
-                        </FormLayout.Questions>
+                        <DateRangePicker
+                            name="bosted"
+                            legend={sifIntl.text('@sifSoknadForms.bostedUtland.form.tidsperiode.legend')}
+                            validate={validateField('bosted', ({ fromDate, toDate }) => {
+                                if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
+                            })}
+                            fromInputProps={{
+                                name: BostedUtlandFormFields.fom,
+                                label: sifIntl.text('@sifSoknadForms.bostedUtland.form.fom.label'),
+                                minDate,
+                                disabledDateRanges: utilgjengeligePerioder,
+                                validate: validateField(
+                                    BostedUtlandFormFields.fom,
+                                    getDateValidator({ required: true, min: minDate, max: maxDate }),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin' && minDate)
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax' && maxDate)
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
+                            }}
+                            toInputProps={{
+                                name: BostedUtlandFormFields.tom,
+                                label: sifIntl.text('@sifSoknadForms.bostedUtland.form.tom.label'),
+                                maxDate,
+                                disabledDateRanges: utilgjengeligePerioder,
+                                validate: validateField(
+                                    BostedUtlandFormFields.tom,
+                                    getDateValidator({ required: true, min: minDate, max: maxDate }),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin' && minDate)
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax' && maxDate)
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
+                            }}
+                        />
+                        <CountrySelect
+                            name={BostedUtlandFormFields.landkode}
+                            label={sifIntl.text('@sifSoknadForms.bostedUtland.form.land.label')}
+                            validate={validateLandkode}
+                        />
                     </FormLayout.Questions>
                 </FormLayout.Content>
             </form>
