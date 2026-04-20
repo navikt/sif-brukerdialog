@@ -41,8 +41,6 @@ function AnnetBarnListAndDialogStory({ annetBarn }: StoryProps) {
             maxDate={today.toDate()}
             disallowedFødselsnumre={disallowedFødselsnumre}
             aldersgrenseText="(må være under 18 år)"
-            fnrPlaceholder="11 siffer"
-            navnPlaceholder="Skriv barnets navn"
             showBarnTypeOptions
             addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.annetBarn.list.leggTil" />}
             onChange={setItems}

@@ -20,8 +20,6 @@ export const AnnetBarnDialog = ({
     maxDate,
     disallowedFødselsnumre,
     aldersgrenseText,
-    fnrPlaceholder,
-    navnPlaceholder,
     showBarnTypeOptions,
     onCancel,
     onValidSubmit,
@@ -53,8 +51,6 @@ export const AnnetBarnDialog = ({
                         maxDate={maxDate}
                         disallowedFødselsnumre={disallowedFødselsnumre}
                         aldersgrenseText={aldersgrenseText}
-                        fnrPlaceholder={fnrPlaceholder}
-                        navnPlaceholder={navnPlaceholder}
                         showBarnTypeOptions={showBarnTypeOptions}
                         onValidSubmit={onValidSubmit}
                     />

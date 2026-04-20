@@ -23,8 +23,6 @@ export const AnnetBarnListAndDialog = ({
     maxDate,
     disallowedFødselsnumre,
     aldersgrenseText,
-    fnrPlaceholder,
-    navnPlaceholder,
     showBarnTypeOptions,
     onChange,
 }: Props) => {
@@ -46,8 +44,6 @@ export const AnnetBarnListAndDialog = ({
                     maxDate={maxDate}
                     disallowedFødselsnumre={disallowedFødselsnumre}
                     aldersgrenseText={aldersgrenseText}
-                    fnrPlaceholder={fnrPlaceholder}
-                    navnPlaceholder={navnPlaceholder}
                     showBarnTypeOptions={showBarnTypeOptions}
                     onValidSubmit={onSubmit}
                     onCancel={onCancel}

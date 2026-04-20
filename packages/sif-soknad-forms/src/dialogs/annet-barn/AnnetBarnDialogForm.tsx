@@ -15,8 +15,6 @@ import { AnnetBarn, AnnetBarnFormValues, BarnType } from './index';
 export interface AnnetBarnDialogFormConfig {
     disallowedFødselsnumre?: string[];
     aldersgrenseText?: string;
-    fnrPlaceholder?: string;
-    navnPlaceholder?: string;
     showBarnTypeOptions?: boolean;
 }
 
@@ -54,9 +52,7 @@ export const AnnetBarnDialogForm = ({
     minDate,
     maxDate,
     disallowedFødselsnumre,
-    aldersgrenseText: ageLimitText,
-    fnrPlaceholder,
-    navnPlaceholder,
+    aldersgrenseText,
     showBarnTypeOptions,
     onValidSubmit,
 }: AnnetBarnDialogFormProps) => {
@@ -90,15 +86,14 @@ export const AnnetBarnDialogForm = ({
                         <TextField
                             name={AnnetBarnFormFields.navn}
                             label={sifIntl.text('@sifSoknadForms.annetBarn.form.navn')}
-                            placeholder={navnPlaceholder}
                             validate={validateField(AnnetBarnFormFields.navn, getStringValidator({ required: true }))}
                         />
 
                         <Datepicker
                             name={AnnetBarnFormFields.fødselsdato}
                             label={
-                                ageLimitText
-                                    ? `${sifIntl.text('@sifSoknadForms.annetBarn.form.fødselsdato')} ${ageLimitText}`
+                                aldersgrenseText
+                                    ? `${sifIntl.text('@sifSoknadForms.annetBarn.form.fødselsdato')} ${aldersgrenseText}`
                                     : sifIntl.text('@sifSoknadForms.annetBarn.form.fødselsdato')
                             }
                             minDate={minDate}
@@ -121,7 +116,6 @@ export const AnnetBarnDialogForm = ({
                         <TextField
                             name={AnnetBarnFormFields.fnr}
                             label={sifIntl.text('@sifSoknadForms.annetBarn.form.fnr')}
-                            placeholder={fnrPlaceholder}
                             inputMode="numeric"
                             maxLength={11}
                             validate={validateField(
