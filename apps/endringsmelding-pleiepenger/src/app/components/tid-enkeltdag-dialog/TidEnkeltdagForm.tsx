@@ -1,5 +1,5 @@
-import { AppText, useAppIntl } from '@app/i18n';
-import { Alert, BodyLong, VStack } from '@navikt/ds-react';
+import { useAppIntl } from '@app/i18n';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import {
     DateRange,
     getIntlFormErrorHandler,
@@ -8,7 +8,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { DurationText, FormLayout } from '@navikt/sif-common-ui';
+import { FormLayout } from '@navikt/sif-common-ui';
 import {
     DateDurationMap,
     DateDurationOrUndefinedMap,
@@ -22,7 +22,6 @@ import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { ReactElement } from 'react';
 
-import { Feature, isFeatureEnabled } from '../../utils';
 import { getDagerMedNyTid, getGjentagelseEnkeltdagFraFormValues } from './utils/tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
 
@@ -152,8 +151,6 @@ const TidEnkeltdagForm = ({
         }
     };
 
-    const visOpprinneligTid = isFeatureEnabled(Feature.SIF_PUBLIC_SKJUL_TID_I_OMSORGSTILBUD) === false;
-
     const dagerNavn = `${dayjs(dato).format('dddd')}er`;
     const ukeNavn = `${dayjs(dato).isoWeek()}`;
     const månedNavn = dayjs(dato).format('MMMM YYYY');
@@ -179,20 +176,6 @@ const TidEnkeltdagForm = ({
                         cancelButtonLabel="Avbryt">
                         <VStack gap="space-24">
                             <BodyLong className="noPadding">{introRenderer(dato)}</BodyLong>
-                            {visOpprinneligTid && (
-                                <Alert variant="info" inline>
-                                    {tidOpprinnelig ? (
-                                        <>
-                                            <AppText id="tidEnkeltdagForm.opprinneligTid" />{' '}
-                                            <DurationText duration={tidOpprinnelig} fullText={true} />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <AppText id="tidEnkeltdagForm.ingenOpprinneligTid" />
-                                        </>
-                                    )}
-                                </Alert>
-                            )}
                             <VStack gap="space-32">
                                 <FormLayout.Panel>
                                     <VStack gap="space-16">

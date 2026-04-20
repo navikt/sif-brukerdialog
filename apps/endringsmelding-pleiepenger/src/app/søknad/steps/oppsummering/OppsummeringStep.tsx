@@ -3,7 +3,7 @@ import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText, useAppIntl } from '@app/i18n';
 import { StepId } from '@app/søknad/config/StepId';
 import SøknadStep from '@app/søknad/SøknadStep';
-import { getApiDataFromSøknadsdata, getSøknadApiDataMetadata } from '@app/utils';
+import { getApiDataFromSøknadsdata } from '@app/utils';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
@@ -81,8 +81,6 @@ const OppsummeringStep = () => {
     const harIngenEndringer =
         arbeidstidErEndret === false && lovbestemtFerieErEndret === false && tilsynsordningErEndret === false;
 
-    const x = getSøknadApiDataMetadata(apiData, søknadsdata, valgteEndringer, sak);
-    console.log(x);
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <FormLayout.Guide>

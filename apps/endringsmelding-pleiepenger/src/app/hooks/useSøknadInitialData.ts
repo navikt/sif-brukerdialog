@@ -8,7 +8,7 @@ import {
     SøknadInitialDataState,
     TimerEllerProsent,
 } from '@app/types';
-import { appSentryLogger, Feature, isFeatureEnabled } from '@app/utils';
+import { appSentryLogger } from '@app/utils';
 import { Søker } from '@navikt/sif-common-api';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -66,10 +66,6 @@ const prepInitialData = (
         if (k9saker.length === 1) {
             const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
 
-            /** Skjul tid i omsorgstilbud hvis feature er aktivert */
-            if (isFeatureEnabled(Feature.SIF_PUBLIC_SKJUL_TID_I_OMSORGSTILBUD)) {
-                sak.tilsynsordning.tilsynsdagerMap = {};
-            }
             if (getMaybeEnv('DEBUG') === 'true') {
                 appSentryLogger.logInfo(
                     'debug.maskedSakInfo',
