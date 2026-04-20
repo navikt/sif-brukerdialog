@@ -5,6 +5,7 @@ import { Kvittering } from '@navikt/sif-common-soknad-ds';
 import { useEffect } from 'react';
 
 import Skyra, { Slug } from '../../skyra/Skyra';
+import { Feature, isFeatureEnabled } from '../../utils';
 import { appEnv } from '../../utils/appEnv';
 
 interface Props {
@@ -31,7 +32,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                         />
                     </BodyShort>
                 </Kvittering>
-                <Skyra slug={Slug.kvittering_inline} />
+                {isFeatureEnabled(Feature.SIF_PUBLIC_ENDRE_OMSORGSTILBUD) && <Skyra slug={Slug.kvittering_inline} />}
             </VStack>
         </Page>
     );
