@@ -75,7 +75,7 @@ export const Standard: Story = {};
 export const MedAnnetBarn: Story = {
     args: {
         inkluderAnnetBarn: true,
-        annetBarnLabel: 'Soknaden gjelder et barn som ikke er registrert pa deg',
+        annetBarnLabel: 'Søknaden gjelder et barn som ikke er registrert på deg',
     },
 };
 

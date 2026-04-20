@@ -6,13 +6,13 @@ const preview = {
     decorators: [withIntl],
     globalTypes: {
         locale: {
-            name: 'Sprak',
-            description: 'Velg sprak som skal brukes i komponenten',
+            name: 'Språk',
+            description: 'Velg språk som skal brukes i komponenten',
             defaultValue: 'nb',
             toolbar: {
                 icon: 'globe',
                 items: [
-                    { value: 'nb', title: 'Bokmal' },
+                    { value: 'nb', title: 'Bokmål' },
                     { value: 'nn', title: 'Nynorsk' },
                 ],
             },
