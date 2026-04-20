@@ -28,6 +28,10 @@ export const AnnetBarnDialog = ({
 }: Props) => {
     const formId = 'annetBarnForm';
 
+    if (!isOpen) {
+        return null;
+    }
+
     return (
         <Dialog
             open={isOpen}
