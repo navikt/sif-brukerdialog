@@ -1,17 +1,14 @@
 import { Button, Dialog } from '@navikt/ds-react';
-import { DateRange } from '@navikt/sif-common-utils';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { UtenlandsoppholdDialogForm } from './UtenlandsoppholdDialogForm';
-import { Utenlandsopphold, UtenlandsoppholdVariant } from './types';
+import { UtenlandsoppholdDialogForm, UtenlandsoppholdDialogFormConfig } from './UtenlandsoppholdDialogForm';
+import { Utenlandsopphold } from './types';
 
-interface Props {
+interface Props extends UtenlandsoppholdDialogFormConfig {
     opphold?: Utenlandsopphold;
     alleOpphold?: Utenlandsopphold[];
-    variant?: UtenlandsoppholdVariant;
     minDate: Date;
     maxDate: Date;
-    disabledDateRanges?: DateRange[];
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (opphold: Utenlandsopphold) => void;
@@ -33,7 +30,12 @@ export const UtenlandsoppholdFormDialog = ({
     const formId = 'utenlandsoppholdForm';
 
     return (
-        <Dialog open={isOpen} onOpenChange={onCancel} size="small">
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) onCancel();
+            }}
+            size="small">
             <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>
@@ -58,7 +60,7 @@ export const UtenlandsoppholdFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.utenlandsopphold.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         {opphold ? (
                             <SifSoknadFormsText id="@sifSoknadForms.utenlandsopphold.dialog.oppdaterKnapp" />
                         ) : (

@@ -1,7 +1,6 @@
-import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
+import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
 import { getCountryName, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
-import { useIntl } from 'react-intl';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { OpptjeningAktivitet, OpptjeningUtland } from './types';
@@ -33,7 +32,7 @@ const renderOpptjeningLabel = (
 };
 
 export const OpptjeningUtlandList = ({ opptjeninger, onEdit, onDelete }: Props) => {
-    const intl = useIntl();
+    const { locale } = useUiIntl();
     const sifIntl = useSifSoknadFormsIntl();
 
     const getAktivitetLabel = (aktivitet: OpptjeningAktivitet): string => {
@@ -48,11 +47,11 @@ export const OpptjeningUtlandList = ({ opptjeninger, onEdit, onDelete }: Props) 
     return (
         <ItemListDarkside<OpptjeningUtland>
             getItemId={(opptjening): string => opptjening.id}
-            getItemTitle={(opptjening): string => getCountryName(opptjening.landkode, intl.locale)}
+            getItemTitle={(opptjening): string => getCountryName(opptjening.landkode, locale)}
             labelRenderer={(opptjening) =>
                 renderOpptjeningLabel(
                     opptjening,
-                    intl.locale,
+                    locale,
                     getAktivitetLabel(opptjening.opptjeningType),
                     sifIntl.text('@sifSoknadForms.opptjeningUtland.list.jobbet_i'),
                     sifIntl.text('@sifSoknadForms.opptjeningUtland.list.som'),

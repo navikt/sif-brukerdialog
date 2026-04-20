@@ -5,7 +5,6 @@ import { getDateRangeValidator, getRequiredFieldValidator, getYesOrNoValidator, 
 import { createSifFormComponents, YesOrNo } from '@sif/rhf';
 import { useState } from 'react';
 import { FormProvider, useFieldArray, useForm, useWatch } from 'react-hook-form';
-import { useIntl } from 'react-intl';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { TidsperiodeFormDialog } from '../tidsperiode/TidsperiodeDialog';
@@ -13,7 +12,12 @@ import { DateTidsperiode } from '../tidsperiode/types';
 import { TidsperiodeList } from '../tidsperiode/TidsperiodeList';
 import { Utenlandsopphold, UtenlandsoppholdEnkel, UtenlandsoppholdInnlagtPeriode, UtenlandsoppholdÅrsak, UtenlandsoppholdVariant } from './types';
 
-interface Props {
+export interface UtenlandsoppholdDialogFormConfig {
+    variant?: UtenlandsoppholdVariant;
+    disabledDateRanges?: DateRange[];
+}
+
+interface Props extends UtenlandsoppholdDialogFormConfig {
     formId: string;
     opphold?: Utenlandsopphold;
     alleOpphold?: Utenlandsopphold[];
@@ -154,7 +158,6 @@ export const UtenlandsoppholdDialogForm = ({
     onValidSubmit,
 }: Props) => {
     const intl = useSifSoknadFormsIntl();
-    const reactIntl = useIntl();
 
     const defaultValues: UtenlandsoppholdFormValues = {
         fom: '',
@@ -287,7 +290,7 @@ export const UtenlandsoppholdDialogForm = ({
                             <YesOrNoQuestion
                                 name={UtenlandsoppholdFormFields.erSammenMedBarnet}
                                 legend={intl.text('@sifSoknadForms.utenlandsopphold.form.erSammenMedBarnet.legend', {
-                                    land: getCountryName(landkode, reactIntl.locale),
+                                    land: getCountryName(landkode, intl.locale),
                                 })}
                                 validate={(value) => getYesOrNoValidator()(value)}
                             />
@@ -297,7 +300,7 @@ export const UtenlandsoppholdDialogForm = ({
                             <YesOrNoQuestion
                                 name={UtenlandsoppholdFormFields.erBarnetInnlagt}
                                 legend={intl.text('@sifSoknadForms.utenlandsopphold.form.erBarnetInnlagt.legend', {
-                                    land: getCountryName(landkode, reactIntl.locale),
+                                    land: getCountryName(landkode, intl.locale),
                                 })}
                                 validate={(value) => getYesOrNoValidator()(value)}
                             />
@@ -348,7 +351,7 @@ export const UtenlandsoppholdDialogForm = ({
                             <RadioGroup
                                 name={UtenlandsoppholdFormFields.årsak}
                                 legend={intl.text('@sifSoknadForms.utenlandsopphold.form.årsak.legend', {
-                                    land: getCountryName(landkode, reactIntl.locale),
+                                    land: getCountryName(landkode, intl.locale),
                                 })}
                                 radios={[
                                     {

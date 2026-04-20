@@ -3,4 +3,6 @@ export * from './FraværDialog';
 export * from './FraværPeriodeDialogForm';
 export * from './FraværDagDialogForm';
 export * from './FraværList';
+export * from './FraværPeriodeListAndDialog';
+export * from './FraværDagerListAndDialog';
 export * from './fraværUtils';

@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 
+import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
-import { TidsperiodeFormDialog } from './TidsperiodeDialog';
-import { TidsperiodeList } from './TidsperiodeList';
+import { TidsperiodeListAndDialog } from './TidsperiodeListAndDialog';
 import type { DateTidsperiode } from './index';
 
 const today = dayjs();
@@ -21,50 +21,17 @@ type StoryProps = {
     tidsperioder?: DateTidsperiode[];
 };
 
-function TidsperiodeListAndDialogStory({ tidsperioder: initialTidsperioder }: StoryProps) {
-    const [items, setItems] = useState(initialTidsperioder ?? []);
-    const [selected, setSelected] = useState<DateTidsperiode | undefined>(undefined);
-    const [open, setOpen] = useState(false);
+function TidsperiodeListAndDialogStory({ tidsperioder }: StoryProps) {
+    const [items, setItems] = useState(tidsperioder);
 
     return (
-        <div>
-            <TidsperiodeList
-                tidsperioder={items}
-                onEdit={(tidsperiode) => {
-                    setSelected(tidsperiode);
-                    setOpen(true);
-                }}
-                onDelete={(tidsperiode) => setItems(items.filter((t) => t.id !== tidsperiode.id))}
-            />
-            <button
-                type="button"
-                onClick={() => {
-                    setSelected(undefined);
-                    setOpen(true);
-                }}>
-                Legg til tidsperiode
-            </button>
-            <TidsperiodeFormDialog
-                isOpen={open}
-                tidsperiode={selected}
-                alleTidsperioder={items}
-                minDate={today.subtract(1, 'year').toDate()}
-                maxDate={today.add(1, 'year').toDate()}
-                onCancel={() => {
-                    setOpen(false);
-                    setSelected(undefined);
-                }}
-                onValidSubmit={(tidsperiode) => {
-                    setItems(
-                        selected
-                            ? items.map((t) => (t.id === tidsperiode.id ? tidsperiode : t))
-                            : [...items, tidsperiode],
-                    );
-                    setOpen(false);
-                    setSelected(undefined);
-                }}
-            />
-        </div>
+        <TidsperiodeListAndDialog
+            tidsperioder={items}
+            minDate={today.subtract(1, 'year').toDate()}
+            maxDate={today.add(1, 'year').toDate()}
+            addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.tidsperiode.dialog.leggTilKnapp" />}
+            onChange={setItems}
+        />
     );
 }
 

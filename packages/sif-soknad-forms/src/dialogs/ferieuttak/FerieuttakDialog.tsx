@@ -1,15 +1,14 @@
 import { Button, Dialog } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { FerieuttakDialogForm } from './FerieuttakDialogForm';
+import { FerieuttakDialogForm, FerieuttakDialogFormConfig } from './FerieuttakDialogForm';
 import { Ferieuttak } from './types';
 
-interface Props {
+interface Props extends FerieuttakDialogFormConfig {
     ferieuttak?: Ferieuttak;
     alleFerieuttak?: Ferieuttak[];
     minDate: Date;
     maxDate: Date;
-    disableWeekends?: boolean;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (ferieuttak: Ferieuttak) => void;
@@ -30,7 +29,12 @@ export const FerieuttakFormDialog = ({
     const formId = 'ferieuttakForm';
 
     return (
-        <Dialog open={isOpen} onOpenChange={onCancel} size="small">
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) onCancel();
+            }}
+            size="small">
             <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>
@@ -54,7 +58,7 @@ export const FerieuttakFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.ferieuttak.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         {ferieuttak ? (
                             <SifSoknadFormsText id="@sifSoknadForms.ferieuttak.dialog.oppdaterKnapp" />
                         ) : (

@@ -1,7 +1,6 @@
-import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
+import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
 import { getCountryName, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
-import { useIntl } from 'react-intl';
 
 import { Utenlandsopphold } from './types';
 
@@ -28,12 +27,12 @@ const renderOppholdLabel = (
 };
 
 export const UtenlandsoppholdList = ({ utenlandsopphold, onEdit, onDelete }: Props) => {
-    const intl = useIntl();
+    const { locale } = useUiIntl();
     return (
         <ItemListDarkside<Utenlandsopphold>
             getItemId={(opphold): string => opphold.id}
-            getItemTitle={(opphold): string => getCountryName(opphold.landkode, intl.locale)}
-            labelRenderer={(opphold) => renderOppholdLabel(opphold, intl.locale, onEdit)}
+            getItemTitle={(opphold): string => getCountryName(opphold.landkode, locale)}
+            labelRenderer={(opphold) => renderOppholdLabel(opphold, locale, onEdit)}
             items={utenlandsopphold}
             onDelete={onDelete}
         />

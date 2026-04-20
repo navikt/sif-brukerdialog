@@ -28,7 +28,12 @@ export const TidsperiodeFormDialog = ({
     const formId = 'tidsperiodeForm';
 
     return (
-        <Dialog open={isOpen} onOpenChange={onCancel} size="small">
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) onCancel();
+            }}
+            size="small">
             <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>
@@ -51,7 +56,7 @@ export const TidsperiodeFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.tidsperiode.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         {tidsperiode ? (
                             <SifSoknadFormsText id="@sifSoknadForms.tidsperiode.dialog.oppdaterKnapp" />
                         ) : (

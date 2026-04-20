@@ -7,14 +7,17 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { Enkeltdato } from './types';
 
-interface Props {
+export interface EnkeltdatoDialogFormConfig {
+    disabledDateRanges?: DateRange[];
+    disableWeekends?: boolean;
+}
+
+interface Props extends EnkeltdatoDialogFormConfig {
     formId: string;
     enkeltdato?: Enkeltdato;
     minDate: Date;
     maxDate: Date;
     alleEnkeltdatoer?: Enkeltdato[];
-    disabledDateRanges?: DateRange[];
-    disableWeekends?: boolean;
     onValidSubmit: (enkeltdato: Enkeltdato) => void;
 }
 

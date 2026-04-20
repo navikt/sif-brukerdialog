@@ -8,14 +8,17 @@ import { useSifSoknadFormsIntl } from '../../i18n';
 import { dateCollideWithRanges, dateErHelg, isDateRangeMatchingPeriode, toMaybeNumber } from './fraværUtils';
 import { FraværDag } from './types';
 
-interface Props {
+export interface FraværDagDialogFormConfig {
+    dateRangesToDisable?: DateRange[];
+    helgedagerIkkeTillatt?: boolean;
+    maksArbeidstidPerDag?: number;
+}
+
+interface Props extends FraværDagDialogFormConfig {
     formId: string;
     fraværDag?: FraværDag;
     minDate: Date;
     maxDate: Date;
-    dateRangesToDisable?: DateRange[];
-    helgedagerIkkeTillatt?: boolean;
-    maksArbeidstidPerDag?: number;
     onValidSubmit: (fraværDag: FraværDag) => void;
 }
 

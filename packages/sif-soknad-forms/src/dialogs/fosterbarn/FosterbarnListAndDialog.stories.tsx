@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
+import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
-import { FosterbarnFormDialog } from './FosterbarnDialog';
-import { FosterbarnList } from './FosterbarnList';
+import { FosterbarnListAndDialog } from './FosterbarnListAndDialog';
 import type { Fosterbarn } from './index';
 
 const exampleFosterbarn: Fosterbarn[] = [
@@ -15,48 +15,16 @@ type StoryProps = {
     fosterbarn?: Fosterbarn[];
 };
 
-function FosterbarnListAndDialogStory({ fosterbarn: initialBarn }: StoryProps) {
-    const [items, setItems] = useState(initialBarn ?? []);
-    const [selected, setSelected] = useState<Fosterbarn | undefined>(undefined);
-    const [open, setOpen] = useState(false);
-
-    const disallowedFødselsnumre = items
-        .filter((b) => b.id !== selected?.id)
-        .map((b) => b.fødselsnummer);
+function FosterbarnListAndDialogStory({ fosterbarn }: StoryProps) {
+    const [items, setItems] = useState(fosterbarn);
 
     return (
-        <div>
-            <FosterbarnList
-                fosterbarn={items}
-                onEdit={(barn) => {
-                    setSelected(barn);
-                    setOpen(true);
-                }}
-                onDelete={(barn) => setItems(items.filter((b) => b.id !== barn.id))}
-            />
-            <button
-                type="button"
-                onClick={() => {
-                    setSelected(undefined);
-                    setOpen(true);
-                }}>
-                Legg til fosterbarn
-            </button>
-            <FosterbarnFormDialog
-                isOpen={open}
-                fosterbarn={selected}
-                disallowedFødselsnumre={disallowedFødselsnumre}
-                onCancel={() => {
-                    setOpen(false);
-                    setSelected(undefined);
-                }}
-                onValidSubmit={(barn) => {
-                    setItems(selected ? items.map((b) => (b.id === barn.id ? barn : b)) : [...items, barn]);
-                    setOpen(false);
-                    setSelected(undefined);
-                }}
-            />
-        </div>
+        <FosterbarnListAndDialog
+            fosterbarn={items}
+            disallowedFødselsnumre={['01010112345', '02020212345']}
+            addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.fosterbarn.dialog.leggTilKnapp" />}
+            onChange={setItems}
+        />
     );
 }
 

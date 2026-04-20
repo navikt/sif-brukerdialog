@@ -7,7 +7,11 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { Ferieuttak } from './types';
 
-interface Props {
+export interface FerieuttakDialogFormConfig {
+    disableWeekends?: boolean;
+}
+
+interface Props extends FerieuttakDialogFormConfig {
     formId: string;
     ferieuttak?: Ferieuttak;
     alleFerieuttak?: Ferieuttak[];

@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 
+import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
-import { FerieuttakFormDialog } from './FerieuttakDialog';
-import { FerieuttakList } from './FerieuttakList';
+import { FerieuttakListAndDialog } from './FerieuttakListAndDialog';
 import type { Ferieuttak } from './index';
 
 const today = dayjs();
@@ -26,46 +26,17 @@ type StoryProps = {
     ferieuttak?: Ferieuttak[];
 };
 
-function FerieuttakListAndDialogStory({ ferieuttak: initialFerieuttak }: StoryProps) {
-    const [items, setItems] = useState(initialFerieuttak ?? []);
-    const [selected, setSelected] = useState<Ferieuttak | undefined>(undefined);
-    const [open, setOpen] = useState(false);
+function FerieuttakListAndDialogStory({ ferieuttak }: StoryProps) {
+    const [items, setItems] = useState(ferieuttak);
 
     return (
-        <div>
-            <FerieuttakList
-                ferieuttak={items}
-                onEdit={(uttak) => {
-                    setSelected(uttak);
-                    setOpen(true);
-                }}
-                onDelete={(uttak) => setItems(items.filter((f) => f.id !== uttak.id))}
-            />
-            <button
-                type="button"
-                onClick={() => {
-                    setSelected(undefined);
-                    setOpen(true);
-                }}>
-                Legg til ferieuttak
-            </button>
-            <FerieuttakFormDialog
-                isOpen={open}
-                ferieuttak={selected}
-                alleFerieuttak={items}
-                minDate={today.subtract(1, 'year').toDate()}
-                maxDate={today.add(1, 'year').toDate()}
-                onCancel={() => {
-                    setOpen(false);
-                    setSelected(undefined);
-                }}
-                onValidSubmit={(uttak) => {
-                    setItems(selected ? items.map((f) => (f.id === uttak.id ? uttak : f)) : [...items, uttak]);
-                    setOpen(false);
-                    setSelected(undefined);
-                }}
-            />
-        </div>
+        <FerieuttakListAndDialog
+            ferieuttak={items}
+            minDate={today.subtract(1, 'year').toDate()}
+            maxDate={today.add(1, 'year').toDate()}
+            addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.ferieuttak.dialog.leggTilKnapp" />}
+            onChange={setItems}
+        />
     );
 }
 

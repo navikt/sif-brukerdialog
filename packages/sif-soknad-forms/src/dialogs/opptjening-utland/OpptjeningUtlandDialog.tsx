@@ -26,7 +26,12 @@ export const OpptjeningUtlandFormDialog = ({
     const formId = 'opptjeningUtlandForm';
 
     return (
-        <Dialog open={isOpen} onOpenChange={onCancel} size="small">
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) onCancel();
+            }}
+            size="small">
             <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>
@@ -48,7 +53,7 @@ export const OpptjeningUtlandFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.opptjeningUtland.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         {opptjening ? (
                             <SifSoknadFormsText id="@sifSoknadForms.opptjeningUtland.dialog.oppdaterKnapp" />
                         ) : (

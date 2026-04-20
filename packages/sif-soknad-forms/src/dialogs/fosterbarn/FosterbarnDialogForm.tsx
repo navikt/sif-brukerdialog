@@ -6,10 +6,13 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { Fosterbarn } from './types';
 
-interface Props {
+export interface FosterbarnDialogFormConfig {
+    disallowedFødselsnumre?: string[];
+}
+
+interface Props extends FosterbarnDialogFormConfig {
     formId: string;
     fosterbarn?: Fosterbarn;
-    disallowedFødselsnumre?: string[];
     onValidSubmit: (fosterbarn: Fosterbarn) => void;
 }
 

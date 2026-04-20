@@ -1,30 +1,23 @@
 import { Button, Dialog } from '@navikt/ds-react';
-import { DateRange } from '@navikt/sif-common-utils';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { FraværPeriodeDialogForm } from './FraværPeriodeDialogForm';
-import { FraværDagDialogForm } from './FraværDagDialogForm';
+import { FraværPeriodeDialogForm, FraværPeriodeDialogFormConfig } from './FraværPeriodeDialogForm';
+import { FraværDagDialogForm, FraværDagDialogFormConfig } from './FraværDagDialogForm';
 import { FraværPeriode, FraværDag } from './types';
 
-interface FraværPeriodeDialogProps {
+interface FraværPeriodeDialogProps extends FraværPeriodeDialogFormConfig {
     fraværPeriode?: FraværPeriode;
     minDate: Date;
     maxDate: Date;
-    dateRangesToDisable?: DateRange[];
-    helgedagerIkkeTillat?: boolean;
-    begrensTilSammeÅr?: boolean;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (fraværPeriode: FraværPeriode) => void;
 }
 
-interface FraværDagDialogProps {
+interface FraværDagDialogProps extends FraværDagDialogFormConfig {
     fraværDag?: FraværDag;
     minDate: Date;
     maxDate: Date;
-    dateRangesToDisable?: DateRange[];
-    helgedagerIkkeTillatt?: boolean;
-    maksArbeidstidPerDag?: number;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (fraværDag: FraværDag) => void;
@@ -46,7 +39,12 @@ export const FraværPeriodeFormDialog = ({
     const formId = 'fraværPeriodeForm';
 
     return (
-        <Dialog open={isOpen} onOpenChange={onCancel} size="small">
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) onCancel();
+            }}
+            size="small">
             <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>
@@ -71,7 +69,7 @@ export const FraværPeriodeFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.fraværPeriode.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         {fraværPeriode ? (
                             <SifSoknadFormsText id="@sifSoknadForms.fraværPeriode.dialog.oppdaterKnapp" />
                         ) : (
@@ -100,7 +98,12 @@ export const FraværDagFormDialog = ({
     const formId = 'fraværDagForm';
 
     return (
-        <Dialog open={isOpen} onOpenChange={onCancel} size="small">
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) onCancel();
+            }}
+            size="small">
             <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>
@@ -125,7 +128,7 @@ export const FraværDagFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.fraværDag.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         {fraværDag ? (
                             <SifSoknadFormsText id="@sifSoknadForms.fraværDag.dialog.oppdaterKnapp" />
                         ) : (

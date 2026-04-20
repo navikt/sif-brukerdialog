@@ -1,12 +1,11 @@
 import { Button, Dialog } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { FosterbarnDialogForm } from './FosterbarnDialogForm';
+import { FosterbarnDialogForm, FosterbarnDialogFormConfig } from './FosterbarnDialogForm';
 import { Fosterbarn } from './types';
 
-interface Props {
+interface Props extends FosterbarnDialogFormConfig {
     fosterbarn?: Fosterbarn;
-    disallowedFødselsnumre?: string[];
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (fosterbarn: Fosterbarn) => void;
@@ -24,7 +23,12 @@ export const FosterbarnFormDialog = ({
     const formId = 'fosterbarnForm';
 
     return (
-        <Dialog open={isOpen} onOpenChange={onCancel} size="small">
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) onCancel();
+            }}
+            size="small">
             <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>
@@ -45,7 +49,7 @@ export const FosterbarnFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.fosterbarn.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         {fosterbarn ? (
                             <SifSoknadFormsText id="@sifSoknadForms.fosterbarn.dialog.oppdaterKnapp" />
                         ) : (

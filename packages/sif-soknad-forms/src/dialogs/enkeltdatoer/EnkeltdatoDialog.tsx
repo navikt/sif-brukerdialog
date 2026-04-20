@@ -1,17 +1,14 @@
 import { Button, Dialog } from '@navikt/ds-react';
-import { DateRange } from '@navikt/sif-common-utils';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { EnkeltdatoDialogForm } from './EnkeltdatoDialogForm';
+import { EnkeltdatoDialogForm, EnkeltdatoDialogFormConfig } from './EnkeltdatoDialogForm';
 import { Enkeltdato } from './types';
 
-interface Props {
+interface Props extends EnkeltdatoDialogFormConfig {
     enkeltdato?: Enkeltdato;
     minDate: Date;
     maxDate: Date;
     alleEnkeltdatoer?: Enkeltdato[];
-    disabledDateRanges?: DateRange[];
-    disableWeekends?: boolean;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (enkeltdato: Enkeltdato) => void;
@@ -33,7 +30,12 @@ export const EnkeltdatoFormDialog = ({
     const formId = 'enkeltdatoForm';
 
     return (
-        <Dialog open={isOpen} onOpenChange={onCancel} size="small">
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) onCancel();
+            }}
+            size="small">
             <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>
@@ -58,7 +60,7 @@ export const EnkeltdatoFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.enkeltdato.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         {enkeltdato ? (
                             <SifSoknadFormsText id="@sifSoknadForms.enkeltdato.dialog.oppdaterKnapp" />
                         ) : (

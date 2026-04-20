@@ -8,14 +8,17 @@ import { useSifSoknadFormsIntl } from '../../i18n';
 import { dateErHelg, isDateRangeMatchingPeriode, rangeCollideWithRanges } from './fraværUtils';
 import { FraværPeriode } from './types';
 
-interface Props {
+export interface FraværPeriodeDialogFormConfig {
+    dateRangesToDisable?: DateRange[];
+    helgedagerIkkeTillat?: boolean;
+    begrensTilSammeÅr?: boolean;
+}
+
+interface Props extends FraværPeriodeDialogFormConfig {
     formId: string;
     fraværPeriode?: FraværPeriode;
     minDate: Date;
     maxDate: Date;
-    dateRangesToDisable?: DateRange[];
-    helgedagerIkkeTillat?: boolean;
-    begrensTilSammeÅr?: boolean;
     onValidSubmit: (fraværPeriode: FraværPeriode) => void;
 }
 
