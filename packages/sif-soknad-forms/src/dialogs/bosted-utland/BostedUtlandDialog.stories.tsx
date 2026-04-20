@@ -1,6 +1,6 @@
 import { Box } from '@navikt/ds-react';
-import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import dayjs from 'dayjs';
 import { type ReactNode, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 
@@ -13,14 +13,16 @@ type StoryProps = {
     alleBosteder?: BostedUtland[];
 };
 
+const today = dayjs();
+
 const alleBosteder: BostedUtland[] = [
     {
         id: '1',
         landkode: 'SWE',
         landnavn: 'Sverige',
         periode: {
-            from: new Date('2024-01-01'),
-            to: new Date('2024-03-31'),
+            from: today.subtract(8, 'month').toDate(),
+            to: today.subtract(6, 'month').subtract(10, 'day').toDate(),
         },
     },
     {
@@ -28,8 +30,8 @@ const alleBosteder: BostedUtland[] = [
         landkode: 'DNK',
         landnavn: 'Danmark',
         periode: {
-            from: new Date('2024-05-01'),
-            to: new Date('2024-06-15'),
+            from: today.subtract(4, 'month').toDate(),
+            to: today.subtract(2, 'month').subtract(10, 'day').toDate(),
         },
     },
 ];
@@ -54,8 +56,8 @@ function BostedUtlandDialogStory(props: StoryProps) {
             )}
             <BostedUtlandFormDialog
                 isOpen={open}
-                minDate={getDate1YearAgo()}
-                maxDate={getDate1YearFromNow()}
+                minDate={today.subtract(1, 'year').toDate()}
+                maxDate={today.add(1, 'year').toDate()}
                 bosted={props.bosted}
                 alleBosteder={props.alleBosteder}
                 onCancel={() => setOpen(false)}

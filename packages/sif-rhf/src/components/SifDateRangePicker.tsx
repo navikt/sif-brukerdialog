@@ -60,13 +60,15 @@ export function SifDateRangePicker<T extends FieldValues>({
 
     useEffect(() => {
         if (!validateRef.current) return;
-        const message = validateRef.current({ fromDate, toDate });
+        const currentFromDate = fromValue ? datePickerUtils.ISODateStringToUTCDate(fromValue as string) : undefined;
+        const currentToDate = toValue ? datePickerUtils.ISODateStringToUTCDate(toValue as string) : undefined;
+        const message = validateRef.current({ fromDate: currentFromDate, toDate: currentToDate });
         if (message) {
             setError(name as any, { type: 'manual', message });
         } else {
             clearErrors(name as any);
         }
-    }, [fromDate, toDate, name, setError, clearErrors]);
+    }, [fromValue, toValue, name, setError, clearErrors]);
 
     return (
         <SifInputGroup name={name} legend={legend} hideLegend={hideLegend}>
