@@ -1,6 +1,6 @@
 import '@navikt/ds-css';
 
-import { withIntl } from './decorators/withIntl';
+import { withIntl } from './withIntl';
 
 const preview = {
     decorators: [withIntl],
