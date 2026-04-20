@@ -1,6 +1,8 @@
 import { typedIntlHelper } from '@navikt/sif-common-utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { annetBarnMessages_nb } from '../dialogs/annet-barn/i18n/nb';
+import { annetBarnMessages_nn } from '../dialogs/annet-barn/i18n/nn';
 import { bostedUtlandMessages_nb } from '../dialogs/bosted-utland/i18n/nb';
 import { bostedUtlandMessages_nn } from '../dialogs/bosted-utland/i18n/nn';
 import { enkeltdatoMessages_nb } from '../dialogs/enkeltdatoer/i18n/nb';
@@ -23,6 +25,7 @@ import { velgRegistrertBarnPanelMessages_nb } from '../panels/velg-registrert-ba
 import { velgRegistrertBarnPanelMessages_nn } from '../panels/velg-registrert-barn/i18n/nn';
 
 const nb = {
+    ...annetBarnMessages_nb,
     ...bostedUtlandMessages_nb,
     ...enkeltdatoMessages_nb,
     ...ferieuttakMessages_nb,
@@ -36,6 +39,7 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
+    ...annetBarnMessages_nn,
     ...bostedUtlandMessages_nn,
     ...enkeltdatoMessages_nn,
     ...ferieuttakMessages_nn,

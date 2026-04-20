@@ -1,29 +1,30 @@
 import { Button, Dialog } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { BostedUtland } from '.';
-import { BostedUtlandDialogForm } from './BostedUtlandDialogForm';
+import { AnnetBarnDialogForm, AnnetBarnDialogFormConfig } from './AnnetBarnDialogForm';
+import { AnnetBarn } from './index';
 
-interface Props {
-    minDate?: Date;
-    maxDate?: Date;
-    bosted?: BostedUtland;
-    alleBosteder?: BostedUtland[];
+interface Props extends AnnetBarnDialogFormConfig {
+    annetBarn?: Partial<AnnetBarn>;
     isOpen?: boolean;
+    minDate: Date;
+    maxDate: Date;
     onCancel: () => void;
-    onValidSubmit: (bosted: BostedUtland) => void;
+    onValidSubmit: (values: AnnetBarn) => void;
 }
 
-export const BostedUtlandFormDialog = ({
+export const AnnetBarnDialog = ({
+    annetBarn,
     isOpen,
     minDate,
     maxDate,
-    bosted,
-    alleBosteder,
-    onValidSubmit,
+    disallowedFødselsnumre,
+    aldersgrenseText,
+    showBarnTypeOptions,
     onCancel,
+    onValidSubmit,
 }: Props) => {
-    const formId = 'bostedUtlandForm';
+    const formId = 'annetBarnForm';
 
     if (!isOpen) {
         return null;
@@ -39,31 +40,29 @@ export const BostedUtlandFormDialog = ({
             <Dialog.Popup closeOnOutsideClick={false}>
                 <Dialog.Header>
                     <Dialog.Title>
-                        <SifSoknadFormsText id="@sifSoknadForms.bostedUtland.dialog.tittel" />
+                        <SifSoknadFormsText id="@sifSoknadForms.annetBarn.dialog.tittel" />
                     </Dialog.Title>
                 </Dialog.Header>
                 <Dialog.Body>
-                    <BostedUtlandDialogForm
-                        alleBosteder={alleBosteder}
+                    <AnnetBarnDialogForm
                         formId={formId}
+                        annetBarn={annetBarn}
                         minDate={minDate}
                         maxDate={maxDate}
-                        bosted={bosted}
+                        disallowedFødselsnumre={disallowedFødselsnumre}
+                        aldersgrenseText={aldersgrenseText}
+                        showBarnTypeOptions={showBarnTypeOptions}
                         onValidSubmit={onValidSubmit}
                     />
                 </Dialog.Body>
                 <Dialog.Footer>
                     <Dialog.CloseTrigger>
                         <Button type="button" variant="secondary">
-                            <SifSoknadFormsText id="@sifSoknadForms.bostedUtland.dialog.avbrytKnapp" />
+                            <SifSoknadFormsText id="@sifSoknadForms.annetBarn.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
                     <Button form={formId} type="submit">
-                        {bosted ? (
-                            <SifSoknadFormsText id="@sifSoknadForms.bostedUtland.dialog.oppdaterKnapp" />
-                        ) : (
-                            <SifSoknadFormsText id="@sifSoknadForms.bostedUtland.dialog.leggTilKnapp" />
-                        )}
+                        <SifSoknadFormsText id="@sifSoknadForms.annetBarn.dialog.okKnapp" />
                     </Button>
                 </Dialog.Footer>
             </Dialog.Popup>

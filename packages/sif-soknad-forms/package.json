@@ -33,7 +33,7 @@
     "peerDependencies": {
         "react": ">=19",
         "react-dom": ">=19",
-        "react-intl": "10.1.0"
+        "react-intl": "10.1.2"
     },
     "devDependencies": {
         "@navikt/ds-css": "8.9.1",

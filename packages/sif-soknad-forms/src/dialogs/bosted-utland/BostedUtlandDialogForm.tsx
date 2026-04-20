@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateUtils, getCountryName } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, getRequiredFieldValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents } from '@sif/rhf';
+import { getDateValidator, getRequiredFieldValidator, validationUtils } from '@navikt/sif-validation';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -9,6 +9,8 @@ import { BostedUtland } from '.';
 
 interface BostedUtlandFormProps {
     formId: string;
+    minDate?: Date;
+    maxDate?: Date;
     bosted?: BostedUtland;
     alleBosteder?: BostedUtland[];
     onValidSubmit: (values: BostedUtland) => void;
@@ -28,7 +30,7 @@ type BostedUtlandFormValues = {
 
 const { DateRangePicker, CountrySelect } = createSifFormComponents<BostedUtlandFormValues>();
 
-const formValuesToBostedUtland = (values: BostedUtlandFormValues, bostedId?: string): BostedUtland => {
+const formValuesToBostedUtland = (values: BostedUtlandFormValues, locale: string, bostedId?: string): BostedUtland => {
     const from = validationUtils.getDateFromDateString(values.fom);
     const to = validationUtils.getDateFromDateString(values.tom);
     if (!from || !to) {
@@ -38,7 +40,7 @@ const formValuesToBostedUtland = (values: BostedUtlandFormValues, bostedId?: str
         id: bostedId || crypto.randomUUID(),
         periode: { from, to },
         landkode: values.landkode,
-        landnavn: getCountryName(values.landkode, 'nb'),
+        landnavn: getCountryName(values.landkode, locale),
     };
 };
 
@@ -50,8 +52,16 @@ const bostedUtlandToFormValues = (bosted: BostedUtland): BostedUtlandFormValues 
     };
 };
 
-export const BostedUtlandDialogForm = ({ formId, bosted, alleBosteder, onValidSubmit }: BostedUtlandFormProps) => {
-    const intl = useSifSoknadFormsIntl();
+export const BostedUtlandDialogForm = ({
+    formId,
+    minDate,
+    maxDate,
+    bosted,
+    alleBosteder,
+    onValidSubmit,
+}: BostedUtlandFormProps) => {
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.bostedUtlandForm');
     const methods = useForm<BostedUtlandFormValues>({
         defaultValues: bosted ? bostedUtlandToFormValues(bosted) : undefined,
     });
@@ -59,13 +69,10 @@ export const BostedUtlandDialogForm = ({ formId, bosted, alleBosteder, onValidSu
     const utilgjengeligePerioder = (alleBosteder?.filter((b) => b.id !== bosted?.id) || []).map((b) => b.periode);
 
     const handleValidSubmit = (values: BostedUtlandFormValues): void => {
-        const from = validationUtils.getDateFromDateString(values.fom);
-        const to = validationUtils.getDateFromDateString(values.tom);
-        if (!from || !to) {
-            throw new Error('Invalid date values');
-        }
-        onValidSubmit(formValuesToBostedUtland(values, bosted?.id));
+        onValidSubmit(formValuesToBostedUtland(values, sifIntl.locale, bosted?.id));
     };
+
+    const validateLandkode = validateField(BostedUtlandFormFields.landkode, getRequiredFieldValidator());
 
     return (
         <FormProvider {...methods}>
@@ -79,41 +86,52 @@ export const BostedUtlandDialogForm = ({ formId, bosted, alleBosteder, onValidSu
                 noValidate>
                 <FormLayout.Content>
                     <FormLayout.Questions>
-                        <FormLayout.Questions>
-                            <DateRangePicker
-                                name="bosted"
-                                legend={intl.text('@sifSoknadForms.bostedUtland.form.tidsperiode.legend')}
-                                fromInputProps={{
-                                    name: BostedUtlandFormFields.fom,
-                                    label: intl.text('@sifSoknadForms.bostedUtland.form.fom.label'),
-                                    disabledDateRanges: utilgjengeligePerioder,
-                                    validate: (value) =>
-                                        getDateRangeValidator({
-                                            required: true,
-                                            toDate: validationUtils.getDateFromDateString(
-                                                methods.getValues(BostedUtlandFormFields.tom),
-                                            ),
-                                        }).validateFromDate(value),
-                                }}
-                                toInputProps={{
-                                    name: BostedUtlandFormFields.tom,
-                                    label: intl.text('@sifSoknadForms.bostedUtland.form.tom.label'),
-                                    disabledDateRanges: utilgjengeligePerioder,
-                                    validate: (value) =>
-                                        getDateRangeValidator({
-                                            required: true,
-                                            fromDate: validationUtils.getDateFromDateString(
-                                                methods.getValues(BostedUtlandFormFields.fom),
-                                            ),
-                                        }).validateToDate(value),
-                                }}
-                            />
-                            <CountrySelect
-                                name={BostedUtlandFormFields.landkode}
-                                label={intl.text('@sifSoknadForms.bostedUtland.form.land.label')}
-                                validate={(value) => getRequiredFieldValidator()(value)}
-                            />
-                        </FormLayout.Questions>
+                        <DateRangePicker
+                            name="bosted"
+                            legend={sifIntl.text('@sifSoknadForms.bostedUtland.form.tidsperiode.legend')}
+                            validate={validateField('bosted', ({ fromDate, toDate }) => {
+                                if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
+                            })}
+                            fromInputProps={{
+                                name: BostedUtlandFormFields.fom,
+                                label: sifIntl.text('@sifSoknadForms.bostedUtland.form.fom.label'),
+                                minDate,
+                                maxDate,
+                                disabledDateRanges: utilgjengeligePerioder,
+                                validate: validateField(
+                                    BostedUtlandFormFields.fom,
+                                    getDateValidator({ required: true, min: minDate, max: maxDate }),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin' && minDate)
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax' && maxDate)
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
+                            }}
+                            toInputProps={{
+                                name: BostedUtlandFormFields.tom,
+                                label: sifIntl.text('@sifSoknadForms.bostedUtland.form.tom.label'),
+                                minDate,
+                                maxDate,
+                                disabledDateRanges: utilgjengeligePerioder,
+                                validate: validateField(
+                                    BostedUtlandFormFields.tom,
+                                    getDateValidator({ required: true, min: minDate, max: maxDate }),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin' && minDate)
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax' && maxDate)
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
+                            }}
+                        />
+                        <CountrySelect
+                            name={BostedUtlandFormFields.landkode}
+                            label={sifIntl.text('@sifSoknadForms.bostedUtland.form.land.label')}
+                            validate={validateLandkode}
+                        />
                     </FormLayout.Questions>
                 </FormLayout.Content>
             </form>

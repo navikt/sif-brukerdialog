@@ -227,6 +227,8 @@ export const applicationIntlMessages = {
 - Nye tekster skal bare legges inn når teksten er eksplisitt oppgitt av bruker, finnes i eksisterende kildefil, eller kommer fra etablert copy.
 - Hvis nødvendig tekstgrunnlag mangler, stopp og be om teksten i stedet for å dikte den.
 - Ved migrering eller refaktorering er hovedregelen at eksisterende tekster skal være identiske før og etter endringen.
+- Storybook-tekster, demo-tekster og labels i `preview.js` eller stories er også brukervendte tekster og skal holde korrekt norsk rettskrivning.
+- Ikke erstatt norske tegn med ASCII-varianter i tekster. Bruk `æ`, `ø` og `å` når teksten er norsk, med mindre teksten eksplisitt kommer fra en kilde som allerede mangler disse tegnene.
 
 ### Nøkkelstruktur
 

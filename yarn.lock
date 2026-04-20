@@ -9677,22 +9677,33 @@ __metadata:
   resolution: "@sif/soknad-forms@workspace:packages/sif-soknad-forms"
   dependencies:
     "@navikt/aksel-icons": "npm:8.9.1"
+    "@navikt/ds-css": "npm:8.9.1"
     "@navikt/ds-react": "npm:8.9.1"
     "@navikt/sif-common-utils": "workspace:*"
     "@sif/api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@sif/rhf": "workspace:*"
     "@sif/soknad-ui": "workspace:*"
+    "@storybook/addon-a11y": "npm:10.3.5"
+    "@storybook/addon-docs": "npm:10.3.5"
+    "@storybook/react-vite": "npm:10.3.5"
+    "@types/node": "npm:25.6.0"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
+    "@vitejs/plugin-react": "npm:6.0.1"
+    dayjs: "npm:1.11.20"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
+    react-hook-form: "npm:7.72.1"
+    react-intl: "npm:10.1.2"
+    storybook: "npm:10.3.5"
     typescript: "npm:6.0.2"
+    vite: "npm:8.0.8"
     vitest: "npm:4.1.4"
   peerDependencies:
     react: ">=19"
     react-dom: ">=19"
-    react-intl: 10.1.0
+    react-intl: 10.1.2
   languageName: unknown
   linkType: soft
 

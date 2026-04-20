@@ -53,6 +53,10 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-soknad-vedlegg-step`:
     - Legge til filvedlegg i et steg: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
     - Vedlegg-hjelpere: `toPersistedVedlegg`, `isUploadedVedlegg`, `toUploadedFile`, `getVedleggApiUrl`, `getVedleggFrontendUrl`, `backendUrl`.
+- `sif-dialog-migration`:
+    - Portering av dialoger: `porter dialog`, `migrer ListAndDialog`, `flytt til sif-soknad-forms`, `ModalFormAndList`, `ListAndDialog til v2`.
+    - Spesifikke dialoger: `BostedUtlandListAndDialog`, `UtenlandsoppholdListAndDialog`, `TidsperiodeListAndDialog`, `FerieuttakListAndDialog`, `OpptjeningUtlandListAndDialog`, `EnkeltdatoListAndDialog`, `AnnetBarnListAndDialog`, `UtenlandskNæringListAndDialog`, `FraværListAndDialog`, `FosterbarnListAndDialog`.
+    - Storybook i sif-soknad-forms: `withIntl`, `StoryFrame`, `withRHFForm`, `story i sif-soknad-forms`.
 
 ## Prioritering ved overlapp
 
@@ -68,3 +72,4 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om å sette opp `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` eller `steps/index.ts`, prioriter `sif-soknad-setup`.
 - Hvis oppgaven handler om å sette opp eller fylle inn innhold i `OppsummeringSteg`, prioriter `sif-soknad-oppsummering`.
 - Hvis oppgaven handler om filvedlegg i et steg (`VedleggPanel`, `PersistedVedlegg`, opplasting), prioriter `sif-soknad-vedlegg-step`.
+- Hvis oppgaven handler om å porte en `*ListAndDialog`-dialog fra `sif-common-forms-ds` til `sif-soknad-forms`, prioriter `sif-dialog-migration` over `sif-formik-to-rhf`.
