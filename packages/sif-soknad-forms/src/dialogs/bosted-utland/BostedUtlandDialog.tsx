@@ -58,7 +58,7 @@ export const BostedUtlandFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.bostedUtland.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         {bosted ? (
                             <SifSoknadFormsText id="@sifSoknadForms.bostedUtland.dialog.oppdaterKnapp" />
                         ) : (

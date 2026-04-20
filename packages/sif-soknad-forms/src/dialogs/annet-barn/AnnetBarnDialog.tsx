@@ -61,7 +61,7 @@ export const AnnetBarnDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.annetBarn.dialog.avbrytKnapp" />
                         </Button>
                     </Dialog.CloseTrigger>
-                    <Button form={formId}>
+                    <Button form={formId} type="submit">
                         <SifSoknadFormsText id="@sifSoknadForms.annetBarn.dialog.okKnapp" />
                     </Button>
                 </Dialog.Footer>
