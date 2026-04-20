@@ -9703,7 +9703,7 @@ __metadata:
   peerDependencies:
     react: ">=19"
     react-dom: ">=19"
-    react-intl: 10.1.0
+    react-intl: 10.1.2
   languageName: unknown
   linkType: soft
 
