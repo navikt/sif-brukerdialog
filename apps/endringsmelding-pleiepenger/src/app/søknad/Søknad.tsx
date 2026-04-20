@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DevFooter from '../dev/DevFooter';
 import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
+import SkyraTestPage from '../skyra/SkyraTestPage';
 import { SøknadRoutes } from './config/SøknadRoutes';
 import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
@@ -22,6 +23,10 @@ const Søknad = () => {
 
     const initialData = useSøknadInitialData();
     const { status } = initialData;
+
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage />;
+    }
 
     if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
         return <LoadingSpinner size="3xlarge" style="block" />;
