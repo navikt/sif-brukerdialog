@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateUtils } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, getRequiredFieldValidator, getStringValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -58,7 +58,8 @@ const formValuesToOpptjeningUtland = (values: OpptjeningUtlandFormValues, id?: s
 };
 
 export const OpptjeningUtlandDialogForm = ({ formId, opptjening, minDate, maxDate, onValidSubmit }: Props) => {
-    const intl = useSifSoknadFormsIntl();
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.opptjeningUtlandForm');
     const methods = useForm<OpptjeningUtlandFormValues>({
         defaultValues: opptjening ? opptjeningToFormValues(opptjening) : undefined,
     });
@@ -88,78 +89,92 @@ export const OpptjeningUtlandDialogForm = ({ formId, opptjening, minDate, maxDat
                     <FormLayout.Questions>
                         <DateRangePicker
                             name="opptjeningPeriode"
-                            legend={intl.text('@sifSoknadForms.opptjeningUtland.form.tidsperiode.legend')}
+                            legend={sifIntl.text('@sifSoknadForms.opptjeningUtland.form.tidsperiode.legend')}
                             fromInputProps={{
                                 name: OpptjeningUtlandFormFields.fom,
-                                label: intl.text('@sifSoknadForms.opptjeningUtland.form.fom.label'),
+                                label: sifIntl.text('@sifSoknadForms.opptjeningUtland.form.fom.label'),
                                 minDate,
                                 maxDate,
-                                validate: (value) =>
-                                    getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        toDate: validationUtils.getDateFromDateString(
-                                            methods.getValues(OpptjeningUtlandFormFields.tom),
-                                        ),
-                                    }).validateFromDate(value),
+                                validate: validateField(
+                                    OpptjeningUtlandFormFields.fom,
+                                    (value) =>
+                                        getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            toDate: validationUtils.getDateFromDateString(
+                                                methods.getValues(OpptjeningUtlandFormFields.tom),
+                                            ),
+                                        }).validateFromDate(value),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                             toInputProps={{
                                 name: OpptjeningUtlandFormFields.tom,
-                                label: intl.text('@sifSoknadForms.opptjeningUtland.form.tom.label'),
+                                label: sifIntl.text('@sifSoknadForms.opptjeningUtland.form.tom.label'),
                                 minDate,
                                 maxDate,
-                                validate: (value) =>
-                                    getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        fromDate: validationUtils.getDateFromDateString(
-                                            methods.getValues(OpptjeningUtlandFormFields.fom),
-                                        ),
-                                    }).validateToDate(value),
+                                validate: validateField(
+                                    OpptjeningUtlandFormFields.tom,
+                                    (value) =>
+                                        getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            fromDate: validationUtils.getDateFromDateString(
+                                                methods.getValues(OpptjeningUtlandFormFields.fom),
+                                            ),
+                                        }).validateToDate(value),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                         />
                         {hasDateValues && (
                             <>
                                 <CountrySelect
                                     name={OpptjeningUtlandFormFields.landkode}
-                                    label={intl.text('@sifSoknadForms.opptjeningUtland.form.land.label')}
+                                    label={sifIntl.text('@sifSoknadForms.opptjeningUtland.form.land.label')}
                                     showOnlyEuAndEftaCountries={true}
-                                    validate={(value) => getRequiredFieldValidator()(value)}
+                                    validate={validateField(OpptjeningUtlandFormFields.landkode, getRequiredFieldValidator())}
                                 />
                                 <RadioGroup
                                     name={OpptjeningUtlandFormFields.opptjeningType}
-                                    legend={intl.text('@sifSoknadForms.opptjeningUtland.form.opptjeningType.legend')}
+                                    legend={sifIntl.text('@sifSoknadForms.opptjeningUtland.form.opptjeningType.legend')}
                                     radios={[
                                         {
                                             value: OpptjeningAktivitet.ARBEIDSTAKER,
-                                            label: intl.text(
+                                            label: sifIntl.text(
                                                 '@sifSoknadForms.opptjeningUtland.form.opptjeningType.ARBEIDSTAKER',
                                             ),
                                         },
                                         {
                                             value: OpptjeningAktivitet.FRILANSER,
-                                            label: intl.text(
+                                            label: sifIntl.text(
                                                 '@sifSoknadForms.opptjeningUtland.form.opptjeningType.FRILANSER',
                                             ),
                                         },
                                     ]}
-                                    validate={(value) => getRequiredFieldValidator()(value)}
+                                    validate={validateField(OpptjeningUtlandFormFields.opptjeningType, getRequiredFieldValidator())}
                                 />
                                 {opptjeningType && (
                                     <TextField
                                         name={OpptjeningUtlandFormFields.navn}
                                         label={
                                             opptjeningType === OpptjeningAktivitet.ARBEIDSTAKER
-                                                ? intl.text(
+                                                ? sifIntl.text(
                                                       '@sifSoknadForms.opptjeningUtland.form.arbeidsgiversNavn.label',
                                                   )
-                                                : intl.text(
+                                                : sifIntl.text(
                                                       '@sifSoknadForms.opptjeningUtland.form.oppdragsgiverNavn.label',
                                                   )
                                         }
-                                        validate={(value) => getStringValidator({ required: true })(value)}
+                                        validate={validateField(OpptjeningUtlandFormFields.navn, getStringValidator({ required: true }))}
                                     />
                                 )}
                             </>

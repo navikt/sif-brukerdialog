@@ -2,7 +2,7 @@ import { Button } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { countryIsMemberOfEøsOrEfta, DateRange, dateUtils, getCountryName } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, getRequiredFieldValidator, getYesOrNoValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents, YesOrNo } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { useState } from 'react';
 import { FormProvider, useFieldArray, useForm, useWatch } from 'react-hook-form';
 
@@ -157,7 +157,8 @@ export const UtenlandsoppholdDialogForm = ({
     disabledDateRanges = [],
     onValidSubmit,
 }: Props) => {
-    const intl = useSifSoknadFormsIntl();
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.utenlandsoppholdForm');
 
     const defaultValues: UtenlandsoppholdFormValues = {
         fom: '',
@@ -249,60 +250,74 @@ export const UtenlandsoppholdDialogForm = ({
                     <FormLayout.Questions>
                         <DateRangePicker
                             name="utenlandsoppholdPeriode"
-                            legend={intl.text('@sifSoknadForms.utenlandsopphold.form.tidsperiode.legend')}
+                            legend={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.tidsperiode.legend')}
                             fromInputProps={{
                                 name: UtenlandsoppholdFormFields.fom,
-                                label: intl.text('@sifSoknadForms.utenlandsopphold.form.fom.label'),
+                                label: sifIntl.text('@sifSoknadForms.utenlandsopphold.form.fom.label'),
                                 minDate,
                                 maxDate,
                                 disabledDateRanges: [...andreOpphold, ...disabledDateRanges],
-                                validate: (value) =>
-                                    getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        toDate: validationUtils.getDateFromDateString(getValues(UtenlandsoppholdFormFields.tom)),
-                                    }).validateFromDate(value),
+                                validate: validateField(
+                                    UtenlandsoppholdFormFields.fom,
+                                    (value) =>
+                                        getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            toDate: validationUtils.getDateFromDateString(getValues(UtenlandsoppholdFormFields.tom)),
+                                        }).validateFromDate(value),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                             toInputProps={{
                                 name: UtenlandsoppholdFormFields.tom,
-                                label: intl.text('@sifSoknadForms.utenlandsopphold.form.tom.label'),
+                                label: sifIntl.text('@sifSoknadForms.utenlandsopphold.form.tom.label'),
                                 minDate,
                                 maxDate,
                                 disabledDateRanges: [...andreOpphold, ...disabledDateRanges],
-                                validate: (value) =>
-                                    getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        fromDate: validationUtils.getDateFromDateString(getValues(UtenlandsoppholdFormFields.fom)),
-                                    }).validateToDate(value),
+                                validate: validateField(
+                                    UtenlandsoppholdFormFields.tom,
+                                    (value) =>
+                                        getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            fromDate: validationUtils.getDateFromDateString(getValues(UtenlandsoppholdFormFields.fom)),
+                                        }).validateToDate(value),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                         />
 
                         <CountrySelect
                             name={UtenlandsoppholdFormFields.landkode}
-                            label={intl.text('@sifSoknadForms.utenlandsopphold.form.land.label')}
-                            validate={(value) => getRequiredFieldValidator()(value)}
+                            label={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.land.label')}
+                            validate={validateField(UtenlandsoppholdFormFields.landkode, getRequiredFieldValidator())}
                         />
 
                         {showErSammenMedBarnetQuestion && (
                             <YesOrNoQuestion
                                 name={UtenlandsoppholdFormFields.erSammenMedBarnet}
-                                legend={intl.text('@sifSoknadForms.utenlandsopphold.form.erSammenMedBarnet.legend', {
-                                    land: getCountryName(landkode, intl.locale),
+                                legend={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.erSammenMedBarnet.legend', {
+                                    land: getCountryName(landkode, sifIntl.locale),
                                 })}
-                                validate={(value) => getYesOrNoValidator()(value)}
+                                validate={validateField(UtenlandsoppholdFormFields.erSammenMedBarnet, getYesOrNoValidator())}
                             />
                         )}
 
                         {showInnlagtQuestion && (
                             <YesOrNoQuestion
                                 name={UtenlandsoppholdFormFields.erBarnetInnlagt}
-                                legend={intl.text('@sifSoknadForms.utenlandsopphold.form.erBarnetInnlagt.legend', {
-                                    land: getCountryName(landkode, intl.locale),
+                                legend={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.erBarnetInnlagt.legend', {
+                                    land: getCountryName(landkode, sifIntl.locale),
                                 })}
-                                validate={(value) => getYesOrNoValidator()(value)}
+                                validate={validateField(UtenlandsoppholdFormFields.erBarnetInnlagt, getYesOrNoValidator())}
                             />
                         )}
 
@@ -324,7 +339,7 @@ export const UtenlandsoppholdDialogForm = ({
                                         setPeriodeUnderRedigering(undefined);
                                         setInnlagtPeriodeDialogIsOpen(true);
                                     }}>
-                                    {intl.text('@sifSoknadForms.utenlandsopphold.form.barnInnlagtPerioder.leggTil')}
+                                    {sifIntl.text('@sifSoknadForms.utenlandsopphold.form.barnInnlagtPerioder.leggTil')}
                                 </Button>
                                 <TidsperiodeFormDialog
                                     isOpen={innlagtPeriodeDialogIsOpen}
@@ -350,30 +365,30 @@ export const UtenlandsoppholdDialogForm = ({
                         {showÅrsakQuestion && (
                             <RadioGroup
                                 name={UtenlandsoppholdFormFields.årsak}
-                                legend={intl.text('@sifSoknadForms.utenlandsopphold.form.årsak.legend', {
-                                    land: getCountryName(landkode, intl.locale),
+                                legend={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.årsak.legend', {
+                                    land: getCountryName(landkode, sifIntl.locale),
                                 })}
                                 radios={[
                                     {
                                         value: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE,
-                                        label: intl.text(
+                                        label: sifIntl.text(
                                             `@sifSoknadForms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE}`,
                                         ),
                                     },
                                     {
                                         value: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND,
-                                        label: intl.text(
+                                        label: sifIntl.text(
                                             `@sifSoknadForms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND}`,
                                         ),
                                     },
                                     {
                                         value: UtenlandsoppholdÅrsak.ANNET,
-                                        label: intl.text(
+                                        label: sifIntl.text(
                                             `@sifSoknadForms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.ANNET}`,
                                         ),
                                     },
                                 ]}
-                                validate={(value) => getRequiredFieldValidator()(value)}
+                                validate={validateField(UtenlandsoppholdFormFields.årsak, getRequiredFieldValidator())}
                             />
                         )}
                     </FormLayout.Questions>

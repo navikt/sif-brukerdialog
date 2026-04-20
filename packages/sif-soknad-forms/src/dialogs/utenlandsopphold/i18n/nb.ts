@@ -17,4 +17,31 @@ export const utenlandsoppholdMessages_nb = {
     '@sifSoknadForms.utenlandsopphold.form.årsak.BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD':
         'Etter trygdeavtale med et annet land',
     '@sifSoknadForms.utenlandsopphold.form.årsak.ANNET': 'Jeg dekker utgiftene selv',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.fom.dateHasNoValue':
+        'Du må oppgi når utenlandsoppholdet startet. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.fom.dateHasInvalidFormat':
+        'Du må oppgi dato for når utenlandsoppholdet startet i et gyldig format. Gyldig format er dd.mm.åååå.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.fom.dateIsBeforeMin':
+        'Datoen utenlandsoppholdet startet kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.fom.dateIsAfterMax':
+        'Datoen utenlandsoppholdet startet kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.fom.fromDateIsAfterToDate':
+        'Startdatoen for utenlandsoppholdet må være før sluttdatoen, eller på samme dag som sluttdatoen. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.tom.dateHasNoValue':
+        'Du må oppgi når utenlandsoppholdet sluttet. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.tom.dateHasInvalidFormat':
+        'Du må oppgi dato for når utenlandsoppholdet sluttet i et gyldig format. Gyldig format er dd.mm.åååå.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.tom.dateIsBeforeMin':
+        'Datoen utenlandsoppholdet sluttet kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.tom.dateIsAfterMax':
+        'Datoen utenlandsoppholdet sluttet kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.tom.toDateIsBeforeFromDate':
+        'Sluttdatoen for utenlandsoppholdet kan ikke være før startdatoen. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.landkode.noValue': 'Du må velge land.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.erSammenMedBarnet.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om barnet er sammen med deg.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.erBarnetInnlagt.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om barnet er innlagt i helseinstitusjon.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.årsak.noValue':
+        'Du må velge hvordan utgiftene til innleggelsen dekkes.',
 };

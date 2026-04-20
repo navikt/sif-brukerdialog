@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, dateUtils } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -66,7 +66,8 @@ export const TidsperiodeDialogForm = ({
     maxDate,
     onValidSubmit,
 }: Props) => {
-    const intl = useSifSoknadFormsIntl();
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.tidsperiodeForm');
     const methods = useForm<TidsperiodeFormValues>({
         defaultValues: tidsperiode ? tidsperiodeToFormValues(tidsperiode) : undefined,
     });
@@ -91,38 +92,56 @@ export const TidsperiodeDialogForm = ({
                     <FormLayout.Questions>
                         <DateRangePicker
                             name="tidsperiode"
-                            legend={intl.text('@sifSoknadForms.tidsperiode.form.tidsperiode.legend')}
+                            legend={sifIntl.text('@sifSoknadForms.tidsperiode.form.tidsperiode.legend')}
                             fromInputProps={{
                                 name: TidsperiodeFormFields.fom,
-                                label: intl.text('@sifSoknadForms.tidsperiode.form.fom.label'),
+                                label: sifIntl.text('@sifSoknadForms.tidsperiode.form.fom.label'),
                                 minDate,
                                 maxDate,
                                 disabledDateRanges,
-                                validate: (value) =>
-                                    getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        toDate: validationUtils.getDateFromDateString(
-                                            methods.getValues(TidsperiodeFormFields.tom),
-                                        ),
-                                    }).validateFromDate(value),
+                                validate: validateField(
+                                    TidsperiodeFormFields.fom,
+                                    (value) =>
+                                        getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            toDate: validationUtils.getDateFromDateString(
+                                                methods.getValues(TidsperiodeFormFields.tom),
+                                            ),
+                                        }).validateFromDate(value),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin' && minDate)
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax' && maxDate)
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                             toInputProps={{
                                 name: TidsperiodeFormFields.tom,
-                                label: intl.text('@sifSoknadForms.tidsperiode.form.tom.label'),
+                                label: sifIntl.text('@sifSoknadForms.tidsperiode.form.tom.label'),
                                 minDate,
                                 maxDate,
                                 disabledDateRanges,
-                                validate: (value) =>
-                                    getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        fromDate: validationUtils.getDateFromDateString(
-                                            methods.getValues(TidsperiodeFormFields.fom),
-                                        ),
-                                    }).validateToDate(value),
+                                validate: validateField(
+                                    TidsperiodeFormFields.tom,
+                                    (value) =>
+                                        getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            fromDate: validationUtils.getDateFromDateString(
+                                                methods.getValues(TidsperiodeFormFields.fom),
+                                            ),
+                                        }).validateToDate(value),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin' && minDate)
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax' && maxDate)
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                         />
                     </FormLayout.Questions>

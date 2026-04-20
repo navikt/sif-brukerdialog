@@ -1,6 +1,6 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
-import { createSifFormComponents } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -40,7 +40,8 @@ const formValuesToFosterbarn = (values: FosterbarnFormValues, id?: string): Fost
 });
 
 export const FosterbarnDialogForm = ({ formId, fosterbarn, disallowedFødselsnumre = [], onValidSubmit }: Props) => {
-    const intl = useSifSoknadFormsIntl();
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.fosterbarnForm');
     const methods = useForm<FosterbarnFormValues>({
         defaultValues: fosterbarn ? fosterbarnToFormValues(fosterbarn) : undefined,
     });
@@ -65,20 +66,21 @@ export const FosterbarnDialogForm = ({ formId, fosterbarn, disallowedFødselsnum
                     <FormLayout.Questions>
                         <TextField
                             name={FosterbarnFormFields.navn}
-                            label={intl.text('@sifSoknadForms.fosterbarn.form.navn.label')}
-                            validate={(value) => getStringValidator({ required: true })(value)}
+                            label={sifIntl.text('@sifSoknadForms.fosterbarn.form.navn.label')}
+                            validate={validateField(FosterbarnFormFields.navn, getStringValidator({ required: true }))}
                         />
                         <TextField
                             name={FosterbarnFormFields.fødselsnummer}
-                            label={intl.text('@sifSoknadForms.fosterbarn.form.fødselsnummer.label')}
+                            label={sifIntl.text('@sifSoknadForms.fosterbarn.form.fødselsnummer.label')}
                             inputMode="numeric"
                             maxLength={11}
-                            validate={(value) =>
+                            validate={validateField(
+                                FosterbarnFormFields.fødselsnummer,
                                 getFødselsnummerValidator({
                                     required: true,
                                     disallowedValues,
-                                })(value)
-                            }
+                                }),
+                            )}
                         />
                     </FormLayout.Questions>
                 </FormLayout.Content>

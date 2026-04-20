@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, dateUtils } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -56,7 +56,8 @@ export const EnkeltdatoDialogForm = ({
     disableWeekends,
     onValidSubmit,
 }: Props) => {
-    const intl = useSifSoknadFormsIntl();
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.enkeltdatoForm');
     const methods = useForm<EnkeltdatoFormValues>({
         defaultValues: enkeltdato ? enkeltdatoToFormValues(enkeltdato) : undefined,
     });
@@ -83,18 +84,24 @@ export const EnkeltdatoDialogForm = ({
                     <FormLayout.Questions>
                         <Datepicker
                             name={EnkeltdatoFormFields.dato}
-                            label={intl.text('@sifSoknadForms.enkeltdato.form.dato.label')}
+                            label={sifIntl.text('@sifSoknadForms.enkeltdato.form.dato.label')}
                             minDate={minDate}
                             maxDate={maxDate}
                             disableWeekends={disableWeekends}
                             disabledDateRanges={[...disabledDates, ...disabledDateRanges]}
-                            validate={(value) =>
-                                getDateRangeValidator({
-                                    required: true,
-                                    min: minDate,
-                                    max: maxDate,
-                                }).validateFromDate(value)
-                            }
+                            validate={validateField(
+                                EnkeltdatoFormFields.dato,
+                                (value) =>
+                                    getDateRangeValidator({
+                                        required: true,
+                                        min: minDate,
+                                        max: maxDate,
+                                    }).validateFromDate(value),
+                                (errorCode) => {
+                                    if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                    if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                },
+                            )}
                         />
                     </FormLayout.Questions>
                 </FormLayout.Content>

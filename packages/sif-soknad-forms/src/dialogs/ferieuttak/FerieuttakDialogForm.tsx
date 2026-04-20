@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateUtils } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -60,7 +60,8 @@ export const FerieuttakDialogForm = ({
     disableWeekends,
     onValidSubmit,
 }: Props) => {
-    const intl = useSifSoknadFormsIntl();
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.ferieuttakForm');
     const methods = useForm<FerieuttakFormValues>({
         defaultValues: ferieuttak ? ferieuttakToFormValues(ferieuttak) : undefined,
     });
@@ -88,40 +89,54 @@ export const FerieuttakDialogForm = ({
                     <FormLayout.Questions>
                         <DateRangePicker
                             name="ferieuttak"
-                            legend={intl.text('@sifSoknadForms.ferieuttak.form.tidsperiode.legend')}
+                            legend={sifIntl.text('@sifSoknadForms.ferieuttak.form.tidsperiode.legend')}
                             fromInputProps={{
                                 name: FerieuttakFormFields.fom,
-                                label: intl.text('@sifSoknadForms.ferieuttak.form.fom.label'),
+                                label: sifIntl.text('@sifSoknadForms.ferieuttak.form.fom.label'),
                                 minDate,
                                 maxDate,
                                 disabledDateRanges: andreFerieuttak,
                                 disableWeekends,
-                                validate: (value) =>
-                                    getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        toDate: validationUtils.getDateFromDateString(
-                                            methods.getValues(FerieuttakFormFields.tom),
-                                        ),
-                                    }).validateFromDate(value),
+                                validate: validateField(
+                                    FerieuttakFormFields.fom,
+                                    (value) =>
+                                        getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            toDate: validationUtils.getDateFromDateString(
+                                                methods.getValues(FerieuttakFormFields.tom),
+                                            ),
+                                        }).validateFromDate(value),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                             toInputProps={{
                                 name: FerieuttakFormFields.tom,
-                                label: intl.text('@sifSoknadForms.ferieuttak.form.tom.label'),
+                                label: sifIntl.text('@sifSoknadForms.ferieuttak.form.tom.label'),
                                 minDate,
                                 maxDate,
                                 disabledDateRanges: andreFerieuttak,
                                 disableWeekends,
-                                validate: (value) =>
-                                    getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        fromDate: validationUtils.getDateFromDateString(
-                                            methods.getValues(FerieuttakFormFields.fom),
-                                        ),
-                                    }).validateToDate(value),
+                                validate: validateField(
+                                    FerieuttakFormFields.tom,
+                                    (value) =>
+                                        getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            fromDate: validationUtils.getDateFromDateString(
+                                                methods.getValues(FerieuttakFormFields.fom),
+                                            ),
+                                        }).validateToDate(value),
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                         />
                     </FormLayout.Questions>

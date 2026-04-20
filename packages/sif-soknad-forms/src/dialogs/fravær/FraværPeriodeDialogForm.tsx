@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, dateUtils } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -73,7 +73,8 @@ export const FraværPeriodeDialogForm = ({
     begrensTilSammeÅr,
     onValidSubmit,
 }: Props) => {
-    const intl = useSifSoknadFormsIntl();
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.fraværPeriodeForm');
     const methods = useForm<FraværPeriodeFormValues>({
         defaultValues: fraværPeriode ? fraværPeriodeToFormValues(fraværPeriode) : undefined,
     });
@@ -85,8 +86,7 @@ export const FraværPeriodeDialogForm = ({
     };
 
     const validateFromDate = (value: string): string | undefined => {
-        const dateStr = value;
-        const date = validationUtils.getDateFromDateString(dateStr);
+        const date = validationUtils.getDateFromDateString(value);
         if (helgedagerIkkeTillat && date && dateErHelg(date)) {
             return 'er_helg';
         }
@@ -146,25 +146,48 @@ export const FraværPeriodeDialogForm = ({
                     <FormLayout.Questions>
                         <DateRangePicker
                             name="fraværPeriode"
-                            legend={intl.text('@sifSoknadForms.fraværPeriode.form.tidsperiode.legend')}
-                            validate={validateRange}
+                            legend={sifIntl.text('@sifSoknadForms.fraværPeriode.form.tidsperiode.legend')}
+                            validate={(range) => {
+                                const errorCode = validateRange(range);
+                                if (errorCode) {
+                                    return validateField(
+                                        'fraværPeriode',
+                                        () => errorCode,
+                                    )('');
+                                }
+                                return undefined;
+                            }}
                             fromInputProps={{
                                 name: FraværPeriodeFormFields.fraOgMed,
-                                label: intl.text('@sifSoknadForms.fraværPeriode.form.fraOgMed.label'),
+                                label: sifIntl.text('@sifSoknadForms.fraværPeriode.form.fraOgMed.label'),
                                 minDate,
                                 maxDate,
                                 disableWeekends: helgedagerIkkeTillat,
                                 disabledDateRanges,
-                                validate: validateFromDate,
+                                validate: validateField(
+                                    FraværPeriodeFormFields.fraOgMed,
+                                    validateFromDate,
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                             toInputProps={{
                                 name: FraværPeriodeFormFields.tilOgMed,
-                                label: intl.text('@sifSoknadForms.fraværPeriode.form.tilOgMed.label'),
+                                label: sifIntl.text('@sifSoknadForms.fraværPeriode.form.tilOgMed.label'),
                                 minDate,
                                 maxDate,
                                 disableWeekends: helgedagerIkkeTillat,
                                 disabledDateRanges,
-                                validate: validateToDate,
+                                validate: validateField(
+                                    FraværPeriodeFormFields.tilOgMed,
+                                    validateToDate,
+                                    (errorCode) => {
+                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    },
+                                ),
                             }}
                         />
                     </FormLayout.Questions>

@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, dateUtils } from '@navikt/sif-common-utils';
 import { getDateValidator, getRequiredFieldValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents } from '@sif/rhf';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -83,7 +83,8 @@ export const FraværDagDialogForm = ({
     maksArbeidstidPerDag = 7.5,
     onValidSubmit,
 }: Props) => {
-    const intl = useSifSoknadFormsIntl();
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.fraværDagForm');
     const methods = useForm<FraværDagFormValues>({
         defaultValues: fraværDag ? fraværDagToFormValues(fraværDag) : undefined,
     });
@@ -110,31 +111,38 @@ export const FraværDagDialogForm = ({
                     <FormLayout.Questions>
                         <Datepicker
                             name={FraværDagFormFields.dato}
-                            label={intl.text('@sifSoknadForms.fraværDag.form.dato.label')}
+                            label={sifIntl.text('@sifSoknadForms.fraværDag.form.dato.label')}
                             minDate={minDate}
                             maxDate={maxDate}
                             disableWeekends={helgedagerIkkeTillatt}
                             disabledDateRanges={disabledDateRanges}
-                            validate={(value) => {
-                                const date = validationUtils.getDateFromDateString(value);
-                                if (helgedagerIkkeTillatt && date && dateErHelg(date)) {
-                                    return 'er_helg';
-                                }
-                                if (date && dateCollideWithRanges(date, disabledDateRanges)) {
-                                    return 'dato_kolliderer_med_annet_fravær';
-                                }
-                                return getDateValidator({ required: true, min: minDate, max: maxDate })(value);
-                            }}
+                            validate={validateField(
+                                FraværDagFormFields.dato,
+                                (value) => {
+                                    const date = validationUtils.getDateFromDateString(value);
+                                    if (helgedagerIkkeTillatt && date && dateErHelg(date)) {
+                                        return 'er_helg';
+                                    }
+                                    if (date && dateCollideWithRanges(date, disabledDateRanges)) {
+                                        return 'dato_kolliderer_med_annet_fravær';
+                                    }
+                                    return getDateValidator({ required: true, min: minDate, max: maxDate })(value);
+                                },
+                                (errorCode) => {
+                                    if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
+                                    if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                },
+                            )}
                         />
                         <Select
                             name={FraværDagFormFields.timerArbeidsdag}
-                            label={intl.text('@sifSoknadForms.fraværDag.form.timerArbeidsdag.label')}
-                            validate={(value) => getRequiredFieldValidator()(value)}
+                            label={sifIntl.text('@sifSoknadForms.fraværDag.form.timerArbeidsdag.label')}
+                            validate={validateField(FraværDagFormFields.timerArbeidsdag, getRequiredFieldValidator())}
                             style={{ maxWidth: '14rem' }}>
                             <option />
                             {timerOptions.map((tid) => (
                                 <option key={tid} value={tid}>
-                                    {intl.text('@sifSoknadForms.fraværDag.form.timerOption', {
+                                    {sifIntl.text('@sifSoknadForms.fraværDag.form.timerOption', {
                                         tid,
                                         flertall: tid > 1,
                                     })}
@@ -143,22 +151,25 @@ export const FraværDagDialogForm = ({
                         </Select>
                         <Select
                             name={FraværDagFormFields.timerFravær}
-                            label={intl.text('@sifSoknadForms.fraværDag.form.timerFravær.label')}
-                            validate={(value) => {
-                                const timerArbeidsdag = toMaybeNumber(
-                                    methods.getValues(FraværDagFormFields.timerArbeidsdag),
-                                );
-                                const timerFravær = toMaybeNumber(value);
-                                if (timerArbeidsdag && timerFravær && timerFravær > timerArbeidsdag) {
-                                    return 'fravær_timer_mer_enn_arbeidstimer';
-                                }
-                                return getRequiredFieldValidator()(value);
-                            }}
+                            label={sifIntl.text('@sifSoknadForms.fraværDag.form.timerFravær.label')}
+                            validate={validateField(
+                                FraværDagFormFields.timerFravær,
+                                (value) => {
+                                    const timerArbeidsdag = toMaybeNumber(
+                                        methods.getValues(FraværDagFormFields.timerArbeidsdag),
+                                    );
+                                    const timerFravær = toMaybeNumber(value);
+                                    if (timerArbeidsdag && timerFravær && timerFravær > timerArbeidsdag) {
+                                        return 'fravær_timer_mer_enn_arbeidstimer';
+                                    }
+                                    return getRequiredFieldValidator()(value);
+                                },
+                            )}
                             style={{ maxWidth: '14rem' }}>
                             <option />
                             {timerOptions.map((tid) => (
                                 <option key={tid} value={tid}>
-                                    {intl.text('@sifSoknadForms.fraværDag.form.timerOption', {
+                                    {sifIntl.text('@sifSoknadForms.fraværDag.form.timerOption', {
                                         tid,
                                         flertall: tid > 1,
                                     })}
