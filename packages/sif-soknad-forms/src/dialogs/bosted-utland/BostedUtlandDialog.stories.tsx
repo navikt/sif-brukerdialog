@@ -1,10 +1,8 @@
-import { Box } from '@navikt/ds-react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
-import { type ReactNode, useState } from 'react';
-import { IntlProvider } from 'react-intl';
+import { useState } from 'react';
 
-import { sifSoknadFormsMessages } from '../../i18n';
+import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { BostedUtlandFormDialog } from './BostedUtlandDialog';
 import type { BostedUtland } from './index';
 
@@ -36,14 +34,6 @@ const alleBosteder: BostedUtland[] = [
     },
 ];
 
-function StoryWrapper({ children, locale }: { children: ReactNode; locale: 'nb' | 'nn' }) {
-    return (
-        <IntlProvider locale={locale} messages={sifSoknadFormsMessages[locale]}>
-            <Box style={{ minHeight: 700 }}>{children}</Box>
-        </IntlProvider>
-    );
-}
-
 function BostedUtlandDialogStory(props: StoryProps) {
     const [open, setOpen] = useState(true);
 
@@ -71,13 +61,11 @@ const meta = {
     title: 'Dialogs/BostedUtland/Dialog',
     component: BostedUtlandDialogStory,
     decorators: [
-        (Story, context) => {
-            const locale = context.globals.locale === 'nn' ? 'nn' : 'nb';
-
+        (Story) => {
             return (
-                <StoryWrapper locale={locale}>
+                <StoryFrame minHeight={700}>
                     <Story />
-                </StoryWrapper>
+                </StoryFrame>
             );
         },
     ],

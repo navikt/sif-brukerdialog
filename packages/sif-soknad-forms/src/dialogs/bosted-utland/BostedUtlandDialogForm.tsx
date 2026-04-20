@@ -30,7 +30,7 @@ type BostedUtlandFormValues = {
 
 const { DateRangePicker, CountrySelect } = createSifFormComponents<BostedUtlandFormValues>();
 
-const formValuesToBostedUtland = (values: BostedUtlandFormValues, bostedId?: string): BostedUtland => {
+const formValuesToBostedUtland = (values: BostedUtlandFormValues, locale: string, bostedId?: string): BostedUtland => {
     const from = validationUtils.getDateFromDateString(values.fom);
     const to = validationUtils.getDateFromDateString(values.tom);
     if (!from || !to) {
@@ -40,7 +40,7 @@ const formValuesToBostedUtland = (values: BostedUtlandFormValues, bostedId?: str
         id: bostedId || crypto.randomUUID(),
         periode: { from, to },
         landkode: values.landkode,
-        landnavn: getCountryName(values.landkode, 'nb'),
+        landnavn: getCountryName(values.landkode, locale),
     };
 };
 
@@ -69,7 +69,7 @@ export const BostedUtlandDialogForm = ({
     const utilgjengeligePerioder = (alleBosteder?.filter((b) => b.id !== bosted?.id) || []).map((b) => b.periode);
 
     const handleValidSubmit = (values: BostedUtlandFormValues): void => {
-        onValidSubmit(formValuesToBostedUtland(values, bosted?.id));
+        onValidSubmit(formValuesToBostedUtland(values, sifIntl.locale, bosted?.id));
     };
 
     const validateLandkode = validateField(BostedUtlandFormFields.landkode, getRequiredFieldValidator());

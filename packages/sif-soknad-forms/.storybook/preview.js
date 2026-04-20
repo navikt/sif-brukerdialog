@@ -1,6 +1,9 @@
 import '@navikt/ds-css';
 
+import { withIntl } from './decorators/withIntl';
+
 const preview = {
+    decorators: [withIntl],
     globalTypes: {
         locale: {
             name: 'Sprak',

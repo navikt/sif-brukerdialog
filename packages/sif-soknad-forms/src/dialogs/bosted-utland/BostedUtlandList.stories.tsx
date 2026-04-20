@@ -1,9 +1,7 @@
-import { Box } from '@navikt/ds-react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { type ReactNode, useState } from 'react';
-import { IntlProvider } from 'react-intl';
+import { useState } from 'react';
 
-import { sifSoknadFormsMessages } from '../../i18n';
+import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { BostedUtlandList } from './BostedUtlandList';
 import type { BostedUtland } from './index';
 
@@ -33,14 +31,6 @@ const exampleBosteder: BostedUtland[] = [
     },
 ];
 
-function StoryWrapper({ children, locale }: { children: ReactNode; locale: 'nb' | 'nn' }) {
-    return (
-        <IntlProvider locale={locale} messages={sifSoknadFormsMessages[locale]}>
-            <Box style={{ maxWidth: 720 }}>{children}</Box>
-        </IntlProvider>
-    );
-}
-
 function BostedUtlandListStory({ bosteder, withActions = false }: StoryProps) {
     const [items, setItems] = useState(bosteder);
 
@@ -57,13 +47,11 @@ const meta = {
     title: 'Dialogs/BostedUtland/List',
     component: BostedUtlandListStory,
     decorators: [
-        (Story, context) => {
-            const locale = context.globals.locale === 'nn' ? 'nn' : 'nb';
-
+        (Story) => {
             return (
-                <StoryWrapper locale={locale}>
+                <StoryFrame maxWidth={720}>
                     <Story />
-                </StoryWrapper>
+                </StoryFrame>
             );
         },
     ],

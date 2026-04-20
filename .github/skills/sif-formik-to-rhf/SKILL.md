@@ -154,6 +154,10 @@ Ikke importer fra gamle pakker i v2-apper. Bruk Aksel-komponenter eller `@sif/*`
 | `ExpandableInfo` | `@navikt/sif-common-core-ds` | `ReadMore`   | `@navikt/ds-react`          |
 | `FormLayout`     | `@navikt/sif-common-ui`      | `FormLayout` | `@sif/soknad-ui/components` |
 
+## Dialogmigrering
+
+For portering av `*ListAndDialog`-komponenter fra `sif-common-forms-ds` til `sif-soknad-forms` → bruk `sif-dialog-migration`.
+
 ## Fallgruver
 
 ### 1. Scope-mismatch i `useSifValidate`

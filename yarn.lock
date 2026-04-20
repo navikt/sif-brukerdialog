@@ -9691,6 +9691,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@vitejs/plugin-react": "npm:6.0.1"
+    dayjs: "npm:1.11.20"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
     react-hook-form: "npm:7.72.1"

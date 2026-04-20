@@ -1,11 +1,8 @@
-import { Box } from '@navikt/ds-react';
 import type { RegistrertBarn } from '@sif/api/k9-prosessering';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { ReactNode } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { IntlProvider } from 'react-intl';
 
-import { sifSoknadFormsMessages } from '../../i18n';
+import { StoryFrame } from '../../storybook/components/StoryFrame';
+import { withRHFForm } from '../../storybook/decorators/withRHFForm';
 import { VelgRegistrertBarnPanel } from './VelgRegistrertBarnPanel';
 
 type FormValues = {
@@ -36,20 +33,8 @@ const registrerteBarn: RegistrertBarn[] = [
     },
 ];
 
-function StoryWrapper({ children, locale }: { children: ReactNode; locale: 'nb' | 'nn' }) {
-    const methods = useForm<FormValues>({
-        defaultValues: {
-            barn: registrerteBarn[0].aktørId,
-        },
-    });
-
-    return (
-        <IntlProvider locale={locale} messages={sifSoknadFormsMessages[locale]}>
-            <FormProvider {...methods}>
-                <Box style={{ maxWidth: 640 }}>{children}</Box>
-            </FormProvider>
-        </IntlProvider>
-    );
+function StoryWrapper({ children }: { children: React.ReactNode }) {
+    return <StoryFrame maxWidth={640}>{children}</StoryFrame>;
 }
 
 function VelgRegistrertBarnPanelStory(props: StoryProps) {
@@ -60,16 +45,22 @@ const meta = {
     title: 'Panels/VelgRegistrertBarnPanel',
     component: VelgRegistrertBarnPanelStory,
     decorators: [
-        (Story, context) => {
-            const locale = context.globals.locale === 'nn' ? 'nn' : 'nb';
-
+        withRHFForm,
+        (Story) => {
             return (
-                <StoryWrapper locale={locale}>
+                <StoryWrapper>
                     <Story />
                 </StoryWrapper>
             );
         },
     ],
+    parameters: {
+        rhf: {
+            defaultValues: {
+                barn: registrerteBarn[0].aktørId,
+            } satisfies FormValues,
+        },
+    },
     args: {
         registrerteBarn,
     },
