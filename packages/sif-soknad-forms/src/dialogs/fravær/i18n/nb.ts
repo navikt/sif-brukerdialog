@@ -1,0 +1,17 @@
+export const fraværMessages_nb = {
+    '@sifSoknadForms.fraværPeriode.dialog.tittel': 'Periode med fravær fra jobb',
+    '@sifSoknadForms.fraværPeriode.dialog.avbrytKnapp': 'Avbryt',
+    '@sifSoknadForms.fraværPeriode.dialog.leggTilKnapp': 'Legg til',
+    '@sifSoknadForms.fraværPeriode.dialog.oppdaterKnapp': 'Oppdater',
+    '@sifSoknadForms.fraværPeriode.form.tidsperiode.legend': 'Velg tidsrom',
+    '@sifSoknadForms.fraværPeriode.form.fraOgMed.label': 'Fra og med',
+    '@sifSoknadForms.fraværPeriode.form.tilOgMed.label': 'Til og med',
+    '@sifSoknadForms.fraværDag.dialog.tittel': 'Dag med delvis fravær fra jobb',
+    '@sifSoknadForms.fraværDag.dialog.avbrytKnapp': 'Avbryt',
+    '@sifSoknadForms.fraværDag.dialog.leggTilKnapp': 'Legg til',
+    '@sifSoknadForms.fraværDag.dialog.oppdaterKnapp': 'Oppdater',
+    '@sifSoknadForms.fraværDag.form.dato.label': 'Dato',
+    '@sifSoknadForms.fraværDag.form.timerArbeidsdag.label': 'Antall timer du skulle ha jobbet denne dagen',
+    '@sifSoknadForms.fraværDag.form.timerFravær.label': 'Antall timer du var borte fra jobb denne dagen',
+    '@sifSoknadForms.fraværDag.form.timerOption': '{tid} {flertall, select, true {timer} other {time}}',
+};

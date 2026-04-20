@@ -1,0 +1,15 @@
+export const opptjeningUtlandMessages_nb = {
+    '@sifSoknadForms.opptjeningUtland.dialog.tittel': 'Jobbet i et annet EØS-land',
+    '@sifSoknadForms.opptjeningUtland.dialog.avbrytKnapp': 'Avbryt',
+    '@sifSoknadForms.opptjeningUtland.dialog.leggTilKnapp': 'Legg til',
+    '@sifSoknadForms.opptjeningUtland.dialog.oppdaterKnapp': 'Oppdater',
+    '@sifSoknadForms.opptjeningUtland.form.tidsperiode.legend': 'Velg tidsperiode for jobb',
+    '@sifSoknadForms.opptjeningUtland.form.fom.label': 'Fra og med',
+    '@sifSoknadForms.opptjeningUtland.form.tom.label': 'Til og med',
+    '@sifSoknadForms.opptjeningUtland.form.land.label': 'Velg land',
+    '@sifSoknadForms.opptjeningUtland.form.opptjeningType.legend': 'Hva jobbet du som?',
+    '@sifSoknadForms.opptjeningUtland.form.opptjeningType.ARBEIDSTAKER': 'Arbeidstaker',
+    '@sifSoknadForms.opptjeningUtland.form.opptjeningType.FRILANSER': 'Frilanser',
+    '@sifSoknadForms.opptjeningUtland.form.arbeidsgiversNavn.label': 'Skriv inn navnet på arbeidsgiveren',
+    '@sifSoknadForms.opptjeningUtland.form.oppdragsgiverNavn.label': 'Skriv inn navnet på oppdragsgiveren',
+};
