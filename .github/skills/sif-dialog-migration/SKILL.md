@@ -58,12 +58,12 @@ src/dialogs/<navn>/
 
 ### Komponentansvar
 
-| Fil | Ansvar |
-|-----|--------|
-| `XxxDialogForm` | RHF-form: felter, validering, `formValuesToXxx()`, `xxxToFormValues()` |
-| `XxxDialog` | Aksel `Dialog`-shell: tittel, body (form), footer (knapper) |
-| `XxxList` | Render liste med `ItemListDarkside`, label-rendering, formattering |
-| `XxxListAndDialog` | Kobler `ModalFormAndList` med domenekomponentene via render-props |
+| Fil                | Ansvar                                                                 |
+| ------------------ | ---------------------------------------------------------------------- |
+| `XxxDialogForm`    | RHF-form: felter, validering, `formValuesToXxx()`, `xxxToFormValues()` |
+| `XxxDialog`        | Aksel `Dialog`-shell: tittel, body (form), footer (knapper)            |
+| `XxxList`          | Render liste med `ItemListDarkside`, label-rendering, formattering     |
+| `XxxListAndDialog` | Kobler `ModalFormAndList` med domenekomponentene via render-props      |
 
 ---
 
@@ -80,7 +80,8 @@ For hver dialog som porteres:
 7. **Opprett story** — `XxxListAndDialog.stories.tsx` med `StoryFrame`. Intl håndteres globalt.
 8. **Legg til i18n** — nb.ts og nn.ts under `src/dialogs/<navn>/i18n/`, aggregert i `src/i18n/index.tsx`.
 9. **Eksporter** fra `src/dialogs/<navn>/index.ts` og `src/dialogs/index.ts`.
-10. **Verifiser** — `get_errors` på alle nye filer + `lint:tsc`.
+10. **Verifiser teknisk** — `get_errors` på alle nye filer + `lint:tsc`.
+11. **Verifiser innholdsparitet** — sammenlign v1 og v2 komponent for komponent: form, list og summary (se Innholdsverifisering under).
 
 ---
 
@@ -102,10 +103,10 @@ For hver dialog som porteres:
 
 Dato-APIet er delt i to lag:
 
-| Lag | Pakke | Funksjon | Bruksområde |
-|-----|-------|----------|-------------|
-| Datepicker-parsing | `@sif/rhf` → `datePickerUtils` | `parseDatePickerValue(value)` | Konverterer brukerinput fra datepicker (ISO-streng eller norske datoformater) til `Date \| undefined` |
-| Generell ISO-konvertering | `@navikt/sif-common-utils` → `dateUtils` | `dateToISODate(date)`, `ISODateToDate(iso)`, `isISODateString(value)` | Konvertering mellom `Date` og `ISODate`-strenger |
+| Lag                       | Pakke                                    | Funksjon                                                              | Bruksområde                                                                                           |
+| ------------------------- | ---------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Datepicker-parsing        | `@sif/rhf` → `datePickerUtils`           | `parseDatePickerValue(value)`                                         | Konverterer brukerinput fra datepicker (ISO-streng eller norske datoformater) til `Date \| undefined` |
+| Generell ISO-konvertering | `@navikt/sif-common-utils` → `dateUtils` | `dateToISODate(date)`, `ISODateToDate(iso)`, `isISODateString(value)` | Konvertering mellom `Date` og `ISODate`-strenger                                                      |
 
 **Regler:**
 
@@ -159,10 +160,72 @@ function XxxListAndDialogStory({ items }: StoryProps) {
 const meta = {
     title: 'Dialogs/Xxx/ListAndDialog',
     component: XxxListAndDialogStory,
-    decorators: [(Story) => <StoryFrame maxWidth={720} minHeight={700}><Story /></StoryFrame>],
+    decorators: [
+        (Story) => (
+            <StoryFrame maxWidth={720} minHeight={700}>
+                <Story />
+            </StoryFrame>
+        ),
+    ],
     args: { items: exampleItems },
 } satisfies Meta<typeof XxxListAndDialogStory>;
 ```
+
+---
+
+## Innholdsverifisering (BLOKKERENDE)
+
+Etter porting av en dialog **må** alle renderbare komponenter verifiseres mot v1-originalen. Denne sjekken er blokkerende — dialogen regnes ikke som ferdig portert før den er bestått.
+
+Dette gjelder **alle** komponenttyper som rendrer brukersynlig innhold:
+
+- **DialogForm** — felter, labels, legends, hjelpetekst, betinget visning, validering
+- **List** — label-rendering, tittel, formatering av verdier
+- **Summary** — alle verdier, betingede blokker, formatering
+
+### Fremgangsmåte
+
+For hver komponenttype som finnes i v1:
+
+1. **Les v1-komponenten** — åpne `sif-common-forms-ds/src/forms/<xxx>/Xxx*.tsx` og list opp alt innhold som rendres.
+2. **Les v2-komponenten** — åpne `sif-soknad-forms/src/dialogs/<xxx>/Xxx*.tsx` og list opp alt innhold som rendres.
+3. **Sammenlign felt for felt** — hvert felt, label, betinget blokk og formatert verdi i v1 skal ha en tilsvarende del i v2.
+4. **Rapporter avvik** — hvis noe mangler eller avviker, fiks det før oppgaven avsluttes.
+
+### Sjekkliste — Form
+
+- [ ] Alle felter fra v1 form er representert i v2 form
+- [ ] Labels, legends og descriptions matcher ordrett
+- [ ] Betinget visning har samme betingelse (ingen inversjoner)
+- [ ] Valideringsregler og parametere er identiske
+- [ ] Hjelpetekst og veiledningstekst er med
+
+### Sjekkliste — List
+
+- [ ] Alle verdier i v1 list label-rendering er representert i v2
+- [ ] Tittel/header for hvert element matcher
+- [ ] Formatering av datoer, landnavn og andre verdier er lik
+
+### Sjekkliste — Summary
+
+- [ ] Alle felter fra v1 Summary er representert i v2 Summary
+- [ ] Betingede blokker har samme betingelse (f.eks. `erNyoppstartet`, `registrertINorge`)
+- [ ] Ja/Nei-spørsmål som vises i v1 vises også i v2 (ikke bare detaljfeltene)
+- [ ] Datoer, tall og tekst formateres likt
+- [ ] Rekkefølgen på blokkene er konsistent med v1
+
+### Typiske feil
+
+- **Manglende felt i form**: v1 har et felt som v2 mangler helt — ofte betingede felter som vises under spesifikke tilstander.
+- **Manglende verdier i list**: v1 label-rendering viser flere verdier enn v2 (f.eks. dato, type, detaljer).
+- **Manglende ytre Ja/Nei-svar i summary**: v1 viser både spørsmålet (Ja/Nei) og detaljene, v2 hopper over spørsmålet og viser bare detaljene.
+- **Manglende betinget blokk**: v1 har en blokk som vises under en spesifikk betingelse, v2 mangler den helt.
+- **Feil betingelse**: v2 bruker en annen betingelse enn v1 for å vise en blokk.
+- **Invertert betingelse**: v2 bruker `=== YES` der v1 bruker `=== NO` eller omvendt.
+
+### Når v2-typen avviker fra v1-API-typen
+
+v1 bruker ofte en API-data-type (flat/nested DTO), mens v2 bruker en form-nær type med `YesOrNo`-felter. Sørg for at alle verdier fra DTO-en som v1 rendrer, også er tilgjengelig og rendret via v2-typen.
 
 ---
 
@@ -191,9 +254,13 @@ export const BostedUtlandListAndDialog = ({ minDate, maxDate, bosteder, addButto
         )}
         dialogRenderer={({ item, allItems, isOpen, onSubmit, onCancel }) => (
             <BostedUtlandFormDialog
-                minDate={minDate} maxDate={maxDate}
-                bosted={item} alleBosteder={allItems}
-                isOpen={isOpen} onValidSubmit={onSubmit} onCancel={onCancel}
+                minDate={minDate}
+                maxDate={maxDate}
+                bosted={item}
+                alleBosteder={allItems}
+                isOpen={isOpen}
+                onValidSubmit={onSubmit}
+                onCancel={onCancel}
             />
         )}
     />
@@ -206,15 +273,15 @@ export const BostedUtlandListAndDialog = ({ minDate, maxDate, bosteder, addButto
 
 Fra `packages/sif-common-forms-ds/src/forms/`:
 
-| v1-mappe | Porteringsstatus |
-|----------|-----------------|
-| `bosted-utland` | Ferdig |
-| `utenlandsopphold` | Ikke startet |
-| `tidsperiode` | Ikke startet |
-| `ferieuttak` | Ikke startet |
-| `opptjening-utland` | Ikke startet |
-| `enkeltdatoer` | Ikke startet |
-| `annet-barn` | Ferdig |
-| `utenlandsk-næring` | Ikke startet |
-| `fravær` (perioder + dager) | Ikke startet |
-| `fosterbarn` | Ikke startet |
+| v1-mappe                    | Porteringsstatus |
+| --------------------------- | ---------------- |
+| `bosted-utland`             | Ferdig           |
+| `utenlandsopphold`          | Ikke startet     |
+| `tidsperiode`               | Ikke startet     |
+| `ferieuttak`                | Ikke startet     |
+| `opptjening-utland`         | Ikke startet     |
+| `enkeltdatoer`              | Ikke startet     |
+| `annet-barn`                | Ferdig           |
+| `utenlandsk-næring`         | Ikke startet     |
+| `fravær` (perioder + dager) | Ikke startet     |
+| `fosterbarn`                | Ikke startet     |

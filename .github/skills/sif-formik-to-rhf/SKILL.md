@@ -353,10 +353,10 @@ import { DateRange } from '@navikt/sif-common-utils';
 
 Dato-APIet er delt i to lag:
 
-| Lag | Pakke | Eksport | Bruksområde |
-|-----|-------|---------|-------------|
-| Datepicker-parsing | `@sif/rhf` → `datePickerUtils` | `parseDatePickerValue(value)`, `getDisabledDates(...)` | Konverterer brukerinput fra datepicker (ISO-streng eller norske datoformater) til `Date \| undefined` |
-| Generell ISO-konvertering | `@navikt/sif-common-utils` → `dateUtils` | `dateToISODate(date)`, `ISODateToDate(iso)`, `isISODateString(value)` | Konvertering mellom `Date` og `ISODate`-strenger |
+| Lag                       | Pakke                                    | Eksport                                                               | Bruksområde                                                                                           |
+| ------------------------- | ---------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Datepicker-parsing        | `@sif/rhf` → `datePickerUtils`           | `parseDatePickerValue(value)`, `getDisabledDates(...)`                | Konverterer brukerinput fra datepicker (ISO-streng eller norske datoformater) til `Date \| undefined` |
+| Generell ISO-konvertering | `@navikt/sif-common-utils` → `dateUtils` | `dateToISODate(date)`, `ISODateToDate(iso)`, `isISODateString(value)` | Konvertering mellom `Date` og `ISODate`-strenger                                                      |
 
 **Regler for mapping-funksjoner i steg-utils:**
 
@@ -375,6 +375,7 @@ Dato-APIet er delt i to lag:
 - [ ] async `handleSubmit` har try/catch rundt mutateAsync-kall
 - [ ] Betinget visning kartlagt fra v1 og verifisert mot v1 (ingen inversjonsfeile)
 - [ ] Betinget visning bruker `methods.watch()` + `&&`/fragment — ikke `AriaLiveRegion` rundt skjemafelter
+
 ---
 
 ## Dialogkomponenter i `sif-soknad-forms`
@@ -388,7 +389,7 @@ Hvis originalen følger standardmønsteret `<scope>.validation.<fieldName>.<erro
 ```ts
 const { validateField } = useSifValidate('@sifSoknadForms.dialogForm');
 
-validate: validateField(FormFields.landkode, getRequiredFieldValidator())
+validate: validateField(FormFields.landkode, getRequiredFieldValidator());
 ```
 
 Hvis originalen trenger interpolasjonsverdier, bruk fortsatt `useSifValidate`, men send inn `values`.
@@ -486,6 +487,7 @@ i18n-nøkler for cross-field-feilen bruker gruppens navn som felt: `scope.valida
 - [ ] `DateRange`-importer er oppdatert (hvis aktuelt)
 - [ ] Filen kompilerer uten feil
 - [ ] Enhetstester skrevet for `*StegUtils.ts` (se under)
+- [ ] **Summary-paritet**: Hvis dialogen har en Summary-komponent, er alle verdier fra v1 Summary representert i v2 — inkludert ytre Ja/Nei-spørsmål, betingede blokker og formateringer (se `sif-dialog-migration` → Innholdsverifisering)
 
 ## Enhetstester for `*StegUtils.ts`
 
