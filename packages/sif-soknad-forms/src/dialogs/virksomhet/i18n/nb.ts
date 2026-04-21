@@ -1,4 +1,6 @@
 export const virksomhetMessages_nb = {
+    '@sifSoknadForms.virksomhet.Norge': 'Norge',
+    '@sifSoknadForms.virksomhet.Nei': 'Nei',
     '@sifSoknadForms.virksomhet.dialog.tittel': 'Opplysninger om virksomheten din',
     '@sifSoknadForms.virksomhet.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.virksomhet.dialog.leggTilKnapp': 'Legg til',

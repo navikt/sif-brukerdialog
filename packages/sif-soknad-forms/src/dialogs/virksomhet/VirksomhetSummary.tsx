@@ -1,5 +1,5 @@
 import { VStack } from '@navikt/ds-react';
-import { useUiIntl } from '@navikt/sif-common-ui';
+import { JaNeiSvar, useUiIntl } from '@navikt/sif-common-ui';
 import { getCountryName, prettifyDate } from '@navikt/sif-common-utils';
 import { YesOrNo } from '@sif/rhf';
 
@@ -69,31 +69,62 @@ export const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) =
                 </VirksomhetSummaryBlock>
             )}
 
-            {!erNyoppstartet && virksomhet.varigEndringINæringsinntekt_dato && (
+            {erNyoppstartet && virksomhet.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene !== undefined && (
                 <>
-                    <VirksomhetSummaryBlock header={text('@sifSoknadForms.virksomhet.form.varigEndring.dato.label')}>
-                        {prettifyDate(virksomhet.varigEndringINæringsinntekt_dato)}
+                    <VirksomhetSummaryBlock header={text('@sifSoknadForms.virksomhet.form.harBlittYrkesaktiv.legend')}>
+                        <JaNeiSvar
+                            harSvartJa={
+                                virksomhet.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene === YesOrNo.YES
+                            }
+                        />
                     </VirksomhetSummaryBlock>
-                    {virksomhet.varigEndringINæringsinntekt_inntektEtterEndring !== undefined && (
-                        <VirksomhetSummaryBlock
-                            header={text('@sifSoknadForms.virksomhet.form.varigEndring.inntekt.label')}>
-                            {virksomhet.varigEndringINæringsinntekt_inntektEtterEndring.toLocaleString()}
-                        </VirksomhetSummaryBlock>
-                    )}
-                    {virksomhet.varigEndringINæringsinntekt_forklaring && (
-                        <VirksomhetSummaryBlock
-                            header={text('@sifSoknadForms.virksomhet.form.varigEndring.forklaring.label')}>
-                            {virksomhet.varigEndringINæringsinntekt_forklaring}
-                        </VirksomhetSummaryBlock>
+                    {virksomhet.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene === YesOrNo.YES &&
+                        virksomhet.blittYrkesaktivDato && (
+                            <VirksomhetSummaryBlock
+                                header={text('@sifSoknadForms.virksomhet.form.blittYrkesaktivDato.label')}>
+                                {prettifyDate(virksomhet.blittYrkesaktivDato)}
+                            </VirksomhetSummaryBlock>
+                        )}
+                </>
+            )}
+
+            {!erNyoppstartet && virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår !== undefined && (
+                <>
+                    <VirksomhetSummaryBlock header={text('@sifSoknadForms.virksomhet.form.varigEndring.legend')}>
+                        <JaNeiSvar
+                            harSvartJa={virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår === YesOrNo.YES}
+                        />
+                    </VirksomhetSummaryBlock>
+                    {virksomhet.varigEndringINæringsinntekt_dato && (
+                        <>
+                            <VirksomhetSummaryBlock
+                                header={text('@sifSoknadForms.virksomhet.form.varigEndring.dato.label')}>
+                                {prettifyDate(virksomhet.varigEndringINæringsinntekt_dato)}
+                            </VirksomhetSummaryBlock>
+                            {virksomhet.varigEndringINæringsinntekt_inntektEtterEndring !== undefined && (
+                                <VirksomhetSummaryBlock
+                                    header={text('@sifSoknadForms.virksomhet.form.varigEndring.inntekt.label')}>
+                                    {virksomhet.varigEndringINæringsinntekt_inntektEtterEndring.toLocaleString()}
+                                </VirksomhetSummaryBlock>
+                            )}
+                            {virksomhet.varigEndringINæringsinntekt_forklaring && (
+                                <VirksomhetSummaryBlock
+                                    header={text('@sifSoknadForms.virksomhet.form.varigEndring.forklaring.label')}>
+                                    {virksomhet.varigEndringINæringsinntekt_forklaring}
+                                </VirksomhetSummaryBlock>
+                            )}
+                        </>
                     )}
                 </>
             )}
 
             {virksomhet.registrertINorge === YesOrNo.YES && (
                 <VirksomhetSummaryBlock header={text('@sifSoknadForms.virksomhet.form.harRegnskapsfører.legend')}>
-                    {virksomhet.harRegnskapsfører === YesOrNo.YES && virksomhet.regnskapsfører_navn
-                        ? `${virksomhet.regnskapsfører_navn}, tlf. ${virksomhet.regnskapsfører_telefon}`
-                        : 'Nei'}
+                    {virksomhet.harRegnskapsfører === YesOrNo.YES && virksomhet.regnskapsfører_navn ? (
+                        `${virksomhet.regnskapsfører_navn}, tlf. ${virksomhet.regnskapsfører_telefon}`
+                    ) : (
+                        <JaNeiSvar harSvartJa={false} />
+                    )}
                 </VirksomhetSummaryBlock>
             )}
         </VStack>
