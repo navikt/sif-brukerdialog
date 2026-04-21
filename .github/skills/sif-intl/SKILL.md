@@ -1,11 +1,12 @@
 ---
 name: sif-intl
+type: referanse
 description: Mønster for typesikker i18n (nb/nn) i apper og pakker — implementering, parametersjekk og meningssjekk.
 ---
 
 # sif-intl
 
-## Når skal skillen brukes
+## Bruk når
 
 - Du skal legge til eller endre tekster i en app eller pakke.
 - Du skal opprette ny `i18n/nb.ts` eller `i18n/nn.ts`.
@@ -13,6 +14,13 @@ description: Mønster for typesikker i18n (nb/nn) i apper og pakker — implemen
 - Du skal vurdere om meningen i nb- og nn-tekster er ekvivalente.
 - Du arbeider med `AppText`, `useAppIntl`, `useSifXxxIntl`, `applicationIntlMessages`.
 - Du skal trekke ut tekster fra en komponent eller sett med komponenter
+
+## Leveranse
+
+- Typesikre `nb.ts` og `nn.ts` med korrekte nøkler og parametere
+- Verifiserte parametere (identiske `{param}` i nb og nn)
+- Meningsekvivalente tekster på begge målformer
+- Korrekt aggregering i `i18n/index.tsx`
 
 ---
 

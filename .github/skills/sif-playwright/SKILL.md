@@ -1,15 +1,12 @@
 ---
 name: sif-playwright
+type: action
 description: Standard for Playwright e2e-oppsett i app-workspaces (config, scripts, scenario-flyt, første tester, a11y med axe).
 ---
 
 # sif-playwright
 
-## Formål
-
-Sette opp et minimalt, fungerende Playwright e2e-grunnlag i én app-workspace.
-
-## Når skal skillen brukes
+## Bruk når
 
 - Du setter opp Playwright i en app som ikke har e2e-oppsett.
 - Du etablerer første e2e-flyt i appen.

@@ -1,5 +1,6 @@
 ---
 name: sif-soknad-vedlegg-step
+type: action
 description: Implementer et vedleggssteg i en v2-app — VedleggPanel, PersistedVedlegg, hydration og MSW-handlere.
 ---
 
@@ -7,7 +8,10 @@ description: Implementer et vedleggssteg i en v2-app — VedleggPanel, Persisted
 
 ## Bruk når
 
-## Mål
+- Bruker skal legge til filvedlegg (opplasting/sletting) i et steg.
+- Bruker nevner `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`.
+
+## Leveranse
 
 - Opplasting, sletting og hydration virker
 - Mellomlagring oppdateres når vedlegg lastes opp eller slettes

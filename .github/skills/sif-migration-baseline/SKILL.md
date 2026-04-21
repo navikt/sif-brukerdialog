@@ -1,19 +1,22 @@
 ---
 name: sif-migration-baseline
+type: diagnostikk
 description: Lettvekts runbook for migrering av en dialog-app til ny v2 setup med sif-soknad og sif-rhf.
 ---
 
 # sif-migration-baseline
 
-## Formål
-
-Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppsett med `sif-soknad` og `sif-rhf`.
-
-## Når skal skillen brukes
+## Bruk når
 
 - Du starter migrering av én app til v2-oppsett.
 - Du trenger fokusert gjennomføring uten brede monorepo-refaktoreringer.
 - Du vil fange opp gjenbrukbare mønstre underveis.
+
+## Leveranse
+
+- Inkrementelt migrert app med `@sif/soknad` og `@sif/rhf`
+- Migreringsspesifikke notater og mønstre dokumentert
+- Bekreftede mønstre løftet til `docs/migration`
 
 ## Avgrensning
 
