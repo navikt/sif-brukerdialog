@@ -20,28 +20,27 @@ export const utenlandskNæringMessages_nn: Record<keyof typeof utenlandskNæring
     '@sifSoknadForms.utenlandskNæring.form.erPågående.label': 'Er pågåande',
     '@sifSoknadForms.utenlandskNæring.list.label': '{namn} i {land} ({fraOgMed} - {tilOgMed})',
     '@sifSoknadForms.utenlandskNæring.list.pågående': 'pågåande',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.næringstype.noValue':
-        'Vel kva type verksemd du har frå lista.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.navnPåVirksomheten.stringHasNoValue':
+    '@sifSoknadForms.utenlandskNæringForm.validation.næringstype.noValue': 'Vel kva type verksemd du har frå lista.',
+    '@sifSoknadForms.utenlandskNæringForm.validation.navnPåVirksomheten.stringHasNoValue':
         'Skriv inn namnet på verksemda di.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.land.noValue':
+    '@sifSoknadForms.utenlandskNæringForm.validation.land.noValue':
         'Du må velja kva for eit land verksemda di er registrert i. Vel land frå lista.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.fraOgMed.dateHasNoValue':
+    '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateHasNoValue':
         'Du må oppgje kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.fraOgMed.dateIsAfterMax':
+    '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateIsAfterMax':
         'Startdatoen for når du starta verksemda må vera før dags dato. Skriv inn eller vel startdato frå datoveljaren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.fraOgMed.dateHasInvalidFormat':
+    '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateHasInvalidFormat':
         'Du må oppgje startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.fraOgMed.fromDateIsAfterToDate':
+    '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.fromDateIsAfterToDate':
         'Startdatoen for når du starta verksemda må vera før sluttdatoen, eller på same dag som sluttdatoen. Skriv inn eller vel dato frå datoveljaren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.dateHasNoValue':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.dateHasNoValue':
         'Du må oppgje kva dato du avslutta verksemda. Skriv inn eller vel dato frå datoveljaren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.dateIsBeforeMin':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.dateIsBeforeMin':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.dateIsAfterMax':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.dateIsAfterMax':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera etter dags dato. Skriv inn eller vel sluttdato frå datoveljaren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.dateHasInvalidFormat':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.dateHasInvalidFormat':
         'Du må oppgje dato for når du avslutta verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.toDateIsBeforeFromDate':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.toDateIsBeforeFromDate':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
 };

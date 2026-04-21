@@ -46,7 +46,7 @@ export const virksomhetMessages_nn: Record<keyof typeof virksomhetMessages_nb, s
     '@sifSoknadForms.virksomhet.form.regnskapsfører_navn.label': 'Oppgje namnet til rekneskapsføraren',
     '@sifSoknadForms.virksomhet.form.regnskapsfører_telefon.label': 'Oppgje telefonnummeret til rekneskapsføraren',
     '@sifSoknadForms.virksomhet.form.veileder_innhenter_info':
-        'Me innhentar opplysningar om verksemda og inntekta di frå offentlege register. Me tar kontakt med deg viss vi treng fleire opplysningar.',
+        'Me innhentar opplysningar om verksemda og inntekta di frå offentlege register. Me tar kontakt med deg viss me treng fleire opplysningar.',
     '@sifSoknadForms.virksomhet.summary.navn': 'Namn',
     '@sifSoknadForms.virksomhet.summary.næringstype': 'Næringstype',
     '@sifSoknadForms.virksomhet.summary.land': 'Land',
@@ -56,98 +56,100 @@ export const virksomhetMessages_nn: Record<keyof typeof virksomhetMessages_nb, s
     '@sifSoknadForms.virksomhet.summary.pågående': 'pågåande',
     '@sifSoknadForms.virksomhet.summary.fisker.påBladB': 'på Blad B',
     '@sifSoknadForms.virksomhet.summary.fisker.ikkePåBladB': 'ikkje på Blad B',
-    '@sifSoknadFormsVirksomhetForm.validation.næringstype.noValue': 'Vel kva type verksemd du har frå lista.',
-    '@sifSoknadFormsVirksomhetForm.validation.fiskerErPåBladB.yesOrNoIsUnanswered':
+    '@sifSoknadForms.virksomhetForm.validation.næringstype.noValue': 'Vel kva type verksemd du har frå lista.',
+    '@sifSoknadForms.virksomhetForm.validation.fiskerErPåBladB.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på spørsmålet om du er fiskar på Blad B.',
-    '@sifSoknadFormsVirksomhetForm.validation.navnPåVirksomheten.stringHasNoValue': 'Skriv inn namnet på verksemda di.',
-    '@sifSoknadFormsVirksomhetForm.validation.navnPåVirksomheten.stringContainsUnicodeChacters':
+    '@sifSoknadForms.virksomhetForm.validation.navnPåVirksomheten.stringHasNoValue':
+        'Skriv inn namnet på verksemda di.',
+    '@sifSoknadForms.virksomhetForm.validation.navnPåVirksomheten.stringContainsUnicodeChacters':
         'Namnet på verksemda inneheld ugyldige teikn. Prøv å skrive det inn sjølv, i staden for å lime det inn.',
-    '@sifSoknadFormsVirksomhetForm.validation.registrertINorge.yesOrNoIsUnanswered':
+    '@sifSoknadForms.virksomhetForm.validation.registrertINorge.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på spørsmålet om verksemda di er registrert i Noreg.',
-    '@sifSoknadFormsVirksomhetForm.validation.registrertILand.noValue':
+    '@sifSoknadForms.virksomhetForm.validation.registrertILand.noValue':
         'Du må velja kva for eit land verksemda di er registrert i. Vel land frå lista.',
-    '@sifSoknadFormsVirksomhetForm.validation.organisasjonsnummer.orgNumberHasNoValue':
+    '@sifSoknadForms.virksomhetForm.validation.organisasjonsnummer.orgNumberHasNoValue':
         'Skriv inn organisasjonsnummeret. Eit gyldig organisasjonsnummer inneheld 9 siffer.',
-    '@sifSoknadFormsVirksomhetForm.validation.organisasjonsnummer.orgNumberHasInvalidFormat':
+    '@sifSoknadForms.virksomhetForm.validation.organisasjonsnummer.orgNumberHasInvalidFormat':
         'Du har oppgjeve eit ugyldig organisasjonsnummer. Oppgje eit gyldig organisasjonsnummer som inneheld 9 siffer.',
-    '@sifSoknadFormsVirksomhetForm.validation.fom.dateHasNoValue':
+    '@sifSoknadForms.virksomhetForm.validation.fom.dateHasNoValue':
         'Du må oppgje kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
-    '@sifSoknadFormsVirksomhetForm.validation.fom.dateIsAfterMax':
+    '@sifSoknadForms.virksomhetForm.validation.fom.dateIsAfterMax':
         'Startdatoen for verksemda må vera før dags dato. Skriv inn eller vel startdato frå datoveljaren.',
-    '@sifSoknadFormsVirksomhetForm.validation.fom.dateHasInvalidFormat':
+    '@sifSoknadForms.virksomhetForm.validation.fom.dateHasInvalidFormat':
         'Du må oppgje startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadFormsVirksomhetForm.validation.fom.fromDateIsAfterToDate':
+    '@sifSoknadForms.virksomhetForm.validation.fom.fromDateIsAfterToDate':
         'Startdatoen for verksemda må vera før sluttdatoen, eller på same dag som sluttdatoen. Skriv inn eller vel dato frå datoveljaren.',
-    '@sifSoknadFormsVirksomhetForm.validation.tom.dateHasNoValue':
+    '@sifSoknadForms.virksomhetForm.validation.tom.dateHasNoValue':
         'Du må oppgje kva dato du avslutta verksemda. Skriv inn eller vel dato frå datoveljaren.',
-    '@sifSoknadFormsVirksomhetForm.validation.tom.dateIsBeforeMin':
+    '@sifSoknadForms.virksomhetForm.validation.tom.dateIsBeforeMin':
         'Sluttdatoen kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
-    '@sifSoknadFormsVirksomhetForm.validation.tom.dateIsAfterMax':
+    '@sifSoknadForms.virksomhetForm.validation.tom.dateIsAfterMax':
         'Sluttdatoen kan ikkje vera etter dags dato. Skriv inn eller vel sluttdato frå datoveljaren.',
-    '@sifSoknadFormsVirksomhetForm.validation.tom.dateHasInvalidFormat':
+    '@sifSoknadForms.virksomhetForm.validation.tom.dateHasInvalidFormat':
         'Du må oppgje dato for når du avslutta verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadFormsVirksomhetForm.validation.tom.toDateIsBeforeFromDate':
+    '@sifSoknadForms.virksomhetForm.validation.tom.toDateIsBeforeFromDate':
         'Sluttdatoen kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
-    '@sifSoknadFormsVirksomhetForm.validation.næringsinntekt.numberHasNoValue': 'Du må oppgje næringsinntekta.',
-    '@sifSoknadFormsVirksomhetForm.validation.næringsinntekt.numberHasDecimals':
+    '@sifSoknadForms.virksomhetForm.validation.næringsinntekt.numberHasNoValue': 'Du må oppgje næringsinntekta.',
+    '@sifSoknadForms.virksomhetForm.validation.næringsinntekt.numberHasDecimals':
         'Du må oppgje næringsinntekta utan desimalar.',
-    '@sifSoknadFormsVirksomhetForm.validation.næringsinntekt.numberHasInvalidFormat':
+    '@sifSoknadForms.virksomhetForm.validation.næringsinntekt.numberHasInvalidFormat':
         'Du må oppgje eit gyldig tal for næringsinntekta. Eit gyldig tal inneheld berre siffer.',
-    '@sifSoknadFormsVirksomhetForm.validation.næringsinntekt.numberIsTooSmall': 'Talet er for lågt.',
-    '@sifSoknadFormsVirksomhetForm.validation.næringsinntekt.numberIsTooLarge': 'Talet er for høgt.',
-    '@sifSoknadFormsVirksomhetForm.validation.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene.yesOrNoIsUnanswered':
+    '@sifSoknadForms.virksomhetForm.validation.næringsinntekt.numberIsTooSmall': 'Talet er for lågt.',
+    '@sifSoknadForms.virksomhetForm.validation.næringsinntekt.numberIsTooLarge': 'Talet er for høgt.',
+    '@sifSoknadForms.virksomhetForm.validation.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på spørsmålet om du har byrja i arbeidslivet.',
-    '@sifSoknadFormsVirksomhetForm.validation.blittYrkesaktivDato.dateHasNoValue':
+    '@sifSoknadForms.virksomhetForm.validation.blittYrkesaktivDato.dateHasNoValue':
         'Du må oppgje dato for når du byrja i arbeidslivet.',
-    '@sifSoknadFormsVirksomhetForm.validation.blittYrkesaktivDato.dateHasInvalidFormat':
+    '@sifSoknadForms.virksomhetForm.validation.blittYrkesaktivDato.dateHasInvalidFormat':
         'Du må oppgje dato i eit gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadFormsVirksomhetForm.validation.blittYrkesaktivDato.dateIsAfterMax':
+    '@sifSoknadForms.virksomhetForm.validation.blittYrkesaktivDato.dateIsAfterMax':
         'Datoen kan ikkje vera etter dags dato.',
-    '@sifSoknadFormsVirksomhetForm.validation.blittYrkesaktivDato.dateIsBeforeMin': 'Datoen kan ikkje vera før {dato}.',
-    '@sifSoknadFormsVirksomhetForm.validation.hattVarigEndringAvNæringsinntektSiste4Kalenderår.yesOrNoIsUnanswered':
+    '@sifSoknadForms.virksomhetForm.validation.blittYrkesaktivDato.dateIsBeforeMin':
+        'Datoen kan ikkje vera før {dato}.',
+    '@sifSoknadForms.virksomhetForm.validation.hattVarigEndringAvNæringsinntektSiste4Kalenderår.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på spørsmålet om varig endring.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_dato.dateHasNoValue':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_dato.dateHasNoValue':
         'Du må oppgje dato for varig endring.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_dato.dateHasInvalidFormat':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_dato.dateHasInvalidFormat':
         'Du må oppgje dato for varig endring i eit gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_dato.dateIsAfterMax':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_dato.dateIsAfterMax':
         'Datoen for varig endring kan ikkje vera etter {dato}.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_dato.dateIsBeforeMin':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_dato.dateIsBeforeMin':
         'Datoen for varig endring kan ikkje vera før {dato}.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberHasNoValue':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberHasNoValue':
         'Du må oppgje inntekt etter inntektsendringa.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberHasDecimals':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberHasDecimals':
         'Du må oppgje inntekt utan desimalar.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberHasInvalidFormat':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberHasInvalidFormat':
         'Du må oppgje eit gyldig tal for ny inntekt. Eit gyldig tal inneheld berre siffer.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooLarge':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooLarge':
         'Talet er for høgt.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooSmall':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooSmall':
         'Talet er for lågt.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_forklaring.stringHasNoValue':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_forklaring.stringHasNoValue':
         'Skriv ei forklaring på kvifor du har hatt ei varig endring i næringsinntekta.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_forklaring.stringIsTooLong':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_forklaring.stringIsTooLong':
         'Du har brukt for mange teikn. Teksten kan ikkje innehalda fleire enn {maks} teikn.',
-    '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_forklaring.stringIsTooShort':
+    '@sifSoknadForms.virksomhetForm.validation.varigEndringINæringsinntekt_forklaring.stringIsTooShort':
         'Du har brukt for få teikn. Teksten må innehalda minst {min} teikn.',
-    '@sifSoknadFormsVirksomhetForm.validation.harRegnskapsfører.yesOrNoIsUnanswered':
+    '@sifSoknadForms.virksomhetForm.validation.harRegnskapsfører.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på spørsmålet om du har rekneskapsførar.',
-    '@sifSoknadFormsVirksomhetForm.validation.regnskapsfører_navn.stringHasNoValue':
+    '@sifSoknadForms.virksomhetForm.validation.regnskapsfører_navn.stringHasNoValue':
         'Skriv inn namnet på rekneskapsføraren din.',
-    '@sifSoknadFormsVirksomhetForm.validation.regnskapsfører_navn.stringIsTooLong':
+    '@sifSoknadForms.virksomhetForm.validation.regnskapsfører_navn.stringIsTooLong':
         'Namnet kan ikkje innehalda fleire enn {maks} teikn.',
-    '@sifSoknadFormsVirksomhetForm.validation.regnskapsfører_navn.stringIsTooShort':
+    '@sifSoknadForms.virksomhetForm.validation.regnskapsfører_navn.stringIsTooShort':
         'Namnet må innehalda minst {min} teikn.',
-    '@sifSoknadFormsVirksomhetForm.validation.regnskapsfører_navn.stringContainsUnicodeChacters':
+    '@sifSoknadForms.virksomhetForm.validation.regnskapsfører_navn.stringContainsUnicodeChacters':
         'Namnet inneheld ugyldige teikn. Prøv å skrive det inn sjølv, i staden for å lime det inn.',
-    '@sifSoknadFormsVirksomhetForm.validation.regnskapsfører_telefon.stringHasNoValue':
+    '@sifSoknadForms.virksomhetForm.validation.regnskapsfører_telefon.stringHasNoValue':
         'Skriv inn telefonnummeret til rekneskapsføraren din.',
-    '@sifSoknadFormsVirksomhetForm.validation.regnskapsfører_telefon.stringIsTooLong':
+    '@sifSoknadForms.virksomhetForm.validation.regnskapsfører_telefon.stringIsTooLong':
         'Telefonnummeret kan ikkje innehalda fleire enn {maks} teikn.',
-    '@sifSoknadFormsVirksomhetForm.validation.regnskapsfører_telefon.stringIsTooShort':
+    '@sifSoknadForms.virksomhetForm.validation.regnskapsfører_telefon.stringIsTooShort':
         'Telefonnummeret må innehalda minst {min} teikn.',
-    '@sifSoknadFormsVirksomhetForm.validation.regnskapsfører_telefon.stringContainsUnicodeChacters':
+    '@sifSoknadForms.virksomhetForm.validation.regnskapsfører_telefon.stringContainsUnicodeChacters':
         'Telefonnummeret inneheld ugyldige teikn. Prøv å skrive det inn sjølv, i staden for å lime det inn.',
-    '@sifSoknadFormsVirksomhetForm.validation.regnskapsfører_telefon.stringHasInvalidFormat':
+    '@sifSoknadForms.virksomhetForm.validation.regnskapsfører_telefon.stringHasInvalidFormat':
         'Telefonnummeret inneheld ugyldige teikn. Telefonnummeret kan berre innehalda tal, mellomrom og +.',
 };

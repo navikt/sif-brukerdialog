@@ -18,28 +18,28 @@ export const utenlandskNæringMessages_nb = {
     '@sifSoknadForms.utenlandskNæring.form.erPågående.label': 'Er pågående',
     '@sifSoknadForms.utenlandskNæring.list.label': '{navn} i {land} ({fraOgMed} - {tilOgMed})',
     '@sifSoknadForms.utenlandskNæring.list.pågående': 'pågående',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.næringstype.noValue':
+    '@sifSoknadForms.utenlandskNæringForm.validation.næringstype.noValue':
         'Velg hvilken type virksomhet du har fra listen.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.navnPåVirksomheten.stringHasNoValue':
+    '@sifSoknadForms.utenlandskNæringForm.validation.navnPåVirksomheten.stringHasNoValue':
         'Skriv inn navnet på virksomheten din.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.land.noValue':
+    '@sifSoknadForms.utenlandskNæringForm.validation.land.noValue':
         'Du må velge hvilket land virksomheten din er registrert i. Velg land fra listen.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.fraOgMed.dateHasNoValue':
+    '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateHasNoValue':
         'Du må oppgi hvilken dato du startet virksomheten. Skriv inn eller velg startdato fra datovelgeren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.fraOgMed.dateIsAfterMax':
+    '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateIsAfterMax':
         'Startdatoen for når du startet virksomheten må være før dagens dato. Skriv inn eller velg startdato fra datovelgeren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.fraOgMed.dateHasInvalidFormat':
+    '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateHasInvalidFormat':
         'Du må oppgi startdato for virksomheten i et gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.fraOgMed.fromDateIsAfterToDate':
+    '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.fromDateIsAfterToDate':
         'Startdatoen for når du startet virksomheten må være før sluttdatoen, eller på samme dag som sluttdatoen. Skriv inn eller velg dato fra datovelgeren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.dateHasNoValue':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.dateHasNoValue':
         'Du må oppgi hvilken dato du avsluttet virksomheten. Skriv inn eller velg dato fra datovelgeren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.dateIsBeforeMin':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.dateIsBeforeMin':
         'Sluttdatoen for når du avsluttet virksomheten kan ikke være før startdatoen. Skriv inn eller velg sluttdato fra datovelgeren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.dateIsAfterMax':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.dateIsAfterMax':
         'Sluttdatoen for når du avsluttet virksomheten kan ikke være etter dagens dato. Skriv inn eller velg sluttdato fra datovelgeren.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.dateHasInvalidFormat':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.dateHasInvalidFormat':
         'Du må oppgi dato for når du avsluttet virksomheten i et gyldig format. Gyldig format er dd.mm.åååå.',
-    '@sifSoknadFormsUtenlandskNæringForm.validation.tilOgMed.toDateIsBeforeFromDate':
+    '@sifSoknadForms.utenlandskNæringForm.validation.tilOgMed.toDateIsBeforeFromDate':
         'Sluttdatoen for når du avsluttet virksomheten kan ikke være før startdatoen. Skriv inn eller velg sluttdato fra datovelgeren.',
 };

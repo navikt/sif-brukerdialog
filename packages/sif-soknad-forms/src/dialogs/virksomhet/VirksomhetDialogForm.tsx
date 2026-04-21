@@ -54,7 +54,7 @@ export const VirksomhetDialogForm = ({
     onValidSubmit,
 }: Props) => {
     const sifIntl = useSifSoknadFormsIntl();
-    const { validateField } = useSifValidate('@sifSoknadFormsVirksomhetForm');
+    const { validateField } = useSifValidate('@sifSoknadForms.virksomhetForm');
     const methods = useForm<VirksomhetFormValues>({
         defaultValues: virksomhet ? virksomhetToFormValues(virksomhet) : undefined,
     });

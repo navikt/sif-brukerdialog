@@ -18,14 +18,14 @@ const exampleBarn: AnnetBarn[] = [
     {
         id: '1',
         navn: 'Pia Hansen',
-        fnr: '12098912345',
+        fnr: '02489135879',
         fødselsdato: today.subtract(6, 'year').toDate(),
         type: BarnType.fosterbarn,
     },
     {
         id: '2',
         navn: 'Ola Hansen',
-        fnr: '14022012345',
+        fnr: '26492089450',
         fødselsdato: today.subtract(9, 'year').toDate(),
         type: BarnType.annet,
     },

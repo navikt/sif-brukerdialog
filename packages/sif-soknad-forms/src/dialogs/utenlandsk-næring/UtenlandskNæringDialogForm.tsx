@@ -65,7 +65,7 @@ const formValuesToNæring = (values: FormValues, id?: string): UtenlandskNæring
 
 export const UtenlandskNæringDialogForm = ({ formId, næring, onValidSubmit }: Props) => {
     const sifIntl = useSifSoknadFormsIntl();
-    const { validateField } = useSifValidate('@sifSoknadFormsUtenlandskNæringForm');
+    const { validateField } = useSifValidate('@sifSoknadForms.utenlandskNæringForm');
     const methods = useForm<FormValues>({
         defaultValues: næring ? næringToFormValues(næring) : undefined,
     });
