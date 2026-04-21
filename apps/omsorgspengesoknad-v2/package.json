@@ -67,6 +67,8 @@
         "eslint": "9.39.4",
         "eslint-plugin-storybook": "10.3.5",
         "msw": "2.13.4",
+        "playwright": "1.59.1",
+        "playwright-core": "1.59.1",
         "storybook": "10.3.5",
         "tailwindcss": "4.2.2",
         "typescript": "6.0.3",
