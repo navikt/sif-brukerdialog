@@ -20,16 +20,16 @@ test.describe('Arbeidssituasjon', () => {
     test('Fyll ut arbeidssituasjon', async ({ page }) => {
         await page.getByTestId('er-ansatt').getByText('Ja').click();
         await page.getByLabel('Hvor mange timer jobber du').fill('20');
-        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg jobber både som frilanser').check();
-        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').click();
+        await page.getByRole('radiogroup', { name: 'Startet du som frilanser før' }).getByLabel('Ja').click();
         await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('erFortsattFrilanser').getByText('Nei').click();
         await page.getByRole('button', { name: 'Åpne datovelger' }).click();
         await page.getByTestId('er-frilanser-sluttdato').getByLabel('søndag 1', { exact: true }).click();
-        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Nei').click();
+        await page.getByRole('radiogroup', { name: 'Startet du som frilanser før' }).getByLabel('Nei').click();
         await page
             .locator('div')
             .filter({ hasText: /^Når sluttet du å jobbe som frilanser\?$/ })
@@ -54,7 +54,7 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByRole('dialog', { name: 'Velg dato' }).getByLabel('År').selectOption('2018');
         await page.getByLabel('onsdag 17').click();
         await page.getByText('Er pågående').click();
-        await page.getByRole('group', { name: 'Har du hatt en varig endring' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Har du hatt en varig endring' }).getByLabel('Ja').check();
         await page.getByRole('button', { name: 'Åpne datovelger' }).nth(4).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
@@ -63,7 +63,7 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('Oppgi næringsinntekten din').fill('20000');
         await page.getByLabel('Oppgi næringsinntekten din').press('Tab');
         await page.getByLabel('Her kan du skrive kort hva').fill('Det endret seg');
-        await page.getByRole('group', { name: 'Har du regnskapsfører?' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Har du regnskapsfører?' }).getByLabel('Ja').check();
         await page.getByLabel('Oppgi navnet til regnskapsfø').click();
         await page.getByLabel('Oppgi navnet til regnskapsfø').fill('Regn Skap');
         await page.getByLabel('Oppgi telefonnummeret til').click();

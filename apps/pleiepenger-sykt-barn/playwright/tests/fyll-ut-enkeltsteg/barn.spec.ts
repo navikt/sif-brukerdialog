@@ -33,7 +33,7 @@ test.describe('Barn steg', () => {
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('torsdag 1', { exact: true }).click();
         await page.getByText('Fosterforelder').click();
-        await page.getByRole('group', { name: 'Hvilken relasjon har du til' }).getByLabel('Annet').check();
+        await page.getByRole('radiogroup', { name: 'Hvilken relasjon har du til' }).getByLabel('Annet').check();
         await page.getByTestId('opplysninger-om-barnet-relasjonAnnetBeskrivelse').click();
         await page.getByTestId('opplysninger-om-barnet-relasjonAnnetBeskrivelse').fill('Beskrivelse');
         const [fileChooser] = await Promise.all([

@@ -17,13 +17,13 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Fosterhjemsgodtgjørelse ', () => {
     test('Mottar ikke fosterhjemsgodtgjørelse', async ({ page }) => {
-        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Mottar ikke fosterhjemsgodtgjø')).toBeVisible();
     });
     test('Mottar fosterhjemsgodtgjørelse, er frikjøpt ', async ({ page }) => {
-        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Er du frikjøpt' }).getByLabel('Ja').check();
         await page.getByRole('textbox', { name: 'Beskriv detaljer om frikjøp' }).fill('detaljer om frikjøp');
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Mottar fosterhjemsgodtgjø')).toBeVisible();
@@ -31,18 +31,18 @@ test.describe('Fosterhjemsgodtgjørelse ', () => {
         await expect(page.getByText('detaljer om frikjøp', { exact: true })).toBeVisible();
     });
     test('Mottar fosterhjemsgodtgjørelse - er ikke frikjøpt - mottar hele perioden', async ({ page }) => {
-        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Er du frikjøpt' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Ja').check();
     });
     test('Mottar fosterhjemsgodtgjørelse - er ikke frikjøpt - mottar deler av perioden', async ({ page }) => {
-        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Starter godtgjørelsen' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Er du frikjøpt' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Starter godtgjørelsen' }).getByLabel('Ja').check();
         await page.getByRole('button', { name: 'Åpne datovelger' }).click();
         await page.getByLabel('mandag 2', { exact: true }).click();
-        await page.getByRole('group', { name: 'Stopper godtgjørelsen' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Stopper godtgjørelsen' }).getByLabel('Ja').check();
         await page
             .locator('div')
             .filter({ hasText: /^Sluttdato:$/ })
@@ -63,13 +63,16 @@ test.describe('Fosterhjemsgodtgjørelse ', () => {
 
 test.describe('Omsorgsstønad', () => {
     test('Mottar ikke omsorgsstønad', async ({ page }) => {
-        await page.getByRole('group', { name: 'Mottar du omsorgss' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du omsorgss' }).getByLabel('Nei').check();
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Mottar ikke omsorgss')).toBeVisible();
     });
     test('Mottar omsorgsstønad i hele perioden', async ({ page }) => {
-        await page.getByRole('group', { name: 'Mottar du omsorgss' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Mottar du denne omsorgsstønaden gjennom' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du omsorgss' }).getByLabel('Ja').check();
+        await page
+            .getByRole('radiogroup', { name: 'Mottar du denne omsorgsstønaden gjennom' })
+            .getByLabel('Ja')
+            .check();
         await page.getByRole('textbox', { name: 'Hvor mange timer i uken har' }).fill('5');
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Mottar omsorgsstønaden gjennom hele perioden jeg søker om')).toBeVisible();
@@ -91,18 +94,21 @@ test.describe('Frilanser', () => {
     });
 
     test('Er ikke frilanser og mottar omsorgsstønad', async ({ page }) => {
-        await page.getByRole('group', { name: 'Mottar du omsorgss' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Mottar du denne omsorgsstønaden gjennom' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du omsorgss' }).getByLabel('Ja').check();
+        await page
+            .getByRole('radiogroup', { name: 'Mottar du denne omsorgsstønaden gjennom' })
+            .getByLabel('Ja')
+            .check();
         await page.getByRole('textbox', { name: 'Hvor mange timer i uken har' }).fill('5');
-        await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Nei').click();
+        await page.getByRole('radiogroup', { name: 'Jobber du som frilanser eller' }).getByLabel('Nei').click();
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Er ikke frilanser og får ikke')).toBeVisible();
     });
 
     test('Er kun frilanser', async ({ page }) => {
-        await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg jobber som frilanser').check();
-        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
         await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');
 
@@ -120,10 +126,10 @@ test.describe('Frilanser', () => {
     });
 
     test('Mottar kun honorar - mister honorar', async ({ page }) => {
-        await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg mottar honorar').check();
         await page.getByTestId('misterHonorar').getByText('Ja').click();
-        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
         await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');
@@ -142,7 +148,7 @@ test.describe('Frilanser', () => {
         await expect(summary.getByText('Startet som frilanser før 1. oktober')).toBeVisible();
     });
     test('Mottar kun honorar - mister ikke honorar', async ({ page }) => {
-        await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg mottar honorar').check();
         await page.getByTestId('misterHonorar').getByText('Nei').click();
         await page.getByTestId('typedFormikForm-submitButton').click();
@@ -153,9 +159,9 @@ test.describe('Frilanser', () => {
         await expect(summary.getByText('Mister ikke honorar i sø')).toBeVisible();
     });
     test('Er frilanser og mottar honorar', async ({ page }) => {
-        await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByText('Jeg jobber både som frilanser').check();
-        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
         await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');

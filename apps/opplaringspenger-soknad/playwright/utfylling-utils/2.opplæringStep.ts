@@ -82,7 +82,7 @@ const leggTilPeriode2 = async (page: Page) => {
 
 const leggTilReisedag = async (page: Page) => {
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Er noen av dagene i perioden',
         })
         .getByLabel('Ja')
@@ -97,8 +97,11 @@ const leggTilReisedag = async (page: Page) => {
 };
 
 const leggTilFerie = async (page: Page, perioder: number = 0) => {
-    await page.getByRole('group', { name: 'Skal du ha ferie i løpet av søknadsperioden' }).getByLabel('Ja').check();
-    await page.getByRole('group', { name: 'Ferie i perioden' }).click();
+    await page
+        .getByRole('radiogroup', { name: 'Skal du ha ferie i løpet av søknadsperioden' })
+        .getByLabel('Ja')
+        .check();
+    await page.getByRole('radiogroup', { name: 'Ferie i perioden' }).click();
     await page.getByRole('button', { name: 'Legg til ferie' }).click();
     await page
         .getByRole('button', { name: 'Åpne datovelger' })
@@ -117,13 +120,13 @@ const leggTilFerie = async (page: Page, perioder: number = 0) => {
 
 const svarIngenUtenlandsopphold = async (page: Page) => {
     await page
-        .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
+        .getByRole('radiogroup', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
         .getByLabel('Nei')
         .check();
 };
 
 export const leggTilUtenlandsopphold = async (page: Page) => {
-    await page.getByRole('group', { name: 'Oppholder du deg i utlandet i' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Oppholder du deg i utlandet i' }).getByLabel('Ja').check();
     await page.getByRole('button', { name: 'Legg til utenlandsopphold' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(2).click();
     await page.getByRole('button', { name: 'fredag 6' }).click();
