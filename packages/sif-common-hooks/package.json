@@ -6,7 +6,7 @@
     "type": "module",
     "dependencies": {
         "react": "19.2.5",
-        "typescript": "6.0.2"
+        "typescript": "6.0.3"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",

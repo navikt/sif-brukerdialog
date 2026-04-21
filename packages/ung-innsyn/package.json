@@ -26,7 +26,7 @@
         "build-storybook": "storybook build"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.9.1",
+        "@navikt/ds-react": "8.10.1",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
@@ -54,7 +54,7 @@
         "react-dom": "19.2.5",
         "react-router-dom": "7.14.1",
         "storybook": "10.3.5",
-        "typescript": "6.0.2",
+        "typescript": "6.0.3",
         "vite": "8.0.8",
         "vitest": "4.1.4"
     }
