@@ -6,4 +6,6 @@ export * from './fosterbarn';
 export * from './fravær';
 export * from './opptjening-utland';
 export * from './tidsperiode';
+export * from './utenlandsk-næring';
 export * from './utenlandsopphold';
+export * from './virksomhet';
