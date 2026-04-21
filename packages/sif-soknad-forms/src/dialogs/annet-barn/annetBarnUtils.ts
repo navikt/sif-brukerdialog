@@ -1,5 +1,6 @@
 import { dateUtils } from '@navikt/sif-common-utils';
-import { hasValue, validationUtils } from '@navikt/sif-validation';
+import { hasValue } from '@navikt/sif-validation';
+import { datePickerUtils } from '@sif/rhf';
 
 import { AnnetBarn, AnnetBarnFormValues } from './index';
 
@@ -9,7 +10,7 @@ export const isAnnetBarn = (annetBarn: Partial<AnnetBarn>): annetBarn is AnnetBa
 };
 
 export const formValuesToAnnetBarn = (formValues: AnnetBarnFormValues, id?: string): AnnetBarn => {
-    const fødselsdato = validationUtils.getDateFromDateString(formValues.fødselsdato);
+    const fødselsdato = datePickerUtils.parseDatePickerValue(formValues.fødselsdato);
     const annetBarn = {
         ...formValues,
         id: id || crypto.randomUUID(),

@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, getRequiredFieldValidator, getStringValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getDateRangeValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -42,8 +42,8 @@ const opptjeningToFormValues = (opptjening: OpptjeningUtland): OpptjeningUtlandF
 });
 
 const formValuesToOpptjeningUtland = (values: OpptjeningUtlandFormValues, id?: string): OpptjeningUtland => {
-    const fom = validationUtils.getDateFromDateString(values.fom);
-    const tom = validationUtils.getDateFromDateString(values.tom);
+    const fom = datePickerUtils.parseDatePickerValue(values.fom);
+    const tom = datePickerUtils.parseDatePickerValue(values.tom);
     if (!fom || !tom || !values.landkode || !values.opptjeningType || !values.navn) {
         throw new Error('Invalid opptjening utland values');
     }
@@ -102,13 +102,15 @@ export const OpptjeningUtlandDialogForm = ({ formId, opptjening, minDate, maxDat
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            toDate: validationUtils.getDateFromDateString(
+                                            toDate: datePickerUtils.parseDatePickerValue(
                                                 methods.getValues(OpptjeningUtlandFormFields.tom),
                                             ),
                                         }).validateFromDate(value),
                                     (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                        if (errorCode === 'dateIsBeforeMin')
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax')
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
                                     },
                                 ),
                             }}
@@ -124,13 +126,15 @@ export const OpptjeningUtlandDialogForm = ({ formId, opptjening, minDate, maxDat
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            fromDate: validationUtils.getDateFromDateString(
+                                            fromDate: datePickerUtils.parseDatePickerValue(
                                                 methods.getValues(OpptjeningUtlandFormFields.fom),
                                             ),
                                         }).validateToDate(value),
                                     (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                        if (errorCode === 'dateIsBeforeMin')
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax')
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
                                     },
                                 ),
                             }}
@@ -141,7 +145,10 @@ export const OpptjeningUtlandDialogForm = ({ formId, opptjening, minDate, maxDat
                                     name={OpptjeningUtlandFormFields.landkode}
                                     label={sifIntl.text('@sifSoknadForms.opptjeningUtland.form.land.label')}
                                     showOnlyEuAndEftaCountries={true}
-                                    validate={validateField(OpptjeningUtlandFormFields.landkode, getRequiredFieldValidator())}
+                                    validate={validateField(
+                                        OpptjeningUtlandFormFields.landkode,
+                                        getRequiredFieldValidator(),
+                                    )}
                                 />
                                 <RadioGroup
                                     name={OpptjeningUtlandFormFields.opptjeningType}
@@ -160,7 +167,10 @@ export const OpptjeningUtlandDialogForm = ({ formId, opptjening, minDate, maxDat
                                             ),
                                         },
                                     ]}
-                                    validate={validateField(OpptjeningUtlandFormFields.opptjeningType, getRequiredFieldValidator())}
+                                    validate={validateField(
+                                        OpptjeningUtlandFormFields.opptjeningType,
+                                        getRequiredFieldValidator(),
+                                    )}
                                 />
                                 {opptjeningType && (
                                     <TextField
@@ -174,7 +184,10 @@ export const OpptjeningUtlandDialogForm = ({ formId, opptjening, minDate, maxDat
                                                       '@sifSoknadForms.opptjeningUtland.form.oppdragsgiverNavn.label',
                                                   )
                                         }
-                                        validate={validateField(OpptjeningUtlandFormFields.navn, getStringValidator({ required: true }))}
+                                        validate={validateField(
+                                            OpptjeningUtlandFormFields.navn,
+                                            getStringValidator({ required: true }),
+                                        )}
                                     />
                                 )}
                             </>

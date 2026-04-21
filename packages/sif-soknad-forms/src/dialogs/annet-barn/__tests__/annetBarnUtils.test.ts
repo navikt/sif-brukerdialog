@@ -38,4 +38,14 @@ describe('annetBarnUtils', () => {
         expect(isAnnetBarn({ ...annetBarn, fnr: undefined })).toBe(false);
         expect(isAnnetBarn({ fnr, navn, fødselsdato })).toBe(true);
     });
+
+    it('genererer id når ingen oppgis', () => {
+        const result = formValuesToAnnetBarn(formValues);
+        expect(result.id).toBeDefined();
+        expect(result.id).not.toBe(id);
+    });
+
+    it('kaster ved ugyldig fødselsdato', () => {
+        expect(() => formValuesToAnnetBarn({ ...formValues, fødselsdato: 'ugyldig' })).toThrow();
+    });
 });

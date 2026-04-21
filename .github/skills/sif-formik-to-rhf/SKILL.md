@@ -349,6 +349,22 @@ import { DateRange } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 ```
 
+## Datohåndtering
+
+Dato-APIet er delt i to lag:
+
+| Lag | Pakke | Eksport | Bruksområde |
+|-----|-------|---------|-------------|
+| Datepicker-parsing | `@sif/rhf` → `datePickerUtils` | `parseDatePickerValue(value)`, `getDisabledDates(...)` | Konverterer brukerinput fra datepicker (ISO-streng eller norske datoformater) til `Date \| undefined` |
+| Generell ISO-konvertering | `@navikt/sif-common-utils` → `dateUtils` | `dateToISODate(date)`, `ISODateToDate(iso)`, `isISODateString(value)` | Konvertering mellom `Date` og `ISODate`-strenger |
+
+**Regler for mapping-funksjoner i steg-utils:**
+
+- `toSøknadsdata` / `formValuesToXxx`: Bruk `datePickerUtils.parseDatePickerValue(value)` for å parse datepicker-verdier til `Date`.
+- `toFormValues` / `xxxToFormValues`: Bruk `dateUtils.dateToISODate(date)` for å konvertere `Date` til ISO-streng.
+- For typeguard: `dateUtils.isISODateString(value)`.
+- `new Date(...)` skal ikke brukes for datoparsing i runtime-kode. `ISODateToDate` er greit i tester/mock.
+
 ## Sjekkliste
 
 - [ ] Alle `@navikt/sif-common-formik-ds`-importer er fjernet fra skjemafilen

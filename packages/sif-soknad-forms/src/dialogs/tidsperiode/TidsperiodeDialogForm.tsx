@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getDateRangeValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -34,8 +34,8 @@ const tidsperiodeToFormValues = (tidsperiode: DateTidsperiode): TidsperiodeFormV
 });
 
 const formValuesToDateTidsperiode = (values: TidsperiodeFormValues, id?: string): DateTidsperiode => {
-    const fom = validationUtils.getDateFromDateString(values.fom);
-    const tom = validationUtils.getDateFromDateString(values.tom);
+    const fom = datePickerUtils.parseDatePickerValue(values.fom);
+    const tom = datePickerUtils.parseDatePickerValue(values.tom);
     if (!fom || !tom) {
         throw new Error('Invalid date values');
     }
@@ -53,9 +53,7 @@ const getDisabledDateRanges = (
     if (!tidsperiode) {
         return alleTidsperioder.map((t) => ({ from: t.fom, to: t.tom }));
     }
-    return alleTidsperioder
-        .filter((t) => t.id !== tidsperiode.id)
-        .map((t) => ({ from: t.fom, to: t.tom }));
+    return alleTidsperioder.filter((t) => t.id !== tidsperiode.id).map((t) => ({ from: t.fom, to: t.tom }));
 };
 
 export const TidsperiodeDialogForm = ({
@@ -106,7 +104,7 @@ export const TidsperiodeDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            toDate: validationUtils.getDateFromDateString(
+                                            toDate: datePickerUtils.parseDatePickerValue(
                                                 methods.getValues(TidsperiodeFormFields.tom),
                                             ),
                                         }).validateFromDate(value),
@@ -131,7 +129,7 @@ export const TidsperiodeDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            fromDate: validationUtils.getDateFromDateString(
+                                            fromDate: datePickerUtils.parseDatePickerValue(
                                                 methods.getValues(TidsperiodeFormFields.fom),
                                             ),
                                         }).validateToDate(value),

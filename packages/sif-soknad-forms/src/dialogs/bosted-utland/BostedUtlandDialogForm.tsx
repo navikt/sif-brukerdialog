@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateUtils, getCountryName } from '@navikt/sif-common-utils';
-import { getDateValidator, getRequiredFieldValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -31,8 +31,8 @@ type BostedUtlandFormValues = {
 const { DateRangePicker, CountrySelect } = createSifFormComponents<BostedUtlandFormValues>();
 
 const formValuesToBostedUtland = (values: BostedUtlandFormValues, locale: string, bostedId?: string): BostedUtland => {
-    const from = validationUtils.getDateFromDateString(values.fom);
-    const to = validationUtils.getDateFromDateString(values.tom);
+    const from = datePickerUtils.parseDatePickerValue(values.fom);
+    const to = datePickerUtils.parseDatePickerValue(values.tom);
     if (!from || !to) {
         throw new Error('Invalid date values');
     }

@@ -1,12 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateUtils, getDateToday } from '@navikt/sif-common-utils';
-import {
-    getDateRangeValidator,
-    getRequiredFieldValidator,
-    getStringValidator,
-    validationUtils,
-} from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getDateRangeValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { useEffect } from 'react';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
@@ -52,7 +47,7 @@ const næringToFormValues = (næring: UtenlandskNæring): FormValues => ({
 });
 
 const formValuesToNæring = (values: FormValues, id?: string): UtenlandskNæring => {
-    const fraOgMed = validationUtils.getDateFromDateString(values.fraOgMed);
+    const fraOgMed = datePickerUtils.parseDatePickerValue(values.fraOgMed);
     if (!fraOgMed || !values.land || !values.næringstype || !values.navnPåVirksomheten) {
         throw new Error('Invalid UtenlandskNæring form values');
     }
@@ -63,7 +58,7 @@ const formValuesToNæring = (values: FormValues, id?: string): UtenlandskNæring
         land: values.land,
         identifikasjonsnummer: values.identifikasjonsnummer || undefined,
         fraOgMed,
-        tilOgMed: values.erPågående ? undefined : validationUtils.getDateFromDateString(values.tilOgMed),
+        tilOgMed: values.erPågående ? undefined : datePickerUtils.parseDatePickerValue(values.tilOgMed),
         erPågående: values.erPågående || undefined,
     };
 };
@@ -171,7 +166,7 @@ export const UtenlandskNæringDialogForm = ({ formId, næring, onValidSubmit }: 
                                         getDateRangeValidator({
                                             required: true,
                                             max: maxDate,
-                                            toDate: validationUtils.getDateFromDateString(
+                                            toDate: datePickerUtils.parseDatePickerValue(
                                                 methods.getValues(FormFields.tilOgMed),
                                             ),
                                         }).validateFromDate(value),
@@ -194,7 +189,7 @@ export const UtenlandskNæringDialogForm = ({ formId, næring, onValidSubmit }: 
                                               getDateRangeValidator({
                                                   required: true,
                                                   max: maxDate,
-                                                  fromDate: validationUtils.getDateFromDateString(
+                                                  fromDate: datePickerUtils.parseDatePickerValue(
                                                       methods.getValues(FormFields.fraOgMed),
                                                   ),
                                               }).validateToDate(value),

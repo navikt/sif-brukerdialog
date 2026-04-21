@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getDateRangeValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -39,8 +39,8 @@ const ferieuttakToFormValues = (ferieuttak: Ferieuttak): FerieuttakFormValues =>
 });
 
 const formValuesToFerieuttak = (values: FerieuttakFormValues, id?: string): Ferieuttak => {
-    const from = validationUtils.getDateFromDateString(values.fom);
-    const to = validationUtils.getDateFromDateString(values.tom);
+    const from = datePickerUtils.parseDatePickerValue(values.fom);
+    const to = datePickerUtils.parseDatePickerValue(values.tom);
     if (!from || !to) {
         throw new Error('Invalid date values');
     }
@@ -104,13 +104,15 @@ export const FerieuttakDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            toDate: validationUtils.getDateFromDateString(
+                                            toDate: datePickerUtils.parseDatePickerValue(
                                                 methods.getValues(FerieuttakFormFields.tom),
                                             ),
                                         }).validateFromDate(value),
                                     (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                        if (errorCode === 'dateIsBeforeMin')
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax')
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
                                     },
                                 ),
                             }}
@@ -128,13 +130,15 @@ export const FerieuttakDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            fromDate: validationUtils.getDateFromDateString(
+                                            fromDate: datePickerUtils.parseDatePickerValue(
                                                 methods.getValues(FerieuttakFormFields.fom),
                                             ),
                                         }).validateToDate(value),
                                     (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                        if (errorCode === 'dateIsBeforeMin')
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax')
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
                                     },
                                 ),
                             }}

@@ -67,12 +67,17 @@ const getNumberFromString = (value: string): number | undefined => {
 };
 
 export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string): Virksomhet => {
-    const fom = new Date(values.fom);
+    const fom = values.fom ? dateUtils.ISODateToDate(values.fom) : undefined;
     const næringstype = values.næringstype as Næringstype;
     const registrertINorge = values.registrertINorge as YesOrNo;
     const harRegnskapsfører =
         registrertINorge === YesOrNo.YES ? (values.harRegnskapsfører as YesOrNo) : YesOrNo.UNANSWERED;
     const erPågående = values.erPågående;
+
+    if (!fom) {
+        throw new Error('Invalid virksomhet values');
+    }
+
     const erNyoppstartet = erVirksomhetRegnetSomNyoppstartet(fom);
 
     return {
@@ -84,7 +89,7 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
         registrertILand: registrertINorge === YesOrNo.NO ? values.registrertILand || undefined : undefined,
         organisasjonsnummer: registrertINorge === YesOrNo.YES ? values.organisasjonsnummer || undefined : undefined,
         fom,
-        tom: erPågående ? undefined : values.tom ? new Date(values.tom) : undefined,
+        tom: erPågående ? undefined : values.tom ? dateUtils.ISODateToDate(values.tom) : undefined,
         erPågående: erPågående || undefined,
         næringsinntekt: erNyoppstartet ? getNumberFromString(values.næringsinntekt) : undefined,
         harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene: erNyoppstartet
@@ -94,7 +99,7 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
             erNyoppstartet &&
             values.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene === YesOrNo.YES &&
             values.blittYrkesaktivDato
-                ? new Date(values.blittYrkesaktivDato)
+                ? dateUtils.ISODateToDate(values.blittYrkesaktivDato)
                 : undefined,
         hattVarigEndringAvNæringsinntektSiste4Kalenderår: !erNyoppstartet
             ? (values.hattVarigEndringAvNæringsinntektSiste4Kalenderår as YesOrNo)
@@ -103,7 +108,7 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
             !erNyoppstartet &&
             values.hattVarigEndringAvNæringsinntektSiste4Kalenderår === YesOrNo.YES &&
             values.varigEndringINæringsinntekt_dato
-                ? new Date(values.varigEndringINæringsinntekt_dato)
+                ? dateUtils.ISODateToDate(values.varigEndringINæringsinntekt_dato)
                 : undefined,
         varigEndringINæringsinntekt_inntektEtterEndring:
             !erNyoppstartet && values.hattVarigEndringAvNæringsinntektSiste4Kalenderår === YesOrNo.YES

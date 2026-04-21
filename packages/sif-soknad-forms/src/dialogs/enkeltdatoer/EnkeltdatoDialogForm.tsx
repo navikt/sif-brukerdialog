@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getDateRangeValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -36,7 +36,7 @@ const enkeltdatoToFormValues = (enkeltdato: Enkeltdato): EnkeltdatoFormValues =>
 });
 
 const formValuesToEnkeltdato = (values: EnkeltdatoFormValues, id?: string): Enkeltdato => {
-    const dato = validationUtils.getDateFromDateString(values.dato);
+    const dato = datePickerUtils.parseDatePickerValue(values.dato);
     if (!dato) {
         throw new Error('Invalid dato value');
     }
@@ -98,8 +98,10 @@ export const EnkeltdatoDialogForm = ({
                                         max: maxDate,
                                     }).validateFromDate(value),
                                 (errorCode) => {
-                                    if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                    if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    if (errorCode === 'dateIsBeforeMin')
+                                        return { dato: sifIntl.date(minDate, 'compact') };
+                                    if (errorCode === 'dateIsAfterMax')
+                                        return { dato: sifIntl.date(maxDate, 'compact') };
                                 },
                             )}
                         />

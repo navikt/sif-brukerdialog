@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getDateRangeValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -40,8 +40,8 @@ const fraværPeriodeToFormValues = (fraværPeriode: FraværPeriode): FraværPeri
 });
 
 const formValuesToFraværPeriode = (values: FraværPeriodeFormValues, id?: string): FraværPeriode => {
-    const fraOgMed = validationUtils.getDateFromDateString(values.fraOgMed);
-    const tilOgMed = validationUtils.getDateFromDateString(values.tilOgMed);
+    const fraOgMed = datePickerUtils.parseDatePickerValue(values.fraOgMed);
+    const tilOgMed = datePickerUtils.parseDatePickerValue(values.tilOgMed);
     if (!fraOgMed || !tilOgMed) {
         throw new Error('Invalid date values');
     }
@@ -86,11 +86,11 @@ export const FraværPeriodeDialogForm = ({
     };
 
     const validateFromDate = (value: string): string | undefined => {
-        const date = validationUtils.getDateFromDateString(value);
+        const date = datePickerUtils.parseDatePickerValue(value);
         if (helgedagerIkkeTillat && date && dateErHelg(date)) {
             return 'er_helg';
         }
-        const toDate = validationUtils.getDateFromDateString(methods.getValues(FraværPeriodeFormFields.tilOgMed));
+        const toDate = datePickerUtils.parseDatePickerValue(methods.getValues(FraværPeriodeFormFields.tilOgMed));
         if (begrensTilSammeÅr && date && toDate && date.getFullYear() !== toDate.getFullYear()) {
             return 'fra_og_til_er_ulike_år';
         }
@@ -103,11 +103,11 @@ export const FraværPeriodeDialogForm = ({
     };
 
     const validateToDate = (value: string): string | undefined => {
-        const date = validationUtils.getDateFromDateString(value);
+        const date = datePickerUtils.parseDatePickerValue(value);
         if (helgedagerIkkeTillat && date && dateErHelg(date)) {
             return 'er_helg';
         }
-        const fromDate = validationUtils.getDateFromDateString(methods.getValues(FraværPeriodeFormFields.fraOgMed));
+        const fromDate = datePickerUtils.parseDatePickerValue(methods.getValues(FraværPeriodeFormFields.fraOgMed));
         if (begrensTilSammeÅr && date && fromDate && date.getFullYear() !== fromDate.getFullYear()) {
             return 'fra_og_til_er_ulike_år';
         }
@@ -150,10 +150,7 @@ export const FraværPeriodeDialogForm = ({
                             validate={(range) => {
                                 const errorCode = validateRange(range);
                                 if (errorCode) {
-                                    return validateField(
-                                        'fraværPeriode',
-                                        () => errorCode,
-                                    )('');
+                                    return validateField('fraværPeriode', () => errorCode)('');
                                 }
                                 return undefined;
                             }}
@@ -168,8 +165,10 @@ export const FraværPeriodeDialogForm = ({
                                     FraværPeriodeFormFields.fraOgMed,
                                     validateFromDate,
                                     (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                        if (errorCode === 'dateIsBeforeMin')
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax')
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
                                     },
                                 ),
                             }}
@@ -184,8 +183,10 @@ export const FraværPeriodeDialogForm = ({
                                     FraværPeriodeFormFields.tilOgMed,
                                     validateToDate,
                                     (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                        if (errorCode === 'dateIsBeforeMin')
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax')
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
                                     },
                                 ),
                             }}

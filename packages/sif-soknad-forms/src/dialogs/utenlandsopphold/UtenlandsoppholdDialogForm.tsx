@@ -1,13 +1,8 @@
 import { Button } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { countryIsMemberOfEøsOrEfta, DateRange, dateUtils, getCountryName } from '@navikt/sif-common-utils';
-import {
-    getDateRangeValidator,
-    getRequiredFieldValidator,
-    getYesOrNoValidator,
-    validationUtils,
-} from '@navikt/sif-validation';
-import { createSifFormComponents, SifInputGroup, useSifValidate, YesOrNo } from '@sif/rhf';
+import { getDateRangeValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, datePickerUtils, SifInputGroup, useSifValidate, YesOrNo } from '@sif/rhf';
 import { useEffect, useState } from 'react';
 import { FormProvider, useFieldArray, useForm, useWatch } from 'react-hook-form';
 
@@ -110,8 +105,8 @@ const formValuesToUtenlandsopphold = (
     id?: string,
 ): Utenlandsopphold => {
     const oppholdId = id || crypto.randomUUID();
-    const fom = validationUtils.getDateFromDateString(values.fom);
-    const tom = validationUtils.getDateFromDateString(values.tom);
+    const fom = datePickerUtils.parseDatePickerValue(values.fom);
+    const tom = datePickerUtils.parseDatePickerValue(values.tom);
     if (!fom || !tom || !values.landkode) {
         throw new Error('Invalid utenlandsopphold values');
     }
@@ -268,8 +263,8 @@ export const UtenlandsoppholdDialogForm = ({
         }
     };
 
-    const fromDate = validationUtils.getDateFromDateString(fom);
-    const toDate = validationUtils.getDateFromDateString(tom);
+    const fromDate = datePickerUtils.parseDatePickerValue(fom);
+    const toDate = datePickerUtils.parseDatePickerValue(tom);
 
     return (
         <FormProvider {...methods}>
@@ -299,7 +294,7 @@ export const UtenlandsoppholdDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            toDate: validationUtils.getDateFromDateString(
+                                            toDate: datePickerUtils.parseDatePickerValue(
                                                 getValues(UtenlandsoppholdFormFields.tom),
                                             ),
                                         }).validateFromDate(value),
@@ -324,7 +319,7 @@ export const UtenlandsoppholdDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            fromDate: validationUtils.getDateFromDateString(
+                                            fromDate: datePickerUtils.parseDatePickerValue(
                                                 getValues(UtenlandsoppholdFormFields.fom),
                                             ),
                                         }).validateToDate(value),

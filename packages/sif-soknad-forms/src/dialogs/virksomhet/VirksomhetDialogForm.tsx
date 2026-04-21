@@ -9,9 +9,8 @@ import {
     getRequiredFieldValidator,
     getStringValidator,
     getYesOrNoValidator,
-    validationUtils,
 } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
+import { createSifFormComponents, datePickerUtils, useSifValidate, YesOrNo } from '@sif/rhf';
 import { useEffect } from 'react';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
@@ -69,7 +68,7 @@ export const VirksomhetDialogForm = ({
     const harBlittYrkesaktiv = watch('harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene') as YesOrNo | undefined;
     const hattVarigEndring = watch('hattVarigEndringAvNæringsinntektSiste4Kalenderår') as YesOrNo | undefined;
     const fomString = watch('fom');
-    const fomDate = validationUtils.getDateFromDateString(fomString);
+    const fomDate = datePickerUtils.parseDatePickerValue(fomString);
 
     const maxDate = getDateToday();
     const registrertSomNorsk = registrertINorge === YesOrNo.YES;
@@ -202,7 +201,7 @@ export const VirksomhetDialogForm = ({
                                                 getDateRangeValidator({
                                                     required: true,
                                                     max: maxDate,
-                                                    toDate: validationUtils.getDateFromDateString(
+                                                    toDate: datePickerUtils.parseDatePickerValue(
                                                         methods.getValues('tom'),
                                                     ),
                                                 }).validateFromDate(value),
@@ -225,7 +224,7 @@ export const VirksomhetDialogForm = ({
                                                       getDateRangeValidator({
                                                           required: true,
                                                           max: maxDate,
-                                                          fromDate: validationUtils.getDateFromDateString(
+                                                          fromDate: datePickerUtils.parseDatePickerValue(
                                                               methods.getValues('fom'),
                                                           ),
                                                       }).validateToDate(value),

@@ -1,3 +1,5 @@
+import { dateUtils } from '@navikt/sif-common-utils';
+
 import { datePickerUtils } from './datePickerUtils';
 
 describe('datePickerUtils', () => {
@@ -14,7 +16,7 @@ describe('datePickerUtils', () => {
     it('serialiserer valgt kalenderdato til ISO-format', () => {
         const selectedDate = new Date(2026, 3, 2);
 
-        expect(datePickerUtils.dateToISODateString(selectedDate)).toBe('2026-04-02');
+        expect(dateUtils.dateToISODate(selectedDate)).toBe('2026-04-02');
     });
 
     it('kombinerer helger og eksplisitt deaktiverte ukedager', () => {

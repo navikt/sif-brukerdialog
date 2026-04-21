@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, dateUtils } from '@navikt/sif-common-utils';
-import { getDateValidator, getRequiredFieldValidator, validationUtils } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -43,7 +43,7 @@ const fraværDagToFormValues = (fraværDag: FraværDag): FraværDagFormValues =>
 });
 
 const formValuesToFraværDag = (values: FraværDagFormValues, id?: string): FraværDag => {
-    const dato = validationUtils.getDateFromDateString(values.dato);
+    const dato = datePickerUtils.parseDatePickerValue(values.dato);
     if (!dato) {
         throw new Error('Invalid dato value');
     }
@@ -68,9 +68,7 @@ const getDisabledRangesForDag = (
     dateRangesToDisable: DateRange[] | undefined,
 ): DateRange[] | undefined => {
     if (!dateRangesToDisable || !fraværDag) return dateRangesToDisable;
-    return dateRangesToDisable.filter(
-        (range) => !isDateRangeMatchingPeriode(range, fraværDag.dato, fraværDag.dato),
-    );
+    return dateRangesToDisable.filter((range) => !isDateRangeMatchingPeriode(range, fraværDag.dato, fraværDag.dato));
 };
 
 export const FraværDagDialogForm = ({
@@ -119,7 +117,7 @@ export const FraværDagDialogForm = ({
                             validate={validateField(
                                 FraværDagFormFields.dato,
                                 (value) => {
-                                    const date = validationUtils.getDateFromDateString(value);
+                                    const date = datePickerUtils.parseDatePickerValue(value);
                                     if (helgedagerIkkeTillatt && date && dateErHelg(date)) {
                                         return 'er_helg';
                                     }
@@ -129,8 +127,10 @@ export const FraværDagDialogForm = ({
                                     return getDateValidator({ required: true, min: minDate, max: maxDate })(value);
                                 },
                                 (errorCode) => {
-                                    if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                    if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                    if (errorCode === 'dateIsBeforeMin')
+                                        return { dato: sifIntl.date(minDate, 'compact') };
+                                    if (errorCode === 'dateIsAfterMax')
+                                        return { dato: sifIntl.date(maxDate, 'compact') };
                                 },
                             )}
                         />
@@ -152,19 +152,16 @@ export const FraværDagDialogForm = ({
                         <Select
                             name={FraværDagFormFields.timerFravær}
                             label={sifIntl.text('@sifSoknadForms.fraværDag.form.timerFravær.label')}
-                            validate={validateField(
-                                FraværDagFormFields.timerFravær,
-                                (value) => {
-                                    const timerArbeidsdag = toMaybeNumber(
-                                        methods.getValues(FraværDagFormFields.timerArbeidsdag),
-                                    );
-                                    const timerFravær = toMaybeNumber(value);
-                                    if (timerArbeidsdag && timerFravær && timerFravær > timerArbeidsdag) {
-                                        return 'fravær_timer_mer_enn_arbeidstimer';
-                                    }
-                                    return getRequiredFieldValidator()(value);
-                                },
-                            )}
+                            validate={validateField(FraværDagFormFields.timerFravær, (value) => {
+                                const timerArbeidsdag = toMaybeNumber(
+                                    methods.getValues(FraværDagFormFields.timerArbeidsdag),
+                                );
+                                const timerFravær = toMaybeNumber(value);
+                                if (timerArbeidsdag && timerFravær && timerFravær > timerArbeidsdag) {
+                                    return 'fravær_timer_mer_enn_arbeidstimer';
+                                }
+                                return getRequiredFieldValidator()(value);
+                            })}
                             style={{ maxWidth: '14rem' }}>
                             <option />
                             {timerOptions.map((tid) => (

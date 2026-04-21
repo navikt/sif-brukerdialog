@@ -15,6 +15,7 @@ import {
     getYearMonthKey,
     isDateInDates,
     isDateWeekDay,
+    isISODateString,
     ISODateToDate,
 } from '..';
 import { sortDateArray } from '../dateUtils';
@@ -230,10 +231,29 @@ describe('dateUtils', () => {
         });
     });
 
+    describe('isISODateString', () => {
+        it('godkjenner gyldige ISO-datostrenger', () => {
+            expect(isISODateString('2021-01-01')).toBe(true);
+            expect(isISODateString('0001-01-01')).toBe(true);
+        });
+        it('avviser ugyldige verdier', () => {
+            expect(isISODateString('01.01.2021')).toBe(false);
+            expect(isISODateString('2021-1-1')).toBe(false);
+            expect(isISODateString('')).toBe(false);
+            expect(isISODateString(null)).toBe(false);
+            expect(isISODateString(undefined)).toBe(false);
+            expect(isISODateString(42)).toBe(false);
+        });
+    });
+
+    describe('ISODateToDate - edge cases', () => {
+        it('håndterer ledende null-år (0001-01-01)', () => {
+            const result = ISODateToDate('0001-01-01');
+            expect(result.getUTCFullYear()).toBe(1);
+        });
+    });
+
     describe('sortDateArray', () => {
-        const d1s = '2022-01-03';
-        const d2s = '2022-01-04';
-        const d3s = '2022-01-05';
         const d1 = ISODateToDate(d1s);
         const d2 = ISODateToDate(d2s);
         const d3 = ISODateToDate(d3s);
