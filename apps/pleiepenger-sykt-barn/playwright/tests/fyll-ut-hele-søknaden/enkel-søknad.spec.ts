@@ -31,8 +31,8 @@ test('Fyll ut enkel søknad', async ({ page }) => {
         .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'søndag 15' }).click();
-    await page.getByRole('group', { name: 'Skal du reise til utlandet i' }).getByLabel('Nei').check();
-    await page.getByRole('group', { name: 'Skal du ha ferie i perioden' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Skal du reise til utlandet i' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Skal du ha ferie i perioden' }).getByLabel('Nei').check();
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 
@@ -40,9 +40,9 @@ test('Fyll ut enkel søknad', async ({ page }) => {
     await page.getByLabel('Hvor mange timer jobber du').click();
     await page.getByLabel('Hvor mange timer jobber du').fill('30');
     await page.getByTestId('arbeidssituasjonFrilanser').getByText('Nei').first().click();
-    await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
-    await page.getByRole('group', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
-    await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Jobber du som frilanser eller' }).getByLabel('Nei').check();
     const frilansTimerInput = page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobbet du');
     if (await frilansTimerInput.isVisible()) {
         await frilansTimerInput.fill('33');
@@ -58,8 +58,8 @@ test('Fyll ut enkel søknad', async ({ page }) => {
     await testAccessibility(page);
 
     await page.getByTestId('typedFormikForm-submitButton').click();
-    await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
-    await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
     await testAccessibility(page);
 
     await page.getByTestId('typedFormikForm-submitButton').click();

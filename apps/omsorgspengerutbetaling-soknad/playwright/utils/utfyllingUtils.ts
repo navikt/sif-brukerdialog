@@ -42,8 +42,14 @@ const startSøknad = async (page: Page) => {
 
 const fyllUtOmBarnfyllUtOmBarnToUnder13år = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om barn' });
-    await page.getByRole('group', { name: 'Har du fått ekstra omsorgsdager for et barn' }).getByLabel('Ja').click();
-    await page.getByRole('group', { name: 'Har du dekket de 10 første omsorgsdagene i år?' }).getByLabel('Ja').click();
+    await page
+        .getByRole('radiogroup', { name: 'Har du fått ekstra omsorgsdager for et barn' })
+        .getByLabel('Ja')
+        .click();
+    await page
+        .getByRole('radiogroup', { name: 'Har du dekket de 10 første omsorgsdagene i år?' })
+        .getByLabel('Ja')
+        .click();
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
@@ -113,7 +119,7 @@ const fyllUtVirksomhetDialog = async (page: Page) => {
     await page.getByLabel('Startdato').fill(virksomhet.fraOgMed);
     await page.getByLabel('Eventuell sluttdato').fill(virksomhet.tilOgMed);
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du hatt en varig endring i noen av arbeidsforholdene, virksomhetene eller arbeidssituasjonen din de siste fire årene?',
         })
         .getByLabel('Ja')
@@ -127,7 +133,7 @@ const fyllUtVirksomhetDialog = async (page: Page) => {
             'Her kan du skrive kort hva som har endret seg i arbeidsforholdene, virksomhetene eller arbeidssituasjonen din',
         )
         .fill(virksomhet.varigEndringINæringsinntekt_forklaring);
-    await page.getByRole('group', { name: 'Har du regnskapsfører?' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Har du regnskapsfører?' }).getByLabel('Nei').check();
     await testAccessibility(page);
     await page
         .getByLabel('Opplysninger om den eldste virksomheten din')
@@ -178,8 +184,8 @@ const fyllerUtFraværFraSteg = async (page: Page) => {
 
 const fyllUtMedlemsskap = async (page: Page) => {
     await page.getByRole('heading', { name: 'Medlemskap i folketrygden' });
-    await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
-    await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };

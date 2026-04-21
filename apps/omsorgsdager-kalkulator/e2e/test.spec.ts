@@ -46,17 +46,17 @@ test('Test kalkulator 1 barn', async ({ page }) => {
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
 
-    await page.getByRole('group', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
         })
         .getByLabel('Ja')
         .check();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått vedtak om ekstra omsorgsdager fordi du er alene om omsorgen for barnet?',
         })
         .getByLabel('Ja')
@@ -84,7 +84,7 @@ test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
 
-    await page.getByRole('group', { name: 'Bor barnet fast hos deg?' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Bor barnet fast hos deg?' }).getByLabel('Nei').check();
 
     await page.getByText('For å ha rett på omsorgsdager for dette barnet, må barnet bo fast hos deg.').isVisible();
 
@@ -119,10 +119,10 @@ test('Test kalkulator Barn 13 år', async ({ page }) => {
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption((year - 13).toString());
 
-    await page.getByRole('group', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
         })
         .getByLabel('Nei')
@@ -133,14 +133,14 @@ test('Test kalkulator Barn 13 år', async ({ page }) => {
         .isVisible();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
         })
         .getByLabel('Ja')
         .check();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått vedtak om ekstra omsorgsdager fordi du er alene om omsorgen for barnet?',
         })
         .getByLabel('Nei')

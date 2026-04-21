@@ -11,6 +11,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
+import { SkyraHandler } from './skyra/SkyraHandler';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
 import { appEnv } from './utils/appEnv';
@@ -46,6 +47,7 @@ const App = () => (
                 },
             }}
             publicPath={PUBLIC_PATH}>
+            <SkyraHandler />
             <Routes>
                 <Route key="dev" path="/dev" element={<DevPage />} />,
                 <Route

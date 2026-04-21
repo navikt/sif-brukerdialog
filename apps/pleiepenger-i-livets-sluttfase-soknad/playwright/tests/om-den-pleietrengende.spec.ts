@@ -29,7 +29,7 @@ test('Viser riktig informasjon fra mellomlagring', async ({ page }) => {
     await expect(page.getByRole('textbox', { name: 'Navn på den du skal pleie' })).toHaveValue('Test Testesen');
     await expect(page.getByRole('textbox', { name: 'Fødselsnummer/D-nummer' })).toHaveValue('27857798800');
     const radioNei = await page
-        .getByRole('group', { name: 'Er dere flere som skal dele på pleiepengene?' })
+        .getByRole('radiogroup', { name: 'Er dere flere som skal dele på pleiepengene?' })
         .getByRole('radio', { name: 'Nei' });
 
     await expect(radioNei).toBeChecked();

@@ -36,19 +36,19 @@ const startScenario = async (page: Page, barnMockData: any) => {
 const svarUtils = (page: Page) => ({
     harSøktOmEkstraDager: async (harSøkt: boolean) => {
         await page
-            .getByRole('group', { name: 'Har du fått ekstra omsorgsdager for et barn' })
+            .getByRole('radiogroup', { name: 'Har du fått ekstra omsorgsdager for et barn' })
             .getByLabel(harSøkt ? 'Ja' : 'Nei')
             .click();
     },
     harAleneomsorg: async (harSøkt: boolean) => {
         await page
-            .getByRole('group', { name: 'alene om omsorgen' })
+            .getByRole('radiogroup', { name: 'alene om omsorgen' })
             .getByLabel(harSøkt ? 'Ja' : 'Nei')
             .click();
     },
     harDekketDeTiFørsteDagene: async (harDekket: boolean) => {
         await page
-            .getByRole('group', { name: 'Har du dekket de 10 første omsorgsdagene i år?' })
+            .getByRole('radiogroup', { name: 'Har du dekket de 10 første omsorgsdagene i år?' })
             .getByLabel(harDekket ? 'Ja' : 'Nei')
             .click();
     },

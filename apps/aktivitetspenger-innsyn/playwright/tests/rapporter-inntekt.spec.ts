@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { ScenarioType } from '../../mock/scenarios/types';
 
+import { ScenarioType } from '../../mock/scenarios/types';
 import { setScenario } from '../utils/scenario';
 import { testAccessibility } from '../utils/testAccessibility';
 
@@ -19,7 +19,7 @@ test('rapporter inntekt med beløp, og viser registrert svar ved gjenåpning', a
     await åpneRapporterInntektOppgave(page);
 
     await page
-        .getByRole('group', { name: /Hadde du inntekt i/i })
+        .getByRole('radiogroup', { name: /Hadde du inntekt i/i })
         .getByLabel('Ja')
         .check();
     await page.getByLabel('Hvor mye hadde du i inntekt før skatt?').fill('12345');
@@ -49,7 +49,7 @@ test('rapporter inntekt uten beløp, og viser registrert nei-svar ved gjenåpnin
     await åpneRapporterInntektOppgave(page);
 
     await page
-        .getByRole('group', { name: /Hadde du inntekt i/i })
+        .getByRole('radiogroup', { name: /Hadde du inntekt i/i })
         .getByLabel('Nei')
         .check();
     await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
