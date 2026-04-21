@@ -21,6 +21,10 @@ export const getDate99YearsFromNow = () => dayjs().subtract(99, 'year').startOf(
 
 export const dateToISODate = (date: Date): ISODate => dayjs(date).format(ISODateFormat);
 
+export const isISODateString = (value: unknown): value is ISODate => {
+    return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
+};
+
 export const ISODateToDate = (isoDate: ISODate): Date => {
     if (isoDate.charAt(0) === '0') {
         // Håndterer hvis verdien er f.eks. 0001; en verdi som indikerer "tidenes morgen" i backend
@@ -185,6 +189,7 @@ export const dateUtils = {
     getISOWeekdayFromISODate,
     getLastWeekDayInMonth,
     getYearMonthKey,
+    isISODateString,
     isDateInDates,
     isDateWeekDay,
     ISODateToDate,

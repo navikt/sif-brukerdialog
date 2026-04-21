@@ -10,3 +10,4 @@ export type BostedUtland = {
 export * from './BostedUtlandDialog';
 export * from './BostedUtlandDialogForm';
 export * from './BostedUtlandList';
+export * from './BostedUtlandListAndDialog';

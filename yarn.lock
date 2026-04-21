@@ -4741,6 +4741,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/ds-css@npm:8.9.1":
+  version: 8.9.1
+  resolution: "@navikt/ds-css@npm:8.9.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F8.9.1%2Ff827d1a6ff83ec30606991f5208ea37eb68f2362"
+  checksum: 10/9234b5dc78bdc1efa552ac7c19ea265b2b048a759b409cff46778b7b863e4fc71e9c87a95aa09463b5633344ce5ee52adb3e88628a813effd09d9890f06b9c22
+  languageName: node
+  linkType: hard
+
 "@navikt/ds-react@npm:8.10.1":
   version: 8.10.1
   resolution: "@navikt/ds-react@npm:8.10.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F8.10.1%2Fd948b1c7a3593452a2fb1262c011a028f076115f"
@@ -9732,26 +9739,36 @@ __metadata:
   resolution: "@sif/soknad-forms@workspace:packages/sif-soknad-forms"
   dependencies:
     "@navikt/aksel-icons": "npm:8.10.1"
+    "@navikt/ds-css": "npm:8.9.1"
     "@navikt/ds-react": "npm:8.10.1"
     "@navikt/sif-common-utils": "workspace:*"
     "@sif/api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@sif/rhf": "workspace:*"
     "@sif/soknad-ui": "workspace:*"
+    "@storybook/addon-a11y": "npm:10.3.5"
+    "@storybook/addon-docs": "npm:10.3.5"
+    "@storybook/react-vite": "npm:10.3.5"
+    "@types/node": "npm:25.6.0"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
+    "@vitejs/plugin-react": "npm:6.0.1"
     dayjs: "npm:1.11.20"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.5"
+    react-hook-form: "npm:7.72.1"
+    react-intl: "npm:10.1.2"
+    storybook: "npm:10.3.5"
     typescript: "npm:6.0.3"
+    vite: "npm:8.0.8"
     vitest: "npm:4.1.4"
   peerDependencies:
     dayjs: ">=1.11.19"
     react: ">=19"
     react-day-picker: ">=9.14.0"
     react-dom: ">=19"
-    react-intl: ^10.1.0
+    react-intl: 10
   languageName: unknown
   linkType: soft
 

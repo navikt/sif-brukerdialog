@@ -3,12 +3,13 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
-import { Button, Heading, VStack } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
+import { getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { BostedUtland, BostedUtlandFormDialog, BostedUtlandList } from '@sif/soknad-forms';
+import { BostedUtlandListAndDialog } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
 import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
@@ -17,18 +18,22 @@ const { YesOrNoQuestion } = createSifFormComponents<BostedUtlandFormValues>();
 
 const stepId = SøknadStepId.BOSTED_UTLAND;
 
-const oppdaterBosteder = (bosteder: BostedUtland[] | undefined, bosted: BostedUtland) => {
-    if (!bosteder) return [bosted];
-    if (bosteder.map((b) => b.id).includes(bosted.id)) {
-        return bosteder.map((b) => (b.id === bosted.id ? bosted : b));
-    }
-    return [...bosteder, bosted];
+const getMinDate = () => {
+    const minDate = getDateToday();
+    minDate.setFullYear(minDate.getFullYear() - 5);
+    minDate.setHours(0, 0, 0, 0);
+    return minDate;
+};
+
+const getMaxDate = () => {
+    const maxDate = getDateToday();
+    maxDate.setHours(23, 59, 59, 999);
+    return maxDate;
 };
 
 export const BostedUtlandForm = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('bostedUtlandForm');
-    const [dialogBosted, setDialogBosted] = useState<{ bosted: BostedUtland | undefined } | undefined>(undefined);
     const { lagreSøknadSteg } = useSøknadMellomlagring();
 
     const defaultValues = useStepDefaultValues<BostedUtlandFormValues, BostedUtlandSøknadsdata>({
@@ -42,6 +47,8 @@ export const BostedUtlandForm = () => {
     });
 
     const methods = useSøknadRhfForm(stepId, defaultValues);
+    const minDate = useMemo(() => getMinDate(), []);
+    const maxDate = useMemo(() => getMaxDate(), []);
     const { trigger } = methods;
     const harBoddIUtlandetSiste5år = methods.watch(BostedUtlandFormFields.harBoddIUtlandetSiste5år);
     const bosteder = methods.watch(BostedUtlandFormFields.bosteder);
@@ -61,17 +68,9 @@ export const BostedUtlandForm = () => {
         trigger(BostedUtlandFormFields.bosteder);
     }, [harBoddIUtlandetSiste5år, trigger]);
 
-    const oppdaterBosted = (bosted: BostedUtland) => {
-        methods.setValue(BostedUtlandFormFields.bosteder, oppdaterBosteder(bosteder, bosted));
+    const oppdaterBosteder = (oppdaterteBosteder: BostedUtlandFormValues[typeof BostedUtlandFormFields.bosteder]) => {
+        methods.setValue(BostedUtlandFormFields.bosteder, oppdaterteBosteder);
         methods.trigger(BostedUtlandFormFields.bosteder);
-        lagreSøknadSteg(stepId, methods.getValues());
-    };
-
-    const slettBosted = (bosted: BostedUtland) => {
-        methods.setValue(
-            BostedUtlandFormFields.bosteder,
-            bosteder?.filter((b) => b.id !== bosted.id),
-        );
         lagreSøknadSteg(stepId, methods.getValues());
     };
 
@@ -88,32 +87,13 @@ export const BostedUtlandForm = () => {
                         <Heading size="xsmall" level="3">
                             <AppText id="bostedUtlandSteg.bosteder.tittel" />
                         </Heading>
-                        {bosteder && bosteder.length > 0 && (
-                            <BostedUtlandList
-                                bosteder={bosteder}
-                                onEdit={(bosted) => setDialogBosted({ bosted })}
-                                onDelete={slettBosted}
-                            />
-                        )}
-                        <div>
-                            <Button
-                                id={BostedUtlandFormFields.bosteder}
-                                type="button"
-                                variant="secondary"
-                                size="small"
-                                onClick={() => setDialogBosted({ bosted: undefined })}>
-                                <AppText id="bostedUtlandSteg.bosteder.leggTil" />
-                            </Button>
-                        </div>
-                        <BostedUtlandFormDialog
-                            bosted={dialogBosted?.bosted}
-                            alleBosteder={bosteder}
-                            isOpen={dialogBosted !== undefined}
-                            onValidSubmit={(bosted) => {
-                                oppdaterBosted(bosted);
-                                setDialogBosted(undefined);
-                            }}
-                            onCancel={() => setDialogBosted(undefined)}
+                        <BostedUtlandListAndDialog
+                            minDate={minDate}
+                            maxDate={maxDate}
+                            bosteder={bosteder}
+                            addButtonId={BostedUtlandFormFields.bosteder}
+                            addButtonLabel={<AppText id="bostedUtlandSteg.bosteder.leggTil" />}
+                            onChange={oppdaterBosteder}
                         />
                     </VStack>
                 )}

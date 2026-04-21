@@ -41,9 +41,10 @@ Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppset
 
 - Alle valideringsparametere fra kildeappen (minLength, maxLength, disallowedValues, disallowInvalidBackendCharacters, etc.) **må** overføres identisk til målappen.
 - Sammenlign validator-kall felt for felt mellom kilde og mål. Sjekk spesielt:
-  - `getStringValidator` — minLength, maxLength, disallowInvalidBackendCharacters
-  - `getFødselsnummerValidator` — disallowedValues (f.eks. søkers eget fnr), allowHnr
-  - `getDateValidator` — min, max
+    - `getStringValidator` — minLength, maxLength, disallowInvalidBackendCharacters
+    - `getFødselsnummerValidator` — disallowedValues (f.eks. søkers eget fnr), allowHnr
+    - `getDateValidator` — min, max
+    - `getDateRangeValidator` — min, max, toDate, fromDate (resolved verdier)
 - For hvert felt: alle mulige error-koder fra validatoren **må** ha tilhørende i18n-nøkkel i `nb.ts` og `nn.ts`. Sjekk feilkode-enumen i `packages/sif-validation/src/get*Validator.ts` mot nøklene i kildeappen.
 - Ikke fjern validering under migrering. Strengere validering kan bare legges til med eksplisitt bestilling.
 
@@ -58,6 +59,24 @@ Lettvekts runbook for inkrementell migrering av en dialog-app til nytt v2-oppset
 
 - Ikke importer fra gamle pakker (`@navikt/sif-common-core-ds`, `@navikt/sif-common-formik-ds`, `@navikt/sif-common-ui`). Bruk Aksel-komponenter (`@navikt/ds-react`) eller pakker fra `@sif/*` i stedet.
 - Vanlige erstatninger: `ExpandableInfo` → `ReadMore` fra `@navikt/ds-react`.
+
+## Migrering av dialoger til `sif-soknad-forms`
+
+Dialoger fra `sif-common-forms-ds/src/forms/` migreres til `sif-soknad-forms/src/dialogs/`. Bruk `sif-formik-to-rhf` (seksjonen «Dialogkomponenter i sif-soknad-forms») for det tekniske mønsteret.
+
+### Sjekkliste per dialog
+
+Sammenlign Formik-originalen i `sif-common-forms-ds` med RHF-varianten i `sif-soknad-forms`:
+
+- [ ] **Innholdsparitet**: Alle renderbare komponenter (form, list, summary) viser samme innhold som v1 — felter, betingede blokker, verdier og formatering (se `sif-dialog-migration` → Innholdsverifisering)
+- [ ] **Tekster**: Alle labels, legends og descriptions matcher originalen ordrett
+- [ ] **Validatorparametere**: `required`, `min`, `max`, `minLength`, `maxLength` etc. er identiske
+- [ ] **Feilkoder → i18n**: Alle mulige feilkoder fra hver validator har nøkkel i `nb.ts` og `nn.ts`
+- [ ] **Interpolasjon**: Feilmeldinger sender samme interpolasjonsverdier som originalen
+- [ ] **Sammensatt validering**: Når originalen kombinerer props, feltverdier eller andre avhengigheter, beholdes samme logikk
+- [ ] **Locale**: Locale-avhengig presentasjon følger originalen
+- [ ] **nn.ts**: Typet med `Record<keyof typeof nb, string>`, ingen spread fra `nb`
+- [ ] **Props-paritet**: Props, inkludert hva som er optional og obligatorisk, matcher originalen
 
 ## appEnv-singleton
 
@@ -204,23 +223,23 @@ Bruk gammel app i samme repo som referanse for korrekte verdier. Husk at `access
 
 Når baseline kopieres fra `aktivitetspenger-soknad`, inneholder disse filene app-spesifikke referanser som **alltid** må oppdateres:
 
-| Fil                                   | Hva som er aktivitetspenger-spesifikt                    | Hva det byttes med                                                                                      |
-| ------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `src/sentry/instrument.ts`            | `tags: { application: 'aktivitetspenger-soknad' }`       | Bytt til appnavnet for målappen (f.eks. `omsorgspengesoknad-v2`)                                        |
-| `nais/dev-gcp.json`                   | `ingresses` og `SIF_PUBLIC_LOGIN_URL` med `aktivitetspenger-soknad`-hostname | Bytt til målappens hostname (f.eks. `omsorgspengesoknad.intern.dev.nav.no`) |
-| `nais/prod-gcp.json`                  | `ingresses` og `SIF_PUBLIC_LOGIN_URL` med `aktivitetspenger-soknad`-hostname | Bytt til målappens prod-hostname                                            |
-| `env.schema.ts`                       | `ungDeltakelseOpplyserEnvSchema`                         | Riktig schema for målappen (f.eks. `k9SakInnsynEnvSchema`)                                              |
-| `src/app/setup/env/appEnv.ts`         | `getUngDeltakelseOpplyserBrowserEnv()`                   | Riktig env-helper (f.eks. `getK9SakInnsynEnv()`)                                                        |
-| `src/app/api/initApiClients.ts`       | `initUngDeltakelseOpplyserApiDeltakerClient`             | Riktig klient-init for målappen                                                                         |
-| `package.json`                        | `@navikt/ung-deltakelse-opplyser-api-deltaker`           | Riktig API-pakke for målappen                                                                           |
-| `src/App.tsx`                         | `AktivitetspengerApp` fra `@navikt/sif-app-register`     | Riktig app-oppføring                                                                                    |
-| `src/App.tsx`                         | `appEnv.SIF_PUBLIC_USE_FARO`                             | `SIF_PUBLIC_USE_FARO` finnes ikke i `commonEnvSchema` — sett `isActive={false}` til Faro er konfigurert |
-| `playwright.config.ts`                | `baseURL` og `webServer.url` for aktivitetspenger        | Bytt til målappens `PUBLIC_PATH`                                                                        |
-| `vite.e2e.config.ts`                  | `base` og MSW-rewrite for aktivitetspenger               | Bytt til målappens path og `mockServiceWorker.js`-rewrite                                               |
-| `playwright/playwrightAppSettings.ts` | Stale env-nøkler som ikke finnes i ny `AppEnv`           | Fjern nøkler som ikke er i ny `appEnvSchema`                                                            |
-| `playwright/utils/scenario.ts`        | Feil `SCENARIO_KEY` fra kildeappen                       | Må matche `mock/state/localStorageStore.ts` i målappen                                                  |
-| `mock/devAppSettings.ts`              | Alle paths og env-verdier fra aktivitetspenger           | Oppdater med korrekte paths for målappen                                                                |
-| `src/app/lenker.ts`                   | App-lokale eksterne lenker                                | Migrer selve lenkene til `@sif/soknad-ui/lenker`; behold gjerne `src/app/lenker.ts` som en tynn app-adapter for ergonomi (`useLenker`, `getLenke`). Gi nøklene selvforklarende navn som `navMinSide` og `omsorgspengerEttersending` |
+| Fil                                   | Hva som er aktivitetspenger-spesifikt                                        | Hva det byttes med                                                                                                                                                                                                                  |
+| ------------------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/sentry/instrument.ts`            | `tags: { application: 'aktivitetspenger-soknad' }`                           | Bytt til appnavnet for målappen (f.eks. `omsorgspengesoknad-v2`)                                                                                                                                                                    |
+| `nais/dev-gcp.json`                   | `ingresses` og `SIF_PUBLIC_LOGIN_URL` med `aktivitetspenger-soknad`-hostname | Bytt til målappens hostname (f.eks. `omsorgspengesoknad.intern.dev.nav.no`)                                                                                                                                                         |
+| `nais/prod-gcp.json`                  | `ingresses` og `SIF_PUBLIC_LOGIN_URL` med `aktivitetspenger-soknad`-hostname | Bytt til målappens prod-hostname                                                                                                                                                                                                    |
+| `env.schema.ts`                       | `ungDeltakelseOpplyserEnvSchema`                                             | Riktig schema for målappen (f.eks. `k9SakInnsynEnvSchema`)                                                                                                                                                                          |
+| `src/app/setup/env/appEnv.ts`         | `getUngDeltakelseOpplyserBrowserEnv()`                                       | Riktig env-helper (f.eks. `getK9SakInnsynEnv()`)                                                                                                                                                                                    |
+| `src/app/api/initApiClients.ts`       | `initUngDeltakelseOpplyserApiDeltakerClient`                                 | Riktig klient-init for målappen                                                                                                                                                                                                     |
+| `package.json`                        | `@navikt/ung-deltakelse-opplyser-api-deltaker`                               | Riktig API-pakke for målappen                                                                                                                                                                                                       |
+| `src/App.tsx`                         | `AktivitetspengerApp` fra `@navikt/sif-app-register`                         | Riktig app-oppføring                                                                                                                                                                                                                |
+| `src/App.tsx`                         | `appEnv.SIF_PUBLIC_USE_FARO`                                                 | `SIF_PUBLIC_USE_FARO` finnes ikke i `commonEnvSchema` — sett `isActive={false}` til Faro er konfigurert                                                                                                                             |
+| `playwright.config.ts`                | `baseURL` og `webServer.url` for aktivitetspenger                            | Bytt til målappens `PUBLIC_PATH`                                                                                                                                                                                                    |
+| `vite.e2e.config.ts`                  | `base` og MSW-rewrite for aktivitetspenger                                   | Bytt til målappens path og `mockServiceWorker.js`-rewrite                                                                                                                                                                           |
+| `playwright/playwrightAppSettings.ts` | Stale env-nøkler som ikke finnes i ny `AppEnv`                               | Fjern nøkler som ikke er i ny `appEnvSchema`                                                                                                                                                                                        |
+| `playwright/utils/scenario.ts`        | Feil `SCENARIO_KEY` fra kildeappen                                           | Må matche `mock/state/localStorageStore.ts` i målappen                                                                                                                                                                              |
+| `mock/devAppSettings.ts`              | Alle paths og env-verdier fra aktivitetspenger                               | Oppdater med korrekte paths for målappen                                                                                                                                                                                            |
+| `src/app/lenker.ts`                   | App-lokale eksterne lenker                                                   | Migrer selve lenkene til `@sif/soknad-ui/lenker`; behold gjerne `src/app/lenker.ts` som en tynn app-adapter for ergonomi (`useLenker`, `getLenke`). Gi nøklene selvforklarende navn som `navMinSide` og `omsorgspengerEttersending` |
 
 Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` før første `check:types`.
 

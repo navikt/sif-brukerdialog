@@ -154,6 +154,10 @@ Ikke importer fra gamle pakker i v2-apper. Bruk Aksel-komponenter eller `@sif/*`
 | `ExpandableInfo` | `@navikt/sif-common-core-ds` | `ReadMore`   | `@navikt/ds-react`          |
 | `FormLayout`     | `@navikt/sif-common-ui`      | `FormLayout` | `@sif/soknad-ui/components` |
 
+## Dialogmigrering
+
+For portering av `*ListAndDialog`-komponenter fra `sif-common-forms-ds` til `sif-soknad-forms` → bruk `sif-dialog-migration`.
+
 ## Fallgruver
 
 ### 1. Scope-mismatch i `useSifValidate`
@@ -175,19 +179,26 @@ Formik svelger rejected promises i `onSubmit`. RHF gjør det ikke — ubehandled
 
 Formik-validate returnerer `{ key, values }` for feilmeldinger med parametere. RHF-validate returnerer en ren streng.
 
-Når Formik-varianten returnerer `{ key: errorCode, values: { min: 5, maks: 2000 } }`, bruk `intl.formatMessage` direkte:
+Bruk tredje argument til `validateField` — en callback som mottar feilkoden og returnerer interpolasjonsverdier:
 
 ```ts
-validate={(value) => {
-    const errorCode = getStringValidator({ required: true, minLength: 5, maxLength: 2000 })(value);
-    return errorCode
-        ? intl.formatMessage(
-              { id: `scope.validation.feltNavn.${errorCode}` },
-              { min: 5, maks: 2000 },
-          )
-        : undefined;
-}}
+validate={validateField(
+    FormFields.feltNavn,
+    getStringValidator({ required: true, minLength: 5, maxLength: 2000 }),
+    (errorCode) => {
+        if (errorCode === 'stringIsTooShort') return { min: 5 };
+        if (errorCode === 'stringIsTooLong') return { maks: 2000 };
+    },
+)}
 ```
+
+For statiske verdier som ikke avhenger av feilkoden kan du sende et vanlig objekt:
+
+```ts
+validate={validateField(FormFields.feltNavn, validator, { min: 5, maks: 2000 })}
+```
+
+**Ikke bruk `intl.formatMessage` direkte** — `validateField` bygger i18n-nøkkelen og gjør oppslaget for deg.
 
 ### 4. Spacing i knapperaden
 
@@ -207,6 +218,25 @@ Bruk alltid `gap="space-16"` på `<HStack>` rundt submit/cancel-knapper — ikke
 ### 5. `showButtonArrows` og andre Form-props som forsvinner
 
 Formik `<Form>` har props som `showButtonArrows`, `includeValidationSummary` og `formErrorHandler` som ikke har direkte ekvivalenter i `<SifForm>`. Disse droppes uten erstatning:
+
+### 6. YesOrNo-felt skal beholde `YesOrNo`-typen i FormValues
+
+Bruker du `YesOrNoQuestion` fra `@sif/rhf`, skal feltet i `FormValues` typet som `YesOrNo` — ikke widen til `string`.
+RHF støtter enum-typer direkte, og korrekt typing fjerner behovet for `as YesOrNo`-caster i konverteringsfunksjonene.
+
+```ts
+// Feil:
+type MyFormValues = {
+    harSamtykket: string; // ← widened unødvendig
+};
+const harSamtykket = values.harSamtykket as YesOrNo; // ← cast unødvendig
+
+// Riktig:
+type MyFormValues = {
+    harSamtykket: YesOrNo;
+};
+const harSamtykket = values.harSamtykket; // ← ingen cast nødvendig
+```
 
 - `showButtonArrows` — finnes ikke i RHF, drop.
 - `includeValidationSummary` — `SifForm` inkluderer `SifValidationSummary` automatisk.
@@ -338,6 +368,22 @@ import { DateRange } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 ```
 
+## Datohåndtering
+
+Dato-APIet er delt i to lag:
+
+| Lag                       | Pakke                                    | Eksport                                                               | Bruksområde                                                                                           |
+| ------------------------- | ---------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Datepicker-parsing        | `@sif/rhf` → `datePickerUtils`           | `parseDatePickerValue(value)`, `getDisabledDates(...)`                | Konverterer brukerinput fra datepicker (ISO-streng eller norske datoformater) til `Date \| undefined` |
+| Generell ISO-konvertering | `@navikt/sif-common-utils` → `dateUtils` | `dateToISODate(date)`, `ISODateToDate(iso)`, `isISODateString(value)` | Konvertering mellom `Date` og `ISODate`-strenger                                                      |
+
+**Regler for mapping-funksjoner i steg-utils:**
+
+- `toSøknadsdata` / `formValuesToXxx`: Bruk `datePickerUtils.parseDatePickerValue(value)` for å parse datepicker-verdier til `Date`.
+- `toFormValues` / `xxxToFormValues`: Bruk `dateUtils.dateToISODate(date)` for å konvertere `Date` til ISO-streng.
+- For typeguard: `dateUtils.isISODateString(value)`.
+- `new Date(...)` skal ikke brukes for datoparsing i runtime-kode. `ISODateToDate` er greit i tester/mock.
+
 ## Sjekkliste
 
 - [ ] Alle `@navikt/sif-common-formik-ds`-importer er fjernet fra skjemafilen
@@ -348,15 +394,119 @@ import { DateRange } from '@navikt/sif-common-utils';
 - [ ] async `handleSubmit` har try/catch rundt mutateAsync-kall
 - [ ] Betinget visning kartlagt fra v1 og verifisert mot v1 (ingen inversjonsfeile)
 - [ ] Betinget visning bruker `methods.watch()` + `&&`/fragment — ikke `AriaLiveRegion` rundt skjemafelter
+
+---
+
+## Dialogkomponenter i `sif-soknad-forms`
+
+Dialogkomponenter i `sif-soknad-forms` skal som hovedregel bruke `useSifValidate`, også når scope ligger på pakkenivå.
+
+Bruk scope med full pakke-prefix, for eksempel `@sifSoknadForms.bostedUtlandForm`.
+
+Hvis originalen følger standardmønsteret `<scope>.validation.<fieldName>.<errorCode>`, holder det med:
+
+```ts
+const { validateField } = useSifValidate('@sifSoknadForms.dialogForm');
+
+validate: validateField(FormFields.landkode, getRequiredFieldValidator());
+```
+
+Hvis originalen trenger interpolasjonsverdier, bruk fortsatt `useSifValidate`, men send inn `values`.
+
+Hvis originalen ikke følger standardmønsteret `<scope>.validation.<fieldName>.<errorCode>`, må du vurdere om `useSifValidate` fortsatt passer. Ikke innfør ekstra kompleksitet uten et faktisk behov.
+
+### Interpolasjon med `useSifValidate`
+
+Når originalen trenger interpolasjonsverdier, send dem inn som tredje argument til `validateField`:
+
+```ts
+validate: validateField(
+    FormFields.fom,
+    getDateValidator({ required: true, min: minDate, max: maxDate }),
+    (errorCode) => {
+        if (errorCode === 'dateIsBeforeMin' && minDate)
+            return { dato: sifIntl.date(minDate, 'compact') };
+        if (errorCode === 'dateIsAfterMax' && maxDate)
+            return { dato: sifIntl.date(maxDate, 'compact') };
+    },
+),
+```
+
+### DateRangePicker-migrering
+
+Formik-versjonen bruker `getDateRangeValidator` med manuell beregning av `resolvedMaxDate`/`resolvedMinDate` per felt. I RHF-versjonen er dette unødvendig — `SifDateRangePicker` håndterer cross-field min/max automatisk.
+
+**Mønster:**
+
+- Bruk `getDateValidator` (ikke `getDateRangeValidator`) per felt — hvert felt sjekker bare seg selv
+- `SifDateRangePicker` klemmer automatisk fom sin maxDate ned til tom-verdien, og omvendt
+- Cross-field validering (fom > tom) legges i `DateRangePicker.validate`-prop
+- `validateField` brukes også på gruppenivå for i18n-oppslag
+
+```tsx
+<DateRangePicker
+    name="periode"
+    legend={...}
+    validate={validateField('periode', ({ fromDate, toDate }) => {
+        if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
+    })}
+    fromInputProps={{
+        name: FormFields.fom,
+        validate: validateField(
+            FormFields.fom,
+            getDateValidator({ required: true, min: minDate, max: maxDate }),
+            (errorCode) => {
+                if (errorCode === 'dateIsBeforeMin' && minDate)
+                    return { dato: sifIntl.date(minDate, 'compact') };
+                if (errorCode === 'dateIsAfterMax' && maxDate)
+                    return { dato: sifIntl.date(maxDate, 'compact') };
+            },
+        ),
+    }}
+    toInputProps={{
+        name: FormFields.tom,
+        validate: validateField(
+            FormFields.tom,
+            getDateValidator({ required: true, min: minDate, max: maxDate }),
+            (errorCode) => {
+                if (errorCode === 'dateIsBeforeMin' && minDate)
+                    return { dato: sifIntl.date(minDate, 'compact') };
+                if (errorCode === 'dateIsAfterMax' && maxDate)
+                    return { dato: sifIntl.date(maxDate, 'compact') };
+            },
+        ),
+    }}
+/>
+```
+
+i18n-nøkler for cross-field-feilen bruker gruppens navn som felt: `scope.validation.periode.fromDateIsAfterToDate`.
+
+### Props, sammensatt validering og locale
+
+- Props skal ha samme kontrakt som i originalen, inkludert hva som er optional og hvilke default-antakelser som gjelder.
+- Når originalen kombinerer flere grenser eller avhengigheter i valideringen, skal samme logikk beholdes i RHF-varianten.
+- Interpolasjonsverdier skal følge originalen, uavhengig av om verdien er dato, tall eller tekst.
+- Locale-avhengig presentasjon skal følge originalen. Ikke erstatt locale-sensitive oppslag med lagrede eller hardkodede strenger.
+
+### Sjekkliste for dialogkomponenter
+
+- [ ] Alle feilkoder fra alle validatorer har tilhørende i18n-nøkkel i `nb.ts` og `nn.ts`
+- [ ] `nn.ts` er typet med `Record<keyof typeof nb, string>` — ingen spread fra `nb`
+- [ ] Props og default-oppførsel matcher originalen
+- [ ] Sammensatt validering matcher originalen
+- [ ] Interpolasjonsverdier matcher originalen
+- [ ] Locale-avhengig presentasjon matcher originalen
+- [ ] Tekster matcher originalen i `sif-common-forms-ds` — ikke omskrevet
 - [ ] `AriaLiveRegion` brukes kun rundt dynamiske meldinger (`SifInfoMessage`, `InlineMessage`, `LocalAlert`)
 - [ ] Betingede felter som skjules får `clearErrors` i `useEffect`
-- [ ] Validatorer med parametere bruker `intl.formatMessage` inline
+- [ ] `useSifValidate` brukes når key-strukturen følger standardmønsteret, med `values` ved behov
 - [ ] i18n-nøkler bruker eksakte feilkoder fra `@navikt/sif-validation` (sjekk `enum Validate*Error`)
 - [ ] `FormFields`-enum er uendret
 - [ ] `@sif/rhf: workspace:*` finnes i `package.json`
 - [ ] `DateRange`-importer er oppdatert (hvis aktuelt)
 - [ ] Filen kompilerer uten feil
 - [ ] Enhetstester skrevet for `*StegUtils.ts` (se under)
+- [ ] **Summary-paritet**: Hvis dialogen har en Summary-komponent, er alle verdier fra v1 Summary representert i v2 — inkludert ytre Ja/Nei-spørsmål, betingede blokker og formateringer (se `sif-dialog-migration` → Innholdsverifisering)
 
 ## Enhetstester for `*StegUtils.ts`
 

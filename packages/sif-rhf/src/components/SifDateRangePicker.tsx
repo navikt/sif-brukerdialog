@@ -23,6 +23,7 @@ type DatepickerFieldProps<T extends FieldValues> = DatepickerLimitations & {
     label: string;
     validate?: (value: string) => string | undefined;
     inputId?: string;
+    inputDisabled?: boolean;
     description?: ReactNode;
 };
 
@@ -52,21 +53,23 @@ export function SifDateRangePicker<T extends FieldValues>({
     const fromValue = watch(fromInputProps.name);
     const toValue = watch(toInputProps.name);
 
-    const fromDate = fromValue ? datePickerUtils.ISODateStringToUTCDate(fromValue as string) : undefined;
-    const toDate = toValue ? datePickerUtils.ISODateStringToUTCDate(toValue as string) : undefined;
+    const fromDate = fromValue ? datePickerUtils.parseDatePickerValue(fromValue as string) : undefined;
+    const toDate = toValue ? datePickerUtils.parseDatePickerValue(toValue as string) : undefined;
 
     const resolvedFromMaxDate = minDate(toDate, fromInputProps.maxDate);
     const resolvedToMinDate = maxDate(fromDate, toInputProps.minDate);
 
     useEffect(() => {
         if (!validateRef.current) return;
-        const message = validateRef.current({ fromDate, toDate });
+        const currentFromDate = fromValue ? datePickerUtils.parseDatePickerValue(fromValue as string) : undefined;
+        const currentToDate = toValue ? datePickerUtils.parseDatePickerValue(toValue as string) : undefined;
+        const message = validateRef.current({ fromDate: currentFromDate, toDate: currentToDate });
         if (message) {
             setError(name as any, { type: 'manual', message });
         } else {
             clearErrors(name as any);
         }
-    }, [fromDate, toDate, name, setError, clearErrors]);
+    }, [fromValue, toValue, name, setError, clearErrors]);
 
     return (
         <SifInputGroup name={name} legend={legend} hideLegend={hideLegend}>

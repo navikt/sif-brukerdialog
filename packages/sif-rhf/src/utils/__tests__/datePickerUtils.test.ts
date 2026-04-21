@@ -1,55 +1,44 @@
+import { dateUtils } from '@navikt/sif-common-utils';
 import { describe, expect, it } from 'vitest';
 
 import { datePickerUtils } from '../datePickerUtils';
 
-const {
-    ISODateStringToUTCDate,
-    InputDateStringToISODateString,
-    dateToISODateString,
-    getDisabledDates,
-    isISODateString,
-    INVALID_DATE,
-} = datePickerUtils;
+const { parseDatePickerValue, getDisabledDates } = datePickerUtils;
 
-describe('isISODateString', () => {
+describe('dateUtils.isISODateString', () => {
     it('accepts valid ISO date', () => {
-        expect(isISODateString('2024-01-15')).toBe(true);
+        expect(dateUtils.isISODateString('2024-01-15')).toBe(true);
     });
     it('rejects non-string', () => {
-        expect(isISODateString(123)).toBe(false);
-        expect(isISODateString(undefined)).toBe(false);
+        expect(dateUtils.isISODateString(123)).toBe(false);
+        expect(dateUtils.isISODateString(undefined)).toBe(false);
     });
     it('rejects wrong format', () => {
-        expect(isISODateString('15.01.2024')).toBe(false);
-        expect(isISODateString('2024-1-5')).toBe(false);
+        expect(dateUtils.isISODateString('15.01.2024')).toBe(false);
+        expect(dateUtils.isISODateString('2024-1-5')).toBe(false);
     });
 });
 
-describe('dateToISODateString', () => {
+describe('dateUtils.dateToISODate', () => {
     it('converts UTC date', () => {
-        expect(dateToISODateString(new Date('2024-03-15T00:00:00Z'))).toBe('2024-03-15');
-    });
-    it('returns Invalid date for invalid input', () => {
-        expect(dateToISODateString(new Date('not-a-date'))).toBe(INVALID_DATE);
+        expect(dateUtils.dateToISODate(new Date('2024-03-15T00:00:00Z'))).toBe('2024-03-15');
     });
 });
 
-describe('ISODateStringToUTCDate', () => {
+describe('parseDatePickerValue', () => {
     it('converts valid ISO string to Date', () => {
-        const date = ISODateStringToUTCDate('2024-03-15');
+        const date = parseDatePickerValue('2024-03-15');
         expect(date).toBeInstanceOf(Date);
         expect(date!.toISOString()).toBe('2024-03-15T00:00:00.000Z');
     });
     it('returns undefined for missing/short input', () => {
-        expect(ISODateStringToUTCDate(undefined)).toBeUndefined();
-        expect(ISODateStringToUTCDate('2024-03')).toBeUndefined();
+        expect(parseDatePickerValue(undefined)).toBeUndefined();
+        expect(parseDatePickerValue('2024-03')).toBeUndefined();
     });
     it('returns undefined for invalid date', () => {
-        expect(ISODateStringToUTCDate('not-a-date')).toBeUndefined();
+        expect(parseDatePickerValue('not-a-date')).toBeUndefined();
     });
-});
 
-describe('InputDateStringToISODateString', () => {
     it.each([
         ['15.03.2024', '2024-03-15'],
         ['15032024', '2024-03-15'],
@@ -58,11 +47,11 @@ describe('InputDateStringToISODateString', () => {
         ['5.3.2024', '2024-03-05'],
         ['15.03.24', '2024-03-15'],
     ])('parses "%s" to "%s"', (input, expected) => {
-        expect(InputDateStringToISODateString(input)).toBe(expected);
+        expect(dateUtils.dateToISODate(parseDatePickerValue(input)!)).toBe(expected);
     });
 
-    it('returns Invalid date for garbage', () => {
-        expect(InputDateStringToISODateString('abc')).toBe(INVALID_DATE);
+    it('returns undefined for garbage', () => {
+        expect(parseDatePickerValue('abc')).toBeUndefined();
     });
 });
 

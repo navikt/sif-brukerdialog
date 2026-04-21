@@ -1,14 +1,11 @@
+import { dateUtils } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import utc from 'dayjs/plugin/utc';
 import type { Matcher } from 'react-day-picker';
 
 import { DatepickerLimitations } from '../components/SifDatepicker';
 
 dayjs.extend(customParseFormat);
-dayjs.extend(utc);
-
-type ISODateString = string;
 
 const ISO_FORMAT = 'YYYY-MM-DD';
 
@@ -23,25 +20,21 @@ const ALLOWED_INPUT_FORMATS = [
     'DDMMYY',
 ];
 
-const INVALID_DATE = 'Invalid date';
+const parseDatePickerValue = (dateString: string | undefined): Date | undefined => {
+    if (!dateString) {
+        return undefined;
+    }
 
-const isISODateString = (value: any): value is ISODateString =>
-    typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
+    if (dateUtils.isISODateString(dateString) && dayjs(dateString, ISO_FORMAT, true).isValid()) {
+        return dateUtils.ISODateToDate(dateString);
+    }
 
-const dateToISODateString = (date: Date): string => {
-    const d = dayjs(date);
-    return d.isValid() ? d.format(ISO_FORMAT) : INVALID_DATE;
-};
+    const parsedDate = dayjs(dateString, ALLOWED_INPUT_FORMATS, true);
+    if (!parsedDate.isValid()) {
+        return undefined;
+    }
 
-const ISODateStringToUTCDate = (iso?: string): Date | undefined => {
-    if (!iso || iso.length !== 10) return undefined;
-    const d = dayjs(iso, ISO_FORMAT).utc(true);
-    return d.isValid() ? d.toDate() : undefined;
-};
-
-const InputDateStringToISODateString = (input: string): string => {
-    const d = dayjs(input, ALLOWED_INPUT_FORMATS, true).utc(true);
-    return d.isValid() ? d.format(ISO_FORMAT) : INVALID_DATE;
+    return dateUtils.ISODateToDate(parsedDate.format(ISO_FORMAT));
 };
 
 const getDisabledDates = ({
@@ -71,10 +64,6 @@ const getDisabledDates = ({
 };
 
 export const datePickerUtils = {
-    dateToISODateString,
+    parseDatePickerValue,
     getDisabledDates,
-    InputDateStringToISODateString,
-    isISODateString,
-    ISODateStringToUTCDate,
-    INVALID_DATE,
 };
