@@ -42,6 +42,8 @@ export const utenlandsoppholdMessages_nb = {
         'Du må svare ja eller nei på om barnet er sammen med deg.',
     '@sifSoknadForms.utenlandsoppholdForm.validation.erBarnetInnlagt.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om barnet er innlagt i helseinstitusjon.',
+    '@sifSoknadForms.utenlandsoppholdForm.validation.barnInnlagtPerioder.noValue':
+        'Du må legge til minst én periode barnet er innlagt.',
     '@sifSoknadForms.utenlandsoppholdForm.validation.årsak.noValue':
         'Du må velge hvordan utgiftene til innleggelsen dekkes.',
 };

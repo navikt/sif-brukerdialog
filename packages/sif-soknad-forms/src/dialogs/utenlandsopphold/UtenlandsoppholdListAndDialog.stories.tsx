@@ -4,12 +4,12 @@ import { useState } from 'react';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
-import type { Utenlandsopphold } from './index';
+import { type Utenlandsopphold, UtenlandsoppholdÅrsak, type UtenlandsoppholdVariant } from './index';
 import { UtenlandsoppholdListAndDialog } from './UtenlandsoppholdListAndDialog';
 
 const today = dayjs();
 
-const exampleOpphold: Utenlandsopphold[] = [
+const exampleOppholdEnkel: Utenlandsopphold[] = [
     {
         id: '1',
         type: 'enkel',
@@ -26,11 +26,42 @@ const exampleOpphold: Utenlandsopphold[] = [
     },
 ];
 
+const exampleOppholdUtvidet: Utenlandsopphold[] = [
+    {
+        id: '1',
+        type: 'innenfor_eøs',
+        erUtenforEØS: false,
+        fom: today.subtract(5, 'month').toDate(),
+        tom: today.subtract(4, 'month').toDate(),
+        landkode: 'SWE',
+        erSammenMedBarnet: true,
+    },
+    {
+        id: '2',
+        type: 'utenfor_eøs',
+        erUtenforEØS: true,
+        fom: today.subtract(2, 'month').toDate(),
+        tom: today.subtract(1, 'month').toDate(),
+        landkode: 'USA',
+        erSammenMedBarnet: true,
+        erBarnetInnlagt: true,
+        barnInnlagtPerioder: [
+            {
+                id: '2-1',
+                fom: today.subtract(2, 'month').add(4, 'day').toDate(),
+                tom: today.subtract(2, 'month').add(9, 'day').toDate(),
+            },
+        ],
+        årsak: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE,
+    },
+];
+
 type StoryProps = {
     opphold?: Utenlandsopphold[];
+    variant: UtenlandsoppholdVariant;
 };
 
-function UtenlandsoppholdListAndDialogStory({ opphold }: StoryProps) {
+function UtenlandsoppholdListAndDialogStory({ opphold, variant }: StoryProps) {
     const [items, setItems] = useState(opphold);
 
     return (
@@ -38,7 +69,7 @@ function UtenlandsoppholdListAndDialogStory({ opphold }: StoryProps) {
             opphold={items}
             minDate={today.subtract(1, 'year').toDate()}
             maxDate={today.add(1, 'year').toDate()}
-            variant="enkel"
+            variant={variant}
             addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.utenlandsopphold.dialog.leggTilKnapp" />}
             onChange={setItems}
         />
@@ -55,8 +86,15 @@ const meta = {
             </StoryFrame>
         ),
     ],
+    argTypes: {
+        variant: {
+            control: 'radio',
+            options: ['enkel', 'utvidet'],
+        },
+    },
     args: {
-        opphold: exampleOpphold,
+        opphold: exampleOppholdEnkel,
+        variant: 'enkel',
     },
 } satisfies Meta<typeof UtenlandsoppholdListAndDialogStory>;
 
@@ -64,10 +102,24 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Standard: Story = {};
+export const Enkel: Story = {};
+
+export const Utvidet: Story = {
+    args: {
+        opphold: exampleOppholdUtvidet,
+        variant: 'utvidet',
+    },
+};
 
 export const TomListe: Story = {
     args: {
         opphold: [],
+    },
+};
+
+export const TomListeUtvidet: Story = {
+    args: {
+        opphold: [],
+        variant: 'utvidet',
     },
 };

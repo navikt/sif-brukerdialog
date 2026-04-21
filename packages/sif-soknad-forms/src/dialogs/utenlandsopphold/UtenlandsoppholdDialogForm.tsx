@@ -7,8 +7,8 @@ import {
     getYesOrNoValidator,
     validationUtils,
 } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { useState } from 'react';
+import { createSifFormComponents, SifInputGroup, useSifValidate, YesOrNo } from '@sif/rhf';
+import { useEffect, useState } from 'react';
 import { FormProvider, useFieldArray, useForm, useWatch } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -188,7 +188,7 @@ export const UtenlandsoppholdDialogForm = ({
         defaultValues: opphold ? oppholdToFormValues(opphold, variant) : defaultValues,
     });
 
-    const { control, getValues } = methods;
+    const { control, getValues, clearErrors, setError } = methods;
     const {
         fields: periodeFields,
         append: appendPeriode,
@@ -223,7 +223,22 @@ export const UtenlandsoppholdDialogForm = ({
     const [innlagtPeriodeDialogIsOpen, setInnlagtPeriodeDialogIsOpen] = useState(false);
     const [periodeUnderRedigering, setPeriodeUnderRedigering] = useState<DateTidsperiode | undefined>(undefined);
 
+    useEffect(() => {
+        if (!showInnlagtPerioderQuestion) {
+            clearErrors(UtenlandsoppholdFormFields.barnInnlagtPerioder);
+        }
+    }, [clearErrors, showInnlagtPerioderQuestion]);
+
     const handleValidSubmit = (values: UtenlandsoppholdFormValues): void => {
+        if (showInnlagtPerioderQuestion && values.barnInnlagtPerioder.length === 0) {
+            setError(UtenlandsoppholdFormFields.barnInnlagtPerioder, {
+                type: 'required',
+                message: sifIntl.text('@sifSoknadForms.utenlandsoppholdForm.validation.barnInnlagtPerioder.noValue'),
+            });
+            return;
+        }
+
+        clearErrors(UtenlandsoppholdFormFields.barnInnlagtPerioder);
         onValidSubmit(formValuesToUtenlandsopphold(values, variant, opphold?.id));
     };
 
@@ -231,6 +246,7 @@ export const UtenlandsoppholdDialogForm = ({
 
     const handleAddPeriode = (periode: DateTidsperiode): void => {
         appendPeriode(periode);
+        clearErrors(UtenlandsoppholdFormFields.barnInnlagtPerioder);
         setInnlagtPeriodeDialogIsOpen(false);
         setPeriodeUnderRedigering(undefined);
     };
@@ -239,6 +255,7 @@ export const UtenlandsoppholdDialogForm = ({
         const index = barnInnlagtTidsperioder.findIndex((p) => p.id === periode.id);
         if (index >= 0) {
             updatePeriode(index, periode);
+            clearErrors(UtenlandsoppholdFormFields.barnInnlagtPerioder);
         }
         setInnlagtPeriodeDialogIsOpen(false);
         setPeriodeUnderRedigering(undefined);
@@ -354,7 +371,11 @@ export const UtenlandsoppholdDialogForm = ({
                         )}
 
                         {showInnlagtPerioderQuestion && (
-                            <div>
+                            <SifInputGroup<UtenlandsoppholdFormValues>
+                                name={UtenlandsoppholdFormFields.barnInnlagtPerioder}
+                                legend={sifIntl.text(
+                                    '@sifSoknadForms.utenlandsopphold.form.barnInnlagtPerioder.legend',
+                                )}>
                                 <TidsperiodeList
                                     tidsperioder={barnInnlagtTidsperioder}
                                     onEdit={(periode) => {
@@ -391,7 +412,7 @@ export const UtenlandsoppholdDialogForm = ({
                                         }
                                     }}
                                 />
-                            </div>
+                            </SifInputGroup>
                         )}
 
                         {showÅrsakQuestion && (
