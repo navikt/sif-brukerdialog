@@ -40,7 +40,7 @@ export const fyllUtArbeidssituasjonStep = async (page: Page, harFrilansoppdrag: 
         .getByLabel('Nei')
         .check();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?',
         })
         .getByLabel('Nei')

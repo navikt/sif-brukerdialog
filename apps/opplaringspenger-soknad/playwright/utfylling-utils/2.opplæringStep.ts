@@ -101,7 +101,7 @@ const leggTilFerie = async (page: Page, perioder: number = 0) => {
         .getByRole('radiogroup', { name: 'Skal du ha ferie i løpet av søknadsperioden' })
         .getByLabel('Ja')
         .check();
-    await page.getByRole('radiogroup', { name: 'Ferie i perioden' }).click();
+    await page.getByRole('group', { name: 'Ferie i perioden' }).click();
     await page.getByRole('button', { name: 'Legg til ferie' }).click();
     await page
         .getByRole('button', { name: 'Åpne datovelger' })
