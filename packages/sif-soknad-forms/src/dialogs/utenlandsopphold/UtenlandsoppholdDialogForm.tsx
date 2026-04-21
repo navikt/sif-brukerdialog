@@ -1,16 +1,27 @@
 import { Button } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { countryIsMemberOfEøsOrEfta, DateRange, dateUtils, getCountryName } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, getRequiredFieldValidator, getYesOrNoValidator, validationUtils } from '@navikt/sif-validation';
+import {
+    getDateRangeValidator,
+    getRequiredFieldValidator,
+    getYesOrNoValidator,
+    validationUtils,
+} from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { useState } from 'react';
 import { FormProvider, useFieldArray, useForm, useWatch } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { TidsperiodeFormDialog } from '../tidsperiode/TidsperiodeDialog';
-import { DateTidsperiode } from '../tidsperiode/types';
 import { TidsperiodeList } from '../tidsperiode/TidsperiodeList';
-import { Utenlandsopphold, UtenlandsoppholdEnkel, UtenlandsoppholdInnlagtPeriode, UtenlandsoppholdÅrsak, UtenlandsoppholdVariant } from './types';
+import { DateTidsperiode } from '../tidsperiode/types';
+import {
+    Utenlandsopphold,
+    UtenlandsoppholdÅrsak,
+    UtenlandsoppholdEnkel,
+    UtenlandsoppholdInnlagtPeriode,
+    UtenlandsoppholdVariant,
+} from './types';
 
 export interface UtenlandsoppholdDialogFormConfig {
     variant?: UtenlandsoppholdVariant;
@@ -51,7 +62,10 @@ type UtenlandsoppholdFormValues = {
 const { DateRangePicker, CountrySelect, YesOrNoQuestion, RadioGroup } =
     createSifFormComponents<UtenlandsoppholdFormValues>();
 
-const oppholdToFormValues = (opphold: Utenlandsopphold, variant: UtenlandsoppholdVariant): UtenlandsoppholdFormValues => {
+const oppholdToFormValues = (
+    opphold: Utenlandsopphold,
+    variant: UtenlandsoppholdVariant,
+): UtenlandsoppholdFormValues => {
     const base: UtenlandsoppholdFormValues = {
         fom: dateUtils.dateToISODate(opphold.fom),
         tom: dateUtils.dateToISODate(opphold.tom),
@@ -175,7 +189,12 @@ export const UtenlandsoppholdDialogForm = ({
     });
 
     const { control, getValues } = methods;
-    const { fields: periodeFields, append: appendPeriode, remove: removePeriode, update: updatePeriode } = useFieldArray({
+    const {
+        fields: periodeFields,
+        append: appendPeriode,
+        remove: removePeriode,
+        update: updatePeriode,
+    } = useFieldArray({
         control,
         name: UtenlandsoppholdFormFields.barnInnlagtPerioder,
     });
@@ -195,10 +214,9 @@ export const UtenlandsoppholdDialogForm = ({
 
     const isEøsOrEftaLand = landkode ? countryIsMemberOfEøsOrEfta(landkode) : undefined;
 
-    const showInnlagtQuestion = variant === 'utvidet' && erSammenMedBarnet === YesOrNo.YES && landkode && !isEøsOrEftaLand;
-    const showInnlagtPerioderQuestion = Boolean(
-        showInnlagtQuestion && erBarnetInnlagt === YesOrNo.YES && fom && tom,
-    );
+    const showInnlagtQuestion =
+        variant === 'utvidet' && erSammenMedBarnet === YesOrNo.YES && landkode && !isEøsOrEftaLand;
+    const showInnlagtPerioderQuestion = Boolean(showInnlagtQuestion && erBarnetInnlagt === YesOrNo.YES && fom && tom);
     const showÅrsakQuestion = showInnlagtPerioderQuestion;
     const showErSammenMedBarnetQuestion = variant === 'utvidet' && Boolean(landkode);
 
@@ -264,11 +282,15 @@ export const UtenlandsoppholdDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            toDate: validationUtils.getDateFromDateString(getValues(UtenlandsoppholdFormFields.tom)),
+                                            toDate: validationUtils.getDateFromDateString(
+                                                getValues(UtenlandsoppholdFormFields.tom),
+                                            ),
                                         }).validateFromDate(value),
                                     (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                        if (errorCode === 'dateIsBeforeMin')
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax')
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
                                     },
                                 ),
                             }}
@@ -285,11 +307,15 @@ export const UtenlandsoppholdDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            fromDate: validationUtils.getDateFromDateString(getValues(UtenlandsoppholdFormFields.fom)),
+                                            fromDate: validationUtils.getDateFromDateString(
+                                                getValues(UtenlandsoppholdFormFields.fom),
+                                            ),
                                         }).validateToDate(value),
                                     (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin') return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax') return { dato: sifIntl.date(maxDate, 'compact') };
+                                        if (errorCode === 'dateIsBeforeMin')
+                                            return { dato: sifIntl.date(minDate, 'compact') };
+                                        if (errorCode === 'dateIsAfterMax')
+                                            return { dato: sifIntl.date(maxDate, 'compact') };
                                     },
                                 ),
                             }}
@@ -307,7 +333,10 @@ export const UtenlandsoppholdDialogForm = ({
                                 legend={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.erSammenMedBarnet.legend', {
                                     land: getCountryName(landkode, sifIntl.locale),
                                 })}
-                                validate={validateField(UtenlandsoppholdFormFields.erSammenMedBarnet, getYesOrNoValidator())}
+                                validate={validateField(
+                                    UtenlandsoppholdFormFields.erSammenMedBarnet,
+                                    getYesOrNoValidator(),
+                                )}
                             />
                         )}
 
@@ -317,7 +346,10 @@ export const UtenlandsoppholdDialogForm = ({
                                 legend={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.erBarnetInnlagt.legend', {
                                     land: getCountryName(landkode, sifIntl.locale),
                                 })}
-                                validate={validateField(UtenlandsoppholdFormFields.erBarnetInnlagt, getYesOrNoValidator())}
+                                validate={validateField(
+                                    UtenlandsoppholdFormFields.erBarnetInnlagt,
+                                    getYesOrNoValidator(),
+                                )}
                             />
                         )}
 

@@ -1,8 +1,8 @@
 import { Button, Dialog } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { UtenlandsoppholdDialogForm, UtenlandsoppholdDialogFormConfig } from './UtenlandsoppholdDialogForm';
 import { Utenlandsopphold } from './types';
+import { UtenlandsoppholdDialogForm, UtenlandsoppholdDialogFormConfig } from './UtenlandsoppholdDialogForm';
 
 interface Props extends UtenlandsoppholdDialogFormConfig {
     opphold?: Utenlandsopphold;

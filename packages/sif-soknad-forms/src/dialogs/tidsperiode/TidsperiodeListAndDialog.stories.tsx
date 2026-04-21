@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
-import { TidsperiodeListAndDialog } from './TidsperiodeListAndDialog';
 import type { DateTidsperiode } from './index';
+import { TidsperiodeListAndDialog } from './TidsperiodeListAndDialog';
 
 const today = dayjs();
 

@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
 import { FraværPeriodeFormDialog } from './FraværDialog';
-import { FraværPeriodeDialogFormConfig } from './FraværPeriodeDialogForm';
 import { FraværPerioderList } from './FraværList';
+import { FraværPeriodeDialogFormConfig } from './FraværPeriodeDialogForm';
 import { FraværPeriode } from './types';
 
 interface Props extends FraværPeriodeDialogFormConfig {

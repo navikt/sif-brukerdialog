@@ -1,9 +1,9 @@
 import { Button, Dialog } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { FraværPeriodeDialogForm, FraværPeriodeDialogFormConfig } from './FraværPeriodeDialogForm';
 import { FraværDagDialogForm, FraværDagDialogFormConfig } from './FraværDagDialogForm';
-import { FraværPeriode, FraværDag } from './types';
+import { FraværPeriodeDialogForm, FraværPeriodeDialogFormConfig } from './FraværPeriodeDialogForm';
+import { FraværDag,FraværPeriode } from './types';
 
 interface FraværPeriodeDialogProps extends FraværPeriodeDialogFormConfig {
     fraværPeriode?: FraværPeriode;

@@ -1,4 +1,4 @@
-export type { Utenlandsopphold, UtenlandsoppholdVariant, UtenlandsoppholdInnlagtPeriode } from './types';
+export type { Utenlandsopphold, UtenlandsoppholdInnlagtPeriode,UtenlandsoppholdVariant } from './types';
 export { UtenlandsoppholdÅrsak } from './types';
 export * from './UtenlandsoppholdDialog';
 export * from './UtenlandsoppholdDialogForm';

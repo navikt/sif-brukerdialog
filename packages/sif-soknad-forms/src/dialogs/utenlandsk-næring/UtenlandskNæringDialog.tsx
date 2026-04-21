@@ -1,8 +1,8 @@
 import { Button, Dialog } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { UtenlandskNæringDialogForm } from './UtenlandskNæringDialogForm';
 import { UtenlandskNæring } from './types';
+import { UtenlandskNæringDialogForm } from './UtenlandskNæringDialogForm';
 
 interface Props {
     næring?: UtenlandskNæring;

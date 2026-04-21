@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
+import { Utenlandsopphold } from './types';
 import { UtenlandsoppholdFormDialog } from './UtenlandsoppholdDialog';
 import { UtenlandsoppholdDialogFormConfig } from './UtenlandsoppholdDialogForm';
 import { UtenlandsoppholdList } from './UtenlandsoppholdList';
-import { Utenlandsopphold } from './types';
 
 interface Props extends UtenlandsoppholdDialogFormConfig {
     opphold?: Utenlandsopphold[];

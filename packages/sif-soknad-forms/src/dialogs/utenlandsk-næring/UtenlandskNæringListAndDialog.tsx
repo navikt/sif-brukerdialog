@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
+import { UtenlandskNæring } from './types';
 import { UtenlandskNæringFormDialog } from './UtenlandskNæringDialog';
 import { UtenlandskNæringList } from './UtenlandskNæringList';
-import { UtenlandskNæring } from './types';
 
 interface Props {
     næringer?: UtenlandskNæring[];

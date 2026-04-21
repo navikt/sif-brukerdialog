@@ -1,5 +1,5 @@
-import { YesOrNo } from '@sif/rhf';
 import { dateUtils, getDate4YearsAgo } from '@navikt/sif-common-utils';
+import { YesOrNo } from '@sif/rhf';
 import dayjs from 'dayjs';
 
 import { Næringstype, Virksomhet } from './types';
@@ -78,9 +78,7 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
     return {
         id: id ?? crypto.randomUUID(),
         næringstype,
-        fiskerErPåBladB: erFiskerNæringstype(næringstype)
-            ? (values.fiskerErPåBladB as YesOrNo)
-            : undefined,
+        fiskerErPåBladB: erFiskerNæringstype(næringstype) ? (values.fiskerErPåBladB as YesOrNo) : undefined,
         navnPåVirksomheten: values.navnPåVirksomheten,
         registrertINorge,
         registrertILand: registrertINorge === YesOrNo.NO ? values.registrertILand || undefined : undefined,

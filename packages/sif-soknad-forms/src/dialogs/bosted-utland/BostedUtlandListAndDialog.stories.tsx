@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 
-import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { SifSoknadFormsText } from '../../i18n';
+import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { BostedUtlandListAndDialog } from './BostedUtlandListAndDialog';
 import type { BostedUtland } from './index';
 

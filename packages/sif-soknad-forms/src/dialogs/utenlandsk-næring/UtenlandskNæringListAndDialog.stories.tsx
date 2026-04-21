@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
+import { type UtenlandskNæring,UtenlandskNæringstype } from './index';
 import { UtenlandskNæringListAndDialog } from './UtenlandskNæringListAndDialog';
-import { UtenlandskNæringstype, type UtenlandskNæring } from './index';
 
 const today = dayjs();
 

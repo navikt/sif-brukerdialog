@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
 import { StoryFrame } from '../../storybook/components/StoryFrame';
-import { VirksomhetFormAndInfo } from './VirksomhetFormAndInfo';
 import { type Virksomhet } from './index';
 import { exampleVirksomhet } from './mockData';
+import { VirksomhetFormAndInfo } from './VirksomhetFormAndInfo';
 
 type StoryProps = {
     virksomhet?: Virksomhet;

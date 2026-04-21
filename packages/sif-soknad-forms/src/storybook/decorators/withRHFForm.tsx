@@ -7,7 +7,12 @@ type RHFParameters = {
     };
 };
 
-export const withRHFForm: Decorator = (Story, context) => {
+type RHFFormDecoratorProps = {
+    Story: Parameters<Decorator>[0];
+    context: Parameters<Decorator>[1];
+};
+
+const RHFFormDecorator = ({ Story, context }: RHFFormDecoratorProps) => {
     const parameters = context.parameters as RHFParameters;
     const methods = useForm({ defaultValues: parameters.rhf?.defaultValues });
 
@@ -17,3 +22,5 @@ export const withRHFForm: Decorator = (Story, context) => {
         </FormProvider>
     );
 };
+
+export const withRHFForm: Decorator = (Story, context) => <RHFFormDecorator Story={Story} context={context} />;

@@ -1,8 +1,8 @@
 import { Button, Dialog } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { VirksomhetDialogForm } from './VirksomhetDialogForm';
 import { Virksomhet } from './types';
+import { VirksomhetDialogForm } from './VirksomhetDialogForm';
 
 interface Props {
     virksomhet?: Virksomhet;

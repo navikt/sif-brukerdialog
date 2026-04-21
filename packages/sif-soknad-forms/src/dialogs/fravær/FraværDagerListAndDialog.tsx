@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
-import { FraværDagFormDialog } from './FraværDialog';
 import { FraværDagDialogFormConfig } from './FraværDagDialogForm';
+import { FraværDagFormDialog } from './FraværDialog';
 import { FraværDagerList } from './FraværList';
 import { FraværDag } from './types';
 
