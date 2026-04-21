@@ -1,5 +1,6 @@
 export const annetBarnMessages_nb = {
     '@sifSoknadForms.annetBarn.list.leggTil': 'Legg til barn',
+    '@sifSoknadForms.annetBarn.list.detaljer': 'Fnr/d-nr: {fnr}. Født: {fødselsdato}. Årsak: {årsak}.',
     '@sifSoknadForms.annetBarn.dialog.tittel': 'Legg til barn',
     '@sifSoknadForms.annetBarn.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.annetBarn.dialog.okKnapp': 'Ok',

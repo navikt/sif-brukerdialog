@@ -1,9 +1,9 @@
-import { HStack } from '@navikt/ds-react';
+import { HGrid } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
-import { useSifSoknadFormsIntl } from '../../i18n';
+import { SifSoknadFormsText, useSifSoknadFormsIntl } from '../../i18n';
 import { AnnetBarn, BarnType } from './index';
 
 interface Props {
@@ -28,11 +28,22 @@ const renderAnnetBarnLabel = (
     onEdit?: (annetBarn: AnnetBarn) => void,
 ): ReactNode => {
     return (
-        <HStack gap="space-4" wrap={false} align="center">
-            <span>{prettifyDate(barn.fødselsdato, locale)}</span>
-            {onEdit ? <ActionLink onClick={() => onEdit(barn)}>{barn.navn}</ActionLink> : <span>{barn.navn}</span>}
-            {barn.type ? <span>({text(getAnnetBarnTypeIntlKey(barn.type))})</span> : null}
-        </HStack>
+        <HGrid>
+            <div>
+                {onEdit && <ActionLink onClick={() => onEdit(barn)}>{barn.navn}</ActionLink>}
+                {!onEdit && <span>{barn.navn}</span>}
+            </div>
+            <div>
+                <SifSoknadFormsText
+                    id="@sifSoknadForms.annetBarn.list.detaljer"
+                    values={{
+                        fnr: barn.fnr,
+                        fødselsdato: prettifyDate(barn.fødselsdato, locale),
+                        årsak: barn.type ? text(getAnnetBarnTypeIntlKey(barn.type)) : '',
+                    }}
+                />
+            </div>
+        </HGrid>
     );
 };
 
