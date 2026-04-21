@@ -1,5 +1,5 @@
 import { FileIcon, PencilWritingIcon, TasklistIcon } from '@navikt/aksel-icons';
-import { Heading, VStack } from '@navikt/ds-react';
+import { Heading, Tag, VStack } from '@navikt/ds-react';
 
 import { useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
@@ -17,7 +17,16 @@ const OppdatereSakLenker = () => {
                     href={browserEnv.NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL}
                     icon={<PencilWritingIcon role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                     title={text('snarveier.endringsmelding.tittel')}
-                    description={text('snarveier.endringsmelding.tekst')}
+                    description={
+                        <VStack>
+                            {text('snarveier.endringsmelding.tekst')}
+                            <span>
+                                <Tag variant="success" size="small">
+                                    {text('snarveier.endringsmelding.tekst.nyFunksjonalitet')}
+                                </Tag>
+                            </span>
+                        </VStack>
+                    }
                 />
                 <SnarveiLinkCard
                     href={browserEnv.NEXT_PUBLIC_BESKJED_URL}
