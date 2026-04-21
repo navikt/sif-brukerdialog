@@ -2,7 +2,7 @@ import { annetBarnMessages_nb } from './nb';
 
 export const annetBarnMessages_nn: Record<keyof typeof annetBarnMessages_nb, string> = {
     '@sifSoknadForms.annetBarn.list.leggTil': 'Legg til barn',
-    '@sifSoknadForms.annetBarn.list.detaljer': 'Fnr/dnr: {fnr}. Fødd: {fødselsdato}. Årsak: {årsak}',
+    '@sifSoknadForms.annetBarn.list.detaljer': 'Fnr/dnr: {fnr}. Fødd: {fødselsdato}. Årsak: {årsak}.',
     '@sifSoknadForms.annetBarn.dialog.tittel': 'Legg til barn',
     '@sifSoknadForms.annetBarn.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.annetBarn.dialog.okKnapp': 'Ok',

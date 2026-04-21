@@ -1,4 +1,4 @@
-import { HGrid } from '@navikt/ds-react';
+import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
@@ -28,12 +28,11 @@ const renderAnnetBarnLabel = (
     onEdit?: (annetBarn: AnnetBarn) => void,
 ): ReactNode => {
     return (
-        <HGrid>
-            <div>
-                {onEdit && <ActionLink onClick={() => onEdit(barn)}>{barn.navn}</ActionLink>}
-                {!onEdit && <span>{barn.navn}</span>}
-            </div>
-            <div>
+        <VStack gap="space-2">
+            <BodyShort>
+                {onEdit ? <ActionLink onClick={() => onEdit(barn)}>{barn.navn}</ActionLink> : barn.navn}
+            </BodyShort>
+            <BodyShort textColor="subtle">
                 <SifSoknadFormsText
                     id="@sifSoknadForms.annetBarn.list.detaljer"
                     values={{
@@ -42,8 +41,8 @@ const renderAnnetBarnLabel = (
                         årsak: barn.type ? text(getAnnetBarnTypeIntlKey(barn.type)) : '',
                     }}
                 />
-            </div>
-        </HGrid>
+            </BodyShort>
+        </VStack>
     );
 };
 

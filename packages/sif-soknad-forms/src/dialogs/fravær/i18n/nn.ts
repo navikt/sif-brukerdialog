@@ -8,6 +8,7 @@ export const fraværMessages_nn: Record<keyof typeof fraværMessages_nb, string>
     '@sifSoknadForms.fraværPeriode.form.tidsperiode.legend': 'Vel tidsrom',
     '@sifSoknadForms.fraværPeriode.form.fraOgMed.label': 'Frå og med',
     '@sifSoknadForms.fraværPeriode.form.tilOgMed.label': 'Til og med',
+    '@sifSoknadForms.fraværDag.list.fravær': '{timerArbeidsdag} t. arbeid, {timerFravær} t. fråvær',
     '@sifSoknadForms.fraværDag.dialog.tittel': 'Dag med delvis fråvær frå jobb',
     '@sifSoknadForms.fraværDag.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.fraværDag.dialog.leggTilKnapp': 'Legg til',

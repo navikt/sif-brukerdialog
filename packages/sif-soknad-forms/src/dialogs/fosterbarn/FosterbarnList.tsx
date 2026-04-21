@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
 import { ReactNode } from 'react';
 
@@ -11,11 +12,10 @@ interface Props {
 
 const renderFosterbarnLabel = (barn: Fosterbarn, onEdit?: (fosterbarn: Fosterbarn) => void): ReactNode => {
     return (
-        <div>
-            <span>{barn.fødselsnummer}</span>{' '}
-            {onEdit && <ActionLink onClick={() => onEdit(barn)}>{barn.navn}</ActionLink>}
-            {!onEdit && <span>{barn.navn}</span>}
-        </div>
+        <VStack gap="space-4">
+            {onEdit ? <ActionLink onClick={() => onEdit(barn)}>{barn.navn}</ActionLink> : barn.navn}
+            <span>Fnr./d-nr. {barn.fødselsnummer}</span>
+        </VStack>
     );
 };
 

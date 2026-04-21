@@ -1,7 +1,9 @@
+import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
-import { prettifyDateExtended } from '@navikt/sif-common-utils';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
+import { SifSoknadFormsText } from '../../i18n';
 import { FraværDag, FraværPeriode } from './types';
 
 interface FraværPeriodeListProps {
@@ -16,26 +18,37 @@ interface FraværDagListProps {
     onDelete?: (fraværDag: FraværDag) => void;
 }
 
+const getPeriodeTitle = (fraværPeriode: FraværPeriode): string => {
+    return `${dateFormatter.compact(fraværPeriode.fraOgMed)} - ${dateFormatter.compact(fraværPeriode.tilOgMed)}`;
+};
+
+const getDagTitle = (fraværDag: FraværDag): string => {
+    return `${dateFormatter.compact(fraværDag.dato)}`;
+};
+
 const renderFraværPeriodeLabel = (
     fraværPeriode: FraværPeriode,
     onEdit?: (fraværPeriode: FraværPeriode) => void,
 ): ReactNode => {
-    const title = `${prettifyDateExtended(fraværPeriode.fraOgMed)} - ${prettifyDateExtended(fraværPeriode.tilOgMed)}`;
+    const title = getPeriodeTitle(fraværPeriode);
     return (
         <div>
-            {onEdit && <ActionLink onClick={() => onEdit(fraværPeriode)}>{title}</ActionLink>}
-            {!onEdit && <span>{title}</span>}
+            {onEdit ? <ActionLink onClick={() => onEdit(fraværPeriode)}>{title}</ActionLink> : <span>{title}</span>}
         </div>
     );
 };
 
 const renderFraværDagLabel = (fraværDag: FraværDag, onEdit?: (fraværDag: FraværDag) => void): ReactNode => {
-    const title = `${prettifyDateExtended(fraværDag.dato)}: ${fraværDag.timerArbeidsdag}t arbeid, ${fraværDag.timerFravær}t fravær`;
+    const title = getDagTitle(fraværDag);
     return (
-        <div>
-            {onEdit && <ActionLink onClick={() => onEdit(fraværDag)}>{title}</ActionLink>}
-            {!onEdit && <span>{title}</span>}
-        </div>
+        <VStack gap="space-2">
+            <BodyShort>
+                {onEdit ? <ActionLink onClick={() => onEdit(fraværDag)}>{title}</ActionLink> : <span>{title}</span>}
+            </BodyShort>
+            <BodyShort textColor="subtle">
+                <SifSoknadFormsText id="@sifSoknadForms.fraværDag.list.fravær" values={fraværDag} />
+            </BodyShort>
+        </VStack>
     );
 };
 
@@ -43,9 +56,7 @@ export const FraværPerioderList = ({ fraværPerioder, onEdit, onDelete }: Frav�
     return (
         <ItemListDarkside<FraværPeriode>
             getItemId={(fraværPeriode): string => fraværPeriode.id}
-            getItemTitle={(fraværPeriode): string =>
-                `${prettifyDateExtended(fraværPeriode.fraOgMed)} - ${prettifyDateExtended(fraværPeriode.tilOgMed)}`
-            }
+            getItemTitle={getPeriodeTitle}
             labelRenderer={(fraværPeriode) => renderFraværPeriodeLabel(fraværPeriode, onEdit)}
             items={fraværPerioder}
             onDelete={onDelete}
@@ -57,9 +68,7 @@ export const FraværDagerList = ({ fraværDager, onEdit, onDelete }: FraværDagL
     return (
         <ItemListDarkside<FraværDag>
             getItemId={(fraværDag): string => fraværDag.id}
-            getItemTitle={(fraværDag): string =>
-                `${prettifyDateExtended(fraværDag.dato)}: ${fraværDag.timerArbeidsdag}t arbeid, ${fraværDag.timerFravær}t fravær`
-            }
+            getItemTitle={getDagTitle}
             labelRenderer={(fraværDag) => renderFraværDagLabel(fraværDag, onEdit)}
             items={fraværDager}
             onDelete={onDelete}

@@ -1,5 +1,6 @@
+import { BodyShort } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
-import { prettifyDateExtended } from '@navikt/sif-common-utils';
+import { dateRangeFormatter } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
 import { DateTidsperiode } from './types';
@@ -10,13 +11,16 @@ interface Props {
     onDelete?: (tidsperiode: DateTidsperiode) => void;
 }
 
+const getTitle = (tidsperiode: DateTidsperiode): string => {
+    return `${dateRangeFormatter.compact({ from: tidsperiode.fom, to: tidsperiode.tom })}`;
+};
+
 const renderTidsperiodeLabel = (tidsperiode: DateTidsperiode, onEdit?: (t: DateTidsperiode) => void): ReactNode => {
-    const title = `${prettifyDateExtended(tidsperiode.fom)} - ${prettifyDateExtended(tidsperiode.tom)}`;
+    const title = getTitle(tidsperiode);
     return (
-        <div>
-            {onEdit && <ActionLink onClick={() => onEdit(tidsperiode)}>{title}</ActionLink>}
-            {!onEdit && <span>{title}</span>}
-        </div>
+        <BodyShort>
+            {onEdit ? <ActionLink onClick={() => onEdit(tidsperiode)}>{title}</ActionLink> : <span>{title}</span>}
+        </BodyShort>
     );
 };
 
@@ -24,9 +28,7 @@ export const TidsperiodeList = ({ tidsperioder, onEdit, onDelete }: Props) => {
     return (
         <ItemListDarkside<DateTidsperiode>
             getItemId={(tidsperiode): string => tidsperiode.id}
-            getItemTitle={(tidsperiode): string =>
-                `${prettifyDateExtended(tidsperiode.fom)} - ${prettifyDateExtended(tidsperiode.tom)}`
-            }
+            getItemTitle={(tidsperiode): string => getTitle(tidsperiode)}
             labelRenderer={(tidsperiode) => renderTidsperiodeLabel(tidsperiode, onEdit)}
             items={tidsperioder}
             onDelete={onDelete}

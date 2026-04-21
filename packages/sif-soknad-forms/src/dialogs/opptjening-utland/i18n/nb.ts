@@ -12,9 +12,7 @@ export const opptjeningUtlandMessages_nb = {
     '@sifSoknadForms.opptjeningUtland.form.opptjeningType.FRILANSER': 'Frilanser',
     '@sifSoknadForms.opptjeningUtland.form.arbeidsgiversNavn.label': 'Skriv inn navnet på arbeidsgiveren',
     '@sifSoknadForms.opptjeningUtland.form.oppdragsgiverNavn.label': 'Skriv inn navnet på oppdragsgiveren',
-    '@sifSoknadForms.opptjeningUtland.list.jobbet_i': 'Jobbet i',
-    '@sifSoknadForms.opptjeningUtland.list.som': 'som',
-    '@sifSoknadForms.opptjeningUtland.list.hos': 'hos',
+    '@sifSoknadForms.opptjeningUtland.list.detaljer': 'Jobbet som {som} hos {hos}',
     '@sifSoknadForms.opptjeningUtland.list.aktivitet.ARBEIDSTAKER': 'arbeidstaker',
     '@sifSoknadForms.opptjeningUtland.list.aktivitet.FRILANSER': 'frilanser',
     '@sifSoknadForms.opptjeningUtlandForm.validation.fom.dateHasNoValue':

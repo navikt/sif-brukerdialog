@@ -6,6 +6,7 @@ export const fraværMessages_nb = {
     '@sifSoknadForms.fraværPeriode.form.tidsperiode.legend': 'Velg tidsrom',
     '@sifSoknadForms.fraværPeriode.form.fraOgMed.label': 'Fra og med',
     '@sifSoknadForms.fraværPeriode.form.tilOgMed.label': 'Til og med',
+    '@sifSoknadForms.fraværDag.list.fravær': '{timerArbeidsdag} t. arbeid, {timerFravær} t. fravær',
     '@sifSoknadForms.fraværDag.dialog.tittel': 'Dag med delvis fravær fra jobb',
     '@sifSoknadForms.fraværDag.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.fraværDag.dialog.leggTilKnapp': 'Legg til',

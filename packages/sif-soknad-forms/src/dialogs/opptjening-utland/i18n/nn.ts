@@ -14,9 +14,7 @@ export const opptjeningUtlandMessages_nn: Record<keyof typeof opptjeningUtlandMe
     '@sifSoknadForms.opptjeningUtland.form.opptjeningType.FRILANSER': 'Frilansar',
     '@sifSoknadForms.opptjeningUtland.form.arbeidsgiversNavn.label': 'Skriv inn namnet på arbeidsgjevaren',
     '@sifSoknadForms.opptjeningUtland.form.oppdragsgiverNavn.label': 'Skriv inn namnet på oppdragsgjevaren',
-    '@sifSoknadForms.opptjeningUtland.list.jobbet_i': 'Jobba i',
-    '@sifSoknadForms.opptjeningUtland.list.som': 'som',
-    '@sifSoknadForms.opptjeningUtland.list.hos': 'hjå',
+    '@sifSoknadForms.opptjeningUtland.list.detaljer': 'Jobb som {som} hjå {hos}',
     '@sifSoknadForms.opptjeningUtland.list.aktivitet.ARBEIDSTAKER': 'arbeidstakar',
     '@sifSoknadForms.opptjeningUtland.list.aktivitet.FRILANSER': 'frilansar',
     '@sifSoknadForms.opptjeningUtlandForm.validation.fom.dateHasNoValue':

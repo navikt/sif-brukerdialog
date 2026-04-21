@@ -1,5 +1,5 @@
 import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
-import { getCountryName, prettifyDateExtended } from '@navikt/sif-common-utils';
+import { dateRangeFormatter, getCountryName } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
 import { Utenlandsopphold } from './types';
@@ -16,13 +16,11 @@ const renderOppholdLabel = (
     onEdit?: (opphold: Utenlandsopphold) => void,
 ): ReactNode => {
     const landNavn = getCountryName(opphold.landkode, locale);
-    const title = `${landNavn} (${prettifyDateExtended(opphold.fom)} - ${prettifyDateExtended(opphold.tom)})`;
+    const periode = dateRangeFormatter.compact({ from: opphold.fom, to: opphold.tom });
+    const title = `${periode}: ${landNavn}`;
 
     return (
-        <div>
-            {onEdit && <ActionLink onClick={() => onEdit(opphold)}>{title}</ActionLink>}
-            {!onEdit && <span>{title}</span>}
-        </div>
+        <div>{onEdit ? <ActionLink onClick={() => onEdit(opphold)}>{title}</ActionLink> : <span>{title}</span>}</div>
     );
 };
 

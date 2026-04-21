@@ -1,5 +1,5 @@
 import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
-import { prettifyDateExtended } from '@navikt/sif-common-utils';
+import { dateRangeFormatter } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
 import { Ferieuttak } from './types';
@@ -10,21 +10,20 @@ interface Props {
     onDelete?: (ferieuttak: Ferieuttak) => void;
 }
 
+const getTitle = (uttak: Ferieuttak) => {
+    return `${dateRangeFormatter.compact(uttak)}`;
+};
+
 const renderFerieuttakLabel = (uttak: Ferieuttak, onEdit?: (ferieuttak: Ferieuttak) => void): ReactNode => {
-    const title = `${prettifyDateExtended(uttak.from)} - ${prettifyDateExtended(uttak.to)}`;
-    return (
-        <div>
-            {onEdit && <ActionLink onClick={() => onEdit(uttak)}>{title}</ActionLink>}
-            {!onEdit && <span>{title}</span>}
-        </div>
-    );
+    const title = getTitle(uttak);
+    return <div>{onEdit ? <ActionLink onClick={() => onEdit(uttak)}>{title}</ActionLink> : title}</div>;
 };
 
 export const FerieuttakList = ({ ferieuttak, onEdit, onDelete }: Props) => {
     return (
         <ItemListDarkside<Ferieuttak>
             getItemId={(uttak): string => uttak.id}
-            getItemTitle={(uttak): string => `${prettifyDateExtended(uttak.from)} - ${prettifyDateExtended(uttak.to)}`}
+            getItemTitle={(uttak): string => getTitle(uttak)}
             labelRenderer={(uttak) => renderFerieuttakLabel(uttak, onEdit)}
             items={ferieuttak}
             onDelete={onDelete}

@@ -1,8 +1,9 @@
+import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
-import { getCountryName, prettifyDateExtended } from '@navikt/sif-common-utils';
+import { dateFormatter, getCountryName } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
-import { useSifSoknadFormsIntl } from '../../i18n';
+import { SifSoknadFormsText, useSifSoknadFormsIntl } from '../../i18n';
 import { OpptjeningAktivitet, OpptjeningUtland } from './types';
 
 interface Props {
@@ -11,23 +12,30 @@ interface Props {
     onDelete?: (opptjening: OpptjeningUtland) => void;
 }
 
+const getTitle = (opptjening: OpptjeningUtland, locale: string): string => {
+    const landNavn = getCountryName(opptjening.landkode, locale);
+    return `${dateFormatter.compact(opptjening.fom)} - ${dateFormatter.compact(opptjening.tom, locale)}: ${landNavn}`;
+};
+
 const renderOpptjeningLabel = (
     opptjening: OpptjeningUtland,
     locale: string,
     aktivitetLabel: string,
-    jobbetI: string,
-    som: string,
-    hos: string,
     onEdit?: (opptjening: OpptjeningUtland) => void,
 ): ReactNode => {
-    const landNavn = getCountryName(opptjening.landkode, locale);
-    const title = `${jobbetI} ${landNavn} ${som} ${aktivitetLabel} ${hos} ${opptjening.navn} (${prettifyDateExtended(opptjening.fom)} - ${prettifyDateExtended(opptjening.tom)})`;
-
+    const title = getTitle(opptjening, locale);
     return (
-        <div>
-            {onEdit && <ActionLink onClick={() => onEdit(opptjening)}>{title}</ActionLink>}
-            {!onEdit && <span>{title}</span>}
-        </div>
+        <VStack gap="space-2">
+            <BodyShort>
+                {onEdit ? <ActionLink onClick={() => onEdit(opptjening)}>{title}</ActionLink> : <span>{title}</span>}
+            </BodyShort>
+            <BodyShort textColor="subtle">
+                <SifSoknadFormsText
+                    id="@sifSoknadForms.opptjeningUtland.list.detaljer"
+                    values={{ som: aktivitetLabel, hos: opptjening.navn }}
+                />
+            </BodyShort>
+        </VStack>
     );
 };
 
@@ -47,17 +55,9 @@ export const OpptjeningUtlandList = ({ opptjeninger, onEdit, onDelete }: Props) 
     return (
         <ItemListDarkside<OpptjeningUtland>
             getItemId={(opptjening): string => opptjening.id}
-            getItemTitle={(opptjening): string => getCountryName(opptjening.landkode, locale)}
+            getItemTitle={(opptjening): string => getTitle(opptjening, locale)}
             labelRenderer={(opptjening) =>
-                renderOpptjeningLabel(
-                    opptjening,
-                    locale,
-                    getAktivitetLabel(opptjening.opptjeningType),
-                    sifIntl.text('@sifSoknadForms.opptjeningUtland.list.jobbet_i'),
-                    sifIntl.text('@sifSoknadForms.opptjeningUtland.list.som'),
-                    sifIntl.text('@sifSoknadForms.opptjeningUtland.list.hos'),
-                    onEdit,
-                )
+                renderOpptjeningLabel(opptjening, locale, getAktivitetLabel(opptjening.opptjeningType), onEdit)
             }
             items={opptjeninger}
             onDelete={onDelete}
