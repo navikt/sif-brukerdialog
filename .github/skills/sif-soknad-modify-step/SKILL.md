@@ -1,15 +1,24 @@
 ---
 name: sif-soknad-modify-step
+type: action
 description: Legg til nye spørsmål/felter i et eksisterende steg i en søknadsapp som bruker @sif/soknad og @sif/rhf.
 ---
 
 # sif-soknad-modify-step
 
-## Når skal skillen brukes
+## Bruk når
 
 - Bruker ber om å legge til et nytt spørsmål i et **eksisterende** steg.
 - Bruker vil legge til en checkbox-liste, radiogruppe, tekstfelt, datepicker eller annet i et steg som allerede finnes.
 - Bruker nevner betinget visning ("vis bare hvis …", "følgespørsmål").
+
+## Leveranse
+
+- Oppdatert `types.ts` — nye felter i `FormFields` og `FormValues`
+- Oppdatert `<Prefix>Form.tsx` — nye skjemakomponenter med validering
+- Oppdatert `<prefix>StegUtils.ts` — mapping for nye felter
+- Oppdatert `i18n/nb.ts` og `nn.ts` — labels og valideringsmeldinger
+- Oppdatert `Soknadsdata` og `formValuesToSoknadsdata` ved behov
 
 ## Avgrensning
 

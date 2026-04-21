@@ -1,22 +1,22 @@
 ---
 name: sif-soknad-oppsummering
+type: action
 description: Sett opp OppsummeringSteg i en v2-app — DTO-basert oppsummering med FormSummary, bekreftelsescheckbox og i18n-nøkler.
 ---
 
 # sif-soknad-oppsummering
 
-## Formål
-
-Fyll inn innhold i et eksisterende `OppsummeringSteg.tsx` i en v2-app. Etter at skillen er fulgt skal:
-
-- Alle domeneseksjoner vises med `FormSummary`
-- Tekstene samsvare med v1-versjonen av samme søknad
-- Bekreftelsescheckbox fungere og innsending skje korrekt
-- i18n-nøkler i `nb.ts` dekke alle labels
-
-## Når skal skillen brukes
+## Bruk når
 
 Signalord: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny oppsummering`, `oppsummeringsside`
+
+## Leveranse
+
+- Utfylt `OppsummeringSteg.tsx` med alle domeneseksjoner via `FormSummary`
+- Tekster som samsvarer med v1-versjonen av samme søknad
+- Fungerende bekreftelsescheckbox og innsending
+- i18n-nøkler i `nb.ts` som dekker alle labels
+- `useSendSøknad.ts` og `soknadsdataToSøknadDTO.ts` hvis de ikke finnes fra før
 
 ## Avgrensning
 

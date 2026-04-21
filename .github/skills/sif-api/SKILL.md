@@ -1,21 +1,24 @@
 ---
 name: sif-api
+type: referanse
 description: Bruk denne skillen når en utvikler trenger å hente informasjon fra ett av API-ene i appen via @sif/api (f.eks. kontonummer, søker, barn, arbeidsgivere, mellomlagring).
 ---
 
 # sif-api
 
-Denne skillen dekker kun valg av hook, nødvendig API-klient og påkrevd env-oppsett for `@sif/api`. I første respons skal agenten kun gi generell veiledning og et minimalt brukseksempel. Verifisering mot repo eller appfiler skjer bare når brukeren eksplisitt ber om det.
-
-## Formål
-
-Veiledning for å hente data i sif-brukerdialog-apper via `@sif/api`. Dekker hele kjeden: velge riktig hook, sette opp env-variabler og initialisere API-klienter.
-
-## Når skal skillen brukes
+## Bruk når
 
 - En utvikler legger til en ny datakilde i en eksisterende app.
 - En utvikler feilsøker hvorfor et API-kall ikke fungerer (manglende env eller klient-init).
 - En utvikler trenger å forstå sammenhengen mellom hook, API-klient og env-oppsett.
+
+## Leveranse
+
+- Veiledning for valg av riktig hook fra `@sif/api`
+- Minimalt brukseksempel med hook, API-klient og env-oppsett
+- Verifiseringssjekkliste for at kjeden hook → klient → env er komplett
+
+I første respons skal agenten kun gi generell veiledning og et minimalt brukseksempel. Verifisering mot repo eller appfiler skjer bare når brukeren eksplisitt ber om det.
 
 ## Hurtigtrigger
 

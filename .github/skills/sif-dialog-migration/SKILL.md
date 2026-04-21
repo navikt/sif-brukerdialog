@@ -1,24 +1,27 @@
 ---
 name: sif-dialog-migration
+type: action
 description: Porter *ListAndDialog-komponenter fra sif-common-forms-ds (v1/Formik) til sif-soknad-forms (v2/RHF) via ModalFormAndList.
 ---
 
 # sif-dialog-migration
 
-## Formål
-
-Porter en `*ListAndDialog`-komponent fra `packages/sif-common-forms-ds` til `packages/sif-soknad-forms`. Etter portering skal:
-
-- Domenetype, felter og validering være identiske med v1.
-- Generell dialog-state håndteres av `ModalFormAndList`, ikke en lokal state-maskin.
-- Formik er erstattet med RHF (`useForm`, `createSifFormComponents`, `useSifValidate`).
-- i18n-nøkler følger `@sifSoknadForms`-prefiksmønsteret.
-
-## Når skal skillen brukes
+## Bruk når
 
 - Bruker ber om å porte en dialog fra `sif-common-forms-ds` til `sif-soknad-forms`.
-- Bruker nevner `porter dialog`, `migrer ListAndDialog`, `flytt til sif-soknad-forms`, `ModalFormAndList`, `BostedUtlandListAndDialog`, `UtenlandsoppholdListAndDialog` eller lignende.
+- Bruker nevner `porter dialog`, `migrer ListAndDialog`, `flytt til sif-soknad-forms`, `ModalFormAndList`, eller en spesifikk v1-dialog.
 - Bruker referer til en spesifikk v1-dialog som skal til v2.
+
+## Leveranse
+
+- Domenetype i `src/dialogs/<navn>/index.ts`
+- `XxxDialogForm` — RHF-form med felter, validering og konverteringsfunksjoner
+- `XxxDialog` — Aksel Dialog-shell
+- `XxxList` — liste med `ItemListDarkside`
+- `XxxListAndDialog` — kobler `ModalFormAndList` med domenekomponentene
+- Story i `.stories.tsx`
+- i18n (`nb.ts` og `nn.ts`) under `src/dialogs/<navn>/i18n/`
+- Eksport fra `src/dialogs/<navn>/index.ts` og `src/dialogs/index.ts`
 
 ## Avgrensning
 

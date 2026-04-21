@@ -1,22 +1,22 @@
 ---
 name: sif-formik-to-rhf
+type: action
 description: Migrer et skjema fra @navikt/sif-common-formik-ds (Formik) til @sif/rhf (React Hook Form). Bevarer oppførsel og data inn/ut.
 ---
 
 # sif-formik-to-rhf
 
-## Formål
-
-Konverter ett Formik-skjema til React Hook Form via `@sif/rhf`. Etter migrering skal:
-
-- Skjemaet kompilere uten feil.
-- Oppførsel og data inn/ut være identisk med Formik-varianten.
-- Validering og i18n-nøkler fungere som før.
-
-## Når skal skillen brukes
+## Bruk når
 
 - Bruker ber om å erstatte Formik med RHF i et eksisterende skjema.
 - Bruker nevner `formik til rhf`, `konverter skjema`, `bytt ut formik`, `migrer form`, `sif-common-formik-ds → sif/rhf`.
+
+## Leveranse
+
+- Migrert skjemakomponent med `useForm`, `createSifFormComponents`, `SifForm`
+- Identisk oppførsel og data inn/ut som Formik-varianten
+- Validering og i18n-nøkler fungerer som før
+- Alle Formik-importer fjernet fra filen
 
 ## Avgrensning og rør-ikke-regler
 

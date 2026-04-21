@@ -1,11 +1,22 @@
 ---
 name: aksel-spacing
+type: referanse
 description: Responsiv layout med Aksel spacing-tokens og Box, VStack, HStack og HGrid
 ---
 
 # aksel-spacing
 
-Bruk denne skillen for spesifikke layout-oppgaver med Aksel spacing-tokens.
+## Bruk når
+
+- Du trenger layout med padding, gap eller margin i en komponent som bruker Aksel.
+- Du skal velge riktig spacing-token eller responsiv verdi.
+- Du bygger responsivt grid eller stacking-layout med `Box`, `VStack`, `HStack` eller `HGrid`.
+
+## Leveranse
+
+- Korrekt bruk av Aksel spacing-tokens i layout-kode
+- Responsive verdier der det er relevant
+- Ingen Tailwind padding/margin blandet med Aksel-komponenter
 
 ## Regler
 
