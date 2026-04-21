@@ -19,7 +19,9 @@ export const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) =
     const { text } = sifIntl;
     const erNyoppstartet = erVirksomhetRegnetSomNyoppstartet(virksomhet.fom);
 
-    const land = virksomhet.registrertILand ? getCountryName(virksomhet.registrertILand, locale) : 'Norge';
+    const land = virksomhet.registrertILand
+        ? getCountryName(virksomhet.registrertILand, locale)
+        : getCountryName('NO', locale);
 
     const getNæringstypeLabel = () => {
         if (erFiskerNæringstype(virksomhet.næringstype) && virksomhet.fiskerErPåBladB !== undefined) {

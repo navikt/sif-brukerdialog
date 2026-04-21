@@ -14,7 +14,7 @@ interface Props {
 
 const getTitle = (opptjening: OpptjeningUtland, locale: string): string => {
     const landNavn = getCountryName(opptjening.landkode, locale);
-    return `${dateFormatter.compact(opptjening.fom)} - ${dateFormatter.compact(opptjening.tom, locale)}: ${landNavn}`;
+    return `${dateFormatter.compact(opptjening.fom, locale)} - ${dateFormatter.compact(opptjening.tom, locale)}: ${landNavn}`;
 };
 
 const renderOpptjeningLabel = (

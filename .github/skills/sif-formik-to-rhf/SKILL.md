@@ -219,6 +219,25 @@ Bruk alltid `gap="space-16"` på `<HStack>` rundt submit/cancel-knapper — ikke
 
 Formik `<Form>` har props som `showButtonArrows`, `includeValidationSummary` og `formErrorHandler` som ikke har direkte ekvivalenter i `<SifForm>`. Disse droppes uten erstatning:
 
+### 6. YesOrNo-felt skal beholde `YesOrNo`-typen i FormValues
+
+Bruker du `YesOrNoQuestion` fra `@sif/rhf`, skal feltet i `FormValues` typet som `YesOrNo` — ikke widen til `string`.
+RHF støtter enum-typer direkte, og korrekt typing fjerner behovet for `as YesOrNo`-caster i konverteringsfunksjonene.
+
+```ts
+// Feil:
+type MyFormValues = {
+    harSamtykket: string; // ← widened unødvendig
+};
+const harSamtykket = values.harSamtykket as YesOrNo; // ← cast unødvendig
+
+// Riktig:
+type MyFormValues = {
+    harSamtykket: YesOrNo;
+};
+const harSamtykket = values.harSamtykket; // ← ingen cast nødvendig
+```
+
 - `showButtonArrows` — finnes ikke i RHF, drop.
 - `includeValidationSummary` — `SifForm` inkluderer `SifValidationSummary` automatisk.
 - `formErrorHandler` — erstattes av `useSifValidate` (se fallgruve 1).

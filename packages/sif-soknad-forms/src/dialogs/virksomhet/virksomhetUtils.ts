@@ -11,23 +11,23 @@ export const erVirksomhetRegnetSomNyoppstartet = (oppstartsdato: Date): boolean 
     dayjs(oppstartsdato).startOf('day').isAfter(getDate4YearsAgo());
 
 export type VirksomhetFormValues = {
-    næringstype: string;
-    fiskerErPåBladB: string;
+    næringstype: Næringstype;
+    fiskerErPåBladB: YesOrNo;
     navnPåVirksomheten: string;
-    registrertINorge: string;
+    registrertINorge: YesOrNo;
     registrertILand: string;
     organisasjonsnummer: string;
     fom: string;
     tom: string;
     erPågående: boolean;
     næringsinntekt: string;
-    harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene: string;
+    harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene: YesOrNo;
     blittYrkesaktivDato: string;
-    hattVarigEndringAvNæringsinntektSiste4Kalenderår: string;
+    hattVarigEndringAvNæringsinntektSiste4Kalenderår: YesOrNo;
     varigEndringINæringsinntekt_dato: string;
     varigEndringINæringsinntekt_inntektEtterEndring: string;
     varigEndringINæringsinntekt_forklaring: string;
-    harRegnskapsfører: string;
+    harRegnskapsfører: YesOrNo;
     regnskapsfører_navn: string;
     regnskapsfører_telefon: string;
 };
@@ -68,10 +68,9 @@ const getNumberFromString = (value: string): number | undefined => {
 
 export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string): Virksomhet => {
     const fom = values.fom ? dateUtils.ISODateToDate(values.fom) : undefined;
-    const næringstype = values.næringstype as Næringstype;
-    const registrertINorge = values.registrertINorge as YesOrNo;
-    const harRegnskapsfører =
-        registrertINorge === YesOrNo.YES ? (values.harRegnskapsfører as YesOrNo) : YesOrNo.UNANSWERED;
+    const næringstype = values.næringstype;
+    const registrertINorge = values.registrertINorge;
+    const harRegnskapsfører = registrertINorge === YesOrNo.YES ? values.harRegnskapsfører : YesOrNo.UNANSWERED;
     const erPågående = values.erPågående;
 
     if (!fom) {
@@ -83,7 +82,10 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
     return {
         id: id ?? crypto.randomUUID(),
         næringstype,
-        fiskerErPåBladB: erFiskerNæringstype(næringstype) ? (values.fiskerErPåBladB as YesOrNo) : undefined,
+        fiskerErPåBladB:
+            erFiskerNæringstype(næringstype) && values.fiskerErPåBladB !== YesOrNo.UNANSWERED
+                ? values.fiskerErPåBladB
+                : undefined,
         navnPåVirksomheten: values.navnPåVirksomheten,
         registrertINorge,
         registrertILand: registrertINorge === YesOrNo.NO ? values.registrertILand || undefined : undefined,
@@ -93,7 +95,7 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
         erPågående: erPågående || undefined,
         næringsinntekt: erNyoppstartet ? getNumberFromString(values.næringsinntekt) : undefined,
         harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene: erNyoppstartet
-            ? (values.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene as YesOrNo)
+            ? values.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene
             : undefined,
         blittYrkesaktivDato:
             erNyoppstartet &&
@@ -102,7 +104,7 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
                 ? dateUtils.ISODateToDate(values.blittYrkesaktivDato)
                 : undefined,
         hattVarigEndringAvNæringsinntektSiste4Kalenderår: !erNyoppstartet
-            ? (values.hattVarigEndringAvNæringsinntektSiste4Kalenderår as YesOrNo)
+            ? values.hattVarigEndringAvNæringsinntektSiste4Kalenderår
             : undefined,
         varigEndringINæringsinntekt_dato:
             !erNyoppstartet &&

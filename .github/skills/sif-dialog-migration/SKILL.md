@@ -216,6 +216,7 @@ For hver komponenttype som finnes i v1:
 
 ### Typiske feil
 
+- **YesOrNo widened til string**: `YesOrNo`-felt i `FormValues` typet som `string` i stedet for `YesOrNo`. RHF støtter enum-typer direkte — bruk `YesOrNo`-typen og unngå `as YesOrNo`-caster i konverteringsfunksjonene.
 - **Manglende felt i form**: v1 har et felt som v2 mangler helt — ofte betingede felter som vises under spesifikke tilstander.
 - **Manglende verdier i list**: v1 label-rendering viser flere verdier enn v2 (f.eks. dato, type, detaljer).
 - **Manglende ytre Ja/Nei-svar i summary**: v1 viser både spørsmålet (Ja/Nei) og detaljene, v2 hopper over spørsmålet og viser bare detaljene.
