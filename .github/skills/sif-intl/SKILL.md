@@ -232,13 +232,13 @@ export const applicationIntlMessages = {
 
 ### Nøkkelstruktur
 
-| Kontekst                      | Prefiks-konvensjon      | Eksempel                                           |
-| ----------------------------- | ----------------------- | -------------------------------------------------- |
-| Pakke                         | `@pkgName.`             | `@sifSoknadUi.stepFooter.slettSøknad.label`        |
-| Side (app)                    | `page.pageName.`        | `page.velkommen.guide.tittel`                      |
-| Steg (app)                    | `stepName.`             | `barnSteg.tittel`                                  |
-| Sub-komponent innen et steg   | `componentName.`        | `tilsynsordningSøknadsperiode.leggTilEndring`       |
-| App-nivå                      | fritt                   | `application.title`                                |
+| Kontekst                    | Prefiks-konvensjon | Eksempel                                      |
+| --------------------------- | ------------------ | --------------------------------------------- |
+| Pakke                       | `@pkgName.`        | `@sifSoknadUi.stepFooter.slettSøknad.label`   |
+| Side (app)                  | `page.pageName.`   | `page.velkommen.guide.tittel`                 |
+| Steg (app)                  | `stepName.`        | `barnSteg.tittel`                             |
+| Sub-komponent innen et steg | `componentName.`   | `tilsynsordningSøknadsperiode.leggTilEndring` |
+| App-nivå                    | fritt              | `application.title`                           |
 
 **Grunnpattern for sub-komponenter:** Bruk komponentnavnet (camelCase) som prefiks — ikke domenebetegnelsen for innholdet. Eksempel: nøkler i `TilsynsordningSøknadsperiode.tsx` bruker prefikset `tilsynsordningSøknadsperiode.`.
 
@@ -249,6 +249,17 @@ export const applicationIntlMessages = {
 - TS-feil ved manglende nøkler i nn
 - TS-feil ved nøkler i nn som ikke finnes i nb
 - Full dekning garantert av typesystemet
+
+### ICU-parametre er kontrakter
+
+Parametre i meldingsstrenger som `{navn}`, `{dato}`, `{count}` og custom tags er en del av kontrakten mellom meldingen og komponenten som sender `values`.
+
+- Parameternavn skal være **identiske** i `nb.ts`, `nn.ts` og i komponentkoden som sender `values`.
+- Parameternavn skal **aldri oversettes**. Oversett teksten rundt, men behold selve parameternavnet uendret.
+- Ved migrering, portering eller refaktorering skal eksisterende parameternavn beholdes eksakt som i kilden.
+- Før du avslutter en i18n-endring, gjør en eksplisitt parametersjekk: sammenlign alle `{param}` og custom tags mellom `nb`, `nn` og kallstedet.
+
+Dette er en **blokkerende regel**. Mismatch i parameternavn gir ødelagt interpolering i UI og er ikke akseptabelt.
 
 ### Manglende nynorsk-oversettelse
 
@@ -301,10 +312,7 @@ react-intl støtter custom tags for å sende inn React-komponenter som `values`.
 I komponenten sendes taggen inn som en `values`-funksjon:
 
 ```tsx
-<AppText
-    id="melding"
-    values={{ SkrivTilOssLink: () => <SkrivTilOssLink /> }}
-/>
+<AppText id="melding" values={{ SkrivTilOssLink: () => <SkrivTilOssLink /> }} />
 ```
 
 ### Aggregering
