@@ -42,15 +42,15 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByLabel('Mandag 18').click();
     await page.getByLabel('Mandag 25').click();
     await page
-        .getByRole('group', { name: 'Skal du pleie personen hjemme i de dagene du søker for?' })
+        .getByRole('radiogroup', { name: 'Skal du pleie personen hjemme i de dagene du søker for?' })
         .getByLabel('Ja')
         .check();
     await page
-        .getByRole('group', { name: 'Skal du jobbe delvis i noen av dagene du søker for?' })
+        .getByRole('radiogroup', { name: 'Skal du jobbe delvis i noen av dagene du søker for?' })
         .getByLabel('Ja')
         .check();
     await page
-        .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
+        .getByRole('radiogroup', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
         .getByLabel('Nei')
         .check();
     await testAccessibility(page);
@@ -59,7 +59,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     /** Arbeidssituasjon */
     await expect(page.getByRole('heading', { level: 1, name: 'Arbeidssituasjon' })).toBeVisible();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Stemmer det at du er ansatt hos Arbeids- og velferdsetaten i perioden du søker for?',
         })
         .getByLabel('Ja')
@@ -70,19 +70,19 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page
         .getByLabel('Hvor mange timer jobber du normalt per uke hos Arbeids- og velferdsetaten når du ikke har fravær?')
         .fill('37,5');
-    await page.getByRole('group', { name: 'Er du frilanser i perioden du søker for?' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Er du frilanser i perioden du søker for?' }).getByLabel('Nei').check();
     await page
-        .getByRole('group', { name: 'Er du selvstendig næringsdrivende i perioden du søker for?' })
+        .getByRole('radiogroup', { name: 'Er du selvstendig næringsdrivende i perioden du søker for?' })
         .getByLabel('Nei')
         .check();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden du søker om?',
         })
         .getByLabel('Nei')
         .check();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?',
         })
         .getByLabel('Nei')
@@ -109,11 +109,11 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     /** Medlemsskap */
     await expect(page.getByRole('heading', { level: 1, name: 'Medlemskap i folketrygden' })).toBeVisible();
     await page
-        .getByRole('group', { name: 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?' })
+        .getByRole('radiogroup', { name: 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?' })
         .getByLabel('Nei')
         .click();
     await page
-        .getByRole('group', { name: 'Planlegger du å bo i utlandet i hele eller deler av de neste 12 månedene?' })
+        .getByRole('radiogroup', { name: 'Planlegger du å bo i utlandet i hele eller deler av de neste 12 månedene?' })
         .getByLabel('Nei')
         .click();
     await testAccessibility(page);

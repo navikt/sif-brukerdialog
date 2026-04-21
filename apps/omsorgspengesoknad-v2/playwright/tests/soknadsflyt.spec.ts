@@ -29,18 +29,18 @@ test('fyller ut søknaden med registrerte barn, velger annet barn med delt boste
     await page.getByLabel('Barnets fødselsdato').fill('08.06.2019');
     await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('09847696068');
     await page.getByLabel('Barnets navn').fill('Gamma Testesen');
-    await page.getByRole('group', { name: 'Min relasjon til barnet' }).getByRole('radio', { name: 'Far' }).check();
+    await page.getByRole('radiogroup', { name: 'Min relasjon til barnet' }).getByRole('radio', { name: 'Far' }).check();
 
     await page
-        .getByRole('group', { name: 'Bor du sammen med barnet?' })
+        .getByRole('radiogroup', { name: 'Bor du sammen med barnet?' })
         .getByLabel('Ja, barnet har delt fast bosted')
         .check();
     await page
-        .getByRole('group', { name: 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?' })
+        .getByRole('radiogroup', { name: 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?' })
         .getByRole('radio', { name: 'Ja' })
         .check();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning?',
         })
         .getByRole('radio', { name: 'Ja' })

@@ -39,7 +39,7 @@ test('Fyll ut periodesteget', async ({ page }) => {
         .filter({ hasText: /^Til og med$/ })
         .getByRole('button', { name: 'Åpne datovelger' })
         .press('Tab');
-    await page.getByRole('group', { name: 'Skal du reise til utlandet i' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Skal du reise til utlandet i' }).getByLabel('Ja').check();
     await page.getByRole('button', { name: 'Legg til utenlandsopphold' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(2).click();
     await page.getByRole('button', { name: 'tirsdag 3', exact: true }).click();
@@ -48,7 +48,7 @@ test('Fyll ut periodesteget', async ({ page }) => {
     await page.getByLabel('Velg land').selectOption('AFG');
     await page.getByLabel('Velg land').selectOption('AFG');
     await page.getByLabel('Utenlandsopphold').getByLabel('Ja', { exact: true }).check();
-    await page.getByRole('group', { name: 'Er barnet innlagt i' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Er barnet innlagt i' }).getByLabel('Ja').check();
     await page.getByRole('button', { name: 'Legg til periode barnet er' }).click();
     await page
         .getByLabel('Periode barnet er innlagt')
@@ -67,7 +67,7 @@ test('Fyll ut periodesteget', async ({ page }) => {
     await page.getByLabel('Periode barnet er innlagt').getByTestId('typedFormikForm-submitButton').click();
     await page.getByText('For norsk offentlig regning').click();
     await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByRole('group', { name: 'Skal du ha ferie i perioden' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Skal du ha ferie i perioden' }).getByLabel('Ja').check();
     await page.getByRole('button', { name: 'Legg til ferie' }).click();
     await page
         .getByLabel('Ferie')

@@ -21,25 +21,29 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.9.1",
-        "@navikt/ds-react": "8.9.1",
+        "@navikt/aksel-icons": "8.10.1",
+        "@navikt/ds-react": "8.10.1",
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad-ui": "workspace:*"
     },
     "peerDependencies": {
+        "dayjs": ">=1.11.19",
         "react": ">=19",
+        "react-day-picker": ">=9.14.0",
         "react-dom": ">=19",
-        "react-intl": "10.1.0"
+        "react-intl": "^10.1.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
+        "dayjs": "1.11.20",
         "react": "19.2.5",
+        "react-day-picker": "9.14.0",
         "react-dom": "19.2.5",
-        "typescript": "6.0.2",
+        "typescript": "6.0.3",
         "vitest": "4.1.4"
     }
 }
