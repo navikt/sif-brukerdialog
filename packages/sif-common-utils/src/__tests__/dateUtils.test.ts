@@ -254,6 +254,10 @@ describe('dateUtils', () => {
     });
 
     describe('sortDateArray', () => {
+        const d1s = '2021-01-01';
+        const d2s = '2021-01-02';
+        const d3s = '2021-01-03';
+
         const d1 = ISODateToDate(d1s);
         const d2 = ISODateToDate(d2s);
         const d3 = ISODateToDate(d3s);
