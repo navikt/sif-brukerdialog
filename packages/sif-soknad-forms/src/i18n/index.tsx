@@ -17,8 +17,12 @@ import { opptjeningUtlandMessages_nb } from '../dialogs/opptjening-utland/i18n/n
 import { opptjeningUtlandMessages_nn } from '../dialogs/opptjening-utland/i18n/nn';
 import { tidsperiodeMessages_nb } from '../dialogs/tidsperiode/i18n/nb';
 import { tidsperiodeMessages_nn } from '../dialogs/tidsperiode/i18n/nn';
+import { utenlandskNæringMessages_nb } from '../dialogs/utenlandsk-næring/i18n/nb';
+import { utenlandskNæringMessages_nn } from '../dialogs/utenlandsk-næring/i18n/nn';
 import { utenlandsoppholdMessages_nb } from '../dialogs/utenlandsopphold/i18n/nb';
 import { utenlandsoppholdMessages_nn } from '../dialogs/utenlandsopphold/i18n/nn';
+import { virksomhetMessages_nb } from '../dialogs/virksomhet/i18n/nb';
+import { virksomhetMessages_nn } from '../dialogs/virksomhet/i18n/nn';
 import { vedleggPanelMessages_nb } from '../panels/vedlegg/i18n/nb';
 import { vedleggPanelMessages_nn } from '../panels/vedlegg/i18n/nn';
 import { velgRegistrertBarnPanelMessages_nb } from '../panels/velg-registrert-barn/i18n/nb';
@@ -33,7 +37,9 @@ const nb = {
     ...fraværMessages_nb,
     ...opptjeningUtlandMessages_nb,
     ...tidsperiodeMessages_nb,
+    ...utenlandskNæringMessages_nb,
     ...utenlandsoppholdMessages_nb,
+    ...virksomhetMessages_nb,
     ...velgRegistrertBarnPanelMessages_nb,
     ...vedleggPanelMessages_nb,
 };
@@ -47,7 +53,9 @@ const nn: Record<keyof typeof nb, string> = {
     ...fraværMessages_nn,
     ...opptjeningUtlandMessages_nn,
     ...tidsperiodeMessages_nn,
+    ...utenlandskNæringMessages_nn,
     ...utenlandsoppholdMessages_nn,
+    ...virksomhetMessages_nn,
     ...velgRegistrertBarnPanelMessages_nn,
     ...vedleggPanelMessages_nn,
 };
