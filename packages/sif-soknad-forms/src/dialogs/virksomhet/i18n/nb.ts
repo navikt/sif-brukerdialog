@@ -20,10 +20,12 @@ export const virksomhetMessages_nb = {
     '@sifSoknadForms.virksomhet.form.fom.label': 'Startdato',
     '@sifSoknadForms.virksomhet.form.tom.label': 'Eventuell sluttdato',
     '@sifSoknadForms.virksomhet.form.erPågående.label': 'Er pågående',
-    '@sifSoknadForms.virksomhet.form.næringsinntekt.label': 'Hva har du hatt i næringsresultat før skatt de siste 12 månedene?',
+    '@sifSoknadForms.virksomhet.form.næringsinntekt.label':
+        'Hva har du hatt i næringsresultat før skatt de siste 12 månedene?',
     '@sifSoknadForms.virksomhet.form.næringsinntekt.flereVirksomheter.label':
         'Hva har du hatt totalt i næringsresultat før skatt de siste 12 månedene?',
-    '@sifSoknadForms.virksomhet.form.næringsinntekt.flereVirksomheter.header': 'Næringsresultat for alle virksomhetene dine',
+    '@sifSoknadForms.virksomhet.form.næringsinntekt.flereVirksomheter.header':
+        'Næringsresultat for alle virksomhetene dine',
     '@sifSoknadForms.virksomhet.form.næringsinntekt.flereVirksomheter.info':
         'Du har opplyst at du har flere næringsvirksomheter. Her skal du legge inn næringsresultatet totalt for alle virksomhetene du har.',
     '@sifSoknadForms.virksomhet.form.harBlittYrkesaktiv.legend':
@@ -47,11 +49,10 @@ export const virksomhetMessages_nb = {
     '@sifSoknadForms.virksomhet.summary.organisasjonsnummer': 'Organisasjonsnummer',
     '@sifSoknadForms.virksomhet.summary.startet': 'Startet',
     '@sifSoknadForms.virksomhet.summary.avsluttet': 'Avsluttet',
-    '@sifSoknadForms.virksomhet.summary.pågående': '(pågående)',
+    '@sifSoknadForms.virksomhet.summary.pågående': 'pågående',
     '@sifSoknadForms.virksomhet.summary.fisker.påBladB': 'på Blad B',
     '@sifSoknadForms.virksomhet.summary.fisker.ikkePåBladB': 'ikke på Blad B',
-    '@sifSoknadFormsVirksomhetForm.validation.næringstype.noValue':
-        'Velg hvilken type virksomhet du har fra listen.',
+    '@sifSoknadFormsVirksomhetForm.validation.næringstype.noValue': 'Velg hvilken type virksomhet du har fra listen.',
     '@sifSoknadFormsVirksomhetForm.validation.fiskerErPåBladB.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på spørsmålet om du er fisker på Blad B.',
     '@sifSoknadFormsVirksomhetForm.validation.navnPåVirksomheten.stringHasNoValue':
@@ -84,8 +85,7 @@ export const virksomhetMessages_nb = {
         'Du må oppgi dato for når du avsluttet virksomheten i et gyldig format. Gyldig format er dd.mm.åååå.',
     '@sifSoknadFormsVirksomhetForm.validation.tom.toDateIsBeforeFromDate':
         'Sluttdatoen kan ikke være før startdatoen. Skriv inn eller velg sluttdato fra datovelgeren.',
-    '@sifSoknadFormsVirksomhetForm.validation.næringsinntekt.numberHasNoValue':
-        'Du må oppgi næringsinntekten.',
+    '@sifSoknadFormsVirksomhetForm.validation.næringsinntekt.numberHasNoValue': 'Du må oppgi næringsinntekten.',
     '@sifSoknadFormsVirksomhetForm.validation.næringsinntekt.numberHasDecimals':
         'Du må oppgi næringsinntekten uten desimaler.',
     '@sifSoknadFormsVirksomhetForm.validation.næringsinntekt.numberHasInvalidFormat':
@@ -102,8 +102,7 @@ export const virksomhetMessages_nb = {
         'Du må oppgi dato for når du begynte i arbeidslivet i et gyldig format. Gyldig format er dd.mm.åååå.',
     '@sifSoknadFormsVirksomhetForm.validation.blittYrkesaktivDato.dateIsAfterMax':
         'Datoen kan ikke være etter dagens dato.',
-    '@sifSoknadFormsVirksomhetForm.validation.blittYrkesaktivDato.dateIsBeforeMin':
-        'Datoen kan ikke være før {dato}.',
+    '@sifSoknadFormsVirksomhetForm.validation.blittYrkesaktivDato.dateIsBeforeMin': 'Datoen kan ikke være før {dato}.',
     '@sifSoknadFormsVirksomhetForm.validation.hattVarigEndringAvNæringsinntektSiste4Kalenderår.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på spørsmålet om varig endring.',
     '@sifSoknadFormsVirksomhetForm.validation.varigEndringINæringsinntekt_dato.dateHasNoValue':

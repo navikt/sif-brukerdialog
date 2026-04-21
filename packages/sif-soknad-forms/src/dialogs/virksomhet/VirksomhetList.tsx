@@ -1,5 +1,6 @@
+import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
-import { prettifyDate } from '@navikt/sif-common-utils';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -11,20 +12,28 @@ interface Props {
     onDelete?: (virksomhet: Virksomhet) => void;
 }
 
+const getTitle = (virksomhet: Virksomhet): string => {
+    return `${virksomhet.navnPåVirksomheten}`;
+};
+
 const renderVirksomhetLabel = (
     virksomhet: Virksomhet,
     næringstypeLabel: string,
     pågåendeLabel: string,
     onEdit?: (v: Virksomhet) => void,
 ): ReactNode => {
-    const tilOgMed = virksomhet.tom ? prettifyDate(virksomhet.tom) : pågåendeLabel;
-    const title = `${virksomhet.navnPåVirksomheten} (${næringstypeLabel}) – ${prettifyDate(virksomhet.fom)} – ${tilOgMed}`;
+    const tilOgMed = virksomhet.tom ? dateFormatter.compact(virksomhet.tom) : pågåendeLabel;
+    const title = getTitle(virksomhet);
 
     return (
-        <div>
-            {onEdit && <ActionLink onClick={() => onEdit(virksomhet)}>{title}</ActionLink>}
-            {!onEdit && <span>{title}</span>}
-        </div>
+        <VStack gap="space-2">
+            <BodyShort>
+                {onEdit ? <ActionLink onClick={() => onEdit(virksomhet)}>{title}</ActionLink> : <span>{title}</span>}
+            </BodyShort>
+            <BodyShort textColor="subtle">
+                {dateFormatter.compact(virksomhet.fom)} - {tilOgMed}. {næringstypeLabel}
+            </BodyShort>
+        </VStack>
     );
 };
 
@@ -37,7 +46,7 @@ export const VirksomhetList = ({ virksomheter, onEdit, onDelete }: Props) => {
     return (
         <ItemListDarkside<Virksomhet>
             getItemId={(v): string => v.id}
-            getItemTitle={(v): string => v.navnPåVirksomheten}
+            getItemTitle={getTitle}
             labelRenderer={(v) =>
                 renderVirksomhetLabel(
                     v,

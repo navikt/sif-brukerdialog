@@ -21,8 +21,8 @@ import {
     erFiskerNæringstype,
     erVirksomhetRegnetSomNyoppstartet,
     formValuesToVirksomhet,
-    virksomhetToFormValues,
     VirksomhetFormValues,
+    virksomhetToFormValues,
 } from './virksomhetUtils';
 
 const MAKS_INNTEKT = 10000000;
@@ -35,8 +35,17 @@ interface Props {
     onValidSubmit: (virksomhet: Virksomhet) => void;
 }
 
-const { RadioGroup, YesOrNoQuestion, TextField, CountrySelect, DateRangePicker, Datepicker, Checkbox, NumberInput, Textarea } =
-    createSifFormComponents<VirksomhetFormValues>();
+const {
+    RadioGroup,
+    YesOrNoQuestion,
+    TextField,
+    CountrySelect,
+    DateRangePicker,
+    Datepicker,
+    Checkbox,
+    NumberInput,
+    Textarea,
+} = createSifFormComponents<VirksomhetFormValues>();
 
 export const VirksomhetDialogForm = ({
     formId,
@@ -207,7 +216,7 @@ export const VirksomhetDialogForm = ({
                                         name: 'tom',
                                         label: sifIntl.text('@sifSoknadForms.virksomhet.form.tom.label'),
                                         maxDate,
-                                        disabled: erPågående,
+                                        inputDisabled: erPågående,
                                         validate: erPågående
                                             ? undefined
                                             : validateField(
@@ -228,10 +237,9 @@ export const VirksomhetDialogForm = ({
                                     }}
                                 />
                                 <FormLayout.QuestionBleedTop>
-                                    <Checkbox
-                                        name="erPågående"
-                                        label={sifIntl.text('@sifSoknadForms.virksomhet.form.erPågående.label')}
-                                    />
+                                    <Checkbox name="erPågående">
+                                        {sifIntl.text('@sifSoknadForms.virksomhet.form.erPågående.label')}
+                                    </Checkbox>
                                 </FormLayout.QuestionBleedTop>
                             </>
                         )}
@@ -312,7 +320,9 @@ export const VirksomhetDialogForm = ({
                                                     }),
                                                     (errorCode) => {
                                                         if (errorCode === 'dateIsBeforeMin')
-                                                            return { dato: sifIntl.date(getDate3YearsAgo(), 'compact') };
+                                                            return {
+                                                                dato: sifIntl.date(getDate3YearsAgo(), 'compact'),
+                                                            };
                                                         if (errorCode === 'dateIsAfterMax')
                                                             return { dato: sifIntl.date(maxDate, 'compact') };
                                                     },
@@ -326,9 +336,7 @@ export const VirksomhetDialogForm = ({
                                     <>
                                         <YesOrNoQuestion
                                             name="hattVarigEndringAvNæringsinntektSiste4Kalenderår"
-                                            legend={sifIntl.text(
-                                                '@sifSoknadForms.virksomhet.form.varigEndring.legend',
-                                            )}
+                                            legend={sifIntl.text('@sifSoknadForms.virksomhet.form.varigEndring.legend')}
                                             validate={validateField(
                                                 'hattVarigEndringAvNæringsinntektSiste4Kalenderår',
                                                 getYesOrNoValidator(),
@@ -401,8 +409,7 @@ export const VirksomhetDialogForm = ({
                                                             (errorCode) => {
                                                                 if (errorCode === 'stringIsTooLong')
                                                                     return { maks: 1000 };
-                                                                if (errorCode === 'stringIsTooShort')
-                                                                    return { min: 5 };
+                                                                if (errorCode === 'stringIsTooShort') return { min: 5 };
                                                             },
                                                         )}
                                                     />
@@ -442,8 +449,7 @@ export const VirksomhetDialogForm = ({
                                                             (errorCode) => {
                                                                 if (errorCode === 'stringIsTooLong')
                                                                     return { maks: 50 };
-                                                                if (errorCode === 'stringIsTooShort')
-                                                                    return { min: 2 };
+                                                                if (errorCode === 'stringIsTooShort') return { min: 2 };
                                                             },
                                                         )}
                                                     />
@@ -465,8 +471,7 @@ export const VirksomhetDialogForm = ({
                                                             (errorCode) => {
                                                                 if (errorCode === 'stringIsTooLong')
                                                                     return { maks: 15 };
-                                                                if (errorCode === 'stringIsTooShort')
-                                                                    return { min: 5 };
+                                                                if (errorCode === 'stringIsTooShort') return { min: 5 };
                                                             },
                                                         )}
                                                     />

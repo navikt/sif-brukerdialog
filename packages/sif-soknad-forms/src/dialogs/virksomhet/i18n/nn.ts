@@ -51,14 +51,13 @@ export const virksomhetMessages_nn: Record<keyof typeof virksomhetMessages_nb, s
     '@sifSoknadForms.virksomhet.summary.organisasjonsnummer': 'Organisasjonsnummer',
     '@sifSoknadForms.virksomhet.summary.startet': 'Starta',
     '@sifSoknadForms.virksomhet.summary.avsluttet': 'Avslutta',
-    '@sifSoknadForms.virksomhet.summary.pågående': '(pågåande)',
+    '@sifSoknadForms.virksomhet.summary.pågående': 'pågåande',
     '@sifSoknadForms.virksomhet.summary.fisker.påBladB': 'på Blad B',
     '@sifSoknadForms.virksomhet.summary.fisker.ikkePåBladB': 'ikkje på Blad B',
     '@sifSoknadFormsVirksomhetForm.validation.næringstype.noValue': 'Vel kva type verksemd du har frå lista.',
     '@sifSoknadFormsVirksomhetForm.validation.fiskerErPåBladB.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på spørsmålet om du er fiskar på Blad B.',
-    '@sifSoknadFormsVirksomhetForm.validation.navnPåVirksomheten.stringHasNoValue':
-        'Skriv inn namnet på verksemda di.',
+    '@sifSoknadFormsVirksomhetForm.validation.navnPåVirksomheten.stringHasNoValue': 'Skriv inn namnet på verksemda di.',
     '@sifSoknadFormsVirksomhetForm.validation.navnPåVirksomheten.stringContainsUnicodeChacters':
         'Namnet på verksemda inneheld ugyldige teikn. Prøv å skrive det inn sjølv, i staden for å lime det inn.',
     '@sifSoknadFormsVirksomhetForm.validation.registrertINorge.yesOrNoIsUnanswered':

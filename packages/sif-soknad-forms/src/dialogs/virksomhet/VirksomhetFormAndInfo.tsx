@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
+import { Virksomhet } from './types';
 import { VirksomhetFormDialog } from './VirksomhetDialog';
 import { VirksomhetList } from './VirksomhetList';
-import { Virksomhet } from './types';
 
 interface Props {
     virksomhet?: Virksomhet;

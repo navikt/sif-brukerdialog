@@ -23,6 +23,7 @@ type DatepickerFieldProps<T extends FieldValues> = DatepickerLimitations & {
     label: string;
     validate?: (value: string) => string | undefined;
     inputId?: string;
+    inputDisabled?: boolean;
     description?: ReactNode;
 };
 

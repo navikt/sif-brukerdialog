@@ -1,9 +1,14 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateUtils, getDateToday } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, getRequiredFieldValidator, getStringValidator, validationUtils } from '@navikt/sif-validation';
+import {
+    getDateRangeValidator,
+    getRequiredFieldValidator,
+    getStringValidator,
+    validationUtils,
+} from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { FormProvider, useForm, useWatch } from 'react-hook-form';
 import { useEffect } from 'react';
+import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { UtenlandskNæring, UtenlandskNæringstype } from './types';
@@ -147,9 +152,7 @@ export const UtenlandskNæringDialogForm = ({ formId, næring, onValidSubmit }: 
                         />
                         <TextField
                             name={FormFields.identifikasjonsnummer}
-                            label={sifIntl.text(
-                                '@sifSoknadForms.utenlandskNæring.form.identifikasjonsnummer.label',
-                            )}
+                            label={sifIntl.text('@sifSoknadForms.utenlandskNæring.form.identifikasjonsnummer.label')}
                             style={{ maxWidth: '10rem' }}
                             maxLength={30}
                         />
@@ -182,7 +185,7 @@ export const UtenlandskNæringDialogForm = ({ formId, næring, onValidSubmit }: 
                                 name: FormFields.tilOgMed,
                                 label: sifIntl.text('@sifSoknadForms.utenlandskNæring.form.tilOgMed.label'),
                                 maxDate,
-                                disabled: erPågående,
+                                inputDisabled: erPågående,
                                 validate: erPågående
                                     ? undefined
                                     : validateField(
@@ -203,10 +206,9 @@ export const UtenlandskNæringDialogForm = ({ formId, næring, onValidSubmit }: 
                             }}
                         />
                         <FormLayout.QuestionBleedTop>
-                            <Checkbox
-                                name={FormFields.erPågående}
-                                label={sifIntl.text('@sifSoknadForms.utenlandskNæring.form.erPågående.label')}
-                            />
+                            <Checkbox name={FormFields.erPågående}>
+                                {sifIntl.text('@sifSoknadForms.utenlandskNæring.form.erPågående.label')}
+                            </Checkbox>
                         </FormLayout.QuestionBleedTop>
                     </FormLayout.Questions>
                 </FormLayout.Content>

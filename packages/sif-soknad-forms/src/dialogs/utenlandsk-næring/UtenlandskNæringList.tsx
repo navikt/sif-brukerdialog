@@ -1,5 +1,6 @@
+import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
-import { getCountryName, prettifyDateExtended } from '@navikt/sif-common-utils';
+import { dateFormatter, getCountryName } from '@navikt/sif-common-utils';
 import { ReactNode } from 'react';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
@@ -11,6 +12,10 @@ interface Props {
     onDelete?: (næring: UtenlandskNæring) => void;
 }
 
+const getTitle = (næring: UtenlandskNæring): string => {
+    return `${næring.navnPåVirksomheten}`;
+};
+
 const renderNæringLabel = (
     næring: UtenlandskNæring,
     locale: string,
@@ -18,14 +23,17 @@ const renderNæringLabel = (
     onEdit?: (næring: UtenlandskNæring) => void,
 ): ReactNode => {
     const landNavn = getCountryName(næring.land, locale);
-    const tilOgMed = næring.tilOgMed ? prettifyDateExtended(næring.tilOgMed) : pågåendeLabel;
-    const title = `${næring.navnPåVirksomheten} i ${landNavn} (${prettifyDateExtended(næring.fraOgMed)} - ${tilOgMed})`;
-
+    const tilOgMed = næring.tilOgMed ? dateFormatter.compact(næring.tilOgMed) : pågåendeLabel;
+    const title = getTitle(næring);
     return (
-        <div>
-            {onEdit && <ActionLink onClick={() => onEdit(næring)}>{title}</ActionLink>}
-            {!onEdit && <span>{title}</span>}
-        </div>
+        <VStack gap="space-2">
+            <BodyShort>
+                {onEdit ? <ActionLink onClick={() => onEdit(næring)}>{title}</ActionLink> : <span>{title}</span>}
+            </BodyShort>
+            <BodyShort textColor="subtle">
+                {landNavn}. {dateFormatter.compact(næring.fraOgMed)} - {tilOgMed}.
+            </BodyShort>
+        </VStack>
     );
 };
 
