@@ -1,12 +1,12 @@
 import { VStack } from '@navikt/ds-react';
-import { YesOrNo } from '@sif/rhf';
-import { getCountryName, prettifyDate } from '@navikt/sif-common-utils';
 import { useUiIntl } from '@navikt/sif-common-ui';
+import { getCountryName, prettifyDate } from '@navikt/sif-common-utils';
+import { YesOrNo } from '@sif/rhf';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { Næringstype, Virksomhet } from './types';
-import { erFiskerNæringstype, erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 import { VirksomhetSummaryBlock } from './VirksomhetSummaryBlock';
+import { erFiskerNæringstype, erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
 interface Props {
     virksomhet: Virksomhet;
@@ -50,7 +50,7 @@ export const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) =
             </div>
             <div>
                 {text('@sifSoknadForms.virksomhet.summary.startet')}: {prettifyDate(virksomhet.fom)}
-                {!virksomhet.tom && ` ${text('@sifSoknadForms.virksomhet.summary.pågående')}`}
+                {!virksomhet.tom && ` (${text('@sifSoknadForms.virksomhet.summary.pågående')})`}
             </div>
             {virksomhet.tom && (
                 <div>

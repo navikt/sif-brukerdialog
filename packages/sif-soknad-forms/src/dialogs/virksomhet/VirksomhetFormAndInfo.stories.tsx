@@ -1,25 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import dayjs from 'dayjs';
 import { useState } from 'react';
 
-import { YesOrNo } from '@sif/rhf';
-import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { VirksomhetFormAndInfo } from './VirksomhetFormAndInfo';
-import { Næringstype, type Virksomhet } from './index';
-
-const today = dayjs();
-
-const exampleVirksomhet: Virksomhet = {
-    id: '1',
-    næringstype: Næringstype.ANNEN,
-    navnPåVirksomheten: 'Min Konsulentfirma AS',
-    registrertINorge: YesOrNo.YES,
-    organisasjonsnummer: '999888777',
-    fom: today.subtract(5, 'year').toDate(),
-    erPågående: true,
-    harRegnskapsfører: YesOrNo.NO,
-};
+import { type Virksomhet } from './index';
+import { exampleVirksomhet } from './mockData';
 
 type StoryProps = {
     virksomhet?: Virksomhet;
@@ -31,7 +16,12 @@ function VirksomhetFormAndInfoStory({ virksomhet: initialVirksomhet }: StoryProp
     return (
         <VirksomhetFormAndInfo
             virksomhet={virksomhet}
-            addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.virksomhet.dialog.leggTilKnapp" />}
+            labels={{
+                infoTitle: 'Virksomhet',
+                addLabel: 'Legg til',
+                editLabel: 'Endre',
+                deleteLabel: 'Slett',
+            }}
             onChange={setVirksomhet}
         />
     );
