@@ -70,7 +70,8 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
     const fom = new Date(values.fom);
     const næringstype = values.næringstype as Næringstype;
     const registrertINorge = values.registrertINorge as YesOrNo;
-    const harRegnskapsfører = values.harRegnskapsfører as YesOrNo;
+    const harRegnskapsfører =
+        registrertINorge === YesOrNo.YES ? (values.harRegnskapsfører as YesOrNo) : YesOrNo.UNANSWERED;
     const erPågående = values.erPågående;
     const erNyoppstartet = erVirksomhetRegnetSomNyoppstartet(fom);
 
