@@ -196,20 +196,25 @@ const verifyK9FormatUtenlandsopphold = (opphold: any): boolean => {
 
 const verifyK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
     const maybeYtelse = ytelse as K9FormatYtelse;
-    if (
-        isObject(maybeYtelse) &&
-        maybeYtelse.type === 'PLEIEPENGER_SYKT_BARN' &&
-        isSøknadsperioder(maybeYtelse.søknadsperiode) &&
-        isObject(maybeYtelse.barn) &&
-        isISODateOrNull(maybeYtelse.barn.fødselsdato) &&
-        isString(maybeYtelse.barn.norskIdentitetsnummer) &&
-        verifyK9FormatTilsynsordning(maybeYtelse.tilsynsordning) &&
-        verifyK9FormatArbeidstid(maybeYtelse.arbeidstid) &&
-        verifyK9FormatLovbestemtFerie(maybeYtelse.lovbestemtFerie) &&
-        verifyK9FormatUtenlandsopphold(maybeYtelse.utenlandsopphold) &&
-        true
-    ) {
-        return true;
+    if (!isObject(maybeYtelse)) {
+        throw 'verifyK9FormatYtelse: ytelse er ikke et objekt';
     }
-    throw 'verifyK9FormatYtelse';
+    if (maybeYtelse.type !== 'PLEIEPENGER_SYKT_BARN') {
+        throw `verifyK9FormatYtelse: ugyldig type "${maybeYtelse.type}"`;
+    }
+    isSøknadsperioder(maybeYtelse.søknadsperiode);
+    if (!isObject(maybeYtelse.barn)) {
+        throw 'verifyK9FormatYtelse: barn er ikke et objekt';
+    }
+    if (!isISODateOrNull(maybeYtelse.barn.fødselsdato)) {
+        throw `verifyK9FormatYtelse: ugyldig barn.fødselsdato "${maybeYtelse.barn.fødselsdato}"`;
+    }
+    if (!isString(maybeYtelse.barn.norskIdentitetsnummer)) {
+        throw 'verifyK9FormatYtelse: barn.norskIdentitetsnummer er ikke en string';
+    }
+    verifyK9FormatTilsynsordning(maybeYtelse.tilsynsordning);
+    verifyK9FormatArbeidstid(maybeYtelse.arbeidstid);
+    verifyK9FormatLovbestemtFerie(maybeYtelse.lovbestemtFerie);
+    verifyK9FormatUtenlandsopphold(maybeYtelse.utenlandsopphold);
+    return true;
 };
