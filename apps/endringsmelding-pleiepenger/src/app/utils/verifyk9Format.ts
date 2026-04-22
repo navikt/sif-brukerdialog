@@ -20,14 +20,15 @@ const itemsAreValidISODateRanges = (keys: string[]): boolean => keys.some((key) 
 export const verifyK9Format = (sak: any): sak is K9Format => {
     const maybeK9Sak = sak as K9Format;
     try {
-        if (
-            isObject(maybeK9Sak) &&
-            verifyK9FormatBarn(maybeK9Sak.barn) &&
-            isObject(maybeK9Sak.søknad) &&
-            verifyK9FormatYtelse(maybeK9Sak.søknad.ytelse)
-        ) {
-            return true;
+        if (!isObject(maybeK9Sak)) {
+            throw 'verifyK9Format: sak er ikke et objekt';
         }
+        verifyK9FormatBarn(maybeK9Sak.barn);
+        if (!isObject(maybeK9Sak.søknad)) {
+            throw 'verifyK9Format: søknad er ikke et objekt';
+        }
+        verifyK9FormatYtelse(maybeK9Sak.søknad.ytelse);
+        return true;
     } catch (error) {
         const k9FormatError: K9FormatError = {
             type: 'k9formatError',
@@ -35,7 +36,6 @@ export const verifyK9Format = (sak: any): sak is K9Format => {
         };
         throw k9FormatError;
     }
-    return false;
 };
 
 const verifyK9FormatBarn = (barn: any): barn is K9FormatBarn => {
@@ -58,7 +58,7 @@ const verifyK9FormatArbeidstidTid = (tid: any): tid is K9FormatArbeidstidTid => 
     if (isObject(t) && isISODuration(t.faktiskArbeidTimerPerDag) && isISODuration(t.jobberNormaltTimerPerDag)) {
         return true;
     }
-    throw `verifyK9FormatArbeidstidTid (${JSON.stringify(t)})`;
+    throw 'verifyK9FormatArbeidstidTid';
 };
 
 const verifyK9FormatArbeidstidPerioder = (perioder: any): perioder is K9FormatArbeidstidInfoPerioder => {
@@ -112,22 +112,12 @@ const verifyK9FormatArbeidstaker = (arbeidstaker: any): arbeidstaker is K9Format
 const verifyK9FormatArbeidstid = (arbeidstid: any): arbeidstid is K9FormatArbeidstid => {
     const arb = arbeidstid as K9FormatArbeidstid;
     if (isObject(arb) && isArray(arb.arbeidstakerList)) {
-        if (arb.arbeidstakerList.length > 0) {
-            if (arb.arbeidstakerList.some((a) => !verifyK9FormatArbeidstaker(a))) {
-                return false;
-            }
+        arb.arbeidstakerList.forEach((a) => verifyK9FormatArbeidstaker(a));
+        if (isObject(arb.frilanserArbeidstidInfo)) {
+            verifyK9FormatArbeidstidInfo(arb.frilanserArbeidstidInfo);
         }
-        if (
-            isObject(arb.frilanserArbeidstidInfo) &&
-            verifyK9FormatArbeidstidInfo(arb.frilanserArbeidstidInfo) === false
-        ) {
-            return false;
-        }
-        if (
-            isObject(arb.selvstendigNæringsdrivendeArbeidstidInfo) &&
-            verifyK9FormatArbeidstidInfo(arb.selvstendigNæringsdrivendeArbeidstidInfo) === false
-        ) {
-            return false;
+        if (isObject(arb.selvstendigNæringsdrivendeArbeidstidInfo)) {
+            verifyK9FormatArbeidstidInfo(arb.selvstendigNæringsdrivendeArbeidstidInfo);
         }
         return true;
     }
@@ -196,20 +186,25 @@ const verifyK9FormatUtenlandsopphold = (opphold: any): boolean => {
 
 const verifyK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
     const maybeYtelse = ytelse as K9FormatYtelse;
-    if (
-        isObject(maybeYtelse) &&
-        maybeYtelse.type === 'PLEIEPENGER_SYKT_BARN' &&
-        isSøknadsperioder(maybeYtelse.søknadsperiode) &&
-        isObject(maybeYtelse.barn) &&
-        isISODateOrNull(maybeYtelse.barn.fødselsdato) &&
-        isString(maybeYtelse.barn.norskIdentitetsnummer) &&
-        verifyK9FormatTilsynsordning(maybeYtelse.tilsynsordning) &&
-        verifyK9FormatArbeidstid(maybeYtelse.arbeidstid) &&
-        verifyK9FormatLovbestemtFerie(maybeYtelse.lovbestemtFerie) &&
-        verifyK9FormatUtenlandsopphold(maybeYtelse.utenlandsopphold) &&
-        true
-    ) {
-        return true;
+    if (!isObject(maybeYtelse)) {
+        throw 'verifyK9FormatYtelse: ytelse er ikke et objekt';
     }
-    throw 'verifyK9FormatYtelse';
+    if (maybeYtelse.type !== 'PLEIEPENGER_SYKT_BARN') {
+        throw `verifyK9FormatYtelse: ugyldig type "${maybeYtelse.type}"`;
+    }
+    isSøknadsperioder(maybeYtelse.søknadsperiode);
+    if (!isObject(maybeYtelse.barn)) {
+        throw 'verifyK9FormatYtelse: barn er ikke et objekt';
+    }
+    if (!isISODateOrNull(maybeYtelse.barn.fødselsdato)) {
+        throw 'verifyK9FormatYtelse: ugyldig barn.fødselsdato';
+    }
+    if (!isString(maybeYtelse.barn.norskIdentitetsnummer)) {
+        throw 'verifyK9FormatYtelse: barn.norskIdentitetsnummer er ikke en string';
+    }
+    verifyK9FormatTilsynsordning(maybeYtelse.tilsynsordning);
+    verifyK9FormatArbeidstid(maybeYtelse.arbeidstid);
+    verifyK9FormatLovbestemtFerie(maybeYtelse.lovbestemtFerie);
+    verifyK9FormatUtenlandsopphold(maybeYtelse.utenlandsopphold);
+    return true;
 };
