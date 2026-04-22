@@ -1,62 +1,25 @@
+import { alfaTestesen, betaTestesen, ingenBarnProfil, standardProfil } from '@sif/api/mock-data';
+
 import { ScenarioData, ScenarioType } from './types';
 
-const søker = {
-    søker: {
-        aktørId: '2320509955297',
-        fødselsdato: '1985-06-02',
-        fødselsnummer: '02068599258',
-        fornavn: 'Test',
-        mellomnavn: undefined,
-        etternavn: 'Testesen',
-    },
-};
-
 const defaultScenarioData: ScenarioData = {
-    ...søker,
-
-    barn: {
-        barn: [
-            {
-                fornavn: 'Alfa',
-                etternavn: 'Testesen',
-                aktørId: '2811762539343',
-                fødselsdato: '2019-06-08',
-            },
-        ],
-    },
-
+    ...standardProfil,
     mellomlagring: undefined,
 };
 
 const ingenRegistrerteBarnScenarioData: ScenarioData = {
-    ...søker,
-    barn: {
-        barn: [],
-    },
+    ...ingenBarnProfil,
     mellomlagring: undefined,
 };
 
 const toBarnMedVedtakScenarioData: ScenarioData = {
-    ...søker,
+    ...standardProfil,
     barn: {
-        barn: [
-            {
-                fornavn: 'Alfa',
-                etternavn: 'Testesen',
-                aktørId: '2811762539343',
-                fødselsdato: '2019-06-08',
-            },
-            {
-                fornavn: 'Beta',
-                etternavn: 'Testesen',
-                aktørId: '9876543210123',
-                fødselsdato: '2021-03-15',
-            },
-        ],
+        barn: [alfaTestesen, betaTestesen],
     },
     vedtakPerAktørId: {
-        '2811762539343': { harInnvilgedeBehandlinger: true, saksnummer: 'SAK-001', vedtaksdato: '2024-01-15' },
-        '9876543210123': { harInnvilgedeBehandlinger: false, saksnummer: null, vedtaksdato: null },
+        [alfaTestesen.aktørId]: { harInnvilgedeBehandlinger: true, saksnummer: 'SAK-001', vedtaksdato: '2024-01-15' },
+        [betaTestesen.aktørId]: { harInnvilgedeBehandlinger: false, saksnummer: null, vedtaksdato: null },
     },
 };
 

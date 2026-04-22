@@ -29,7 +29,7 @@ export const App = () => {
                 <QueryClientProvider client={queryClient}>
                     <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
                         <BrowserRouter basename={basePath}>
-                            {appEnv.VELG_SCENARIO === 'on' && <ScenarioHeader />}
+                            {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
                             <InitialDataLoader />
                         </BrowserRouter>
                     </IntlProvider>

@@ -8,14 +8,12 @@ import * as z from 'zod';
  * */
 
 export enum AppEnvKey {
-    'VELG_SCENARIO' = 'VELG_SCENARIO',
     'SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL' = 'SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL',
     'SIF_PUBLIC_USE_FARO' = 'SIF_PUBLIC_USE_FARO',
 }
 
 export const appEnvSchema = z
     .object({
-        [AppEnvKey.VELG_SCENARIO]: z.string().optional(),
         [AppEnvKey.SIF_PUBLIC_USE_FARO]: z.string().optional(),
         [AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: z.string().optional(),
     })

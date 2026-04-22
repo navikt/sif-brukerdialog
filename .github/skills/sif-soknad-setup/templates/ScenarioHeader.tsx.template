@@ -1,5 +1,6 @@
 // Eksempel: src/demo/ScenarioHeader.tsx
 // Tilpass: scenarioGroups, title, import-paths
+// Monter i App.tsx inne i BrowserRouter: {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
 import { getRequiredEnv } from '@navikt/sif-common-env';
 import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
 
@@ -24,7 +25,6 @@ export const ScenarioHeader = () => {
     const setScenario = (scenario: ScenarioType) => {
         store.setScenario(scenario);
         globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
-        globalThis.location.reload();
     };
 
     return <ScenarioSelectorHeader title="Demo av <appnavn>" groups={scenarioGroups} onSelectScenario={setScenario} />;

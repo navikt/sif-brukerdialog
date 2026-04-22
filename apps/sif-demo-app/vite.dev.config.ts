@@ -48,4 +48,7 @@ export default defineConfig({
     build: {
         sourcemap: true,
     },
+    define: {
+        __SCENARIO_HEADER__: true,
+    },
 });

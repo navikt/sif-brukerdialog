@@ -4,6 +4,8 @@ import { z } from 'zod';
 
 export enum ScenarioType {
     default = 'default',
+    medKontonummer = 'medKontonummer',
+    ingenRegistrerteBarn = 'ingenRegistrerteBarn',
 }
 
 export interface ScenarioData {

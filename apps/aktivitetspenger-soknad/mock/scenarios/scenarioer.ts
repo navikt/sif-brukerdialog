@@ -1,36 +1,32 @@
+import {
+    ingenBarnProfil,
+    kontonummerApiResponse,
+    standardProfil,
+    standardProfilMedKontonummer,
+} from '@sif/api/mock-data';
+
 import { ScenarioData, ScenarioType } from './types';
 
 const defaultScenarioData: ScenarioData = {
-    søker: {
-        aktørId: '2320509955297',
-        fødselsdato: '1985-06-02',
-        fødselsnummer: '02068599258',
-        fornavn: 'Test',
-        mellomnavn: undefined,
-        etternavn: 'Testesen',
-    },
+    ...standardProfilMedKontonummer,
+    mellomlagring: undefined,
+};
 
-    barn: {
-        barn: [
-            {
-                fornavn: 'Alfa',
-                etternavn: 'Testesen',
-                aktørId: '2811762539343',
-                fødselsdato: '2019-06-08',
-            },
-        ],
-    },
+const medKontonummerScenarioData: ScenarioData = {
+    ...standardProfil,
+    kontonummer: kontonummerApiResponse,
+    mellomlagring: undefined,
+};
 
-    kontonummer: {
-        harKontonummer: true,
-        kontonummer: '12345678901',
-    },
-
+const ingenRegistrerteBarnScenarioData: ScenarioData = {
+    ...ingenBarnProfil,
     mellomlagring: undefined,
 };
 
 const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
+    [ScenarioType.medKontonummer]: medKontonummerScenarioData,
+    [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
 };
 
 export const getScenarioMockData = (scenario: ScenarioType): ScenarioData => {

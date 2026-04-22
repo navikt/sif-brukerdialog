@@ -19,7 +19,6 @@ import { AnalyticsProvider } from './analytics/analytics';
 import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
-import DevFooter from './dev/DevFooter';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import { getAppEnv } from './utils/appEnv';
 import { initApiClients } from './utils/initApiClients';
@@ -79,7 +78,6 @@ function App() {
                                     isActive={analyticsIsActive}>
                                     <QueryClientProvider client={queryClient}>
                                         <DeltakerInfoLoader />
-                                        <DevFooter />
                                     </QueryClientProvider>
                                 </AnalyticsProvider>
                             </FaroProvider>
