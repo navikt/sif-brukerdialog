@@ -20,14 +20,15 @@ const itemsAreValidISODateRanges = (keys: string[]): boolean => keys.some((key) 
 export const verifyK9Format = (sak: any): sak is K9Format => {
     const maybeK9Sak = sak as K9Format;
     try {
-        if (
-            isObject(maybeK9Sak) &&
-            verifyK9FormatBarn(maybeK9Sak.barn) &&
-            isObject(maybeK9Sak.søknad) &&
-            verifyK9FormatYtelse(maybeK9Sak.søknad.ytelse)
-        ) {
-            return true;
+        if (!isObject(maybeK9Sak)) {
+            throw 'verifyK9Format: sak er ikke et objekt';
         }
+        verifyK9FormatBarn(maybeK9Sak.barn);
+        if (!isObject(maybeK9Sak.søknad)) {
+            throw 'verifyK9Format: søknad er ikke et objekt';
+        }
+        verifyK9FormatYtelse(maybeK9Sak.søknad.ytelse);
+        return true;
     } catch (error) {
         const k9FormatError: K9FormatError = {
             type: 'k9formatError',
@@ -35,7 +36,6 @@ export const verifyK9Format = (sak: any): sak is K9Format => {
         };
         throw k9FormatError;
     }
-    return false;
 };
 
 const verifyK9FormatBarn = (barn: any): barn is K9FormatBarn => {
