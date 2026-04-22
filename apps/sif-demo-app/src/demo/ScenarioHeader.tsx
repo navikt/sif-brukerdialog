@@ -28,7 +28,6 @@ export const ScenarioHeader = () => {
     const setScenario = (scenario: ScenarioType) => {
         store.setScenario(scenario);
         globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
-        globalThis.location.reload();
     };
 
     return <ScenarioSelectorHeader title="Demo av søknad" groups={scenarioGroups} onSelectScenario={setScenario} />;

@@ -49,9 +49,9 @@ export const createLocalStorageStore = <TData, TScenario extends string>(
             localStorage.setItem(storageKey, JSON.stringify({ ...current, ...partial }));
         },
         reset: () => {
-            const key = localStorage.getItem(scenarioKey) as TScenario;
-            if (!key) throw new Error('Ingen scenario valgt i localStorage');
-            localStorage.setItem(storageKey, JSON.stringify(getScenarioData(key)));
+            const scenario = store.getScenario();
+            localStorage.setItem(scenarioKey, scenario);
+            localStorage.setItem(storageKey, JSON.stringify(getScenarioData(scenario)));
         },
     };
 
