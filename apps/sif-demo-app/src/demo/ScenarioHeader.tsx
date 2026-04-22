@@ -30,5 +30,12 @@ export const ScenarioHeader = () => {
         globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
     };
 
-    return <ScenarioSelectorHeader title="Demo av søknad" groups={scenarioGroups} onSelectScenario={setScenario} />;
+    return (
+        <ScenarioSelectorHeader
+            title="Demo av søknad"
+            groups={scenarioGroups}
+            activeScenario={store.getScenario()}
+            onSelectScenario={setScenario}
+        />
+    );
 };

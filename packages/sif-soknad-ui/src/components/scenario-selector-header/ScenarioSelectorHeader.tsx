@@ -15,6 +15,7 @@ export interface ScenarioSelectorHeaderGroup<T extends string = string> {
 interface Props<T extends string = string> {
     title: string;
     buttonLabel?: string;
+    activeScenario: T;
     groups: Array<ScenarioSelectorHeaderGroup<T>>;
     onSelectScenario: (value: T) => void;
 }
@@ -22,20 +23,26 @@ interface Props<T extends string = string> {
 export const ScenarioSelectorHeader = <T extends string = string>({
     title,
     buttonLabel = 'Velg scenario',
+    activeScenario,
     groups,
     onSelectScenario,
 }: Props<T>) => {
     const visibleGroups = groups.filter((group) => group.options.length > 0);
 
+    const activeLabel = activeScenario
+        ? groups.flatMap((g) => g.options).find((o) => o.value === activeScenario)?.label
+        : undefined;
+
     return (
         <InternalHeader>
             <InternalHeader.Title>{title}</InternalHeader.Title>
             <Spacer />
+
             <ActionMenu>
                 <ActionMenu.Trigger>
                     <InternalHeader.Button>
                         <PersonCircleIcon fontSize="1.5rem" aria-hidden={true} />
-                        {buttonLabel}
+                        {buttonLabel} ({activeLabel})
                     </InternalHeader.Button>
                 </ActionMenu.Trigger>
                 <ActionMenu.Content>

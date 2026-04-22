@@ -38,6 +38,7 @@ export const ScenarioHeader = () => {
         <ScenarioSelectorHeader
             title="Demo av aktivitetspengersøknad"
             groups={scenarioGroups}
+            activeScenario={store.getScenario()}
             onSelectScenario={setScenario}
         />
     );

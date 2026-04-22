@@ -32,21 +32,13 @@ describe('createLocalStorageStore — init', () => {
         expect(store.get()).toEqual({ value: 'other-data' });
     });
 
-    it('beholder lagret data når init får samme scenario som allerede er lagret', () => {
+    it('beholder lagret scenario og data ved reload (init med annet scenario enn lagret)', () => {
         const store = makeStore();
         store.setScenario(Scenario.other);
         store.set({ value: 'tilpasset' });
-        store.init(Scenario.other);
+        store.init(Scenario.default);
         expect(store.getScenario()).toBe(Scenario.other);
         expect(store.get()).toEqual({ value: 'tilpasset' });
-    });
-
-    it('bruker init-scenario når lagret scenario er et annet', () => {
-        const store = makeStore();
-        store.setScenario(Scenario.other);
-        store.init(Scenario.default);
-        expect(store.getScenario()).toBe(Scenario.default);
-        expect(store.get()).toEqual({ value: 'default-data' });
     });
 
     it('setter init-scenario når lagret scenario er ugyldig', () => {

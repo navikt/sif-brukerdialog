@@ -42,6 +42,7 @@ const ScenarioHeader = () => {
         <ScenarioSelectorHeader
             title='Demo av "Dine aktivitetspenger"'
             groups={groups}
+            activeScenario={store.getScenario()}
             onSelectScenario={setScenario}
         />
     );
