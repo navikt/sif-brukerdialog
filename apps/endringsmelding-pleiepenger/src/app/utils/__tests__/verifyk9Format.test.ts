@@ -1,4 +1,4 @@
-import { isK9FormatError } from '@app/types';
+import { isK9FormatError, K9FormatError } from '@app/types';
 import { describe, expect, it } from 'vitest';
 
 import { verifyK9Format } from '../verifyk9Format';
@@ -71,7 +71,10 @@ describe('verifyK9Format', () => {
         });
 
         it('godtar tom arbeidstakerList', () => {
-            const sak = { ...gyldigSak, søknad: { ...gyldigSak.søknad, ytelse: { ...gyldigYtelse, arbeidstid: { arbeidstakerList: [] } } } };
+            const sak = {
+                ...gyldigSak,
+                søknad: { ...gyldigSak.søknad, ytelse: { ...gyldigYtelse, arbeidstid: { arbeidstakerList: [] } } },
+            };
             expect(verifyK9Format(sak)).toBe(true);
         });
     });
@@ -100,7 +103,10 @@ describe('verifyK9Format', () => {
         });
 
         it('kaster når søknadsperiode er ugyldig datoformat', () => {
-            const sak = { ...gyldigSak, søknad: { ...gyldigSak.søknad, ytelse: { ...gyldigYtelse, søknadsperiode: ['not-a-date'] } } };
+            const sak = {
+                ...gyldigSak,
+                søknad: { ...gyldigSak.søknad, ytelse: { ...gyldigYtelse, søknadsperiode: ['not-a-date'] } },
+            };
             const err = forventK9FormatError(sak);
             expect(err.error).toContain('verifySøknadsperioder');
         });

@@ -108,7 +108,7 @@ const VelkommenPage = () => {
                     </Form>
                 )}
             />
-            {getMaybeEnv('DEBUG') === 'true' && (
+            {getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true' && (
                 <VStack gap="space-16" style={{ marginTop: '2rem', padding: '1rem', border: '2px dashed red' }}>
                     <Heading level="3" size="small">
                         Debug: Test Sentry-logging

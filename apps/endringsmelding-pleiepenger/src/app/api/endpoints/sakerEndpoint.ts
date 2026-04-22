@@ -54,7 +54,7 @@ const sakerEndpoint = {
                     } else {
                         eldreSaker.push(parsedSak);
                     }
-                    if (getMaybeEnv('DEBUG') === 'true') {
+                    if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
                         appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
                     }
                 } catch (error) {

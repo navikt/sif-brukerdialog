@@ -34,5 +34,6 @@ export const getDevAppSettings = (isTest?: boolean) => {
         MSW: isTest ? 'off' : 'on',
         E2E_TEST: isTest ? 'true' : false,
         NOW: '2023-01-01',
+        SIF_PUBLIC_DEBUG: 'true',
     };
 };
