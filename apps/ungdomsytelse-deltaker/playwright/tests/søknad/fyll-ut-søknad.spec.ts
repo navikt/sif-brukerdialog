@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { ScenarioType } from '../../../mock/scenarios/types';
-import { memoryStore } from '../../../mock/state/memoryStore';
+import { store } from '../../../mock/state/store';
 import { registerMockRoutes } from '../../utils/registerMockRoutes';
 import { setNow } from '../../utils/setNow';
 import { testAccessibility } from '../../utils/testAccessibility';
@@ -12,7 +12,7 @@ test.beforeEach(async ({ page, context }) => {
 });
 
 test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
-    memoryStore.setScenario(ScenarioType.søknad);
+    store.setScenario(ScenarioType.søknad);
 
     await page.goto(`./`);
 

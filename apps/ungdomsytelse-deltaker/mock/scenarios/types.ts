@@ -21,4 +21,5 @@ export interface ScenarioData {
     arbeidsgiver: any[];
     deltakelser: any[];
     oppgaver: any[];
+    mellomlagring?: Record<string, unknown>;
 }

@@ -1,6 +1,6 @@
 import { BrowserContext, Page } from '@playwright/test';
 
-import { memoryStore } from '../../mock/state/memoryStore';
+import { store } from '../../mock/state/store';
 import { mockUtils } from '../../mock/utils/mockUtils';
 
 const setupNavnoConsentCookieForPlaywrightTests = async (context: BrowserContext) => {
@@ -34,7 +34,7 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().søker),
+            body: JSON.stringify(store.get().søker),
         });
     });
 
@@ -42,7 +42,7 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().barn),
+            body: JSON.stringify(store.get().barn),
         });
     });
 
@@ -50,7 +50,7 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().arbeidsgiver),
+            body: JSON.stringify(store.get().arbeidsgiver),
         });
     });
 
@@ -58,7 +58,7 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().deltakelser),
+            body: JSON.stringify(store.get().deltakelser),
         });
     });
 
@@ -66,8 +66,29 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().oppgaver),
+            body: JSON.stringify(store.get().oppgaver),
         });
+    });
+
+    await page.route('**/mellomlagring/**', async (route) => {
+        const method = route.request().method();
+        if (method === 'GET') {
+            await route.fulfill({
+                status: 200,
+                contentType: 'application/json',
+                body: JSON.stringify(store.get().mellomlagring ?? {}),
+            });
+        } else if (method === 'POST' || method === 'PUT') {
+            const text = await route.request().postData();
+            const data = text ? JSON.parse(text) : {};
+            store.update({ mellomlagring: data });
+            await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({}) });
+        } else if (method === 'DELETE') {
+            store.update({ mellomlagring: undefined });
+            await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({}) });
+        } else {
+            await route.fulfill({ status: 200 });
+        }
     });
 
     await page.route('**/ung-deltakelse-opplyser/deltakelse/register/:id/marker-har-sokt', async (route) => {
