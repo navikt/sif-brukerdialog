@@ -1,5 +1,5 @@
 import { useLenker } from '@app/lenker';
-import { Box, ExpansionCard, Heading, Link, List, VStack } from '@navikt/ds-react';
+import { Accordion, Box, Heading, Link, List, VStack } from '@navikt/ds-react';
 
 import { AppText } from '../../../i18n';
 
@@ -24,68 +24,69 @@ const OmSøknaden = () => {
                     </List.Item>
                 </List>
             </Box>
-            <ExpansionCard data-color="neutral" size="small" aria-labelledby="personopplysninger-tittel">
-                <ExpansionCard.Header>
-                    <ExpansionCard.Title size="small">
+
+            <Accordion>
+                <Accordion.Item>
+                    <Accordion.Header>
                         <AppText id="page.velkommen.personopplysninger.tittel" />
-                    </ExpansionCard.Title>
-                </ExpansionCard.Header>
-                <ExpansionCard.Content>
-                    <VStack gap="space-8">
-                        <div>
-                            <Heading level="3" size="xsmall" spacing={true}>
-                                <AppText id="page.velkommen.personopplysninger.behandler.tittel" />
-                            </Heading>
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <VStack gap="space-8">
+                            <div>
+                                <Heading level="3" size="xsmall" spacing={true}>
+                                    <AppText id="page.velkommen.personopplysninger.behandler.tittel" />
+                                </Heading>
+                                <p>
+                                    <AppText id="page.velkommen.personopplysninger.behandler.info" />
+                                </p>
+                            </div>
+                            <div>
+                                <Heading level="3" size="xsmall" spacing={true}>
+                                    <AppText id="page.velkommen.personopplysninger.innhenter.tittel" />
+                                </Heading>
+                                <p>
+                                    <AppText id="page.velkommen.personopplysninger.innhenter" />
+                                </p>
+                                <List>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.1" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.2" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.3" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.4" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.5" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.6" />
+                                    </List.Item>
+                                </List>
+                            </div>
                             <p>
-                                <AppText id="page.velkommen.personopplysninger.behandler.info" />
+                                <AppText
+                                    id="page.velkommen.personopplysninger.5.3"
+                                    values={{
+                                        Lenke: (children: React.ReactNode) => (
+                                            <Link
+                                                href={lenker.navPersonvernerklaering}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                {children}
+                                            </Link>
+                                        ),
+                                    }}
+                                />
                             </p>
-                        </div>
-                        <div>
-                            <Heading level="3" size="xsmall" spacing={true}>
-                                <AppText id="page.velkommen.personopplysninger.innhenter.tittel" />
-                            </Heading>
-                            <p>
-                                <AppText id="page.velkommen.personopplysninger.innhenter" />
-                            </p>
-                            <List>
-                                <List.Item>
-                                    <AppText id="page.velkommen.personopplysninger.innhenter.1" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="page.velkommen.personopplysninger.innhenter.2" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="page.velkommen.personopplysninger.innhenter.3" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="page.velkommen.personopplysninger.innhenter.4" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="page.velkommen.personopplysninger.innhenter.5" />
-                                </List.Item>
-                                <List.Item>
-                                    <AppText id="page.velkommen.personopplysninger.innhenter.6" />
-                                </List.Item>
-                            </List>
-                        </div>
-                        <p>
-                            <AppText
-                                id="page.velkommen.personopplysninger.5.3"
-                                values={{
-                                    Lenke: (children: React.ReactNode) => (
-                                        <Link
-                                            href={lenker.navPersonvernerklaering}
-                                            target="_blank"
-                                            rel="noopener noreferrer">
-                                            {children}
-                                        </Link>
-                                    ),
-                                }}
-                            />
-                        </p>
-                    </VStack>
-                </ExpansionCard.Content>
-            </ExpansionCard>
+                        </VStack>
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
         </VStack>
     );
 };

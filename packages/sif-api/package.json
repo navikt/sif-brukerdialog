@@ -13,7 +13,9 @@
         "./ung-deltaker": "./src/ung-deltaker/index.ts",
         "./k9-sak-innsyn-api": "./src/k9-sak-innsyn-api/index.ts",
         "./components": "./src/components/index.ts",
-        "./schemas": "./src/schemas/index.ts"
+        "./schemas": "./src/schemas/index.ts",
+        "./mock-data": "./src/mock-data/index.ts",
+        "./mock-utils": "./src/mock-utils/index.ts"
     },
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",

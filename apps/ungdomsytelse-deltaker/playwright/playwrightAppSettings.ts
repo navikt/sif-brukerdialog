@@ -6,7 +6,6 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     PUBLIC_PATH: '/ungdomsprogrammet/ytelsen',
     GITHUB_REF_NAME: 'dev',
 
-    VELG_SCENARIO: 'on',
     SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_USE_ANALYTICS: 'true',
     SIF_PUBLIC_USE_FARO: 'false',
