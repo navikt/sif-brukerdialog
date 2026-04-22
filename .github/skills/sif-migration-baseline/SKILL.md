@@ -117,7 +117,7 @@ Etter bootstrap:
 - Tooling/config: `package.json`, `vite.config.ts`, `vite.dev.config.ts`, `tsconfig.json`, `eslint.config.js`, `tailwind.config.ts`, `env.schema.ts`, `vite-env.d.ts`, `vitest.shims.d.ts`, `index.html`, `Dockerfile`.
 - Storybook: `.storybook/main.ts`, `.storybook/preview.ts`, `.storybook/vitest.setup.ts`.
 - Bootstrap source: `src/main.tsx`, `src/App.tsx`, `src/InitialDataLoader.tsx`, `src/useInitialData.ts`, `src/app.css`, `src/sentry/instrument.ts`, and required setup wrappers/env helpers.
-- Demo/local source: `src/demo/ScenarioHeader.tsx` når appen har mock/scenario-støtte og `VELG_SCENARIO` brukes lokalt.
+- Demo/local source: `src/demo/ScenarioHeader.tsx` når appen har mock/scenario-støtte.
 - Mocking baseline: `mock/enableMocking.ts`, `mock/devAppSettings.ts`, `mock/msw/**`, and `public/mockServiceWorker.js`.
 
 ### Minste nødvendige endringer i målappen etter kopiering
@@ -127,7 +127,7 @@ Etter bootstrap:
 - Oppdater `<title>` i `index.html`.
 - Oppdater `APP` og `SCOPE` i `Dockerfile`.
 - Oppdater `BrowserRouter basename` i `App.tsx`.
-- Behold lokal/demo-scenariovelger når appen har mockdata og `VELG_SCENARIO`; oppdater bare tittel, scenario-grupper og `PUBLIC_PATH`.
+- Behold lokal/demo-scenariovelger når appen har mockdata; oppdater bare tittel, scenario-grupper og `PUBLIC_PATH`.
 - Hold alle andre endringer minimale til App-fasen starter.
 - Sørg for at base path er identisk i alle tre steder: `package.json` (`dev`/`build`), `vite.config.ts` (`base` og mock service worker-rewrite), og `vite.dev.config.ts` (`base` og rewrite).
 
@@ -194,7 +194,7 @@ Når domenekode er slettet, må mock tilpasses parallelt:
 | `mock/scenarios/types.ts`         | API-import for kildeappens spesifikke data (f.eks. `KontonummerDto` fra ung-api) | Fjern import og felt som ikke finnes i målappen                                     |
 | `mock/scenarios/scenarioer.ts`    | Scenariodata med app-spesifikke felt                                             | Fjern app-spesifikke felt (f.eks. `kontonummer`)                                    |
 | `mock/msw/handlers.ts`            | App-spesifikke endepunkter (f.eks. `/deltaker/hent-kontonummer`, `/api/send`)    | Erstatt med målappens endepunkter (f.eks. `/omsorgspenger-utvidet-rett/innsending`) |
-| `mock/state/localStorageStore.ts` | Storage-nøkler med kildeappens prefiks (f.eks. `AKT_SOKNAD_*`)                   | Oppdater til målappens prefiks (f.eks. `OMP_SOKNAD_*`)                              |
+| `mock/state/store.ts`             | Storage-nøkler med kildeappens prefiks (f.eks. `AKT_SOKNAD_*`)                   | Oppdater til målappens prefiks (f.eks. `OMP_SOKNAD_*`) i `createStore`-kallet      |
 
 ### Opprydding av Playwright-tester
 

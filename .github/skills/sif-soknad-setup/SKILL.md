@@ -188,7 +188,13 @@ Navngivingsprinsipp for delte lenker:
 - Bruk `ScenarioSelectorHeader` fra `@sif/soknad-ui`
 - Returner `null` i prod via `import.meta.env.PROD`
 - Bruk samme `ScenarioType` som Playwright-tester
-- Mont i `App.tsx` inne i `BrowserRouter`
+- Definer `scenarioGroups` på modul-nivå, ikke inne i komponenten
+- Mont i `App.tsx` inne i `BrowserRouter` bak build-time define `__SCENARIO_HEADER__`:
+  ```tsx
+  {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+  ```
+- Deklarer typen i `vite-env.d.ts`: `declare const __SCENARIO_HEADER__: boolean;`
+- Sett `__SCENARIO_HEADER__: false` i `vite.config.ts` og `__SCENARIO_HEADER__: true` i `vite.dev.config.ts`
 
 ### StartPage children
 
