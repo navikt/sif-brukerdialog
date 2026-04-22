@@ -7,7 +7,6 @@ import {
     maskString,
     parseK9Format,
 } from '@app/utils';
-import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { isAxiosError } from 'axios';
 
@@ -77,11 +76,7 @@ const sakerEndpoint = {
             return { k9Saker, eldreSaker };
         } catch (error) {
             if (isAxiosError(error)) {
-                if (isUnauthorized(error)) {
-                    appSentryLogger.logError('sakerEndpoint.fetch failed - unauthorized');
-                } else {
-                    appSentryLogger.logError(`sakerEndpoint.fetch failed - ${error.message}`);
-                }
+                appSentryLogger.logApiError(error, 'sakerEndpoint.fetch');
             } else if (!isK9FormatError(error)) {
                 appSentryLogger.logError(
                     'sakerEndpoint.fetch failed - unexpected',

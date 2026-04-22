@@ -58,7 +58,7 @@ const verifyK9FormatArbeidstidTid = (tid: any): tid is K9FormatArbeidstidTid => 
     if (isObject(t) && isISODuration(t.faktiskArbeidTimerPerDag) && isISODuration(t.jobberNormaltTimerPerDag)) {
         return true;
     }
-    throw `verifyK9FormatArbeidstidTid (${JSON.stringify(t)})`;
+    throw 'verifyK9FormatArbeidstidTid';
 };
 
 const verifyK9FormatArbeidstidPerioder = (perioder: any): perioder is K9FormatArbeidstidInfoPerioder => {
@@ -112,22 +112,12 @@ const verifyK9FormatArbeidstaker = (arbeidstaker: any): arbeidstaker is K9Format
 const verifyK9FormatArbeidstid = (arbeidstid: any): arbeidstid is K9FormatArbeidstid => {
     const arb = arbeidstid as K9FormatArbeidstid;
     if (isObject(arb) && isArray(arb.arbeidstakerList)) {
-        if (arb.arbeidstakerList.length > 0) {
-            if (arb.arbeidstakerList.some((a) => !verifyK9FormatArbeidstaker(a))) {
-                return false;
-            }
+        arb.arbeidstakerList.forEach((a) => verifyK9FormatArbeidstaker(a));
+        if (isObject(arb.frilanserArbeidstidInfo)) {
+            verifyK9FormatArbeidstidInfo(arb.frilanserArbeidstidInfo);
         }
-        if (
-            isObject(arb.frilanserArbeidstidInfo) &&
-            verifyK9FormatArbeidstidInfo(arb.frilanserArbeidstidInfo) === false
-        ) {
-            return false;
-        }
-        if (
-            isObject(arb.selvstendigNæringsdrivendeArbeidstidInfo) &&
-            verifyK9FormatArbeidstidInfo(arb.selvstendigNæringsdrivendeArbeidstidInfo) === false
-        ) {
-            return false;
+        if (isObject(arb.selvstendigNæringsdrivendeArbeidstidInfo)) {
+            verifyK9FormatArbeidstidInfo(arb.selvstendigNæringsdrivendeArbeidstidInfo);
         }
         return true;
     }
@@ -207,7 +197,7 @@ const verifyK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
         throw 'verifyK9FormatYtelse: barn er ikke et objekt';
     }
     if (!isISODateOrNull(maybeYtelse.barn.fødselsdato)) {
-        throw `verifyK9FormatYtelse: ugyldig barn.fødselsdato "${maybeYtelse.barn.fødselsdato}"`;
+        throw 'verifyK9FormatYtelse: ugyldig barn.fødselsdato';
     }
     if (!isString(maybeYtelse.barn.norskIdentitetsnummer)) {
         throw 'verifyK9FormatYtelse: barn.norskIdentitetsnummer er ikke en string';
