@@ -157,7 +157,7 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
     if (resultat.kanBrukeSøknad) {
         return Promise.resolve(true);
     }
-    if (getMaybeEnv('DEBUG') === 'true') {
+    if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
         if (k9saker.length === 1) {
             appSentryLogger.logInfo(
                 'IkkeTilgangSakInfo',

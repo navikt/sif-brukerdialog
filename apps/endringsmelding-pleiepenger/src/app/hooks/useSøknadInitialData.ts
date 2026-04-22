@@ -66,7 +66,7 @@ const prepInitialData = (
         if (k9saker.length === 1) {
             const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
 
-            if (getMaybeEnv('DEBUG') === 'true') {
+            if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
                 appSentryLogger.logInfo(
                     'debug.maskedSakInfo',
                     JSON.stringify(

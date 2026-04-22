@@ -45,6 +45,7 @@ interface OmsorgstilbudMetadata {
     omsAntallEndredeDager?: number;
     omsAntallDagerMedTid?: number;
     omsAntallDagerUtenTid?: number;
+    endretOmsorgstilbud?: boolean;
 }
 
 export type SøknadApiDataMetadata = {
@@ -75,6 +76,7 @@ const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): Omsor
         omsAntallDagerUtenTid: Object.values(tilsynsordning.perioder).filter(
             (p) => p.etablertTilsynTimerPerDag === ingenTid,
         ).length,
+        endretOmsorgstilbud: antallEndredeDager > 0,
     };
 };
 
