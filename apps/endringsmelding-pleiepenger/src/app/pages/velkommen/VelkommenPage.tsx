@@ -1,8 +1,10 @@
 import { useSakUtledet as useSakInfo, useStartSøknad } from '@app/hooks';
 import { AppText, useAppIntl } from '@app/i18n';
 import { EndringType } from '@app/types';
-import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { appSentryLogger } from '@app/utils';
+import { BodyLong, Button, Heading, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -106,6 +108,40 @@ const VelkommenPage = () => {
                     </Form>
                 )}
             />
+            {getMaybeEnv('DEBUG') === 'true' && (
+                <VStack gap="space-16" style={{ marginTop: '2rem', padding: '1rem', border: '2px dashed red' }}>
+                    <Heading level="3" size="small">
+                        Debug: Test Sentry-logging
+                    </Heading>
+                    <Button
+                        variant="secondary"
+                        size="small"
+                        type="button"
+                        onClick={() =>
+                            appSentryLogger.logInfo('debug.test.info', 'Test info-melding fra VelkommenPage')
+                        }>
+                        Log info
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        size="small"
+                        type="button"
+                        onClick={() =>
+                            appSentryLogger.logError('debug.test.error', 'Test error-melding fra VelkommenPage')
+                        }>
+                        Log error
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        size="small"
+                        type="button"
+                        onClick={() => {
+                            throw new Error('Debug: test uventet feil fra VelkommenPage');
+                        }}>
+                        Throw uventet feil
+                    </Button>
+                </VStack>
+            )}
         </Page>
     );
 };
