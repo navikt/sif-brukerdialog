@@ -6,8 +6,6 @@ export const getDevAppSettings = (): AppEnv => ({
     GITHUB_REF_NAME: 'dev',
     PUBLIC_PATH: '/sif-demo',
 
-    VELG_SCENARIO: 'on',
-
     SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',

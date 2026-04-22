@@ -48,5 +48,8 @@ export default defineConfig(({ mode }) => {
             sourcemap: 'inline',
             minify: mode === 'production',
         },
+        define: {
+            __SCENARIO_HEADER__: false,
+        },
     };
 });
