@@ -1,4 +1,5 @@
 import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
+import { dateUtils } from '@navikt/sif-common-utils';
 import { FocusEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { DayOfWeek } from 'react-day-picker';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
@@ -13,14 +14,7 @@ export interface DatepickerLimitations {
 
 import { datePickerUtils } from '../utils/datePickerUtils';
 
-const {
-    ISODateStringToUTCDate,
-    getDisabledDates,
-    INVALID_DATE,
-    InputDateStringToISODateString,
-    dateToISODateString,
-    isISODateString,
-} = datePickerUtils;
+const { parseDatePickerValue, getDisabledDates } = datePickerUtils;
 
 type Props<T extends FieldValues> = Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate' | 'children'> &
     DatepickerLimitations & {
@@ -75,6 +69,13 @@ function DatepickerController<T extends FieldValues>({
         [onFieldChange, onChangeProp],
     );
 
+    const updateValueFromDate = useCallback(
+        (date: Date | undefined, fallbackValue = '') => {
+            handleChange(date ? dateUtils.dateToISODate(date) : fallbackValue);
+        },
+        [handleChange],
+    );
+
     const { inputProps, datepickerProps, selectedDay, setSelected } = useDatepicker({
         ...restProps,
         disabled: disabledDates,
@@ -82,16 +83,16 @@ function DatepickerController<T extends FieldValues>({
         toDate: maxDate,
         onDateChange: (date) => {
             if (!inputHasFocus) {
-                handleChange(date ? dateToISODateString(date) : '');
+                updateValueFromDate(date);
             }
         },
-        defaultSelected: ISODateStringToUTCDate(value),
+        defaultSelected: parseDatePickerValue(value),
     });
 
     const prevValue = useRef(value);
     useEffect(() => {
         if (prevValue.current !== value && !listenForInputChange) {
-            setSelected(isISODateString(value) ? ISODateStringToUTCDate(value) : undefined);
+            setSelected(parseDatePickerValue(value));
         }
         prevValue.current = value;
     }, [value, listenForInputChange, setSelected]);
@@ -99,27 +100,26 @@ function DatepickerController<T extends FieldValues>({
     const inputValue = inputProps.value;
     useEffect(() => {
         if (listenForInputChange && typeof inputValue === 'string') {
-            const iso = InputDateStringToISODateString(inputValue);
-            handleChange(iso !== INVALID_DATE ? iso : inputValue);
+            updateValueFromDate(parseDatePickerValue(inputValue), inputValue);
             setListenForInputChange(false);
         }
-    }, [inputValue, listenForInputChange, handleChange]);
+    }, [inputValue, listenForInputChange, updateValueFromDate]);
 
     const onBlur = (evt: FocusEvent<HTMLInputElement>) => {
         setInputHasFocus(false);
         inputProps.onBlur?.(evt as any);
         if (selectedDay === undefined && typeof inputProps.value === 'string') {
-            if (isISODateString(inputProps.value)) {
-                handleChange(inputProps.value);
-            } else {
-                const iso = InputDateStringToISODateString(inputProps.value as string);
-                handleChange(iso !== INVALID_DATE ? iso : (inputProps.value as string));
+            const parsedDate = parseDatePickerValue(inputProps.value);
+            if (parsedDate) {
+                updateValueFromDate(parsedDate, inputProps.value);
                 setListenForInputChange(true);
+            } else {
+                handleChange(inputProps.value);
             }
             return;
         }
         if (selectedDay) {
-            handleChange(dateToISODateString(selectedDay));
+            updateValueFromDate(selectedDay);
         }
     };
 

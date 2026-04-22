@@ -31,4 +31,5 @@ export type { PersistedFile, PersistedFileInfo, UploadedFile } from './component
 export { isPersistedFile, mapFileToPersistedFile } from './components/SifFileUpload/types';
 export { useFileUploader } from './components/SifFileUpload/useFileUploader';
 export { useFocusOnValidationError } from './hooks';
+export { datePickerUtils } from './utils/datePickerUtils';
 export { sifValidate, useSifValidate } from './validation';

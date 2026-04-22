@@ -1,4 +1,5 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
+
 import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockRoutes';
 
@@ -21,8 +22,8 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     await page.getByRole('heading', { level: 1, name: 'Barn' });
     await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
     await page.getByText('Ja, barnet har delt fast').click();
-    await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
-    await page.getByRole('group', { name: 'Har du høyere risiko for frav' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Har du høyere risiko for frav' }).getByLabel('Nei').check();
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Legeerklæring */

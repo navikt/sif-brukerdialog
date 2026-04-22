@@ -4,7 +4,10 @@ export const fyllUtPleietrengendeMedFnr = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Om personen du pleier' })).toBeVisible();
     await page.getByLabel('Navn på den du skal pleie').fill('Test Testesen');
     await page.getByRole('textbox', { name: 'Fødselsnummer/D-nummer' }).fill('27857798800');
-    await page.getByRole('group', { name: 'Er dere flere som skal dele på pleiepengene?' }).getByLabel('Ja').check();
+    await page
+        .getByRole('radiogroup', { name: 'Er dere flere som skal dele på pleiepengene?' })
+        .getByLabel('Ja')
+        .check();
 };
 
 export const kontrollerPleietrengendeMedFnr = async (page: Page) => {

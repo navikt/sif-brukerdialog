@@ -12,6 +12,7 @@ import {
     DateDurationMap,
     dateToISODate,
     Duration,
+    durationToISODuration,
     getDatesInDateRange,
     ISODateRangeToDateRange,
     ISODurationToDuration,
@@ -40,15 +41,42 @@ interface LovbestemtFerieMetadata {
     fjernetFerie?: boolean;
 }
 
+interface OmsorgstilbudMetadata {
+    omsAntallEndredeDager?: number;
+    omsAntallDagerMedTid?: number;
+    omsAntallDagerUtenTid?: number;
+}
+
 export type SøknadApiDataMetadata = {
     antallAktiviteterSomKanEndres: number;
 } & LovbestemtFerieMetadata &
     ArbeidstidMetadata &
+    OmsorgstilbudMetadata &
     UkjentArbeidsforholdMetadata &
     ArbeidsgiverIkkeIAaregMetadata & {
         valgtEndreArbeidstid: boolean;
         valgtEndreFerie: boolean;
+        valgtEndreOmsorgstilbud: boolean;
     };
+
+const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): OmsorgstilbudMetadata => {
+    if (!tilsynsordning) {
+        return {
+            omsAntallEndredeDager: 0,
+        };
+    }
+    const antallEndredeDager = Object.keys(tilsynsordning.perioder).length;
+    const ingenTid = durationToISODuration({ hours: '0', minutes: '0' });
+    return {
+        omsAntallEndredeDager: antallEndredeDager,
+        omsAntallDagerMedTid: Object.values(tilsynsordning.perioder).filter(
+            (p) => p.etablertTilsynTimerPerDag !== ingenTid,
+        ).length,
+        omsAntallDagerUtenTid: Object.values(tilsynsordning.perioder).filter(
+            (p) => p.etablertTilsynTimerPerDag === ingenTid,
+        ).length,
+    };
+};
 
 const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetadata | undefined => {
     return arbeidstid
@@ -97,9 +125,10 @@ export const getSøknadApiDataMetadata = (
     valgteEndringer: ValgteEndringer,
     sak: Sak,
 ): SøknadApiDataMetadata => {
-    const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
+    const { arbeidstid, lovbestemtFerie, tilsynsordning } = apiData.ytelse;
 
     return {
+        valgtEndreOmsorgstilbud: valgteEndringer?.tilsynsordning || false,
         valgtEndreArbeidstid: valgteEndringer?.arbeidstid || false,
         valgtEndreFerie: valgteEndringer?.lovbestemtFerie || false,
         antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
@@ -107,6 +136,7 @@ export const getSøknadApiDataMetadata = (
         ...getFerieMetadata(lovbestemtFerie),
         ...getArbeidstidMetadata(arbeidstid),
         ...getArbeidsgiverIkkeIAaregMetadata(sak),
+        ...getOmsorgstilbudMetadata(tilsynsordning),
     };
 };
 

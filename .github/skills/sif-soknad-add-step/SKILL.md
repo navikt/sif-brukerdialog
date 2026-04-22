@@ -1,14 +1,24 @@
 ---
 name: sif-soknad-add-step
+type: action
 description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad og @sif/rhf — oppretter alle filer og oppdaterer config/routing/i18n.
 ---
 
 # sif-soknad-add-step
 
-## Når skal skillen brukes
+## Bruk når
 
 - Bruker ber om å legge til et nytt steg/side i søknaden.
 - Bruker ber eksplisitt om et nytt spørsmål eller skjema som skal ligge på en egen side / i et eget steg.
+
+## Leveranse
+
+- `src/app/steps/<steg>/types.ts` — `FormFields` og `FormValues`
+- `src/app/steps/<steg>/<Prefix>Form.tsx` — skjemakomponent
+- `src/app/steps/<steg>/<prefix>StegUtils.ts` — mapping mellom FormValues og søknadsdata
+- `src/app/steps/<steg>/i18n/nb.ts` og `nn.ts` — tekster og valideringsmeldinger
+- `src/app/steps/<steg>/index.ts` — barrel-eksport
+- Oppdatert `SoknadStepId`, `soknadStepConfig`, `Soknadsdata`, `formValuesToSoknadsdata`, `steps/index.ts` og i18n-aggregering
 
 ## Avgrensning
 

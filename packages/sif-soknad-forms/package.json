@@ -15,31 +15,47 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.9.1",
-        "@navikt/ds-react": "8.9.1",
+        "@navikt/aksel-icons": "8.10.1",
+        "@navikt/ds-react": "8.10.1",
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad-ui": "workspace:*"
     },
     "peerDependencies": {
+        "dayjs": ">=1.11.19",
         "react": ">=19",
+        "react-day-picker": ">=9.14.0",
         "react-dom": ">=19",
-        "react-intl": "10.1.0"
+        "react-intl": "10"
     },
     "devDependencies": {
+        "@navikt/ds-css": "8.9.1",
         "@sif/eslint-config": "workspace:*",
+        "@storybook/addon-a11y": "10.3.5",
+        "@storybook/addon-docs": "10.3.5",
+        "@storybook/react-vite": "10.3.5",
+        "@types/node": "25.6.0",
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
+        "@vitejs/plugin-react": "6.0.1",
+        "dayjs": "1.11.20",
         "react": "19.2.5",
+        "react-day-picker": "9.14.0",
         "react-dom": "19.2.5",
-        "typescript": "6.0.2",
+        "react-hook-form": "7.72.1",
+        "react-intl": "10.1.2",
+        "storybook": "10.3.5",
+        "typescript": "6.0.3",
+        "vite": "8.0.8",
         "vitest": "4.1.4"
     }
 }

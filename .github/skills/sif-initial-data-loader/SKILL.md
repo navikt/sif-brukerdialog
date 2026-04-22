@@ -1,19 +1,22 @@
 ---
 name: sif-initial-data-loader
+type: referanse
 description: Mønster for å kombinere flere API-hooks til én asynkron laster (useInitialData + InitialDataLoader) i sif-soknad-apper.
 ---
 
 # sif-initial-data-loader
 
-## Formål
-
-Beskriver mønsteret for å hente all nødvendig data før søknaden starter, kombinere flere React Query-hooks til én enkelt loading/error/success-tilstand, og rendre riktig side avhengig av resultatet.
-
-## Når skal skillen brukes
+## Bruk når
 
 - Du oppretter en ny søknadsapp og trenger å bootstrappe initial data (søker, barn, mellomlagring, kontonummer).
 - Du legger til en ny datakilde i initial-dataflyten (ny hook i `useInitialData`).
 - Du feilsøker hvorfor appen er stuck i loading eller viser feilside.
+
+## Leveranse
+
+- `src/app/initial-data/useInitialData.ts` — samler bootstrap-queries med loading/error/success-kontrakt
+- `src/app/initial-data/InitialDataLoader.tsx` — render-lag for loading/error/success
+- Kobling til `Soknad.tsx` via `InitialDataLoader`-wrapping
 
 ## Kildereferanse
 

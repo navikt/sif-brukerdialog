@@ -22,13 +22,13 @@ test.afterEach(async ({ page }) => {
 
 test.describe('Medlemskap', () => {
     test('Har ikke bodd/skal ikke bo i utlandet', async ({ page }) => {
-        await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
         await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Har bodd/skal bo i utlandet', async ({ page }) => {
-        await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Ja').check();
         await page.getByRole('button', { name: 'Legg til nytt utenlandsopphold' }).click();
         await page
             .locator('div')
@@ -65,7 +65,7 @@ test.describe('Medlemskap', () => {
         await page.getByLabel('Velg land').selectOption('ABW');
         await page.getByRole('button', { name: 'Ok' }).click();
         await page.getByLabel('Fjern Bahrain').click();
-        await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Ja').click();
+        await page.getByRole('radiogroup', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Ja').click();
         await page
             .getByTestId('bostedUtlandList-annetLandNeste12')
             .getByRole('button', { name: 'Legg til nytt utenlandsopphold' })

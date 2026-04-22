@@ -1,29 +1,23 @@
 ---
 name: sif-server-proxy-api-config
+type: diagnostikk
 description: Bruk denne skillen når en utvikler vil verifisere at en app er riktig satt opp med server, reverse proxy, init av API-klienter og env-variabler (PUBLIC_PATH, *_FRONTEND_PATH, *_API_SCOPE, *_API_URL).
 ---
 
 # sif-server-proxy-api-config
 
-Denne skillen er for end-to-end verifisering av at app, server og miljøkonfigurasjon matcher for API-kall i SIF-appene.
+## Bruk når
 
-## Formål
+- API-endepunkter returnerer HTML i stedet for JSON.
+- `/api/...` eller `/<public_path>/api/...` virker ikke som forventet.
+- Mistanke om mismatch mellom `initApiClients`, `nais/*.json` og `server/src/utils/reverseProxy.ts`.
+- Verifisering før deploy av ny app eller nytt path-prefix.
 
-Verifisere at API-kall faktisk treffer reverse proxy og ikke faller gjennom til SPA/catch-all (HTML-respons).
+## Leveranse
 
-Dekker kjeden:
-
-1. Appens API-klient-init
-2. Appens env-oppsett
-3. Serverens reverse proxy-oppsett
-4. Faktisk request-path fra SDK/hook
-
-## Når skal skillen brukes
-
-- API-endepunkter returnerer HTML i stedet for JSON
-- `/api/...` eller `/<public_path>/api/...` virker ikke som forventet
-- Mistanke om mismatch mellom `initApiClients`, `nais/*.json` og `server/src/utils/reverseProxy.ts`
-- Verifisering før deploy av ny app eller nytt path-prefix
+- Diagnostisk rapport over kjeden: app → API-klient → env → server proxy
+- Identifiserte mismatcher mellom konfigurasjonslag
+- Konkrete fikser for path/proxy-problemer
 
 ## Hurtigtrigger
 

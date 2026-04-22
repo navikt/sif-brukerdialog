@@ -25,13 +25,13 @@ export const startSøknad = async (page: Page, scenario: ScenarioType) => {
 };
 
 export const fyllUtFellesBarnespørsmål = async (page: Page) => {
-    await page.getByRole('group', { name: 'Bor du sammen med barnet?' }).getByLabel('Ja', { exact: true }).check();
+    await page.getByRole('radiogroup', { name: 'Bor du sammen med barnet?' }).getByLabel('Ja', { exact: true }).check();
     await page
-        .getByRole('group', { name: 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?' })
+        .getByRole('radiogroup', { name: 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?' })
         .getByRole('radio', { name: 'Ja' })
         .check();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning?',
         })
         .getByRole('radio', { name: 'Ja' })

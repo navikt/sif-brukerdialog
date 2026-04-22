@@ -80,8 +80,8 @@ const lastOppLegeerklæring = async (page: Page) => {
 
 const fyllUtMedlemsskap = async (page: Page) => {
     await page.getByRole('heading', { name: 'Medlemskap i folketrygden' });
-    await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
-    await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };

@@ -8,8 +8,8 @@
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
-        "postcss": "8.5.9",
-        "typescript": "6.0.2",
+        "postcss": "8.5.10",
+        "typescript": "6.0.3",
         "vitest": "4.1.4"
     },
     "peerDependencies": {

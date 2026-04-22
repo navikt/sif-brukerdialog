@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 3.0.0
+
+### Major Changes
+
+- Oppdatere med mulighet for å sende inn endring på tiden i omsorgstilbud
+
 ## 2.40.69
 
 ### Patch Changes

@@ -1,11 +1,12 @@
 ---
 name: sif-intl
+type: referanse
 description: Mønster for typesikker i18n (nb/nn) i apper og pakker — implementering, parametersjekk og meningssjekk.
 ---
 
 # sif-intl
 
-## Når skal skillen brukes
+## Bruk når
 
 - Du skal legge til eller endre tekster i en app eller pakke.
 - Du skal opprette ny `i18n/nb.ts` eller `i18n/nn.ts`.
@@ -13,6 +14,13 @@ description: Mønster for typesikker i18n (nb/nn) i apper og pakker — implemen
 - Du skal vurdere om meningen i nb- og nn-tekster er ekvivalente.
 - Du arbeider med `AppText`, `useAppIntl`, `useSifXxxIntl`, `applicationIntlMessages`.
 - Du skal trekke ut tekster fra en komponent eller sett med komponenter
+
+## Leveranse
+
+- Typesikre `nb.ts` og `nn.ts` med korrekte nøkler og parametere
+- Verifiserte parametere (identiske `{param}` i nb og nn)
+- Meningsekvivalente tekster på begge målformer
+- Korrekt aggregering i `i18n/index.tsx`
 
 ---
 
@@ -227,16 +235,18 @@ export const applicationIntlMessages = {
 - Nye tekster skal bare legges inn når teksten er eksplisitt oppgitt av bruker, finnes i eksisterende kildefil, eller kommer fra etablert copy.
 - Hvis nødvendig tekstgrunnlag mangler, stopp og be om teksten i stedet for å dikte den.
 - Ved migrering eller refaktorering er hovedregelen at eksisterende tekster skal være identiske før og etter endringen.
+- Storybook-tekster, demo-tekster og labels i `preview.js` eller stories er også brukervendte tekster og skal holde korrekt norsk rettskrivning.
+- Ikke erstatt norske tegn med ASCII-varianter i tekster. Bruk `æ`, `ø` og `å` når teksten er norsk, med mindre teksten eksplisitt kommer fra en kilde som allerede mangler disse tegnene.
 
 ### Nøkkelstruktur
 
-| Kontekst                      | Prefiks-konvensjon      | Eksempel                                           |
-| ----------------------------- | ----------------------- | -------------------------------------------------- |
-| Pakke                         | `@pkgName.`             | `@sifSoknadUi.stepFooter.slettSøknad.label`        |
-| Side (app)                    | `page.pageName.`        | `page.velkommen.guide.tittel`                      |
-| Steg (app)                    | `stepName.`             | `barnSteg.tittel`                                  |
-| Sub-komponent innen et steg   | `componentName.`        | `tilsynsordningSøknadsperiode.leggTilEndring`       |
-| App-nivå                      | fritt                   | `application.title`                                |
+| Kontekst                    | Prefiks-konvensjon | Eksempel                                      |
+| --------------------------- | ------------------ | --------------------------------------------- |
+| Pakke                       | `@pkgName.`        | `@sifSoknadUi.stepFooter.slettSøknad.label`   |
+| Side (app)                  | `page.pageName.`   | `page.velkommen.guide.tittel`                 |
+| Steg (app)                  | `stepName.`        | `barnSteg.tittel`                             |
+| Sub-komponent innen et steg | `componentName.`   | `tilsynsordningSøknadsperiode.leggTilEndring` |
+| App-nivå                    | fritt              | `application.title`                           |
 
 **Grunnpattern for sub-komponenter:** Bruk komponentnavnet (camelCase) som prefiks — ikke domenebetegnelsen for innholdet. Eksempel: nøkler i `TilsynsordningSøknadsperiode.tsx` bruker prefikset `tilsynsordningSøknadsperiode.`.
 
@@ -247,6 +257,17 @@ export const applicationIntlMessages = {
 - TS-feil ved manglende nøkler i nn
 - TS-feil ved nøkler i nn som ikke finnes i nb
 - Full dekning garantert av typesystemet
+
+### ICU-parametre er kontrakter
+
+Parametre i meldingsstrenger som `{navn}`, `{dato}`, `{count}` og custom tags er en del av kontrakten mellom meldingen og komponenten som sender `values`.
+
+- Parameternavn skal være **identiske** i `nb.ts`, `nn.ts` og i komponentkoden som sender `values`.
+- Parameternavn skal **aldri oversettes**. Oversett teksten rundt, men behold selve parameternavnet uendret.
+- Ved migrering, portering eller refaktorering skal eksisterende parameternavn beholdes eksakt som i kilden.
+- Før du avslutter en i18n-endring, gjør en eksplisitt parametersjekk: sammenlign alle `{param}` og custom tags mellom `nb`, `nn` og kallstedet.
+
+Dette er en **blokkerende regel**. Mismatch i parameternavn gir ødelagt interpolering i UI og er ikke akseptabelt.
 
 ### Manglende nynorsk-oversettelse
 
@@ -299,10 +320,7 @@ react-intl støtter custom tags for å sende inn React-komponenter som `values`.
 I komponenten sendes taggen inn som en `values`-funksjon:
 
 ```tsx
-<AppText
-    id="melding"
-    values={{ SkrivTilOssLink: () => <SkrivTilOssLink /> }}
-/>
+<AppText id="melding" values={{ SkrivTilOssLink: () => <SkrivTilOssLink /> }} />
 ```
 
 ### Aggregering

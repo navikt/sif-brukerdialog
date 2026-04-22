@@ -29,13 +29,13 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.9.1",
+        "@navikt/aksel-icons": "8.10.1",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-react": "8.9.1",
+        "@navikt/ds-react": "8.10.1",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@sentry/react": "10.48.0",
+        "@sentry/react": "10.49.0",
         "react-hook-form": "7.72.1",
         "react-intl": "10.1.2",
         "react-router-dom": "7.14.1",
@@ -51,7 +51,7 @@
         "@types/react-dom": "19.2.3",
         "react": "19.2.5",
         "react-dom": "19.2.5",
-        "typescript": "6.0.2",
+        "typescript": "6.0.3",
         "vitest": "4.1.4"
     }
 }
