@@ -100,10 +100,11 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 };
 
 const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
-    const { logInfo } = useAnalyticsInstance();
+    const { logInfo, logEvent } = useAnalyticsInstance();
     const { text } = useAppIntl();
 
     useEffectOnce(() => {
+        logEvent('brukerIkkeTilgang', { årsak, ...ingenTilgangMeta });
         logInfo({ brukerIkkeTilgang: årsak, ...ingenTilgangMeta });
     });
 
