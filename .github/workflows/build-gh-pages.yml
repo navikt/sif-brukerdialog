@@ -11,7 +11,8 @@ permissions: {}
 jobs:
   build-and-deploy-gh-pages-content:
     name: Build and Deploy storybook and demo apps to GitHub Pages
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[gh-pages]')
+    if: github.event_name == 'workflow_dispatch' ||
+      contains(github.event.head_commit.message, '[gh-pages]')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -85,6 +86,17 @@ jobs:
         run: |
           mkdir -p deployment/opplaringspenger-soknad
           mv apps/opplaringspenger-soknad/dist-demo/* deployment/opplaringspenger-soknad/
+
+      # Bygg aktivitetspenger-innsyn demo-app med gh-pages:rebuild
+      - name: Build aktivitetspenger-innsyn
+        run: yarn gh-pages:rebuild
+        working-directory: apps/aktivitetspenger-innsyn
+
+      # Flytt aktivitetspenger-innsyn-output til en subfolder
+      - name: Kopier aktivitetspenger-innsyn til gh-pages
+        run: |
+          mkdir -p deployment/aktivitetspenger-innsyn
+          mv apps/aktivitetspenger-innsyn/dist-demo/* deployment/aktivitetspenger-innsyn/
 
       # Bygg ungdomsytelse-deltaker-storybook
       - name: Build ungdomsytelse-deltaker-storybook
