@@ -149,10 +149,14 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Inntekt i {månedOgÅr}',
     '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.info': 'Hvis du ikke hadde inntekt, trenger du ikke gjøre noe.',
 
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.paneltittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.info':
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.UNGDOMSYTELSE.paneltittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.UNGDOMSYTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.UNGDOMSYTELSE.info':
         'Du er meldt inn i ungdomsprogrammet. Nå kan du søke om ungdomsprogramytelsen.',
+
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.AKTIVITETSPENGER.paneltittel': 'Søknad om aktivitetspenger',
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.AKTIVITETSPENGER.oppgavetittel': 'Søknad om aktivitetspenger',
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.AKTIVITETSPENGER.info': 'Du har søkt om aktivitetspenger.',
 
     /** InntektForm */
     '@ungInnsyn.inntektForm.validation.harInntekt.yesOrNoIsUnanswered': 'Du må svare på om du hadde inntekt.',
