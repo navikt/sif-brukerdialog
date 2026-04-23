@@ -33,7 +33,7 @@ const groups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
 ];
 
 const ScenarioHeader = () => {
-    if (import.meta.env.PROD) {
+    if (!__IS_GITHUB_PAGES__ && !__IS_DEMO__) {
         return null;
     }
 
