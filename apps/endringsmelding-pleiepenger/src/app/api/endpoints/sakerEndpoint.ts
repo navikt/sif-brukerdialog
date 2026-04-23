@@ -60,11 +60,12 @@ const sakerEndpoint = {
                 } catch (error) {
                     if (isK9FormatError(error)) {
                         k9Saker.push({ erUgyldigK9SakFormat: true });
-                        const e = error.error instanceof Error ? error.error : new Error(String(error.error));
-                        appSentryLogger.logException(e, { sakIndex: index, cause: e.cause });
+                        appSentryLogger.logException(error.error, {
+                            sakIndex: index,
+                            cause: error.error instanceof Error ? error.error.cause : undefined,
+                        });
                     } else {
-                        const e = error instanceof Error ? error : new Error(String(error));
-                        appSentryLogger.logException(e, { context: 'sakerEndpoint.parseK9Format', sakIndex: index });
+                        appSentryLogger.logException(error, { context: 'sakerEndpoint.parseK9Format', sakIndex: index });
                         throw error;
                     }
                 }
@@ -74,8 +75,7 @@ const sakerEndpoint = {
             if (isAxiosError(error)) {
                 appSentryLogger.logApiError(error, 'sakerEndpoint.fetch');
             } else if (!isK9FormatError(error)) {
-                const e = error instanceof Error ? error : new Error(String(error));
-                appSentryLogger.logException(e, { context: 'sakerEndpoint.fetch failed - unexpected' });
+                appSentryLogger.logException(error, { context: 'sakerEndpoint.fetch failed - unexpected' });
             }
             return Promise.reject(error);
         }
