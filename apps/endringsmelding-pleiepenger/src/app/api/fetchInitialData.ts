@@ -140,7 +140,7 @@ const kontrollerSaker = (
         return Promise.reject(
             getKanIkkeBrukeSøknadRejection(
                 [IngenTilgangÅrsak.harUgyldigK9FormatSak],
-                ugyldigk9FormatSaker ? { error: ugyldigk9FormatSaker[0].detaljer } : undefined,
+                ugyldigk9FormatSaker[0]?.detaljer ? { error: ugyldigk9FormatSaker[0].detaljer } : undefined,
             ),
         );
     }
