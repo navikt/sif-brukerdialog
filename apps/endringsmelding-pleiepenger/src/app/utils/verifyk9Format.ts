@@ -40,13 +40,14 @@ export const verifyK9Format = (sak: any): sak is K9Format => {
 
 const verifyK9FormatBarn = (barn: any): barn is K9FormatBarn => {
     const maybeBarn = barn as K9FormatBarn;
+    const erObjekt = isObject(maybeBarn);
     const feltValidering = {
-        erObjekt: isObject(maybeBarn),
-        fornavn: isObject(maybeBarn) && isString(maybeBarn.fornavn),
-        mellomnavn: isObject(maybeBarn) && isStringOrNull(maybeBarn.mellomnavn),
-        etternavn: isObject(maybeBarn) && isString(maybeBarn.etternavn),
-        aktørId: isObject(maybeBarn) && isString(maybeBarn.aktørId),
-        identitetsnummer: isObject(maybeBarn) && isString(maybeBarn.identitetsnummer),
+        erObjekt,
+        fornavn: erObjekt && isString(maybeBarn.fornavn),
+        mellomnavn: erObjekt && isStringOrNull(maybeBarn.mellomnavn),
+        etternavn: erObjekt && isString(maybeBarn.etternavn),
+        aktørId: erObjekt && isString(maybeBarn.aktørId),
+        identitetsnummer: erObjekt && isString(maybeBarn.identitetsnummer),
     };
 
     if (Object.values(feltValidering).every(Boolean)) {
