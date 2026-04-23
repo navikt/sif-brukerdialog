@@ -1,4 +1,5 @@
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
+import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
 import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-start-og-sluttdato/i18n/nb';
 import { endretStartdatoMessages_nb } from '../modules/oppgavepaneler/endret-startdato/i18n/nb';
@@ -16,6 +17,7 @@ export const ungUi_messages_nb = {
     ...meldtUtMessages_nb,
     ...rapporterInntektMessages_nb,
     ...søkYtelseOppgaveMessages_nb,
+    ...bostedVilkårMessages_nb,
 
     '@ungInnsyn.Ja': 'Ja',
     '@ungInnsyn.Nei': 'Nei',
@@ -95,6 +97,15 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.paneltittel': 'Bekrefte bosted for aktivitetspenger',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.oppgavetittel': 'Bekrefte bosted for aktivitetspenger',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.info': 'Det er registrert ny informasjon om hvor du bor.',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på bostedsvilkåret?',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harIkkeUttalelseLabel': 'Nei',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harUttalelseLabel': 'Ja',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
+
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.paneltittel':
         'Se og gi tilbakemelding på ny start- og sluttdato',
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.oppgavetittel':
@@ -138,10 +149,14 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Inntekt i {månedOgÅr}',
     '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.info': 'Hvis du ikke hadde inntekt, trenger du ikke gjøre noe.',
 
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.paneltittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.info':
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.UNGDOMSYTELSE.paneltittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.UNGDOMSYTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.UNGDOMSYTELSE.info':
         'Du er meldt inn i ungdomsprogrammet. Nå kan du søke om ungdomsprogramytelsen.',
+
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.AKTIVITETSPENGER.paneltittel': 'Søknad om aktivitetspenger',
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.AKTIVITETSPENGER.oppgavetittel': 'Søknad om aktivitetspenger',
+    '@ungInnsyn.oppgavetype.SØK_YTELSE.AKTIVITETSPENGER.info': 'Du har søkt om aktivitetspenger.',
 
     /** InntektForm */
     '@ungInnsyn.inntektForm.validation.harInntekt.yesOrNoIsUnanswered': 'Du må svare på om du hadde inntekt.',

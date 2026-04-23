@@ -22,6 +22,12 @@ export type BrukerdialogOppgaveDto = {
     ytelsetype: OppgaveYtelsetype;
 };
 
+export type BekreftBostedDataDto = {
+    erBosattITrondheim: boolean;
+    fraOgMed: string;
+    tilOgMed: string;
+};
+
 export type EndretPeriodeDataDto = {
     endringer: PeriodeEndringType[];
     forrigePeriode?: PeriodeDto;
@@ -87,6 +93,10 @@ export enum OppgaveStatus {
 
 export enum OppgaveType {
     /**
+     * BEKREFT_BOSTED
+     */
+    BEKREFT_BOSTED = 'BEKREFT_BOSTED',
+    /**
      * BEKREFT_ENDRET_STARTDATO
      */
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
@@ -124,6 +134,9 @@ export enum OppgaveYtelsetype {
 }
 
 export type OppgavetypeDataDto = (
+    | ({
+          type: 'BEKREFT_BOSTED';
+      } & BekreftBostedDataDto)
     | ({
           type: 'ENDRET_PERIODE';
       } & EndretPeriodeDataDto)
