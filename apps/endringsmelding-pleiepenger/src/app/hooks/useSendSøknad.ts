@@ -34,7 +34,7 @@ export const useSendSøknad = () => {
             .then(async () => onSøknadSendSuccess(getSøknadApiDataMetadata(apiData, søknadsdata, valgteEndringer, sak)))
             .catch((error) => {
                 if (isAxiosError(error)) {
-                    appSentryLogger.logError('Innsending feilet', error.message);
+                    appSentryLogger.logApiError(error, 'Innsending feilet');
                 }
                 logSoknadFailed(EndringsmeldingPsbApp.navn);
                 setSendSøknadError(error);

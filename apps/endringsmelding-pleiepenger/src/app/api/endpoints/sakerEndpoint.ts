@@ -63,10 +63,8 @@ const sakerEndpoint = {
                         const e = error.error instanceof Error ? error.error : new Error(String(error.error));
                         appSentryLogger.logException(e, { sakIndex: index, cause: e.cause });
                     } else {
-                        appSentryLogger.logError(
-                            'sakerEndpoint.parseK9Format',
-                            `Uventet feil ved parsing av sak ${index}: ${error instanceof Error ? error.message : String(error)}`,
-                        );
+                        const e = error instanceof Error ? error : new Error(String(error));
+                        appSentryLogger.logException(e, { context: 'sakerEndpoint.parseK9Format', sakIndex: index });
                         throw error;
                     }
                 }
@@ -76,10 +74,8 @@ const sakerEndpoint = {
             if (isAxiosError(error)) {
                 appSentryLogger.logApiError(error, 'sakerEndpoint.fetch');
             } else if (!isK9FormatError(error)) {
-                appSentryLogger.logError(
-                    'sakerEndpoint.fetch failed - unexpected',
-                    error instanceof Error ? error.message : String(error),
-                );
+                const e = error instanceof Error ? error : new Error(String(error));
+                appSentryLogger.logException(e, { context: 'sakerEndpoint.fetch failed - unexpected' });
             }
             return Promise.reject(error);
         }

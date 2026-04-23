@@ -123,7 +123,8 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 if (isSøknadInitialDataErrorState(error)) {
                     setInitialData(error);
                 } else {
-                    appSentryLogger.logError('fetchInitialData.error.else', error);
+                    const e = error instanceof Error ? error : new Error(String(error));
+                    appSentryLogger.logException(e, { context: 'fetchInitialData.error.else' });
                     setInitialData({
                         status: RequestStatus.error,
                         error,
