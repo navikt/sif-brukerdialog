@@ -68,7 +68,10 @@ export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
 }
 export interface BostedVilkårOppgave extends ParsedOppgaveBase {
     oppgavetype: ParsedOppgavetype.BEKREFT_BOSTED;
-
+    oppgavetypeData: {
+        periode: DateRange;
+        erBosattITrondheim: boolean;
+    };
     respons?: SvarPåVarselRespons;
 }
 

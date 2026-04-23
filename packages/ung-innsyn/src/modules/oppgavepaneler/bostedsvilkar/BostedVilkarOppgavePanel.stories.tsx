@@ -25,6 +25,13 @@ const oppgave: BostedVilkårOppgave = {
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+    oppgavetypeData: {
+        erBosattITrondheim: false,
+        periode: {
+            from: dayjs().subtract(1, 'month').toDate(),
+            to: dayjs().add(1, 'month').toDate(),
+        },
+    },
 };
 
 const besvartOppgave: BostedVilkårOppgave = {

@@ -1,17 +1,29 @@
 import { BodyLong } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, DateRange, dateRangeFormatter } from '@navikt/sif-common-utils';
 
-import { UngUiText } from '../../../../i18n';
+import { UngUiText, useUngUiIntl } from '../../../../i18n';
 
 interface Props {
     frist: Date;
+    periode: DateRange;
+    borITrondheim: boolean;
 }
-export const BostedVilkarOppgavePanelOppgavetekst = ({ frist }: Props) => {
+export const BostedVilkarOppgavePanelOppgavetekst = ({ frist, periode, borITrondheim }: Props) => {
+    const { locale } = useUngUiIntl();
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(frist)}</span>;
     return (
         <>
             <BodyLong spacing>
                 <UngUiText id="@ungInnsyn.bostedVilkårOppgave.tekst.1" />
+            </BodyLong>
+            <BodyLong spacing>
+                <UngUiText
+                    id="@ungInnsyn.bostedVilkårOppgave.tekst.1b"
+                    values={{
+                        periode: dateRangeFormatter.getDateRangeText(periode, locale, { compact: false }),
+                        borITrondheim: borITrondheim ? 'Ja' : 'Nei',
+                    }}
+                />
             </BodyLong>
             <BodyLong spacing>
                 <UngUiText id="@ungInnsyn.bostedVilkårOppgave.tekst.2" />

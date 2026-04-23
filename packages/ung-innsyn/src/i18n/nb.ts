@@ -97,9 +97,9 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.paneltittel': 'Se og gi tilbakemelding på bostedsvilkåret',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.oppgavetittel': 'Tilbakemelding på bostedsvilkåret',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.info': 'Veilederen din har meldt fra om at du ikke lenger bor i Trondheim.',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.paneltittel': 'Bekrefte bosted for aktivitetspenger',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.oppgavetittel': 'Bekrefte bosted for aktivitetspenger',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.info': 'Det er registrert ny informasjon om hvor du bor.',
     '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på bostedsvilkåret?',
     '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harIkkeUttalelseLabel': 'Nei',
     '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harUttalelseLabel': 'Ja',
