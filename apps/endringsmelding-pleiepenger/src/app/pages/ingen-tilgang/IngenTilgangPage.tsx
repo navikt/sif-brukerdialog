@@ -104,7 +104,7 @@ const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgan
     const { text } = useAppIntl();
 
     useEffectOnce(() => {
-        logInfo({ brukerIkkeTilgang: årsak, ...ingenTilgangMeta });
+        logInfo({ brukerIkkeTilgang: årsak[0], ...ingenTilgangMeta });
     });
 
     return (
