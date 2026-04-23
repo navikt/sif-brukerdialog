@@ -66,12 +66,7 @@ export const zRapportertInntektDto = z.object({
 
 export const zSvarPåVarselDto = z.object({
     harUttalelse: z.boolean(),
-    uttalelseFraBruker: z
-        .string()
-        .min(0)
-        .max(4000)
-
-        .optional(),
+    uttalelseFraBruker: z.string().min(0).max(4000).optional(),
 });
 
 export const zOppgaveResponsDto = z.intersection(

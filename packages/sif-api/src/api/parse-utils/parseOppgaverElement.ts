@@ -20,6 +20,7 @@ import dayjs from 'dayjs';
 
 import {
     AvvikRegisterinntektOppgave,
+    BostedVilkårOppgave,
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
     EndretStartOgSluttdatoOppgave,
@@ -213,6 +214,15 @@ export const parseOppgaverElement = (
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
+            case OppgaveType.BEKREFT_BOSTED:
+                const bostedVilkårOppgave: BostedVilkårOppgave = {
+                    ...getOppgaveBaseProps(oppgave),
+                    oppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
+                    respons: parseSvarPåVarselRespons(oppgave.respons),
+                };
+                parsedOppgaver.push(bostedVilkårOppgave);
+                return;
+
             case OppgaveType.BEKREFT_ENDRET_STARTDATO:
                 const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;
                 parsedOppgaver.push(getEndretStartdatoOppgave(oppgave, nyStartdato, forrigeStartdato));

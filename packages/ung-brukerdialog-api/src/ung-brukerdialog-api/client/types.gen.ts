@@ -87,6 +87,10 @@ export enum OppgaveStatus {
 
 export enum OppgaveType {
     /**
+     * BEKREFT_BOSTED
+     */
+    BEKREFT_BOSTED = 'BEKREFT_BOSTED',
+    /**
      * BEKREFT_ENDRET_STARTDATO
      */
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
