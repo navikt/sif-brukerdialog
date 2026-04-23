@@ -9,6 +9,7 @@ import {
 } from '@navikt/ung-brukerdialog-api';
 
 export enum ParsedOppgavetype {
+    BEKREFT_BOSTED = 'BEKREFT_BOSTED',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
     BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
@@ -65,6 +66,12 @@ export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
     };
     respons?: SvarPåVarselRespons;
 }
+export interface BostedVilkårOppgave extends ParsedOppgaveBase {
+    oppgavetype: ParsedOppgavetype.BEKREFT_BOSTED;
+
+    respons?: SvarPåVarselRespons;
+}
+
 export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
     oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO;
     oppgavetypeData: {
@@ -102,6 +109,7 @@ export type BekreftelseOppgave =
     | EndretStartOgSluttdatoOppgave
     | FjernetPeriodeOppgave
     | MeldtUtOppgave
+    | BostedVilkårOppgave
     | (AvvikRegisterinntektOppgave & {
           respons?: SvarPåVarselRespons;
       });
@@ -125,6 +133,7 @@ export interface SøkYtelseOppgave extends ParsedOppgaveBase {
 
 export type Oppgave =
     | SøkYtelseOppgave
+    | BostedVilkårOppgave
     | EndretStartdatoOppgave
     | EndretSluttdatoOppgave
     | MeldtUtOppgave

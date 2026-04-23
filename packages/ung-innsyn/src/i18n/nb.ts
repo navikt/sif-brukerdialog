@@ -1,4 +1,5 @@
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
+import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
 import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-start-og-sluttdato/i18n/nb';
 import { endretStartdatoMessages_nb } from '../modules/oppgavepaneler/endret-startdato/i18n/nb';
@@ -16,6 +17,7 @@ export const ungUi_messages_nb = {
     ...meldtUtMessages_nb,
     ...rapporterInntektMessages_nb,
     ...søkYtelseOppgaveMessages_nb,
+    ...bostedVilkårMessages_nb,
 
     '@ungInnsyn.Ja': 'Ja',
     '@ungInnsyn.Nei': 'Nei',
@@ -94,6 +96,15 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harUttalelseLabel': 'Ja',
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
+
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.paneltittel': 'Se og gi tilbakemelding på bostedsvilkåret',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.oppgavetittel': 'Tilbakemelding på bostedsvilkåret',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.info': 'Veilederen din har meldt fra om at du ikke lenger bor i Trondheim.',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på bostedsvilkåret?',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harIkkeUttalelseLabel': 'Nei',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harUttalelseLabel': 'Ja',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
     '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.paneltittel':
         'Se og gi tilbakemelding på ny start- og sluttdato',
