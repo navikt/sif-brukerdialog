@@ -59,13 +59,19 @@ const sakerEndpoint = {
                     }
                 } catch (error) {
                     if (isK9FormatError(error)) {
-                        k9Saker.push({ erUgyldigK9SakFormat: true });
+                        k9Saker.push({
+                            erUgyldigK9SakFormat: true,
+                            detaljer: error.error.cause ? { ...error.error.cause } : undefined,
+                        });
                         appSentryLogger.logException(error.error, {
                             sakIndex: index,
                             cause: error.error instanceof Error ? error.error.cause : undefined,
                         });
                     } else {
-                        appSentryLogger.logException(error, { context: 'sakerEndpoint.parseK9Format', sakIndex: index });
+                        appSentryLogger.logException(error, {
+                            context: 'sakerEndpoint.parseK9Format',
+                            sakIndex: index,
+                        });
                         throw error;
                     }
                 }

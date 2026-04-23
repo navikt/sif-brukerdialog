@@ -58,7 +58,7 @@ const verifyK9FormatBarn = (barn: any): barn is K9FormatBarn => {
         .filter(([, isValid]) => isValid === false)
         .map(([felt]) => felt);
 
-    throw new Error('verifyK9FormatBarn: ugyldig barn-objekt', {
+    throw new Error('verifyK9FormatBarn', {
         cause: { ugyldigeFelt, feltValidering },
     });
 };

@@ -137,7 +137,12 @@ const kontrollerSaker = (
     const k9saker: K9Sak[] = k9sakerResult.filter(isK9Sak);
 
     if (ugyldigk9FormatSaker.length > 0) {
-        return Promise.reject(getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.harUgyldigK9FormatSak]));
+        return Promise.reject(
+            getKanIkkeBrukeSøknadRejection(
+                [IngenTilgangÅrsak.harUgyldigK9FormatSak],
+                ugyldigk9FormatSaker ? { error: ugyldigk9FormatSaker[0].detaljer } : undefined,
+            ),
+        );
     }
     const dateRangeAlleSaker = getSamletDateRangeForK9Saker(k9saker);
     if (dateRangeAlleSaker === undefined) {
