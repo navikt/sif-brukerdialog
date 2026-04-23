@@ -54,7 +54,7 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         });
     });
 
-    await page.route('**/deltakelse/register/hent/alle', async (route) => {
+    await page.route('**/deltakelse/register/hent/alle/v2', async (route) => {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
@@ -91,7 +91,7 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         }
     });
 
-    await page.route('**/ung-deltakelse-opplyser/deltakelse/register/:id/marker-har-sokt', async (route) => {
+    await page.route('**/ung-deltakelse-opplyser/deltakelse/register/:id/marker-har-sokt/v2', async (route) => {
         await route.fulfill({ status: 500 });
     });
 
