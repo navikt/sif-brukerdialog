@@ -60,9 +60,10 @@ const sakerEndpoint = {
                 } catch (error) {
                     if (isK9FormatError(error)) {
                         k9Saker.push({ erUgyldigK9SakFormat: true });
+                        const e = error.error instanceof Error ? error.error : undefined;
                         appSentryLogger.logError(
                             'ugyldigK9Format',
-                            JSON.stringify({ sakIndex: index, error: error.error }),
+                            JSON.stringify({ sakIndex: index, message: e?.message, cause: e?.cause }),
                         );
                     } else {
                         appSentryLogger.logError(
