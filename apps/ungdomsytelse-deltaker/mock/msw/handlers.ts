@@ -18,9 +18,9 @@ export const handlers = [
 
     http.get('**/oppslag/arbeidsgiver', () => HttpResponse.json(store.get().arbeidsgiver)),
 
-    http.get('**/deltakelse/register/hent/alle', () => HttpResponse.json(store.get().deltakelser)),
+    http.get('**/deltakelse/register/hent/alle/v2', () => HttpResponse.json(store.get().deltakelser)),
 
-    http.put('**/deltakelse/register/:id/marker-har-sokt', () => new HttpResponse(null, { status: 500 })),
+    http.put('**/deltakelse/register/:id/marker-har-sokt/v2', () => new HttpResponse(null, { status: 500 })),
 
     http.get('**/oppgave/hent/alle', () => {
         const oppgaver = store.get().oppgaver;

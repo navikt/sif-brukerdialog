@@ -6,7 +6,7 @@ import { DeltakelsePeriode, deltakelsePerioderSchema } from '../../types/Deltake
 
 export const getDeltakelsePerioder = async (): Promise<DeltakelsePeriode[]> => {
     try {
-        const { data } = await Deltakelse.hentAlleMineDeltakelser();
+        const { data } = await Deltakelse.hentAlleMineDeltakelserV2();
         return deltakelsePerioderSchema.parse(data);
     } catch (e) {
         const parsedApiError = handleApiError(e, 'getDeltakelsePerioder');
