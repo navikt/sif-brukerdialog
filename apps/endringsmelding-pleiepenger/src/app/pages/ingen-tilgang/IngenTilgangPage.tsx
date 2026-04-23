@@ -100,11 +100,13 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 };
 
 const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
-    const { logInfo } = useAnalyticsInstance();
+    const { logInfo, logEvent } = useAnalyticsInstance();
     const { text } = useAppIntl();
 
     useEffectOnce(() => {
-        logInfo({ brukerIkkeTilgang: årsak, ...ingenTilgangMeta });
+        const årsakStr = årsak.length > 0 ? årsak[0] : 'ukjent';
+        logEvent('brukerIkkeTilgang', { årsak: årsakStr, ...ingenTilgangMeta });
+        logInfo({ brukerIkkeTilgang: årsakStr, ...ingenTilgangMeta });
     });
 
     return (
