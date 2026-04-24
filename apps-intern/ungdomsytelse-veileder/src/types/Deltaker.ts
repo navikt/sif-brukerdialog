@@ -10,6 +10,7 @@ export const uregistrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
     .transform((dto) => ({
         ...dto,
         registrert: false,
+        navn: { ...dto.navn, mellomnavn: dto.navn.mellomnavn ?? undefined },
         fødselsdato: ISODateToDate(dto.fødselsdato),
         førsteMuligeInnmeldingsdato: ISODateToDate(dto.førsteMuligeInnmeldingsdato),
         sisteMuligeInnmeldingsdato: ISODateToDate(dto.sisteMuligeInnmeldingsdato),
@@ -23,6 +24,7 @@ export const registrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
     .transform((dto) => ({
         ...dto,
         registrert: true,
+        navn: { ...dto.navn, mellomnavn: dto.navn.mellomnavn ?? undefined },
         fødselsdato: ISODateToDate(dto.fødselsdato),
         førsteMuligeInnmeldingsdato: ISODateToDate(dto.førsteMuligeInnmeldingsdato),
         sisteMuligeInnmeldingsdato: ISODateToDate(dto.sisteMuligeInnmeldingsdato),
