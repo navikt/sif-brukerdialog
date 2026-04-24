@@ -47,7 +47,7 @@
         "react-intl": "10.1.2",
         "react-loading-skeleton": "3.5.0",
         "react-router-dom": "7.14.1",
-        "uuid": "13.0.0",
+        "uuid": "14.0.0",
         "zod": "4.3.6"
     },
     "devDependencies": {
