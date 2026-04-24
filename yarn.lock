@@ -6440,6 +6440,7 @@ __metadata:
     "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@playwright/test": "npm:1.59.1"
     "@sentry/react": "npm:10.49.0"
+    "@sentry/vite-plugin": "npm:5.2.0"
     "@sif/api": "workspace:*"
     "@sif/soknad-ui": "workspace:*"
     "@sif/ung-innsyn": "workspace:*"
