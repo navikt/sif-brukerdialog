@@ -1,5 +1,5 @@
-import { ApiError } from '@navikt/ung-common';
 import { commonQueries } from '@shared/api/queries/commonQueries';
+import { ApiError, sifApiQueryKeys } from '@sif/api';
 import { markerDeltakelseSomSøkt } from '@søknad/api/deltakelse/markerDeltakelseSomSøkt';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -14,7 +14,7 @@ export const useMarkerDeltakelseSomSøkt = ({ deltakelseId }: { deltakelseId: st
         mutationFn: () => markerDeltakelseSomSøkt(deltakelseId),
         onSuccess: () => {
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
-            queryClient.invalidateQueries(commonQueries.deltakerOppgaver);
+            queryClient.invalidateQueries({ queryKey: sifApiQueryKeys.oppgaver });
         },
     });
 };

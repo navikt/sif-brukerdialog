@@ -1,6 +1,7 @@
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useAppIntl } from '@shared/i18n';
+import getLenker from '@shared/utils/lenker';
 import { useNavigate } from 'react-router-dom';
 
 type DecoratorBreadcrumb = {
@@ -15,12 +16,14 @@ export const useInnsynBreadcrumbs = (crumbs: DecoratorBreadcrumb[] = []) => {
 
     useEffectOnce(() => {
         setBreadcrumbs([
-            { title: text('breadcrumbs.minSide'), url: '/min-side' },
+            { title: text('breadcrumbs.minSide'), url: getLenker().minSide },
             { title: text('breadcrumbs.innsyn'), url: '/', handleInApp: true },
             ...crumbs,
         ]);
         onBreadcrumbClick((breadcrumb) => {
-            navigate(breadcrumb.url);
+            if (breadcrumb.handleInApp) {
+                navigate(breadcrumb.url);
+            }
         });
     });
 };

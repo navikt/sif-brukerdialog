@@ -17,7 +17,6 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     SIF_PUBLIC_LOGIN_URL:
         'https://ungdomsytelse-deltaker.intern.dev.nav.no/oauth2/login?redirect=/ungdomsprogrammet/ytelsen',
     SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
-    SIF_PUBLIC_URL_DOKUMENTARKIV: 'https://www.dev.nav.no/dokumentarkiv/tema/UNG',
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/api/brukerdialog',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
@@ -27,13 +26,4 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     UNG_BRUKERDIALOG_API_FRONTEND_PATH: '/api/ung-brukerdialog-api',
     UNG_BRUKERDIALOG_API_API_SCOPE: 'dev-gcp:k9saksbehandling:ung-brukerdialog-api',
     UNG_BRUKERDIALOG_API_API_URL: 'http://ung-brukerdialog-api.k9saksbehandling',
-    SIF_PUBLIC_URL_RETT_OG_PLIKT: 'https://www.ansatt.dev.nav.no/endringer',
-    SIF_PUBLIC_URL_PERSONOPPLYSNINGER: 'https://www.ansatt.dev.nav.no/person/personopplysninger/nb/',
-    SIF_PUBLIC_URL_PERSONVERN: 'https://www.ansatt.dev.nav.no/personvernerklaering',
-    SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN: 'https://www.ansatt.dev.nav.no/personvernerklaering',
-    SIF_PUBLIC_URL_SKATTEETATEN: 'https://www.skatteetaten.no',
-    SIF_PUBLIC_URL_SKATTEKORT: 'https://www.skatteetaten.no/person/skatt/skattekort/',
-    SIF_PUBLIC_URL_LOVDATA_INNTEKT: 'https://lovdata.no/dokument/NL/lov/1999-03-26-14/KAPITTEL_6-2#%C2%A75-10',
-    SIF_PUBLIC_URL_ENDRE_KONTONUMMER: 'https://www.ansatt.dev.nav.no/start/soknad-endring-bankkontonummer',
-    SIF_PUBLIC_URL_SKRIV_TIL_OSS: 'https://www.nav.no/skriv-til-oss',
 });

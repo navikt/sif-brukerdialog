@@ -1,4 +1,4 @@
-import UngdomsprogrammetBanner from '@innsyn/atoms/ungdomsprogrammet-banner/UngdomsprogrammetBanner';
+import UngdomsprogrammetBanner from '@innsyn/components/ungdomsprogrammet-banner/UngdomsprogrammetBanner';
 import { BodyLong, HGrid, LinkCard, VStack } from '@navikt/ds-react';
 import { AppText } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
