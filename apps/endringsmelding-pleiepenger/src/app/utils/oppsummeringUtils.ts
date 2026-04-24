@@ -189,3 +189,20 @@ export const getTilsynsordningOppsummeringInfo = (
     });
     return dagerMedEndretTilsyn;
 };
+
+/** Bug etter lansering av endring i omsorgstilbud
+ *  Feilen oppstår når bruker kun velger omsorgstilbud, men har ukjent arbeidsforhold. Da ble ikke
+ * steget for arbeidstid vist.
+ */
+
+export const harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid = (sak: Sak, apiData: SøknadApiData): boolean => {
+    if (sak.harArbeidsgivereIkkeISak === false) {
+        return false;
+    }
+    if (apiData.ytelse.dataBruktTilUtledning) {
+        if (Object.keys(apiData.ytelse.dataBruktTilUtledning).length === 0) {
+            return true;
+        }
+    }
+    return false;
+};

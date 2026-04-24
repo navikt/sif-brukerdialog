@@ -16,21 +16,6 @@ test('endringsmelding om ferie og arbeid', async ({ page }) => {
     await page.getByLabel('Jeg bekrefter at jeg har').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
 
-    /** Ferie */
-    await expect(page).toHaveTitle('Ferie i pleiepengeperioden - Endringsmelding for pleiepenger sykt barn');
-    await page.getByLabel('Endre ferie søndag 01.01.2023').click();
-    await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
-    await page.getByRole('button', { name: 'tirsdag 3', exact: true }).click();
-    await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByTestId('leggTilFerieKnapp').click();
-    await page.getByLabel('Fra og med').click();
-    await page.getByLabel('Fra og med').fill('19.01.2023');
-    await page.getByLabel('Til og med').click();
-    await page.getByLabel('Til og med').fill('19.01.2023');
-    await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByLabel('Fjern ferie torsdag 12.01.').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
-
     /** Arbeidstid */
     await page.getByTestId('uke_48').getByTestId('endre-button').click();
     await page.getByTestId('prosent-verdi').click();
@@ -50,6 +35,21 @@ test('endringsmelding om ferie og arbeid', async ({ page }) => {
     await page.getByTestId('prosent-verdi').fill('50');
 
     await page.getByRole('button', { name: 'Ok' }).click();
+    await page.getByTestId('typedFormikForm-submitButton').click();
+
+    /** Ferie */
+    await expect(page).toHaveTitle('Ferie i pleiepengeperioden - Endringsmelding for pleiepenger sykt barn');
+    await page.getByLabel('Endre ferie søndag 01.01.2023').click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
+    await page.getByRole('button', { name: 'tirsdag 3', exact: true }).click();
+    await page.getByRole('button', { name: 'Ok' }).click();
+    await page.getByTestId('leggTilFerieKnapp').click();
+    await page.getByLabel('Fra og med').click();
+    await page.getByLabel('Fra og med').fill('19.01.2023');
+    await page.getByLabel('Til og med').click();
+    await page.getByLabel('Til og med').fill('19.01.2023');
+    await page.getByRole('button', { name: 'Ok' }).click();
+    await page.getByLabel('Fjern ferie torsdag 12.01.').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     await page.getByText('Jeg bekrefter at').click();

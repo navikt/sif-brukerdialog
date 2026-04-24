@@ -22,7 +22,6 @@ test('test', async ({ page }) => {
     await page.getByTestId('endreArbeidstid').check();
     await page.getByLabel('Jeg bekrefter at jeg har').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByTestId('aktivitet_a_947064649').getByRole('button', { name: 'Vis mer' }).click();
     await testAccessibility(page);
     await page.getByTestId('aktivitet_a_947064649').getByTestId('uke_44').getByTestId('endre-button').click();
@@ -52,6 +51,9 @@ test('test', async ({ page }) => {
     await page.getByTestId('timer-verdi').fill('2');
     await page.getByRole('button', { name: 'Ok', exact: true }).click();
     await testAccessibility(page);
+    await page.getByTestId('typedFormikForm-submitButton').click();
+
+    /** Ferie (ingen endringer) */
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     await expect(page.getByTestId('uke_44').getByTestId('arbeidstid-faktisk')).toContainText(
