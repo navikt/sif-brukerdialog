@@ -35,7 +35,7 @@ const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
 Sentry.init({
     dsn: 'https://01c0cdacd803d88882c2eab4c345c610@sentry.gc.nav.no/179',
     environment: window.location.hostname.includes('localhost') ? 'localhost' : import.meta.env.MODE,
-    enabled: !window.location.hostname.includes('localhost'),
+    enabled: window.location.hostname.endsWith('.nav.no') || window.location.hostname === 'nav.no',
     initialScope: {
         tags: { application: 'ungdomsytelse-deltaker' },
     },
