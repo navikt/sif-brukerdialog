@@ -6,9 +6,9 @@
     "type": "module",
     "version": "0.2.11",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.96.0",
+        "@hey-api/openapi-ts": "0.96.1",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.15.0",
+        "axios": "1.15.1",
         "config": "workspace:*",
         "postcss": "8.5.10",
         "typescript": "6.0.3",

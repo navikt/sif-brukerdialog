@@ -22,11 +22,11 @@
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
-        "@tanstack/react-query": "5.99.0",
-        "axios": "1.15.0",
+        "@tanstack/react-query": "5.99.2",
+        "axios": "1.15.1",
         "dayjs": "1.11.20",
         "object-hash": "3.0.0",
-        "uuid": "13.0.0"
+        "uuid": "14.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
