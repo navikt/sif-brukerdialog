@@ -22,6 +22,7 @@ import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import { getAppEnv } from './utils/appEnv';
 import { initApiClients } from './utils/initApiClients';
+
 initApiClients();
 
 if (__INJECT_DECORATOR_CLIENT_SIDE__) {
