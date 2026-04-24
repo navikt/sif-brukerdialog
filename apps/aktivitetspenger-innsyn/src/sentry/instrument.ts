@@ -32,6 +32,30 @@ const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
     return false;
 };
 
+const scrubUrl = (url: string): string => url.replace(/\/[0-9]+(?=\/|$)/g, '/[id]');
+
+const scrubEvent = (event: Sentry.ErrorEvent): Sentry.ErrorEvent => {
+    if (event.request?.url) {
+        event.request.url = scrubUrl(event.request.url);
+    }
+    if (event.request?.headers?.Referer) {
+        event.request.headers.Referer = scrubUrl(event.request.headers.Referer);
+    }
+    if (event.transaction) {
+        event.transaction = scrubUrl(event.transaction);
+    }
+    if (event.tags?.transaction) {
+        event.tags.transaction = scrubUrl(String(event.tags.transaction));
+    }
+    const breadcrumbs = event.breadcrumbs ?? [];
+    for (const bc of breadcrumbs) {
+        if (bc.data?.url) bc.data.url = scrubUrl(bc.data.url);
+        if (bc.data?.from) bc.data.from = scrubUrl(bc.data.from);
+        if (bc.data?.to) bc.data.to = scrubUrl(bc.data.to);
+    }
+    return event;
+};
+
 Sentry.init({
     dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
     environment: window.location.hostname.includes('localhost') ? 'localhost' : import.meta.env.MODE,
@@ -46,6 +70,6 @@ Sentry.init({
         if (isErrorFromDekoratøren(event)) {
             return null;
         }
-        return event;
+        return scrubEvent(event);
     },
 });
