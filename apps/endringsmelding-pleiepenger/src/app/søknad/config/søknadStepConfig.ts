@@ -20,10 +20,6 @@ export const getSøknadSteps = (
         steps.push(StepId.UKJENT_ARBEIDSFOHOLD);
     }
 
-    if (valgteEndringer.lovbestemtFerie) {
-        steps.push(StepId.LOVBESTEMT_FERIE);
-    }
-
     const { lovbestemtFerie, arbeidstid, ukjentArbeidsforhold } = søknadsdata || {};
 
     if (
@@ -33,6 +29,10 @@ export const getSøknadSteps = (
         erAnsattIUkjentArbeidsforhold(ukjentArbeidsforhold?.arbeidsforhold)
     ) {
         steps.push(StepId.ARBEIDSTID);
+    }
+
+    if (valgteEndringer.lovbestemtFerie) {
+        steps.push(StepId.LOVBESTEMT_FERIE);
     }
 
     if (valgteEndringer.tilsynsordning) {

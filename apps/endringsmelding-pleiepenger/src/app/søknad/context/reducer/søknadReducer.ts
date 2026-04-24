@@ -70,8 +70,8 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_UKJENT_ARBEIDSFOHOLD:
-                return {
+            case SøknadContextActionKeys.SET_SØKNAD_UKJENT_ARBEIDSFOHOLD: {
+                const newState: SøknadContextState = {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
@@ -80,6 +80,17 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
+                const søknadSteps = getSøknadSteps(
+                    state.valgteEndringer,
+                    state.sak.harArbeidsgivereIkkeISak,
+                    newState.søknadsdata,
+                );
+
+                return {
+                    ...newState,
+                    søknadSteps,
+                };
+            }
             case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID:
                 return {
                     ...state,
@@ -91,7 +102,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
             case SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE: {
-                const newState: SøknadContextState = {
+                return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
@@ -100,18 +111,8 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
-                const søknadSteps = getSøknadSteps(
-                    state.valgteEndringer,
-                    state.sak.harArbeidsgivereIkkeISak,
-                    state.søknadsdata,
-                );
-
-                return {
-                    ...newState,
-                    søknadSteps,
-                };
             }
-            case SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING:
+            case SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING: {
                 return {
                     ...state,
                     søknadsdata: {
@@ -121,6 +122,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
+            }
 
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
                 return {
