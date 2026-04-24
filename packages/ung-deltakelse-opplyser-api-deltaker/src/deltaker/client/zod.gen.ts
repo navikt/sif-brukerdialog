@@ -4,7 +4,7 @@ import * as z from 'zod';
 
 export const zDeltakerDto = z.object({
     deltakerIdent: z.string(),
-    id: z.uuid().optional(),
+    id: z.uuid().nullish(),
 });
 
 export const zDeltakelseDto = z.object({
@@ -12,9 +12,9 @@ export const zDeltakelseDto = z.object({
     erSlettet: z.boolean(),
     fraOgMed: z.iso.date(),
     harOpphørsvedtak: z.boolean(),
-    id: z.uuid().optional(),
-    søktTidspunkt: z.iso.datetime({ local: true }).optional(),
-    tilOgMed: z.iso.date().optional(),
+    id: z.uuid().nullish(),
+    søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
+    tilOgMed: z.iso.date().nullish(),
 });
 
 export const zDeltakelseKomposittDto = z.object({
@@ -22,15 +22,15 @@ export const zDeltakelseKomposittDto = z.object({
     erSlettet: z.boolean(),
     fraOgMed: z.iso.date(),
     harOpphørsvedtak: z.boolean(),
-    id: z.uuid().optional(),
+    id: z.uuid().nullish(),
     oppgaver: z.array(z.unknown()),
-    søktTidspunkt: z.iso.datetime({ local: true }).optional(),
-    tilOgMed: z.iso.date().optional(),
+    søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
+    tilOgMed: z.iso.date().nullish(),
 });
 
 export const zKontonummerDto = z.object({
     harKontonummer: z.boolean(),
-    kontonummer: z.string().optional(),
+    kontonummer: z.string().nullish(),
 });
 
 export const zProblemDetail = z.object({

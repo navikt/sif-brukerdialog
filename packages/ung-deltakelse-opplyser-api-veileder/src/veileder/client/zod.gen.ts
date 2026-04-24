@@ -13,7 +13,7 @@ export const zDeltakelseUtmeldingDto = z.object({
 
 export const zDeltakerDto = z.object({
     deltakerIdent: z.string(),
-    id: z.uuid().optional(),
+    id: z.uuid().nullish(),
 });
 
 export const zDeltakelseDto = z.object({
@@ -21,9 +21,9 @@ export const zDeltakelseDto = z.object({
     erSlettet: z.boolean(),
     fraOgMed: z.iso.date(),
     harOpphørsvedtak: z.boolean(),
-    id: z.uuid().optional(),
-    søktTidspunkt: z.iso.datetime({ local: true }).optional(),
-    tilOgMed: z.iso.date().optional(),
+    id: z.uuid().nullish(),
+    søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
+    tilOgMed: z.iso.date().nullish(),
 });
 
 export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
@@ -45,7 +45,7 @@ export const zEndringstype = z.enum([
 export const zNavn = z.object({
     etternavn: z.string(),
     fornavn: z.string(),
-    mellomnavn: z.string().optional(),
+    mellomnavn: z.string().nullish(),
 });
 
 export const zDeltakerPersonalia = z.object({
@@ -53,7 +53,7 @@ export const zDeltakerPersonalia = z.object({
     diskresjonskoder: z.array(zDiskresjonskode),
     fødselsdato: z.iso.date(),
     førsteMuligeInnmeldingsdato: z.iso.date(),
-    id: z.uuid().optional(),
+    id: z.uuid().nullish(),
     navn: zNavn,
     sisteMuligeInnmeldingsdato: z.iso.date(),
 });
