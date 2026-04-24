@@ -281,3 +281,9 @@ jobs:
       use-turbo-test: true
       e2e-build-command: "e2e:build"
       run-sonar: true
+
+  sif-code-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: navikt/sif-gha-workflows/.github/actions/sif-code-scan@main
