@@ -4578,7 +4578,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -4639,7 +4639,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -4726,7 +4726,7 @@ __metadata:
     swr: "npm:2.4.1"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vitest: "npm:4.1.4"
     webpack: "npm:5.106.2"
@@ -5094,7 +5094,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -5139,7 +5139,7 @@ __metadata:
     react-intl: "npm:10.1.2"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
   languageName: unknown
   linkType: soft
@@ -5210,7 +5210,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
     ulid: "npm:3.0.2"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -5281,7 +5281,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -5342,7 +5342,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -5499,7 +5499,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -5586,7 +5586,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
   languageName: unknown
@@ -5664,7 +5664,7 @@ __metadata:
     react-router-dom: "npm:7.14.1"
     storybook: "npm:10.3.5"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -5828,7 +5828,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -5901,7 +5901,7 @@ __metadata:
     storybook: "npm:10.3.5"
     style-loader: "npm:4.0.0"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -6065,7 +6065,7 @@ __metadata:
     storybook: "npm:10.3.5"
     style-loader: "npm:4.0.0"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -6143,7 +6143,7 @@ __metadata:
     react-dom: "npm:19.2.5"
     react-intl: "npm:10.1.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vitest: "npm:4.1.4"
   languageName: unknown
   linkType: soft
@@ -6202,7 +6202,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -6271,7 +6271,7 @@ __metadata:
     react-router-dom: "npm:7.14.1"
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -6362,7 +6362,7 @@ __metadata:
     dayjs: "npm:1.11.20"
     postcss: "npm:8.5.10"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vitest: "npm:4.1.4"
     zod: "npm:4.3.6"
   peerDependencies:
@@ -6490,7 +6490,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
     typescript-eslint: "npm:8.58.2"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -6579,7 +6579,7 @@ __metadata:
     tailwindcss: "npm:4.2.2"
     typescript: "npm:6.0.3"
     typescript-eslint: "npm:8.58.2"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.4"
@@ -9682,7 +9682,7 @@ __metadata:
     object-hash: "npm:3.0.0"
     react: "npm:19.2.5"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     zod: "npm:4.3.6"
   languageName: unknown
   linkType: soft
@@ -9855,7 +9855,7 @@ __metadata:
     react-router-dom: "npm:7.14.1"
     storybook: "npm:10.3.5"
     typescript: "npm:6.0.3"
-    uuid: "npm:13.0.0"
+    uuid: "npm:14.0.0"
     vite: "npm:8.0.8"
     vitest: "npm:4.1.4"
   peerDependencies:
@@ -28924,12 +28924,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:13.0.0, uuid@npm:^13.0.0":
-  version: 13.0.0
-  resolution: "uuid@npm:13.0.0"
+"uuid@npm:14.0.0":
+  version: 14.0.0
+  resolution: "uuid@npm:14.0.0"
   bin:
     uuid: dist-node/bin/uuid
-  checksum: 10/2742b24d1e00257e60612572e4d28679423469998cafbaf1fe9f1482e3edf9c40754b31bfdb3d08d71b29239f227a304588f75210b3b48f2609f0673f1feccef
+  checksum: 10/8ee9b98f9650e25555515f7a28d3c3ae9364e72f7bb19b9e08b681bc135338beba5509b2830f6ae1cfaba4d45401da0d16d4d109b977097bc3d6ba0c5583341b
   languageName: node
   linkType: hard
 
@@ -28948,6 +28948,15 @@ __metadata:
   bin:
     uuid: dist/esm/bin/uuid
   checksum: 10/d2da43b49b154d154574891ced66d0c83fc70caaad87e043400cf644423b067542d6f3eb641b7c819224a7cd3b4c2f21906acbedd6ec9c6a05887aa9115a9cf5
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "uuid@npm:13.0.0"
+  bin:
+    uuid: dist-node/bin/uuid
+  checksum: 10/2742b24d1e00257e60612572e4d28679423469998cafbaf1fe9f1482e3edf9c40754b31bfdb3d08d71b29239f227a304588f75210b3b48f2609f0673f1feccef
   languageName: node
   linkType: hard
 
