@@ -3,15 +3,16 @@ import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText, useAppIntl } from '@app/i18n';
 import { StepId } from '@app/søknad/config/StepId';
 import SøknadStep from '@app/søknad/SøknadStep';
-import { getApiDataFromSøknadsdata } from '@app/utils';
+import { getApiDataFromSøknadsdata, harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid } from '@app/utils';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Button, ErrorSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
@@ -34,6 +35,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 
 const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
+    const navigate = useNavigate();
     const { text, intl, locale } = useAppIntl();
     const {
         state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker },
@@ -80,6 +82,8 @@ const OppsummeringStep = () => {
 
     const harIngenEndringer =
         arbeidstidErEndret === false && lovbestemtFerieErEndret === false && tilsynsordningErEndret === false;
+
+    const harFeilPgaManglendeArbeidstidInfo = harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid(sak, apiData);
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -136,7 +140,26 @@ const OppsummeringStep = () => {
                         )}
                     </VStack>
                 )}
-                {harIngenEndringer ? (
+
+                {harFeilPgaManglendeArbeidstidInfo && (
+                    <Alert variant="error">
+                        <BodyLong spacing={false} as="div">
+                            Vi mangler informasjon om arbeidstid. Vennligst gå tilbake til steget{' '}
+                            <Link
+                                href="#"
+                                onClick={(evt) => {
+                                    evt.stopPropagation();
+                                    evt.preventDefault();
+                                    navigate(stepConfig[StepId.UKJENT_ARBEIDSFOHOLD].route);
+                                }}>
+                                <AppText id={stepConfig[StepId.UKJENT_ARBEIDSFOHOLD].stepTitleIntlKey as any} />
+                            </Link>{' '}
+                            og fortsett derfra.
+                        </BodyLong>
+                    </Alert>
+                )}
+
+                {harIngenEndringer || harFeilPgaManglendeArbeidstidInfo ? (
                     <div>
                         <Button
                             type="button"
@@ -180,6 +203,7 @@ const OppsummeringStep = () => {
                                             name={OppsummeringFormFields.harBekreftetOpplysninger}
                                         />
                                     </Form>
+
                                     {sendSøknadError && (
                                         <ErrorSummary ref={sendSøknadErrorSummary}>
                                             <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
