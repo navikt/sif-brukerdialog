@@ -24,7 +24,7 @@ export const Varianter: Story = {
     name: 'Deltakelse historikk',
     render: () => (
         <VStack gap="space-16">
-            <DeltakelseHistorikk deltakelseId={registrertDeltakerMock.deltakelse.id} />
+            <DeltakelseHistorikk deltakelseId={registrertDeltakerMock.deltakelse.id!} />
         </VStack>
     ),
     parameters: {
