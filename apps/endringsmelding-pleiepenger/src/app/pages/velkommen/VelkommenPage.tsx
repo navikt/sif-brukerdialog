@@ -77,14 +77,14 @@ const VelkommenPage = () => {
                                     validate={getListValidator({ minItems: 1 })}
                                     checkboxes={[
                                         {
-                                            'data-testid': 'endreLovbestemtFerie',
-                                            label: text('velkommenPage.endre.ferie'),
-                                            value: EndringType.lovbestemtFerie,
-                                        },
-                                        {
                                             'data-testid': 'endreArbeidstid',
                                             label: text('velkommenPage.endre.jobb'),
                                             value: EndringType.arbeidstid,
+                                        },
+                                        {
+                                            'data-testid': 'endreLovbestemtFerie',
+                                            label: text('velkommenPage.endre.ferie'),
+                                            value: EndringType.lovbestemtFerie,
                                         },
                                         ...(isFeatureEnabled(Feature.SIF_PUBLIC_ENDRE_OMSORGSTILBUD)
                                             ? [

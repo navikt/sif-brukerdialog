@@ -18,6 +18,19 @@ test('test', async ({ page }) => {
     await page.getByLabel('Jeg bekrefter at jeg har').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
 
+    /** Arbeid */
+    await page.getByTestId('dateRangeAccordion_0_header').click();
+    await page.getByTestId('uke_51').getByTestId('endre-button').click();
+    await page.getByTestId('prosent-verdi').click();
+    await page.getByTestId('prosent-verdi').fill('0');
+    await page.getByRole('button', { name: 'Ok' }).click();
+    await page.getByTestId('uke_52').getByTestId('endre-button').click();
+    await page.getByTestId('prosent-verdi').click();
+    await page.getByTestId('prosent-verdi').fill('0');
+    await page.getByRole('button', { name: 'Ok' }).click();
+    await page.getByTestId('dateRangeAccordion_1_header').click();
+    await page.getByTestId('typedFormikForm-submitButton').click();
+
     /** Ferie */
     await page.getByTestId('dateRangeAccordion_1_header').click();
     await page.getByTestId('dateRangeAccordion_1').getByTestId('leggTilFerieKnapp').click();
@@ -38,19 +51,6 @@ test('test', async ({ page }) => {
         .filter({ hasText: 'tirsdag 31.01.2023Ferie' })
         .getByTestId('angre_fjern_ferie_knapp')
         .click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
-
-    /** Arbeid */
-    await page.getByTestId('dateRangeAccordion_0_header').click();
-    await page.getByTestId('uke_51').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('0');
-    await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByTestId('uke_52').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('0');
-    await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByTestId('dateRangeAccordion_1_header').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering */
