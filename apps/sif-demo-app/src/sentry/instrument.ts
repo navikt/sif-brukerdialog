@@ -1,31 +1,75 @@
 import * as Sentry from '@sentry/react';
-import React from 'react';
-import { createRoutesFromChildren, matchRoutes, useLocation, useNavigationType } from 'react-router-dom';
+
+const errorsToIgnore = [
+    'TypeError: Failed to fetch',
+    'TypeError: Load failed',
+    'TypeError: NetworkError when attempting to fetch resource.',
+    'TypeError: cancelled',
+    'TypeError: avbrutt',
+    'TypeError: cancelado',
+    'TypeError: anulowane',
+    'TypeError: avbruten',
+    'TypeError: anulat',
+    'Request failed with status code 401',
+    /\[401\]/,
+    /\[0\]/,
+    /Non-Error promise rejection captured with value: Request timeout/,
+];
+
+const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
+    const values = event.exception?.values ?? [];
+    const frames = values.flatMap((v) => v.stacktrace?.frames ?? []);
+    if (frames.some((f) => (f.filename ?? '').includes('/dekoratoren/'))) {
+        return true;
+    }
+    const firstValue = values[0];
+    if (firstValue?.type === 'UnhandledRejection') {
+        const message = firstValue.value ?? '';
+        if (['Request timeout', 'dekoratoren'].some((pattern) => message.includes(pattern))) {
+            return true;
+        }
+    }
+    return false;
+};
+
+const scrubUrl = (url: string): string => url.replace(/\/[0-9]+(?=\/|$)/g, '/[id]');
+
+const scrubEvent = (event: Sentry.ErrorEvent): Sentry.ErrorEvent => {
+    if (event.request?.url) {
+        event.request.url = scrubUrl(event.request.url);
+    }
+    if (event.request?.headers?.Referer) {
+        event.request.headers.Referer = scrubUrl(event.request.headers.Referer);
+    }
+    if (event.transaction) {
+        event.transaction = scrubUrl(event.transaction);
+    }
+    if (event.tags?.transaction) {
+        event.tags.transaction = scrubUrl(String(event.tags.transaction));
+    }
+    const breadcrumbs = event.breadcrumbs ?? [];
+    for (const bc of breadcrumbs) {
+        if (bc.data?.url) bc.data.url = scrubUrl(bc.data.url);
+        if (bc.data?.from) bc.data.from = scrubUrl(bc.data.from);
+        if (bc.data?.to) bc.data.to = scrubUrl(bc.data.to);
+    }
+    return event;
+};
 
 Sentry.init({
     dsn: import.meta.env.VITE_SENTRY_DSN,
-    environment: import.meta.env.MODE,
-    release: import.meta.env.VITE_APP_VERSION,
-
-    sendDefaultPii: true,
-
-    integrations: [
-        Sentry.reactRouterV7BrowserTracingIntegration({
-            useEffect: React.useEffect,
-            useLocation,
-            useNavigationType,
-            matchRoutes,
-            createRoutesFromChildren,
-        }),
-        Sentry.replayIntegration({
-            maskAllText: true,
-            blockAllMedia: true,
-        }),
-    ],
-
-    tracesSampleRate: 1.0, // lower to 0.1–0.2 in production
-    tracePropagationTargets: ['localhost', /^https:\/\/.*\.nav\.no/],
-
-    replaysSessionSampleRate: 0.1,
-    replaysOnErrorSampleRate: 1.0,
+    environment: window.location.hostname.includes('localhost') ? 'localhost' : import.meta.env.MODE,
+    enabled: window.location.hostname.endsWith('.nav.no') || window.location.hostname === 'nav.no',
+    initialScope: {
+        tags: { application: 'sif-demo-app' },
+    },
+    ignoreErrors: errorsToIgnore,
+    allowUrls: [/https?:\/\/.*\.?nav\.no/],
+    sendDefaultPii: false,
+    beforeSend(event) {
+        if (isErrorFromDekoratøren(event)) {
+            return null;
+        }
+        return scrubEvent(event);
+    },
 });
