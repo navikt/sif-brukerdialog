@@ -1,6 +1,13 @@
-import { convertNullToUndefined } from '@navikt/sif-common-utils';
 import { AxiosError, HttpStatusCode } from 'axios';
 import { v4 } from 'uuid';
+
+const convertNullToUndefined = (obj: any): any => {
+    if (obj === null) return undefined;
+    if (Array.isArray(obj)) return obj.map(convertNullToUndefined);
+    if (typeof obj === 'object')
+        return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, convertNullToUndefined(v)]));
+    return obj;
+};
 
 import { client } from './deltaker/client/client.gen';
 

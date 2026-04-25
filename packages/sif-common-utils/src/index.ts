@@ -1,5 +1,4 @@
 export * from './arrayUtils';
-export * from './objectUtils';
 export * from './countryUtils';
 export * from './dateFormatter';
 export * from './dateRangeFormatter';
