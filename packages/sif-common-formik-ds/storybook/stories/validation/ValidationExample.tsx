@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import { Box, Panel } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import {
     getCheckedValidator,
@@ -23,6 +22,8 @@ import {
     ValidateTimeError,
     ValidateYesOrNoError,
 } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { getIntlFormErrorHandler, getTypedFormComponents } from '../../../src';
 import TypedFormikWrapper from '../../../src/components/typed-formik-wrapper/TypedFormikWrapper';
 import { ValidationError } from '../../../src/validation/types';
@@ -397,11 +398,11 @@ const error = getFødselsnummerValidator(options)(value);
                                     <Form.TextField
                                         name={FormFields.fødselsnummer}
                                         width="m"
-                                        description='Eksempelfødselsnummeret "19081988075" er ditt eget, og er ikke tillatt'
+                                        description='Eksempelfødselsnummeret "24529831982" er ditt eget, og er ikke tillatt'
                                         label="Hva er barnets fødselsnummer / D-nummer?"
                                         validate={getFødselsnummerValidator({
                                             required: true,
-                                            disallowedValues: ['19081988075'],
+                                            disallowedValues: ['24529831982'],
                                         })}
                                     />
                                 </Panel>
