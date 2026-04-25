@@ -145,7 +145,8 @@ jobs:
 
   test-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn') }}
+    if: ${{ contains(needs.detect-changes.outputs.apps,
+      'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn') }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
     with:
@@ -155,7 +156,8 @@ jobs:
 
   test-endringsmelding-pleiepenger:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'endringsmelding-pleiepenger') }}
+    if: ${{ contains(needs.detect-changes.outputs.apps,
+      'endringsmelding-pleiepenger') }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
     with:
@@ -166,7 +168,8 @@ jobs:
 
   test-omsorgsdager-aleneomsorg-dialog:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgsdager-aleneomsorg-dialog') }}
+    if: ${{ contains(needs.detect-changes.outputs.apps,
+      'omsorgsdager-aleneomsorg-dialog') }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
     with:
@@ -176,7 +179,8 @@ jobs:
 
   test-omsorgsdager-kalkulator:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator') }}
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator')
+      }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
     with:
@@ -187,7 +191,8 @@ jobs:
 
   test-omsorgspengerutbetaling-arbeidstaker-soknad:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-arbeidstaker-soknad') }}
+    if: ${{ contains(needs.detect-changes.outputs.apps,
+      'omsorgspengerutbetaling-arbeidstaker-soknad') }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
     with:
@@ -197,7 +202,8 @@ jobs:
 
   test-omsorgspengerutbetaling-soknad:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-soknad') }}
+    if: ${{ contains(needs.detect-changes.outputs.apps,
+      'omsorgspengerutbetaling-soknad') }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
     with:
@@ -217,7 +223,8 @@ jobs:
 
   test-opplaringspenger-soknad:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad') }}
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad')
+      }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
     with:
@@ -227,7 +234,8 @@ jobs:
 
   test-pleiepenger-i-livets-sluttfase-soknad:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'pleiepenger-i-livets-sluttfase-soknad') }}
+    if: ${{ contains(needs.detect-changes.outputs.apps,
+      'pleiepenger-i-livets-sluttfase-soknad') }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
     with:
@@ -284,7 +292,8 @@ jobs:
 
   sif-code-scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
     steps:
       - uses: actions/checkout@v6
       - uses: navikt/sif-gha-workflows/.github/actions/sif-code-scan@main
-
