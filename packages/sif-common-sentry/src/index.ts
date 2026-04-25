@@ -172,3 +172,5 @@ const getSentryLoggerForApp = (application: string, allowUrls: AllowUrlsType, ig
 });
 
 export default getSentryLoggerForApp;
+
+export * from './v2';
