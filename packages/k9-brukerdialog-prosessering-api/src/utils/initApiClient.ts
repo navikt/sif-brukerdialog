@@ -1,3 +1,4 @@
+import { convertNullToUndefined } from '@navikt/sif-common-utils';
 import { AxiosError, AxiosInstance, HttpStatusCode } from 'axios';
 import { v4 } from 'uuid';
 
@@ -22,7 +23,12 @@ interface ApiClient {
  * brukes her som en generell type for de andre genererte klientene.
  *
  */
-export const initApiClient = (client: ApiClient, frontendPath: string, loginURL: string) => {
+export const initApiClient = (
+    client: ApiClient,
+    frontendPath: string,
+    loginURL: string,
+    onUnAuthorized?: () => void,
+) => {
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
@@ -37,6 +43,7 @@ export const initApiClient = (client: ApiClient, frontendPath: string, loginURL:
         (response) => response,
         (error) => {
             if (isUnauthorized(error)) {
+                onUnAuthorized?.();
                 window.location.assign(loginURL);
             }
             return Promise.reject(error);
@@ -54,32 +61,10 @@ export const initApiClient = (client: ApiClient, frontendPath: string, loginURL:
         (error) => Promise.reject(error),
     );
 
-    /**
-     * Går gjennom objekt og sletter alle nøkler med null-verdier
-     * @param obj
-     * @returns
-     */
-    const deleteNullValues = (obj: any): any => {
-        if (obj === null) {
-            return undefined;
-        }
-        if (Array.isArray(obj)) {
-            return obj.map(deleteNullValues);
-        }
-        if (typeof obj === 'object' && obj !== null) {
-            return Object.fromEntries(
-                Object.entries(obj)
-                    .filter(([, value]) => value !== null)
-                    .map(([key, value]) => [key, deleteNullValues(value)]),
-            );
-        }
-        return obj;
-    };
-
     /** Erstatter alle null verdier med undefined */
     client.instance.interceptors.response.use(
         (response) => {
-            response.data = deleteNullValues(response.data);
+            response.data = convertNullToUndefined(response.data);
             return response;
         },
         (error) => {

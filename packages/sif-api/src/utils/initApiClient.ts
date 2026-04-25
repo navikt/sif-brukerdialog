@@ -17,18 +17,17 @@ export const commonRequestHeader: CommonRequestHeader = {
  * Generisk klient-interface som fungerer med både @hey-api/client-axios Client
  * og genererte klient-typer.
  */
-interface ApiClient {
+export interface ApiClient {
     setConfig: (config: AxiosRequestConfig | any) => void;
     instance: AxiosInstance;
 }
 
-export type InitApiClientOptions = {
-    loginURL?: string;
-    onUnauthorized?: () => void;
-    headers?: Record<string, string>;
-};
-
-export const initApiClient = (client: ApiClient, frontendPath: string, options?: InitApiClientOptions) => {
+export const initApiClient = (
+    client: ApiClient,
+    frontendPath: string,
+    loginURL: string,
+    onUnauthorized?: () => void,
+) => {
     // Normaliser frontendPath til å alltid starte med /
     const normalizedPath = frontendPath.startsWith('/') ? frontendPath : `/${frontendPath}`;
 
@@ -37,7 +36,7 @@ export const initApiClient = (client: ApiClient, frontendPath: string, options?:
     /** Setter config for generert klient */
     client.setConfig({
         withCredentials: false,
-        headers: { ...commonRequestHeader, ...options?.headers },
+        headers: commonRequestHeader,
         baseURL: `${apiBaseUrl}${normalizedPath}`,
     });
 
@@ -47,16 +46,10 @@ export const initApiClient = (client: ApiClient, frontendPath: string, options?:
     client.instance.interceptors.response.use(
         (response) => response,
         (error) => {
-            const is401 = isUnauthorized(error);
-
-            if (options && is401) {
-                if (options.onUnauthorized) {
-                    options.onUnauthorized();
-                }
-                if (options.loginURL) {
-                    if (typeof window !== 'undefined' && window.location.href !== options.loginURL) {
-                        window.location.assign(options.loginURL);
-                    }
+            if (isUnauthorized(error)) {
+                onUnauthorized?.();
+                if (typeof window !== 'undefined' && window.location.href !== loginURL) {
+                    window.location.assign(loginURL);
                 }
             }
             return Promise.reject(error);
@@ -75,43 +68,27 @@ export const initApiClient = (client: ApiClient, frontendPath: string, options?:
     );
 
     /**
-     * Går gjennom objekt og sletter alle nøkler med null-verdier
+     * Går gjennom objekt og erstatter alle null med undefined
      * @param obj
-     * @param visited - WeakSet for å håndtere cirkulære referanser
      * @returns
      */
-    const deleteNullValues = (obj: any, visited = new WeakSet()): any => {
+    const convertNullToUndefined = (obj: any): any => {
         if (obj === null) {
             return undefined;
         }
-
-        // Håndter primitive typer og Date objekter
-        if (obj instanceof Date || typeof obj !== 'object') {
-            return obj;
-        }
-
-        // Guard mot cirkulære referanser
-        if (visited.has(obj)) {
-            return obj;
-        }
-        visited.add(obj);
-
         if (Array.isArray(obj)) {
-            return obj.map((item) => deleteNullValues(item, visited));
+            return obj.map(convertNullToUndefined);
         }
-
-        // Vanlige objekter
-        return Object.fromEntries(
-            Object.entries(obj)
-                .filter(([, value]) => value !== null)
-                .map(([key, value]) => [key, deleteNullValues(value, visited)]),
-        );
+        if (typeof obj === 'object' && obj !== null) {
+            return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, convertNullToUndefined(value)]));
+        }
+        return obj;
     };
 
     /** Erstatter alle null verdier med undefined */
     client.instance.interceptors.response.use(
         (response) => {
-            response.data = deleteNullValues(response.data);
+            response.data = convertNullToUndefined(response.data);
             return response;
         },
         (error) => {

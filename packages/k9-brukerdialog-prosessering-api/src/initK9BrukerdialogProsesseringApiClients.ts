@@ -15,19 +15,23 @@ import {
 } from './';
 import { initApiClient } from './utils/initApiClient';
 
-export const initK9BrukerdialogProsesseringApiClients = (config: { frontendPath: string; loginURL: string }) => {
-    const { frontendPath, loginURL } = config;
-    initApiClient(client, frontendPath, loginURL);
-    initApiClient(aktivitetspenger.client, frontendPath, loginURL);
-    initApiClient(omsorgspenger.client, frontendPath, loginURL);
-    initApiClient(ungdomsytelse.client, frontendPath, loginURL);
-    initApiClient(ettersendelse.client, frontendPath, loginURL);
-    initApiClient(omsorgspengerAleneomsorg.client, frontendPath, loginURL);
-    initApiClient(omsorgspengerMidlertidigAlene.client, frontendPath, loginURL);
-    initApiClient(omsorgspengerutbetalingArbeidstaker.client, frontendPath, loginURL);
-    initApiClient(omsorgspengerutbetalingSnf.client, frontendPath, loginURL);
-    initApiClient(opplaeringspenger.client, frontendPath, loginURL);
-    initApiClient(pleiepengerLivetsSluttfase.client, frontendPath, loginURL);
-    initApiClient(pleiepengerSyktBarnEndringsmelding.client, frontendPath, loginURL);
-    initApiClient(pleiepengerSyktBarnSoknad.client, frontendPath, loginURL);
+export const initK9BrukerdialogProsesseringApiClients = (config: {
+    frontendPath: string;
+    loginURL: string;
+    onUnauthorized?: () => void;
+}) => {
+    const { frontendPath, loginURL, onUnauthorized } = config;
+    initApiClient(client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(aktivitetspenger.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(omsorgspenger.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(ungdomsytelse.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(ettersendelse.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(omsorgspengerAleneomsorg.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(omsorgspengerMidlertidigAlene.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(omsorgspengerutbetalingArbeidstaker.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(omsorgspengerutbetalingSnf.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(opplaeringspenger.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(pleiepengerLivetsSluttfase.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(pleiepengerSyktBarnEndringsmelding.client, frontendPath, loginURL, onUnauthorized);
+    initApiClient(pleiepengerSyktBarnSoknad.client, frontendPath, loginURL, onUnauthorized);
 };

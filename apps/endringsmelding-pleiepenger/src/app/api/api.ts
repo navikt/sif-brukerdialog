@@ -4,6 +4,7 @@ import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/
 import { getSifInnsynBrowserEnv } from '@navikt/sif-common-env';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 
+import { setRedirectingToLogin } from '../../sentry/instrument';
 import { appEnv } from '../utils/appEnv';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';
@@ -35,6 +36,7 @@ axios.interceptors.response.use(
     },
     (error: AxiosError) => {
         if (isUnauthorized(error)) {
+            setRedirectingToLogin();
             relocateToLoginPage();
             return Promise.reject({
                 status: RequestStatus.redirectingToLogin,
