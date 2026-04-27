@@ -25,7 +25,7 @@
     "dependencies": {
         "@navikt/ds-react": "8.10.2",
         "@navikt/sif-common-utils": "workspace:*",
-        "react-hook-form": "7.72.1",
+        "react-hook-form": "7.73.1",
         "react-intl": "10.1.2"
     },
     "peerDependencies": {
@@ -43,6 +43,6 @@
         "react": "19.2.5",
         "react-dom": "19.2.5",
         "typescript": "6.0.3",
-        "vitest": "4.1.4"
+        "vitest": "4.1.5"
     }
 }

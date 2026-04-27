@@ -37,8 +37,8 @@
     "devDependencies": {
         "@axe-core/playwright": "4.11.2",
         "@playwright/test": "1.59.1",
-        "@tailwindcss/postcss": "4.2.2",
-        "@tailwindcss/vite": "4.2.2",
+        "@tailwindcss/postcss": "4.2.4",
+        "@tailwindcss/vite": "4.2.4",
         "@types/node": "25.6.0",
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
@@ -49,8 +49,8 @@
         "jest-environment-jsdom": "30.3.0",
         "playwright-core": "1.59.1",
         "postcss": "8.5.10",
-        "tailwindcss": "4.2.2",
+        "tailwindcss": "4.2.4",
         "typescript": "6.0.3",
-        "vite": "8.0.9"
+        "vite": "8.0.10"
     }
 }
