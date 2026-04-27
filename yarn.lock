@@ -4952,6 +4952,7 @@ __metadata:
     axios: "npm:1.15.1"
     config: "workspace:*"
     postcss: "npm:8.5.10"
+    prettier: "npm:*"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.4"
     zod: "npm:4.3.6"
@@ -4972,6 +4973,7 @@ __metadata:
     axios: "npm:1.15.1"
     config: "workspace:*"
     postcss: "npm:8.5.10"
+    prettier: "npm:*"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.4"
     zod: "npm:4.3.6"
@@ -4992,6 +4994,7 @@ __metadata:
     axios: "npm:1.15.1"
     config: "workspace:*"
     postcss: "npm:8.5.10"
+    prettier: "npm:*"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.4"
     zod: "npm:4.3.6"
@@ -6348,6 +6351,7 @@ __metadata:
     axios: "npm:1.15.1"
     config: "workspace:*"
     postcss: "npm:8.5.10"
+    prettier: "npm:*"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.4"
     zod: "npm:4.3.6"
@@ -6392,6 +6396,7 @@ __metadata:
     axios: "npm:1.15.1"
     config: "workspace:*"
     postcss: "npm:8.5.10"
+    prettier: "npm:*"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.4"
     zod: "npm:4.3.6"
@@ -6412,6 +6417,7 @@ __metadata:
     axios: "npm:1.15.1"
     config: "workspace:*"
     postcss: "npm:8.5.10"
+    prettier: "npm:*"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.4"
     zod: "npm:4.3.6"
@@ -24342,7 +24348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.8.3, prettier@npm:^3.8.1":
+"prettier@npm:*, prettier@npm:3.8.3, prettier@npm:^3.8.1":
   version: 3.8.3
   resolution: "prettier@npm:3.8.3"
   bin:

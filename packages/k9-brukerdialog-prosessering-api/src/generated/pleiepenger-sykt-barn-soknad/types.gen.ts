@@ -332,7 +332,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
 };
 
@@ -365,7 +364,7 @@ export type PleiepengerSyktBarnSøknadWritable = {
     omsorgsstønad?: OmsorgsstønadMottarDelerAvPerioden | OmsorgsstønadMottarHelePerioden | OmsorgsstønadMottarIkke;
     omsorgstilbud?: Omsorgstilbud;
     opptjeningIUtlandet: OpptjeningIUtlandet[];
-    selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
+    selvstendigNæringsdrivende: SelvstendigNæringsdrivendeWritable;
     språk: 'nb' | 'nn';
     /**
      * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
@@ -675,7 +674,7 @@ export type HentSøkerResponses = {
 export type HentSøkerResponse = HentSøkerResponses[keyof HentSøkerResponses];
 
 export type InnsendingPleiepengerSyktBarnSøknadData = {
-    body: PleiepengerSyktBarnSøknad;
+    body: PleiepengerSyktBarnSøknadWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };

@@ -301,7 +301,7 @@ export type UpdateMellomlagringResponses = {
 };
 
 export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadData = {
-    body: OmsorgspengerutbetalingArbeidstakerSøknad;
+    body: OmsorgspengerutbetalingArbeidstakerSøknadWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };

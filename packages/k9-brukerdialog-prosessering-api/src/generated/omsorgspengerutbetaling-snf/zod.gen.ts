@@ -142,7 +142,6 @@ export const zVirksomhet = z.object({
     organisasjonsnummer: z.string().min(0).max(20).optional(),
     registrertINorge: z.boolean(),
     registrertIUtlandet: zLand.optional(),
-    regnskapsfører: zRegnskapsfører.optional(),
     tilOgMed: z.iso.date().optional(),
 });
 
@@ -233,7 +232,7 @@ export const zUpdateMellomlagringPath = z.object({
     ytelse: z.string(),
 });
 
-export const zInnsendingOmsorgspengerutbetalingSnfSøknadBody = zOmsorgspengerutbetalingSnfSøknad;
+export const zInnsendingOmsorgspengerutbetalingSnfSøknadBody = zOmsorgspengerutbetalingSnfSøknadWritable;
 
 export const zInnsendingOmsorgspengerutbetalingSnfSøknadHeaders = z.object({
     'X-Brukerdialog-Git-Sha': z.string(),

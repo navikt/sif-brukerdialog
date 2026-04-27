@@ -732,6 +732,47 @@ export const zFraværPeriodeWritable = z.object({
     årsak: zFraværÅrsak,
 });
 
+export const zOmsorgspengerUtbetalingWritable = zYtelse.and(
+    z.object({
+        aktivitet: zOpptjeningAktivitet.optional(),
+        bosteder: zBosteder.optional(),
+        dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+        fosterbarn: z.array(zBarn).optional(),
+        fraværsperioder: z.array(zFraværPeriodeWritable).optional(),
+        fraværsperioderKorrigeringIm: z.array(zFraværPeriodeWritable).optional(),
+        utenlandsopphold: zUtenlandsopphold.optional(),
+        type: z.literal('OmsorgspengerUtbetalingWritable'),
+    }),
+);
+
+export const zSøknadWritable = z.object({
+    begrunnelseForInnsending: zBegrunnelseForInnsending.optional(),
+    journalposter: z.array(zJournalpost).min(0).max(1000).optional(),
+    kildesystem: z.string().optional(),
+    mottattDato: z.iso.datetime({ local: true }),
+    språk: zSpråk.optional(),
+    søker: zSøker,
+    søknadId: z.string(),
+    versjon: z.string(),
+    ytelse: z.union([
+        zAktivitetspenger,
+        zOmsorgspengerAleneOmsorg,
+        zOmsorgspengerKroniskSyktBarn,
+        zOmsorgspengerMidlertidigAlene,
+        zOmsorgspengerUtbetalingWritable,
+        zOpplæringspenger,
+        zPleiepengerSyktBarn,
+        zPleipengerLivetsSluttfase,
+        zUngdomsytelse,
+    ]),
+});
+
+export const zSøknadDtoWritable = z.object({
+    barn: zBarnOppslagDto,
+    søknad: zSøknadWritable,
+    søknader: z.array(zSøknadWritable).optional(),
+});
+
 export const zHentDokumentPath = z.object({
     journalpostId: z.string(),
     dokumentInfoId: z.string(),

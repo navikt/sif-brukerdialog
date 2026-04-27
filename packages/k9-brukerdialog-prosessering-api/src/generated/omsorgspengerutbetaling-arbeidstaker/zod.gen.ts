@@ -176,7 +176,8 @@ export const zUpdateMellomlagringPath = z.object({
     ytelse: z.string(),
 });
 
-export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadBody = zOmsorgspengerutbetalingArbeidstakerSøknad;
+export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadBody =
+    zOmsorgspengerutbetalingArbeidstakerSøknadWritable;
 
 export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadHeaders = z.object({
     'X-Brukerdialog-Git-Sha': z.string(),
