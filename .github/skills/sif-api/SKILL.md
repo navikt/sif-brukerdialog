@@ -97,14 +97,14 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 
 `@sif/api/k9-prosessering` eksporterer også rene funksjoner for vedlegg:
 
-| Funksjon                                          | Returnerer     | Bruk                                                       |
-| ------------------------------------------------- | -------------- | ---------------------------------------------------------- |
-| `lagreVedlegg(file)`                              | Response       | Laster opp vedlegg (brukes i VedleggPanel)                 |
-| `slettVedlegg(id)`                                | Response       | Sletter vedlegg (brukes i VedleggPanel)                    |
-| `hentVedlegg(id)`                                 | Vedleggsdata   | Henter vedlegg                                             |
-| `getVedleggFrontendUrl(id)`                       | `string`       | Frontend-proxy-URL for visning i nettleseren               |
-| `getVedleggApiUrl(id)`                            | `string`       | Full backend-API-URL for innsending i DTO                  |
-| `getVedleggIdFromResponseHeaderLocation(url)`     | `string`       | Ekstraher vedlegg-ID fra Location-header etter opplasting  |
+| Funksjon                                      | Returnerer   | Bruk                                                      |
+| --------------------------------------------- | ------------ | --------------------------------------------------------- |
+| `lagreVedlegg(file)`                          | Response     | Laster opp vedlegg (brukes i VedleggPanel)                |
+| `slettVedlegg(id)`                            | Response     | Sletter vedlegg (brukes i VedleggPanel)                   |
+| `hentVedlegg(id)`                             | Vedleggsdata | Henter vedlegg                                            |
+| `getVedleggFrontendUrl(id)`                   | `string`     | Frontend-proxy-URL for visning i nettleseren              |
+| `getVedleggApiUrl(id)`                        | `string`     | Full backend-API-URL for innsending i DTO                 |
+| `getVedleggIdFromResponseHeaderLocation(url)` | `string`     | Ekstraher vedlegg-ID fra Location-header etter opplasting |
 
 `getVedleggFrontendUrl` bruker `K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH`, mens `getVedleggApiUrl` bruker `K9_BRUKERDIALOG_PROSESSERING_API_URL`.
 
@@ -144,7 +144,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 | Element       | Verdi                                                                                          |
 | ------------- | ---------------------------------------------------------------------------------------------- |
 | Pakke         | `@navikt/ung-brukerdialog-api`                                                                 |
-| Init-funksjon | `initUngBrukerdialogApiClient({ onUnAuthorized })`                                             |
+| Init-funksjon | `initUngBrukerdialogApiClient({ onUnauthorized })`                                             |
 | Env-variabler | `UNG_BRUKERDIALOG_API_FRONTEND_PATH`, `UNG_BRUKERDIALOG_API_SCOPE`, `UNG_BRUKERDIALOG_API_URL` |
 
 ### `@sif/api/ung-deltaker` — ung-deltakelse-opplyser-api-deltaker
@@ -154,7 +154,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 | Element       | Verdi                                                                                                           |
 | ------------- | --------------------------------------------------------------------------------------------------------------- |
 | Pakke         | `@navikt/ung-deltakelse-opplyser-api-deltaker`                                                                  |
-| Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ onUnAuthorized })`                                                |
+| Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ onUnauthorized })`                                                |
 | Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@navikt/sif-common-env`)                                                 |
 | Env-variabler | `UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH`, `UNG_DELTAKELSE_OPPLYSER_API_SCOPE`, `UNG_DELTAKELSE_OPPLYSER_API_URL` |
 
@@ -207,11 +207,11 @@ export const initApiClients = () => {
     });
     // Kun hvis useOppgaver trengs:
     initUngBrukerdialogApiClient({
-        onUnAuthorized: () => globalThis.location.reload(),
+        onUnauthorized: () => globalThis.location.reload(),
     });
     // Kun hvis useKontonummer trengs:
     initUngDeltakelseOpplyserApiDeltakerClient({
-        onUnAuthorized: () => globalThis.location.reload(),
+        onUnauthorized: () => globalThis.location.reload(),
     });
 };
 ```
@@ -238,6 +238,7 @@ if (søker.isError) return <ApiErrorAlert error={søker.error} />;
 ---
 
 > **`isolatedModules` og barrel-eksport:** Barrel-filer i `sif-api` har `isolatedModules: true` i `tsconfig.json`. Interfaces og typer kan derfor **ikke** re-eksporteres med vanlig `export { MyInterface }` — bruk alltid `export type { MyInterface }`. Bryt gjerne opp i to linjer:
+>
 > ```ts
 > export { myHook } from './myHook';
 > export type { MyInterface } from './myHook';

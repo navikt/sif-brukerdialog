@@ -1,36 +1,12 @@
+import {
+    defaultSentryIgnoreErrors,
+    isErrorFromDekoratøren,
+    isRedirectingToLogin,
+    scrubEvent,
+} from '@navikt/sif-common-sentry';
 import * as Sentry from '@sentry/react';
 
-const errorsToIgnore = [
-    'TypeError: Failed to fetch',
-    'TypeError: Load failed',
-    'TypeError: NetworkError when attempting to fetch resource.',
-    'TypeError: cancelled',
-    'TypeError: avbrutt',
-    'TypeError: cancelado',
-    'TypeError: anulowane',
-    'TypeError: avbruten',
-    'TypeError: anulat',
-    'Request failed with status code 401',
-    /\[401\]/,
-    /\[0\]/,
-    /Non-Error promise rejection captured with value: Request timeout/,
-];
-
-const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
-    const values = event.exception?.values ?? [];
-    const frames = values.flatMap((v) => v.stacktrace?.frames ?? []);
-    if (frames.some((f) => (f.filename ?? '').includes('/dekoratoren/'))) {
-        return true;
-    }
-    const firstValue = values[0];
-    if (firstValue?.type === 'UnhandledRejection') {
-        const message = firstValue.value ?? '';
-        if (['Request timeout', 'dekoratoren'].some((pattern) => message.includes(pattern))) {
-            return true;
-        }
-    }
-    return false;
-};
+export { setRedirectingToLogin } from '@navikt/sif-common-sentry';
 
 Sentry.init({
     dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
@@ -39,13 +15,16 @@ Sentry.init({
     initialScope: {
         tags: { application: 'omsorgspengesoknad-v2' },
     },
-    ignoreErrors: errorsToIgnore,
+    ignoreErrors: defaultSentryIgnoreErrors,
     allowUrls: [/https?:\/\/.*\.?nav\.no/],
     sendDefaultPii: false,
     beforeSend(event) {
+        if (isRedirectingToLogin()) {
+            return null;
+        }
         if (isErrorFromDekoratøren(event)) {
             return null;
         }
-        return event;
+        return scrubEvent(event);
     },
 });
