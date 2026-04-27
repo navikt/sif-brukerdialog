@@ -2,7 +2,7 @@
     "name": "@navikt/aktivitetspenger-innsyn",
     "type": "module",
     "private": true,
-    "version": "0.0.4",
+    "version": "0.0.5",
     "scripts": {
         "dev": "vite --base=/aktivitetspenger/innsyn --config vite.dev.config.ts",
         "pw:dev": "vite --config vite.e2e.config.ts",

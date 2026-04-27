@@ -1,5 +1,12 @@
 # @navikt/sif-demo-app
 
+## 0.0.4
+
+### Patch Changes
+
+- @navikt/sif-common-ui@0.11.56
+- @sif/soknad@0.0.3
+
 ## 0.0.3
 
 ### Patch Changes

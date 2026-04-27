@@ -1,5 +1,13 @@
 # @navikt/omsorgspengesoknad-v2
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-sentry@0.28.65
+    - @sif/soknad@0.0.3
+
 ## 0.0.4
 
 ### Patch Changes

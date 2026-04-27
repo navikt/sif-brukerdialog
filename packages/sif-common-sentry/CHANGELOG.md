@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.65
+
+### Patch Changes
+
+- Legge til scrubbing av numeriske verdier i url'er
+
 ## 0.28.64
 
 ### Patch Changes
