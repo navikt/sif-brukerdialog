@@ -1,8 +1,8 @@
 import getFødselsnummerValidator, { ValidateFødselsnummerError } from '../getFødselsnummerValidator';
 
 describe(`validateFødselsnummer`, () => {
-    const generatedFnr = '24090014427';
-    const generatedFnr2 = '19035114443';
+    const generatedFnr = '24420167209';
+    const generatedFnr2 = '18410162721';
     const hnr = '13527248013';
 
     it('returns undefined when the fødselsnummer is valid', () => {
