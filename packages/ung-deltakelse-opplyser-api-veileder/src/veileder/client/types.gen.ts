@@ -9,9 +9,9 @@ export type DeltakelseDto = {
     erSlettet: boolean;
     fraOgMed: string;
     harOpphørsvedtak: boolean;
-    id?: string;
-    søktTidspunkt?: string;
-    tilOgMed?: string;
+    id?: string | null;
+    søktTidspunkt?: string | null;
+    tilOgMed?: string | null;
 };
 
 export type DeltakelseHistorikkDto = {
@@ -33,7 +33,7 @@ export type DeltakelseUtmeldingDto = {
 
 export type DeltakerDto = {
     deltakerIdent: string;
-    id?: string;
+    id?: string | null;
 };
 
 export type DeltakerPersonalia = {
@@ -44,7 +44,7 @@ export type DeltakerPersonalia = {
     diskresjonskoder: Diskresjonskode[];
     fødselsdato: string;
     førsteMuligeInnmeldingsdato: string;
-    id?: string;
+    id?: string | null;
     navn: Navn;
     sisteMuligeInnmeldingsdato: string;
 };
@@ -72,7 +72,7 @@ export enum Endringstype {
 export type Navn = {
     etternavn: string;
     fornavn: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type ProblemDetail = {

@@ -1,5 +1,11 @@
 # @navikt/ung-brukerdialog-api
 
+## 0.0.5
+
+### Patch Changes
+
+- Oppdatert codegen:prod
+
 ## 0.0.4
 
 ### Patch Changes

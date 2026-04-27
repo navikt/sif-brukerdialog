@@ -781,6 +781,44 @@ export type FraværPeriodeWritable = {
     årsak: FraværÅrsak;
 };
 
+export type OmsorgspengerUtbetalingWritable = Omit<Ytelse, 'type'> & {
+    aktivitet?: OpptjeningAktivitet;
+    bosteder?: Bosteder;
+    dataBruktTilUtledning?: DataBruktTilUtledning;
+    fosterbarn?: Barn[];
+    fraværsperioder?: FraværPeriodeWritable[];
+    fraværsperioderKorrigeringIm?: FraværPeriodeWritable[];
+    utenlandsopphold?: Utenlandsopphold;
+    type: 'OmsorgspengerUtbetalingWritable';
+};
+
+export type SøknadWritable = {
+    begrunnelseForInnsending?: BegrunnelseForInnsending;
+    journalposter?: Journalpost[];
+    kildesystem?: string;
+    mottattDato: string;
+    språk?: Språk;
+    søker: Søker;
+    søknadId: string;
+    versjon: string;
+    ytelse:
+        | Aktivitetspenger
+        | OmsorgspengerAleneOmsorg
+        | OmsorgspengerKroniskSyktBarn
+        | OmsorgspengerMidlertidigAlene
+        | OmsorgspengerUtbetalingWritable
+        | Opplæringspenger
+        | PleiepengerSyktBarn
+        | PleipengerLivetsSluttfase
+        | Ungdomsytelse;
+};
+
+export type SøknadDtoWritable = {
+    barn: BarnOppslagDto;
+    søknad: SøknadWritable;
+    søknader?: SøknadWritable[];
+};
+
 export type HentDokumentData = {
     body?: never;
     path: {

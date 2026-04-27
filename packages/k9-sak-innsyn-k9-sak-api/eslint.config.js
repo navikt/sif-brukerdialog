@@ -9,4 +9,12 @@ export default [
             },
         },
     },
+    {
+        files: ['**/*.gen.ts', '**/index.ts'],
+        rules: {
+            'max-len': 'off',
+            'no-duplicate-imports': 'off',
+            '@typescript-eslint/no-shadow': 'off',
+        },
+    },
 ];

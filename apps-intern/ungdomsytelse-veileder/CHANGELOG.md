@@ -1,5 +1,14 @@
 # @navikt/sif-demo-app
 
+## 0.9.65
+
+### Patch Changes
+
+- Oppdatert codegen:prod
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.10
+    - @navikt/ung-common@0.0.100
+
 ## 0.9.64
 
 ### Patch Changes

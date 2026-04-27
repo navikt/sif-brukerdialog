@@ -315,7 +315,6 @@ export const zVirksomhet = z.object({
     organisasjonsnummer: z.string().min(0).max(20).optional(),
     registrertINorge: z.boolean(),
     registrertIUtlandet: zLand.optional(),
-    regnskapsfører: zRegnskapsfører.optional(),
     tilOgMed: z.iso.date().optional(),
 });
 
@@ -368,6 +367,33 @@ export const zYrkesaktivSisteTreFerdigliknedeArene = z.object({
     oppstartsdato: z.iso.date().optional(),
 });
 
+export const zVirksomhetWritable = z.object({
+    erNyoppstartet: z.boolean(),
+    fiskerErPåBladB: z.boolean().optional(),
+    fraOgMed: z.iso.date(),
+    harFlereAktiveVirksomheter: z.boolean(),
+    navnPåVirksomheten: z.string(),
+    næringsinntekt: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    næringstype: z.enum(['FISKE', 'JORDBRUK_SKOGBRUK', 'DAGMAMMA', 'ANNEN']),
+    organisasjonsnummer: z.string().min(0).max(20).optional(),
+    registrertINorge: z.boolean(),
+    registrertIUtlandet: zLand.optional(),
+    regnskapsfører: zRegnskapsfører.optional(),
+    tilOgMed: z.iso.date().optional(),
+    varigEndring: zVarigEndring.optional(),
+    yrkesaktivSisteTreFerdigliknedeÅrene: zYrkesaktivSisteTreFerdigliknedeArene.optional(),
+});
+
+export const zSelvstendigNæringsdrivendeWritable = z.object({
+    arbeidsforhold: zArbeidsforhold.optional(),
+    harInntektSomSelvstendig: z.boolean(),
+    virksomhet: zVirksomhetWritable.optional(),
+});
+
 export const zPleiepengerSyktBarnSøknadWritable = z.object({
     apiDataVersjon: z.string().optional(),
     arbeidsgivere: z.array(zArbeidsgiver),
@@ -398,7 +424,7 @@ export const zPleiepengerSyktBarnSøknadWritable = z.object({
         .optional(),
     omsorgstilbud: zOmsorgstilbud.optional(),
     opptjeningIUtlandet: z.array(zOpptjeningIUtlandet),
-    selvstendigNæringsdrivende: zSelvstendigNæringsdrivende,
+    selvstendigNæringsdrivende: zSelvstendigNæringsdrivendeWritable,
     språk: z.enum(['nb', 'nn']),
     stønadGodtgjørelse: zStønadGodtgjørelse.optional(),
     søkerNorskIdent: z.string().optional(),
@@ -406,33 +432,6 @@ export const zPleiepengerSyktBarnSøknadWritable = z.object({
     utenlandskNæring: z.array(zUtenlandskNæring),
     utenlandsoppholdIPerioden: zUtenlandsoppholdIPerioden,
     vedlegg: z.array(z.string()),
-});
-
-export const zVirksomhetWritable = z.object({
-    erNyoppstartet: z.boolean(),
-    fiskerErPåBladB: z.boolean().optional(),
-    fraOgMed: z.iso.date(),
-    harFlereAktiveVirksomheter: z.boolean(),
-    navnPåVirksomheten: z.string(),
-    næringsinntekt: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
-    næringstype: z.enum(['FISKE', 'JORDBRUK_SKOGBRUK', 'DAGMAMMA', 'ANNEN']),
-    organisasjonsnummer: z.string().min(0).max(20).optional(),
-    registrertINorge: z.boolean(),
-    registrertIUtlandet: zLand.optional(),
-    regnskapsfører: zRegnskapsfører.optional(),
-    tilOgMed: z.iso.date().optional(),
-    varigEndring: zVarigEndring.optional(),
-    yrkesaktivSisteTreFerdigliknedeÅrene: zYrkesaktivSisteTreFerdigliknedeArene.optional(),
-});
-
-export const zSelvstendigNæringsdrivendeWritable = z.object({
-    arbeidsforhold: zArbeidsforhold.optional(),
-    harInntektSomSelvstendig: z.boolean(),
-    virksomhet: zVirksomhetWritable.optional(),
 });
 
 export const zDeleteMellomlagringPath = z.object({
@@ -483,7 +482,7 @@ export const zHentBarnResponse = zBarnOppslagListe;
  */
 export const zHentSøkerResponse = zSøker;
 
-export const zInnsendingPleiepengerSyktBarnSøknadBody = zPleiepengerSyktBarnSøknad;
+export const zInnsendingPleiepengerSyktBarnSøknadBody = zPleiepengerSyktBarnSøknadWritable;
 
 export const zInnsendingPleiepengerSyktBarnSøknadHeaders = z.object({
     'X-Brukerdialog-Git-Sha': z.string(),

@@ -142,7 +142,6 @@ export type OpplæringspengerSøknad = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlp;
     språk: 'nb' | 'nn';
-    stønadGodtgjørelse?: StønadGodtgjørelse;
     søkerNorskIdent?: string;
     tilOgMed: string;
     utenlandskNæring: UtenlandskNæring[];
@@ -252,7 +251,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
 };
 
@@ -302,7 +300,7 @@ export type OpplæringspengerSøknadWritable = {
     medlemskap: Medlemskap;
     newVersion?: boolean;
     opptjeningIUtlandet: OpptjeningIUtlandet[];
-    selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlp;
+    selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlpWritable;
     språk: 'nb' | 'nn';
     stønadGodtgjørelse?: StønadGodtgjørelse;
     søkerNorskIdent?: string;
@@ -489,7 +487,7 @@ export type UpdateMellomlagringResponses = {
 };
 
 export type InnsendingOpplæringspengerSøknadData = {
-    body: OpplæringspengerSøknad;
+    body: OpplæringspengerSøknadWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };
