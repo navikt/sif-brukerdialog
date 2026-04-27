@@ -39,7 +39,8 @@ const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
     return false;
 };
 
-const scrubUrl = (url: string): string => url.replace(/\/[0-9]+(?=\/|$)/g, '/[id]');
+const scrubUrl = (url: string): string =>
+    url.replace(/\/[0-9]+(?=\/|$)/g, '/[id]').replace(/\/sak\/[a-zA-Z0-9_-]+(?=\/|$)/g, '/sak/[saksnr]');
 
 const scrubEvent = (event: Sentry.ErrorEvent): Sentry.ErrorEvent => {
     if (event.request?.url) {

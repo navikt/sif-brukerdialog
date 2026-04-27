@@ -35,7 +35,7 @@ export const initApiClient = (
     client: ApiClient,
     frontendPath: string,
     loginURL: string,
-    onUnAuthorized?: () => void,
+    onUnauthorized?: () => void,
 ) => {
     /** Set config for generert klient */
     client.setConfig({
@@ -51,7 +51,7 @@ export const initApiClient = (
         (response) => response,
         (error) => {
             if (isUnauthorized(error)) {
-                onUnAuthorized?.();
+                onUnauthorized?.();
                 window.location.assign(loginURL);
             }
             return Promise.reject(error);

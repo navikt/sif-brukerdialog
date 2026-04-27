@@ -8,12 +8,12 @@ export const initApiClients = () => {
     initK9BrukerdialogProsesseringApiClients({
         frontendPath: getRequiredEnv(EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH),
         loginURL: getRequiredEnv(EnvKey.SIF_PUBLIC_LOGIN_URL),
-        onUnAuthorized: setRedirectingToLogin,
+        onUnauthorized: setRedirectingToLogin,
     });
 
     initK9SakInnsynApiClients({
         frontendPath: getRequiredEnv(EnvKey.K9_SAK_INNSYN_FRONTEND_PATH),
         loginURL: getRequiredEnv(EnvKey.SIF_PUBLIC_LOGIN_URL),
-        onUnAuthorized: setRedirectingToLogin,
+        onUnauthorized: setRedirectingToLogin,
     });
 };
