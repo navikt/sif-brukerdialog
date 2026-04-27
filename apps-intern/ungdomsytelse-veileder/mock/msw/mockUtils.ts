@@ -204,7 +204,7 @@ const endreSluttdato = (deltakelseId: string, dato: string) => {
             ...deltakelse.deltakelse,
             tilOgMed: dato,
         },
-        historikk: [...deltakelse.historikk, getEndretSluttdatoHistorikk(deltakelse.deltakelse.tilOgMed, dato)],
+        historikk: [...deltakelse.historikk, getEndretSluttdatoHistorikk(deltakelse.deltakelse.tilOgMed!, dato)],
     };
     db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? dbDeltakelse : d));
     save(db);
