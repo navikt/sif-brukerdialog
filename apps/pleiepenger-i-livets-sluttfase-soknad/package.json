@@ -29,7 +29,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@tanstack/react-query": "5.99.2",
         "@testing-library/react": "16.3.2",
-        "axios": "1.15.1",
+        "axios": "1.15.2",
         "busboy": "1.6.0",
         "classnames": "2.5.1",
         "csp-header": "6.3.1",
@@ -43,7 +43,7 @@
         "react-dom": "19.2.5",
         "react-fast-compare": "3.2.2",
         "react-intl": "10.1.2",
-        "react-router-dom": "7.14.1",
+        "react-router-dom": "7.14.2",
         "uuid": "14.0.0"
     },
     "devDependencies": {
@@ -51,8 +51,8 @@
         "@playwright/test": "1.59.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "10.3.5",
-        "@tailwindcss/postcss": "4.2.2",
-        "@tailwindcss/vite": "4.2.2",
+        "@tailwindcss/postcss": "4.2.4",
+        "@tailwindcss/vite": "4.2.4",
         "@testing-library/dom": "10.4.1",
         "@testing-library/react": "16.3.2",
         "@types/object-hash": "3.0.6",
@@ -70,9 +70,9 @@
         "postcss": "8.5.10",
         "postcss-import": "16.1.1",
         "storybook": "10.3.5",
-        "tailwindcss": "4.2.2",
+        "tailwindcss": "4.2.4",
         "typescript": "6.0.3",
-        "vite": "8.0.9",
+        "vite": "8.0.10",
         "vite-plugin-checker": "0.13.0"
     },
     "scripts": {

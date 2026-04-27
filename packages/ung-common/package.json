@@ -13,13 +13,13 @@
     "devDependencies": {
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.15.1",
+        "axios": "1.15.2",
         "config": "workspace:*",
         "dayjs": "1.11.20",
         "postcss": "8.5.10",
         "typescript": "6.0.3",
         "uuid": "14.0.0",
-        "vitest": "4.1.4",
+        "vitest": "4.1.5",
         "zod": "4.3.6"
     },
     "peerDependencies": {
