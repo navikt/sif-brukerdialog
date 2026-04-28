@@ -74,18 +74,18 @@ Ved migrering fra gammel `VelgBarnFormPart` (fra `@navikt/sif-common-forms-ds`):
 
 `createSifFormComponents<T>()` fra `@sif/rhf` gir disse komponentene:
 
-| Komponent         | Bruksområde                 | Verditype i FormValues | Validator                                           |
-| ----------------- | --------------------------- | ---------------------- | --------------------------------------------------- |
-| `YesOrNoQuestion` | Ja/nei-spørsmål             | `YesOrNo`              | `getYesOrNoValidator()`                             |
-| `CheckboxGroup`   | Flervalg med checkboxer     | `string[]` / `enum[]`  | `getListValidator({ required: true })`              |
-| `RadioGroup`      | Enkeltvalg med radioknapper | `string` / `enum`      | `getRequiredFieldValidator()`                       |
-| `TextField`       | Fritekstfelt                | `string`               | `getStringValidator({ required: true })`            |
-| `Textarea`        | Lengre fritekst             | `string`               | `getStringValidator({ required: true, maxLength })` |
-| `NumberInput`     | Tallfelt                    | `string`               | `getNumberValidator({ required: true })`            |
-| `Datepicker`      | Datovelger                  | `string`               | `getDateValidator()`                                |
-| `DateRangePicker`  | Fra/til-datoperiode          | `string` (per felt)    | `getDateValidator()` per felt + `validate`-prop på gruppen |
-| `Select`          | Nedtrekksliste              | `string`               | `getRequiredFieldValidator()`                       |
-| `Checkbox`        | Enkelt avkrysningsboks      | `boolean`              | `getCheckedValidator()`                             |
+| Komponent         | Bruksområde                 | Verditype i FormValues | Validator                                                  |
+| ----------------- | --------------------------- | ---------------------- | ---------------------------------------------------------- |
+| `YesOrNoQuestion` | Ja/nei-spørsmål             | `YesOrNo`              | `getYesOrNoValidator()`                                    |
+| `CheckboxGroup`   | Flervalg med checkboxer     | `string[]` / `enum[]`  | `getListValidator({ required: true })`                     |
+| `RadioGroup`      | Enkeltvalg med radioknapper | `string` / `enum`      | `getRequiredFieldValidator()`                              |
+| `TextField`       | Fritekstfelt                | `string`               | `getStringValidator({ required: true })`                   |
+| `Textarea`        | Lengre fritekst             | `string`               | `getStringValidator({ required: true, maxLength })`        |
+| `NumberInput`     | Tallfelt                    | `string`               | `getNumberValidator({ required: true })`                   |
+| `Datepicker`      | Datovelger                  | `string`               | `getDateValidator()`                                       |
+| `DateRangePicker` | Fra/til-datoperiode         | `string` (per felt)    | `getDateValidator()` per felt + `validate`-prop på gruppen |
+| `Select`          | Nedtrekksliste              | `string`               | `getRequiredFieldValidator()`                              |
+| `Checkbox`        | Enkelt avkrysningsboks      | `boolean`              | `getCheckedValidator()`                                    |
 
 Alle validatorer importeres fra `@navikt/sif-validation`.
 
@@ -126,21 +126,25 @@ For `DateRangePicker` brukes `getDateValidator` per felt — **ikke** `getDateRa
     })}
     fromInputProps={{
         name: FormFields.fom,
-        validate: validateField(FormFields.fom,
+        validate: validateField(
+            FormFields.fom,
             getDateValidator({ required: true, min: minDate, max: maxDate }),
             (errorCode) => {
                 if (errorCode === 'dateIsBeforeMin' && minDate) return { dato: sifIntl.date(minDate, 'compact') };
                 if (errorCode === 'dateIsAfterMax' && maxDate) return { dato: sifIntl.date(maxDate, 'compact') };
-            }),
+            },
+        ),
     }}
     toInputProps={{
         name: FormFields.tom,
-        validate: validateField(FormFields.tom,
+        validate: validateField(
+            FormFields.tom,
             getDateValidator({ required: true, min: minDate, max: maxDate }),
             (errorCode) => {
                 if (errorCode === 'dateIsBeforeMin' && minDate) return { dato: sifIntl.date(minDate, 'compact') };
                 if (errorCode === 'dateIsAfterMax' && maxDate) return { dato: sifIntl.date(maxDate, 'compact') };
-            }),
+            },
+        ),
     }}
 />
 ```
@@ -377,19 +381,19 @@ import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
 <YesOrNoQuestion name={...} ... />
 <AriaLiveRegion visible={feltVerdi === YesOrNo.NO}>
     <QuestionRelatedMessage>
-        <SifInfoMessage>...</SifInfoMessage>
+        <SifInfoCard>...</SifInfoCard>
     </QuestionRelatedMessage>
 </AriaLiveRegion>
 ```
 
 `QuestionRelatedMessage` inne i `AriaLiveRegion` fungerer korrekt — `Bleed`'s negative top-margin trekker meldingen opp mot spørsmålet over.
 
-**Komponentvalg ved migrering:** Sjekk alltid hvilken status og presentasjon v1 bruker på tilsvarende melding. Bruk `SifInfoMessage` for info/warning, `InlineMessage` når den gamle løsningen var inline, og `LocalAlert status="error"` for feil. Ikke gjett. Finn meldingskomponenten i v1 (gjerne under `alert/`-mappe i steget) og bevar betydningen.
+**Komponentvalg ved migrering:** Sjekk alltid hvilken status og presentasjon v1 bruker på tilsvarende melding. Bruk `SifInfoCard` for info/warning, `InlineMessage` når den gamle løsningen var inline, og `LocalAlert status="error"` for feil. Ikke gjett. Finn meldingskomponenten i v1 (gjerne under `alert/`-mappe i steget) og bevar betydningen.
 
 ```
 # Eksempel fra v1-mappestruktur:
-steps/om-barnet/alert/IkkeKroniskEllerFuksjonshemningAlert.tsx → SifInfoMessage
-steps/om-barnet/alert/TrengerIkkeSøkeForBarnAlert.tsx         → SifInfoMessage
+steps/om-barnet/alert/IkkeKroniskEllerFuksjonshemningAlert.tsx → SifInfoCard
+steps/om-barnet/alert/TrengerIkkeSøkeForBarnAlert.tsx         → SifInfoCard
 steps/oppsummering/alert/UgyldigSøknadAlert.tsx               → LocalAlert status="error"
 ```
 

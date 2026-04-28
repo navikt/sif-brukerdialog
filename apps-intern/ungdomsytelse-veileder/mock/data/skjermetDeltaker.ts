@@ -1,11 +1,11 @@
 import {
-    DeltakelseDto,
     DeltakelseHistorikkDto,
     DeltakerPersonalia,
     Diskresjonskode,
     Endringstype,
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { DeltakelseMedKvoteInfoDto } from '../../src/types/Deltakelse';
 
 const deltakerPersonalia: DeltakerPersonalia = {
     id: '6369f9a3-5a38-4b90-b93a-695fabe8c6f9',
@@ -21,7 +21,7 @@ const deltakerPersonalia: DeltakerPersonalia = {
     diskresjonskoder: [Diskresjonskode.SKJERMET, Diskresjonskode.KODE6],
 };
 
-const deltakelse: DeltakelseDto = {
+const deltakelse: DeltakelseMedKvoteInfoDto = {
     id: '2a270c69-9a5b-4a94-b27e-53f6e70bc35f',
     deltaker: {
         id: '6369f9a3-5a38-4b90-b93a-695fabe8c6f9',
