@@ -1,10 +1,11 @@
-import { Alert, BodyShort, Button, Heading, HStack, Tag, VStack } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, HStack, Tag, VStack } from '@navikt/ds-react';
 import InfoBox from '../../../atoms/InfoBox';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { useState } from 'react';
 import UtvidTildeltPeriodeModal from '../../../components/utvid-tildelt-periode-modal/UtvidTildeltPeriodeModal';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { deltakelseKvoteErUtløpt } from '../../../utils/deltakelseUtils';
 
 interface DatoBoksProps {
     deltaker: Deltaker;
@@ -18,6 +19,7 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote, onDeltakelseCh
 
     const { harUtvidetKvote, maksDeltakelseDato } = deltakelse;
     const antallTildelteDager = harUtvidetKvote ? 300 : 260;
+    const kvoteErUtløpt = maksDeltakelseDato ? deltakelseKvoteErUtløpt(deltakelse) : false;
 
     return (
         <>
@@ -32,7 +34,8 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote, onDeltakelseCh
                         <HStack gap="space-12">{antallTildelteDager} dager</HStack>
                     </BodyShort>
                     <BodyShort>
-                        Utløper <strong>{dateFormatter.dayCompactDate(maksDeltakelseDato)}</strong>.
+                        {kvoteErUtløpt ? 'Utløp' : 'Utløper'}{' '}
+                        <strong>{dateFormatter.dayCompactDate(maksDeltakelseDato)}</strong>.
                     </BodyShort>
                     {harUtvidetKvote ? (
                         <div>
@@ -48,11 +51,7 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote, onDeltakelseCh
                                         Registrert utvidet deltakelse
                                     </Button>
                                 </div>
-                            ) : (
-                                <Alert variant="info" inline>
-                                    Deltakelse kan ikke utvides
-                                </Alert>
-                            )}
+                            ) : null}
                         </>
                     )}
                 </VStack>
