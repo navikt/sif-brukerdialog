@@ -3,7 +3,14 @@ import { zDeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { z } from 'zod';
 
-export const deltakelseSchema = zDeltakelseDto
+export const zDeltakelseMedUtvidetKvoteInfoDto = zDeltakelseDto.extend({
+    harUtvidetKvote: z.boolean().nullish().optional(),
+    maksDeltakelseDato: z.iso.date().nullish().optional(),
+});
+
+export type DeltakelseMedKvoteInfoDto = z.infer<typeof zDeltakelseMedUtvidetKvoteInfoDto>;
+
+export const deltakelseSchema = zDeltakelseMedUtvidetKvoteInfoDto
     .extend({
         id: z.string(),
         harOpphørsvedtak: z.boolean().optional().default(false),
@@ -11,6 +18,7 @@ export const deltakelseSchema = zDeltakelseDto
     .transform((data) => {
         const fraOgMed = ISODateToDate(data.fraOgMed);
         const tilOgMed = data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined;
+
         return {
             ...data,
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,

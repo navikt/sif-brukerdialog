@@ -288,7 +288,7 @@ Sjekk tabellen:
 // Melding som skal annonseres til skjermlesere — bruk AriaLiveRegion
 <AriaLiveRegion visible={feltVerdi === YesOrNo.NO}>
     <QuestionRelatedMessage>
-        <SifInfoMessage>...</SifInfoMessage>
+        <SifInfoCard>...</SifInfoCard>
     </QuestionRelatedMessage>
 </AriaLiveRegion>
 ```
@@ -497,7 +497,7 @@ i18n-nøkler for cross-field-feilen bruker gruppens navn som felt: `scope.valida
 - [ ] Interpolasjonsverdier matcher originalen
 - [ ] Locale-avhengig presentasjon matcher originalen
 - [ ] Tekster matcher originalen i `sif-common-forms-ds` — ikke omskrevet
-- [ ] `AriaLiveRegion` brukes kun rundt dynamiske meldinger (`SifInfoMessage`, `InlineMessage`, `LocalAlert`)
+- [ ] `AriaLiveRegion` brukes kun rundt dynamiske meldinger (`SifInfoCard`, `InlineMessage`, `LocalAlert`)
 - [ ] Betingede felter som skjules får `clearErrors` i `useEffect`
 - [ ] `useSifValidate` brukes når key-strukturen følger standardmønsteret, med `values` ved behov
 - [ ] i18n-nøkler bruker eksakte feilkoder fra `@navikt/sif-validation` (sjekk `enum Validate*Error`)

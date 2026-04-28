@@ -1,10 +1,10 @@
 import {
-    DeltakelseDto,
     DeltakelseHistorikkDto,
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { DeltakelseMedKvoteInfoDto } from '../../src/types/Deltakelse';
 
 const deltakerPersonalia: DeltakerPersonalia = {
     id: '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
@@ -19,7 +19,7 @@ const deltakerPersonalia: DeltakerPersonalia = {
     diskresjonskoder: [],
 };
 
-const deltakelse: DeltakelseDto = {
+const deltakelse: DeltakelseMedKvoteInfoDto = {
     id: '5e8d1e4c-801c-4d13-8987-abfae3eaaa00',
     deltaker: {
         id: '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
@@ -30,6 +30,8 @@ const deltakelse: DeltakelseDto = {
     erSlettet: false,
     harOpphørsvedtak: false,
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
+    harUtvidetKvote: true,
+    maksDeltakelseDato: '2025-05-31',
 };
 
 const deltakelseHistorikk: DeltakelseHistorikkDto[] = [

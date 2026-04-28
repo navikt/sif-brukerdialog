@@ -1,7 +1,6 @@
 import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { getDateToday } from '@navikt/sif-common-utils';
-import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
@@ -11,6 +10,8 @@ import EndreSluttdatoPanel from './EndreSluttdatoPanel';
 import EndreStartdatoPanel from './EndreStartdatoPanel';
 import MeldUtDeltakerPanel from './MeldUtDeltakerPanel';
 import SluttdatoKanIkkeEndresPanel from './SluttdatoKanIkkeEndresPanel';
+import TildeltKvotePanel from './TildeltKvotePanel';
+import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 
 interface Props {
     deltaker: Deltaker;
@@ -40,6 +41,14 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                 <Heading level="2" size="medium">
                     Deltakerperiode
                 </Heading>
+
+                <TildeltKvotePanel
+                    deltaker={deltaker}
+                    deltakelse={deltakelse}
+                    kanEndreKvote={true}
+                    onClickEndreButton={() => null}
+                />
+
                 <HGrid gap="space-16" columns={{ sm: 1, md: '1fr 1fr' }}>
                     <EndreStartdatoPanel
                         dato={deltakelse.fraOgMed}
@@ -69,6 +78,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                                     }}
                                 />
                             )}
+                            {!deltakerHarSøkt && <SluttdatoKanIkkeEndresPanel />}
                         </>
                     ) : (
                         <SluttdatoKanIkkeEndresPanel />

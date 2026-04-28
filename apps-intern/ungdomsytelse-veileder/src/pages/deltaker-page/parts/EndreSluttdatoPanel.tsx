@@ -1,4 +1,4 @@
-import { BodyShort, Button, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { PencilFillIcon } from '@navikt/aksel-icons';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import InfoBox from '../../../atoms/InfoBox';
@@ -11,25 +11,27 @@ interface Props {
 
 const EndreSluttdatoPanel = ({ tilOgMed, kanEndreSluttdato, onClickEndreSluttdato }: Props) => (
     <InfoBox>
-        <VStack gap="space-24">
+        <VStack gap="space-12">
             <div>
                 <Heading level="3" size="xsmall" spacing>
-                    <BodyShort as="span">Sluttdato:</BodyShort>
+                    Sluttdato
                 </Heading>
-                <BodyShort size="large" weight="semibold" className="text-2xl capitalize">
+                <BodyShort size="large" weight="semibold" className="capitalize" style={{ fontSize: '1.5rem' }}>
                     {dateFormatter.dayCompactDate(tilOgMed)}
                 </BodyShort>
             </div>
 
             <div>
                 {kanEndreSluttdato ? (
-                    <Button
-                        variant="primary"
-                        size="small"
-                        icon={<PencilFillIcon aria-hidden="true" />}
-                        onClick={onClickEndreSluttdato}>
-                        Endre sluttdato
-                    </Button>
+                    <Box paddingBlock="space-8 space-0">
+                        <Button
+                            variant="primary"
+                            size="small"
+                            icon={<PencilFillIcon aria-hidden="true" />}
+                            onClick={onClickEndreSluttdato}>
+                            Endre sluttdato
+                        </Button>
+                    </Box>
                 ) : (
                     <>Sluttdato kan ikke endres</>
                 )}

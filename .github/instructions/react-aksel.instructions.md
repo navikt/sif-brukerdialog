@@ -18,7 +18,7 @@ Use these instructions for non-Next React apps in this monorepo.
 - Keep styling aligned with Aksel tokens and established app conventions.
 - Never use Tailwind padding/margin (`p-`, `m-`, `px-`, `py-`) with Aksel components. Use Aksel spacing-tokens (`space-4`, `space-6`, etc.).
 - Do not use the `Alert` component.
-- Use `SifInfoMessage` for info- og warning-meldinger.
+- Use `SifInfoCard` for info- og warning-meldinger.
 - Use `InlineMessage` when the old solution used inline alerting.
 - Use `LocalAlert` with `status="error"` for error-meldinger.
 
