@@ -39,7 +39,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
 
     const tillattEndringsperiode = getTillattEndringsperiode(getDateToday());
 
-    const deltakerHarSøkt = deltakelse.søktTidspunkt;
+    const deltakerHarSøkt = deltakelse.søktTidspunkt !== undefined;
     const startdatoKanEndres = kanEndreStartdato(deltakelse, tillattEndringsperiode);
     const sluttdatoKanEndres = kanEndreSluttdato(deltakelse, tillattEndringsperiode);
 
@@ -50,14 +50,17 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                     Deltakerperiode
                 </Heading>
 
-                <TildeltKvotePanel
-                    deltaker={deltaker}
-                    deltakelse={deltakelse}
-                    kanEndreKvote={!deltakelseKvoteErUtløpt(deltakelse) && !deltakelseSluttdatoErPassert(deltakelse)}
-                    onDeltakelseChanged={handleOnDeltakelseChanged}
-                />
-
-                <HGrid gap="space-16" columns={{ sm: 1, md: '1fr 1fr' }}>
+                <HGrid gap="space-8" columns={{ sm: 1, md: '1fr 1fr 1fr' }}>
+                    <TildeltKvotePanel
+                        deltaker={deltaker}
+                        deltakelse={deltakelse}
+                        kanEndreKvote={
+                            deltakerHarSøkt &&
+                            !deltakelseKvoteErUtløpt(deltakelse) &&
+                            !deltakelseSluttdatoErPassert(deltakelse)
+                        }
+                        onDeltakelseChanged={handleOnDeltakelseChanged}
+                    />
                     <EndreStartdatoPanel
                         dato={deltakelse.fraOgMed}
                         kanEndreStartdato={startdatoKanEndres}
