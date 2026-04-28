@@ -1,6 +1,6 @@
 // /* eslint-disable no-console */
 
-import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateFormatter, dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
@@ -188,6 +188,10 @@ const utvidDeltakelse = (deltakelseId: string) => {
         ...deltakelse,
         deltakelse: {
             ...deltakelse.deltakelse,
+            harUtvidetKvote: true,
+            maksDeltakelseDato: dateToISODate(
+                dayjs(ISODateToDate(deltakelse.deltakelse.fraOgMed)).add(300, 'days').toDate(),
+            ),
         },
         historikk: [...deltakelse.historikk, getUtvidetDeltakelseHistorikk()],
     };

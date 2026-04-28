@@ -35,7 +35,7 @@ interface Props {
 const UtvidDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }: Props) => {
     const intl = useIntl();
 
-    const { mutate, isPending, error } = useUtvidDeltakelse(deltakelse.id);
+    const { mutate, isPending, error } = useUtvidDeltakelse({ deltakelseId: deltakelse.id, deltakerId: deltaker.id });
 
     const handleOnSubmit = async (values: FormValues) => {
         const { bekrefterEndring } = values;

@@ -46,7 +46,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                     deltaker={deltaker}
                     deltakelse={deltakelse}
                     kanEndreKvote={true}
-                    onClickEndreButton={() => null}
+                    onDeltakelseChanged={handleOnDeltakelseChanged}
                 />
 
                 <HGrid gap="space-16" columns={{ sm: 1, md: '1fr 1fr' }}>

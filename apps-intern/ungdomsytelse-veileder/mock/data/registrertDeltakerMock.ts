@@ -30,8 +30,8 @@ const deltakelse: DeltakelseDto = {
     erSlettet: false,
     harOpphørsvedtak: false,
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
-    harUtvidetKvote: true,
-    maksDeltakelseDato: '2025-05-31',
+    harUtvidetKvote: false,
+    maksDeltakelseDato: '2025-11-25',
 };
 
 const deltakelseHistorikk: DeltakelseHistorikkDto[] = [
