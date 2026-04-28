@@ -1,7 +1,7 @@
 import { Heading, Modal } from '@navikt/ds-react';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
-import UtvidTildeltPeriodeForm from '../../forms/utvid-tildelt-periode-form/UtvidTildeltPeriodeForm';
+import UtvidDeltakelseForm from '../../forms/utvid-deltakelse-form/UtvidDeltakelseForm';
 
 interface Props {
     deltaker: Deltaker;
@@ -20,7 +20,7 @@ const UtvidTildeltPeriodeModal = ({ deltaker, deltakelse, onDeltakelseChanged, o
                 </Heading>
             </Modal.Header>
             <Modal.Body>
-                <UtvidTildeltPeriodeForm
+                <UtvidDeltakelseForm
                     deltakelse={deltakelse}
                     deltaker={deltaker}
                     onCancel={onClose}

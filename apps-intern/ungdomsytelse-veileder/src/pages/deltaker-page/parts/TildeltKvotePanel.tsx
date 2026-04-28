@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Button, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Heading, HStack, Tag, VStack } from '@navikt/ds-react';
 import InfoBox from '../../../atoms/InfoBox';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { dateFormatter } from '@navikt/sif-common-utils';
@@ -17,35 +17,52 @@ interface DatoBoksProps {
 const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote }: DatoBoksProps) => {
     const [visDialog, setVisDialog] = useState(false);
 
-    const sisteKvoteDato = dateFormatter.dayCompactDate(dayjs(deltakelse.fraOgMed).add(260, 'days').toDate());
-
     const handleOnDeltakelseChanged = () => {
         console.log('changed');
         setVisDialog(false);
     };
+
+    const { harUtvidetKvote } = deltakelse;
+    const antallTildelteDager = harUtvidetKvote ? 300 : 360;
+    const sisteKvoteDato = dateFormatter.dayCompactDate(
+        dayjs(deltakelse.fraOgMed).add(antallTildelteDager, 'days').toDate(),
+    );
+
     return (
         <>
             <InfoBox>
                 <VStack gap="space-12">
-                    <Heading level="3" size="xsmall">
-                        Tildelte dager
-                    </Heading>
+                    <HStack gap="space-12">
+                        <Heading level="3" size="xsmall">
+                            Tildelte dager
+                        </Heading>
+                    </HStack>
                     <BodyShort size="large" weight="semibold" style={{ fontSize: '1.5rem' }}>
-                        260 dager
+                        <HStack gap="space-12">{antallTildelteDager} dager</HStack>
                     </BodyShort>
                     <BodyShort>
                         Utløper <strong>{sisteKvoteDato}</strong>.
                     </BodyShort>
-                    {kanEndreKvote ? (
+                    {harUtvidetKvote ? (
                         <div>
-                            <Button variant="primary" size="small" onClick={() => setVisDialog(true)}>
-                                Registrert utvidet deltakelse
-                            </Button>
+                            <Tag size="small" data-color="warning">
+                                Har utvidet vedtak
+                            </Tag>
                         </div>
                     ) : (
-                        <Alert variant="info" inline>
-                            Deltakelse kan ikke utvides
-                        </Alert>
+                        <>
+                            {kanEndreKvote ? (
+                                <div>
+                                    <Button variant="primary" size="small" onClick={() => setVisDialog(true)}>
+                                        Registrert utvidet deltakelse
+                                    </Button>
+                                </div>
+                            ) : (
+                                <Alert variant="info" inline>
+                                    Deltakelse kan ikke utvides
+                                </Alert>
+                            )}
+                        </>
                     )}
                 </VStack>
             </InfoBox>
