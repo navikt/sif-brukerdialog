@@ -12,6 +12,8 @@ export type DeltakelseDto = {
     id?: string | null;
     søktTidspunkt?: string | null;
     tilOgMed?: string | null;
+    harUtvidetKvote?: boolean | null;
+    maksDeltakelseDato?: string | null;
 };
 
 export type DeltakelseHistorikkDto = {
@@ -174,7 +176,30 @@ export type MeldUtDeltakerData = {
     url: '/veileder/register/deltakelse/{deltakelseId}/avslutt';
 };
 
+export type UtvidDeltakelseData = {
+    // body: any;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/utvid';
+};
+
 export type MeldUtDeltakerErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+export type UtvidDeltakelseErrors = {
     /**
      * Unauthorized
      */
@@ -192,6 +217,12 @@ export type MeldUtDeltakerErrors = {
 export type MeldUtDeltakerError = MeldUtDeltakerErrors[keyof MeldUtDeltakerErrors];
 
 export type MeldUtDeltakerResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+export type UtvidDeltakelseResponses = {
     /**
      * OK
      */

@@ -24,6 +24,8 @@ export const zDeltakelseDto = z.object({
     id: z.uuid().nullish(),
     søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
     tilOgMed: z.iso.date().nullish(),
+    harUtvidetKvote: z.boolean().nullish().optional(),
+    maksDeltakelseDato: z.iso.date().nullish().optional(),
 });
 
 export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
@@ -103,10 +105,15 @@ export const zMeldUtDeltakerPath = z.object({
     deltakelseId: z.uuid(),
 });
 
+export const zUtvidDeltakelsePath = z.object({
+    deltakelseId: z.uuid(),
+});
 /**
  * OK
  */
 export const zMeldUtDeltakerResponse = zDeltakelseDto;
+
+export const zUtvidDeltakelseResponse = zDeltakelseDto;
 
 export const zEndreSluttdatoBody = zEndrePeriodeDatoDto;
 
