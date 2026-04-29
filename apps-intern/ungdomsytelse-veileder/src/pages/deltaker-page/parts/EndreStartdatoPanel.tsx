@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Button, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { PencilFillIcon } from '@navikt/aksel-icons';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import InfoBox from '../../../atoms/InfoBox';
@@ -22,15 +22,20 @@ const EndreStartdatoPanel = ({ dato, kanEndreStartdato, onClickEndreButton }: Da
                     </BodyShort>
                 </div>
                 {kanEndreStartdato ? (
-                    <Box paddingBlock="space-8 space-0">
-                        <Button
-                            variant="primary"
-                            size="small"
-                            icon={<PencilFillIcon aria-hidden="true" />}
-                            onClick={onClickEndreButton}>
-                            Endre startdato
-                        </Button>
-                    </Box>
+                    <>
+                        <BodyLong>
+                            Startdato kan endres innenfor de første 4 månedene etter opprinnelig startdato.
+                        </BodyLong>
+                        <Box paddingBlock="space-8 space-0">
+                            <Button
+                                variant="primary"
+                                size="small"
+                                icon={<PencilFillIcon aria-hidden="true" />}
+                                onClick={onClickEndreButton}>
+                                Endre startdato
+                            </Button>
+                        </Box>
+                    </>
                 ) : (
                     <Alert variant="info" inline>
                         Startdato kan ikke endres
