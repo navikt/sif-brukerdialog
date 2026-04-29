@@ -5,14 +5,14 @@ export type ClientOptions = {
 };
 
 export type ArbeidIPeriode = {
-    redusertArbeid?: ArbeidsRedusert;
+    redusertArbeid?: ArbeidsRedusert | null;
     type: 'ARBEIDER_VANLIG' | 'ARBEIDER_REDUSERT' | 'ARBEIDER_IKKE' | 'IKKE_BESVART';
 };
 
 export type ArbeidsRedusert = {
-    arbeidsuker?: ArbeidsUke[];
-    prosentAvNormalt?: number;
-    timerPerUke?: string;
+    arbeidsuker?: ArbeidsUke[] | null;
+    prosentAvNormalt?: number | null;
+    timerPerUke?: string | null;
     type: 'PROSENT_AV_NORMALT' | 'TIMER_I_SNITT_PER_UKE' | 'ULIKE_UKER_TIMER';
 };
 
@@ -27,23 +27,23 @@ export type Arbeidsforhold = {
 };
 
 export type Arbeidsgiver = {
-    arbeidsforhold?: Arbeidsforhold;
+    arbeidsforhold?: Arbeidsforhold | null;
     erAnsatt: boolean;
     navn: string;
     organisasjonsnummer: string;
-    sluttetFørSøknadsperiode?: boolean;
+    sluttetFørSøknadsperiode?: boolean | null;
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[];
+    frilansoppdrag?: FrilansoppdragDto[] | null;
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
 };
 
 export type BarnDetaljer = {
-    aktørId?: string;
-    fødselsdato?: string;
-    fødselsnummer?: string;
+    aktørId?: string | null;
+    fødselsdato?: string | null;
+    fødselsnummer?: string | null;
     navn: string;
     årsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
 };
@@ -53,7 +53,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type BarnOppslagListe = {
@@ -62,7 +62,7 @@ export type BarnOppslagListe = {
 
 export type Beredskap = {
     beredskap: boolean;
-    tilleggsinformasjon?: string;
+    tilleggsinformasjon?: string | null;
 };
 
 export type Bosted = {
@@ -100,8 +100,8 @@ export type FosterhjemsgodtgjørelseFrikjøpt = Omit<Fosterhjemgodtgjørelse, 't
 
 export type FosterhjemsgodtgjørelseIkkeFrikjøpt = Omit<Fosterhjemgodtgjørelse, 'type'> & {
     erFrikjøptFraJobb: boolean;
-    sluttdato?: string;
-    startdato?: string;
+    sluttdato?: string | null;
+    startdato?: string | null;
     type: 'FosterhjemsgodtgjørelseIkkeFrikjøpt';
 };
 
@@ -110,22 +110,22 @@ export type FosterhjemsgodtgjørelseMottarIkke = Omit<Fosterhjemgodtgjørelse, '
 };
 
 export type Frilans = {
-    arbeidsforhold?: Arbeidsforhold;
+    arbeidsforhold?: Arbeidsforhold | null;
     harInntektSomFrilanser: boolean;
-    jobberFortsattSomFrilans?: boolean;
-    misterHonorar?: boolean;
-    sluttdato?: string;
-    startdato?: string;
-    startetFørSisteTreHeleMåneder?: boolean;
+    jobberFortsattSomFrilans?: boolean | null;
+    misterHonorar?: boolean | null;
+    sluttdato?: string | null;
+    startdato?: string | null;
+    startetFørSisteTreHeleMåneder?: boolean | null;
     type?: 'FRILANS' | 'FRILANS_HONORAR' | 'HONORAR';
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
+    offentligIdent?: string | null;
+    organisasjonsnummer?: string | null;
     type: string;
 };
 
@@ -137,15 +137,15 @@ export type Land = {
 };
 
 export type Medlemskap = {
-    harBoddIUtlandetSiste12Mnd?: boolean;
-    skalBoIUtlandetNeste12Mnd?: boolean;
+    harBoddIUtlandetSiste12Mnd?: boolean | null;
+    skalBoIUtlandetNeste12Mnd?: boolean | null;
     utenlandsoppholdNeste12Mnd: Bosted[];
     utenlandsoppholdSiste12Mnd: Bosted[];
 };
 
 export type Nattevåk = {
-    harNattevåk: boolean;
-    tilleggsinformasjon?: string;
+    harNattevåk: boolean | null;
+    tilleggsinformasjon?: string | null;
 };
 
 export type NormalArbeidstid = {
@@ -159,8 +159,8 @@ export type Omsorgsstønad = {
 
 export type OmsorgsstønadMottarDelerAvPerioden = Omit<Omsorgsstønad, 'type'> & {
     antallTimerIUken: string;
-    sluttdato?: string;
-    startdato?: string;
+    sluttdato?: string | null;
+    startdato?: string | null;
     type: 'OmsorgsstønadMottarDelerAvPerioden';
 };
 
@@ -174,11 +174,11 @@ export type OmsorgsstønadMottarIkke = Omit<Omsorgsstønad, 'type'> & {
 };
 
 export type Omsorgstilbud = {
-    enkeltdager?: Enkeltdag[];
-    erLiktHverUke?: boolean;
+    enkeltdager?: Enkeltdag[] | null;
+    erLiktHverUke?: boolean | null;
     svarFortid?: 'JA' | 'NEI';
     svarFremtid?: 'JA' | 'NEI' | 'USIKKER';
-    ukedager?: PlanUkedager;
+    ukedager?: PlanUkedager | null;
 };
 
 export type OpptjeningIUtlandet = {
@@ -190,9 +190,9 @@ export type OpptjeningIUtlandet = {
 };
 
 export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
     organisasjonsnummer: string;
 };
 
@@ -202,41 +202,47 @@ export type Periode = {
 };
 
 export type PlanUkedager = {
-    fredag?: string;
-    mandag?: string;
-    onsdag?: string;
-    tirsdag?: string;
-    torsdag?: string;
+    fredag?: string | null;
+    mandag?: string | null;
+    onsdag?: string | null;
+    tirsdag?: string | null;
+    torsdag?: string | null;
 };
 
 export type PleiepengerSyktBarnSøknad = {
-    apiDataVersjon?: string;
+    apiDataVersjon?: string | null;
     arbeidsgivere: Arbeidsgiver[];
     barn: BarnDetaljer;
     barnRelasjon?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
-    barnRelasjonBeskrivelse?: string;
-    beredskap?: Beredskap;
-    dataBruktTilUtledningAnnetData?: string;
-    ferieuttakIPerioden?: FerieuttakIPerioden;
+    barnRelasjonBeskrivelse?: string | null;
+    beredskap?: Beredskap | null;
+    dataBruktTilUtledningAnnetData?: string | null;
+    ferieuttakIPerioden?: FerieuttakIPerioden | null;
     fosterhjemgodtgjørelse?:
         | FosterhjemsgodtgjørelseFrikjøpt
         | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        | FosterhjemsgodtgjørelseMottarIkke
+        | null;
     fraOgMed: string;
     frilans: Frilans;
-    fødselsattestVedleggUrls?: string[];
+    fødselsattestVedleggUrls?: string[] | null;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    harVærtEllerErVernepliktig?: boolean;
+    harVærtEllerErVernepliktig?: boolean | null;
     medlemskap: Medlemskap;
-    nattevåk?: Nattevåk;
-    newVersion?: boolean;
-    omsorgsstønad?: OmsorgsstønadMottarDelerAvPerioden | OmsorgsstønadMottarHelePerioden | OmsorgsstønadMottarIkke;
-    omsorgstilbud?: Omsorgstilbud;
+    nattevåk?: Nattevåk | null;
+    newVersion?: boolean | null;
+    omsorgsstønad?:
+        | OmsorgsstønadMottarDelerAvPerioden
+        | OmsorgsstønadMottarHelePerioden
+        | OmsorgsstønadMottarIkke
+        | null;
+    omsorgstilbud?: Omsorgstilbud | null;
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
     språk: 'nb' | 'nn';
-    søkerNorskIdent?: string;
+    stønadGodtgjørelse?: null;
+    søkerNorskIdent?: string | null;
     tilOgMed: string;
     utenlandskNæring: UtenlandskNæring[];
     utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
@@ -244,8 +250,8 @@ export type PleiepengerSyktBarnSøknad = {
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
     offentligIdent: string;
 };
 
@@ -266,24 +272,24 @@ export type Regnskapsfører = {
 };
 
 export type SelvstendigNæringsdrivende = {
-    arbeidsforhold?: Arbeidsforhold;
+    arbeidsforhold?: Arbeidsforhold | null;
     harInntektSomSelvstendig: boolean;
-    virksomhet?: Virksomhet;
+    virksomhet?: Virksomhet | null;
 };
 
 export type StønadGodtgjørelse = {
-    mottarStønadGodtgjørelse?: boolean;
-    sluttdato?: string;
-    startdato?: string;
+    mottarStønadGodtgjørelse?: boolean | null;
+    sluttdato?: string | null;
+    startdato?: string | null;
 };
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
+    etternavn?: string | null;
+    fornavn?: string | null;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type UtenlandskNæring = {
@@ -291,14 +297,14 @@ export type UtenlandskNæring = {
     land: Land;
     navnPåVirksomheten: string;
     næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
-    organisasjonsnummer?: string;
-    tilOgMed?: string;
+    organisasjonsnummer?: string | null;
+    tilOgMed?: string | null;
 };
 
 export type Utenlandsopphold = {
-    erBarnetInnlagt?: boolean;
-    erSammenMedBarnet?: boolean;
-    erUtenforEøs?: boolean;
+    erBarnetInnlagt?: boolean | null;
+    erSammenMedBarnet?: boolean | null;
+    erUtenforEøs?: boolean | null;
     fraOgMed: string;
     landkode: string;
     landnavn: string;
@@ -312,7 +318,7 @@ export type Utenlandsopphold = {
 
 export type UtenlandsoppholdIPerioden = {
     opphold: Utenlandsopphold[];
-    skalOppholdeSegIUtlandetIPerioden?: boolean;
+    skalOppholdeSegIUtlandetIPerioden?: boolean | null;
 };
 
 export type VarigEndring = {
@@ -323,16 +329,19 @@ export type VarigEndring = {
 
 export type Virksomhet = {
     erNyoppstartet: boolean;
-    fiskerErPåBladB?: boolean;
+    fiskerErPåBladB?: boolean | null;
     fraOgMed: string;
-    harFlereAktiveVirksomheter: boolean;
+    harFlereAktiveVirksomheter: boolean | null;
     navnPåVirksomheten: string;
-    næringsinntekt?: number;
+    næringsinntekt?: number | null;
     næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
-    organisasjonsnummer?: string;
+    organisasjonsnummer?: string | null;
     registrertINorge: boolean;
-    registrertIUtlandet?: Land;
-    tilOgMed?: string;
+    registrertIUtlandet?: Land | null;
+    regnskapsfører?: null;
+    tilOgMed?: string | null;
+    varigEndring?: null;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
 export type YrkesaktivSisteTreFerdigliknedeArene = {
@@ -340,39 +349,39 @@ export type YrkesaktivSisteTreFerdigliknedeArene = {
 };
 
 export type PleiepengerSyktBarnSøknadWritable = {
-    apiDataVersjon?: string;
+    apiDataVersjon?: string | null;
     arbeidsgivere: Arbeidsgiver[];
     barn: BarnDetaljer;
     barnRelasjon?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
-    barnRelasjonBeskrivelse?: string;
-    beredskap?: Beredskap;
-    dataBruktTilUtledningAnnetData?: string;
-    ferieuttakIPerioden?: FerieuttakIPerioden;
+    barnRelasjonBeskrivelse?: string | null;
+    beredskap?: Beredskap | null;
+    dataBruktTilUtledningAnnetData?: string | null;
+    ferieuttakIPerioden?: FerieuttakIPerioden | null;
     fosterhjemgodtgjørelse?:
         | FosterhjemsgodtgjørelseFrikjøpt
         | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        | FosterhjemsgodtgjørelseMottarIkke
+        | null;
     fraOgMed: string;
     frilans: Frilans;
-    fødselsattestVedleggUrls?: string[];
+    fødselsattestVedleggUrls?: string[] | null;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    harVærtEllerErVernepliktig?: boolean;
+    harVærtEllerErVernepliktig?: boolean | null;
     medlemskap: Medlemskap;
-    nattevåk?: Nattevåk;
-    newVersion?: boolean;
-    omsorgsstønad?: OmsorgsstønadMottarDelerAvPerioden | OmsorgsstønadMottarHelePerioden | OmsorgsstønadMottarIkke;
-    omsorgstilbud?: Omsorgstilbud;
+    nattevåk?: Nattevåk | null;
+    newVersion?: boolean | null;
+    omsorgsstønad?:
+        | OmsorgsstønadMottarDelerAvPerioden
+        | OmsorgsstønadMottarHelePerioden
+        | OmsorgsstønadMottarIkke
+        | null;
+    omsorgstilbud?: Omsorgstilbud | null;
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivendeWritable;
     språk: 'nb' | 'nn';
-    /**
-     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
-     *
-     * @deprecated
-     */
-    stønadGodtgjørelse?: StønadGodtgjørelse;
-    søkerNorskIdent?: string;
+    stønadGodtgjørelse?: StønadGodtgjørelse | null;
+    søkerNorskIdent?: string | null;
     tilOgMed: string;
     utenlandskNæring: UtenlandskNæring[];
     utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
@@ -380,26 +389,26 @@ export type PleiepengerSyktBarnSøknadWritable = {
 };
 
 export type SelvstendigNæringsdrivendeWritable = {
-    arbeidsforhold?: Arbeidsforhold;
+    arbeidsforhold?: Arbeidsforhold | null;
     harInntektSomSelvstendig: boolean;
-    virksomhet?: VirksomhetWritable;
+    virksomhet?: VirksomhetWritable | null;
 };
 
 export type VirksomhetWritable = {
     erNyoppstartet: boolean;
-    fiskerErPåBladB?: boolean;
+    fiskerErPåBladB?: boolean | null;
     fraOgMed: string;
-    harFlereAktiveVirksomheter: boolean;
+    harFlereAktiveVirksomheter: boolean | null;
     navnPåVirksomheten: string;
-    næringsinntekt?: number;
+    næringsinntekt?: number | null;
     næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
-    organisasjonsnummer?: string;
+    organisasjonsnummer?: string | null;
     registrertINorge: boolean;
-    registrertIUtlandet?: Land;
-    regnskapsfører?: Regnskapsfører;
-    tilOgMed?: string;
-    varigEndring?: VarigEndring;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
+    registrertIUtlandet?: Land | null;
+    regnskapsfører?: Regnskapsfører | null;
+    tilOgMed?: string | null;
+    varigEndring?: VarigEndring | null;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene | null;
 };
 
 export type DeleteMellomlagringData = {

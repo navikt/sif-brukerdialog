@@ -10,6 +10,9 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 
 ## Signalord til skill
 
+- `sif-gh-pages`:
+    - Deploy til demo: `gh-pages`, `demo-deploy`, `legg til i gh-pages`, `gh-pages:rebuild`, `vite.demo.config`, `dist-demo`.
+    - MSW på gh-pages: `msw klager`, `service worker feil`, `mockServiceWorker gh-pages`.
 - `sif-intl`:
     - Implementering: `i18n`, `intl`, `nb.ts`, `nn.ts`, `oversettelse`, `tekster`, `nynorsk`, `bokmål`, `legg til tekst`, `ny tekst`.
     - Hooks og komponenter: `AppText`, `useAppIntl`, `AppIntlShape`, `useSifSoknadUiIntl`, `SifSoknadUiText`, `typedIntlHelper`, `applicationIntlMessages`.

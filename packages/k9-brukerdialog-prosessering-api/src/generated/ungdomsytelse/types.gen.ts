@@ -5,9 +5,9 @@ export type ClientOptions = {
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[];
+    frilansoppdrag?: FrilansoppdragDto[] | null;
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
 };
 
 export type BarnOppslag = {
@@ -15,7 +15,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type BarnOppslagListe = {
@@ -23,11 +23,11 @@ export type BarnOppslagListe = {
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
+    offentligIdent?: string | null;
+    organisasjonsnummer?: string | null;
     type: string;
 };
 
@@ -35,24 +35,24 @@ export type JsonNode = unknown;
 
 export type KontonummerInfo = {
     harKontonummer: 'JA' | 'NEI' | 'UVISST';
-    kontonummerErRiktig?: boolean;
-    kontonummerFraRegister?: string;
+    kontonummerErRiktig?: boolean | null;
+    kontonummerFraRegister?: string | null;
 };
 
 export type OppgittInntekt = {
-    arbeidstakerOgFrilansInntekt?: number;
+    arbeidstakerOgFrilansInntekt?: number | null;
 };
 
 export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
     organisasjonsnummer: string;
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
     offentligIdent: string;
 };
 
@@ -69,11 +69,11 @@ export type ProblemDetail = {
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
+    etternavn?: string | null;
+    fornavn?: string | null;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type UngdomsytelseInntektsrapportering = {
@@ -88,7 +88,7 @@ export type UngdomsytelseOppgaveDto = {
 
 export type UngdomsytelseOppgaveUttalelseDto = {
     harUttalelse: boolean;
-    uttalelseFraDeltaker?: string;
+    uttalelseFraDeltaker?: string | null;
 };
 
 export type UngdomsytelseOppgavebekreftelse = {

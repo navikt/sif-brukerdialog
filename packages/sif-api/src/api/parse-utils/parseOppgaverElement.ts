@@ -1,6 +1,7 @@
 /* eslint-disable no-case-declarations */
 import { DateRange, isISODate, ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import {
+    BekreftBostedOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
     EndretSluttdatoDataDto,
@@ -20,6 +21,7 @@ import dayjs from 'dayjs';
 
 import {
     AvvikRegisterinntektOppgave,
+    BostedVilkårOppgave,
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
     EndretStartOgSluttdatoOppgave,
@@ -213,6 +215,23 @@ export const parseOppgaverElement = (
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
+            case OppgaveType.BEKREFT_BOSTED:
+                const bostedData = oppgave.oppgavetypeData as BekreftBostedOppgavetypeDataDto;
+                const bostedVilkårOppgave: BostedVilkårOppgave = {
+                    ...getOppgaveBaseProps(oppgave),
+                    oppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
+                    oppgavetypeData: {
+                        periode: {
+                            from: ISODateToDate(bostedData.fom),
+                            to: ISODateToDate(bostedData.tom),
+                        },
+                        erBosattITrondheim: bostedData.erBosattITrondheim,
+                    },
+                    respons: parseSvarPåVarselRespons(oppgave.respons),
+                };
+                parsedOppgaver.push(bostedVilkårOppgave);
+                return;
+
             case OppgaveType.BEKREFT_ENDRET_STARTDATO:
                 const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;
                 parsedOppgaver.push(getEndretStartdatoOppgave(oppgave, nyStartdato, forrigeStartdato));

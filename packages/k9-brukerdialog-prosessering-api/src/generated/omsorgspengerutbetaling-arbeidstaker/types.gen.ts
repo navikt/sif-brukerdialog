@@ -7,7 +7,7 @@ export type ClientOptions = {
 export type Arbeidsgiver = {
     arbeidsgiverHarUtbetaltLønn?: boolean;
     harHattFraværHosArbeidsgiver?: boolean;
-    konfliktForklaring?: string;
+    konfliktForklaring?: string | null;
     navn?: string;
     organisasjonsnummer?: string;
     perioder?: Utbetalingsperiode[];
@@ -23,15 +23,15 @@ export type Arbeidsgiver = {
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[];
+    frilansoppdrag?: FrilansoppdragDto[] | null;
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
 };
 
 export type Barn = {
-    aktørId?: string;
+    aktørId?: string | null;
     fødselsdato?: string;
-    identitetsnummer?: string;
+    identitetsnummer?: string | null;
     navn?: string;
     type?: 'FRA_OPPSLAG' | 'FOSTERBARN' | 'ANNET';
 };
@@ -41,7 +41,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type BarnOppslagListe = {
@@ -67,11 +67,11 @@ export type DineBarn = {
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
+    offentligIdent?: string | null;
+    organisasjonsnummer?: string | null;
     type: string;
 };
 
@@ -81,20 +81,20 @@ export type OmsorgspengerutbetalingArbeidstakerSøknad = {
     bosteder: unknown[];
     opphold: unknown[];
     språk: string;
-    søkerNorskIdent?: string;
+    søkerNorskIdent?: string | null;
     vedlegg: string[];
 };
 
 export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
     organisasjonsnummer: string;
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
     offentligIdent: string;
 };
 
@@ -111,17 +111,17 @@ export type ProblemDetail = {
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
+    etternavn?: string | null;
+    fornavn?: string | null;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type Utbetalingsperiode = {
     aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
-    antallTimerBorte?: string;
-    antallTimerPlanlagt?: string;
+    antallTimerBorte?: string | null;
+    antallTimerPlanlagt?: string | null;
     fraOgMed?: string;
     tilOgMed?: string;
     årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
@@ -136,13 +136,13 @@ export type OmsorgspengerutbetalingArbeidstakerSøknadWritable = {
     arbeidsgivere?: Arbeidsgiver[];
     bekreftelser?: Bekreftelser;
     bosteder: Bosted[];
-    dataBruktTilUtledningAnnetData?: string;
+    dataBruktTilUtledningAnnetData?: string | null;
     dineBarn?: DineBarnWritable;
     hjemmePgaSmittevernhensyn?: boolean;
-    hjemmePgaStengtBhgSkole?: boolean;
+    hjemmePgaStengtBhgSkole?: boolean | null;
     opphold: Bosted[];
     språk: string;
-    søkerNorskIdent?: string;
+    søkerNorskIdent?: string | null;
     vedlegg: string[];
 };
 

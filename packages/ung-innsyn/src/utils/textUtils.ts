@@ -20,6 +20,9 @@ export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }
                 månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
                 måned: oppgave.oppgavetypeData ? dateFormatter.month(oppgave.oppgavetypeData.fraOgMed) : '',
             });
+        case ParsedOppgavetype.SØK_YTELSE:
+            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.${oppgave.ytelsetype}.oppgavetittel`);
+
         default:
             return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.oppgavetittel`);
     }
@@ -36,6 +39,8 @@ export const getOppgavePanelTittel = (oppgave: Oppgave | BekreftelseOppgave, { t
                 månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
                 måned: oppgave.oppgavetypeData ? dateFormatter.month(oppgave.oppgavetypeData.fraOgMed) : '',
             });
+        case ParsedOppgavetype.SØK_YTELSE:
+            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.${oppgave.ytelsetype}.paneltittel`);
         default:
             return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.paneltittel`);
     }
@@ -51,6 +56,8 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: UngUiIntlShape): stri
             return text('@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.info', {
                 måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
             });
+        case ParsedOppgavetype.SØK_YTELSE:
+            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.${oppgave.ytelsetype}.info`);
         default:
             return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.info`);
     }

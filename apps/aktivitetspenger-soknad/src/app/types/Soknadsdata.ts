@@ -11,7 +11,7 @@ export type StartdatoSøknadsdata = {
 };
 
 export type BostedSøknadsdata = {
-    borITrondheim: boolean;
+    erBosattITrondheim: boolean;
 };
 
 export type BostedUtlandSøknadsdata = {

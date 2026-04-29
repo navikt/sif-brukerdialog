@@ -5,16 +5,16 @@ export type ClientOptions = {
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[];
+    frilansoppdrag?: FrilansoppdragDto[] | null;
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
 };
 
 export type Barn = {
-    aktørId?: string;
-    fødselsdato?: string;
+    aktørId?: string | null;
+    fødselsdato?: string | null;
     navn: string;
-    norskIdentifikator?: string;
+    norskIdentifikator?: string | null;
 };
 
 export type BarnOppslag = {
@@ -22,7 +22,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type BarnOppslagListe = {
@@ -30,11 +30,11 @@ export type BarnOppslagListe = {
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
+    offentligIdent?: string | null;
+    organisasjonsnummer?: string | null;
     type: string;
 };
 
@@ -42,30 +42,30 @@ export type JsonNode = unknown;
 
 export type OmsorgspengerKroniskSyktBarnSøknad = {
     barn: Barn;
-    dataBruktTilUtledningAnnetData?: string;
+    dataBruktTilUtledningAnnetData?: string | null;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    høyereRisikoForFravær?: boolean;
-    høyereRisikoForFraværBeskrivelse?: string;
+    høyereRisikoForFravær?: boolean | null;
+    høyereRisikoForFraværBeskrivelse?: string | null;
     kroniskEllerFunksjonshemming: boolean;
     legeerklæring: string[];
     relasjonTilBarnet?: 'MOR' | 'FAR' | 'FOSTERFORELDER' | 'ADOPTIVFORELDER';
     sammeAdresse: 'JA' | 'JA_DELT_BOSTED' | 'NEI';
-    samværsavtale?: string[];
+    samværsavtale?: string[] | null;
     språk: string;
-    søkerNorskIdent?: string;
+    søkerNorskIdent?: string | null;
 };
 
 export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
     organisasjonsnummer: string;
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
     offentligIdent: string;
 };
 
@@ -82,11 +82,11 @@ export type ProblemDetail = {
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
+    etternavn?: string | null;
+    fornavn?: string | null;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type DeleteMellomlagringData = {

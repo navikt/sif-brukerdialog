@@ -4,8 +4,11 @@ import { RegistrertBarn } from '../../types/Barn';
 import { alfaTestesen } from '../entiteter/barn';
 
 export const mockRegistrertBarn: RegistrertBarn = {
-    ...alfaTestesen,
+    aktørId: alfaTestesen.aktørId,
+    fornavn: alfaTestesen.fornavn,
+    etternavn: alfaTestesen.etternavn,
     fødselsdato: ISODateToDate(alfaTestesen.fødselsdato),
+    mellomnavn: alfaTestesen.mellomnavn ?? undefined,
 };
 
 export const mockRegistrerteBarn: RegistrertBarn[] = [mockRegistrertBarn];

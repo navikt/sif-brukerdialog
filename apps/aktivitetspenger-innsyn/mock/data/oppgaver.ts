@@ -362,6 +362,41 @@ const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
+const getBekreftBostedOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04a1',
+    oppgavetype: OppgaveType.BEKREFT_BOSTED,
+    oppgavetypeData: {
+        type: 'BOSTED',
+        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month').toDate()),
+        erBosattITrondheim: false,
+    },
+    status: OppgaveStatus.ULØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+});
+
+const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
+    oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04a2',
+    oppgavetype: OppgaveType.BEKREFT_BOSTED,
+    oppgavetypeData: {
+        type: 'BOSTED',
+        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month').toDate()),
+        erBosattITrondheim: false,
+    },
+    respons: {
+        type: 'VARSEL_SVAR',
+        harUttalelse: false,
+    },
+    status: OppgaveStatus.LØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    løstDato: getDatoer().oppgaveMåned.add(3, 'days').startOf('day').add(12, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+});
+
 export const getMockOppgaver = () => ({
     rapporterInntektOppgave: getRapporterInntektOppgaveDto(),
     rapporterInntektOppgaveLøst: getRapporterInntektOppgaveDtoLøst(),
@@ -381,4 +416,6 @@ export const getMockOppgaver = () => ({
     meldtUtOppgave: getMeldtUtOppgaveDto(),
     fjernetPeriode: getFjernetPeriodeOppgaveDto(),
     fjernetPeriodeLøst: getFjernetPeriodeOppgaveDtoLøst(),
+    bekreftBostedOppgave: getBekreftBostedOppgaveDto(),
+    bekreftBostedOppgaveLøst: getBekreftBostedOppgaveDtoLøst(),
 });

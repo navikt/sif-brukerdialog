@@ -4,8 +4,8 @@ import * as z from 'zod';
 
 export const zHentSisteGyldigeVedtakForAktorIdResponse = z.object({
     harInnvilgedeBehandlinger: z.boolean(),
-    saksnummer: z.string().optional(),
-    vedtaksdato: z.iso.date().optional(),
+    saksnummer: z.string().nullish(),
+    vedtaksdato: z.iso.date().nullish(),
 });
 
 export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({

@@ -7,6 +7,7 @@ export { FormContentLoader } from './form-content-loader/FormContentLoader';
 export { FormLayout } from './form-layout';
 export { InfoList } from './info-list/InfoList';
 export { Kvittering } from './kvittering/Kvittering';
+export { JaNeiSvar } from './oppsummering-svar/JaNeiSvar';
 export { PictureScanningGuide } from './picture-scanning-guide/PictureScanningGuide';
 export { ProgressStepper } from './progress-stepper/ProgressStepper';
 export { type ProgressStep } from './progress-stepper/ProgressStepper';
