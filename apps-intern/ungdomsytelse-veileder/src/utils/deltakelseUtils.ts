@@ -1,5 +1,5 @@
 import { getRequiredEnv } from '@navikt/sif-common-env';
-import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeUtils, getDateToday } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
@@ -30,9 +30,22 @@ export const kanEndreStartdato = (deltakelse: Deltakelse, tillattEndringsperiode
 };
 
 export const kanEndreSluttdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
+    // Hvis maksDeltakelseDato er før dagens dato, skal det ikke være mulig å endre sluttdato til en dato etter maksDeltakelseDato
+    if (dayjs(deltakelse.maksDeltakelseDato).isSameOrBefore(getDateToday(), 'day')) {
+        return false;
+    }
+
     return deltakelse.søktTidspunkt !== undefined && deltakelse.tilOgMed
         ? dayjs(deltakelse.tilOgMed).isSameOrAfter(tillattEndringsperiode.from, 'day')
         : true;
+};
+
+export const deltakelseKvoteErUtløpt = (deltakelse: Deltakelse): boolean => {
+    return deltakelse.maksDeltakelseDato ? dayjs(deltakelse.maksDeltakelseDato).isBefore(getDateToday(), 'day') : false;
+};
+
+export const deltakelseSluttdatoErPassert = (deltakelse: Deltakelse): boolean => {
+    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isBefore(getDateToday(), 'day') : false;
 };
 
 export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {

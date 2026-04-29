@@ -1,5 +1,6 @@
 // /* eslint-disable no-console */
 
+import { dateFormatter, dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
@@ -7,13 +8,12 @@ import {
     Endringstype,
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import dayjs from 'dayjs';
 import { v4 } from 'uuid';
-import { skjermetDeltakerMock } from '../data/skjermetDeltaker';
 import { nyDeltakerMock } from '../data/nyDeltakerMock';
 import { registrertDeltakerMock } from '../data/registrertDeltakerMock';
+import { skjermetDeltakerMock } from '../data/skjermetDeltaker';
 import { slettetDeltakerMock } from '../data/slettetDeltakerMock';
-import dayjs from 'dayjs';
-import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 
 interface DbDeltakelse {
     deltakelse: DeltakelseDto;
@@ -28,6 +28,14 @@ interface TempDB {
 const localStorageKey = 'ungdomsytelse-veileder';
 
 const formaterIsoDate = (isoDate: string): string => dateFormatter.compact(ISODateToDate(isoDate));
+
+const getUtvidetDeltakelseHistorikk = (): DeltakelseHistorikkDto => ({
+    endringstype: Endringstype.ENDRET_STARTDATO,
+    revisjonstype: Revisjonstype.ENDRET,
+    endring: `Deltakelse er utvidet.`,
+    aktør: 'Z990501 (veileder)',
+    tidspunkt: dayjs().toISOString(),
+});
 
 const getEndretStartdatoHistorikk = (opprinneligDato: string, nyDato: string): DeltakelseHistorikkDto => ({
     endringstype: Endringstype.ENDRET_STARTDATO,
@@ -171,6 +179,27 @@ const endreStartdato = (deltakelseId: string, dato: string) => {
     return dbDeltakelse.deltakelse;
 };
 
+const utvidDeltakelse = (deltakelseId: string) => {
+    const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
+    if (!deltakelse) {
+        throw new Error('Fant ikke deltakelse med id');
+    }
+    const dbDeltakelse: DbDeltakelse = {
+        ...deltakelse,
+        deltakelse: {
+            ...deltakelse.deltakelse,
+            harUtvidetKvote: true,
+            maksDeltakelseDato: dateToISODate(
+                dayjs(ISODateToDate(deltakelse.deltakelse.fraOgMed)).add(300, 'days').toDate(),
+            ),
+        },
+        historikk: [...deltakelse.historikk, getUtvidetDeltakelseHistorikk()],
+    };
+    db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? dbDeltakelse : d));
+    save(db);
+    return dbDeltakelse.deltakelse;
+};
+
 const fjernDeltaker = (deltakerId: string) => {
     const deltaker = getDeltakerByDeltakerId(deltakerId);
     if (!deltaker) {
@@ -219,6 +248,8 @@ export const mockUtils = {
     getDeltakelseHistorikk,
     getDeltakerByDeltakerId,
     meldInnDeltaker,
+    utvidDeltakelse,
     fjernDeltaker,
+    getUtvidetDeltakelseHistorikk,
     reset,
 };

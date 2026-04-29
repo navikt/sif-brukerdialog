@@ -5,7 +5,13 @@ import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 import { Features } from '../../../types/Features';
-import { getTillattEndringsperiode, kanEndreSluttdato, kanEndreStartdato } from '../../../utils/deltakelseUtils';
+import {
+    deltakelseKvoteErUtløpt,
+    deltakelseSluttdatoErPassert,
+    getTillattEndringsperiode,
+    kanEndreSluttdato,
+    kanEndreStartdato,
+} from '../../../utils/deltakelseUtils';
 import EndreSluttdatoPanel from './EndreSluttdatoPanel';
 import EndreStartdatoPanel from './EndreStartdatoPanel';
 import MeldUtDeltakerPanel from './MeldUtDeltakerPanel';
@@ -33,7 +39,9 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
 
     const tillattEndringsperiode = getTillattEndringsperiode(getDateToday());
 
-    const deltakerHarSøkt = deltakelse.søktTidspunkt;
+    const deltakerHarSøkt = deltakelse.søktTidspunkt !== undefined;
+    const startdatoKanEndres = kanEndreStartdato(deltakelse, tillattEndringsperiode);
+    const sluttdatoKanEndres = kanEndreSluttdato(deltakelse, tillattEndringsperiode);
 
     return (
         <>
@@ -45,25 +53,28 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                 <TildeltKvotePanel
                     deltaker={deltaker}
                     deltakelse={deltakelse}
-                    kanEndreKvote={true}
-                    onClickEndreButton={() => null}
+                    kanEndreKvote={
+                        deltakerHarSøkt &&
+                        !deltakelseKvoteErUtløpt(deltakelse) &&
+                        !deltakelseSluttdatoErPassert(deltakelse)
+                    }
+                    onDeltakelseChanged={handleOnDeltakelseChanged}
                 />
-
-                <HGrid gap="space-16" columns={{ sm: 1, md: '1fr 1fr' }}>
+                <HGrid gap="space-8" columns={{ sm: 1, md: '1fr 1fr' }}>
                     <EndreStartdatoPanel
                         dato={deltakelse.fraOgMed}
-                        kanEndreStartdato={kanEndreStartdato(deltakelse, tillattEndringsperiode)}
+                        kanEndreStartdato={startdatoKanEndres}
                         onClickEndreButton={() => {
                             setEndretDeltakelse(undefined);
                             setFormVariant(EndrePeriodeVariant.startdato);
                         }}
                     />
-                    {Features.endreSluttdato ? (
+                    {Features.endreSluttdato && sluttdatoKanEndres ? (
                         <>
                             {deltakerHarSøkt && deltakelse.tilOgMed && (
                                 <EndreSluttdatoPanel
                                     tilOgMed={deltakelse.tilOgMed}
-                                    kanEndreSluttdato={kanEndreSluttdato(deltakelse, tillattEndringsperiode)}
+                                    kanEndreSluttdato={sluttdatoKanEndres}
                                     onClickEndreSluttdato={() => {
                                         setEndretDeltakelse(undefined);
                                         setFormVariant(EndrePeriodeVariant.endreSluttdato);
@@ -78,10 +89,10 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                                     }}
                                 />
                             )}
-                            {!deltakerHarSøkt && <SluttdatoKanIkkeEndresPanel />}
+                            {!deltakerHarSøkt && <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />}
                         </>
                     ) : (
-                        <SluttdatoKanIkkeEndresPanel />
+                        <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />
                     )}
                 </HGrid>
             </VStack>

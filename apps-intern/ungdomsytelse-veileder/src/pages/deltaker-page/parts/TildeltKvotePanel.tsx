@@ -1,51 +1,58 @@
-import { Alert, BodyShort, Button, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, HStack, Tag, VStack } from '@navikt/ds-react';
 import InfoBox from '../../../atoms/InfoBox';
 import { Deltakelse } from '../../../types/Deltakelse';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
 import { Deltaker } from '../../../types/Deltaker';
 import { useState } from 'react';
 import UtvidTildeltPeriodeModal from '../../../components/utvid-tildelt-periode-modal/UtvidTildeltPeriodeModal';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { deltakelseKvoteErUtløpt } from '../../../utils/deltakelseUtils';
 
 interface DatoBoksProps {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     kanEndreKvote: boolean;
-    onClickEndreButton: () => void;
+    onDeltakelseChanged: (deltakelse: Deltakelse) => void;
 }
 
-const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote }: DatoBoksProps) => {
+const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote, onDeltakelseChanged }: DatoBoksProps) => {
     const [visDialog, setVisDialog] = useState(false);
 
-    const sisteKvoteDato = dateFormatter.dayCompactDate(dayjs(deltakelse.fraOgMed).add(260, 'days').toDate());
+    const { harUtvidetKvote, maksDeltakelseDato } = deltakelse;
+    const antallTildelteDager = harUtvidetKvote ? 300 : 260;
+    const kvoteErUtløpt = maksDeltakelseDato ? deltakelseKvoteErUtløpt(deltakelse) : false;
 
-    const handleOnDeltakelseChanged = () => {
-        console.log('changed');
-        setVisDialog(false);
-    };
     return (
         <>
             <InfoBox>
                 <VStack gap="space-12">
-                    <Heading level="3" size="xsmall">
-                        Tildelte dager
-                    </Heading>
+                    <HStack gap="space-12">
+                        <Heading level="3" size="xsmall">
+                            Tildelte dager
+                        </Heading>
+                    </HStack>
                     <BodyShort size="large" weight="semibold" style={{ fontSize: '1.5rem' }}>
-                        260 dager
+                        <HStack gap="space-12">{antallTildelteDager} dager</HStack>
                     </BodyShort>
                     <BodyShort>
-                        Utløper <strong>{sisteKvoteDato}</strong>.
+                        {kvoteErUtløpt ? 'Utløp' : 'Utløper'}{' '}
+                        <strong>{dateFormatter.dayCompactDate(maksDeltakelseDato)}</strong>.
                     </BodyShort>
-                    {kanEndreKvote ? (
+                    {harUtvidetKvote ? (
                         <div>
-                            <Button variant="primary" size="small" onClick={() => setVisDialog(true)}>
-                                Registrert utvidet deltakelse
-                            </Button>
+                            <Tag size="small" data-color="warning">
+                                Har utvidet vedtak
+                            </Tag>
                         </div>
                     ) : (
-                        <Alert variant="info" inline>
-                            Deltakelse kan ikke utvides
-                        </Alert>
+                        <>
+                            {kanEndreKvote ? (
+                                <div>
+                                    <Button variant="primary" size="small" onClick={() => setVisDialog(true)}>
+                                        Registrert utvidet deltakelse
+                                    </Button>
+                                </div>
+                            ) : null}
+                        </>
                     )}
                 </VStack>
             </InfoBox>
@@ -54,7 +61,10 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote }: DatoBoksProp
                     onClose={() => setVisDialog(false)}
                     deltakelse={deltakelse}
                     deltaker={deltaker}
-                    onDeltakelseChanged={handleOnDeltakelseChanged}
+                    onDeltakelseChanged={(d) => {
+                        setVisDialog(false);
+                        onDeltakelseChanged(d);
+                    }}
                 />
             ) : null}
         </>

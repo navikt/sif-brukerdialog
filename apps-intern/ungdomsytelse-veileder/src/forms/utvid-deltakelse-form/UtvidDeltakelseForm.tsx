@@ -11,6 +11,8 @@ import { getCheckedValidator, getYesOrNoValidator } from '@navikt/sif-validation
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { formatName } from '@navikt/sif-common-utils';
+import { useUtvidDeltakelse } from '../../hooks/useUtvidDeltakelse';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 enum FieldNames {
     harUtvidetPeriode = 'harUtvidetPeriode',
@@ -30,20 +32,21 @@ interface Props {
     onDeltakelseChanged: (oppdatertDeltakelse: Deltakelse) => void;
 }
 
-const UtvidTildeltPeriodeForm = ({ deltaker, onCancel, onDeltakelseChanged }: Props) => {
+const UtvidDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }: Props) => {
     const intl = useIntl();
 
-    // const { mutate, isPending, error } = usePeriodeForDeltakelse({
-    //     deltakelseId: deltakelse.id,
-    //     deltakerId: deltaker.id,
-    // });
+    const { mutate, isPending, error } = useUtvidDeltakelse({ deltakelseId: deltakelse.id, deltakerId: deltaker.id });
 
     const handleOnSubmit = async (values: FormValues) => {
         const { bekrefterEndring } = values;
         if (!bekrefterEndring) {
             return;
         }
-        onDeltakelseChanged({} as any);
+        mutate(deltakelse.id, {
+            onSuccess: (oppdatertDeltakelse) => {
+                onDeltakelseChanged(oppdatertDeltakelse);
+            },
+        });
     };
 
     return (
@@ -58,7 +61,7 @@ const UtvidTildeltPeriodeForm = ({ deltaker, onCancel, onDeltakelseChanged }: Pr
                     <VStack gap="space-24">
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
-                            // submitPending={isPending}
+                            submitPending={isPending}
                             showSubmitButton={true}
                             submitButtonLabel="Bekreft utvidelse"
                             cancelButtonLabel="Avbryt"
@@ -85,6 +88,7 @@ const UtvidTildeltPeriodeForm = ({ deltaker, onCancel, onDeltakelseChanged }: Pr
                                 </VStack>
                             </VStack>
                         </Form>
+                        {error ? <ApiErrorAlert error={error} /> : null}
                     </VStack>
                 );
             }}
@@ -92,4 +96,4 @@ const UtvidTildeltPeriodeForm = ({ deltaker, onCancel, onDeltakelseChanged }: Pr
     );
 };
 
-export default UtvidTildeltPeriodeForm;
+export default UtvidDeltakelseForm;
