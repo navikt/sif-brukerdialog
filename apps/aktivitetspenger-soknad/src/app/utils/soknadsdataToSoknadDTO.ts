@@ -1,6 +1,6 @@
+import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { Søker } from '@sif/api/k9-prosessering';
-import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
@@ -14,7 +14,7 @@ export const søknadsdataToSøknadDTO = ({
     søknadsdata: Søknadsdata;
     søker: Søker;
     språk?: 'nb' | 'nn';
-    kontoInfo: UtvidetKontonummerInfo;
+    kontoInfo: KontonummerInfo;
 }): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
     const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted, startdato } = søknadsdata;
 
