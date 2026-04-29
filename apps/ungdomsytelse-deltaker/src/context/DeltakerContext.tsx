@@ -1,8 +1,8 @@
-import { Søker } from '@navikt/sif-common-api';
+import { Søker } from '@sif/api/k9-prosessering';
+import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { createContext, useMemo } from 'react';
 
 import { DeltakelsePeriode } from '../types/DeltakelsePeriode';
-import { Oppgave } from '../types/Oppgave';
 
 export interface DeltakerContextType {
     søker: Søker;

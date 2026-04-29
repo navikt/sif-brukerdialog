@@ -1,9 +1,10 @@
-import ForsideHeader from '@innsyn/components/forside-header/ForsideHeader';
+import DeltakelseContent from '@innsyn/components/deltakelse-content/DeltakelseContent';
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
-import DeltakelseContent from '@innsyn/modules/deltakelse-content/DeltakelseContent';
 import { VStack } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { useAppIntl } from '@shared/i18n';
+import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 
 import UXRapportertInntekt from '../ux-signals/UXRapportertInntekt';
 import ForsidePageLayout from './layout/ForsidePageLayout';
@@ -18,9 +19,15 @@ const ForsidePage = () => {
     return (
         <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
             <VStack gap="space-32">
-                <ForsideHeader
-                    startdato={deltakelsePeriode.programPeriode.from}
-                    harOpphørsvedtak={deltakelsePeriode.harOpphørsvedtak}
+                <InnsynForsideHeader
+                    title={text('innsynAppHeader.ytelseNavn')}
+                    subtitle={
+                        deltakelsePeriode.harOpphørsvedtak
+                            ? undefined
+                            : text('innsynAppHeader.startdato', {
+                                  dato: dateFormatter.full(deltakelsePeriode.programPeriode.from),
+                              })
+                    }
                 />
                 <UXRapportertInntekt />
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} oppgaver={oppgaver} />

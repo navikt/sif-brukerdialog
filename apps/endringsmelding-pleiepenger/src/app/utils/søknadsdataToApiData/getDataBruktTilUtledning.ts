@@ -18,13 +18,20 @@ export const getDataBruktTilUtledningApiData = (
     arbeidstid: ArbeidstidSøknadsdata | undefined,
     arbeidsgivere: Arbeidsgiver[],
 ): DataBruktTilUtledningApiData => {
-    return {
-        ukjenteArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
-            ukjentArbeidsforhold?.arbeidsforhold,
-            arbeidstid,
-            arbeidsgivere,
-        ),
-    };
+    try {
+        return {
+            ukjenteArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
+                ukjentArbeidsforhold?.arbeidsforhold,
+                arbeidstid,
+                arbeidsgivere,
+            ),
+        };
+    } catch {
+        /** Fallback for å håndtere feil ved mapping av ukjente arbeidsforhold. Midlertidig pga
+         * feil i prod som er fikset.
+         */
+        return {};
+    }
 };
 export const getDataBruktTilUtledningAnnetDataApiData = (
     valgteEndringer: ValgteEndringer,

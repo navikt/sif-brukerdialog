@@ -1,6 +1,7 @@
-import { getRequiredEnv } from '@navikt/sif-common-env';
+import { getLocaleFromSessionStorage } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
+import { getSifLenker } from '@sif/soknad-ui/lenker';
 
-import { AppEnvKey } from '../../env.schema';
+import { getAppEnv } from './appEnv';
 
 interface Lenker {
     omUngdomsprogramytelsen: string;
@@ -16,22 +17,24 @@ interface Lenker {
     dokumentarkiv: string;
 }
 
-const getLenkerBokmål = (): Lenker => ({
-    omUngdomsprogramytelsen: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN),
-    personvern: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_PERSONVERN),
-    rettOgPlikt: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_RETT_OG_PLIKT),
-    personopplysninger: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_PERSONOPPLYSNINGER),
-    minSide: getRequiredEnv(AppEnvKey.SIF_PUBLIC_MINSIDE_URL),
-    skatteetaten: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKATTEETATEN),
-    lovdataInntekt: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_LOVDATA_INNTEKT),
-    endreKontonummer: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER),
-    skrivtilOss: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKRIV_TIL_OSS),
-    dokumentarkiv: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_DOKUMENTARKIV),
-    skattekort: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKATTEKORT),
-});
+const getEnvironment = () => (getAppEnv().ENV === 'dev' ? 'dev' : 'prod');
 
 const getLenker = (): Lenker => {
-    return getLenkerBokmål();
+    const lenker = getSifLenker(getLocaleFromSessionStorage(), getEnvironment());
+
+    return {
+        omUngdomsprogramytelsen: lenker.navUngdomsprogrammet,
+        personvern: lenker.navPersonvernerklaering,
+        rettOgPlikt: lenker.navRettOgPlikt,
+        personopplysninger: lenker.navPersonopplysninger,
+        minSide: lenker.navMinSide,
+        skatteetaten: lenker.skatteetatenForside,
+        skattekort: lenker.skatteetatenSkattekort,
+        lovdataInntekt: lenker.lovdataFolketrygdlovenParagraf5_10,
+        endreKontonummer: lenker.navEndreKontonummer,
+        skrivtilOss: lenker.navSkrivTilOss,
+        dokumentarkiv: lenker.navDokumentarkivUngdomsytelse,
+    };
 };
 
 export default getLenker;

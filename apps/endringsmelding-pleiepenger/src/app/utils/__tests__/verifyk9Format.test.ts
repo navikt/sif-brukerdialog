@@ -82,24 +82,25 @@ describe('verifyK9Format', () => {
     describe('ugyldig sak – kaster K9FormatError', () => {
         it('kaster når sak ikke er et objekt', () => {
             const err = forventK9FormatError(null);
-            expect(err.error).toContain('sak er ikke et objekt');
+            expect(err.error.message).toContain('sak er ikke et objekt');
         });
 
         it('kaster når søknad mangler', () => {
             const err = forventK9FormatError({ barn: gyldigBarn });
-            expect(err.error).toContain('søknad er ikke et objekt');
+            expect(err.error.message).toContain('søknad er ikke et objekt');
         });
 
         it('kaster når barn mangler fornavn', () => {
             const ugyldigBarn = { ...gyldigBarn, fornavn: undefined };
             const err = forventK9FormatError({ ...gyldigSak, barn: ugyldigBarn });
-            expect(err.error).toContain('verifyK9FormatBarn');
+            expect(err.error.message).toContain('verifyK9FormatBarn');
+            expect((err.error.cause as any).ugyldigeFelt).toContain('fornavn');
         });
 
         it('kaster når ytelsestype er ugyldig', () => {
             const sak = { ...gyldigSak, søknad: { ...gyldigSak.søknad, ytelse: { ...gyldigYtelse, type: 'UKJENT' } } };
             const err = forventK9FormatError(sak);
-            expect(err.error).toContain('ugyldig type');
+            expect(err.error.message).toContain('ugyldig type');
         });
 
         it('kaster når søknadsperiode er ugyldig datoformat', () => {
@@ -108,7 +109,7 @@ describe('verifyK9Format', () => {
                 søknad: { ...gyldigSak.søknad, ytelse: { ...gyldigYtelse, søknadsperiode: ['not-a-date'] } },
             };
             const err = forventK9FormatError(sak);
-            expect(err.error).toContain('verifySøknadsperioder');
+            expect(err.error.message).toContain('verifySøknadsperioder');
         });
 
         it('kaster når arbeidstidInfo har ugyldig ISO-duration', () => {
@@ -137,7 +138,7 @@ describe('verifyK9Format', () => {
                 },
             };
             const err = forventK9FormatError(sak);
-            expect(err.error).toContain('verifyK9FormatArbeidstidTid');
+            expect(err.error.message).toContain('verifyK9FormatArbeidstidTid');
         });
 
         it('kaster når arbeidstidPerioder har ugyldig datonøkkel', () => {
@@ -166,7 +167,7 @@ describe('verifyK9Format', () => {
                 },
             };
             const err = forventK9FormatError(sak);
-            expect(err.error).toContain('ugyldigISODateRange');
+            expect(err.error.message).toContain('ugyldigISODateRange');
         });
     });
 });

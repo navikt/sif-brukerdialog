@@ -79,6 +79,10 @@ export interface K9FormatYtelse {
     arbeidstid: K9FormatArbeidstid;
 }
 
+export interface UgyldigBarnFormatDetails {
+    ugyldigeFelt: string[];
+}
+
 export interface K9FormatBarn {
     fødselsdato: ISODate;
     fornavn: string;

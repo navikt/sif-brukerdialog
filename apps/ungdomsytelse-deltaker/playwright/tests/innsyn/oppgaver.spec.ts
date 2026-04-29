@@ -3,7 +3,7 @@
 import { expect, test } from '@playwright/test';
 
 import { ScenarioType } from '../../../mock/scenarios/types';
-import { memoryStore } from '../../../mock/state/memoryStore';
+import { store } from '../../../mock/state/store';
 import { registerMockRoutes } from '../../utils/registerMockRoutes';
 import { setNow } from '../../utils/setNow';
 import { testAccessibility } from '../../utils/testAccessibility';
@@ -11,7 +11,7 @@ import { testAccessibility } from '../../utils/testAccessibility';
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);
     await registerMockRoutes(page, context);
-    memoryStore.setScenario(ScenarioType.søknadSendt);
+    store.setScenario(ScenarioType.søknadSendt);
     await page.goto(`./`);
 });
 
@@ -33,7 +33,7 @@ test.describe('Innsyn - oppgaver', () => {
 
     test.describe('Endret startdato', () => {
         test.beforeEach(async ({ page }) => {
-            memoryStore.setScenario(ScenarioType.endretStartdato);
+            store.setScenario(ScenarioType.endretStartdato);
             await page.goto(`./`);
         });
 
@@ -102,7 +102,7 @@ test.describe('Innsyn - oppgaver', () => {
     test.describe('Meld fra om inntekt', async () => {
         test.describe('Besvare oppgave', async () => {
             test.beforeEach(async ({ page }) => {
-                memoryStore.setScenario(ScenarioType.rapporterInntekt);
+                store.setScenario(ScenarioType.rapporterInntekt);
                 await page.goto(`./`);
             });
 
@@ -138,7 +138,7 @@ test.describe('Innsyn - oppgaver', () => {
         });
         test.describe('Tekstforskjeller', async () => {
             test('Hel måned', async ({ page }) => {
-                memoryStore.setScenario(ScenarioType.rapporterInntekt);
+                store.setScenario(ScenarioType.rapporterInntekt);
                 await page.goto(`./`);
                 const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
                 await nyeOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i august' }).click();
@@ -147,7 +147,7 @@ test.describe('Innsyn - oppgaver', () => {
                 ).not.toBeVisible();
             });
             test('Deler av måned', async ({ page }) => {
-                memoryStore.setScenario(ScenarioType.rapporterInntektDelerAvMåned);
+                store.setScenario(ScenarioType.rapporterInntektDelerAvMåned);
                 await page.goto(`./`);
                 const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
                 await nyeOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i august' }).click();
@@ -160,7 +160,7 @@ test.describe('Innsyn - oppgaver', () => {
     test.describe('Tilbakemelding om avvik i inntekt', async () => {
         test.describe('Besvare oppgave', async () => {
             test.beforeEach(async ({ page }) => {
-                memoryStore.setScenario(ScenarioType.avvikInntekt);
+                store.setScenario(ScenarioType.avvikInntekt);
                 await page.goto(`./`);
             });
             test('Ingen tilbakemelding/stemmer inntekten', async ({ page }) => {
@@ -172,7 +172,7 @@ test.describe('Innsyn - oppgaver', () => {
                 await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
                 await expect(page.getByText('28. august 2025', { exact: true })).toBeVisible();
                 await page.getByRole('radio', { name: 'Ja, inntekten stemmer' }).check();
-                await page.getByTestId('typedFormikForm-submitButton').click();
+                await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
                 // Kvittering
                 await expect(page.getByText('Svaret ditt er sendt innVi')).toBeVisible();
                 await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
@@ -224,14 +224,14 @@ test.describe('Innsyn - oppgaver', () => {
         });
         test.describe('Tekstforskjeller', async () => {
             test('Hel måned', async ({ page }) => {
-                memoryStore.setScenario(ScenarioType.avvikInntekt);
+                store.setScenario(ScenarioType.avvikInntekt);
                 await page.goto(`./`);
                 const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
                 await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();
                 await expect(page.getByText('Vi bruker ikke hele inntekten din')).not.toBeVisible();
             });
             test('Deler av måned', async ({ page }) => {
-                memoryStore.setScenario(ScenarioType.avvikInntektDelerAvMåned);
+                store.setScenario(ScenarioType.avvikInntektDelerAvMåned);
                 await page.goto(`./`);
                 const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
                 await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();

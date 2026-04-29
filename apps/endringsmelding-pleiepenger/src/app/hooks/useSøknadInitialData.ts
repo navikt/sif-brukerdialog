@@ -7,6 +7,7 @@ import {
     SøknadContextState,
     SøknadInitialDataState,
     TimerEllerProsent,
+    UgyldigBarnFormatDetails,
 } from '@app/types';
 import { appSentryLogger } from '@app/utils';
 import { Søker } from '@navikt/sif-common-api';
@@ -25,7 +26,12 @@ import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDe
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
 
-export type IngenTilgangMeta = { erArbeidstaker?: boolean; erSN?: boolean; erFrilanser?: boolean };
+export type IngenTilgangMeta = {
+    erArbeidstaker?: boolean;
+    erSN?: boolean;
+    erFrilanser?: boolean;
+    error?: UgyldigBarnFormatDetails;
+};
 
 export type SøknadInitialIkkeTilgang = {
     status: RequestStatus.success;
@@ -123,7 +129,8 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 if (isSøknadInitialDataErrorState(error)) {
                     setInitialData(error);
                 } else {
-                    appSentryLogger.logError('fetchInitialData.error.else', error);
+                    const e = error instanceof Error ? error : new Error(String(error));
+                    appSentryLogger.logException(e, { context: 'fetchInitialData.error.else' });
                     setInitialData({
                         status: RequestStatus.error,
                         error,

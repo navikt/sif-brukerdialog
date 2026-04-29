@@ -1,5 +1,18 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.12
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.17
+
+## 2.2.11
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.55
+
 ## 2.2.10
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # @navikt/sif-demo-app
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.15
+    - @sif/api@0.0.3
+    - @sif/soknad-forms@0.0.3
+
+## 0.0.4
+
+### Patch Changes
+
+- @navikt/sif-common-ui@0.11.56
+- @sif/soknad@0.0.3
+
 ## 0.0.3
 
 ### Patch Changes

@@ -152,7 +152,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
 };
 
@@ -351,7 +350,7 @@ export type UpdateMellomlagringResponses = {
 };
 
 export type InnsendingOmsorgspengerutbetalingSnfSøknadData = {
-    body: OmsorgspengerutbetalingSnfSøknad;
+    body: OmsorgspengerutbetalingSnfSøknadWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };

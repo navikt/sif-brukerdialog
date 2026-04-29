@@ -1,8 +1,8 @@
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
 import dayjs from 'dayjs';
 
-import { RapporterInntektOppgave } from '../../src/types/Oppgave';
 import { store } from '../state/store';
 import { getMockToday } from './mockDate';
 

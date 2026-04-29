@@ -492,7 +492,6 @@ export type OpplæringspengerSøknad = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlp;
     språk: 'nb' | 'nn';
-    stønadGodtgjørelse?: StønadGodtgjørelse;
     søkerNorskIdent?: string;
     tilOgMed: string;
     utenlandskNæring: UtenlandskNæring[];
@@ -809,7 +808,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
 };
 
@@ -822,6 +820,16 @@ export type ArbeidsgiverOlpWritable = {
     erAnsatt?: boolean;
     navn?: string;
     organisasjonsnummer?: string;
+};
+
+export type EndringsmeldingWritable = {
+    gyldigeEndringsPerioder?: string[];
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    pleietrengendeNavn?: string;
+    språk: string;
+    søkerNorskIdent?: string;
+    ytelse: PleiepengerSyktBarnWritable;
 };
 
 export type OmsorgspengerutbetalingArbeidstakerSøknadWritable = {
@@ -873,7 +881,7 @@ export type OpplæringspengerSøknadWritable = {
     medlemskap: Medlemskap;
     newVersion?: boolean;
     opptjeningIUtlandet: OpptjeningIUtlandet[];
-    selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlp;
+    selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlpWritable;
     språk: 'nb' | 'nn';
     stønadGodtgjørelse?: StønadGodtgjørelse;
     søkerNorskIdent?: string;
@@ -881,6 +889,13 @@ export type OpplæringspengerSøknadWritable = {
     utenlandskNæring: UtenlandskNæring[];
     utenlandsoppholdIPerioden?: UtenlandsoppholdIPerioden;
     vedlegg: string[];
+};
+
+export type OpptjeningAktivitetWritable = {
+    andreAktiviteter: AnnenAktivitet[];
+    frilanser?: Frilanser;
+    selvstendigNæringsdrivende: SelvstendigNæringsdrivendeWritable[];
+    utenlandskeArbeidsforhold: UtenlandskArbeidsforhold[];
 };
 
 export type PleiepengerILivetsSluttfaseSøknadWritable = {
@@ -898,7 +913,7 @@ export type PleiepengerILivetsSluttfaseSøknadWritable = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     pleierDuDenSykeHjemme?: boolean;
     pleietrengende: Pleietrengende;
-    selvstendigNæringsdrivende?: SelvstendigNæringsdrivende;
+    selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeWritable;
     skalJobbeOgPleieSammeDag: boolean;
     språk: string;
     søkerNorskIdent?: string;
@@ -906,6 +921,33 @@ export type PleiepengerILivetsSluttfaseSøknadWritable = {
     utenlandskNæring: UtenlandskNæring[];
     utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
     vedleggUrls: string[];
+};
+
+export type PleiepengerSyktBarnWritable = {
+    annetDataBruktTilUtledning?: DataBruktTilUtledning;
+    arbeidstid: Arbeidstid;
+    barn: Barn;
+    beredskap: Beredskap;
+    bosteder: Bosteder;
+    dataBruktTilUtledning?: DataBruktTilUtledning;
+    /**
+     * @deprecated
+     */
+    endringsperiode: string[];
+    erSammenMedBarnet?: boolean;
+    /**
+     * @deprecated
+     */
+    infoFraPunsj?: InfoFraPunsj;
+    lovbestemtFerie: LovbestemtFerie;
+    nattevåk: Nattevåk;
+    omsorg: Omsorg;
+    opptjeningAktivitet?: OpptjeningAktivitetWritable;
+    søknadsperiode: string[];
+    tilsynsordning: Tilsynsordning;
+    trekkKravPerioder: string[];
+    utenlandsopphold: Utenlandsopphold;
+    uttak: Uttak;
 };
 
 export type PleiepengerSyktBarnSøknadWritable = {
@@ -933,7 +975,7 @@ export type PleiepengerSyktBarnSøknadWritable = {
     omsorgsstønad?: OmsorgsstønadMottarDelerAvPerioden | OmsorgsstønadMottarHelePerioden | OmsorgsstønadMottarIkke;
     omsorgstilbud?: Omsorgstilbud;
     opptjeningIUtlandet: OpptjeningIUtlandet[];
-    selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
+    selvstendigNæringsdrivende: SelvstendigNæringsdrivendeWritable;
     språk: 'nb' | 'nn';
     /**
      * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
@@ -1362,7 +1404,7 @@ export type InnsendingOmsorgspengerMidlertidigAleneSøknadResponses = {
 };
 
 export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadData = {
-    body: OmsorgspengerutbetalingArbeidstakerSøknad;
+    body: OmsorgspengerutbetalingArbeidstakerSøknadWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };
@@ -1401,7 +1443,7 @@ export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadResponses = {
 };
 
 export type InnsendingOmsorgspengerutbetalingSnfSøknadData = {
-    body: OmsorgspengerutbetalingSnfSøknad;
+    body: OmsorgspengerutbetalingSnfSøknadWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };
@@ -1479,7 +1521,7 @@ export type InnsendingOmsorgspengerKroniskSyktBarnSøknadResponses = {
 };
 
 export type InnsendingOpplæringspengerSøknadData = {
-    body: OpplæringspengerSøknad;
+    body: OpplæringspengerSøknadWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };
@@ -1672,7 +1714,7 @@ export type LagPdfResponses = {
 export type LagPdfResponse = LagPdfResponses[keyof LagPdfResponses];
 
 export type InnsendingPleiepengerILivetsSluttfaseSøknadData = {
-    body: PleiepengerILivetsSluttfaseSøknad;
+    body: PleiepengerILivetsSluttfaseSøknadWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };
@@ -1711,7 +1753,7 @@ export type InnsendingPleiepengerILivetsSluttfaseSøknadResponses = {
 };
 
 export type InnsendingEndringsmeldingData = {
-    body: Endringsmelding;
+    body: EndringsmeldingWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };
@@ -1749,7 +1791,7 @@ export type InnsendingEndringsmeldingResponses = {
 };
 
 export type InnsendingPleiepengerSyktBarnSøknadData = {
-    body: PleiepengerSyktBarnSøknad;
+    body: PleiepengerSyktBarnSøknadWritable;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
     };

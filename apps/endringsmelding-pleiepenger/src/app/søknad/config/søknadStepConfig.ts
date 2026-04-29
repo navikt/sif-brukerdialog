@@ -9,6 +9,16 @@ const erAnsattIUkjentArbeidsforhold = (arbeidsforhold: Arbeidsforhold[] = []): b
     return arbeidsforhold.some((a) => a.erAnsatt === true);
 };
 
+const skalViseArbeidstid = (valgteEndringer: ValgteEndringer, søknadsdata?: Søknadsdata): boolean => {
+    const { lovbestemtFerie, arbeidstid, ukjentArbeidsforhold } = søknadsdata || {};
+    return (
+        valgteEndringer.arbeidstid === true ||
+        harFjernetLovbestemtFerie(lovbestemtFerie) ||
+        harEndretArbeidstid(arbeidstid) ||
+        erAnsattIUkjentArbeidsforhold(ukjentArbeidsforhold?.arbeidsforhold)
+    );
+};
+
 export const getSøknadSteps = (
     valgteEndringer: ValgteEndringer,
     harArbeidsgivereIkkeISak: boolean,
@@ -16,23 +26,18 @@ export const getSøknadSteps = (
 ): StepId[] => {
     const steps: StepId[] = [];
 
+    const visArbeidstidSteg = skalViseArbeidstid(valgteEndringer, søknadsdata);
+
     if (harArbeidsgivereIkkeISak) {
         steps.push(StepId.UKJENT_ARBEIDSFOHOLD);
     }
 
-    if (valgteEndringer.lovbestemtFerie) {
-        steps.push(StepId.LOVBESTEMT_FERIE);
+    if (visArbeidstidSteg) {
+        steps.push(StepId.ARBEIDSTID);
     }
 
-    const { lovbestemtFerie, arbeidstid, ukjentArbeidsforhold } = søknadsdata || {};
-
-    if (
-        valgteEndringer.arbeidstid === true ||
-        harFjernetLovbestemtFerie(lovbestemtFerie) ||
-        harEndretArbeidstid(arbeidstid) ||
-        erAnsattIUkjentArbeidsforhold(ukjentArbeidsforhold?.arbeidsforhold)
-    ) {
-        steps.push(StepId.ARBEIDSTID);
+    if (valgteEndringer.lovbestemtFerie) {
+        steps.push(StepId.LOVBESTEMT_FERIE);
     }
 
     if (valgteEndringer.tilsynsordning) {

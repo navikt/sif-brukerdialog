@@ -1,5 +1,25 @@
 # @navikt/aktivitetspenger-innsyn
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.15
+    - @navikt/ung-brukerdialog-api@0.0.5
+    - @navikt/k9-sak-innsyn-api@0.2.17
+    - @sif/api@0.0.3
+    - @sif/ung-innsyn@0.0.4
+
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-sentry@0.28.65
+    - @navikt/sif-common-core-ds@10.3.55
+    - @sif/ung-innsyn@0.0.3
+
 ## 0.0.4
 
 ### Patch Changes
