@@ -10,9 +10,9 @@ export type AnnenAktivitet = {
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[];
+    frilansoppdrag?: FrilansoppdragDto[] | null;
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
 };
 
 export type Arbeidstaker = {
@@ -49,7 +49,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type BarnOppslagListe = {
@@ -93,12 +93,12 @@ export type DataBruktTilUtledning = {
 };
 
 export type Endringsmelding = {
-    gyldigeEndringsPerioder?: string[];
+    gyldigeEndringsPerioder?: string[] | null;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    pleietrengendeNavn?: string;
+    pleietrengendeNavn?: string | null;
     språk: string;
-    søkerNorskIdent?: string;
+    søkerNorskIdent?: string | null;
     ytelse: PleiepengerSyktBarn;
 };
 
@@ -108,11 +108,11 @@ export type Frilanser = {
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
+    offentligIdent?: string | null;
+    organisasjonsnummer?: string | null;
     type: string;
 };
 
@@ -159,9 +159,9 @@ export type OpptjeningAktivitet = {
 };
 
 export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
     organisasjonsnummer: string;
 };
 
@@ -193,8 +193,8 @@ export type PleiepengerSyktBarn = {
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
     offentligIdent: string;
 };
 
@@ -234,11 +234,11 @@ export type SelvstendigNæringsdrivendePeriodeInfo = {
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
+    etternavn?: string | null;
+    fornavn?: string | null;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type TilsynPeriodeInfo = {

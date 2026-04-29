@@ -366,9 +366,9 @@ const getBekreftBostedOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04a1',
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
     oppgavetypeData: {
-        type: 'BEKREFT_BOSTED',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month').toDate()),
+        type: 'BOSTED',
+        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month').toDate()),
         erBosattITrondheim: false,
     },
     status: OppgaveStatus.ULØST,
@@ -381,9 +381,9 @@ const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04a2',
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
     oppgavetypeData: {
-        type: 'BEKREFT_BOSTED',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month').toDate()),
+        type: 'BOSTED',
+        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
+        tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month').toDate()),
         erBosattITrondheim: false,
     },
     respons: {

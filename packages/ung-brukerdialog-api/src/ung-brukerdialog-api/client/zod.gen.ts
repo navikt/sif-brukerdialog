@@ -11,6 +11,12 @@ export const zArbeidOgFrilansRegisterInntektDto = z.object({
         .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
 });
 
+export const zBekreftBostedOppgavetypeDataDto = z.object({
+    erBosattITrondheim: z.boolean(),
+    fom: z.iso.date(),
+    tom: z.iso.date(),
+});
+
 export const zEndretSluttdatoDataDto = z.object({
     forrigeSluttdato: z.iso.date().optional(),
     nySluttdato: z.iso.date(),
@@ -36,6 +42,7 @@ export const zOppgaveType = z.enum([
     'BEKREFT_AVVIK_REGISTERINNTEKT',
     'RAPPORTER_INNTEKT',
     'SØK_YTELSE',
+    'BEKREFT_BOSTED',
 ]);
 
 export const zOppgaveYtelsetype = z.enum(['UNGDOMSYTELSE', 'AKTIVITETSPENGER']);
@@ -66,7 +73,12 @@ export const zRapportertInntektDto = z.object({
 
 export const zSvarPåVarselDto = z.object({
     harUttalelse: z.boolean(),
-    uttalelseFraBruker: z.string().min(0).max(4000).optional(),
+    uttalelseFraBruker: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
 });
 
 export const zOppgaveResponsDto = z.intersection(
@@ -140,6 +152,11 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = z.object({
 
 export const zOppgavetypeDataDto = z.intersection(
     z.union([
+        z
+            .object({
+                type: z.literal('BOSTED'),
+            })
+            .and(zBekreftBostedOppgavetypeDataDto),
         z
             .object({
                 type: z.literal('ENDRET_PERIODE'),

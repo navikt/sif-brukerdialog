@@ -10,6 +10,12 @@ export type ArbeidOgFrilansRegisterInntektDto = {
     inntekt: number;
 };
 
+export type BekreftBostedOppgavetypeDataDto = {
+    erBosattITrondheim: boolean;
+    fom: string;
+    tom: string;
+};
+
 export type BrukerdialogOppgaveDto = {
     frist?: string;
     løstDato?: string;
@@ -20,12 +26,6 @@ export type BrukerdialogOppgaveDto = {
     respons?: OppgaveResponsDto;
     status: OppgaveStatus;
     ytelsetype: OppgaveYtelsetype;
-};
-
-export type BekreftBostedDataDto = {
-    erBosattITrondheim: boolean;
-    fraOgMed: string;
-    tilOgMed: string;
 };
 
 export type EndretPeriodeDataDto = {
@@ -93,10 +93,6 @@ export enum OppgaveStatus {
 
 export enum OppgaveType {
     /**
-     * BEKREFT_BOSTED
-     */
-    BEKREFT_BOSTED = 'BEKREFT_BOSTED',
-    /**
      * BEKREFT_ENDRET_STARTDATO
      */
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
@@ -120,6 +116,10 @@ export enum OppgaveType {
      * SØK_YTELSE
      */
     SØK_YTELSE = 'SØK_YTELSE',
+    /**
+     * BEKREFT_BOSTED
+     */
+    BEKREFT_BOSTED = 'BEKREFT_BOSTED',
 }
 
 export enum OppgaveYtelsetype {
@@ -135,8 +135,8 @@ export enum OppgaveYtelsetype {
 
 export type OppgavetypeDataDto = (
     | ({
-          type: 'BEKREFT_BOSTED';
-      } & BekreftBostedDataDto)
+          type: 'BOSTED';
+      } & BekreftBostedOppgavetypeDataDto)
     | ({
           type: 'ENDRET_PERIODE';
       } & EndretPeriodeDataDto)

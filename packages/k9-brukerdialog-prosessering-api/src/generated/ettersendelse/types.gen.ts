@@ -5,9 +5,9 @@ export type ClientOptions = {
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[];
+    frilansoppdrag?: FrilansoppdragDto[] | null;
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
 };
 
 export type BarnOppslag = {
@@ -15,7 +15,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type BarnOppslagListe = {
@@ -23,13 +23,13 @@ export type BarnOppslagListe = {
 };
 
 export type Ettersendelse = {
-    beskrivelse?: string;
+    beskrivelse?: string | null;
     ettersendelsesType: 'LEGEERKLÆRING' | 'KURSINFORMASJON' | 'ANNET';
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    pleietrengende?: Pleietrengende;
+    pleietrengende?: Pleietrengende | null;
     språk: string;
-    søkerNorskIdent?: string;
+    søkerNorskIdent?: string | null;
     søknadstype:
         | 'PLEIEPENGER_SYKT_BARN'
         | 'PLEIEPENGER_LIVETS_SLUTTFASE'
@@ -43,33 +43,33 @@ export type Ettersendelse = {
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
+    offentligIdent?: string | null;
+    organisasjonsnummer?: string | null;
     type: string;
 };
 
 export type JsonNode = unknown;
 
 export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
     organisasjonsnummer: string;
 };
 
 export type Pleietrengende = {
-    aktørId?: string;
-    fødselsdato?: string;
-    navn?: string;
-    norskIdentitetsnummer?: string;
+    aktørId?: string | null;
+    fødselsdato?: string | null;
+    navn?: string | null;
+    norskIdentitetsnummer?: string | null;
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
     offentligIdent: string;
 };
 
@@ -86,11 +86,11 @@ export type ProblemDetail = {
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
+    etternavn?: string | null;
+    fornavn?: string | null;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type InnsendingEttersendelseData = {

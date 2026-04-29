@@ -3,7 +3,7 @@
 export { BrukerdialogOppgave, type Options } from './sdk.gen';
 export {
     type ArbeidOgFrilansRegisterInntektDto,
-    type BekreftBostedDataDto,
+    type BekreftBostedOppgavetypeDataDto,
     type BrukerdialogOppgaveDto,
     type ClientOptions,
     type EndretPeriodeDataDto,

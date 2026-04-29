@@ -1,7 +1,7 @@
 /* eslint-disable no-case-declarations */
 import { DateRange, isISODate, ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import {
-    BekreftBostedDataDto,
+    BekreftBostedOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
     EndretSluttdatoDataDto,
@@ -216,14 +216,14 @@ export const parseOppgaverElement = (
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
             case OppgaveType.BEKREFT_BOSTED:
-                const bostedData = oppgave.oppgavetypeData as BekreftBostedDataDto;
+                const bostedData = oppgave.oppgavetypeData as BekreftBostedOppgavetypeDataDto;
                 const bostedVilkårOppgave: BostedVilkårOppgave = {
                     ...getOppgaveBaseProps(oppgave),
                     oppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
                     oppgavetypeData: {
                         periode: {
-                            from: ISODateToDate(bostedData.fraOgMed),
-                            to: ISODateToDate(bostedData.tilOgMed),
+                            from: ISODateToDate(bostedData.fom),
+                            to: ISODateToDate(bostedData.tom),
                         },
                         erBosattITrondheim: bostedData.erBosattITrondheim,
                     },

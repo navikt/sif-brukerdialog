@@ -5,15 +5,15 @@ export type ClientOptions = {
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[];
+    frilansoppdrag?: FrilansoppdragDto[] | null;
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
 };
 
 export type Barn = {
-    aktørId?: string;
+    aktørId?: string | null;
     fødselsdato?: string;
-    identitetsnummer?: string;
+    identitetsnummer?: string | null;
     navn?: string;
     type?: 'FOSTERBARN' | 'ANNET' | 'FRA_OPPSLAG';
 };
@@ -23,7 +23,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type BarnOppslagListe = {
@@ -45,16 +45,16 @@ export type Bosted = {
 
 export type Frilans = {
     jobberFortsattSomFrilans?: boolean;
-    sluttdato?: string;
+    sluttdato?: string | null;
     startdato?: string;
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
+    offentligIdent?: string | null;
+    organisasjonsnummer?: string | null;
     type: string;
 };
 
@@ -69,30 +69,31 @@ export type OmsorgspengerutbetalingSnfSøknad = {
     barn: unknown[];
     bekreftelser: Bekreftelser;
     bosteder: unknown[];
-    dataBruktTilUtledningAnnetData?: string;
+    dataBruktTilUtledningAnnetData?: string | null;
     erArbeidstakerOgså: boolean;
-    harAleneomsorg?: boolean;
-    harDekketTiFørsteDagerSelv?: boolean;
-    harSyktBarn?: boolean;
+    frilans?: null;
+    harAleneomsorg?: boolean | null;
+    harDekketTiFørsteDagerSelv?: boolean | null;
+    harSyktBarn?: boolean | null;
     opphold: unknown[];
-    selvstendigNæringsdrivende?: Virksomhet;
+    selvstendigNæringsdrivende?: Virksomhet | null;
     språk: string;
     spørsmål: SpørsmålOgSvar[];
-    søkerNorskIdent?: string;
+    søkerNorskIdent?: string | null;
     utbetalingsperioder: unknown[];
     vedlegg: string[];
 };
 
 export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
+    navn?: string | null;
     organisasjonsnummer: string;
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
+    ansattFom?: string | null;
+    ansattTom?: string | null;
     offentligIdent: string;
 };
 
@@ -114,22 +115,22 @@ export type Regnskapsfører = {
 
 export type SpørsmålOgSvar = {
     spørsmål: string;
-    svar: boolean;
+    svar: boolean | null;
 };
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
+    etternavn?: string | null;
+    fornavn?: string | null;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string;
+    mellomnavn?: string | null;
 };
 
 export type Utbetalingsperiode = {
     aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
-    antallTimerBorte?: string;
-    antallTimerPlanlagt?: string;
+    antallTimerBorte?: string | null;
+    antallTimerPlanlagt?: string | null;
     fraOgMed?: string;
     tilOgMed?: string;
     årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
@@ -143,16 +144,19 @@ export type VarigEndring = {
 
 export type Virksomhet = {
     erNyoppstartet: boolean;
-    fiskerErPåBladB?: boolean;
+    fiskerErPåBladB?: boolean | null;
     fraOgMed: string;
-    harFlereAktiveVirksomheter: boolean;
+    harFlereAktiveVirksomheter: boolean | null;
     navnPåVirksomheten: string;
-    næringsinntekt?: number;
+    næringsinntekt?: number | null;
     næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
-    organisasjonsnummer?: string;
+    organisasjonsnummer?: string | null;
     registrertINorge: boolean;
-    registrertIUtlandet?: Land;
-    tilOgMed?: string;
+    registrertIUtlandet?: Land | null;
+    regnskapsfører?: null;
+    tilOgMed?: string | null;
+    varigEndring?: null;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
 export type YrkesaktivSisteTreFerdigliknedeArene = {
@@ -163,36 +167,36 @@ export type OmsorgspengerutbetalingSnfSøknadWritable = {
     barn: Barn[];
     bekreftelser: Bekreftelser;
     bosteder: Bosted[];
-    dataBruktTilUtledningAnnetData?: string;
+    dataBruktTilUtledningAnnetData?: string | null;
     erArbeidstakerOgså: boolean;
-    frilans?: Frilans;
-    harAleneomsorg?: boolean;
-    harDekketTiFørsteDagerSelv?: boolean;
-    harSyktBarn?: boolean;
+    frilans?: Frilans | null;
+    harAleneomsorg?: boolean | null;
+    harDekketTiFørsteDagerSelv?: boolean | null;
+    harSyktBarn?: boolean | null;
     opphold: Bosted[];
-    selvstendigNæringsdrivende?: VirksomhetWritable;
+    selvstendigNæringsdrivende?: VirksomhetWritable | null;
     språk: string;
     spørsmål: SpørsmålOgSvar[];
-    søkerNorskIdent?: string;
+    søkerNorskIdent?: string | null;
     utbetalingsperioder: Utbetalingsperiode[];
     vedlegg: string[];
 };
 
 export type VirksomhetWritable = {
     erNyoppstartet: boolean;
-    fiskerErPåBladB?: boolean;
+    fiskerErPåBladB?: boolean | null;
     fraOgMed: string;
-    harFlereAktiveVirksomheter: boolean;
+    harFlereAktiveVirksomheter: boolean | null;
     navnPåVirksomheten: string;
-    næringsinntekt?: number;
+    næringsinntekt?: number | null;
     næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
-    organisasjonsnummer?: string;
+    organisasjonsnummer?: string | null;
     registrertINorge: boolean;
-    registrertIUtlandet?: Land;
-    regnskapsfører?: Regnskapsfører;
-    tilOgMed?: string;
-    varigEndring?: VarigEndring;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
+    registrertIUtlandet?: Land | null;
+    regnskapsfører?: Regnskapsfører | null;
+    tilOgMed?: string | null;
+    varigEndring?: VarigEndring | null;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene | null;
 };
 
 export type DeleteMellomlagringData = {
