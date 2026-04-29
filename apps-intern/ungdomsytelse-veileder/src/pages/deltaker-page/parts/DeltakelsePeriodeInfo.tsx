@@ -50,17 +50,17 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                     Deltakerperiode
                 </Heading>
 
-                <HGrid gap="space-8" columns={{ sm: 1, md: '1fr 1fr 1fr' }}>
-                    <TildeltKvotePanel
-                        deltaker={deltaker}
-                        deltakelse={deltakelse}
-                        kanEndreKvote={
-                            deltakerHarSøkt &&
-                            !deltakelseKvoteErUtløpt(deltakelse) &&
-                            !deltakelseSluttdatoErPassert(deltakelse)
-                        }
-                        onDeltakelseChanged={handleOnDeltakelseChanged}
-                    />
+                <TildeltKvotePanel
+                    deltaker={deltaker}
+                    deltakelse={deltakelse}
+                    kanEndreKvote={
+                        deltakerHarSøkt &&
+                        !deltakelseKvoteErUtløpt(deltakelse) &&
+                        !deltakelseSluttdatoErPassert(deltakelse)
+                    }
+                    onDeltakelseChanged={handleOnDeltakelseChanged}
+                />
+                <HGrid gap="space-8" columns={{ sm: 1, md: '1fr 1fr' }}>
                     <EndreStartdatoPanel
                         dato={deltakelse.fraOgMed}
                         kanEndreStartdato={startdatoKanEndres}
