@@ -26,7 +26,7 @@
         "build-storybook": "storybook build"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.10.2",
+        "@navikt/ds-react": "8.10.3",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
