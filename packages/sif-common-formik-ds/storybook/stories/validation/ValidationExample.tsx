@@ -397,11 +397,11 @@ const error = getFødselsnummerValidator(options)(value);
                                     <Form.TextField
                                         name={FormFields.fødselsnummer}
                                         width="m"
-                                        description='Eksempelfødselsnummeret "19081988075" er ditt eget, og er ikke tillatt'
+                                        description='Eksempelfødselsnummeret "17420373147" er ditt eget, og er ikke tillatt'
                                         label="Hva er barnets fødselsnummer / D-nummer?"
                                         validate={getFødselsnummerValidator({
                                             required: true,
-                                            disallowedValues: ['19081988075'],
+                                            disallowedValues: ['17420373147'],
                                         })}
                                     />
                                 </Panel>
