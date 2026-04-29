@@ -41,6 +41,7 @@ export const søknadsdataToSøknadDTO = ({
                 landnavn: b.landnavn,
             })),
         },
+        erBosattITrondheim: bosted.erBosattITrondheim,
         startdato: startdato.startdato,
         harForståttRettigheterOgPlikter,
     };

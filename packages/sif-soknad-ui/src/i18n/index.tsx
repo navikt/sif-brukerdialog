@@ -29,6 +29,8 @@ import { stepPageMessages_nb } from '../pages/step-page/i18n/nb';
 import { stepPageMessages_nn } from '../pages/step-page/i18n/nn';
 
 const nb = {
+    '@sifSoknadUi.jaNeiSvar.Ja': 'Ja',
+    '@sifSoknadUi.jaNeiSvar.Nei': 'Nei',
     ...appErrorFallbackMessages_nb,
     ...deleteButtonMessages_nb,
     ...formLayoutMessages_nb,
@@ -45,6 +47,8 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
+    '@sifSoknadUi.jaNeiSvar.Ja': 'Ja',
+    '@sifSoknadUi.jaNeiSvar.Nei': 'Nei',
     ...appErrorFallbackMessages_nn,
     ...deleteButtonMessages_nn,
     ...formLayoutMessages_nn,

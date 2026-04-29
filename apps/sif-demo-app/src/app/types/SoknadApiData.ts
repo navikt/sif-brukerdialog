@@ -6,7 +6,7 @@ export type SøknadApiData = {
         navn: string;
         fødselsdato: string;
     };
-    borITrondheim: boolean;
+    erBosattITrondheim: boolean;
     vedlegg: string[];
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;

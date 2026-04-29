@@ -30,16 +30,16 @@ export const BostedForm = () => {
     });
 
     const methods = useSøknadRhfForm(stepId, defaultValues);
-    const borITrondheim = methods.watch(BostedFormFields.borITrondheim);
+    const erBosattITrondheim = methods.watch(BostedFormFields.erBosattITrondheim);
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
             <YesOrNoQuestion
-                name={BostedFormFields.borITrondheim}
-                legend={text('bostedSteg.spørsmål.borITrondheim')}
-                validate={validateField(BostedFormFields.borITrondheim, getYesOrNoValidator())}
+                name={BostedFormFields.erBosattITrondheim}
+                legend={text('bostedSteg.spørsmål.erBosattITrondheim')}
+                validate={validateField(BostedFormFields.erBosattITrondheim, getYesOrNoValidator())}
             />
-            {borITrondheim === YesOrNo.NO && (
+            {erBosattITrondheim === YesOrNo.NO && (
                 <SifInfoCard variant="warning">
                     <Heading level="3" size="small" spacing>
                         Når du ikke bor i Trondheim

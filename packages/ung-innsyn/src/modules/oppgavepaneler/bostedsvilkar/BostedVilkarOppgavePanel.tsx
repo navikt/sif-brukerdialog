@@ -17,7 +17,7 @@ export const BostedVilkårOppgavePanel = ({ navn, oppgave, initialVisKvittering 
             <Oppgavebekreftelse.Ubesvart>
                 <BostedVilkarOppgavePanelOppgavetekst
                     frist={oppgave.sisteDatoEnKanSvare}
-                    borITrondheim={oppgave.oppgavetypeData.erBosattITrondheim}
+                    erBosattITrondheim={oppgave.oppgavetypeData.erBosattITrondheim}
                     periode={oppgave.oppgavetypeData.periode}
                 />
             </Oppgavebekreftelse.Ubesvart>

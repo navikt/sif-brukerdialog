@@ -10,12 +10,12 @@ import { BostedSøknadsdata } from '../../types/Soknadsdata';
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
 
 export enum BostedFormFields {
-    borITrondheim = 'borITrondheim',
+    erBosattITrondheim = 'erBosattITrondheim',
     borUtenforTrondheim = 'borUtenforTrondheim',
 }
 
 export interface BostedFormValues extends StepFormValues {
-    [BostedFormFields.borITrondheim]?: YesOrNo;
+    [BostedFormFields.erBosattITrondheim]?: YesOrNo;
     [BostedFormFields.borUtenforTrondheim]?: YesOrNo;
 }
 const { YesOrNoQuestion } = createSifFormComponents<BostedFormValues>();
@@ -37,17 +37,17 @@ export const BostedForm = () => {
 
     const methods = useSøknadRhfForm(stepId, defaultValues);
 
-    const borITrondheim = methods.watch(BostedFormFields.borITrondheim);
+    const erBosattITrondheim = methods.watch(BostedFormFields.erBosattITrondheim);
 
     return (
         <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
             <FormLayout.Content>
                 <YesOrNoQuestion
-                    name={BostedFormFields.borITrondheim}
+                    name={BostedFormFields.erBosattITrondheim}
                     legend="Bor du i Trondheim"
-                    validate={validateField(BostedFormFields.borITrondheim, getYesOrNoValidator())}
+                    validate={validateField(BostedFormFields.erBosattITrondheim, getYesOrNoValidator())}
                 />
-                {borITrondheim === YesOrNo.YES && (
+                {erBosattITrondheim === YesOrNo.YES && (
                     <YesOrNoQuestion
                         name={BostedFormFields.borUtenforTrondheim}
                         legend="Bor du utenfor Trondheim"

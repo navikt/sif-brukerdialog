@@ -1,6 +1,6 @@
 export const bostedVilkårMessages_nb = {
     '@ungInnsyn.bostedVilkårOppgave.tekst.1': 'Du har fått en oppgave om å bekrefte bosted for aktivitetspenger.',
-    '@ungInnsyn.bostedVilkårOppgave.tekst.1b': 'Periode: {periode}. Bor i Trondheim: {borITrondheim}',
+    '@ungInnsyn.bostedVilkårOppgave.tekst.1b': 'Periode: {periode}. Bor i Trondheim: {erBosattITrondheim}',
     '@ungInnsyn.bostedVilkårOppgave.tekst.2':
         'Du får denne meldingen slik at du kan komme med en tilbakemelding på dette.',
     '@ungInnsyn.bostedVilkårOppgave.tekst.3':

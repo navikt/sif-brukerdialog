@@ -3,8 +3,8 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { SøknadStep } from '@app/setup/soknad/SoknadStep';
-import { prettifyApiDate } from '@navikt/sif-common-utils';
-import { FormSummary, InfoCard } from '@navikt/ds-react';
+import { InfoCard } from '@navikt/ds-react';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
@@ -12,6 +12,11 @@ import { FormLayout } from '@sif/soknad-ui';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { søknadsdataToSøknadDTO } from '../../utils/soknadsdataToSoknadDTO';
+import { BarnOppsummering } from './parts/BarnOppsummering';
+import { BostedOppsummering } from './parts/BostedOppsummering';
+import { BostedUtlandOppsummering } from './parts/BostedUtlandOppsummering';
+import { KontonummerOppsummering } from './parts/KontonummerOppsummering';
+import { StartdatoOppsummering } from './parts/StartdatoOppsummering';
 
 enum FormFields {
     bekrefterOpplysninger = 'bekrefterOpplysninger',
@@ -77,25 +82,20 @@ export const OppsummeringSteg = () => {
                         </InfoCard.Content>
                     </InfoCard>
                 )}
-                <FormLayout.Summary>
-                    <FormSummary>
-                        <FormSummary.Header>
-                            <FormSummary.Heading level="2">
-                                <AppText id="oppsummeringSteg.oppsummering.tittel" />
-                            </FormSummary.Heading>
-                        </FormSummary.Header>
-                        {dto && (
-                            <FormSummary.Answers>
-                                <FormSummary.Answer>
-                                    <FormSummary.Label>
-                                        <AppText id="oppsummeringSteg.startdato.label" />
-                                    </FormSummary.Label>
-                                    <FormSummary.Value>{prettifyApiDate(dto.startdato)}</FormSummary.Value>
-                                </FormSummary.Answer>
-                            </FormSummary.Answers>
-                        )}
-                    </FormSummary>
-                </FormLayout.Summary>
+                {dto && (
+                    <>
+                        <FormLayout.Summary>
+                            <StartdatoOppsummering startdato={ISODateToDate(dto.startdato)} />
+                            <KontonummerOppsummering
+                                kontonummerInfo={dto.kontonummerInfo}
+                                kontoOppslagInfo={state.kontoInfo}
+                            />
+                            <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
+                            <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
+                            <BarnOppsummering barn={state.barn} barnErRiktig={dto.barnErRiktig} />
+                        </FormLayout.Summary>
+                    </>
+                )}
                 <FormLayout.Questions>
                     <Checkbox
                         name={FormFields.bekrefterOpplysninger}
