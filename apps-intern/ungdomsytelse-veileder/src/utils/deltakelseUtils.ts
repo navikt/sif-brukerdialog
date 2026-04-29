@@ -30,8 +30,8 @@ export const kanEndreStartdato = (deltakelse: Deltakelse, tillattEndringsperiode
 };
 
 export const kanEndreSluttdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
-    // Hvis maksDeltakelseDato er før dagens dato, skal det ikke være mulig å endre sluttdato til en dato etter maksDeltakelseDato
-    if (dayjs(deltakelse.maksDeltakelseDato).isSameOrBefore(getDateToday(), 'day')) {
+    // Hvis kvoteMaksDato er før dagens dato, skal det ikke være mulig å endre sluttdato til en dato etter kvoteMaksDato
+    if (dayjs(deltakelse.kvoteMaksDato).isSameOrBefore(getDateToday(), 'day')) {
         return false;
     }
 
@@ -41,7 +41,7 @@ export const kanEndreSluttdato = (deltakelse: Deltakelse, tillattEndringsperiode
 };
 
 export const deltakelseKvoteErUtløpt = (deltakelse: Deltakelse): boolean => {
-    return deltakelse.maksDeltakelseDato ? dayjs(deltakelse.maksDeltakelseDato).isBefore(getDateToday(), 'day') : false;
+    return deltakelse.kvoteMaksDato ? dayjs(deltakelse.kvoteMaksDato).isBefore(getDateToday(), 'day') : false;
 };
 
 export const deltakelseSluttdatoErPassert = (deltakelse: Deltakelse): boolean => {

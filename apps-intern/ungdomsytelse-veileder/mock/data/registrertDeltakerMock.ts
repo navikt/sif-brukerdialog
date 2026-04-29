@@ -33,7 +33,7 @@ const deltakelse: DeltakelseDto = {
     harOpphørsvedtak: false,
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
     harUtvidetKvote: false,
-    maksDeltakelseDato: dateToISODate(dayjs('2026-01-01').add(260, 'days').toDate()),
+    kvoteMaksDato: dateToISODate(dayjs('2026-01-01').add(260, 'days').toDate()),
 };
 
 const deltakelseHistorikk: DeltakelseHistorikkDto[] = [

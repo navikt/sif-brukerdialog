@@ -136,6 +136,9 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
         harOpphørsvedtak: false,
         fraOgMed: startdato,
         søktTidspunkt: undefined,
+        tilOgMed: undefined,
+        harUtvidetKvote: false,
+        kvoteMaksDato: dateToISODate(dayjs(ISODateToDate(startdato)).add(260, 'days').toDate()),
     };
     db.deltakelser.push({
         deltakelse,
@@ -179,7 +182,7 @@ const endreStartdato = (deltakelseId: string, dato: string) => {
     return dbDeltakelse.deltakelse;
 };
 
-const utvidDeltakelse = (deltakelseId: string) => {
+const utvidKvote = (deltakelseId: string) => {
     const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
     if (!deltakelse) {
         throw new Error('Fant ikke deltakelse med id');
@@ -189,7 +192,7 @@ const utvidDeltakelse = (deltakelseId: string) => {
         deltakelse: {
             ...deltakelse.deltakelse,
             harUtvidetKvote: true,
-            maksDeltakelseDato: dateToISODate(
+            kvoteMaksDato: dateToISODate(
                 dayjs(ISODateToDate(deltakelse.deltakelse.fraOgMed)).add(300, 'days').toDate(),
             ),
         },
@@ -248,7 +251,7 @@ export const mockUtils = {
     getDeltakelseHistorikk,
     getDeltakerByDeltakerId,
     meldInnDeltaker,
-    utvidDeltakelse,
+    utvidKvote,
     fjernDeltaker,
     getUtvidetDeltakelseHistorikk,
     reset,

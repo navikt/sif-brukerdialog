@@ -11,7 +11,7 @@ import { getCheckedValidator, getYesOrNoValidator } from '@navikt/sif-validation
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { formatName } from '@navikt/sif-common-utils';
-import { useUtvidDeltakelse } from '../../hooks/useUtvidDeltakelse';
+import { useUtvidKvote } from '../../hooks/useUtvidKvote';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 enum FieldNames {
@@ -32,10 +32,10 @@ interface Props {
     onDeltakelseChanged: (oppdatertDeltakelse: Deltakelse) => void;
 }
 
-const UtvidDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }: Props) => {
+const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }: Props) => {
     const intl = useIntl();
 
-    const { mutate, isPending, error } = useUtvidDeltakelse({ deltakelseId: deltakelse.id, deltakerId: deltaker.id });
+    const { mutate, isPending, error } = useUtvidKvote({ deltakelseId: deltakelse.id, deltakerId: deltaker.id });
 
     const handleOnSubmit = async (values: FormValues) => {
         const { bekrefterEndring } = values;
@@ -96,4 +96,4 @@ const UtvidDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChang
     );
 };
 
-export default UtvidDeltakelseForm;
+export default UtvidKvoteForm;

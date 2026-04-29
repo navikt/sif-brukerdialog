@@ -3,7 +3,7 @@ import InfoBox from '../../../atoms/InfoBox';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { useState } from 'react';
-import UtvidTildeltPeriodeModal from '../../../components/utvid-tildelt-periode-modal/UtvidTildeltPeriodeModal';
+import UtvidKvoteModal from '../../../components/utvid-kvote-modal/UtvidKvoteModal';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { deltakelseKvoteErUtløpt } from '../../../utils/deltakelseUtils';
 
@@ -17,9 +17,9 @@ interface DatoBoksProps {
 const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote, onDeltakelseChanged }: DatoBoksProps) => {
     const [visDialog, setVisDialog] = useState(false);
 
-    const { harUtvidetKvote, maksDeltakelseDato } = deltakelse;
+    const { harUtvidetKvote, kvoteMaksDato } = deltakelse;
     const antallTildelteDager = harUtvidetKvote ? 300 : 260;
-    const kvoteErUtløpt = maksDeltakelseDato ? deltakelseKvoteErUtløpt(deltakelse) : false;
+    const kvoteErUtløpt = kvoteMaksDato ? deltakelseKvoteErUtløpt(deltakelse) : false;
 
     return (
         <>
@@ -35,7 +35,7 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote, onDeltakelseCh
                     </BodyShort>
                     <BodyShort>
                         {kvoteErUtløpt ? 'Utløp' : 'Utløper'}{' '}
-                        <strong>{dateFormatter.dayCompactDate(maksDeltakelseDato)}</strong>.
+                        <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
                     </BodyShort>
                     {harUtvidetKvote ? (
                         <div>
@@ -57,7 +57,7 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote, onDeltakelseCh
                 </VStack>
             </InfoBox>
             {visDialog ? (
-                <UtvidTildeltPeriodeModal
+                <UtvidKvoteModal
                     onClose={() => setVisDialog(false)}
                     deltakelse={deltakelse}
                     deltaker={deltaker}

@@ -21,11 +21,11 @@ export const zDeltakelseDto = z.object({
     erSlettet: z.boolean(),
     fraOgMed: z.iso.date(),
     harOpphørsvedtak: z.boolean(),
+    harUtvidetKvote: z.boolean(),
     id: z.uuid().nullish(),
+    kvoteMaksDato: z.iso.date(),
     søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
     tilOgMed: z.iso.date().nullish(),
-    harUtvidetKvote: z.boolean().nullish().optional(),
-    maksDeltakelseDato: z.iso.date().nullish().optional(),
 });
 
 export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
@@ -41,6 +41,7 @@ export const zEndringstype = z.enum([
     'ENDRET_SLUTTDATO',
     'DELTAKER_HAR_SØKT_YTELSE',
     'DELTAKELSE_FJERNET',
+    'UTVIDET_KVOTE',
     'UKJENT',
 ]);
 
@@ -105,15 +106,10 @@ export const zMeldUtDeltakerPath = z.object({
     deltakelseId: z.uuid(),
 });
 
-export const zUtvidDeltakelsePath = z.object({
-    deltakelseId: z.uuid(),
-});
 /**
  * OK
  */
 export const zMeldUtDeltakerResponse = zDeltakelseDto;
-
-export const zUtvidDeltakelseResponse = zDeltakelseDto;
 
 export const zEndreSluttdatoBody = zEndrePeriodeDatoDto;
 
@@ -145,6 +141,15 @@ export const zDeltakelseHistorikkPath = z.object({
  * OK
  */
 export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
+
+export const zUtvidKvotePath = z.object({
+    deltakelseId: z.uuid(),
+});
+
+/**
+ * OK
+ */
+export const zUtvidKvoteResponse = zDeltakelseDto;
 
 export const zMeldInnDeltakerBody = zDeltakelseInnmeldingDto;
 

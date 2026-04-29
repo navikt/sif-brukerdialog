@@ -8,11 +8,11 @@ import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
  * @throws {ApiError}
  */
 
-export const utvidDeltakelse = async (deltakelseId: string): Promise<Deltakelse> => {
+export const utvidKvote = async (deltakelseId: string): Promise<Deltakelse> => {
     try {
-        const { data } = await Veileder.utvidDeltakelse({ path: { deltakelseId } });
+        const { data } = await Veileder.utvidKvote({ path: { deltakelseId } });
         return deltakelseSchema.parse(data);
     } catch (e) {
-        throw handleApiError(e, 'utvidDeltakelse');
+        throw handleApiError(e, 'utvidKvote');
     }
 };
