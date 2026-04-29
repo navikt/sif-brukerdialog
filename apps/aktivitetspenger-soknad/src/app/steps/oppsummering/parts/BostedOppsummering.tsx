@@ -31,7 +31,7 @@ export const BostedOppsummering = ({ erBosattITrondheim }: Props) => {
                     onClick={(evt) => {
                         evt.preventDefault();
                         evt.stopPropagation();
-                        navigateToStep(SøknadStepId.STARTDATO);
+                        navigateToStep(SøknadStepId.BOSTED);
                     }}
                 />
             </FormSummary.Footer>
