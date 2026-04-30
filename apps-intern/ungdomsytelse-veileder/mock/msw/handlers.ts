@@ -59,7 +59,7 @@ export const handlers = [
         return HttpResponse.json(response);
     }),
 
-    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/utvid', async ({ params }) => {
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/utvid-kvote', async ({ params }) => {
         const { deltakelseId } = params;
         await slowDown(75);
         const response = mockUtils.utvidKvote(deltakelseId);

@@ -1,4 +1,4 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../../types/Deltakelse';
@@ -12,13 +12,16 @@ import MeldUtDeltakerPanel from './MeldUtDeltakerPanel';
 import SluttdatoKanIkkeEndresPanel from './SluttdatoKanIkkeEndresPanel';
 import TildeltKvotePanel from './TildeltKvotePanel';
 import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
+import InfoBox from '../../../atoms/InfoBox';
 
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
+
+    variant?: 'liste' | 'panel';
 }
 
-const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
+const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Props) => {
     const [formVariant, setFormVariant] = useState<EndrePeriodeVariant | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
 
@@ -44,46 +47,112 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                     Deltakerperiode
                 </Heading>
 
-                <TildeltKvotePanel
-                    deltaker={deltaker}
-                    deltakelse={deltakelse}
-                    onDeltakelseChanged={handleOnDeltakelseChanged}
-                />
-                <HGrid gap="space-8" columns={{ sm: 1, md: '1fr 1fr' }}>
-                    <EndreStartdatoPanel
-                        dato={deltakelse.fraOgMed}
-                        kanEndreStartdato={startdatoKanEndres}
-                        onClickEndreButton={() => {
-                            setEndretDeltakelse(undefined);
-                            setFormVariant(EndrePeriodeVariant.startdato);
-                        }}
-                    />
-                    {Features.endreSluttdato && sluttdatoKanEndres ? (
-                        <>
-                            {deltakerHarSøkt && deltakelse.tilOgMed && (
-                                <EndreSluttdatoPanel
-                                    tilOgMed={deltakelse.tilOgMed}
-                                    kanEndreSluttdato={sluttdatoKanEndres}
-                                    onClickEndreSluttdato={() => {
+                {variant === 'liste' ? (
+                    <InfoBox>
+                        <dl className="deltakelseInfoDL">
+                            <dt>
+                                <BodyShort>Tildelte dager:</BodyShort>
+                            </dt>
+                            <dd>
+                                <TildeltKvotePanel
+                                    variant="liste"
+                                    deltaker={deltaker}
+                                    deltakelse={deltakelse}
+                                    onDeltakelseChanged={handleOnDeltakelseChanged}
+                                />
+                            </dd>
+                            <dt>
+                                <BodyShort>Startdato:</BodyShort>
+                            </dt>
+                            <dd>
+                                <EndreStartdatoPanel
+                                    variant="liste"
+                                    dato={deltakelse.fraOgMed}
+                                    kanEndreStartdato={startdatoKanEndres}
+                                    onClickEndreButton={() => {
                                         setEndretDeltakelse(undefined);
-                                        setFormVariant(EndrePeriodeVariant.endreSluttdato);
+                                        setFormVariant(EndrePeriodeVariant.startdato);
                                     }}
                                 />
+                            </dd>
+                            <dt className="deltakelseInfoDL__lastDefinition">
+                                <BodyShort>Sluttdato:</BodyShort>
+                            </dt>
+                            <dd className="deltakelseInfoDL__lastDefinition">
+                                {Features.endreSluttdato && sluttdatoKanEndres ? (
+                                    <>
+                                        {deltakerHarSøkt && deltakelse.tilOgMed && (
+                                            <EndreSluttdatoPanel
+                                                variant="liste"
+                                                tilOgMed={deltakelse.tilOgMed}
+                                                kanEndreSluttdato={sluttdatoKanEndres}
+                                                onClickEndreSluttdato={() => {
+                                                    setEndretDeltakelse(undefined);
+                                                    setFormVariant(EndrePeriodeVariant.endreSluttdato);
+                                                }}
+                                            />
+                                        )}
+                                        {deltakerHarSøkt && !deltakelse.tilOgMed && (
+                                            <MeldUtDeltakerPanel
+                                                variant="liste"
+                                                onClickMeldUtButton={() => {
+                                                    setEndretDeltakelse(undefined);
+                                                    setFormVariant(EndrePeriodeVariant.meldUtDeltaker);
+                                                }}
+                                            />
+                                        )}
+                                        {!deltakerHarSøkt && <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />}
+                                    </>
+                                ) : (
+                                    <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />
+                                )}
+                            </dd>
+                        </dl>
+                    </InfoBox>
+                ) : (
+                    <>
+                        <TildeltKvotePanel
+                            deltaker={deltaker}
+                            deltakelse={deltakelse}
+                            onDeltakelseChanged={handleOnDeltakelseChanged}
+                        />
+                        <HGrid gap="space-8" columns={{ sm: 1, md: '1fr 1fr' }}>
+                            <EndreStartdatoPanel
+                                dato={deltakelse.fraOgMed}
+                                kanEndreStartdato={startdatoKanEndres}
+                                onClickEndreButton={() => {
+                                    setEndretDeltakelse(undefined);
+                                    setFormVariant(EndrePeriodeVariant.startdato);
+                                }}
+                            />
+                            {Features.endreSluttdato && sluttdatoKanEndres ? (
+                                <>
+                                    {deltakerHarSøkt && deltakelse.tilOgMed && (
+                                        <EndreSluttdatoPanel
+                                            tilOgMed={deltakelse.tilOgMed}
+                                            kanEndreSluttdato={sluttdatoKanEndres}
+                                            onClickEndreSluttdato={() => {
+                                                setEndretDeltakelse(undefined);
+                                                setFormVariant(EndrePeriodeVariant.endreSluttdato);
+                                            }}
+                                        />
+                                    )}
+                                    {deltakerHarSøkt && !deltakelse.tilOgMed && (
+                                        <MeldUtDeltakerPanel
+                                            onClickMeldUtButton={() => {
+                                                setEndretDeltakelse(undefined);
+                                                setFormVariant(EndrePeriodeVariant.meldUtDeltaker);
+                                            }}
+                                        />
+                                    )}
+                                    {!deltakerHarSøkt && <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />}
+                                </>
+                            ) : (
+                                <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />
                             )}
-                            {deltakerHarSøkt && !deltakelse.tilOgMed && (
-                                <MeldUtDeltakerPanel
-                                    onClickMeldUtButton={() => {
-                                        setEndretDeltakelse(undefined);
-                                        setFormVariant(EndrePeriodeVariant.meldUtDeltaker);
-                                    }}
-                                />
-                            )}
-                            {!deltakerHarSøkt && <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />}
-                        </>
-                    ) : (
-                        <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />
-                    )}
-                </HGrid>
+                        </HGrid>
+                    </>
+                )}
             </VStack>
             {formVariant ? (
                 <EndrePeriodeModal

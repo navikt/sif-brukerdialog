@@ -51,32 +51,35 @@ export const DrawerProvider = ({ children, initialTitle, initialOpen = true, ini
     return (
         <DrawerContext.Provider value={{ openDrawer, closeDrawer }}>
             {children}
-            <Modal
-                className={`drawer-dialog drawer-dialog-${width}`}
-                open={isOpen === true}
-                onClose={closeDrawer}
-                aria-label="Dialog">
-                <Modal.Header>
-                    <HStack gap="space-16" align="center">
-                        <Bleed marginBlock="space-8" marginInline="space-8">
-                            <Button
-                                variant="tertiary-neutral"
-                                type="button"
-                                title="Utvid eller reduser bredde"
-                                aria-label={width === DrawerWidth.NARROW ? 'Gjør bredere' : 'Gjør smalere'}
-                                onClick={() => {
-                                    setWidth(width === DrawerWidth.NARROW ? DrawerWidth.WIDE : DrawerWidth.NARROW);
-                                }}
-                                icon={width === DrawerWidth.NARROW ? <ExpandIcon /> : <ShrinkIcon />}
-                            />
-                        </Bleed>
-                        <Heading level="2" size="xsmall">
-                            {title}
-                        </Heading>
-                    </HStack>
-                </Modal.Header>
-                <Modal.Body className={`drawer-body drawer-body-${width}`}>{content}</Modal.Body>
-            </Modal>
+            {isOpen && (
+                <Modal
+                    className={`drawer-dialog drawer-dialog-${width}`}
+                    open={isOpen === true}
+                    onClose={closeDrawer}
+                    aria-label="Dialog">
+                    <Modal.Header>
+                        <HStack gap="space-16" align="center">
+                            asd
+                            <Bleed marginBlock="space-8" marginInline="space-8">
+                                <Button
+                                    variant="tertiary-neutral"
+                                    type="button"
+                                    title="Utvid eller reduser bredde"
+                                    aria-label={width === DrawerWidth.NARROW ? 'Gjør bredere' : 'Gjør smalere'}
+                                    onClick={() => {
+                                        setWidth(width === DrawerWidth.NARROW ? DrawerWidth.WIDE : DrawerWidth.NARROW);
+                                    }}
+                                    icon={width === DrawerWidth.NARROW ? <ExpandIcon /> : <ShrinkIcon />}
+                                />
+                            </Bleed>
+                            <Heading level="2" size="xsmall">
+                                {title}
+                            </Heading>
+                        </HStack>
+                    </Modal.Header>
+                    <Modal.Body className={`drawer-body drawer-body-${width}`}>{content}</Modal.Body>
+                </Modal>
+            )}
         </DrawerContext.Provider>
     );
 };

@@ -56,6 +56,7 @@ export const deltakelseKanUtvides = (deltakelse: Deltakelse): boolean => {
     return (
         deltakelse.søktTidspunkt !== undefined &&
         deltakelse.tilOgMed === undefined &&
+        deltakelse.harUtvidetKvote === false &&
         !deltakelseKvoteErUtløpt(deltakelse) &&
         !deltakelseSluttdatoErPassert(deltakelse)
     );
