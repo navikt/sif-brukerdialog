@@ -1,22 +1,30 @@
-import { Alert, BodyShort, VStack } from '@navikt/ds-react';
+import { Alert, Heading, VStack } from '@navikt/ds-react';
 import InfoBox from '../../../atoms/InfoBox';
+import { Deltakelse } from '../../../types/Deltakelse';
+import { deltakelseKvoteErUtløpt } from '../../../utils/deltakelseUtils';
 
-const SluttdatoKanIkkeEndresPanel = () => (
-    <InfoBox>
-        <VStack gap="space-24">
-            <VStack gap="space-8">
-                <BodyShort size="large" weight="semibold" className="text-2xl">
-                    Sluttdato:
-                </BodyShort>
-                <BodyShort size="large" weight="semibold" className="text-2xl capitalize">
-                    -
-                </BodyShort>
-                <Alert variant="info" inline>
-                    Sluttdato kan foreløpig ikke settes.
-                </Alert>
+interface Props {
+    deltakelse: Deltakelse;
+}
+const SluttdatoKanIkkeEndresPanel = ({ deltakelse }: Props) => {
+    return (
+        <InfoBox>
+            <VStack gap="space-12">
+                <Heading level="3" size="xsmall" spacing>
+                    Sluttdato
+                </Heading>
+                {deltakelseKvoteErUtløpt(deltakelse) ? (
+                    <Alert variant="info" inline>
+                        Deltakelse er avsluttet
+                    </Alert>
+                ) : (
+                    <Alert variant="info" inline>
+                        Sluttdato kan foreløpig ikke settes.
+                    </Alert>
+                )}
             </VStack>
-        </VStack>
-    </InfoBox>
-);
+        </InfoBox>
+    );
+};
 
 export default SluttdatoKanIkkeEndresPanel;

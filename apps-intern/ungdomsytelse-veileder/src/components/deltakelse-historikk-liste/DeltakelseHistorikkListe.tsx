@@ -10,6 +10,8 @@ interface Props {
 }
 const getEndringstypeTekst = (type: Endringstype): string => {
     switch (type) {
+        case Endringstype.UTVIDET_KVOTE:
+            return 'Utvidet kvote';
         case Endringstype.DELTAKER_HAR_SØKT_YTELSE:
             return 'Søknad sendt inn';
         case Endringstype.DELTAKER_MELDT_UT:

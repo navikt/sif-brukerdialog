@@ -9,7 +9,9 @@ export type DeltakelseDto = {
     erSlettet: boolean;
     fraOgMed: string;
     harOpphørsvedtak: boolean;
+    harUtvidetKvote: boolean;
     id?: string | null;
+    kvoteMaksDato: string;
     søktTidspunkt?: string | null;
     tilOgMed?: string | null;
 };
@@ -66,6 +68,7 @@ export enum Endringstype {
     ENDRET_SLUTTDATO = 'ENDRET_SLUTTDATO',
     DELTAKER_HAR_SØKT_YTELSE = 'DELTAKER_HAR_SØKT_YTELSE',
     DELTAKELSE_FJERNET = 'DELTAKELSE_FJERNET',
+    UTVIDET_KVOTE = 'UTVIDET_KVOTE',
     UKJENT = 'UKJENT',
 }
 
@@ -304,6 +307,41 @@ export type DeltakelseHistorikkResponses = {
 };
 
 export type DeltakelseHistorikkResponse = DeltakelseHistorikkResponses[keyof DeltakelseHistorikkResponses];
+
+export type UtvidKvoteData = {
+    body?: never;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/utvid-kvote';
+};
+
+export type UtvidKvoteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type UtvidKvoteError = UtvidKvoteErrors[keyof UtvidKvoteErrors];
+
+export type UtvidKvoteResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+
+export type UtvidKvoteResponse = UtvidKvoteResponses[keyof UtvidKvoteResponses];
 
 export type MeldInnDeltakerData = {
     body: DeltakelseInnmeldingDto;

@@ -39,6 +39,31 @@
         word-wrap: break-word; /* Bryt lange ord */
     }
 }
+.deltakelseInfoDL {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 1.75rem;
+    dt {
+        min-width: 8rem;
+    }
+    dd,
+    dt {
+        vertical-align: top;
+        margin: 0;
+        border-bottom: 1px solid var(--ax-border-neutral-subtle);
+        padding: 1rem 0;
+    }
+    dd {
+        padding-left: 1rem;
+    }
+    .deltakelseInfoDL__lastDefinition {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
 
 @media screen and (max-width: 500px) {
     .ungDefinitionList {

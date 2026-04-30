@@ -60,4 +60,9 @@ export {
     type Navn,
     type ProblemDetail,
     Revisjonstype,
+    type UtvidKvoteData,
+    type UtvidKvoteError,
+    type UtvidKvoteErrors,
+    type UtvidKvoteResponse,
+    type UtvidKvoteResponses,
 } from './types.gen';
