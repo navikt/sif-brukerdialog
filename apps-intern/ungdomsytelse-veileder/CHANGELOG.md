@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.66
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.9.65
 
 ### Patch Changes

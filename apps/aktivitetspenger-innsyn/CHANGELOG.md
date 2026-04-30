@@ -1,5 +1,15 @@
 # @navikt/aktivitetspenger-innsyn
 
+## 0.0.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @sif/api@0.0.4
+    - @sif/rhf@0.0.3
+    - @sif/ung-innsyn@0.0.5
+
 ## 0.0.6
 
 ### Patch Changes

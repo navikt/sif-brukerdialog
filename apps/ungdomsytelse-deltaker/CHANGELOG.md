@@ -1,5 +1,14 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.55
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @sif/api@0.0.4
+    - @sif/ung-innsyn@0.0.5
+
 ## 1.5.54
 
 ### Patch Changes
