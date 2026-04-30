@@ -1,4 +1,4 @@
-import { Bleed, BodyShort, Box, Button, Heading, HStack, InlineMessage, Tag, VStack } from '@navikt/ds-react';
+import { Bleed, BodyLong, BodyShort, Box, Button, Heading, HStack, Tag, VStack } from '@navikt/ds-react';
 import InfoBox from '../../../atoms/InfoBox';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
@@ -30,24 +30,23 @@ const TildeltKvotePanel = ({ variant = 'panel', deltaker, deltakelse, onDeltakel
                 <Bleed marginBlock="space-1">
                     <VStack gap="space-8" maxWidth="40rem">
                         <BodyShort weight="semibold" size="large">
-                            {antallTildelteDager} dager
+                            {harUtvidetKvote ? '260 + 40' : '260'} dager
                         </BodyShort>
                         {tilOgMed ? (
-                            <InlineMessage status="info">
+                            <BodyLong>
                                 Deltaker er meldt ut med siste dag{' '}
                                 <strong>{dateFormatter.dayCompactDate(tilOgMed)}</strong>.
-                            </InlineMessage>
+                            </BodyLong>
                         ) : (
-                            <InlineMessage status="info">
-                                {kvoteErUtløpt ? 'Utløp' : 'Utløper'}{' '}
-                                <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
-                            </InlineMessage>
+                            <BodyLong>
+                                Siste dag: <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
+                            </BodyLong>
                         )}
-                        {harUtvidetKvote && <InlineMessage status="info">Har utvidet kvote</InlineMessage>}
+
                         {kanEndreKvote && (
                             <Box paddingBlock="space-8 space-0">
                                 <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
-                                    Registrert utvidet deltakelse
+                                    Registrer utvidet kvote
                                 </Button>
                             </Box>
                         )}
@@ -58,7 +57,7 @@ const TildeltKvotePanel = ({ variant = 'panel', deltaker, deltakelse, onDeltakel
                     <VStack gap="space-12">
                         <HStack gap="space-12">
                             <Heading level="3" size="xsmall">
-                                Tildelte dager
+                                Kvote
                             </Heading>
                         </HStack>
                         <BodyShort size="large" weight="semibold" style={{ fontSize: '1.5rem' }}>
@@ -87,7 +86,7 @@ const TildeltKvotePanel = ({ variant = 'panel', deltaker, deltakelse, onDeltakel
                             {kanEndreKvote && (
                                 <div>
                                     <Button variant="primary" size="small" onClick={() => setVisDialog(true)}>
-                                        Registrert utvidet deltakelse
+                                        Registrer utvidet kvote
                                     </Button>
                                 </div>
                             )}

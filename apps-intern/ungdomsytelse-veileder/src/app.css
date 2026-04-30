@@ -46,6 +46,9 @@
     margin: 0;
     padding: 0;
     line-height: 1.75rem;
+    dt {
+        min-width: 8rem;
+    }
     dd,
     dt {
         vertical-align: top;

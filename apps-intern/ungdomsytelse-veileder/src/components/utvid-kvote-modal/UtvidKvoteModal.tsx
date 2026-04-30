@@ -16,7 +16,7 @@ const UtvidKvoteModal = ({ deltaker, deltakelse, onDeltakelseChanged, onClose }:
         <Modal open={true} onClose={() => onClose()} aria-labelledby="oppgave-modal-heading" width="medium">
             <Modal.Header closeButton={true}>
                 <Heading level="1" size="large" id="oppgave-modal-heading">
-                    Registrer utvidet deltakelse
+                    Utvid kvote
                 </Heading>
             </Modal.Header>
             <Modal.Body>

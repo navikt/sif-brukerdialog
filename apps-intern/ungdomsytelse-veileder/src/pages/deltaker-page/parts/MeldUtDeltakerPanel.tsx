@@ -1,5 +1,4 @@
-import { Bleed, BodyShort, Box, Button, InlineMessage, VStack } from '@navikt/ds-react';
-import { PencilFillIcon } from '@navikt/aksel-icons';
+import { Bleed, BodyLong, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
 import InfoBox from '../../../atoms/InfoBox';
 
 interface Props {
@@ -15,16 +14,12 @@ const MeldUtDeltakerPanel = ({ variant, onClickMeldUtButton }: Props) => {
                     <BodyShort size="large" weight="semibold" className="text-2xl">
                         Er deltaker meldt ut av ungdomsprogrammet?
                     </BodyShort>
-                    <InlineMessage status="info">
+                    <BodyLong>
                         Når deltaker er meldt ut av ungdomsprogrammet før alle dagene i programmet er brukt opp, må
                         sluttdatoen registreres her.
-                    </InlineMessage>
+                    </BodyLong>
                     <Box paddingBlock="space-8 space-0">
-                        <Button
-                            variant="secondary"
-                            size="small"
-                            icon={<PencilFillIcon aria-hidden="true" />}
-                            onClick={onClickMeldUtButton}>
+                        <Button variant="secondary" size="small" onClick={onClickMeldUtButton}>
                             Registrer sluttdato
                         </Button>
                     </Box>
@@ -45,11 +40,7 @@ const MeldUtDeltakerPanel = ({ variant, onClickMeldUtButton }: Props) => {
                     </BodyShort>
                 </VStack>
                 <div>
-                    <Button
-                        variant="primary"
-                        size="small"
-                        icon={<PencilFillIcon aria-hidden="true" />}
-                        onClick={onClickMeldUtButton}>
+                    <Button variant="primary" size="small" onClick={onClickMeldUtButton}>
                         Registrer sluttdato
                     </Button>
                 </div>

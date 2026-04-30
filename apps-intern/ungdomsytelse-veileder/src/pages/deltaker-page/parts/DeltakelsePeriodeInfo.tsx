@@ -51,7 +51,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Prop
                     <InfoBox>
                         <dl className="deltakelseInfoDL">
                             <dt>
-                                <BodyShort>Tildelte dager:</BodyShort>
+                                <BodyShort>Kvote:</BodyShort>
                             </dt>
                             <dd>
                                 <TildeltKvotePanel

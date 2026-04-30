@@ -1,5 +1,4 @@
-import { Alert, Bleed, BodyLong, BodyShort, Box, Button, Heading, InlineMessage, VStack } from '@navikt/ds-react';
-import { PencilFillIcon } from '@navikt/aksel-icons';
+import { Alert, Bleed, BodyLong, BodyShort, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import InfoBox from '../../../atoms/InfoBox';
 
@@ -20,15 +19,11 @@ const EndreStartdatoPanel = ({ dato, variant = 'panel', kanEndreStartdato, onCli
                     </BodyShort>
                     {kanEndreStartdato ? (
                         <>
-                            <InlineMessage status="info">
+                            <BodyLong>
                                 Startdato kan endres innenfor de første X månedene etter opprinnelig startdato.
-                            </InlineMessage>
+                            </BodyLong>
                             <Box paddingBlock="space-8 space-0">
-                                <Button
-                                    variant="secondary"
-                                    size="small"
-                                    icon={<PencilFillIcon aria-hidden="true" />}
-                                    onClick={onClickEndreButton}>
+                                <Button variant="secondary" size="small" onClick={onClickEndreButton}>
                                     Endre startdato
                                 </Button>
                             </Box>
@@ -59,11 +54,7 @@ const EndreStartdatoPanel = ({ dato, variant = 'panel', kanEndreStartdato, onCli
                             Startdato kan endres innenfor de første X månedene etter opprinnelig startdato.
                         </BodyLong>
                         <Box paddingBlock="space-8 space-0">
-                            <Button
-                                variant="primary"
-                                size="small"
-                                icon={<PencilFillIcon aria-hidden="true" />}
-                                onClick={onClickEndreButton}>
+                            <Button variant="primary" size="small" onClick={onClickEndreButton}>
                                 Endre startdato
                             </Button>
                         </Box>

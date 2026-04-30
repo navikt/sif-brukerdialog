@@ -1,5 +1,4 @@
 import { Bleed, BodyShort, Box, Button, Heading, VStack } from '@navikt/ds-react';
-import { PencilFillIcon } from '@navikt/aksel-icons';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import InfoBox from '../../../atoms/InfoBox';
 
@@ -20,11 +19,7 @@ const EndreSluttdatoPanel = ({ variant, tilOgMed, kanEndreSluttdato, onClickEndr
                     </BodyShort>
                     {kanEndreSluttdato ? (
                         <Box paddingBlock="space-8 space-0">
-                            <Button
-                                variant="secondary"
-                                size="small"
-                                icon={<PencilFillIcon aria-hidden="true" />}
-                                onClick={onClickEndreSluttdato}>
+                            <Button variant="secondary" size="small" onClick={onClickEndreSluttdato}>
                                 Endre sluttdato
                             </Button>
                         </Box>
@@ -51,11 +46,7 @@ const EndreSluttdatoPanel = ({ variant, tilOgMed, kanEndreSluttdato, onClickEndr
                 <div>
                     {kanEndreSluttdato ? (
                         <Box paddingBlock="space-8 space-0">
-                            <Button
-                                variant="primary"
-                                size="small"
-                                icon={<PencilFillIcon aria-hidden="true" />}
-                                onClick={onClickEndreSluttdato}>
+                            <Button variant="primary" size="small" onClick={onClickEndreSluttdato}>
                                 Endre sluttdato
                             </Button>
                         </Box>
