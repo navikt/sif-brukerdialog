@@ -5,21 +5,22 @@ import { Deltaker } from '../../../types/Deltaker';
 import { useState } from 'react';
 import UtvidKvoteModal from '../../../components/utvid-kvote-modal/UtvidKvoteModal';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { deltakelseKvoteErUtløpt } from '../../../utils/deltakelseUtils';
+import { deltakelseKvoteErUtløpt, deltakelseKanUtvides } from '../../../utils/deltakelseUtils';
 
 interface DatoBoksProps {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
-    kanEndreKvote: boolean;
+
     onDeltakelseChanged: (deltakelse: Deltakelse) => void;
 }
 
-const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote, onDeltakelseChanged }: DatoBoksProps) => {
+const TildeltKvotePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBoksProps) => {
     const [visDialog, setVisDialog] = useState(false);
 
-    const { harUtvidetKvote, kvoteMaksDato } = deltakelse;
+    const { harUtvidetKvote, kvoteMaksDato, tilOgMed } = deltakelse;
     const antallTildelteDager = harUtvidetKvote ? 300 : 260;
     const kvoteErUtløpt = kvoteMaksDato ? deltakelseKvoteErUtløpt(deltakelse) : false;
+    const kanEndreKvote = deltakelseKanUtvides(deltakelse);
 
     return (
         <>
@@ -33,27 +34,34 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, kanEndreKvote, onDeltakelseCh
                     <BodyShort size="large" weight="semibold" style={{ fontSize: '1.5rem' }}>
                         <HStack gap="space-12">{antallTildelteDager} dager</HStack>
                     </BodyShort>
-                    <BodyShort>
-                        {kvoteErUtløpt ? 'Utløp' : 'Utløper'}{' '}
-                        <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
-                    </BodyShort>
-                    {harUtvidetKvote ? (
-                        <div>
-                            <Tag size="small" data-color="warning">
-                                Har utvidet vedtak
-                            </Tag>
-                        </div>
-                    ) : (
-                        <>
-                            {kanEndreKvote ? (
-                                <div>
-                                    <Button variant="primary" size="small" onClick={() => setVisDialog(true)}>
-                                        Registrert utvidet deltakelse
-                                    </Button>
-                                </div>
-                            ) : null}
-                        </>
-                    )}
+
+                    <>
+                        {tilOgMed ? (
+                            <BodyShort>
+                                Deltaker er meldt ut med siste dag{' '}
+                                <strong>{dateFormatter.dayCompactDate(tilOgMed)}</strong>.
+                            </BodyShort>
+                        ) : (
+                            <BodyShort>
+                                {kvoteErUtløpt ? 'Utløp' : 'Utløper'}{' '}
+                                <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
+                            </BodyShort>
+                        )}
+                        {harUtvidetKvote && (
+                            <div>
+                                <Tag size="small" data-color="warning">
+                                    Har utvidet vedtak
+                                </Tag>
+                            </div>
+                        )}
+                        {kanEndreKvote && (
+                            <div>
+                                <Button variant="primary" size="small" onClick={() => setVisDialog(true)}>
+                                    Registrert utvidet deltakelse
+                                </Button>
+                            </div>
+                        )}
+                    </>
                 </VStack>
             </InfoBox>
             {visDialog ? (

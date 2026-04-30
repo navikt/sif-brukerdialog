@@ -48,8 +48,17 @@ export const deltakelseSluttdatoErPassert = (deltakelse: Deltakelse): boolean =>
     return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isBefore(getDateToday(), 'day') : false;
 };
 
-export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
+export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
     return deltakelse.søktTidspunkt === undefined;
+};
+
+export const deltakelseKanUtvides = (deltakelse: Deltakelse): boolean => {
+    return (
+        deltakelse.søktTidspunkt !== undefined &&
+        deltakelse.tilOgMed === undefined &&
+        !deltakelseKvoteErUtløpt(deltakelse) &&
+        !deltakelseSluttdatoErPassert(deltakelse)
+    );
 };
 
 /**

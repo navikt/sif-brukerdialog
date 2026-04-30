@@ -5,13 +5,7 @@ import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 import { Features } from '../../../types/Features';
-import {
-    deltakelseKvoteErUtløpt,
-    deltakelseSluttdatoErPassert,
-    getTillattEndringsperiode,
-    kanEndreSluttdato,
-    kanEndreStartdato,
-} from '../../../utils/deltakelseUtils';
+import { getTillattEndringsperiode, kanEndreSluttdato, kanEndreStartdato } from '../../../utils/deltakelseUtils';
 import EndreSluttdatoPanel from './EndreSluttdatoPanel';
 import EndreStartdatoPanel from './EndreStartdatoPanel';
 import MeldUtDeltakerPanel from './MeldUtDeltakerPanel';
@@ -53,11 +47,6 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                 <TildeltKvotePanel
                     deltaker={deltaker}
                     deltakelse={deltakelse}
-                    kanEndreKvote={
-                        deltakerHarSøkt &&
-                        !deltakelseKvoteErUtløpt(deltakelse) &&
-                        !deltakelseSluttdatoErPassert(deltakelse)
-                    }
                     onDeltakelseChanged={handleOnDeltakelseChanged}
                 />
                 <HGrid gap="space-8" columns={{ sm: 1, md: '1fr 1fr' }}>
