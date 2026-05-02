@@ -2978,15 +2978,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/codegen-core@npm:0.8.0":
-  version: 0.8.0
-  resolution: "@hey-api/codegen-core@npm:0.8.0"
+"@hey-api/codegen-core@npm:0.8.1":
+  version: 0.8.1
+  resolution: "@hey-api/codegen-core@npm:0.8.1"
   dependencies:
     "@hey-api/types": "npm:0.1.4"
     ansi-colors: "npm:4.1.3"
     c12: "npm:3.3.4"
     color-support: "npm:1.1.3"
-  checksum: 10/dc6dab2e6f8abf1ed7067226f6452f6b28ec50b8ae8fddab23df36a47fd94f312839002d212134b618bc893f75ce1e5e49f1d1cc8f46e225ae14d26ecf1ca593
+  checksum: 10/5bbf9b36808daed4c19a7ce54810c7b978dd01aa91a884d7e2dfc99b91b8ba85e158bd24d90b14e242d929ce9f9dc4b701f8998cce89a58e6c871146d566ec87
   languageName: node
   linkType: hard
 
@@ -3001,15 +3001,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/openapi-ts@npm:0.96.1":
-  version: 0.96.1
-  resolution: "@hey-api/openapi-ts@npm:0.96.1"
+"@hey-api/openapi-ts@npm:0.97.0":
+  version: 0.97.0
+  resolution: "@hey-api/openapi-ts@npm:0.97.0"
   dependencies:
-    "@hey-api/codegen-core": "npm:0.8.0"
+    "@hey-api/codegen-core": "npm:0.8.1"
     "@hey-api/json-schema-ref-parser": "npm:1.4.1"
-    "@hey-api/shared": "npm:0.4.1"
+    "@hey-api/shared": "npm:0.4.2"
     "@hey-api/spec-types": "npm:0.2.0"
     "@hey-api/types": "npm:0.1.4"
+    "@lukeed/ms": "npm:2.0.2"
     ansi-colors: "npm:4.1.3"
     color-support: "npm:1.1.3"
     commander: "npm:14.0.3"
@@ -3018,15 +3019,15 @@ __metadata:
     typescript: ">=5.5.3 || >=6.0.0 || 6.0.1-rc"
   bin:
     openapi-ts: bin/run.js
-  checksum: 10/c84ffe6a73df595233f6257e95ccc69f95d8a97434077ee73065b84f490cb9be5e3d19f7a18102c87889d642f88053174fa4b16c570ef789dd056053330290d5
+  checksum: 10/9473ec07c16e495d8f7e75fff6cab6d1c14d30ecd47aa8ce834deb03a06bb993194627758bd5b65684a4254b6f4d4bf6f1ccd9aa3e45e6f71c80583a192d5702
   languageName: node
   linkType: hard
 
-"@hey-api/shared@npm:0.4.1":
-  version: 0.4.1
-  resolution: "@hey-api/shared@npm:0.4.1"
+"@hey-api/shared@npm:0.4.2":
+  version: 0.4.2
+  resolution: "@hey-api/shared@npm:0.4.2"
   dependencies:
-    "@hey-api/codegen-core": "npm:0.8.0"
+    "@hey-api/codegen-core": "npm:0.8.1"
     "@hey-api/json-schema-ref-parser": "npm:1.4.1"
     "@hey-api/spec-types": "npm:0.2.0"
     "@hey-api/types": "npm:0.1.4"
@@ -3034,7 +3035,7 @@ __metadata:
     cross-spawn: "npm:7.0.6"
     open: "npm:11.0.0"
     semver: "npm:7.7.4"
-  checksum: 10/cdf03cc3630b121109b3e41d902b02c1d672620e1e9b72bdf186f85d62b566e81e1de191efaddcd6ae3e493b8b560c5875d1c48a56f85922ae8a3dc2f6de4c0c
+  checksum: 10/81cf6aaa01e8a00980cdc13b494384c32c9623f727ee5226409ea323331910a552cd2d1cebd28b24be12d1ec753fe2f06ed014cf70d30ea037efae722e101b0b
   languageName: node
   linkType: hard
 
@@ -4333,6 +4334,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lukeed/ms@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@lukeed/ms@npm:2.0.2"
+  checksum: 10/6ae47ed3ebc857ffc0283cfe46129947209c770d0974eb86626138b6c194a760d08863ec593ec75a645aec133b3237b37af500739b030293e4d9a81130f4e2ae
+  languageName: node
+  linkType: hard
+
 "@manypkg/find-root@npm:^1.1.0":
   version: 1.1.0
   resolution: "@manypkg/find-root@npm:1.1.0"
@@ -4668,7 +4676,7 @@ __metadata:
     "@types/react-dom": "npm:19.2.3"
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prop-types: "npm:15.8.1"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
@@ -4721,7 +4729,7 @@ __metadata:
     pino: "npm:10.3.1"
     pino-pretty: "npm:13.1.3"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-import: "npm:16.1.1"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
@@ -4828,7 +4836,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
     react-fast-compare: "npm:3.2.2"
@@ -4908,7 +4916,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-import: "npm:16.1.1"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
@@ -4938,11 +4946,11 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.96.1"
+    "@hey-api/openapi-ts": "npm:0.97.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.15.2"
     config: "workspace:*"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.5"
@@ -4959,11 +4967,11 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.96.1"
+    "@hey-api/openapi-ts": "npm:0.97.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.15.2"
     config: "workspace:*"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.5"
@@ -4980,11 +4988,11 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.96.1"
+    "@hey-api/openapi-ts": "npm:0.97.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.15.2"
     config: "workspace:*"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.5"
@@ -5085,7 +5093,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-import: "npm:16.1.1"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
@@ -5134,7 +5142,7 @@ __metadata:
     next: "npm:16.2.4"
     node-fetch: "npm:3.3.2"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.5"
@@ -5201,7 +5209,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-nesting: "npm:14.0.0"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
@@ -5273,7 +5281,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-nesting: "npm:14.0.0"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
@@ -5412,7 +5420,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
@@ -5423,7 +5431,7 @@ __metadata:
     storybook: "npm:10.3.5"
     tailwindcss: "npm:4.2.4"
     typescript: "npm:6.0.3"
-    typescript-eslint: "npm:8.59.0"
+    typescript-eslint: "npm:8.59.1"
     vite: "npm:8.0.10"
     vite-plugin-checker: "npm:0.13.0"
     vitest: "npm:4.1.5"
@@ -5490,9 +5498,9 @@ __metadata:
     mustache-express: "npm:1.3.2"
     npm-run-all: "npm:4.1.5"
     object-hash: "npm:3.0.0"
-    openid-client: "npm:6.8.3"
+    openid-client: "npm:6.8.4"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-nesting: "npm:14.0.0"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
@@ -5579,7 +5587,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-import: "npm:16.1.1"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
@@ -5658,7 +5666,7 @@ __metadata:
     mockdate: "npm:3.0.5"
     mustache-express: "npm:1.3.2"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-import: "npm:16.1.1"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
@@ -5769,7 +5777,7 @@ __metadata:
     globals: "npm:17.5.0"
     intl: "npm:1.2.5"
     less: "npm:4.6.4"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.5"
@@ -5820,7 +5828,7 @@ __metadata:
     i18n-iso-countries: "npm:7.14.0"
     msw: "npm:2.13.6"
     msw-storybook-addon: "npm:2.0.7"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prop-types: "npm:15.8.1"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
@@ -5949,7 +5957,7 @@ __metadata:
     gh-pages: "npm:6.3.0"
     intl: "npm:1.2.5"
     jsdom: "npm:28.1.0"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.5"
@@ -5995,7 +6003,7 @@ __metadata:
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
     gh-pages: "npm:6.3.0"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
     rimraf: "npm:6.1.3"
@@ -6057,7 +6065,7 @@ __metadata:
     jsdom: "npm:28.1.0"
     monocle-ts: "npm:2.3.13"
     newtype-ts: "npm:0.3.5"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.5"
@@ -6114,7 +6122,7 @@ __metadata:
     globals: "npm:17.5.0"
     intl: "npm:1.2.5"
     less: "npm:4.6.4"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.5"
@@ -6141,7 +6149,7 @@ __metadata:
     intl: "npm:1.2.5"
     iso8601-duration: "npm:2.1.3"
     lodash: "npm:4.18.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
     react-intl: "npm:10.1.3"
@@ -6266,7 +6274,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.5"
@@ -6300,7 +6308,7 @@ __metadata:
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:28.1.0"
     morgan: "npm:1.10.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     react: "npm:19.2.5"
     typescript: "npm:6.0.3"
@@ -6315,7 +6323,7 @@ __metadata:
   dependencies:
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.5"
   peerDependencies:
@@ -6337,11 +6345,11 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.96.1"
+    "@hey-api/openapi-ts": "npm:0.97.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.15.2"
     config: "workspace:*"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.5"
@@ -6364,7 +6372,7 @@ __metadata:
     axios: "npm:1.15.2"
     config: "workspace:*"
     dayjs: "npm:1.11.20"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     typescript: "npm:6.0.3"
     uuid: "npm:14.0.0"
     vitest: "npm:4.1.5"
@@ -6382,11 +6390,11 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.96.1"
+    "@hey-api/openapi-ts": "npm:0.97.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.15.2"
     config: "workspace:*"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.5"
@@ -6403,11 +6411,11 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.96.1"
+    "@hey-api/openapi-ts": "npm:0.97.0"
     "@sif/eslint-config": "workspace:*"
     axios: "npm:1.15.2"
     config: "workspace:*"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.5"
@@ -6459,7 +6467,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-helmet": "npm:6.1.11"
-    "@typescript-eslint/parser": "npm:8.59.0"
+    "@typescript-eslint/parser": "npm:8.59.1"
     "@vitejs/plugin-react": "npm:6.0.1"
     axios: "npm:1.15.2"
     clsx: "npm:2.1.1"
@@ -6481,7 +6489,7 @@ __metadata:
     npm-run-all: "npm:4.1.5"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-import: "npm:16.1.1"
     postcss-styled-syntax: "npm:0.7.1"
     prettier: "npm:3.8.3"
@@ -6493,10 +6501,10 @@ __metadata:
     react-loading-skeleton: "npm:3.5.0"
     react-router-dom: "npm:7.14.2"
     storybook: "npm:10.3.5"
-    stylelint: "npm:17.9.0"
+    stylelint: "npm:17.9.1"
     tailwindcss: "npm:4.2.4"
     typescript: "npm:6.0.3"
-    typescript-eslint: "npm:8.59.0"
+    typescript-eslint: "npm:8.59.1"
     uuid: "npm:14.0.0"
     vite: "npm:8.0.10"
     vite-plugin-checker: "npm:0.13.0"
@@ -6540,7 +6548,7 @@ __metadata:
     "@types/node": "npm:25.6.0"
     "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.2.3"
-    "@typescript-eslint/parser": "npm:8.59.0"
+    "@typescript-eslint/parser": "npm:8.59.1"
     "@vitejs/plugin-react": "npm:6.0.1"
     "@vitest/browser": "npm:4.1.5"
     "@vitest/coverage-v8": "npm:4.1.5"
@@ -6568,7 +6576,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     npm-run-all: "npm:4.1.5"
     playwright-core: "npm:1.59.1"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     postcss-import: "npm:16.1.1"
     postcss-styled-syntax: "npm:0.7.1"
     prettier: "npm:3.8.3"
@@ -6582,10 +6590,10 @@ __metadata:
     remark-gfm: "npm:4.0.1"
     sass-embedded: "npm:1.99.0"
     storybook: "npm:10.3.5"
-    stylelint: "npm:17.9.0"
+    stylelint: "npm:17.9.1"
     tailwindcss: "npm:4.2.4"
     typescript: "npm:6.0.3"
-    typescript-eslint: "npm:8.59.0"
+    typescript-eslint: "npm:8.59.1"
     uuid: "npm:14.0.0"
     vite: "npm:8.0.10"
     vite-plugin-checker: "npm:0.13.0"
@@ -9572,11 +9580,11 @@ __metadata:
     eslint-plugin-storybook: "npm:10.3.5"
     eslint-plugin-vitest: "npm:0.5.4"
     globals: "npm:17.5.0"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     storybook: "npm:10.3.5"
     typescript: "npm:6.0.3"
-    typescript-eslint: "npm:8.59.0"
+    typescript-eslint: "npm:8.59.1"
   languageName: unknown
   linkType: soft
 
@@ -11458,6 +11466,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/eslint-plugin@npm:8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/eslint-plugin@npm:8.59.1"
+  dependencies:
+    "@eslint-community/regexpp": "npm:^4.12.2"
+    "@typescript-eslint/scope-manager": "npm:8.59.1"
+    "@typescript-eslint/type-utils": "npm:8.59.1"
+    "@typescript-eslint/utils": "npm:8.59.1"
+    "@typescript-eslint/visitor-keys": "npm:8.59.1"
+    ignore: "npm:^7.0.5"
+    natural-compare: "npm:^1.4.0"
+    ts-api-utils: "npm:^2.5.0"
+  peerDependencies:
+    "@typescript-eslint/parser": ^8.59.1
+    eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
+    typescript: ">=4.8.4 <6.1.0"
+  checksum: 10/c736ee32211a3751e31151b51dacc8cfa5bf18e086f2a87aba7ee325f7e2fa96d8b9febdbaf4dfa70d14954312b7b9740fbe5d5886b3f8561c4a94a9c7ff7688
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/parser@npm:8.59.0":
   version: 8.59.0
   resolution: "@typescript-eslint/parser@npm:8.59.0"
@@ -11474,6 +11502,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/parser@npm:8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/parser@npm:8.59.1"
+  dependencies:
+    "@typescript-eslint/scope-manager": "npm:8.59.1"
+    "@typescript-eslint/types": "npm:8.59.1"
+    "@typescript-eslint/typescript-estree": "npm:8.59.1"
+    "@typescript-eslint/visitor-keys": "npm:8.59.1"
+    debug: "npm:^4.4.3"
+  peerDependencies:
+    eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
+    typescript: ">=4.8.4 <6.1.0"
+  checksum: 10/b014b485e5ec9c7430a87117271836b86fd80083fe6b1d216167313518f26222f45c0ee3f4cbc0616dbd6335cbde50336d8953ca5ffefecc55b2d896ac7645f9
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/project-service@npm:8.59.0":
   version: 8.59.0
   resolution: "@typescript-eslint/project-service@npm:8.59.0"
@@ -11484,6 +11528,19 @@ __metadata:
   peerDependencies:
     typescript: ">=4.8.4 <6.1.0"
   checksum: 10/b842f1e0623c3a679d21d76c7ca38698787681d40f6a9ce93c8983120fb6795a2395907d530e4f8d89b4ac5bc65e71bbfdf2d8060f210c8487cffdae40baea74
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/project-service@npm:8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/project-service@npm:8.59.1"
+  dependencies:
+    "@typescript-eslint/tsconfig-utils": "npm:^8.59.1"
+    "@typescript-eslint/types": "npm:^8.59.1"
+    debug: "npm:^4.4.3"
+  peerDependencies:
+    typescript: ">=4.8.4 <6.1.0"
+  checksum: 10/dd98f49a407cb21999d31ec527a0f8c2c34422dde9fdb21210d66c3cc3d498d9d3678d95c99d76450af68ce3392692902d9ba044718d6c99122655df7afdc0a7
   languageName: node
   linkType: hard
 
@@ -11507,12 +11564,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/scope-manager@npm:8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/scope-manager@npm:8.59.1"
+  dependencies:
+    "@typescript-eslint/types": "npm:8.59.1"
+    "@typescript-eslint/visitor-keys": "npm:8.59.1"
+  checksum: 10/50c941d1af470d3e67a9bd2247c541a676ae6bb2931440a44458682d61382ba1194ce29d0388dd1e538c5a35d7a542febd9519d8170abe758692d1b6cd196eab
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/tsconfig-utils@npm:8.59.0, @typescript-eslint/tsconfig-utils@npm:^8.59.0":
   version: 8.59.0
   resolution: "@typescript-eslint/tsconfig-utils@npm:8.59.0"
   peerDependencies:
     typescript: ">=4.8.4 <6.1.0"
   checksum: 10/9c094c199be4803d696dbf7cb5cdb76741876e412bf97ddde0133a75e11bc47345354b3bb188a0ff101b7ce2c582187e758696ab89c1981892a43162f36d0af1
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/tsconfig-utils@npm:8.59.1, @typescript-eslint/tsconfig-utils@npm:^8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/tsconfig-utils@npm:8.59.1"
+  peerDependencies:
+    typescript: ">=4.8.4 <6.1.0"
+  checksum: 10/9e3351bb182bb02f6f140759472f08ce334c7c96f4ebfeec8e9e404fe60b8fe1865e1a6d1b50526f83f41e7224301485e46459df6c3675923f3b657177415cd7
   languageName: node
   linkType: hard
 
@@ -11532,6 +11608,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/type-utils@npm:8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/type-utils@npm:8.59.1"
+  dependencies:
+    "@typescript-eslint/types": "npm:8.59.1"
+    "@typescript-eslint/typescript-estree": "npm:8.59.1"
+    "@typescript-eslint/utils": "npm:8.59.1"
+    debug: "npm:^4.4.3"
+    ts-api-utils: "npm:^2.5.0"
+  peerDependencies:
+    eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
+    typescript: ">=4.8.4 <6.1.0"
+  checksum: 10/8a8a71656f8fab446024e55b24f6f6c4b3ee4d4cdcb593ff68ec0ca10530fcb4d451628c03898c929e91445a999cbe980c0cfaec1b53a7c5ddc8ac899ad665fa
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/types@npm:7.18.0":
   version: 7.18.0
   resolution: "@typescript-eslint/types@npm:7.18.0"
@@ -11543,6 +11635,13 @@ __metadata:
   version: 8.59.0
   resolution: "@typescript-eslint/types@npm:8.59.0"
   checksum: 10/51a773339c58a350d0ddaecba46ba735696f11829cab1f9b3d5d58a4bbd498693296ae742e3959d32f3bb29676c8e6bd120b970379d749a5a9b419393696930d
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/types@npm:8.59.1, @typescript-eslint/types@npm:^8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/types@npm:8.59.1"
+  checksum: 10/4d324a01c2314d8e196b43b9dc5fe9a4d82c1b65f4915cd2f965879c5565d4453603b6f7b6bcdc436fb629135f07ad0f9d274e4697b02ce8bc1c0310916f7ace
   languageName: node
   linkType: hard
 
@@ -11584,6 +11683,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/typescript-estree@npm:8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/typescript-estree@npm:8.59.1"
+  dependencies:
+    "@typescript-eslint/project-service": "npm:8.59.1"
+    "@typescript-eslint/tsconfig-utils": "npm:8.59.1"
+    "@typescript-eslint/types": "npm:8.59.1"
+    "@typescript-eslint/visitor-keys": "npm:8.59.1"
+    debug: "npm:^4.4.3"
+    minimatch: "npm:^10.2.2"
+    semver: "npm:^7.7.3"
+    tinyglobby: "npm:^0.2.15"
+    ts-api-utils: "npm:^2.5.0"
+  peerDependencies:
+    typescript: ">=4.8.4 <6.1.0"
+  checksum: 10/8ede99640ac8b08ac73905bbc66dd06b2c4dc211240a4a9cb532b0fcf5c36ec9e7639ed7e1c17f86a948499279ff93e9dbcdf9170661d9f8347fcb53e8266772
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/utils@npm:8.59.0, @typescript-eslint/utils@npm:^8.48.0":
   version: 8.59.0
   resolution: "@typescript-eslint/utils@npm:8.59.0"
@@ -11596,6 +11714,21 @@ __metadata:
     eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
     typescript: ">=4.8.4 <6.1.0"
   checksum: 10/70547510f16459ca29e207584676f7c15626b5f7e2562643144fe037a1a9c4ca7116be99e67b9045f0de60db0022affb58c34c553a5370276ff8f542f7b05732
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/utils@npm:8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/utils@npm:8.59.1"
+  dependencies:
+    "@eslint-community/eslint-utils": "npm:^4.9.1"
+    "@typescript-eslint/scope-manager": "npm:8.59.1"
+    "@typescript-eslint/types": "npm:8.59.1"
+    "@typescript-eslint/typescript-estree": "npm:8.59.1"
+  peerDependencies:
+    eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
+    typescript: ">=4.8.4 <6.1.0"
+  checksum: 10/26ae39a574e56d92b6fc406113e797c354fce8b377721cc5dd50579a0e9f8c3efe23c7693826ce2c16be96490520dd6ce7e145c4c39c22d8d00f2614791603ba
   languageName: node
   linkType: hard
 
@@ -11630,6 +11763,16 @@ __metadata:
     "@typescript-eslint/types": "npm:8.59.0"
     eslint-visitor-keys: "npm:^5.0.0"
   checksum: 10/b81753b9ddddeb3564e44d1199ba5546028731c7b5b3270938525f1f2b549d1df5fa8f203d9b3eacc120fa6b5af314cb1fb69d3a12d1dcce18a52a0fe316628d
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/visitor-keys@npm:8.59.1":
+  version: 8.59.1
+  resolution: "@typescript-eslint/visitor-keys@npm:8.59.1"
+  dependencies:
+    "@typescript-eslint/types": "npm:8.59.1"
+    eslint-visitor-keys: "npm:^5.0.0"
+  checksum: 10/5343f3424cafdcaf2550fade29eca6b86ad3f6ac953aef6ba1dccd39789a1c38520634fbbc0814419d9227f508789053c1c9f59c2841d72e56431c3fdd93ac65
   languageName: node
   linkType: hard
 
@@ -12576,7 +12719,7 @@ __metadata:
     "@types/react": "npm:19.2.14"
     dayjs: "npm:1.11.20"
     eslint: "npm:9.39.4"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     react: "npm:19.2.5"
     react-dom: "npm:19.2.5"
@@ -14249,8 +14392,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "config@workspace:packages/config"
   dependencies:
-    "@typescript-eslint/eslint-plugin": "npm:8.59.0"
-    "@typescript-eslint/parser": "npm:8.59.0"
+    "@typescript-eslint/eslint-plugin": "npm:8.59.1"
+    "@typescript-eslint/parser": "npm:8.59.1"
     eslint: "npm:9.39.4"
     eslint-config-prettier: "npm:10.1.8"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
@@ -14258,7 +14401,7 @@ __metadata:
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-react-hooks: "npm:7.1.1"
     eslint-plugin-storybook: "npm:10.3.5"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     prettier: "npm:3.8.3"
     storybook: "npm:10.3.5"
     typescript: "npm:6.0.3"
@@ -22793,13 +22936,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openid-client@npm:6.8.3":
-  version: 6.8.3
-  resolution: "openid-client@npm:6.8.3"
+"openid-client@npm:6.8.4":
+  version: 6.8.4
+  resolution: "openid-client@npm:6.8.4"
   dependencies:
     jose: "npm:^6.2.2"
     oauth4webapi: "npm:^3.8.5"
-  checksum: 10/4936fd338c65387921ab4f1d8bc9da18bf9b78f56f4d4a17e8cd9731cc992ab99daa47e051e800c5a68d236a08737303d520984138ae797385c0131e71705248
+  checksum: 10/39402afd4534081d0c9af41aadc916b2b6d41cab1d9eaa9b33f1a3bc3a73ba437f04ccb4b906a4523b41886ee3de716d24c028fd734282b4924cac641d5c5869
   languageName: node
   linkType: hard
 
@@ -23786,7 +23929,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.5.10, postcss@npm:^8.2.14, postcss@npm:^8.4.33, postcss@npm:^8.4.38, postcss@npm:^8.4.40, postcss@npm:^8.5.10, postcss@npm:^8.5.6, postcss@npm:^8.5.9":
+"postcss@npm:8.5.12":
+  version: 8.5.12
+  resolution: "postcss@npm:8.5.12"
+  dependencies:
+    nanoid: "npm:^3.3.11"
+    picocolors: "npm:^1.1.1"
+    source-map-js: "npm:^1.2.1"
+  checksum: 10/ec6b79b68c363eca3c8ffceb134a4ab637274aee6ac0857614bf7c18d40ce4ce5f9036edec57b7e0be99895724d2599d0ec7328dbd7f407204e7548697b322f1
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.2.14, postcss@npm:^8.4.33, postcss@npm:^8.4.38, postcss@npm:^8.4.40, postcss@npm:^8.5.10, postcss@npm:^8.5.6, postcss@npm:^8.5.9":
   version: 8.5.10
   resolution: "postcss@npm:8.5.10"
   dependencies:
@@ -26337,7 +26491,7 @@ __metadata:
     globals: "npm:17.5.0"
     intl: "npm:1.2.5"
     less: "npm:4.6.4"
-    postcss: "npm:8.5.10"
+    postcss: "npm:8.5.12"
     react: "npm:19.2.5"
     react-day-picker: "npm:9.14.0"
     react-dom: "npm:19.2.5"
@@ -27147,9 +27301,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:17.9.0":
-  version: 17.9.0
-  resolution: "stylelint@npm:17.9.0"
+"stylelint@npm:17.9.1":
+  version: 17.9.1
+  resolution: "stylelint@npm:17.9.1"
   dependencies:
     "@csstools/css-calc": "npm:^3.2.0"
     "@csstools/css-parser-algorithms": "npm:^4.0.0"
@@ -27189,7 +27343,7 @@ __metadata:
     write-file-atomic: "npm:^7.0.1"
   bin:
     stylelint: bin/stylelint.mjs
-  checksum: 10/c581060b92345195b097cb798918b02a006f235602fe3362e1a38fe55bc7ca9c567bca6fe9312409769b53127dca59fe4a6a148cede852ed83201ef2099f9a0c
+  checksum: 10/94200a4a8830a5b136df42e7cb060c0021ff73b40c86bed25c9e0b30e53c1c26a22850971ac90d2bd598bac594740e6cf2cda47dcc61cde601fe8e4d693e1d79
   languageName: node
   linkType: hard
 
@@ -28018,7 +28172,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript-eslint@npm:8.59.0, typescript-eslint@npm:^8.46.0, typescript-eslint@npm:^8.50.1":
+"typescript-eslint@npm:8.59.1":
+  version: 8.59.1
+  resolution: "typescript-eslint@npm:8.59.1"
+  dependencies:
+    "@typescript-eslint/eslint-plugin": "npm:8.59.1"
+    "@typescript-eslint/parser": "npm:8.59.1"
+    "@typescript-eslint/typescript-estree": "npm:8.59.1"
+    "@typescript-eslint/utils": "npm:8.59.1"
+  peerDependencies:
+    eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
+    typescript: ">=4.8.4 <6.1.0"
+  checksum: 10/d35d30bdcff5b9644c9bf500d3ad74cebbd41612bf2669c3e3208cd74ee43302941666336acfca65bc44352b9b58c0455afe0a9e7106f12e54789b8c1f16dc11
+  languageName: node
+  linkType: hard
+
+"typescript-eslint@npm:^8.46.0, typescript-eslint@npm:^8.50.1":
   version: 8.59.0
   resolution: "typescript-eslint@npm:8.59.0"
   dependencies:

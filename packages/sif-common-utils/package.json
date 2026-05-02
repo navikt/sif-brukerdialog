@@ -21,7 +21,7 @@
         "config": "workspace:*",
         "globals": "17.5.0",
         "intl": "1.2.5",
-        "postcss": "8.5.10",
+        "postcss": "8.5.12",
         "react": "19.2.5",
         "react-dom": "19.2.5",
         "react-intl": "10.1.3",
