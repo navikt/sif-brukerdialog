@@ -1,5 +1,14 @@
 # @sif/soknad-forms
 
+## 0.0.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @sif/api@0.0.4
+    - @sif/rhf@0.0.3
+
 ## 0.0.3
 
 ### Patch Changes
