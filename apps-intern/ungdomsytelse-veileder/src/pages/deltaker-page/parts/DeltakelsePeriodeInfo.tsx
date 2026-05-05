@@ -4,7 +4,6 @@ import { getDateToday } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
-import { Features } from '../../../types/Features';
 import { getTillattEndringsperiode, kanEndreSluttdato, kanEndreStartdato } from '../../../utils/deltakelseUtils';
 import EndreSluttdatoPanel from './EndreSluttdatoPanel';
 import EndreStartdatoPanel from './EndreStartdatoPanel';
@@ -79,7 +78,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Prop
                                 <BodyShort>Sluttdato:</BodyShort>
                             </dt>
                             <dd className="deltakelseInfoDL__lastDefinition">
-                                {Features.endreSluttdato && sluttdatoKanEndres ? (
+                                {sluttdatoKanEndres ? (
                                     <>
                                         {deltakerHarSøkt && deltakelse.tilOgMed && (
                                             <EndreSluttdatoPanel
@@ -125,7 +124,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Prop
                                     setFormVariant(EndrePeriodeVariant.startdato);
                                 }}
                             />
-                            {Features.endreSluttdato && sluttdatoKanEndres ? (
+                            {sluttdatoKanEndres ? (
                                 <>
                                     {deltakerHarSøkt && deltakelse.tilOgMed && (
                                         <EndreSluttdatoPanel
