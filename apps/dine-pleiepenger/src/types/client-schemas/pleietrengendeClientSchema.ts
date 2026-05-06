@@ -8,7 +8,7 @@ const BasePleietrengendeSchema = z.object({
 
 const IkkeAnonymisertPleietrengendeSchema = BasePleietrengendeSchema.extend({
     fornavn: z.string(),
-    mellomnavn: z.union([z.string(), z.null(), z.undefined()]),
+    mellomnavn: z.union([z.string(), z.null(), z.undefined()]).optional(),
     etternavn: z.string(),
     anonymisert: z.literal(false),
 });
