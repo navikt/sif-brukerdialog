@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 export const uregistrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
     .extend({
-        id: z.undefined(),
+        id: z.undefined().optional(),
         diskresjonskoder: z.nativeEnum(Diskresjonskode).array(),
     })
     .transform((dto) => ({
