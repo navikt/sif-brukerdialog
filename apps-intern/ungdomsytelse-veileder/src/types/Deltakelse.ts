@@ -3,11 +3,6 @@ import { zDeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { z } from 'zod';
 
-export const zDeltakelseStatus = z.object({
-    erAvsluttet: z.boolean(),
-    sisteDeltakelseDag: z.iso.date(),
-});
-
 export const deltakelseSchema = zDeltakelseDto
     .extend({
         id: z.string(),
