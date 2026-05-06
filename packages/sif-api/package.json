@@ -22,8 +22,8 @@
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
-        "@tanstack/react-query": "5.100.5",
-        "axios": "1.15.2",
+        "@tanstack/react-query": "5.100.8",
+        "axios": "1.16.0",
         "dayjs": "1.11.20",
         "object-hash": "3.0.0",
         "uuid": "14.0.0"
@@ -33,7 +33,7 @@
         "@types/react": "19.2.14",
         "react": "19.2.5",
         "typescript": "6.0.3",
-        "zod": "4.3.6"
+        "zod": "4.4.2"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
