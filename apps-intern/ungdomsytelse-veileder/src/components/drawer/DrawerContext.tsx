@@ -59,7 +59,6 @@ export const DrawerProvider = ({ children, initialTitle, initialOpen = true, ini
                     aria-label="Dialog">
                     <Modal.Header>
                         <HStack gap="space-16" align="center">
-                            asd
                             <Bleed marginBlock="space-8" marginInline="space-8">
                                 <Button
                                     variant="tertiary-neutral"

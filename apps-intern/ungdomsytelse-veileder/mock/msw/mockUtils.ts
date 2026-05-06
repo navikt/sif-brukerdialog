@@ -30,7 +30,7 @@ const localStorageKey = 'ungdomsytelse-veileder';
 const formaterIsoDate = (isoDate: string): string => dateFormatter.compact(ISODateToDate(isoDate));
 
 const getUtvidetDeltakelseHistorikk = (): DeltakelseHistorikkDto => ({
-    endringstype: Endringstype.ENDRET_STARTDATO,
+    endringstype: Endringstype.UTVIDET_KVOTE,
     revisjonstype: Revisjonstype.ENDRET,
     endring: `Deltakelse er utvidet.`,
     aktør: 'Z990501 (veileder)',

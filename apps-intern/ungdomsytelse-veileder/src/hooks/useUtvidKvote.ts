@@ -7,7 +7,7 @@ import { utvidKvote } from '../api/deltakelse/utvidKvote';
 export const useUtvidKvote = ({ deltakelseId, deltakerId }: { deltakelseId: string; deltakerId: string }) => {
     const queryClient = useQueryClient();
 
-    return useMutation<Deltakelse, ApiError, any>({
+    return useMutation<Deltakelse, ApiError, string>({
         mutationFn: utvidKvote,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: queryKeys.deltakelserForDeltaker(deltakerId) });
