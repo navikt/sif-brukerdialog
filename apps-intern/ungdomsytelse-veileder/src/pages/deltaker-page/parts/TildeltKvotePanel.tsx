@@ -39,14 +39,14 @@ const TildeltKvotePanel = ({ variant = 'panel', deltaker, deltakelse, onDeltakel
                             </BodyLong>
                         ) : (
                             <BodyLong>
-                                Siste dag: <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
+                                Maksdato: <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
                             </BodyLong>
                         )}
 
                         {kanEndreKvote && (
                             <Box paddingBlock="space-8 space-0">
                                 <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
-                                    Registrer utvidet kvote
+                                    Registrer forlenget periode
                                 </Button>
                             </Box>
                         )}
@@ -57,7 +57,7 @@ const TildeltKvotePanel = ({ variant = 'panel', deltaker, deltakelse, onDeltakel
                     <VStack gap="space-12">
                         <HStack gap="space-12">
                             <Heading level="3" size="xsmall">
-                                Kvote
+                                Periode
                             </Heading>
                         </HStack>
                         <BodyShort size="large" weight="semibold" style={{ fontSize: '1.5rem' }}>
@@ -79,14 +79,14 @@ const TildeltKvotePanel = ({ variant = 'panel', deltaker, deltakelse, onDeltakel
                             {harUtvidetKvote && (
                                 <div>
                                     <Tag size="small" data-color="warning">
-                                        Har utvidet vedtak
+                                        Har forlenget periode
                                     </Tag>
                                 </div>
                             )}
                             {kanEndreKvote && (
                                 <div>
                                     <Button variant="primary" size="small" onClick={() => setVisDialog(true)}>
-                                        Registrer utvidet kvote
+                                        Registrer forlenget periode
                                     </Button>
                                 </div>
                             )}

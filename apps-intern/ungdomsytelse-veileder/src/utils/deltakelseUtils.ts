@@ -26,12 +26,17 @@ export const getSisteMuligeInnmeldingsdato = (
 };
 
 export const kanEndreStartdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
+    /** ikke når utvidet vedtak og ikke når 2 måneder før maksdato */
     return dateRangeUtils.isDateInDateRange(deltakelse.fraOgMed, tillattEndringsperiode);
 };
 
 export const kanEndreSluttdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
-    // Hvis kvoteMaksDato er før dagens dato, skal det ikke være mulig å endre sluttdato til en dato etter kvoteMaksDato
-    if (dayjs(deltakelse.kvoteMaksDato).isSameOrBefore(getDateToday(), 'day')) {
+    /** ikke når utvidet vedtak */
+    if (deltakelse.harUtvidetKvote) {
+        return false;
+    }
+    /** ikke når 2 måneder før maksdato */
+    if (dayjs(getDateToday()).isSameOrAfter(dayjs(deltakelse.kvoteMaksDato).subtract(2, 'months'), 'day')) {
         return false;
     }
 

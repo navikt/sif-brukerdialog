@@ -63,7 +63,7 @@ const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }:
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}
                             showSubmitButton={true}
-                            submitButtonLabel="Bekreft utvidelse"
+                            submitButtonLabel="Bekreft forlenget periode"
                             cancelButtonLabel="Avbryt"
                             onCancel={onCancel}
                             showButtonArrows={false}>
@@ -71,7 +71,7 @@ const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }:
                                 <VStack gap="space-32" className="rounded-xs">
                                     <FormikYesOrNoQuestion
                                         name={FieldNames.harUtvidetPeriode}
-                                        legend="Har deltaker fått utvidet deltakelse?"
+                                        legend="Er vedtaksbrev om at deltaker har fått forlenget periode på inntil 8 uker sendt fra Gosys?"
                                         validate={getYesOrNoValidator()}
                                     />
                                     {harUtvidetPeriode === YesOrNo.YES && (
@@ -79,7 +79,7 @@ const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }:
                                             <Bleed marginBlock="space-16 space-0">
                                                 <ConfirmationCheckbox
                                                     name={FieldNames.bekrefterEndring}
-                                                    label={`Jeg bekrefter at ${formatName(deltaker.navn)} skal ha fått utvidet deltakelse`}
+                                                    label={`Jeg bekrefter at ${formatName(deltaker.navn)} skal ha fått forlenget periode`}
                                                     validate={getCheckedValidator()}
                                                 />
                                             </Bleed>
