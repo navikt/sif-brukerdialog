@@ -27,13 +27,13 @@ const deltakelse: DeltakelseDto = {
         id: '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
         deltakerIdent: '03867198392',
     },
-    fraOgMed: '2026-01-01',
+    fraOgMed: '2025-03-10',
     tilOgMed: undefined,
     erSlettet: false,
     harOpphørsvedtak: false,
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
     harUtvidetKvote: false,
-    kvoteMaksDato: dateToISODate(dayjs('2026-01-01').add(260, 'days').toDate()),
+    kvoteMaksDato: dateToISODate(dayjs('2025-03-10').add(260, 'days').toDate()),
 };
 
 const deltakelseHistorikk: DeltakelseHistorikkDto[] = [
