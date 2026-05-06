@@ -178,7 +178,7 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.uttalelseForm.submitButtonLabel': 'Send inn svaret ditt',
     '@ungInnsyn.uttalelseForm.cancelButtonLabel': 'Avbryt',
     '@ungInnsyn.uttalelseForm.defaultDescription':
-        'Du må ikke oppgi sensitive informasjon (personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
+        'Du må ikke oppgi sensitiv informasjon (personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
 
     '@ungInnsyn.uttalelseForm.validation.harUttalelse.yesOrNoIsUnanswered':
         'Du må svare på om du har en tilbakemelding.',
