@@ -3,7 +3,7 @@ import { useState } from 'react';
 import SlettNyDeltakerModal from '../../../components/slett-ny-deltaker-modal/SlettNyDeltakerModal';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
-import { kanSletteDeltakelse } from '../../../utils/deltakelseUtils';
+import { deltakelseKanSlettes } from '../../../utils/deltakelseUtils';
 
 interface Props {
     deltaker: Deltaker;
@@ -13,7 +13,7 @@ interface Props {
 const SlettNyDeltakerInfo = ({ deltakelse, deltaker }: Props) => {
     const [visSlettDeltakerModal, setVisSlettDeltakerModal] = useState(false);
 
-    if (!kanSletteDeltakelse(deltakelse)) {
+    if (!deltakelseKanSlettes(deltakelse)) {
         return null;
     }
 
