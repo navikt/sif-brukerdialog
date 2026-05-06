@@ -1,7 +1,6 @@
-import { zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
-import { z } from 'zod';
+import { Søker as SøkerGenerated } from '@navikt/k9-brukerdialog-prosessering-api';
 
-type SøkerEntitet = z.input<typeof zSøker>;
+type SøkerEntitet = Omit<SøkerGenerated, 'fødselsdato'> & { fødselsdato: string };
 
 export const testTestesen: SøkerEntitet = {
     aktørId: '2320509955297',

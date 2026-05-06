@@ -4,8 +4,10 @@ import { z } from 'zod';
 import { zISODate } from '../schemas/zDateSchemas';
 
 // Schema for barn oppdatert med date for fødselsdato
+// mellomnavn overrides nullish → optional (null strippes av interceptor)
 const registrertBarnSchema = zBarnOppslag.extend({
     fødselsdato: zISODate,
+    mellomnavn: z.string().optional(),
 });
 
 export const registrerteBarnListeSchema = zBarnOppslagListe.extend({

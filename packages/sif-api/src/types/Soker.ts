@@ -6,6 +6,7 @@ import { zNullableISODate } from '../schemas/zDateSchemas';
 export const søkerSchema = zSøker.extend({
     fornavn: z.string().min(1),
     etternavn: z.string().min(1),
+    mellomnavn: z.string().optional(),
     fødselsdato: zNullableISODate,
 });
 

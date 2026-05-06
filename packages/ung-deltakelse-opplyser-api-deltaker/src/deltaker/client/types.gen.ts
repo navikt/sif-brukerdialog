@@ -9,9 +9,11 @@ export type DeltakelseDto = {
     erSlettet: boolean;
     fraOgMed: string;
     harOpphørsvedtak: boolean;
-    id?: string | null;
-    søktTidspunkt?: string | null;
-    tilOgMed?: string | null;
+    harUtvidetKvote: boolean;
+    id?: string;
+    kvoteMaksDato: string;
+    søktTidspunkt?: string;
+    tilOgMed?: string;
 };
 
 export type DeltakelseKomposittDto = {
@@ -19,20 +21,22 @@ export type DeltakelseKomposittDto = {
     erSlettet: boolean;
     fraOgMed: string;
     harOpphørsvedtak: boolean;
-    id?: string | null;
+    harUtvidetKvote: boolean;
+    id?: string;
+    kvoteMaksDato: string;
     oppgaver: unknown[];
-    søktTidspunkt?: string | null;
-    tilOgMed?: string | null;
+    søktTidspunkt?: string;
+    tilOgMed?: string;
 };
 
 export type DeltakerDto = {
     deltakerIdent: string;
-    id?: string | null;
+    id?: string;
 };
 
 export type KontonummerDto = {
     harKontonummer: boolean;
-    kontonummer?: string | null;
+    kontonummer?: string;
 };
 
 export type ProblemDetail = {

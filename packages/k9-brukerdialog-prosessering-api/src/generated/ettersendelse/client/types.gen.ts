@@ -34,7 +34,7 @@ export interface Config<T extends ClientOptions = ClientOptions>
      */
     headers?:
         | AxiosRequestHeaders
-        | Record<string, string | number | boolean | Array<string | number | boolean> | null | undefined | unknown>;
+        | Record<string, string | number | boolean | Array<string | number | boolean> | undefined | unknown>;
     /**
      * Throw an error instead of returning it in the response?
      *

@@ -1,7 +1,6 @@
-import { zBarnOppslag } from '@navikt/k9-brukerdialog-prosessering-api';
-import { z } from 'zod';
+import { BarnOppslag } from '@navikt/k9-brukerdialog-prosessering-api';
 
-type BarnEntitet = z.input<typeof zBarnOppslag>;
+type BarnEntitet = Omit<BarnOppslag, 'fødselsdato'> & { fødselsdato: string };
 
 export const alfaTestesen: BarnEntitet = {
     fornavn: 'Alfa',

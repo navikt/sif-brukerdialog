@@ -1,16 +1,15 @@
-import { zArbeidsgivereDto } from '@navikt/k9-brukerdialog-prosessering-api';
-import { z } from 'zod';
+import { ArbeidsgivereDto } from '@navikt/k9-brukerdialog-prosessering-api';
 
 import { arbeidsgivansenAS, norskBedriftAS, vingeFlyfly } from '../entiteter/organisasjoner';
 
-export const arbeidsgivereEnOrgResponse: z.input<typeof zArbeidsgivereDto> = {
+export const arbeidsgivereEnOrgResponse: ArbeidsgivereDto = {
     organisasjoner: [arbeidsgivansenAS],
 };
 
-export const arbeidsgivereToOrgResponse: z.input<typeof zArbeidsgivereDto> = {
+export const arbeidsgivereToOrgResponse: ArbeidsgivereDto = {
     organisasjoner: [norskBedriftAS, vingeFlyfly],
 };
 
-export const arbeidsgivereTomResponse: z.input<typeof zArbeidsgivereDto> = {
+export const arbeidsgivereTomResponse: ArbeidsgivereDto = {
     organisasjoner: [],
 };
