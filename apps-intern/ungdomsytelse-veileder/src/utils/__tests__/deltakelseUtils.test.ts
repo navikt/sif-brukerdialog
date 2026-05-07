@@ -1,42 +1,260 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
-    getFørsteMuligeInnmeldingsdato,
-    getSisteMuligeInnmeldingsdato,
-    getTillattEndringsperiode,
+    getDeltakelseHandlinger,
+    getGyldigStartdatoRange,
+    kanEndreStartdato,
+    kanSetteEllerEndreSluttdato,
+    kanMeldUt,
+    kanEndreSluttdato,
+    deltakelseKanSlettes,
+    deltakelseKanUtvides,
 } from '../deltakelseUtils';
+import { Deltakelse } from '../../types/Deltakelse';
+
+const lagDeltakelse = (overrides: Partial<Deltakelse> = {}): Deltakelse => ({
+    id: 'test-id',
+    deltaker: { deltakerIdent: '12345678901', id: 'deltaker-id' },
+    fraOgMed: ISODateToDate('2026-01-01'),
+    tilOgMed: undefined,
+    kvoteMaksDato: ISODateToDate('2027-01-15'),
+    harUtvidetKvote: false,
+    harOpphørsvedtak: false,
+    erSlettet: false,
+    søktTidspunkt: undefined,
+    ...overrides,
+});
+
+const TODAY = ISODateToDate('2026-05-07');
 
 describe('deltakelseUtils', () => {
-    describe('getFørsteMuligeInnmeldingsdato', () => {
-        it('Min startdato settes til programperiodeStart når andre datoer er tidligere enn denne', () => {
-            const programperiodeStart = ISODateToDate('2023-01-01');
-            const førsteMuligeInnmeldingsdato = ISODateToDate('2023-01-01');
-            const tillattEndringsperiode = getTillattEndringsperiode(ISODateToDate('2023-02-01'));
-            const result = getFørsteMuligeInnmeldingsdato(førsteMuligeInnmeldingsdato, tillattEndringsperiode);
-            expect(result).toEqual(programperiodeStart);
+    describe('kanEndreStartdato', () => {
+        it('true når startdato er innenfor ±6 mnd, ikke utvidet, >2 mnd til kvote', () => {
+            const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01') });
+            expect(kanEndreStartdato(deltakelse, TODAY)).toBe(true);
         });
-        it('Min startdato settes til maks 6 måneder før dagens dato', () => {
-            const førsteMuligeInnmeldingsdato = ISODateToDate('2023-01-01');
-            const tillattEndringsperiode = getTillattEndringsperiode(ISODateToDate('2024-01-08'));
-            const result = getFørsteMuligeInnmeldingsdato(
-                førsteMuligeInnmeldingsdato,
 
-                tillattEndringsperiode,
-            );
-            expect(result).toEqual(tillattEndringsperiode.from);
+        it('false når harUtvidetKvote', () => {
+            const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01'), harUtvidetKvote: true });
+            expect(kanEndreStartdato(deltakelse, TODAY)).toBe(false);
+        });
+
+        it('false når ≤2 mnd til kvoteMaksDato', () => {
+            const deltakelse = lagDeltakelse({
+                fraOgMed: ISODateToDate('2026-03-01'),
+                kvoteMaksDato: ISODateToDate('2026-06-01'),
+            });
+            expect(kanEndreStartdato(deltakelse, TODAY)).toBe(false);
+        });
+
+        it('false når startdato er utenfor ±6 mnd vindu', () => {
+            const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2025-01-01') });
+            expect(kanEndreStartdato(deltakelse, TODAY)).toBe(false);
         });
     });
-    describe('getSisteMuligeInnmeldingsdato', () => {
-        it('Max startdato settes til deltakers siste mulige innmeldingsdato når den er før 6-måneders grense', () => {
-            const sisteMuligeInnmeldingsdato = ISODateToDate('2023-01-01');
-            const tillattEndringsperiode = getTillattEndringsperiode(ISODateToDate('2023-02-01'));
-            const result = getSisteMuligeInnmeldingsdato(sisteMuligeInnmeldingsdato, tillattEndringsperiode);
-            expect(result).toEqual(sisteMuligeInnmeldingsdato);
+
+    describe('kanSetteEllerEndreSluttdato', () => {
+        it('true når søkt og kvote ikke utløpt', () => {
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
+            expect(kanSetteEllerEndreSluttdato(deltakelse, TODAY)).toBe(true);
         });
-        it('Max startdato settes til 6-måneders grense når det er mer enn 6 måneder til deltakers siste mulige innmeldingsdato', () => {
-            const sisteMuligeInnmeldingsdato = ISODateToDate('2026-01-01');
-            const tillattEndringsperiode = getTillattEndringsperiode(ISODateToDate('2024-02-01'));
-            const result = getSisteMuligeInnmeldingsdato(sisteMuligeInnmeldingsdato, tillattEndringsperiode);
-            expect(result).toEqual(tillattEndringsperiode.to);
+
+        it('false når ikke søkt', () => {
+            const deltakelse = lagDeltakelse();
+            expect(kanSetteEllerEndreSluttdato(deltakelse, TODAY)).toBe(false);
+        });
+
+        it('false når kvote er utløpt', () => {
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                kvoteMaksDato: ISODateToDate('2026-01-01'),
+            });
+            expect(kanSetteEllerEndreSluttdato(deltakelse, TODAY)).toBe(false);
+        });
+    });
+
+    describe('kanMeldUt', () => {
+        it('true når søkt, ingen sluttdato, kvote gyldig', () => {
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
+            expect(kanMeldUt(deltakelse, TODAY)).toBe(true);
+        });
+
+        it('false når tilOgMed er satt', () => {
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                tilOgMed: ISODateToDate('2026-12-01'),
+            });
+            expect(kanMeldUt(deltakelse, TODAY)).toBe(false);
+        });
+    });
+
+    describe('kanEndreSluttdato', () => {
+        it('true når søkt og tilOgMed satt og kvote gyldig', () => {
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                tilOgMed: ISODateToDate('2026-12-01'),
+            });
+            expect(kanEndreSluttdato(deltakelse, TODAY)).toBe(true);
+        });
+
+        it('false når tilOgMed ikke er satt', () => {
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
+            expect(kanEndreSluttdato(deltakelse, TODAY)).toBe(false);
+        });
+    });
+
+    describe('deltakelseKanSlettes', () => {
+        it('true når søktTidspunkt er undefined', () => {
+            const deltakelse = lagDeltakelse();
+            expect(deltakelseKanSlettes(deltakelse)).toBe(true);
+        });
+
+        it('false når søktTidspunkt er satt', () => {
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
+            expect(deltakelseKanSlettes(deltakelse)).toBe(false);
+        });
+    });
+
+    describe('deltakelseKanUtvides', () => {
+        it('true når søkt, ingen sluttdato, ikke utvidet, kvote gyldig', () => {
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
+            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(true);
+        });
+
+        it('false når allerede utvidet', () => {
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date(), harUtvidetKvote: true });
+            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
+        });
+
+        it('false når tilOgMed satt', () => {
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                tilOgMed: ISODateToDate('2026-12-01'),
+            });
+            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
+        });
+
+        it('false når kvote utløpt', () => {
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                kvoteMaksDato: ISODateToDate('2026-01-01'),
+            });
+            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
+        });
+    });
+
+    describe('getDeltakelseHandlinger', () => {
+        it('A1: Ny deltaker, startdato endrbar', () => {
+            const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01') });
+            const h = getDeltakelseHandlinger(deltakelse, TODAY);
+            expect(h.kanEndreStartdato).toBe(true);
+            expect(h.kanMeldUt).toBe(false);
+            expect(h.kanEndreSluttdato).toBe(false);
+            expect(h.kanUtvideKvote).toBe(false);
+            expect(h.kanSlettes).toBe(true);
+        });
+
+        it('A2: Ny deltaker, startdato låst (utvidet kvote)', () => {
+            const deltakelse = lagDeltakelse({
+                fraOgMed: ISODateToDate('2026-03-01'),
+                harUtvidetKvote: true,
+            });
+            const h = getDeltakelseHandlinger(deltakelse, TODAY);
+            expect(h.kanEndreStartdato).toBe(false);
+            expect(h.kanSlettes).toBe(true);
+        });
+
+        it('B1: Aktiv deltaker, normal, startdato endrbar', () => {
+            const deltakelse = lagDeltakelse({
+                fraOgMed: ISODateToDate('2026-03-01'),
+                søktTidspunkt: new Date(),
+            });
+            const h = getDeltakelseHandlinger(deltakelse, TODAY);
+            expect(h.kanEndreStartdato).toBe(true);
+            expect(h.kanMeldUt).toBe(true);
+            expect(h.kanUtvideKvote).toBe(true);
+            expect(h.kanSlettes).toBe(false);
+        });
+
+        it('B4: Aktiv deltaker, utvidet kvote', () => {
+            const deltakelse = lagDeltakelse({
+                fraOgMed: ISODateToDate('2026-03-01'),
+                søktTidspunkt: new Date(),
+                harUtvidetKvote: true,
+            });
+            const h = getDeltakelseHandlinger(deltakelse, TODAY);
+            expect(h.kanEndreStartdato).toBe(false);
+            expect(h.kanMeldUt).toBe(true);
+            expect(h.kanUtvideKvote).toBe(false);
+        });
+
+        it('B6: Aktiv deltaker, kvote utløpt', () => {
+            const deltakelse = lagDeltakelse({
+                fraOgMed: ISODateToDate('2025-01-01'),
+                søktTidspunkt: new Date(),
+                kvoteMaksDato: ISODateToDate('2026-01-01'),
+            });
+            const h = getDeltakelseHandlinger(deltakelse, TODAY);
+            expect(h.kanEndreStartdato).toBe(false);
+            expect(h.kanMeldUt).toBe(false);
+            expect(h.kanUtvideKvote).toBe(false);
+        });
+
+        it('C1: Utmeldt, startdato endrbar', () => {
+            const deltakelse = lagDeltakelse({
+                fraOgMed: ISODateToDate('2026-03-01'),
+                søktTidspunkt: new Date(),
+                tilOgMed: ISODateToDate('2026-10-01'),
+            });
+            const h = getDeltakelseHandlinger(deltakelse, TODAY);
+            expect(h.kanEndreStartdato).toBe(true);
+            expect(h.kanEndreSluttdato).toBe(true);
+            expect(h.kanMeldUt).toBe(false);
+            expect(h.kanUtvideKvote).toBe(false);
+        });
+
+        it('D1: Slettet overstyrer alt', () => {
+            const deltakelse = lagDeltakelse({
+                fraOgMed: ISODateToDate('2026-03-01'),
+                søktTidspunkt: new Date(),
+                erSlettet: true,
+            });
+            const h = getDeltakelseHandlinger(deltakelse, TODAY);
+            expect(h.kanEndreStartdato).toBe(false);
+            expect(h.kanMeldUt).toBe(false);
+            expect(h.kanEndreSluttdato).toBe(false);
+            expect(h.kanUtvideKvote).toBe(false);
+            expect(h.kanSlettes).toBe(false);
+        });
+    });
+
+    describe('getGyldigStartdatoRange', () => {
+        const deltaker = {
+            førsteMuligeInnmeldingsdato: ISODateToDate('2025-08-11'),
+            sisteMuligeInnmeldingsdato: ISODateToDate('2027-06-01'),
+        };
+
+        it('begrenser fra-dato til maks 6 mnd tilbake', () => {
+            const result = getGyldigStartdatoRange(deltaker, TODAY);
+            expect(result).not.toBe('fomFørTom');
+            if (result !== 'fomFørTom') {
+                expect(result.from.toISOString().substring(0, 10)).toBe('2025-11-07');
+            }
+        });
+
+        it('begrenser til-dato til maks 6 mnd frem når det er før sisteMulige', () => {
+            const result = getGyldigStartdatoRange(deltaker, TODAY);
+            if (result !== 'fomFørTom') {
+                expect(result.to.toISOString().substring(0, 10)).toBe('2026-11-07');
+            }
+        });
+
+        it('returnerer fomFørTom når deltaker ikke kan meldes inn', () => {
+            const ugyldigDeltaker = {
+                førsteMuligeInnmeldingsdato: ISODateToDate('2028-01-01'),
+                sisteMuligeInnmeldingsdato: ISODateToDate('2028-06-01'),
+            };
+            const result = getGyldigStartdatoRange(ugyldigDeltaker, TODAY);
+            expect(result).toBe('fomFørTom');
         });
     });
 });

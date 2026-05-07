@@ -10,7 +10,7 @@ import {
     TypedFormikWrapper,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getDateValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { ApiErrorType } from '@navikt/ung-common';
 import dayjs from 'dayjs';
@@ -20,7 +20,7 @@ import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
-import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
+import { getGyldigStartdatoRange } from '../../utils/deltakelseUtils';
 import { DrawerWidth, useDrawer } from '../../components/drawer/DrawerContext';
 import SjekklisteDrawer from '../../components/sjekkliste/DrawerSjekkliste';
 
@@ -53,11 +53,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
         onDeltakelseRegistrert(deltakelse);
     };
 
-    const startdatoMinMax = getStartdatobegrensningForDeltaker(
-        deltaker.førsteMuligeInnmeldingsdato,
-        deltaker.sisteMuligeInnmeldingsdato,
-        getDateToday(),
-    );
+    const startdatoMinMax = getGyldigStartdatoRange(deltaker);
 
     if (startdatoMinMax === 'fomFørTom') {
         return (

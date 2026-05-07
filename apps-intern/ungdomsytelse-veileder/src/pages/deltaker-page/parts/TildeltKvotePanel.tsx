@@ -4,7 +4,7 @@ import { Deltaker } from '../../../types/Deltaker';
 import { useState } from 'react';
 import UtvidKvoteModal from '../../../components/utvid-kvote-modal/UtvidKvoteModal';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { deltakelseKanUtvides } from '../../../utils/deltakelseUtils';
+import { getDeltakelseHandlinger } from '../../../utils/deltakelseUtils';
 
 interface DatoBoksProps {
     deltaker: Deltaker;
@@ -17,7 +17,7 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBo
     const [visDialog, setVisDialog] = useState(false);
 
     const { harUtvidetKvote, kvoteMaksDato, tilOgMed } = deltakelse;
-    const kanEndreKvote = deltakelseKanUtvides(deltakelse);
+    const { kanUtvideKvote } = getDeltakelseHandlinger(deltakelse);
 
     return (
         <>
@@ -37,7 +37,7 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBo
                         </BodyLong>
                     )}
 
-                    {kanEndreKvote && (
+                    {kanUtvideKvote && (
                         <Box paddingBlock="space-8 space-0">
                             <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
                                 Registrer forlenget periode
