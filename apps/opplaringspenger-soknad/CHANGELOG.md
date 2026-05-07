@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.4.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 1.4.47
 
 ### Patch Changes

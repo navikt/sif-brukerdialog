@@ -15,7 +15,6 @@ import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { DrawerWidth, useDrawer } from '../drawer/DrawerContext';
 import SjekklisteDrawer from '../sjekkliste/DrawerSjekkliste';
-import { Features } from '../../types/Features';
 import VeilederDemoInformasjon from '../../demo/VeilederDemoInformasjon';
 
 interface Props {
@@ -51,24 +50,24 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
                         )}
                     </InternalHeader.Button>
                 )}
-                {Features.sjekkliste && (
-                    <ActionMenu>
-                        <ActionMenu.Trigger>
-                            <InternalHeader.Button
-                                onClick={async (e) => {
-                                    e.preventDefault();
-                                    await log(AppHendelse.viserInformasjon);
-                                    openDrawer(<SjekklisteDrawer />, {
-                                        title: 'Deltakersjekkliste',
-                                        width: DrawerWidth.WIDER,
-                                    });
-                                }}>
-                                <TasklistIcon fontSize="1.5rem" title="Sjekkliste" />
-                                Deltakersjekkliste
-                            </InternalHeader.Button>
-                        </ActionMenu.Trigger>
-                    </ActionMenu>
-                )}
+
+                <ActionMenu>
+                    <ActionMenu.Trigger>
+                        <InternalHeader.Button
+                            onClick={async (e) => {
+                                e.preventDefault();
+                                await log(AppHendelse.viserInformasjon);
+                                openDrawer(<SjekklisteDrawer />, {
+                                    title: 'Deltakersjekkliste',
+                                    width: DrawerWidth.WIDER,
+                                });
+                            }}>
+                            <TasklistIcon fontSize="1.5rem" title="Sjekkliste" />
+                            Deltakersjekkliste
+                        </InternalHeader.Button>
+                    </ActionMenu.Trigger>
+                </ActionMenu>
+
                 <ActionMenu>
                     <ActionMenu.Trigger>
                         <InternalHeader.Button

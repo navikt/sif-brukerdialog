@@ -16,7 +16,7 @@ export type AktivitetspengerOppgaveDto = {
 
 export type AktivitetspengerOppgaveUttalelseDto = {
     harUttalelse: boolean;
-    uttalelseFraDeltaker?: string | null;
+    uttalelseFraDeltaker?: string;
 };
 
 export type AktivitetspengerOppgavebekreftelse = {
@@ -25,6 +25,7 @@ export type AktivitetspengerOppgavebekreftelse = {
 
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
+    erBosattITrondheim: boolean;
     forutgåendeBosteder: ForutgåendeBosteder;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
@@ -35,9 +36,9 @@ export type Aktivitetspengersøknad = {
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[] | null;
+    frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
 };
 
 export type BarnOppslag = {
@@ -45,7 +46,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string | null;
+    mellomnavn?: string;
 };
 
 export type BarnOppslagListe = {
@@ -65,11 +66,11 @@ export type ForutgåendeBosteder = {
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string | null;
-    ansattTom?: string | null;
-    navn?: string | null;
-    offentligIdent?: string | null;
-    organisasjonsnummer?: string | null;
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    offentligIdent?: string;
+    organisasjonsnummer?: string;
     type: string;
 };
 
@@ -77,24 +78,24 @@ export type JsonNode = unknown;
 
 export type KontonummerInfo = {
     harKontonummer: 'JA' | 'NEI' | 'UVISST';
-    kontonummerErRiktig?: boolean | null;
-    kontonummerFraRegister?: string | null;
+    kontonummerErRiktig?: boolean;
+    kontonummerFraRegister?: string;
 };
 
 export type OppgittInntekt = {
-    arbeidstakerOgFrilansInntekt?: number | null;
+    arbeidstakerOgFrilansInntekt?: number;
 };
 
 export type OrganisasjonDto = {
-    ansattFom?: string | null;
-    ansattTom?: string | null;
-    navn?: string | null;
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
     organisasjonsnummer: string;
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string | null;
-    ansattTom?: string | null;
+    ansattFom?: string;
+    ansattTom?: string;
     offentligIdent: string;
 };
 
@@ -111,11 +112,11 @@ export type ProblemDetail = {
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string | null;
-    fornavn?: string | null;
+    etternavn?: string;
+    fornavn?: string;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string | null;
+    mellomnavn?: string;
 };
 
 export type InntektrapporteringData = {

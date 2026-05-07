@@ -1,7 +1,6 @@
-import { zOrganisasjonDto } from '@navikt/k9-brukerdialog-prosessering-api';
-import { z } from 'zod';
+import { OrganisasjonDto } from '@navikt/k9-brukerdialog-prosessering-api';
 
-type OrganisasjonEntitet = z.input<typeof zOrganisasjonDto>;
+type OrganisasjonEntitet = OrganisasjonDto;
 
 export const norskBedriftAS: OrganisasjonEntitet = {
     organisasjonsnummer: '947064649',

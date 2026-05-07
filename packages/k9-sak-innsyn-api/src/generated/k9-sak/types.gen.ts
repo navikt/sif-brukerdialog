@@ -6,8 +6,8 @@ export type ClientOptions = {
 
 export type HentSisteGyldigeVedtakForAktorIdResponse = {
     harInnvilgedeBehandlinger: boolean;
-    saksnummer?: string | null;
-    vedtaksdato?: string | null;
+    saksnummer?: string;
+    vedtaksdato?: string;
 };
 
 export type OmsorgsdagerKronsinskSuktBarnRequestDto = {

@@ -27,7 +27,7 @@ export interface Config {
      * A function for serializing request body parameter. By default,
      * {@link JSON.stringify()} will be used.
      */
-    bodySerializer?: BodySerializer | null;
+    bodySerializer?: BodySerializer;
     /**
      * An object containing any HTTP headers that you want to pre-populate your
      * `Headers` object with.
@@ -36,7 +36,7 @@ export interface Config {
      */
     headers?:
         | RequestInit['headers']
-        | Record<string, string | number | boolean | Array<string | number | boolean> | null | undefined | unknown>;
+        | Record<string, string | number | boolean | Array<string | number | boolean> | undefined | unknown>;
     /**
      * The request method.
      *

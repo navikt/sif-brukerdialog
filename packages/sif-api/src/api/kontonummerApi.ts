@@ -1,9 +1,12 @@
-import { Deltaker, KontonummerDto, zKontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { Deltaker, zKontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { handleApiError } from '@sif/api';
+import { z } from 'zod';
 
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '../types/UtvidetKontonummerInfo';
 
-const getKontoInfo = (data?: KontonummerDto | null): UtvidetKontonummerInfo => {
+type KontonummerParsed = z.infer<typeof zKontonummerDto>;
+
+const getKontoInfo = (data?: KontonummerParsed | null): UtvidetKontonummerInfo => {
     if (!data || data === null) {
         return {
             harKontonummer: HarKontonummerEnum.UVISST,

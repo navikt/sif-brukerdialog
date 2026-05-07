@@ -5,9 +5,9 @@ export type ClientOptions = {
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[] | null;
+    frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
 };
 
 export type BarnOppslag = {
@@ -15,7 +15,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string | null;
+    mellomnavn?: string;
 };
 
 export type BarnOppslagListe = {
@@ -23,26 +23,26 @@ export type BarnOppslagListe = {
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string | null;
-    ansattTom?: string | null;
-    navn?: string | null;
-    offentligIdent?: string | null;
-    organisasjonsnummer?: string | null;
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    offentligIdent?: string;
+    organisasjonsnummer?: string;
     type: string;
 };
 
 export type JsonNode = unknown;
 
 export type OrganisasjonDto = {
-    ansattFom?: string | null;
-    ansattTom?: string | null;
-    navn?: string | null;
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
     organisasjonsnummer: string;
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string | null;
-    ansattTom?: string | null;
+    ansattFom?: string;
+    ansattTom?: string;
     offentligIdent: string;
 };
 
@@ -59,11 +59,11 @@ export type ProblemDetail = {
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string | null;
-    fornavn?: string | null;
+    etternavn?: string;
+    fornavn?: string;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string | null;
+    mellomnavn?: string;
 };
 
 export type DeleteMellomlagringData = {

@@ -1,4 +1,5 @@
 import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
+import { DeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../utils/dateUtils';
@@ -14,6 +15,22 @@ export interface Scenario {
     data: ScenarioData;
 }
 
+const addWorkDaysToDate = (date: Date, workDays: number): Date => {
+    // Legger til antall ukedager til datoen og hopper over helgedager
+    let addedDays = 0;
+    let currentDate = dayjs(date);
+
+    while (addedDays < workDays) {
+        currentDate = currentDate.add(1, 'day');
+        // Sjekker om det er en ukedag (mandag-fredag)
+        if (currentDate.day() !== 0 && currentDate.day() !== 6) {
+            addedDays++;
+        }
+    }
+
+    return currentDate.toDate();
+};
+
 const getMockDatoer = () => {
     const deltakelseFraOgMed = dayjs(getMockToday()).subtract(46, 'days').startOf('week');
     const søkDeltakelseFrist = deltakelseFraOgMed.add(3, 'months');
@@ -21,6 +38,7 @@ const getMockDatoer = () => {
     return {
         deltakelseFraOgMed: deltakelseFraOgMed.toDate(),
         søkDeltakelseFrist: søkDeltakelseFrist.toDate(),
+        kvoteMaksDato: addWorkDaysToDate(deltakelseFraOgMed.toDate(), 260),
     };
 };
 
@@ -37,8 +55,9 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
             },
             erSlettet: false,
             harOpphørsvedtak: false,
-            oppgaver: [],
-        },
+            harUtvidetKvote: false,
+            kvoteMaksDato: dateToISODate(getMockDatoer().kvoteMaksDato),
+        } satisfies DeltakelseDto,
     ],
     oppgaver: [getMockOppgaver().søkYtelseOppgave],
 });
@@ -57,8 +76,9 @@ const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[] = []): Scenari
             },
             erSlettet: false,
             harOpphørsvedtak: false,
-            oppgaver,
-        },
+            harUtvidetKvote: false,
+            kvoteMaksDato: dateToISODate(getMockDatoer().kvoteMaksDato),
+        } satisfies DeltakelseDto,
     ],
     oppgaver,
 });
@@ -76,8 +96,9 @@ const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenario
             },
             erSlettet: false,
             harOpphørsvedtak: false,
-            oppgaver,
-        },
+            harUtvidetKvote: false,
+            kvoteMaksDato: dateToISODate(getMockDatoer().kvoteMaksDato),
+        } satisfies DeltakelseDto,
     ],
     oppgaver,
 });
@@ -95,8 +116,9 @@ const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioD
             },
             erSlettet: true,
             harOpphørsvedtak: true,
-            oppgaver,
-        },
+            harUtvidetKvote: false,
+            kvoteMaksDato: dateToISODate(getMockDatoer().kvoteMaksDato),
+        } satisfies DeltakelseDto,
     ],
     oppgaver,
 });
@@ -117,8 +139,9 @@ const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenar
                 },
                 erSlettet: false,
                 harOpphørsvedtak: false,
-                oppgaver,
-            },
+                harUtvidetKvote: false,
+                kvoteMaksDato: dateToISODate(getMockDatoer().kvoteMaksDato),
+            } satisfies DeltakelseDto,
         ],
         oppgaver,
     };

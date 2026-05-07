@@ -1,68 +1,168 @@
 import { getRequiredEnv } from '@navikt/sif-common-env';
-import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeUtils, getDateToday } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
 
-export const getFørsteMuligeInnmeldingsdato = (
-    førsteMuligeInnmeldingsdato: Date,
-    tillattEndringsperiode: DateRange,
-): Date => {
-    return dayjs.max([dayjs(førsteMuligeInnmeldingsdato), dayjs(tillattEndringsperiode.from)]).toDate();
-};
+/** Antall måneder før og etter i dag som startdato kan endres innenfor */
+export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 6;
 
-/** Tillat periode for endring basert på dagens dato. 6 måned før og etter dagens dato. */
-export const getTillattEndringsperiode = (today: Date): DateRange => ({
-    from: dayjs(today).subtract(6, 'months').toDate(),
-    to: dayjs(today).add(6, 'months').toDate(),
+/** Startdato kan ikke endres når det er færre enn dette antall måneder til kvoteutløp */
+export const MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING = 2;
+
+const getEndringsperiode = (today: Date): DateRange => ({
+    from: dayjs(today).subtract(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
+    to: dayjs(today).add(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
 });
 
-export const getSisteMuligeInnmeldingsdato = (
-    sisteMuligeInnmeldingsdato: Date,
-    tillattEndringsperiode: DateRange,
-): Date => {
-    return dayjs.min([dayjs(sisteMuligeInnmeldingsdato), dayjs(tillattEndringsperiode.to)]).toDate();
+const kvoteErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
+    return dayjs(deltakelse.kvoteMaksDato).isBefore(today, 'day');
 };
 
-export const kanEndreStartdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
-    return dateRangeUtils.isDateInDateRange(deltakelse.fraOgMed, tillattEndringsperiode);
+const erInnenforSisteMånederFørKvoteutløp = (deltakelse: Deltakelse, today: Date): boolean => {
+    return dayjs(today).isSameOrAfter(
+        dayjs(deltakelse.kvoteMaksDato).subtract(MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING, 'months'),
+        'day',
+    );
 };
 
-export const kanEndreSluttdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
-    return deltakelse.søktTidspunkt !== undefined && deltakelse.tilOgMed
-        ? dayjs(deltakelse.tilOgMed).isSameOrAfter(tillattEndringsperiode.from, 'day')
-        : true;
+const beregnBrukteDager = (deltakelse: Deltakelse, today: Date = getDateToday()): number => {
+    // Henter ut antall ukedager (mandag til fredag) mellom fraOgMed og tilOgMed, eller mellom fraOgMed og i dag hvis tilOgMed ikke er satt
+    const start = dayjs(deltakelse.fraOgMed);
+    const end = deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed) : dayjs(today);
+    let usedDays = 0;
+    let currentDate = start;
+
+    while (currentDate.isSameOrBefore(end, 'day')) {
+        if (currentDate.day() !== 0 && currentDate.day() !== 6) {
+            usedDays++;
+        }
+        currentDate = currentDate.add(1, 'day');
+    }
+
+    return usedDays;
 };
 
-export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
+export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    if (deltakelse.harUtvidetKvote) {
+        return false;
+    }
+    if (erInnenforSisteMånederFørKvoteutløp(deltakelse, today)) {
+        return false;
+    }
+    const endringsperiode = getEndringsperiode(today);
+    return dateRangeUtils.isDateInDateRange(deltakelse.fraOgMed, endringsperiode);
+};
+
+export const kanSetteEllerEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    if (deltakelse.søktTidspunkt === undefined) {
+        return false;
+    }
+    return !kvoteErUtløpt(deltakelse, today);
+};
+
+export const kanMeldesUt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return kanSetteEllerEndreSluttdato(deltakelse, today) && deltakelse.tilOgMed === undefined;
+};
+
+export const kanEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return kanSetteEllerEndreSluttdato(deltakelse, today) && deltakelse.tilOgMed !== undefined;
+};
+
+export const deltakelseKvoteErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return kvoteErUtløpt(deltakelse, today);
+};
+
+export const deltakelseSluttdatoErPassert = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isBefore(today, 'day') : false;
+};
+
+export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
     return deltakelse.søktTidspunkt === undefined;
 };
 
-/**
- * Henter første og siste dato en deltaker kan meldes inn i programmet
- * @param deltaker
- * @returns
- */
-export const getStartdatobegrensningForDeltaker = (
-    førsteMuligeInnmeldingsdato: Date,
-    sisteMuligeInnmeldingsdato: Date,
-    today: Date,
-): DateRange | 'fomFørTom' => {
-    const tillattEndringsperiode = getTillattEndringsperiode(today);
+export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    const dagerBrukt = beregnBrukteDager(deltakelse, today);
+    if (dagerBrukt < 1) {
+        return false;
+    }
+    return (
+        deltakelse.søktTidspunkt !== undefined &&
+        deltakelse.tilOgMed === undefined &&
+        deltakelse.harUtvidetKvote === false &&
+        !kvoteErUtløpt(deltakelse, today) &&
+        !deltakelseSluttdatoErPassert(deltakelse, today)
+    );
+};
 
-    const from = getFørsteMuligeInnmeldingsdato(førsteMuligeInnmeldingsdato, tillattEndringsperiode);
-    const to = getSisteMuligeInnmeldingsdato(sisteMuligeInnmeldingsdato, tillattEndringsperiode);
+export interface DeltakelseHandlinger {
+    kanEndreStartdato: boolean;
+    kanMeldesUt: boolean;
+    kanEndreSluttdato: boolean;
+    kanUtvideKvote: boolean;
+    kanSlettes: boolean;
+}
+
+export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = getDateToday()): DeltakelseHandlinger => {
+    if (deltakelse.erSlettet) {
+        return {
+            kanEndreStartdato: false,
+            kanMeldesUt: false,
+            kanEndreSluttdato: false,
+            kanUtvideKvote: false,
+            kanSlettes: false,
+        };
+    }
+    return {
+        kanEndreStartdato: kanEndreStartdato(deltakelse, today),
+        kanMeldesUt: kanMeldesUt(deltakelse, today),
+        kanEndreSluttdato: kanEndreSluttdato(deltakelse, today),
+        kanUtvideKvote: deltakelseKanUtvides(deltakelse, today),
+        kanSlettes: deltakelseKanSlettes(deltakelse),
+    };
+};
+
+export const TIDLIGSTE_STARTDATO = dayjs('2025-08-01');
+
+export const getGyldigStartdatoRange = (
+    deltaker: { førsteMuligeInnmeldingsdato: Date; sisteMuligeInnmeldingsdato: Date },
+    today: Date = getDateToday(),
+): DateRange | 'fomFørTom' => {
+    const endringsperiode = getEndringsperiode(today);
+
+    const from = dayjs
+        .max([dayjs(deltaker.førsteMuligeInnmeldingsdato), dayjs(endringsperiode.from), TIDLIGSTE_STARTDATO])
+        .toDate();
+    const to = dayjs.min([dayjs(deltaker.sisteMuligeInnmeldingsdato), dayjs(endringsperiode.to)]).toDate();
 
     if (dayjs(from).isAfter(to)) {
         return 'fomFørTom';
     }
 
-    return {
-        from,
-        to,
-    };
+    return { from, to };
 };
+
+/** @deprecated Bruk getGyldigStartdatoRange i stedet */
+export const getStartdatobegrensningForDeltaker = (
+    førsteMuligeInnmeldingsdato: Date,
+    sisteMuligeInnmeldingsdato: Date,
+    today: Date,
+): DateRange | 'fomFørTom' => {
+    const endringsperiode = getEndringsperiode(today);
+
+    const from = dayjs.max([dayjs(førsteMuligeInnmeldingsdato), dayjs(endringsperiode.from)]).toDate();
+    const to = dayjs.min([dayjs(sisteMuligeInnmeldingsdato), dayjs(endringsperiode.to)]).toDate();
+
+    if (dayjs(from).isAfter(to)) {
+        return 'fomFørTom';
+    }
+
+    return { from, to };
+};
+
+/** @deprecated Bruk kanEndreStartdato uten tillattEndringsperiode-parameter */
+export const getTillattEndringsperiode = (today: Date): DateRange => getEndringsperiode(today);
 
 export const mapDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto): DeltakelseHistorikkInnslag => {
     return {
@@ -83,4 +183,20 @@ export const erÅpnetForRegistrering = (): boolean => {
         return true; // For testing purposes, always allow registration in non-prod environments
     }
     return dayjs().isSameOrAfter(dayjs('2025-08-11'), 'day');
+};
+
+export const addUkedagerToDate = (date: Date, ukedager: number): Date => {
+    // Legger til antall ukedager til datoen og hopper over helgedager
+    let addedDays = 0;
+    let currentDate = dayjs(date);
+
+    while (addedDays < ukedager) {
+        currentDate = currentDate.add(1, 'day');
+        // Sjekker om det er en ukedag (mandag-fredag)
+        if (currentDate.day() !== 0 && currentDate.day() !== 6) {
+            addedDays++;
+        }
+    }
+
+    return currentDate.toDate();
 };

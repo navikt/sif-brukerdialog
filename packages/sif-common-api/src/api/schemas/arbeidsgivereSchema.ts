@@ -5,15 +5,15 @@ import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
 export const arbeidsgiverOrganisasjonSchema = z.object({
     organisasjonsnummer: z.string(),
     navn: z.string(),
-    ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
-    ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date().optional().nullable()),
+    ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date().optional().nullable()),
 });
 
 export const arbeidsgiverPrivatSchema = z.object({
     offentligIdent: z.string(),
     navn: z.string(),
-    ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
-    ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date().optional().nullable()),
+    ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date().optional().nullable()),
 });
 
 export const arbeidsgiverFrilansoppdragSchema = z.object({
@@ -21,8 +21,8 @@ export const arbeidsgiverFrilansoppdragSchema = z.object({
     organisasjonsnummer: z.string().nullable(),
     offentligIdent: z.string().optional().nullable(),
     navn: z.string().optional().nullable(),
-    ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
-    ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date().optional().nullable()),
+    ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date().optional().nullable()),
 });
 
 export const arbeidsgivereResponseSchema = z.object({

@@ -51,18 +51,18 @@ export type AnnenForelder = {
 };
 
 export type ArbeidsgiverDto = {
-    organisasjon?: ArbeidsgiverOrganisasjonDto | null;
-    privat?: ArbeidsgiverPrivatDto | null;
+    organisasjon?: ArbeidsgiverOrganisasjonDto;
+    privat?: ArbeidsgiverPrivatDto;
 };
 
 export type ArbeidsgiverOrganisasjonDto = {
-    navn?: string | null;
+    navn?: string;
     organisasjonsnummer: string;
 };
 
 export type ArbeidsgiverPrivatDto = {
     fødselsnummer: string;
-    navn?: string | null;
+    navn?: string;
 };
 
 export type Arbeidstaker = {
@@ -100,8 +100,8 @@ export type BarnOppslagDto = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    identitetsnummer?: string | null;
-    mellomnavn?: string | null;
+    identitetsnummer?: string;
+    mellomnavn?: string;
 };
 
 export enum BarnRelasjon {
@@ -118,7 +118,7 @@ export type BegrunnelseForInnsending = {
 
 export type BehandlingDto = {
     aksjonspunkter: AksjonspunktDto[];
-    avsluttetTidspunkt?: string | null;
+    avsluttetTidspunkt?: string;
     innsendelser: InnsendelserISakDto[];
     opprettetTidspunkt: string;
     status: BehandlingStatus;
@@ -195,12 +195,12 @@ export enum DokumentBrevkode {
 
 export type DokumentDto = {
     dokumentInfoId: string;
-    dokumentType?: DokumentBrevkode | null;
+    dokumentType?: DokumentBrevkode;
     filtype: string;
     harTilgang: boolean;
     journalpostId: string;
     relevanteDatoer: RelevantDatoDto[];
-    saksnummer?: string | null;
+    saksnummer?: string;
     tittel: string;
     url: string;
 };
@@ -253,10 +253,10 @@ export type InfoFraPunsj = {
 };
 
 export type InnsendelserISakDto = {
-    arbeidsgivere?: Organisasjon[] | null;
+    arbeidsgivere?: Organisasjon[];
     dokumenter: DokumentDto[];
     innsendelsestype: Innsendelsestype;
-    k9FormatInnsendelse?: Innsending | null;
+    k9FormatInnsendelse?: Innsending;
     mottattTidspunkt: string;
     søknadId: string;
 };
@@ -341,7 +341,7 @@ export type NattevåkPeriodeInfo = {
 
 export type NaturalYtelseDto = {
     beløpPerMnd: number;
-    periode?: PeriodeDto | null;
+    periode?: PeriodeDto;
     type: NaturalYtelseTypeDto;
 };
 
@@ -421,7 +421,7 @@ export type OppgittInntektForPeriode = {
 
 export type OppholdDto = {
     periode: PeriodeDto;
-    varighetPerDag?: string | null;
+    varighetPerDag?: string;
 };
 
 export type Opplæringspenger = Omit<Ytelse, 'type'> & {
@@ -449,7 +449,7 @@ export type OpptjeningAktivitet = {
 };
 
 export type Organisasjon = {
-    navn?: string | null;
+    navn?: string;
     organisasjonsnummer: string;
 };
 
@@ -493,10 +493,10 @@ export type Pleietrengende = {
 
 export type PleietrengendeDto = {
     aktørId: string;
-    etternavn?: string | null;
-    fornavn?: string | null;
+    etternavn?: string;
+    fornavn?: string;
     fødselsdato: string;
-    mellomnavn?: string | null;
+    mellomnavn?: string;
 };
 
 export type PleietrengendeMedSak = {
@@ -531,7 +531,7 @@ export type ProblemDetail = {
 
 export type RefusjonDto = {
     refusjonBeløpPerMnd: number;
-    refusjonOpphører?: string | null;
+    refusjonOpphører?: string;
 };
 
 export type Reise = {
@@ -548,7 +548,7 @@ export type RelevantDatoDto = {
 export type SakDto = {
     behandlinger: BehandlingDto[];
     fagsakYtelseType: FagsakYtelseType;
-    saksbehandlingsFrist?: string | null;
+    saksbehandlingsFrist?: string;
     saksnummer: string;
     utledetStatus: UtledetStatus;
     ytelseType: FagsakYtelseType;
@@ -556,30 +556,30 @@ export type SakDto = {
 
 export type SakInntektsmeldingDto = {
     arbeidsgiver: ArbeidsgiverDto;
-    endringerRefusjon?: EndringRefusjonDto[] | null;
+    endringerRefusjon?: EndringRefusjonDto[];
     erstattetAv: string[];
-    graderinger?: GraderingDto[] | null;
+    graderinger?: GraderingDto[];
     innsendingstidspunkt: string;
     innsendingsårsak: InnsendingsårsakDto;
     inntektBeløp: number;
-    inntektsmeldingType?: InntektsmeldingTypeDto | null;
+    inntektsmeldingType?: InntektsmeldingTypeDto;
     journalpostId: string;
     kildesystem: string;
     mottattDato: string;
-    naturalYtelser?: NaturalYtelseDto[] | null;
+    naturalYtelser?: NaturalYtelseDto[];
     nærRelasjon: boolean;
-    oppgittFravær?: OppholdDto[] | null;
-    refusjon?: RefusjonDto | null;
+    oppgittFravær?: OppholdDto[];
+    refusjon?: RefusjonDto;
     saksnummer: string;
-    startDatoPermisjon?: string | null;
+    startDatoPermisjon?: string;
     status: InntektsmeldingStatusDto;
-    utsettelsePerioder?: UtsettelseDto[] | null;
+    utsettelsePerioder?: UtsettelseDto[];
     ytelseType: YtekseTypeDto;
 };
 
 export type SakerMetadataDto = {
-    fagsakAvsluttetTidspunkt?: string | null;
-    fagsakOpprettetTidspunkt?: string | null;
+    fagsakAvsluttetTidspunkt?: string;
+    fagsakOpprettetTidspunkt?: string;
     fagsakYtelseType: FagsakYtelseType;
     pleietrengende: PleietrengendeDto;
     saksnummer: string;
@@ -653,7 +653,7 @@ export type Søknad = {
 export type SøknadDto = {
     barn: BarnOppslagDto;
     søknad: Søknad;
-    søknader?: Søknad[] | null;
+    søknader?: Søknad[];
 };
 
 export enum SøknadÅrsak {
@@ -713,7 +713,7 @@ export enum UtenlandsoppholdÅrsak {
 
 export type UtledetStatus = {
     aksjonspunkter: AksjonspunktDto[];
-    saksbehandlingsFrist?: string | null;
+    saksbehandlingsFrist?: string;
     status: BehandlingStatus;
 };
 
@@ -816,7 +816,7 @@ export type SøknadWritable = {
 export type SøknadDtoWritable = {
     barn: BarnOppslagDto;
     søknad: SøknadWritable;
-    søknader?: SøknadWritable[] | null;
+    søknader?: SøknadWritable[];
 };
 
 export type HentDokumentData = {

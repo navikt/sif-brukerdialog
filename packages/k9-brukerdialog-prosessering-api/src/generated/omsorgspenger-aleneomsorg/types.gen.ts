@@ -5,16 +5,16 @@ export type ClientOptions = {
 };
 
 export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[] | null;
+    frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[] | null;
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
 };
 
 export type Barn = {
-    aktørId?: string | null;
-    dato?: string | null;
-    fødselsdato?: string | null;
-    identitetsnummer?: string | null;
+    aktørId?: string;
+    dato?: string;
+    fødselsdato?: string;
+    identitetsnummer?: string;
     navn: string;
     tidspunktForAleneomsorg: 'SISTE_2_ÅRENE' | 'TIDLIGERE';
     type: 'FRA_OPPSLAG' | 'FOSTERBARN' | 'ANNET';
@@ -25,7 +25,7 @@ export type BarnOppslag = {
     etternavn: string;
     fornavn: string;
     fødselsdato: string;
-    mellomnavn?: string | null;
+    mellomnavn?: string;
 };
 
 export type BarnOppslagListe = {
@@ -33,11 +33,11 @@ export type BarnOppslagListe = {
 };
 
 export type FrilansoppdragDto = {
-    ansattFom?: string | null;
-    ansattTom?: string | null;
-    navn?: string | null;
-    offentligIdent?: string | null;
-    organisasjonsnummer?: string | null;
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    offentligIdent?: string;
+    organisasjonsnummer?: string;
     type: string;
 };
 
@@ -45,23 +45,23 @@ export type JsonNode = unknown;
 
 export type OmsorgsdagerAleneOmOmsorgenSøknad = {
     barn: Barn[];
-    dataBruktTilUtledningAnnetData?: string | null;
+    dataBruktTilUtledningAnnetData?: string;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     språk: string;
-    søkerNorskIdent?: string | null;
+    søkerNorskIdent?: string;
 };
 
 export type OrganisasjonDto = {
-    ansattFom?: string | null;
-    ansattTom?: string | null;
-    navn?: string | null;
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
     organisasjonsnummer: string;
 };
 
 export type PrivatArbeidsgiverDto = {
-    ansattFom?: string | null;
-    ansattTom?: string | null;
+    ansattFom?: string;
+    ansattTom?: string;
     offentligIdent: string;
 };
 
@@ -78,11 +78,11 @@ export type ProblemDetail = {
 
 export type Søker = {
     aktørId: string;
-    etternavn?: string | null;
-    fornavn?: string | null;
+    etternavn?: string;
+    fornavn?: string;
     fødselsdato: string;
     fødselsnummer: string;
-    mellomnavn?: string | null;
+    mellomnavn?: string;
 };
 
 export type DeleteMellomlagringData = {

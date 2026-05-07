@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.22.71
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 2.22.70
 
 ### Patch Changes

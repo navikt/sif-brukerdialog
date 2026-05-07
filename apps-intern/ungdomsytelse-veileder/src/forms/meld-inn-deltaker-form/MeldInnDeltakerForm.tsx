@@ -10,7 +10,7 @@ import {
     TypedFormikWrapper,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getDateValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { ApiErrorType } from '@navikt/ung-common';
 import dayjs from 'dayjs';
@@ -20,8 +20,7 @@ import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
-import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
-import { Features } from '../../types/Features';
+import { getGyldigStartdatoRange } from '../../utils/deltakelseUtils';
 import { DrawerWidth, useDrawer } from '../../components/drawer/DrawerContext';
 import SjekklisteDrawer from '../../components/sjekkliste/DrawerSjekkliste';
 
@@ -54,11 +53,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
         onDeltakelseRegistrert(deltakelse);
     };
 
-    const startdatoMinMax = getStartdatobegrensningForDeltaker(
-        deltaker.førsteMuligeInnmeldingsdato,
-        deltaker.sisteMuligeInnmeldingsdato,
-        getDateToday(),
-    );
+    const startdatoMinMax = getGyldigStartdatoRange(deltaker);
 
     if (startdatoMinMax === 'fomFørTom') {
         return (
@@ -75,7 +70,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
             renderForm={({ values }) => {
                 const { erVedtaksbrevSendt, harSjekketSjekkliste } = values;
 
-                const kanMeldesInn = Features.sjekkliste ? harSjekketSjekkliste === YesOrNo.YES : true;
+                const kanMeldesInn = harSjekketSjekkliste === YesOrNo.YES;
 
                 const renderFormPart = () => (
                     <VStack gap="space-16">
@@ -132,67 +127,40 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                         includeButtons={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'meldInnDeltakerForm')}>
                         <VStack gap="space-16" marginBlock="space-16 space-0">
-                            {Features.sjekkliste ? (
-                                <>
-                                    <Heading level="2" size="medium">
-                                        Registrer ny deltaker
-                                    </Heading>
+                            <>
+                                <Heading level="2" size="medium">
+                                    Registrer ny deltaker
+                                </Heading>
 
-                                    <VStack gap="space-16">
-                                        <FormikYesOrNoQuestion
-                                            name="harSjekketSjekkliste"
-                                            legend="Har du sjekket at den unge kan meldes inn i ungdomsprogrammet ved å fylle ut sjekklisten for deltakelse?"
-                                            validate={getYesOrNoValidator()}
-                                        />
-                                        {harSjekketSjekkliste === YesOrNo.NO && (
-                                            <Alert variant="info">
-                                                <VStack gap="space-8">
-                                                    <BodyLong>
-                                                        Sjekk om den unge kan meldes inn ved å fylle ut{' '}
-                                                        <Link
-                                                            href="#"
-                                                            onClick={(evt) => {
-                                                                evt.preventDefault();
-                                                                evt.stopPropagation();
-                                                                openDrawer(<SjekklisteDrawer />, {
-                                                                    title: 'Deltakersjekkliste',
-                                                                    width: DrawerWidth.WIDER,
-                                                                });
-                                                            }}>
-                                                            deltakersjekklisten
-                                                            <TasklistStartIcon aria-hidden role="presentation" />
-                                                        </Link>
-                                                    </BodyLong>
-                                                </VStack>
-                                            </Alert>
-                                        )}
+                                <VStack gap="space-16">
+                                    <FormikYesOrNoQuestion
+                                        name="harSjekketSjekkliste"
+                                        legend="Har du sjekket at den unge kan meldes inn i ungdomsprogrammet ved å fylle ut sjekklisten for deltakelse?"
+                                        validate={getYesOrNoValidator()}
+                                    />
+                                    {harSjekketSjekkliste === YesOrNo.NO && (
+                                        <Alert variant="info">
+                                            <VStack gap="space-8">
+                                                <BodyLong>
+                                                    Sjekk om den unge kan meldes inn ved å fylle ut{' '}
+                                                    <Link
+                                                        href="#"
+                                                        onClick={(evt) => {
+                                                            evt.preventDefault();
+                                                            evt.stopPropagation();
+                                                            openDrawer(<SjekklisteDrawer />, {
+                                                                title: 'Deltakersjekkliste',
+                                                                width: DrawerWidth.WIDER,
+                                                            });
+                                                        }}>
+                                                        deltakersjekklisten
+                                                        <TasklistStartIcon aria-hidden role="presentation" />
+                                                    </Link>
+                                                </BodyLong>
+                                            </VStack>
+                                        </Alert>
+                                    )}
 
-                                        {kanMeldesInn && (
-                                            <FormikYesOrNoQuestion
-                                                name="erVedtaksbrevSendt"
-                                                legend="Er vedtaksbrev om deltakelse i ungdomsprogrammet sendt fra gosys?"
-                                                validate={getYesOrNoValidator()}
-                                            />
-                                        )}
-
-                                        {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.YES && (
-                                            <Box paddingBlock="space-16" style={{ minWidth: '33rem' }}>
-                                                {renderFormPart()}
-                                            </Box>
-                                        )}
-                                        {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.NO && (
-                                            <Alert variant="warning">
-                                                Deltaker må ha et vedtak om at de er med i ungdomsprogrammet før vi kan
-                                                behandle en søknad om ungdomsprogramytelse.
-                                            </Alert>
-                                        )}
-                                    </VStack>
-                                </>
-                            ) : (
-                                <>
-                                    <Heading level="2" size="medium">
-                                        Registrer ny deltaker
-                                    </Heading>
                                     {kanMeldesInn && (
                                         <FormikYesOrNoQuestion
                                             name="erVedtaksbrevSendt"
@@ -200,15 +168,21 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                             validate={getYesOrNoValidator()}
                                         />
                                     )}
+
+                                    {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.YES && (
+                                        <Box paddingBlock="space-16" style={{ minWidth: '33rem' }}>
+                                            {renderFormPart()}
+                                        </Box>
+                                    )}
                                     {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.NO && (
                                         <Alert variant="warning">
                                             Deltaker må ha et vedtak om at de er med i ungdomsprogrammet før vi kan
                                             behandle en søknad om ungdomsprogramytelse.
                                         </Alert>
                                     )}
-                                    {kanMeldesInn && erVedtaksbrevSendt === YesOrNo.YES && renderFormPart()}
-                                </>
-                            )}
+                                </VStack>
+                            </>
+
                             {error && error.type === ApiErrorType.NetworkError && error.originalError ? (
                                 <ApiErrorAlert error={error} />
                             ) : null}

@@ -11,8 +11,7 @@ const appSettings: AppEnv = {
     PUBLIC_PATH: 'sif-brukerdialog/ungdomsytelse-veileder',
     GITHUB_REF_NAME: 'local',
 
-    SIF_PUBLIC_FEATURE_ENDRE_SLUTTDATO: 'off',
-    SIF_PUBLIC_FEATURE_SJEKKLISTE: 'off',
+    SIF_PUBLIC_FEATURE_UTVIDE_PERIODE: 'off',
     SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE: 'off',
 
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: '/api/ung-deltakelse-opplyser',

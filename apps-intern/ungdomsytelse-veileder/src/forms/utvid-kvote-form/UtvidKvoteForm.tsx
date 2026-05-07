@@ -1,0 +1,109 @@
+import { Alert, Bleed, VStack } from '@navikt/ds-react';
+import { useIntl } from 'react-intl';
+import {
+    FormikYesOrNoQuestion,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
+import { getCheckedValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker } from '../../types/Deltaker';
+import { formatName } from '@navikt/sif-common-utils';
+import { useUtvidKvote } from '../../hooks/useUtvidKvote';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import { QuestionBleedTop } from '@navikt/sif-common-ui';
+
+enum FieldNames {
+    vedtaksbrevErSendt = 'vedtaksbrevErSendt',
+    bekrefterEndring = 'bekrefterEndring',
+}
+type FormValues = {
+    [FieldNames.vedtaksbrevErSendt]: YesOrNo;
+    [FieldNames.bekrefterEndring]: boolean;
+};
+
+const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<FieldNames, FormValues, ValidationError>();
+
+interface Props {
+    deltaker: Deltaker;
+    deltakelse: Deltakelse;
+    onCancel?: () => void;
+    onDeltakelseChanged: (oppdatertDeltakelse: Deltakelse) => void;
+}
+
+const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }: Props) => {
+    const intl = useIntl();
+
+    const { mutate, isPending, error } = useUtvidKvote({ deltakelseId: deltakelse.id, deltakerId: deltaker.id });
+
+    const handleOnSubmit = async (values: FormValues) => {
+        const { bekrefterEndring } = values;
+        if (!bekrefterEndring) {
+            return;
+        }
+        mutate(deltakelse.id, {
+            onSuccess: (oppdatertDeltakelse) => {
+                onDeltakelseChanged(oppdatertDeltakelse);
+            },
+        });
+    };
+
+    return (
+        <FormikWrapper
+            initialValues={{
+                bekrefterEndring: false,
+            }}
+            onSubmit={handleOnSubmit}
+            renderForm={({ values }) => {
+                const { vedtaksbrevErSendt } = values;
+                return (
+                    <VStack gap="space-24">
+                        <Form
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
+                            submitPending={isPending}
+                            showSubmitButton={true}
+                            submitDisabled={vedtaksbrevErSendt === YesOrNo.NO}
+                            submitButtonLabel="Bekreft forlenget periode"
+                            cancelButtonLabel="Avbryt"
+                            onCancel={onCancel}
+                            showButtonArrows={false}>
+                            <VStack gap="space-24">
+                                <VStack gap="space-32" className="rounded-xs">
+                                    <FormikYesOrNoQuestion
+                                        name={FieldNames.vedtaksbrevErSendt}
+                                        legend="Er vedtaksbrev om at deltaker har fått forlenget periode på inntil 8 uker sendt fra Gosys?"
+                                        validate={getYesOrNoValidator()}
+                                    />
+                                    {vedtaksbrevErSendt === YesOrNo.YES && (
+                                        <>
+                                            <Bleed marginBlock="space-16 space-0">
+                                                <ConfirmationCheckbox
+                                                    name={FieldNames.bekrefterEndring}
+                                                    label={`Jeg bekrefter at ${formatName(deltaker.navn)} har fått forlenget perioden med inntil 8 uker`}
+                                                    validate={getCheckedValidator()}
+                                                />
+                                            </Bleed>
+                                        </>
+                                    )}
+                                    {vedtaksbrevErSendt === YesOrNo.NO && (
+                                        <QuestionBleedTop>
+                                            <Alert variant="warning">
+                                                Deltaker må ha et vedtak om at perioden er forlenget med inntil 8 uker
+                                                før forelengelsen kan registreres på ytelsen.
+                                            </Alert>
+                                        </QuestionBleedTop>
+                                    )}
+                                </VStack>
+                            </VStack>
+                        </Form>
+                        {error ? <ApiErrorAlert error={error} /> : null}
+                    </VStack>
+                );
+            }}
+        />
+    );
+};
+
+export default UtvidKvoteForm;

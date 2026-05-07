@@ -32,6 +32,9 @@ import type {
     MeldUtDeltakerData,
     MeldUtDeltakerErrors,
     MeldUtDeltakerResponses,
+    UtvidKvoteData,
+    UtvidKvoteErrors,
+    UtvidKvoteResponses,
 } from './types.gen';
 import {
     zDeltakelseHistorikkPath,
@@ -55,6 +58,8 @@ import {
     zMeldUtDeltakerBody,
     zMeldUtDeltakerPath,
     zMeldUtDeltakerResponse,
+    zUtvidKvotePath,
+    zUtvidKvoteResponse,
 } from './zod.gen';
 
 export type Options<
@@ -257,6 +262,31 @@ export class Veileder {
                 { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/historikk',
+            ...options,
+        });
+    }
+
+    /**
+     * Utvider kvoten for en deltakelse i ungdomsprogrammet med 8 uker
+     */
+    public static utvidKvote<ThrowOnError extends boolean = true>(options: Options<UtvidKvoteData, ThrowOnError>) {
+        return (options.client ?? client).put<UtvidKvoteResponses, UtvidKvoteErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zUtvidKvotePath,
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zUtvidKvoteResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/veileder/register/deltakelse/{deltakelseId}/utvid-kvote',
             ...options,
         });
     }

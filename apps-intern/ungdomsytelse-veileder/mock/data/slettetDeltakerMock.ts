@@ -29,6 +29,8 @@ const deltakelse: DeltakelseDto = {
     tilOgMed: undefined,
     erSlettet: true,
     harOpphørsvedtak: true,
+    harUtvidetKvote: false,
+    kvoteMaksDato: '2026-01-01',
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
 };
 

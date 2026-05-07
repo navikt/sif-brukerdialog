@@ -6,16 +6,17 @@ import { z } from 'zod';
 export const deltakelseSchema = zDeltakelseDto
     .extend({
         id: z.string(),
-        harOpphørsvedtak: z.boolean().optional().default(false),
     })
     .transform((data) => {
         const fraOgMed = ISODateToDate(data.fraOgMed);
         const tilOgMed = data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined;
+
         return {
             ...data,
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
             fraOgMed,
             tilOgMed,
+            kvoteMaksDato: ISODateToDate(data.kvoteMaksDato),
         };
     });
 

@@ -1,5 +1,6 @@
-import { BodyLong, Box, GlobalAlert, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, GlobalAlert, VStack } from '@navikt/ds-react';
 import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
+import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     variant: 'compact' | 'default';
@@ -9,8 +10,11 @@ const VeilederDemoInformasjon = ({ variant }: Props) => {
         return (
             <GlobalAlert status="warning" style={{ maxWidth: '100%' }}>
                 <GlobalAlert.Header>
-                    <VStack gap="space-4">
+                    <VStack gap="space-4" paddingBlock="space-0 space-12">
                         <GlobalAlert.Title>Demo - veilederapplikasjon ungdomsprogramytelsen</GlobalAlert.Title>
+                        <BodyShort>
+                            Obs! &quot;Dagens dato&quot; er satt til {dateFormatter.dayDateMonthYear(new Date())}
+                        </BodyShort>
                     </VStack>
                 </GlobalAlert.Header>
             </GlobalAlert>

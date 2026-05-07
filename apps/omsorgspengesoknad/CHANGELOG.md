@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.41.72
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 1.41.71
 
 ### Patch Changes

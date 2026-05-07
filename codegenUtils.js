@@ -55,6 +55,19 @@ const PATTERNS = {
         description: 'regex patterns removed',
     },
 
+    /**
+     * Fjerner " | null" fra genererte typedefinisjoner (kun types.gen.ts).
+     * null konverteres til undefined av convertNullToUndefined-interceptoren i initApiClient,
+     * så konsumentkode mottar aldri null. Zod-schemas beholder .nullish() for å
+     * akseptere null fra rå API-respons (f.eks. dine-pleiepenger server-side).
+     */
+    removeNullUnion: {
+        pattern: / \| null\b/g,
+        replacement: '',
+        filePattern: /types\.gen\.ts$/,
+        description: '| null removed from types (null handled by convertNullToUndefined interceptor)',
+    },
+
     /** Fjerner hardkodet URL fra baseURL-typen, beholder kun (string & {}) */
     removeBaseUrlLiteral: {
         pattern: /baseURL: '[^']+' \| \(string & \{\}\);/g,
@@ -115,7 +128,11 @@ export function fixGeneratedCode(globPath, extraPatterns = {}) {
         let hasChanges = false;
 
         Object.entries(patterns).forEach(([patternKey, config]) => {
-            const { pattern, replacement } = config;
+            const { pattern, replacement, filePattern } = config;
+
+            if (filePattern && !filePattern.test(file)) {
+                return;
+            }
 
             const matches = content.match(pattern);
 

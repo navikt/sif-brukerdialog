@@ -1,5 +1,20 @@
 # @navikt/sif-demo-app
 
+## 0.9.67
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.11
+    - @navikt/ung-common@0.0.101
+
+## 0.9.66
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.9.65
 
 ### Patch Changes
