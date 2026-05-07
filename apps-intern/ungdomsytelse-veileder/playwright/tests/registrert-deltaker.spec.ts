@@ -13,9 +13,9 @@ test.beforeEach(async ({ page }) => {
 
 test('Hent opp registrert deltaker', async ({ page }) => {
     await page.getByRole('heading', { name: 'AKTIV NYBEGYNNER' }).click();
-    await page.getByText('98392Kopier').click();
-    await page.getByText('(26 år)').click();
-    await page.getByText('Startdato:mandag 10.03.2025').click();
+    await page.getByText('35879Kopier').click();
+    await page.getByText('(25 år)').click();
+    await page.getByText('Startdato:mandag 03.11.2025').click();
     await page.getByRole('button', { name: 'Lukk deltaker' }).click();
 });
 
