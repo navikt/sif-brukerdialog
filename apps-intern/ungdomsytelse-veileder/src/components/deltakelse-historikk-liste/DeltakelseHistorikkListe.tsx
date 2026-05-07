@@ -4,6 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { DeltakelseHistorikkInnslag } from '../../types';
 import { PlusIcon } from '@navikt/aksel-icons';
+import { Features } from '../../types/Features';
 
 interface Props {
     historikkInnslag?: DeltakelseHistorikkInnslag[];
@@ -49,7 +50,9 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
         setAntall(Math.min(historikkInnslag.length, antall + 10));
     };
 
-    const synligeHistorikkInnslag = historikkInnslag.slice(0, antall);
+    const synligeHistorikkInnslag = historikkInnslag
+        .filter((innslag) => (innslag.endringstype === Endringstype.UTVIDET_KVOTE ? Features.utvidePeriode : true))
+        .slice(0, antall);
 
     return (
         <VStack gap="space-8">
