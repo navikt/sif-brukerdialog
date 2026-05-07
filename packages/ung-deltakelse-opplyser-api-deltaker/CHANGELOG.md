@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.19
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+
 ## 0.3.18
 
 ### Patch Changes

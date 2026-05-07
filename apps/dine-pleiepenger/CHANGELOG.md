@@ -1,5 +1,13 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.13
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.18
+
 ## 2.2.12
 
 ### Patch Changes

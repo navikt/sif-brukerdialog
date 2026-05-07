@@ -1,5 +1,14 @@
 # @sif/ung-innsyn
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.16
+    - @navikt/ung-brukerdialog-api@0.0.6
+    - @sif/api@0.0.5
+
 ## 0.0.5
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/ung-brukerdialog-api
 
+## 0.0.6
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+
 ## 0.0.5
 
 ### Patch Changes
