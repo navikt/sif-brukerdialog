@@ -1,7 +1,7 @@
 import { Alert, Bleed, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { dateToISODate, getDateToday } from '@navikt/sif-common-utils';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
@@ -12,11 +12,7 @@ import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
-import {
-    getStartdatobegrensningForDeltaker,
-    getTillattEndringsperiode,
-    kanEndreStartdato,
-} from '../../utils/deltakelseUtils';
+import { getGyldigStartdatoRange, kanEndreStartdato } from '../../utils/deltakelseUtils';
 import { getPeriodeDatoValidator } from '../../utils/getPeriodeDatoValidator';
 
 enum FieldNames {
@@ -51,11 +47,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
         deltakerId: deltaker.id,
     });
 
-    const startdatoMinMax = getStartdatobegrensningForDeltaker(
-        deltaker.førsteMuligeInnmeldingsdato,
-        deltaker.sisteMuligeInnmeldingsdato,
-        getDateToday(),
-    );
+    const startdatoMinMax = getGyldigStartdatoRange(deltaker);
 
     if (startdatoMinMax === 'fomFørTom') {
         return (
@@ -84,7 +76,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
         });
     };
 
-    if (kanEndreStartdato(deltakelse, getTillattEndringsperiode(getDateToday())) === false) {
+    if (kanEndreStartdato(deltakelse) === false) {
         return <Alert variant="info">Startdato kan ikke endres.</Alert>;
     }
 

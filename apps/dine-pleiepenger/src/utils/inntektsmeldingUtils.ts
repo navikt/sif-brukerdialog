@@ -1,10 +1,11 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
 import dayjs from 'dayjs';
 
 import { Inntektsmelding } from '../types';
 import { EndringRefusjon } from '../types/inntektsmeldingTypes';
 
-const getArbeidsgiverNavn = (arbeidsgiver: innsyn.ArbeidsgiverDto): string => {
+type Arbeidsgiver = Inntektsmelding['arbeidsgiver'];
+
+const getArbeidsgiverNavn = (arbeidsgiver: Arbeidsgiver): string => {
     if (arbeidsgiver.organisasjon) {
         return arbeidsgiver.organisasjon.navn || arbeidsgiver.organisasjon.organisasjonsnummer;
     }
@@ -63,7 +64,7 @@ export type ArbeidsgiverMedInntektsmeldinger = {
     inntektsmeldinger: Inntektsmelding[];
 };
 
-const getArbeidsgiverId = (arbeidsgiver: innsyn.ArbeidsgiverDto): string => {
+const getArbeidsgiverId = (arbeidsgiver: Arbeidsgiver): string => {
     if (arbeidsgiver.organisasjon) {
         return arbeidsgiver.organisasjon.organisasjonsnummer;
     }

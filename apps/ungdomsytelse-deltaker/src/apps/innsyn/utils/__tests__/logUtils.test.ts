@@ -20,6 +20,8 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         },
         erSlettet: false,
         harOpphørsvedtak: false,
+        harUtvidetKvote: false,
+        kvoteMaksDato: '2026-12-31',
     };
 
     const mockOppgave: SøkYtelseOppgave = {

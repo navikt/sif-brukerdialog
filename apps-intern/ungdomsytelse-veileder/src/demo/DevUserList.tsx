@@ -28,6 +28,10 @@ const DevUserList = () => {
                                     <CopyButton copyText="03867198392" size="small" /> 03867198392 - Registrert deltaker
                                 </HStack>
                                 <HStack gap="space-8" align="center">
+                                    <CopyButton copyText="02489135879" size="small" /> 02489135879 - Nylig registrert
+                                    deltaker
+                                </HStack>
+                                <HStack gap="space-8" align="center">
                                     <CopyButton copyText="27857798800" size="small" /> 27857798800 - Person finnes ikke
                                 </HStack>
                                 {__IS_GITHUB_PAGES__ ? null : (

@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.3.16
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+
 ## 0.3.15
 
 ### Patch Changes

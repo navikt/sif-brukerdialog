@@ -71,6 +71,7 @@ export type OmsorgspengerutbetalingSnfSøknad = {
     bosteder: unknown[];
     dataBruktTilUtledningAnnetData?: string;
     erArbeidstakerOgså: boolean;
+    frilans?: null;
     harAleneomsorg?: boolean;
     harDekketTiFørsteDagerSelv?: boolean;
     harSyktBarn?: boolean;
@@ -152,7 +153,10 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
+    regnskapsfører?: null;
     tilOgMed?: string;
+    varigEndring?: null;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
 export type YrkesaktivSisteTreFerdigliknedeArene = {

@@ -9,9 +9,11 @@ export type DeltakelseDto = {
     erSlettet: boolean;
     fraOgMed: string;
     harOpphørsvedtak: boolean;
-    id?: string | null;
-    søktTidspunkt?: string | null;
-    tilOgMed?: string | null;
+    harUtvidetKvote: boolean;
+    id?: string;
+    kvoteMaksDato: string;
+    søktTidspunkt?: string;
+    tilOgMed?: string;
 };
 
 export type DeltakelseHistorikkDto = {
@@ -33,7 +35,7 @@ export type DeltakelseUtmeldingDto = {
 
 export type DeltakerDto = {
     deltakerIdent: string;
-    id?: string | null;
+    id?: string;
 };
 
 export type DeltakerPersonalia = {
@@ -44,7 +46,7 @@ export type DeltakerPersonalia = {
     diskresjonskoder: Diskresjonskode[];
     fødselsdato: string;
     førsteMuligeInnmeldingsdato: string;
-    id?: string | null;
+    id?: string;
     navn: Navn;
     sisteMuligeInnmeldingsdato: string;
 };
@@ -66,13 +68,14 @@ export enum Endringstype {
     ENDRET_SLUTTDATO = 'ENDRET_SLUTTDATO',
     DELTAKER_HAR_SØKT_YTELSE = 'DELTAKER_HAR_SØKT_YTELSE',
     DELTAKELSE_FJERNET = 'DELTAKELSE_FJERNET',
+    UTVIDET_KVOTE = 'UTVIDET_KVOTE',
     UKJENT = 'UKJENT',
 }
 
 export type Navn = {
     etternavn: string;
     fornavn: string;
-    mellomnavn?: string | null;
+    mellomnavn?: string;
 };
 
 export type ProblemDetail = {
@@ -304,6 +307,41 @@ export type DeltakelseHistorikkResponses = {
 };
 
 export type DeltakelseHistorikkResponse = DeltakelseHistorikkResponses[keyof DeltakelseHistorikkResponses];
+
+export type UtvidKvoteData = {
+    body?: never;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/utvid-kvote';
+};
+
+export type UtvidKvoteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type UtvidKvoteError = UtvidKvoteErrors[keyof UtvidKvoteErrors];
+
+export type UtvidKvoteResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+
+export type UtvidKvoteResponse = UtvidKvoteResponses[keyof UtvidKvoteResponses];
 
 export type MeldInnDeltakerData = {
     body: DeltakelseInnmeldingDto;

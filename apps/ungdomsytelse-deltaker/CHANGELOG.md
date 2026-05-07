@@ -1,5 +1,18 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.5.56
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.19
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.16
+    - @navikt/ung-brukerdialog-api@0.0.6
+    - @navikt/k9-sak-innsyn-api@0.2.18
+    - @sif/api@0.0.5
+    - @sif/ung-innsyn@0.0.6
+
 ## 1.5.55
 
 ### Patch Changes

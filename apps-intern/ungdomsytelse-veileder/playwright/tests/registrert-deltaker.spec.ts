@@ -2,8 +2,8 @@ import { expect, test } from '@playwright/test';
 import { setNow } from '../utils/setNow';
 
 const gåTilDeltakerSide = async (page: any) => {
-    await page.goto(`./deltaker/699b9f97-b0d7-4b78-9b8e-8758feb9e0fd`);
-    await expect(page.getByRole('heading', { name: 'PRESENTABEL HOFTE' })).toBeVisible();
+    await page.goto(`./deltaker/a1b2c3d4-e5f6-7890-abcd-ef1234567890`);
+    await expect(page.getByRole('heading', { name: 'AKTIV NYBEGYNNER' })).toBeVisible();
 };
 
 test.beforeEach(async ({ page }) => {
@@ -12,20 +12,19 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Hent opp registrert deltaker', async ({ page }) => {
-    await page.getByRole('heading', { name: 'PRESENTABEL HOFTE' }).click();
-    await page.getByText('98392Kopier').click();
-    await page.getByText('(26 år)').click();
-    await page.getByText('Startdato:mandag 10.03.').click();
-    // await page.getByText('Sluttdato:-Registrer sluttdato').click();
+    await page.getByRole('heading', { name: 'AKTIV NYBEGYNNER' }).click();
+    await page.getByText('35879Kopier').click();
+    await page.getByText('(25 år)').click();
+    await page.getByText('Startdato:mandag 03.11.2025').click();
     await page.getByRole('button', { name: 'Lukk deltaker' }).click();
 });
 
 test('Endre startdato', async ({ page }) => {
     await page.getByRole('button', { name: 'Endre startdato' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-    await page.getByRole('button', { name: 'mandag 17' }).click();
+    await page.getByRole('button', { name: 'tirsdag 4' }).click();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter' }).check();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByRole('button', { name: 'Ok, lukk' }).click();
-    await expect(page.getByText('Startdato:mandag 17.03.')).toBeVisible();
+    await expect(page.getByText('Startdato:tirsdag 04.11.2025')).toBeVisible();
 });

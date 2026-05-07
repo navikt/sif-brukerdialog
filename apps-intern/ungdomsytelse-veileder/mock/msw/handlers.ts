@@ -59,6 +59,13 @@ export const handlers = [
         return HttpResponse.json(response);
     }),
 
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/utvid-kvote', async ({ params }) => {
+        const { deltakelseId } = params;
+        await slowDown(75);
+        const response = mockUtils.utvidKvote(deltakelseId);
+        return HttpResponse.json(response);
+    }),
+
     http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request, params }) => {
         const { dato } = await request.json();
         const { deltakelseId } = params;

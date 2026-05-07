@@ -14,9 +14,10 @@ test('Søk opp og legg til ny deltaker', async ({ page }) => {
     await expect(page.getByText('Ikke registrert som deltaker')).toBeVisible();
 
     await page.getByText('Registrer som ny deltaker').click();
-    await page.getByRole('radio', { name: 'Ja' }).check();
+    await page.getByRole('radiogroup', { name: 'Har du sjekket at den unge' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Er vedtaksbrev' }).getByLabel('Ja').check();
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-    await page.getByRole('button', { name: 'torsdag 29' }).click();
+    await page.getByRole('button', { name: 'torsdag 25' }).click();
     await page.locator('label').filter({ hasText: 'Bekreft deltakelse' }).click();
     await page.getByRole('checkbox', { name: 'Bekreft deltakelse' }).uncheck();
     await page.getByRole('button', { name: 'Registrer' }).click();
@@ -28,7 +29,7 @@ test('Søk opp og legg til ny deltaker', async ({ page }) => {
     await expect(page.getByRole('definition').filter({ hasText: 'GLORETE TØFFEL' })).toBeVisible();
     await expect(page.getByText('02105Kopier')).toBeVisible();
     await expect(page.getByText('(26 år)')).toBeVisible();
-    await expect(page.getByText('Startdato:torsdag 29.05.')).toBeVisible();
+    await expect(page.getByText('Startdato:torsdag 25.12.2025')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Slett ny deltaker' })).toBeVisible();
     await page.getByRole('button', { name: 'Lukk deltaker' }).click();
     await expect(page.getByText('Finn deltaker')).toBeVisible();

@@ -4,7 +4,7 @@ const InfoBox = ({ children }) => {
     return (
         <Box
             background="neutral-soft"
-            paddingBlock="space-16"
+            paddingBlock="space-16 space-24"
             paddingInline="space-16"
             borderRadius="8"
             borderWidth="2"

@@ -14,7 +14,7 @@ export type ArbeidsforholdOlp = {
 };
 
 export type ArbeidsgiverOlp = {
-    [key: string]: unknown;
+    arbeidsforhold?: ArbeidsforholdOlp;
 };
 
 export type ArbeidsgivereDto = {
@@ -142,6 +142,7 @@ export type OpplæringspengerSøknad = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlp;
     språk: 'nb' | 'nn';
+    stønadGodtgjørelse?: null;
     søkerNorskIdent?: string;
     tilOgMed: string;
     utenlandskNæring: UtenlandskNæring[];
@@ -251,7 +252,10 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
+    regnskapsfører?: null;
     tilOgMed?: string;
+    varigEndring?: null;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
 export type YrkesaktivSisteTreFerdigliknedeArene = {

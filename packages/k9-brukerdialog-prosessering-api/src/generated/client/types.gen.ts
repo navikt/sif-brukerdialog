@@ -25,6 +25,7 @@ export type AktivitetspengerOppgavebekreftelse = {
 
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
+    erBosattITrondheim: boolean;
     forutgåendeBosteder: ForutgåendeBosteder;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
@@ -85,7 +86,7 @@ export type Arbeidsgiver = {
 };
 
 export type ArbeidsgiverOlp = {
-    [key: string]: unknown;
+    arbeidsforhold?: ArbeidsforholdOlp;
 };
 
 export type ArbeidsgivereDto = {
@@ -492,6 +493,7 @@ export type OpplæringspengerSøknad = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeOlp;
     språk: 'nb' | 'nn';
+    stønadGodtgjørelse?: null;
     søkerNorskIdent?: string;
     tilOgMed: string;
     utenlandskNæring: UtenlandskNæring[];
@@ -616,6 +618,7 @@ export type PleiepengerSyktBarnSøknad = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
     språk: 'nb' | 'nn';
+    stønadGodtgjørelse?: null;
     søkerNorskIdent?: string;
     tilOgMed: string;
     utenlandskNæring: UtenlandskNæring[];
@@ -808,7 +811,10 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
+    regnskapsfører?: null;
     tilOgMed?: string;
+    varigEndring?: null;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
 export type YrkesaktivSisteTreFerdigliknedeArene = {
@@ -977,11 +983,6 @@ export type PleiepengerSyktBarnSøknadWritable = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivendeWritable;
     språk: 'nb' | 'nn';
-    /**
-     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
-     *
-     * @deprecated
-     */
     stønadGodtgjørelse?: StønadGodtgjørelse;
     søkerNorskIdent?: string;
     tilOgMed: string;

@@ -7,7 +7,7 @@ export const zBarnOppslag = z.object({
     etternavn: z.string(),
     fornavn: z.string(),
     fødselsdato: z.iso.date(),
-    mellomnavn: z.string().optional(),
+    mellomnavn: z.string().nullish(),
 });
 
 export const zBarnOppslagListe = z.object({
@@ -15,11 +15,11 @@ export const zBarnOppslagListe = z.object({
 });
 
 export const zFrilansoppdragDto = z.object({
-    ansattFom: z.iso.date().optional(),
-    ansattTom: z.iso.date().optional(),
-    navn: z.string().optional(),
-    offentligIdent: z.string().optional(),
-    organisasjonsnummer: z.string().optional(),
+    ansattFom: z.iso.date().nullish(),
+    ansattTom: z.iso.date().nullish(),
+    navn: z.string().nullish(),
+    offentligIdent: z.string().nullish(),
+    organisasjonsnummer: z.string().nullish(),
     type: z.string(),
 });
 
@@ -27,8 +27,8 @@ export const zJsonNode = z.unknown();
 
 export const zKontonummerInfo = z.object({
     harKontonummer: z.enum(['JA', 'NEI', 'UVISST']),
-    kontonummerErRiktig: z.boolean().optional(),
-    kontonummerFraRegister: z.string().optional(),
+    kontonummerErRiktig: z.boolean().nullish(),
+    kontonummerFraRegister: z.string().nullish(),
 });
 
 export const zOppgittInntekt = z.object({
@@ -36,26 +36,26 @@ export const zOppgittInntekt = z.object({
         .int()
         .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
         .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
+        .nullish(),
 });
 
 export const zOrganisasjonDto = z.object({
-    ansattFom: z.iso.date().optional(),
-    ansattTom: z.iso.date().optional(),
-    navn: z.string().optional(),
+    ansattFom: z.iso.date().nullish(),
+    ansattTom: z.iso.date().nullish(),
+    navn: z.string().nullish(),
     organisasjonsnummer: z.string(),
 });
 
 export const zPrivatArbeidsgiverDto = z.object({
-    ansattFom: z.iso.date().optional(),
-    ansattTom: z.iso.date().optional(),
+    ansattFom: z.iso.date().nullish(),
+    ansattTom: z.iso.date().nullish(),
     offentligIdent: z.string(),
 });
 
 export const zArbeidsgivereDto = z.object({
-    frilansoppdrag: z.array(zFrilansoppdragDto).optional(),
+    frilansoppdrag: z.array(zFrilansoppdragDto).nullish(),
     organisasjoner: z.array(zOrganisasjonDto),
-    privateArbeidsgivere: z.array(zPrivatArbeidsgiverDto).optional(),
+    privateArbeidsgivere: z.array(zPrivatArbeidsgiverDto).nullish(),
 });
 
 export const zProblemDetail = z.object({
@@ -73,11 +73,11 @@ export const zProblemDetail = z.object({
 
 export const zSøker = z.object({
     aktørId: z.string(),
-    etternavn: z.string().optional(),
-    fornavn: z.string().optional(),
+    etternavn: z.string().nullish(),
+    fornavn: z.string().nullish(),
     fødselsdato: z.iso.date(),
     fødselsnummer: z.string(),
-    mellomnavn: z.string().optional(),
+    mellomnavn: z.string().nullish(),
 });
 
 export const zUngdomsytelseInntektsrapportering = z.object({
@@ -87,7 +87,7 @@ export const zUngdomsytelseInntektsrapportering = z.object({
 
 export const zUngdomsytelseOppgaveUttalelseDto = z.object({
     harUttalelse: z.boolean(),
-    uttalelseFraDeltaker: z.string().optional(),
+    uttalelseFraDeltaker: z.string().nullish(),
 });
 
 export const zUngdomsytelseOppgaveDto = z.object({
