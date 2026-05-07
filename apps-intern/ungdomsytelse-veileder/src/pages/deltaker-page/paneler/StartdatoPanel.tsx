@@ -8,7 +8,7 @@ interface DatoBoksProps {
     onClickEndreButton: () => void;
 }
 
-const EndreStartdatoPanel = ({ dato, kanEndreStartdato, onClickEndreButton }: DatoBoksProps) => {
+const StartdatoPanel = ({ dato, kanEndreStartdato, onClickEndreButton }: DatoBoksProps) => {
     return (
         <Bleed marginBlock="space-1">
             <VStack gap="space-8" maxWidth="40rem">
@@ -33,4 +33,4 @@ const EndreStartdatoPanel = ({ dato, kanEndreStartdato, onClickEndreButton }: Da
     );
 };
 
-export default EndreStartdatoPanel;
+export default StartdatoPanel;

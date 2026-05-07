@@ -45,7 +45,7 @@ export const kanSetteEllerEndreSluttdato = (deltakelse: Deltakelse, today: Date 
     return !kvoteErUtløpt(deltakelse, today);
 };
 
-export const kanMeldUt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+export const kanMeldesUt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
     return kanSetteEllerEndreSluttdato(deltakelse, today) && deltakelse.tilOgMed === undefined;
 };
 
@@ -77,7 +77,7 @@ export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDa
 
 export interface DeltakelseHandlinger {
     kanEndreStartdato: boolean;
-    kanMeldUt: boolean;
+    kanMeldesUt: boolean;
     kanEndreSluttdato: boolean;
     kanUtvideKvote: boolean;
     kanSlettes: boolean;
@@ -87,7 +87,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
     if (deltakelse.erSlettet) {
         return {
             kanEndreStartdato: false,
-            kanMeldUt: false,
+            kanMeldesUt: false,
             kanEndreSluttdato: false,
             kanUtvideKvote: false,
             kanSlettes: false,
@@ -95,7 +95,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
     }
     return {
         kanEndreStartdato: kanEndreStartdato(deltakelse, today),
-        kanMeldUt: kanMeldUt(deltakelse, today),
+        kanMeldesUt: kanMeldesUt(deltakelse, today),
         kanEndreSluttdato: kanEndreSluttdato(deltakelse, today),
         kanUtvideKvote: deltakelseKanUtvides(deltakelse, today),
         kanSlettes: deltakelseKanSlettes(deltakelse),

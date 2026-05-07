@@ -4,7 +4,7 @@ import {
     getGyldigStartdatoRange,
     kanEndreStartdato,
     kanSetteEllerEndreSluttdato,
-    kanMeldUt,
+    kanMeldesUt,
     kanEndreSluttdato,
     deltakelseKanSlettes,
     deltakelseKanUtvides,
@@ -72,10 +72,10 @@ describe('deltakelseUtils', () => {
         });
     });
 
-    describe('kanMeldUt', () => {
+    describe('kanMeldesUt', () => {
         it('true når søkt, ingen sluttdato, kvote gyldig', () => {
             const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
-            expect(kanMeldUt(deltakelse, TODAY)).toBe(true);
+            expect(kanMeldesUt(deltakelse, TODAY)).toBe(true);
         });
 
         it('false når tilOgMed er satt', () => {
@@ -83,7 +83,7 @@ describe('deltakelseUtils', () => {
                 søktTidspunkt: new Date(),
                 tilOgMed: ISODateToDate('2026-12-01'),
             });
-            expect(kanMeldUt(deltakelse, TODAY)).toBe(false);
+            expect(kanMeldesUt(deltakelse, TODAY)).toBe(false);
         });
     });
 
@@ -147,7 +147,7 @@ describe('deltakelseUtils', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01') });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(true);
-            expect(h.kanMeldUt).toBe(false);
+            expect(h.kanMeldesUt).toBe(false);
             expect(h.kanEndreSluttdato).toBe(false);
             expect(h.kanUtvideKvote).toBe(false);
             expect(h.kanSlettes).toBe(true);
@@ -170,7 +170,7 @@ describe('deltakelseUtils', () => {
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(true);
-            expect(h.kanMeldUt).toBe(true);
+            expect(h.kanMeldesUt).toBe(true);
             expect(h.kanUtvideKvote).toBe(true);
             expect(h.kanSlettes).toBe(false);
         });
@@ -183,7 +183,7 @@ describe('deltakelseUtils', () => {
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(false);
-            expect(h.kanMeldUt).toBe(true);
+            expect(h.kanMeldesUt).toBe(true);
             expect(h.kanUtvideKvote).toBe(false);
         });
 
@@ -195,7 +195,7 @@ describe('deltakelseUtils', () => {
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(false);
-            expect(h.kanMeldUt).toBe(false);
+            expect(h.kanMeldesUt).toBe(false);
             expect(h.kanUtvideKvote).toBe(false);
         });
 
@@ -208,7 +208,7 @@ describe('deltakelseUtils', () => {
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(true);
             expect(h.kanEndreSluttdato).toBe(true);
-            expect(h.kanMeldUt).toBe(false);
+            expect(h.kanMeldesUt).toBe(false);
             expect(h.kanUtvideKvote).toBe(false);
         });
 
@@ -220,7 +220,7 @@ describe('deltakelseUtils', () => {
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(false);
-            expect(h.kanMeldUt).toBe(false);
+            expect(h.kanMeldesUt).toBe(false);
             expect(h.kanEndreSluttdato).toBe(false);
             expect(h.kanUtvideKvote).toBe(false);
             expect(h.kanSlettes).toBe(false);
