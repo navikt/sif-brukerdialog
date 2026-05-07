@@ -3,7 +3,7 @@ import { enableMocking } from '../mock/msw/enableMocking';
 import App from './App';
 
 import MockDate from 'mockdate';
-import { demoMockDate } from '../mock/mockDate';
+import { demoMockDate } from '../mock/mockConstants';
 
 export { demoMockDate };
 

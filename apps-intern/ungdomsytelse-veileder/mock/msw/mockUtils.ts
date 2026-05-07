@@ -16,6 +16,7 @@ import { skjermetDeltakerMock } from '../data/skjermetDeltaker';
 import { slettetDeltakerMock } from '../data/slettetDeltakerMock';
 import { søktNyligRegistrertDeltakerMock } from '../data/søktNyligRegistrertDeltakerMock';
 import { addUkedagerToDate } from '../../src/utils/deltakelseUtils';
+import { mockVersjon } from '../mockConstants';
 
 interface DbDeltakelse {
     deltakelse: DeltakelseDto;
@@ -28,6 +29,11 @@ interface TempDB {
 }
 
 const localStorageKey = 'ungdomsytelse-veileder';
+
+interface StoredData {
+    versjon: string;
+    db: TempDB;
+}
 
 const formaterIsoDate = (isoDate: string): string => dateFormatter.compact(ISODateToDate(isoDate));
 
@@ -88,13 +94,24 @@ const initialDb: TempDB = {
 };
 
 const save = (db: TempDB) => {
-    const data = JSON.stringify(db);
-    localStorage.setItem(localStorageKey, data);
+    const stored: StoredData = { versjon: mockVersjon, db };
+    localStorage.setItem(localStorageKey, JSON.stringify(stored));
 };
 
 const load = (): TempDB => {
-    const data = localStorage.getItem(localStorageKey);
-    return data ? JSON.parse(data) : initialDb;
+    const raw = localStorage.getItem(localStorageKey);
+    if (raw) {
+        try {
+            const stored: StoredData = JSON.parse(raw);
+            if (stored.versjon === mockVersjon) {
+                return stored.db;
+            }
+        } catch {
+            // Ugyldig data — nullstill
+        }
+        save(initialDb);
+    }
+    return initialDb;
 };
 
 const reset = () => {

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { demoMockDate } from '../mockDate';
+import { demoMockDate } from '../mockConstants';
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
