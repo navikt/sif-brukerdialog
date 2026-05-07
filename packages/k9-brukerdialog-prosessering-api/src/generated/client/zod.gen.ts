@@ -203,6 +203,7 @@ export const zKontonummerInfo = z.object({
 
 export const zAktivitetspengersøknad = z.object({
     barnErRiktig: z.boolean(),
+    erBosattITrondheim: z.boolean(),
     forutgåendeBosteder: zForutgåendeBosteder,
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),

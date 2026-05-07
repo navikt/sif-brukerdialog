@@ -25,6 +25,7 @@ export type AktivitetspengerOppgavebekreftelse = {
 
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
+    erBosattITrondheim: boolean;
     forutgåendeBosteder: ForutgåendeBosteder;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
