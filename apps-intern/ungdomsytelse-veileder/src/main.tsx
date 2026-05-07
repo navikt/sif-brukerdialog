@@ -3,9 +3,9 @@ import { enableMocking } from '../mock/msw/enableMocking';
 import App from './App';
 
 import MockDate from 'mockdate';
-import { ISODateToDate } from '@navikt/sif-common-utils';
+import { demoMockDate } from '../mock/mockDate';
 
-export const demoMockDate = ISODateToDate('2025-12-10');
+export { demoMockDate };
 
 /** Overstyr Date objektet i siden */
 if (__IS_VEILEDER_DEMO__) {

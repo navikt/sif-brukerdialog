@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { demoMockDate } from '../mockDate';
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
@@ -12,7 +13,7 @@ import { addUkedagerToDate } from '../../src/utils/deltakelseUtils';
 /** Scenario: Deltaker meldt inn for én uke siden, startdato er første mandag i forrige måned, deltakelse er søkt. */
 
 const getFirstMondayOfPreviousMonth = (): Date => {
-    const today = new Date();
+    const today = demoMockDate;
     const firstOfPrevMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
     const dayOfWeek = firstOfPrevMonth.getDay();
     const daysToAdd = dayOfWeek === 0 ? 1 : (8 - dayOfWeek) % 7;
@@ -24,7 +25,7 @@ const getFirstMondayOfPreviousMonth = (): Date => {
 };
 
 const firstMonday = getFirstMondayOfPreviousMonth();
-const oneWeekAgo = dayjs().subtract(7, 'day');
+const oneWeekAgo = dayjs(demoMockDate).subtract(7, 'day');
 
 const fraOgMed = dateToISODate(firstMonday);
 const innmeldtTidspunkt = oneWeekAgo.startOf('day').add(8, 'hour').toISOString();

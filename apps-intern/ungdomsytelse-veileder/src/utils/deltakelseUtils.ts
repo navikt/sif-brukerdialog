@@ -27,6 +27,23 @@ const erInnenforSisteMånederFørKvoteutløp = (deltakelse: Deltakelse, today: D
     );
 };
 
+export const beregnBrukteDager = (deltakelse: Deltakelse): number => {
+    // Henter ut antall ukedager (mandag til fredag) mellom fraOgMed og tilOgMed, eller mellom fraOgMed og i dag hvis tilOgMed ikke er satt
+    const start = dayjs(deltakelse.fraOgMed);
+    const end = deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed) : dayjs();
+    let usedDays = 0;
+    let currentDate = start;
+
+    while (currentDate.isSameOrBefore(end, 'day')) {
+        if (currentDate.day() !== 0 && currentDate.day() !== 6) {
+            usedDays++;
+        }
+        currentDate = currentDate.add(1, 'day');
+    }
+
+    return usedDays;
+};
+
 export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
     if (deltakelse.harUtvidetKvote) {
         return false;
@@ -66,6 +83,10 @@ export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
 };
 
 export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    const dagerBrukt = beregnBrukteDager(deltakelse);
+    if (dagerBrukt < 50) {
+        return false;
+    }
     return (
         deltakelse.søktTidspunkt !== undefined &&
         deltakelse.tilOgMed === undefined &&
@@ -102,13 +123,17 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
     };
 };
 
+export const TIDLIGSTE_STARTDATO = dayjs('2025-08-01');
+
 export const getGyldigStartdatoRange = (
     deltaker: { førsteMuligeInnmeldingsdato: Date; sisteMuligeInnmeldingsdato: Date },
     today: Date = getDateToday(),
 ): DateRange | 'fomFørTom' => {
     const endringsperiode = getEndringsperiode(today);
 
-    const from = dayjs.max([dayjs(deltaker.førsteMuligeInnmeldingsdato), dayjs(endringsperiode.from)]).toDate();
+    const from = dayjs
+        .max([dayjs(deltaker.førsteMuligeInnmeldingsdato), dayjs(endringsperiode.from), TIDLIGSTE_STARTDATO])
+        .toDate();
     const to = dayjs.min([dayjs(deltaker.sisteMuligeInnmeldingsdato), dayjs(endringsperiode.to)]).toDate();
 
     if (dayjs(from).isAfter(to)) {
