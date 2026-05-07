@@ -14,6 +14,7 @@ import { nyDeltakerMock } from '../data/nyDeltakerMock';
 import { registrertDeltakerMock } from '../data/registrertDeltakerMock';
 import { skjermetDeltakerMock } from '../data/skjermetDeltaker';
 import { slettetDeltakerMock } from '../data/slettetDeltakerMock';
+import { søktNyligRegistrertDeltakerMock } from '../data/søktNyligRegistrertDeltakerMock';
 import { addUkedagerToDate } from '../../src/utils/deltakelseUtils';
 
 interface DbDeltakelse {
@@ -64,11 +65,16 @@ const initialDb: TempDB = {
         nyDeltakerMock.deltakerPersonalia,
         skjermetDeltakerMock.deltakerPersonalia,
         slettetDeltakerMock.deltakerPersonalia,
+        søktNyligRegistrertDeltakerMock.deltakerPersonalia,
     ],
     deltakelser: [
         {
             deltakelse: registrertDeltakerMock.deltakelse,
             historikk: registrertDeltakerMock.deltakelseHistorikk,
+        },
+        {
+            deltakelse: søktNyligRegistrertDeltakerMock.deltakelse,
+            historikk: søktNyligRegistrertDeltakerMock.deltakelseHistorikk,
         },
         {
             deltakelse: skjermetDeltakerMock.deltakelse,
@@ -170,11 +176,17 @@ const endreStartdato = (deltakelseId: string, dato: string) => {
     if (!deltakelse) {
         throw new Error('Fant ikke deltakelse med id');
     }
+    const harUtvidetKvote = deltakelse.deltakelse.harUtvidetKvote;
+    const kvoteUkedager = harUtvidetKvote ? 260 + 8 * 5 : 260;
+    const nyKvoteMaksDato = !deltakelse.deltakelse.tilOgMed
+        ? dateToISODate(addUkedagerToDate(ISODateToDate(dato), kvoteUkedager))
+        : deltakelse.deltakelse.kvoteMaksDato;
     const dbDeltakelse: DbDeltakelse = {
         ...deltakelse,
         deltakelse: {
             ...deltakelse.deltakelse,
             fraOgMed: dato,
+            kvoteMaksDato: nyKvoteMaksDato,
         },
         historikk: [...deltakelse.historikk, getEndretStartdatoHistorikk(deltakelse.deltakelse.fraOgMed, dato)],
     };
