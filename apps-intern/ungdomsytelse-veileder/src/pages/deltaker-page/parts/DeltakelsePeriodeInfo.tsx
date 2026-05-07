@@ -18,10 +18,10 @@ interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
 
-    variant?: 'liste' | 'panel';
+    variant: 'liste' | 'panel';
 }
 
-const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Props) => {
+const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant }: Props) => {
     const [formVariant, setFormVariant] = useState<EndrePeriodeVariant | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
 
@@ -57,7 +57,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Prop
                             </dt>
                             <dd>
                                 <TildeltKvotePanel
-                                    variant="liste"
+                                    variant={variant}
                                     deltaker={deltaker}
                                     deltakelse={deltakelse}
                                     onDeltakelseChanged={handleOnDeltakelseChanged}
@@ -68,7 +68,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Prop
                             </dt>
                             <dd>
                                 <EndreStartdatoPanel
-                                    variant="liste"
+                                    variant={variant}
                                     dato={deltakelse.fraOgMed}
                                     kanEndreStartdato={startdatoKanEndres}
                                     onClickEndreButton={() => {
@@ -85,7 +85,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Prop
                                     <>
                                         {deltakerHarSøkt && deltakelse.tilOgMed && (
                                             <EndreSluttdatoPanel
-                                                variant="liste"
+                                                variant={variant}
                                                 tilOgMed={deltakelse.tilOgMed}
                                                 kanEndreSluttdato={sluttdatoKanEndres}
                                                 onClickEndreSluttdato={() => {
@@ -96,7 +96,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Prop
                                         )}
                                         {deltakerHarSøkt && !deltakelse.tilOgMed && (
                                             <MeldUtDeltakerPanel
-                                                variant="liste"
+                                                variant={variant}
                                                 onClickMeldUtButton={() => {
                                                     setEndretDeltakelse(undefined);
                                                     setFormVariant(EndrePeriodeVariant.meldUtDeltaker);
@@ -106,7 +106,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant = 'liste' }: Prop
                                         {!deltakerHarSøkt && <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />}
                                     </>
                                 ) : (
-                                    <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />
+                                    <SluttdatoKanIkkeEndresPanel variant={variant} deltakelse={deltakelse} />
                                 )}
                             </dd>
                         </dl>

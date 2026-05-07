@@ -19,9 +19,6 @@ const EndreStartdatoPanel = ({ dato, variant = 'panel', kanEndreStartdato, onCli
                     </BodyShort>
                     {kanEndreStartdato ? (
                         <>
-                            <BodyLong>
-                                Startdato kan endres innenfor de første X månedene etter opprinnelig startdato.
-                            </BodyLong>
                             <Box paddingBlock="space-8 space-0">
                                 <Button variant="secondary" size="small" onClick={onClickEndreButton}>
                                     Endre startdato

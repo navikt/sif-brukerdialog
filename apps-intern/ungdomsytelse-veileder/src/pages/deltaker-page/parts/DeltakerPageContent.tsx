@@ -57,7 +57,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
 
                 {!deltakelse.erSlettet && (
                     <>
-                        <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
+                        <DeltakelsePeriodeInfo variant="liste" deltakelse={deltakelse} deltaker={deltaker} />
                         <SlettNyDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
                     </>
                 )}

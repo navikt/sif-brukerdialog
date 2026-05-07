@@ -5,6 +5,7 @@ export async function enableMocking() {
     const { worker } = await import('./browser');
 
     if (__IS_VEILEDER_DEMO__ && __IS_GITHUB_PAGES__) {
+        /** Start MSW med service worker, og angi riktig URL for service worker */
         return worker.start({
             onUnhandledRequest: 'bypass',
             serviceWorker: {
