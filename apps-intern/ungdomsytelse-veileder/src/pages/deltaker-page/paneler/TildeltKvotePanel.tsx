@@ -33,7 +33,7 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBo
                         </BodyLong>
                     ) : (
                         <BodyLong>
-                            Maksdato: <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
+                            Siste dag i perioden er <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
                         </BodyLong>
                     )}
 

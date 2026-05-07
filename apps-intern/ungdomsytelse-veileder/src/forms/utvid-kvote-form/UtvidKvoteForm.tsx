@@ -79,7 +79,7 @@ const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }:
                                             <Bleed marginBlock="space-16 space-0">
                                                 <ConfirmationCheckbox
                                                     name={FieldNames.bekrefterEndring}
-                                                    label={`Jeg bekrefter at ${formatName(deltaker.navn)} skal ha fått forlenget periode`}
+                                                    label={`Jeg bekrefter at ${formatName(deltaker.navn)} har fått forlenget perioden med inntil 8 uker`}
                                                     validate={getCheckedValidator()}
                                                 />
                                             </Bleed>

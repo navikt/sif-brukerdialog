@@ -1,4 +1,4 @@
-import { dateToISODate } from '@navikt/sif-common-utils';
+import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
@@ -6,7 +6,7 @@ import {
     Endringstype,
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
-import dayjs from 'dayjs';
+import { addUkedagerToDate } from '../../src/utils/deltakelseUtils';
 
 const deltakerPersonalia: DeltakerPersonalia = {
     id: '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
@@ -33,7 +33,7 @@ const deltakelse: DeltakelseDto = {
     harOpphørsvedtak: false,
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
     harUtvidetKvote: false,
-    kvoteMaksDato: dateToISODate(dayjs('2025-03-10').add(260, 'days').toDate()),
+    kvoteMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate('2025-03-10'), 260)),
 };
 
 const deltakelseHistorikk: DeltakelseHistorikkDto[] = [

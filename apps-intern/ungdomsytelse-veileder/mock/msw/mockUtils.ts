@@ -14,6 +14,7 @@ import { nyDeltakerMock } from '../data/nyDeltakerMock';
 import { registrertDeltakerMock } from '../data/registrertDeltakerMock';
 import { skjermetDeltakerMock } from '../data/skjermetDeltaker';
 import { slettetDeltakerMock } from '../data/slettetDeltakerMock';
+import { addUkedagerToDate } from '../../src/utils/deltakelseUtils';
 
 interface DbDeltakelse {
     deltakelse: DeltakelseDto;
@@ -192,9 +193,7 @@ const utvidKvote = (deltakelseId: string) => {
         deltakelse: {
             ...deltakelse.deltakelse,
             harUtvidetKvote: true,
-            kvoteMaksDato: dateToISODate(
-                dayjs(ISODateToDate(deltakelse.deltakelse.fraOgMed)).add(300, 'days').toDate(),
-            ),
+            kvoteMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(deltakelse.deltakelse.kvoteMaksDato), 40)),
         },
         historikk: [...deltakelse.historikk, getUtvidetDeltakelseHistorikk()],
     };
