@@ -207,7 +207,11 @@ export const VirksomhetDialogForm = ({
                                                 }).validateFromDate(value),
                                             (errorCode) => {
                                                 if (errorCode === 'dateIsAfterMax')
-                                                    return { dato: sifIntl.date(maxDate, 'compact') };
+                                                    return {
+                                                        navn: navnPåVirksomheten,
+                                                        dato: sifIntl.date(maxDate, 'compact'),
+                                                    };
+                                                return { navn: navnPåVirksomheten };
                                             },
                                         ),
                                     }}
@@ -288,6 +292,13 @@ export const VirksomhetDialogForm = ({
                                                     max: MAKS_INNTEKT,
                                                     allowDecimals: false,
                                                 }),
+                                                (errorCode) => {
+                                                    if (errorCode === 'numberIsTooSmall')
+                                                        return { navn: navnPåVirksomheten, min: 0 };
+                                                    if (errorCode === 'numberIsTooLarge')
+                                                        return { navn: navnPåVirksomheten, maks: MAKS_INNTEKT };
+                                                    return { navn: navnPåVirksomheten };
+                                                },
                                             )}
                                         />
 
@@ -362,6 +373,7 @@ export const VirksomhetDialogForm = ({
                                                             (errorCode) => {
                                                                 if (errorCode === 'dateIsBeforeMin')
                                                                     return {
+                                                                        navn: navnPåVirksomheten,
                                                                         dato: sifIntl.date(
                                                                             getDate4YearsAgo(),
                                                                             'compact',
@@ -369,8 +381,10 @@ export const VirksomhetDialogForm = ({
                                                                     };
                                                                 if (errorCode === 'dateIsAfterMax')
                                                                     return {
+                                                                        navn: navnPåVirksomheten,
                                                                         dato: sifIntl.date(maxDate, 'compact'),
                                                                     };
+                                                                return { navn: navnPåVirksomheten };
                                                             },
                                                         )}
                                                     />
@@ -390,6 +404,16 @@ export const VirksomhetDialogForm = ({
                                                                 max: MAKS_INNTEKT,
                                                                 allowDecimals: false,
                                                             }),
+                                                            (errorCode) => {
+                                                                if (errorCode === 'numberIsTooSmall')
+                                                                    return { navn: navnPåVirksomheten, min: 0 };
+                                                                if (errorCode === 'numberIsTooLarge')
+                                                                    return {
+                                                                        navn: navnPåVirksomheten,
+                                                                        maks: MAKS_INNTEKT,
+                                                                    };
+                                                                return { navn: navnPåVirksomheten };
+                                                            },
                                                         )}
                                                     />
                                                     <Textarea
@@ -409,6 +433,7 @@ export const VirksomhetDialogForm = ({
                                                                 if (errorCode === 'stringIsTooLong')
                                                                     return { maks: 1000 };
                                                                 if (errorCode === 'stringIsTooShort') return { min: 5 };
+                                                                return { navn: navnPåVirksomheten };
                                                             },
                                                         )}
                                                     />

@@ -41,9 +41,9 @@ export const utenlandsoppholdMessages_nn: Record<keyof typeof utenlandsoppholdMe
         'Sluttdatoen for utanlandsopphaldet kan ikkje vera før startdatoen. Skriv inn eller vel dato frå datoveljaren.',
     '@sifSoknadForms.utenlandsoppholdForm.validation.landkode.noValue': 'Du må velja land.',
     '@sifSoknadForms.utenlandsoppholdForm.validation.erSammenMedBarnet.yesOrNoIsUnanswered':
-        'Du må svara ja eller nei på om barnet er saman med deg.',
+        'Du må svara ja eller nei på om barnet er saman med deg til {land}.',
     '@sifSoknadForms.utenlandsoppholdForm.validation.erBarnetInnlagt.yesOrNoIsUnanswered':
-        'Du må svara ja eller nei på om barnet er innlagd i helseinstitusjon.',
+        'Du må svara ja eller nei på om barnet er innlagd i helseinstitusjon i {land}.',
     '@sifSoknadForms.utenlandsoppholdForm.validation.barnInnlagtPerioder.noValue':
         'Du må leggja til minst éin periode barnet er innlagd.',
     '@sifSoknadForms.utenlandsoppholdForm.validation.årsak.noValue':

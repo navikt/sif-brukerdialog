@@ -104,6 +104,8 @@ Behold: `FormFields`-enum, filnavn, mappestruktur, layout/JSX inni felter.
 - Sjekk at alle Formik-importer er fjernet.
 - Sjekk validatorparitet: sammenlign hvert felt sin validator og parametere mot kildeappen. Alle parametere (minLength, maxLength, disallowedValues, disallowInvalidBackendCharacters) må være identiske.
 - Sjekk at alle mulige feilkoder fra hver validator har tilhørende i18n-nøkkel i `nb.ts` og `nn.ts`.
+- **Tekstparitet:** Alle valideringsmeldinger i v2 `nb.ts`/`nn.ts` skal være **identiske** med v1-kildene. Gjelder også interpolasjonsparametere (`{land}`, `{navn}`, `{dato}`, `{min}`, `{maks}`). Unntak kun ved strukturendringer — avvik skal begrunnes eksplisitt.
+- Sjekk at `extraValuesMapper` i `validateField` sender alle parametere som teksten refererer til.
 - Overfør tester fra kildeappens `__tests__/` og `.test.ts`-filer for utils-funksjoner som er med videre. Tilpass import (eksplisitt `import { describe, expect, it, vi } from 'vitest'` hvis appen ikke bruker globals).
 
 ---
@@ -394,6 +396,8 @@ Dato-APIet er delt i to lag:
 - [ ] async `handleSubmit` har try/catch rundt mutateAsync-kall
 - [ ] Betinget visning kartlagt fra v1 og verifisert mot v1 (ingen inversjonsfeile)
 - [ ] Betinget visning bruker `methods.watch()` + `&&`/fragment — ikke `AriaLiveRegion` rundt skjemafelter
+- [ ] Valideringstekster i `nb.ts`/`nn.ts` er identiske med v1 — inkl. interpolasjonsparametere
+- [ ] `extraValuesMapper` sender alle parametere teksten refererer til (`{land}`, `{navn}`, `{dato}` etc.)
 
 ---
 
