@@ -1,4 +1,4 @@
-import { BodyShort, Heading, HGrid, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../../types/Deltakelse';
@@ -12,16 +12,13 @@ import SluttdatoKanIkkeEndresPanel from './SluttdatoKanIkkeEndresPanel';
 import TildeltKvotePanel from './TildeltKvotePanel';
 import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import InfoBox from '../../../atoms/InfoBox';
-import { Features } from '../../../types/Features';
 
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
-
-    variant: 'liste' | 'panel';
 }
 
-const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant }: Props) => {
+const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
     const [formVariant, setFormVariant] = useState<EndrePeriodeVariant | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
 
@@ -40,8 +37,6 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant }: Props) => {
     const startdatoKanEndres = kanEndreStartdato(deltakelse, tillattEndringsperiode);
     const sluttdatoKanEndres = kanEndreSluttdato(deltakelse, tillattEndringsperiode);
 
-    const kanEndreKvote = Features.endreKvote === true;
-
     return (
         <>
             <VStack gap="space-12">
@@ -49,78 +44,22 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant }: Props) => {
                     Deltakerperiode
                 </Heading>
 
-                {variant === 'liste' && kanEndreKvote ? (
-                    <InfoBox>
-                        <dl className="deltakelseInfoDL">
-                            <dt>
-                                <BodyShort>Periode:</BodyShort>
-                            </dt>
-                            <dd>
-                                <TildeltKvotePanel
-                                    variant={variant}
-                                    deltaker={deltaker}
-                                    deltakelse={deltakelse}
-                                    onDeltakelseChanged={handleOnDeltakelseChanged}
-                                />
-                            </dd>
-                            <dt>
-                                <BodyShort>Startdato:</BodyShort>
-                            </dt>
-                            <dd>
-                                <EndreStartdatoPanel
-                                    variant={variant}
-                                    dato={deltakelse.fraOgMed}
-                                    kanEndreStartdato={startdatoKanEndres}
-                                    onClickEndreButton={() => {
-                                        setEndretDeltakelse(undefined);
-                                        setFormVariant(EndrePeriodeVariant.startdato);
-                                    }}
-                                />
-                            </dd>
-                            <dt className="deltakelseInfoDL__lastDefinition">
-                                <BodyShort>Sluttdato:</BodyShort>
-                            </dt>
-                            <dd className="deltakelseInfoDL__lastDefinition">
-                                {sluttdatoKanEndres ? (
-                                    <>
-                                        {deltakerHarSøkt && deltakelse.tilOgMed && (
-                                            <EndreSluttdatoPanel
-                                                variant={variant}
-                                                tilOgMed={deltakelse.tilOgMed}
-                                                kanEndreSluttdato={sluttdatoKanEndres}
-                                                onClickEndreSluttdato={() => {
-                                                    setEndretDeltakelse(undefined);
-                                                    setFormVariant(EndrePeriodeVariant.endreSluttdato);
-                                                }}
-                                            />
-                                        )}
-                                        {deltakerHarSøkt && !deltakelse.tilOgMed && (
-                                            <MeldUtDeltakerPanel
-                                                variant={variant}
-                                                onClickMeldUtButton={() => {
-                                                    setEndretDeltakelse(undefined);
-                                                    setFormVariant(EndrePeriodeVariant.meldUtDeltaker);
-                                                }}
-                                            />
-                                        )}
-                                        {!deltakerHarSøkt && <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />}
-                                    </>
-                                ) : (
-                                    <SluttdatoKanIkkeEndresPanel variant={variant} deltakelse={deltakelse} />
-                                )}
-                            </dd>
-                        </dl>
-                    </InfoBox>
-                ) : (
-                    <>
-                        {kanEndreKvote && (
+                <InfoBox>
+                    <dl className="deltakelseInfoDL">
+                        <dt>
+                            <BodyShort>Periode:</BodyShort>
+                        </dt>
+                        <dd>
                             <TildeltKvotePanel
                                 deltaker={deltaker}
                                 deltakelse={deltakelse}
                                 onDeltakelseChanged={handleOnDeltakelseChanged}
                             />
-                        )}
-                        <HGrid gap="space-8" columns={{ sm: 1, md: '1fr 1fr' }}>
+                        </dd>
+                        <dt>
+                            <BodyShort>Startdato:</BodyShort>
+                        </dt>
+                        <dd>
                             <EndreStartdatoPanel
                                 dato={deltakelse.fraOgMed}
                                 kanEndreStartdato={startdatoKanEndres}
@@ -129,6 +68,11 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant }: Props) => {
                                     setFormVariant(EndrePeriodeVariant.startdato);
                                 }}
                             />
+                        </dd>
+                        <dt className="deltakelseInfoDL__lastDefinition">
+                            <BodyShort>Sluttdato:</BodyShort>
+                        </dt>
+                        <dd className="deltakelseInfoDL__lastDefinition">
                             {sluttdatoKanEndres ? (
                                 <>
                                     {deltakerHarSøkt && deltakelse.tilOgMed && (
@@ -154,9 +98,9 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker, variant }: Props) => {
                             ) : (
                                 <SluttdatoKanIkkeEndresPanel deltakelse={deltakelse} />
                             )}
-                        </HGrid>
-                    </>
-                )}
+                        </dd>
+                    </dl>
+                </InfoBox>
             </VStack>
             {formVariant ? (
                 <EndrePeriodeModal
