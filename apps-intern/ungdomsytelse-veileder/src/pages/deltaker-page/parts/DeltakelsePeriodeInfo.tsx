@@ -9,6 +9,7 @@ import StartdatoPanel from '../paneler/StartdatoPanel';
 import TildeltKvotePanel from '../paneler/TildeltKvotePanel';
 import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import InfoBox from '../../../atoms/InfoBox';
+import { Features } from '../../../types/Features';
 
 interface Props {
     deltaker: Deltaker;
@@ -39,16 +40,20 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
 
                 <InfoBox>
                     <dl className="deltakelseInfoDL">
-                        <dt>
-                            <BodyShort>Periode:</BodyShort>
-                        </dt>
-                        <dd>
-                            <TildeltKvotePanel
-                                deltaker={deltaker}
-                                deltakelse={deltakelse}
-                                onDeltakelseChanged={handleOnDeltakelseChanged}
-                            />
-                        </dd>
+                        {Features.utvidePeriode && (
+                            <>
+                                <dt>
+                                    <BodyShort>Periode:</BodyShort>
+                                </dt>
+                                <dd>
+                                    <TildeltKvotePanel
+                                        deltaker={deltaker}
+                                        deltakelse={deltakelse}
+                                        onDeltakelseChanged={handleOnDeltakelseChanged}
+                                    />
+                                </dd>
+                            </>
+                        )}
                         <dt>
                             <BodyShort>Startdato:</BodyShort>
                         </dt>

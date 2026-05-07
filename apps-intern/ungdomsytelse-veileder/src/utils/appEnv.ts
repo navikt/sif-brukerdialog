@@ -5,7 +5,7 @@ export const getAppEnv = (): AppEnv => ({
     ...getBaseEnv(),
     ...getUngDeltakelseOpplyserBrowserEnv(),
     DEV_IS_STORYBOOK: getMaybeBoolEnv('DEV_IS_STORYBOOK'),
-    SIF_PUBLIC_FEATURE_ENDRE_KVOTE: getMaybeEnv('SIF_PUBLIC_FEATURE_ENDRE_KVOTE') || 'off',
+    SIF_PUBLIC_FEATURE_UTVIDE_PERIODE: getMaybeEnv('SIF_PUBLIC_FEATURE_UTVIDE_PERIODE') || 'off',
     SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE: getMaybeEnv('SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE') || 'off',
     SIF_PUBLIC_UMAMI_NETTSIDE_ID: getMaybeEnv('SIF_PUBLIC_UMAMI_NETTSIDE_ID'),
     SIF_PUBLIC_USE_FARO: getMaybeBoolEnv('SIF_PUBLIC_USE_FARO'),

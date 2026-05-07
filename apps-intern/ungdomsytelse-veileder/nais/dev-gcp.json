@@ -35,7 +35,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/",
 
-        "SIF_PUBLIC_FEATURE_ENDRE_KVOTE": "on",
+        "SIF_PUBLIC_FEATURE_UTVIDE_PERIODE": "on",
         "SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE": "on",
 
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
