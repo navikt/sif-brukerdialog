@@ -2,6 +2,7 @@ import { Alert, Bleed, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import InfoBox from '../../../atoms/InfoBox';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { deltakelseKvoteErUtløpt } from '../../../utils/deltakelseUtils';
+import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -11,20 +12,20 @@ const SluttdatoKanIkkeEndresPanel = ({ deltakelse, variant }: Props) => {
     if (variant === 'liste') {
         return (
             <Bleed marginBlock="space-1">
-                <VStack gap="space-8">
-                    <BodyShort weight="semibold" size="large" className="capitalize">
-                        Sluttdato
-                    </BodyShort>
-                    {deltakelseKvoteErUtløpt(deltakelse) ? (
+                {deltakelseKvoteErUtløpt(deltakelse) ? (
+                    <VStack gap="space-8">
+                        <BodyShort weight="semibold" size="large" className="capitalize">
+                            {dateFormatter.dayCompactDate(deltakelse.kvoteMaksDato)}
+                        </BodyShort>
                         <Alert variant="info" inline>
-                            Deltakelse er avsluttet
+                            Deltakelse er avsluttet.
                         </Alert>
-                    ) : (
-                        <Alert variant="info" inline>
-                            Sluttdato kan foreløpig ikke settes.
-                        </Alert>
-                    )}
-                </VStack>
+                    </VStack>
+                ) : (
+                    <Alert variant="info" inline>
+                        Sluttdato kan foreløpig ikke settes.
+                    </Alert>
+                )}
             </Bleed>
         );
     }

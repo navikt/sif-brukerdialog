@@ -112,3 +112,19 @@ export const erÅpnetForRegistrering = (): boolean => {
     }
     return dayjs().isSameOrAfter(dayjs('2025-08-11'), 'day');
 };
+
+export const addUkedagerToDate = (date: Date, ukedager: number): Date => {
+    // Legger til antall ukedager til datoen og hopper over helgedager
+    let addedDays = 0;
+    let currentDate = dayjs(date);
+
+    while (addedDays < ukedager) {
+        currentDate = currentDate.add(1, 'day');
+        // Sjekker om det er en ukedag (mandag-fredag)
+        if (currentDate.day() !== 0 && currentDate.day() !== 6) {
+            addedDays++;
+        }
+    }
+
+    return currentDate.toDate();
+};

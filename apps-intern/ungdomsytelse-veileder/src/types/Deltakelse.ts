@@ -11,18 +11,12 @@ export const deltakelseSchema = zDeltakelseDto
         const fraOgMed = ISODateToDate(data.fraOgMed);
         const tilOgMed = data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined;
 
-        const harOpphørsvedtak = data.harOpphørsvedtak ?? false;
-        const kvoteMaksDato = data.kvoteMaksDato
-            ? ISODateToDate(data.kvoteMaksDato)
-            : dayjs(fraOgMed).add(260, 'days').toDate();
-
         return {
             ...data,
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
             fraOgMed,
             tilOgMed,
-            harOpphørsvedtak,
-            kvoteMaksDato,
+            kvoteMaksDato: ISODateToDate(data.kvoteMaksDato),
         };
     });
 
