@@ -1,5 +1,3 @@
 import { Aktivitetspengersøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 
-export type SøknadApiData = Aktivitetspengersøknad & {
-    erBosattITrondheim: boolean;
-};
+export type SøknadApiData = Aktivitetspengersøknad;

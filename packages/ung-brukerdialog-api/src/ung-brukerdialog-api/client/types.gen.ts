@@ -10,6 +10,12 @@ export type ArbeidOgFrilansRegisterInntektDto = {
     inntekt: number;
 };
 
+export type BekreftBostedOppgavetypeDataDto = {
+    erBosattITrondheim: boolean;
+    fom: string;
+    tom: string;
+};
+
 export type BrukerdialogOppgaveDto = {
     frist?: string;
     løstDato?: string;
@@ -110,6 +116,10 @@ export enum OppgaveType {
      * SØK_YTELSE
      */
     SØK_YTELSE = 'SØK_YTELSE',
+    /**
+     * BEKREFT_BOSTED
+     */
+    BEKREFT_BOSTED = 'BEKREFT_BOSTED',
 }
 
 export enum OppgaveYtelsetype {
@@ -124,6 +134,9 @@ export enum OppgaveYtelsetype {
 }
 
 export type OppgavetypeDataDto = (
+    | ({
+          type: 'BOSTED';
+      } & BekreftBostedOppgavetypeDataDto)
     | ({
           type: 'ENDRET_PERIODE';
       } & EndretPeriodeDataDto)

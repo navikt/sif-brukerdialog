@@ -16,5 +16,5 @@ export type CreateClientConfig<T extends ClientOptions = ClientOptions2> = (
 ) => Config<Required<ClientOptions> & T>;
 
 export const client = createClient(
-    createConfig<ClientOptions2>({ baseURL: 'https://k9-sak-innsyn-api.intern.nav.no', throwOnError: true }),
+    createConfig<ClientOptions2>({ baseURL: 'https://k9-sak-innsyn-api.intern.dev.nav.no', throwOnError: true }),
 );
