@@ -4,7 +4,7 @@ import { Deltaker } from '../../../types/Deltaker';
 import { useState } from 'react';
 import UtvidKvoteModal from '../../../components/utvid-kvote-modal/UtvidKvoteModal';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { beregnBrukteDager, getDeltakelseHandlinger } from '../../../utils/deltakelseUtils';
+import { getDeltakelseHandlinger } from '../../../utils/deltakelseUtils';
 
 interface DatoBoksProps {
     deltaker: Deltaker;
@@ -36,7 +36,7 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBo
                             Siste dag i perioden er <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
                         </BodyLong>
                     )}
-                    Dager brukt: {beregnBrukteDager(deltakelse)}
+
                     {kanUtvideKvote && (
                         <Box paddingBlock="space-8 space-0">
                             <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>

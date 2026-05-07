@@ -145,7 +145,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
         søktTidspunkt: undefined,
         tilOgMed: undefined,
         harUtvidetKvote: false,
-        kvoteMaksDato: dateToISODate(dayjs(ISODateToDate(startdato)).add(260, 'days').toDate()),
+        kvoteMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(startdato), 260)),
     };
     db.deltakelser.push({
         deltakelse,

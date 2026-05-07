@@ -27,10 +27,10 @@ const erInnenforSisteMånederFørKvoteutløp = (deltakelse: Deltakelse, today: D
     );
 };
 
-export const beregnBrukteDager = (deltakelse: Deltakelse): number => {
+const beregnBrukteDager = (deltakelse: Deltakelse, today: Date = getDateToday()): number => {
     // Henter ut antall ukedager (mandag til fredag) mellom fraOgMed og tilOgMed, eller mellom fraOgMed og i dag hvis tilOgMed ikke er satt
     const start = dayjs(deltakelse.fraOgMed);
-    const end = deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed) : dayjs();
+    const end = deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed) : dayjs(today);
     let usedDays = 0;
     let currentDate = start;
 
@@ -70,12 +70,12 @@ export const kanEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateT
     return kanSetteEllerEndreSluttdato(deltakelse, today) && deltakelse.tilOgMed !== undefined;
 };
 
-export const deltakelseKvoteErUtløpt = (deltakelse: Deltakelse): boolean => {
-    return kvoteErUtløpt(deltakelse, getDateToday());
+export const deltakelseKvoteErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return kvoteErUtløpt(deltakelse, today);
 };
 
-export const deltakelseSluttdatoErPassert = (deltakelse: Deltakelse): boolean => {
-    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isBefore(getDateToday(), 'day') : false;
+export const deltakelseSluttdatoErPassert = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isBefore(today, 'day') : false;
 };
 
 export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
@@ -83,8 +83,8 @@ export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
 };
 
 export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    const dagerBrukt = beregnBrukteDager(deltakelse);
-    if (dagerBrukt < 50) {
+    const dagerBrukt = beregnBrukteDager(deltakelse, today);
+    if (dagerBrukt < 1) {
         return false;
     }
     return (
@@ -92,7 +92,7 @@ export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDa
         deltakelse.tilOgMed === undefined &&
         deltakelse.harUtvidetKvote === false &&
         !kvoteErUtløpt(deltakelse, today) &&
-        !deltakelseSluttdatoErPassert(deltakelse)
+        !deltakelseSluttdatoErPassert(deltakelse, today)
     );
 };
 

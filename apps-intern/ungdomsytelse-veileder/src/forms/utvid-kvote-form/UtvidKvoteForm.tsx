@@ -1,4 +1,4 @@
-import { Bleed, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import {
     FormikYesOrNoQuestion,
@@ -13,13 +13,14 @@ import { Deltaker } from '../../types/Deltaker';
 import { formatName } from '@navikt/sif-common-utils';
 import { useUtvidKvote } from '../../hooks/useUtvidKvote';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import { QuestionBleedTop } from '@navikt/sif-common-ui';
 
 enum FieldNames {
-    harUtvidetPeriode = 'harUtvidetPeriode',
+    vedtaksbrevErSendt = 'vedtaksbrevErSendt',
     bekrefterEndring = 'bekrefterEndring',
 }
 type FormValues = {
-    [FieldNames.harUtvidetPeriode]: YesOrNo;
+    [FieldNames.vedtaksbrevErSendt]: YesOrNo;
     [FieldNames.bekrefterEndring]: boolean;
 };
 
@@ -56,13 +57,14 @@ const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }:
             }}
             onSubmit={handleOnSubmit}
             renderForm={({ values }) => {
-                const { harUtvidetPeriode } = values;
+                const { vedtaksbrevErSendt } = values;
                 return (
                     <VStack gap="space-24">
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}
                             showSubmitButton={true}
+                            submitDisabled={vedtaksbrevErSendt === YesOrNo.NO}
                             submitButtonLabel="Bekreft forlenget periode"
                             cancelButtonLabel="Avbryt"
                             onCancel={onCancel}
@@ -70,11 +72,11 @@ const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }:
                             <VStack gap="space-24">
                                 <VStack gap="space-32" className="rounded-xs">
                                     <FormikYesOrNoQuestion
-                                        name={FieldNames.harUtvidetPeriode}
+                                        name={FieldNames.vedtaksbrevErSendt}
                                         legend="Er vedtaksbrev om at deltaker har fått forlenget periode på inntil 8 uker sendt fra Gosys?"
                                         validate={getYesOrNoValidator()}
                                     />
-                                    {harUtvidetPeriode === YesOrNo.YES && (
+                                    {vedtaksbrevErSendt === YesOrNo.YES && (
                                         <>
                                             <Bleed marginBlock="space-16 space-0">
                                                 <ConfirmationCheckbox
@@ -84,6 +86,14 @@ const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }:
                                                 />
                                             </Bleed>
                                         </>
+                                    )}
+                                    {vedtaksbrevErSendt === YesOrNo.NO && (
+                                        <QuestionBleedTop>
+                                            <Alert variant="warning">
+                                                Deltaker må ha et vedtak om at perioden er forlenget med inntil 8 uker
+                                                før forelengelsen kan registreres på ytelsen.
+                                            </Alert>
+                                        </QuestionBleedTop>
                                     )}
                                 </VStack>
                             </VStack>
