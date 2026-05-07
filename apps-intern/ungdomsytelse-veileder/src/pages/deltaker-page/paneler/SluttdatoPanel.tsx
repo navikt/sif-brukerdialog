@@ -1,7 +1,8 @@
-import { Alert, Bleed, BodyLong, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { DeltakelseHandlinger, deltakelseKvoteErUtløpt } from '../../../utils/deltakelseUtils';
+import { PeriodeInfoPanel } from '../../../components/periode-info-panel/PeriodeInfoPanel';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -11,62 +12,52 @@ interface Props {
 }
 
 const SluttdatoPanel = ({ deltakelse, handlinger, onClickEndreSluttdato, onClickMeldUt }: Props) => {
-    if (handlinger.kanEndreSluttdato && deltakelse.tilOgMed) {
+    if (deltakelse.tilOgMed) {
         return (
-            <Bleed marginBlock="space-1">
-                <VStack gap="space-8">
-                    <BodyShort weight="semibold" size="large" className="capitalize">
-                        {dateFormatter.dayCompactDate(deltakelse.tilOgMed)}
-                    </BodyShort>
+            <PeriodeInfoPanel title={dateFormatter.dayCompactDate(deltakelse.tilOgMed)}>
+                {handlinger.kanEndreSluttdato && (
                     <Box paddingBlock="space-8 space-0">
                         <Button variant="secondary" size="small" onClick={onClickEndreSluttdato}>
                             Endre sluttdato
                         </Button>
                     </Box>
-                </VStack>
-            </Bleed>
+                )}
+            </PeriodeInfoPanel>
         );
     }
 
     if (handlinger.kanMeldesUt) {
         return (
-            <Bleed marginBlock="space-1">
-                <VStack gap="space-8" maxWidth="40rem">
-                    <BodyLong>
-                        Når deltaker er meldt ut av ungdomsprogrammet før alle dagene i programmet er brukt opp, må
-                        sluttdatoen registreres her.
-                    </BodyLong>
-                    <Box paddingBlock="space-8 space-0">
-                        <Button variant="secondary" size="small" onClick={onClickMeldUt}>
-                            Registrer sluttdato
-                        </Button>
-                    </Box>
-                </VStack>
-            </Bleed>
+            <PeriodeInfoPanel>
+                <BodyLong>
+                    Når deltaker er meldt ut av ungdomsprogrammet før alle dagene i programmet er brukt opp, må
+                    sluttdatoen registreres her.
+                </BodyLong>
+                <Box paddingBlock="space-8 space-0">
+                    <Button variant="secondary" size="small" onClick={onClickMeldUt}>
+                        Registrer sluttdato
+                    </Button>
+                </Box>
+            </PeriodeInfoPanel>
         );
     }
 
     if (deltakelseKvoteErUtløpt(deltakelse)) {
         return (
-            <Bleed marginBlock="space-1">
-                <VStack gap="space-8">
-                    <BodyShort weight="semibold" size="large" className="capitalize">
-                        {dateFormatter.dayCompactDate(deltakelse.kvoteMaksDato)}
-                    </BodyShort>
-                    <Alert variant="info" inline>
-                        Deltakelse er avsluttet.
-                    </Alert>
-                </VStack>
-            </Bleed>
+            <PeriodeInfoPanel title={dateFormatter.dayCompactDate(deltakelse.kvoteMaksDato)}>
+                <Alert variant="info" inline>
+                    Deltakelse er avsluttet.
+                </Alert>
+            </PeriodeInfoPanel>
         );
     }
 
     return (
-        <Bleed marginBlock="space-1">
+        <PeriodeInfoPanel>
             <Alert variant="info" inline>
-                Sluttdato kan foreløpig ikke settes.
+                Sluttdato kan ikke settes.
             </Alert>
-        </Bleed>
+        </PeriodeInfoPanel>
     );
 };
 
