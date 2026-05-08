@@ -4,6 +4,7 @@ import './app.css';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
+import { DevBranchInfo } from '@sif/soknad-ui';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -41,6 +42,7 @@ export const App = () => {
                     </IntlProvider>
                 </SifQueryClientProvider>
             </AppErrorBoundary>
+            <DevBranchInfo />
         </FaroProvider>
     );
 };

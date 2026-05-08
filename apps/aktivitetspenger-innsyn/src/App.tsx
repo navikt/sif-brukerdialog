@@ -6,6 +6,7 @@ import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
+import { DevBranchInfo } from '@sif/soknad-ui';
 import MockDate from 'mockdate';
 import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
@@ -15,9 +16,9 @@ import { initApiClients } from './app/api/initApiClients';
 import { getAppEnv } from './app/appEnv';
 import AppRouter from './app/AppRouter';
 import { applicationIntlMessages } from './app/i18n';
+import { InitialDataLoader } from './app/initial-data/InitialDataLoader';
 import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
-import { InitialDataLoader } from './app/initial-data/InitialDataLoader';
 
 initApiClients();
 
@@ -67,6 +68,7 @@ export const App = () => {
                     </SifQueryClientProvider>
                 </AppErrorBoundary>
             </FaroProvider>
+            <DevBranchInfo />
         </Theme>
     );
 };

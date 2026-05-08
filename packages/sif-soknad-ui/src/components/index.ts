@@ -1,11 +1,12 @@
 export { AppErrorFallback } from './app-error-fallback/AppErrorFallback';
-export { I18nMessagesPreview, type I18nMessagesPreviewProps } from './i18n-messages-preview/I18nMessagesPreview';
 export { AppHeader } from './app-header/AppHeader';
 export { ApplicationPictogram } from './app-header/ApplicationPictogram';
 export { AriaLiveRegion } from './aria-live-region/AriaLiveRegion';
+export { DevBranchInfo } from './dev-branch-info/DevBranchInfo';
 export { ExternalLink } from './external-link/ExternalLink';
 export { FormContentLoader } from './form-content-loader/FormContentLoader';
 export { FormLayout } from './form-layout';
+export { I18nMessagesPreview, type I18nMessagesPreviewProps } from './i18n-messages-preview/I18nMessagesPreview';
 export { InfoList } from './info-list/InfoList';
 export { Kvittering } from './kvittering/Kvittering';
 export { PictureScanningGuide } from './picture-scanning-guide/PictureScanningGuide';
