@@ -25,8 +25,7 @@ export const omBarnetStegMessages_nb = {
         'Hvis foreldrene til barnet ikke bor sammen, kan de inngå en avtale om delt fast bosted etter barneloven §36. Barnet bor da fast med begge sine foreldre.',
     'omBarnetSteg.alert.trengerIkkeSøke.tittel': 'Du trenger ikke søke for {barnetsFornavn}',
     'omBarnetSteg.alert.trengerIkkeSøke.tekst':
-        '{barnetsFornavn} har allerede et vedtak om ekstra omsorgsdager, og du trenger ikke søke på nytt.',
-    'omBarnetSteg.alert.trengerIkkeSøke.minsideLenke': 'Se vedtaket på din side',
+        'Du har allerede et gyldig vedtak som gjelder til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du trenger derfor ikke å søke på nytt. Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Min side</Lenke>.',
 
     'omBarnetSteg.alert.ikkeSammeAdresse':
         'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra Nav. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',

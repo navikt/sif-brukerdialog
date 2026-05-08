@@ -43,6 +43,5 @@ export const oppsummeringStegMessages_nb = {
         'Noen ganger vil de ugyldige tegnene være tegn en ser på som vanlige, f.eks. emojier, «, » eller «§», mens andre ganger kan det være synlige som små firkanter inne i teksten.',
     'oppsummeringSteg.innsendingFeilet.tekst.generell.4':
         'Hvis du har sjekket dette, og fortsatt ikke kommer videre, ber vi deg kontakte oss på <Telefon>55 55 33 33</Telefon> for videre veiledning.',
-    'oppsummeringForm.validation.bekrefterOpplysninger.notChecked':
-        'Du må bekrefte at opplysningene er riktige for å sende inn søknaden.',
+    'oppsummeringForm.validation.bekrefterOpplysninger.notChecked': 'Du må bekrefte opplysningene.',
 } as const;

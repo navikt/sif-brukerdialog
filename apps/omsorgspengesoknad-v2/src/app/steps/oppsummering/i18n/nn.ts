@@ -42,6 +42,5 @@ export const oppsummeringStegMessages_nn: Record<keyof typeof oppsummeringStegMe
         'Nokre gonger vil dei ugyldige teikna vera synlege som små firkantar inne i teksten. Då kan det vera det held å fjerna desse.',
     'oppsummeringSteg.innsendingFeilet.tekst.generell.4':
         'Viss du har sjekka dette, og framleis ikkje kjem vidare, ber me deg kontakta oss på <Telefon>55 55 33 33</Telefon> for vidare rettleiing.',
-    'oppsummeringForm.validation.bekrefterOpplysninger.notChecked':
-        'Du må stadfesta at opplysningane er rette for å senda inn søknaden.',
+    'oppsummeringForm.validation.bekrefterOpplysninger.notChecked': 'Du må stadfesta opplysningane.',
 };
