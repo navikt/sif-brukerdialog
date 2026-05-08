@@ -5,13 +5,20 @@ import { useEffect } from 'react';
 import { AppHeader } from '../../components/app-header/AppHeader';
 
 interface Props {
+    hideAppHeader?: boolean;
     documentTitle?: string;
     applicationTitle: string;
     headerLevel?: '1' | '2';
     children: React.ReactNode;
 }
 
-export function ApplicationPage({ documentTitle, applicationTitle, headerLevel = '2', children }: Props) {
+export function ApplicationPage({
+    hideAppHeader = false,
+    documentTitle,
+    applicationTitle,
+    headerLevel = '2',
+    children,
+}: Props) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -24,7 +31,7 @@ export function ApplicationPage({ documentTitle, applicationTitle, headerLevel =
         <Page>
             <Page.Block as="main" width="md" gutters>
                 <VStack gap="space-40" marginBlock="space-24">
-                    <AppHeader title={applicationTitle} level={headerLevel} />
+                    {!hideAppHeader && <AppHeader title={applicationTitle} level={headerLevel} />}
                     <div>{children}</div>
                 </VStack>
             </Page.Block>
