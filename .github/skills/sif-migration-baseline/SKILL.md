@@ -189,12 +189,12 @@ Etter sletting vil `check:types` gi feil fra `setup/`-filer som peker på slette
 
 Når domenekode er slettet, må mock tilpasses parallelt:
 
-| Fil                               | Hva som er app-spesifikt                                                         | Aksjon                                                                              |
-| --------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `mock/scenarios/types.ts`         | API-import for kildeappens spesifikke data (f.eks. `KontonummerDto` fra ung-api) | Fjern import og felt som ikke finnes i målappen                                     |
-| `mock/scenarios/scenarioer.ts`    | Scenariodata med app-spesifikke felt                                             | Fjern app-spesifikke felt (f.eks. `kontonummer`)                                    |
-| `mock/msw/handlers.ts`            | App-spesifikke endepunkter (f.eks. `/deltaker/hent-kontonummer`, `/api/send`)    | Erstatt med målappens endepunkter (f.eks. `/omsorgspenger-utvidet-rett/innsending`) |
-| `mock/state/store.ts`             | Storage-nøkler med kildeappens prefiks (f.eks. `AKT_SOKNAD_*`)                   | Oppdater til målappens prefiks (f.eks. `OMP_SOKNAD_*`) i `createStore`-kallet      |
+| Fil                            | Hva som er app-spesifikt                                                         | Aksjon                                                                              |
+| ------------------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `mock/scenarios/types.ts`      | API-import for kildeappens spesifikke data (f.eks. `KontonummerDto` fra ung-api) | Fjern import og felt som ikke finnes i målappen                                     |
+| `mock/scenarios/scenarioer.ts` | Scenariodata med app-spesifikke felt                                             | Fjern app-spesifikke felt (f.eks. `kontonummer`)                                    |
+| `mock/msw/handlers.ts`         | App-spesifikke endepunkter (f.eks. `/deltaker/hent-kontonummer`, `/api/send`)    | Erstatt med målappens endepunkter (f.eks. `/omsorgspenger-utvidet-rett/innsending`) |
+| `mock/state/store.ts`          | Storage-nøkler med kildeappens prefiks (f.eks. `AKT_SOKNAD_*`)                   | Oppdater til målappens prefiks (f.eks. `OMP_SOKNAD_*`) i `createStore`-kallet       |
 
 ### Opprydding av Playwright-tester
 
@@ -306,3 +306,44 @@ Forventet oppførsel tidlig i fasen:
 - Pilotappen kompilerer og passerer relevante workspace-sjekker.
 - Main migration decisions are captured in `docs/migration/decisions.md`.
 - Reusable lessons are promoted from app notes to shared docs.
+
+## Overgang fra v1 til v2 i produksjon — git-strategi
+
+Når v2 er klar til å erstatte v1, gjør dette i to separate commits for å bevare filhistorikk og sporbarhet.
+
+### 1. Tag siste kjente v1-tilstand
+
+Før du fjerner v1-appen, opprett en tag på gjeldende commit:
+
+```bash
+git tag <appnavn>-v1-final
+git push origin <appnavn>-v1-final
+```
+
+Dette gir et navngitt referansepunkt for historisk gjennomsyn uten å måtte lete i loggen.
+
+### 2. Slett v1 i én commit
+
+```bash
+git rm -r apps/<appnavn>
+git commit -m "chore: remove <appnavn> v1 (replaced by <appnavn>-v2)"
+```
+
+### 3. Gi v2 nytt navn i én separat commit
+
+```bash
+git mv apps/<appnavn>-v2 apps/<appnavn>
+git commit -m "chore: rename <appnavn>-v2 → <appnavn>"
+```
+
+**Ikke** slett og opprett på nytt i samme commit — da mister du `git log --follow`-historikken for v2-filene.
+
+Etter omdøping kan du sjekke historikk for en enkelt fil helt tilbake med:
+
+```bash
+git log --follow apps/<appnavn>/src/app/steps/om-barnet/OmBarnetSteg.tsx
+```
+
+### Sporbarhetskrav
+
+Søknadsapper må kunne rekonstruere hvordan en søknad så ut de siste tre år. Git-historikken er kilden til dette — forutsatt at filhistorikken er intakt gjennom `git mv` og ikke går tapt ved slett+opprett.

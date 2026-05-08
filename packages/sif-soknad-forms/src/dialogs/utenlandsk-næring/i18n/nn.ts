@@ -25,6 +25,8 @@ export const utenlandskNæringMessages_nn: Record<keyof typeof utenlandskNæring
         'Skriv inn namnet på verksemda di.',
     '@sifSoknadForms.utenlandskNæringForm.validation.land.noValue':
         'Du må velja kva for eit land verksemda di er registrert i. Vel land frå lista.',
+    '@sifSoknadForms.utenlandskNæringForm.validation.identifikasjonsnummer.stringHasNoValue':
+        'Skriv inn organisasjonsnummeret/identifikasjonsnummeret.',
     '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateHasNoValue':
         'Du må oppgje kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
     '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateIsAfterMax':

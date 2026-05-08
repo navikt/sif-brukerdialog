@@ -348,6 +348,7 @@ export const UtenlandsoppholdDialogForm = ({
                                 validate={validateField(
                                     UtenlandsoppholdFormFields.erSammenMedBarnet,
                                     getYesOrNoValidator(),
+                                    () => ({ land: getCountryName(landkode, sifIntl.locale) }),
                                 )}
                             />
                         )}
@@ -361,6 +362,7 @@ export const UtenlandsoppholdDialogForm = ({
                                 validate={validateField(
                                     UtenlandsoppholdFormFields.erBarnetInnlagt,
                                     getYesOrNoValidator(),
+                                    () => ({ land: getCountryName(landkode, sifIntl.locale) }),
                                 )}
                             />
                         )}

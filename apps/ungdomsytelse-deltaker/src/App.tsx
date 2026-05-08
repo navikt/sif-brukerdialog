@@ -11,6 +11,7 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import DevBranchInfo from '@navikt/sif-common-soknad-ds/src/components/dev-branch-info/DevBranchInfo';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MockDate from 'mockdate';
 
@@ -95,6 +96,7 @@ function App() {
                             />
                         )}
                     />
+                    <DevBranchInfo />
                 </UxSignalsLoaderProvider>
             </AppIntlMessageProvider>
         </ErrorBoundary>

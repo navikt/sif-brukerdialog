@@ -180,6 +180,18 @@ const meta = {
 
 Etter porting av en dialog **må** alle renderbare komponenter verifiseres mot v1-originalen. Denne sjekken er blokkerende — dialogen regnes ikke som ferdig portert før den er bestått.
 
+### Tekstparitet — v1 er autoritativ kilde
+
+**Alle brukersynlige tekster og valideringsmeldinger i v2 skal være identiske med v1**, inkludert:
+
+- Labels, legends, descriptions og hjelpetekster
+- Valideringsmeldinger (feilmeldinger) i `nb.ts` og `nn.ts`
+- Interpolasjonsparametere (f.eks. `{land}`, `{navn}`, `{dato}`, `{min}`, `{maks}`)
+
+**Unntaket er strukturendringer**: Hvis v2 slår sammen felter, endrer feltrekkefølge eller dropper felter av strukturelle årsaker, må tekstene tilpasses — men avviket skal dokumenteres eksplisitt og begrunnes. Hvis du er usikker på om noe er strukturendring, ta det opp med bruker.
+
+> Eksempel: v1 validerer `erSammenMedBarnet` med `{ land: getCountryName(...) }` som interpolasjonsparameter. v2 **må** sende samme parameter i `extraValuesMapper` og teksten **må** inneholde `{land}`.
+
 Dette gjelder **alle** komponenttyper som rendrer brukersynlig innhold:
 
 - **DialogForm** — felter, labels, legends, hjelpetekst, betinget visning, validering
@@ -201,6 +213,8 @@ For hver komponenttype som finnes i v1:
 - [ ] Labels, legends og descriptions matcher ordrett
 - [ ] Betinget visning har samme betingelse (ingen inversjoner)
 - [ ] Valideringsregler og parametere er identiske
+- [ ] Valideringstekster er **identiske** med v1 — inkl. interpolasjonsparametere (`{land}`, `{navn}`, `{dato}` etc.)
+- [ ] `extraValuesMapper` i `validateField` sender alle parametere som teksten refererer til
 - [ ] Hjelpetekst og veiledningstekst er med
 
 ### Sjekkliste — List

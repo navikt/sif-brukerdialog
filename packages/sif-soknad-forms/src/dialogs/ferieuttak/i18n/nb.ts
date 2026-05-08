@@ -16,6 +16,8 @@ export const ferieuttakMessages_nb = {
         'Datoen for når ferien starter kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
     '@sifSoknadForms.ferieuttakForm.validation.fom.fromDateIsAfterToDate':
         'Startdatoen for ferien må være før sluttdatoen, eller på samme dag som sluttdatoen. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.ferieuttakForm.validation.fom.dateIsNotWeekday':
+        'Startdatoen for ferien kan ikke være på en helgedag.',
     '@sifSoknadForms.ferieuttakForm.validation.tom.dateHasNoValue':
         'Du må oppgi når ferien slutter. Skriv inn eller velg dato fra datovelgeren.',
     '@sifSoknadForms.ferieuttakForm.validation.tom.dateHasInvalidFormat':
@@ -26,4 +28,6 @@ export const ferieuttakMessages_nb = {
         'Datoen for når ferien slutter kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
     '@sifSoknadForms.ferieuttakForm.validation.tom.toDateIsBeforeFromDate':
         'Sluttdatoen for ferien kan ikke være før startdatoen. Skriv inn eller velg dato fra datovelgeren.',
+    '@sifSoknadForms.ferieuttakForm.validation.tom.dateIsNotWeekday':
+        'Datoen for når ferien slutter kan ikke være på en helgedag.',
 };

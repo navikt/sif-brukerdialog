@@ -27,8 +27,7 @@ export const omBarnetStegMessages_nn: Record<keyof typeof omBarnetStegMessages_n
         'Viss foreldra til barnet ikkje bur saman, kan dei inngå ein avtale om delt fast bustad etter barnelova §36. Barnet bur då fast med begge foreldra sine.',
     'omBarnetSteg.alert.trengerIkkeSøke.tittel': 'Du treng ikkje søkje for {barnetsFornavn}',
     'omBarnetSteg.alert.trengerIkkeSøke.tekst':
-        '{barnetsFornavn} har allereie eit vedtak om ekstra omsorgsdagar, og du treng ikkje søkje på nytt.',
-    'omBarnetSteg.alert.trengerIkkeSøke.minsideLenke': 'Sjå vedtaket på di side',
+        'Du har allereie eit gyldig vedtak som gjeld til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du treng derfor ikkje å søkja på nytt. Du kan finna melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
 
     'omBarnetSteg.alert.ikkeSammeAdresse':
         'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå Nav. Forelderen som bur saman med barnet kan i nokre tilfelle dela sine omsorgsdagar.',

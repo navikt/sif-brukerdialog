@@ -1,18 +1,12 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { useLenker } from '@app/lenker';
-import { Button, Link } from '@navikt/ds-react';
-import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
+import { Link } from '@navikt/ds-react';
 import { InfoList, Kvittering } from '@sif/soknad-ui/components';
 import { ApplicationPage } from '@sif/soknad-ui/pages';
 
 export const KvitteringPage = () => {
     const { text } = useAppIntl();
-    const path = getRequiredEnv(EnvKey.PUBLIC_PATH);
     const lenker = useLenker();
-
-    const onRestart = () => {
-        window.location.replace(path);
-    };
 
     return (
         <ApplicationPage
@@ -50,11 +44,6 @@ export const KvitteringPage = () => {
                         />
                     </li>
                 </InfoList>
-                <div>
-                    <Button variant="secondary" onClick={onRestart}>
-                        Tilbake til forsiden
-                    </Button>
-                </div>
             </Kvittering>
         </ApplicationPage>
     );

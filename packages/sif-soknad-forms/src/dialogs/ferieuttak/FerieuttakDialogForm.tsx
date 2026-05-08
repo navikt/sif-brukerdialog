@@ -104,6 +104,7 @@ export const FerieuttakDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
+                                            onlyWeekdays: disableWeekends,
                                             toDate: datePickerUtils.parseDatePickerValue(
                                                 methods.getValues(FerieuttakFormFields.tom),
                                             ),
@@ -130,6 +131,7 @@ export const FerieuttakDialogForm = ({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
+                                            onlyWeekdays: disableWeekends,
                                             fromDate: datePickerUtils.parseDatePickerValue(
                                                 methods.getValues(FerieuttakFormFields.fom),
                                             ),

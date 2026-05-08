@@ -150,6 +150,10 @@ export const UtenlandskNæringDialogForm = ({ formId, næring, onValidSubmit }: 
                             label={sifIntl.text('@sifSoknadForms.utenlandskNæring.form.identifikasjonsnummer.label')}
                             style={{ maxWidth: '10rem' }}
                             maxLength={30}
+                            validate={validateField(
+                                FormFields.identifikasjonsnummer,
+                                getStringValidator({ required: true }),
+                            )}
                         />
                         <DateRangePicker
                             name="næringPeriode"

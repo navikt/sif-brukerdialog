@@ -26,7 +26,7 @@ export const fraværMessages_nb = {
     '@sifSoknadForms.fraværPeriodeForm.validation.fraOgMed.fromDateIsAfterToDate':
         'Startdatoen for perioden må være før sluttdatoen, eller på samme dag som sluttdatoen. Skriv inn eller velg dato fra datovelgeren.',
     '@sifSoknadForms.fraværPeriodeForm.validation.fraOgMed.er_helg':
-        'Dato for når perioden startet kan ikke være lørdag eller søndag.',
+        'Periodens fra-dato må være en ukedag, det kan ikke være lørdag eller søndag. Hvis perioden startet en lørdag eller søndag må du velge mandagen etter som startdato.',
     '@sifSoknadForms.fraværPeriodeForm.validation.fraOgMed.fra_og_til_er_ulike_år':
         'Fra-dato og til-dato må være i samme år.',
     '@sifSoknadForms.fraværPeriodeForm.validation.tilOgMed.dateHasNoValue':
@@ -40,7 +40,7 @@ export const fraværMessages_nb = {
     '@sifSoknadForms.fraværPeriodeForm.validation.tilOgMed.toDateIsBeforeFromDate':
         'Sluttdatoen for perioden kan ikke være før startdatoen. Skriv inn eller velg dato fra datovelgeren.',
     '@sifSoknadForms.fraværPeriodeForm.validation.tilOgMed.er_helg':
-        'Dato for når perioden sluttet kan ikke være lørdag eller søndag.',
+        'Periodens til-dato må være en ukedag, det kan ikke være lørdag eller søndag. Hvis perioden sluttet en lørdag eller søndag må du velge fredagen før som sluttdato.',
     '@sifSoknadForms.fraværPeriodeForm.validation.tilOgMed.fra_og_til_er_ulike_år':
         'Fra-dato og til-dato må være i samme år.',
     '@sifSoknadForms.fraværPeriodeForm.validation.fraværPeriode.dager_overlapper_med_andre_dager':
@@ -54,7 +54,7 @@ export const fraværMessages_nb = {
     '@sifSoknadForms.fraværDagForm.validation.dato.dateIsAfterMax':
         'Datoen for når du hadde delvis fravær kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
     '@sifSoknadForms.fraværDagForm.validation.dato.er_helg':
-        'Dato for når du hadde delvis fravær kan ikke være lørdag eller søndag.',
+        'Dato for når du hadde delvis fravær må være en ukedag, det kan ikke være lørdag eller søndag.',
     '@sifSoknadForms.fraværDagForm.validation.dato.dato_kolliderer_med_annet_fravær':
         'Datoen overlapper med allerede registrert fraværsdag.',
     '@sifSoknadForms.fraværDagForm.validation.timerArbeidsdag.noValue':

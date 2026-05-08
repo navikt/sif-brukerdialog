@@ -3,6 +3,7 @@ import './app.css';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
+import { DevBranchInfo } from '@sif/soknad-ui';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -32,6 +33,7 @@ export const App = () => {
                         <BrowserRouter basename={basePath}>
                             {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
                             <InitialDataLoader />
+                            <DevBranchInfo />
                         </BrowserRouter>
                     </IntlProvider>
                 </SifQueryClientProvider>
