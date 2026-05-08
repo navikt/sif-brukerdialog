@@ -1,6 +1,7 @@
 import { virksomhetMessages_nb } from './nb';
 
 export const virksomhetMessages_nn: Record<keyof typeof virksomhetMessages_nb, string> = {
+    '@sifSoknadForms.virksomheten': 'verksemda',
     '@sifSoknadForms.virksomhet.Norge': 'Noreg',
     '@sifSoknadForms.virksomhet.Ja': 'Ja',
     '@sifSoknadForms.virksomhet.Nei': 'Nei',

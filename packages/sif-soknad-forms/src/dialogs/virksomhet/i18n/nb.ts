@@ -1,4 +1,5 @@
 export const virksomhetMessages_nb = {
+    '@sifSoknadForms.virksomheten': 'virksomheten',
     '@sifSoknadForms.virksomhet.Norge': 'Norge',
     '@sifSoknadForms.virksomhet.Ja': 'Ja',
     '@sifSoknadForms.virksomhet.Nei': 'Nei',

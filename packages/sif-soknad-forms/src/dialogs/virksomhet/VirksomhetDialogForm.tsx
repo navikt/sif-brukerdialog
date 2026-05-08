@@ -61,7 +61,7 @@ export const VirksomhetDialogForm = ({
 
     const { watch, setValue } = methods;
     const næringstype = watch('næringstype') as Næringstype | undefined;
-    const navnPåVirksomheten = watch('navnPåVirksomheten') || 'virksomheten';
+    const navnPåVirksomheten = watch('navnPåVirksomheten') || sifIntl.text('@sifSoknadForms.virksomheten');
     const registrertINorge = watch('registrertINorge') as YesOrNo | undefined;
     const erPågående = useWatch({ control: methods.control, name: 'erPågående' });
     const harRegnskapsfører = watch('harRegnskapsfører') as YesOrNo | undefined;

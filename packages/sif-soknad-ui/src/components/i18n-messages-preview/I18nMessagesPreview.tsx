@@ -9,7 +9,7 @@ export interface I18nMessagesPreviewProps {
 const missingStyle: React.CSSProperties = { backgroundColor: '#ffe9e9', color: '#c30000', fontStyle: 'italic' };
 
 export const I18nMessagesPreview = ({ nb, nn, title }: I18nMessagesPreviewProps) => {
-    const keys = Object.keys(nb);
+    const keys = [...new Set([...Object.keys(nb), ...Object.keys(nn)])].sort();
 
     return (
         <div>
@@ -34,8 +34,12 @@ export const I18nMessagesPreview = ({ nb, nn, title }: I18nMessagesPreviewProps)
                                     {key}
                                 </code>
                             </Table.HeaderCell>
-                            <Table.DataCell style={nb[key] ? undefined : missingStyle}>{nb[key] ?? '—'}</Table.DataCell>
-                            <Table.DataCell style={nn[key] ? undefined : missingStyle}>{nn[key] ?? '—'}</Table.DataCell>
+                            <Table.DataCell style={Object.hasOwn(nb, key) ? undefined : missingStyle}>
+                                {Object.hasOwn(nb, key) ? nb[key] : '—'}
+                            </Table.DataCell>
+                            <Table.DataCell style={Object.hasOwn(nn, key) ? undefined : missingStyle}>
+                                {Object.hasOwn(nn, key) ? nn[key] : '—'}
+                            </Table.DataCell>
                         </Table.Row>
                     ))}
                 </Table.Body>
