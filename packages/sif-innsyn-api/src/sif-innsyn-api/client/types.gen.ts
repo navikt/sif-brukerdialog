@@ -40,7 +40,7 @@ export type Arbeidstaker = {
 };
 
 export type Arbeidstid = {
-    arbeidstakerList: Arbeidstaker[];
+    arbeidstakerList: Array<Arbeidstaker>;
     frilanserArbeidstidInfo?: ArbeidstidInfo;
     selvstendigNæringsdrivendeArbeidstidInfo?: ArbeidstidInfo;
 };
@@ -59,6 +59,15 @@ export type ArbeidstidPeriodeInfo = {
 export type Barn = {
     fødselsdato?: string;
     norskIdentitetsnummer: string;
+};
+
+export type BarnOpplysninger = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    identitetsnummer?: string | null;
+    mellomnavn?: string | null;
 };
 
 export type BegrunnelseForInnsending = {
@@ -105,8 +114,8 @@ export type DokumentDto = {
     filtype: string;
     harTilgang: boolean;
     journalpostId: string;
-    relevanteDatoer: RelevantDato[];
-    sakId?: string;
+    relevanteDatoer: Array<RelevantDato>;
+    sakId?: string | null;
     tittel: string;
     url: string;
 };
@@ -143,13 +152,13 @@ export type Journalpost = {
 };
 
 export type K9SakInnsynSøknad = {
-    barn: Barn;
+    barn: BarnOpplysninger;
     søknad: Søknad;
 };
 
 export type Kurs = {
     kursholder: Kursholder;
-    kursperioder: string[];
+    kursperioder: Array<string>;
     reise: Reise;
 };
 
@@ -204,7 +213,7 @@ export type OmsorgspengerKroniskSyktBarn = Omit<Ytelse, 'type'> & {
 
 export type OmsorgspengerMidlertidigAlene = Omit<Ytelse, 'type'> & {
     annenForelder: AnnenForelder;
-    barn: Barn[];
+    barn: Array<Barn>;
     begrunnelse?: string;
     dataBruktTilUtledning?: DataBruktTilUtledning;
     type: 'OmsorgspengerMidlertidigAlene';
@@ -214,15 +223,15 @@ export type OmsorgspengerUtbetaling = Omit<Ytelse, 'type'> & {
     aktivitet?: OpptjeningAktivitet;
     bosteder?: Bosteder;
     dataBruktTilUtledning?: DataBruktTilUtledning;
-    fosterbarn?: Barn[];
-    fraværsperioder?: FraværPeriode[];
-    fraværsperioderKorrigeringIm?: FraværPeriode[];
+    fosterbarn?: Array<Barn>;
+    fraværsperioder?: Array<FraværPeriode>;
+    fraværsperioderKorrigeringIm?: Array<FraværPeriode>;
     utenlandsopphold?: Utenlandsopphold;
     type: 'OmsorgspengerUtbetaling';
 };
 
 export type OppgittInntekt = {
-    oppgittePeriodeinntekter: OppgittInntektForPeriode[];
+    oppgittePeriodeinntekter: Array<OppgittInntektForPeriode>;
 };
 
 export type OppgittInntektForPeriode = {
@@ -242,18 +251,18 @@ export type Opplæringspenger = Omit<Ytelse, 'type'> & {
     omsorg: Omsorg;
     opptjeningAktivitet: OpptjeningAktivitet;
     skalEttersendeVedlegg?: boolean;
-    søknadsperiode: string[];
-    trekkKravPerioder: string[];
+    søknadsperiode: Array<string>;
+    trekkKravPerioder: Array<string>;
     utenlandsopphold: Utenlandsopphold;
     uttak: Uttak;
     type: 'Opplæringspenger';
 };
 
 export type OpptjeningAktivitet = {
-    andreAktiviteter: AnnenAktivitet[];
+    andreAktiviteter: Array<AnnenAktivitet>;
     frilanser?: Frilanser;
-    selvstendigNæringsdrivende: SelvstendigNæringsdrivende[];
-    utenlandskeArbeidsforhold: UtenlandskArbeidsforhold[];
+    selvstendigNæringsdrivende: Array<SelvstendigNæringsdrivende>;
+    utenlandskeArbeidsforhold: Array<UtenlandskArbeidsforhold>;
 };
 
 export type PleiepengerSyktBarn = Omit<Ytelse, 'type'> & {
@@ -266,7 +275,7 @@ export type PleiepengerSyktBarn = Omit<Ytelse, 'type'> & {
     /**
      * @deprecated
      */
-    endringsperiode: string[];
+    endringsperiode: Array<string>;
     erSammenMedBarnet?: boolean;
     /**
      * @deprecated
@@ -276,9 +285,9 @@ export type PleiepengerSyktBarn = Omit<Ytelse, 'type'> & {
     nattevåk: Nattevåk;
     omsorg: Omsorg;
     opptjeningAktivitet?: OpptjeningAktivitet;
-    søknadsperiode: string[];
+    søknadsperiode: Array<string>;
     tilsynsordning: Tilsynsordning;
-    trekkKravPerioder: string[];
+    trekkKravPerioder: Array<string>;
     utenlandsopphold: Utenlandsopphold;
     uttak: Uttak;
     type: 'PleiepengerSyktBarn';
@@ -296,8 +305,8 @@ export type PleipengerLivetsSluttfase = Omit<Ytelse, 'type'> & {
     lovbestemtFerie?: LovbestemtFerie;
     opptjeningAktivitet?: OpptjeningAktivitet;
     pleietrengende: Pleietrengende;
-    søknadsperiode: string[];
-    trekkKravPerioder: string[];
+    søknadsperiode: Array<string>;
+    trekkKravPerioder: Array<string>;
     utenlandsopphold: Utenlandsopphold;
     uttak?: Uttak;
     type: 'PleipengerLivetsSluttfase';
@@ -315,7 +324,7 @@ export type ProblemDetail = {
 };
 
 export type Reise = {
-    reisedager?: string[];
+    reisedager?: Array<string>;
     reisedagerBeskrivelse?: string;
     reiserUtenforKursdager: boolean;
 };
@@ -354,7 +363,7 @@ export type Søker = {
 
 export type Søknad = {
     begrunnelseForInnsending?: BegrunnelseForInnsending;
-    journalposter?: Journalpost[];
+    journalposter?: Array<Journalpost>;
     kildesystem?: string;
     mottattDato: string;
     språk?: 'nb' | 'nn';
@@ -365,12 +374,12 @@ export type Søknad = {
 };
 
 export type SøknadDto = {
-    behandlingsdato?: string;
-    dokumenter: DokumentDto[];
-    endret?: string;
+    behandlingsdato?: string | null;
+    dokumenter: Array<DokumentDto>;
+    endret?: string | null;
     journalpostId: string;
-    opprettet?: string;
-    saksId?: string;
+    opprettet?: string | null;
+    saksId?: string | null;
     status: 'MOTTATT' | 'UNDER_BEHANDLING' | 'FERDIG_BEHANDLET';
     søknad: {
         [key: string]: unknown;
@@ -393,7 +402,7 @@ export type Ungdomsytelse = Omit<Ytelse, 'type'> & {
     deltakelseId?: string;
     inntekter?: OppgittInntekt;
     søknadType: 'DELTAKELSE_SØKNAD' | 'RAPPORTERING_SØKNAD';
-    søktFraDatoer: string[];
+    søktFraDatoer: Array<string>;
     type: 'Ungdomsytelse';
 };
 
@@ -444,11 +453,39 @@ export type FraværPeriodeWritable = {
     årsak: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
 };
 
+export type K9SakInnsynSøknadWritable = {
+    barn: BarnOpplysninger;
+    søknad: SøknadWritable;
+};
+
+export type OmsorgspengerUtbetalingWritable = Omit<Ytelse, 'type'> & {
+    aktivitet?: OpptjeningAktivitet;
+    bosteder?: Bosteder;
+    dataBruktTilUtledning?: DataBruktTilUtledning;
+    fosterbarn?: Array<Barn>;
+    fraværsperioder?: Array<FraværPeriodeWritable>;
+    fraværsperioderKorrigeringIm?: Array<FraværPeriodeWritable>;
+    utenlandsopphold?: Utenlandsopphold;
+    type: 'OmsorgspengerUtbetalingWritable';
+};
+
+export type SøknadWritable = {
+    begrunnelseForInnsending?: BegrunnelseForInnsending;
+    journalposter?: Array<Journalpost>;
+    kildesystem?: string;
+    mottattDato: string;
+    språk?: 'nb' | 'nn';
+    søker: Søker;
+    søknadId: string;
+    versjon: string;
+    ytelse: Aktivitetspenger | OmsorgspengerAleneOmsorg | OmsorgspengerKroniskSyktBarn | OmsorgspengerMidlertidigAlene | OmsorgspengerUtbetalingWritable | Opplæringspenger | PleiepengerSyktBarn | PleipengerLivetsSluttfase | Ungdomsytelse;
+};
+
 export type HentDokumentOversiktData = {
     body?: never;
     path?: never;
     query: {
-        brevkoder: string[];
+        brevkoder: Array<string>;
     };
     url: '/dokument/oversikt';
 };
@@ -478,7 +515,7 @@ export type HentDokumentOversiktResponses = {
     /**
      * OK
      */
-    200: DokumentDto[];
+    200: Array<DokumentDto>;
 };
 
 export type HentDokumentOversiktResponse = HentDokumentOversiktResponses[keyof HentDokumentOversiktResponses];
@@ -595,7 +632,7 @@ export type HentSøknader1Responses = {
     /**
      * OK
      */
-    200: K9SakInnsynSøknad[];
+    200: Array<K9SakInnsynSøknad>;
 };
 
 export type HentSøknader1Response = HentSøknader1Responses[keyof HentSøknader1Responses];
@@ -632,7 +669,7 @@ export type HentSøknaderResponses = {
     /**
      * OK
      */
-    200: SøknadDto[];
+    200: Array<SøknadDto>;
 };
 
 export type HentSøknaderResponse = HentSøknaderResponses[keyof HentSøknaderResponses];

@@ -53,7 +53,7 @@ export interface Config {
     | RequestInit['headers']
     | Record<
         string,
-        string | number | boolean | Array<string | number | boolean> | null | undefined | unknown
+        string | number | boolean | (string | number | boolean)[] | null | undefined | unknown
       >;
   /**
    * The request method.

@@ -56,6 +56,15 @@ export const zBarn = z.object({
     norskIdentitetsnummer: z.string()
 });
 
+export const zBarnOpplysninger = z.object({
+    aktørId: z.string(),
+    etternavn: z.string(),
+    fornavn: z.string(),
+    fødselsdato: z.iso.date(),
+    identitetsnummer: z.string().nullish(),
+    mellomnavn: z.string().nullish()
+});
+
 export const zBegrunnelseForInnsending = z.object({
     tekst: z.string().optional()
 });
@@ -219,7 +228,7 @@ export const zDokumentDto = z.object({
     harTilgang: z.boolean(),
     journalpostId: z.string(),
     relevanteDatoer: z.array(zRelevantDato),
-    sakId: z.string().optional(),
+    sakId: z.string().nullish(),
     tittel: z.string(),
     url: z.string()
 });
@@ -256,12 +265,12 @@ export const zSøker = z.object({
 });
 
 export const zSøknadDto = z.object({
-    behandlingsdato: z.iso.date().optional(),
+    behandlingsdato: z.iso.date().nullish(),
     dokumenter: z.array(zDokumentDto),
-    endret: z.iso.datetime().optional(),
+    endret: z.iso.datetime().nullish(),
     journalpostId: z.string(),
-    opprettet: z.iso.datetime().optional(),
-    saksId: z.string().optional(),
+    opprettet: z.iso.datetime().nullish(),
+    saksId: z.string().nullish(),
     status: z.enum([
         'MOTTATT',
         'UNDER_BEHANDLING',
@@ -448,7 +457,7 @@ export const zSøknad = z.object({
 });
 
 export const zK9SakInnsynSøknad = z.object({
-    barn: zBarn,
+    barn: zBarnOpplysninger,
     søknad: zSøknad
 });
 
@@ -474,6 +483,44 @@ export const zFraværPeriodeWritable = z.object({
         'SMITTEVERNHENSYN',
         'ORDINÆRT_FRAVÆR'
     ])
+});
+
+export const zOmsorgspengerUtbetalingWritable = zYtelse.and(z.object({
+    aktivitet: zOpptjeningAktivitet.optional(),
+    bosteder: zBosteder.optional(),
+    dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
+    fosterbarn: z.array(zBarn).optional(),
+    fraværsperioder: z.array(zFraværPeriodeWritable).optional(),
+    fraværsperioderKorrigeringIm: z.array(zFraværPeriodeWritable).optional(),
+    utenlandsopphold: zUtenlandsopphold.optional(),
+    type: z.literal('OmsorgspengerUtbetalingWritable')
+}));
+
+export const zSøknadWritable = z.object({
+    begrunnelseForInnsending: zBegrunnelseForInnsending.optional(),
+    journalposter: z.array(zJournalpost).min(0).max(1000).optional(),
+    kildesystem: z.string().optional(),
+    mottattDato: z.iso.datetime(),
+    språk: z.enum(['nb', 'nn']).optional(),
+    søker: zSøker,
+    søknadId: z.string(),
+    versjon: z.string(),
+    ytelse: z.union([
+        zAktivitetspenger,
+        zOmsorgspengerAleneOmsorg,
+        zOmsorgspengerKroniskSyktBarn,
+        zOmsorgspengerMidlertidigAlene,
+        zOmsorgspengerUtbetalingWritable,
+        zOpplæringspenger,
+        zPleiepengerSyktBarn,
+        zPleipengerLivetsSluttfase,
+        zUngdomsytelse
+    ])
+});
+
+export const zK9SakInnsynSøknadWritable = z.object({
+    barn: zBarnOpplysninger,
+    søknad: zSøknadWritable
 });
 
 export const zHentDokumentOversiktQuery = z.object({

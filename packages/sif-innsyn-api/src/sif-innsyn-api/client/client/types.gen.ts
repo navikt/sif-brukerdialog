@@ -39,7 +39,7 @@ export interface Config<T extends ClientOptions = ClientOptions>
     | AxiosRequestHeaders
     | Record<
         string,
-        string | number | boolean | Array<string | number | boolean> | null | undefined | unknown
+        string | number | boolean | (string | number | boolean)[] | null | undefined | unknown
       >;
   /**
    * Throw an error instead of returning it in the response?
@@ -78,7 +78,7 @@ export interface RequestOptions<
   /**
    * Security mechanism(s) to use for the request.
    */
-  security?: readonly Auth[];
+  security?: ReadonlyArray<Auth>;
   url: Url;
 }
 

@@ -162,7 +162,7 @@ export function createSseClient<TData = unknown>({
 
             for (const chunk of chunks) {
               const lines = chunk.split('\n');
-              const dataLines: string[] = [];
+              const dataLines: Array<string> = [];
               let eventName: string | undefined;
 
               for (const line of lines) {
