@@ -1,5 +1,4 @@
 import { VStack } from '@navikt/ds-react';
-import { JaNeiSvar, useUiIntl } from '@navikt/sif-common-ui';
 import { getCountryName, prettifyDate } from '@navikt/sif-common-utils';
 import { YesOrNo } from '@sif/rhf';
 
@@ -15,8 +14,7 @@ interface Props {
 
 export const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) => {
     const sifIntl = useSifSoknadFormsIntl();
-    const { locale } = useUiIntl();
-    const { text } = sifIntl;
+    const { text, locale } = sifIntl;
     const erNyoppstartet = erVirksomhetRegnetSomNyoppstartet(virksomhet.fom);
 
     const land = virksomhet.registrertILand
@@ -74,11 +72,9 @@ export const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) =
             {erNyoppstartet && virksomhet.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene !== undefined && (
                 <>
                     <VirksomhetSummaryBlock header={text('@sifSoknadForms.virksomhet.form.harBlittYrkesaktiv.legend')}>
-                        <JaNeiSvar
-                            harSvartJa={
-                                virksomhet.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene === YesOrNo.YES
-                            }
-                        />
+                        {virksomhet.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene === YesOrNo.YES
+                            ? text('@sifSoknadForms.virksomhet.Ja')
+                            : text('@sifSoknadForms.virksomhet.Nei')}
                     </VirksomhetSummaryBlock>
                     {virksomhet.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene === YesOrNo.YES &&
                         virksomhet.blittYrkesaktivDato && (
@@ -93,9 +89,9 @@ export const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) =
             {!erNyoppstartet && virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår !== undefined && (
                 <>
                     <VirksomhetSummaryBlock header={text('@sifSoknadForms.virksomhet.form.varigEndring.legend')}>
-                        <JaNeiSvar
-                            harSvartJa={virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår === YesOrNo.YES}
-                        />
+                        {virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår === YesOrNo.YES
+                            ? text('@sifSoknadForms.virksomhet.Ja')
+                            : text('@sifSoknadForms.virksomhet.Nei')}
                     </VirksomhetSummaryBlock>
                     {virksomhet.varigEndringINæringsinntekt_dato && (
                         <>
@@ -122,11 +118,9 @@ export const VirksomhetSummary = ({ virksomhet, harFlereVirksomheter }: Props) =
 
             {virksomhet.registrertINorge === YesOrNo.YES && (
                 <VirksomhetSummaryBlock header={text('@sifSoknadForms.virksomhet.form.harRegnskapsfører.legend')}>
-                    {virksomhet.harRegnskapsfører === YesOrNo.YES && virksomhet.regnskapsfører_navn ? (
-                        `${virksomhet.regnskapsfører_navn}, tlf. ${virksomhet.regnskapsfører_telefon}`
-                    ) : (
-                        <JaNeiSvar harSvartJa={false} />
-                    )}
+                    {virksomhet.harRegnskapsfører === YesOrNo.YES && virksomhet.regnskapsfører_navn
+                        ? `${virksomhet.regnskapsfører_navn}, tlf. ${virksomhet.regnskapsfører_telefon}`
+                        : text('@sifSoknadForms.virksomhet.Nei')}
                 </VirksomhetSummaryBlock>
             )}
         </VStack>

@@ -24,6 +24,8 @@ export const utenlandskNæringMessages_nb = {
         'Skriv inn navnet på virksomheten din.',
     '@sifSoknadForms.utenlandskNæringForm.validation.land.noValue':
         'Du må velge hvilket land virksomheten din er registrert i. Velg land fra listen.',
+    '@sifSoknadForms.utenlandskNæringForm.validation.identifikasjonsnummer.stringHasNoValue':
+        'Skriv inn organisasjonsnummer/identifikasjonsnummer.',
     '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateHasNoValue':
         'Du må oppgi hvilken dato du startet virksomheten. Skriv inn eller velg startdato fra datovelgeren.',
     '@sifSoknadForms.utenlandskNæringForm.validation.fraOgMed.dateIsAfterMax':

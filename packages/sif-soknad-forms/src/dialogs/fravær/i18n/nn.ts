@@ -28,7 +28,7 @@ export const fraværMessages_nn: Record<keyof typeof fraværMessages_nb, string>
     '@sifSoknadForms.fraværPeriodeForm.validation.fraOgMed.fromDateIsAfterToDate':
         'Startdatoen for perioden må vera før sluttdatoen, eller på same dag som sluttdatoen. Skriv inn eller vel dato frå datoveljaren.',
     '@sifSoknadForms.fraværPeriodeForm.validation.fraOgMed.er_helg':
-        'Dato for når perioden starta kan ikkje vera laurdag eller sundag.',
+        'Periodens frå-dato må vera ein vekedag, det kan ikkje vera laurdag eller sundag. Viss perioden starta ein laurdag eller sundag må du velja måndagen etter som startdato.',
     '@sifSoknadForms.fraværPeriodeForm.validation.fraOgMed.fra_og_til_er_ulike_år':
         'Frå-dato og til-dato må vera i same år.',
     '@sifSoknadForms.fraværPeriodeForm.validation.tilOgMed.dateHasNoValue':
@@ -42,7 +42,7 @@ export const fraværMessages_nn: Record<keyof typeof fraværMessages_nb, string>
     '@sifSoknadForms.fraværPeriodeForm.validation.tilOgMed.toDateIsBeforeFromDate':
         'Sluttdatoen for perioden kan ikkje vera før startdatoen. Skriv inn eller vel dato frå datoveljaren.',
     '@sifSoknadForms.fraværPeriodeForm.validation.tilOgMed.er_helg':
-        'Dato for når perioden slutta kan ikkje vera laurdag eller sundag.',
+        'Periodens til-dato må vera ein vekedag, det kan ikkje vera laurdag eller sundag. Viss perioden slutta ein laurdag eller sundag må du velja fredagen før som sluttdato.',
     '@sifSoknadForms.fraværPeriodeForm.validation.tilOgMed.fra_og_til_er_ulike_år':
         'Frå-dato og til-dato må vera i same år.',
     '@sifSoknadForms.fraværPeriodeForm.validation.fraværPeriode.dager_overlapper_med_andre_dager':
@@ -56,7 +56,7 @@ export const fraværMessages_nn: Record<keyof typeof fraværMessages_nb, string>
     '@sifSoknadForms.fraværDagForm.validation.dato.dateIsAfterMax':
         'Datoen for når du hadde delvis fråvær kan ikkje vera etter {dato}. Skriv inn eller vel dato frå datoveljaren.',
     '@sifSoknadForms.fraværDagForm.validation.dato.er_helg':
-        'Dato for når du hadde delvis fråvær kan ikkje vera laurdag eller sundag.',
+        'Dato for når du hadde delvis fråvær må vera ein vekedag, det kan ikkje vera laurdag eller sundag.',
     '@sifSoknadForms.fraværDagForm.validation.dato.dato_kolliderer_med_annet_fravær':
         'Datoen overlappar med allereie registrert fråværsdag.',
     '@sifSoknadForms.fraværDagForm.validation.timerArbeidsdag.noValue':
