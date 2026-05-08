@@ -8,5 +8,10 @@ export default [
                 tsconfigRootDir: import.meta.dirname,
             },
         },
+        rules: {
+            'max-len': 'off',
+            'no-duplicate-imports': 'off',
+            '@typescript-eslint/no-shadow': 'off',
+        },
     },
 ];

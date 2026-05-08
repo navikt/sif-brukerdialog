@@ -4,10 +4,51 @@ import * as z from 'zod';
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { HentDokumentData, HentDokumentErrors, HentDokumentOversiktData, HentDokumentOversiktErrors, HentDokumentOversiktResponses, HentDokumentResponses, HentSøknadData, HentSøknader1Data, HentSøknader1Errors, HentSøknader1Responses, HentSøknaderData, HentSøknaderErrors, HentSøknaderResponses, HentSøknadErrors, HentSøknadResponses, LastNedArbeidsgivermeldingData, LastNedArbeidsgivermeldingErrors, LastNedArbeidsgivermeldingResponses, OppdaterAktoerIdData, OppdaterAktoerIdErrors, OppdaterAktoerIdResponses } from './types.gen';
-import { zHentDokumentOversiktQuery, zHentDokumentOversiktResponse, zHentDokumentPath, zHentDokumentQuery, zHentDokumentResponse, zHentSøknader1Response, zHentSøknaderResponse, zHentSøknadPath, zHentSøknadResponse, zLastNedArbeidsgivermeldingPath, zLastNedArbeidsgivermeldingQuery, zLastNedArbeidsgivermeldingResponse, zOppdaterAktoerIdBody, zOppdaterAktoerIdResponse } from './zod.gen';
+import type {
+    HentDokumentData,
+    HentDokumentErrors,
+    HentDokumentOversiktData,
+    HentDokumentOversiktErrors,
+    HentDokumentOversiktResponses,
+    HentDokumentResponses,
+    HentSøknadData,
+    HentSøknader1Data,
+    HentSøknader1Errors,
+    HentSøknader1Responses,
+    HentSøknaderData,
+    HentSøknaderErrors,
+    HentSøknaderResponses,
+    HentSøknadErrors,
+    HentSøknadResponses,
+    LastNedArbeidsgivermeldingData,
+    LastNedArbeidsgivermeldingErrors,
+    LastNedArbeidsgivermeldingResponses,
+    OppdaterAktoerIdData,
+    OppdaterAktoerIdErrors,
+    OppdaterAktoerIdResponses,
+} from './types.gen';
+import {
+    zHentDokumentOversiktQuery,
+    zHentDokumentOversiktResponse,
+    zHentDokumentPath,
+    zHentDokumentQuery,
+    zHentDokumentResponse,
+    zHentSøknader1Response,
+    zHentSøknaderResponse,
+    zHentSøknadPath,
+    zHentSøknadResponse,
+    zLastNedArbeidsgivermeldingPath,
+    zLastNedArbeidsgivermeldingQuery,
+    zLastNedArbeidsgivermeldingResponse,
+    zOppdaterAktoerIdBody,
+    zOppdaterAktoerIdResponse,
+} from './zod.gen';
 
-export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
+export type Options<
+    TData extends TDataShape = TDataShape,
+    ThrowOnError extends boolean = boolean,
+    TResponse = unknown,
+> = Options2<TData, ThrowOnError, TResponse> & {
     /**
      * You can provide a client instance returned by `createClient()` instead of
      * individual options. This might be also useful if you want to implement a
@@ -22,45 +63,58 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 };
 
 export class DokumentController {
-    public static hentDokumentOversikt<ThrowOnError extends boolean = true>(options: Options<HentDokumentOversiktData, ThrowOnError>) {
+    public static hentDokumentOversikt<ThrowOnError extends boolean = true>(
+        options: Options<HentDokumentOversiktData, ThrowOnError>,
+    ) {
         return (options.client ?? client).get<HentDokumentOversiktResponses, HentDokumentOversiktErrors, ThrowOnError>({
-            requestValidator: async (data) => await z.object({
-                body: z.never().optional(),
-                path: z.never().optional(),
-                query: zHentDokumentOversiktQuery
-            }).parseAsync(data),
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: zHentDokumentOversiktQuery,
+                    })
+                    .parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentDokumentOversiktResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/dokument/oversikt',
-            ...options
+            ...options,
         });
     }
-    
+
     public static hentDokument<ThrowOnError extends boolean = true>(options: Options<HentDokumentData, ThrowOnError>) {
         return (options.client ?? client).get<HentDokumentResponses, HentDokumentErrors, ThrowOnError>({
-            requestValidator: async (data) => await z.object({
-                body: z.never().optional(),
-                path: zHentDokumentPath,
-                query: zHentDokumentQuery
-            }).parseAsync(data),
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zHentDokumentPath,
+                        query: zHentDokumentQuery,
+                    })
+                    .parseAsync(data),
             responseType: 'blob',
             responseValidator: async (data) => await zHentDokumentResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/dokument/{journalpostId}/{dokumentInfoId}/{variantFormat}',
-            ...options
+            ...options,
         });
     }
 }
 
 export class AktØrBytteController {
-    public static oppdaterAktoerId<ThrowOnError extends boolean = true>(options: Options<OppdaterAktoerIdData, ThrowOnError>) {
+    public static oppdaterAktoerId<ThrowOnError extends boolean = true>(
+        options: Options<OppdaterAktoerIdData, ThrowOnError>,
+    ) {
         return (options.client ?? client).post<OppdaterAktoerIdResponses, OppdaterAktoerIdErrors, ThrowOnError>({
-            requestValidator: async (data) => await z.object({
-                body: zOppdaterAktoerIdBody,
-                path: z.never().optional(),
-                query: z.never().optional()
-            }).parseAsync(data),
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: zOppdaterAktoerIdBody,
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zOppdaterAktoerIdResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
@@ -68,25 +122,30 @@ export class AktØrBytteController {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers
-            }
+                ...options.headers,
+            },
         });
     }
 }
 
 export class K9SakInnsynSØknadController {
-    public static hentSøknader1<ThrowOnError extends boolean = true>(options?: Options<HentSøknader1Data, ThrowOnError>) {
+    public static hentSøknader1<ThrowOnError extends boolean = true>(
+        options?: Options<HentSøknader1Data, ThrowOnError>,
+    ) {
         return (options?.client ?? client).get<HentSøknader1Responses, HentSøknader1Errors, ThrowOnError>({
-            requestValidator: async (data) => await z.object({
-                body: z.never().optional(),
-                path: z.never().optional(),
-                query: z.never().optional()
-            }).parseAsync(data),
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentSøknader1Response.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/innsyn/sak',
-            ...options
+            ...options,
         });
     }
 }
@@ -94,46 +153,61 @@ export class K9SakInnsynSØknadController {
 export class SØknadController {
     public static hentSøknader<ThrowOnError extends boolean = true>(options?: Options<HentSøknaderData, ThrowOnError>) {
         return (options?.client ?? client).get<HentSøknaderResponses, HentSøknaderErrors, ThrowOnError>({
-            requestValidator: async (data) => await z.object({
-                body: z.never().optional(),
-                path: z.never().optional(),
-                query: z.never().optional()
-            }).parseAsync(data),
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentSøknaderResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/soknad',
-            ...options
+            ...options,
         });
     }
-    
+
     public static hentSøknad<ThrowOnError extends boolean = true>(options: Options<HentSøknadData, ThrowOnError>) {
         return (options.client ?? client).get<HentSøknadResponses, HentSøknadErrors, ThrowOnError>({
-            requestValidator: async (data) => await z.object({
-                body: z.never().optional(),
-                path: zHentSøknadPath,
-                query: z.never().optional()
-            }).parseAsync(data),
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zHentSøknadPath,
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentSøknadResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/soknad/{søknadId}',
-            ...options
+            ...options,
         });
     }
-    
-    public static lastNedArbeidsgivermelding<ThrowOnError extends boolean = true>(options: Options<LastNedArbeidsgivermeldingData, ThrowOnError>) {
-        return (options.client ?? client).get<LastNedArbeidsgivermeldingResponses, LastNedArbeidsgivermeldingErrors, ThrowOnError>({
-            requestValidator: async (data) => await z.object({
-                body: z.never().optional(),
-                path: zLastNedArbeidsgivermeldingPath,
-                query: zLastNedArbeidsgivermeldingQuery
-            }).parseAsync(data),
+
+    public static lastNedArbeidsgivermelding<ThrowOnError extends boolean = true>(
+        options: Options<LastNedArbeidsgivermeldingData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).get<
+            LastNedArbeidsgivermeldingResponses,
+            LastNedArbeidsgivermeldingErrors,
+            ThrowOnError
+        >({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zLastNedArbeidsgivermeldingPath,
+                        query: zLastNedArbeidsgivermeldingQuery,
+                    })
+                    .parseAsync(data),
             responseType: 'blob',
             responseValidator: async (data) => await zLastNedArbeidsgivermeldingResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/soknad/{søknadId}/arbeidsgivermelding',
-            ...options
+            ...options,
         });
     }
 }
