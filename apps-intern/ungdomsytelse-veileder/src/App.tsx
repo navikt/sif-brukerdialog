@@ -18,6 +18,7 @@ import { AnalyticsProvider, registerAnalytics } from './utils/analytics';
 import { getAppEnv } from './utils/appEnv';
 import { GlobalQueryLogger } from './utils/globalQueryLogger';
 import { initApiClients } from './utils/initApiClients';
+import { DevBranchInfo } from './components/dev-branch-info/DevBranchInfo';
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => {
                     </ErrorBoundary>
                 </FaroProvider>
             </VeilederProvider>
+            <DevBranchInfo />
         </ThemeProvider>
     );
 };
