@@ -1,6 +1,5 @@
 import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react';
 import { ReactNode } from 'react';
-
 import { AppText } from '../../../../i18n';
 import { appEnv } from '../../../../utils/appEnv';
 
