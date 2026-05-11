@@ -35,11 +35,11 @@
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@sentry/react": "10.51.0",
+        "@sentry/react": "10.52.0",
         "react-hook-form": "7.75.0",
-        "react-intl": "10.1.4",
-        "react-router-dom": "7.14.2",
-        "zustand": "5.0.12"
+        "react-intl": "10.1.5",
+        "react-router-dom": "7.15.0",
+        "zustand": "5.0.13"
     },
     "peerDependencies": {
         "react": ">=19",
@@ -49,8 +49,8 @@
         "@sif/eslint-config": "workspace:*",
         "@types/react": "19.2.14",
         "@types/react-dom": "19.2.3",
-        "react": "19.2.5",
-        "react-dom": "19.2.5",
+        "react": "19.2.6",
+        "react-dom": "19.2.6",
         "typescript": "6.0.3",
         "vitest": "4.1.5"
     }
