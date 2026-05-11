@@ -64,7 +64,6 @@
         "eslint-plugin-storybook": "10.3.6",
         "express": "5.2.1",
         "helmet": "8.1.0",
-        "http-proxy-middleware": "4.0.0",
         "mustache-express": "1.3.2",
         "playwright-core": "1.59.1",
         "postcss": "8.5.14",
