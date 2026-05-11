@@ -16,11 +16,11 @@
         "axios": "1.16.0",
         "config": "workspace:*",
         "dayjs": "1.11.20",
-        "postcss": "8.5.13",
+        "postcss": "8.5.14",
         "typescript": "6.0.3",
         "uuid": "14.0.0",
         "vitest": "4.1.5",
-        "zod": "4.4.2"
+        "zod": "4.4.3"
     },
     "peerDependencies": {
         "axios": "*",

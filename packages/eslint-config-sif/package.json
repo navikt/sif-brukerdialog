@@ -22,10 +22,10 @@
         "eslint-plugin-vitest": "0.5.4",
         "globals": "17.6.0",
         "typescript": "6.0.3",
-        "typescript-eslint": "8.59.1"
+        "typescript-eslint": "8.59.2"
     },
     "devDependencies": {
-        "postcss": "8.5.13",
+        "postcss": "8.5.14",
         "prettier": "3.8.3",
         "storybook": "10.3.6"
     },
