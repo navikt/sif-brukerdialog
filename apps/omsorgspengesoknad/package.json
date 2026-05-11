@@ -47,7 +47,7 @@
     "devDependencies": {
         "@axe-core/playwright": "4.11.3",
         "@eslint/eslintrc": "3.3.5",
-        "@eslint/js": "9.39.4",
+        "@eslint/js": "10.0.1",
         "@playwright/test": "1.59.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.3.6",
@@ -64,7 +64,7 @@
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "cors": "2.8.6",
-        "eslint": "9.39.4",
+        "eslint": "10.3.0",
         "eslint-plugin-prettier": "5.5.5",
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-simple-import-sort": "13.0.0",
