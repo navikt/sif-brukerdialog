@@ -5,6 +5,36 @@ import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
 
+/**
+ * Regler for endring av deltakelse:
+ *
+ * Startdato (kanEndreStartdato):
+ * - Startdato må være innenfor ±TILLATT_ENDRINGSPERIODE_MÅNEDER fra i dag
+ * - Ikke tillatt hvis harUtvidetKvote
+ * - Ikke tillatt hvis innenfor siste MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING før kvoteutløp
+ *
+ * Sluttdato — sette eller endre (kanSetteEllerEndreSluttdato):
+ * - Krever at deltaker har søkt (søktTidspunkt satt)
+ * - Ikke tillatt hvis kvoten er utløpt
+ *
+ * Melde ut (kanMeldesUt):
+ * - Som kanSetteEllerEndreSluttdato, og tilOgMed må ikke være satt
+ *
+ * Endre sluttdato (kanEndreSluttdato):
+ * - Som kanSetteEllerEndreSluttdato, og tilOgMed må allerede være satt
+ *
+ * Utvide kvote (deltakelseKanUtvides):
+ * - Krever at deltaker har søkt (søktTidspunkt satt)
+ * - tilOgMed må ikke være satt
+ * - harUtvidetKvote må være false
+ * - Ikke tillatt innenfor siste MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING før kvoteutløp
+ * - Kvoten må ikke være utløpt
+ * - Sluttdato må ikke være passert
+ *
+ * Slette (deltakelseKanSlettes):
+ * - Kun tillatt hvis søktTidspunkt ikke er satt
+ */
+
 /** Antall måneder før og etter i dag som startdato kan endres innenfor */
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
 
@@ -83,10 +113,6 @@ export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
 };
 
 export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    const dagerBrukt = beregnBrukteDager(deltakelse, today);
-    if (dagerBrukt < 1) {
-        return false;
-    }
     return (
         deltakelse.søktTidspunkt !== undefined &&
         deltakelse.tilOgMed === undefined &&

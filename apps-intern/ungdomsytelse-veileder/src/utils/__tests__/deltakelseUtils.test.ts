@@ -241,18 +241,18 @@ describe('deltakelseUtils', () => {
             sisteMuligeInnmeldingsdato: ISODateToDate('2027-06-01'),
         };
 
-        it('begrenser fra-dato til maks 6 mnd tilbake', () => {
+        it('begrenser fra-dato til maks 10 mnd tilbake, begrenset av førsteMuligeInnmeldingsdato', () => {
             const result = getGyldigStartdatoRange(deltaker, TODAY);
             expect(result).not.toBe('fomFørTom');
             if (result !== 'fomFørTom') {
-                expect(result.from.toISOString().substring(0, 10)).toBe('2025-11-07');
+                expect(result.from.toISOString().substring(0, 10)).toBe('2025-08-11');
             }
         });
 
-        it('begrenser til-dato til maks 6 mnd frem når det er før sisteMulige', () => {
+        it('begrenser til-dato til maks 10 mnd frem når det er før sisteMulige', () => {
             const result = getGyldigStartdatoRange(deltaker, TODAY);
             if (result !== 'fomFørTom') {
-                expect(result.to.toISOString().substring(0, 10)).toBe('2026-11-07');
+                expect(result.to.toISOString().substring(0, 10)).toBe('2027-03-07');
             }
         });
 
