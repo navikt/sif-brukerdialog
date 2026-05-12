@@ -57,23 +57,6 @@ const erInnenforSisteMånederFørKvoteutløp = (deltakelse: Deltakelse, today: D
     );
 };
 
-export const beregnBrukteDager = (deltakelse: Deltakelse, today: Date = getDateToday()): number => {
-    // Henter ut antall ukedager (mandag til fredag) mellom fraOgMed og tilOgMed, eller mellom fraOgMed og i dag hvis tilOgMed ikke er satt
-    const start = dayjs(deltakelse.fraOgMed);
-    const end = deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed) : dayjs(today);
-    let usedDays = 0;
-    let currentDate = start;
-
-    while (currentDate.isSameOrBefore(end, 'day')) {
-        if (currentDate.day() !== 0 && currentDate.day() !== 6) {
-            usedDays++;
-        }
-        currentDate = currentDate.add(1, 'day');
-    }
-
-    return usedDays;
-};
-
 export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
     if (deltakelse.harUtvidetKvote) {
         return false;
