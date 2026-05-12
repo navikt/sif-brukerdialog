@@ -6,7 +6,7 @@ import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
 
 /** Antall måneder før og etter i dag som startdato kan endres innenfor */
-export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 6;
+export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
 
 /** Startdato kan ikke endres når det er færre enn dette antall måneder til kvoteutløp */
 export const MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING = 2;
@@ -91,6 +91,7 @@ export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDa
         deltakelse.søktTidspunkt !== undefined &&
         deltakelse.tilOgMed === undefined &&
         deltakelse.harUtvidetKvote === false &&
+        !erInnenforSisteMånederFørKvoteutløp(deltakelse, today) &&
         !kvoteErUtløpt(deltakelse, today) &&
         !deltakelseSluttdatoErPassert(deltakelse, today)
     );

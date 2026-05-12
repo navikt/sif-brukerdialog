@@ -140,6 +140,14 @@ describe('deltakelseUtils', () => {
             });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
         });
+
+        it('false når innenfor siste 2 måneder før kvoteutløp', () => {
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                kvoteMaksDato: ISODateToDate('2026-06-01'),
+            });
+            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
+        });
     });
 
     describe('getDeltakelseHandlinger', () => {
