@@ -281,7 +281,18 @@ export const myMessages_nn: Record<keyof typeof myMessages_nb, string> = {
 };
 ```
 
-**Aldri** lag nynorsk-tekster ved hjelp av AI-oversettelse. Nynorsk skal komme fra et menneske eller en offisiell oversetter.
+Lag nynorsk-tekster kun når brukeren eksplisitt ber om det. Ellers skal nynorsk komme fra et menneske eller en offisiell oversetter.
+
+### Nynorsk pronomen
+
+I nynorsk tekst skal `me` alltid brukes i staden for `vi` som subjektspronomen i første person fleirtal.
+
+```
+✅ «slik at me kan handsame saka di»
+❌ «slik at vi kan handsame saka di»
+```
+
+Sjekk alle `nn.ts`-filer for `vi ` (med mellomrom etter) og erstatt med `me `.
 
 ### Bruk av komponent vs. hook
 
