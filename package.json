@@ -59,12 +59,10 @@
     ],
     "resolutions": {
         "jsdom": "28.0.0",
-        "minimatch": "10.2.3",
-        "undici@npm:^6.23.0": "6.24.0",
-        "protobufjs": "7.5.5",
         "picomatch@npm:^2": "2.3.2",
         "picomatch@npm:^4": "4.0.4",
-        "brace-expansion@npm:^5": "5.0.5"
+        "brace-expansion@npm:^5": "5.0.5",
+        "js-yaml@npm:3.13.1": "3.14.2"
     },
     "packageManager": "yarn@4.14.1",
     "private": true
