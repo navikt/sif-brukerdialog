@@ -102,7 +102,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                 <VStack gap="space-32" className="rounded-xs">
                                     <DatePicker
                                         name={FieldNames.startdato}
-                                        label="Oppgi startdato:"
+                                        label="Startdato:"
                                         minDate={startdatoMinMax.from}
                                         maxDate={startdatoMinMax.to}
                                         defaultMonth={deltakelse.fraOgMed}
