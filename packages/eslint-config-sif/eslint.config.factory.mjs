@@ -16,7 +16,7 @@ export async function createSifConfig(options = {}) {
         import('eslint-config-prettier'),
         import('eslint-plugin-jsx-a11y'),
         import('eslint-plugin-react'),
-        import('eslint-plugin-vitest'),
+        import('@vitest/eslint-plugin'),
         import('globals'),
         import('eslint-plugin-react-hooks'),
     ]);
@@ -34,8 +34,8 @@ export async function createSifConfig(options = {}) {
         },
         pluginJs.default.configs.recommended,
         ...(tseslint ? tseslint.configs.recommended : []),
-        pluginReact.default.configs.flat.recommended,
-        jsxA11y.default.flatConfigs.recommended,
+        { ...pluginReact.default.configs.flat.recommended, files: ['**/*.{jsx,tsx}'] },
+        { ...jsxA11y.default.flatConfigs.recommended, files: ['**/*.{jsx,tsx}'] },
         eslintConfigPrettier.default,
         {
             plugins: {
@@ -44,15 +44,10 @@ export async function createSifConfig(options = {}) {
             },
             rules: {
                 ...vitest.default.configs.recommended.rules,
-                ...reactHooks.default.configs.recommended.rules,
                 'vitest/expect-expect': 'off',
                 'max-len': [ERROR, 300],
                 'no-console': WARNING,
                 'no-debugger': WARNING,
-                'react/prop-types': OFF,
-                'jsx-a11y/no-autofocus': OFF,
-                'react/react-in-jsx-scope': OFF,
-                'react/display-name': OFF,
 
                 // TypeScript rules - only add if tseslint is provided
                 ...(tseslint && {
@@ -69,6 +64,18 @@ export async function createSifConfig(options = {}) {
                     '@typescript-eslint/ban-ts-comment': OFF,
                 }),
 
+                'jsx-quotes': ['error', 'prefer-double'],
+            },
+        },
+        {
+            files: ['**/*.{jsx,tsx}'],
+            rules: {
+                ...reactHooks.default.configs.recommended.rules,
+                'react-hooks/rules-of-hooks': 'error',
+                'jsx-a11y/no-autofocus': OFF,
+                'react/prop-types': OFF,
+                'react/react-in-jsx-scope': OFF,
+                'react/display-name': OFF,
                 'react/function-component-definition': [
                     OFF,
                     {
@@ -76,9 +83,7 @@ export async function createSifConfig(options = {}) {
                         unnamedComponents: 'arrow-function',
                     },
                 ],
-
                 'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
-                'jsx-quotes': ['error', 'prefer-double'],
             },
         },
     ];
