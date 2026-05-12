@@ -1,12 +1,13 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { useLenker } from '@app/lenker';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
+import { useSøknadRhfForm, useSøknadState, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { DeltBostedSøknadsdata } from '@app/types/Soknadsdata';
-import { UploadedFile } from '@sif/rhf';
-import { VedleggPanel } from '@sif/soknad-forms';
+import { useSifValidate, UploadedFile } from '@sif/rhf';
+import { toUploadedFile, VedleggPanel } from '@sif/soknad-forms';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
+import { getVedleggValidator } from '@navikt/sif-validation';
 
 import { toDeltBostedFormValues, toSøknadsdata } from './deltBostedStegUtils';
 import { DeltBostedFormFields, DeltBostedFormValues } from './types';
@@ -16,6 +17,9 @@ const stepId = SøknadStepId.DELT_BOSTED;
 export const DeltBostedForm = () => {
     const lenker = useLenker();
     const { text } = useAppIntl();
+    const { validateField } = useSifValidate('deltBostedForm');
+    const { søknadsdata } = useSøknadState();
+    const legeerklæringFiles = (søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []).map(toUploadedFile);
     const defaultValues = useStepDefaultValues<DeltBostedFormValues, DeltBostedSøknadsdata>({
         stepId,
         toFormValues: toDeltBostedFormValues,
@@ -44,6 +48,11 @@ export const DeltBostedForm = () => {
                     initialFiles={defaultValues[DeltBostedFormFields.samværsavtale]}
                     label={text('deltBostedSteg.samværsavtale.label')}
                     uploadLaterURL={lenker.omsorgspengerEttersending}
+                    otherFiles={legeerklæringFiles}
+                    validate={validateField(
+                        DeltBostedFormFields.samværsavtale,
+                        getVedleggValidator({ otherFiles: legeerklæringFiles }),
+                    )}
                     showPictureScanningGuide={true}
                 />
             </FormLayout.Content>

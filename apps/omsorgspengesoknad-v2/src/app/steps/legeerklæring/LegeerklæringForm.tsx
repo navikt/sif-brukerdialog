@@ -1,12 +1,19 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { useLenker } from '@app/lenker';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
+import {
+    useSøknadMellomlagring,
+    useSøknadRhfForm,
+    useSøknadState,
+    useStepDefaultValues,
+    useStepSubmit,
+} from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { LegeerklæringSøknadsdata } from '@app/types/Soknadsdata';
-import { UploadedFile } from '@sif/rhf';
-import { VedleggPanel } from '@sif/soknad-forms';
+import { useSifValidate, UploadedFile } from '@sif/rhf';
+import { toUploadedFile, VedleggPanel } from '@sif/soknad-forms';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
+import { getVedleggValidator } from '@navikt/sif-validation';
 
 import { toLegeerklæringFormValues, toSøknadsdata } from './legeerklæringStegUtils';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './types';
@@ -16,6 +23,9 @@ const stepId = SøknadStepId.LEGEERKLÆRING;
 export const LegeerklæringForm = () => {
     const lenker = useLenker();
     const { text } = useAppIntl();
+    const { validateField } = useSifValidate('legeerklæringForm');
+    const { søknadsdata } = useSøknadState();
+    const samværsavtaleFiles = (søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale ?? []).map(toUploadedFile);
     const defaultValues = useStepDefaultValues<LegeerklæringFormValues, LegeerklæringSøknadsdata>({
         stepId,
         toFormValues: toLegeerklæringFormValues,
@@ -45,10 +55,15 @@ export const LegeerklæringForm = () => {
 
                 <VedleggPanel<LegeerklæringFormValues>
                     name={LegeerklæringFormFields.vedlegg}
+                    label={text('legeerklæringSteg.vedlegg.label')}
                     initialFiles={defaultValues[LegeerklæringFormFields.vedlegg]}
                     onVedleggEndret={() => lagreSøknadSteg(stepId, methods.getValues())}
-                    label={text('legeerklæringSteg.vedlegg.label')}
                     uploadLaterURL={lenker.omsorgspengerEttersending}
+                    otherFiles={samværsavtaleFiles}
+                    validate={validateField(
+                        LegeerklæringFormFields.vedlegg,
+                        getVedleggValidator({ otherFiles: samværsavtaleFiles }),
+                    )}
                     showPictureScanningGuide={true}
                 />
             </FormLayout.Content>

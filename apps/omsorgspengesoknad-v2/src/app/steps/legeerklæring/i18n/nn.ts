@@ -7,4 +7,8 @@ export const legeerklæringStegMessages_nn: Record<keyof typeof legeerklæringSt
     'legeerklæringSteg.counsellorpanel.2':
         'Me kan ikkje handsame søknaden din før me får legeerklæringa. Om du ikkje har legeerklæringa tilgjengeleg no, tilrår me at du ventar med å søkje til du har den tilgjengeleg. Viss du ikkje kan venta med å senda søknaden, kan du halda fram utan, men då må du ettersenda legeerklæringa så snart som mogleg.',
     'legeerklæringSteg.vedlegg.label': 'Last opp legeerklæringa',
+    'legeerklæringForm.validation.vedlegg.noVedleggUploaded': 'Ingen dokument er lasta opp',
+    'legeerklæringForm.validation.vedlegg.tooManyVedlegg': 'For mange dokument er lasta opp',
+    'legeerklæringForm.validation.vedlegg.maxTotalSizeExceeded':
+        'Total samla storleik for dokumenta du har lasta opp overstig grensa på 24 MB.',
 };

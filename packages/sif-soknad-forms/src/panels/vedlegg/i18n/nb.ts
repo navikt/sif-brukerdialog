@@ -13,7 +13,7 @@ export const vedleggPanelMessages_nb = {
     '@sifSoknadForms.vedlegg.error.unknown': 'Det oppsto en feil ved opplasting av filen.',
     '@sifSoknadForms.vedlegg.totalSize.alert.title': 'For mye lastet opp',
     '@sifSoknadForms.vedlegg.totalSize.alert.text':
-        'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
+        'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp. Hvis du da ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
     '@sifSoknadForms.vedlegg.totalSize.alert.text.noLink':
         'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp.',
     '@sifSoknadForms.vedlegg.sizeProgress.label':
