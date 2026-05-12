@@ -10,22 +10,25 @@ const FileUploadTotalSizeAlert = ({ uploadLaterURL }: Props) => (
     <LocalAlert status="warning">
         <LocalAlert.Header>
             <LocalAlert.Title>
-                {uploadLaterURL ? (
-                    <SifSoknadFormsText
-                        id="@sifSoknadForms.vedlegg.totalSize.alert"
-                        values={{
-                            Lenke: (children: React.ReactNode) => (
-                                <Link target="_blank" rel="noopener noreferrer" href={uploadLaterURL}>
-                                    {children}
-                                </Link>
-                            ),
-                        }}
-                    />
-                ) : (
-                    <SifSoknadFormsText id="@sifSoknadForms.vedlegg.totalSize.alert.noLink" />
-                )}
+                <SifSoknadFormsText id="@sifSoknadForms.vedlegg.totalSize.alert.title" />
             </LocalAlert.Title>
         </LocalAlert.Header>
+        <LocalAlert.Content>
+            {uploadLaterURL ? (
+                <SifSoknadFormsText
+                    id="@sifSoknadForms.vedlegg.totalSize.alert.text"
+                    values={{
+                        Lenke: (children: React.ReactNode) => (
+                            <Link target="_blank" rel="noopener noreferrer" href={uploadLaterURL}>
+                                {children}
+                            </Link>
+                        ),
+                    }}
+                />
+            ) : (
+                <SifSoknadFormsText id="@sifSoknadForms.vedlegg.totalSize.alert.text.noLink" />
+            )}
+        </LocalAlert.Content>
     </LocalAlert>
 );
 

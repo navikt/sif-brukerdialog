@@ -11,10 +11,11 @@ export const vedleggPanelMessages_nb = {
     '@sifSoknadForms.vedlegg.error.timeout': 'Opplastingen tok for lang tid. Prøv igjen.',
     '@sifSoknadForms.vedlegg.error.badRequest': 'Filen kunne ikke lastes opp. Sjekk at filen ikke er skadet.',
     '@sifSoknadForms.vedlegg.error.unknown': 'Det oppsto en feil ved opplasting av filen.',
-    '@sifSoknadForms.vedlegg.totalSize.alert':
-        'De opplastede dokumentene er for store totalt. Du kan <Lenke>ettersende dokumentasjonen</Lenke> hvis du ønsker.',
-    '@sifSoknadForms.vedlegg.totalSize.alert.noLink':
-        'De opplastede dokumentene er for store totalt. Ta kontakt med NAV for å ettersende dokumentasjonen.',
+    '@sifSoknadForms.vedlegg.totalSize.alert.title': 'For mye lastet opp',
+    '@sifSoknadForms.vedlegg.totalSize.alert.text':
+        'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
+    '@sifSoknadForms.vedlegg.totalSize.alert.text.noLink':
+        'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp.',
     '@sifSoknadForms.vedlegg.sizeProgress.label':
         'Samlet størrelse for filene som er lastet opp er {usedMB} MB. Du kan laste opp maks {maxMB} MB.',
 };

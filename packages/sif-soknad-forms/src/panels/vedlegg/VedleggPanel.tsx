@@ -109,7 +109,7 @@ export function VedleggPanel<T extends FieldValues>({
     const totalSizeExceedsLimit = totalSize > MAX_TOTAL_VEDLEGG_SIZE_BYTES;
 
     return (
-        <VStack gap="space-16">
+        <VStack gap="space-24">
             <SifFileUpload<T>
                 name={name}
                 validate={validate}
