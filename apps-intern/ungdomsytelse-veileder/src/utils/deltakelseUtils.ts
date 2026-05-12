@@ -5,36 +5,6 @@ import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
 
-/**
- * Regler for endring av deltakelse:
- *
- * Startdato (kanEndreStartdato):
- * - Startdato må være innenfor ±TILLATT_ENDRINGSPERIODE_MÅNEDER fra i dag
- * - Ikke tillatt hvis harUtvidetKvote
- * - Ikke tillatt hvis innenfor siste MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING før kvoteutløp
- *
- * Sluttdato — sette eller endre (kanSetteEllerEndreSluttdato):
- * - Krever at deltaker har søkt (søktTidspunkt satt)
- * - Ikke tillatt hvis kvoten er utløpt
- *
- * Melde ut (kanMeldesUt):
- * - Som kanSetteEllerEndreSluttdato, og tilOgMed må ikke være satt
- *
- * Endre sluttdato (kanEndreSluttdato):
- * - Som kanSetteEllerEndreSluttdato, og tilOgMed må allerede være satt
- *
- * Utvide kvote (deltakelseKanUtvides):
- * - Krever at deltaker har søkt (søktTidspunkt satt)
- * - tilOgMed må ikke være satt
- * - harUtvidetKvote må være false
- * - Ikke tillatt innenfor siste MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING før kvoteutløp
- * - Kvoten må ikke være utløpt
- * - Sluttdato må ikke være passert
- *
- * Slette (deltakelseKanSlettes):
- * - Kun tillatt hvis søktTidspunkt ikke er satt
- */
-
 /** Antall måneder før og etter i dag som startdato kan endres innenfor */
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
 
@@ -87,8 +57,8 @@ export const deltakelseKvoteErUtløpt = (deltakelse: Deltakelse, today: Date = g
     return kvoteErUtløpt(deltakelse, today);
 };
 
-export const deltakelseSluttdatoErPassert = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isBefore(today, 'day') : false;
+export const deltakelseSluttdatoErIFremtid = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isAfter(today, 'day') : false;
 };
 
 export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
@@ -97,12 +67,16 @@ export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
 
 export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
     return (
+        // Deltaker har søkt
         deltakelse.søktTidspunkt !== undefined &&
-        deltakelse.tilOgMed === undefined &&
+        // Deltaker har ikke allerede utvidet kvote
         deltakelse.harUtvidetKvote === false &&
-        !erInnenforSisteMånederFørKvoteutløp(deltakelse, today) &&
+        // Deltaker har ikke kvote som er utløpt
         !kvoteErUtløpt(deltakelse, today) &&
-        !deltakelseSluttdatoErPassert(deltakelse, today)
+        // Deltaker har ikke sluttdato eller sluttdato er i fremtiden
+        (deltakelse.tilOgMed === undefined || deltakelseSluttdatoErIFremtid(deltakelse, today)) &&
+        // Deltaker er innenfor siste måneder før kvoteutløp
+        erInnenforSisteMånederFørKvoteutløp(deltakelse, today)
     );
 };
 
