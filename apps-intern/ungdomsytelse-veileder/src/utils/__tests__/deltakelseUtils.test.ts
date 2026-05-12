@@ -115,8 +115,8 @@ describe('deltakelseUtils', () => {
     });
 
     describe('deltakelseKanUtvides', () => {
-        it('true når søkt, ingen sluttdato, ikke utvidet, kvote gyldig', () => {
-            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
+        it('true når søkt, ingen sluttdato, innenfor siste 2 måneder', () => {
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date(), kvoteMaksDato: ISODateToDate('2026-06-01') });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(true);
         });
 
@@ -125,10 +125,11 @@ describe('deltakelseUtils', () => {
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
         });
 
-        it('false når tilOgMed satt', () => {
+        it('false når sluttdato er passert', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
-                tilOgMed: ISODateToDate('2026-12-01'),
+                kvoteMaksDato: ISODateToDate('2026-06-01'),
+                tilOgMed: ISODateToDate('2026-04-01'),
             });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
         });
@@ -141,10 +142,9 @@ describe('deltakelseUtils', () => {
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
         });
 
-        it('false når innenfor siste 2 måneder før kvoteutløp', () => {
+        it('false når ikke innenfor siste 2 måneder før kvoteutløp', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
-                kvoteMaksDato: ISODateToDate('2026-06-01'),
             });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
         });
@@ -179,7 +179,7 @@ describe('deltakelseUtils', () => {
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(true);
             expect(h.kanMeldesUt).toBe(true);
-            expect(h.kanUtvideKvote).toBe(true);
+            expect(h.kanUtvideKvote).toBe(false);
             expect(h.kanSlettes).toBe(false);
         });
 
