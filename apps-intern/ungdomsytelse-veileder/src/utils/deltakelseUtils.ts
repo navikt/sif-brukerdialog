@@ -57,7 +57,7 @@ const erInnenforSisteMånederFørKvoteutløp = (deltakelse: Deltakelse, today: D
     );
 };
 
-const beregnBrukteDager = (deltakelse: Deltakelse, today: Date = getDateToday()): number => {
+export const beregnBrukteDager = (deltakelse: Deltakelse, today: Date = getDateToday()): number => {
     // Henter ut antall ukedager (mandag til fredag) mellom fraOgMed og tilOgMed, eller mellom fraOgMed og i dag hvis tilOgMed ikke er satt
     const start = dayjs(deltakelse.fraOgMed);
     const end = deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed) : dayjs(today);
