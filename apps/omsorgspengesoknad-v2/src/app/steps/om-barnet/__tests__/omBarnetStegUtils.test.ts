@@ -1,3 +1,4 @@
+/* eslint-disable vitest/no-conditional-expect */
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
