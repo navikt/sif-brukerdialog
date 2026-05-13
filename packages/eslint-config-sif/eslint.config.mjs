@@ -78,6 +78,8 @@ export default [
             'simple-import-sort/exports': ERROR,
             'simple-import-sort/imports': ERROR,
 
+            'react-hooks/rules-of-hooks': 'error',
+
             '@typescript-eslint/array-type': [ERROR, { default: 'array-simple' }],
             '@typescript-eslint/ban-ts-comment': OFF,
             '@typescript-eslint/no-explicit-any': OFF,
@@ -98,7 +100,6 @@ export default [
     {
         files: ['**/*.{jsx,tsx}'],
         rules: {
-            'react-hooks/rules-of-hooks': 'error',
             'jsx-a11y/no-autofocus': WARNING,
             'react/display-name': OFF,
             'react/prop-types': OFF,
