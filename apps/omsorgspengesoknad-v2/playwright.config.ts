@@ -16,7 +16,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn pw:dev',
+        command: 'pnpm pw:dev',
         url: 'http://127.0.0.1:4173/familie/sykdom-i-familien/soknad/omsorgspenger/',
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,

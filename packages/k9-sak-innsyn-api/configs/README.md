@@ -15,15 +15,11 @@ Each configuration file corresponds to a specific API endpoint:
 Generate types for all APIs:
 
 ```bash
-yarn gen-types:all:fixed
-```
-
-Generate types for a specific API:
-
-```bash
-yarn gen-types:innsyn
-yarn gen-types:k9-sak
-yarn gen-types:legacy
+pnpm gen-types:all:fixed
+...
+pnpm gen-types:innsyn
+pnpm gen-types:k9-sak
+pnpm gen-types:legacy
 ```
 
 All configurations follow the same pattern using:

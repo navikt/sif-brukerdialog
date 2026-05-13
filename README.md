@@ -4,17 +4,17 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 
 ## Script
 
--   `yarn clean` - Sletter node_modules og lib foldere.
--   `yarn` - Installerer alle moduler
--   `yarn build` - Bygger alle applikasjoner under apps med produksjonsinnstillinger (se script i app).
--   `yarn test` - Kjører alle tester i apps og packages
+-   `pnpm clean` - Sletter node_modules og lib foldere.
+-   `pnpm install` - Installerer alle moduler
+-   `pnpm build` - Bygger alle applikasjoner under apps med produksjonsinnstillinger (se script i app).
+-   `pnpm test` - Kjører alle tester i apps og packages
+-   `pnpm build --concurrency=2` - Bygger med redusert parallellitet (anbefalt for Next.js-apper)
 
 ## Utvikle på én applikasjon
 
--   Kjør `yarn dev` for å starte bygg og watch på alt under packages.
--   Gå til aktuell app og start nødvendige dev-script der.
+-   Kjør `pnpm dev` i app-mappen for å starte dev-server.
 -   Kopier .env.example til .env i app-folder
--   Dersom det gjøres større endringer i en package, kan det være en må kjøre `yarn build-package` manuelt for at applikasjonen skal få det med seg. I VS Code kan det være en må kjøre "reload windows".
+-   Dersom det gjøres større endringer i en package, kan det være en må kjøre `pnpm build` for at applikasjonen skal få det med seg. I VS Code kan det være en må kjøre "reload windows".
 
 ## Utvikling, endringer og publisering
 
