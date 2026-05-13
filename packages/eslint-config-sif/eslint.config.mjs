@@ -4,7 +4,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import pluginReact from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import vitest from 'eslint-plugin-vitest';
+import vitest from '@vitest/eslint-plugin';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -58,8 +58,8 @@ export default [
     },
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
-    pluginReact.configs.flat.recommended,
-    jsxA11y.flatConfigs.recommended,
+    { ...pluginReact.configs.flat.recommended, files: ['**/*.{jsx,tsx}'] },
+    { ...jsxA11y.flatConfigs.recommended, files: ['**/*.{jsx,tsx}'] },
     eslintConfigPrettier,
     {
         rules: {
@@ -73,24 +73,12 @@ export default [
             'no-unused-vars': OFF,
             'no-use-before-define': OFF, // Note: you must disable the base rule as it can report incorrect errors
 
-            'jsx-a11y/no-autofocus': WARNING,
             'jsx-quotes': ['error', 'prefer-double'],
-
-            'react-hooks/rules-of-hooks': 'error',
-            'react/display-name': OFF,
-            'react/prop-types': OFF,
-            'react/react-in-jsx-scope': OFF,
-            'react/function-component-definition': [
-                OFF,
-                {
-                    namedComponents: 'arrow-function',
-                    unnamedComponents: 'arrow-function',
-                },
-            ],
-            'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
 
             'simple-import-sort/exports': ERROR,
             'simple-import-sort/imports': ERROR,
+
+            'react-hooks/rules-of-hooks': 'error',
 
             '@typescript-eslint/array-type': [ERROR, { default: 'array-simple' }],
             '@typescript-eslint/ban-ts-comment': OFF,
@@ -107,6 +95,23 @@ export default [
                     enforceForJSX: false,
                 },
             ],
+        },
+    },
+    {
+        files: ['**/*.{jsx,tsx}'],
+        rules: {
+            'jsx-a11y/no-autofocus': WARNING,
+            'react/display-name': OFF,
+            'react/prop-types': OFF,
+            'react/react-in-jsx-scope': OFF,
+            'react/function-component-definition': [
+                OFF,
+                {
+                    namedComponents: 'arrow-function',
+                    unnamedComponents: 'arrow-function',
+                },
+            ],
+            'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
         },
     },
 ];
