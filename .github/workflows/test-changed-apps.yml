@@ -29,12 +29,22 @@ jobs:
     if: ${{ !contains(github.event.head_commit.message, '[no-test]') }}
     outputs:
       apps: ${{ steps.filter.outputs.changes }}
+      any-package-changed: ${{ steps.pkg-filter.outputs.packages }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
           persist-credentials: false
           fetch-depth: 2
+
+      - name: Check changed packages
+        uses: dorny/paths-filter@v4.0.1
+        id: pkg-filter
+        with:
+          filters: |
+            packages:
+              - 'packages/**'
+              - 'yarn.lock'
 
       - name: Check changed apps
         uses: dorny/paths-filter@v4.0.1
@@ -179,7 +189,8 @@ jobs:
 
   test-omsorgsdager-kalkulator:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator')
+    if:
+      ${{ contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator')
       }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
@@ -223,7 +234,8 @@ jobs:
 
   test-opplaringspenger-soknad:
     needs: detect-changes
-    if: ${{ contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad')
+    if:
+      ${{ contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad')
       }}
     uses: ./.github/workflows/.test-app.yml
     secrets: inherit
@@ -289,6 +301,49 @@ jobs:
       use-turbo-test: true
       e2e-build-command: "e2e:build"
       run-sonar: true
+
+  test-packages:
+    name: Test changed packages
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.any-package-changed == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup .yarnrc.yml
+        run: |
+          yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+          yarn config set npmScopes.navikt.npmAlwaysAuth true
+          yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: 22
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run package tests
+        run: |
+          yarn test \
+            --filter=@navikt/sif-common-core-ds \
+            --filter=@navikt/sif-common-formik-ds \
+            --filter=@navikt/sif-common-forms-ds \
+            --filter=@navikt/sif-common-sentry \
+            --filter=@navikt/sif-common-utils \
+            --filter=@sif/rhf \
+            --filter=@sif/soknad-forms \
+            --filter=@sif/soknad-ui \
+            --filter=@sif/soknad \
+            --filter=@navikt/sif-validation \
+            --filter=@sif/ung-innsyn
 
   sif-code-scan:
     runs-on: ubuntu-latest

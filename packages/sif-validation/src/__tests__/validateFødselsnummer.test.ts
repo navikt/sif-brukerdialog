@@ -1,8 +1,8 @@
 import getFødselsnummerValidator, { ValidateFødselsnummerError } from '../getFødselsnummerValidator';
 
 describe(`validateFødselsnummer`, () => {
-    const generatedFnr = '24420167209';
-    const generatedFnr2 = '18410162721';
+    const generatedFnr = '01017100552';
+    const generatedFnr2 = '01010000382';
     const hnr = '13527248013';
 
     it('returns undefined when the fødselsnummer is valid', () => {
@@ -17,7 +17,7 @@ describe(`validateFødselsnummer`, () => {
         expect(getFødselsnummerValidator({ allowHnr: true })(hnr)).toBeUndefined();
     });
 
-    it('returns undefined when the fødselsnummer is not required and ha noe value', () => {
+    it('returns undefined when the fødselsnummer is not required and has no value', () => {
         expect(getFødselsnummerValidator({ required: false })(undefined)).toBeUndefined();
         expect(getFødselsnummerValidator({ required: false })(null)).toBeUndefined();
         expect(getFødselsnummerValidator({ required: false })('')).toBeUndefined();
