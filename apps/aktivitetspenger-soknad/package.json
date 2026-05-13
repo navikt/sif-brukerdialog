@@ -30,6 +30,7 @@
         "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-sentry": "workspace:*",
+        "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sentry/react": "10.52.0",

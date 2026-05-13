@@ -26,15 +26,22 @@
         "build-storybook": "storybook build"
     },
     "dependencies": {
+        "@navikt/aksel-icons": "8.10.5",
         "@navikt/ds-react": "8.10.5",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/sif-common-core-ds": "workspace:*",
+        "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
+        "@sentry/react": "10.52.0",
         "@sif/api": "workspace:*",
-        "@sif/rhf": "workspace:*"
+        "@sif/rhf": "workspace:*",
+        "@tanstack/react-query": "5.100.9",
+        "react-hook-form": "7.75.0",
+        "react-intl": "10.1.5"
     },
     "peerDependencies": {
         "@navikt/fnrvalidator": "2",

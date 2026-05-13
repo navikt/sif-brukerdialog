@@ -1,4 +1,4 @@
-import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
+import type { UtenlandsoppholdEnkel } from '../../utenlandsopphold/types';
 
 export interface MedlemskapSøknadsdataHarIkkeBoddSkalIkkeBo {
     type: 'harIkkeBoddSkalIkkeBo';

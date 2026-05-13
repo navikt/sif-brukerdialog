@@ -10,12 +10,14 @@
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
+        "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*"
     },
     "dependencies": {
         "@navikt/fnrvalidator": "2.2.1",
+        "@navikt/sif-common-api": "workspace:*",
         "date-fns": "4.1.0"
     },
     "devDependencies": {

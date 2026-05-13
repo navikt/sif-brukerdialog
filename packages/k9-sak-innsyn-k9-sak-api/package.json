@@ -31,8 +31,8 @@
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts",
         "download-spec": "node scripts/download-spec.mjs",
-        "codegen:dev": "CODEGEN_ENV=dev yarn download-spec && yarn openapi-ts && yarn fix-regex",
-        "codegen:prod": "CODEGEN_ENV=prod yarn download-spec && yarn openapi-ts && yarn fix-regex"
+        "codegen:dev": "CODEGEN_ENV=dev pnpm download-spec && pnpm openapi-ts && pnpm fix-regex",
+        "codegen:prod": "CODEGEN_ENV=prod pnpm download-spec && pnpm openapi-ts && pnpm fix-regex"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",

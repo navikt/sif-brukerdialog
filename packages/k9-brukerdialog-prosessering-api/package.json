@@ -26,8 +26,8 @@
     },
     "scripts": {
         "fix-regex": "node scripts/fix-generated-regex.mjs",
-        "gen-types:all:fixed": "yarn gen-types:all && yarn fix-regex",
-        "gen-types:all": "yarn gen-types:aktivitetspenger && yarn gen-types:omsorgspenger && yarn gen-types:ungdomsytelse && yarn gen-types:ettersendelse && yarn gen-types:omsorgspenger-aleneomsorg && yarn gen-types:omsorgspenger-midlertidig-alene && yarn gen-types:omsorgspengerutbetaling-arbeidstaker && yarn gen-types:omsorgspengerutbetaling-snf && yarn gen-types:opplaeringspenger && yarn gen-types:pleiepenger-livets-sluttfase && yarn gen-types:pleiepenger-sykt-barn-endringsmelding && yarn gen-types:pleiepenger-sykt-barn-soknad && yarn gen-types:legacy",
+        "gen-types:all:fixed": "pnpm gen-types:all && pnpm fix-regex",
+        "gen-types:all": "pnpm gen-types:aktivitetspenger && pnpm gen-types:omsorgspenger && pnpm gen-types:ungdomsytelse && pnpm gen-types:ettersendelse && pnpm gen-types:omsorgspenger-aleneomsorg && pnpm gen-types:omsorgspenger-midlertidig-alene && pnpm gen-types:omsorgspengerutbetaling-arbeidstaker && pnpm gen-types:omsorgspengerutbetaling-snf && pnpm gen-types:opplaeringspenger && pnpm gen-types:pleiepenger-livets-sluttfase && pnpm gen-types:pleiepenger-sykt-barn-endringsmelding && pnpm gen-types:pleiepenger-sykt-barn-soknad && pnpm gen-types:legacy",
         "gen-types:aktivitetspenger": "openapi-ts --file configs/openapi-ts.config-aktivitetspenger.ts",
         "gen-types:omsorgspenger": "openapi-ts --file configs/openapi-ts.config-omsorgspenger.ts",
         "gen-types:ungdomsytelse": "openapi-ts --file configs/openapi-ts.config-ungdomsytelse.ts",
@@ -42,8 +42,8 @@
         "gen-types:pleiepenger-sykt-barn-soknad": "openapi-ts --file configs/openapi-ts.config-pleiepenger-sykt-barn-soknad.ts",
         "gen-types:legacy": "openapi-ts --file configs/openapi-ts.config.ts",
         "download-spec": "node scripts/download-spec.mjs",
-        "codegen:dev": "CODEGEN_ENV=dev yarn download-spec && yarn gen-types:all:fixed",
-        "codegen:prod": "CODEGEN_ENV=prod yarn download-spec && yarn gen-types:all:fixed",
+        "codegen:dev": "CODEGEN_ENV=dev pnpm download-spec && pnpm gen-types:all:fixed",
+        "codegen:prod": "CODEGEN_ENV=prod pnpm download-spec && pnpm gen-types:all:fixed",
         "lint:eslint": "eslint './src/*/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/generated/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"

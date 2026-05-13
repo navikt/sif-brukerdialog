@@ -38,9 +38,12 @@
         "busboy": "1.6.0",
         "csp-header": "6.3.1",
         "dayjs": "1.11.20",
+        "formik": "2.4.9",
         "html-react-parser": "6.1.0",
         "jsdom": "28.1.0",
+        "@navikt/nav-dekoratoren-moduler": "3.7.1",
         "object-hash": "3.0.0",
+        "zod": "4.4.3",
         "react": "19.2.6",
         "react-dom": "19.2.6",
         "react-fast-compare": "3.2.2",
@@ -67,6 +70,7 @@
         "compression": "1.8.1",
         "eslint": "10.3.0",
         "eslint-plugin-storybook": "10.3.6",
+        "msw": "2.14.5",
         "express": "5.2.1",
         "helmet": "8.1.0",
         "mockdate": "3.0.5",
@@ -90,7 +94,7 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "pw:run": "yarn playwright-test",
+        "pw:run": "pnpm playwright-test",
         "pw:build": "vite build --config vite.playwright.config.ts",
         "pw:start": "vite preview --base / --config vite.playwright.config.ts",
         "storybook": "storybook dev -p 6006",
@@ -108,13 +112,13 @@
             }
         ]
     },
-    "bugs": {
-        "url": "https://github.com/navikt/sif-brukerdialog/issues"
-    },
-    "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
     "msw": {
         "workerDirectory": [
             ""
         ]
-    }
+    },
+    "bugs": {
+        "url": "https://github.com/navikt/sif-brukerdialog/issues"
+    },
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme"
 }

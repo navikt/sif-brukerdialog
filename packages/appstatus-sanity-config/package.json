@@ -41,6 +41,5 @@
         "singleQuote": true,
         "printWidth": 120,
         "ordered-imports": false
-    },
-    "packageManager": "yarn@4.3.1"
+    }
 }
