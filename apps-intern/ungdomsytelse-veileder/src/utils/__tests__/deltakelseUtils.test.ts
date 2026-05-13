@@ -28,7 +28,7 @@ const TODAY = ISODateToDate('2026-05-07');
 
 describe('deltakelseUtils', () => {
     describe('kanEndreStartdato', () => {
-        it('true når startdato er innenfor ±6 mnd, ikke utvidet, >2 mnd til kvote', () => {
+        it('true når startdato er innenfor ±10 mnd, ikke utvidet, >2 mnd til kvote', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01') });
             expect(kanEndreStartdato(deltakelse, TODAY)).toBe(true);
         });
@@ -46,7 +46,7 @@ describe('deltakelseUtils', () => {
             expect(kanEndreStartdato(deltakelse, TODAY)).toBe(false);
         });
 
-        it('false når startdato er utenfor ±6 mnd vindu', () => {
+        it('false når startdato er utenfor ±10 mnd vindu', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2025-01-01') });
             expect(kanEndreStartdato(deltakelse, TODAY)).toBe(false);
         });
@@ -147,6 +147,15 @@ describe('deltakelseUtils', () => {
                 søktTidspunkt: new Date(),
             });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
+        });
+
+        it('true når tilOgMed er i fremtiden og innenfor siste 2 måneder før kvoteutløp', () => {
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                kvoteMaksDato: ISODateToDate('2026-06-01'),
+                tilOgMed: ISODateToDate('2026-05-20'),
+            });
+            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(true);
         });
     });
 
