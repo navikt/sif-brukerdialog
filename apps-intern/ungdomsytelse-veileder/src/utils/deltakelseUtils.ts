@@ -9,7 +9,7 @@ import { Deltakelse } from '../types/Deltakelse';
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
 
 /** Startdato kan ikke endres når det er færre enn dette antall måneder til kvoteutløp */
-export const MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING = 2;
+export const MÅNEDER_KVOTE_KAN_ENDRES = 2;
 
 const getEndringsperiode = (today: Date): DateRange => ({
     from: dayjs(today).subtract(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
@@ -22,7 +22,7 @@ const kvoteErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
 
 const erInnenforSisteMånederFørKvoteutløp = (deltakelse: Deltakelse, today: Date): boolean => {
     return dayjs(today).isSameOrAfter(
-        dayjs(deltakelse.kvoteMaksDato).subtract(MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING, 'months'),
+        dayjs(deltakelse.kvoteMaksDato).subtract(MÅNEDER_KVOTE_KAN_ENDRES, 'months'),
         'day',
     );
 };
@@ -57,8 +57,11 @@ export const deltakelseKvoteErUtløpt = (deltakelse: Deltakelse, today: Date = g
     return kvoteErUtløpt(deltakelse, today);
 };
 
-export const deltakelseSluttdatoErIFremtid = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isAfter(today, 'day') : false;
+export const deltakelseSluttdatoErIDagEllerFremover = (
+    deltakelse: Deltakelse,
+    today: Date = getDateToday(),
+): boolean => {
+    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isSameOrAfter(today, 'day') : false;
 };
 
 export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
@@ -73,8 +76,8 @@ export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDa
         deltakelse.harUtvidetKvote === false &&
         // Deltaker har ikke kvote som er utløpt
         !kvoteErUtløpt(deltakelse, today) &&
-        // Deltaker har ikke sluttdato eller sluttdato er i fremtiden
-        (deltakelse.tilOgMed === undefined || deltakelseSluttdatoErIFremtid(deltakelse, today)) &&
+        // Deltaker har ikke sluttdato eller sluttdato er i dag eller i fremtiden
+        (deltakelse.tilOgMed === undefined || deltakelseSluttdatoErIDagEllerFremover(deltakelse, today)) &&
         // Deltaker er innenfor siste måneder før kvoteutløp
         erInnenforSisteMånederFørKvoteutløp(deltakelse, today)
     );
