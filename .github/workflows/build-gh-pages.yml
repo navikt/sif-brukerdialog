@@ -38,7 +38,7 @@ jobs:
 
       # Installer avhengigheter
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
