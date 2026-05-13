@@ -30,24 +30,21 @@ jobs:
               with:
                   persist-credentials: false
 
-            - name: Setup .yarnrc.yml
-              run: |
-                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
-                  yarn config set npmScopes.navikt.npmAlwaysAuth true
-                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 10.10.0
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v6.4.0
               with:
                   node-version: 22
-                  cache: "yarn"
+                  cache: "pnpm"
 
-            - name: Install dependencies (yarn)
-              run: yarn install --immutable
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Copy .env.dev for next.js build
               if: ${{ inputs.is-next-app == true }}
@@ -57,7 +54,7 @@ jobs:
                   cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/.env.production
 
             - name: Build application
-              run: yarn turbo run build --filter=@navikt/${{ inputs.app-name }}
+              run: pnpm turbo run build --filter=@navikt/${{ inputs.app-name }}
               env:
                   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
@@ -76,7 +73,7 @@ jobs:
                   build_args: |
                       VITE_BUILD_MODE=development
                   build_secrets: |
-                      PACKAGES_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
+                      NPM_TOKEN=${{ secrets.READER_TOKEN }}
 
             - name: Deploy to dev
               uses: nais/deploy/actions/deploy@v2
