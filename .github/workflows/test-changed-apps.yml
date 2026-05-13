@@ -44,6 +44,7 @@ jobs:
           filters: |
             packages:
               - 'packages/**'
+              - 'yarn.lock'
 
       - name: Check changed apps
         uses: dorny/paths-filter@v4.0.1
