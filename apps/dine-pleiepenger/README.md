@@ -6,11 +6,9 @@ Innsynsløsning på nav.no for dem som har søkt om Pleiepenger for sykt barn.
 # Installer prosjekt
 pnpm install
 
-# Start Next.js med MSW mocking (ingen backend nødvendig)
+# Start Next.js med MSW mocking
 pnpm dev
 
-# Start Next.js mot ekte backend (krever VPN/tilgang)
-pnpm dev
 ```
 
 **Bytte mock-scenario:**
