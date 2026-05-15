@@ -119,7 +119,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn pw:dev',
+        command: 'pnpm pw:dev',
         url: 'http://127.0.0.1:4173/<app-base-path>/',
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,
@@ -382,14 +382,14 @@ await testAccessibility(page); // for tidlig — siden kan være tom
 Kjør i app-workspace:
 
 ```bash
-yarn pw:run
-yarn check:types
+pnpm pw:run
+pnpm check:types
 ```
 
 ## Ferdig-kriterier
 
-- `yarn pw:run` passerer lokalt.
-- `yarn check:types` passerer lokalt.
+- `pnpm pw:run` passerer lokalt.
+- `pnpm check:types` passerer lokalt.
 - Testene bruker BrowserRouter-flyt (ikke demo/HashRouter).
 - A11y-scan er inkludert i minst forside- og sentral flyttest.
 
@@ -397,4 +397,4 @@ yarn check:types
 
 - Fase 1: Etabler oppsett (config, scripts, dependencies, tsconfig).
 - Fase 2: Legg til første flyttester med a11y-scan.
-- Fase 3: Verifiser `yarn pw:run` og `yarn check:types`.
+- Fase 3: Verifiser `pnpm pw:run` og `pnpm check:types`.
