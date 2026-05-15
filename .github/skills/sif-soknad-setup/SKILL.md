@@ -216,4 +216,4 @@ Navngivingsprinsipp for delte lenker:
 - [ ] `pages/index.ts` og `steps/index.ts` opprettet
 - [ ] `ScenarioHeader.tsx` opprettet og montert i `App.tsx`
 - [ ] `sentry/instrument.ts` og `SifQueryClientProvider.tsx` opprettet
-- [ ] `yarn check:types` passerer
+- [ ] `pnpm check:types` passerer
