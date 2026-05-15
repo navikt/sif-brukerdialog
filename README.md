@@ -6,7 +6,7 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 
 - `pnpm clean` - Kaller turbo clean.
 - `pnpm clean-all` - Sletter node_modules og lib foldere.
-- `pnpm install` - Installerer alle moduler
+- `pnpm install` - Installchangesets/action@v1.7.0rer alle moduler
 - `pnpm build` - Bygger alle applikasjoner under apps med produksjonsinnstillinger (se script i app).
 - `pnpm test` - Kjører alle tester i apps og packages
 - `pnpm build --concurrency=2` - Bygger med redusert parallellitet (anbefalt for Next.js-apper)
@@ -19,7 +19,7 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 
 ## Utvikling, endringer og publisering
 
-- -Vi bruker @changesets/cli for å holde orden på versjoner. Se https://www.npmjs.com/package/@changesets/cli for mer informasjon om hvordan det brukes-.
+- Vi bruker @changesets/cli for å holde orden på versjoner. Se https://www.npmjs.com/package/@changesets/cli for mer informasjon om hvordan det brukes-.
 
 ## Produksjonssetting av applikasjoner
 
