@@ -1,0 +1,9 @@
+packages:
+  - "apps/*"
+  - "apps-intern/*"
+  - "packages/*"
+  - "server"
+  - "server-ungdomsytelse-veileder"
+
+minimumReleaseAge: 4320
+trustPolicy: no-downgrade
