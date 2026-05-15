@@ -5,6 +5,9 @@
     "type": "module",
     "version": "1.0.20",
     "private": true,
+    "dependencies": {
+        "react-intl": "10.1.5"
+    },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
