@@ -5,5 +5,5 @@ packages:
   - "server"
   - "server-ungdomsytelse-veileder"
 
-minimumReleaseAge: 7200
+minimumReleaseAge: 4320
 trustPolicy: no-downgrade
