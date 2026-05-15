@@ -3,7 +3,8 @@
     "compilerOptions": {
         "outDir": "./lib",
         "skipLibCheck": true,
-        "noEmit": true
+        "noEmit": true,
+        "types": ["vitest/globals"]
     },
     "exclude": ["node_modules", "lib", "dist", ".turbo"],
     "include": ["src/**/*"]

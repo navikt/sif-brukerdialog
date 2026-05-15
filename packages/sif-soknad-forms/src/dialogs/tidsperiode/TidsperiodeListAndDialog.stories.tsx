@@ -35,7 +35,7 @@ function TidsperiodeListAndDialogStory({ tidsperioder }: StoryProps) {
     );
 }
 
-const meta = {
+const meta: Meta<typeof TidsperiodeListAndDialogStory> = {
     title: 'Dialogs/Tidsperiode/ListAndDialog',
     component: TidsperiodeListAndDialogStory,
     decorators: [

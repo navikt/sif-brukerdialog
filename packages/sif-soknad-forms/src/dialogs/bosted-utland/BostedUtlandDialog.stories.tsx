@@ -57,7 +57,7 @@ function BostedUtlandDialogStory(props: StoryProps) {
     );
 }
 
-const meta = {
+const meta: Meta<typeof BostedUtlandDialogStory> = {
     title: 'Dialogs/BostedUtland/Dialog',
     component: BostedUtlandDialogStory,
     decorators: [

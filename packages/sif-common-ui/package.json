@@ -21,6 +21,7 @@
         "sass-embedded": "1.99.0"
     },
     "devDependencies": {
+        "@navikt/sif-common-analytics": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.3.6",
         "@storybook/react-vite": "10.3.6",
@@ -38,6 +39,7 @@
         "react": "19.2.6",
         "react-dom": "19.2.6",
         "react-intl": "10.1.5",
+        "react-router-dom": "7.15.0",
         "storybook": "10.3.6",
         "typescript": "6.0.3",
         "webpack": "5.106.2"

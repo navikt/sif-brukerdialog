@@ -27,7 +27,7 @@ function VirksomhetFormAndInfoStory({ virksomhet: initialVirksomhet }: StoryProp
     );
 }
 
-const meta = {
+const meta: Meta<typeof VirksomhetFormAndInfoStory> = {
     title: 'Dialogs/Virksomhet/FormAndInfo',
     component: VirksomhetFormAndInfoStory,
     decorators: [
