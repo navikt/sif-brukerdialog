@@ -4,3 +4,6 @@ packages:
   - "packages/*"
   - "server"
   - "server-ungdomsytelse-veileder"
+
+minimumReleaseAge: 7200
+trustPolicy: no-downgrade

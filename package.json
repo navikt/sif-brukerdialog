@@ -50,7 +50,7 @@
         "codegen:prod": "turbo run codegen:prod",
         "deploy-gh-pages": "gh-pages -d gh-pages"
     },
-    "packageManager": "pnpm@10.10.0",
+    "packageManager": "pnpm@10.33.4",
     "pnpm": {
         "overrides": {
             "jsdom": "28.0.0",
