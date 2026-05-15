@@ -9,7 +9,7 @@ export default defineConfig({
             include: '**/*.{tsx}',
         }),
         // TypeScript checking disabled in Vite to avoid errors from external generated files
-        // Use 'yarn check:types' for TypeScript validation
+        // Use 'pnpm check:types' for TypeScript validation
         checker({ typescript: false }),
         {
             name: 'crossorigin',

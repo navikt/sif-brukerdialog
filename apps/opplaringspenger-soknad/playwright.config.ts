@@ -21,7 +21,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn pw:build && yarn pw:start',
+        command: 'pnpm pw:build && pnpm pw:start',
         url: 'http://localhost:8080',
         reuseExistingServer: true,
     },
