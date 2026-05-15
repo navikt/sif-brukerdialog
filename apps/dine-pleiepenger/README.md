@@ -4,19 +4,17 @@ Innsynsløsning på nav.no for dem som har søkt om Pleiepenger for sykt barn.
 
 ```bash
 # Installer prosjekt
-yarn install
+pnpm install
 
-# Start Next.js med MSW mocking (ingen backend nødvendig)
-yarn dev:mock
+# Start Next.js med MSW mocking
+pnpm dev
 
-# Start Next.js mot ekte backend (krever VPN/tilgang)
-yarn dev
 ```
 
 **Bytte mock-scenario:**
 
 ```bash
-MOCK_SCENARIO=en-sak yarn dev:mock
+MOCK_SCENARIO=en-sak pnpm dev
 ```
 
 #### Storybook
@@ -24,7 +22,7 @@ MOCK_SCENARIO=en-sak yarn dev:mock
 Komponenter og sider er lagt inn i storybook. Start lokalt ved å kjøre:
 
 ```bash
-yarn storybook
+pnpm storybook
 ```
 
 #### Henvendelser

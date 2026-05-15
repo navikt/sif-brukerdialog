@@ -6,12 +6,12 @@
 
 For å kjøre opp app-en i dev:
 
-1.  `yarn install`.
-2.  `yarn dev`.
+1.  `pnpm install`.
+2.  `pnpm dev`.
 
 For å kjøre enhetstester:
 
-1.  `yarn test`.
+1.  `pnpm test`.
 
 ## Henvendelser
 
