@@ -9,7 +9,7 @@ RUN apk fix \
     && rm -rf /var/cache/apk/*
 
 RUN npm install -g turbo
-RUN npm install -g corepack --force && corepack enable && corepack prepare pnpm@10.33.4 --activate
+RUN npm install -g pnpm@10.33.4
 
 #########################################
 # PRUNE
