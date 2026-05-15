@@ -9,7 +9,7 @@ permissions: {}
 jobs:
     deploy-endringsmelding-pleiepenger:
         name: Deploy endringsmelding-pleiepenger to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -20,7 +20,7 @@ jobs:
 
     deploy-aktivitetspenger-innsyn:
         name: Deploy aktivitetspenger-innsyn to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -31,7 +31,7 @@ jobs:
 
     deploy-aktivitetspenger-soknad:
         name: Deploy aktivitetspenger-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -42,7 +42,7 @@ jobs:
 
     deploy-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
         name: Deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -53,7 +53,7 @@ jobs:
 
     deploy-omsorgspengesoknad:
         name: Deploy omsorgspengesoknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -75,7 +75,7 @@ jobs:
 
     deploy-omsorgspengerutbetaling-soknad:
         name: Deploy omsorgspengerutbetaling-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -86,7 +86,7 @@ jobs:
 
     deploy-omsorgspengerutbetaling-arbeidstaker-soknad:
         name: Deploy omsorgspengerutbetaling-arbeidstaker-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -97,7 +97,7 @@ jobs:
 
     deploy-pleiepenger-i-livets-sluttfase-soknad:
         name: Deploy pleiepenger-i-livets-sluttfase-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -108,7 +108,7 @@ jobs:
 
     deploy-pleiepenger-sykt-barn:
         name: Deploy pleiepenger-sykt-barn to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -119,7 +119,7 @@ jobs:
 
     deploy-sif-ettersending:
         name: Deploy sif-ettersending to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -130,7 +130,7 @@ jobs:
 
     deploy-opplaringspenger-soknad:
         name: Deploy opplaringspenger-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -141,7 +141,7 @@ jobs:
 
     deploy-dine-pleiepenger:
         name: Deploy dine pleiepenger to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
@@ -164,7 +164,7 @@ jobs:
 
     deploy-ungdomsytelse-deltaker:
         name: Deploy ungdomsytelse-deltaker to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@chore/migrate-yarn-to-pnpm
         secrets: inherit
         permissions:
             contents: read
