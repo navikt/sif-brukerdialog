@@ -11,7 +11,10 @@ on:
       - "nais-config/**/*"
       - "server/**/*"
       - "server-ungdomsytelse-veileder/**/*"
-      - "yarn.lock"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".npmrc"
+      - "package.json"
       - ".github/workflows/.test-app.yml"
       - ".github/workflows/test-changed-apps.yml"
 
@@ -44,7 +47,7 @@ jobs:
           filters: |
             packages:
               - 'packages/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
 
       - name: Check changed apps
         uses: dorny/paths-filter@v4.0.1
@@ -56,91 +59,91 @@ jobs:
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             dine-pleiepenger:
               - 'apps/dine-pleiepenger/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
               - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             endringsmelding-pleiepenger:
               - 'apps/endringsmelding-pleiepenger/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             omsorgsdager-aleneomsorg-dialog:
               - 'apps/omsorgsdager-aleneomsorg-dialog/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             omsorgsdager-kalkulator:
               - 'apps/omsorgsdager-kalkulator/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             omsorgspengerutbetaling-arbeidstaker-soknad:
               - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             omsorgspengerutbetaling-soknad:
               - 'apps/omsorgspengerutbetaling-soknad/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             omsorgspengesoknad:
               - 'apps/omsorgspengesoknad/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             opplaringspenger-soknad:
               - 'apps/opplaringspenger-soknad/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             pleiepenger-i-livets-sluttfase-soknad:
               - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             pleiepenger-sykt-barn:
               - 'apps/pleiepenger-sykt-barn/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             sif-ettersending:
               - 'apps/sif-ettersending/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             ungdomsytelse-deltaker:
               - 'apps/ungdomsytelse-deltaker/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
             ungdomsytelse-veileder:
               - 'apps-intern/ungdomsytelse-veileder/**'
               - 'packages/**'
               - 'nais-config/**'
               - 'server-ungdomsytelse-veileder/**'
-              - 'yarn.lock'
+              - 'pnpm-lock.yaml'
 
   test-dine-pleiepenger:
     needs: detect-changes
@@ -313,26 +316,22 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup .yarnrc.yml
-        run: |
-          yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
-          yarn config set npmScopes.navikt.npmAlwaysAuth true
-          yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
       - name: Setup Node.js environment
         uses: actions/setup-node@v6.4.0
         with:
           node-version: 22
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --frozen-lockfile
+        env:
+          NPM_TOKEN: ${{ secrets.READER_TOKEN }}
 
       - name: Run package tests
         run: |
-          yarn test \
+          pnpm test \
             --filter=@navikt/sif-common-core-ds \
             --filter=@navikt/sif-common-formik-ds \
             --filter=@navikt/sif-common-forms-ds \
