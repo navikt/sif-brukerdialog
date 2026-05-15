@@ -12,6 +12,9 @@ on:
       - "server/**/*"
       - "server-ungdomsytelse-veileder/**/*"
       - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".npmrc"
+      - "package.json"
       - ".github/workflows/.test-app.yml"
       - ".github/workflows/test-changed-apps.yml"
 
