@@ -47,7 +47,7 @@ Korte beslutninger som skal hjelpe neste migrering.
 
 ### D-006 Verifisering etter bootstrap
 
-- Beslutning: Etter bootstrap kjores fast valideringsrekkefolge i app-workspace: `yarn check:types`, `yarn lint:eslint`, `yarn build`, `yarn dev`, `yarn storybook`.
+- Beslutning: Etter bootstrap kjores fast valideringsrekkefolge i app-workspace: `pnpm check:types`, `pnpm lint:eslint`, `pnpm build`, `pnpm dev`, `pnpm storybook`.
 - Hvorfor: Fanger tidlig feil i config og runtime-forutsetninger for den nye appen, for man begynner feature-migrering.
-- Gjenbruk i neste app: Forvent at `yarn test` kan feile med "No test files found" i bootstrapfasen; legg til tester senere i appfasen.
+- Gjenbruk i neste app: Forvent at `pnpm test` kan feile med "No test files found" i bootstrapfasen; legg til tester senere i appfasen.
 - Etappe: sif-soknad

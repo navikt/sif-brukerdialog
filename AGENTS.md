@@ -13,17 +13,17 @@ Monorepo for selvbetjeningsdialoger og fellespakker i Sykdom i familien.
 
 - TypeScript and JavaScript
 - React and Next.js apps
-- Yarn 4 workspaces
+- pnpm workspaces
 - Turborepo
 - Vitest
 
 ## Build and Test Commands
 
 ```bash
-yarn install --immutable
-yarn build
-yarn lint
-yarn test
+pnpm install --frozen-lockfile
+pnpm build
+pnpm lint
+pnpm test
 ```
 
 For targeted work, run commands from the affected workspace where possible.
@@ -40,7 +40,7 @@ For targeted work, run commands from the affected workspace where possible.
 ### Always
 
 - Keep changes scoped to the requested area.
-- Keep configuration consistent with Yarn 4 and Turbo.
+- Keep configuration consistent with pnpm and Turbo.
 
 ### Ask First
 
@@ -52,3 +52,4 @@ For targeted work, run commands from the affected workspace where possible.
 
 - Commit secrets
 - Disable tests or lint checks to make CI pass
+- Merge pull requests (review and merge er utført av menneske)

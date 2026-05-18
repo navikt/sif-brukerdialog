@@ -9,5 +9,5 @@ Se README til sif-brukerdialog
 # Storybook
 
 ```
-yarn storybook
+pnpm storybook
 ```

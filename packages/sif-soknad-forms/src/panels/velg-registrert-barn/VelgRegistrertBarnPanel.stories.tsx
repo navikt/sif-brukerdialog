@@ -41,7 +41,7 @@ function VelgRegistrertBarnPanelStory(props: StoryProps) {
     return <VelgRegistrertBarnPanel<FormValues> name="barn" {...props} />;
 }
 
-const meta = {
+const meta: Meta<typeof VelgRegistrertBarnPanelStory> = {
     title: 'Panels/VelgRegistrertBarnPanel',
     component: VelgRegistrertBarnPanelStory,
     decorators: [

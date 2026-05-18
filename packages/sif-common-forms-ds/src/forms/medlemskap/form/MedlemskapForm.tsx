@@ -6,8 +6,8 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
-import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
+import type { UtenlandsoppholdEnkel } from '../../utenlandsopphold/types';
+import BostedUtlandListAndDialog from '../../bosted-utland/BostedUtlandListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';

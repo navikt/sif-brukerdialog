@@ -59,7 +59,7 @@ function FraværListAndDialogStory({ fraværPerioder, fraværDager }: StoryProps
     );
 }
 
-const meta = {
+const meta: Meta<typeof FraværListAndDialogStory> = {
     title: 'Dialogs/Fravær/ListAndDialog',
     component: FraværListAndDialogStory,
     decorators: [

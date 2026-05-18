@@ -15,5 +15,7 @@ jobs:
               with:
                   node-version: 22
 
-            - run: corepack enable
-            - run: yarn install --immutable
+            - uses: pnpm/action-setup@v4
+            - run: pnpm install --frozen-lockfile
+              env:
+                  NPM_TOKEN: ${{ secrets.READER_TOKEN }}

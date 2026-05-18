@@ -1,5 +1,5 @@
-name: Deploy alle søknader to dev
-run-name: Deploy alle søknader to dev (${{github.ref_name}})
+name: Deploy all apps to dev
+run-name: Deploy all apps to dev (${{github.ref_name}})
 
 on:
     workflow_dispatch:

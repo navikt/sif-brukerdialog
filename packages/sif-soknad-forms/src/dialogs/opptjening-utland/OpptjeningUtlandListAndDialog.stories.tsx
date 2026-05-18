@@ -38,7 +38,7 @@ function OpptjeningUtlandListAndDialogStory({ opptjeninger }: StoryProps) {
     );
 }
 
-const meta = {
+const meta: Meta<typeof OpptjeningUtlandListAndDialogStory> = {
     title: 'Dialogs/OpptjeningUtland/ListAndDialog',
     component: OpptjeningUtlandListAndDialogStory,
     decorators: [

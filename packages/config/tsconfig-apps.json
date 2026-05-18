@@ -1,7 +1,6 @@
 {
     "extends": "../config/tsconfig-base.json",
     "compilerOptions": {
-        "lib": ["ES2022", "DOM"],
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "../../node_modules"]
+        "lib": ["ES2022", "DOM"]
     }
 }

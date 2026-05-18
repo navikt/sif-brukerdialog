@@ -357,7 +357,7 @@ Legg til `@sif/rhf` i `dependencies` for workspacen:
 "@sif/rhf": "workspace:*"
 ```
 
-Kjør `yarn install` etterpå for å lenke pakken.
+Kjør `pnpm install` etterpå for å lenke pakken.
 
 ## DateRange-import
 

@@ -181,7 +181,7 @@ export function formatGeneratedFiles(globPath) {
         cwd,
     });
 
-    execSync(`yarn lint:fix`, {
+    execSync(`pnpm lint:fix`, {
         stdio: 'pipe',
         cwd,
     });

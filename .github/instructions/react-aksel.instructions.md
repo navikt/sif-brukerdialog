@@ -33,8 +33,8 @@ Use these instructions for non-Next React apps in this monorepo.
 - Run targeted checks in the affected app first.
 - In the workspace, use available scripts (for example `lint:eslint`, `lint:tsc`, `lint:fix`, `test`) instead of assuming `lint` exists.
 - Use root scripts only for broader verification:
-    - `yarn lint`
-    - `yarn test`
+    - `pnpm lint`
+    - `pnpm test`
 
 ## Accessibility
 

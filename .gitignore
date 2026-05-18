@@ -55,12 +55,7 @@ test-results
 openapi-spec.json
 specs/*.json
 
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+.yarn/
 
 build-storybook.log
 *storybook.log

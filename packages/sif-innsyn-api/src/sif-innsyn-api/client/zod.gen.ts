@@ -3,8 +3,8 @@
 import * as z from 'zod';
 
 export const zAktørBytteRequest = z.object({
-    gyldigAktør: z.string().min(0).max(20).regex(/^\d+$/),
-    utgåttAktør: z.string().min(0).max(20).regex(/^\d+$/),
+    gyldigAktør: z.string().min(0).max(20),
+    utgåttAktør: z.string().min(0).max(20),
 });
 
 export const zAktørBytteRespons = z.object({
@@ -25,7 +25,7 @@ export const zAnnenForelder = z.object({
     situasjon: z.enum(['INNLAGT_I_HELSEINSTITUSJON', 'UTØVER_VERNEPLIKT', 'FENGSEL', 'SYKDOM', 'ANNET']),
     situasjonBeskrivelse: z
         .string()
-        .regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}«»]+$/u)
+
         .optional(),
 });
 
@@ -128,11 +128,7 @@ export const zJournalpost = z.object({
     inneholderInfomasjonSomIkkeKanPunsjes: z.boolean(),
     inneholderInformasjonSomIkkeKanPunsjes: z.boolean(),
     inneholderMedisinskeOpplysninger: z.boolean(),
-    journalpostId: z
-        .string()
-        .min(3)
-        .max(50)
-        .regex(/^[\p{Alnum}]+$/u),
+    journalpostId: z.string().min(3).max(50),
 });
 
 export const zKursholder = z.object({
@@ -141,7 +137,7 @@ export const zKursholder = z.object({
         .string()
         .min(0)
         .max(100)
-        .regex(/^[\p{Pd}\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}§]*$/u)
+
         .optional(),
 });
 
@@ -202,7 +198,7 @@ export const zReise = z.object({
         .string()
         .min(0)
         .max(4000)
-        .regex(/^[\p{Pd}\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}§]*$/u)
+
         .optional(),
     reiserUtenforKursdager: z.boolean(),
 });
@@ -242,7 +238,7 @@ export const zSelvstendigNæringsdrivendePeriodeInfo = z.object({
     bruttoInntekt: z.number().gte(0).lte(10000000).optional(),
     endringBegrunnelse: z
         .string()
-        .regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}§]+$/u)
+
         .optional(),
     endringDato: z.iso.date().optional(),
     erFiskerPåBladB: z.boolean().optional(),
@@ -253,11 +249,11 @@ export const zSelvstendigNæringsdrivendePeriodeInfo = z.object({
     registrertIUtlandet: z.boolean().optional(),
     regnskapsførerNavn: z
         .string()
-        .regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/u)
+
         .optional(),
     regnskapsførerTlf: z
         .string()
-        .regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/u)
+
         .optional(),
     virksomhetstyper: z.array(z.enum(['DAGMAMMA', 'FISKE', 'JORDBRUK_SKOGBRUK', 'ANNEN', '-'])).min(1),
 });
@@ -267,7 +263,7 @@ export const zSelvstendigNæringsdrivende = z.object({
     perioder: z.record(z.string(), zSelvstendigNæringsdrivendePeriodeInfo),
     virksomhetNavn: z
         .string()
-        .regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/u)
+
         .optional(),
 });
 
@@ -278,9 +274,9 @@ export const zSøker = z.object({
 export const zSøknadDto = z.object({
     behandlingsdato: z.iso.date().nullish(),
     dokumenter: z.array(zDokumentDto),
-    endret: z.iso.datetime().nullish(),
+    endret: z.iso.datetime({ local: true }).nullish(),
     journalpostId: z.string(),
-    opprettet: z.iso.datetime().nullish(),
+    opprettet: z.iso.datetime({ local: true }).nullish(),
     saksId: z.string().nullish(),
     status: z.enum(['MOTTATT', 'UNDER_BEHANDLING', 'FERDIG_BEHANDLET']),
     søknad: z.record(z.string(), z.unknown()),
@@ -304,7 +300,7 @@ export const zTilsynsordning = z.object({
 
 export const zUtenlandskArbeidsforhold = z.object({
     ansettelsePeriode: z.string(),
-    arbeidsgiversnavn: z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/u),
+    arbeidsgiversnavn: z.string(),
     land: z.string(),
 });
 
@@ -370,7 +366,7 @@ export const zOmsorgspengerKroniskSyktBarn = zYtelse.and(
             .string()
             .min(1)
             .max(1000)
-            .regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}§]+$/u)
+
             .optional(),
         kroniskEllerFunksjonshemming: z.boolean(),
         type: z.literal('OmsorgspengerKroniskSyktBarn'),
@@ -473,7 +469,7 @@ export const zSøknad = z.object({
     begrunnelseForInnsending: zBegrunnelseForInnsending.optional(),
     journalposter: z.array(zJournalpost).min(0).max(1000).optional(),
     kildesystem: z.string().optional(),
-    mottattDato: z.iso.datetime(),
+    mottattDato: z.iso.datetime({ local: true }),
     språk: z.enum(['nb', 'nn']).optional(),
     søker: zSøker,
     søknadId: z.string(),
@@ -530,7 +526,7 @@ export const zSøknadWritable = z.object({
     begrunnelseForInnsending: zBegrunnelseForInnsending.optional(),
     journalposter: z.array(zJournalpost).min(0).max(1000).optional(),
     kildesystem: z.string().optional(),
-    mottattDato: z.iso.datetime(),
+    mottattDato: z.iso.datetime({ local: true }),
     språk: z.enum(['nb', 'nn']).optional(),
     søker: zSøker,
     søknadId: z.string(),
@@ -563,9 +559,9 @@ export const zHentDokumentOversiktQuery = z.object({
 export const zHentDokumentOversiktResponse = z.array(zDokumentDto);
 
 export const zHentDokumentPath = z.object({
-    journalpostId: z.string().regex(/\d{9}/),
-    dokumentInfoId: z.string().regex(/\d{9}/),
-    variantFormat: z.string().regex(/ARKIV/),
+    journalpostId: z.string(),
+    dokumentInfoId: z.string(),
+    variantFormat: z.string(),
 });
 
 export const zHentDokumentQuery = z.object({

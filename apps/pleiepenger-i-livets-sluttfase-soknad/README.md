@@ -8,12 +8,12 @@ Selvbetjeningsløsning for søknad om pleiepenger ved pleie i hjemmet av nærst�
 
 For å kjøre opp app-en i dev:
 
-1.  `yarn`.
-2.  `yarn dev`.
+1.  `pnpm install`.
+2.  `pnpm dev`.
 
 For å kjøre enhetstester:
 
-1.  `yarn && yarn test`.
+1.  `pnpm install && pnpm test`.
 
 ## Henvendelser
 

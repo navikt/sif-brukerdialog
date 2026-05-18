@@ -8,7 +8,8 @@ RUN apk fix \
     && apk add --no-cache --update libc6-compat tini \
     && rm -rf /var/cache/apk/*
 
-RUN yarn global add turbo
+RUN npm install -g turbo
+RUN npm install -g pnpm@10.33.4
 
 #########################################
 # PRUNE
@@ -27,18 +28,17 @@ RUN turbo prune --scope=${SCOPE} --scope=@navikt/sif-server --docker
 FROM base AS installer
 WORKDIR /app
 
-# Kopier yarn-konfigurasjon fra workspace (ikke inkludert i turbo prune output)
-COPY .yarnrc.yml ./
-COPY .yarn/releases/ ./.yarn/releases/
+# Kopier npm-konfigurasjon fra workspace (ikke inkludert i turbo prune output)
+COPY .npmrc ./
 
 # Kopier pruned lockfile og package.json filer
 COPY --from=prune /app/out/json/ ./
-COPY --from=prune /app/out/yarn.lock ./yarn.lock
+COPY --from=prune /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 
 
 # Installer avhengigheter med pruned lockfile (inkl. dev)
-RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
-    PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn install --immutable
+RUN --mount=type=secret,id=NPM_TOKEN \
+    NPM_TOKEN=$(cat /run/secrets/NPM_TOKEN) pnpm install --frozen-lockfile
 
 # Kopier pruned kildekode
 COPY --from=prune /app/out/full/ ./
@@ -52,8 +52,8 @@ COPY apps/${APP}/env.schema.ts ${SERVER}/src/env.schema.ts
 
 FROM installer AS server-build
 WORKDIR /app/${SERVER}
-RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
-    PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn build
+RUN --mount=type=secret,id=NPM_TOKEN \
+    NPM_TOKEN=$(cat /run/secrets/NPM_TOKEN) pnpm build
 
 
 #########################################
@@ -63,9 +63,9 @@ RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
 FROM installer AS client-build
 ARG VITE_BUILD_MODE=production
 WORKDIR /app
-RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
-    PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) \
-    yarn turbo run build --filter=${SCOPE} \
+RUN --mount=type=secret,id=NPM_TOKEN \
+    NPM_TOKEN=$(cat /run/secrets/NPM_TOKEN) \
+    pnpm turbo run build --filter=${SCOPE} \
     -- --mode ${VITE_BUILD_MODE}
 RUN mv /app/apps/${APP}/dist /public
 
@@ -73,12 +73,12 @@ RUN mv /app/apps/${APP}/dist /public
 #########################################
 # SERVER RUNTIME
 #########################################
-# Starter fra fresh node-image for å unngå å ta med npm/yarn/turbo fra base
+# Starter fra fresh node-image for å unngå å ta med npm/pnpm/turbo fra base
 FROM node:25-alpine AS server
 WORKDIR /app
 ENV SERVER="server"
 
-# Installer kun tini - trenger ikke npm/yarn i produksjon
+# Installer kun tini - trenger ikke npm/pnpm i produksjon
 RUN apk add --no-cache tini && rm -rf /var/cache/apk/*
 
 # Kopier bygget server

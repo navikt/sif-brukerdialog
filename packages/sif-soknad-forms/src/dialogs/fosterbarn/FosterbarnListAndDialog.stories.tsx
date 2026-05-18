@@ -28,7 +28,7 @@ function FosterbarnListAndDialogStory({ fosterbarn }: StoryProps) {
     );
 }
 
-const meta = {
+const meta: Meta<typeof FosterbarnListAndDialogStory> = {
     title: 'Dialogs/Fosterbarn/ListAndDialog',
     component: FosterbarnListAndDialogStory,
     decorators: [

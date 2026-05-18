@@ -5,8 +5,12 @@
     "type": "module",
     "version": "1.0.20",
     "private": true,
+    "dependencies": {
+        "react-intl": "10.1.5"
+    },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
+        "@navikt/sif-common-env": "workspace:*",
         "config": "workspace:*",
         "postcss": "8.5.14",
         "typescript": "6.0.3",
