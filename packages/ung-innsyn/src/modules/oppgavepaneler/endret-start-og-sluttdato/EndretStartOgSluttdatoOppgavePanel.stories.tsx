@@ -10,7 +10,7 @@ import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { EndretStartOgSluttdatoOppgavePanel } from './EndretStartOgSluttdatoOppgavePanel';
 
 const meta: Meta = {
-    title: 'Oppgaver/5. Endret startdato og sluttdato',
+    title: 'Oppgaver/Ungdomsprogramytelsen/Endret startdato og sluttdato',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };

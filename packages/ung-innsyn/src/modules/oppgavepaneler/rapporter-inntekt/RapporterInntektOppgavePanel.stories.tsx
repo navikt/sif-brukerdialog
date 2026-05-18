@@ -9,7 +9,7 @@ import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { RapporterInntektOppgavePanel } from './RapporterInntektOppgavePanel';
 const meta: Meta = {
-    title: 'Oppgaver/8. Rapporter inntekt',
+    title: 'Oppgaver/Ungdomsprogramytelsen/Rapporter inntekt',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };

@@ -9,7 +9,7 @@ import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { MeldtUtOppgavePanel } from './MeldtUtOppgavePanel';
 const meta: Meta = {
-    title: 'Oppgaver/4. Meldt ut',
+    title: 'Oppgaver/Ungdomsprogramytelsen/Meldt ut',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };

@@ -10,7 +10,7 @@ import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { FjernetPeriodeOppgavePanel } from './FjernetPeriodeOppgavePanel';
 
 const meta: Meta = {
-    title: 'Oppgaver/6. Fjernet periode',
+    title: 'Oppgaver/Ungdomsprogramytelsen/Fjernet periode',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
