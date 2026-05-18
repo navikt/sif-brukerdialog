@@ -109,7 +109,7 @@
         "sass-embedded": "1.99.0",
         "storybook": "10.3.6",
         "stylelint": "17.11.0",
-        "tailwindcss": "4.2.4",
+        "tailwindcss": "4.3.0",
         "typescript": "6.0.3",
         "typescript-eslint": "8.59.2",
         "vite": "8.0.11",
