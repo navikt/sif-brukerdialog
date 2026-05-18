@@ -39,7 +39,7 @@
         "lodash.groupby": "4.6.0",
         "mockdate": "3.0.5",
         "react": "19.2.6",
-        "react-day-picker": "9.14.0",
+        "react-day-picker": "10.0.0",
         "react-router-dom": "7.15.0",
         "uuid": "14.0.0"
     },
