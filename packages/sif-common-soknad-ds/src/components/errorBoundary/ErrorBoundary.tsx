@@ -2,7 +2,7 @@ import { Box, Button, Heading } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
-import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import SoknadHeader from '../soknad-header/SoknadHeader';
 import React from 'react';
 
 interface State {

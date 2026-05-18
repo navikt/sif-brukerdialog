@@ -14,7 +14,7 @@ function VirksomhetSummaryStory(props: StoryProps) {
     return <VirksomhetSummary {...props} />;
 }
 
-const meta = {
+const meta: Meta<typeof VirksomhetSummaryStory> = {
     title: 'Dialogs/Virksomhet/Summary',
     component: VirksomhetSummaryStory,
     decorators: [

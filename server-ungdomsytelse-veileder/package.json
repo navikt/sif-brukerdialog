@@ -16,7 +16,8 @@
         "http-proxy-middleware": "4.0.0",
         "jsdom": "28.1.0",
         "react": "19.2.6",
-        "zod": "4.4.3"
+        "zod": "4.4.3",
+        "uuid": "14.0.0"
     },
     "devDependencies": {
         "@types/express": "5.0.6",
@@ -28,6 +29,5 @@
         "prettier": "3.8.3",
         "typescript": "6.0.3",
         "winston": "3.19.0"
-    },
-    "packageManager": "yarn@4.5.0"
+    }
 }

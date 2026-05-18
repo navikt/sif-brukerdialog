@@ -36,7 +36,7 @@ function UtenlandskNæringListAndDialogStory({ næringer }: StoryProps) {
     );
 }
 
-const meta = {
+const meta: Meta<typeof UtenlandskNæringListAndDialogStory> = {
     title: 'Dialogs/UtenlandskNæring/ListAndDialog',
     component: UtenlandskNæringListAndDialogStory,
     decorators: [

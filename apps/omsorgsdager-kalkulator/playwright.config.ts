@@ -34,7 +34,7 @@ export default defineConfig({
 
     /* Run your local dev server before starting the tests */
     webServer: {
-        command: 'yarn dev',
+        command: 'pnpm dev',
         url: 'http://localhost:8080/omsorgspenger/kalkulator-antall-omsorgsdager',
         reuseExistingServer: !process.env.CI,
     },

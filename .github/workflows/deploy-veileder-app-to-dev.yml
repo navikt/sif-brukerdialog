@@ -23,27 +23,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Setup .yarnrc.yml
-        run: |
-          yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
-          yarn config set npmScopes.navikt.npmAlwaysAuth true
-          yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
       - name: Setup Node.js environment
         uses: actions/setup-node@v6.4.0
         with:
           node-version: 22
-          cache: "yarn"
+          cache: "pnpm"
 
-      - name: Install dependencies (yarn)
-        run: yarn install
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+          NPM_TOKEN: ${{ secrets.READER_TOKEN }}
 
       - name: Build application
-        run: yarn turbo run build --filter=@navikt/${{ env.APP_NAME }}
+        run: pnpm turbo run build --filter=@navikt/${{ env.APP_NAME }}
 
       - name: Build and publish docker image
         uses: nais/docker-build-push@v0
@@ -58,7 +52,7 @@ jobs:
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           build_secrets: |
-            PACKAGES_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
+            NPM_TOKEN=${{ secrets.READER_TOKEN }}
       - name: Deploy to dev
         uses: nais/deploy/actions/deploy@v2
         env:

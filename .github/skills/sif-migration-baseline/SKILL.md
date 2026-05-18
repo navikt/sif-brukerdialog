@@ -248,11 +248,11 @@ Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` f
 
 ### Fallgruver og føringer i bootstrap-fasen
 
-- Etter at du har lagt til en ny app-workspace, kjør `yarn install` fra monorepo-roten før du kjører workspace-scripts, slik at Yarn registrerer den nye workspacen i prosjektmetadata/lockfile.
+- Etter at du har lagt til en ny app-workspace, kjør `pnpm install` fra monorepo-roten før du kjører workspace-scripts, slik at pnpm registrerer den nye workspacen i prosjektmetadata/lockfile.
 - Ikke kjør dependency-install inne i en enkelt app-workspace. Bruk kun install fra rot, for å unngå lokal `node_modules`-drift og dupliserte verktøytyper.
 - Hold placeholder-`App` minimal. For UI/layout-detaljer, bruk Aksel-referansene nedenfor.
 - Hvis Vite-plugin-typefeil dukker opp med to ulike `vite`-paths, verifiser at root-install er brukt og at `tsconfig.json` beholder path-mappingen `"vite": ["../../node_modules/vite"]`.
-- For bootstrap-validering, ikke kjør `yarn build` i monorepo-roten. Kjør build/check-scripts kun i målappens workspace.
+- For bootstrap-validering, ikke kjør `pnpm build` i monorepo-roten. Kjør build/check-scripts kun i målappens workspace.
 - `AppErrorBoundary` må ligge inni `FaroProvider` i `App.tsx`, ikke rundt `<App />` i `main.tsx`. Ellers har `useFaroInstance()` ingen context, og feillogging til Faro vil ikke fungere.
 - `AppErrorBoundary` bruker en ren React ErrorBoundary med Faro-logging — ikke `SentryErrorBoundary`. Sentry-feilrapportering dekkes av `reactErrorHandler()` i `main.tsx` (`onUncaughtError`/`onCaughtError`/`onRecoverableError`), slik at feil ikke dobbeltrapporteres.
 - `main.tsx` skal være ren: `sentry/instrument` → `reactErrorHandler` → `<App />`. Ingen providers eller error boundaries i `main.tsx`.
@@ -277,15 +277,15 @@ Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` f
 
 Kjør i målappens workspace:
 
-1. `yarn check:types`
-2. `yarn lint:eslint`
-3. `yarn build`
-4. `yarn dev`
-5. `yarn storybook`
+1. `pnpm check:types`
+2. `pnpm lint:eslint`
+3. `pnpm build`
+4. `pnpm dev`
+5. `pnpm storybook`
 
 Forventet oppførsel tidlig i fasen:
 
-- `yarn test` kan feile med `No test files found` før tester er lagt til.
+- `pnpm test` kan feile med `No test files found` før tester er lagt til.
 - Sentry-build-advarsler om manglende auth-token er forventet lokalt hvis det ikke er konfigurert.
 
 ## Avhengighetsstrategi
@@ -299,7 +299,7 @@ Forventet oppførsel tidlig i fasen:
 
 - Kjør workspace-lokale scripts først (for eksempel `lint:eslint`, `lint:tsc`, `test`).
 - I bootstrap-fasen: hold validering app-lokal og hopp over root-level build/lint/test-kommandoer.
-- Kjør bredere root-sjekker kun ved behov utenfor bootstrap-omfanget (`yarn lint`, `yarn test`).
+- Kjør bredere root-sjekker kun ved behov utenfor bootstrap-omfanget (`pnpm lint`, `pnpm test`).
 
 ## Ferdigkriterier
 

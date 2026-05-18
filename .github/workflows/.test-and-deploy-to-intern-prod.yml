@@ -24,7 +24,7 @@ on:
                 required: false
                 type: boolean
                 default: false
-                description: "Use 'yarn turbo test' instead of 'yarn test'"
+                description: "Use 'pnpm turbo test' instead of 'pnpm test'"
             e2e-build-command:
                 required: false
                 type: string

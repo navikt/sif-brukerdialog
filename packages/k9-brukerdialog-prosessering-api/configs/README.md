@@ -24,14 +24,10 @@ Each configuration file corresponds to a specific API endpoint:
 Generate types for all APIs:
 
 ```bash
-yarn gen-types:all:fixed
-```
-
-Generate types for a specific API:
-
-```bash
-yarn gen-types:omsorgspenger
-yarn gen-types:ungdomsytelse
+pnpm gen-types:all:fixed
+...
+pnpm gen-types:omsorgspenger
+pnpm gen-types:ungdomsytelse
 # etc.
 ```
 

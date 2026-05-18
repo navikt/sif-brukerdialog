@@ -32,7 +32,7 @@ function EnkeltdatoerListAndDialogStory({ enkeltdatoer }: StoryProps) {
     );
 }
 
-const meta = {
+const meta: Meta<typeof EnkeltdatoerListAndDialogStory> = {
     title: 'Dialogs/Enkeltdatoer/ListAndDialog',
     component: EnkeltdatoerListAndDialogStory,
     decorators: [

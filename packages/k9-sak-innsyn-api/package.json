@@ -26,14 +26,14 @@
     },
     "scripts": {
         "fix-regex": "node scripts/fix-generated-regex.mjs",
-        "gen-types:all:fixed": "yarn gen-types:all && yarn fix-regex",
-        "gen-types:all": "yarn gen-types:innsyn &&  yarn gen-types:k9-sak && yarn gen-types:legacy",
+        "gen-types:all:fixed": "pnpm gen-types:all && pnpm fix-regex",
+        "gen-types:all": "pnpm gen-types:innsyn &&  pnpm gen-types:k9-sak && pnpm gen-types:legacy",
         "gen-types:innsyn": "openapi-ts --file configs/openapi-ts.config-innsyn.ts",
         "gen-types:k9-sak": "openapi-ts --file configs/openapi-ts.config-k9-sak.ts",
         "gen-types:legacy": "openapi-ts --file configs/openapi-ts.config.ts",
         "download-spec": "node scripts/download-spec.mjs",
-        "codegen:dev": "CODEGEN_ENV=dev yarn download-spec && yarn gen-types:all:fixed",
-        "codegen:prod": "CODEGEN_ENV=prod yarn download-spec && yarn gen-types:all:fixed",
+        "codegen:dev": "CODEGEN_ENV=dev pnpm download-spec && pnpm gen-types:all:fixed",
+        "codegen:prod": "CODEGEN_ENV=prod pnpm download-spec && pnpm gen-types:all:fixed",
         "lint:eslint": "eslint './src/*/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/generated/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"

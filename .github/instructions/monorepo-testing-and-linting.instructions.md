@@ -23,16 +23,16 @@ This repository uses a workspace-specific setup for linting and testing.
 - Prefer running lint in the affected workspace first.
 - In the workspace, use available scripts (for example `lint:eslint`, `lint:tsc`, `lint:fix`) instead of assuming `lint` exists.
 - Use root scripts only when broader verification is needed:
-    - `yarn lint`
-    - `yarn lint:eslint`
-    - `yarn lint:tsc`
-    - `yarn lint:fix`
+    - `pnpm lint`
+    - `pnpm lint:eslint`
+    - `pnpm lint:tsc`
+    - `pnpm lint:fix`
 
 ## Testing
 
 - Vitest is already configured across multiple apps/packages.
 - `vitest.workspace.ts` is an aggregator, not a replacement for local test config.
-- Prefer running tests in changed workspaces first, then `yarn test` for broad checks.
+- Prefer running tests in changed workspaces first, then `pnpm test` for broad checks.
 
 ### Test quality
 

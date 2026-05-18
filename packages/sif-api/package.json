@@ -18,10 +18,13 @@
         "./mock-utils": "./src/mock-utils/index.ts"
     },
     "dependencies": {
+        "@navikt/ds-react": "8.10.5",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
+        "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@tanstack/react-query": "5.100.9",
         "axios": "1.16.0",
         "dayjs": "1.11.20",

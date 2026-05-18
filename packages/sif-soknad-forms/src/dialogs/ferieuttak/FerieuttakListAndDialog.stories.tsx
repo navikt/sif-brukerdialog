@@ -40,7 +40,7 @@ function FerieuttakListAndDialogStory({ ferieuttak }: StoryProps) {
     );
 }
 
-const meta = {
+const meta: Meta<typeof FerieuttakListAndDialogStory> = {
     title: 'Dialogs/Ferieuttak/ListAndDialog',
     component: FerieuttakListAndDialogStory,
     decorators: [

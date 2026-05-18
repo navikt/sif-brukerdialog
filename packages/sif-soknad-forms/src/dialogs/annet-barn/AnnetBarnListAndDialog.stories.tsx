@@ -48,7 +48,7 @@ function AnnetBarnListAndDialogStory({ annetBarn }: StoryProps) {
     );
 }
 
-const meta = {
+const meta: Meta<typeof AnnetBarnListAndDialogStory> = {
     title: 'Dialogs/AnnetBarn/ListAndDialog',
     component: AnnetBarnListAndDialogStory,
     decorators: [

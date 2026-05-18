@@ -76,7 +76,7 @@ function UtenlandsoppholdListAndDialogStory({ opphold, variant }: StoryProps) {
     );
 }
 
-const meta = {
+const meta: Meta<typeof UtenlandsoppholdListAndDialogStory> = {
     title: 'Dialogs/Utenlandsopphold/ListAndDialog',
     component: UtenlandsoppholdListAndDialogStory,
     decorators: [

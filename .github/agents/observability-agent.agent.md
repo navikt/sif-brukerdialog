@@ -33,8 +33,8 @@ Use this agent for observability-related changes in this repository.
 - Run relevant checks in the changed workspace first.
 - In the workspace, use available scripts (for example `lint:eslint`, `lint:tsc`, `lint:fix`, `test`) instead of assuming `lint` exists.
 - Use root verification only when needed:
-    - `yarn lint`
-    - `yarn test`
+    - `pnpm lint`
+    - `pnpm test`
 
 ## Observability quality checklist
 
