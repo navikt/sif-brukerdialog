@@ -51,7 +51,9 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
     };
 
     const synligeHistorikkInnslag = historikkInnslag
-        .filter((innslag) => (innslag.endringstype === Endringstype.FORLENGET_PERIODE ? Features.utvidePeriode : true))
+        .filter((innslag) =>
+            innslag.endringstype === Endringstype.FORLENGET_PERIODE ? Features.forlengePeriode : true,
+        )
         .slice(0, antall);
 
     return (

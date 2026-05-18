@@ -40,7 +40,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
 
                 <InfoBox>
                     <dl className="deltakelseInfoDL">
-                        {Features.utvidePeriode && (
+                        {Features.forlengePeriode && (
                             <>
                                 <dt>
                                     <BodyShort>Periode:</BodyShort>
