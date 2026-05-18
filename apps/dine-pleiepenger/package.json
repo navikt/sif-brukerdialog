@@ -51,7 +51,6 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.11.3",
-        "@navikt/aksel-icons": "8.10.5",
         "@navikt/ds-css": "8.10.5",
         "@navikt/ds-react": "8.10.5",
         "@navikt/ds-tailwind": "8.10.5",
@@ -78,7 +77,6 @@
         "storybook": "10.4.0",
         "tailwindcss": "4.3.0",
         "typescript": "6.0.3",
-        "uuid": "14.0.0",
         "vite": "8.0.13",
         "vitest": "4.1.6",
         "webpack": "5.106.2"

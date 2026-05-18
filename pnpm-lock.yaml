@@ -141,12 +141,6 @@ importers:
       html-react-parser:
         specifier: 6.1.0
         version: 6.1.0(@types/react@19.2.14)(react@19.2.6)
-      jsdom:
-        specifier: 28.1.0
-        version: 28.1.0(@noble/hashes@2.2.0)
-      postcss:
-        specifier: 8.5.14
-        version: 8.5.14
       react:
         specifier: 19.2.6
         version: 19.2.6
@@ -247,6 +241,9 @@ importers:
       express:
         specifier: 5.2.1
         version: 5.2.1
+      jsdom:
+        specifier: 28.1.0
+        version: 28.1.0(@noble/hashes@2.2.0)
       mockdate:
         specifier: 3.0.5
         version: 3.0.5
@@ -265,6 +262,9 @@ importers:
       playwright-core:
         specifier: 1.60.0
         version: 1.60.0
+      postcss:
+        specifier: 8.5.14
+        version: 8.5.14
       postcss-import:
         specifier: 16.1.1
         version: 16.1.1(postcss@8.5.14)
@@ -901,9 +901,6 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
-      '@testing-library/react':
-        specifier: 16.3.2
-        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       axios:
         specifier: 1.16.1
         version: 1.16.1
@@ -965,6 +962,9 @@ importers:
       '@testing-library/dom':
         specifier: 10.4.1
         version: 10.4.1
+      '@testing-library/react':
+        specifier: 16.3.2
+        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@types/node':
         specifier: 25.8.0
         version: 25.8.0
@@ -1040,9 +1040,6 @@ importers:
       '@navikt/ds-react':
         specifier: 8.10.5
         version: 8.10.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@navikt/ds-tailwind':
-        specifier: 8.10.5
-        version: 8.10.5
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
@@ -1155,6 +1152,9 @@ importers:
       '@mswjs/data':
         specifier: 0.16.2
         version: 0.16.2(@types/node@25.8.0)(typescript@6.0.3)
+      '@navikt/ds-tailwind':
+        specifier: 8.10.5
+        version: 8.10.5
       '@navikt/nav-dekoratoren-moduler':
         specifier: 3.7.1
         version: 3.7.1(html-react-parser@6.1.0(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)
@@ -2704,9 +2704,6 @@ importers:
       '@tanstack/react-query':
         specifier: 5.100.10
         version: 5.100.10(react@19.2.6)
-      '@testing-library/react':
-        specifier: 16.3.2
-        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       axios:
         specifier: 1.16.1
         version: 1.16.1
@@ -2780,6 +2777,9 @@ importers:
       '@testing-library/dom':
         specifier: 10.4.1
         version: 10.4.1
+      '@testing-library/react':
+        specifier: 16.3.2
+        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@types/node':
         specifier: 25.8.0
         version: 25.8.0
@@ -3645,18 +3645,12 @@ importers:
       html-react-parser:
         specifier: 6.1.0
         version: 6.1.0(@types/react@19.2.14)(react@19.2.6)
-      jsdom:
-        specifier: 28.1.0
-        version: 28.1.0(@noble/hashes@2.2.0)
       mockdate:
         specifier: 3.0.5
         version: 3.0.5
       object-hash:
         specifier: 3.0.0
         version: 3.0.0
-      postcss:
-        specifier: 8.5.14
-        version: 8.5.14
       react:
         specifier: 19.2.6
         version: 19.2.6
@@ -3754,6 +3748,9 @@ importers:
       express:
         specifier: 5.2.1
         version: 5.2.1
+      jsdom:
+        specifier: 28.1.0
+        version: 28.1.0(@noble/hashes@2.2.0)
       msw:
         specifier: 2.14.6
         version: 2.14.6(@types/node@25.8.0)(typescript@6.0.3)
@@ -3766,6 +3763,9 @@ importers:
       playwright-core:
         specifier: 1.60.0
         version: 1.60.0
+      postcss:
+        specifier: 8.5.14
+        version: 8.5.14
       postcss-import:
         specifier: 16.1.1
         version: 16.1.1(postcss@8.5.14)
@@ -4935,9 +4935,6 @@ importers:
       js-cookie:
         specifier: 3.0.5
         version: 3.0.5
-      jsdom:
-        specifier: 28.1.0
-        version: 28.1.0(@noble/hashes@2.2.0)
       postcss:
         specifier: 8.5.14
         version: 8.5.14
@@ -5050,6 +5047,9 @@ importers:
       jest:
         specifier: 30.4.2
         version: 30.4.2(@types/node@25.8.0)
+      jsdom:
+        specifier: 28.1.0
+        version: 28.1.0(@noble/hashes@2.2.0)
       monocle-ts:
         specifier: 2.3.13
         version: 2.3.13(fp-ts@2.16.11)
