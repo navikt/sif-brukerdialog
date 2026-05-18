@@ -20,6 +20,8 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         },
         erSlettet: false,
         harOpphørsvedtak: false,
+        harForlengetPeriode: false,
+        forlengetPeriodeMaksDato: '2026-12-31',
         harUtvidetKvote: false,
         kvoteMaksDato: '2026-12-31',
     };
