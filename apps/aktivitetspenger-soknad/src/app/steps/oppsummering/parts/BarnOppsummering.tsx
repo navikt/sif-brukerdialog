@@ -1,5 +1,5 @@
 import { BodyShort, FormSummary, List } from '@navikt/ds-react';
-import { RegistrertBarn } from '@navikt/sif-common-api';
+import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { formatName } from '@navikt/sif-common-utils';
 import { JaNeiSvar } from '@sif/soknad-ui';
 
