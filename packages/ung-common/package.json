@@ -23,12 +23,12 @@
         "react-dom": "19.2.6",
         "typescript": "6.0.3",
         "uuid": "14.0.0",
-        "vitest": "4.1.5",
+        "vitest": "4.1.6",
         "zod": "4.4.3"
     },
     "peerDependencies": {
         "@navikt/ds-react": "*",
-        "axios": "^1.16.0",
+        "axios": "1.16.1",
         "dayjs": "*",
         "react": "*",
         "react-dom": "*",
