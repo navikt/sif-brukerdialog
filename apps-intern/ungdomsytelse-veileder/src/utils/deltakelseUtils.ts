@@ -78,7 +78,7 @@ export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDat
         // Deltaker har ikke periode som er utløpt
         !periodeErUtløpt(deltakelse, today) &&
         // Deltaker har ikke sluttdato eller sluttdato er i dag eller i fremtiden
-        (deltakelse.tilOgMed === undefined || deltakelseSluttdatoErIDagEllerFremover(deltakelse, today)) &&
+        deltakelse.tilOgMed === undefined &&
         // Deltaker er innenfor siste måneder før periodeslutt
         (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today) || Features.ignorerBegrensningForlengePeriode)
     );

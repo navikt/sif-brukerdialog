@@ -26,12 +26,7 @@ const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: Dato
                     <BodyShort weight="semibold" size="large">
                         {harForlengetPeriode ? '260 + 40' : '260'} dager
                     </BodyShort>
-                    {tilOgMed ? (
-                        <BodyLong>
-                            Deltaker er meldt ut med siste dag <strong>{dateFormatter.dayCompactDate(tilOgMed)}</strong>
-                            .
-                        </BodyLong>
-                    ) : (
+                    {!tilOgMed && (
                         <BodyLong>
                             Siste dag i perioden er{' '}
                             <strong>{dateFormatter.dayCompactDate(forlengetPeriodeMaksDato)}</strong>.
