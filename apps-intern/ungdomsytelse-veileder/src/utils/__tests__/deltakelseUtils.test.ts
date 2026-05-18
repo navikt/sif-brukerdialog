@@ -7,7 +7,7 @@ import {
     kanMeldesUt,
     kanEndreSluttdato,
     deltakelseKanSlettes,
-    deltakelseKanUtvides,
+    periodeKanForlenges,
 } from '../deltakelseUtils';
 import { Deltakelse } from '../../types/Deltakelse';
 
@@ -122,12 +122,12 @@ describe('deltakelseUtils', () => {
                 søktTidspunkt: new Date(),
                 forlengetPeriodeMaksDato: ISODateToDate('2026-06-01'),
             });
-            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(true);
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(true);
         });
 
         it('false når allerede utvidet', () => {
             const deltakelse = lagDeltakelse({ søktTidspunkt: new Date(), harForlengetPeriode: true });
-            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
         });
 
         it('false når sluttdato er passert', () => {
@@ -136,7 +136,7 @@ describe('deltakelseUtils', () => {
                 forlengetPeriodeMaksDato: ISODateToDate('2026-06-01'),
                 tilOgMed: ISODateToDate('2026-04-01'),
             });
-            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
         });
 
         it('false når periode utløpt', () => {
@@ -144,14 +144,14 @@ describe('deltakelseUtils', () => {
                 søktTidspunkt: new Date(),
                 forlengetPeriodeMaksDato: ISODateToDate('2026-01-01'),
             });
-            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
         });
 
         it('false når ikke innenfor siste 2 måneder før periodeutløp', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
             });
-            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
         });
 
         it('true når tilOgMed er i fremtiden og innenfor siste 2 måneder før periodeutløp', () => {
@@ -160,7 +160,7 @@ describe('deltakelseUtils', () => {
                 forlengetPeriodeMaksDato: ISODateToDate('2026-06-01'),
                 tilOgMed: ISODateToDate('2026-05-20'),
             });
-            expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(true);
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(true);
         });
     });
 

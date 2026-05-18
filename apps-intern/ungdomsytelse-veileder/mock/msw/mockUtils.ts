@@ -164,7 +164,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
         tilOgMed: undefined,
         harForlengetPeriode: false,
         forlengetPeriodeMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(startdato), 260)),
-        kvoteMaksDato: 'deprecated',
+        kvoteMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(startdato), 260)),
     };
     db.deltakelser.push({
         deltakelse,

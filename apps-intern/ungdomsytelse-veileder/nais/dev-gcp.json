@@ -37,6 +37,7 @@
 
         "SIF_PUBLIC_FEATURE_UTVIDE_PERIODE": "on",
         "SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE": "on",
+        "SIF_PUBLIC_IGNORER_BEGRENSNING_FORLENGE_PERIODE": "off",
 
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://dev-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",

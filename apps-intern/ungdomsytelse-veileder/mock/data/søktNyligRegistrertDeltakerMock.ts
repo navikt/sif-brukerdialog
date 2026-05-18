@@ -58,7 +58,7 @@ const deltakelse: DeltakelseDto = {
     harForlengetPeriode: false,
     harUtvidetKvote: false,
     forlengetPeriodeMaksDato: dateToISODate(addUkedagerToDate(firstMonday, 260)),
-    kvoteMaksDato: 'deprecated',
+    kvoteMaksDato: dateToISODate(addUkedagerToDate(firstMonday, 260)),
 };
 
 const deltakelseHistorikk: DeltakelseHistorikkDto[] = [

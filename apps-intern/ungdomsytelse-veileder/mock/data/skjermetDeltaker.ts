@@ -34,7 +34,7 @@ const deltakelse: DeltakelseDto = {
     harForlengetPeriode: false,
     forlengetPeriodeMaksDato: '2026-01-01',
     harUtvidetKvote: false,
-    kvoteMaksDato: 'deprecated',
+    kvoteMaksDato: '2026-01-01',
     søktTidspunkt: '2025-05-31T03:58:29.015999Z',
 };
 

@@ -1,6 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useFaroInstance } from '@navikt/sif-common-faro';
+import { isDevMode } from '@navikt/sif-common-env';
 
 export const GlobalQueryLogger = () => {
     const queryClient = useQueryClient();
@@ -15,6 +16,9 @@ export const GlobalQueryLogger = () => {
                 const query = event.query;
                 const state = query.state;
                 if (state.status === 'error' && state.error) {
+                    if (isDevMode()) {
+                        console.error(state.error);
+                    }
                     faro.api.pushError(state.error, { type: 'ApiQueryError' });
                 }
             }

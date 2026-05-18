@@ -4,12 +4,13 @@ import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opp
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
+import { Features } from '../types/Features';
 
 /** Antall måneder før og etter i dag som startdato kan endres innenfor */
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
 
 /** Startdato kan ikke endres når det er færre måneder enn dette til perioden er ferdig */
-export const MÅNEDER_PERIODE_KAN_ENDRES = 2;
+export const MÅNEDER_PERIODE_KAN_FORLENGES = 2;
 
 const getEndringsperiode = (today: Date): DateRange => ({
     from: dayjs(today).subtract(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
@@ -22,7 +23,7 @@ const periodeErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
 
 const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
     return dayjs(today).isSameOrAfter(
-        dayjs(deltakelse.forlengetPeriodeMaksDato).subtract(MÅNEDER_PERIODE_KAN_ENDRES, 'months'),
+        dayjs(deltakelse.forlengetPeriodeMaksDato).subtract(MÅNEDER_PERIODE_KAN_FORLENGES, 'months'),
         'day',
     );
 };
@@ -68,7 +69,7 @@ export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
     return deltakelse.søktTidspunkt === undefined;
 };
 
-export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
     return (
         // Deltaker har søkt
         deltakelse.søktTidspunkt !== undefined &&
@@ -79,7 +80,7 @@ export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDa
         // Deltaker har ikke sluttdato eller sluttdato er i dag eller i fremtiden
         (deltakelse.tilOgMed === undefined || deltakelseSluttdatoErIDagEllerFremover(deltakelse, today)) &&
         // Deltaker er innenfor siste måneder før periodeslutt
-        erInnenforSisteMånederFørPeriodeslutt(deltakelse, today)
+        (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today) || Features.ignorerBegrensningForlengePeriode)
     );
 };
 
@@ -105,7 +106,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
         kanEndreStartdato: kanEndreStartdato(deltakelse, today),
         kanMeldesUt: kanMeldesUt(deltakelse, today),
         kanEndreSluttdato: kanEndreSluttdato(deltakelse, today),
-        kanForlengePeriode: deltakelseKanUtvides(deltakelse, today),
+        kanForlengePeriode: periodeKanForlenges(deltakelse, today),
         kanSlettes: deltakelseKanSlettes(deltakelse),
     };
 };
