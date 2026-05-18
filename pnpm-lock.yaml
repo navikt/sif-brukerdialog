@@ -5812,6 +5812,9 @@ importers:
       '@navikt/aksel-icons':
         specifier: 8.10.5
         version: 8.10.5
+      '@navikt/ds-css':
+        specifier: 8.10.5
+        version: 8.10.5
       '@navikt/ds-react':
         specifier: 8.10.5
         version: 8.10.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
