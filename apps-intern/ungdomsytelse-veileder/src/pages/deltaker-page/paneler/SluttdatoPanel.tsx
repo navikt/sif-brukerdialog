@@ -1,7 +1,7 @@
 import { Alert, BodyLong, Box, Button } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../../types/Deltakelse';
-import { DeltakelseHandlinger, deltakelseKvoteErUtløpt } from '../../../utils/deltakelseUtils';
+import { DeltakelseHandlinger, deltakelsePeriodeErUtløpt } from '../../../utils/deltakelseUtils';
 import { PeriodeInfoPanel } from '../../../components/periode-info-panel/PeriodeInfoPanel';
 
 interface Props {
@@ -42,9 +42,9 @@ const SluttdatoPanel = ({ deltakelse, handlinger, onClickEndreSluttdato, onClick
         );
     }
 
-    if (deltakelseKvoteErUtløpt(deltakelse)) {
+    if (deltakelsePeriodeErUtløpt(deltakelse)) {
         return (
-            <PeriodeInfoPanel title={dateFormatter.dayCompactDate(deltakelse.kvoteMaksDato)}>
+            <PeriodeInfoPanel title={dateFormatter.dayCompactDate(deltakelse.forlengetPeriodeMaksDato)}>
                 <Alert variant="info" inline>
                     Deltakelse er avsluttet.
                 </Alert>

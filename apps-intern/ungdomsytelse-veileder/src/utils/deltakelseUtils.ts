@@ -8,30 +8,30 @@ import { Deltakelse } from '../types/Deltakelse';
 /** Antall måneder før og etter i dag som startdato kan endres innenfor */
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
 
-/** Startdato kan ikke endres når det er færre enn dette antall måneder til kvoteutløp */
-export const MÅNEDER_KVOTE_KAN_ENDRES = 2;
+/** Startdato kan ikke endres når det er færre måneder enn dette til perioden er ferdig */
+export const MÅNEDER_PERIODE_KAN_ENDRES = 2;
 
 const getEndringsperiode = (today: Date): DateRange => ({
     from: dayjs(today).subtract(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
     to: dayjs(today).add(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
 });
 
-const kvoteErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
-    return dayjs(deltakelse.kvoteMaksDato).isBefore(today, 'day');
+const periodeErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
+    return dayjs(deltakelse.forlengetPeriodeMaksDato).isBefore(today, 'day');
 };
 
-const erInnenforSisteMånederFørKvoteutløp = (deltakelse: Deltakelse, today: Date): boolean => {
+const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
     return dayjs(today).isSameOrAfter(
-        dayjs(deltakelse.kvoteMaksDato).subtract(MÅNEDER_KVOTE_KAN_ENDRES, 'months'),
+        dayjs(deltakelse.forlengetPeriodeMaksDato).subtract(MÅNEDER_PERIODE_KAN_ENDRES, 'months'),
         'day',
     );
 };
 
 export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    if (deltakelse.harUtvidetKvote) {
+    if (deltakelse.harForlengetPeriode) {
         return false;
     }
-    if (erInnenforSisteMånederFørKvoteutløp(deltakelse, today)) {
+    if (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today)) {
         return false;
     }
     const endringsperiode = getEndringsperiode(today);
@@ -42,7 +42,7 @@ export const kanSetteEllerEndreSluttdato = (deltakelse: Deltakelse, today: Date 
     if (deltakelse.søktTidspunkt === undefined) {
         return false;
     }
-    return !kvoteErUtløpt(deltakelse, today);
+    return !periodeErUtløpt(deltakelse, today);
 };
 
 export const kanMeldesUt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
@@ -53,8 +53,8 @@ export const kanEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateT
     return kanSetteEllerEndreSluttdato(deltakelse, today) && deltakelse.tilOgMed !== undefined;
 };
 
-export const deltakelseKvoteErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return kvoteErUtløpt(deltakelse, today);
+export const deltakelsePeriodeErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return periodeErUtløpt(deltakelse, today);
 };
 
 export const deltakelseSluttdatoErIDagEllerFremover = (
@@ -72,14 +72,14 @@ export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDa
     return (
         // Deltaker har søkt
         deltakelse.søktTidspunkt !== undefined &&
-        // Deltaker har ikke allerede utvidet kvote
-        deltakelse.harUtvidetKvote === false &&
-        // Deltaker har ikke kvote som er utløpt
-        !kvoteErUtløpt(deltakelse, today) &&
+        // Deltaker har ikke allerede forlenget periode
+        deltakelse.harForlengetPeriode === false &&
+        // Deltaker har ikke periode som er utløpt
+        !periodeErUtløpt(deltakelse, today) &&
         // Deltaker har ikke sluttdato eller sluttdato er i dag eller i fremtiden
         (deltakelse.tilOgMed === undefined || deltakelseSluttdatoErIDagEllerFremover(deltakelse, today)) &&
-        // Deltaker er innenfor siste måneder før kvoteutløp
-        erInnenforSisteMånederFørKvoteutløp(deltakelse, today)
+        // Deltaker er innenfor siste måneder før periodeslutt
+        erInnenforSisteMånederFørPeriodeslutt(deltakelse, today)
     );
 };
 
@@ -87,7 +87,7 @@ export interface DeltakelseHandlinger {
     kanEndreStartdato: boolean;
     kanMeldesUt: boolean;
     kanEndreSluttdato: boolean;
-    kanUtvideKvote: boolean;
+    kanForlengePeriode: boolean;
     kanSlettes: boolean;
 }
 
@@ -97,7 +97,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
             kanEndreStartdato: false,
             kanMeldesUt: false,
             kanEndreSluttdato: false,
-            kanUtvideKvote: false,
+            kanForlengePeriode: false,
             kanSlettes: false,
         };
     }
@@ -105,7 +105,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
         kanEndreStartdato: kanEndreStartdato(deltakelse, today),
         kanMeldesUt: kanMeldesUt(deltakelse, today),
         kanEndreSluttdato: kanEndreSluttdato(deltakelse, today),
-        kanUtvideKvote: deltakelseKanUtvides(deltakelse, today),
+        kanForlengePeriode: deltakelseKanUtvides(deltakelse, today),
         kanSlettes: deltakelseKanSlettes(deltakelse),
     };
 };

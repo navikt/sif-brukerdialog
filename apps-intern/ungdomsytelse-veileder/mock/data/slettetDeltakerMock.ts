@@ -29,8 +29,10 @@ const deltakelse: DeltakelseDto = {
     tilOgMed: undefined,
     erSlettet: true,
     harOpphørsvedtak: true,
+    harForlengetPeriode: false,
+    forlengetPeriodeMaksDato: '2026-01-01',
     harUtvidetKvote: false,
-    kvoteMaksDato: '2026-01-01',
+    kvoteMaksDato: 'deprecated',
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
 };
 

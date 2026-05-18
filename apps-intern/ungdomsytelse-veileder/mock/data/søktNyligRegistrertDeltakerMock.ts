@@ -55,8 +55,10 @@ const deltakelse: DeltakelseDto = {
     erSlettet: false,
     harOpphørsvedtak: false,
     søktTidspunkt,
+    harForlengetPeriode: false,
     harUtvidetKvote: false,
-    kvoteMaksDato: dateToISODate(addUkedagerToDate(firstMonday, 260)),
+    forlengetPeriodeMaksDato: dateToISODate(addUkedagerToDate(firstMonday, 260)),
+    kvoteMaksDato: 'deprecated',
 };
 
 const deltakelseHistorikk: DeltakelseHistorikkDto[] = [

@@ -16,7 +16,9 @@ const lagDeltakelse = (overrides: Partial<Deltakelse> = {}): Deltakelse => ({
     deltaker: { deltakerIdent: '12345678901', id: 'deltaker-id' },
     fraOgMed: ISODateToDate('2026-01-01'),
     tilOgMed: undefined,
-    kvoteMaksDato: ISODateToDate('2027-01-15'),
+    forlengetPeriodeMaksDato: ISODateToDate('2027-01-15'),
+    kvoteMaksDato: '2027-01-15',
+    harForlengetPeriode: false,
     harUtvidetKvote: false,
     harOpphørsvedtak: false,
     erSlettet: false,
@@ -28,20 +30,20 @@ const TODAY = ISODateToDate('2026-05-07');
 
 describe('deltakelseUtils', () => {
     describe('kanEndreStartdato', () => {
-        it('true når startdato er innenfor ±10 mnd, ikke utvidet, >2 mnd til kvote', () => {
+        it('true når startdato er innenfor ±10 mnd, ikke utvidet, >2 mnd til periode', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01') });
             expect(kanEndreStartdato(deltakelse, TODAY)).toBe(true);
         });
 
-        it('false når harUtvidetKvote', () => {
-            const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01'), harUtvidetKvote: true });
+        it('false når harForlengetPeriode', () => {
+            const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01'), harForlengetPeriode: true });
             expect(kanEndreStartdato(deltakelse, TODAY)).toBe(false);
         });
 
-        it('false når ≤2 mnd til kvoteMaksDato', () => {
+        it('false når ≤2 mnd til forlengetPeriodeMaksDato', () => {
             const deltakelse = lagDeltakelse({
                 fraOgMed: ISODateToDate('2026-03-01'),
-                kvoteMaksDato: ISODateToDate('2026-06-01'),
+                forlengetPeriodeMaksDato: ISODateToDate('2026-06-01'),
             });
             expect(kanEndreStartdato(deltakelse, TODAY)).toBe(false);
         });
@@ -53,7 +55,7 @@ describe('deltakelseUtils', () => {
     });
 
     describe('kanSetteEllerEndreSluttdato', () => {
-        it('true når søkt og kvote ikke utløpt', () => {
+        it('true når søkt og periode ikke utløpt', () => {
             const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
             expect(kanSetteEllerEndreSluttdato(deltakelse, TODAY)).toBe(true);
         });
@@ -63,17 +65,17 @@ describe('deltakelseUtils', () => {
             expect(kanSetteEllerEndreSluttdato(deltakelse, TODAY)).toBe(false);
         });
 
-        it('false når kvote er utløpt', () => {
+        it('false når periode er utløpt', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
-                kvoteMaksDato: ISODateToDate('2026-01-01'),
+                forlengetPeriodeMaksDato: ISODateToDate('2026-01-01'),
             });
             expect(kanSetteEllerEndreSluttdato(deltakelse, TODAY)).toBe(false);
         });
     });
 
     describe('kanMeldesUt', () => {
-        it('true når søkt, ingen sluttdato, kvote gyldig', () => {
+        it('true når søkt, ingen sluttdato, periode gyldig', () => {
             const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
             expect(kanMeldesUt(deltakelse, TODAY)).toBe(true);
         });
@@ -88,7 +90,7 @@ describe('deltakelseUtils', () => {
     });
 
     describe('kanEndreSluttdato', () => {
-        it('true når søkt og tilOgMed satt og kvote gyldig', () => {
+        it('true når søkt og tilOgMed satt og periode gyldig', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
                 tilOgMed: ISODateToDate('2026-12-01'),
@@ -116,43 +118,46 @@ describe('deltakelseUtils', () => {
 
     describe('deltakelseKanUtvides', () => {
         it('true når søkt, ingen sluttdato, innenfor siste 2 måneder', () => {
-            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date(), kvoteMaksDato: ISODateToDate('2026-06-01') });
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                forlengetPeriodeMaksDato: ISODateToDate('2026-06-01'),
+            });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(true);
         });
 
         it('false når allerede utvidet', () => {
-            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date(), harUtvidetKvote: true });
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date(), harForlengetPeriode: true });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
         });
 
         it('false når sluttdato er passert', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
-                kvoteMaksDato: ISODateToDate('2026-06-01'),
+                forlengetPeriodeMaksDato: ISODateToDate('2026-06-01'),
                 tilOgMed: ISODateToDate('2026-04-01'),
             });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
         });
 
-        it('false når kvote utløpt', () => {
+        it('false når periode utløpt', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
-                kvoteMaksDato: ISODateToDate('2026-01-01'),
+                forlengetPeriodeMaksDato: ISODateToDate('2026-01-01'),
             });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
         });
 
-        it('false når ikke innenfor siste 2 måneder før kvoteutløp', () => {
+        it('false når ikke innenfor siste 2 måneder før periodeutløp', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
             });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(false);
         });
 
-        it('true når tilOgMed er i fremtiden og innenfor siste 2 måneder før kvoteutløp', () => {
+        it('true når tilOgMed er i fremtiden og innenfor siste 2 måneder før periodeutløp', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
-                kvoteMaksDato: ISODateToDate('2026-06-01'),
+                forlengetPeriodeMaksDato: ISODateToDate('2026-06-01'),
                 tilOgMed: ISODateToDate('2026-05-20'),
             });
             expect(deltakelseKanUtvides(deltakelse, TODAY)).toBe(true);
@@ -166,14 +171,14 @@ describe('deltakelseUtils', () => {
             expect(h.kanEndreStartdato).toBe(true);
             expect(h.kanMeldesUt).toBe(false);
             expect(h.kanEndreSluttdato).toBe(false);
-            expect(h.kanUtvideKvote).toBe(false);
+            expect(h.kanForlengePeriode).toBe(false);
             expect(h.kanSlettes).toBe(true);
         });
 
-        it('A2: Ny deltaker, startdato låst (utvidet kvote)', () => {
+        it('A2: Ny deltaker, startdato låst (utvidet periode)', () => {
             const deltakelse = lagDeltakelse({
                 fraOgMed: ISODateToDate('2026-03-01'),
-                harUtvidetKvote: true,
+                harForlengetPeriode: true,
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(false);
@@ -188,32 +193,32 @@ describe('deltakelseUtils', () => {
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(true);
             expect(h.kanMeldesUt).toBe(true);
-            expect(h.kanUtvideKvote).toBe(false);
+            expect(h.kanForlengePeriode).toBe(false);
             expect(h.kanSlettes).toBe(false);
         });
 
-        it('B4: Aktiv deltaker, utvidet kvote', () => {
+        it('B4: Aktiv deltaker, utvidet periode', () => {
             const deltakelse = lagDeltakelse({
                 fraOgMed: ISODateToDate('2026-03-01'),
                 søktTidspunkt: new Date(),
-                harUtvidetKvote: true,
+                harForlengetPeriode: true,
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(false);
             expect(h.kanMeldesUt).toBe(true);
-            expect(h.kanUtvideKvote).toBe(false);
+            expect(h.kanForlengePeriode).toBe(false);
         });
 
-        it('B6: Aktiv deltaker, kvote utløpt', () => {
+        it('B6: Aktiv deltaker, periode utløpt', () => {
             const deltakelse = lagDeltakelse({
                 fraOgMed: ISODateToDate('2025-01-01'),
                 søktTidspunkt: new Date(),
-                kvoteMaksDato: ISODateToDate('2026-01-01'),
+                forlengetPeriodeMaksDato: ISODateToDate('2026-01-01'),
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(false);
             expect(h.kanMeldesUt).toBe(false);
-            expect(h.kanUtvideKvote).toBe(false);
+            expect(h.kanForlengePeriode).toBe(false);
         });
 
         it('C1: Utmeldt, startdato endrbar', () => {
@@ -226,7 +231,7 @@ describe('deltakelseUtils', () => {
             expect(h.kanEndreStartdato).toBe(true);
             expect(h.kanEndreSluttdato).toBe(true);
             expect(h.kanMeldesUt).toBe(false);
-            expect(h.kanUtvideKvote).toBe(false);
+            expect(h.kanForlengePeriode).toBe(false);
         });
 
         it('D1: Slettet overstyrer alt', () => {
@@ -239,7 +244,7 @@ describe('deltakelseUtils', () => {
             expect(h.kanEndreStartdato).toBe(false);
             expect(h.kanMeldesUt).toBe(false);
             expect(h.kanEndreSluttdato).toBe(false);
-            expect(h.kanUtvideKvote).toBe(false);
+            expect(h.kanForlengePeriode).toBe(false);
             expect(h.kanSlettes).toBe(false);
         });
     });

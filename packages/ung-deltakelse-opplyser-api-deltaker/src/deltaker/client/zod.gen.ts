@@ -10,7 +10,9 @@ export const zDeltakerDto = z.object({
 export const zDeltakelseDto = z.object({
     deltaker: zDeltakerDto,
     erSlettet: z.boolean(),
+    forlengetPeriodeMaksDato: z.iso.date(),
     fraOgMed: z.iso.date(),
+    harForlengetPeriode: z.boolean(),
     harOpphørsvedtak: z.boolean(),
     harUtvidetKvote: z.boolean(),
     id: z.uuid().nullish(),
@@ -22,7 +24,9 @@ export const zDeltakelseDto = z.object({
 export const zDeltakelseKomposittDto = z.object({
     deltaker: zDeltakerDto,
     erSlettet: z.boolean(),
+    forlengetPeriodeMaksDato: z.iso.date(),
     fraOgMed: z.iso.date(),
+    harForlengetPeriode: z.boolean(),
     harOpphørsvedtak: z.boolean(),
     harUtvidetKvote: z.boolean(),
     id: z.uuid().nullish(),

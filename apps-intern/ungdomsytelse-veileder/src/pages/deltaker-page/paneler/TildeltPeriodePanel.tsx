@@ -2,7 +2,7 @@ import { Bleed, BodyLong, BodyShort, Box, Button, VStack } from '@navikt/ds-reac
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { useState } from 'react';
-import UtvidKvoteModal from '../../../components/utvid-kvote-modal/UtvidKvoteModal';
+import ForlengPeriodeModal from '../../../components/forleng-periode-modal/ForlengPeriodeModal';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { getDeltakelseHandlinger } from '../../../utils/deltakelseUtils';
 
@@ -13,18 +13,18 @@ interface DatoBoksProps {
     onDeltakelseChanged: (deltakelse: Deltakelse) => void;
 }
 
-const TildeltKvotePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBoksProps) => {
+const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBoksProps) => {
     const [visDialog, setVisDialog] = useState(false);
 
-    const { harUtvidetKvote, kvoteMaksDato, tilOgMed } = deltakelse;
-    const { kanUtvideKvote } = getDeltakelseHandlinger(deltakelse);
+    const { harForlengetPeriode, forlengetPeriodeMaksDato, tilOgMed } = deltakelse;
+    const { kanForlengePeriode } = getDeltakelseHandlinger(deltakelse);
 
     return (
         <>
             <Bleed marginBlock="space-1">
                 <VStack gap="space-8" maxWidth="40rem">
                     <BodyShort weight="semibold" size="large">
-                        {harUtvidetKvote ? '260 + 40' : '260'} dager
+                        {harForlengetPeriode ? '260 + 40' : '260'} dager
                     </BodyShort>
                     {tilOgMed ? (
                         <BodyLong>
@@ -33,11 +33,12 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBo
                         </BodyLong>
                     ) : (
                         <BodyLong>
-                            Siste dag i perioden er <strong>{dateFormatter.dayCompactDate(kvoteMaksDato)}</strong>.
+                            Siste dag i perioden er{' '}
+                            <strong>{dateFormatter.dayCompactDate(forlengetPeriodeMaksDato)}</strong>.
                         </BodyLong>
                     )}
 
-                    {kanUtvideKvote && (
+                    {kanForlengePeriode && (
                         <Box paddingBlock="space-8 space-0">
                             <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
                                 Registrer forlenget periode
@@ -48,7 +49,7 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBo
             </Bleed>
 
             {visDialog ? (
-                <UtvidKvoteModal
+                <ForlengPeriodeModal
                     onClose={() => setVisDialog(false)}
                     deltakelse={deltakelse}
                     deltaker={deltaker}
@@ -62,4 +63,4 @@ const TildeltKvotePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBo
     );
 };
 
-export default TildeltKvotePanel;
+export default TildeltPeriodePanel;

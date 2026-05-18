@@ -32,8 +32,10 @@ const deltakelse: DeltakelseDto = {
     erSlettet: false,
     harOpphørsvedtak: false,
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
+    harForlengetPeriode: false,
+    forlengetPeriodeMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate('2025-03-10'), 260)),
     harUtvidetKvote: false,
-    kvoteMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate('2025-03-10'), 260)),
+    kvoteMaksDato: 'deprecated',
 };
 
 const deltakelseHistorikk: DeltakelseHistorikkDto[] = [
@@ -88,7 +90,7 @@ const deltakelseHistorikk: DeltakelseHistorikkDto[] = [
     },
     {
         tidspunkt: '2026-04-30T05:01:35.127062Z',
-        endringstype: Endringstype.UTVIDET_KVOTE,
+        endringstype: Endringstype.FORLENGET_PERIODE,
         revisjonstype: Revisjonstype.ENDRET,
         endring: 'Kvote er utvidet med 8 uker (fra 01.04.2026 til 25.05.2027).',
         aktør: 'Z990501 (veileder)',
