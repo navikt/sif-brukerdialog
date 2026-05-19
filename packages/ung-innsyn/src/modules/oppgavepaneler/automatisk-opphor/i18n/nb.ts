@@ -1,9 +1,9 @@
 export const automatiskOpphorMessages_nb = {
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.paneltittel': 'Se og gi tilbakemelding på automatisk opphør',
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.oppgavetittel': 'Tilbakemelding på automatisk opphør',
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.info': 'Perioden din i ungdomsprogramet opphører snart.',
+    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.paneltittel': 'Se og gi tilbakemelding på sluttdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.oppgavetittel': 'Tilbakemelding på sluttdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.info': 'Perioden din med ungdomsprogramytelsen er snart over.',
     '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.harTilbakemeldingSpørsmål':
-        'Har du en tilbakemelding på opphørsdatoen?',
+        'Har du en tilbakemelding på sluttdatoen?',
     '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.harIkkeUttalelseLabel': 'Nei',
     '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.harUttalelseLabel': 'Ja',
     '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.tilbakemeldingFritekstLabel': 'Tilbakemelding',
