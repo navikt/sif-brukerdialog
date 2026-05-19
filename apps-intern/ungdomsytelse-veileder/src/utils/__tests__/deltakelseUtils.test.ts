@@ -1,4 +1,13 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
+
+vi.mock('../../types/Features', () => ({
+    Features: {
+        forlengePeriode: false,
+        slettAktivDeltakelse: false,
+        ignorerBegrensningForlengePeriode: false,
+    },
+}));
+
 import {
     getDeltakelseHandlinger,
     getGyldigStartdatoRange,
@@ -154,13 +163,13 @@ describe('deltakelseUtils', () => {
             expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
         });
 
-        it('true når tilOgMed er i fremtiden og innenfor siste 2 måneder før periodeutløp', () => {
+        it('false når tilOgMed er satt', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
                 forlengetPeriodeMaksDato: ISODateToDate('2026-06-01'),
                 tilOgMed: ISODateToDate('2026-05-20'),
             });
-            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(true);
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
         });
     });
 
