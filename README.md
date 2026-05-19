@@ -33,10 +33,10 @@ pnpm storybook
 
 ## Testing
 
-| Verktøy    | Bruksområde                        | Kommando                    |
-| ---------- | ---------------------------------- | --------------------------- |
-| Vitest     | Enhetstester og integrasjonstester | `pnpm test`                 |
-| Playwright | E2E- og GUI-tester                 | `pnpm pw:run` (i app-mappe) |
+| Verktøy    | Bruksområde                        | Kommando                                                                        |
+| ---------- | ---------------------------------- | ------------------------------------------------------------------------------- |
+| Vitest     | Enhetstester og integrasjonstester | `pnpm test`                                                                     |
+| Playwright | E2E- og GUI-tester                 | `pnpm pw:run` (kun i apper med Playwright-oppsett; se appens `package.json`/README) |
 
 ## Scripts
 
