@@ -177,6 +177,24 @@ export type LovbestemtFeriePeriodeInfo = {
     skalHaFerie?: boolean;
 };
 
+export type MikrofrontendAktiverRequest = {
+    fødselsnummer: string;
+};
+
+export type MikrofrontendOppslagRequest = {
+    fødselsnummer: string;
+};
+
+export type MikrofrontendRespons = {
+    behandlingsdato?: string;
+    endret?: string;
+    fødselsnummer: string;
+    id: string;
+    mikrofrontendId: string;
+    opprettet?: string;
+    status: 'ENABLE' | 'DISABLE';
+};
+
 export type Nattevåk = {
     perioder: {
         [key: string]: NattevåkPeriodeInfo;
@@ -595,6 +613,80 @@ export type HentDokumentResponses = {
 };
 
 export type HentDokumentResponse = HentDokumentResponses[keyof HentDokumentResponses];
+
+export type AktiverMikrofrontendData = {
+    body: MikrofrontendAktiverRequest;
+    path?: never;
+    query?: never;
+    url: '/forvaltning/mikrofrontend/aktiver';
+};
+
+export type AktiverMikrofrontendErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type AktiverMikrofrontendError = AktiverMikrofrontendErrors[keyof AktiverMikrofrontendErrors];
+
+export type AktiverMikrofrontendResponses = {
+    /**
+     * OK
+     */
+    200: MikrofrontendRespons;
+};
+
+export type AktiverMikrofrontendResponse = AktiverMikrofrontendResponses[keyof AktiverMikrofrontendResponses];
+
+export type HentMikrofrontenderData = {
+    body: MikrofrontendOppslagRequest;
+    path?: never;
+    query?: never;
+    url: '/forvaltning/mikrofrontend/hent';
+};
+
+export type HentMikrofrontenderErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentMikrofrontenderError = HentMikrofrontenderErrors[keyof HentMikrofrontenderErrors];
+
+export type HentMikrofrontenderResponses = {
+    /**
+     * OK
+     */
+    200: MikrofrontendRespons[];
+};
+
+export type HentMikrofrontenderResponse = HentMikrofrontenderResponses[keyof HentMikrofrontenderResponses];
 
 export type OppdaterAktoerIdData = {
     body: AktørBytteRequest;

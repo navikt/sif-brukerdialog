@@ -149,6 +149,24 @@ export const zLovbestemtFerie = z.object({
     perioder: z.record(z.string(), zLovbestemtFeriePeriodeInfo),
 });
 
+export const zMikrofrontendAktiverRequest = z.object({
+    fødselsnummer: z.string(),
+});
+
+export const zMikrofrontendOppslagRequest = z.object({
+    fødselsnummer: z.string(),
+});
+
+export const zMikrofrontendRespons = z.object({
+    behandlingsdato: z.iso.datetime({ local: true }).nullish(),
+    endret: z.iso.datetime({ local: true }).nullish(),
+    fødselsnummer: z.string(),
+    id: z.uuid(),
+    mikrofrontendId: z.string(),
+    opprettet: z.iso.datetime({ local: true }).nullish(),
+    status: z.enum(['ENABLE', 'DISABLE']),
+});
+
 export const zNattevåkPeriodeInfo = z.object({
     tilleggsinformasjon: z.string().min(0).max(4000),
 });
@@ -572,6 +590,20 @@ export const zHentDokumentQuery = z.object({
  * OK
  */
 export const zHentDokumentResponse = z.string();
+
+export const zAktiverMikrofrontendBody = zMikrofrontendAktiverRequest;
+
+/**
+ * OK
+ */
+export const zAktiverMikrofrontendResponse = zMikrofrontendRespons;
+
+export const zHentMikrofrontenderBody = zMikrofrontendOppslagRequest;
+
+/**
+ * OK
+ */
+export const zHentMikrofrontenderResponse = z.array(zMikrofrontendRespons);
 
 export const zOppdaterAktoerIdBody = zAktørBytteRequest;
 
