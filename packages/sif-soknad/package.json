@@ -1,10 +1,12 @@
 {
     "name": "@sif/soknad",
-    "main": "src/index.ts",
-    "types": "src/index.ts",
-    "type": "module",
     "version": "0.0.4",
     "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "type": "module",
     "exports": {
         ".": "./src/index.ts",
         "./components": "./src/components/index.ts",
@@ -18,10 +20,8 @@
         "./types": "./src/types/index.ts",
         "./utils": "./src/utils/index.ts"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
-    },
+    "main": "src/index.ts",
+    "types": "src/index.ts",
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
@@ -41,10 +41,6 @@
         "react-router-dom": "7.15.1",
         "zustand": "5.0.13"
     },
-    "peerDependencies": {
-        "react": ">=19",
-        "react-dom": ">=19"
-    },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "@testing-library/react": "16.3.2",
@@ -54,5 +50,9 @@
         "react-dom": "19.2.6",
         "typescript": "6.0.3",
         "vitest": "4.1.6"
+    },
+    "peerDependencies": {
+        "react": ">=19",
+        "react-dom": ">=19"
     }
 }

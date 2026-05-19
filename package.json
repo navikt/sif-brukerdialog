@@ -1,13 +1,40 @@
 {
-    "author": "NAV",
-    "description": "Monorepo for felleskode og selvbetjeningsdialoger i Sykdom i familien",
-    "license": "MIT",
     "name": "@navikt/sif-brukerdialog",
-    "repository": "https://github.com/navikt/sif-brukerdialog",
-    "type": "module",
     "version": "0.0.1",
+    "private": true,
+    "description": "Monorepo for felleskode og selvbetjeningsdialoger i Sykdom i familien",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
+    },
+    "repository": "https://github.com/navikt/sif-brukerdialog",
+    "license": "MIT",
+    "author": "NAV",
+    "type": "module",
+    "scripts": {
+        "build": "turbo build",
+        "build-storybook": "turbo build-storybook",
+        "clean": "turbo clean",
+        "clean:output": "node scripts/clean-output.mjs",
+        "clean-all": "turbo clean && rm -rf node_modules",
+        "codegen:dev": "turbo run codegen:dev",
+        "codegen:prod": "turbo run codegen:prod",
+        "deploy-gh-pages": "gh-pages -d gh-pages",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "lint": "turbo lint",
+        "lint:eslint": "turbo lint:eslint",
+        "lint:fix": "turbo lint:fix",
+        "lint:tsc": "turbo lint:tsc",
+        "prepare": "husky install",
+        "sort-package-json": "sort-package-json \"package.json\" \"apps/*/package.json\" \"apps-intern/*/package.json\" \"packages/*/package.json\" \"server*/package.json\"",
+        "test": "turbo test"
+    },
+    "lint-staged": {
+        "apps/**/*.{ts,tsx,js,jsx, css}": [
+            "prettier --write"
+        ],
+        "packages/**/*.{ts,tsx,js,jsx, css}": [
+            "prettier --write"
+        ]
     },
     "dependencies": {
         "@changesets/cli": "2.31.0",
@@ -22,45 +49,20 @@
         "husky": "9.1.7",
         "lint-staged": "17.0.4",
         "prettier": "3.8.3",
+        "sort-package-json": "3.6.1",
         "typescript": "6.0.3",
         "vitest": "4.1.6"
-    },
-    "lint-staged": {
-        "apps/**/*.{ts,tsx,js,jsx, css}": [
-            "prettier --write"
-        ],
-        "packages/**/*.{ts,tsx,js,jsx, css}": [
-            "prettier --write"
-        ]
-    },
-    "scripts": {
-        "build": "turbo build",
-        "build-storybook": "turbo build-storybook",
-        "clean-all": "turbo clean && rm -rf node_modules",
-        "clean": "turbo clean",
-        "clean:output": "node scripts/clean-output.mjs",
-        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "lint": "turbo lint",
-        "lint:eslint": "turbo lint:eslint",
-        "lint:tsc": "turbo lint:tsc",
-        "lint:fix": "turbo lint:fix",
-        "prepare": "husky install",
-        "test": "turbo test",
-        "codegen:dev": "turbo run codegen:dev",
-        "codegen:prod": "turbo run codegen:prod",
-        "deploy-gh-pages": "gh-pages -d gh-pages"
     },
     "packageManager": "pnpm@10.33.4",
     "pnpm": {
         "overrides": {
             "axios": "1.16.1",
+            "brace-expansion@^5": ">=5.0.5",
+            "js-yaml@3.13.1": "^3.14.2",
             "jsdom": "28.1.0",
             "picomatch@^2": "^2.3.2",
             "picomatch@^4": "^4.0.4",
-            "brace-expansion@^5": ">=5.0.5",
-            "js-yaml@3.13.1": "^3.14.2",
             "protobufjs": "8.0.2"
         }
-    },
-    "private": true
+    }
 }

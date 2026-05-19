@@ -1,13 +1,41 @@
 {
-    "author": "navikt",
-    "homepage": "https://navikt.github.io/sif-common-formik-ds",
-    "license": "MIT",
-    "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
     "version": "2.5.45",
-    "type": "module",
+    "homepage": "https://navikt.github.io/sif-common-formik-ds",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-common-formik-ds.git"
+    },
+    "license": "MIT",
+    "author": "navikt",
+    "type": "module",
+    "main": "src/index.ts",
+    "directories": {
+        "lib": "lib"
+    },
+    "files": [
+        "package.json",
+        "/lib"
+    ],
+    "scripts": {
+        "build-storybook": "storybook build",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run",
+        "test-storybook": "test-storybook"
+    },
+    "jest": {
+        "transformIgnorePatterns": [
+            "node_modules/(?!(@navikt)).*\\.js$"
+        ]
+    },
+    "overrides": {
+        "react-refresh": "0.11.0"
     },
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
@@ -59,33 +87,5 @@
         "vite-plugin-checker": "0.13.0",
         "vitest": "4.1.6",
         "webpack": "5.106.2"
-    },
-    "directories": {
-        "lib": "lib"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
-    },
-    "overrides": {
-        "react-refresh": "0.11.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/navikt/sif-common-formik-ds.git"
-    },
-    "scripts": {
-        "build-storybook": "storybook build",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run",
-        "test-storybook": "test-storybook"
-    },
-    "files": [
-        "package.json",
-        "/lib"
-    ]
+    }
 }

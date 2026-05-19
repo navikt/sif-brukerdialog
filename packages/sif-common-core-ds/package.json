@@ -1,10 +1,21 @@
 {
-    "author": "navikt",
-    "main": "src/index.ts",
     "name": "@navikt/sif-common-core-ds",
     "version": "10.3.55",
     "private": true,
+    "author": "navikt",
     "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "build-storybook": "storybook build public",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run"
+    },
+    "overrides": {
+        "react-refresh": "0.11.0"
+    },
     "dependencies": {
         "@grafana/faro-web-sdk": "2.6.3",
         "@navikt/appstatus-react-ds": "workspace:*",
@@ -61,16 +72,5 @@
         "vite": "8.0.13",
         "vite-plugin-checker": "0.13.0",
         "vitest": "4.1.6"
-    },
-    "overrides": {
-        "react-refresh": "0.11.0"
-    },
-    "scripts": {
-        "build-storybook": "storybook build public",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
     }
 }

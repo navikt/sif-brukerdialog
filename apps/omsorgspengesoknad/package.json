@@ -1,14 +1,33 @@
 {
+    "name": "@navikt/omsorgspengesoknad",
+    "version": "1.41.72",
+    "private": true,
+    "description": "Søknad om omsorgspengesoknad",
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
+    "bugs": {
+        "url": "https://github.com/navikt/sif-brukerdialog/issues"
+    },
+    "repository": "https://github.com/navikt/sif-brukerdialog",
+    "license": "MIT",
     "author": {
         "name": "NAV"
     },
-    "description": "Søknad om omsorgspengesoknad",
-    "license": "MIT",
-    "name": "@navikt/omsorgspengesoknad",
-    "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.41.72",
-    "private": true,
     "type": "module",
+    "scripts": {
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",
+        "build-storybook": "storybook build",
+        "clean": "rm -rf node_modules dist",
+        "dev": "vite --config vite.dev.config.ts",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "playwright-test": "playwright test",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:run": "playwright test",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run"
+    },
     "dependencies": {
         "@navikt/aksel-icons": "8.10.5",
         "@navikt/ds-css": "8.10.5",
@@ -88,25 +107,6 @@
         "vite-plugin-checker": "0.13.0",
         "vitest": "4.1.6"
     },
-    "scripts": {
-        "build-storybook": "storybook build",
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",
-        "clean": "rm -rf node_modules dist",
-        "dev": "vite --config vite.dev.config.ts",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "playwright-test": "playwright test",
-        "pw:build": "vite build --config vite.playwright.config.ts",
-        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
-        "pw:run": "playwright test",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
-    },
-    "bugs": {
-        "url": "https://github.com/navikt/sif-brukerdialog/issues"
-    },
-    "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
     "msw": {
         "workerDirectory": [
             ""

@@ -1,23 +1,23 @@
 {
     "name": "@navikt/sif-common-faro",
-    "main": "src/index.ts",
     "version": "0.2.13",
     "private": true,
     "type": "module",
-    "devDependencies": {
-        "@navikt/sif-common-env": "workspace:*",
-        "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.14",
-        "typescript": "6.0.3"
+    "main": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit --skipLibCheck"
     },
     "dependencies": {
         "@grafana/faro-web-sdk": "2.6.3",
         "constate": "3.3.3",
         "react": "19.2.6"
     },
-    "scripts": {
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit --skipLibCheck"
+    "devDependencies": {
+        "@navikt/sif-common-env": "workspace:*",
+        "@sif/eslint-config": "workspace:*",
+        "@types/react": "19.2.14",
+        "typescript": "6.0.3"
     }
 }

@@ -1,12 +1,12 @@
 {
     "name": "@sif/eslint-config",
-    "main": "eslint.config.mjs",
-    "type": "module",
     "version": "1.1.84",
     "description": "Shared ESLint configuration for SIF projects",
+    "type": "module",
     "exports": {
         ".": "./eslint.config.mjs"
     },
+    "main": "eslint.config.mjs",
     "dependencies": {
         "@eslint/eslintrc": "3.3.5",
         "@eslint/js": "10.0.1",

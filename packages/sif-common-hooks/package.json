@@ -1,21 +1,21 @@
 {
     "name": "@navikt/sif-common-hooks",
-    "main": "src/index.ts",
     "version": "0.3.11",
     "private": true,
     "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
+    },
     "dependencies": {
         "react": "19.2.6",
         "typescript": "6.0.3"
     },
     "devDependencies": {
-        "@sif/eslint-config": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
+        "@sif/eslint-config": "workspace:*",
         "copyfiles": "2.4.1"
-    },
-    "scripts": {
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit"
     }
 }

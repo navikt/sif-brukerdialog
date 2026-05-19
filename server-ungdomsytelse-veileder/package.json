@@ -1,8 +1,8 @@
 {
     "name": "@navikt/server-ungdomsytelse-veileder",
     "version": "0.0.57",
-    "license": "MIT",
     "private": true,
+    "license": "MIT",
     "scripts": {
         "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=cjs"
     },

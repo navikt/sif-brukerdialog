@@ -1,14 +1,32 @@
 {
     "name": "@navikt/sif-common-sentry",
-    "author": "navikt",
+    "version": "0.28.65",
     "description": "Sentry utils used in sif-common applications",
     "homepage": "https://navikt.github.io/sif-common-sentry",
-    "license": "MIT",
-    "main": "src/index.ts",
-    "version": "0.28.65",
-    "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-common-sentry.git"
+    },
+    "license": "MIT",
+    "author": "navikt",
+    "type": "module",
+    "main": "src/index.ts",
+    "directories": {
+        "lib": "lib"
+    },
+    "files": [
+        "package.json",
+        "/lib/index.d.ts",
+        "/lib/index.ts"
+    ],
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest"
     },
     "dependencies": {
         "@sentry/browser": "10.53.1",
@@ -29,25 +47,7 @@
         "typescript": "6.0.3",
         "vitest": "4.1.6"
     },
-    "directories": {
-        "lib": "lib"
-    },
-    "files": [
-        "package.json",
-        "/lib/index.d.ts",
-        "/lib/index.ts"
-    ],
     "peerDependencies": {
         "axios": "^1.16.1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/navikt/sif-common-sentry.git"
-    },
-    "scripts": {
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "test": "vitest"
     }
 }

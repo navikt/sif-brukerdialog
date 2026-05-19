@@ -1,14 +1,14 @@
 {
-    "author": "NAV",
-    "description": "En kalkulator for beregning av omsorgsdager.",
-    "license": "MIT",
     "name": "@navikt/omsorgsdager-kalkulator",
     "version": "3.14.7",
     "private": true,
+    "description": "En kalkulator for beregning av omsorgsdager.",
+    "license": "MIT",
+    "author": "NAV",
     "scripts": {
-        "dev": "next dev --webpack -p 8080",
         "build": "next build --webpack",
         "clean": "rm -rf node_modules",
+        "dev": "next dev --webpack -p 8080",
         "playwright-test": "playwright test",
         "start": "next start -p 8080",
         "test": "jest"

@@ -1,12 +1,27 @@
 {
-    "author": "NAV",
-    "description": "Selvbetjeningsløsning for pleiepengesøknad",
-    "license": "MIT",
     "name": "@navikt/pleiepenger-sykt-barn",
-    "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "4.11.74",
     "private": true,
+    "description": "Selvbetjeningsløsning for pleiepengesøknad",
+    "repository": "https://github.com/navikt/sif-brukerdialog",
+    "license": "MIT",
+    "author": "NAV",
     "type": "module",
+    "scripts": {
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
+        "build-storybook": "storybook build",
+        "clean": "rm -rf node_modules dist",
+        "dev": "vite --config vite.dev.config.ts",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "playwright-test": "playwright test",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:run": "pnpm playwright-test",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run"
+    },
     "dependencies": {
         "@navikt/aksel-icons": "8.10.5",
         "@navikt/appstatus-react-ds": "workspace:*",
@@ -87,21 +102,6 @@
         "vite": "8.0.13",
         "vite-plugin-checker": "0.13.0",
         "vitest": "4.1.6"
-    },
-    "scripts": {
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
-        "build-storybook": "storybook build",
-        "clean": "rm -rf node_modules dist",
-        "dev": "vite --config vite.dev.config.ts",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "playwright-test": "playwright test",
-        "pw:run": "pnpm playwright-test",
-        "pw:build": "vite build --config vite.playwright.config.ts",
-        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
     },
     "msw": {
         "workerDirectory": [

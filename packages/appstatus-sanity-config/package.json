@@ -2,19 +2,29 @@
     "name": "appstatus-sanity-config",
     "version": "1.2.61",
     "description": "",
-    "main": "package.json",
-    "author": "frodehansen2 <frode.hansen@bekk.no>",
-    "license": "UNLICENSED",
-    "scripts": {
-        "dev": "sanity dev",
-        "start": "sanity start",
-        "build": "sanity build",
-        "deploy": "sanity deploy",
-        "deploy-graphql": "sanity graphql deploy"
-    },
     "keywords": [
         "sanity"
     ],
+    "license": "UNLICENSED",
+    "author": "frodehansen2 <frode.hansen@bekk.no>",
+    "main": "package.json",
+    "scripts": {
+        "build": "sanity build",
+        "deploy": "sanity deploy",
+        "deploy-graphql": "sanity graphql deploy",
+        "dev": "sanity dev",
+        "start": "sanity start"
+    },
+    "prettier": {
+        "arrowParens": "always",
+        "bracketSameLine": true,
+        "bracketSpacing": true,
+        "ordered-imports": false,
+        "printWidth": 120,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "useTabs": false
+    },
     "dependencies": {
         "@sanity/vision": "5.25.1",
         "react": "19.2.6",
@@ -31,15 +41,5 @@
         "react-is": "19.2.6",
         "styled-components": "6.4.1",
         "typescript": "6.0.3"
-    },
-    "prettier": {
-        "useTabs": false,
-        "bracketSpacing": true,
-        "bracketSameLine": true,
-        "tabWidth": 4,
-        "arrowParens": "always",
-        "singleQuote": true,
-        "printWidth": 120,
-        "ordered-imports": false
     }
 }

@@ -2,8 +2,8 @@
     "name": "@navikt/sif-common-analytics",
     "version": "0.0.7",
     "description": "Analytics log util used in SIF",
-    "main": "src/index.ts",
     "type": "module",
+    "main": "src/index.ts",
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",

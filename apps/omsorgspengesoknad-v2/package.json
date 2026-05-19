@@ -1,21 +1,21 @@
 {
     "name": "@navikt/omsorgspengesoknad-v2",
-    "type": "module",
-    "private": true,
     "version": "0.0.8",
+    "private": true,
+    "type": "module",
     "scripts": {
-        "dev": "vite --base=/familie/sykdom-i-familien/soknad/omsorgspenger --config vite.dev.config.ts",
-        "pw:dev": "vite --config vite.e2e.config.ts",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",
+        "build-storybook": "storybook build",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
+        "dev": "vite --base=/familie/sykdom-i-familien/soknad/omsorgspenger --config vite.dev.config.ts",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
-        "test": "vitest run",
+        "pw:dev": "vite --config vite.e2e.config.ts",
         "pw:run": "playwright test",
         "pw:run:headed": "playwright test --headed",
         "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build"
+        "test": "vitest run"
     },
     "dependencies": {
         "@navikt/aksel-icons": "8.10.5",
