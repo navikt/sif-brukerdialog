@@ -1,39 +1,80 @@
 # sif-brukerdialog
 
-Samling av kode for søknadsdialoger under Sykdom i familien
+Monorepo for selvbetjeningsdialoger og fellespakker i Sykdom i familien.
 
-## Script
+## Struktur
 
-- `pnpm clean` - Kaller turbo clean.
-- `pnpm clean-all` - Sletter node_modules og lib foldere.
-- `pnpm install` - Installer alle moduler
-- `pnpm build` - Bygger alle applikasjoner under apps med produksjonsinnstillinger (se script i app).
-- `pnpm test` - Kjører alle tester i apps og packages
-- `pnpm build --concurrency=2` - Bygger med redusert parallellitet (anbefalt for Next.js-apper)
-- `pnpm up -irL` - interaktiv oppdatering av pakker
+| Mappe                            | Innhold                                                               |
+| -------------------------------- | --------------------------------------------------------------------- |
+| `apps/`                          | Brukerrettede søknadsapper (React/Next.js)                            |
+| `apps-intern/`                   | Interne verktøy og veilederflater                                     |
+| `packages/`                      | Delte pakker og biblioteker                                           |
+| `server/`                        | Backend-server (proxying og autentisering) for de fleste apper        |
+| `server-ungdomsytelse-veileder/` | Backend-server (proxying og autentisering) for ungdomsytelse veileder |
 
-## Utvikle på én applikasjon
+## Kom i gang
 
-- Kjør `pnpm dev` i app-mappen for å starte dev-server.
-- Kopier .env.example til .env i app-folder
-- Dersom det gjøres større endringer i en package, kan det være en må kjøre `pnpm build` for at applikasjonen skal få det med seg. I VS Code kan det være en må kjøre "reload windows".
+```bash
+pnpm install
+```
 
-## Utvikling, endringer og publisering
+Gå deretter inn i en app-mappe og start dev-serveren:
 
-- Vi bruker @changesets/cli for å holde orden på versjoner. Se https://www.npmjs.com/package/@changesets/cli for mer informasjon om hvordan det brukes.
+```bash
+cd apps/<app-navn>
+pnpm dev
+```
 
-## Produksjonssetting av applikasjoner
+De fleste apper og pakker med grensesnitt har også Storybook:
 
-- Alle applikasjoner skal prodsettes automatisk dersom det er endringer på main-branchen som berører applikasjonen. Dette gjøres ved å sette opp workflows som fanger opp push til main med endringer under path til applikasjonen.
+```bash
+pnpm storybook
+```
 
-### Lage PR fra branch med endret kode, og som medfører versjons-bump
+## Testing
 
-#### Oppsummert
+| Verktøy    | Bruksområde                        | Kommando                    |
+| ---------- | ---------------------------------- | --------------------------- |
+| Vitest     | Enhetstester og integrasjonstester | `pnpm test`                 |
+| Playwright | E2E- og GUI-tester                 | `pnpm pw:run` (i app-mappe) |
 
-- Lag PR med oppdatert kode og changeset fil
-- PR merges til main og ny PR med oppdaterte versjoner lages automatisk
-- PR med versjoner merges inn og en publiserer til npmjs
+## Scripts
 
-## Kode generert av GitHub Copilot
+### Bygg og kvalitet
 
-Dette repoet bruker GitHub Copilot til å generere kode.
+| Kommando                     | Beskrivelse                                                  |
+| ---------------------------- | ------------------------------------------------------------ |
+| `pnpm build`                 | Bygg alle applikasjoner                                      |
+| `pnpm build --concurrency=2` | Bygg med redusert parallellitet (anbefalt for Next.js-apper) |
+| `pnpm test`                  | Kjør alle tester i apps og packages                          |
+| `pnpm lint`                  | Kjør alle lint-sjekker                                       |
+
+### Vedlikehold
+
+| Kommando            | Beskrivelse                                                                   |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `pnpm clean`        | Fjern build-output via Turbo                                                  |
+| `pnpm clean-all`    | Fjern build-output og alle `node_modules`                                     |
+| `pnpm up -irL`      | Interaktiv oppdatering av pakker                                              |
+| `pnpm format`       | Formater alle `.ts`, `.tsx` og `.md`-filer                                    |
+| `pnpm codegen:dev`  | Generer TypeScript-klienter fra OpenAPI-specs (mot dev-miljø, i pakke-mappe)  |
+| `pnpm codegen:prod` | Generer TypeScript-klienter fra OpenAPI-specs (mot prod-miljø, i pakke-mappe) |
+
+## Versjonering og publisering av pakker
+
+Interne pakker i `packages/` versjoneres med [`@changesets/cli`](https://www.npmjs.com/package/@changesets/cli). Applikasjoner versjoneres ikke så lenge det føles naturlig ved større endringer.
+
+Arbeidsflyt ved endringer i en pakke:
+
+```bash
+pnpm changeset          # beskriv endringen
+pnpm changeset version  # bump versjoner og oppdater avhengigheter
+```
+
+## Deploy
+
+Applikasjoner deployes automatisk ved push til `main` dersom det er endringer under applikasjonens path. Dette styres av GitHub Actions-workflows per app.
+
+## GitHub Copilot
+
+Repoet har et sett med Copilot-skills under [`.github/skills/`](.github/skills/) som gir Copilot domenekunnskap om vanlige oppgaver — som å legge til steg i en søknad, sette opp i18n, migrere skjemaer fra Formik til RHF og mer. Se [`.github/skills/README.md`](.github/skills/README.md) for oversikt.
