@@ -2,13 +2,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@navikt/ung-common';
 import { queryKeys } from '../queries/queryKeys';
 import { Deltakelse } from '../types/Deltakelse';
-import { utvidKvote } from '../api/deltakelse/utvidKvote';
+import { forlengPeriode } from '../api/deltakelse/forlengPeriode';
 
-export const useUtvidKvote = ({ deltakelseId, deltakerId }: { deltakelseId: string; deltakerId: string }) => {
+export const useForlengPeriode = ({ deltakelseId, deltakerId }: { deltakelseId: string; deltakerId: string }) => {
     const queryClient = useQueryClient();
 
     return useMutation<Deltakelse, ApiError, string>({
-        mutationFn: utvidKvote,
+        mutationFn: forlengPeriode,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: queryKeys.deltakelserForDeltaker(deltakerId) });
             queryClient.invalidateQueries({ queryKey: queryKeys.deltakelseHistorikk(deltakelseId) });

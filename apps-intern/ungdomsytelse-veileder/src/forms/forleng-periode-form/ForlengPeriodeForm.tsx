@@ -11,7 +11,7 @@ import { getCheckedValidator, getYesOrNoValidator } from '@navikt/sif-validation
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { formatName } from '@navikt/sif-common-utils';
-import { useUtvidKvote } from '../../hooks/useUtvidKvote';
+import { useForlengPeriode } from '../../hooks/useForlengPeriode';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { QuestionBleedTop } from '@navikt/sif-common-ui';
 
@@ -33,10 +33,10 @@ interface Props {
     onDeltakelseChanged: (oppdatertDeltakelse: Deltakelse) => void;
 }
 
-const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }: Props) => {
+const ForlengPeriodeForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }: Props) => {
     const intl = useIntl();
 
-    const { mutate, isPending, error } = useUtvidKvote({ deltakelseId: deltakelse.id, deltakerId: deltaker.id });
+    const { mutate, isPending, error } = useForlengPeriode({ deltakelseId: deltakelse.id, deltakerId: deltaker.id });
 
     const handleOnSubmit = async (values: FormValues) => {
         const { bekrefterEndring } = values;
@@ -106,4 +106,4 @@ const UtvidKvoteForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChanged }:
     );
 };
 
-export default UtvidKvoteForm;
+export default ForlengPeriodeForm;

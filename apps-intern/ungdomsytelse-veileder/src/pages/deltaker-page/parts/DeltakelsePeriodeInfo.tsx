@@ -6,7 +6,7 @@ import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 import { getDeltakelseHandlinger } from '../../../utils/deltakelseUtils';
 import SluttdatoPanel from '../paneler/SluttdatoPanel';
 import StartdatoPanel from '../paneler/StartdatoPanel';
-import TildeltKvotePanel from '../paneler/TildeltKvotePanel';
+import TildeltPeriodePanel from '../paneler/TildeltPeriodePanel';
 import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import InfoBox from '../../../atoms/InfoBox';
 import { Features } from '../../../types/Features';
@@ -40,13 +40,13 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
 
                 <InfoBox>
                     <dl className="deltakelseInfoDL">
-                        {Features.utvidePeriode && (
+                        {Features.forlengePeriode && (
                             <>
                                 <dt>
                                     <BodyShort>Periode:</BodyShort>
                                 </dt>
                                 <dd>
-                                    <TildeltKvotePanel
+                                    <TildeltPeriodePanel
                                         deltaker={deltaker}
                                         deltakelse={deltakelse}
                                         onDeltakelseChanged={handleOnDeltakelseChanged}

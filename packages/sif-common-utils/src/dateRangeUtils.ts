@@ -415,6 +415,14 @@ export const getNumberOfDaysInDateRange = (dateRange: DateRange, onlyWeekDays = 
         : Math.abs(dayjs(dateRange.to).startOf('day').diff(dayjs(dateRange.from).startOf('day'), 'days')) + 1;
 
 /**
+ * Returns the number of weekdays (Monday–Friday) in the date range.
+ * Inclusive: both from- and to-date are counted (same convention as isDateInDateRange).
+ * @param dateRange The date range to count weekdays in
+ */
+export const getNumberOfWeekdaysInDateRange = (dateRange: DateRange): number =>
+    getNumberOfDaysInDateRange(dateRange, true);
+
+/**
  * Gets a dateRange from a list of @dates
  * @param dates
  * @returns dateRange
@@ -812,6 +820,7 @@ export const dateRangeUtils = {
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
+    getNumberOfWeekdaysInDateRange,
     getWeekDateRange,
     includeWeekendIfDateRangeEndsOnFridayOrLater,
     isDateInDateRange,

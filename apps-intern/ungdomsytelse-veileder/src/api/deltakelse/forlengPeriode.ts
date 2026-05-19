@@ -3,16 +3,16 @@ import { Veileder } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
 
 /**
- * Utvide en deltakelse
+ * Forlenge en deltakelseperiode
  * @param deltakelseId
  * @throws {ApiError}
  */
 
-export const utvidKvote = async (deltakelseId: string): Promise<Deltakelse> => {
+export const forlengPeriode = async (deltakelseId: string): Promise<Deltakelse> => {
     try {
-        const { data } = await Veileder.utvidKvote({ path: { deltakelseId } });
+        const { data } = await Veileder.forlengPeriode({ path: { deltakelseId } });
         return deltakelseSchema.parse(data);
     } catch (e) {
-        throw handleApiError(e, 'utvidKvote');
+        throw handleApiError(e, 'forlengPeriode');
     }
 };

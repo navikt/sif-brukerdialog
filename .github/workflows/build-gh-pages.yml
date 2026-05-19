@@ -94,7 +94,7 @@ jobs:
 
       # Bygg ungdomsytelse-deltaker-storybook
       - name: Build ungdomsytelse-deltaker-storybook
-        run: pnpm storybook:build
+        run: pnpm build-storybook
         working-directory: apps/ungdomsytelse-deltaker
 
       # Flytt ungdomsytelse-deltaker-storybook til gh-pages
@@ -102,6 +102,17 @@ jobs:
         run: |
           mkdir -p deployment/ungdomsytelse-deltaker-storybook
           mv apps/ungdomsytelse-deltaker/storybook-static/* deployment/ungdomsytelse-deltaker-storybook/
+
+      # Bygg ung-innsyn-storybook
+      - name: Build ung-innsyn-storybook
+        run: pnpm build-storybook
+        working-directory: packages/ung-innsyn
+
+      # Flytt ung-innsyn-storybook til gh-pages
+      - name: Kopier ung-innsyn-storybook til gh-pages
+        run: |
+          mkdir -p deployment/ung-innsyn-storybook
+          mv packages/ung-innsyn/storybook-static/* deployment/ung-innsyn-storybook/
 
       # Last opp bygget som en artefakt
       - name: Upload artifact for GitHub Pages

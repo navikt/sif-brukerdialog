@@ -17,7 +17,7 @@ import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { AvvikRegisterinntektOppgavePanel } from './AvvikRegisterinntektOppgavePanel';
 
 const meta: Meta = {
-    title: 'Oppgaver/7. Avvik registerinntekt inntekt',
+    title: 'Oppgaver/Ungdomsprogramytelsen/Avvik registerinntekt inntekt',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };

@@ -1,7 +1,7 @@
 import { Heading, Modal } from '@navikt/ds-react';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
-import UtvidKvoteForm from '../../forms/utvid-kvote-form/UtvidKvoteForm';
+import ForlengPeriodeForm from '../../forms/forleng-periode-form/ForlengPeriodeForm';
 
 interface Props {
     deltaker: Deltaker;
@@ -11,7 +11,7 @@ interface Props {
     onClose: () => void;
 }
 
-const UtvidKvoteModal = ({ deltaker, deltakelse, onDeltakelseChanged, onClose }: Props) => {
+const ForlengPeriodeModal = ({ deltaker, deltakelse, onDeltakelseChanged, onClose }: Props) => {
     return (
         <Modal open={true} onClose={() => onClose()} aria-labelledby="oppgave-modal-heading" width="medium">
             <Modal.Header closeButton={true}>
@@ -20,7 +20,7 @@ const UtvidKvoteModal = ({ deltaker, deltakelse, onDeltakelseChanged, onClose }:
                 </Heading>
             </Modal.Header>
             <Modal.Body>
-                <UtvidKvoteForm
+                <ForlengPeriodeForm
                     deltakelse={deltakelse}
                     deltaker={deltaker}
                     onCancel={onClose}
@@ -31,4 +31,4 @@ const UtvidKvoteModal = ({ deltaker, deltakelse, onDeltakelseChanged, onClose }:
     );
 };
 
-export default UtvidKvoteModal;
+export default ForlengPeriodeModal;

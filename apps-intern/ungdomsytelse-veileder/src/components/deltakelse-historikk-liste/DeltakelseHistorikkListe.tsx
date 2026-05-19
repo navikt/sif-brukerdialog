@@ -11,8 +11,8 @@ interface Props {
 }
 const getEndringstypeTekst = (type: Endringstype): string => {
     switch (type) {
-        case Endringstype.UTVIDET_KVOTE:
-            return 'Utvidet kvote';
+        case Endringstype.FORLENGET_PERIODE:
+            return 'Forlenget periode';
         case Endringstype.DELTAKER_HAR_SØKT_YTELSE:
             return 'Søknad sendt inn';
         case Endringstype.DELTAKER_MELDT_UT:
@@ -51,7 +51,9 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
     };
 
     const synligeHistorikkInnslag = historikkInnslag
-        .filter((innslag) => (innslag.endringstype === Endringstype.UTVIDET_KVOTE ? Features.utvidePeriode : true))
+        .filter((innslag) =>
+            innslag.endringstype === Endringstype.FORLENGET_PERIODE ? Features.forlengePeriode : true,
+        )
         .slice(0, antall);
 
     return (
