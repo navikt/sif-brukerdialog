@@ -342,6 +342,20 @@ const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     løstDato: getDatoer().oppgaveMåned.add(28, 'days').add(54, 'hours').toISOString(),
 });
 
+const getAutomatiskOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04f1',
+    oppgavetype: OppgaveType.BEKREFT_AUTOMATISK_OPPHOR,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
+    oppgavetypeData: {
+        type: 'AUTOMATISK_OPPHOR',
+        sluttdato: dateToISODate(getDatoer().oppgaveMåned.add(1, 'month').endOf('month').toDate()),
+        maxDato: dateToISODate(getDatoer().oppgaveMåned.add(6, 'months').endOf('month').toDate()),
+    },
+    status: OppgaveStatus.ULØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+});
+
 const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'de06ce74-9cb5-4000-bbae-5ab0940b04f6',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_PERIODE,
@@ -381,4 +395,5 @@ export const getMockOppgaver = () => ({
     meldtUtOppgave: getMeldtUtOppgaveDto(),
     fjernetPeriode: getFjernetPeriodeOppgaveDto(),
     fjernetPeriodeLøst: getFjernetPeriodeOppgaveDtoLøst(),
+    automatiskOpphørOppgave: getAutomatiskOpphørOppgaveDto(),
 });

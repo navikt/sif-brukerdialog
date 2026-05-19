@@ -264,6 +264,12 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Ikke startet deltakelse',
         data: createIkkeStartetDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst]),
     },
+    [ScenarioType.automatiskOpphør]: {
+        type: ScenarioType.automatiskOpphør,
+        name: 'Automatisk opphør',
+        description: 'Oppgave for å bekrefte automatisk opphør av deltakelse',
+        data: createSøktDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().automatiskOpphørOppgave]),
+    },
 };
 
 export const defaultScenario = scenarioer[ScenarioType.søknad];
