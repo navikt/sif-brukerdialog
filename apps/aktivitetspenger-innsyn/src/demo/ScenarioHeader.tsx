@@ -1,5 +1,6 @@
 import { getRequiredEnv } from '@navikt/sif-common-env';
 import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
+import { useNavigate } from 'react-router-dom';
 
 import { ScenarioType } from '../../mock/scenarios/types';
 import { store } from '../../mock/state/store';
@@ -24,18 +25,25 @@ const groups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
                 value: ScenarioType.avvikInntektDelerAvMåned,
                 label: 'Inntektskontroll - sjekke avvik i inntekt (deler av måned)',
             },
+            {
+                value: ScenarioType.bekreftBosted,
+                label: 'Bekreft bosted',
+            },
         ],
     },
 ];
 
 const ScenarioHeader = () => {
-    if (import.meta.env.PROD) {
+    const navigate = useNavigate();
+
+    if (!__IS_GITHUB_PAGES__ && !__IS_DEMO__) {
         return null;
     }
 
     const setScenario = (type: ScenarioType) => {
         store.setScenario(type);
-        globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
+        navigate(getRequiredEnv('PUBLIC_PATH'));
+        globalThis.location.reload();
     };
 
     return (

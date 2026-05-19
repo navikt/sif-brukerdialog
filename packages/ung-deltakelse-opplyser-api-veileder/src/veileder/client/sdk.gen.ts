@@ -17,6 +17,9 @@ import type {
     FjernFraProgramData,
     FjernFraProgramErrors,
     FjernFraProgramResponses,
+    ForlengPeriodeData,
+    ForlengPeriodeErrors,
+    ForlengPeriodeResponses,
     HentAlleDeltakelserGittDeltakerIdData,
     HentAlleDeltakelserGittDeltakerIdErrors,
     HentAlleDeltakelserGittDeltakerIdResponses,
@@ -32,9 +35,6 @@ import type {
     MeldUtDeltakerData,
     MeldUtDeltakerErrors,
     MeldUtDeltakerResponses,
-    UtvidKvoteData,
-    UtvidKvoteErrors,
-    UtvidKvoteResponses,
 } from './types.gen';
 import {
     zDeltakelseHistorikkPath,
@@ -47,6 +47,8 @@ import {
     zEndreStartdatoResponse,
     zFjernFraProgramPath,
     zFjernFraProgramResponse,
+    zForlengPeriodePath,
+    zForlengPeriodeResponse,
     zHentAlleDeltakelserGittDeltakerIdPath,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zHentDeltakerInfoGittDeltakerBody,
@@ -58,8 +60,6 @@ import {
     zMeldUtDeltakerBody,
     zMeldUtDeltakerPath,
     zMeldUtDeltakerResponse,
-    zUtvidKvotePath,
-    zUtvidKvoteResponse,
 } from './zod.gen';
 
 export type Options<
@@ -242,6 +242,33 @@ export class Veileder {
         });
     }
 
+    /**
+     * Forlenger perioden for en deltakelse i ungdomsprogrammet med 8 uker
+     */
+    public static forlengPeriode<ThrowOnError extends boolean = true>(
+        options: Options<ForlengPeriodeData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).put<ForlengPeriodeResponses, ForlengPeriodeErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zForlengPeriodePath,
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zForlengPeriodeResponse.parseAsync(data),
+            security: [
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' },
+            ],
+            url: '/veileder/register/deltakelse/{deltakelseId}/forleng-periode',
+            ...options,
+        });
+    }
+
     public static deltakelseHistorikk<ThrowOnError extends boolean = true>(
         options: Options<DeltakelseHistorikkData, ThrowOnError>,
     ) {
@@ -262,31 +289,6 @@ export class Veileder {
                 { scheme: 'bearer', type: 'http' },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/historikk',
-            ...options,
-        });
-    }
-
-    /**
-     * Utvider kvoten for en deltakelse i ungdomsprogrammet med 8 uker
-     */
-    public static utvidKvote<ThrowOnError extends boolean = true>(options: Options<UtvidKvoteData, ThrowOnError>) {
-        return (options.client ?? client).put<UtvidKvoteResponses, UtvidKvoteErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zUtvidKvotePath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zUtvidKvoteResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
-            url: '/veileder/register/deltakelse/{deltakelseId}/utvid-kvote',
             ...options,
         });
     }

@@ -9,6 +9,7 @@ export { FormLayout } from './form-layout';
 export { I18nMessagesPreview, type I18nMessagesPreviewProps } from './i18n-messages-preview/I18nMessagesPreview';
 export { InfoList } from './info-list/InfoList';
 export { Kvittering } from './kvittering/Kvittering';
+export { JaNeiSvar } from './oppsummering-svar/JaNeiSvar';
 export { PictureScanningGuide } from './picture-scanning-guide/PictureScanningGuide';
 export { ProgressStepper } from './progress-stepper/ProgressStepper';
 export { type ProgressStep } from './progress-stepper/ProgressStepper';

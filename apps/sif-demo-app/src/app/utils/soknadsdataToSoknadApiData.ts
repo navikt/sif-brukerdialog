@@ -35,7 +35,7 @@ export const getSøknadApiDataFromSøknad = ({
             navn: formatName(registrertBarn.fornavn, registrertBarn.etternavn, registrertBarn.mellomnavn),
             fødselsdato: dateToISODate(registrertBarn.fødselsdato),
         },
-        borITrondheim: bosted.borITrondheim,
+        erBosattITrondheim: bosted.erBosattITrondheim,
         vedlegg: vedlegg?.vedlegg.map((file) => file.id) ?? [],
         harForståttRettigheterOgPlikter,
     };

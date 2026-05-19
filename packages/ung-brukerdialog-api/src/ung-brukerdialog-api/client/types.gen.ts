@@ -10,6 +10,17 @@ export type ArbeidOgFrilansRegisterInntektDto = {
     inntekt: number;
 };
 
+export type BekreftAutomatiskOpphorOppgavetypeDataDto = {
+    maxDato: string;
+    sluttdato: string;
+};
+
+export type BekreftBostedOppgavetypeDataDto = {
+    erBosattITrondheim: boolean;
+    fom: string;
+    tom: string;
+};
+
 export type BrukerdialogOppgaveDto = {
     frist?: string;
     løstDato?: string;
@@ -110,6 +121,14 @@ export enum OppgaveType {
      * SØK_YTELSE
      */
     SØK_YTELSE = 'SØK_YTELSE',
+    /**
+     * BEKREFT_BOSTED
+     */
+    BEKREFT_BOSTED = 'BEKREFT_BOSTED',
+    /**
+     * BEKREFT_AUTOMATISK_OPPHOR
+     */
+    BEKREFT_AUTOMATISK_OPPHOR = 'BEKREFT_AUTOMATISK_OPPHOR',
 }
 
 export enum OppgaveYtelsetype {
@@ -124,6 +143,12 @@ export enum OppgaveYtelsetype {
 }
 
 export type OppgavetypeDataDto = (
+    | ({
+          type: 'AUTOMATISK_OPPHOR';
+      } & BekreftAutomatiskOpphorOppgavetypeDataDto)
+    | ({
+          type: 'BOSTED';
+      } & BekreftBostedOppgavetypeDataDto)
     | ({
           type: 'ENDRET_PERIODE';
       } & EndretPeriodeDataDto)

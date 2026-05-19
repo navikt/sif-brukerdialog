@@ -38,9 +38,9 @@ interface StoredData {
 const formaterIsoDate = (isoDate: string): string => dateFormatter.compact(ISODateToDate(isoDate));
 
 const getUtvidetDeltakelseHistorikk = (): DeltakelseHistorikkDto => ({
-    endringstype: Endringstype.UTVIDET_KVOTE,
+    endringstype: Endringstype.FORLENGET_PERIODE,
     revisjonstype: Revisjonstype.ENDRET,
-    endring: `Deltakelse er utvidet.`,
+    endring: `Deltakelse har fått forlenget periode.`,
     aktør: 'Z990501 (veileder)',
     tidspunkt: dayjs().toISOString(),
 });
@@ -158,10 +158,12 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
         },
         erSlettet: false,
         harOpphørsvedtak: false,
+        harUtvidetKvote: false,
         fraOgMed: startdato,
         søktTidspunkt: undefined,
         tilOgMed: undefined,
-        harUtvidetKvote: false,
+        harForlengetPeriode: false,
+        forlengetPeriodeMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(startdato), 260)),
         kvoteMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(startdato), 260)),
     };
     db.deltakelser.push({
@@ -193,17 +195,17 @@ const endreStartdato = (deltakelseId: string, dato: string) => {
     if (!deltakelse) {
         throw new Error('Fant ikke deltakelse med id');
     }
-    const harUtvidetKvote = deltakelse.deltakelse.harUtvidetKvote;
-    const kvoteUkedager = harUtvidetKvote ? 260 + 8 * 5 : 260;
-    const nyKvoteMaksDato = !deltakelse.deltakelse.tilOgMed
-        ? dateToISODate(addUkedagerToDate(ISODateToDate(dato), kvoteUkedager))
-        : deltakelse.deltakelse.kvoteMaksDato;
+    const harForlengetPeriode = deltakelse.deltakelse.harForlengetPeriode;
+    const periodeUkedager = harForlengetPeriode ? 260 + 8 * 5 : 260;
+    const nyforlengetPeriodeMaksDato = !deltakelse.deltakelse.tilOgMed
+        ? dateToISODate(addUkedagerToDate(ISODateToDate(dato), periodeUkedager))
+        : deltakelse.deltakelse.forlengetPeriodeMaksDato;
     const dbDeltakelse: DbDeltakelse = {
         ...deltakelse,
         deltakelse: {
             ...deltakelse.deltakelse,
             fraOgMed: dato,
-            kvoteMaksDato: nyKvoteMaksDato,
+            forlengetPeriodeMaksDato: nyforlengetPeriodeMaksDato,
         },
         historikk: [...deltakelse.historikk, getEndretStartdatoHistorikk(deltakelse.deltakelse.fraOgMed, dato)],
     };
@@ -212,7 +214,7 @@ const endreStartdato = (deltakelseId: string, dato: string) => {
     return dbDeltakelse.deltakelse;
 };
 
-const utvidKvote = (deltakelseId: string) => {
+const forlengPeriode = (deltakelseId: string) => {
     const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
     if (!deltakelse) {
         throw new Error('Fant ikke deltakelse med id');
@@ -221,8 +223,10 @@ const utvidKvote = (deltakelseId: string) => {
         ...deltakelse,
         deltakelse: {
             ...deltakelse.deltakelse,
-            harUtvidetKvote: true,
-            kvoteMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(deltakelse.deltakelse.kvoteMaksDato), 40)),
+            harForlengetPeriode: true,
+            forlengetPeriodeMaksDato: dateToISODate(
+                addUkedagerToDate(ISODateToDate(deltakelse.deltakelse.forlengetPeriodeMaksDato), 40),
+            ),
         },
         historikk: [...deltakelse.historikk, getUtvidetDeltakelseHistorikk()],
     };
@@ -279,7 +283,7 @@ export const mockUtils = {
     getDeltakelseHistorikk,
     getDeltakerByDeltakerId,
     meldInnDeltaker,
-    utvidKvote,
+    forlengPeriode,
     fjernDeltaker,
     getUtvidetDeltakelseHistorikk,
     reset,

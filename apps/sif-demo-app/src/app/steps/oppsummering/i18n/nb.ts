@@ -3,7 +3,8 @@ export const oppsummeringStepMessages_nb = {
     'oppsummeringSteg.feil.tittel': 'Oppsummeringen kan ikke vises ennå',
     'oppsummeringSteg.feil.innhold': 'Fyll ut alle obligatoriske steg før du sender inn søknaden.',
     'oppsummeringSteg.bekrefterOpplysninger.label': 'Jeg bekrefter at opplysningene jeg har gitt er riktige.',
-    'oppsummeringForm.validation.bekrefterOpplysninger.notChecked': 'Du må bekrefte opplysningene før du kan sende inn.',
+    'oppsummeringForm.validation.bekrefterOpplysninger.notChecked':
+        'Du må bekrefte opplysningene før du kan sende inn.',
     'oppsummeringSteg.søker.header': 'Om deg',
     'oppsummeringSteg.søker.navn': 'Navn',
     'oppsummeringSteg.søker.fnr': 'Fødselsnummer',
@@ -11,7 +12,7 @@ export const oppsummeringStepMessages_nb = {
     'oppsummeringSteg.barn.navn': 'Navn',
     'oppsummeringSteg.barn.fødselsdato': 'Fødselsdato',
     'oppsummeringSteg.bosted.header': 'Bosted',
-    'oppsummeringSteg.bosted.borITrondheim': 'Bor du i Trondheim?',
+    'oppsummeringSteg.bosted.erBosattITrondheim': 'Bor du i Trondheim?',
     'oppsummeringSteg.ja': 'Ja',
     'oppsummeringSteg.nei': 'Nei',
     'oppsummeringSteg.vedlegg.header': 'Vedlegg',

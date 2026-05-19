@@ -10,7 +10,7 @@ import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { EndretStartdatoOppgavePanel } from './EndretStartdatoOppgavePanel';
 
 const meta: Meta = {
-    title: 'Oppgaver/2. Endret startdato',
+    title: 'Oppgaver/Ungdomsprogramytelsen/Endret startdato',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };

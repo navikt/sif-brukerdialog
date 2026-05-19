@@ -8,7 +8,7 @@ export type BarnSøknadsdata = {
 };
 
 export type BostedSøknadsdata = {
-    borITrondheim: boolean;
+    erBosattITrondheim: boolean;
 };
 
 export type VedleggSøknadsdata = {

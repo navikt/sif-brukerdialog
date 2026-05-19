@@ -9,7 +9,7 @@ import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { SøkYtelseOppgavePanel } from './SokYtelseOppgavePanel';
 const meta: Meta = {
-    title: 'Oppgaver/1. Søk ytelsen',
+    title: 'Oppgaver/Ungdomsprogramytelsen/Søk ytelsen',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };

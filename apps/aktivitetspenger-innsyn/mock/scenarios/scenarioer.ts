@@ -53,6 +53,11 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
             getMockOppgaver().bekreftAvvikOppgaveDelerAvMÅned,
         ]),
     },
+    [ScenarioType.bekreftBosted]: {
+        type: ScenarioType.bekreftBosted,
+        name: 'Oppgave for å bekrefte bosted',
+        data: createScenarioData([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().bekreftBostedOppgave]),
+    },
 };
 
 export const defaultScenario = scenarioer[ScenarioType.default];

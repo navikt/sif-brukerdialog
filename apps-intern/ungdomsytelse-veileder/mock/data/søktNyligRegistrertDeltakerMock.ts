@@ -55,7 +55,9 @@ const deltakelse: DeltakelseDto = {
     erSlettet: false,
     harOpphørsvedtak: false,
     søktTidspunkt,
+    harForlengetPeriode: false,
     harUtvidetKvote: false,
+    forlengetPeriodeMaksDato: dateToISODate(addUkedagerToDate(firstMonday, 260)),
     kvoteMaksDato: dateToISODate(addUkedagerToDate(firstMonday, 260)),
 };
 

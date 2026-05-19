@@ -175,10 +175,10 @@ const BostedOppsummering = () => {
             <FormSummary.Answers>
                 <FormSummary.Answer>
                     <FormSummary.Label>
-                        <AppText id="oppsummeringSteg.bosted.borITrondheim" />
+                        <AppText id="oppsummeringSteg.bosted.erBosattITrondheim" />
                     </FormSummary.Label>
                     <FormSummary.Value>
-                        {bosted.borITrondheim ? text('oppsummeringSteg.ja') : text('oppsummeringSteg.nei')}
+                        {bosted.erBosattITrondheim ? text('oppsummeringSteg.ja') : text('oppsummeringSteg.nei')}
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>

@@ -37,6 +37,8 @@ Merk: Rene domeneord alene (f.eks. `barn`, `søker`) er ikke nok trigger uten ty
 - Query-adferd som direkte påvirker bruk av hookene (f.eks. caching, retry) er innenfor scope. Generell TanStack Query-bruk utover dette er det ikke.
 
 > **Relatert skill:** Hvis API-kall returnerer HTML eller ikke treffer backend, er problemet sannsynligvis i proxy/path-konfigurasjon. Bruk [sif-server-proxy-api-config](../sif-server-proxy-api-config/SKILL.md) for å verifisere at `initApiClients`, nais-env og serverens reverse proxy matcher.
+>
+> **Relatert skill:** De typede klientene som brukes av hooks og `initApiClient` er autogenerert fra OpenAPI-specs. For å forstå hvordan codegen kjøres, hvilke pakker som finnes og hvordan post-prosessering fungerer, se [sif-codegen](../sif-codegen/SKILL.md).
 
 ## Arbeidsmodus for agent
 

@@ -10,6 +10,13 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 
 ## Signalord til skill
 
+- `sif-codegen`:
+    - Codegen generelt: `codegen`, `codegen:dev`, `codegen:prod`, `openapi-ts`, `hey-api`, `@hey-api/openapi-ts`, `genererte klienter`, `client.gen.ts`, `types.gen.ts`, `sdk.gen.ts`.
+    - Post-prosessering: `codegenUtils`, `fix-generated`, `fixAndFormatGeneratedCode`, `PATTERNS`, `replaceClientBaseUrl`, `removeNullUnion`.
+    - Spec-nedlasting: `download-spec`, `openapi-spec.json`, `CODEGEN_ENV`.
+- `sif-gh-pages`:
+    - Deploy til demo: `gh-pages`, `demo-deploy`, `legg til i gh-pages`, `gh-pages:rebuild`, `vite.demo.config`, `dist-demo`.
+    - MSW på gh-pages: `msw klager`, `service worker feil`, `mockServiceWorker gh-pages`.
 - `sif-intl`:
     - Implementering: `i18n`, `intl`, `nb.ts`, `nn.ts`, `oversettelse`, `tekster`, `nynorsk`, `bokmål`, `legg til tekst`, `ny tekst`.
     - Hooks og komponenter: `AppText`, `useAppIntl`, `AppIntlShape`, `useSifSoknadUiIntl`, `SifSoknadUiText`, `typedIntlHelper`, `applicationIntlMessages`.

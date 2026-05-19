@@ -4,51 +4,35 @@ import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opp
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
+import { Features } from '../types/Features';
 
 /** Antall måneder før og etter i dag som startdato kan endres innenfor */
-export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 6;
+export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
 
-/** Startdato kan ikke endres når det er færre enn dette antall måneder til kvoteutløp */
-export const MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING = 2;
+/** Startdato kan ikke endres når det er færre måneder enn dette til perioden er ferdig */
+export const MÅNEDER_PERIODE_KAN_FORLENGES = 2;
 
 const getEndringsperiode = (today: Date): DateRange => ({
     from: dayjs(today).subtract(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
     to: dayjs(today).add(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
 });
 
-const kvoteErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
-    return dayjs(deltakelse.kvoteMaksDato).isBefore(today, 'day');
+const periodeErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
+    return dayjs(deltakelse.forlengetPeriodeMaksDato).isBefore(today, 'day');
 };
 
-const erInnenforSisteMånederFørKvoteutløp = (deltakelse: Deltakelse, today: Date): boolean => {
+const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
     return dayjs(today).isSameOrAfter(
-        dayjs(deltakelse.kvoteMaksDato).subtract(MAKS_MÅNEDER_FØR_KVOTEUTLØP_FOR_STARTDATOENDRING, 'months'),
+        dayjs(deltakelse.forlengetPeriodeMaksDato).subtract(MÅNEDER_PERIODE_KAN_FORLENGES, 'months'),
         'day',
     );
 };
 
-const beregnBrukteDager = (deltakelse: Deltakelse, today: Date = getDateToday()): number => {
-    // Henter ut antall ukedager (mandag til fredag) mellom fraOgMed og tilOgMed, eller mellom fraOgMed og i dag hvis tilOgMed ikke er satt
-    const start = dayjs(deltakelse.fraOgMed);
-    const end = deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed) : dayjs(today);
-    let usedDays = 0;
-    let currentDate = start;
-
-    while (currentDate.isSameOrBefore(end, 'day')) {
-        if (currentDate.day() !== 0 && currentDate.day() !== 6) {
-            usedDays++;
-        }
-        currentDate = currentDate.add(1, 'day');
-    }
-
-    return usedDays;
-};
-
 export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    if (deltakelse.harUtvidetKvote) {
+    if (deltakelse.harForlengetPeriode) {
         return false;
     }
-    if (erInnenforSisteMånederFørKvoteutløp(deltakelse, today)) {
+    if (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today)) {
         return false;
     }
     const endringsperiode = getEndringsperiode(today);
@@ -59,7 +43,7 @@ export const kanSetteEllerEndreSluttdato = (deltakelse: Deltakelse, today: Date 
     if (deltakelse.søktTidspunkt === undefined) {
         return false;
     }
-    return !kvoteErUtløpt(deltakelse, today);
+    return !periodeErUtløpt(deltakelse, today);
 };
 
 export const kanMeldesUt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
@@ -70,29 +54,33 @@ export const kanEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateT
     return kanSetteEllerEndreSluttdato(deltakelse, today) && deltakelse.tilOgMed !== undefined;
 };
 
-export const deltakelseKvoteErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return kvoteErUtløpt(deltakelse, today);
+export const deltakelsePeriodeErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return periodeErUtløpt(deltakelse, today);
 };
 
-export const deltakelseSluttdatoErPassert = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isBefore(today, 'day') : false;
+export const deltakelseSluttdatoErIDagEllerFremover = (
+    deltakelse: Deltakelse,
+    today: Date = getDateToday(),
+): boolean => {
+    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isSameOrAfter(today, 'day') : false;
 };
 
 export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
     return deltakelse.søktTidspunkt === undefined;
 };
 
-export const deltakelseKanUtvides = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    const dagerBrukt = beregnBrukteDager(deltakelse, today);
-    if (dagerBrukt < 1) {
-        return false;
-    }
+export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
     return (
+        // Deltaker har søkt
         deltakelse.søktTidspunkt !== undefined &&
+        // Deltaker har ikke allerede forlenget periode
+        deltakelse.harForlengetPeriode === false &&
+        // Deltaker har ikke periode som er utløpt
+        !periodeErUtløpt(deltakelse, today) &&
+        // Deltaker har ikke sluttdato
         deltakelse.tilOgMed === undefined &&
-        deltakelse.harUtvidetKvote === false &&
-        !kvoteErUtløpt(deltakelse, today) &&
-        !deltakelseSluttdatoErPassert(deltakelse, today)
+        // Deltaker er innenfor siste måneder før periodeslutt
+        (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today) || Features.ignorerBegrensningForlengePeriode)
     );
 };
 
@@ -100,7 +88,7 @@ export interface DeltakelseHandlinger {
     kanEndreStartdato: boolean;
     kanMeldesUt: boolean;
     kanEndreSluttdato: boolean;
-    kanUtvideKvote: boolean;
+    kanForlengePeriode: boolean;
     kanSlettes: boolean;
 }
 
@@ -110,7 +98,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
             kanEndreStartdato: false,
             kanMeldesUt: false,
             kanEndreSluttdato: false,
-            kanUtvideKvote: false,
+            kanForlengePeriode: false,
             kanSlettes: false,
         };
     }
@@ -118,7 +106,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
         kanEndreStartdato: kanEndreStartdato(deltakelse, today),
         kanMeldesUt: kanMeldesUt(deltakelse, today),
         kanEndreSluttdato: kanEndreSluttdato(deltakelse, today),
-        kanUtvideKvote: deltakelseKanUtvides(deltakelse, today),
+        kanForlengePeriode: periodeKanForlenges(deltakelse, today),
         kanSlettes: deltakelseKanSlettes(deltakelse),
     };
 };

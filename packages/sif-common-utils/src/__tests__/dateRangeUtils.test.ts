@@ -43,6 +43,7 @@ import {
     sortDateRange,
     sortDateRangeByToDate,
     trimDateRangeToWeekdays,
+    getNumberOfWeekdaysInDateRange,
 } from '..';
 
 describe('dateRangeUtils', () => {
@@ -969,6 +970,21 @@ describe('dateRangeUtils', () => {
         it('get correct range when dateRange exeeds limitRange', () => {
             const result = getDateRangeWithinDateRange(ISODateRangeToDateRange('2022-05-01/2022-05-09'), limitRange);
             expect(dateRangeToISODateRange(result)).toEqual('2022-05-02/2022-05-08');
+        });
+    });
+
+    describe('getNumberOfWeekdaysInDateRange', () => {
+        it('counts weekdays correctly for a full Mon–Fri week', () => {
+            const range: DateRange = ISODateRangeToDateRange('2022-05-02/2022-05-06');
+            expect(getNumberOfWeekdaysInDateRange(range)).toBe(5);
+        });
+        it('includes both from and to date', () => {
+            const range: DateRange = ISODateRangeToDateRange('2022-05-02/2022-05-02');
+            expect(getNumberOfWeekdaysInDateRange(range)).toBe(1);
+        });
+        it('skips weekends in a Mon–Sun range', () => {
+            const range: DateRange = ISODateRangeToDateRange('2022-05-02/2022-05-08');
+            expect(getNumberOfWeekdaysInDateRange(range)).toBe(5);
         });
     });
 });

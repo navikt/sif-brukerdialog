@@ -16,7 +16,7 @@ export const deltakelseSchema = zDeltakelseDto
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
             fraOgMed,
             tilOgMed,
-            kvoteMaksDato: ISODateToDate(data.kvoteMaksDato),
+            forlengetPeriodeMaksDato: ISODateToDate(data.forlengetPeriodeMaksDato),
         };
     });
 

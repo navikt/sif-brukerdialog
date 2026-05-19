@@ -460,8 +460,8 @@ For **hver** komponent som oppdateres:
 ```tsx
 // String-prop → hook
 <YesOrNoQuestion
-    name={Field.borITrondheim}
-    legend={text('bostedSteg.spørsmål.borITrondheim')}
+    name={Field.erBosattITrondheim}
+    legend={text('bostedSteg.spørsmål.erBosattITrondheim')}
 />
 
 // Template literal med param → hook

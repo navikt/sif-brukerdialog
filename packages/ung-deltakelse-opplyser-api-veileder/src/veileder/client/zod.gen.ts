@@ -19,7 +19,9 @@ export const zDeltakerDto = z.object({
 export const zDeltakelseDto = z.object({
     deltaker: zDeltakerDto,
     erSlettet: z.boolean(),
+    forlengetPeriodeMaksDato: z.iso.date(),
     fraOgMed: z.iso.date(),
+    harForlengetPeriode: z.boolean(),
     harOpphørsvedtak: z.boolean(),
     harUtvidetKvote: z.boolean(),
     id: z.uuid().nullish(),
@@ -41,7 +43,7 @@ export const zEndringstype = z.enum([
     'ENDRET_SLUTTDATO',
     'DELTAKER_HAR_SØKT_YTELSE',
     'DELTAKELSE_FJERNET',
-    'UTVIDET_KVOTE',
+    'FORLENGET_PERIODE',
     'UKJENT',
 ]);
 
@@ -133,6 +135,15 @@ export const zEndreStartdatoPath = z.object({
  */
 export const zEndreStartdatoResponse = zDeltakelseDto;
 
+export const zForlengPeriodePath = z.object({
+    deltakelseId: z.uuid(),
+});
+
+/**
+ * OK
+ */
+export const zForlengPeriodeResponse = zDeltakelseDto;
+
 export const zDeltakelseHistorikkPath = z.object({
     deltakelseId: z.uuid(),
 });
@@ -141,15 +152,6 @@ export const zDeltakelseHistorikkPath = z.object({
  * OK
  */
 export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
-
-export const zUtvidKvotePath = z.object({
-    deltakelseId: z.uuid(),
-});
-
-/**
- * OK
- */
-export const zUtvidKvoteResponse = zDeltakelseDto;
 
 export const zMeldInnDeltakerBody = zDeltakelseInnmeldingDto;
 
