@@ -18,6 +18,7 @@ export enum ParsedOppgavetype {
     BEKREFT_FJERNET_PERIODE = 'BEKREFT_FJERNET_PERIODE',
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
     SØK_YTELSE = 'SØK_YTELSE',
+    AUTOMATISK_OPPHOR = 'AUTOMATISK_OPPHOR',
 }
 
 export type RapportertInntektRespons = Omit<RapportertInntektDto, 'fraOgMed' | 'tilOgMed'> & {
@@ -84,6 +85,14 @@ export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
     respons?: SvarPåVarselRespons;
 }
 
+export interface AutomatiskOpphorOppgave extends ParsedOppgaveBase {
+    oppgavetype: ParsedOppgavetype.AUTOMATISK_OPPHOR;
+    oppgavetypeData: {
+        maksDato: Date;
+    };
+    respons?: SvarPåVarselRespons;
+}
+
 export interface MeldtUtOppgave extends ParsedOppgaveBase {
     oppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT;
     oppgavetypeData: {
@@ -108,6 +117,7 @@ export interface FjernetPeriodeOppgave extends ParsedOppgaveBase {
 
 export type BekreftelseOppgave =
     | EndretSluttdatoOppgave
+    | AutomatiskOpphorOppgave
     | EndretStartdatoOppgave
     | EndretStartOgSluttdatoOppgave
     | FjernetPeriodeOppgave
@@ -139,6 +149,7 @@ export type Oppgave =
     | BostedVilkårOppgave
     | EndretStartdatoOppgave
     | EndretSluttdatoOppgave
+    | AutomatiskOpphorOppgave
     | MeldtUtOppgave
     | EndretStartOgSluttdatoOppgave
     | FjernetPeriodeOppgave
