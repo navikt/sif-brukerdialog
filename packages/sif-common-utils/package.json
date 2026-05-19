@@ -1,11 +1,18 @@
 {
     "name": "@navikt/sif-common-utils",
-    "author": "navikt",
-    "description": "Diverse utils for Sykdom i familien teamet",
-    "main": "src/index.ts",
     "version": "3.49.61",
     "private": true,
+    "description": "Diverse utils for Sykdom i familien teamet",
+    "author": "navikt",
     "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest run",
+        "test-w": "vitest watch"
+    },
     "dependencies": {
         "dayjs": "1.11.20",
         "i18n-iso-countries": "7.14.0",
@@ -27,12 +34,5 @@
         "react-intl": "10.1.7",
         "typescript": "6.0.3",
         "vitest": "4.1.6"
-    },
-    "scripts": {
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:tsc": "tsc --noEmit",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "test": "vitest run",
-        "test-w": "vitest watch"
     }
 }

@@ -1,21 +1,17 @@
 {
-    "author": "navikt",
-    "description": "Basis felleskomponenter for sykdom i familien søknadsskjema",
     "name": "@navikt/sif-common-soknad-ds",
-    "main": "src/index.ts",
     "version": "26.1.41",
     "private": true,
+    "description": "Basis felleskomponenter for sykdom i familien søknadsskjema",
+    "author": "navikt",
     "type": "module",
-    "peerDependencies": {
-        "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-env": "workspace:*",
-        "@navikt/sif-common-faro": "workspace:*",
-        "@navikt/sif-common-formik-ds": "workspace:*",
-        "@navikt/sif-common-hooks": "workspace:*",
-        "@navikt/sif-common-sentry": "workspace:*",
-        "@navikt/sif-common-ui": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*",
-        "@navikt/sif-validation": "workspace:*"
+    "main": "src/index.ts",
+    "scripts": {
+        "build-storybook": "storybook build",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
         "@navikt/appstatus-react-ds": "workspace:*",
@@ -27,9 +23,9 @@
         "csp-header": "6.3.1",
         "date-fns": "4.1.0",
         "fp-ts": "2.16.11",
-        "html-react-parser": "6.1.0",
+        "html-react-parser": "6.1.1",
         "io-ts": "2.2.22",
-        "js-cookie": "3.0.5",
+        "js-cookie": "3.0.7",
         "postcss": "8.5.14",
         "react-day-picker": "9.14.0",
         "webpack": "5.106.2"
@@ -86,11 +82,15 @@
         "vite-plugin-checker": "0.13.0",
         "vitest": "4.1.6"
     },
-    "scripts": {
-        "build-storybook": "storybook build",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "storybook": "storybook dev -p 6006"
+    "peerDependencies": {
+        "@navikt/sif-common-core-ds": "workspace:*",
+        "@navikt/sif-common-env": "workspace:*",
+        "@navikt/sif-common-faro": "workspace:*",
+        "@navikt/sif-common-formik-ds": "workspace:*",
+        "@navikt/sif-common-hooks": "workspace:*",
+        "@navikt/sif-common-sentry": "workspace:*",
+        "@navikt/sif-common-ui": "workspace:*",
+        "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-validation": "workspace:*"
     }
 }

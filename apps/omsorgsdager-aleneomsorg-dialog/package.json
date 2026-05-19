@@ -1,16 +1,20 @@
 {
-    "author": {
-        "name": "NAV"
-    },
-    "description": "Søknad om ekstra omsorgsdager ved aleneomsorg for barn",
-    "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
+    "version": "2.28.70",
+    "private": true,
+    "description": "Søknad om ekstra omsorgsdager ved aleneomsorg for barn",
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
+    "bugs": {
+        "url": "https://github.com/navikt/sif-brukerdialog/issues"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "2.28.70",
-    "private": true,
+    "license": "MIT",
+    "author": {
+        "name": "NAV"
+    },
     "type": "module",
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
@@ -20,8 +24,8 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "pw:run": "playwright test",
         "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:run": "playwright test",
         "pw:start": "vite preview --base / --config vite.playwright.config.ts"
     },
     "dependencies": {
@@ -50,7 +54,7 @@
         "csp-header": "6.3.1",
         "dayjs": "1.11.20",
         "formik": "2.4.9",
-        "html-react-parser": "6.1.0",
+        "html-react-parser": "6.1.1",
         "jsdom": "28.1.0",
         "object-hash": "3.0.0",
         "react": "19.2.6",
@@ -78,7 +82,7 @@
         "@vitejs/plugin-react": "6.0.2",
         "compression": "1.8.1",
         "cors": "2.8.6",
-        "eslint": "10.3.0",
+        "eslint": "10.4.0",
         "eslint-plugin-storybook": "10.4.0",
         "express": "5.2.1",
         "helmet": "8.1.0",
@@ -95,10 +99,6 @@
         "vite-plugin-checker": "0.13.0",
         "vitest": "4.1.6"
     },
-    "bugs": {
-        "url": "https://github.com/navikt/sif-brukerdialog/issues"
-    },
-    "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
     "msw": {
         "workerDirectory": [
             ""

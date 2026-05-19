@@ -1,19 +1,18 @@
 {
-    "author": "@navikt",
-    "description": "Fellesskjema for sykdom i familien",
-    "main": "src/index.ts",
     "name": "@navikt/sif-common-forms-ds",
     "version": "21.0.57",
     "private": true,
+    "description": "Fellesskjema for sykdom i familien",
+    "author": "@navikt",
     "type": "module",
-    "peerDependencies": {
-        "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-env": "workspace:*",
-        "@navikt/sif-common-formik-ds": "workspace:*",
-        "@navikt/sif-common-soknad-ds": "workspace:*",
-        "@navikt/sif-common-ui": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*",
-        "@navikt/sif-validation": "workspace:*"
+    "main": "src/index.ts",
+    "scripts": {
+        "build-storybook": "storybook build",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run"
     },
     "dependencies": {
         "@navikt/fnrvalidator": "2.2.1",
@@ -45,7 +44,7 @@
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.20",
-        "eslint": "10.3.0",
+        "eslint": "10.4.0",
         "eslint-plugin-storybook": "10.4.0",
         "flat": "6.0.1",
         "formik": "2.4.9",
@@ -65,12 +64,13 @@
         "vite-plugin-checker": "0.13.0",
         "vitest": "4.1.6"
     },
-    "scripts": {
-        "build-storybook": "storybook build",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
+    "peerDependencies": {
+        "@navikt/sif-common-core-ds": "workspace:*",
+        "@navikt/sif-common-env": "workspace:*",
+        "@navikt/sif-common-formik-ds": "workspace:*",
+        "@navikt/sif-common-soknad-ds": "workspace:*",
+        "@navikt/sif-common-ui": "workspace:*",
+        "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-validation": "workspace:*"
     }
 }

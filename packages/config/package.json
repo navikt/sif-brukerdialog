@@ -1,12 +1,15 @@
 {
-    "main": "index.js",
     "name": "config",
     "version": "0.11.55",
     "private": true,
+    "main": "index.js",
+    "files": [
+        "tsconfig-base.json"
+    ],
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "8.59.3",
         "@typescript-eslint/parser": "8.59.3",
-        "eslint": "10.3.0",
+        "eslint": "10.4.0",
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-jsx-a11y": "6.10.2",
         "eslint-plugin-prettier": "5.5.5",
@@ -19,8 +22,5 @@
     },
     "devDependencies": {
         "storybook": "10.4.0"
-    },
-    "files": [
-        "tsconfig-base.json"
-    ]
+    }
 }
