@@ -1,6 +1,7 @@
 /* eslint-disable no-case-declarations */
 import { DateRange, isISODate, ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import {
+    BekreftAutomatiskOpphorOppgavetypeDataDto,
     BekreftBostedOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
@@ -20,6 +21,7 @@ import {
 import dayjs from 'dayjs';
 
 import {
+    AutomatiskOpphorOppgave,
     AvvikRegisterinntektOppgave,
     BostedVilkårOppgave,
     EndretSluttdatoOppgave,
@@ -144,6 +146,14 @@ const getEndretStartdatoOppgave = (
     },
     respons: parseSvarPåVarselRespons(oppgave.respons),
 });
+const getAutomatiskOpphorOppgave = (oppgave: BrukerdialogOppgaveDto, maxDato: string): AutomatiskOpphorOppgave => ({
+    ...getOppgaveBaseProps(oppgave),
+    oppgavetype: ParsedOppgavetype.BEKREFT_AUTOMATISK_OPPHOR,
+    oppgavetypeData: {
+        maksDato: ISODateToDate(maxDato),
+    },
+    respons: parseSvarPåVarselRespons(oppgave.respons),
+});
 
 const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Oppgave => {
     const { endringer, forrigePeriode, nyPeriode } = oppgave.oppgavetypeData as EndretPeriodeDataDto;
@@ -235,6 +245,10 @@ export const parseOppgaverElement = (
             case OppgaveType.BEKREFT_ENDRET_STARTDATO:
                 const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;
                 parsedOppgaver.push(getEndretStartdatoOppgave(oppgave, nyStartdato, forrigeStartdato));
+                return;
+            case OppgaveType.BEKREFT_AUTOMATISK_OPPHOR:
+                const { maxDato } = oppgave.oppgavetypeData as BekreftAutomatiskOpphorOppgavetypeDataDto;
+                parsedOppgaver.push(getAutomatiskOpphorOppgave(oppgave, maxDato));
                 return;
             case OppgaveType.BEKREFT_ENDRET_SLUTTDATO:
                 const { nySluttdato, forrigeSluttdato } = oppgave.oppgavetypeData as EndretSluttdatoDataDto;

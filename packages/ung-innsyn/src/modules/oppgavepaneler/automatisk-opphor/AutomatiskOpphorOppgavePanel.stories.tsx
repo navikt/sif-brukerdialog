@@ -20,7 +20,7 @@ type Story = StoryObj;
 
 const oppgave: AutomatiskOpphorOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.AUTOMATISK_OPPHOR,
+    oppgavetype: ParsedOppgavetype.BEKREFT_AUTOMATISK_OPPHOR,
     oppgavetypeData: {
         maksDato: dayjs('2025-05-01').toDate(),
     },

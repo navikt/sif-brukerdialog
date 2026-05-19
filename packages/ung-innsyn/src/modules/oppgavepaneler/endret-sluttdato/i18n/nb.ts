@@ -1,4 +1,15 @@
 export const endretSluttdatoMessages_nb = {
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.paneltittel': 'Se og gi tilbakemelding på endret sluttdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel': 'Tilbakemelding på endret sluttdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.info':
+        'Veilederen din har endret datoen for når du slutter i ungdomsprogrammet.',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål':
+        'Har du en tilbakemelding på sluttdatoen?',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harIkkeUttalelseLabel': 'Nei',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harUttalelseLabel': 'Ja',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
+
     '@ungInnsyn.endretSluttdato.oppgavetekst.1':
         'Veilederen din har endret sluttdatoen din i ungdomsprogrammet til <strong>{formatertDato}</strong>.',
     '@ungInnsyn.endretSluttdato.oppgavetekst.2':

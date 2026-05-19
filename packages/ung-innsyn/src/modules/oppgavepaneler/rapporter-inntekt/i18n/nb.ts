@@ -1,4 +1,8 @@
 export const rapporterInntektMessages_nb = {
+    '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.paneltittel': 'Meld fra om du hadde inntekt i {månedOgÅr}',
+    '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Inntekt i {månedOgÅr}',
+    '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.info': 'Hvis du ikke hadde inntekt, trenger du ikke gjøre noe.',
+
     '@ungInnsyn.rapporterInntektOppgavetekst.tittel': 'Hei {navn}',
     '@ungInnsyn.rapporterInntektOppgavetekst.intro.1': 'Gi oss beskjed hvis du hadde inntekt i {måned}.',
     '@ungInnsyn.rapporterInntektOppgavetekst.intro.2':
