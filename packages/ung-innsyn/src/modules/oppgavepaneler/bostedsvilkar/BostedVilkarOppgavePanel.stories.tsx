@@ -10,7 +10,7 @@ import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { BostedVilkårOppgavePanel } from './BostedVilkarOppgavePanel';
 
 const meta: Meta = {
-    title: 'Oppgaver/9. Bosted vilkår',
+    title: 'Oppgaver/Aktivitetspenger/Bosted vilkår',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
