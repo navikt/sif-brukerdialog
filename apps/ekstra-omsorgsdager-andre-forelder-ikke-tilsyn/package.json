@@ -28,7 +28,7 @@
         "pw:run": "pnpm playwright-test",
         "pw:start": "vite preview --base / --config vite.playwright.config.ts",
         "storybook": "storybook dev -p 6006",
-        "storybook:build": "storybook build",
+        "build-storybook": "storybook build",
         "test": "vitest run"
     },
     "eslintConfig": {
