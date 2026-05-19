@@ -27,11 +27,13 @@ export const zSakDtoExtended = innsyn.zSakDto.extend({
         zBehandlingDto.extend({
             innsendelser: z.array(
                 zInnsendelserISakDto.extend({
-                    k9FormatInnsendelse: z.optional(
-                        zInnsending.extend({
-                            ytelse: z.any().optional(),
-                        }),
-                    ),
+                    k9FormatInnsendelse: z
+                        .optional(
+                            zInnsending.extend({
+                                ytelse: z.any().optional(),
+                            }),
+                        )
+                        .nullable(),
                 }),
             ),
         }),
@@ -46,7 +48,9 @@ const fjernUkjenteInnsendelserISak = (sak: SakDtoExtended): SakDtoExtended => {
         behandlinger: sak.behandlinger.map((behandling) => {
             return {
                 ...behandling,
-                innsendelser: behandling.innsendelser.filter((i) => i.innsendelsestype !== 'UKJENT'),
+                innsendelser: behandling.innsendelser.filter(
+                    (i) => i.innsendelsestype !== innsyn.Innsendelsestype.UKJENT,
+                ),
             };
         }),
     };
