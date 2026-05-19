@@ -5,13 +5,13 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@sif/eslint-config": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
+        "@sif/eslint-config": "workspace:*",
         "@types/react": "19.2.14",
         "typescript": "6.0.3"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "2.5.0",
+        "@grafana/faro-web-sdk": "2.6.3",
         "constate": "3.3.3",
         "react": "19.2.6"
     },
