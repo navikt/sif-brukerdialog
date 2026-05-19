@@ -10,6 +10,7 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 - `pnpm build` - Bygger alle applikasjoner under apps med produksjonsinnstillinger (se script i app).
 - `pnpm test` - Kjører alle tester i apps og packages
 - `pnpm build --concurrency=2` - Bygger med redusert parallellitet (anbefalt for Next.js-apper)
+- `pnpm up -irL` - interaktive oppdatering av pakker
 
 ## Utvikle på én applikasjon
 
