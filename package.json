@@ -29,6 +29,9 @@
         "test": "turbo test"
     },
     "lint-staged": {
+        "**/package.json": [
+            "sort-package-json"
+        ],
         "apps/**/*.{ts,tsx,js,jsx, css}": [
             "prettier --write"
         ],
