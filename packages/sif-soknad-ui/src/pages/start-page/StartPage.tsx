@@ -84,6 +84,7 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                                 hideLegend={true}
                                 error={error ? text('@sifSoknadUi.startPage.confirmation.error') : undefined}>
                                 <Checkbox
+                                    id="bekrefter"
                                     name="bekrefter"
                                     value="bekrefter"
                                     onChange={(evt) => {

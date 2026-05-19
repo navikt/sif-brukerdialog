@@ -1,5 +1,3 @@
-import './pictureScanningGuide.css';
-
 import { CheckmarkCircleFillIcon, ExternalLinkIcon, XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Heading, HGrid, HStack, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
