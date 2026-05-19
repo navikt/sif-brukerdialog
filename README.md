@@ -51,14 +51,14 @@ pnpm storybook
 
 ### Vedlikehold
 
-| Kommando            | Beskrivelse                                                                   |
-| ------------------- | ----------------------------------------------------------------------------- |
-| `pnpm clean`        | Fjern build-output via Turbo                                                  |
-| `pnpm clean-all`    | Fjern build-output og alle `node_modules`                                     |
-| `pnpm up -irL`      | Interaktiv oppdatering av pakker                                              |
-| `pnpm format`       | Formater alle `.ts`, `.tsx` og `.md`-filer                                    |
-| `pnpm codegen:dev`  | Generer TypeScript-klienter fra OpenAPI-specs (mot dev-miljø, i pakke-mappe)  |
-| `pnpm codegen:prod` | Generer TypeScript-klienter fra OpenAPI-specs (mot prod-miljø, i pakke-mappe) |
+| Kommando            | Beskrivelse                                                                                                  |
+| ------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `pnpm clean`        | Fjern build-output via Turbo                                                                                 |
+| `pnpm clean-all`    | Fjern build-output og alle `node_modules`                                                                    |
+| `pnpm up -irL`      | Interaktiv oppdatering av pakker                                                                             |
+| `pnpm format`       | Formater alle `.ts`, `.tsx` og `.md`-filer                                                                   |
+| `pnpm codegen:dev`  | Kjør fra root for å generere TypeScript-klienter fra OpenAPI-specs mot dev-miljø i relevante pakker via Turbo. Bruk `pnpm --filter <pakke> codegen:dev` for én pakke |
+| `pnpm codegen:prod` | Kjør fra root for å generere TypeScript-klienter fra OpenAPI-specs mot prod-miljø i relevante pakker via Turbo. Bruk `pnpm --filter <pakke> codegen:prod` for én pakke |
 
 ## Versjonering og publisering av pakker
 
