@@ -123,7 +123,7 @@ export const PictureScanningGuide = ({ headingLevel = '2' }: Props) => {
                                     description={text('@sifSoknadUi.psg.icon.label.shadow')}
                                     headingLevel={exampleLevel}
                                 />
-                            </HGrid>{' '}
+                            </HGrid>
                             <Link
                                 target="_blank"
                                 rel="noopener noreferrer"
