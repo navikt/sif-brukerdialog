@@ -40,7 +40,7 @@ const formaterIsoDate = (isoDate: string): string => dateFormatter.compact(ISODa
 const getUtvidetDeltakelseHistorikk = (): DeltakelseHistorikkDto => ({
     endringstype: Endringstype.FORLENGET_PERIODE,
     revisjonstype: Revisjonstype.ENDRET,
-    endring: `Deltakelse er utvidet.`,
+    endring: `Deltakelse har fått forlenget periode.`,
     aktør: 'Z990501 (veileder)',
     tidspunkt: dayjs().toISOString(),
 });
