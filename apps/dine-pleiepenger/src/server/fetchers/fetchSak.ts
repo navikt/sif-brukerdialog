@@ -27,13 +27,11 @@ export const zSakDtoExtended = innsyn.zSakDto.extend({
         zBehandlingDto.extend({
             innsendelser: z.array(
                 zInnsendelserISakDto.extend({
-                    k9FormatInnsendelse: z
-                        .optional(
-                            zInnsending.extend({
-                                ytelse: z.any().optional(),
-                            }),
-                        )
-                        .nullable(),
+                    k9FormatInnsendelse: z.optional(
+                        zInnsending.extend({
+                            ytelse: z.any().optional(),
+                        }),
+                    ),
                 }),
             ),
         }),
