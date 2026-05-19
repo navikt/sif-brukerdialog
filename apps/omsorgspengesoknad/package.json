@@ -1,6 +1,6 @@
 {
     "name": "@navikt/omsorgspengesoknad",
-    "version": "1.41.72",
+    "version": "1.41.73",
     "private": true,
     "description": "Søknad om omsorgspengesoknad",
     "homepage": "https://github.com/navikt/sif-brukerdialog#readme",

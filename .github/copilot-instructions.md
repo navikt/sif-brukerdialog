@@ -31,3 +31,9 @@ This repository is a pnpm + Turborepo monorepo.
 - Follow local conventions in each app or package.
 - Keep diffs small and avoid unrelated formatting changes.
 - For links opened with `target="_blank"`, always set `rel="noopener noreferrer"`.
+
+## Tekster og copy
+
+- Ikke dikte opp eller formuler nye brukertekster, feilmeldinger eller labels på egen hånd.
+- Hent alltid tekster fra eksisterende kildeapp, etablert copy i repoet, eller eksplisitt brukerbestilling.
+- Ved migrering: les kildeappen og kopier tekstene ordrett.

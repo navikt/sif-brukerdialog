@@ -1,5 +1,3 @@
-import './pictureScanningGuide.scss';
-
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 

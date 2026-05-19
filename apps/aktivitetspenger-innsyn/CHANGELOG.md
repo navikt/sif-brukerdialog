@@ -1,5 +1,15 @@
 # @navikt/aktivitetspenger-innsyn
 
+## 0.0.9
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.56
+    - @navikt/sif-validation@1.0.21
+    - @sif/soknad-ui@0.0.4
+    - @sif/ung-innsyn@0.0.7
+
 ## 0.0.8
 
 ### Patch Changes

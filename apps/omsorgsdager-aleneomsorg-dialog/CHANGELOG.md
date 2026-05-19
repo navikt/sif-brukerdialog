@@ -1,5 +1,18 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.28.71
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.56
+    - @navikt/sif-validation@1.0.21
+    - @navikt/sif-common-forms-ds@21.0.58
+    - @navikt/sif-common-soknad-ds@26.1.42
+    - @navikt/sif-common-ui@0.11.57
+    - @navikt/sif-common-api@0.4.95
+    - @navikt/sif-common-formik-ds@2.5.46
+
 ## 2.28.70
 
 ### Patch Changes

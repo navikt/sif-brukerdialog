@@ -1,5 +1,11 @@
 # @navikt/sif-validation
 
+## 1.0.21
+
+### Patch Changes
+
+- Justeringer av tekst og legge til validering av vedlegg i sif-validation
+
 ## 1.0.20
 
 ### Patch Changes
