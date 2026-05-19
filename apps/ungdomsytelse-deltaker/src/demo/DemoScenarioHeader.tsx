@@ -69,7 +69,7 @@ export const DemoScenarioHeader = () => {
                             Deltakelse avsluttet
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.opphørt)}>
-                            Deltakelse opphørt (slettet)
+                            Deltakelse slettet
                         </ActionMenu.Item>
                     </ActionMenu.Group>
                     <ActionMenu.Divider />
