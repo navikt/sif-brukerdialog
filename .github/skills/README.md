@@ -66,3 +66,48 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Når: implementere eller endre vedleggssteg med opplasting, sletting, hydration og mellomlagring.
     - Triggerord: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
     - Fil: `.github/skills/sif-soknad-vedlegg-step/SKILL.md`
+
+- `sif-codegen`
+    - Når: codegen med `@hey-api/openapi-ts`, genererte API-klienter eller post-prosessering.
+    - Triggerord: `codegen`, `@hey-api/openapi-ts`, `openapi-ts`, `genererte klienter`, `client.gen.ts`, `types.gen.ts`, `sdk.gen.ts`, `download-spec`, `codegenUtils`, `fix-generated`.
+    - Fil: `.github/skills/sif-codegen/SKILL.md`
+
+- `sif-dialog-migration`
+    - Når: porte en dialog fra `sif-common-forms-ds` (v1/Formik) til `sif-soknad-forms` (v2/RHF).
+    - Triggerord: `porter dialog`, `migrer ListAndDialog`, `flytt til sif-soknad-forms`, `ModalFormAndList`, `ListAndDialog`, `BostedUtlandListAndDialog`, `UtenlandsoppholdListAndDialog`.
+    - Fil: `.github/skills/sif-dialog-migration/SKILL.md`
+
+- `sif-gh-pages`
+    - Når: legge til en v2-app i gh-pages demo-deploy.
+    - Triggerord: `gh-pages`, `demo-deploy`, `legg til i gh-pages`, `vite.demo.config`, `demo:build`, `gh-pages:rebuild`, `dist-demo`.
+    - Fil: `.github/skills/sif-gh-pages/SKILL.md`
+
+- `nav-architecture-review`
+    - Når: arkitekturvurdering og generering av ADR (Architecture Decision Records).
+    - Triggerord: `ADR`, `architecture review`, `arkitekturbeslutning`, `beslutningsdokument`, `vurder arkitektur`.
+    - Fil: `.github/skills/nav-architecture-review/SKILL.md`
+
+- `nav-deep-interview`
+    - Når: avklaring av prosjektkrav og -scope gjennom strukturert intervju.
+    - Triggerord: `deep interview`, `avklar krav`, `prosjektintervju`, `scope`, `prosjektklargjøring`, `arketype`.
+    - Fil: `.github/skills/nav-deep-interview/SKILL.md`
+
+- `nav-plan`
+    - Når: generering av arkitekturplan og leveransedokumenter for et Nav-prosjekt.
+    - Triggerord: `arkitekturplan`, `lage plan`, `generer plan`, `beslutningstrær`, `leveranseplan`.
+    - Fil: `.github/skills/nav-plan/SKILL.md`
+
+- `nav-troubleshoot`
+    - Når: feilsøking av plattform-/driftsproblemer i Nav (pods, auth, Kafka, ingress).
+    - Triggerord: `feilsøk`, `troubleshoot`, `pod krasjer`, `CrashLoopBackOff`, `auth-feil`, `ingress-feil`, `Kafka-feil`.
+    - Fil: `.github/skills/nav-troubleshoot/SKILL.md`
+
+- `playwright-testing`
+    - Når: sette opp Playwright E2E-testing generelt med page objects, auth fixtures og tilgjengelighetstesting.
+    - Triggerord: `playwright`, `e2e`, `page object`, `auth fixture`, `axe`, `accessibility testing`, `MockOAuth2Server`.
+    - Fil: `.github/skills/playwright-testing/SKILL.md`
+
+- `web-design-reviewer`
+    - Når: gjennomgang og feilretting av visuelt design på nettsider.
+    - Triggerord: `designgjennomgang`, `design review`, `visuell inspeksjon`, `layout-feil`, `CSS-feil`.
+    - Fil: `.github/skills/web-design-reviewer/SKILL.md`
