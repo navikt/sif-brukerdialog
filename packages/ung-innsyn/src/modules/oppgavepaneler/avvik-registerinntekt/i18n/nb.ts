@@ -1,4 +1,17 @@
 export const avvikRegisterinntektMessages_nb = {
+    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.paneltittel': 'Sjekk inntekten din i {månedOgÅr}',
+    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Tilbakemelding på inntekt i {månedOgÅr}',
+    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
+        'Sjekk at opplysningene våre om inntekten du fikk fra arbeidsgiver i {måned} er riktige. Send oss et svar når du har sjekket.',
+    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål':
+        'Stemmer inntekten vi har fått oppgitt?',
+    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harIkkeUttalelseLabel': 'Ja, inntekten stemmer',
+    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harUttalelseLabel':
+        'Nei, inntekten stemmer ikke. Jeg har en tilbakemelding.',
+    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst':
+        'Vi bruker tilbakemeldingen din når vi vurderer hvor mye penger du skal få i {utbetalingsmåned}. Du får et vedtaksbrev om dette.',
+
     '@ungInnsyn.avvikRegisterinntekt.inntekskilde.arbeidsgiverYtelse': 'Arbeidsgiver/Nav-ytelse',
     '@ungInnsyn.avvikRegisterinntekt.inntekskilde.arbeidsgiver': 'Arbeidsgiver',
     '@ungInnsyn.avvikRegisterinntekt.inntekskilde.navytelse': 'Nav-ytelse',

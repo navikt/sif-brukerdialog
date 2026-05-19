@@ -18,7 +18,7 @@ export enum ParsedOppgavetype {
     BEKREFT_FJERNET_PERIODE = 'BEKREFT_FJERNET_PERIODE',
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
     SØK_YTELSE = 'SØK_YTELSE',
-    AUTOMATISK_OPPHOR = 'AUTOMATISK_OPPHOR',
+    BEKREFT_AUTOMATISK_OPPHOR = 'BEKREFT_AUTOMATISK_OPPHOR',
 }
 
 export type RapportertInntektRespons = Omit<RapportertInntektDto, 'fraOgMed' | 'tilOgMed'> & {
@@ -86,7 +86,7 @@ export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
 }
 
 export interface AutomatiskOpphorOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.AUTOMATISK_OPPHOR;
+    oppgavetype: ParsedOppgavetype.BEKREFT_AUTOMATISK_OPPHOR;
     oppgavetypeData: {
         maksDato: Date;
     };

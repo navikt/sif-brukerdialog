@@ -1,4 +1,15 @@
 export const endretStartdatoMessages_nb = {
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.paneltittel': 'Se og gi tilbakemelding på endret startdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.oppgavetittel': 'Tilbakemelding på endret startdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.info':
+        'Veilederen din har endret datoen for når du startet i ungdomsprogrammet.',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål':
+        'Har du en tilbakemelding på startdatoen?',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.harIkkeUttalelseLabel': 'Nei',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.harUttalelseLabel': 'Ja',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
+
     '@ungInnsyn.endretStartdato.tekst.1':
         'Veilederen din har endret startdatoen din i ungdomsprogrammet til <strong>{formatertDato}</strong>.',
     '@ungInnsyn.endretStartdato.tekst.2':
