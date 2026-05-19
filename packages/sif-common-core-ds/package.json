@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-core-ds",
-    "version": "10.3.55",
+    "version": "10.3.56",
     "private": true,
     "author": "navikt",
     "type": "module",

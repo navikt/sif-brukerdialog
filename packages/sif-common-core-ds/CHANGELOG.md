@@ -1,5 +1,12 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.56
+
+### Patch Changes
+
+- Justeringer av tekst og legge til validering av vedlegg i sif-validation
+    - @navikt/sif-common-api@0.4.95
+
 ## 10.3.55
 
 ### Patch Changes

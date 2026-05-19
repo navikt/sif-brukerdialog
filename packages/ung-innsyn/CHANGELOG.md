@@ -1,5 +1,15 @@
 # @sif/ung-innsyn
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.56
+    - @navikt/sif-validation@1.0.21
+    - @navikt/sif-common-ui@0.11.57
+    - @navikt/sif-common-formik-ds@2.5.46
+
 ## 0.0.6
 
 ### Patch Changes

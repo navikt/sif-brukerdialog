@@ -1,6 +1,6 @@
 {
     "name": "sif-storybook",
-    "version": "0.0.100",
+    "version": "0.0.101",
     "private": true,
     "description": "Storybook som viser noen av komponentene som brukes på tvers av sif universet",
     "type": "module",

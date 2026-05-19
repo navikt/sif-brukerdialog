@@ -1,6 +1,6 @@
 {
     "name": "@navikt/ungdomsytelse-deltaker",
-    "version": "1.5.56",
+    "version": "1.5.57",
     "private": true,
     "type": "module",
     "scripts": {

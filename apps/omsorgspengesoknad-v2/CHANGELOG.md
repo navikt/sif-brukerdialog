@@ -1,5 +1,16 @@
 # @navikt/omsorgspengesoknad-v2
 
+## 0.0.9
+
+### Patch Changes
+
+- Updated dependencies
+    - @sif/soknad-forms@0.0.6
+    - @navikt/sif-validation@1.0.21
+    - @sif/soknad-ui@0.0.4
+    - @navikt/sif-common-ui@0.11.57
+    - @sif/soknad@0.0.5
+
 ## 0.0.8
 
 ### Patch Changes

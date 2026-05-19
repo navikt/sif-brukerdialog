@@ -1,6 +1,6 @@
 {
     "name": "@navikt/pleiepenger-sykt-barn",
-    "version": "4.11.74",
+    "version": "4.11.75",
     "private": true,
     "description": "Selvbetjeningsløsning for pleiepengesøknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",

@@ -1,5 +1,11 @@
 # @sif/rhf
 
+## 0.0.5
+
+### Patch Changes
+
+- @navikt/sif-common-ui@0.11.57
+
 ## 0.0.4
 
 ### Patch Changes
