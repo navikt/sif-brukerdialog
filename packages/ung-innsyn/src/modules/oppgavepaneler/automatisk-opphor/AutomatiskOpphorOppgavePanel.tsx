@@ -29,7 +29,7 @@ export const AutomatiskOpphorOppgavePanel = ({ navn, oppgave, initialVisKvitteri
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst" />
+                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );
