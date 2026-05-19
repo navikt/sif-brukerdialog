@@ -75,6 +75,17 @@ const PATTERNS = {
         description: 'baseURL URL literal removed',
     },
 
+    /**
+     * Erstatter hardkodet baseURL i createConfig()-kallet i client.gen.ts med en placeholder.
+     * Den faktiske baseURL settes av initApiClient ved oppstart av appen.
+     */
+    replaceClientBaseUrl: {
+        pattern: /baseURL: '[^']+'/g,
+        replacement: "baseURL: 'SET_BY_INIT_API_CLIENT'",
+        filePattern: /client\.gen\.ts$/,
+        description: 'hardcoded baseURL in createConfig replaced with SET_BY_INIT_API_CLIENT placeholder',
+    },
+
     /** Erstatter @ts-expect-error med @ts-ignore */
     fixTsExpectError: {
         pattern: /\/\/\s*@ts-expect-error/g,
