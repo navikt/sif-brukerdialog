@@ -48,7 +48,9 @@ const fjernUkjenteInnsendelserISak = (sak: SakDtoExtended): SakDtoExtended => {
         behandlinger: sak.behandlinger.map((behandling) => {
             return {
                 ...behandling,
-                innsendelser: behandling.innsendelser.filter((i) => i.innsendelsestype !== 'UKJENT'),
+                innsendelser: behandling.innsendelser.filter(
+                    (i) => i.innsendelsestype !== innsyn.Innsendelsestype.UKJENT,
+                ),
             };
         }),
     };
