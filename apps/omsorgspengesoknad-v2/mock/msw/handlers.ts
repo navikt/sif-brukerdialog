@@ -15,7 +15,6 @@ const getVedleggUrl = (vedleggId: string) => `${K9_BRUKERDIALOG_PROSESSERING_FRO
 
 export const handlers = [
     http.get(`**/oppslag/soker`, async () => {
-        await delay(0);
         return HttpResponse.json(store.get().søker);
     }),
 

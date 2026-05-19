@@ -1,4 +1,4 @@
-import { Bleed, BodyShort, Box, Heading, Loader, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, Loader, VStack } from '@navikt/ds-react';
 import { ApplicationPage } from '@sif/soknad-ui/pages';
 
 import { useSifSoknadUiIntl } from '../../i18n';
@@ -30,11 +30,9 @@ export const LoadingPage = ({ applicationTitle, showApplicationTitle = true }: P
                             {text('@sifSoknadUi.loadingPage.loaderTitle')}
                         </Heading>
                         {showApplicationTitle && (
-                            <Bleed marginBlock="space-0 space-0">
-                                <BodyShort size="small" textColor="subtle" align="center">
-                                    {applicationTitle}
-                                </BodyShort>
-                            </Bleed>
+                            <BodyShort size="small" textColor="subtle" align="center">
+                                {applicationTitle}
+                            </BodyShort>
                         )}
                     </VStack>
                 </Box>
