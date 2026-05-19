@@ -27,34 +27,32 @@ export const zSakDtoExtended = innsyn.zSakDto.extend({
         zBehandlingDto.extend({
             innsendelser: z.array(
                 zInnsendelserISakDto.extend({
-                    k9FormatInnsendelse: z.optional(
-                        zInnsending.extend({
-                            ytelse: z.any().optional(),
-                        }),
-                    ),
+                    k9FormatInnsendelse: z
+                        .optional(
+                            zInnsending.extend({
+                                ytelse: z.any().optional(),
+                            }),
+                        )
+                        .nullable(),
                 }),
             ),
         }),
     ),
 });
 
-const fjernUkjenteInnsendelserISak = (sak: innsyn.SakDto): innsyn.SakDto => {
+export type SakDtoExtended = z.infer<typeof zSakDtoExtended>;
+
+const fjernUkjenteInnsendelserISak = (sak: SakDtoExtended): SakDtoExtended => {
     return {
         ...sak,
         behandlinger: sak.behandlinger.map((behandling) => {
             return {
                 ...behandling,
-                innsendelser: filtrerUtUkjentInnsendelse(behandling.innsendelser),
+                innsendelser: behandling.innsendelser.filter((i) => i.innsendelsestype !== 'UKJENT'),
             };
         }),
     };
 };
-
-const filtrerUtUkjentInnsendelse = (innsendelser: innsyn.InnsendelserISakDto[]): innsyn.InnsendelserISakDto[] => {
-    return innsendelser.filter((i) => (i as any).innsendelsestype !== 'UKJENT');
-};
-
-export type SakDtoExtended = z.infer<typeof zSakDtoExtended>;
 
 /**
  * Henter detaljer for én spesifikk sak basert på saksnummer
@@ -101,7 +99,7 @@ export const fetchSak = async (
             throw new Error(`Sak response data er ikke et objekt [typeof=${typeof response.data}]`);
         }
 
-        const parsedData = zSakDtoExtended.parse(response.data) as innsyn.SakDto;
+        const parsedData = zSakDtoExtended.parse(response.data);
         logger.info('Sak parset og validert');
 
         return fjernUkjenteInnsendelserISak(parsedData);
