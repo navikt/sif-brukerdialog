@@ -1,10 +1,10 @@
 import { FormSummary } from '@navikt/ds-react';
-import { ForutgåendeBosteder } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/aktivitetspenger';
 import { dateRangeFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { JaNeiSvar } from '@sif/soknad-ui';
 
 import { SøknadStepId } from '../../../setup/config/SoknadStepId';
 import { useSøknadsflyt } from '../../../setup/hooks';
+import { ForutgåendeBosteder } from '@navikt/k9-brukerdialog-prosessering-api';
 
 interface Props {
     forutgåendeBosteder: ForutgåendeBosteder;

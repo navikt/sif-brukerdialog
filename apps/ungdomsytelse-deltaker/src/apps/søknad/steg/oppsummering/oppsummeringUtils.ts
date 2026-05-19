@@ -1,5 +1,4 @@
-import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/aktivitetspenger';
+import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
