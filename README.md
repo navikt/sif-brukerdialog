@@ -44,7 +44,7 @@ pnpm storybook
 
 | Kommando                     | Beskrivelse                                                  |
 | ---------------------------- | ------------------------------------------------------------ |
-| `pnpm build`                 | Bygg alle applikasjoner                                      |
+| `pnpm build`                 | Bygg alle workspaces                                         |
 | `pnpm build --concurrency=2` | Bygg med redusert parallellitet (anbefalt for Next.js-apper) |
 | `pnpm test`                  | Kjør alle tester i apps og packages                          |
 | `pnpm lint`                  | Kjør alle lint-sjekker                                       |
