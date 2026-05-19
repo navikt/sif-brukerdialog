@@ -10,7 +10,7 @@ export const automatiskOpphorMessages_nb = {
     '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
     '@ungInnsyn.automatiskOpphor.oppgavetekst.1':
-        'Din siste dag i med ungdomsprogramytelsen er <strong>{formatertDato}</strong>.',
+        'Din siste dag med ungdomsprogramytelsen er <strong>{formatertDato}</strong>.',
     '@ungInnsyn.automatiskOpphor.oppgavetekst.2':
         'Du får denne meldingen slik at du kan komme med en tilbakemelding på datoen.',
     '@ungInnsyn.automatiskOpphor.oppgavetekst.3':
