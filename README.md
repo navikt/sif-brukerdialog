@@ -73,7 +73,13 @@ pnpm changeset version  # bump versjoner og oppdater avhengigheter
 
 ## Deploy
 
-Applikasjoner deployes automatisk ved push til `main` dersom det er endringer under applikasjonens path. Dette styres av GitHub Actions-workflows per app.
+### Produksjon
+
+Applikasjoner deployes automatisk til prod ved push til `main` dersom det er endringer under applikasjonens path. Dette styres av GitHub Actions-workflows per app.
+
+### Dev
+
+Deploy til dev skjer **ikke** automatisk ved merge til `main`. Det kjøres manuelt via GitHub Actions — enten enkeltvis ("Deploy app to dev") eller for flere apper samtidig via de øvrige dispatch-workflowene.
 
 ## GitHub Copilot
 
