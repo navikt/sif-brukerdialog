@@ -1,34 +1,39 @@
 {
-    "author": "NAV",
     "name": "@navikt/ungdomsytelse-veileder",
+    "version": "0.9.67",
+    "private": true,
     "description": "Midlertidig app for veileder på ungdomsytelsen",
     "license": "MIT",
+    "author": "NAV",
     "type": "module",
-    "private": true,
-    "version": "0.9.67",
     "scripts": {
-        "dev": "vite --base=/sif-brukerdialog/ungdomsytelse-veileder --config vite.dev.config.ts --port 8088",
-        "dev:debug": "vite --debug",
         "build": "vite build --base=/",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
-        "lint": "eslint src",
-        "lint:fix": "eslint src --fix",
-        "pw:build": "run-s pw:build-app pw:copy-mock-service-worker",
-        "pw:build-app": "vite build --config vite.playwright.config.ts",
-        "pw:copy-mock-service-worker": "cp ./mockServiceWorker.js ./dist-playwright/",
-        "pw:start": "vite preview --base /sif-brukerdialog/ungdomsytelse-veileder/ --outDir dist-playwright --config vite.playwright.config.ts",
-        "playwright-test": "playwright test",
-        "pw:run": "playwright test",
-        "storybook:build": "storybook build",
-        "storybook": "storybook dev -p 6006",
         "demo:build": "run-s demo:build-app demo:copy-app-files",
         "demo:build-app": "vite build --config vite.demo.config.ts",
         "demo:copy-app-files": "cp ./dist-demo/demo/index.html ./dist-demo/index.html && rm -rf ./dist-demo/demo && cp ./mockServiceWorker.js ./dist-demo/",
         "demo:start": "vite preview --base /sif-brukerdialog/ungdomsytelse-veileder --config vite.demo.config.ts",
-        "gh-pages:rebuild": "run-s demo:build gh-pages:clean gh-pages:copy",
+        "dev": "vite --base=/sif-brukerdialog/ungdomsytelse-veileder --config vite.dev.config.ts --port 8088",
+        "dev:debug": "vite --debug",
         "gh-pages:clean": "rm -rf ../../docs/ungdomsytelse-veileder",
-        "gh-pages:copy": "cp -r ./dist-demo ../../docs/ungdomsytelse-veileder"
+        "gh-pages:copy": "cp -r ./dist-demo ../../docs/ungdomsytelse-veileder",
+        "gh-pages:rebuild": "run-s demo:build gh-pages:clean gh-pages:copy",
+        "lint": "eslint src",
+        "lint:fix": "eslint src --fix",
+        "playwright-test": "playwright test",
+        "pw:build": "run-s pw:build-app pw:copy-mock-service-worker",
+        "pw:build-app": "vite build --config vite.playwright.config.ts",
+        "pw:copy-mock-service-worker": "cp ./mockServiceWorker.js ./dist-playwright/",
+        "pw:run": "playwright test",
+        "pw:start": "vite preview --base /sif-brukerdialog/ungdomsytelse-veileder/ --outDir dist-playwright --config vite.playwright.config.ts",
+        "storybook": "storybook dev -p 6006",
+        "storybook:build": "storybook build"
+    },
+    "eslintConfig": {
+        "extends": [
+            "plugin:storybook/recommended"
+        ]
     },
     "dependencies": {
         "@grafana/faro-react": "2.6.3",
@@ -58,7 +63,7 @@
         "date-fns": "4.1.0",
         "dayjs": "1.11.20",
         "formik": "2.4.9",
-        "html-react-parser": "6.1.0",
+        "html-react-parser": "6.1.1",
         "react": "19.2.6",
         "react-dom": "19.2.6",
         "react-helmet": "6.1.0",
@@ -86,7 +91,7 @@
         "@vitest/browser": "4.1.6",
         "@vitest/coverage-v8": "4.1.6",
         "compression": "1.8.1",
-        "eslint": "10.3.0",
+        "eslint": "10.4.0",
         "eslint-plugin-prettier": "5.5.5",
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-react-hooks": "7.1.1",
@@ -119,11 +124,6 @@
         "workerDirectory": [
             "dist",
             ""
-        ]
-    },
-    "eslintConfig": {
-        "extends": [
-            "plugin:storybook/recommended"
         ]
     }
 }

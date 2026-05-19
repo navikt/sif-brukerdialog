@@ -1,10 +1,14 @@
 {
     "name": "sif-storybook",
-    "description": "Storybook som viser noen av komponentene som brukes på tvers av sif universet",
-    "main": "src/index.ts",
     "version": "0.0.100",
     "private": true,
+    "description": "Storybook som viser noen av komponentene som brukes på tvers av sif universet",
     "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "build-storybook": "storybook build ",
+        "storybook": "storybook dev -p 6006"
+    },
     "dependencies": {
         "@navikt/aksel-icons": "8.10.5",
         "@navikt/ds-css": "8.10.5",
@@ -23,7 +27,7 @@
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.20",
-        "eslint": "10.3.0",
+        "eslint": "10.4.0",
         "eslint-plugin-storybook": "10.4.0",
         "globals": "17.6.0",
         "intl": "1.2.5",
@@ -35,10 +39,6 @@
         "storybook": "10.4.0",
         "typescript": "6.0.3",
         "webpack": "5.106.2"
-    },
-    "scripts": {
-        "build-storybook": "storybook build ",
-        "storybook": "storybook dev -p 6006"
     },
     "readme": "ERROR: No README data found!"
 }

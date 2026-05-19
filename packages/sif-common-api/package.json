@@ -1,10 +1,17 @@
 {
     "name": "@navikt/sif-common-api",
-    "main": "src/index.ts",
-    "types": "src/index.ts",
     "version": "0.4.94",
     "private": true,
     "type": "module",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "scripts": {
+        "build-storybook": "storybook build ",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "storybook": "storybook dev -p 6006"
+    },
     "dependencies": {
         "@navikt/aksel-icons": "8.10.5",
         "@navikt/ds-css": "8.10.5",
@@ -17,7 +24,6 @@
         "@navikt/sif-validation": "workspace:*",
         "axios": "1.16.1",
         "classnames": "2.5.1",
-        "uuid": "14.0.0",
         "dayjs": "1.11.20",
         "react-day-picker": "9.14.0",
         "uuid": "14.0.0",
@@ -41,12 +47,5 @@
         "storybook": "10.4.0",
         "typescript": "6.0.3",
         "webpack": "5.106.2"
-    },
-    "scripts": {
-        "build-storybook": "storybook build ",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:tsc": "tsc --noEmit",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "storybook": "storybook dev -p 6006"
     }
 }

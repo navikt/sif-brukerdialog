@@ -1,12 +1,39 @@
 {
-    "author": "NAV",
-    "description": "Endringsmelding - pleiepenger sykt barn",
-    "type": "module",
-    "license": "MIT",
     "name": "@navikt/endringsmelding-pleiepenger",
-    "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "3.0.1",
     "private": true,
+    "description": "Endringsmelding - pleiepenger sykt barn",
+    "repository": "https://github.com/navikt/sif-brukerdialog",
+    "license": "MIT",
+    "author": "NAV",
+    "type": "module",
+    "scripts": {
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
+        "build-storybook": "storybook build",
+        "clean": "rm -rf node_modules dist",
+        "dev": "vite --config vite.dev.config.ts",
+        "lint:eslint": "eslint src",
+        "lint:fix": "eslint src --fix",
+        "lint:tsc": "tsc --noEmit",
+        "playwright-test": "playwright test",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:run": "playwright test",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run"
+    },
+    "eslintConfig": {
+        "overrides": [
+            {
+                "files": [
+                    "**/*.stories.*"
+                ],
+                "rules": {
+                    "import/no-anonymous-default-export": "off"
+                }
+            }
+        ]
+    },
     "dependencies": {
         "@navikt/aksel-icons": "8.10.5",
         "@navikt/ds-css": "8.10.5",
@@ -34,7 +61,7 @@
         "dayjs": "1.11.20",
         "flat": "6.0.1",
         "formik": "2.4.9",
-        "html-react-parser": "6.1.0",
+        "html-react-parser": "6.1.1",
         "intl": "1.2.5",
         "jsdom": "28.1.0",
         "lodash": "4.18.1",
@@ -63,7 +90,6 @@
         "@testing-library/dom": "10.4.1",
         "@testing-library/react": "16.3.2",
         "@types/flat": "5.0.5",
-        "@types/node": "25.6.2",
         "@types/intl": "1.2.2",
         "@types/js-cookie": "3.0.6",
         "@types/node": "25.8.0",
@@ -75,7 +101,7 @@
         "@vitejs/plugin-react": "6.0.2",
         "axe-core": "4.11.4",
         "compression": "1.8.1",
-        "eslint": "10.3.0",
+        "eslint": "10.4.0",
         "eslint-plugin-storybook": "10.4.0",
         "express": "5.2.1",
         "mockdate": "3.0.5",
@@ -91,33 +117,6 @@
         "vite": "8.0.13",
         "vite-plugin-checker": "0.13.0",
         "vitest": "4.1.6"
-    },
-    "scripts": {
-        "build-storybook": "storybook build",
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-        "clean": "rm -rf node_modules dist",
-        "dev": "vite --config vite.dev.config.ts",
-        "lint:eslint": "eslint src",
-        "lint:fix": "eslint src --fix",
-        "lint:tsc": "tsc --noEmit",
-        "playwright-test": "playwright test",
-        "pw:run": "playwright test",
-        "pw:build": "vite build --config vite.playwright.config.ts",
-        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
-    },
-    "eslintConfig": {
-        "overrides": [
-            {
-                "files": [
-                    "**/*.stories.*"
-                ],
-                "rules": {
-                    "import/no-anonymous-default-export": "off"
-                }
-            }
-        ]
     },
     "msw": {
         "workerDirectory": [
