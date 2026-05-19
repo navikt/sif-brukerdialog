@@ -5,12 +5,18 @@ import * as z from 'zod';
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
 import type {
+    AktiverMikrofrontendData,
+    AktiverMikrofrontendErrors,
+    AktiverMikrofrontendResponses,
     HentDokumentData,
     HentDokumentErrors,
     HentDokumentOversiktData,
     HentDokumentOversiktErrors,
     HentDokumentOversiktResponses,
     HentDokumentResponses,
+    HentMikrofrontenderData,
+    HentMikrofrontenderErrors,
+    HentMikrofrontenderResponses,
     HentSøknadData,
     HentSøknader1Data,
     HentSøknader1Errors,
@@ -28,11 +34,15 @@ import type {
     OppdaterAktoerIdResponses,
 } from './types.gen';
 import {
+    zAktiverMikrofrontendBody,
+    zAktiverMikrofrontendResponse,
     zHentDokumentOversiktQuery,
     zHentDokumentOversiktResponse,
     zHentDokumentPath,
     zHentDokumentQuery,
     zHentDokumentResponse,
+    zHentMikrofrontenderBody,
+    zHentMikrofrontenderResponse,
     zHentSøknader1Response,
     zHentSøknaderResponse,
     zHentSøknadPath,
@@ -98,6 +108,58 @@ export class DokumentController {
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/dokument/{journalpostId}/{dokumentInfoId}/{variantFormat}',
             ...options,
+        });
+    }
+}
+
+export class MikrofrontendForvaltningController {
+    public static aktiverMikrofrontend<ThrowOnError extends boolean = true>(
+        options: Options<AktiverMikrofrontendData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).post<AktiverMikrofrontendResponses, AktiverMikrofrontendErrors, ThrowOnError>(
+            {
+                requestValidator: async (data) =>
+                    await z
+                        .object({
+                            body: zAktiverMikrofrontendBody,
+                            path: z.never().optional(),
+                            query: z.never().optional(),
+                        })
+                        .parseAsync(data),
+                responseType: 'json',
+                responseValidator: async (data) => await zAktiverMikrofrontendResponse.parseAsync(data),
+                security: [{ scheme: 'bearer', type: 'http' }],
+                url: '/forvaltning/mikrofrontend/aktiver',
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...options.headers,
+                },
+            },
+        );
+    }
+
+    public static hentMikrofrontender<ThrowOnError extends boolean = true>(
+        options: Options<HentMikrofrontenderData, ThrowOnError>,
+    ) {
+        return (options.client ?? client).post<HentMikrofrontenderResponses, HentMikrofrontenderErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: zHentMikrofrontenderBody,
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zHentMikrofrontenderResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/forvaltning/mikrofrontend/hent',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers,
+            },
         });
     }
 }

@@ -7,10 +7,22 @@ export type ClientOptions = {
 export type DeltakelseDto = {
     deltaker: DeltakerDto;
     erSlettet: boolean;
+    forlengetPeriodeMaksDato: string;
     fraOgMed: string;
+    harForlengetPeriode: boolean;
     harOpphørsvedtak: boolean;
+    /**
+     * Bruk harForlengetPeriode
+     *
+     * @deprecated
+     */
     harUtvidetKvote: boolean;
     id?: string;
+    /**
+     * Bruk forlengetPeriodeMaksDato
+     *
+     * @deprecated
+     */
     kvoteMaksDato: string;
     søktTidspunkt?: string;
     tilOgMed?: string;
@@ -68,7 +80,7 @@ export enum Endringstype {
     ENDRET_SLUTTDATO = 'ENDRET_SLUTTDATO',
     DELTAKER_HAR_SØKT_YTELSE = 'DELTAKER_HAR_SØKT_YTELSE',
     DELTAKELSE_FJERNET = 'DELTAKELSE_FJERNET',
-    UTVIDET_KVOTE = 'UTVIDET_KVOTE',
+    FORLENGET_PERIODE = 'FORLENGET_PERIODE',
     UKJENT = 'UKJENT',
 }
 
@@ -273,6 +285,41 @@ export type EndreStartdatoResponses = {
 
 export type EndreStartdatoResponse = EndreStartdatoResponses[keyof EndreStartdatoResponses];
 
+export type ForlengPeriodeData = {
+    body?: never;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/forleng-periode';
+};
+
+export type ForlengPeriodeErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type ForlengPeriodeError = ForlengPeriodeErrors[keyof ForlengPeriodeErrors];
+
+export type ForlengPeriodeResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+
+export type ForlengPeriodeResponse = ForlengPeriodeResponses[keyof ForlengPeriodeResponses];
+
 export type DeltakelseHistorikkData = {
     body?: never;
     path: {
@@ -307,41 +354,6 @@ export type DeltakelseHistorikkResponses = {
 };
 
 export type DeltakelseHistorikkResponse = DeltakelseHistorikkResponses[keyof DeltakelseHistorikkResponses];
-
-export type UtvidKvoteData = {
-    body?: never;
-    path: {
-        deltakelseId: string;
-    };
-    query?: never;
-    url: '/veileder/register/deltakelse/{deltakelseId}/utvid-kvote';
-};
-
-export type UtvidKvoteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type UtvidKvoteError = UtvidKvoteErrors[keyof UtvidKvoteErrors];
-
-export type UtvidKvoteResponses = {
-    /**
-     * OK
-     */
-    200: DeltakelseDto;
-};
-
-export type UtvidKvoteResponse = UtvidKvoteResponses[keyof UtvidKvoteResponses];
 
 export type MeldInnDeltakerData = {
     body: DeltakelseInnmeldingDto;
