@@ -8,7 +8,6 @@ import OmSøknaden from './OmSoknaden';
 
 export const VelkommenPage = () => {
     const { text } = useAppIntl();
-    // const navigate = useNavigate();
     const søknadState = useSøknadStore((s) => s.søknadState);
     const { startSøknad, navigateToStep } = useSøknadsflyt();
     const { clearSøknadFormValues } = useSøknadFormValues();
@@ -16,12 +15,10 @@ export const VelkommenPage = () => {
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {
         const førsteStegId = søknadStepOrder[0];
-        // const førsteSteg = søknadStepConfig[førsteStegId];
         clearSøknadFormValues();
         startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
         await opprettMellomlagring();
         navigateToStep(førsteStegId);
-        // navigate(`/soknad/${førsteSteg.route}`);
     };
 
     return (

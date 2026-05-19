@@ -83,7 +83,7 @@ jobs:
 
       # Bygg aktivitetspenger-innsyn demo-app med gh-pages:rebuild
       - name: Build aktivitetspenger-innsyn
-        run: yarn gh-pages:rebuild
+        run: pnpm gh-pages:rebuild
         working-directory: apps/aktivitetspenger-innsyn
 
       # Flytt aktivitetspenger-innsyn-output til en subfolder

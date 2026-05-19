@@ -88,7 +88,7 @@ Legg til to steg rett før `Upload artifact`-steget:
 
 ```yaml
 - name: Build <app-navn>
-  run: yarn gh-pages:rebuild
+  run: pnpm gh-pages:rebuild
   working-directory: apps/<app-navn>
 
 - name: Kopier <app-navn> til gh-pages
@@ -99,10 +99,10 @@ Legg til to steg rett før `Upload artifact`-steget:
 
 ## Vanlige feil
 
-| Problem                                             | Årsak                                     | Fix                                                                       |
-| --------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------- |
-| MSW klager i konsollen / service worker ikke funnet | Feil URL ved registrering                 | Sett `serviceWorker.url` i `enableMocking.ts`                             |
-| Blank side eller 404 på gh-pages                    | `base` i Vite-config stemmer ikke med URL | Sjekk at `base` i `vite.demo.config.ts` = `/sif-brukerdialog/<app-navn>/` |
-| `run-s` ikke funnet                                 | `npm-run-all` mangler                     | Legg til i `devDependencies`                                              |
-| ScenarioHeader / scenariovelger vises ikke i demo   | `import.meta.env.PROD` er `true` i prod-build — skjuler komponenten selv på gh-pages | Bruk `__IS_GITHUB_PAGES__ \|\| __IS_DEMO__` som guard i stedet for `import.meta.env.PROD` |
-| Scenariobytte sender bruker til feil URL (uten hash) | `location.assign(PUBLIC_PATH)` ignorerer `HashRouter` og navigerer absolutt | Bruk `navigate(PUBLIC_PATH)` + `globalThis.location.reload()` i stedet — samme mønster som ung-deltaker |
+| Problem                                              | Årsak                                                                                | Fix                                                                                                     |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| MSW klager i konsollen / service worker ikke funnet  | Feil URL ved registrering                                                            | Sett `serviceWorker.url` i `enableMocking.ts`                                                           |
+| Blank side eller 404 på gh-pages                     | `base` i Vite-config stemmer ikke med URL                                            | Sjekk at `base` i `vite.demo.config.ts` = `/sif-brukerdialog/<app-navn>/`                               |
+| `run-s` ikke funnet                                  | `npm-run-all` mangler                                                                | Legg til i `devDependencies`                                                                            |
+| ScenarioHeader / scenariovelger vises ikke i demo    | `import.meta.env.PROD` er `true` i prod-build — skjuler komponenten selv på gh-pages | Bruk `__IS_GITHUB_PAGES__ \|\| __IS_DEMO__` som guard i stedet for `import.meta.env.PROD`               |
+| Scenariobytte sender bruker til feil URL (uten hash) | `location.assign(PUBLIC_PATH)` ignorerer `HashRouter` og navigerer absolutt          | Bruk `navigate(PUBLIC_PATH)` + `globalThis.location.reload()` i stedet — samme mønster som ung-deltaker |
