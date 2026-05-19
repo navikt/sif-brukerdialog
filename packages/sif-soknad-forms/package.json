@@ -1,25 +1,25 @@
 {
     "name": "@sif/soknad-forms",
-    "main": "src/index.ts",
-    "types": "src/index.ts",
-    "type": "module",
     "version": "0.0.5",
     "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "type": "module",
     "exports": {
         ".": "./src/index.ts",
         "./components": "./src/components/index.ts",
         "./pages": "./src/pages/index.ts"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
-    },
+    "main": "src/index.ts",
+    "types": "src/index.ts",
     "scripts": {
-        "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
+        "storybook": "storybook dev -p 6006",
         "test": "vitest run"
     },
     "dependencies": {
@@ -33,13 +33,6 @@
         "@sif/soknad": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "react-hook-form": "7.76.0"
-    },
-    "peerDependencies": {
-        "dayjs": ">=1.11.19",
-        "react": ">=19",
-        "react-day-picker": ">=9.14.0",
-        "react-dom": ">=19",
-        "react-intl": "10"
     },
     "devDependencies": {
         "@navikt/ds-css": "8.10.5",
@@ -60,5 +53,12 @@
         "typescript": "6.0.3",
         "vite": "8.0.13",
         "vitest": "4.1.6"
+    },
+    "peerDependencies": {
+        "dayjs": ">=1.11.19",
+        "react": ">=19",
+        "react-day-picker": ">=9.14.0",
+        "react-dom": ">=19",
+        "react-intl": "10"
     }
 }

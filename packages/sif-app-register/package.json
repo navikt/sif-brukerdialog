@@ -1,17 +1,17 @@
 {
     "name": "@navikt/sif-app-register",
-    "main": "src/index.ts",
     "version": "0.1.13",
     "private": true,
     "type": "module",
-    "devDependencies": {
-        "@sif/eslint-config": "workspace:*",
-        "copyfiles": "2.4.1",
-        "typescript": "6.0.3"
-    },
+    "main": "src/index.ts",
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "copyfiles": "2.4.1",
+        "typescript": "6.0.3"
     }
 }
