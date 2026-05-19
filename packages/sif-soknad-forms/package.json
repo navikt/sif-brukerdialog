@@ -32,7 +32,7 @@
         "@sif/rhf": "workspace:*",
         "@sif/soknad": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
-        "react-hook-form": "7.75.0"
+        "react-hook-form": "7.76.0"
     },
     "peerDependencies": {
         "dayjs": ">=1.11.19",
