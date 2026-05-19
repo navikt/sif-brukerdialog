@@ -22,8 +22,8 @@ export const LoadingPage = ({ applicationTitle, showApplicationTitle = true }: P
                     paddingInline="space-48"
                     background="default"
                     borderRadius="16"
-                    borderColor="info-subtleA"
-                    borderWidth="2">
+                    borderColor="neutral-subtleA"
+                    borderWidth="1">
                     <VStack gap="space-16" align="center" maxWidth="25rem" minWidth="15rem">
                         <Loader size="3xlarge" title={text('@sifSoknadUi.loadingPage.loaderTitle')} />
                         <Heading level="1" size="small">
