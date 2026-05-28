@@ -50,11 +50,11 @@
         "config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "17.0.4",
+        "lint-staged": "17.0.5",
         "prettier": "3.8.3",
         "sort-package-json": "3.6.1",
         "typescript": "6.0.3",
-        "vitest": "4.1.6"
+        "vitest": "4.1.7"
     },
     "packageManager": "pnpm@10.33.4",
     "pnpm": {

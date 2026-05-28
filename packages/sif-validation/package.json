@@ -16,15 +16,15 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "react-intl": "10.1.7"
+        "react-intl": "10.1.9"
     },
     "devDependencies": {
         "@navikt/sif-common-env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
-        "postcss": "8.5.14",
+        "postcss": "8.5.15",
         "typescript": "6.0.3",
-        "vitest": "4.1.6"
+        "vitest": "4.1.7"
     },
     "peerDependencies": {
         "@navikt/fnrvalidator": "2",
