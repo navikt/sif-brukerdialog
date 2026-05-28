@@ -297,6 +297,7 @@ export const parseOppgaverElement = (
                         sluttdato: ISODateToDate(sluttdato),
                         maksdato: ISODateToDate(maxDato),
                     },
+                    respons: parseSvarPåVarselRespons(oppgave.respons),
                 };
                 parsedOppgaver.push(bekreftOpphorVedMaksdatoOppgave);
                 return;
