@@ -44,7 +44,7 @@ const SluttdatoPanel = ({ deltakelse, handlinger, onClickEndreSluttdato, onClick
 
     if (deltakelsePeriodeErUtløpt(deltakelse)) {
         return (
-            <PeriodeInfoPanel title={dateFormatter.dayCompactDate(deltakelse.forlengetPeriodeMaksDato)}>
+            <PeriodeInfoPanel title={dateFormatter.dayCompactDate(deltakelse.periodeMaksDato)}>
                 <Alert variant="info" inline>
                     Deltakelse er avsluttet.
                 </Alert>
