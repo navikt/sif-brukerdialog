@@ -1,4 +1,13 @@
 export const bostedVilkårMessages_nb = {
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.paneltittel': 'Bekrefte bosted for aktivitetspenger',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.oppgavetittel': 'Bekrefte bosted for aktivitetspenger',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.info': 'Det er registrert ny informasjon om hvor du bor.',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på bostedsvilkåret?',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harIkkeUttalelseLabel': 'Nei',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harUttalelseLabel': 'Ja',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
+
     '@ungInnsyn.bostedVilkårOppgave.tekst.1': 'Du har fått en oppgave om å bekrefte bosted for aktivitetspenger.',
     '@ungInnsyn.bostedVilkårOppgave.tekst.1b': 'Periode: {periode}. Bor i Trondheim: {erBosattITrondheim}',
     '@ungInnsyn.bostedVilkårOppgave.tekst.2':

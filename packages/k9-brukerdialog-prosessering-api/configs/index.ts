@@ -13,8 +13,7 @@ export const createOpenApiConfig = (options: ConfigOptions): UserConfig => {
     return {
         input: `./specs/${specFile}`,
         output: {
-            format: 'prettier',
-            lint: 'eslint',
+            postProcess: ['prettier', 'eslint'],
             path: options.outputPath,
         },
         plugins: [
@@ -24,7 +23,7 @@ export const createOpenApiConfig = (options: ConfigOptions): UserConfig => {
             },
             {
                 name: '@hey-api/sdk',
-                asClass: true,
+                operations: { strategy: 'byTags' },
                 validator: true,
             },
             {

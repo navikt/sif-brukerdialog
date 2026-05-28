@@ -1,4 +1,14 @@
 export const meldtUtMessages_nb = {
+    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.paneltittel': 'Se og gi tilbakemelding på sluttdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.oppgavetittel': 'Tilbakemelding på sluttdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.info':
+        'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet.',
+    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
+    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.harIkkeUttalelseLabel': 'Nei',
+    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.harUttalelseLabel': 'Ja',
+    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
+
     '@ungInnsyn.meldtUt.oppsummering': 'Din sluttdato i ungdomsprogrammet er satt til <strong>{ny}</strong>.',
     '@ungInnsyn.meldtUt.oppgavetekst.1':
         'Veilederen din har meldt deg ut av ungdomsprogrammet med sluttdato <strong>{formatertDato}</strong>.',

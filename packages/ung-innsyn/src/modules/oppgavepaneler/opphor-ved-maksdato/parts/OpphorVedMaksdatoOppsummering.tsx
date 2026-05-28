@@ -3,11 +3,11 @@ import { ReactNode } from 'react';
 
 import { UngUiText } from '../../../../i18n';
 
-interface AutomatiskOpphorOppsummeringProps {
+interface OpphorVedMaksdatoOppsummeringProps {
     sisteDag: Date;
 }
 
-export const AutomatiskOpphorOppsummering = ({ sisteDag }: AutomatiskOpphorOppsummeringProps) => {
+export const OpphorVedMaksdatoOppsummering = ({ sisteDag }: OpphorVedMaksdatoOppsummeringProps) => {
     return (
         <UngUiText
             id="@ungInnsyn.automatiskOpphor.oppsummering.sisteDag"

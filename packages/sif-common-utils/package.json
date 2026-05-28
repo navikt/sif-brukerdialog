@@ -22,17 +22,17 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.8.0",
-        "@types/react": "19.2.14",
+        "@types/node": "25.9.1",
+        "@types/react": "19.2.15",
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
         "globals": "17.6.0",
         "intl": "1.2.5",
-        "postcss": "8.5.14",
+        "postcss": "8.5.15",
         "react": "19.2.6",
         "react-dom": "19.2.6",
-        "react-intl": "10.1.7",
+        "react-intl": "10.1.9",
         "typescript": "6.0.3",
-        "vitest": "4.1.6"
+        "vitest": "4.1.7"
     }
 }

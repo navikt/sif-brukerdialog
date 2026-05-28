@@ -10,6 +10,7 @@ import {
 
 export enum ParsedOppgavetype {
     BEKREFT_BOSTED = 'BEKREFT_BOSTED',
+    BEKREFT_OPPHOR_VED_MAKSDATO = 'BEKREFT_OPPHOR_VED_MAKSDATO',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
     BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
@@ -18,7 +19,6 @@ export enum ParsedOppgavetype {
     BEKREFT_FJERNET_PERIODE = 'BEKREFT_FJERNET_PERIODE',
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
     SØK_YTELSE = 'SØK_YTELSE',
-    AUTOMATISK_OPPHOR = 'AUTOMATISK_OPPHOR',
 }
 
 export type RapportertInntektRespons = Omit<RapportertInntektDto, 'fraOgMed' | 'tilOgMed'> & {
@@ -85,14 +85,6 @@ export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
     respons?: SvarPåVarselRespons;
 }
 
-export interface AutomatiskOpphorOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.AUTOMATISK_OPPHOR;
-    oppgavetypeData: {
-        maksDato: Date;
-    };
-    respons?: SvarPåVarselRespons;
-}
-
 export interface MeldtUtOppgave extends ParsedOppgaveBase {
     oppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT;
     oppgavetypeData: {
@@ -115,13 +107,22 @@ export interface FjernetPeriodeOppgave extends ParsedOppgaveBase {
     respons?: SvarPåVarselRespons;
 }
 
+export interface OpphorVedMaksdatoOppgave extends ParsedOppgaveBase {
+    oppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO;
+    oppgavetypeData: {
+        maksdato: Date;
+        sluttdato: Date;
+    };
+    respons?: SvarPåVarselRespons;
+}
+
 export type BekreftelseOppgave =
     | EndretSluttdatoOppgave
-    | AutomatiskOpphorOppgave
     | EndretStartdatoOppgave
     | EndretStartOgSluttdatoOppgave
     | FjernetPeriodeOppgave
     | MeldtUtOppgave
+    | OpphorVedMaksdatoOppgave
     | BostedVilkårOppgave
     | (AvvikRegisterinntektOppgave & {
           respons?: SvarPåVarselRespons;
@@ -149,9 +150,9 @@ export type Oppgave =
     | BostedVilkårOppgave
     | EndretStartdatoOppgave
     | EndretSluttdatoOppgave
-    | AutomatiskOpphorOppgave
     | MeldtUtOppgave
     | EndretStartOgSluttdatoOppgave
     | FjernetPeriodeOppgave
     | AvvikRegisterinntektOppgave
+    | OpphorVedMaksdatoOppgave
     | RapporterInntektOppgave;

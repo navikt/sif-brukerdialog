@@ -1,16 +1,14 @@
-import { defaultPlugins, defineConfig, type UserConfig } from '@hey-api/openapi-ts';
+import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
 export const createConfig = (): UserConfig => ({
     input: './openapi-spec.json',
     output: {
-        format: 'prettier',
-        lint: 'eslint',
+        postProcess: ['prettier', 'eslint'],
         path: './src/veileder/client',
     },
     plugins: [
-        ...defaultPlugins,
         'zod',
-        { asClass: true, name: '@hey-api/sdk', validator: true },
+        { operations: { strategy: 'byTags' }, name: '@hey-api/sdk', validator: true },
         { name: '@hey-api/client-axios', throwOnError: true },
         {
             enums: 'typescript', // default

@@ -13,8 +13,9 @@ import { SøkYtelseOppgavePanel } from '../modules/oppgavepaneler/sok-ytelse/Sok
 import { getOppgaveDokumentTittel } from '../utils/textUtils';
 import { OppgavePageContext } from './hooks/useOppgavePage';
 import { UngInnsynPage } from './UngInnsynPage';
+import { OpphorVedMaksdatoOppgavePanel } from '../modules/oppgavepaneler/opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanelOppgavePanel';
 
-const getOppgavePageComponent = (navn: string, oppgave: Oppgave) => {
+const getOppgavePageComponent = (navn: string, oppgave: Oppgave): React.JSX.Element => {
     switch (oppgave.oppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn={navn} />;
@@ -34,6 +35,8 @@ const getOppgavePageComponent = (navn: string, oppgave: Oppgave) => {
             return <FjernetPeriodeOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
             return <EndretStartOgSluttdatoOppgavePanel navn={navn} oppgave={oppgave} />;
+        case ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO:
+            return <OpphorVedMaksdatoOppgavePanel navn={navn} oppgave={oppgave} />;
     }
 };
 

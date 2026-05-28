@@ -26,6 +26,7 @@ const lagDeltakelse = (overrides: Partial<Deltakelse> = {}): Deltakelse => ({
     fraOgMed: ISODateToDate('2026-01-01'),
     tilOgMed: undefined,
     forlengetPeriodeMaksDato: ISODateToDate('2027-01-15'),
+    periodeMaksDato: ISODateToDate('2027-01-15'),
     kvoteMaksDato: '2027-01-15',
     harForlengetPeriode: false,
     harUtvidetKvote: false,

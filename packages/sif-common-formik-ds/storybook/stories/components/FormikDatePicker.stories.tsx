@@ -1,8 +1,7 @@
 import { BodyShort, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import { getDateValidator } from '@navikt/sif-validation';
-import { expect } from '@storybook/jest';
+import { expect, userEvent, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { userEvent, within } from '@storybook/testing-library';
 import { useFormikContext } from 'formik';
 
 import { datepickerUtils } from '../../../src/components/formik-datepicker/datepickerUtils';
