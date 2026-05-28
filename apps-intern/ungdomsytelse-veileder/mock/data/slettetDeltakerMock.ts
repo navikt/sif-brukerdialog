@@ -31,6 +31,7 @@ const deltakelse: DeltakelseDto = {
     harOpphørsvedtak: true,
     harForlengetPeriode: false,
     forlengetPeriodeMaksDato: '2026-01-01',
+    periodeMaksDato: '2026-01-01',
     harUtvidetKvote: false,
     kvoteMaksDato: '2026-01-01',
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',

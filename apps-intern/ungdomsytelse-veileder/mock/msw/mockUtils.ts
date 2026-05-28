@@ -150,6 +150,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
     }
     const deltakelseId = v4();
     const deltakerId = v4();
+
     const deltakelse: DeltakelseDto = {
         id: deltakelseId,
         deltaker: {
@@ -164,6 +165,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
         tilOgMed: undefined,
         harForlengetPeriode: false,
         forlengetPeriodeMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(startdato), 260)),
+        periodeMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(startdato), 260)),
         kvoteMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate(startdato), 260)),
     };
     db.deltakelser.push({

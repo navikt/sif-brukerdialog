@@ -2,6 +2,8 @@
 
 import * as z from 'zod';
 
+import { Diskresjonskode, Endringstype, Revisjonstype } from './types.gen';
+
 export const zDeltakelseInnmeldingDto = z.object({
     deltakerIdent: z.string(),
     startdato: z.iso.date(),
@@ -26,26 +28,18 @@ export const zDeltakelseDto = z.object({
     harUtvidetKvote: z.boolean(),
     id: z.uuid().nullish(),
     kvoteMaksDato: z.iso.date(),
+    periodeMaksDato: z.iso.date(),
     søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
     tilOgMed: z.iso.date().nullish(),
 });
 
-export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
+export const zDiskresjonskode = z.enum(Diskresjonskode);
 
 export const zEndrePeriodeDatoDto = z.object({
     dato: z.iso.date(),
 });
 
-export const zEndringstype = z.enum([
-    'DELTAKER_MELDT_INN',
-    'DELTAKER_MELDT_UT',
-    'ENDRET_STARTDATO',
-    'ENDRET_SLUTTDATO',
-    'DELTAKER_HAR_SØKT_YTELSE',
-    'DELTAKELSE_FJERNET',
-    'FORLENGET_PERIODE',
-    'UKJENT',
-]);
+export const zEndringstype = z.enum(Endringstype);
 
 export const zNavn = z.object({
     etternavn: z.string(),
@@ -76,7 +70,7 @@ export const zProblemDetail = z.object({
     type: z.url().optional(),
 });
 
-export const zRevisjonstype = z.enum(['OPPRETTET', 'ENDRET', 'SLETTET', 'UKJENT']);
+export const zRevisjonstype = z.enum(Revisjonstype);
 
 export const zDeltakelseHistorikkDto = z.object({
     aktør: z.string(),
