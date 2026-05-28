@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { OpphorVedMaksdatoOppgavePanel } from './OpphorVedMaksdatoOppgavePanelOppgavePanel';
+import { OpphorVedMaksdatoOppgavePanel } from './OpphorVedMaksdatoOppgavePanel';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Opphør ved maksdato',

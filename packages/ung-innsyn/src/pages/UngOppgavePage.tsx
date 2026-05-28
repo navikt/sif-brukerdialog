@@ -13,7 +13,7 @@ import { SøkYtelseOppgavePanel } from '../modules/oppgavepaneler/sok-ytelse/Sok
 import { getOppgaveDokumentTittel } from '../utils/textUtils';
 import { OppgavePageContext } from './hooks/useOppgavePage';
 import { UngInnsynPage } from './UngInnsynPage';
-import { OpphorVedMaksdatoOppgavePanel } from '../modules/oppgavepaneler/opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanelOppgavePanel';
+import { OpphorVedMaksdatoOppgavePanel } from '../modules/oppgavepaneler/opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel';
 
 const getOppgavePageComponent = (navn: string, oppgave: Oppgave): React.JSX.Element => {
     switch (oppgave.oppgavetype) {
