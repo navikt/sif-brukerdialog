@@ -4,69 +4,10 @@ import * as z from 'zod';
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type {
-    DeltakelseHistorikkData,
-    DeltakelseHistorikkErrors,
-    DeltakelseHistorikkResponses,
-    EndreSluttdatoData,
-    EndreSluttdatoErrors,
-    EndreSluttdatoResponses,
-    EndreStartdatoData,
-    EndreStartdatoErrors,
-    EndreStartdatoResponses,
-    FjernFraProgramData,
-    FjernFraProgramErrors,
-    FjernFraProgramResponses,
-    ForlengPeriodeData,
-    ForlengPeriodeErrors,
-    ForlengPeriodeResponses,
-    HentAlleDeltakelserGittDeltakerIdData,
-    HentAlleDeltakelserGittDeltakerIdErrors,
-    HentAlleDeltakelserGittDeltakerIdResponses,
-    HentDeltakerInfoGittDeltakerData,
-    HentDeltakerInfoGittDeltakerErrors,
-    HentDeltakerInfoGittDeltakerIdData,
-    HentDeltakerInfoGittDeltakerIdErrors,
-    HentDeltakerInfoGittDeltakerIdResponses,
-    HentDeltakerInfoGittDeltakerResponses,
-    MeldInnDeltakerData,
-    MeldInnDeltakerErrors,
-    MeldInnDeltakerResponses,
-    MeldUtDeltakerData,
-    MeldUtDeltakerErrors,
-    MeldUtDeltakerResponses,
-} from './types.gen';
-import {
-    zDeltakelseHistorikkPath,
-    zDeltakelseHistorikkResponse,
-    zEndreSluttdatoBody,
-    zEndreSluttdatoPath,
-    zEndreSluttdatoResponse,
-    zEndreStartdatoBody,
-    zEndreStartdatoPath,
-    zEndreStartdatoResponse,
-    zFjernFraProgramPath,
-    zFjernFraProgramResponse,
-    zForlengPeriodePath,
-    zForlengPeriodeResponse,
-    zHentAlleDeltakelserGittDeltakerIdPath,
-    zHentAlleDeltakelserGittDeltakerIdResponse,
-    zHentDeltakerInfoGittDeltakerBody,
-    zHentDeltakerInfoGittDeltakerIdPath,
-    zHentDeltakerInfoGittDeltakerIdResponse,
-    zHentDeltakerInfoGittDeltakerResponse,
-    zMeldInnDeltakerBody,
-    zMeldInnDeltakerResponse,
-    zMeldUtDeltakerBody,
-    zMeldUtDeltakerPath,
-    zMeldUtDeltakerResponse,
-} from './zod.gen';
+import type { DeltakelseHistorikkData, DeltakelseHistorikkErrors, DeltakelseHistorikkResponses, EndreSluttdatoData, EndreSluttdatoErrors, EndreSluttdatoResponses, EndreStartdatoData, EndreStartdatoErrors, EndreStartdatoResponses, FjernFraProgramData, FjernFraProgramErrors, FjernFraProgramResponses, ForlengPeriodeData, ForlengPeriodeErrors, ForlengPeriodeResponses, HentAlleDeltakelserGittDeltakerIdData, HentAlleDeltakelserGittDeltakerIdErrors, HentAlleDeltakelserGittDeltakerIdResponses, HentDeltakerInfoGittDeltakerData, HentDeltakerInfoGittDeltakerErrors, HentDeltakerInfoGittDeltakerIdData, HentDeltakerInfoGittDeltakerIdErrors, HentDeltakerInfoGittDeltakerIdResponses, HentDeltakerInfoGittDeltakerResponses, MeldInnDeltakerData, MeldInnDeltakerErrors, MeldInnDeltakerResponses, MeldUtDeltakerData, MeldUtDeltakerErrors, MeldUtDeltakerResponses } from './types.gen';
+import { zDeltakelseHistorikkPath, zDeltakelseHistorikkResponse, zEndreSluttdatoBody, zEndreSluttdatoPath, zEndreSluttdatoResponse, zEndreStartdatoBody, zEndreStartdatoPath, zEndreStartdatoResponse, zFjernFraProgramPath, zFjernFraProgramResponse, zForlengPeriodePath, zForlengPeriodeResponse, zHentAlleDeltakelserGittDeltakerIdPath, zHentAlleDeltakelserGittDeltakerIdResponse, zHentDeltakerInfoGittDeltakerBody, zHentDeltakerInfoGittDeltakerIdPath, zHentDeltakerInfoGittDeltakerIdResponse, zHentDeltakerInfoGittDeltakerResponse, zMeldInnDeltakerBody, zMeldInnDeltakerResponse, zMeldUtDeltakerBody, zMeldUtDeltakerPath, zMeldUtDeltakerResponse } from './zod.gen';
 
-export type Options<
-    TData extends TDataShape = TDataShape,
-    ThrowOnError extends boolean = boolean,
-    TResponse = unknown,
-> = Options2<TData, ThrowOnError, TResponse> & {
+export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
      * You can provide a client instance returned by `createClient()` instead of
      * individual options. This might be also useful if you want to implement a
@@ -84,66 +25,48 @@ export class Oppslag {
     /**
      * Hent personalia for en deltaker
      */
-    public static hentDeltakerInfoGittDeltaker<ThrowOnError extends boolean = true>(
-        options: Options<HentDeltakerInfoGittDeltakerData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).post<
-            HentDeltakerInfoGittDeltakerResponses,
-            HentDeltakerInfoGittDeltakerErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: zHentDeltakerInfoGittDeltakerBody,
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+    public static hentDeltakerInfoGittDeltaker<ThrowOnError extends boolean = true>(options: Options<HentDeltakerInfoGittDeltakerData, ThrowOnError>) {
+        return (options.client ?? client).post<HentDeltakerInfoGittDeltakerResponses, HentDeltakerInfoGittDeltakerErrors, ThrowOnError>({
+            requestValidator: async (data) => await z.object({
+                body: zHentDeltakerInfoGittDeltakerBody,
+                path: z.never().optional(),
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentDeltakerInfoGittDeltakerResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/oppslag/deltaker',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers,
-            },
+                ...options.headers
+            }
         });
     }
-
+    
     /**
      * Hent personlia for en deltaker gitt en UUID
      */
-    public static hentDeltakerInfoGittDeltakerId<ThrowOnError extends boolean = true>(
-        options: Options<HentDeltakerInfoGittDeltakerIdData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).get<
-            HentDeltakerInfoGittDeltakerIdResponses,
-            HentDeltakerInfoGittDeltakerIdErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zHentDeltakerInfoGittDeltakerIdPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+    public static hentDeltakerInfoGittDeltakerId<ThrowOnError extends boolean = true>(options: Options<HentDeltakerInfoGittDeltakerIdData, ThrowOnError>) {
+        return (options.client ?? client).get<HentDeltakerInfoGittDeltakerIdResponses, HentDeltakerInfoGittDeltakerIdErrors, ThrowOnError>({
+            requestValidator: async (data) => await z.object({
+                body: z.never().optional(),
+                path: zHentDeltakerInfoGittDeltakerIdPath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentDeltakerInfoGittDeltakerIdResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/oppslag/deltaker/{id}',
-            ...options,
+            ...options
         });
     }
 }
@@ -152,232 +75,188 @@ export class Veileder {
     /**
      * Avslutter en deltakelse i ungdomsprogrammet
      */
-    public static meldUtDeltaker<ThrowOnError extends boolean = true>(
-        options: Options<MeldUtDeltakerData, ThrowOnError>,
-    ) {
+    public static meldUtDeltaker<ThrowOnError extends boolean = true>(options: Options<MeldUtDeltakerData, ThrowOnError>) {
         return (options.client ?? client).put<MeldUtDeltakerResponses, MeldUtDeltakerErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: zMeldUtDeltakerBody,
-                        path: zMeldUtDeltakerPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: zMeldUtDeltakerBody,
+                path: zMeldUtDeltakerPath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zMeldUtDeltakerResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/avslutt',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers,
-            },
+                ...options.headers
+            }
         });
     }
-
+    
     /**
      * Endrer startdato på en deltakelse i ungdomsprogrammet
      */
-    public static endreSluttdato<ThrowOnError extends boolean = true>(
-        options: Options<EndreSluttdatoData, ThrowOnError>,
-    ) {
+    public static endreSluttdato<ThrowOnError extends boolean = true>(options: Options<EndreSluttdatoData, ThrowOnError>) {
         return (options.client ?? client).put<EndreSluttdatoResponses, EndreSluttdatoErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: zEndreSluttdatoBody,
-                        path: zEndreSluttdatoPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: zEndreSluttdatoBody,
+                path: zEndreSluttdatoPath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zEndreSluttdatoResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/endre/sluttdato',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers,
-            },
+                ...options.headers
+            }
         });
     }
-
+    
     /**
      * Endrer startdato på en deltakelse i ungdomsprogrammet
      */
-    public static endreStartdato<ThrowOnError extends boolean = true>(
-        options: Options<EndreStartdatoData, ThrowOnError>,
-    ) {
+    public static endreStartdato<ThrowOnError extends boolean = true>(options: Options<EndreStartdatoData, ThrowOnError>) {
         return (options.client ?? client).put<EndreStartdatoResponses, EndreStartdatoErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: zEndreStartdatoBody,
-                        path: zEndreStartdatoPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: zEndreStartdatoBody,
+                path: zEndreStartdatoPath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zEndreStartdatoResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/endre/startdato',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers,
-            },
+                ...options.headers
+            }
         });
     }
-
+    
     /**
      * Forlenger perioden for en deltakelse i ungdomsprogrammet med 8 uker
      */
-    public static forlengPeriode<ThrowOnError extends boolean = true>(
-        options: Options<ForlengPeriodeData, ThrowOnError>,
-    ) {
+    public static forlengPeriode<ThrowOnError extends boolean = true>(options: Options<ForlengPeriodeData, ThrowOnError>) {
         return (options.client ?? client).put<ForlengPeriodeResponses, ForlengPeriodeErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zForlengPeriodePath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: z.never().optional(),
+                path: zForlengPeriodePath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zForlengPeriodeResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/forleng-periode',
-            ...options,
+            ...options
         });
     }
-
-    public static deltakelseHistorikk<ThrowOnError extends boolean = true>(
-        options: Options<DeltakelseHistorikkData, ThrowOnError>,
-    ) {
+    
+    public static deltakelseHistorikk<ThrowOnError extends boolean = true>(options: Options<DeltakelseHistorikkData, ThrowOnError>) {
         return (options.client ?? client).get<DeltakelseHistorikkResponses, DeltakelseHistorikkErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zDeltakelseHistorikkPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: z.never().optional(),
+                path: zDeltakelseHistorikkPath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zDeltakelseHistorikkResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/historikk',
-            ...options,
+            ...options
         });
     }
-
+    
     /**
      * Meld inn en deltaker i ungdomsprogrammet.
      */
-    public static meldInnDeltaker<ThrowOnError extends boolean = true>(
-        options: Options<MeldInnDeltakerData, ThrowOnError>,
-    ) {
+    public static meldInnDeltaker<ThrowOnError extends boolean = true>(options: Options<MeldInnDeltakerData, ThrowOnError>) {
         return (options.client ?? client).post<MeldInnDeltakerResponses, MeldInnDeltakerErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: zMeldInnDeltakerBody,
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: zMeldInnDeltakerBody,
+                path: z.never().optional(),
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zMeldInnDeltakerResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/veileder/register/deltaker/innmelding',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers,
-            },
+                ...options.headers
+            }
         });
     }
-
+    
     /**
      * Hent alle deltakelser for en deltaker i ungdomsprogrammet
      */
-    public static hentAlleDeltakelserGittDeltakerId<ThrowOnError extends boolean = true>(
-        options: Options<HentAlleDeltakelserGittDeltakerIdData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).get<
-            HentAlleDeltakelserGittDeltakerIdResponses,
-            HentAlleDeltakelserGittDeltakerIdErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zHentAlleDeltakelserGittDeltakerIdPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+    public static hentAlleDeltakelserGittDeltakerId<ThrowOnError extends boolean = true>(options: Options<HentAlleDeltakelserGittDeltakerIdData, ThrowOnError>) {
+        return (options.client ?? client).get<HentAlleDeltakelserGittDeltakerIdResponses, HentAlleDeltakelserGittDeltakerIdErrors, ThrowOnError>({
+            requestValidator: async (data) => await z.object({
+                body: z.never().optional(),
+                path: zHentAlleDeltakelserGittDeltakerIdPath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentAlleDeltakelserGittDeltakerIdResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/veileder/register/deltaker/{deltakerId}/deltakelser',
-            ...options,
+            ...options
         });
     }
-
+    
     /**
      * Fjern en deltaker fra ungdomsprogrammet
      */
-    public static fjernFraProgram<ThrowOnError extends boolean = true>(
-        options: Options<FjernFraProgramData, ThrowOnError>,
-    ) {
+    public static fjernFraProgram<ThrowOnError extends boolean = true>(options: Options<FjernFraProgramData, ThrowOnError>) {
         return (options.client ?? client).delete<FjernFraProgramResponses, FjernFraProgramErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zFjernFraProgramPath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: z.never().optional(),
+                path: zFjernFraProgramPath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseValidator: async (data) => await zFjernFraProgramResponse.parseAsync(data),
             security: [
                 { scheme: 'bearer', type: 'http' },
                 { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                { scheme: 'bearer', type: 'http' }
             ],
             url: '/veileder/register/deltaker/{deltakerId}/fjern',
-            ...options,
+            ...options
         });
     }
 }

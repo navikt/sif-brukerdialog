@@ -34,7 +34,7 @@ export type BrukerdialogOppgaveDto = {
 };
 
 export type EndretPeriodeDataDto = {
-    endringer: PeriodeEndringType[];
+    endringer: Array<PeriodeEndringType>;
     forrigePeriode?: PeriodeDto;
     nyPeriode?: PeriodeDto;
 };
@@ -66,14 +66,11 @@ export type LøsOppgaveRequest = {
     oppgaveRespons?: OppgaveResponsDto;
 };
 
-export type OppgaveResponsDto = (
-    | ({
-          type: 'VARSEL_SVAR';
-      } & SvarPåVarselDto)
-    | ({
-          type: 'RAPPORTERT_INNTEKT';
-      } & RapportertInntektDto)
-) & {
+export type OppgaveResponsDto = (({
+    type: 'VARSEL_SVAR';
+} & SvarPåVarselDto) | ({
+    type: 'RAPPORTERT_INNTEKT';
+} & RapportertInntektDto)) & {
     type: string;
 };
 
@@ -93,7 +90,7 @@ export enum OppgaveStatus {
     /**
      * UTLØPT
      */
-    UTLØPT = 'UTLØPT',
+    UTLØPT = 'UTLØPT'
 }
 
 export enum OppgaveType {
@@ -128,7 +125,7 @@ export enum OppgaveType {
     /**
      * BEKREFT_AUTOMATISK_OPPHOR
      */
-    BEKREFT_AUTOMATISK_OPPHOR = 'BEKREFT_AUTOMATISK_OPPHOR',
+    BEKREFT_AUTOMATISK_OPPHOR = 'BEKREFT_AUTOMATISK_OPPHOR'
 }
 
 export enum OppgaveYtelsetype {
@@ -139,35 +136,26 @@ export enum OppgaveYtelsetype {
     /**
      * AKTIVITETSPENGER
      */
-    AKTIVITETSPENGER = 'AKTIVITETSPENGER',
+    AKTIVITETSPENGER = 'AKTIVITETSPENGER'
 }
 
-export type OppgavetypeDataDto = (
-    | ({
-          type: 'AUTOMATISK_OPPHOR';
-      } & BekreftAutomatiskOpphorOppgavetypeDataDto)
-    | ({
-          type: 'BOSTED';
-      } & BekreftBostedOppgavetypeDataDto)
-    | ({
-          type: 'ENDRET_PERIODE';
-      } & EndretPeriodeDataDto)
-    | ({
-          type: 'ENDRET_SLUTTDATO';
-      } & EndretSluttdatoDataDto)
-    | ({
-          type: 'ENDRET_STARTDATO';
-      } & EndretStartdatoDataDto)
-    | ({
-          type: 'INNTEKTSRAPPORTERING';
-      } & InntektsrapporteringOppgavetypeDataDto)
-    | ({
-          type: 'KONTROLLER_REGISTERINNTEKT';
-      } & KontrollerRegisterinntektOppgavetypeDataDto)
-    | ({
-          type: 'SØK_YTELSE';
-      } & SøkYtelseOppgavetypeDataDto)
-) & {
+export type OppgavetypeDataDto = (({
+    type: 'AUTOMATISK_OPPHOR';
+} & BekreftAutomatiskOpphorOppgavetypeDataDto) | ({
+    type: 'BOSTED';
+} & BekreftBostedOppgavetypeDataDto) | ({
+    type: 'ENDRET_PERIODE';
+} & EndretPeriodeDataDto) | ({
+    type: 'ENDRET_SLUTTDATO';
+} & EndretSluttdatoDataDto) | ({
+    type: 'ENDRET_STARTDATO';
+} & EndretStartdatoDataDto) | ({
+    type: 'INNTEKTSRAPPORTERING';
+} & InntektsrapporteringOppgavetypeDataDto) | ({
+    type: 'KONTROLLER_REGISTERINNTEKT';
+} & KontrollerRegisterinntektOppgavetypeDataDto) | ({
+    type: 'SØK_YTELSE';
+} & SøkYtelseOppgavetypeDataDto)) & {
     type: string;
 };
 
@@ -192,7 +180,7 @@ export enum PeriodeEndringType {
     /**
      * ANDRE_ENDRINGER
      */
-    ANDRE_ENDRINGER = 'ANDRE_ENDRINGER',
+    ANDRE_ENDRINGER = 'ANDRE_ENDRINGER'
 }
 
 export type RapportertInntektDto = {
@@ -202,11 +190,11 @@ export type RapportertInntektDto = {
 };
 
 export type RegisterinntektDto = {
-    arbeidOgFrilansInntekter?: ArbeidOgFrilansRegisterInntektDto[];
+    arbeidOgFrilansInntekter?: Array<ArbeidOgFrilansRegisterInntektDto>;
     totalInntekt: number;
     totalInntektArbeidOgFrilans: number;
     totalInntektYtelse: number;
-    ytelseInntekter?: YtelseRegisterInntektDto[];
+    ytelseInntekter?: Array<YtelseRegisterInntektDto>;
 };
 
 export type SvarPåVarselDto = {
@@ -255,7 +243,7 @@ export enum YtelseType {
     /**
      * ANNET
      */
-    ANNET = 'ANNET',
+    ANNET = 'ANNET'
 }
 
 export type HentAlleOppgaverData = {
@@ -267,14 +255,14 @@ export type HentAlleOppgaverData = {
          */
         ytelsetype?: OppgaveYtelsetype;
     };
-    url: '/ung/brukerdialog/ekstern/api/oppgave/hent/alle';
+    url: '/ekstern/api/oppgave/hent/alle';
 };
 
 export type HentAlleOppgaverResponses = {
     /**
      * default response
      */
-    default: BrukerdialogOppgaveDto[];
+    default: Array<BrukerdialogOppgaveDto>;
 };
 
 export type HentAlleOppgaverResponse = HentAlleOppgaverResponses[keyof HentAlleOppgaverResponses];
@@ -288,7 +276,7 @@ export type HentOppgaveData = {
         oppgavereferanse: string;
     };
     query?: never;
-    url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}';
+    url: '/ekstern/api/oppgave/{oppgavereferanse}';
 };
 
 export type HentOppgaveResponses = {
@@ -312,7 +300,7 @@ export type LøsOppgaveData = {
         oppgavereferanse: string;
     };
     query?: never;
-    url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}/løs';
+    url: '/ekstern/api/oppgave/{oppgavereferanse}/løs';
 };
 
 export type LøsOppgaveResponses = {

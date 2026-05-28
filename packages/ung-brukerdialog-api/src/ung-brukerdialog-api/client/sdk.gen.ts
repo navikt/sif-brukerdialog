@@ -4,29 +4,10 @@ import * as z from 'zod';
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type {
-    HentAlleOppgaverData,
-    HentAlleOppgaverResponses,
-    HentOppgaveData,
-    HentOppgaveResponses,
-    LøsOppgaveData,
-    LøsOppgaveResponses,
-} from './types.gen';
-import {
-    zHentAlleOppgaverQuery,
-    zHentAlleOppgaverResponse,
-    zHentOppgavePath,
-    zHentOppgaveResponse,
-    zLøsOppgaveBody,
-    zLøsOppgavePath,
-    zLøsOppgaveResponse,
-} from './zod.gen';
+import type { HentAlleOppgaverData, HentAlleOppgaverResponses, HentOppgaveData, HentOppgaveResponses, LøsOppgaveData, LøsOppgaveResponses } from './types.gen';
+import { zHentAlleOppgaverQuery, zHentAlleOppgaverResponse, zHentOppgavePath, zHentOppgaveResponse, zLøsOppgaveBody, zLøsOppgavePath, zLøsOppgaveResponse } from './zod.gen';
 
-export type Options<
-    TData extends TDataShape = TDataShape,
-    ThrowOnError extends boolean = boolean,
-    TResponse = unknown,
-> = Options2<TData, ThrowOnError, TResponse> & {
+export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
      * You can provide a client instance returned by `createClient()` instead of
      * individual options. This might be also useful if you want to implement a
@@ -44,66 +25,55 @@ export class BrukerdialogOppgave {
     /**
      * Henter alle oppgaver for en bruker
      */
-    public static hentAlleOppgaver<ThrowOnError extends boolean = true>(
-        options?: Options<HentAlleOppgaverData, ThrowOnError>,
-    ) {
+    public static hentAlleOppgaver<ThrowOnError extends boolean = true>(options?: Options<HentAlleOppgaverData, ThrowOnError>) {
         return (options?.client ?? client).get<HentAlleOppgaverResponses, unknown, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: zHentAlleOppgaverQuery.optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: z.never().optional(),
+                path: z.never().optional(),
+                query: zHentAlleOppgaverQuery.optional()
+            }).parseAsync(data),
             responseValidator: async (data) => await zHentAlleOppgaverResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/ung/brukerdialog/ekstern/api/oppgave/hent/alle',
-            ...options,
+            url: '/ekstern/api/oppgave/hent/alle',
+            ...options
         });
     }
-
+    
     /**
      * Henter en spesifikk oppgave basert på oppgaveReferanse
      */
     public static hentOppgave<ThrowOnError extends boolean = true>(options: Options<HentOppgaveData, ThrowOnError>) {
         return (options.client ?? client).get<HentOppgaveResponses, unknown, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: zHentOppgavePath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: z.never().optional(),
+                path: zHentOppgavePath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseValidator: async (data) => await zHentOppgaveResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}',
-            ...options,
+            url: '/ekstern/api/oppgave/{oppgavereferanse}',
+            ...options
         });
     }
-
+    
     /**
      * Løser en spesifikk oppgave basert på oppgaveReferanse
      */
     public static løsOppgave<ThrowOnError extends boolean = true>(options: Options<LøsOppgaveData, ThrowOnError>) {
         return (options.client ?? client).post<LøsOppgaveResponses, unknown, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: zLøsOppgaveBody,
-                        path: zLøsOppgavePath,
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+            requestValidator: async (data) => await z.object({
+                body: zLøsOppgaveBody,
+                path: zLøsOppgavePath,
+                query: z.never().optional()
+            }).parseAsync(data),
             responseValidator: async (data) => await zLøsOppgaveResponse.parseAsync(data),
             security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/ung/brukerdialog/ekstern/api/oppgave/{oppgavereferanse}/løs',
+            url: '/ekstern/api/oppgave/{oppgavereferanse}/løs',
             ...options,
             headers: {
                 'Content-Type': '*/*',
-                ...options.headers,
-            },
+                ...options.headers
+            }
         });
     }
 }

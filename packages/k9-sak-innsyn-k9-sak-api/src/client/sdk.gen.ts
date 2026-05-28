@@ -4,29 +4,10 @@ import * as z from 'zod';
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type {
-    HentAktiveOpplæringsinstitusjonerData,
-    HentAktiveOpplæringsinstitusjonerErrors,
-    HentAktiveOpplæringsinstitusjonerResponses,
-    HentOpplæringsinstitusjonerData,
-    HentOpplæringsinstitusjonerErrors,
-    HentOpplæringsinstitusjonerResponses,
-    HentSisteGyldigeVedtakForAktorIdData,
-    HentSisteGyldigeVedtakForAktorIdErrors,
-    HentSisteGyldigeVedtakForAktorIdResponses,
-} from './types.gen';
-import {
-    zHentAktiveOpplæringsinstitusjonerResponse,
-    zHentOpplæringsinstitusjonerResponse,
-    zHentSisteGyldigeVedtakForAktorIdBody,
-    zHentSisteGyldigeVedtakForAktorIdResponse2,
-} from './zod.gen';
+import type { HentAktiveOpplæringsinstitusjonerData, HentAktiveOpplæringsinstitusjonerErrors, HentAktiveOpplæringsinstitusjonerResponses, HentOpplæringsinstitusjonerData, HentOpplæringsinstitusjonerErrors, HentOpplæringsinstitusjonerResponses, HentSisteGyldigeVedtakForAktorIdData, HentSisteGyldigeVedtakForAktorIdErrors, HentSisteGyldigeVedtakForAktorIdResponses } from './types.gen';
+import { zHentAktiveOpplæringsinstitusjonerResponse, zHentOpplæringsinstitusjonerResponse, zHentSisteGyldigeVedtakForAktorIdBody, zHentSisteGyldigeVedtakForAktorIdResponse2 } from './zod.gen';
 
-export type Options<
-    TData extends TDataShape = TDataShape,
-    ThrowOnError extends boolean = boolean,
-    TResponse = unknown,
-> = Options2<TData, ThrowOnError, TResponse> & {
+export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
      * You can provide a client instance returned by `createClient()` instead of
      * individual options. This might be also useful if you want to implement a
@@ -41,88 +22,52 @@ export type Options<
 };
 
 export class K9SakController {
-    public static hentSisteGyldigeVedtakForAktorId<ThrowOnError extends boolean = true>(
-        options: Options<HentSisteGyldigeVedtakForAktorIdData, ThrowOnError>,
-    ) {
-        return (options.client ?? client).post<
-            HentSisteGyldigeVedtakForAktorIdResponses,
-            HentSisteGyldigeVedtakForAktorIdErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: zHentSisteGyldigeVedtakForAktorIdBody,
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+    public static hentSisteGyldigeVedtakForAktorId<ThrowOnError extends boolean = true>(options: Options<HentSisteGyldigeVedtakForAktorIdData, ThrowOnError>) {
+        return (options.client ?? client).post<HentSisteGyldigeVedtakForAktorIdResponses, HentSisteGyldigeVedtakForAktorIdErrors, ThrowOnError>({
+            requestValidator: async (data) => await z.object({
+                body: zHentSisteGyldigeVedtakForAktorIdBody,
+                path: z.never().optional(),
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentSisteGyldigeVedtakForAktorIdResponse2.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
+            security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
             url: '/k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options.headers,
-            },
+                ...options.headers
+            }
         });
     }
-
-    public static hentOpplæringsinstitusjoner<ThrowOnError extends boolean = true>(
-        options?: Options<HentOpplæringsinstitusjonerData, ThrowOnError>,
-    ) {
-        return (options?.client ?? client).get<
-            HentOpplæringsinstitusjonerResponses,
-            HentOpplæringsinstitusjonerErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+    
+    public static hentOpplæringsinstitusjoner<ThrowOnError extends boolean = true>(options?: Options<HentOpplæringsinstitusjonerData, ThrowOnError>) {
+        return (options?.client ?? client).get<HentOpplæringsinstitusjonerResponses, HentOpplæringsinstitusjonerErrors, ThrowOnError>({
+            requestValidator: async (data) => await z.object({
+                body: z.never().optional(),
+                path: z.never().optional(),
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentOpplæringsinstitusjonerResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
+            security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
             url: '/k9sak/opplaringsinstitusjoner',
-            ...options,
+            ...options
         });
     }
-
-    public static hentAktiveOpplæringsinstitusjoner<ThrowOnError extends boolean = true>(
-        options?: Options<HentAktiveOpplæringsinstitusjonerData, ThrowOnError>,
-    ) {
-        return (options?.client ?? client).get<
-            HentAktiveOpplæringsinstitusjonerResponses,
-            HentAktiveOpplæringsinstitusjonerErrors,
-            ThrowOnError
-        >({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
+    
+    public static hentAktiveOpplæringsinstitusjoner<ThrowOnError extends boolean = true>(options?: Options<HentAktiveOpplæringsinstitusjonerData, ThrowOnError>) {
+        return (options?.client ?? client).get<HentAktiveOpplæringsinstitusjonerResponses, HentAktiveOpplæringsinstitusjonerErrors, ThrowOnError>({
+            requestValidator: async (data) => await z.object({
+                body: z.never().optional(),
+                path: z.never().optional(),
+                query: z.never().optional()
+            }).parseAsync(data),
             responseType: 'json',
             responseValidator: async (data) => await zHentAktiveOpplæringsinstitusjonerResponse.parseAsync(data),
-            security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-            ],
+            security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
             url: '/k9sak/opplaringsinstitusjoner/aktive',
-            ...options,
+            ...options
         });
     }
 }
