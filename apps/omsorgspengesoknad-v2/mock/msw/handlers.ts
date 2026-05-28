@@ -14,7 +14,7 @@ const { K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH } = getDevAppSettings();
 const getVedleggUrl = (vedleggId: string) => `${K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}/vedlegg/${vedleggId}`;
 
 export const handlers = [
-    http.get(`**/oppslag/soker`, async () => HttpResponse.json(store.get().søker),
+    http.get(`**/oppslag/soker`, async () => HttpResponse.json(store.get().søker)),
 
     http.get(`**/oppslag/barn`, () => {
         return HttpResponse.json(store.get().barn || { barn: [] });
