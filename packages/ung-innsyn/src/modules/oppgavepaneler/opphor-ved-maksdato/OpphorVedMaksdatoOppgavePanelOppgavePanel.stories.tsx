@@ -10,7 +10,7 @@ import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { OpphorVedMaksdatoOppgavePanel } from './OpphorVedMaksdatoOppgavePanelOppgavePanel';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Automatisk opphør',
+    title: 'Oppgaver/Ungdomsprogramytelsen/Opphør ved maksdato',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };

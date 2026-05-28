@@ -17,21 +17,21 @@ export const OpphorVedMaksdatoOppgavetekst = ({ sisteDag, svarfrist }: Props) =>
         <>
             <BodyLong spacing>
                 <UngUiText
-                    id="@ungInnsyn.automatiskOpphor.oppgavetekst.1"
+                    id="@ungInnsyn.opphorVedMaksdato.oppgavetekst.1"
                     values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.automatiskOpphor.oppgavetekst.2" />
+                <UngUiText id="@ungInnsyn.opphorVedMaksdato.oppgavetekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.automatiskOpphor.oppgavetekst.3" />
+                <UngUiText id="@ungInnsyn.opphorVedMaksdato.oppgavetekst.3" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <UngUiText id="@ungInnsyn.automatiskOpphor.oppgavetekst.svarfrist" values={{ formatertFrist }} />
+                <UngUiText id="@ungInnsyn.opphorVedMaksdato.oppgavetekst.svarfrist" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong>
-                <UngUiText id="@ungInnsyn.automatiskOpphor.oppgavetekst.5" values={{ formatertDato }} />
+                <UngUiText id="@ungInnsyn.opphorVedMaksdato.oppgavetekst.5" values={{ formatertDato }} />
             </BodyLong>
         </>
     );

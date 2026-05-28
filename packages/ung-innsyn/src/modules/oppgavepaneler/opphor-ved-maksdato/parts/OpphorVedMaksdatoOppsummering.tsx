@@ -10,7 +10,7 @@ interface OpphorVedMaksdatoOppsummeringProps {
 export const OpphorVedMaksdatoOppsummering = ({ sisteDag }: OpphorVedMaksdatoOppsummeringProps) => {
     return (
         <UngUiText
-            id="@ungInnsyn.automatiskOpphor.oppsummering.sisteDag"
+            id="@ungInnsyn.opphorVedMaksdato.oppsummering.sisteDag"
             values={{
                 sisteDag: dateFormatter.full(sisteDag),
                 strong: (content: ReactNode) => <strong>{content}</strong>,
