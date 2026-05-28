@@ -10,6 +10,7 @@ import {
 
 export enum ParsedOppgavetype {
     BEKREFT_BOSTED = 'BEKREFT_BOSTED',
+    BEKREFT_OPPHOR_VED_MAKSDATO = 'BEKREFT_OPPHOR_VED_MAKSDATO',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
     BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
@@ -106,6 +107,15 @@ export interface FjernetPeriodeOppgave extends ParsedOppgaveBase {
     respons?: SvarPåVarselRespons;
 }
 
+export interface BekreftOpphorVedMaksdatoOppgave extends ParsedOppgaveBase {
+    oppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO;
+    oppgavetypeData: {
+        maksdato: Date;
+        sluttdato: Date;
+    };
+    respons?: SvarPåVarselRespons;
+}
+
 export type BekreftelseOppgave =
     | EndretSluttdatoOppgave
     | EndretStartdatoOppgave
@@ -143,4 +153,5 @@ export type Oppgave =
     | EndretStartOgSluttdatoOppgave
     | FjernetPeriodeOppgave
     | AvvikRegisterinntektOppgave
+    | BekreftOpphorVedMaksdatoOppgave
     | RapporterInntektOppgave;

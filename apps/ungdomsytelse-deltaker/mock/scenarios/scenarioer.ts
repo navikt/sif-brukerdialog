@@ -269,6 +269,14 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Ikke startet deltakelse',
         data: createIkkeStartetDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst]),
     },
+    [ScenarioType.bekreftOpphørVedMaksdato]: {
+        type: ScenarioType.bekreftOpphørVedMaksdato,
+        name: 'Oppgave om opphør ved maksdato',
+        data: createSøktDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().bekreftOpphørVedMaksdatoOppgave,
+        ]),
+    },
 };
 
 export const defaultScenario = scenarioer[ScenarioType.søknad];
