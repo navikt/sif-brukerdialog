@@ -13,7 +13,7 @@ export enum ScenarioType {
     avsluttet = 'avsluttet',
     ikkeStartet = 'ikkeStartet',
     opphørt = 'opphørt',
-    automatiskOpphør = 'automatiskOpphør',
+    bekreftOpphørVedMaksdato = 'bekreftOpphørVedMaksdato',
 }
 
 export interface ScenarioData {

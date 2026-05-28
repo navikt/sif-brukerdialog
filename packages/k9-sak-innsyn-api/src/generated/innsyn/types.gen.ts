@@ -27,6 +27,7 @@ export enum AktivitetFravær {
 }
 
 export type Aktivitetspenger = Omit<Ytelse, 'type'> & {
+    erBosattITrondheim?: boolean;
     forutgåendeBosteder: Bosteder;
     inntekter?: OppgittInntekt;
     søknadsperiode: string;

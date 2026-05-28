@@ -74,8 +74,8 @@ export const DemoScenarioHeader = () => {
                     </ActionMenu.Group>
                     <ActionMenu.Divider />
                     <ActionMenu.Group label="Oppgaver under utvikling (ikke implementert)">
-                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.automatiskOpphør)}>
-                            Automatisk opphør - perioden utløper
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.bekreftOpphørVedMaksdato)}>
+                            Opphør ved maksdato
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.endretStartOgSluttdato)}>
                             Endret start og sluttdato

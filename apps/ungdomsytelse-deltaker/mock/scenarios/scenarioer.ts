@@ -59,6 +59,7 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
             kvoteMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
             harForlengetPeriode: false,
             forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
+            periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
         } satisfies DeltakelseDto,
     ],
     oppgaver: [getMockOppgaver().søkYtelseOppgave],
@@ -82,6 +83,7 @@ const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[] = []): Scenari
             kvoteMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
             harForlengetPeriode: false,
             forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
+            periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
         } satisfies DeltakelseDto,
     ],
     oppgaver,
@@ -104,6 +106,7 @@ const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenario
             kvoteMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
             harForlengetPeriode: false,
             forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
+            periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
         } satisfies DeltakelseDto,
     ],
     oppgaver,
@@ -126,6 +129,7 @@ const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioD
             kvoteMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
             harForlengetPeriode: false,
             forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
+            periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
         } satisfies DeltakelseDto,
     ],
     oppgaver,
@@ -151,6 +155,7 @@ const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenar
                 kvoteMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
                 harForlengetPeriode: false,
                 forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
+                periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
             } satisfies DeltakelseDto,
         ],
         oppgaver,
@@ -264,11 +269,13 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Ikke startet deltakelse',
         data: createIkkeStartetDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst]),
     },
-    [ScenarioType.automatiskOpphør]: {
-        type: ScenarioType.automatiskOpphør,
-        name: 'Automatisk opphør',
-        description: 'Oppgave for å bekrefte automatisk opphør av deltakelse',
-        data: createSøktDeltakelse([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().automatiskOpphørOppgave]),
+    [ScenarioType.bekreftOpphørVedMaksdato]: {
+        type: ScenarioType.bekreftOpphørVedMaksdato,
+        name: 'Oppgave om opphør ved maksdato',
+        data: createSøktDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().bekreftOpphørVedMaksdatoOppgave,
+        ]),
     },
 };
 

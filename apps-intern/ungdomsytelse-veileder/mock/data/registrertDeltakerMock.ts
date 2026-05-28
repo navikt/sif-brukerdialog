@@ -34,6 +34,7 @@ const deltakelse: DeltakelseDto = {
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
     harForlengetPeriode: false,
     forlengetPeriodeMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate('2025-03-10'), 260)),
+    periodeMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate('2025-03-10'), 260)),
     harUtvidetKvote: false,
     kvoteMaksDato: dateToISODate(addUkedagerToDate(ISODateToDate('2025-03-10'), 260)),
 };

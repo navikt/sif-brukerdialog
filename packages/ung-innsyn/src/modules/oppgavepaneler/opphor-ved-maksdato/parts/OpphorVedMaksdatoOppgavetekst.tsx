@@ -9,7 +9,7 @@ interface Props {
     svarfrist: Date;
 }
 
-export const AutomatiskOpphorOppgavetekst = ({ sisteDag, svarfrist }: Props) => {
+export const OpphorVedMaksdatoOppgavetekst = ({ sisteDag, svarfrist }: Props) => {
     const formatertDato = <span className="text-nowrap">{dateFormatter.full(sisteDag)}</span>;
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(svarfrist)}</span>;
 

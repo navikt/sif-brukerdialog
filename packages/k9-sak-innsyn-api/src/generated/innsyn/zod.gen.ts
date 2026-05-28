@@ -568,6 +568,7 @@ export const zYtelse = z.object({
 
 export const zAktivitetspenger = zYtelse.and(
     z.object({
+        erBosattITrondheim: z.boolean().optional(),
         forutgåendeBosteder: zBosteder,
         inntekter: zOppgittInntekt.optional(),
         søknadsperiode: z.string(),

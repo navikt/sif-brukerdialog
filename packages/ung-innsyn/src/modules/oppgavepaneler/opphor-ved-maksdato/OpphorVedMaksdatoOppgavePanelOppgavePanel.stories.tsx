@@ -1,13 +1,13 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
-import { AutomatiskOpphorOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OpphorVedMaksdatoOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { AutomatiskOpphorOppgavePanel } from './AutomatiskOpphorOppgavePanel';
+import { OpphorVedMaksdatoOppgavePanel } from './OpphorVedMaksdatoOppgavePanelOppgavePanel';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Automatisk opphør',
@@ -18,11 +18,12 @@ export default meta;
 
 type Story = StoryObj;
 
-const oppgave: AutomatiskOpphorOppgave = {
+const oppgave: OpphorVedMaksdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_AUTOMATISK_OPPHOR,
+    oppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO,
     oppgavetypeData: {
-        maksDato: dayjs('2025-05-01').toDate(),
+        maksdato: dayjs('2025-05-01').toDate(),
+        sluttdato: dayjs('2025-05-01').toDate(),
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
@@ -30,7 +31,7 @@ const oppgave: AutomatiskOpphorOppgave = {
     ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
 };
 
-const besvartOppgave: AutomatiskOpphorOppgave = {
+const besvartOppgave: OpphorVedMaksdatoOppgave = {
     ...oppgave,
     respons: {
         type: 'VARSEL_SVAR',
@@ -70,23 +71,23 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <AutomatiskOpphorOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
+    render: () => <OpphorVedMaksdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const OppgaveKvittering: Story = {
     name: 'Kvittering',
-    render: () => <AutomatiskOpphorOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
+    render: () => <OpphorVedMaksdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <AutomatiskOpphorOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
+    render: () => <OpphorVedMaksdatoOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <AutomatiskOpphorOppgavePanel
+        <OpphorVedMaksdatoOppgavePanel
             oppgave={{
                 ...besvartOppgave,
                 respons: {
@@ -104,7 +105,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <AutomatiskOpphorOppgavePanel
+        <OpphorVedMaksdatoOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
             navn="SNODIG VAFFEL"
         />
@@ -114,7 +115,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <AutomatiskOpphorOppgavePanel
+        <OpphorVedMaksdatoOppgavePanel
             oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
             navn="SNODIG VAFFEL"
         />

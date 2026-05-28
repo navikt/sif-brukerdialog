@@ -20,10 +20,7 @@
         "lint:fix": "eslint --quiet --fix './src/ung-brukerdialog-api/client/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
     },
-    "dependencies": {
-        "@hey-api/client-axios": "0.9.1",
-        "@hey-api/client-fetch": "0.13.1"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@hey-api/openapi-ts": "0.97.3",
         "@navikt/sif-common-env": "workspace:*",

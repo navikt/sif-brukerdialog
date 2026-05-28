@@ -342,18 +342,29 @@ const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     løstDato: getDatoer().oppgaveMåned.add(28, 'days').add(54, 'hours').toISOString(),
 });
 
-const getAutomatiskOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
-    oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04f1',
-    oppgavetype: OppgaveType.BEKREFT_AUTOMATISK_OPPHOR,
+const getBekreftOpphørVedMaksdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    oppgaveReferanse: 'ae12cd84-1bc5-4f3a-9d2e-7b4a8c3f1e90',
+    oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
     ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgavetypeData: {
-        type: 'AUTOMATISK_OPPHOR',
-        sluttdato: dateToISODate(getDatoer().oppgaveMåned.add(1, 'month').endOf('month').toDate()),
-        maxDato: dateToISODate(getDatoer().oppgaveMåned.add(6, 'months').endOf('month').toDate()),
+        type: 'OPPHOR_VED_MAKSDATO',
+        maxDato: dateToISODate(getDatoer().oppgaveMåned.add(30, 'days').toDate()),
+        sluttdato: dateToISODate(getDatoer().oppgaveMåned.add(30, 'days').toDate()),
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+});
+
+const getBekreftOpphørVedMaksdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
+    ...getBekreftOpphørVedMaksdatoOppgaveDto(),
+    oppgaveReferanse: 'ae12cd84-1bc5-4f3a-9d2e-7b4a8c3f1e91',
+    respons: {
+        type: 'VARSEL_SVAR',
+        harUttalelse: false,
+    },
+    status: OppgaveStatus.LØST,
+    løstDato: getDatoer().oppgaveMåned.add(5, 'days').add(10, 'hours').toISOString(),
 });
 
 const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -395,5 +406,6 @@ export const getMockOppgaver = () => ({
     meldtUtOppgave: getMeldtUtOppgaveDto(),
     fjernetPeriode: getFjernetPeriodeOppgaveDto(),
     fjernetPeriodeLøst: getFjernetPeriodeOppgaveDtoLøst(),
-    automatiskOpphørOppgave: getAutomatiskOpphørOppgaveDto(),
+    bekreftOpphørVedMaksdatoOppgave: getBekreftOpphørVedMaksdatoOppgaveDto(),
+    bekreftOpphørVedMaksdatoOppgaveLøst: getBekreftOpphørVedMaksdatoOppgaveDtoLøst(),
 });

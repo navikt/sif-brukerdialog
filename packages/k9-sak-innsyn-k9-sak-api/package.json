@@ -19,10 +19,7 @@
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts"
     },
-    "dependencies": {
-        "@hey-api/client-axios": "0.9.1",
-        "@hey-api/client-fetch": "0.13.1"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@hey-api/openapi-ts": "0.97.3",
         "@sif/eslint-config": "workspace:*",

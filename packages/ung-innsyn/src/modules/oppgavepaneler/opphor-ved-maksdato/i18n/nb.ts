@@ -1,13 +1,14 @@
 export const automatiskOpphorMessages_nb = {
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.paneltittel': 'Se og gi tilbakemelding på sluttdato',
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.oppgavetittel': 'Tilbakemelding på sluttdato',
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.info': 'Perioden din med ungdomsprogramytelsen er snart over.',
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.harTilbakemeldingSpørsmål':
+    '@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.paneltittel': 'Se og gi tilbakemelding på sluttdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.oppgavetittel': 'Tilbakemelding på sluttdato',
+    '@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.info': 'Perioden din med ungdomsprogramytelsen er snart over.',
+    '@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.harTilbakemeldingSpørsmål':
         'Har du en tilbakemelding på sluttdatoen?',
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.harIkkeUttalelseLabel': 'Nei',
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.harUttalelseLabel': 'Ja',
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    '@ungInnsyn.oppgavetype.BEKREFT_AUTOMATISK_OPPHOR.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
+    '@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.harIkkeUttalelseLabel': 'Nei',
+    '@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.harUttalelseLabel': 'Ja',
+    '@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    '@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.kvitteringTekst':
+        'Du vil om kort tid motta et oppdatert vedtak.',
 
     '@ungInnsyn.automatiskOpphor.oppgavetekst.1':
         'Din siste dag med ungdomsprogramytelsen er <strong>{formatertDato}</strong>.',
