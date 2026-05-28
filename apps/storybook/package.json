@@ -37,8 +37,7 @@
         "react-dom": "19.2.6",
         "react-intl": "10.1.9",
         "storybook": "10.4.1",
-        "typescript": "6.0.3",
-        "webpack": "5.107.1"
+        "typescript": "6.0.3"
     },
     "readme": "ERROR: No README data found!"
 }

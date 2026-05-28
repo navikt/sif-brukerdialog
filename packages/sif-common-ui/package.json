@@ -48,8 +48,7 @@
         "react-intl": "10.1.9",
         "react-router-dom": "7.15.1",
         "storybook": "10.4.1",
-        "typescript": "6.0.3",
-        "webpack": "5.107.1"
+        "typescript": "6.0.3"
     },
     "readme": "ERROR: No README data found!",
     "_id": "@navikt/sif-common-ui@0.0.1"
