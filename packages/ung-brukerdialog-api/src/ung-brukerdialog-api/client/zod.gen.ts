@@ -2,6 +2,8 @@
 
 import * as z from 'zod';
 
+import { OppgaveStatus, OppgaveType, OppgaveYtelsetype, PeriodeEndringType, YtelseType } from './types.gen';
+
 export const zArbeidOgFrilansRegisterInntektDto = z.object({
     arbeidsgiverIdentifikator: z.string(),
     arbeidsgiverNavn: z.string().optional(),
@@ -38,32 +40,18 @@ export const zInntektsrapporteringOppgavetypeDataDto = z.object({
     tilOgMed: z.iso.date(),
 });
 
-export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT']);
+export const zOppgaveStatus = z.enum(OppgaveStatus);
 
-export const zOppgaveType = z.enum([
-    'BEKREFT_ENDRET_STARTDATO',
-    'BEKREFT_ENDRET_SLUTTDATO',
-    'BEKREFT_ENDRET_PERIODE',
-    'BEKREFT_AVVIK_REGISTERINNTEKT',
-    'RAPPORTER_INNTEKT',
-    'SØK_YTELSE',
-    'BEKREFT_BOSTED',
-    'BEKREFT_AUTOMATISK_OPPHOR',
-]);
+export const zOppgaveType = z.enum(OppgaveType);
 
-export const zOppgaveYtelsetype = z.enum(['UNGDOMSYTELSE', 'AKTIVITETSPENGER']);
+export const zOppgaveYtelsetype = z.enum(OppgaveYtelsetype);
 
 export const zPeriodeDto = z.object({
     fomDato: z.iso.date().optional(),
     tomDato: z.iso.date().optional(),
 });
 
-export const zPeriodeEndringType = z.enum([
-    'ENDRET_STARTDATO',
-    'ENDRET_SLUTTDATO',
-    'FJERNET_PERIODE',
-    'ANDRE_ENDRINGER',
-]);
+export const zPeriodeEndringType = z.enum(PeriodeEndringType);
 
 export const zEndretPeriodeDataDto = z.object({
     endringer: z.array(zPeriodeEndringType).min(0).max(4),
@@ -113,16 +101,7 @@ export const zSøkYtelseOppgavetypeDataDto = z.object({
     fomDato: z.iso.date(),
 });
 
-export const zYtelseType = z.enum([
-    'DAGPENGER',
-    'SYKEPENGER',
-    'FORELDREPENGER',
-    'PLEIEPENGER',
-    'OMSORGSPENGER',
-    'OPPLÆRINGSPENGER',
-    'AAP',
-    'ANNET',
-]);
+export const zYtelseType = z.enum(YtelseType);
 
 export const zYtelseRegisterInntektDto = z.object({
     inntekt: z

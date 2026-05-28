@@ -17,6 +17,7 @@ export const deltakelseSchema = zDeltakelseDto
             fraOgMed,
             tilOgMed,
             forlengetPeriodeMaksDato: ISODateToDate(data.forlengetPeriodeMaksDato),
+            periodeMaksDato: ISODateToDate(data.periodeMaksDato),
         };
     });
 

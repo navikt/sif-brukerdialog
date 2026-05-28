@@ -58,6 +58,7 @@ const deltakelse: DeltakelseDto = {
     harForlengetPeriode: false,
     harUtvidetKvote: false,
     forlengetPeriodeMaksDato: dateToISODate(addUkedagerToDate(firstMonday, 260)),
+    periodeMaksDato: dateToISODate(addUkedagerToDate(firstMonday, 260)),
     kvoteMaksDato: dateToISODate(addUkedagerToDate(firstMonday, 260)),
 };
 

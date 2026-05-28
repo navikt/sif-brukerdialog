@@ -7,6 +7,11 @@ export type ClientOptions = {
 export type DeltakelseDto = {
     deltaker: DeltakerDto;
     erSlettet: boolean;
+    /**
+     * Bruk periodeMaksDato
+     *
+     * @deprecated
+     */
     forlengetPeriodeMaksDato: string;
     fraOgMed: string;
     harForlengetPeriode: boolean;
@@ -19,11 +24,12 @@ export type DeltakelseDto = {
     harUtvidetKvote: boolean;
     id?: string;
     /**
-     * Bruk forlengetPeriodeMaksDato
+     * Bruk periodeMaksDato
      *
      * @deprecated
      */
     kvoteMaksDato: string;
+    periodeMaksDato: string;
     søktTidspunkt?: string;
     tilOgMed?: string;
 };
@@ -31,6 +37,11 @@ export type DeltakelseDto = {
 export type DeltakelseKomposittDto = {
     deltaker: DeltakerDto;
     erSlettet: boolean;
+    /**
+     * Bruk periodeMaksDato
+     *
+     * @deprecated
+     */
     forlengetPeriodeMaksDato: string;
     fraOgMed: string;
     harForlengetPeriode: boolean;
@@ -43,12 +54,13 @@ export type DeltakelseKomposittDto = {
     harUtvidetKvote: boolean;
     id?: string;
     /**
-     * Bruk forlengetPeriodeMaksDato
+     * Bruk periodeMaksDato
      *
      * @deprecated
      */
     kvoteMaksDato: string;
     oppgaver: unknown[];
+    periodeMaksDato: string;
     søktTidspunkt?: string;
     tilOgMed?: string;
 };
