@@ -2,6 +2,7 @@
 import { DateRange, isISODate, ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import {
     BekreftBostedOppgavetypeDataDto,
+    BekreftOpphorVedMaksdatoOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
     EndretSluttdatoDataDto,
@@ -287,7 +288,19 @@ export const parseOppgaverElement = (
                 };
                 parsedOppgaver.push(sendSøknadOppgave);
                 return;
-
+            case OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO:
+                const { maxDato, sluttdato } = oppgave.oppgavetypeData as BekreftOpphorVedMaksdatoOppgavetypeDataDto;
+                const bekreftOpphorVedMaksdatoOppgave: Oppgave = {
+                    ...getOppgaveBaseProps(oppgave),
+                    oppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO,
+                    oppgavetypeData: {
+                        sluttdato: ISODateToDate(sluttdato),
+                        maksdato: ISODateToDate(maxDato),
+                    },
+                    respons: parseSvarPåVarselRespons(oppgave.respons),
+                };
+                parsedOppgaver.push(bekreftOpphorVedMaksdatoOppgave);
+                return;
             default:
                 throw new Error(`Ukjent oppgavetype: ${oppgave.oppgavetype}`);
         }

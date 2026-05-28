@@ -10,15 +10,15 @@ export type ArbeidOgFrilansRegisterInntektDto = {
     inntekt: number;
 };
 
-export type BekreftAutomatiskOpphorOppgavetypeDataDto = {
-    maxDato: string;
-    sluttdato: string;
-};
-
 export type BekreftBostedOppgavetypeDataDto = {
     erBosattITrondheim: boolean;
     fom: string;
     tom: string;
+};
+
+export type BekreftOpphorVedMaksdatoOppgavetypeDataDto = {
+    maxDato: string;
+    sluttdato: string;
 };
 
 export type BrukerdialogOppgaveDto = {
@@ -126,9 +126,9 @@ export enum OppgaveType {
      */
     BEKREFT_BOSTED = 'BEKREFT_BOSTED',
     /**
-     * BEKREFT_AUTOMATISK_OPPHOR
+     * BEKREFT_OPPHOR_VED_MAKSDATO
      */
-    BEKREFT_AUTOMATISK_OPPHOR = 'BEKREFT_AUTOMATISK_OPPHOR',
+    BEKREFT_OPPHOR_VED_MAKSDATO = 'BEKREFT_OPPHOR_VED_MAKSDATO',
 }
 
 export enum OppgaveYtelsetype {
@@ -143,9 +143,6 @@ export enum OppgaveYtelsetype {
 }
 
 export type OppgavetypeDataDto = (
-    | ({
-          type: 'AUTOMATISK_OPPHOR';
-      } & BekreftAutomatiskOpphorOppgavetypeDataDto)
     | ({
           type: 'BOSTED';
       } & BekreftBostedOppgavetypeDataDto)
@@ -164,6 +161,9 @@ export type OppgavetypeDataDto = (
     | ({
           type: 'KONTROLLER_REGISTERINNTEKT';
       } & KontrollerRegisterinntektOppgavetypeDataDto)
+    | ({
+          type: 'OPPHOR_VED_MAKSDATO';
+      } & BekreftOpphorVedMaksdatoOppgavetypeDataDto)
     | ({
           type: 'SØK_YTELSE';
       } & SøkYtelseOppgavetypeDataDto)

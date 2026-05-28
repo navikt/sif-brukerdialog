@@ -17,6 +17,7 @@ export const zDeltakelseDto = z.object({
     harUtvidetKvote: z.boolean(),
     id: z.uuid().nullish(),
     kvoteMaksDato: z.iso.date(),
+    periodeMaksDato: z.iso.date(),
     søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
     tilOgMed: z.iso.date().nullish(),
 });
@@ -32,6 +33,7 @@ export const zDeltakelseKomposittDto = z.object({
     id: z.uuid().nullish(),
     kvoteMaksDato: z.iso.date(),
     oppgaver: z.array(z.unknown()),
+    periodeMaksDato: z.iso.date(),
     søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
     tilOgMed: z.iso.date().nullish(),
 });

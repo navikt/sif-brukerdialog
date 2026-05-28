@@ -7,6 +7,7 @@ export const deltakelseSchema = zDeltakelseDto
     .extend({
         id: z.string(),
     })
+    .omit({ forlengetPeriodeMaksDato: true })
     .transform((data) => {
         const fraOgMed = ISODateToDate(data.fraOgMed);
         const tilOgMed = data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined;
@@ -16,7 +17,7 @@ export const deltakelseSchema = zDeltakelseDto
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
             fraOgMed,
             tilOgMed,
-            forlengetPeriodeMaksDato: ISODateToDate(data.forlengetPeriodeMaksDato),
+            periodeMaksDato: ISODateToDate(data.periodeMaksDato),
         };
     });
 

@@ -18,12 +18,12 @@ const getEndringsperiode = (today: Date): DateRange => ({
 });
 
 const periodeErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
-    return dayjs(deltakelse.forlengetPeriodeMaksDato).isBefore(today, 'day');
+    return dayjs(deltakelse.periodeMaksDato).isBefore(today, 'day');
 };
 
 const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
     return dayjs(today).isSameOrAfter(
-        dayjs(deltakelse.forlengetPeriodeMaksDato).subtract(MÅNEDER_PERIODE_KAN_FORLENGES, 'months'),
+        dayjs(deltakelse.periodeMaksDato).subtract(MÅNEDER_PERIODE_KAN_FORLENGES, 'months'),
         'day',
     );
 };

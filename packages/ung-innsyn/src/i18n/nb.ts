@@ -1,3 +1,4 @@
+import { opphorVedMaksdatoMessages_nb } from '../modules/oppgavepaneler/opphor-ved-maksdato/i18n/nb';
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
 import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
@@ -18,6 +19,7 @@ export const ungUi_messages_nb = {
     ...rapporterInntektMessages_nb,
     ...søkYtelseOppgaveMessages_nb,
     ...bostedVilkårMessages_nb,
+    ...opphorVedMaksdatoMessages_nb,
 
     '@ungInnsyn.Ja': 'Ja',
     '@ungInnsyn.Nei': 'Nei',
@@ -64,99 +66,6 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgavestatus.AVBRUTT': 'Avbrutt',
     '@ungInnsyn.oppgavestatus.UTLØPT': 'Utløpt',
     '@ungInnsyn.oppgavestatus.LUKKET': 'Lukket',
-
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.paneltittel': 'Se og gi tilbakemelding på endret startdato',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.oppgavetittel': 'Tilbakemelding på endret startdato',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.info':
-        'Veilederen din har endret datoen for når du startet i ungdomsprogrammet.',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål':
-        'Har du en tilbakemelding på startdatoen?',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.harIkkeUttalelseLabel': 'Nei',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.harUttalelseLabel': 'Ja',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
-
-    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.paneltittel': 'Se og gi tilbakemelding på sluttdato',
-    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.oppgavetittel': 'Tilbakemelding på sluttdato',
-    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.info':
-        'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet.',
-    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
-    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.harIkkeUttalelseLabel': 'Nei',
-    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.harUttalelseLabel': 'Ja',
-    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    '@ungInnsyn.oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
-
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.paneltittel': 'Se og gi tilbakemelding på endret sluttdato',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel': 'Tilbakemelding på endret sluttdato',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.info':
-        'Veilederen din har endret datoen for når du slutter i ungdomsprogrammet.',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål':
-        'Har du en tilbakemelding på sluttdatoen?',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harIkkeUttalelseLabel': 'Nei',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harUttalelseLabel': 'Ja',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
-
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.paneltittel': 'Bekrefte bosted for aktivitetspenger',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.oppgavetittel': 'Bekrefte bosted for aktivitetspenger',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.info': 'Det er registrert ny informasjon om hvor du bor.',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på bostedsvilkåret?',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harIkkeUttalelseLabel': 'Nei',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.harUttalelseLabel': 'Ja',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
-
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.paneltittel':
-        'Se og gi tilbakemelding på ny start- og sluttdato',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.oppgavetittel':
-        'Tilbakemelding på ny start- og sluttdato for ungdoms\u00ADprogram\u00ADytelsen',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.info':
-        'Veilederen din har endret start- og sluttdatoen din i ungdomsprogrammet.',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.harTilbakemeldingSpørsmål':
-        'Har du en tilbakemelding på ny start- og sluttdato?',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.harIkkeUttalelseLabel': 'Nei',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.harUttalelseLabel': 'Ja',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    '@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.kvitteringTekst':
-        'Du vil om kort tid motta et oppdatert vedtak.',
-
-    '@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.paneltittel':
-        'Se og gi tilbakemelding på stans av ungdoms\u00ADprogram\u00ADytelsen',
-    '@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.oppgavetittel':
-        'Tilbakemelding på stans av ungdoms\u00ADprogram\u00ADytelsen',
-    '@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.info':
-        'Veilederen din har meldt deg ut av ungdomsprogrammet fordi du ikke skal delta i programmet likevel.',
-    '@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding?',
-    '@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.harIkkeUttalelseLabel': 'Nei',
-    '@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.harUttalelseLabel': 'Ja',
-    '@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    '@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
-
-    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.paneltittel': 'Sjekk inntekten din i {månedOgÅr}',
-    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Tilbakemelding på inntekt i {månedOgÅr}',
-    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
-        'Sjekk at opplysningene våre om inntekten du fikk fra arbeidsgiver i {måned} er riktige. Send oss et svar når du har sjekket.',
-    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål':
-        'Stemmer inntekten vi har fått oppgitt?',
-    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harIkkeUttalelseLabel': 'Ja, inntekten stemmer',
-    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harUttalelseLabel':
-        'Nei, inntekten stemmer ikke. Jeg har en tilbakemelding.',
-    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    '@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst':
-        'Vi bruker tilbakemeldingen din når vi vurderer hvor mye penger du skal få i {utbetalingsmåned}. Du får et vedtaksbrev om dette.',
-
-    '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.paneltittel': 'Meld fra om du hadde inntekt i {månedOgÅr}',
-    '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Inntekt i {månedOgÅr}',
-    '@ungInnsyn.oppgavetype.RAPPORTER_INNTEKT.info': 'Hvis du ikke hadde inntekt, trenger du ikke gjøre noe.',
-
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.UNGDOMSYTELSE.paneltittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.UNGDOMSYTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.UNGDOMSYTELSE.info':
-        'Du er meldt inn i ungdomsprogrammet. Nå kan du søke om ungdomsprogramytelsen.',
-
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.AKTIVITETSPENGER.paneltittel': 'Søknad om aktivitetspenger',
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.AKTIVITETSPENGER.oppgavetittel': 'Søknad om aktivitetspenger',
-    '@ungInnsyn.oppgavetype.SØK_YTELSE.AKTIVITETSPENGER.info': 'Du har søkt om aktivitetspenger.',
 
     /** InntektForm */
     '@ungInnsyn.inntektForm.validation.harInntekt.yesOrNoIsUnanswered': 'Du må svare på om du hadde inntekt.',

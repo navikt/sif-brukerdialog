@@ -7,7 +7,7 @@ import { scenarioer } from '../../mock/scenarios/scenarioer';
 import { ScenarioType } from '../../mock/scenarios/types';
 import { store } from '../../mock/state/store';
 
-const VeilederScenarioHeader = () => {
+export const DemoScenarioHeader = () => {
     const navigate = useNavigate();
     const setScenario = (type: ScenarioType) => {
         const scenario = scenarioer[type];
@@ -69,11 +69,14 @@ const VeilederScenarioHeader = () => {
                             Deltakelse avsluttet
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.opphørt)}>
-                            Deltakelse opphørt (slettet)
+                            Deltakelse slettet
                         </ActionMenu.Item>
                     </ActionMenu.Group>
                     <ActionMenu.Divider />
                     <ActionMenu.Group label="Oppgaver under utvikling (ikke implementert)">
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.bekreftOpphørVedMaksdato)}>
+                            Opphør ved maksdato
+                        </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.endretStartOgSluttdato)}>
                             Endret start og sluttdato
                         </ActionMenu.Item>
@@ -86,5 +89,3 @@ const VeilederScenarioHeader = () => {
         </InternalHeader>
     );
 };
-
-export default VeilederScenarioHeader;

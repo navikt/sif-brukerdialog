@@ -1,7 +1,7 @@
 import { BodyLong, GlobalAlert, List, ReadMore, Theme, VStack } from '@navikt/ds-react';
 import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 
-const VeilederDemoInformasjon = () => {
+export const DemoInformasjon = () => {
     return (
         <Theme hasBackground={false}>
             <VStack gap="space-40">
@@ -50,5 +50,3 @@ const VeilederDemoInformasjon = () => {
         </Theme>
     );
 };
-
-export default VeilederDemoInformasjon;

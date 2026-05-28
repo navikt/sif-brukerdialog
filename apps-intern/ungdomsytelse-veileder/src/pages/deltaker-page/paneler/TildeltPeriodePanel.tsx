@@ -16,7 +16,7 @@ interface DatoBoksProps {
 const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: DatoBoksProps) => {
     const [visDialog, setVisDialog] = useState(false);
 
-    const { harForlengetPeriode, forlengetPeriodeMaksDato, tilOgMed } = deltakelse;
+    const { harForlengetPeriode, periodeMaksDato, tilOgMed } = deltakelse;
     const { kanForlengePeriode } = getDeltakelseHandlinger(deltakelse);
 
     return (
@@ -28,8 +28,7 @@ const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: Dato
                     </BodyShort>
                     {!tilOgMed && (
                         <BodyLong>
-                            Siste dag i perioden er{' '}
-                            <strong>{dateFormatter.dayCompactDate(forlengetPeriodeMaksDato)}</strong>.
+                            Siste dag i perioden er <strong>{dateFormatter.dayCompactDate(periodeMaksDato)}</strong>.
                         </BodyLong>
                     )}
 
