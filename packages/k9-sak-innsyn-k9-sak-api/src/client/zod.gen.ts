@@ -5,31 +5,35 @@ import * as z from 'zod';
 export const zHentSisteGyldigeVedtakForAktorIdResponse = z.object({
     harInnvilgedeBehandlinger: z.boolean(),
     saksnummer: z.string().nullish(),
-    vedtaksdato: z.iso.date().nullish()
+    vedtaksdato: z.iso.date().nullish(),
 });
 
 export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({
-    pleietrengendeAktørId: z.string()
+    pleietrengendeAktørId: z.string(),
 });
 
 export const zPeriode = z.object({
     fom: z.iso.date(),
-    tom: z.iso.date()
+    tom: z.iso.date(),
 });
 
 export const zOpplæringsinstitusjon = z.object({
     navn: z.string(),
     perioder: z.array(zPeriode),
-    uuid: z.uuid()
+    uuid: z.uuid(),
 });
 
 export const zProblemDetail = z.object({
     detail: z.string().optional(),
     instance: z.url().optional(),
     properties: z.record(z.string(), z.unknown()).optional(),
-    status: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }).optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
     title: z.string().optional(),
-    type: z.url().optional()
+    type: z.url().optional(),
 });
 
 export const zHentSisteGyldigeVedtakForAktorIdBody = zOmsorgsdagerKronsinskSuktBarnRequestDto;
