@@ -39,11 +39,7 @@ const DeltakerInfoLoader = () => {
 
     // Sjekk om URL inneholder skyra/test - dette er en midlertidig testside for å teste skyra-integrasjon
     if (globalThis.location.pathname.includes('skyra/test')) {
-        return (
-            <SkyraTestPage
-                slugs={[SkyraSlug.ungdomsytelse_rapporter_inntekt_test, SkyraSlug.ungdomsytelse_rapporter_inntekt]}
-            />
-        );
+        return <SkyraTestPage slugs={[SkyraSlug.ungdomsytelse_rapporter_inntekt]} />;
     }
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading || oppgaver.isLoading;
