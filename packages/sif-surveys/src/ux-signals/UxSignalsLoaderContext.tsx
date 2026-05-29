@@ -17,7 +17,6 @@ export const UxSignalsLoaderProvider = ({ children }: UxSignalsLoaderProviderPro
     const [isLoaded, setIsLoaded] = useState(false);
 
     const loadUxSignals = () => {
-        // Dobbel-sjekk om script allerede eksisterer i DOM
         const existingScript = document.querySelector('script[src="https://widget.uxsignals.com/embed.js"]');
         if (existingScript || isGloballyInitialized) {
             setIsLoaded(true);
@@ -40,11 +39,6 @@ export const UxSignalsLoaderProvider = ({ children }: UxSignalsLoaderProviderPro
     );
 };
 
-/**
- * Laster inn UX Signals script
- * @param autoLoad Last inn script hvis true
- * @returns
- */
 export const useUxSignalsLoader = (autoLoad?: boolean): UxSignalsLoaderContextValue => {
     const context = useContext(UxSignalsLoaderContext);
     if (context === undefined) {

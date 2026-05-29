@@ -70,12 +70,19 @@ export enum Slug {
 
 Når slug er avklart (eller brukeren eksplisitt aksepterer TODO-plassholder):
 
-1. Opprett lokal `Skyra`-komponent med riktig slug for appen.
-2. Legg til `SkyraHandler` som kaller `globalThis.skyra.reload()` ved route-endring.
-3. Legg til `useSkyraReloader` for steg/sider der survey kommer sent i livssyklusen.
-4. Monter `SkyraHandler` høyt i appflyten (nær router/søknadscontainer).
-5. Render `<Skyra slug={...} />` på ønsket side (typisk kvittering).
-6. Legg til testside/ruter for verifisering av visning og reload.
+1. Opprett lokal `Skyra.tsx`-komponent i `src/app/skyra/` med app-spesifikk slug. Den gjengir `<skyra-survey>`.
+2. Opprett `src/app/skyra/SkyraHandler.tsx` som re-eksporterer fra `@navikt/sif-surveys`:
+    ```ts
+    export { SkyraHandler } from '@navikt/sif-surveys';
+    ```
+3. Opprett `src/app/skyra/useSkyraReloader.ts` som re-eksporterer fra `@navikt/sif-surveys`:
+    ```ts
+    export { useSkyraReloader } from '@navikt/sif-surveys';
+    ```
+4. Legg til `@navikt/sif-surveys` i appens `package.json`.
+5. Monter `SkyraHandler` høyt i appflyten (nær router/søknadscontainer).
+6. Render `<Skyra slug={...} />` på ønsket side (typisk kvittering).
+7. Legg til testside/ruter for verifisering av visning og reload.
 
 ### Fase 2 - Verifisering i repo (kun når bruker ber om det)
 
@@ -92,10 +99,13 @@ Ved eksplisitt forespørsel om verifisering i en app, sjekk i denne rekkefølgen
 
 Disse filene viser etablert mønster som skal gjenbrukes:
 
-- Skyra-byggesteiner:
-    - `apps/opplaringspenger-soknad/src/app/skyra/Skyra.tsx`
-    - `apps/opplaringspenger-soknad/src/app/skyra/SkyraHandler.tsx`
-    - `apps/opplaringspenger-soknad/src/app/skyra/useSkyraReloader.ts`
+- Generiske Skyra-byggesteiner (i `@navikt/sif-surveys`):
+    - `packages/sif-surveys/src/skyra/SkyraHandler.tsx` — kaller `globalThis.skyra.reload()` ved route-endring
+    - `packages/sif-surveys/src/skyra/useSkyraReloader.ts` — forsinket reload med `setTimeout(2000)`
+- App-spesifikk kode (per app):
+    - `apps/opplaringspenger-soknad/src/app/skyra/Skyra.tsx` — `skyra-survey`-komponent med slug-enum
+    - `apps/opplaringspenger-soknad/src/app/skyra/SkyraHandler.tsx` — re-eksport fra `@navikt/sif-surveys`
+    - `apps/opplaringspenger-soknad/src/app/skyra/useSkyraReloader.ts` — re-eksport fra `@navikt/sif-surveys`
     - `apps/opplaringspenger-soknad/src/app/skyra/SkyraTestPage.tsx`
 - Integrasjon i flyt:
     - `apps/opplaringspenger-soknad/src/app/søknad/Søknad.tsx`
