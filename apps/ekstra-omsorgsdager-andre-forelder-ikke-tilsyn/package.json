@@ -49,7 +49,7 @@
         "@navikt/ds-react": "8.11.0",
         "@navikt/ds-tailwind": "8.11.0",
         "@navikt/fnrvalidator": "2.2.1",
-        "@navikt/nav-dekoratoren-moduler": "4.1.1",
+        "@navikt/nav-dekoratoren-moduler": "4.2.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
         "@navikt/sif-common-api": "workspace:*",
