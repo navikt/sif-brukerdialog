@@ -10,7 +10,7 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.7.1",
+        "@navikt/nav-dekoratoren-moduler": "4.1.1",
         "constate": "3.3.3"
     },
     "devDependencies": {

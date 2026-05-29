@@ -67,7 +67,7 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
                 const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey, apiKey };
-                logger(eventName, eventProps).catch(() => {
+                logger.custom(eventName, eventProps).catch(() => {
                     resolve(true);
                 });
             });
