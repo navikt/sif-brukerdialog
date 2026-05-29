@@ -4,13 +4,12 @@ import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { AppText, useAppIntl } from '../i18n';
-import { SkyraHandler } from '../skyra/SkyraHandler';
-import SkyraTestPage from '../skyra/SkyraTestPage';
 import { RequestStatus } from '../types/RequestStatus';
 import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
+import { SkyraHandler, SkyraSlug, SkyraTestPage } from '@navikt/sif-surveys';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
@@ -18,7 +17,7 @@ const Søknad = () => {
     const { status } = initialData;
 
     if (globalThis.location.pathname.includes('skyra/test')) {
-        return <SkyraTestPage />;
+        return <SkyraTestPage slugs={[SkyraSlug.pleiepenger_i_livets_sluttfase]} />;
     }
 
     /** Loading */

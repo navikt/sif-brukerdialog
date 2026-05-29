@@ -4,11 +4,11 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 
+import { Skyra, SkyraSlug } from '@navikt/sif-surveys';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import { Skyra, SkyraSlug } from '@navikt/sif-surveys';
 import { KvitteringInfo } from '../../types/KvitteringInfo';
 
 interface Props {
