@@ -1,4 +1,4 @@
-FROM node:25-alpine AS base
+FROM node:26-alpine AS base
 
 ENV APP="sif-ettersending"
 ENV SERVER="server"
@@ -74,7 +74,7 @@ RUN mv /app/apps/${APP}/dist /public
 # SERVER RUNTIME
 #########################################
 # Starter fra fresh node-image for å unngå å ta med npm/pnpm/turbo fra base
-FROM node:25-alpine AS server
+FROM node:26-alpine AS server
 WORKDIR /app
 ENV SERVER="server"
 
