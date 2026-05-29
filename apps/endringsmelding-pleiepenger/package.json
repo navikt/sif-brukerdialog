@@ -43,6 +43,7 @@
         "@navikt/sif-common-analytics": "workspace:*",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
+        "@navikt/sif-surveys": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",

@@ -11,11 +11,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DevFooter from '../dev/DevFooter';
 import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
-import SkyraTestPage from '../skyra/SkyraTestPage';
 import { SøknadRoutes } from './config/SøknadRoutes';
 import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
+import { SkyraSlug, SkyraTestPage } from '@navikt/sif-surveys';
 
 const Søknad = () => {
     const location = useLocation();
@@ -25,7 +25,7 @@ const Søknad = () => {
     const { status } = initialData;
 
     if (globalThis.location.pathname.includes('skyra/test')) {
-        return <SkyraTestPage />;
+        return <SkyraTestPage slugs={[SkyraSlug.endringsmelding_pleiepenger]} />;
     }
 
     if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {

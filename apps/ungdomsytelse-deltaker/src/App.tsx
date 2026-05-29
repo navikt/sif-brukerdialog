@@ -5,7 +5,7 @@ import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { BodyShort } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
-import { UxSignalsLoaderProvider } from '@navikt/sif-common-core-ds';
+import { UxSignalsLoaderProvider } from '@navikt/sif-surveys';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { EnvKey } from '@navikt/sif-common-env';

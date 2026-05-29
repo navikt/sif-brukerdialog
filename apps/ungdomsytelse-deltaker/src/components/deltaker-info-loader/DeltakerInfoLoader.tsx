@@ -8,7 +8,7 @@ import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../an
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
-import SkyraTestPage from '../../apps/innsyn/pages/SkyraTestPage';
+import { SkyraSlug, SkyraTestPage } from '@navikt/sif-surveys';
 import SøknadApp from '../../apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
@@ -39,7 +39,7 @@ const DeltakerInfoLoader = () => {
 
     // Sjekk om URL inneholder skyra/test - dette er en midlertidig testside for å teste skyra-integrasjon
     if (globalThis.location.pathname.includes('skyra/test')) {
-        return <SkyraTestPage />;
+        return <SkyraTestPage slugs={[SkyraSlug.ungdomsytelse_rapporter_inntekt]} />;
     }
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading || oppgaver.isLoading;

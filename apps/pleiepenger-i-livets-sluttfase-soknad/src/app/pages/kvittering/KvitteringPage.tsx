@@ -4,6 +4,7 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 
+import { Skyra, SkyraSlug } from '@navikt/sif-surveys';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import actionsCreator from '../../søknad/context/action/actionCreator';
@@ -54,6 +55,7 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
                     </li>
                 </Infolist>
             </Kvittering>
+            <Skyra slug={SkyraSlug.pleiepenger_i_livets_sluttfase} />
         </Page>
     );
 };

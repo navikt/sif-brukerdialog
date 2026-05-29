@@ -64,6 +64,10 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Portering av dialoger: `porter dialog`, `migrer ListAndDialog`, `flytt til sif-soknad-forms`, `ModalFormAndList`, `ListAndDialog til v2`.
     - Spesifikke dialoger: `BostedUtlandListAndDialog`, `UtenlandsoppholdListAndDialog`, `TidsperiodeListAndDialog`, `FerieuttakListAndDialog`, `OpptjeningUtlandListAndDialog`, `EnkeltdatoListAndDialog`, `AnnetBarnListAndDialog`, `UtenlandskNæringListAndDialog`, `FraværListAndDialog`, `FosterbarnListAndDialog`.
     - Storybook i sif-soknad-forms: `withIntl`, `StoryFrame`, `withRHFForm`, `story i sif-soknad-forms`.
+- `sif-surveys`:
+    - Skyra-oppsett: `skyra`, `skyra-survey`, `SkyraHandler`, `useSkyraReloader`, `SkyraTestPage`, `SkyraSlug`, `slug`.
+    - Feilsøking: `survey vises ikke`, `reload fungerer ikke`, `globalThis.skyra`, `skyra test`.
+    - UxSignals: `UxSignalsPanel`, `UxSignalsLoaderProvider`, `useUxSignalsLoader`, `uxsignals`, `panelId`.
 
 ## Prioritering ved overlapp
 
@@ -80,3 +84,4 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om å sette opp eller fylle inn innhold i `OppsummeringSteg`, prioriter `sif-soknad-oppsummering`.
 - Hvis oppgaven handler om filvedlegg i et steg (`VedleggPanel`, `PersistedVedlegg`, opplasting), prioriter `sif-soknad-vedlegg-step`.
 - Hvis oppgaven handler om å porte en `*ListAndDialog`-dialog fra `sif-common-forms-ds` til `sif-soknad-forms`, prioriter `sif-dialog-migration` over `sif-formik-to-rhf`.
+- Hvis oppgaven handler om Skyra (`skyra-survey`, slug/reload/testside), prioriter `sif-surveys`.

@@ -9,11 +9,16 @@ import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
+import { SkyraHandler, SkyraSlug, SkyraTestPage } from '@navikt/sif-surveys';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
     const { text } = useAppIntl();
     const { status } = initialData;
+
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.pleiepenger_i_livets_sluttfase]} />;
+    }
 
     /** Loading */
     if (
@@ -52,6 +57,7 @@ const Søknad = () => {
     return (
         <SøknadContextProvider initialData={data}>
             <StepFormValuesContextProvider>
+                <SkyraHandler />
                 <SøknadRouter />
             </StepFormValuesContextProvider>
         </SøknadContextProvider>

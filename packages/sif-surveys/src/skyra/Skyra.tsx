@@ -1,12 +1,9 @@
 import React from 'react';
 
-export enum Slug {
-    prod_rapporterInntekt = 'arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt',
-    test_rapporterInntekt = 'arbeids-og-velferdsetaten-nav/test-rapportering-av-inntekt',
-}
+import { SkyraSlug } from './SkyraSlug';
 
 interface Props {
-    slug: Slug;
+    slug: SkyraSlug;
     consent?: boolean;
 }
 

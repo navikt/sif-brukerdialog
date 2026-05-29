@@ -1,0 +1,24 @@
+{
+    "name": "@navikt/sif-surveys",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@navikt/ds-react": "8.11.0",
+        "@navikt/sif-common-hooks": "workspace:*",
+        "react": "19.2.6",
+        "react-router-dom": "7.15.1",
+        "typescript": "6.0.3"
+    },
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "@types/node": "22.15.31",
+        "@types/react": "19.2.15"
+    }
+}

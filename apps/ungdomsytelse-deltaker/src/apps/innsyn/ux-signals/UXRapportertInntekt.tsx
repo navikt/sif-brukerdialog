@@ -1,4 +1,4 @@
-import { useUxSignalsLoader, UxSignalsPanel } from '@navikt/sif-common-core-ds';
+import { useUxSignalsLoader, UxSignalsPanel } from '@navikt/sif-surveys';
 
 const UXRapportertInntekt = () => {
     useUxSignalsLoader(true);

@@ -9,9 +9,9 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { SkyraHandler } from '@navikt/sif-surveys';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
-import { SkyraHandler } from './skyra/SkyraHandler';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
 import { appEnv } from './utils/appEnv';
