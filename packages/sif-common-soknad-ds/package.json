@@ -16,7 +16,7 @@
     "dependencies": {
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/fnrvalidator": "2.2.1",
-        "@navikt/nav-dekoratoren-moduler": "3.7.1",
+        "@navikt/nav-dekoratoren-moduler": "4.1.1",
         "@navikt/sif-common-analytics": "workspace:*",
         "@navikt/sif-common-api": "workspace:*",
         "classnames": "2.5.1",

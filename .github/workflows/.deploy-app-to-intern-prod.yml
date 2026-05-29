@@ -32,7 +32,7 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v6.4.0
               with:
-                  node-version: 22
+                  node-version: 24
                   cache: "pnpm"
 
             - name: Install dependencies
@@ -68,7 +68,7 @@ jobs:
                   IMAGE: ${{ steps.docker-push.outputs.image }}
 
     trivy:
-        needs: [ deploy-to-prod ]
+        needs: [deploy-to-prod]
         uses: navikt/sif-gha-workflows/.github/workflows/trivy.yml@main
         permissions:
             contents: write

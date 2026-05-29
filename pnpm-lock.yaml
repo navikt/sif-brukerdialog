@@ -79,8 +79,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -329,8 +329,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/k9-sak-innsyn-api
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -673,8 +673,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/k9-sak-innsyn-api
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/next-logger':
         specifier: 5.0.0
         version: 5.0.0(next@16.2.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.100.0))(pino@10.3.1)
@@ -860,8 +860,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -1156,8 +1156,8 @@ importers:
         specifier: 8.11.0
         version: 8.11.0
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@playwright/test':
         specifier: 1.60.0
         version: 1.60.0
@@ -1288,8 +1288,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -1490,8 +1490,8 @@ importers:
         specifier: 8.11.0
         version: 8.11.0
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -1608,8 +1608,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -1819,8 +1819,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -2024,8 +2024,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -2425,8 +2425,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -2651,8 +2651,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -2859,8 +2859,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -3266,8 +3266,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -3559,8 +3559,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/k9-sak-innsyn-api
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
@@ -4177,8 +4177,8 @@ importers:
   packages/sif-common-analytics:
     dependencies:
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       constate:
         specifier: 3.3.3
         version: 3.3.3(react@19.2.6)
@@ -4846,8 +4846,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../sif-common-analytics
@@ -5838,8 +5838,8 @@ importers:
   server:
     dependencies:
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/oasis':
         specifier: 4.1.4
         version: 4.1.4
@@ -5905,8 +5905,8 @@ importers:
   server-ungdomsytelse-veileder:
     dependencies:
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.7.1
-        version: 3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.1.1
+        version: 4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/oasis':
         specifier: 4.1.4
         version: 4.1.4
@@ -8108,6 +8108,10 @@ packages:
   '@navikt/aksel-icons@8.11.0':
     resolution: {integrity: sha512-enprSpDl7j4yDEAtVtp/BPby2McZKtgXIgarTVDeZ0pmiqnYbXFyCTgzl/ZMg2/EV+hd2DXpLsKzU73PDljpmw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.11.0/964e1e0e34af7007f43b4522246daea582e44952}
 
+  '@navikt/analytics-types@0.0.9':
+    resolution: {integrity: sha512-bopCvqEogyFcmrJiBxK/Mr25d6yPKF7GR36MGrJqiHCPJYf1rDu6lK4cpooTG4Q//D/1xTkHRom8ZH5BI6dTew==, tarball: https://npm.pkg.github.com/download/@navikt/analytics-types/0.0.9/5919241a6dbb782eb101fff3234ce5c36d16e942}
+    engines: {node: '>=20.0.0', npm: '>=9.0.0'}
+
   '@navikt/ds-css@8.11.0':
     resolution: {integrity: sha512-UxPVWtZC9JW1vho0JFdxh9XmQpiKVQgM2+HhE5st5h8W5AUKOgzrSUkSjQQNEdeAg1RhWhJ2Jwu3W2rC4VZS1Q==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.11.0/888861af213f1f01d1becab42fe59810b6dba2be}
 
@@ -8130,15 +8134,12 @@ packages:
   '@navikt/fnrvalidator@2.2.1':
     resolution: {integrity: sha512-R6x3MBFC0E/B7oTs+P2jAP+ym7+d6cwSpDsLeMja9IwPpJq3HV/OClFBVWm9fJZPmXfumKRMGy6gqsQPj90ftg==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/2.2.1/37ed0feb23a7525139ad5512684ff6b0977112c6}
 
-  '@navikt/nav-dekoratoren-moduler@3.7.1':
-    resolution: {integrity: sha512-MQLxR4uoADCd6i0hFnWHN/XLPevEfxkBK9yEgbtcY0v2gsj69nALH/7DvTKqSxqRovxOHibVa7mZKZEBAMRBvg==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/3.7.1/09490a131cedd7779e35d413d20c36bd01ef57a0}
+  '@navikt/nav-dekoratoren-moduler@4.1.1':
+    resolution: {integrity: sha512-OyCVWavseiyGQwk8xHb6vShJtL+kOO/HIJe65QIsWrk85JV/ZeirB1/B4seA9klor1Zi9IvqyJkzl+nsJVZq9g==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.1.1/14a1ab3742f4564e5fd921553b5cce65f534edf1}
     engines: {node: 24.x}
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@navikt/next-logger@5.0.0':
     resolution: {integrity: sha512-VQ2VM/k5uDYnb7BYG3ITJZgMZq8B3TECOnhdvNOQeltJyy8+KQzGqLsrYajKPWuUiPuLjYFk0HbU2W22onB9mQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.0/510dccac519d1227515e4c8a8268570d90305b3e}
@@ -20226,6 +20227,8 @@ snapshots:
 
   '@navikt/aksel-icons@8.11.0': {}
 
+  '@navikt/analytics-types@0.0.9': {}
+
   '@navikt/ds-css@8.11.0': {}
 
   '@navikt/ds-react@8.11.0(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
@@ -20247,12 +20250,12 @@ snapshots:
 
   '@navikt/fnrvalidator@2.2.1': {}
 
-  '@navikt/nav-dekoratoren-moduler@3.7.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)':
+  '@navikt/nav-dekoratoren-moduler@4.1.1(html-react-parser@6.1.2(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)':
     dependencies:
+      '@navikt/analytics-types': 0.0.9
       csp-header: 6.3.1
       html-react-parser: 6.1.2(@types/react@19.2.15)(react@19.2.6)
       js-cookie: 3.0.5
-    optionalDependencies:
       react: 19.2.6
 
   '@navikt/next-logger@5.0.0(next@16.2.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.100.0))(pino@10.3.1)':
