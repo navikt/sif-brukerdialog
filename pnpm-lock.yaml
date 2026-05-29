@@ -1085,6 +1085,9 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
+      '@navikt/sif-surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation

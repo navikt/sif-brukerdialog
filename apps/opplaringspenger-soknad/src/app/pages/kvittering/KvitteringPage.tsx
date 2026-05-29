@@ -5,7 +5,7 @@ import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
-import Skyra, { Slug } from '../../skyra/Skyra';
+import { Skyra, SkyraSlug } from '@navikt/sif-surveys';
 import UXArbeidstidTilFravær from '../../uxsignals/UXArbeidstidTilFravær';
 
 const KvitteringPage = () => {
@@ -44,7 +44,7 @@ const KvitteringPage = () => {
                         </li>
                     </Infolist>
                 </Kvittering>
-                <Skyra slug={Slug.soknad_om_opplaringspenger} />
+                <Skyra slug={SkyraSlug.opplaringspenger} />
                 <UXArbeidstidTilFravær />
             </VStack>
         </Page>

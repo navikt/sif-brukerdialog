@@ -8,7 +8,7 @@ import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import Skyra, { Slug } from '../../skyra/Skyra';
+import { Skyra, SkyraSlug } from '@navikt/sif-surveys';
 import { KvitteringInfo } from '../../types/KvitteringInfo';
 
 interface Props {
@@ -55,7 +55,7 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
                     </li>
                 </Infolist>
             </Kvittering>
-            <Skyra slug={Slug.soknad_om_pleiepenger_i_livets_sluttfase} />
+            <Skyra slug={SkyraSlug.pleiepenger_i_livets_sluttfase} />
         </Page>
     );
 };
