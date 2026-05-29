@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { SkyraSlug } from './SkyraSlug';
+
 interface Props {
-    slug: string;
+    slug: SkyraSlug;
     consent?: boolean;
 }
 

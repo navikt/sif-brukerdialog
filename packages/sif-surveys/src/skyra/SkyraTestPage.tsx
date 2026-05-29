@@ -2,9 +2,10 @@ import { BodyShort, Box, Heading, VStack } from '@navikt/ds-react';
 
 import Skyra from './Skyra';
 import { SkyraHandler } from './SkyraHandler';
+import { SkyraSlug } from './SkyraSlug';
 
 interface Props {
-    slugs: string[];
+    slugs: SkyraSlug[];
 }
 
 const SkyraTestPage = ({ slugs }: Props) => {
