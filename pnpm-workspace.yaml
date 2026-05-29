@@ -6,3 +6,5 @@ packages:
   - "server-ungdomsytelse-veileder"
 
 minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - '@navikt/nav-dekoratoren-moduler@4.2.0'
