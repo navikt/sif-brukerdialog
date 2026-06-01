@@ -1,5 +1,6 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { SkyraHandler, SkyraTestPage, SkyraSlug } from '@navikt/sif-surveys';
 
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
@@ -14,6 +15,10 @@ const Søknad = () => {
     const initialData = useSøknadInitialData();
     const { text } = useAppIntl();
     const { status } = initialData;
+
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.omsorgspenger_arbeidstaker]} />;
+    }
 
     /** Loading */
     if (
@@ -53,6 +58,7 @@ const Søknad = () => {
     return (
         <SøknadContextProvider initialData={data}>
             <StepFormValuesContextProvider>
+                <SkyraHandler />
                 <SøknadRouter />
             </StepFormValuesContextProvider>
         </SøknadContextProvider>

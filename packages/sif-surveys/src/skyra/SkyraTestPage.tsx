@@ -1,6 +1,6 @@
 import { BodyShort, Box, Heading, VStack } from '@navikt/ds-react';
 
-import Skyra from './Skyra';
+import { Skyra } from './Skyra';
 import { SkyraHandler } from './SkyraHandler';
 import { SkyraSlug } from './SkyraSlug';
 
@@ -8,7 +8,7 @@ interface Props {
     slugs: SkyraSlug[];
 }
 
-const SkyraTestPage = ({ slugs }: Props) => {
+export const SkyraTestPage = ({ slugs }: Props) => {
     return (
         <>
             <SkyraHandler />
@@ -30,5 +30,3 @@ const SkyraTestPage = ({ slugs }: Props) => {
         </>
     );
 };
-
-export default SkyraTestPage;

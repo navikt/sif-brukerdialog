@@ -32,6 +32,7 @@
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:^",
+        "@navikt/sif-surveys": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@sentry/react": "10.53.1",
         "@sif/api": "workspace:*",

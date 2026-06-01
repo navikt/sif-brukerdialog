@@ -15,6 +15,7 @@ import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
 import { useEffect, useRef } from 'react';
 
+import { useSkyraReloader } from '@navikt/sif-surveys';
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
@@ -33,6 +34,7 @@ type FormValues = {
 const { Checkbox } = createSifFormComponents<FormValues>();
 
 export const OppsummeringSteg = () => {
+    useSkyraReloader();
     const stepId = SøknadStepId.OPPSUMMERING;
 
     const { validateField } = useSifValidate('oppsummeringForm');

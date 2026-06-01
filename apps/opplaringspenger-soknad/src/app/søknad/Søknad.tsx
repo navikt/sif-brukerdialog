@@ -17,7 +17,7 @@ const Søknad = () => {
     const { status } = initialData;
 
     if (globalThis.location.pathname.includes('skyra/test')) {
-        return <SkyraTestPage slugs={[SkyraSlug.opplaringspenger_test]} />;
+        return <SkyraTestPage slugs={[SkyraSlug.opplaringspenger]} />;
     }
 
     /** Loading */
