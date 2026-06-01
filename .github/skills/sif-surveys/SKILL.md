@@ -1,7 +1,7 @@
 ---
 name: sif-surveys
 type: referanse
-description: Bruk denne skillen når en utvikler skal sette opp eller feilsøke Skyra-undersøkelser (skyra-survey) i en app via @navikt/sif-surveys.
+description: Bruk denne skillen når en utvikler skal sette opp eller feilsøke Skyra-undersøkelser (skyra-survey) i en app via @sif/surveys.
 ---
 
 # sif-surveys
@@ -19,10 +19,10 @@ description: Bruk denne skillen når en utvikler skal sette opp eller feilsøke 
 
 ## Avgrensning
 
-- Fokus: frontend-oppsett for visning av Skyra via `@navikt/sif-surveys`.
+- Fokus: frontend-oppsett for visning av Skyra via `@sif/surveys`.
 - Ikke fokus: administrasjon av undersøkelser i Skyra-plattformen.
 
-## Pakken `@navikt/sif-surveys`
+## Pakken `@sif/surveys`
 
 Alt Skyra-relatert ligger i `packages/sif-surveys`. Apper importerer direkte — ingen lokale re-eksporter.
 
@@ -53,10 +53,10 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
 
 1. **Avklar slug** — spør utvikleren. Ikke bruk placeholder fra andre apper.
 2. Legg til slug i `SkyraSlug`-enumen i pakken.
-3. Legg til `"@navikt/sif-surveys": "workspace:*"` i appens `package.json`.
-4. Importer direkte fra `@navikt/sif-surveys`:
+3. Legg til `"@sif/surveys": "workspace:*"` i appens `package.json`.
+4. Importer direkte fra `@sif/surveys`:
     ```tsx
-    import { SkyraHandler, Skyra, SkyraSlug } from '@navikt/sif-surveys';
+    import { SkyraHandler, Skyra, SkyraSlug } from '@sif/surveys';
     ```
 5. Monter `<SkyraHandler />` nær routeren (f.eks. i `Søknad.tsx`).
 6. Render `<Skyra>` i KvitteringPage, alltid pakket i `<VStack gap="space-24">` sammen med `<Kvittering>`:
@@ -68,7 +68,7 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
     ```
 7. Legg til testside-rute (`/skyra/test`):
     ```tsx
-    import { SkyraTestPage, SkyraSlug } from '@navikt/sif-surveys';
+    import { SkyraTestPage, SkyraSlug } from '@sif/surveys';
     // ...
     if (globalThis.location.pathname.includes('skyra/test')) {
         return <SkyraTestPage slugs={[SkyraSlug.min_app_test]} />;

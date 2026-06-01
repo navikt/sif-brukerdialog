@@ -1,6 +1,6 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import { SkyraHandler, SkyraTestPage, SkyraSlug } from '@navikt/sif-surveys';
+import { SkyraHandler, SkyraTestPage, SkyraSlug } from '@sif/surveys';
 
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';

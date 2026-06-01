@@ -1,5 +1,5 @@
 import { Link, VStack } from '@navikt/ds-react';
-import { Skyra, SkyraSlug } from '@navikt/sif-surveys';
+import { Skyra, SkyraSlug } from '@sif/surveys';
 import { useIntl } from 'react-intl';
 import Infolist from '@navikt/sif-common-core-ds/src/components/lists/infolist/Infolist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';

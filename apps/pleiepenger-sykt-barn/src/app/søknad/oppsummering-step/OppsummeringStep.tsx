@@ -46,6 +46,7 @@ import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/Nattev
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import SøkerSummary from './søker-summary/SøkerSummary';
+import { useSkyraReloader } from '@sif/surveys';
 
 interface Props {
     values: SøknadFormValues;
@@ -58,6 +59,8 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
     const [sendSoknadFailed, setSendSoknadFailed] = useState<boolean>(false);
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>();
+
+    useSkyraReloader();
 
     const appIntl = useAppIntl();
     const { text, intl, locale } = appIntl;

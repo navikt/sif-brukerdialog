@@ -15,7 +15,7 @@ import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
 import { useEffect, useRef } from 'react';
 
-import { useSkyraReloader } from '@navikt/sif-surveys';
+import { useSkyraReloader } from '@sif/surveys';
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';

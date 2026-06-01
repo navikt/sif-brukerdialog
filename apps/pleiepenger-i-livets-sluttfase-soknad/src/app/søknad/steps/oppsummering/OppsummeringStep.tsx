@@ -5,7 +5,7 @@ import { MedlemskapSummary } from '@navikt/sif-common-forms-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { useSkyraReloader } from '@navikt/sif-surveys';
+import { useSkyraReloader } from '@sif/surveys';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';

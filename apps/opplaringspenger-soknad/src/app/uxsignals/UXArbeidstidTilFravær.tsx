@@ -1,4 +1,4 @@
-import { useUxSignalsLoader, UxSignalsPanel } from '@navikt/sif-surveys';
+import { useUxSignalsLoader, UxSignalsPanel } from '@sif/surveys';
 
 const UXArbeidstidTilFravær = () => {
     useUxSignalsLoader(true);

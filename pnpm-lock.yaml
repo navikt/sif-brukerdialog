@@ -1085,15 +1085,15 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
       '@sentry/react':
         specifier: 10.53.1
         version: 10.53.1(react@19.2.6)
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
         version: 1.16.1
@@ -1652,12 +1652,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -1866,12 +1866,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
         version: 1.16.1
@@ -2074,12 +2074,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
         version: 1.16.1
@@ -2288,9 +2288,6 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:^
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
@@ -2312,6 +2309,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -2481,12 +2481,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -2710,12 +2710,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -2924,6 +2924,9 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -3621,9 +3624,6 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
@@ -3642,6 +3642,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@sif/ung-innsyn':
         specifier: workspace:*
         version: link:../../packages/ung-innsyn
@@ -22245,7 +22248,7 @@ snapshots:
 
   '@storybook/builder-vite@10.4.1(esbuild@0.28.0)(rollup@4.60.4)(storybook@10.4.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@testing-library/dom@10.4.1)(@types/react@19.2.15)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))':
     dependencies:
-      '@storybook/csf-plugin': 10.4.1(esbuild@0.28.0)(rollup@4.60.4)(storybook@10.4.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@testing-library/dom@10.4.1)(@types/react@19.2.15)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))(webpack@5.107.1(esbuild@0.28.0))
+      '@storybook/csf-plugin': 10.4.1(esbuild@0.28.0)(rollup@4.60.4)(storybook@10.4.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@testing-library/dom@10.4.1)(@types/react@19.2.15)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))(webpack@5.107.1(@swc/core@1.15.33)(esbuild@0.28.0))
       storybook: 10.4.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@testing-library/dom@10.4.1)(@types/react@19.2.15)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       ts-dedent: 2.2.0
       vite: 8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0)

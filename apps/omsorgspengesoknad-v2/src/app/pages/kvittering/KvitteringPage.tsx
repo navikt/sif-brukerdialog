@@ -1,7 +1,7 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { useLenker } from '@app/lenker';
 import { Link, VStack } from '@navikt/ds-react';
-import { Skyra, SkyraSlug } from '@navikt/sif-surveys';
+import { Skyra, SkyraSlug } from '@sif/surveys';
 import { InfoList, Kvittering } from '@sif/soknad-ui/components';
 import { ApplicationPage } from '@sif/soknad-ui/pages';
 

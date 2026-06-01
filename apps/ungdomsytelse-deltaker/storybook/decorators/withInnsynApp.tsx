@@ -1,7 +1,7 @@
 import '../../src/app.css';
 
 import { Theme, VStack } from '@navikt/ds-react';
-import { UxSignalsLoaderProvider } from '@navikt/sif-surveys';
+import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 import { useEffect } from 'react';
 

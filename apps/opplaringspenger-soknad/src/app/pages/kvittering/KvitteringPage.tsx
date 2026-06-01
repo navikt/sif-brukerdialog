@@ -5,7 +5,7 @@ import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
-import { Skyra, SkyraSlug } from '@navikt/sif-surveys';
+import { Skyra, SkyraSlug } from '@sif/surveys';
 import UXArbeidstidTilFravær from '../../uxsignals/UXArbeidstidTilFravær';
 
 const KvitteringPage = () => {

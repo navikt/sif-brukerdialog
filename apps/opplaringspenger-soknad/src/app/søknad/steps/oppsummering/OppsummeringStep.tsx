@@ -13,7 +13,7 @@ import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { useSkyraReloader } from '@navikt/sif-surveys';
+import { useSkyraReloader } from '@sif/surveys';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';

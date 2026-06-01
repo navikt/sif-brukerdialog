@@ -8,7 +8,7 @@ import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../an
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
-import { SkyraSlug, SkyraTestPage } from '@navikt/sif-surveys';
+import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import SøknadApp from '../../apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';

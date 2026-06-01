@@ -6,9 +6,15 @@ import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValue
 import SøknadContent from './SøknadContent';
 import SøknadEssentialsLoader from './SøknadEssentialsLoader';
 import SøknadsdataWrapper from './SøknadsdataWrapper';
+import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 
 const Søknad = () => {
     const { logHendelse } = useAnalyticsInstance();
+
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.pleiepenger_sykt_barn]} />;
+    }
+
     return (
         <SøknadEssentialsLoader
             onUgyldigMellomlagring={() => logHendelse(ApplikasjonHendelse.ugyldigMellomlagring)}

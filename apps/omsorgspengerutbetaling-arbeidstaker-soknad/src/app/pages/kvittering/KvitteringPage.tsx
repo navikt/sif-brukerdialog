@@ -5,7 +5,7 @@ import Infolist from '@navikt/sif-common-core-ds/src/components/lists/infolist/I
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
-import { Skyra, SkyraSlug } from '@navikt/sif-surveys';
+import { Skyra, SkyraSlug } from '@sif/surveys';
 
 import { AppText, useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
