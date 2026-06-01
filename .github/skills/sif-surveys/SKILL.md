@@ -59,7 +59,13 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
     import { SkyraHandler, Skyra, SkyraSlug } from '@navikt/sif-surveys';
     ```
 5. Monter `<SkyraHandler />` nær routeren (f.eks. i `Søknad.tsx`).
-6. Render `<Skyra slug={SkyraSlug.min_app} />` der undersøkelsen skal vises.
+6. Render `<Skyra>` i KvitteringPage, alltid pakket i `<VStack gap="space-24">` sammen med `<Kvittering>`:
+    ```tsx
+    <VStack gap="space-24">
+        <Kvittering tittel={...}>...</Kvittering>
+        <Skyra slug={SkyraSlug.min_app} />
+    </VStack>
+    ```
 7. Legg til testside-rute (`/skyra/test`):
     ```tsx
     import { SkyraTestPage, SkyraSlug } from '@navikt/sif-surveys';
