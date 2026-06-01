@@ -71,7 +71,7 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
     import { SkyraTestPage, SkyraSlug } from '@sif/surveys';
     // ...
     if (globalThis.location.pathname.includes('skyra/test')) {
-        return <SkyraTestPage slugs={[SkyraSlug.min_app_test]} />;
+        return <SkyraTestPage slugs={[SkyraSlug.min_app]} />;
     }
     ```
 8. Bruk `useSkyraReloader()` i steg der survey ikke dukker opp uten forsinket reload.
