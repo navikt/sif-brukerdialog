@@ -49,7 +49,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
         }
     }, [currentStepRoute, location.pathname, navigate]);
 
-    if (globalThis.location.pathname.includes('skyra/test')) {
+    if (location.pathname.includes('skyra/test')) {
         return <SkyraTestPage slugs={[SkyraSlug.ekstra_omsorgsdager_kronisk_syk]} />;
     }
 
