@@ -7,7 +7,7 @@ interface Props {
     consent?: boolean;
 }
 
-const Skyra = ({ slug, consent }: Props) => {
+export const Skyra = ({ slug, consent }: Props) => {
     return (
         <>
             {React.createElement('skyra-survey', {
@@ -17,5 +17,3 @@ const Skyra = ({ slug, consent }: Props) => {
         </>
     );
 };
-
-export default Skyra;

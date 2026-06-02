@@ -5,7 +5,7 @@ interface Props {
     mode?: undefined | 'demo';
 }
 
-const UxSignalsPanel = ({ panelId, mode }: Props) => {
+export const UxSignalsPanel = ({ panelId, mode }: Props) => {
     return (
         <Box
             borderRadius="8"
@@ -14,5 +14,3 @@ const UxSignalsPanel = ({ panelId, mode }: Props) => {
             data-uxsignals-mode={mode || ''}></Box>
     );
 };
-
-export default UxSignalsPanel;

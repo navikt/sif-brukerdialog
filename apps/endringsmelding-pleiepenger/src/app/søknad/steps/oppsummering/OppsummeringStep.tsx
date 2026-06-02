@@ -10,6 +10,7 @@ import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { useSkyraReloader } from '@sif/surveys';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -34,6 +35,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 const OppsummeringStep = () => {
+    useSkyraReloader();
     const stepId = StepId.OPPSUMMERING;
     const navigate = useNavigate();
     const { text, intl, locale } = useAppIntl();

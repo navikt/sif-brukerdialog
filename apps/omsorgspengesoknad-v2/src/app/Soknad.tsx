@@ -3,6 +3,7 @@ import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { SøknadContextProvider } from '@app/setup/context/soknadContext';
 import { useSøknadStore, useStepTitles } from '@app/setup/hooks';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { SkyraHandler, SkyraTestPage, SkyraSlug } from '@sif/surveys';
 import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
 import { StepRouteGuard } from '@sif/soknad/navigation';
 import { useEffect } from 'react';
@@ -48,6 +49,10 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
         }
     }, [currentStepRoute, location.pathname, navigate]);
 
+    if (location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.ekstra_omsorgsdager_kronisk_syk]} />;
+    }
+
     if (søknadSendt && location.pathname !== '/kvittering') {
         return <KvitteringPage />;
     }
@@ -62,6 +67,7 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
 
     return (
         <SøknadContextProvider initialFormValues={mellomlagring?.skjemadata} stepTitles={stepTitles}>
+            <SkyraHandler />
             <Routes>
                 <Route path="/" element={<VelkommenPage />} />
                 <Route path="/kvittering" element={<KvitteringPage />} />

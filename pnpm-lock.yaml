@@ -1085,15 +1085,15 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
       '@sentry/react':
         specifier: 10.53.1
         version: 10.53.1(react@19.2.6)
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
         version: 1.16.1
@@ -1655,6 +1655,9 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -1866,6 +1869,9 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
         version: 1.16.1
@@ -2071,6 +2077,9 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
         version: 1.16.1
@@ -2300,6 +2309,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -2469,12 +2481,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -2698,12 +2710,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -2912,6 +2924,9 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@tanstack/react-query':
         specifier: 5.100.14
         version: 5.100.14(react@19.2.6)
@@ -3609,9 +3624,6 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
-      '@navikt/sif-surveys':
-        specifier: workspace:*
-        version: link:../../packages/sif-surveys
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
@@ -3630,6 +3642,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/sif-surveys
       '@sif/ung-innsyn':
         specifier: workspace:*
         version: link:../../packages/ung-innsyn

@@ -1,4 +1,5 @@
-import { Link } from '@navikt/ds-react';
+import { Link, VStack } from '@navikt/ds-react';
+import { Skyra, SkyraSlug } from '@sif/surveys';
 import { useIntl } from 'react-intl';
 import Infolist from '@navikt/sif-common-core-ds/src/components/lists/infolist/Infolist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
@@ -20,32 +21,35 @@ const KvitteringPage = () => {
 
     return (
         <Page title={text('page.kvittering.sidetittel')}>
-            <Kvittering tittel={text('page.kvittering.tittel')}>
-                <Infolist heading={text('page.kvittering.info.tittel')}>
-                    <li>
-                        <AppText id="page.kvittering.info.1" />
-                    </li>
-                    <li>
-                        <AppText id="page.kvittering.info.2" />
-                    </li>
-                    <li>
-                        <AppText id="page.kvittering.info.3" />
-                    </li>
-                    <li>
-                        <p>
-                            <AppText id="page.kvittering.info.4.1" />
-                        </p>
-                        <p>
-                            <Link
-                                href={getLenker(locale).saksbehandlingstider}
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                <AppText id="page.kvittering.info.4.2" />
-                            </Link>
-                        </p>
-                    </li>
-                </Infolist>
-            </Kvittering>
+            <VStack gap="space-24">
+                <Kvittering tittel={text('page.kvittering.tittel')}>
+                    <Infolist heading={text('page.kvittering.info.tittel')}>
+                        <li>
+                            <AppText id="page.kvittering.info.1" />
+                        </li>
+                        <li>
+                            <AppText id="page.kvittering.info.2" />
+                        </li>
+                        <li>
+                            <AppText id="page.kvittering.info.3" />
+                        </li>
+                        <li>
+                            <p>
+                                <AppText id="page.kvittering.info.4.1" />
+                            </p>
+                            <p>
+                                <Link
+                                    href={getLenker(locale).saksbehandlingstider}
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    <AppText id="page.kvittering.info.4.2" />
+                                </Link>
+                            </p>
+                        </li>
+                    </Infolist>
+                </Kvittering>
+                <Skyra slug={SkyraSlug.ekstra_omsorgsdager_kronisk_syk} />
+            </VStack>
         </Page>
     );
 };

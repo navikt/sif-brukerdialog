@@ -2,7 +2,7 @@ import './app.css';
 
 import { Box, Theme } from '@navikt/ds-react';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
-import { UxSignalsLoaderProvider } from '@navikt/sif-surveys';
+import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,

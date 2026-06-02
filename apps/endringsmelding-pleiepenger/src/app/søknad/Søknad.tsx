@@ -8,14 +8,14 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { isAxiosError } from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import DevFooter from '../dev/DevFooter';
 import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
 import { SøknadRoutes } from './config/SøknadRoutes';
-import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
+import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import { SkyraSlug, SkyraTestPage } from '@navikt/sif-surveys';
 
 const Søknad = () => {
     const location = useLocation();

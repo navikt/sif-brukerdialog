@@ -4,7 +4,6 @@ export enum SkyraSlug {
     omsorgspenger_arbeidstaker = 'arbeids-og-velferdsetaten-nav/soknad-om-omsorgspenger-arbeidstaker',
     omsorgspenger_snfl = 'arbeids-og-velferdsetaten-nav/soknad-om-omsorgspenger-snfl',
     opplaringspenger = 'arbeids-og-velferdsetaten-nav/soknad-om-opplaeringspenger',
-    opplaringspenger_test = 'arbeids-og-velferdsetaten-nav/test-soknad-om-opplaeringspenger',
     pleiepenger_i_livets_sluttfase = 'arbeids-og-velferdsetaten-nav/soknad-om-pleiepenger-i-livets-sluttfase',
     pleiepenger_sykt_barn = 'arbeids-og-velferdsetaten-nav/soknad-om-pleiepenger-sykt-barn',
     ungdomsytelse_rapporter_inntekt = 'arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt',

@@ -9,7 +9,7 @@ import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
-import { SkyraHandler, SkyraSlug, SkyraTestPage } from '@navikt/sif-surveys';
+import { SkyraHandler, SkyraSlug, SkyraTestPage } from '@sif/surveys';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
