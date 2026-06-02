@@ -1,5 +1,5 @@
 ---
-applyTo: '.github/workflows/*.{yml,yaml}'
+applyTo: ".github/workflows/*.{yml,yaml}"
 ---
 
 # GitHub Actions CI/CD Standards
@@ -41,49 +41,49 @@ Standard deploy workflow for Nav apps:
 name: Build and deploy
 
 on:
-    push:
-        branches: [main]
+  push:
+    branches: [main]
 
 permissions:
-    contents: read
-    id-token: write
+  contents: read
+  id-token: write
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        outputs:
-            image: ${{ steps.docker-build-push.outputs.image }}
-        steps:
-            - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-            - uses: nais/docker-build-push@v0
-              id: docker-build-push
-              with:
-                  team: mitt-team
-                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+      - uses: nais/docker-build-push@v0
+        id: docker-build-push
+        with:
+          team: mitt-team
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
-    deploy-dev:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-            - uses: nais/deploy/actions/deploy@v2
-              env:
-                  CLUSTER: dev-gcp
-                  RESOURCE: .nais/nais.yaml
-                  VAR: image=${{ needs.build.outputs.image }}
+  deploy-dev:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/nais.yaml
+          VAR: image=${{ needs.build.outputs.image }}
 
-    deploy-prod:
-        needs: [build, deploy-dev]
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-            - uses: nais/deploy/actions/deploy@v2
-              env:
-                  CLUSTER: prod-gcp
-                  RESOURCE: .nais/nais.yaml
-                  VAR: image=${{ needs.build.outputs.image }}
+  deploy-prod:
+    needs: [build, deploy-dev]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: prod-gcp
+          RESOURCE: .nais/nais.yaml
+          VAR: image=${{ needs.build.outputs.image }}
 ```
 
 ## Caching
@@ -92,32 +92,32 @@ jobs:
 # Gradle
 - uses: actions/setup-java@v4
   with:
-      distribution: temurin
-      java-version: 21
-      cache: gradle
+    distribution: temurin
+    java-version: 21
+    cache: gradle
 
 # Node/pnpm
 - uses: actions/setup-node@v4
   with:
-      node-version: 24
-      cache: pnpm
+    node-version: 22
+    cache: pnpm
 
 # Go
 - uses: actions/setup-go@v5
   with:
-      go-version-file: go.mod
-      cache: true
+    go-version-file: go.mod
+    cache: true
 ```
 
 ## Matrix Builds
 
 ```yaml
 strategy:
-    fail-fast: false
-    matrix:
-        app: [my-app, my-other-app]
+  fail-fast: false
+  matrix:
+    app: [my-app, my-other-app]
 steps:
-    - run: cd apps/${{ matrix.app }} && ./gradlew build
+  - run: cd apps/${{ matrix.app }} && ./gradlew build
 ```
 
 ## Reusable Workflows
@@ -125,31 +125,31 @@ steps:
 ```yaml
 # .github/workflows/deploy-nais.yml (reusable)
 on:
-    workflow_call:
-        inputs:
-            cluster:
-                required: true
-                type: string
-            resource:
-                required: true
-                type: string
-            image:
-                required: true
-                type: string
+  workflow_call:
+    inputs:
+      cluster:
+        required: true
+        type: string
+      resource:
+        required: true
+        type: string
+      image:
+        required: true
+        type: string
 
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        permissions:
-            contents: read
-            id-token: write
-        steps:
-            - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-            - uses: nais/deploy/actions/deploy@v2
-              env:
-                  CLUSTER: ${{ inputs.cluster }}
-                  RESOURCE: ${{ inputs.resource }}
-                  VAR: image=${{ inputs.image }}
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: ${{ inputs.cluster }}
+          RESOURCE: ${{ inputs.resource }}
+          VAR: image=${{ inputs.image }}
 ```
 
 ## Secrets
@@ -172,14 +172,14 @@ env:
 ```yaml
 # Begrens concurrency — unngå parallelle deploys
 concurrency:
-    group: deploy-${{ github.ref }}
-    cancel-in-progress: true
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
 
 # Timeout — unngå hengende jobs
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        timeout-minutes: 15
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
 ```
 
 ## Scanning
@@ -188,9 +188,9 @@ jobs:
 # Vulnerability scanning med trivy
 - uses: aquasecurity/trivy-action@0.28.0
   with:
-      scan-type: fs
-      severity: HIGH,CRITICAL
-      exit-code: 1
+    scan-type: fs
+    severity: HIGH,CRITICAL
+    exit-code: 1
 
 # GitHub Actions security scanning
 - run: pipx run zizmor .github/workflows/
