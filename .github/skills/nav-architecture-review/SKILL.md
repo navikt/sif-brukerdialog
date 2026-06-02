@@ -1,6 +1,10 @@
 ---
 name: nav-architecture-review
-description: Architecture Review — ADR Generator
+description: Generer Architecture Decision Records (ADR) med flerperspektiv-review tilpasset Nav
+license: MIT
+metadata:
+  domain: general
+  tags: architecture adr review planning
 ---
 
 # Architecture Review — ADR Generator
@@ -21,7 +25,7 @@ Still disse spørsmålene:
 
 - Hva er endringen? (én setning)
 - Hvorfor gjøres den? (forretningsbehov, teknisk gjeld, regulatorisk)
-- Hva er konsekvensen av å _ikke_ gjøre noe?
+- Hva er konsekvensen av å *ikke* gjøre noe?
 - Hvilke team påvirkes?
 
 ## Steg 2: Fler-perspektiv-review
@@ -71,11 +75,11 @@ Evaluer fra tre perspektiver. For hvert perspektiv: identifiser bekymringer, ris
 
 Identifiser minst to alternativer:
 
-| Alternativ         | Fordeler | Ulemper | Nav-vurdering |
-| ------------------ | -------- | ------- | ------------- |
-| A: [valgt]         | ...      | ...     | ...           |
-| B: [forkastet]     | ...      | ...     | ...           |
-| C: Gjøre ingenting | ...      | ...     | ...           |
+| Alternativ | Fordeler | Ulemper | Nav-vurdering |
+|-----------|---------|---------|---------------|
+| A: [valgt] | ... | ... | ... |
+| B: [forkastet] | ... | ... | ... |
+| C: Gjøre ingenting | ... | ... | ... |
 
 ## Steg 4: Generer ADR
 
@@ -99,13 +103,11 @@ Bruk malen fra [adr-template.md](./references/adr-template.md).
 ## Alternativer vurdert
 
 ### Alternativ A: {navn} (valgt)
-
 - **Fordeler:** ...
 - **Ulemper:** ...
 - **Nav-vurdering:** ...
 
 ### Alternativ B: {navn}
-
 - **Fordeler:** ...
 - **Ulemper:** ...
 - **Nav-vurdering:** ...
@@ -113,25 +115,21 @@ Bruk malen fra [adr-template.md](./references/adr-template.md).
 ## Nav-spesifikke vurderinger
 
 ### Sikkerhet
-
 - Dataklassifisering: {nivå}
 - Auth-mekanisme: {valgt mekanisme}
 - PII-håndtering: {strategi}
 
 ### Plattform
-
 - Nais-konfigurasjon: {endringer}
 - Ressursbehov: {estimat}
 - Observerbarhet: {strategi}
 
 ### Team-påvirkning
-
 - Berørte team: {liste}
 - Migrasjonsstrategi: {plan}
 - Tilbakerulle-strategi: {plan}
 
 ### Migrasjon (ved endring av eksisterende system)
-
 - Bakoverkompatibilitet: {vurdering}
 - Utrullingsstrategi: {big bang / gradvis / parallell}
 - Feature toggle: {toggle-navn og strategi}
@@ -142,15 +140,12 @@ Bruk malen fra [adr-template.md](./references/adr-template.md).
 ## Konsekvenser
 
 ### Positive
-
 - ...
 
 ### Negative
-
 - ...
 
 ### Risiko
-
 - ...
 
 ## Aksjonspunkter
@@ -189,15 +184,15 @@ Bruk denne strukturen til å identifisere, dokumentere og prioritere teknisk gje
 
 Still disse spørsmålene for å finne teknisk gjeld:
 
-| Område        | Spørsmål                                                                         |
-| ------------- | -------------------------------------------------------------------------------- |
-| Avhengigheter | Finnes det utdaterte avhengigheter med kjente sårbarheter?                       |
-| Arkitektur    | Er det moduler med uklare ansvarsområder eller tett kobling?                     |
-| Kode          | Finnes det duplisert logikk, store klasser/filer, eller manglende abstraksjoner? |
-| Tester        | Er testdekningen lav i kritisk forretningslogikk? Mangler integrasjonstester?    |
-| Infrastruktur | Brukes utdatert base image, mangler observerbarhet, eller er CI/CD treg?         |
-| Dokumentasjon | Mangler ADR-er for viktige beslutninger? Er runbooks utdaterte?                  |
-| Sikkerhet     | Er auth-mekanismen oppdatert? Logges PII?                                        |
+| Område | Spørsmål |
+|--------|----------|
+| Avhengigheter | Finnes det utdaterte avhengigheter med kjente sårbarheter? |
+| Arkitektur | Er det moduler med uklare ansvarsområder eller tett kobling? |
+| Kode | Finnes det duplisert logikk, store klasser/filer, eller manglende abstraksjoner? |
+| Tester | Er testdekningen lav i kritisk forretningslogikk? Mangler integrasjonstester? |
+| Infrastruktur | Brukes utdatert base image, mangler observerbarhet, eller er CI/CD treg? |
+| Dokumentasjon | Mangler ADR-er for viktige beslutninger? Er runbooks utdaterte? |
+| Sikkerhet | Er auth-mekanismen oppdatert? Logges PII? |
 
 ### Prioriteringsmodell
 
@@ -225,11 +220,11 @@ Nedslagsfelt (1-3):
 ### Output: Gjeldstabell
 
 ```markdown
-| #   | Gjeldspost                              | Alv. | Frekv. | Nedslagsfelt | Prioritet | Anbefalt tiltak                   |
-| --- | --------------------------------------- | ---- | ------ | ------------ | --------- | --------------------------------- |
-| G1  | Utdatert auth-bibliotek                 | 3    | 3      | 2            | 18        | Oppgrader til nyeste navikt/oasis |
-| G2  | Manglende testdekning i beregningsmodul | 2    | 3      | 1            | 6         | Skriv karakteriseringstester      |
-| G3  | Duplisert valideringslogikk             | 1    | 2      | 2            | 4         | Ekstraher til felles modul        |
+| # | Gjeldspost | Alv. | Frekv. | Nedslagsfelt | Prioritet | Anbefalt tiltak |
+|---|-----------|------|--------|-------------|-----------|----------------|
+| G1 | Utdatert auth-bibliotek | 3 | 3 | 2 | 18 | Oppgrader til nyeste navikt/oasis |
+| G2 | Manglende testdekning i beregningsmodul | 2 | 3 | 1 | 6 | Skriv karakteriseringstester |
+| G3 | Duplisert valideringslogikk | 1 | 2 | 2 | 4 | Ekstraher til felles modul |
 ```
 
 **Leverabel:** Gjeldstabell med prioritert rekkefølge og anbefalt tiltak per post.
