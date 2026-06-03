@@ -13,7 +13,7 @@
         "@navikt/ds-react": "8.11.0",
         "@navikt/sif-common-hooks": "workspace:*",
         "react": "19.2.6",
-        "react-router-dom": "7.15.1",
+        "react-router-dom": "7.16.0",
         "typescript": "6.0.3"
     },
     "devDependencies": {
