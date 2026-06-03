@@ -45,7 +45,6 @@
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
         "eslint": "10.4.0",
-        "eslint-config-next": "16.2.6",
         "vitest": "4.1.7",
         "playwright-core": "1.60.0",
         "postcss": "8.5.15",
