@@ -35,7 +35,7 @@ jobs:
       any-package-changed: ${{ steps.pkg-filter.outputs.packages }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
           fetch-depth: 2
@@ -312,7 +312,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
 
@@ -347,5 +347,5 @@ jobs:
   sif-code-scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.2
       - uses: navikt/sif-gha-workflows/.github/actions/sif-code-scan@v1
