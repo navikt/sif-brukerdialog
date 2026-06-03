@@ -38,7 +38,7 @@
         "@sentry/react": "10.53.1",
         "react-hook-form": "7.76.1",
         "react-intl": "10.1.9",
-        "react-router-dom": "7.15.1",
+        "react-router-dom": "7.16.0",
         "zustand": "5.0.13"
     },
     "devDependencies": {
