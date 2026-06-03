@@ -7,6 +7,7 @@ export default [
     './apps/omsorgspengesoknad/vitest.config.ts',
     './apps/opplaringspenger-soknad/vitest.config.ts',
     './apps/pleiepenger-sykt-barn/vitest.config.ts',
+    './apps/omsorgsdager-kalkulator/vitest.config.ts',
     './apps/sif-ettersending/vitest.config.ts',
     './apps/aktivitetspenger-soknad/vitest.config.ts',
     './packages/sif-common-core-ds/vitest.config.ts',

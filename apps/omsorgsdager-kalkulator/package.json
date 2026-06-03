@@ -11,7 +11,7 @@
         "dev": "next dev --webpack -p 8080",
         "playwright-test": "playwright test",
         "start": "next start -p 8080",
-        "test": "jest"
+        "test": "vitest run"
     },
     "dependencies": {
         "@navikt/aksel-icons": "8.11.0",
@@ -46,8 +46,7 @@
         "config": "workspace:*",
         "eslint": "10.4.0",
         "eslint-config-next": "16.2.6",
-        "jest": "30.4.2",
-        "jest-environment-jsdom": "30.4.1",
+        "vitest": "4.1.7",
         "playwright-core": "1.60.0",
         "postcss": "8.5.15",
         "tailwindcss": "4.3.0",

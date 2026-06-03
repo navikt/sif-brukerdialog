@@ -6,6 +6,7 @@ import {
     GRUNNRETTSDAGER_3_ELLER_FLER_BARN,
 } from './beregningsmodul';
 import Barn, { AlderType } from './types/Barn';
+import { describe, expect, test } from 'vitest';
 
 interface OmsorgsdagerExpected {
     grunnrettExpected?: number;

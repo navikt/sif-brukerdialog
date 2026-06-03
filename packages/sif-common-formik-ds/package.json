@@ -29,11 +29,6 @@
         "test": "vitest run",
         "test-storybook": "test-storybook"
     },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
-    },
     "overrides": {
         "react-refresh": "0.11.0"
     },
@@ -60,7 +55,6 @@
         "@storybook/builder-vite": "10.4.1",
         "@storybook/react-vite": "10.4.1",
         "@storybook/test-runner": "0.24.4",
-        "@types/jest": "30.0.0",
         "@types/node": "25.9.1",
         "@types/react": "19.2.15",
         "@types/react-dom": "19.2.3",
@@ -69,7 +63,6 @@
         "copyfiles": "2.4.1",
         "date-fns": "4.3.0",
         "dayjs": "1.11.20",
-        "jest": "30.4.2",
         "prop-types": "15.8.1",
         "react": "19.2.6",
         "react-dom": "19.2.6",
