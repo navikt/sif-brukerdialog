@@ -43,7 +43,7 @@ export const registerAnalytics = (sporingskode?: string) => {
     }
     return (
         <script
-            defer
+            async
             src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
             data-host-url="https://umami.nav.no"
             data-auto-track="true"
