@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet';
 import { ApiError } from '@navikt/ung-common';
 import constate from 'constate';
 
@@ -43,14 +42,13 @@ export const registerAnalytics = (sporingskode?: string) => {
         return null;
     }
     return (
-        <Helmet>
-            <script
-                defer
-                src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-                data-host-url="https://umami.nav.no"
-                data-auto-track="true"
-                data-website-id={sporingskode}></script>
-        </Helmet>
+        <script
+            async
+            src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+            data-host-url="https://umami.nav.no"
+            data-auto-track="true"
+            data-website-id={sporingskode}
+        />
     );
 };
 
