@@ -1,9 +1,18 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
 import { UngUiText, useUngUiIntl } from '../../i18n';
+import { Lovlenke } from '../../modules/oppgavepaneler/utils/lovverk';
 
-export const RegelverkOgInnsynReadMore = () => {
+interface Props {
+    lenker: Lovlenke[];
+}
+export const RegelverkOgInnsynReadMore = ({ lenker }: Props) => {
     const { text } = useUngUiIntl();
+
+    if (lenker.length === 0) {
+        return null;
+    }
+
     return (
         <ReadMore header={text('@ungInnsyn.regelverkOgInnsyn.readMore.tittel')}>
             <BodyLong>
@@ -11,16 +20,13 @@ export const RegelverkOgInnsynReadMore = () => {
             </BodyLong>
             <VStack gap="space-24">
                 <List>
-                    <List.Item>
-                        <Link href="https://lovdata.no/dokument/NL/lov/2004-12-10-76">
-                            <UngUiText id="@ungInnsyn.regelverkOgInnsyn.readMore.paragraf" />
-                        </Link>
-                    </List.Item>
-                    <List.Item>
-                        <Link href="https://lovdata.no/dokument/LTI/forskrift/2025-06-20-1182">
-                            <UngUiText id="@ungInnsyn.regelverkOgInnsyn.readMore.forskrift" />
-                        </Link>
-                    </List.Item>
+                    {lenker.map((lenke) => (
+                        <List.Item key={lenke.url}>
+                            <Link href={lenke.url} target="_blank" rel="noopener noreferrer">
+                                {lenke.tekst}
+                            </Link>
+                        </List.Item>
+                    ))}
                 </List>
                 <BodyLong>
                     <UngUiText
