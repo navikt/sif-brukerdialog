@@ -16,7 +16,7 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "react-intl": "10.1.9"
+        "react-intl": "10.1.13"
     },
     "devDependencies": {
         "@navikt/sif-common-env": "workspace:*",
@@ -24,7 +24,7 @@
         "config": "workspace:*",
         "postcss": "8.5.15",
         "typescript": "6.0.3",
-        "vitest": "4.1.7"
+        "vitest": "4.1.8"
     },
     "peerDependencies": {
         "@navikt/fnrvalidator": "2",
