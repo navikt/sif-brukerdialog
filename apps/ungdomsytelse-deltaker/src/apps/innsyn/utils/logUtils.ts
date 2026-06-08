@@ -29,7 +29,7 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode, oppgaver: Oppga
     const harStartet = dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
     const erAvsluttet = dayjs(deltakelse.programPeriode.to).isBefore(dayjs());
 
-    const søkYtelseOppgave = oppgaver.find((oppgave) => oppgave.oppgavetype === ParsedOppgavetype.SØK_YTELSE);
+    const søkYtelseOppgave = oppgaver.find((oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.SØK_YTELSE);
     return {
         harSøkt,
         harStartet,
@@ -44,19 +44,20 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode, oppgaver: Oppga
         antallAvbrutteOppgaver: oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.AVBRUTT).length,
         harSluttdato: deltakelse.programPeriode.to !== undefined,
         antallEndretStartdatoOppgaver: oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
         ).length,
         antallEndretSluttdatoOppgaver: oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
         ).length,
         antallAvvikInntektOppgaver: oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
         ).length,
         antallRapporterInntektOppgaver: oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === ParsedOppgavetype.RAPPORTER_INNTEKT,
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.RAPPORTER_INNTEKT,
         ).length,
-        antallSøkYtelseOppgaver: oppgaver.filter((oppgave) => oppgave.oppgavetype === ParsedOppgavetype.SØK_YTELSE)
-            .length,
+        antallSøkYtelseOppgaver: oppgaver.filter(
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.SØK_YTELSE,
+        ).length,
     };
 };
 
@@ -99,7 +100,7 @@ export const getOppgaveBekreftelseMeta = (
     uttalelse: ungdomsytelse.UngdomsytelseOppgaveUttalelseDto,
 ) => {
     return {
-        oppgavetype: oppgave.oppgavetype,
+        oppgavetype: oppgave.parsedOppgavetype,
         antallDagerMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'day'),
         antallMinutterMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'minutes'),
         harUttalelse: uttalelse.harUttalelse,

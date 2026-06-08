@@ -94,7 +94,9 @@ const DeltakerInfoLoader = () => {
 
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
-    const sendSøknadOppgave = oppgaver.data.find((oppgave) => oppgave.oppgavetype === ParsedOppgavetype.SØK_YTELSE);
+    const sendSøknadOppgave = oppgaver.data.find(
+        (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.SØK_YTELSE,
+    );
 
     const deltakerHarSøkt =
         deltakelsePeriode.søktTidspunkt !== undefined || (oppgaver.data.length > 0 && sendSøknadOppgave === undefined);

@@ -1,5 +1,5 @@
 import { logUtils } from '@innsyn/utils/logUtils';
-import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { ParsedOppgavetype, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
@@ -28,7 +28,8 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
     };
 
     const mockOppgave: SøkYtelseOppgave = {
-        oppgavetype: ParsedOppgavetype.SØK_YTELSE,
+        oppgavetype: OppgaveType.SØK_YTELSE,
+        parsedOppgavetype: ParsedOppgavetype.SØK_YTELSE,
         status: OppgaveStatus.ULØST,
         opprettetDato: dayjs().subtract(1, 'day').toDate(),
         oppgaveReferanse: 'test-ref',
