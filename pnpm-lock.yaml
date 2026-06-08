@@ -122,7 +122,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -710,7 +710,7 @@ importers:
         version: 4.7.9
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -912,7 +912,7 @@ importers:
         version: link:../../packages/sif-validation
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -1102,7 +1102,7 @@ importers:
         version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -1346,7 +1346,7 @@ importers:
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -1666,7 +1666,7 @@ importers:
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       busboy:
         specifier: 1.6.0
         version: 1.6.0
@@ -1874,7 +1874,7 @@ importers:
         version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -2082,7 +2082,7 @@ importers:
         version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -2492,7 +2492,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -2718,7 +2718,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       busboy:
         specifier: 1.6.0
         version: 1.6.0
@@ -2929,7 +2929,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -3333,7 +3333,7 @@ importers:
         version: link:../../packages/sif-validation
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -3650,7 +3650,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -4031,7 +4031,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4068,7 +4068,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4105,7 +4105,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4153,7 +4153,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -4254,7 +4254,7 @@ importers:
         version: link:../sif-validation
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -4415,7 +4415,7 @@ importers:
         version: 6.0.2(babel-plugin-react-compiler@1.0.0)(vite@8.0.16(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4713,7 +4713,7 @@ importers:
         version: 6.0.2(babel-plugin-react-compiler@1.0.0)(vite@8.0.16(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4820,7 +4820,7 @@ importers:
         version: 25.9.1
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4977,7 +4977,7 @@ importers:
         version: 6.0.2(babel-plugin-react-compiler@1.0.0)(vite@8.0.16(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -5229,7 +5229,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5262,7 +5262,7 @@ importers:
         version: 1.11.20
       react-day-picker:
         specifier: '>=9.14.0'
-        version: 10.0.0(react@19.2.6)
+        version: 10.0.0(react@19.2.7)
       react-hook-form:
         specifier: 7.77.0
         version: 7.77.0(react@19.2.7)
@@ -5599,7 +5599,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5645,7 +5645,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5691,7 +5691,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5731,7 +5731,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5916,7 +5916,7 @@ importers:
         version: 25.9.1
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       esbuild:
         specifier: 0.28.0
         version: 0.28.0
@@ -5983,7 +5983,7 @@ importers:
         version: 25.9.1
       axios:
         specifier: 1.16.1
-        version: 1.17.0
+        version: 1.16.1
       esbuild:
         specifier: 0.28.0
         version: 0.28.0
@@ -11067,9 +11067,6 @@ packages:
   axios@1.16.1:
     resolution: {integrity: sha512-caYkukvroVPO8KrzuJEb50Hm07KwfBZPEC3VeFHTsqWHvKTsy54hjJz9BS/cdaypROE2rH6xvm9mHX4fgWkr3A==}
 
-  axios@1.17.0:
-    resolution: {integrity: sha512-J8SwNxprqqpbfenehxWYXE7CW+wM1BB4w3+N+g+/Wx40xM4rsLrfPmHHxSWIxJLYDgSY/HqlFPIYb2/S3rxafw==}
-
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
     engines: {node: '>= 0.4'}
@@ -15595,10 +15592,6 @@ packages:
     engines: {node: '>= 16.20.2'}
     peerDependencies:
       react: '>= 0.14.0'
-
-  react@19.2.6:
-    resolution: {integrity: sha512-sfWGGfavi0xr8Pg0sVsyHMAOziVYKgPLNrS7ig+ivMNb3wbCBw3KxtflsGBAwD3gYQlE/AEZsTLgToRrSCjb0Q==}
-    engines: {node: '>=0.10.0'}
 
   react@19.2.7:
     resolution: {integrity: sha512-HNe9WslTbXmFK8o8cmwgAeJFSBvt1bPdHCVKtaaV+WlAN36mpT4hcRpwbf3fY56ar2oIXzsBpOAiIRHAdY0OlQ==}
@@ -23401,16 +23394,6 @@ snapshots:
       - debug
       - supports-color
 
-  axios@1.17.0:
-    dependencies:
-      follow-redirects: 1.16.0
-      form-data: 4.0.5
-      https-proxy-agent: 5.0.1
-      proxy-from-env: 2.1.0
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-
   axobject-query@4.1.0: {}
 
   b4a@1.8.1: {}
@@ -24635,7 +24618,7 @@ snapshots:
       data-view-byte-offset: 1.0.1
       es-define-property: 1.0.1
       es-errors: 1.3.0
-      es-object-atoms: 1.1.1
+      es-object-atoms: 1.1.2
       es-set-tostringtag: 2.1.0
       es-to-primitive: 1.3.0
       function.prototype.name: 1.1.8
@@ -24647,7 +24630,7 @@ snapshots:
       has-property-descriptors: 1.0.2
       has-proto: 1.2.0
       has-symbols: 1.1.0
-      hasown: 2.0.3
+      hasown: 2.0.4
       internal-slot: 1.1.0
       is-array-buffer: 3.0.5
       is-callable: 1.2.7
@@ -24724,7 +24707,7 @@ snapshots:
 
   es-shim-unscopables@1.1.0:
     dependencies:
-      hasown: 2.0.3
+      hasown: 2.0.4
 
   es-to-primitive@1.3.0:
     dependencies:
@@ -25414,7 +25397,7 @@ snapshots:
       call-bound: 1.0.4
       define-properties: 1.2.1
       functions-have-names: 1.2.3
-      hasown: 2.0.3
+      hasown: 2.0.4
       is-callable: 1.2.7
 
   functions-have-names@1.2.3: {}
@@ -25967,7 +25950,7 @@ snapshots:
   internal-slot@1.1.0:
     dependencies:
       es-errors: 1.3.0
-      hasown: 2.0.3
+      hasown: 2.0.4
       side-channel: 1.1.0
 
   intl-messageformat@11.2.8:
@@ -26142,7 +26125,7 @@ snapshots:
       call-bound: 1.0.4
       gopd: 1.2.0
       has-tostringtag: 1.0.2
-      hasown: 2.0.3
+      hasown: 2.0.4
 
   is-retry-allowed@2.2.0: {}
 
@@ -28566,11 +28549,11 @@ snapshots:
     dependencies:
       react: 19.2.7
 
-  react-day-picker@10.0.0(react@19.2.6):
+  react-day-picker@10.0.0(react@19.2.7):
     dependencies:
       '@date-fns/tz': 1.4.1
       date-fns: 4.3.0
-      react: 19.2.6
+      react: 19.2.7
 
   react-day-picker@9.14.0(react@19.2.7):
     dependencies:
@@ -28745,8 +28728,6 @@ snapshots:
       react: 19.2.7
       refractor: 5.0.0
 
-  react@19.2.6: {}
-
   react@19.2.7: {}
 
   read-cache@1.0.0:
@@ -28846,7 +28827,7 @@ snapshots:
       define-properties: 1.2.1
       es-abstract: 1.24.2
       es-errors: 1.3.0
-      es-object-atoms: 1.1.1
+      es-object-atoms: 1.1.2
       get-intrinsic: 1.3.0
       get-proto: 1.0.1
       which-builtin-type: 1.2.1
@@ -29467,7 +29448,7 @@ snapshots:
     dependencies:
       dunder-proto: 1.0.1
       es-errors: 1.3.0
-      es-object-atoms: 1.1.1
+      es-object-atoms: 1.1.2
 
   setimmediate@1.0.5: {}
 
@@ -29847,7 +29828,7 @@ snapshots:
       define-data-property: 1.1.4
       define-properties: 1.2.1
       es-abstract: 1.24.2
-      es-object-atoms: 1.1.1
+      es-object-atoms: 1.1.2
       has-property-descriptors: 1.0.2
 
   string.prototype.trimend@1.0.9:
@@ -29855,13 +29836,13 @@ snapshots:
       call-bind: 1.0.9
       call-bound: 1.0.4
       define-properties: 1.2.1
-      es-object-atoms: 1.1.1
+      es-object-atoms: 1.1.2
 
   string.prototype.trimstart@1.0.8:
     dependencies:
       call-bind: 1.0.9
       define-properties: 1.2.1
-      es-object-atoms: 1.1.1
+      es-object-atoms: 1.1.2
 
   string_decoder@0.10.31: {}
 
